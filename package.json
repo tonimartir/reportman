@@ -1,0 +1,25 @@
+{
+  "name": "reportman",
+  "version": "0.0.2",
+  "description": "Report Processing Library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tonimartir/reportman.git"
+  },
+  "keywords": [
+    "reportman",
+    "report",
+    "svg",
+    "pdf"
+  ],
+  "author": "Toni Martir",
+  "license": "LGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/tonimartir/reportman/issues"
+  },
+  "homepage": "https://github.com/tonimartir/reportman#readme"
+}
