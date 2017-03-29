@@ -1,5 +1,7 @@
-describe("My first check",()=>{
-    it("Tobe true",()=>{
-        expect<boolean>(true).toBeTruthy("What the fuck");
+import { AlignmentFlags } from "../Metafile";
+
+describe("Check align flags",()=>{
+    it("AlignLeft is 1 ",()=>{
+        expect<boolean>(AlignmentFlags.AlignLeft===1).toBeTruthy("What the fuck");
     });
 });
