@@ -9,5 +9,3 @@ export class Metafile extends MetaBase {
 
     }
 }
-
-

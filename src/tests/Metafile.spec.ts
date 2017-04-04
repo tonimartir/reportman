@@ -1,4 +1,4 @@
-import { AlignmentFlags } from "../Metafile";
+import { AlignmentFlags } from "../MetaTypes";
 
 describe("Check align flags",()=>{
     it("AlignLeft is 1 ",()=>{

@@ -1,0 +1,1331 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src\MetaPage.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">src/</a> MetaPage.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">28.81% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>17/59</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">8.33% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/12</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">28.07% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>16/57</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { StreamUtil } from './StreamUtil';
+import {
+	MetaObject, MetaObjectDraw, MetaObjectExport, MetaObjectText, PageSizeDetail, MetaBase,
+	MetaObjectImage, MetaObjectPolygon, AlignmentFlags, MetaObjectType, OrientationType,
+	ArrayBufferList, MetaSeparator
+} from './MetaTypes';
+import { Translator } from './Translator'
+&nbsp;
+export class MetaPage {
+	public UpdatedPageSize: boolean;
+	public <span class="cstat-no" title="statement not covered" >Objects: MetaObject[] = [];</span>
+	public Orientation: OrientationType;
+	/// &lt;summary&gt;Page size information, filled when UpdatedPageSize is true&lt;/summary&gt;
+	public PageDetail: PageSizeDetail;
+	private <span class="cstat-no" title="statement not covered" >stringlist: { [id: string]: number } = {};</span>
+	private <span class="cstat-no" title="statement not covered" >strings: string[] = [];</span>
+	public <span class="cstat-no" title="statement not covered" >buffers: ArrayBufferList = new ArrayBufferList();</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >	public get PhysicWidth(): number {</span>
+<span class="cstat-no" title="statement not covered" >		if (this.UpdatedPageSize) {</span>
+<span class="cstat-no" title="statement not covered" >			return this.PageDetail.PhysicWidth;</span>
+		}
+		else {
+<span class="cstat-no" title="statement not covered" >			return this.Metafile.CustomX;</span>
+		}
+	}
+	/// &lt;summary&gt;Physic height of the page&lt;/summary&gt;
+<span class="fstat-no" title="function not covered" >	public get PhysicHeight() {</span>
+<span class="cstat-no" title="statement not covered" >		if (this.UpdatedPageSize) {</span>
+<span class="cstat-no" title="statement not covered" >			return this.PageDetail.PhysicHeight;</span>
+		}
+		else {
+<span class="cstat-no" title="statement not covered" >			return this.Metafile.CustomY;</span>
+		}
+	}
+<span class="fstat-no" title="function not covered" >	public constructor(public <span class="cstat-no" title="statement not covered" >Metafile: MetaBase)</span></span> {
+&nbsp;
+&nbsp;
+	}
+<span class="fstat-no" title="function not covered" >	public Clear(): void {</span>
+<span class="cstat-no" title="statement not covered" >		this.Objects.splice(0, this.Objects.length);</span>
+<span class="cstat-no" title="statement not covered" >		this.stringlist = {};</span>
+<span class="cstat-no" title="statement not covered" >		this.buffers.clear();</span>
+	}
+<span class="fstat-no" title="function not covered" >	public AddString(value: string)</span>: number {
+<span class="cstat-no" title="statement not covered" >		if (value == undefined)</span>
+<span class="cstat-no" title="statement not covered" >			value = "";</span>
+<span class="cstat-no" title="statement not covered" >		let avalue: number = this.stringlist[value];</span>
+<span class="cstat-no" title="statement not covered" >		if (avalue != undefined)</span>
+<span class="cstat-no" title="statement not covered" >			return avalue;</span>
+<span class="cstat-no" title="statement not covered" >		let newindex = this.strings.length;</span>
+<span class="cstat-no" title="statement not covered" >		this.strings.push(value);</span>
+<span class="cstat-no" title="statement not covered" >		this.stringlist[value] = newindex;</span>
+<span class="cstat-no" title="statement not covered" >		return newindex;</span>
+	}
+<span class="fstat-no" title="function not covered" >	public GetText(obj: MetaObjectText)</span>: string {
+<span class="cstat-no" title="statement not covered" >		let ares: string = this.strings[obj.TextP];</span>
+<span class="cstat-no" title="statement not covered" >		return ares;</span>
+	}
+<span class="fstat-no" title="function not covered" >	public GetWFontNameText(obj: MetaObjectText)</span>: string {
+<span class="cstat-no" title="statement not covered" >		return this.strings[obj.WFontNameP];</span>
+	}
+<span class="fstat-no" title="function not covered" >	public GetLFontNameText(obj: MetaObjectText)</span>: string {
+<span class="cstat-no" title="statement not covered" >		return this.strings[obj.LFontNameP];</span>
+	}
+<span class="fstat-no" title="function not covered" >	public GetStream(obj: MetaObjectImage)</span>: ArrayBuffer {
+<span class="cstat-no" title="statement not covered" >		if (obj.SharedImage) {</span>
+<span class="cstat-no" title="statement not covered" >			return this.Metafile.buffers.getBuffer(obj.StreamPos);</span>
+		}
+		else {
+<span class="cstat-no" title="statement not covered" >			return this.buffers.getBuffer(obj.StreamPos);</span>
+		}
+	}
+<span class="fstat-no" title="function not covered" >	public AddStream(buf: ArrayBuffer, shared: boolean)</span>: number {
+<span class="cstat-no" title="statement not covered" >		if (shared) {</span>
+<span class="cstat-no" title="statement not covered" >			return this.Metafile.buffers.addBuffer(buf);</span>
+		}
+		else {
+<span class="cstat-no" title="statement not covered" >			return this.buffers.addBuffer(buf);</span>
+		}
+	}
+<span class="fstat-no" title="function not covered" >	public LoadFromStream(stream: ArrayBuffer)</span>: void {
+<span class="cstat-no" title="statement not covered" >		let index = 0;</span>
+<span class="cstat-no" title="statement not covered" >		let separator: MetaSeparator = MetaSeparator.ObjectHeader;</span>
+		{
+<span class="cstat-no" title="statement not covered" >			let header = StreamUtil.byteArrayToInt(stream, index);</span>
+<span class="cstat-no" title="statement not covered" >			if (header !== &lt;number&gt;separator)</span>
+<span class="cstat-no" title="statement not covered" >				throw new Error(Translator.TranslateStr(523));</span>
+<span class="cstat-no" title="statement not covered" >			index = index + 4;</span>
+		}
+		// Mark begin
+<span class="cstat-no" title="statement not covered" >		index = index + 4;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		this.Orientation = &lt;OrientationType&gt;StreamUtil.byteArrayToInt(stream, index);</span>
+<span class="cstat-no" title="statement not covered" >		index = index + 4;</span>
+		/*				ReadBuf(astream, ref buf, 4);
+						PageDetail.Index = StreamUtil.ByteArrayToInt(buf, 4);
+						ReadBuf(astream, ref buf, 1);
+						PageDetail.Custom = StreamUtil.ByteArrayToInt(buf, 1) != 0;
+						ReadBuf(astream, ref buf, 4);
+						PageDetail.CustomWidth = StreamUtil.ByteArrayToInt(buf, 4);
+						ReadBuf(astream, ref buf, 4);
+						PageDetail.CustomHeight = StreamUtil.ByteArrayToInt(buf, 4);
+						ReadBuf(astream, ref buf, 4);
+						PageDetail.PhysicWidth = StreamUtil.ByteArrayToInt(buf, 4);
+						ReadBuf(astream, ref buf, 4);
+						PageDetail.PhysicHeight = StreamUtil.ByteArrayToInt(buf, 4);
+						ReadBuf(astream, ref buf, 4);
+						PageDetail.PaperSource = StreamUtil.ByteArrayToInt(buf, 4);
+						ReadBuf(astream, ref buf, 61);
+						PageDetail.ForcePaperName = StreamUtil.ByteArrayToString(buf, 61);
+		
+						ReadBuf(astream, ref buf, 4);
+						PageDetail.Duplex = StreamUtil.ByteArrayToInt(buf, 4);
+						// Record alignment
+						ReadBuf(astream, ref buf, 3);
+		
+						ReadBuf(astream, ref buf, 1);
+						UpdatedPageSize = StreamUtil.ByteArrayToInt(buf, 1) != 0;
+		
+					ReadBuf(astream, ref buf, 4);
+					int objcount = StreamUtil.ByteArrayToInt(buf, 4);
+					if (objcount &lt; 0)
+						throw new Exception(Translator.TranslateStr(523));
+					buf = new byte[objcount * MetaObject.RECORD_SIZE];
+					ReadBuf(astream, ref buf, objcount * MetaObject.RECORD_SIZE);
+		
+					Objects.Clear();
+					for (i = 0; i &lt; objcount; i++)
+					{
+						MetaObject obj = MetaObject.CreateFromBuf(buf, i * MetaObject.RECORD_SIZE);
+						obj.FillFromBuf(buf, i * MetaObject.RECORD_SIZE);
+						Objects.Add(obj);
+					}
+		
+		
+					// String pool
+					buf = new byte[5];
+					ReadBuf(astream, ref buf, 4);
+					int wsize = StreamUtil.ByteArrayToInt(buf, 4);
+					if (wsize &lt; 0)
+						throw new Exception(Translator.TranslateStr(523));
+					buf = new byte[wsize];
+					ReadBuf(astream, ref buf, wsize);
+					if (FPool.Length &lt; wsize)
+					{
+						FPool = new char[wsize];
+					}
+					for (i = 0; i &lt; (wsize / 2); i++)
+					{
+						FPool[i] = (char)((int)buf[i * 2] + (int)(buf[i * 2 + 1] &lt;&lt; 8));
+					}
+					FPoolPos = wsize / 2 + 1;
+		
+					// Update stringlist
+					for (i = 0; i &lt; Objects.Count; i++)
+					{
+						MetaObject obj = Objects[i];
+						switch (obj.MetaType)
+						{
+							case MetaObjectType.Text:
+								MetaObjectText atext = (MetaObjectText)obj;
+								string WFontName = GetWFontNameText(atext);
+								if (stringlist.IndexOfKey(WFontName) &lt; 0)
+									stringlist.Add(WFontName, atext.WFontNameP);
+								string LFontName = GetWFontNameText(atext);
+								if (stringlist.IndexOfKey(LFontName) &lt; 0)
+									stringlist.Add(LFontName, atext.LFontNameP);
+								string Text = GetText(atext);
+								if (stringlist.IndexOfKey(Text) &lt; 0)
+									stringlist.Add(Text, atext.TextP);
+								break;
+		
+						}
+					}
+					// Read Stream
+					// Stream
+					buf = new byte[9];
+					ReadBuf(astream, ref buf, 8);
+					long asize = StreamUtil.ByteArrayToLong(buf, 8);
+					if (asize &lt; 0)
+						throw new Exception(Translator.TranslateStr(523));
+					if (asize &gt; 0)
+					{
+						buf = new byte[asize];
+						ReadBuf(astream, ref buf, (int)asize);
+						FMemStream = new MemoryStream((int)asize);
+						FMemStream.Write(buf, 0, (int)asize);
+					}
+					buf = new byte[9];*/
+	}
+	/*		
+	public void SaveToStream(Stream astream)
+	{
+		int separator=(int)MetaSeparator.ObjectHeader;
+		astream.Write(StreamUtil.IntToByteArray(separator),0,4);
+		astream.Write(StreamUtil.IntToByteArray(0),0,4);
+		int ainteger=(int)Orientation;
+		astream.Write(StreamUtil.IntToByteArray(ainteger),0,4);
+		astream.Write(StreamUtil.IntToByteArray(PageDetail.Index),0,4);
+		astream.Write(StreamUtil.BoolToByteArray(PageDetail.Custom),0,1);
+		astream.Write(StreamUtil.IntToByteArray(PageDetail.CustomWidth),0,4);
+		astream.Write(StreamUtil.IntToByteArray(PageDetail.CustomHeight),0,4);
+		astream.Write(StreamUtil.IntToByteArray(PageDetail.PhysicWidth),0,4);
+		astream.Write(StreamUtil.IntToByteArray(PageDetail.PhysicHeight),0,4);
+		astream.Write(StreamUtil.IntToByteArray(PageDetail.PaperSource),0,4);
+		astream.Write(StreamUtil.StringToByteArray(PageDetail.ForcePaperName,61),0,61);
+		astream.Write(StreamUtil.IntToByteArray(PageDetail.Duplex),0,4);
+		// Record alignment
+		astream.Write(StreamUtil.IntToByteArray(0),0,3);
+&nbsp;
+		astream.Write(StreamUtil.BoolToByteArray(UpdatedPageSize),0,1);
+		astream.Write(StreamUtil.IntToByteArray(Objects.Count),0,4);
+&nbsp;
+		for (int i=0;i&lt;Objects.Count;i++)
+		{
+			Objects[i].SaveToStream(astream);
+		}
+		int wsize=FPoolPos*2;
+		astream.Write(StreamUtil.IntToByteArray(wsize),0,4);
+		if (wsize&gt;0)
+		{
+			StreamUtil.WriteCharArrayToStream(FPool,FPoolPos,astream);
+		}
+		long asize=FMemStream.Length;
+		astream.Write(StreamUtil.LongToByteArray(asize),0,8);
+		FMemStream.Seek(0,SeekOrigin.Begin);
+		FMemStream.WriteTo(astream);
+	}*/
+	/*        public MetaObjectText DrawText(int PosX,int PosY,int PrintWidth,int PrintHeight,string Text,string WFontName,string LFontName,short FontSize,short FontRotation,int FontColor,
+				 int BackColor,bool Transparent,int FontStyle,PDFFontType Type1Font,TextAlignType horzalign,TextAlignVerticalType vertalign,bool SingleLine,bool WordWrap,bool CutText,
+				PrintStepType PrintStep)
+			{
+				MetaObjectText metaobj = new MetaObjectText();
+				metaobj.TextP = AddString(Text);
+				metaobj.TextS = Text.Length;
+				metaobj.LFontNameP = AddString(LFontName);
+				metaobj.LFontNameS = LFontName.Length;
+				metaobj.WFontNameP = AddString(WFontName);
+				metaobj.WFontNameS = WFontName.Length;
+				metaobj.FontSize = FontSize;
+				metaobj.BackColor = BackColor;
+				metaobj.FontRotation = FontRotation;
+				metaobj.FontStyle = (short)FontStyle;
+				metaobj.FontColor = FontColor;
+				metaobj.Type1Font = Type1Font;
+				metaobj.CutText = CutText;
+				metaobj.Transparent = Transparent;
+				metaobj.WordWrap = WordWrap;
+				metaobj.Top = PosY;
+				metaobj.Left = PosX;
+				metaobj.Width = PrintWidth;
+				metaobj.Height = PrintHeight;
+				//			metaobj.RightToLeft=RightToLeft;
+				metaobj.PrintStep = PrintStep;
+				int aalign = MetaObject.GetIntHorizAlignment(horzalign) | MetaObject.GetIntVertAlignment(vertalign);
+				if (SingleLine)
+					aalign = aalign | MetaFile.AlignmentFlags_SingleLine;
+				metaobj.Alignment = aalign;
+				Objects.Add(metaobj);
+				return metaobj;
+			}
+			public MetaObjectDraw DrawShape(int PosX, int PosY, int PrintWidth, int PrintHeight, ShapeType Shape, BrushType BrushStyle, PenType PenStyle,
+				int PenWidth,int PenColor,int BrushColor)
+			{
+				MetaObjectDraw metaobj = new MetaObjectDraw();
+				metaobj.MetaType = MetaObjectType.Draw;
+				metaobj.Top = PosY; metaobj.Left = PosX;
+				metaobj.Width = PrintWidth; metaobj.Height = PrintHeight;
+				metaobj.DrawStyle = Shape;
+				metaobj.BrushStyle = (int)BrushStyle;
+				metaobj.PenStyle = (int)PenStyle;
+				metaobj.PenWidth = PenWidth;
+				metaobj.PenColor = PenColor;
+				metaobj.BrushColor = BrushColor;
+				Objects.Add(metaobj);
+				return metaobj;
+			}
+			public MetaObjectImage DrawImage(int PosX,int PosY,int PrintWidth,int PrintHeight,ImageDrawStyleType DrawStyle,int dpires,
+				object nvalue)
+			{
+				MetaObjectImage metaobj = new MetaObjectImage();
+				metaobj.MetaType = MetaObjectType.Image;
+				metaobj.Top = PosY; metaobj.Left = PosX;
+				metaobj.Width = PrintWidth;
+				metaobj.Height = PrintHeight;
+				metaobj.CopyMode = 20;
+				metaobj.DrawImageStyle = DrawStyle;
+				metaobj.DPIRes = dpires;
+				metaobj.PreviewOnly = false;
+				if (nvalue is MemoryStream)
+				{
+					MemoryStream xstream = (MemoryStream)nvalue;
+					metaobj.StreamPos = AddStream(xstream, false);
+					metaobj.StreamSize = xstream.Length;
+				}
+				else
+				{
+	#if NODRAWING
+					throw new Exception("DrawImage must be a memory stream");
+	#else
+					if (nvalue is Image)
+					{
+						Image nimage = (Image)nvalue;
+						using (MemoryStream mstream = new MemoryStream())
+						{
+							nimage.Save(mstream, ImageFormat.Jpeg);
+						}
+					}
+					else
+						if (nvalue != DBNull.Value)
+							if (nvalue != null)
+								throw new Exception("Unsupported type MetaPage.DrawImage");
+	#endif
+				}            
+				Objects.Add(metaobj);
+				return metaobj;
+			}
+		}
+		/// &lt;summary&gt;
+		/// Collection of pages
+		/// &lt;/summary&gt;
+		public class MetaPages
+		{
+			const int FIRST_ALLOCATION_OBJECTS = 50;
+			MetaFile metafile;
+			MetaPage[] FPages;
+			int FCount;
+			/// &lt;summary&gt;
+			/// Constructor
+			/// &lt;/summary&gt;
+			/// &lt;param name="meta"&gt;Parent MetaFile&lt;/param&gt;
+			public MetaPages(MetaFile meta)
+			{
+				FCount = 0;
+				FPages = new MetaPage[FIRST_ALLOCATION_OBJECTS];
+				metafile = meta;
+			}
+			/// &lt;summary&gt;
+			/// Clear the collection, freeing pages
+			/// &lt;/summary&gt;
+			public void Clear()
+			{
+				for (int i = 0; i &lt; FCount; i++)
+				{
+					FPages[i].Clear();
+			FPages[i].Dispose();
+					FPages[i] = null;
+				}
+				FCount = 0;
+			}
+			/// &lt;summary&gt;
+			/// Current page count
+			/// &lt;/summary&gt;
+			public int CurrentCount
+			{
+				get { return FCount; }
+			}
+			/// &lt;summary&gt;
+			/// Force report processing until the page requested, else throw an exception
+			/// &lt;/summary&gt;
+			/// &lt;param name="index"&gt;Index requested&lt;/param&gt;
+			private void CheckRange(int index)
+			{
+				metafile.RequestPage(index);
+				if ((index &lt; 0) || (index &gt;= FCount))
+					throw new Exception("Index out of range on MetaPage collection");
+			}
+			/// &lt;summary&gt;
+			/// Access page by index
+			/// &lt;/summary&gt;
+			/// &lt;param name="index"&gt;Index requested&lt;/param&gt;
+			/// &lt;returns&gt;MetaPage in this index&lt;/returns&gt;
+			public MetaPage this[int index]
+			{
+				get 
+				{ 
+					CheckRange(index);
+						return FPages[index]; 
+				}
+				
+				set { CheckRange(index); FPages[index] = value; }
+			}
+			/// &lt;summary&gt;
+			/// Retrieve the page count, the report processing will be done until the
+			/// total number of pages is known
+			/// &lt;/summary&gt;
+			public int Count
+			{
+				get
+				{
+					metafile.RequestPage(int.MaxValue);
+					return FCount;
+				}
+			}
+			/// &lt;summary&gt;
+			/// Add a metapage to the collection
+			/// &lt;/summary&gt;
+			/// &lt;param name="obj"&gt;MetaPage to add&lt;/param&gt;
+			public void Add(MetaPage obj)
+			{
+				if (FCount &gt; (FPages.Length - 2))
+				{
+					MetaPage[] npages = new MetaPage[FCount];
+					System.Array.Copy(FPages, 0, npages, 0, FCount);
+					FPages = new MetaPage[FPages.Length * 2];
+					System.Array.Copy(npages, 0, FPages, 0, FCount);
+				}
+	
+				FPages[FCount] = obj;
+				FCount++;
+				if (metafile.ForwardOnly)
+				{
+					if (FCount &gt; 2)
+					{
+	//					FPages[FCount - 333].Clear();
+					}
+				}
+			}*/
+}
+&nbsp;
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Apr 04 2017 20:51:56 GMT+0200 (Hora de verano romance)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

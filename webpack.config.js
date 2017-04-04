@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 module.exports = {
-  context: path.resolve(__dirname, './js'),
+  context: path.resolve(__dirname, './src'),
   entry: {
     app: './reportman.ts',
   },
