@@ -1,14 +1,4 @@
 {
-<<<<<<< HEAD
-  "compilerOptions": {    
-    "outDir": "./dist/",
-    "sourceMap": true,
-    "noImplicitAny": true,
-    "module": "commonjs",
-    "target": "es5",
-    "jsx": "react",
-    "allowJs": true
-=======
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "declaration": false,
@@ -36,6 +26,5 @@
   "compileOnSave": false,
   "atom": {
     "rewriteTsconfig": false
->>>>>>> 82290369fc5b3b7215f06495d709c8d332c34737
   }
 }
