@@ -21,5 +21,11 @@
   "bugs": {
     "url": "https://github.com/tonimartir/reportman/issues"
   },
-  "homepage": "https://github.com/tonimartir/reportman#readme"
+  "homepage": "https://github.com/tonimartir/reportman#readme",
+  "devDependencies": {
+    "ts-loader": "^2.0.3",
+    "typescript": "^2.2.2",
+    "webpack": "^2.3.3",
+    "webpack-dev-server": "^2.4.2"
+  }
 }
