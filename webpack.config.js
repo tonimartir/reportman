@@ -3,11 +3,12 @@ const webpack = require('webpack');
 module.exports = {
   context: path.resolve(__dirname, './src'),
   entry: {
-    app: './reportman.ts'
+    reportman: './reportman.ts',
+    "reportman.test": './tests/Metafile.spec.ts',
   },
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: 'reportman.bundle.js',
+    filename: '[name].js',
   }, 
   module: {
    rules: [
@@ -20,5 +21,6 @@ module.exports = {
  },
  resolve: {
    extensions: [".tsx", ".ts", ".js"]
- }
+ },
+devtool: 'source-map'
 };

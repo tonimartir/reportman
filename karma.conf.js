@@ -1,18 +1,10 @@
 module.exports = function(config) {
     config.set({
-        frameworks: ["jasmine", "karma-typescript"],
+        frameworks: ["jasmine","source-map-support"],
         files: [
-            { pattern: "src/**/*.ts" } // *.tsx for React Jsx 
+            { pattern: "dist/**/*test.js" } // *.tsx for React Jsx 
         ],
-        preprocessors: {
-            "**/*.ts": ["karma-typescript"], // *.tsx for React Jsx 
-        },
-        reporters: ["progress", "karma-typescript"],
+        reporters: ["progress"],
         browsers: ["Chrome"],
-        karmaTypescriptConfig: {compilerOptions: {
-                noImplicitAny: true,
-                sourceMap: true
-            }
-        }       
     });
 };
