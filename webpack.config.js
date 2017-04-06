@@ -3,7 +3,7 @@ const webpack = require('webpack');
 module.exports = {
   context: path.resolve(__dirname, './src'),
   entry: {
-    app: './reportman.ts',
+    app: './reportman.ts'
   },
   output: {
     path: path.resolve(__dirname, './dist'),

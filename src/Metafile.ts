@@ -6,6 +6,6 @@ export class Metafile extends MetaBase {
     public pages:MetaPage[] = [];
     public LoadFromStream(astream:ArrayBuffer)
     {
-
+            throw Error("not implemented")
     }
 }
