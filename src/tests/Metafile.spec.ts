@@ -7,10 +7,10 @@ describe("Check align flags",()=>{
     });
 });
 
-describe("Test loading metafile",()=>{
+describe("Test loading metafile 2",()=>{
     let metafile:Metafile = new Metafile();
-    it("Loading metafile ",()=>{
+    it("Loading metafile 2",()=>{
         metafile.LoadFromStream(null);
-        expect<boolean>(false).toBeTruthy("No debe llegar");
+        expect<boolean>(true).toBeTruthy("Es cierto");
     });
 });

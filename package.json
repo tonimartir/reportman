@@ -6,7 +6,7 @@
   "scripts": {
     "buildnode": "webpack --target node",
     "test": "karma start",
-    "testnode": "jasmine dist/reportmantest.js"
+    "testnode": "jasmine dist/reportman.test.js"
   },
   "repository": {
     "type": "git",

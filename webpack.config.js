@@ -4,7 +4,7 @@ module.exports = {
   context: path.resolve(__dirname, './src'),
   entry: {
     reportman: './reportman.ts',
-    "reportman.test": './tests/Metafile.spec.ts',
+    "reportman.spec": './tests/Metafile.spec.ts',
   },
   output: {
     path: path.resolve(__dirname, './dist'),

@@ -3,3 +3,7 @@ dist
 coverage
 
 npm-debug.log
+*.map
+*.js
+.d.ts
+*.d.ts
