@@ -5,7 +5,9 @@ module.exports = function(config) {
             { pattern: "dist/**/*test.js" }, // *.tsx for React Jsx 
             { pattern: "dist/**/*.map",included : false,served:true,watched:false,nocache:true}
         ],
+    
         reporters: ["progress"],
+
         browsers: ["Chrome"],
         basePath: "./"
     });
