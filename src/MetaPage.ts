@@ -1,10 +1,10 @@
-import { StreamUtil } from './StreamUtil';
+import { StreamUtil } from "./StreamUtil";
 import {
 	MetaObject, MetaObjectDraw, MetaObjectExport, MetaObjectText, PageSizeDetail, MetaBase,
 	MetaObjectImage, MetaObjectPolygon, AlignmentFlags, MetaObjectType, OrientationType,
 	ArrayBufferList, MetaSeparator
-} from './MetaTypes';
-import { Translator } from './Translator'
+} from "./MetaTypes";
+import { Translator } from "./Translator";
 
 export class MetaPage {
 	public UpdatedPageSize: boolean;
@@ -19,17 +19,15 @@ export class MetaPage {
 	public get PhysicWidth(): number {
 		if (this.UpdatedPageSize) {
 			return this.PageDetail.PhysicWidth;
-		}
-		else {
+		} else {
 			return this.Metafile.CustomX;
 		}
 	}
 	/// <summary>Physic height of the page</summary>
-	public get PhysicHeight() {
+	public get PhysicHeight(): number {
 		if (this.UpdatedPageSize) {
 			return this.PageDetail.PhysicHeight;
-		}
-		else {
+		} else {
 			return this.Metafile.CustomY;
 		}
 	}
@@ -43,12 +41,14 @@ export class MetaPage {
 		this.buffers.clear();
 	}
 	public AddString(value: string): number {
-		if (value == undefined)
+		if (value === undefined) {
 			value = "";
+		}
 		let avalue: number = this.stringlist[value];
-		if (avalue != undefined)
+		if (avalue !== undefined) {
 			return avalue;
-		let newindex = this.strings.length;
+		}
+		let newindex: number = this.strings.length;
 		this.strings.push(value);
 		this.stringlist[value] = newindex;
 		return newindex;
@@ -66,29 +66,28 @@ export class MetaPage {
 	public GetStream(obj: MetaObjectImage): ArrayBuffer {
 		if (obj.SharedImage) {
 			return this.Metafile.buffers.getBuffer(obj.StreamPos);
-		}
-		else {
+		} else {
 			return this.buffers.getBuffer(obj.StreamPos);
 		}
 	}
 	public AddStream(buf: ArrayBuffer, shared: boolean): number {
 		if (shared) {
 			return this.Metafile.buffers.addBuffer(buf);
-		}
-		else {
+		} else {
 			return this.buffers.addBuffer(buf);
 		}
 	}
 	public LoadFromStream(stream: ArrayBuffer): void {
-		let index = 0;
+		let index: number = 0;
 		let separator: MetaSeparator = MetaSeparator.ObjectHeader;
 		{
-			let header = StreamUtil.byteArrayToInt(stream, index);
-			if (header !== <number>separator)
+			let header: number = StreamUtil.byteArrayToInt(stream, index);
+			if (header !== <number>separator) {
 				throw new Error(Translator.TranslateStr(523));
+			}
 			index = index + 4;
 		}
-		// Mark begin
+		// mark begin
 		index = index + 4;
 
 		this.Orientation = <OrientationType>StreamUtil.byteArrayToInt(stream, index);
