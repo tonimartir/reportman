@@ -7,3 +7,5 @@ npm-debug.log
 *.js
 .d.ts
 *.d.ts
+karma_html/
+_reports/
