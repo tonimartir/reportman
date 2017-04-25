@@ -169,7 +169,6 @@ export class MetaPage {
 								if (stringlist.IndexOfKey(Text) < 0)
 									stringlist.Add(Text, atext.TextP);
 								break;
-		
 						}
 					}
 					// Read Stream
