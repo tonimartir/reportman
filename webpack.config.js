@@ -9,18 +9,24 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: '[name].js',
-  }, 
+  },
   module: {
-   rules: [
-     {
-       test: /\.tsx?$/,
-       loader: 'ts-loader',
-       exclude: /node_modules/,
-     },
-   ]
- },
- resolve: {
-   extensions: [".tsx", ".ts", ".js"]
- },
-devtool: 'source-map'
+    rules: [
+      {
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.ts$/,
+        enforce: 'pre',
+        loader: 'tslint-loader',
+        options: { /* Loader options go here */ }
+      },
+    ]
+  },
+  resolve: {
+    extensions: [".tsx", ".ts", ".js"]
+  },
+  devtool: 'source-map'
 };

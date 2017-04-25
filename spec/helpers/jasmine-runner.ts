@@ -1,5 +1,6 @@
-import {SpecReporter} from "jasmine-spec-reporter";
+/*import {SpecReporter} from "jasmine-spec-reporter";
 import {DisplayProcessor} from "jasmine-spec-reporter";
+// tslint:disable-next-line:no-var-requires
 const Jasmine = require("jasmine");
 import SuiteInfo = jasmine.SuiteInfo;
 
@@ -15,4 +16,4 @@ jrunner.addReporter(new SpecReporter({
     customProcessors: [CustomProcessor],
 }));
 jrunner.loadConfigFile();
-jrunner.execute();
+jrunner.execute();*/

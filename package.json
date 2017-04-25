@@ -6,7 +6,7 @@
   "scripts": {
     "buildnode": "webpack --target node",
     "test": "karma start",
-    "testnode": "jasmine dist/reportman.test.js"
+    "testnode": "jasmine dist/reportman.spec.js"
   },
   "repository": {
     "type": "git",
@@ -35,6 +35,8 @@
     "karma-source-map-support": "^1.2.0",
     "source-map": "^0.5.6",
     "ts-loader": "^2.0.3",
+    "tslint": "^5.1.0",
+    "tslint-loader": "^3.5.3",
     "typescript": "^2.2.2",
     "webpack": "^2.3.3",
     "webpack-dev-server": "^2.4.2"

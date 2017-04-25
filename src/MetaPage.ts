@@ -1,97 +1,100 @@
+import { ArrayBufferList } from "./ArrayBufferList";
+import { MetaBase } from "./MetaBase";
+import { MetaObject } from "./MetaObject";
+import { MetaObjectDraw } from "./MetaObjectDraw";
+import { MetaObjectImage } from "./MetaObjectImage";
+import { MetaObjectPolygon } from "./MetaObjectPolygon";
+import { MetaObjectText } from "./MetaObjectText";
+import { AlignmentFlags, MetaObjectType, MetaSeparator, OrientationType } from "./MetaTypes";
+import { PageSizeDetail } from "./PageSizeDetail";
 import { StreamUtil } from "./StreamUtil";
-import {
-	MetaObject, MetaObjectDraw, MetaObjectExport, MetaObjectText, PageSizeDetail, MetaBase,
-	MetaObjectImage, MetaObjectPolygon, AlignmentFlags, MetaObjectType, OrientationType,
-	ArrayBufferList, MetaSeparator
-} from "./MetaTypes";
 import { Translator } from "./Translator";
 
 export class MetaPage {
-	public UpdatedPageSize: boolean;
-	public Objects: MetaObject[] = [];
-	public Orientation: OrientationType;
-	/// <summary>Page size information, filled when UpdatedPageSize is true</summary>
-	public PageDetail: PageSizeDetail;
-	private stringlist: { [id: string]: number } = {};
-	private strings: string[] = [];
-	public buffers: ArrayBufferList = new ArrayBufferList();
+    public UpdatedPageSize: boolean;
+    public Objects: MetaObject[] = [];
+    public Orientation: OrientationType;
+    /// <summary>Page size information, filled when UpdatedPageSize is true</summary>
+    public PageDetail: PageSizeDetail;
+    public buffers: ArrayBufferList = new ArrayBufferList();
+    private stringlist: { [id: string]: number } = {};
+    private strings: string[] = [];
 
-	public get PhysicWidth(): number {
-		if (this.UpdatedPageSize) {
-			return this.PageDetail.PhysicWidth;
-		} else {
-			return this.Metafile.CustomX;
-		}
-	}
-	/// <summary>Physic height of the page</summary>
-	public get PhysicHeight(): number {
-		if (this.UpdatedPageSize) {
-			return this.PageDetail.PhysicHeight;
-		} else {
-			return this.Metafile.CustomY;
-		}
-	}
-	public constructor(public Metafile: MetaBase) {
+    public get PhysicWidth(): number {
+        if (this.UpdatedPageSize) {
+            return this.PageDetail.PhysicWidth;
+        } else {
+            return this.Metafile.CustomX;
+        }
+    }
+    /// <summary>Physic height of the page</summary>
+    public get PhysicHeight(): number {
+        if (this.UpdatedPageSize) {
+            return this.PageDetail.PhysicHeight;
+        } else {
+            return this.Metafile.CustomY;
+        }
+    }
+    public constructor(public Metafile: MetaBase) {
 
+    }
+    public Clear(): void {
+        this.Objects.splice(0, this.Objects.length);
+        this.stringlist = {};
+        this.buffers.clear();
+    }
+    public AddString(value: string): number {
+        if (value === undefined) {
+            value = "";
+        }
+        const avalue: number = this.stringlist[value];
+        if (avalue !== undefined) {
+            return avalue;
+        }
+        const newindex: number = this.strings.length;
+        this.strings.push(value);
+        this.stringlist[value] = newindex;
+        return newindex;
+    }
+    public GetText(obj: MetaObjectText): string {
+        const ares: string = this.strings[obj.TextP];
+        return ares;
+    }
+    public GetWFontNameText(obj: MetaObjectText): string {
+        return this.strings[obj.WFontNameP];
+    }
+    public GetLFontNameText(obj: MetaObjectText): string {
+        return this.strings[obj.LFontNameP];
+    }
+    public GetStream(obj: MetaObjectImage): ArrayBuffer {
+        if (obj.SharedImage) {
+            return this.Metafile.buffers.getBuffer(obj.StreamPos);
+        } else {
+            return this.buffers.getBuffer(obj.StreamPos);
+        }
+    }
+    public AddStream(buf: ArrayBuffer, shared: boolean): number {
+        if (shared) {
+            return this.Metafile.buffers.addBuffer(buf);
+        } else {
+            return this.buffers.addBuffer(buf);
+        }
+    }
+    public LoadFromStream(stream: ArrayBuffer): void {
+        let index: number = 0;
+        const separator: MetaSeparator = MetaSeparator.ObjectHeader;
+        {
+            const header: number = StreamUtil.byteArrayToInt(stream, index);
+            if (header !== separator as number) {
+                throw new Error(Translator.TranslateStr(523));
+            }
+            index = index + 4;
+        }
+        // mark begin
+        index = index + 4;
 
-	}
-	public Clear(): void {
-		this.Objects.splice(0, this.Objects.length);
-		this.stringlist = {};
-		this.buffers.clear();
-	}
-	public AddString(value: string): number {
-		if (value === undefined) {
-			value = "";
-		}
-		let avalue: number = this.stringlist[value];
-		if (avalue !== undefined) {
-			return avalue;
-		}
-		let newindex: number = this.strings.length;
-		this.strings.push(value);
-		this.stringlist[value] = newindex;
-		return newindex;
-	}
-	public GetText(obj: MetaObjectText): string {
-		let ares: string = this.strings[obj.TextP];
-		return ares;
-	}
-	public GetWFontNameText(obj: MetaObjectText): string {
-		return this.strings[obj.WFontNameP];
-	}
-	public GetLFontNameText(obj: MetaObjectText): string {
-		return this.strings[obj.LFontNameP];
-	}
-	public GetStream(obj: MetaObjectImage): ArrayBuffer {
-		if (obj.SharedImage) {
-			return this.Metafile.buffers.getBuffer(obj.StreamPos);
-		} else {
-			return this.buffers.getBuffer(obj.StreamPos);
-		}
-	}
-	public AddStream(buf: ArrayBuffer, shared: boolean): number {
-		if (shared) {
-			return this.Metafile.buffers.addBuffer(buf);
-		} else {
-			return this.buffers.addBuffer(buf);
-		}
-	}
-	public LoadFromStream(stream: ArrayBuffer): void {
-		let index: number = 0;
-		let separator: MetaSeparator = MetaSeparator.ObjectHeader;
-		{
-			let header: number = StreamUtil.byteArrayToInt(stream, index);
-			if (header !== <number>separator) {
-				throw new Error(Translator.TranslateStr(523));
-			}
-			index = index + 4;
-		}
-		// mark begin
-		index = index + 4;
-
-		this.Orientation = <OrientationType>StreamUtil.byteArrayToInt(stream, index);
-		index = index + 4;
+        this.Orientation = StreamUtil.byteArrayToInt(stream, index) as OrientationType;
+        index = index + 4;
 		/*				ReadBuf(astream, ref buf, 4);
 						PageDetail.Index = StreamUtil.ByteArrayToInt(buf, 4);
 						ReadBuf(astream, ref buf, 1);
@@ -108,22 +111,22 @@ export class MetaPage {
 						PageDetail.PaperSource = StreamUtil.ByteArrayToInt(buf, 4);
 						ReadBuf(astream, ref buf, 61);
 						PageDetail.ForcePaperName = StreamUtil.ByteArrayToString(buf, 61);
-		
+
 						ReadBuf(astream, ref buf, 4);
 						PageDetail.Duplex = StreamUtil.ByteArrayToInt(buf, 4);
 						// Record alignment
 						ReadBuf(astream, ref buf, 3);
-		
+
 						ReadBuf(astream, ref buf, 1);
 						UpdatedPageSize = StreamUtil.ByteArrayToInt(buf, 1) != 0;
-		
+
 					ReadBuf(astream, ref buf, 4);
 					int objcount = StreamUtil.ByteArrayToInt(buf, 4);
 					if (objcount < 0)
 						throw new Exception(Translator.TranslateStr(523));
 					buf = new byte[objcount * MetaObject.RECORD_SIZE];
 					ReadBuf(astream, ref buf, objcount * MetaObject.RECORD_SIZE);
-		
+
 					Objects.Clear();
 					for (i = 0; i < objcount; i++)
 					{
@@ -131,8 +134,7 @@ export class MetaPage {
 						obj.FillFromBuf(buf, i * MetaObject.RECORD_SIZE);
 						Objects.Add(obj);
 					}
-		
-		
+
 					// String pool
 					buf = new byte[5];
 					ReadBuf(astream, ref buf, 4);
@@ -150,7 +152,7 @@ export class MetaPage {
 						FPool[i] = (char)((int)buf[i * 2] + (int)(buf[i * 2 + 1] << 8));
 					}
 					FPoolPos = wsize / 2 + 1;
-		
+
 					// Update stringlist
 					for (i = 0; i < Objects.Count; i++)
 					{
@@ -186,8 +188,8 @@ export class MetaPage {
 						FMemStream.Write(buf, 0, (int)asize);
 					}
 					buf = new byte[9];*/
-	}
-	/*		
+    }
+	/*
 	public void SaveToStream(Stream astream)
 	{
 		int separator=(int)MetaSeparator.ObjectHeader;
@@ -225,8 +227,12 @@ export class MetaPage {
 		FMemStream.Seek(0,SeekOrigin.Begin);
 		FMemStream.WriteTo(astream);
 	}*/
-	/*        public MetaObjectText DrawText(int PosX,int PosY,int PrintWidth,int PrintHeight,string Text,string WFontName,string LFontName,short FontSize,short FontRotation,int FontColor,
-				 int BackColor,bool Transparent,int FontStyle,PDFFontType Type1Font,TextAlignType horzalign,TextAlignVerticalType vertalign,bool SingleLine,bool WordWrap,bool CutText,
+	/*
+            public MetaObjectText DrawText(int PosX,int PosY,int PrintWidth,int PrintHeight,
+            string Text,string WFontName,string LFontName,
+            short FontSize,short FontRotation,int FontColor,
+				 int BackColor,bool Transparent,int FontStyle,PDFFontType Type1Font,
+                 TextAlignType horzalign,TextAlignVerticalType vertalign,bool SingleLine,bool WordWrap,bool CutText,
 				PrintStepType PrintStep)
 			{
 				MetaObjectText metaobj = new MetaObjectText();
@@ -258,7 +264,8 @@ export class MetaPage {
 				Objects.Add(metaobj);
 				return metaobj;
 			}
-			public MetaObjectDraw DrawShape(int PosX, int PosY, int PrintWidth, int PrintHeight, ShapeType Shape, BrushType BrushStyle, PenType PenStyle,
+			public MetaObjectDraw DrawShape(int PosX, int PosY, int PrintWidth, int PrintHeight,
+            ShapeType Shape, BrushType BrushStyle, PenType PenStyle,
 				int PenWidth,int PenColor,int BrushColor)
 			{
 				MetaObjectDraw metaobj = new MetaObjectDraw();
@@ -274,7 +281,8 @@ export class MetaPage {
 				Objects.Add(metaobj);
 				return metaobj;
 			}
-			public MetaObjectImage DrawImage(int PosX,int PosY,int PrintWidth,int PrintHeight,ImageDrawStyleType DrawStyle,int dpires,
+			public MetaObjectImage DrawImage(int PosX,int PosY,int PrintWidth,int PrintHeight,
+            ImageDrawStyleType DrawStyle,int dpires,
 				object nvalue)
 			{
 				MetaObjectImage metaobj = new MetaObjectImage();
@@ -310,7 +318,7 @@ export class MetaPage {
 							if (nvalue != null)
 								throw new Exception("Unsupported type MetaPage.DrawImage");
 	#endif
-				}            
+				}
 				Objects.Add(metaobj);
 				return metaobj;
 			}
@@ -371,12 +379,11 @@ export class MetaPage {
 			/// <returns>MetaPage in this index</returns>
 			public MetaPage this[int index]
 			{
-				get 
-				{ 
+				get	{
 					CheckRange(index);
-						return FPages[index]; 
+						return FPages[index];
 				}
-				
+
 				set { CheckRange(index); FPages[index] = value; }
 			}
 			/// <summary>
@@ -404,7 +411,7 @@ export class MetaPage {
 					FPages = new MetaPage[FPages.Length * 2];
 					System.Array.Copy(npages, 0, FPages, 0, FCount);
 				}
-	
+
 				FPages[FCount] = obj;
 				FCount++;
 				if (metafile.ForwardOnly)
@@ -416,5 +423,3 @@ export class MetaPage {
 				}
 			}*/
 }
-
-

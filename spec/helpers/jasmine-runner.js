@@ -1,4 +1,4 @@
-"use strict";
+/*"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -19,6 +19,7 @@ var CustomProcessor = (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     CustomProcessor.prototype.displayJasmineStarted = function (info, log) {
+        this.configuration.stacktrace = true;
         return "TypeScript " + log;
     };
     return CustomProcessor;
@@ -30,3 +31,4 @@ jrunner.addReporter(new jasmine_spec_reporter_1.SpecReporter({
 }));
 jrunner.loadConfigFile();
 jrunner.execute();
+*/

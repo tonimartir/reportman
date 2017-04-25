@@ -1,7 +1,6 @@
 import { PageSizeDetail } from "./PageSizeDetail";
 import { StreamUtil } from "./StreamUtil";
 
-
 export enum AutoScaleType {
     Wide = 0, Real = 1, EntirePage = 2, Custom = 3, Height = 4,
 }
