@@ -9,7 +9,7 @@
             "type": "node",
             "request": "launch",
             "name": "Iniciar programa",
-            "program": "${workspaceRoot}\\dist\\reportman.bundle.js",
+            "program": "${workspaceRoot}\\dist\\reportman.js",
             "outFiles": [],
             "sourceMaps": true
         },
