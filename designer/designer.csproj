@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <OutputType>WinExe</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+    <Configurations>Debug;Release_35;Release_40;Release_45;Release_Mono_w_Linux;Release</Configurations>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Reportman.Designer\Reportman.Designer.csproj" />
+    <ProjectReference Include="..\Reportman.Drawing.Forms\Reportman.Drawing.Forms.csproj" />
+    <ProjectReference Include="..\Reportman.Drawing\Reportman.Drawing.csproj" />
+    <ProjectReference Include="..\Reportman.Reporting.Forms\Reportman.Reporting.Forms.csproj" />
+    <ProjectReference Include="..\Reportman.Reporting\Reportman.Reporting.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FirebirdSql.Data.FirebirdClient" Version="10.3.2" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="MySql.Data" Version="9.2.0" />
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.119.0" />
+    <PackageReference Include="ZXing.Net" Version="0.16.9" />
+  </ItemGroup>
+</Project>

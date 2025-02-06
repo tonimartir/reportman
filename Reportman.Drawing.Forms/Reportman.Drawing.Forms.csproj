@@ -1,0 +1,105 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+	<TargetFrameworks>net48;;net8.0-windows;net9.0-windows</TargetFrameworks>
+    <OutputType>Library</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+    <Configurations>CodeAnalysisDebug;Debug;MonoDebug;Release_35;Release_40;Release_45;Release_Mono_w_Linux;Release;Signed;TPVOnline</Configurations>
+    <Platforms>AnyCPU;x86</Platforms>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Update="CueHelper.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ProgressBarAdvanced.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ComboBoxAdvanced.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="DataGridViewAdvanced.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="DateTimePickerNullable.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="DateTimePickerAdvanced.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="GroupBoxAdvanced.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="PreviewMetaFile.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="PreviewWinFormsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="RadioGroup.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="TableLayoutAdvanced.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ToolStripTextBoxFilter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="TreeGridAdvanced.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ToolTipAdvanced.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="TabPageAdvanced.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="SignatureControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ScreenKeyboard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Ruler.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="TextBoxAdvanced.cs">
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Reportman.Drawing\Reportman.Drawing.csproj" />
+  </ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net48'">
+		<Reference Include="System.Windows.Forms.DataVisualization">
+			<Version>4.0</Version>
+		</Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+    <PackageReference Include="ClosedXML">
+      <Version>0.104.1</Version>
+    </PackageReference>
+    <PackageReference Include="DocumentFormat.OpenXml">
+      <Version>3.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="DocumentFormat.OpenXml.Framework">
+      <Version>3.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.1" />
+    <PackageReference Include="System.Memory" Version="4.6.0" />
+    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.6.0" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net8.0-windows'">
+    <PackageReference Include="WinForms.DataVisualization">
+      <Version>1.10.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net9.0-windows'">
+    <PackageReference Include="WinForms.DataVisualization">
+      <Version>1.10.0</Version>
+    </PackageReference>
+  </ItemGroup>
+</Project>

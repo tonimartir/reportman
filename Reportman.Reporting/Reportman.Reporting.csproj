@@ -1,0 +1,71 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+	<TargetFrameworks>net8.0;net9.0;net48;net8.0-windows;net9.0-windows</TargetFrameworks>
+    <OutputType>Library</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Configurations>CodeAnalysisDebug;Debug;MonoDebug;Release_35;Release_40;Release_45;Release_Mono_w_Linux;Release;Signed;TPVOnline</Configurations>
+    <AssemblyTitle>Reportman.Reporting</AssemblyTitle>
+    <Product>Reportman.Reporting</Product>
+    <Copyright>Copyright ©  2017</Copyright>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <Platforms>AnyCPU;x86</Platforms>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DefineConstants>TRACE;DEBUG;REPMAN_ZLIB</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <DefineConstants>TRACE;DEBUG;REPMAN_ZLIB</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DefineConstants>TRACE;REPMAN_ZLIB</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <DefineConstants>TRACE;REPMAN_ZLIB</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Update="DatasetAlias.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Evaluator.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ReportDataset.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="PagedDataTable.cs">
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\datasetalias.ico" />
+    <Content Include="Resources\evaluator.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="DatasetAlias.resx">
+      <DependentUpon>DatasetAlias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Evaluator.resx">
+      <DependentUpon>Evaluator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ReportDataset.resx">
+      <DependentUpon>ReportDataset.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Reportman.Drawing\Reportman.Drawing.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="9.0.1" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="SharpZipLib" Version="1.4.2" />
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+    <PackageReference Include="System.Memory" Version="4.6.0" />
+    <PackageReference Include="System.Resources.Extensions" Version="9.0.1" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.1.0" />
+    <PackageReference Include="System.Text.Encodings.Web" Version="9.0.1" />
+    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.6.0" />
+    <PackageReference Include="ZXing.Net" Version="0.16.9" />
+  </ItemGroup>
+</Project>
