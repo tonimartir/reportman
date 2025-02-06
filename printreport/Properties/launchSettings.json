@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "printreport": {
+      "commandName": "Project",
+      "commandLineArgs": "-preview \"C:\\Users\\toni\\Downloads\\xx.rep\""
+    }
+  }
+}

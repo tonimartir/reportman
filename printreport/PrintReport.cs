@@ -615,7 +615,7 @@ namespace Reportman.Commands
                         if (showparams)
                         {
 #if FORMS
-                            doprint = ParamsForm.ShowParams(rp);
+                            doprint = ParamsForm.ShowParams(rp,"");
 #else
                             throw new Exception("Show params not supported in console mode");
 #endif
