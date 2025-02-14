@@ -189,7 +189,9 @@ namespace Reportman.Designer
                 bprint,
                 bexecute,
                 bexpression,
+                bzoomplus,
                 dropdownzoom,
+                bzoomminus,
                 bgrid,
                 barrow,
                 blabel,
@@ -200,14 +202,19 @@ namespace Reportman.Designer
                 bbarcode,
                 bpaste,
                 bpagesetup,
-                bpreview
+                bpreview,
+                bEdit
             };
 
             SelectedButtons = new List<ToolStripItem>
             {
                 bdelete,
                 bcut,
-                bcopy
+                bcopy,
+                bmoveleft,      // MoveControls Left
+                bmoveright,     // MoveControls Right
+                bmoveup,        // MoveControls Up
+                bmovedown       // MoveControls Down
             };
 
             TwoSelectedButtons = new List<ToolStripItem>
@@ -701,7 +708,8 @@ namespace Reportman.Designer
             {
                 CurrentInterface = DesignerInterface.GetFromOject(lselec, frameproperties.inspector);
                 frameproperties.SetObject(CurrentInterface);
-            }
+                subreportedit.parentcontrol.Focus();        // For MoveControls - Set the focus to the parent control for the keyboard events to fire for moving controls from keyboard
+            }            
         }
         private void StructureChange(object sender, EventArgs args)
         {
@@ -859,6 +867,26 @@ namespace Reportman.Designer
             ButtonCopyClick(this, null);
             ButtonDeleteClick(this, null);
         }
+
+        // MoveControls 
+        #region "Move Selected Controls"        
+        private void ButtonMoveLeftClick(object sender, EventArgs e)
+        {
+            subreportedit.MoveControlsLeft();
+        }
+        private void ButtonMoveRightClick(object sender, EventArgs e)
+        {
+            subreportedit.MoveControlsRight();
+        }
+        private void ButtonMoveUpClick(object sender, EventArgs e)
+        {
+            subreportedit.MoveControlsUp();
+        }
+        private void ButtonMoveDownClick(object sender, EventArgs e)
+        {
+            subreportedit.MoveControlsDown();
+        }
+        #endregion
 
         private void ButtonAlignLeftClick(object sender, EventArgs e)
         {

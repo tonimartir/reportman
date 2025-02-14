@@ -99,6 +99,11 @@
             bchart = new System.Windows.Forms.ToolStripButton();
             bbarcode = new System.Windows.Forms.ToolStripButton();
             toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            bmoveleft = new System.Windows.Forms.ToolStripButton();
+            bmoveright = new System.Windows.Forms.ToolStripButton();
+            bmoveup = new System.Windows.Forms.ToolStripButton();
+            bmovedown = new System.Windows.Forms.ToolStripButton();
             balignleft = new System.Windows.Forms.ToolStripButton();
             balignright = new System.Windows.Forms.ToolStripButton();
             baligntop = new System.Windows.Forms.ToolStripButton();
@@ -261,7 +266,7 @@
             label2.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
             label2.Size = new System.Drawing.Size(364, 40);
             label2.TabIndex = 0;
-            label2.Text = "Propiedades";
+            label2.Text = "Properties";
             label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // splitter2
@@ -385,7 +390,7 @@
             label1.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
             label1.Size = new System.Drawing.Size(333, 40);
             label1.TabIndex = 0;
-            label1.Text = "Explorador del informe";
+            label1.Text = "Report Explorer";
             label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // TopBar
@@ -393,7 +398,7 @@
             TopBar.Dock = System.Windows.Forms.DockStyle.None;
             TopBar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             TopBar.ImageScalingSize = new System.Drawing.Size(19, 19);
-            TopBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { bnew, bopen, bsep1, bsave, bsep2, bpreview, bprint, toolStripSeparator6, bzoomplus, dropdownzoom, bzoomminus, toolStripSeparator5, bcopy, bpaste, bcut, bdelete, toolStripSeparator1, barrow, blabel, bexpression, bimage, bshape, bchart, bbarcode, toolStripSeparator4, balignleft, balignright, baligntop, balignbottom, bhorizontalgap, bverticalgap, toolStripSeparator2, bEdit, bpagesetup, bgrid, bexecute, bhideRight, bexit });
+            TopBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { bnew, bopen, bsep1, bsave, bsep2, bpreview, bprint, toolStripSeparator6, bzoomplus, dropdownzoom, bzoomminus, toolStripSeparator5, bcopy, bpaste, bcut, bdelete, toolStripSeparator1, barrow, blabel, bexpression, bimage, bshape, bchart, bbarcode, toolStripSeparator7, bmoveleft, bmoveright, bmoveup, bmovedown, toolStripSeparator4, balignleft, balignright, baligntop, balignbottom, bhorizontalgap, bverticalgap, toolStripSeparator2, bEdit, bpagesetup, bgrid, bexecute, bhideRight, bexit });
             TopBar.Location = new System.Drawing.Point(4, 0);
             TopBar.Name = "TopBar";
             TopBar.Size = new System.Drawing.Size(1590, 27);
@@ -517,7 +522,7 @@
             bzoomplus.ImageTransparentColor = System.Drawing.Color.Magenta;
             bzoomplus.Name = "bzoomplus";
             bzoomplus.Size = new System.Drawing.Size(85, 24);
-            bzoomplus.Text = "Ampliar";
+            bzoomplus.Text = "Enlarge";
             bzoomplus.Click += ButtonZoomPlusClick;
             // 
             // dropdownzoom
@@ -662,7 +667,7 @@
             bzoomminus.ImageTransparentColor = System.Drawing.Color.Magenta;
             bzoomminus.Name = "bzoomminus";
             bzoomminus.Size = new System.Drawing.Size(82, 24);
-            bzoomminus.Text = "Reducir";
+            bzoomminus.Text = "Reduce";
             bzoomminus.Click += ButtonZoomMinusClick;
             // 
             // toolStripSeparator5
@@ -788,6 +793,51 @@
             bbarcode.Text = "Barcode";
             bbarcode.Click += ButtonArrowClick;
             // 
+            // toolStripSeparator7
+            // 
+            toolStripSeparator7.Name = "toolStripSeparator7";
+            toolStripSeparator7.Size = new System.Drawing.Size(6, 27);
+            // 
+            // bmoveleft
+            // 
+            bmoveleft.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            bmoveleft.Image = Properties.Resources.arrowleft;
+            bmoveleft.ImageTransparentColor = System.Drawing.Color.Magenta;
+            bmoveleft.Name = "bmoveleft";
+            bmoveleft.Size = new System.Drawing.Size(29, 24);
+            bmoveleft.Text = "Move left";
+            bmoveleft.Click += ButtonMoveLeftClick;
+            // 
+            // bmoveright
+            // 
+            bmoveright.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            bmoveright.Image = Properties.Resources.arrowright;
+            bmoveright.ImageTransparentColor = System.Drawing.Color.Magenta;
+            bmoveright.Name = "bmoveright";
+            bmoveright.Size = new System.Drawing.Size(29, 24);
+            bmoveright.Text = "Move Right";
+            bmoveright.Click += ButtonMoveRightClick;
+            //
+            // bmoveup
+            // 
+            bmoveup.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            bmoveup.Image = Properties.Resources.arrowup;
+            bmoveup.ImageTransparentColor = System.Drawing.Color.Magenta;
+            bmoveup.Name = "bmoveup";
+            bmoveup.Size = new System.Drawing.Size(29, 24);
+            bmoveup.Text = "Move Up";
+            bmoveup.Click += ButtonMoveUpClick;
+            //
+            // bmovedown
+            // 
+            bmovedown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            bmovedown.Image = Properties.Resources.arrowdown;
+            bmovedown.ImageTransparentColor = System.Drawing.Color.Magenta;
+            bmovedown.Name = "bmovedown";
+            bmovedown.Size = new System.Drawing.Size(29, 24);
+            bmovedown.Text = "Move Down";
+            bmovedown.Click += ButtonMoveDownClick;
+            // 
             // toolStripSeparator4
             // 
             toolStripSeparator4.Name = "toolStripSeparator4";
@@ -866,13 +916,13 @@
             bEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
             bEdit.Name = "bEdit";
             bEdit.Size = new System.Drawing.Size(72, 24);
-            bEdit.Text = "Edición";
+            bEdit.Text = "Edit";
             // 
             // majustar1_5
             // 
             majustar1_5.Name = "majustar1_5";
             majustar1_5.Size = new System.Drawing.Size(224, 26);
-            majustar1_5.Text = "Ajustar 1/6 pulgada";
+            majustar1_5.Text = "Adjust 1/6 inch";
             majustar1_5.Click += majustar1_5_Click;
             // 
             // mseleccionar
@@ -880,20 +930,20 @@
             mseleccionar.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { mseleccionartodoslostextos, mseleccionartodo });
             mseleccionar.Name = "mseleccionar";
             mseleccionar.Size = new System.Drawing.Size(224, 26);
-            mseleccionar.Text = "Seleccionar";
+            mseleccionar.Text = "Select";
             // 
             // mseleccionartodoslostextos
             // 
             mseleccionartodoslostextos.Name = "mseleccionartodoslostextos";
             mseleccionartodoslostextos.Size = new System.Drawing.Size(224, 26);
-            mseleccionartodoslostextos.Text = "Todos los textos";
+            mseleccionartodoslostextos.Text = "All Text";
             mseleccionartodoslostextos.Click += mseleccionartodoslostextos_Click;
             // 
             // mseleccionartodo
             // 
             mseleccionartodo.Name = "mseleccionartodo";
             mseleccionartodo.Size = new System.Drawing.Size(224, 26);
-            mseleccionartodo.Text = "Todos";
+            mseleccionartodo.Text = "All";
             mseleccionartodo.Click += mseleccionartodo_Click;
             // 
             // bpagesetup
@@ -1008,7 +1058,7 @@
             bhideRight.ImageTransparentColor = System.Drawing.Color.Magenta;
             bhideRight.Name = "bhideRight";
             bhideRight.Size = new System.Drawing.Size(29, 24);
-            bhideRight.Text = "Mostrar/Ocultar";
+            bhideRight.Text = "Show/Hide";
             bhideRight.Click += ButtonHideRightClick;
             // 
             // bexit
@@ -1135,6 +1185,11 @@
         private System.Windows.Forms.ToolStripButton bzoomplus;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripButton bmoveleft;
+        private System.Windows.Forms.ToolStripButton bmoveright;
+        private System.Windows.Forms.ToolStripButton bmoveup;
+        private System.Windows.Forms.ToolStripButton bmovedown;
         private System.Windows.Forms.Panel panelcontent;
         private System.Windows.Forms.Panel panelleft;
         private System.Windows.Forms.Splitter splitter1;

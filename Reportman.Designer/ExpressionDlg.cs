@@ -251,6 +251,7 @@ namespace Reportman.Designer
             try
             {
                 Evaluator.CheckSyntax(MemoExpre.Text);
+                MessageBox.Show("Syntax is correct", "Correct", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -260,7 +261,8 @@ namespace Reportman.Designer
                     MemoExpre.SelectionLength = 0;
                 }
                 MemoExpre.Focus();
-                throw;
+                //throw;    // do not throw message it will raise unhandled exception
+                MessageBox.Show(ex.Message, "Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -270,6 +272,7 @@ namespace Reportman.Designer
             try
             {
                 Evaluator.Evaluate();
+                MessageBox.Show(Evaluator.Result.ToString(), "Result", MessageBoxButtons.OK, MessageBoxIcon.None);
             }
             catch (Exception ex)
             {
@@ -279,9 +282,9 @@ namespace Reportman.Designer
                     MemoExpre.SelectionLength = 0;
                 }
                 MemoExpre.Focus();
-                throw;
-            }
-            MessageBox.Show(Evaluator.Result.ToString());
+                //throw;      // do not throw message it will raise unhandled exception
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }            
         }
     }
 }

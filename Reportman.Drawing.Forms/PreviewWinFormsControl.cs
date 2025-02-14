@@ -197,10 +197,12 @@ namespace Reportman.Drawing.Forms
                             MetaFileControl.BringToFront();
                             MetaFileControl.BackColor = System.Drawing.SystemColors.AppWorkspace;
                             MetaFileControl.Dock = System.Windows.Forms.DockStyle.Fill;
+                            nform.Text = Translator.TranslateStr(54);   // Preview
                             nform.Width = 800;
                             nform.Height = 600;
                             nform.ShowIcon = false;
-                            nform.ShowInTaskbar = false;
+                            nform.ShowInTaskbar = ShowInTaskbar;
+                            nform.StartPosition = FormStartPosition.CenterParent;
                             nform.Controls.Add(this);
                             try
                             {
@@ -224,10 +226,12 @@ namespace Reportman.Drawing.Forms
                         MetaFileControl.Dock = System.Windows.Forms.DockStyle.Fill;
                         MetaFileControl.Parent = PParent;
                         this.WindowForm = nform;
+                        nform.Text = Translator.TranslateStr(54);   // Preview
                         nform.Width = 800;
                         nform.Height = 600;
                         nform.ShowIcon = false;
-                        nform.ShowInTaskbar = false;
+                        nform.ShowInTaskbar = ShowInTaskbar;
+                        nform.StartPosition = FormStartPosition.CenterParent;
                         nform.Controls.Add(this);
                         nform.Show();
                         break;

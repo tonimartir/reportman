@@ -205,7 +205,7 @@
             this.bexport.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.bexport.Name = "bexport";
             this.bexport.Size = new System.Drawing.Size(23, 23);
-            this.bexport.Text = "Exportar";
+            this.bexport.Text = "Export";
             this.bexport.Click += new System.EventHandler(this.bexport_Click);
             // 
             // bimport
@@ -215,7 +215,7 @@
             this.bimport.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.bimport.Name = "bimport";
             this.bimport.Size = new System.Drawing.Size(23, 23);
-            this.bimport.Text = "Importar";
+            this.bimport.Text = "Import";
             this.bimport.Click += new System.EventHandler(this.bimport_Click);
             // 
             // FrameStructure

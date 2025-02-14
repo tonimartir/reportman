@@ -132,6 +132,10 @@ namespace Reportman.Designer
             parentcontrol.MouseMove += new MouseEventHandler(npicture_MouseMove);
             parentcontrol.MouseUp += new MouseEventHandler(npicture_MouseUp);
 
+            // For MoveControls - Keyboard events will be fired only if focus is on this control
+            //parentcontrol.KeyPress += new KeyPressEventHandler(KeyPressHandler);
+            parentcontrol.KeyDown += new KeyEventHandler(KeyDownHandler);
+
             grcontrol = this.CreateGraphics();
 
 
@@ -1764,6 +1768,177 @@ namespace Reportman.Designer
                 }
             }
         }
+
+        // MoveControls - Move selected controls by keyboard
+        //private void KeyPressHandler(object sender, KeyPressEventArgs e)
+        //{
+        //    MessageBox.Show("Key Press Handler " + e.KeyChar.ToString());            
+        //}
+        private void KeyDownHandler(object sender, KeyEventArgs e)
+        {           
+            // This event handler will only be fired if this focus is on this control
+            // This control is brought to focus from FrameMainDesigner AfterSelect event in AfterSelectDesign procedure
+            if (ModifierKeys.HasFlag(Keys.Control))     // if (e.Control)
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.Left:
+                        MoveControlsLeft();
+                        break;
+                    case Keys.Right:
+                        MoveControlsRight();
+                        break;
+                    case Keys.Up:
+                        MoveControlsUp();
+                        break;
+                    case Keys.Down:
+                        MoveControlsDown();
+                        break;
+                }
+            }
+        }
+
+        // MoveControls
+        #region "Move Selected Controls" 
+
+        /// <summary>
+        /// Move selected controls to left
+        /// </summary>
+        public void MoveControlsLeft()
+        {
+            if (SelectedItems.Values[0] is PrintPosItem)    // if PrintPosItem Object is selected (and not Section object)
+            {
+                // Move all selected controls
+                foreach (PrintPosItem nitem in SelectedItems.Values)
+                {
+                    if (FReport.GridEnabled == true)
+                    {
+                        nitem.PosX -= FReport.GridWidth;
+                        Point p = Twips.AlignToGridTwips(new Point(nitem.PosX, nitem.PosY), FReport.GridWidth, FReport.GridHeight);
+                        nitem.PosX = p.X;
+                        nitem.PosY = p.Y;
+                    }
+                    else
+                        nitem.PosX -= 30;
+                }
+
+                // Required To move the selection rectangle when only 1 control is selected
+                if (SelectedItems.Count == 1)
+                    SelectPosItem();
+
+                // Redraw the bands and designer area to show the changes 
+                foreach (BandInfo binfo in SelectedItemsBands.Values)
+                {
+                    ReDrawBand(binfo);
+                }
+                parentcontrol.Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// Move selected controls to right
+        /// </summary>
+        public void MoveControlsRight()
+        {
+            if (SelectedItems.Values[0] is PrintPosItem)    // if PrintPosItem Object is selected (and not Section object)
+            {
+                // Move all selected controls
+                foreach (PrintPosItem nitem in SelectedItems.Values)
+                {
+                    if (FReport.GridEnabled == true)
+                    {
+                        nitem.PosX += FReport.GridWidth;
+                        Point p = Twips.AlignToGridTwips(new Point(nitem.PosX, nitem.PosY), FReport.GridWidth, FReport.GridHeight);
+                        nitem.PosX = p.X;
+                        nitem.PosY = p.Y;
+                    }
+                    else
+                        nitem.PosX += 30;
+                }
+
+                // Required To move the selection rectangle when only 1 control is selected
+                if (SelectedItems.Count == 1)
+                    SelectPosItem();
+
+                // Redraw the bands and designer area to show the changes 
+                foreach (BandInfo binfo in SelectedItemsBands.Values)
+                {
+                    ReDrawBand(binfo);
+                }
+                parentcontrol.Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// Move selected controls Up
+        /// </summary>
+        public void MoveControlsUp()
+        {
+            if (SelectedItems.Values[0] is PrintPosItem)    // if PrintPosItem Object is selected (and not Section object)
+            {
+                // Move all selected controls
+                foreach (PrintPosItem nitem in SelectedItems.Values)
+                {
+                    if (FReport.GridEnabled == true)
+                    {
+                        nitem.PosY -= FReport.GridHeight;
+                        Point p = Twips.AlignToGridTwips(new Point(nitem.PosX, nitem.PosY), FReport.GridWidth, FReport.GridHeight);
+                        nitem.PosX = p.X;
+                        nitem.PosY = p.Y;
+                    }
+                    else
+                        nitem.PosY -= 30;
+                }
+
+                // Required To move the selection rectangle when only 1 control is selected
+                if (SelectedItems.Count == 1)
+                    SelectPosItem();
+
+                // Redraw the bands and designer area to show the changes 
+                foreach (BandInfo binfo in SelectedItemsBands.Values)
+                {
+                    ReDrawBand(binfo);
+                }
+                parentcontrol.Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// Move selected controls Down
+        /// </summary>
+        public void MoveControlsDown()
+        {
+            if (SelectedItems.Values[0] is PrintPosItem)    // if PrintPosItem Object is selected (and not Section object)
+            {
+                // Move all selected controls
+                foreach (PrintPosItem nitem in SelectedItems.Values)
+                {
+                    if (FReport.GridEnabled == true)
+                    {
+                        nitem.PosY += FReport.GridHeight;
+                        Point p = Twips.AlignToGridTwips(new Point(nitem.PosX, nitem.PosY), FReport.GridWidth, FReport.GridHeight);
+                        nitem.PosX = p.X;
+                        nitem.PosY = p.Y;
+                    }
+                    else
+                        nitem.PosY += 30;
+                }
+
+                // Required To move the selection rectangle when only 1 control is selected
+                if (SelectedItems.Count == 1)
+                    SelectPosItem();
+
+                // Redraw the bands and designer area to show the changes 
+                foreach (BandInfo binfo in SelectedItemsBands.Values)
+                {
+                    ReDrawBand(binfo);
+                }
+                parentcontrol.Invalidate();
+            }
+        }
+
+        #endregion
+
         public void SelectPrintItem(PrintItem nitem)
         {
 

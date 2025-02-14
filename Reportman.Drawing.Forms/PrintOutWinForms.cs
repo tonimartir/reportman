@@ -64,7 +64,7 @@ namespace Reportman.Drawing.Forms
         private bool FPreview;
         private bool FSystemPreview;
         /// <summary>
-        /// Set it to true to show an incon in task bar for the preview window
+        /// Set it to true to show an icon in task bar for the preview window
         /// </summary>
         public bool ShowInTaskbar;
         /// <summary>

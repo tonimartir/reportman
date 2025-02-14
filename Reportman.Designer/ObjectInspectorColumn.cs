@@ -263,7 +263,7 @@ namespace Reportman.Designer
             string fontname = "";
             int fstyle = 0;
             int fontsize = 10;
-            for (int i = 0; i < DataGridView.Rows.Count; i++)
+            for (int i = 0; i < DataGridView.Rows.Count; i++)       // ToDo - There is Unhandled Exception here. DataGridView becomes null so sometimes it gives error in opening font dialog.
             {
                 string pname = GetColumnValue("NAME", i).ToString();
                 if (pname == Translator.TranslateStr(560))
@@ -385,7 +385,10 @@ namespace Reportman.Designer
                 ndialog.Font = new Font(nfont.FontFamily, nfont.Size, nfont.Style);
                 if (ndialog.ShowDialog() == DialogResult.OK)
                 {
-                    SetNewFont(ndialog.Font.FontFamily.ToString(), (int)Math.Round(ndialog.Font.Size), GraphicUtils.IntegerFromFontStyle(ndialog.Font.Style));
+                    //SetNewFont(ndialog.Font.FontFamily.ToString(), (int)Math.Round(ndialog.Font.Size), GraphicUtils.IntegerFromFontStyle(ndialog.Font.Style));
+                    // Above line seems to have a bug. It sets value like [Font Family: Arial] in FontName property, which is undefined when again opened from FontName property
+                    // and Microsoft Sans Serif default font gets selected
+                    SetNewFont(ndialog.Font.Name, (int)Math.Round(ndialog.Font.Size), GraphicUtils.IntegerFromFontStyle(ndialog.Font.Style));
                 }
             }
         }
