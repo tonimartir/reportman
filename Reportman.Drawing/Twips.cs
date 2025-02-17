@@ -26,21 +26,27 @@ namespace Reportman.Drawing
             nx = ((nx + gridx / 2) / gridx) * gridx;
             return nx;
         }
+        // Method overload for MoveControls (for snap to grid)
+        public static System.Drawing.Point AlignToGridTwips(System.Drawing.Point npoint, int gridx, int gridy)
+        {
+            npoint = new System.Drawing.Point(((npoint.X + gridx / 2) / gridx) * gridx, ((npoint.Y + gridy / 2) / gridy) * gridy);
+            return npoint;
+        }
         /// <summary>
         /// Helper to convert Twips to centimeters
         /// </summary>
-        public static decimal TwipsToCms(int atwips)
+        public static decimal TwipsToCms(decimal atwips)
         {
-            decimal at = atwips;
-            return (at / TWIPS_PER_CM);
+            // Changed the parameter type to decimal (instead of int) to avoid implicit Type conversion error when using Barcode and Chart objects
+            return (atwips / TWIPS_PER_CM);
         }
         /// <summary>
         /// Helper to convert Twips to inch
         /// </summary>
-        public static decimal TwipsToInch(int atwips)
+        public static decimal TwipsToInch(decimal atwips)
         {
-            decimal at = atwips;
-            return (at / TWIPS_PER_INCH);
+            // Changed the parameter type to decimal (instead of int) to avoid implicit Type conversion error when using Barcode and Chart objects
+            return (atwips / TWIPS_PER_INCH);
         }
         /// <summary>
         /// Helper to convert centimeters to Twips
@@ -106,8 +112,9 @@ namespace Reportman.Drawing
         /// <summary>
         /// Returns a double value, converting twips to default unit
         /// </summary>
-        public static decimal UnitsFromTwips(int twips)
+        public static decimal UnitsFromTwips(decimal twips)
         {
+            // Changed the parameter type to decimal (instead of int) to avoid implicit Type conversion error when using Barcode and Chart objects
             if (DefaultUnit() == Units.Cms)
                 return Twips.TwipsToCms(twips);
             else

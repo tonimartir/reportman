@@ -29,6 +29,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\reportmanres.en" />
     <EmbeddedResource Include="Resources\reportmanres.es" />
     <EmbeddedResource Include="Resources\sRGB.icm" />
   </ItemGroup>

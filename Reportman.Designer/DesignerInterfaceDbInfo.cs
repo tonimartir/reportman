@@ -153,17 +153,17 @@ namespace Reportman.Designer
             }
             if (pname == Translator.TranslateStr(1394))
             {
-                bool firebirdfound = false;
+                bool firebird2found = false;
                 DataTable ntable = DbProviderFactories.GetFactoryClasses();
                 foreach (DataRow nrow in ntable.Rows)
                 {
                     string newvalue = nrow["InvariantName"].ToString();
-                    lpossiblevalues.Add(newvalue);
-                    if (newvalue == "FirebirdSql.Data.Firebird")
-                        firebirdfound = true;
+                    lpossiblevalues.Add(newvalue);                    
+                    if (newvalue == DatabaseInfo.FIREBIRD_PROVIDER2)            // if (newvalue == "FirebirdSql.Data.Firebird")
+                        firebird2found = true;
                 }
-                if (!firebirdfound)
-                    lpossiblevalues.Add("FirebirdSql.Data.Firebird");
+                if (!firebird2found)
+                    lpossiblevalues.Add(DatabaseInfo.FIREBIRD_PROVIDER2);       // lpossiblevalues.Add("FirebirdSql.Data.Firebird");
                 return;
             }
             if (pname == "Transaction Isolation")

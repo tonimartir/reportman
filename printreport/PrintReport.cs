@@ -394,6 +394,7 @@ namespace Reportman.Commands
                         if (providersfilename.Length == 0)
                         {
                             bool firebirdfound = false;
+                            bool firebird2found = false;
                             bool mysqlfound = false;
                             bool sqlitefound = false;
                             for (indexp = 0; indexp < atable.Rows.Count; indexp++)
@@ -403,6 +404,8 @@ namespace Reportman.Commands
                                 string nprovider = atable.Rows[indexp][2].ToString();
                                 if (nprovider == DatabaseInfo.FIREBIRD_PROVIDER)
                                     firebirdfound = true;
+                                if (nprovider == DatabaseInfo.FIREBIRD_PROVIDER2)
+                                    firebird2found = true;
                                 if (nprovider == DatabaseInfo.MYSQL_PROVIDER)
                                     mysqlfound = true;
                                 if (nprovider == DatabaseInfo.SQLITE_PROVIDER)
@@ -411,6 +414,8 @@ namespace Reportman.Commands
                             }
                             if (!firebirdfound)
                                 messageproviders = DatabaseInfo.FIREBIRD_PROVIDER + (char)13 + (char)10 + messageproviders;
+                            if (!firebird2found)
+                                messageproviders = DatabaseInfo.FIREBIRD_PROVIDER2 + (char)13 + (char)10 + messageproviders;
                             if (!mysqlfound)
                                 messageproviders = DatabaseInfo.MYSQL_PROVIDER + (char)13 + (char)10 + messageproviders;
                             if (!sqlitefound)
@@ -428,6 +433,7 @@ namespace Reportman.Commands
                             try
                             {
                                 bool firebirdfound = false;
+                                bool firebird2found = false;
                                 bool mysqlfound = false;
                                 bool sqlitefound = false;
                                 Strings nstrings = new Strings();
@@ -436,6 +442,8 @@ namespace Reportman.Commands
                                     string nprovider = atable.Rows[indexp][2].ToString();
                                     if (nprovider == DatabaseInfo.FIREBIRD_PROVIDER)
                                         firebirdfound = true;
+                                    if (nprovider == DatabaseInfo.FIREBIRD_PROVIDER2)
+                                        firebird2found = true;
                                     if (nprovider == DatabaseInfo.MYSQL_PROVIDER)
                                         mysqlfound = true;
                                     if (nprovider == DatabaseInfo.SQLITE_PROVIDER)
@@ -444,6 +452,8 @@ namespace Reportman.Commands
                                 }
                                 if (!firebirdfound)
                                     nstrings.Insert(0, DatabaseInfo.FIREBIRD_PROVIDER);
+                                if (!firebird2found)
+                                    nstrings.Insert(0, DatabaseInfo.FIREBIRD_PROVIDER2);
                                 if (!mysqlfound)
                                     nstrings.Insert(0, DatabaseInfo.MYSQL_PROVIDER);
                                 if (!sqlitefound)
@@ -750,6 +760,7 @@ namespace Reportman.Commands
 #if NETSTANDARD6_0
             DbProviderFactories.RegisterFactory("System.Data.Odbc", System.Data.Odbc.OdbcFactory.Instance);
             DbProviderFactories.RegisterFactory(DatabaseInfo.FIREBIRD_PROVIDER, FirebirdSql.Data.FirebirdClient.FirebirdClientFactory.Instance);
+            DbProviderFactories.RegisterFactory(DatabaseInfo.FIREBIRD_PROVIDER2, FirebirdSql.Data.FirebirdClient.FirebirdClientFactory.Instance);
             DbProviderFactories.RegisterFactory(DatabaseInfo.MYSQL_PROVIDER, MySql.Data.MySqlClient.MySqlClientFactory.Instance);
             DbProviderFactories.RegisterFactory(DatabaseInfo.SQLITE_PROVIDER, Microsoft.Data.Sqlite.SqliteFactory.Instance);
 #endif

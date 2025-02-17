@@ -113,7 +113,7 @@ namespace Reportman.Reporting
 	public class DatabaseInfo : ReportItem, ICloneable
     {
         public static string FIREBIRD_PROVIDER = "Firebird.Data.FirebirdClient";
-        public static string FIREBIRD_PROVIDER2 = "FirebirdSql.Data.Firebird";
+        public static string FIREBIRD_PROVIDER2 = "FirebirdSql.Data.FirebirdClient";    // Changed this to correct name otherwise Donet2 Connection to FireBird will not work
         public static string MYSQL_PROVIDER = "MySql.Data.MySqlClient";
         public static string SQLITE_PROVIDER = "System.Data.SQLite";
         private System.Data.IDbConnection FConnection;

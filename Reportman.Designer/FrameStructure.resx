@@ -127,26 +127,25 @@
   <data name="bdelete.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACGSURBVDhP7Y9NCoAgGAU9mqfxOkLb2ncMu0LLLuG+TdYo
-        SPanBS2CHgx+4HNU8cedUJzkoDHGTZP1K2z3Fy4TBWuJrjpPU+sI3XDkPOtbS8gmecERdEI1n/hVvjbY
-        0QuYpZTPZazIEDErpZxu+1+2zzsyRMyAEBDSCdV8ouxIdFtWyGcixAzm8ENqbkXLfgAAAABJRU5ErkJg
-        gg==
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAB8SURBVDhPY2AY8eA/Dkw0QNG4f//+///+vQPTIIwuj64Z
+        HcANQDakf9IBMJ4zux+OiTKMREwQoLgAGybWIBCAexXktZvvfoINALEdHBzINwxEgwwDGQRip6Wl/e9f
+        fnHUMExAG8NABoHYIAxLuCADyTIMm0EkG0YkHkIAAObwQ2r27NInAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="bup.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABLSURBVDhPY/hPRTBqGOmA/oYxMBBnJ0FVIINgmBDAqwLZ
-        IGIMxCmLzSAYxgWwymAzAB1jAxii2DTiwugAt5vJAKOGkQ4Gq2H//wMAkcgzFGmd1qgAAAAASUVORK5C
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABLSURBVDhPY/hPRcCALkAJGDWMdECUYQwMRCkjbBjIIBgm
+        BPCqQDaIGANxyqIbQoyBWGXQNWPD2ACGKLomfBgdYIpQAEYNIx0MXsMAkcgzFCYArVwAAAAASUVORK5C
         YII=
 </value>
   </data>
   <data name="bdown.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABTSURBVDhPYxgFo4BIoMCg8F+aQfq/BIMETgySB6mDasEP
-        5Bjk/rMzsIMUY2CQOEgeyCYeYDOQLINgANlAigyCAZABfAx8lBsEA0QH9igYNoCBAQDiqSipnIm0CgAA
-        AABJRU5ErkJggg==
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABSSURBVDhPY2AYBaOAOKDAoPBfmkH6vwSDBE4MkgepQ9eL
+        FcgxyP1nZ2AHKcbAIHGQPLoevACbgWQZBAPIBlJkEAyADOBj4KPcIBggOrBHwTACAOKpKKn1DasGAAAA
+        AElFTkSuQmCC
 </value>
   </data>
 </root>
