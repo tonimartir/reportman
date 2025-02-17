@@ -101,6 +101,10 @@ namespace Reportman.Designer
                 Reportman.Drawing.Strings ptypes = new Strings();
                 Reportman.Drawing.Strings lhints = new Strings();
                 Reportman.Drawing.Strings lcat = new Strings();
+                if (obj.ReportItemObject == null)
+                {
+                    obj.SetItem(obj.SelectionList.Values[0]);
+                }
                 obj.GetProperties(pnames, ptypes, pvalues, lhints, lcat);
                 properties.Rows.Clear();
                 for (int i = 0; i < pnames.Count; i++)
