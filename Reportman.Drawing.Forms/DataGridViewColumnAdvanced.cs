@@ -61,7 +61,7 @@ namespace Reportman.Drawing.Forms
         {
             get
             {
-                return Convert.ToInt32(20 * Reportman.Drawing.GraphicUtils.DPIScaleY);
+                return Convert.ToInt32(20 * Reportman.Drawing.Windows.GraphicUtils.DPIScaleY);
             }
         }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]

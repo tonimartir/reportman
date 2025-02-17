@@ -273,7 +273,7 @@ namespace Reportman.Drawing.Forms
             }
             if (!nprogres.threadcalc.Join(1000))
             {
-                nprogres.threadcalc.Abort();
+                nprogres.threadcalc.Interrupt();
             }
             nprogres.threadcalc = null;
             if (nprogres.ErrorMessage.Length > 0)

@@ -111,11 +111,11 @@ namespace Reportman.Drawing.Forms
         public PrintersConfiguration()
         {
             InitializeComponent();
-            if (GraphicUtils.DPIScale != 1.0)
+            if (Reportman.Drawing.Windows.GraphicUtils.DPIScale != 1.0)
             {
                 foreach (ColumnHeader column in ldefinedprinters.Columns)
                 {
-                    column.Width = Convert.ToInt32(column.Width * GraphicUtils.DPIScale);
+                    column.Width = Convert.ToInt32(column.Width * Windows.GraphicUtils.DPIScale);
                 }
             }
 

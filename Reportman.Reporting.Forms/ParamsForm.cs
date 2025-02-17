@@ -188,7 +188,7 @@ namespace Reportman.Reporting.Forms
                 fparams.PControl.SetReport(rp);
                 fparams.PControl.Parent = fparams.panelparent;
                 fparams.Width = fparams.PControl.Width;
-                int nheight = fparams.PControl.Height + fparams.pbottom.Height + Convert.ToInt32(20 * Reportman.Drawing.GraphicUtils.DPIScale);
+                int nheight = fparams.PControl.Height + fparams.pbottom.Height + Convert.ToInt32(20 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
                 if (nheight > MAX_HEIGHT)
                     nheight = MAX_HEIGHT;
                 fparams.Height = nheight;

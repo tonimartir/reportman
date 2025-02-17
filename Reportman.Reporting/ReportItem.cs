@@ -132,12 +132,15 @@ namespace Reportman.Reporting
         /// <summary>
         /// Report that owns the item
         /// </summary>
-        [Newtonsoft.Json.JsonIgnore]
         [Browsable(false)]
         public BaseReport Report
         {
             get { return FReport; }
             set { FReport = value; }
+        }
+        public bool ShouldSerializeReport()
+        {
+            return false;
         }
         /// <summary>
         /// Internal function to determine the object type name
@@ -150,7 +153,6 @@ namespace Reportman.Reporting
         /// <summary>
         /// Provide the class name, that is the object type name
         /// </summary>
-        [Newtonsoft.Json.JsonIgnore]
         [Browsable(false)]
         public string ClassName
         {
@@ -158,6 +160,10 @@ namespace Reportman.Reporting
             {
                 return GetClassName();
             }
+        }
+        public bool ShouldSerializeClassName()
+        {
+            return false;
         }
         /// <summary>
         /// Disposes any memory used
@@ -640,7 +646,6 @@ namespace Reportman.Reporting
         /// <summary>
         /// Returns the vertical alignment converted to an integer value
         /// </summary>
-        [Newtonsoft.Json.JsonIgnore]
         public int VPrintAlignment
         {
             get
@@ -654,6 +659,10 @@ namespace Reportman.Reporting
                     aresult = MetaFile.AlignmentFlags_AlignBottom;
                 return aresult;
             }
+        }
+        public bool ShouldSerializeVPrintAlignment()
+        {
+            return false;
         }
     }
     class ReportItemTypeConverter : ExpandableObjectConverter

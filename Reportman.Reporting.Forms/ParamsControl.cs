@@ -264,14 +264,14 @@ namespace Reportman.Reporting.Forms
                     }
                 }
                 bool focused = false;
-                int TOP_GAP = Convert.ToInt32(10 * GraphicUtils.DPIScale);
-                int MIDDLE_GAP = Convert.ToInt32(3 * GraphicUtils.DPIScale);
-                int BOTTOM_GAP = Convert.ToInt32(10 * GraphicUtils.DPIScale); ;
-                int BUTTON_WIDTH = Convert.ToInt32(30 * GraphicUtils.DPIScale);
-                int LEFT_GAP = Convert.ToInt32(3 * GraphicUtils.DPIScale); ;
-                int GAP_LABEL = Convert.ToInt32(30 * GraphicUtils.DPIScale); ;
-                int BUTTON_GAP = Convert.ToInt32(2 * GraphicUtils.DPIScale); ;
-                int RIGHT_GAP = BUTTON_WIDTH + Convert.ToInt32(30 * GraphicUtils.DPIScale) + BUTTON_GAP;
+                int TOP_GAP = Convert.ToInt32(10 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
+                int MIDDLE_GAP = Convert.ToInt32(3 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
+                int BOTTOM_GAP = Convert.ToInt32(10 * Reportman.Drawing.Windows.GraphicUtils.DPIScale); ;
+                int BUTTON_WIDTH = Convert.ToInt32(30 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
+                int LEFT_GAP = Convert.ToInt32(3 * Reportman.Drawing.Windows.GraphicUtils.DPIScale); ;
+                int GAP_LABEL = Convert.ToInt32(30 * Reportman.Drawing.Windows.GraphicUtils.DPIScale); ;
+                int BUTTON_GAP = Convert.ToInt32(2 * Reportman.Drawing.Windows.GraphicUtils.DPIScale); ;
+                int RIGHT_GAP = BUTTON_WIDTH + Convert.ToInt32(30 * Reportman.Drawing.Windows.GraphicUtils.DPIScale) + BUTTON_GAP;
                 int posy = TOP_GAP;
                 int lastheight = 0;
                 foreach (Param p in FReport.Params)

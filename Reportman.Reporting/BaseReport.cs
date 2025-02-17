@@ -163,11 +163,14 @@ namespace Reportman.Reporting
         /// Report Metafile storing drawing information for the report, 
         /// that is pages and objects inside pages
         /// </summary>
-        [Newtonsoft.Json.JsonIgnore]
         public MetaFile MetaFile
         {
             get { return FMetaFile; }
             set { FMetaFile = value; }
+        }
+        public bool ShouldSerializeMetaFile()
+        {
+            return false;
         }
         /// <summary>
         /// Sections still not drawn, but mandatory to draw before continuing report
@@ -204,13 +207,18 @@ namespace Reportman.Reporting
         /// Determine if the report is composed of multiple reports
         /// </summary>
 		protected bool FCompose;
-        [Newtonsoft.Json.JsonIgnore]
+
 
         public bool Compose
         {
             set { FCompose = value; }
             get { return FCompose; }
         }
+        public bool ShouldSerializeCompose()
+        {
+            return false;
+        }
+
         /// <summary>
         /// This variable is true if the report have ended and the current page is the last
         /// page
@@ -235,11 +243,15 @@ namespace Reportman.Reporting
         /// <summary>
         /// Number of records processed by the main dataset in the current subreport
         /// </summary>
-        [Newtonsoft.Json.JsonIgnore]
         public int RecordCount
         {
             get { return FRecordCount; }
         }
+        public bool ShouldSerializeRecordCount()
+        {
+            return false;
+        }
+
         /// <summary>
         /// Current subreport index being processed
         /// </summary>
@@ -333,8 +345,13 @@ namespace Reportman.Reporting
         /// <summary>
         /// The print driver used by the engine to calculate or print the report
         /// </summary>
-        [Newtonsoft.Json.JsonIgnore]
         public PrintOut Driver { get { return FDriver; } }
+
+        public bool ShouldSerializeDriver()
+        {
+            return false;
+        }
+
         /// <summary>
         /// Current page number (zero based index)
         /// </summary>
@@ -594,8 +611,12 @@ namespace Reportman.Reporting
         public string DocKeywords;
         public string DocXMPContent;
         public bool PreviewMargins { get; set; }
-        [Newtonsoft.Json.JsonIgnore]
         public Evaluator Evaluator;
+        public bool ShouldSerializeEvaluator()
+        {
+            return false;
+        }
+
         public OrientationType CurrentOrientation;
         public bool UpdatePageSize;
         /// <summary>

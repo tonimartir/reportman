@@ -261,6 +261,7 @@ namespace Reportman.Reporting
 		}
 #endif
 #else
+        /*
 
         public static ZXing.Result DetectBarcode(Bitmap nbitmap)
         {
@@ -295,7 +296,7 @@ namespace Reportman.Reporting
             {
                 return DetectBarcode(nbitmap);
             }
-        }
+        }*/
 #endif
         public string CalculateBarcode()
         {

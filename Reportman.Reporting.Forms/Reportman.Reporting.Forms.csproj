@@ -15,6 +15,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Reportman.Drawing.Forms\Reportman.Drawing.Forms.csproj" />
+    <ProjectReference Include="..\Reportman.Drawing.Windows\Reportman.Drawing.Windows.csproj" />
     <ProjectReference Include="..\Reportman.Drawing\Reportman.Drawing.csproj" />
     <ProjectReference Include="..\Reportman.Reporting\Reportman.Reporting.csproj" />
   </ItemGroup>

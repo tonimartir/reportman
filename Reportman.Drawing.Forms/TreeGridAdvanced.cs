@@ -22,7 +22,7 @@ namespace Reportman.Drawing.Forms
             {
                 if (findent_first == 0)
                 {
-                    findent_first = Convert.ToInt32(INDENT_FIRST_UNSCALED * GraphicUtils.DPIScale);
+                    findent_first = Convert.ToInt32(INDENT_FIRST_UNSCALED * Windows.GraphicUtils.DPIScale);
                 }
                 return findent_first;
             }
@@ -34,7 +34,7 @@ namespace Reportman.Drawing.Forms
             get
             {
                 if (findent_width == 0)
-                    findent_width = Convert.ToInt32(20 * GraphicUtils.DPIScale);
+                    findent_width = Convert.ToInt32(20 * Windows.GraphicUtils.DPIScale);
                 return findent_width;
             }
         }
@@ -107,7 +107,7 @@ namespace Reportman.Drawing.Forms
         {
             foreach (DataGridViewColumn ncol in Columns)
             {
-                ncol.Width = Convert.ToInt32(ncol.Width * Reportman.Drawing.GraphicUtils.DPIScale);
+                ncol.Width = Convert.ToInt32(ncol.Width * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
             }
         }
         public void ClearNodes()
@@ -720,7 +720,7 @@ namespace Reportman.Drawing.Forms
             get
             {
                 if (findent_width == 0)
-                    findent_width = Convert.ToInt32(INDENT_WIDTH_UNSCALED * GraphicUtils.DPIScale);
+                    findent_width = Convert.ToInt32(INDENT_WIDTH_UNSCALED * Windows.GraphicUtils.DPIScale);
                 return findent_width;
             }
         }
@@ -777,10 +777,10 @@ namespace Reportman.Drawing.Forms
                 _imageWidth = glyphWidth;
                 _imageHeight = 0;
             }
-            if (GraphicUtils.DPIScale != 1)
+            if (Windows.GraphicUtils.DPIScale != 1)
             {
-                _imageWidth = Convert.ToInt32(_imageWidth * Reportman.Drawing.GraphicUtils.DPIScale);
-                _imageHeight = Convert.ToInt32(_imageHeight * Reportman.Drawing.GraphicUtils.DPIScale);
+                _imageWidth = Convert.ToInt32(_imageWidth * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
+                _imageHeight = Convert.ToInt32(_imageHeight * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
             }
             Padding p = new Padding();
             // TODO: Make this cleaner
@@ -910,12 +910,12 @@ namespace Reportman.Drawing.Forms
                 System.Drawing.Drawing2D.GraphicsContainer gc = graphics.BeginContainer();
                 {
                     graphics.SetClip(cellBounds);
-                    if (GraphicUtils.DPIScale == 1)
+                    if (Windows.GraphicUtils.DPIScale == 1)
                         graphics.DrawImageUnscaled(image, pp);
                     else
                     {
-                        int offset = Convert.ToInt32(2 * GraphicUtils.DPIScale);
-                        int offsetx = Convert.ToInt32(glyphWidth * GraphicUtils.DPIScale) + INDENT_MARGIN;
+                        int offset = Convert.ToInt32(2 * Windows.GraphicUtils.DPIScale);
+                        int offsetx = Convert.ToInt32(glyphWidth * Windows.GraphicUtils.DPIScale) + INDENT_MARGIN;
                         int newimageHeight = _imageHeight - offset;
                         graphics.DrawImage(image, new Rectangle(glyphRect.X + offsetx, cellBounds.Y + offset / 2, newimageHeight, newimageHeight), new Rectangle(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
                     }
@@ -926,7 +926,7 @@ namespace Reportman.Drawing.Forms
             // Paint tree lines			
             if (((TreeGridAdvanced)(DataGridView)).ShowLines)
             {
-                int drawoffset = Convert.ToInt32(4 * GraphicUtils.DPIScale);
+                int drawoffset = Convert.ToInt32(4 * Windows.GraphicUtils.DPIScale);
                 using (Pen linePen = new Pen(SystemBrushes.ControlDark, 1.0f))
                 {
                     linePen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
@@ -1013,7 +1013,7 @@ namespace Reportman.Drawing.Forms
                                 _grid.rOpen = new VisualStyleRenderer(VisualStyleElement.TreeView.Glyph.Opened);
                                 _grid.treeboxwidth = System.Convert.ToInt32(WinFormsGraphics.DPIScale * 10);
                             }
-                            _grid.rOpen.DrawBackground(graphics, new Rectangle(glyphRect.X, glyphRect.Y + (glyphRect.Height / 2) - Convert.ToInt32(4 * GraphicUtils.DPIScaleY),
+                            _grid.rOpen.DrawBackground(graphics, new Rectangle(glyphRect.X, glyphRect.Y + (glyphRect.Height / 2) - Convert.ToInt32(4 * Windows.GraphicUtils.DPIScaleY),
                                 _grid.treeboxwidth, _grid.treeboxwidth));
                             /*
                             Pen npen = Pens.Black;
@@ -1066,7 +1066,7 @@ namespace Reportman.Drawing.Forms
                                 _grid.treeboxwidth = System.Convert.ToInt32(WinFormsGraphics.DPIScale * 10);
                             }
                             //    node._grid.rClosed = new VisualStyleRenderer("Explorer::TreeView",2,1);
-                            _grid.rClosed.DrawBackground(graphics, new Rectangle(glyphRect.X, glyphRect.Y + (glyphRect.Height / 2) - Convert.ToInt32(4 * GraphicUtils.DPIScaleY), _grid.treeboxwidth, _grid.treeboxwidth));
+                            _grid.rClosed.DrawBackground(graphics, new Rectangle(glyphRect.X, glyphRect.Y + (glyphRect.Height / 2) - Convert.ToInt32(4 * Windows.GraphicUtils.DPIScaleY), _grid.treeboxwidth, _grid.treeboxwidth));
                         }
                         catch
                         {

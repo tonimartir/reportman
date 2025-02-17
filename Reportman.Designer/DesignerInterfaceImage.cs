@@ -15,7 +15,10 @@ namespace Reportman.Designer
         }
         public override void GetProperties(Strings lnames, Strings ltypes, Variants lvalues, Strings lhints, Strings lcat)
         {
+
             base.GetProperties(lnames, ltypes, lvalues, lhints, lcat);
+
+            FPrintItemImage = (ImageItem)PrintItemObject;
 
             // DrawStyle
             lnames.Add(Translator.TranslateStr(667));
@@ -57,6 +60,7 @@ namespace Reportman.Designer
         }
         public override Variant GetProperty(string pname)
         {
+            FPrintItemImage = (ImageItem)PrintItemObject;
             // DrawStyle
             if (pname == Translator.TranslateStr(667))
             {
@@ -89,6 +93,7 @@ namespace Reportman.Designer
         }
         public override void GetPropertyValues(string pname, Strings lpossiblevalues)
         {
+
             // DrawStyle
             if (pname == Translator.TranslateStr(667))
             {
@@ -111,6 +116,7 @@ namespace Reportman.Designer
 
         public override void SetProperty(string pname, Variant newvalue)
         {
+            FPrintItemImage = (ImageItem)PrintItemObject;
             // DrawStyle
             if (pname == Translator.TranslateStr(667))
             {

@@ -601,8 +601,8 @@ namespace Reportman.Drawing.Forms
             if (!ComboBoxRenderer.IsSupported)
             {
                 Image nimage = Properties.Resources.dropdown_7;
-                int imwidth = Convert.ToInt32(nimage.Width * GraphicUtils.DPIScale);
-                int imheight = Convert.ToInt32(nimage.Height * GraphicUtils.DPIScale);
+                int imwidth = Convert.ToInt32(nimage.Width * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
+                int imheight = Convert.ToInt32(nimage.Height * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
                 Rectangle destination = btnCalendar.ClientRectangle;
                 int posx = destination.Left + (destination.Width - imwidth) / 2;
                 int posy = destination.Top + (destination.Height - imheight) / 2;

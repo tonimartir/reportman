@@ -34,7 +34,6 @@ namespace Reportman.Reporting
             FAllStrings = new Strings();
         }
         public Strings AllStrings { get { return FAllStrings; } set { FAllStrings = value; } }
-        [Newtonsoft.Json.JsonIgnore]
         public string Text
         {
             get
@@ -65,6 +64,10 @@ namespace Reportman.Reporting
                 }
                 FAllStrings[lang] = value;
             }
+        }
+        public bool ShouldSerializeText()
+        {
+            return false;
         }
         protected override string GetClassName()
         {

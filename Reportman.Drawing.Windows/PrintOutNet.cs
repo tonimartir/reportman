@@ -6,6 +6,7 @@ using System.Drawing.Text;
 using System.IO;
 using System.Text;
 
+
 namespace Reportman.Drawing
 {
     /// <summary>
@@ -784,8 +785,7 @@ namespace Reportman.Drawing
             if (Output == null)
                 throw new Exception("Ouptut not specified in printoutnet");
             Graphics gr = Graphics.FromImage(Output);
-#if NETSTANDARD2_0
-#else
+
             if (OptimizeWMF != WMFOptimization.None)
             {
                 if (page.WindowsMetafile == null)
@@ -832,10 +832,9 @@ namespace Reportman.Drawing
                         Scale = oldscale;
                     }
                 }
-                gr.DrawImage(page.WindowsMetafile, new Rectangle(0, 0, Output.Width, Output.Height));
+                gr.DrawImage((System.Drawing.Imaging.Metafile)page.WindowsMetafile, new Rectangle(0, 0, Output.Width, Output.Height));
             }
             else
-#endif
             {
                 page.WindowsMetafileScale = bitmap.HorizontalResolution / Output.HorizontalResolution;
                 gr.FillRectangle(new SolidBrush(GraphicUtils.ColorFromInteger(meta.BackColor)), 0, 0, Output.Width, Output.Height);

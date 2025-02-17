@@ -27,7 +27,7 @@ namespace Reportman.Drawing
     /// <summary>
     /// Report preocessing driver, capable of generate Adobe PDF files
     /// </summary>
-	public class PrintOutPDF : PrintOut, IDisposable
+	public abstract class PrintOutPDFBase : PrintOut, IDisposable
     {
 
         const int AlignmentFlags_SingleLine = 64;
@@ -74,15 +74,17 @@ namespace Reportman.Drawing
         /// <summary>
         /// Constructo and initialization
         /// </summary>
-		public PrintOutPDF()
+		public PrintOutPDFBase()
             : base()
         {
-            FPDFFile = new PDFFile();
+            FPDFFile = new PDFFile(GetFontInfoProvider(),GetBitmapInfoProvider());
             FileName = "";
             PageQt = 0;
             FPageWidth = 11904;
             FPageHeight = 16836;
         }
+        public abstract FontInfoProvider GetFontInfoProvider();
+        public abstract IBitmapInfoProvider GetBitmapInfoProvider();
         public LineInfos LineInfo
         {
             get
@@ -114,7 +116,7 @@ namespace Reportman.Drawing
                 FPDFFile.Dispose();
                 FPDFFile = null;
             }
-            FPDFFile = new PDFFile();
+            FPDFFile = new PDFFile(GetFontInfoProvider(), GetBitmapInfoProvider());
             FPDFFile.FileName = FileName;
             FPDFFile.Compressed = Compressed;
             FPDFFile.PDFConformance = meta.PDFConformance;
@@ -326,16 +328,14 @@ namespace Reportman.Drawing
                             case ImageDrawStyleType.Crop:
                                 int bitmapwidth = 0;
                                 int bitmapheight = 0;
-#if NETSTANDARD2_0 || NETSTANDARD6_0
                                 using (System.IO.MemoryStream newStream = Reportman.Drawing.StreamUtil.StreamToMemoryStream(stream))
                                 {
                                     stream.Seek(0, SeekOrigin.Begin);
                                     newStream.Seek(0, SeekOrigin.Begin);
-                                    using (SkiaSharp.SKBitmap bitmap = SkiaSharp.SKBitmap.Decode(newStream))
-                                    {
-                                        bitmapwidth = bitmap.Width;
-                                        bitmapheight = bitmap.Height;
-                                    }
+                                    var binfoprov = this.GetBitmapInfoProvider();
+                                    var binfo = binfoprov.GetBitmapInfo(newStream);
+                                    bitmapwidth = binfo.Width;
+                                    bitmapheight = binfo.Height;
                                 }
 
                                 /*                                  if (!BitmapUtil.GetJPegInfo(stream, out bitmapwidth, out bitmapheight))
@@ -356,22 +356,7 @@ namespace Reportman.Drawing
                                 //    bitmapheight = nimage.Height;
                                 // }
                                 bool imageError = false;
-#else
-                                bool imageError = false;
 
-                                try
-                                {
-                                    using (Image nimage = Image.FromStream(stream))
-                                    {
-                                        bitmapwidth = nimage.Width;
-                                        bitmapheight = nimage.Height;
-                                    }
-                                }
-                                catch
-                                {
-                                    imageError = true;
-                                }
-#endif
                                 /*if (adaptsize)
                                 {
                                     double nwidth = bitmapwidth * Twips.TWIPS_PER_INCH / obji.DPIRes;
@@ -645,123 +630,6 @@ namespace Reportman.Drawing
         {
             indexqt = PageQt;
             return new Point(FPageWidth, FPageHeight);
-        }
-        public enum ImageDepth { Color, GrayScale, BW, Text, TextQuality, BWImage, Color8bit, Color4bit };
-
-        public static System.IO.MemoryStream ImagesToPDF(System.Collections.Generic.IEnumerable<System.Drawing.Image> images, int dpi, System.Drawing.Imaging.ImageFormat nformat, int quality, ImageDepth ndepth, PDFConformanceType Conformance)
-        {
-            System.IO.MemoryStream nresult = null;
-            System.Drawing.Imaging.ImageCodecInfo icodec = null;
-            bool getcodec = true;
-            Reportman.Drawing.MetaFile nmetafile = new Reportman.Drawing.MetaFile();
-            nmetafile.PDFConformance = Conformance;
-            nmetafile.PageSizeIndex = 0;
-            int index = 0;
-            foreach (System.Drawing.Image nimage in images)
-            {
-                if (index == 0)
-                {
-                    nmetafile.CustomX = nimage.Width * 1440 / dpi;
-                    nmetafile.CustomY = nimage.Height * 1440 / dpi;
-                }
-                Reportman.Drawing.MetaPage npage = new Reportman.Drawing.MetaPage(nmetafile);
-                npage.PageDetail.Custom = true;
-                npage.PageDetail.CustomWidth = nimage.Width * 1440 / dpi;
-                npage.PageDetail.CustomHeight = nimage.Height * 1440 / dpi;
-                nmetafile.Pages.Add(npage);
-
-                int pwidth = nimage.Width * 1440 / dpi;
-                int pheight = nimage.Height * 1440 / dpi;
-                using (System.IO.MemoryStream mstream = new System.IO.MemoryStream())
-                {
-                    if ((nformat == System.Drawing.Imaging.ImageFormat.Gif) || (nformat == System.Drawing.Imaging.ImageFormat.Bmp))
-                    {
-                        if ((ndepth == ImageDepth.BW) || (ndepth == ImageDepth.Text) || (ndepth == ImageDepth.TextQuality)
-                             || (ndepth == ImageDepth.BWImage))
-                        {
-                            System.Drawing.Bitmap nbitmaptosave = null;
-                            System.Drawing.Bitmap nbitmaptoconvert = null;
-                            if (nimage is System.Drawing.Bitmap)
-                            {
-                                if (nimage.PixelFormat == System.Drawing.Imaging.PixelFormat.Format1bppIndexed)
-                                    nbitmaptosave = (System.Drawing.Bitmap)nimage;
-                                else
-                                    nbitmaptoconvert = (System.Drawing.Bitmap)nimage;
-                            }
-                            else
-                            {
-                                nbitmaptoconvert = new System.Drawing.Bitmap(nimage.Width, nimage.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-                                using (System.Drawing.Graphics ngraph = System.Drawing.Graphics.FromImage(nbitmaptoconvert))
-                                {
-                                    ngraph.DrawImage(nimage, new System.Drawing.Point(0, 0));
-                                }
-                            }
-                            if (nbitmaptosave == null)
-                            {
-                                nbitmaptosave = Reportman.Drawing.GraphicUtils.ConvertToBitonal(nbitmaptoconvert, 255 * 3 / 2);
-                            }
-                            if (nbitmaptoconvert != null)
-                            {
-                                if (nbitmaptoconvert != nimage)
-                                {
-                                    nbitmaptoconvert.Dispose();
-                                }
-                            }
-                            nbitmaptosave.Save(mstream, System.Drawing.Imaging.ImageFormat.Bmp);
-                        }
-                        else
-                        {
-                            System.Drawing.Image nbitmap = null;
-                            if ((nimage.PixelFormat != System.Drawing.Imaging.PixelFormat.Format8bppIndexed) && (nimage.PixelFormat != System.Drawing.Imaging.PixelFormat.Format4bppIndexed))
-                            {
-                                throw new Exception("ImageDepth Indexed not supported in .Net Core");
-                                // nbitmap = ImageOptimizer.ConvertToBitmapDepth(nimage, 256);
-                            }
-                            else
-                            {
-                                nbitmap = nimage;
-                            }
-                            mstream.SetLength(0);
-                            nimage.Save(mstream, System.Drawing.Imaging.ImageFormat.Bmp);
-                        }
-                    }
-                    else
-                    {
-                        if (getcodec)
-                        {
-                            icodec = Reportman.Drawing.GraphicUtils.GetImageCodec("image/jpeg");
-                            getcodec = false;
-                        }
-                        if (icodec != null)
-                        {
-                            System.Drawing.Imaging.EncoderParameters eparams = new System.Drawing.Imaging.EncoderParameters(1);
-                            System.Drawing.Imaging.EncoderParameter qParam = new System.Drawing.Imaging.EncoderParameter(System.Drawing.Imaging.Encoder.Quality,
-                                (long)quality);
-                            eparams.Param[0] = qParam;
-                            nimage.Save(mstream, icodec, eparams);
-                        }
-                        else
-                            nimage.Save(mstream, System.Drawing.Imaging.ImageFormat.Bmp);
-
-                    }
-                    mstream.Seek(0, System.IO.SeekOrigin.Begin);
-                    npage.DrawImage(0, 0, pwidth, pheight, Reportman.Drawing.ImageDrawStyleType.Stretch, dpi, mstream);
-
-                }
-                index++;
-            }
-            if (index == 0)
-                throw new Exception("No images suplied to ImagesToPDF");
-
-            nmetafile.Finish();
-            Reportman.Drawing.PrintOutPDF npdf = new Reportman.Drawing.PrintOutPDF();
-            if (nformat == System.Drawing.Imaging.ImageFormat.Bmp)
-                npdf.Compressed = true;
-            else
-                npdf.Compressed = false;
-            npdf.Print(nmetafile);
-            nresult = Reportman.Drawing.StreamUtil.StreamToMemoryStream(npdf.PDFStream);
-            return nresult;
         }
 
     }

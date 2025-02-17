@@ -34,7 +34,7 @@ namespace Reportman.Drawing.Forms
             this.MouseUp += SplitTablePanel_MouseUp;
             this.MouseLeave += SplitTablePanel_MouseLeave;
             this.Resize += SplitTablePanel_Resize;
-            SplitterSize = Convert.ToInt32(8 * GraphicUtils.DPIScale);
+            SplitterSize = Convert.ToInt32(8 * Windows.GraphicUtils.DPIScale);
         }
 
         void SplitTablePanel_Resize(object sender, EventArgs e)

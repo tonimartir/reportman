@@ -731,7 +731,7 @@ namespace Reportman.Drawing.Forms
             TheControlToMove.Left = PutItHere.X;
             TheControlToMove.Top = PutItHere.Y;
             int newWidth = this.Width;
-            int margin = Convert.ToInt32(20 * Reportman.Drawing.GraphicUtils.DPIScale);
+            int margin = Convert.ToInt32(20 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
             if (AutoCompleteWidth == 0)
             {
                 newWidth = ComboParentForm.ClientSize.Width - PutItHere.X - margin;
@@ -740,7 +740,7 @@ namespace Reportman.Drawing.Forms
                 newWidth = AutoCompleteWidth;
             TheControlToMove.Width = Math.Min(ComboParentForm.ClientSize.Width - TheControlToMove.Left, newWidth);
             int numitems = AutoCompleteMaxVisibleLines;
-            int itemHeight = Convert.ToInt32(25 * Reportman.Drawing.GraphicUtils.DPIScale);
+            int itemHeight = Convert.ToInt32(25 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
             int TotalItemHeight = itemHeight * numitems;
             int previousheight = TheControlToMove.Height;
             int newheight = Math.Min(ComboParentForm.ClientSize.Height - TheControlToMove.Top - margin, TotalItemHeight);
@@ -967,7 +967,7 @@ namespace Reportman.Drawing.Forms
                     {
                         listBoxChild.DrawMode = DrawMode.OwnerDrawFixed;
                         listBoxChild.DrawItem += ListBoxChild_DrawItem;
-                        listBoxChild.ItemHeight = Reportman.Drawing.GraphicUtils.ScaleToDPI(20);
+                        listBoxChild.ItemHeight = Reportman.Drawing.Windows.GraphicUtils.ScaleToDPI(20);
                         listBoxChild.SelectedIndexChanged += ListBoxChild_SelectedIndexChanged;
                         listBoxChild.MouseMove += ListBoxChild_MouseMove;
                     }
@@ -1034,8 +1034,8 @@ namespace Reportman.Drawing.Forms
             StringFormat format = new StringFormat(StringFormatFlags.NoWrap);
             format.Alignment = StringAlignment.Near;
             format.LineAlignment = StringAlignment.Center;
-            int offset = GraphicUtils.ScaleToDPI(18);
-            int imwidth = GraphicUtils.ScaleToDPI(16);
+            int offset = Windows.GraphicUtils.ScaleToDPI(18);
+            int imwidth = Windows.GraphicUtils.ScaleToDPI(16);
             Rectangle StringBounds = new Rectangle(e.Bounds.Left + offset, e.Bounds.Top, e.Bounds.Width - offset, e.Bounds.Height);
             Image imageToDraw = null;
             if (listBoxChild.Items[e.Index] is GoogleSuggestion)

@@ -1585,6 +1585,9 @@ namespace Reportman.Drawing
                 case '*':
                     aresult = true;
                     break;
+                case (char)10:
+                    aresult = true;
+                    break;
             }
             return aresult;
         }
@@ -1633,8 +1636,8 @@ namespace Reportman.Drawing
         /// <param name="maxextent">Maximum extent</param>
         /// <param name="objt">Text content and options like font, alignment</param>
         /// <returns>Returns the current text position if the text does not fit in the bounding box</returns>
-		public static int CalcTextExtent(PrintOut adriver, Point maxextent,
-            TextObjectStruct objt)
+        public static int CalcTextExtent(PrintOut adriver, Point maxextent,
+    TextObjectStruct objt)
         {
             Point newextent;
             int currentpos, lasttested, oldcurrentpos;
@@ -1654,6 +1657,7 @@ namespace Reportman.Drawing
             {
                 // The first test is performed
                 currentpos = (minpos + maxpos) / 2;
+
                 // Word Break
                 while (currentpos > 0)
                 {
@@ -1681,13 +1685,21 @@ namespace Reportman.Drawing
             newextent = adriver.TextExtent(objt, newextent);
             while (newextent.Y > maxextent.Y)
             {
-                while (currentpos > 0)
+
+                if ((currentpos < objt.Text.Length) && IsDelimiter(objt.Text[currentpos]))
                 {
                     currentpos--;
-                    if (currentpos < 0)
-                        break;
-                    if (IsDelimiter(objt.Text[currentpos]))
-                        break;
+                }
+                else
+                {
+                    while (currentpos > 0)
+                    {
+                        currentpos--;
+                        if (currentpos < 0)
+                            break;
+                        if (IsDelimiter(objt.Text[currentpos]))
+                            break;
+                    }
                 }
                 if (currentpos < 0)
                     break;
@@ -1700,6 +1712,7 @@ namespace Reportman.Drawing
             else
                 return currentpos;
         }
+
         /// <summary>
         /// Finish the report processing
         /// </summary>

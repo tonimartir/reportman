@@ -8,9 +8,7 @@
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
     <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>$(DefineConstants);FORMS</DefineConstants>
   </PropertyGroup>
@@ -19,6 +17,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Reportman.Drawing.Forms\Reportman.Drawing.Forms.csproj" />
+    <ProjectReference Include="..\Reportman.Drawing.Windows\Reportman.Drawing.Windows.csproj" />
     <ProjectReference Include="..\Reportman.Drawing\Reportman.Drawing.csproj" />
     <ProjectReference Include="..\Reportman.Reporting.Forms\Reportman.Reporting.Forms.csproj" />
     <ProjectReference Include="..\Reportman.Reporting\Reportman.Reporting.csproj" />

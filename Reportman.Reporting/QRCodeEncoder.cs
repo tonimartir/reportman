@@ -1080,7 +1080,7 @@ namespace Reportman.Drawing
         /// <param name="content"></param>
         /// <param name="encoding"></param>
         /// <returns></returns>
-        public virtual Bitmap Encode(String content, Encoding encoding)
+        /*public virtual Bitmap Encode(String content, Encoding encoding)
         {
             bool[][] matrix = calQrcode(encoding.GetBytes(content));
             SolidBrush brush = new SolidBrush(qrCodeBackgroundColor);
@@ -1099,7 +1099,7 @@ namespace Reportman.Drawing
                 }
             }
             return image;
-        }
+        }*/
 #endif
         /// <summary>
         /// Encode the content using the encoding scheme given
@@ -1211,7 +1211,7 @@ namespace Reportman.Drawing
         /// <param name="content"></param>
         /// <param name="encoding"></param>
         /// <returns></returns>
-        public virtual Bitmap Encode(String content)
+        /*public virtual Bitmap Encode(String content)
         {
             if (IsUniCode(content))
             {
@@ -1221,7 +1221,7 @@ namespace Reportman.Drawing
             {
                 return Encode(content, Encoding.ASCII);
             }
-        }
+        }*/
 #endif
 
 

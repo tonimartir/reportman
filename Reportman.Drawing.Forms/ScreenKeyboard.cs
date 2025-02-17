@@ -1158,8 +1158,8 @@ namespace Reportman.Drawing.Forms
                 nform.ShowInTaskbar = false;
                 nform.ShowIcon = false;
                 nform.StartPosition = FormStartPosition.CenterScreen;
-                nform.Width = Convert.ToInt32(750 * Reportman.Drawing.GraphicUtils.DPIScale);
-                nform.Height = Convert.ToInt32(540 * Reportman.Drawing.GraphicUtils.DPIScale);
+                nform.Width = Convert.ToInt32(750 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
+                nform.Height = Convert.ToInt32(540 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
                 nform.MinimizeBox = false;
                 nform.MaximizeBox = false;
                 nform.Text = titulo;

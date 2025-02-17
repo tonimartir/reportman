@@ -61,20 +61,27 @@ namespace Reportman.Drawing.Forms
             PerMonitorAware = 2
         }
         public static bool IsWindowsFormsDPIAware()
+
         {
-            DpiAwareness dpiStatus;
-            GetProcessDpiAwareness(System.Diagnostics.Process.GetCurrentProcess().Handle, out dpiStatus);
-            // Verificar el tipo de DPI-awareness y mostrar un mensaje
-            switch (dpiStatus)
+            Version osVersion = Environment.OSVersion.Version;
+            if (osVersion.Major > 6 || (osVersion.Major == 6 && osVersion.Minor >= 3))
             {
-                case DpiAwareness.Unaware:
-                    return false;
-                case DpiAwareness.SystemAware:
-                    return true;
-                case DpiAwareness.PerMonitorAware:
-                    return true;
+                DpiAwareness dpiStatus;
+                GetProcessDpiAwareness(System.Diagnostics.Process.GetCurrentProcess().Handle, out dpiStatus);
+                // Verificar el tipo de DPI-awareness y mostrar un mensaje
+                switch (dpiStatus)
+                {
+                    case DpiAwareness.Unaware:
+                        return false;
+                    case DpiAwareness.SystemAware:
+                        return true;
+                    case DpiAwareness.PerMonitorAware:
+                        return true;
+                }
+                return false;
             }
-            return false;
+            else
+                return false;
         }
 
     }

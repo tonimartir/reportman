@@ -29,8 +29,8 @@ namespace Reportman.Designer
                 newform.ShowIcon = false;
                 newform.ShowInTaskbar = false;
                 newform.StartPosition = FormStartPosition.CenterScreen;
-                newform.Width = Convert.ToInt32(800 * Reportman.Drawing.GraphicUtils.DPIScale);
-                newform.Height = Convert.ToInt32(600 * Reportman.Drawing.GraphicUtils.DPIScale);
+                newform.Width = Convert.ToInt32(800 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
+                newform.Height = Convert.ToInt32(600 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
                 SQLEditor dia = new SQLEditor();
                 dia.Report = framemain.Report;
                 dia.MemoSQL.Text = sql;

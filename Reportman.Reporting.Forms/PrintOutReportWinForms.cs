@@ -263,7 +263,7 @@ namespace Reportman.Reporting.Forms
             int level_separator_gap = 50;
             // Calculate total width for the selected
             int maxwidth = 0;
-            float screendpi = GraphicUtils.ScreenDPI();
+            float screendpi = Reportman.Drawing.Windows.GraphicUtils.ScreenDPI();
             float scalepixels = 1440f / screendpi;
             for (idxcol = 0; idxcol < Columnas.Count; idxcol++)
             {

@@ -919,8 +919,14 @@ namespace Reportman.Reporting
                     aresult = FDateTime.CompareTo((DateTime)obj);
                     break;
                 case VariantType.Binary:
-                    throw new UnNamedException(Translator.TranslateStr(438) +
-                     " CompareTo " + GetTypeString() + "-" + obj.GetTypeString());
+                    if (StreamUtil.CompareArrayContent(FMemStream.ToArray(), obj.FMemStream.ToArray()))
+                    {
+                        aresult = 0;
+                    } else
+                    {
+                        aresult = -1;
+                    }
+                    break;
             }
             return aresult;
         }
@@ -1846,32 +1852,27 @@ namespace Reportman.Reporting
             string types = obj.GetType().ToString();
             switch (types)
             {
-#if NETSTANDARD6_0
-#else
+
                 case "System.Drawing.Bitmap":
-#if NODRAWING
                     throw new Exception("Drawing.ToBitmap() not supported in assign object");
-#else
-                    FMemStream = new MemoryStream();
+/*                    FMemStream = new MemoryStream();
                     Bitmap nbitmap = ((System.Drawing.Bitmap)obj);
                     nbitmap.Save(FMemStream, System.Drawing.Imaging.ImageFormat.Jpeg);
                     FVarType = VariantType.Binary;
-                    break;
+                    break;*/
 
-#endif
+
                 case "System.Drawing.Icon":
-#if NODRAWING
                     throw new Exception("Icon.ToBitmap() not supported in COmpact framework");
-#else
-                    FMemStream = new MemoryStream();
+/*                    FMemStream = new MemoryStream();
                     using (System.Drawing.Bitmap rbitmap = ((System.Drawing.Icon)obj).ToBitmap())
                     {
                         rbitmap.Save(FMemStream, System.Drawing.Imaging.ImageFormat.Jpeg);
                         FVarType = VariantType.Binary;
                     }
-                    break;
-#endif
-#endif
+                    break;*/
+
+
                 case "System.String":
                     FString = (String)obj;
                     FVarType = VariantType.String;

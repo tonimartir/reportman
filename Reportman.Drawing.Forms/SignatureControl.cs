@@ -207,7 +207,7 @@ namespace Reportman.Drawing.Forms
             {
                 if (!threadcapture.Join(2000))
                 {
-                    threadcapture.Abort();
+                    threadcapture.Interrupt();
                 }
                 threadcapture = null;
                 for (int i = 0; i < LinePath.Count; i++)

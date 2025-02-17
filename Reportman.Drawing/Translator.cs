@@ -37,10 +37,6 @@ namespace Reportman.Drawing
     /// using current user regional configuration loads the specified file
     /// with the regional extension for the file
     /// </summary>
-#if NETSTANDARD2_0 || NETSTANDARD6_0
-#else
-    [ToolboxBitmapAttribute(typeof(Translator), "translator.ico")]
-#endif
     public class Translator : System.ComponentModel.Component
     {
         private static bool DefaultStringsLoaded = false;

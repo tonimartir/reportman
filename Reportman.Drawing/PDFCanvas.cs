@@ -214,28 +214,30 @@ namespace Reportman.Drawing
     }
     public class PDFCanvas
     {
-        public static string ENDSTREAM = "" + (char)10 + "endstream";
-        private FontInfoProvider FInfoProvider;
-        FontInfoProvider FFDefInfoProvider;
-        public PDFConformanceType PDFConformance;
-        public FontInfoProvider FDefInfoProvider
+        public PDFCanvas(FontInfoProvider fontInfoProvider,IBitmapInfoProvider bitmapInfoProvider)
         {
-            get
-            {
-                if (FFDefInfoProvider == null)
-                {
-#if CROSSPF
-					FFDefInfoProvider = new FontInfoFt();
-#else
-                    //if ((System.Environment.OSVersion.Platform == PlatformID.Unix) || (System.Environment.OSVersion.Platform == PlatformID.MacOSX))
-                    //	FFDefInfoProvider = new FontInfoFreeType();
-                    //else
-                    FFDefInfoProvider = new FontInfoGDI();
-#endif
-                }
-                return FFDefInfoProvider;
-            }
+            FInfoProvider = fontInfoProvider;
+            FBitmapInfoProvider = bitmapInfoProvider;
+            OldPenColor = -1;
+            OldBrushColor = -1;
+            Resolution = Twips.TWIPS_PER_INCH;
+            FFontData = new SortedList();
+            FFont = new PDFFont();
+            FResolution = Twips.TWIPS_PER_INCH;
+            Lines = new LineInfos();
         }
+        public static string ENDSTREAM = "" + (char)10 + "endstream";
+        public FontInfoProvider FInfoProvider;
+        public FontInfoProvider InfoProvider
+        {
+            get { return FInfoProvider;}
+        }
+        public IBitmapInfoProvider FBitmapInfoProvider;
+        public IBitmapInfoProvider BitmapInfoProvider
+        {
+            get { return FBitmapInfoProvider; }
+        }
+        public PDFConformanceType PDFConformance;
         private PDFFont FFont;
         public PDFFile File;
         private int FResolution;
@@ -250,17 +252,6 @@ namespace Reportman.Drawing
             }
         }
         public PDFFont Font { get { return FFont; } }
-        public PDFCanvas()
-        {
-            OldPenColor = -1;
-            OldBrushColor = -1;
-            Resolution = Twips.TWIPS_PER_INCH;
-            FFontData = new SortedList();
-            FFont = new PDFFont();
-            FResolution = Twips.TWIPS_PER_INCH;
-            Lines = new LineInfos();
-
-        }
         public int PenColor;
         public int PenStyle;
         public int PenWidth;
@@ -277,23 +268,7 @@ namespace Reportman.Drawing
         {
             get { return FFontData; }
         }
-        public FontInfoProvider InfoProvider
-        {
-            get
-            {
-                if (FInfoProvider != null)
-                    return FInfoProvider;
-                else
-                    return FDefInfoProvider;
-            }
-            set
-            {
-                if (value == null)
-                    FInfoProvider = FDefInfoProvider;
-                else
-                    FInfoProvider = value;
-            }
-        }
+
         private bool translatedy;
         public string UnitsToTextX(int Value)
         {
@@ -1427,87 +1402,23 @@ namespace Reportman.Drawing
                         out imagesize, fimagestream, out indexed, out bitsperpixel, out numcolors, out palette, out isgif, out mask, imageMaskStream);
                     if ((isgif) || (!isBitmap))
                     {
-                        // #if NETSTANDARD2_0
-                        //throw new Exception("Bitmap format not supported in .net standard");
-                        //#else
-                        isgif = false;
-                        //abitmap.Seek(0, System.IO.SeekOrigin.Begin);
-                        //fimagestream.SetLength(abitmap.Length);
-                        //abitmap.WriteTo(fimagestream);
-                        //fimagestream.Seek(0, System.IO.SeekOrigin.Begin);
-                        //imagesize = (int)fimagestream.Length;
-#if CROSSPF
-                        SkiaSharp.SKBitmap newimage = null;
                         // Png /gif etc not supported so trye save image as Bitmap
                         try
                         {
-                            abitmap.Seek(0, System.IO.SeekOrigin.Begin);
-                            newimage = SkiaSharp.SKBitmap.Decode(abitmap);
-
-                            // Transparent color correctio
-                            /*Bitmap newbitmap = new Bitmap(newimage.Width, newimage.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-                            using (Graphics gr = Graphics.FromImage(newbitmap))
-                            {
-                                gr.FillRectangle(Brushes.Transparent, new Rectangle(0, 0, newbitmap.Width, newbitmap.Height));
-                                gr.DrawImage(newimage, new Rectangle(0, 0, newbitmap.Width , newbitmap.Height ));
-                            }
-                            newimage.Dispose();
-                            newimage = newbitmap;                        */
-                        }
-                        catch
-                        {
-
-                        }
-                        if (newimage != null)
-                        {
-                            MemoryStream newbitmapstream = new MemoryStream();
-							newimage.Encode(newbitmapstream, SkiaSharp.SKEncodedImageFormat.Bmp, 100);
-                            abitmap = newbitmapstream;
-                            abitmap.Seek(0, System.IO.SeekOrigin.Begin);
+                            abitmap.Seek(0, SeekOrigin.Begin);
+                            var newimage = BitmapInfoProvider.EncodeImageStreamAsBitmapStream(abitmap);
                             if (imageMaskStream != null)
                             {
                                 imageMaskStream = new MemoryStream();
                             }
                             BitmapUtil.GetBitmapInfo(abitmap, out bitmapwidth, out bitmapheight,
                                 out imagesize, fimagestream, out indexed, out bitsperpixel, out numcolors, out palette, out isgif, out mask, imageMaskStream);
-                        }
-#else
-                        Image newimage = null;
-                        // Png /gif etc not supported so trye save image as Bitmap
-                        try
-                        {
-                            abitmap.Seek(0, System.IO.SeekOrigin.Begin);
-                            newimage = Image.FromStream(abitmap);
-
-                            // Transparent color correctio
-                            /*Bitmap newbitmap = new Bitmap(newimage.Width, newimage.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-                            using (Graphics gr = Graphics.FromImage(newbitmap))
-                            {
-                                gr.FillRectangle(Brushes.Transparent, new Rectangle(0, 0, newbitmap.Width, newbitmap.Height));
-                                gr.DrawImage(newimage, new Rectangle(0, 0, newbitmap.Width , newbitmap.Height ));
-                            }
-                            newimage.Dispose();
-                            newimage = newbitmap;                        */
+                            abitmap.Seek(0, SeekOrigin.Begin);
                         }
                         catch
                         {
 
                         }
-                        if (newimage != null)
-                        {
-                            MemoryStream newbitmapstream = new MemoryStream();
-                            newimage.Save(newbitmapstream, System.Drawing.Imaging.ImageFormat.Bmp);
-                            abitmap = newbitmapstream;
-                            abitmap.Seek(0, System.IO.SeekOrigin.Begin);
-                            if (imageMaskStream != null)
-                            {
-                                imageMaskStream = new MemoryStream();
-                            }
-                            BitmapUtil.GetBitmapInfo(abitmap, out bitmapwidth, out bitmapheight,
-                                out imagesize, fimagestream, out indexed, out bitsperpixel, out numcolors, out palette, out isgif, out mask, imageMaskStream);
-                        }
-                        // #endif
-#endif
                     }
                 }
                 if (imageMaskStream != null)
@@ -2422,7 +2333,7 @@ namespace Reportman.Drawing
             CompressionTasks.Clear();
 #endif
         }
-        public PDFFile()
+        public PDFFile(FontInfoProvider infoProvider, IBitmapInfoProvider bitmapInfoProvider)
         {
             Optimized = false;
             DocTitle = "Report Manager Document";
@@ -2435,7 +2346,7 @@ namespace Reportman.Drawing
             FPageInfos = new PageInfos();
             ImageIndexes = new SortedList();
             FPages = new Strings();
-            FCanvas = new PDFCanvas();
+            FCanvas = new PDFCanvas(infoProvider, bitmapInfoProvider);
             FCanvas.File = this;
             FCanvas.Resolution = FResolution;
             PageWidth = 12048;

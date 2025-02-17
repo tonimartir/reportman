@@ -28,6 +28,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Reportman.Designer
 {
@@ -486,7 +487,7 @@ namespace Reportman.Designer
                 {
                     if (UseWindowsMetafiles)
                     {
-                        nband.SectionBitmap = GraphicUtils.CreateWindowsMetafile(nband.Width, nband.Height);
+                        nband.SectionBitmap = Reportman.Drawing.Windows.GraphicUtils.CreateWindowsMetafile(nband.Width, nband.Height);
                     }
                     else
                     {
@@ -525,14 +526,14 @@ namespace Reportman.Designer
             // Draw the section
             if (nband.SectionBitmap != null)
             {
-                Image gbitmap = GraphicUtils.GetImageGrid(nband.Width, nband.Height,
+                Image gbitmap = Reportman.Drawing.Windows.GraphicUtils.GetImageGrid(nband.Width, nband.Height,
                    FReport.GridWidth, FReport.GridHeight,
                    GraphicUtils.ColorFromInteger(FReport.GridColor), GraphicUtils.ColorFromInteger(FReport.BackColor),
                    FReport.GridLines, FDrawScale); ;
                 if (nband.SectionBitmap is System.Drawing.Imaging.Metafile)
                 {
                     nband.SectionBitmap.Dispose();
-                    nband.SectionBitmap = GraphicUtils.CreateWindowsMetafile(nband.Width, nband.Height);
+                    nband.SectionBitmap = Reportman.Drawing.Windows.GraphicUtils.CreateWindowsMetafile(nband.Width, nband.Height);
                 }
                 using (Graphics grsec = Graphics.FromImage(nband.SectionBitmap))
                 {
@@ -980,7 +981,7 @@ namespace Reportman.Designer
         }
         private void DrawTextObject(Graphics gr, Rectangle nrec, PrintItemText textitem, string ntext)
         {
-            using (Font font = new Font(textitem.WFontName, (float)textitem.FontSize * (float)FDrawScale, GraphicUtils.FontStyleFromInteger(textitem.FontStyle)))
+            using (Font font = new Font(textitem.WFontName, (float)textitem.FontSize * (float)FDrawScale, Reportman.Drawing.Windows.GraphicUtils.FontStyleFromInteger(textitem.FontStyle)))
             {
                 Color BackColor = GraphicUtils.ColorFromInteger(textitem.BackColor);
                 Color FontColor = GraphicUtils.ColorFromInteger(textitem.FontColor);
@@ -1052,7 +1053,7 @@ namespace Reportman.Designer
         private void DrawChartObject(Graphics gr, Rectangle nrec, ChartItem textitem, string ntext, ChartDrawHelper designchart)
         {
             using (Font font = new Font(textitem.WFontName, (float)textitem.FontSize * (float)FDrawScale,
-                GraphicUtils.FontStyleFromInteger(textitem.FontStyle)))
+                Reportman.Drawing.Windows.GraphicUtils.FontStyleFromInteger(textitem.FontStyle)))
             {
                 Color BackColor = GraphicUtils.ColorFromInteger(textitem.BackColor);
                 Color FontColor = GraphicUtils.ColorFromInteger(textitem.FontColor);
@@ -2174,7 +2175,7 @@ namespace Reportman.Designer
             else
                 fontname = FReport.WFontName;
             mcurrentfont.Text = "Default font: " + fontname + " " + FReport.FontSize.ToString();
-            mcurrentfont.Font = new Font(fontname, mcurrentfont.Font.Size, GraphicUtils.FontStyleFromInteger(FReport.FontStyle));
+            mcurrentfont.Font = new Font(fontname, mcurrentfont.Font.Size, Reportman.Drawing.Windows.GraphicUtils.FontStyleFromInteger(FReport.FontStyle));
             mcurrentfont.ForeColor = GraphicUtils.ColorFromInteger(FReport.FontColor);
             mcurrentfont.Enabled = false;
         }
@@ -2364,7 +2365,7 @@ namespace Reportman.Designer
                         fontfamily = FReport.LFontName;
                     else
                         fontfamily = FReport.WFontName;
-                    Size nsize = GraphicUtils.GetAvgFontSizeTwips(fontfamily, FReport.FontSize, GraphicUtils.FontStyleFromInteger(FReport.FontStyle));
+                    Size nsize = Reportman.Drawing.Windows.GraphicUtils.GetAvgFontSizeTwips(fontfamily, FReport.FontSize, Reportman.Drawing.Windows.GraphicUtils.FontStyleFromInteger(FReport.FontStyle));
                     if (fieldsize > 0)
                     {
                         widthpos = fieldsize * nsize.Width;
@@ -2395,7 +2396,7 @@ namespace Reportman.Designer
                 fontname = FReport.LFontName;
             else
                 fontname = FReport.WFontName;
-            Font nfont = new Font(fontname, (float)FReport.FontSize, GraphicUtils.FontStyleFromInteger(FReport.FontStyle));
+            Font nfont = new Font(fontname, (float)FReport.FontSize, Reportman.Drawing.Windows.GraphicUtils.FontStyleFromInteger(FReport.FontStyle));
             nfontdialog.Font = nfont;
             nfontdialog.Color = GraphicUtils.ColorFromInteger(FReport.FontColor);
             nfontdialog.ShowColor = true;
@@ -2407,7 +2408,7 @@ namespace Reportman.Designer
                     FReport.WFontName = nfontdialog.Font.FontFamily.Name;
                 FReport.FontSize = System.Convert.ToInt16(Math.Round(nfontdialog.Font.Size));
                 FReport.FontColor = GraphicUtils.IntegerFromColor(nfontdialog.Color);
-                FReport.FontStyle = GraphicUtils.IntegerFromFontStyle(nfontdialog.Font.Style);
+                FReport.FontStyle = Reportman.Drawing.Windows.GraphicUtils.IntegerFromFontStyle(nfontdialog.Font.Style);
             }
         }
     }

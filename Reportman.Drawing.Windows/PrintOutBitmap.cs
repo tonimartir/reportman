@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 
+
 namespace Reportman.Drawing
 {
     public class PrintOutBitmap : PrintOutNet

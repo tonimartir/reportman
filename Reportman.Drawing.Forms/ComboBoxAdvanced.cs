@@ -145,8 +145,8 @@ namespace Reportman.Drawing.Forms
             set
             {
                 FNewSize = value;
-                base.Size = new Size(Convert.ToInt32(Math.Round(Reportman.Drawing.GraphicUtils.DPIScaleX * FNewSize.Width)),
-                     Convert.ToInt32(Math.Round(Reportman.Drawing.GraphicUtils.DPIScaleY * FNewSize.Height)));
+                base.Size = new Size(Convert.ToInt32(Math.Round(Reportman.Drawing.Windows.GraphicUtils.DPIScaleX * FNewSize.Width)),
+                     Convert.ToInt32(Math.Round(Reportman.Drawing.Windows.GraphicUtils.DPIScaleY * FNewSize.Height)));
             }
             get
             {
@@ -417,7 +417,7 @@ namespace Reportman.Drawing.Forms
                     {
                         listBoxChild.DrawMode = DrawMode.OwnerDrawFixed;
                         listBoxChild.DrawItem += ListBoxChild_DrawItem;
-                        listBoxChild.ItemHeight = Reportman.Drawing.GraphicUtils.ScaleToDPI(20);
+                        listBoxChild.ItemHeight = Reportman.Drawing.Windows.GraphicUtils.ScaleToDPI(20);
                         listBoxChild.SelectedIndexChanged += ListBoxChild_SelectedIndexChanged;
                         listBoxChild.MouseMove += ListBoxChild_MouseMove;
                     }
@@ -485,8 +485,8 @@ namespace Reportman.Drawing.Forms
             StringFormat format = new StringFormat(StringFormatFlags.NoWrap);
             format.Alignment = StringAlignment.Near;
             format.LineAlignment = StringAlignment.Center;
-            int offset = GraphicUtils.ScaleToDPI(18);
-            int imwidth = GraphicUtils.ScaleToDPI(16);
+            int offset = Reportman.Drawing.Windows.GraphicUtils.ScaleToDPI(18);
+            int imwidth = Reportman.Drawing.Windows.GraphicUtils.ScaleToDPI(16);
             Rectangle StringBounds = new Rectangle(e.Bounds.Left + offset, e.Bounds.Top, e.Bounds.Width - offset, e.Bounds.Height);
             Image imageToDraw = null;
             if (listBoxChild.Items[e.Index] is GoogleSuggestion)
@@ -1250,15 +1250,15 @@ namespace Reportman.Drawing.Forms
         }
         public static Padding PaddingDPI(Padding source)
         {
-            return new Padding(GraphicUtils.ScaleToDPI(source.Left), GraphicUtils.ScaleToDPI(source.Top),
-                GraphicUtils.ScaleToDPI(source.Right), GraphicUtils.ScaleToDPI(source.Bottom));
+            return new Padding(Reportman.Drawing.Windows.GraphicUtils.ScaleToDPI(source.Left), Reportman.Drawing.Windows.GraphicUtils.ScaleToDPI(source.Top),
+                Reportman.Drawing.Windows.GraphicUtils.ScaleToDPI(source.Right), Reportman.Drawing.Windows.GraphicUtils.ScaleToDPI(source.Bottom));
         }
 
         public static void ScaleImageList(ImageList imlist)
         {
 
-            int newx = System.Convert.ToInt32(imlist.ImageSize.Width * Reportman.Drawing.GraphicUtils.DPIScaleX);
-            int newy = System.Convert.ToInt32(imlist.ImageSize.Height * Reportman.Drawing.GraphicUtils.DPIScaleY);
+            int newx = System.Convert.ToInt32(imlist.ImageSize.Width * Reportman.Drawing.Windows.GraphicUtils.DPIScaleX);
+            int newy = System.Convert.ToInt32(imlist.ImageSize.Height * Reportman.Drawing.Windows.GraphicUtils.DPIScaleY);
             if ((newx == imlist.ImageSize.Width) && (newy == imlist.ImageSize.Height))
                 return;
             //int newx = System.Convert.ToInt32(imlist.ImageSize.Width * 1.20);
@@ -1331,8 +1331,8 @@ namespace Reportman.Drawing.Forms
             set
             {
                 FNewImageScalingSize = value;
-                base.ImageScalingSize = new Size(Convert.ToInt32(Math.Round(Reportman.Drawing.GraphicUtils.DPIScaleX * FNewImageScalingSize.Width)),
-                     Convert.ToInt32(Math.Round(Reportman.Drawing.GraphicUtils.DPIScaleY * FNewImageScalingSize.Height)));
+                base.ImageScalingSize = new Size(Convert.ToInt32(Math.Round(Reportman.Drawing.Windows.GraphicUtils.DPIScaleX * FNewImageScalingSize.Width)),
+                     Convert.ToInt32(Math.Round(Reportman.Drawing.Windows.GraphicUtils.DPIScaleY * FNewImageScalingSize.Height)));
             }
             get
             {

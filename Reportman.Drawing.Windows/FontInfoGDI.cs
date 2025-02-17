@@ -67,7 +67,8 @@ namespace Reportman.Drawing
                 if (!glyps.ContainsKey(gl))
                     glyps[gl] = new int[] { gl, (int)Math.Round(width), (int)xchar };
             }
-            TrueTypeFontSubSet subset = new TrueTypeFontSubSet(data.PostcriptName, data.FontData.Data,
+            TrueTypeFontSubSet subset = new TrueTypeFontSubSet(
+                data.PostcriptName, data.FontData.Data,
                 glyps, data.FontData.DirectoryOffset);
             byte[] nresult = subset.Execute();
 

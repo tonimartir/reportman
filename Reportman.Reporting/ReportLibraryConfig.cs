@@ -62,13 +62,10 @@ namespace Reportman.Reporting
             {
                 case DriverType.IBX:
 
-                    if (DatabaseInfo.CustomProviderFactories.IndexOfKey(DatabaseInfo.FIREBIRD_PROVIDER) >= 0)
-                        return DatabaseInfo.CustomProviderFactories[DatabaseInfo.FIREBIRD_PROVIDER];
-                    else
                     if (DatabaseInfo.CustomProviderFactories.IndexOfKey(DatabaseInfo.FIREBIRD_PROVIDER2) >= 0)
                         return DatabaseInfo.CustomProviderFactories[DatabaseInfo.FIREBIRD_PROVIDER2];
                     else
-                        throw new Exception("Firebird provider not found: " + DatabaseInfo.FIREBIRD_PROVIDER);
+                        throw new Exception("Firebird provider not found: " + DatabaseInfo.FIREBIRD_PROVIDER2);
                 case DriverType.DotNet2:
                     DbProviderFactory factory = DbProviderFactories.GetFactory(ProviderName);
                     if (factory == null)

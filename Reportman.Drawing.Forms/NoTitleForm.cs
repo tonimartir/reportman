@@ -255,7 +255,7 @@ namespace Reportman.Drawing.Forms
         {
             if (!FShowTitle)
             {
-                int padding_width = Convert.ToInt32(FBorderSize * Reportman.Drawing.GraphicUtils.DPIScale);
+                int padding_width = Convert.ToInt32(FBorderSize * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
                 if (NoTitleMaximized)
                     this.Padding = new Padding(0, 0, 0, 0);
                 else
@@ -389,9 +389,9 @@ namespace Reportman.Drawing.Forms
             if (!FShowTitle)
             {
                 Color theColor = FBorderColor;
-                int BORDER_SIZE = Convert.ToInt32(FBorderSize * Reportman.Drawing.GraphicUtils.DPIScale); ;
-                int cGrip = Convert.ToInt32(FGripSize * Reportman.Drawing.GraphicUtils.DPIScale);
-                int cCaption = Convert.ToInt32(FCaptionHeight * Reportman.Drawing.GraphicUtils.DPIScale);
+                int BORDER_SIZE = Convert.ToInt32(FBorderSize * Reportman.Drawing.Windows.GraphicUtils.DPIScale); ;
+                int cGrip = Convert.ToInt32(FGripSize * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
+                int cCaption = Convert.ToInt32(FCaptionHeight * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
 
                 if ((FDrawBorder) && (!NoTitleMaximized))
                 {
@@ -565,7 +565,7 @@ namespace Reportman.Drawing.Forms
             toolStrip1.ItemAdded += ToolStrip1_ItemAdded; ;
             toolStrip1.ItemRemoved += ToolStrip1_ItemRemoved;
 
-            int separatorwidth = Convert.ToInt32(4 * GraphicUtils.DPIScale);
+            int separatorwidth = Convert.ToInt32(4 * Windows.GraphicUtils.DPIScale);
             botonmin.Padding = new Padding(separatorwidth, 0, separatorwidth, 0);
             botonmax.Padding = new Padding(separatorwidth, 0, separatorwidth, 0);
             botonclose.Padding = new Padding(separatorwidth, 0, separatorwidth, 0);
@@ -610,7 +610,7 @@ namespace Reportman.Drawing.Forms
             }
             else
             {
-                firstitem.Margin = new Padding(Convert.ToInt32(20 * GraphicUtils.DPIScale), 0, 0, 0);
+                firstitem.Margin = new Padding(Convert.ToInt32(20 * Windows.GraphicUtils.DPIScale), 0, 0, 0);
             }
         }
 
@@ -818,7 +818,7 @@ namespace Reportman.Drawing.Forms
                 int x2 = ToolStripMouseDownOrigin.X;
                 int y2 = ToolStripMouseDownOrigin.Y;
                 double dist = Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
-                dist = dist * Reportman.Drawing.GraphicUtils.DPIScale;
+                dist = dist * Reportman.Drawing.Windows.GraphicUtils.DPIScale;
                 if (dist > 5)
                 {
                     moving = false;

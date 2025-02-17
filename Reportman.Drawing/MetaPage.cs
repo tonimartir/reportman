@@ -33,12 +33,9 @@ namespace Reportman.Drawing
 		public SortedList stringlist;
         private MemoryStream FMemStream;
         MetaFile FMetafile;
-#if NETSTANDARD2_0 || NETSTANDARD6_0
-#else
         /// <summary>Reference to a Windows Metafile, for optimization, and depending on configuration of
         /// print driver, the variable will contain a System.Drawing.Image.Metafile with page contents</summary>
-        public System.Drawing.Imaging.Metafile WindowsMetafile;
-#endif
+        public object WindowsMetafile;
         /// <summary>Windows Metafile scale, valid only if WindowsMetafile is assigned</summary>
         public float WindowsMetafileScale;
         /// <summary>
@@ -129,14 +126,14 @@ namespace Reportman.Drawing
             stringlist.Clear();
             FPoolPos = 0;
             FMemStream.SetLength(0);
-#if NETSTANDARD2_0 || NETSTANDARD6_0
-#else
             if (WindowsMetafile != null)
             {
-                WindowsMetafile.Dispose();
+                if (WindowsMetafile is IDisposable)
+                {
+                    (WindowsMetafile as IDisposable).Dispose();
+                }
                 WindowsMetafile = null;
             }
-#endif
         }
         /// <summary>
         /// Add a string
@@ -503,7 +500,7 @@ namespace Reportman.Drawing
             return metaobj;
         }
         public MetaObjectImage DrawImage(int PosX, int PosY, int PrintWidth, int PrintHeight, ImageDrawStyleType DrawStyle, int dpires,
-            object nvalue)
+            MemoryStream nvalue)
         {
             MetaObjectImage metaobj = new MetaObjectImage();
             metaobj.MetaType = MetaObjectType.Image;
@@ -514,40 +511,9 @@ namespace Reportman.Drawing
             metaobj.DrawImageStyle = DrawStyle;
             metaobj.DPIRes = dpires;
             metaobj.PreviewOnly = false;
-            if (nvalue is MemoryStream)
-            {
-                MemoryStream xstream = (MemoryStream)nvalue;
-                {
-                    metaobj.StreamPos = AddStream(xstream, false);
-                    metaobj.StreamSize = xstream.Length;
-                }
-            }
-            else
-            {
-#if CROSSPF
-                if (nvalue is SkiaSharp.SKBitmap)
-                {
-                    SkiaSharp.SKBitmap nimage = (SkiaSharp.SKBitmap)nvalue;
-                    using (MemoryStream mstream = new MemoryStream())
-                    {
-                        nimage.Encode(mstream, SkiaSharp.SKEncodedImageFormat.Jpeg, 100);
-                    }
-                }
-#else
-                if (nvalue is Image)
-                {
-                    Image nimage = (Image)nvalue;
-                    using (MemoryStream mstream = new MemoryStream())
-                    {
-                        nimage.Save(mstream, ImageFormat.Jpeg);
-                    }
-                }
-                else
-#endif
-if (nvalue != DBNull.Value)
-                    if (nvalue != null)
-                        throw new Exception("Unsupported type MetaPage.DrawImage");
-            }
+            MemoryStream xstream = (MemoryStream)nvalue;
+            metaobj.StreamPos = AddStream(xstream, false);
+            metaobj.StreamSize = xstream.Length;
             Objects.Add(metaobj);
             return metaobj;
         }

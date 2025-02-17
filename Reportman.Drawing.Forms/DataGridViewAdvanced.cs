@@ -397,11 +397,11 @@ namespace Reportman.Drawing.Forms
         }
         public void ScaleColumns()
         {
-            if (Reportman.Drawing.GraphicUtils.DPIScale == 1.0f)
+            if (Reportman.Drawing.Windows.GraphicUtils.DPIScale == 1.0f)
                 return;
             foreach (DataGridViewColumn ncol in Columns)
             {
-                ncol.Width = Convert.ToInt32(ncol.Width * Reportman.Drawing.GraphicUtils.DPIScale);
+                ncol.Width = Convert.ToInt32(ncol.Width * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
             }
         }
         private bool ProcessKey(Keys keydata)
@@ -696,7 +696,7 @@ namespace Reportman.Drawing.Forms
             }
             Image nimage = Clipboard.GetImage();
             MemoryStream mems = new MemoryStream();
-            ImageCodecInfo icodec = GraphicUtils.GetImageCodec("image/jpeg");
+            ImageCodecInfo icodec = Windows.GraphicUtils.GetImageCodec("image/jpeg");
             if (icodec != null)
             {
                 EncoderParameters eparams = new EncoderParameters(1);

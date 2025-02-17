@@ -112,8 +112,7 @@ namespace Reportman.Reporting
     /// </summary>
 	public class DatabaseInfo : ReportItem, ICloneable
     {
-        public static string FIREBIRD_PROVIDER = "Firebird.Data.FirebirdClient";
-        public static string FIREBIRD_PROVIDER2 = "FirebirdSql.Data.Firebird";
+        public static string FIREBIRD_PROVIDER2 = "FirebirdSql.Data.FirebirdClient";
         public static string MYSQL_PROVIDER = "MySql.Data.MySqlClient";
         public static string SQLITE_PROVIDER = "System.Data.SQLite";
         private System.Data.IDbConnection FConnection;
@@ -123,7 +122,6 @@ namespace Reportman.Reporting
         /// Obtain current active transaction to execute querys
         /// </summary>
         ///
-        [Newtonsoft.Json.JsonIgnore]
         public System.Data.IDbTransaction CurrentTransaction
         {
             get
@@ -134,6 +132,11 @@ namespace Reportman.Reporting
                     return IntTransaction;
             }
         }
+        public bool ShouldSerializeCurrentTransaction()
+        {
+            return false;
+        }
+
         public static List<string> GetDriverDescriptions()
         {
             List<string> alist = new List<string>
@@ -159,7 +162,6 @@ namespace Reportman.Reporting
         /// all the settings inside DatabaseInfo related to perform connection will be ignored and all
         /// querys will be executed against the provided connection
         /// </summary>
-        [Newtonsoft.Json.JsonIgnore]
         public System.Data.IDbConnection Connection
         {
             get
@@ -184,6 +186,10 @@ namespace Reportman.Reporting
                     }
                 }
             }
+        }
+        public bool ShouldSerializeCurrentConnection()
+        {
+            return false;
         }
         public IDbCommandExecuter SqlExecuter;
         protected override string GetClassName()
@@ -314,7 +320,7 @@ namespace Reportman.Reporting
                 UsedConnectionString = Report.Params[index].Value.ToString();
 
             if (Driver == DriverType.IBX)
-                this.ProviderFactory = FIREBIRD_PROVIDER;
+                ProviderFactory = FIREBIRD_PROVIDER2;
             if (this.ProviderFactory.Length == 0)
                 throw new UnNamedException("Provider factory not supplied");
             DbProviderFactory afactory = null;

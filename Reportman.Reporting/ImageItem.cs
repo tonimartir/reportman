@@ -60,11 +60,14 @@ namespace Reportman.Reporting
             return "TRPIMAGE";
         }
         [Browsable(false)]
-        [Newtonsoft.Json.JsonIgnore]
         public MemoryStream Stream
         {
             get { return FStream; }
             private set { FStream = value; }
+        }
+        public bool ShouldSerializeStream()
+        {
+            return false;
         }
         public string StreamBase64
         {

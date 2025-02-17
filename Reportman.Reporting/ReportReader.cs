@@ -182,7 +182,7 @@ namespace Reportman.Reporting
                 {
                     if (dbinfo.Driver == DriverType.IBX)
                         if (provider_factory.Length == 0)
-                            provider_factory = "FirebirdSql.Data.Firebird";
+                            provider_factory = DatabaseInfo.FIREBIRD_PROVIDER2;
                     dbinfo.Driver = driver;
                     dbinfo.ProviderFactory = provider_factory;
                 }

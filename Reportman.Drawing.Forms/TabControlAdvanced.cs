@@ -239,16 +239,16 @@ namespace Reportman.Drawing.Forms
 
         static TabControlAdvanced()
         {
-            _buttonWidth = Convert.ToInt32(_buttonWidth * Reportman.Drawing.GraphicUtils.DPIScale);
-            _buttonHeight = Convert.ToInt32(_buttonHeight * Reportman.Drawing.GraphicUtils.DPIScale);
-            _buttonGap = Convert.ToInt32(_buttonGap * Reportman.Drawing.GraphicUtils.DPIScale);
+            _buttonWidth = Convert.ToInt32(_buttonWidth * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
+            _buttonHeight = Convert.ToInt32(_buttonHeight * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
+            _buttonGap = Convert.ToInt32(_buttonGap * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
 
-            _originalButtonHeight = Convert.ToInt32(_originalButtonHeight * Reportman.Drawing.GraphicUtils.DPIScale);
-            _originalButtonWidth = Convert.ToInt32(_originalButtonWidth * Reportman.Drawing.GraphicUtils.DPIScale);
-            _imageButtonHeight = Convert.ToInt32(_imageButtonHeight * Reportman.Drawing.GraphicUtils.DPIScale);
-            _imageButtonWidth = Convert.ToInt32(_imageButtonWidth * Reportman.Drawing.GraphicUtils.DPIScale);
+            _originalButtonHeight = Convert.ToInt32(_originalButtonHeight * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
+            _originalButtonWidth = Convert.ToInt32(_originalButtonWidth * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
+            _imageButtonHeight = Convert.ToInt32(_imageButtonHeight * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
+            _imageButtonWidth = Convert.ToInt32(_imageButtonWidth * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
 
-            _MouseOffsetTriggerReorder = Convert.ToInt32(5 * Reportman.Drawing.GraphicUtils.DPIScale);
+            _MouseOffsetTriggerReorder = Convert.ToInt32(5 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
             //_imageButtonWidth = Convert.ToInt32(_imageButtonWidth * Reportman.Drawing.GraphicUtils.DPIScale);
             //_imageButtonHeight = Convert.ToInt32(_imageButtonHeight * Reportman.Drawing.GraphicUtils.DPIScale);
 
@@ -554,8 +554,8 @@ namespace Reportman.Drawing.Forms
 
 
             // Grab some contant values
-            _imageWidth = Convert.ToInt32(16 * Reportman.Drawing.GraphicUtils.DPIScale);
-            _imageHeight = Convert.ToInt32(16 * Reportman.Drawing.GraphicUtils.DPIScale);
+            _imageWidth = Convert.ToInt32(16 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
+            _imageHeight = Convert.ToInt32(16 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
 
             // Default to having a MultiForm usage
             SetAppearance(VisualAppearance.MultiForm);
@@ -3345,7 +3345,7 @@ namespace Reportman.Drawing.Forms
                         if ((_showCloseIndividual) && (page.CanClose))
                         {
                             g.SmoothingMode = SmoothingMode.HighQuality;
-                            int cross_width = Convert.ToInt32(6 * Reportman.Drawing.GraphicUtils.DPIScale);
+                            int cross_width = Convert.ToInt32(6 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
                             Pen pendraw;
                             if (highlightClose)
                             {
@@ -3360,7 +3360,7 @@ namespace Reportman.Drawing.Forms
                             }
                             pendraw.EndCap = LineCap.Round;
                             pendraw.StartCap = LineCap.Round;
-                            pendraw.Width = 2f * Reportman.Drawing.GraphicUtils.DPIScale;
+                            pendraw.Width = 2f * Reportman.Drawing.Windows.GraphicUtils.DPIScale;
                             // g.DrawImage(_internalImages.Images[4], new Point(xMax + _buttonGap, yStart + (yEnd - yStart - _internalImages.Images[4].Height) / 2));
                             Rectangle newrec = new Rectangle(xMax + _buttonGap + cross_width / 2, yStart + (yEnd - yStart - cross_width) / 2, cross_width, cross_width);
                             if (highlightClose)
@@ -3369,7 +3369,7 @@ namespace Reportman.Drawing.Forms
                                 //g.SmoothingMode = SmoothingMode.HighQuality;
                                 //g.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                 //g.PixelOffsetMode = PixelOffsetMode.HighQuality;
-                                int circle_gap = Convert.ToInt32(8 * Reportman.Drawing.GraphicUtils.DPIScale);
+                                int circle_gap = Convert.ToInt32(8 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
                                 Rectangle recellipse = new Rectangle(newrec.Left - circle_gap / 2, newrec.Top - circle_gap / 2, newrec.Width + circle_gap, newrec.Height + circle_gap);
 
                                 GraphicsPath pathClip = new GraphicsPath();
@@ -3576,14 +3576,14 @@ namespace Reportman.Drawing.Forms
                     const int CURVEMARGIN = 2;
                     using (Pen npen = new Pen(penbrush))
                     {
-                        int tab_separation = Convert.ToInt32(TABSEP * GraphicUtils.DPIScale);
-                        int curve_separation = Convert.ToInt32(CURVESEP * GraphicUtils.DPIScale);
-                        int curve_margin = Convert.ToInt32(CURVEMARGIN * GraphicUtils.DPIScale);
+                        int tab_separation = Convert.ToInt32(TABSEP * Windows.GraphicUtils.DPIScale);
+                        int curve_separation = Convert.ToInt32(CURVESEP * Windows.GraphicUtils.DPIScale);
+                        int curve_margin = Convert.ToInt32(CURVEMARGIN * Windows.GraphicUtils.DPIScale);
                         //int curve_separation = CURVESEP;
                         //int curve_margin = CURVEMARGIN;
                         //g.SmoothingMode = SmoothingMode.AntiAlias;
                         g.SmoothingMode = SmoothingMode.HighQuality;
-                        npen.Width = penwidth * (Reportman.Drawing.GraphicUtils.DPIScale);
+                        npen.Width = penwidth * (Reportman.Drawing.Windows.GraphicUtils.DPIScale);
                         Point bottomleft = new Point(rectPage.X - curve_separation, rectPage.Y + rectPage.Height);
                         Point topleft = new Point(rectPage.X + tab_separation, rectPage.Y);
                         Point topright = new Point(rectPage.X + rectPage.Width - tab_separation, rectPage.Y);
@@ -3631,7 +3631,7 @@ namespace Reportman.Drawing.Forms
                         bottomrightcurve[2] = bottomrightcurve1;
                         bottomrightcurve[3] = bottomrightcurve2;
 
-                        float cornerradius = 2.5f * GraphicUtils.DPIScale;
+                        float cornerradius = 2.5f * Windows.GraphicUtils.DPIScale;
                         PointF[] newpoints = new PointF[6];
                         newpoints[0] = bottomleftbegin;
                         newpoints[1] = bottomleft;
@@ -3639,7 +3639,7 @@ namespace Reportman.Drawing.Forms
                         newpoints[3] = topright;
                         newpoints[4] = bottomright;
                         newpoints[5] = bottomrightcurve2;
-                        GraphicsPath npath = GraphicUtils.GetRoundedLine(newpoints, cornerradius);
+                        GraphicsPath npath = Windows.GraphicUtils.GetRoundedLine(newpoints, cornerradius);
 
                         /*GraphicsPath npath = new GraphicsPath();
 
@@ -3661,9 +3661,9 @@ namespace Reportman.Drawing.Forms
                         {
                             using (Pen penwhite = new Pen(backbrushcolor))
                             {
-                                penwhite.Width = penwidth * (Reportman.Drawing.GraphicUtils.DPIScale);
+                                penwhite.Width = penwidth * (Reportman.Drawing.Windows.GraphicUtils.DPIScale);
                                 g.DrawLine(penwhite, bottomleft, bottomright);
-                                npath = GraphicUtils.GetRoundedLine(newpoints, cornerradius);
+                                npath = Windows.GraphicUtils.GetRoundedLine(newpoints, cornerradius);
                                 if (_reorderingtab)
                                 {
                                     PointF firstpoint = newpoints[0];

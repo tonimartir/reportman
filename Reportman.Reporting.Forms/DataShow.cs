@@ -43,8 +43,8 @@ namespace Reportman.Reporting.Forms
 		public DataShow()
         {
             InitializeComponent();
-            Width = Convert.ToInt32(800 * Reportman.Drawing.GraphicUtils.DPIScale);
-            Height = Convert.ToInt32(600 * Reportman.Drawing.GraphicUtils.DPIScale);
+            Width = Convert.ToInt32(800 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
+            Height = Convert.ToInt32(600 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
         }
 
         /// <summary>

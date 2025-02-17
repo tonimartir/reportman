@@ -107,7 +107,7 @@ namespace Reportman.Designer
         public OpenFromLibrary()
         {
             InitializeComponent();
-            int newwidth = Convert.ToInt32(GraphicUtils.DPIScale * 19);
+            int newwidth = Convert.ToInt32(Reportman.Drawing.Windows.GraphicUtils.DPIScale * 19);
             imageList1.ImageSize = new Size(newwidth, newwidth);
             imageList1.Images.Add(Properties.Resources.document32);
             imageList1.Images.Add(Properties.Resources.closed_folder);

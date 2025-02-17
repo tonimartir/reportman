@@ -104,7 +104,7 @@ namespace Reportman.Drawing.Forms
             switch (comboFormat.SelectedIndex)
             {
                 case 1:
-                    System.Drawing.Imaging.ImageCodecInfo icodec = GraphicUtils.GetImageCodec("image/jpeg");
+                    System.Drawing.Imaging.ImageCodecInfo icodec = Windows.GraphicUtils.GetImageCodec("image/jpeg");
                     System.Drawing.Imaging.EncoderParameters eparams = new System.Drawing.Imaging.EncoderParameters(1);
                     System.Drawing.Imaging.EncoderParameter qParam = new System.Drawing.Imaging.EncoderParameter(System.Drawing.Imaging.Encoder.Quality,
                         Convert.ToInt64(editCalidad.Value));

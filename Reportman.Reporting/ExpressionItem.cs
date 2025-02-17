@@ -38,10 +38,13 @@ namespace Reportman.Reporting
         public string AgIniValue { get; set; }
         public bool PrintOnlyOne { get; set; }
         public bool PrintNulls { get; set; }
-        [Newtonsoft.Json.JsonIgnore]
         public bool IsPartial
         {
             get { return FIsPartial; }
+        }
+        public bool ShouldSerializeIsPartial()
+        {
+            return false;
         }
         public int PartialPos;
         public string ExportExpression { get; set; }
@@ -57,8 +60,8 @@ namespace Reportman.Reporting
             return "TRPEXPRESSION";
         }
         override protected void DoPrint(PrintOut adriver, int aposx, int aposy,
-            int newwidth, int newheight, MetaFile metafile, Point MaxExtent,
-            ref bool PartialPrint)
+                    int newwidth, int newheight, MetaFile metafile, Point MaxExtent,
+                    ref bool PartialPrint)
         {
             int newposition;
             string avalue;
@@ -247,7 +250,7 @@ namespace Reportman.Reporting
             }
             if (IsPartial)
             {
-                if (aresult[PartialPos] == ' ')
+                if ((aresult[PartialPos] == ' ') || (aresult[PartialPos] == (char)10))
                     if (aresult.Length >= (PartialPos - 2))
                         PartialPos++;
                 aresult = aresult.Substring(PartialPos, aresult.Length - PartialPos);

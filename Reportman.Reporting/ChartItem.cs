@@ -72,13 +72,17 @@ namespace Reportman.Reporting
         public Series.AutoRangeAxis AutoRange { get; set; } = Series.AutoRangeAxis.Default;
         public double AxisYInitial { get; set; } = 0;
         public double AxisYFinal { get; set; } = 0;
-        [Newtonsoft.Json.JsonIgnore]
+
         internal VariableGraph IdenChart
         {
             get
             {
                 return FIdenChart;
             }
+        }
+        public bool ShouldSerializeIdenChart()
+        {
+            return false;
         }
         public ChartItem(BaseReport rp)
             : base(rp)

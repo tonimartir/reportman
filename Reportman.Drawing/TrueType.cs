@@ -25,7 +25,7 @@ using System.Threading;
 
 namespace Reportman.Drawing
 {
-    internal class TableData
+    public class TableData
     {
         public string TableName;
         public int Location;
@@ -39,7 +39,7 @@ namespace Reportman.Drawing
             Checksum = tchecksum;
         }
     }
-    internal class TrueTypeFontSubSet
+    public class TrueTypeFontSubSet
     {
         internal static string[] tablenameconst = {"cvt ", "fpgm", "glyf", "head",
                                                "hhea", "hmtx", "loca", "maxp", "prep"};
@@ -83,7 +83,7 @@ namespace Reportman.Drawing
         /// <param name="rfarray"></param>
         /// <param name="glyphsUsed"></param>
         /// <param name="directoryOffset"></param>
-        internal TrueTypeFontSubSet(string fontname, byte[] rfarray, Dictionary<int, int[]> glyphsUsed, uint directoryOffset)
+        public TrueTypeFontSubSet(string fontname, byte[] rfarray, Dictionary<int, int[]> glyphsUsed, uint directoryOffset)
         {
             this.rfarray = rfarray;
             this.glyphsUsed = glyphsUsed;
@@ -93,7 +93,7 @@ namespace Reportman.Drawing
         }
 
         // Execute the subset of the font
-        internal byte[] Execute()
+        public byte[] Execute()
         {
             CreateTableDirectory();
             ReadLoca();
