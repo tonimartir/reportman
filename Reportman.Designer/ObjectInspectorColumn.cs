@@ -6,7 +6,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Reportman.Designer
 {
@@ -146,7 +145,7 @@ namespace Reportman.Designer
                         TextBoxPicker.Click += ClickFontStyleEvent;
                         if (nvalue.IsNull)
                             nvalue = 0;
-                        TextBoxPicker.Text = Reportman.Drawing.Windows.GraphicUtils.StringFontStyleFromInteger((int)nvalue);
+                        TextBoxPicker.Text = GraphicUtils.StringFontStyleFromInteger((int)nvalue);
                         break;
                     default:
                         TextBoxPicker.Text = nvalue.ToString();
@@ -264,7 +263,7 @@ namespace Reportman.Designer
             string fontname = "";
             int fstyle = 0;
             int fontsize = 10;
-            for (int i = 0; i < DataGridView.Rows.Count; i++)
+            for (int i = 0; i < DataGridView.Rows.Count; i++)       // ToDo - There is Unhandled Exception here. DataGridView becomes null so sometimes it gives error in opening font dialog.
             {
                 string pname = GetColumnValue("NAME", i).ToString();
                 if (pname == Translator.TranslateStr(560))
@@ -290,7 +289,7 @@ namespace Reportman.Designer
                     fstyle = nvar;
                 }
             }
-            FontStyle nfstyle = Reportman.Drawing.Windows.GraphicUtils.FontStyleFromInteger(fstyle);
+            FontStyle nfstyle = GraphicUtils.FontStyleFromInteger(fstyle);
             Font nfont = new Font(fontname, fontsize, nfstyle);
             return nfont;
         }
@@ -371,7 +370,7 @@ namespace Reportman.Designer
                 if (ndialog.ShowDialog() == DialogResult.OK)
                 {
                     fontname = ndialog.Font.Name;
-                    SetNewFont(fontname, (int)Math.Round(ndialog.Font.Size), Reportman.Drawing.Windows.GraphicUtils.IntegerFromFontStyle(ndialog.Font.Style));
+                    SetNewFont(fontname, (int)Math.Round(ndialog.Font.Size), GraphicUtils.IntegerFromFontStyle(ndialog.Font.Style));
                     aresult = true;
                 }
             }
@@ -386,7 +385,10 @@ namespace Reportman.Designer
                 ndialog.Font = new Font(nfont.FontFamily, nfont.Size, nfont.Style);
                 if (ndialog.ShowDialog() == DialogResult.OK)
                 {
-                    SetNewFont(ndialog.Font.FontFamily.ToString(), (int)Math.Round(ndialog.Font.Size), Reportman.Drawing.Windows.GraphicUtils.IntegerFromFontStyle(ndialog.Font.Style));
+                    //SetNewFont(ndialog.Font.FontFamily.ToString(), (int)Math.Round(ndialog.Font.Size), GraphicUtils.IntegerFromFontStyle(ndialog.Font.Style));
+                    // Above line seems to have a bug. It sets value like [Font Family: Arial] in FontName property, which is undefined when again opened from FontName property
+                    // and Microsoft Sans Serif default font gets selected
+                    SetNewFont(ndialog.Font.Name, (int)Math.Round(ndialog.Font.Size), GraphicUtils.IntegerFromFontStyle(ndialog.Font.Style));
                 }
             }
         }
@@ -563,14 +565,14 @@ namespace Reportman.Designer
                         Color c = GraphicUtils.ColorFromInteger(nvalue);
                         formattedValue = c.ToArgb().ToString("x8");
                         cellStyle.BackColor = c;
-                        cellStyle.ForeColor = Reportman.Drawing.Windows.GraphicUtils.GetInvertedBlackWhite(c);
+                        cellStyle.ForeColor = GraphicUtils.GetInvertedBlackWhite(c);
                         break;
                     case ObjectInspectorCellType.Image:
                         System.IO.MemoryStream memstream = nvalue.GetStream();
                         formattedValue = StringUtil.GetSizeAsString(memstream.Length);
                         break;
                     case ObjectInspectorCellType.FontStyle:
-                        formattedValue = Reportman.Drawing.Windows.GraphicUtils.StringFontStyleFromInteger(nvalue);
+                        formattedValue = GraphicUtils.StringFontStyleFromInteger(nvalue);
                         cellStyle.BackColor = SystemColors.Info;
                         cellStyle.ForeColor = SystemColors.InfoText;
                         break;
@@ -705,7 +707,7 @@ namespace Reportman.Designer
                     if (formattedValue.ToString().Length == 0)
                         aresult = DBNull.Value;
                     else
-                        aresult = Reportman.Drawing.Windows.GraphicUtils.IntegerFromStringFontStyle(formattedValue.ToString());
+                        aresult = GraphicUtils.IntegerFromStringFontStyle(formattedValue.ToString());
                     break;
                 case ObjectInspectorCellType.Decimal:
                     if (formattedValue.ToString().Length == 0)

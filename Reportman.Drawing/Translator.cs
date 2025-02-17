@@ -608,36 +608,39 @@ namespace Reportman.Drawing
                 return;
             DefaultStringsLoaded = true;
             using (Translator tr = new Translator())
-            {
-                using (MemoryStream mstream = new MemoryStream())
-                {
+            {                
 #if NET6_0_OR_GREATER
-                    string resname = "reportmanres.en";
+                string resname = "reportmanres.en";
 
-                    if (System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName.ToUpper() == "ES")
-                    {
-                        resname = "reportmanres.es";
+                if (System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName.ToUpper() == "ES")
+                {
+                    resname = "reportmanres.es";
 
-                    }
-                    resname = "Reportman.Drawing.Resources." + resname;
+                }
+                resname = "Reportman.Drawing.Resources." + resname;
 
-                    var stream = FindAssemblyResource(resname);
+                using (var stream = FindAssemblyResource(resname))
+                {
                     if (stream != null)
                     {
-                        tr.LoadFromStream(mstream);
+                        tr.LoadFromStream(stream);
                         DefaultStrings = new string[tr.Count];
                         for (int i = 0; i < tr.Count; i++)
                         {
                             DefaultStrings[i] = tr[i];
                         }
                     }
-
+                }
+                    
 #else
+                using (MemoryStream mstream = new MemoryStream())
+                {
                     mstream.Write(resource.reportmanres, 0, resource.reportmanres.Length);
                     mstream.Seek(0, SeekOrigin.Begin);
                     tr.LoadFromStream(mstream);
-#endif
                 }
+#endif
+
                 DefaultStrings = new string[tr.Count];
                 for (int i = 0; i < tr.Count; i++)
                 {

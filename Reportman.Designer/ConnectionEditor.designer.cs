@@ -75,6 +75,7 @@
             this.bcancel.TabIndex = 11;
             this.bcancel.Text = "Cancel";
             this.bcancel.UseVisualStyleBackColor = true;
+            this.bcancel.Click += new System.EventHandler(this.bcancel_Click);
             // 
             // BOK
             // 
@@ -85,6 +86,7 @@
             this.BOK.TabIndex = 10;
             this.BOK.Text = "OK";
             this.BOK.UseVisualStyleBackColor = true;
+            this.BOK.Click += new System.EventHandler(this.BOK_Click);
             // 
             // MemoSQL
             // 

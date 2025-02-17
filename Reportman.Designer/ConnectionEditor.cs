@@ -58,13 +58,26 @@ namespace Reportman.Designer
                 dbinfo.ConnectionString = MemoSQL.Text;
                 dbinfo.Connect();
                 dbinfo.DisConnect();
+                MessageBox.Show("Test connection successfull", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Test Connection Failed.\nError: " + ex.Message, "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             finally
             {
                 dbinfo.ConnectionString = oldconnection;
-            }
-            MessageBox.Show("Test connection successfull");
+            }           
+        }
 
+        private void BOK_Click(object sender, EventArgs e)
+        {
+            FindForm().DialogResult = DialogResult.OK;
+        }
+
+        private void bcancel_Click(object sender, EventArgs e)
+        {
+            FindForm().DialogResult = DialogResult.Cancel;
         }
     }
 }
