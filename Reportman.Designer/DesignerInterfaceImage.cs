@@ -52,7 +52,7 @@ namespace Reportman.Designer
                 lvalues.Add(FPrintItemImage.dpires);
             // Cached
             lnames.Add(Translator.TranslateStr(1409));
-            ltypes.Add(Translator.TranslateStr(1409));
+            ltypes.Add(Translator.TranslateStr(569));
             lhints.Add("refimage.html");
             lcat.Add(Translator.TranslateStr(639));
             if (lvalues != null)
@@ -64,47 +64,29 @@ namespace Reportman.Designer
             // DrawStyle
             if (pname == Translator.TranslateStr(667))
             {
-                // NULL checking added to solve error when multiple Image controls selected
-                if (FPrintItemImage == null)
-                    return 0;
-                else
-                    return (int)FPrintItemImage.DrawStyle;
+                   return (int)FPrintItemImage.DrawStyle;
             }
             // Expression
             if (pname == Translator.TranslateStr(571))
             {
-                // NULL checking added to solve error when multiple Image controls selected
-                if (FPrintItemImage == null)
-                    return "";
-                else
-                    return FPrintItemImage.Expression;
+                return FPrintItemImage.Expression;
             }
             // Image
             if (pname == Translator.TranslateStr(639))
             {
                 Variant nvar = new Variant();
-                // NULL checking added to solve error when multiple Image controls selected
-                if (FPrintItemImage != null)
-                    nvar.SetStream(FPrintItemImage.Stream);                
+                nvar.SetStream(FPrintItemImage.Stream);                
                 return nvar;
             }
             // DPIRes
             if (pname == Translator.TranslateStr(666))
             {
-                // NULL checking added to solve error when multiple Image controls selected
-                if (FPrintItemImage == null)
-                    return 0;
-                else
-                    return FPrintItemImage.dpires;
+                return FPrintItemImage.dpires;
             }
             // Cached
             if (pname == Translator.TranslateStr(1409))
             {
-                // NULL checking added to solve error when multiple Image controls selected
-                if (FPrintItemImage == null)
-                    return 0;   // SharedImageType.None
-                else
-                    return (int)FPrintItemImage.SharedImage;
+                 return (int)FPrintItemImage.SharedImage;
             }
 
             return base.GetProperty(pname);
@@ -128,6 +110,7 @@ namespace Reportman.Designer
                 lpossiblevalues.Add(Translator.TranslateStr(294)); // None
                 lpossiblevalues.Add(Translator.TranslateStr(1420)); // Fixed
                 lpossiblevalues.Add(Translator.TranslateStr(1421)); // Variable
+                return;
             }
             base.GetPropertyValues(pname, lpossiblevalues);
         }
@@ -165,6 +148,7 @@ namespace Reportman.Designer
             if (pname == Translator.TranslateStr(1409))
             {
                 FPrintItemImage.SharedImage = (SharedImageType)(int)newvalue;
+                return;
             }
             // inherited
             base.SetProperty(pname, newvalue);

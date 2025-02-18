@@ -1411,9 +1411,11 @@ namespace Reportman.Drawing
                             {
                                 imageMaskStream = new MemoryStream();
                             }
-                            BitmapUtil.GetBitmapInfo(abitmap, out bitmapwidth, out bitmapheight,
+                            newimage.Seek(0, SeekOrigin.Begin);
+                            BitmapUtil.GetBitmapInfo(newimage, out bitmapwidth, out bitmapheight,
                                 out imagesize, fimagestream, out indexed, out bitsperpixel, out numcolors, out palette, out isgif, out mask, imageMaskStream);
                             abitmap.Seek(0, SeekOrigin.Begin);
+                            fimagestream.Seek(0, SeekOrigin.Begin);
                         }
                         catch
                         {
