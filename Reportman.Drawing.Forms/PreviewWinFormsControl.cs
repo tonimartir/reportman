@@ -545,7 +545,7 @@ namespace Reportman.Drawing.Forms
                                 fmetapr.MetaFile.Clear();
                                 fmetapr.MetaFile.BeginPrint(prpdf);
                             }
-                            prpdf.Compressed = (saveFileDialog1.FilterIndex == 2);
+                            prpdf.Compressed = (saveFileDialog1.FilterIndex == 2) || (saveFileDialog1.FilterIndex == 4);
                             if ((saveFileDialog1.FilterIndex == 4) || (saveFileDialog1.FilterIndex == 5))
                             {
                                 prpdf.PDFConformance = PDFConformanceType.PDF_A_3;
