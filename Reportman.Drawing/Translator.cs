@@ -64,6 +64,7 @@ namespace Reportman.Drawing
             FLookForResource = true;
             FContent = new ArrayList(DEFAULT_TRANS_SIZE);
         }
+        public Assembly ResourceAssembly;
         public bool LookForResource
         {
             get { return FLookForResource; }
@@ -179,7 +180,7 @@ namespace Reportman.Drawing
             }
             return null;
         }
-        public static Stream FindResource(bool searchonly, ref bool found, string nfilename)
+        public static Stream FindResource(bool searchonly, ref bool found, string nfilename, Assembly ResourceAssembly)
         {
             bool resourcefound = false;
             bool atreportman = false;
@@ -188,7 +189,12 @@ namespace Reportman.Drawing
             {
                 if (ResourceNamesExec == null)
                 {
-                    ExecAssembly = System.Reflection.Assembly.GetEntryAssembly();
+                    if (ResourceAssembly == null)
+                    {
+                        ExecAssembly = System.Reflection.Assembly.GetEntryAssembly();
+                    }
+                    else
+                        ExecAssembly = ResourceAssembly;
                     if (ExecAssembly != null)
                     {
                         ResourceNamesExec = ExecAssembly.GetManifestResourceNames();
@@ -275,7 +281,7 @@ namespace Reportman.Drawing
         public Stream FindResource()
         {
             bool found = false;
-            return FindResource(false, ref found, FFilename);
+            return FindResource(false, ref found, FFilename, ResourceAssembly);
         }
         /// <summary>
 		/// Check if the resource file exists.
@@ -289,7 +295,7 @@ namespace Reportman.Drawing
             // Check first for a resource
             if (FLookForResource)
             {
-                FindResource(true, ref resourcefound, FFilename);
+                FindResource(true, ref resourcefound, FFilename, ResourceAssembly);
             }
             if (resourcefound)
                 return true;
@@ -306,7 +312,7 @@ namespace Reportman.Drawing
             // Check first for a resource
             if (FLookForResource)
             {
-                Stream nstream = FindResource(false, ref resourcefound, FFilename);
+                Stream nstream = FindResource(false, ref resourcefound, FFilename, ResourceAssembly);
                 if (nstream != null)
                 {
                     using (nstream)
