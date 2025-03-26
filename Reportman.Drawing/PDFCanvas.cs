@@ -338,31 +338,35 @@ namespace Reportman.Drawing
             aresult = aresult + " " + ((double)b / 256).ToString("0.00");
             return aresult.Replace(decseparator, ".");
         }
+        private void SWriteLine(Stream nstream, string value)
+        {
+            StreamUtil.SWriteLine(nstream, value, PDFConformance == PDFConformanceType.PDF_1_4);
+        }
         private void SetDash()
         {
             switch (PenStyle)
             {
                 // Dash
                 case 1:
-                    StreamUtil.SWriteLine(File.STempStream, "[16 8] 0 d");
+                    SWriteLine(File.STempStream, "[16 8] 0 d");
                     break;
                 // Dot
                 case 2:
-                    StreamUtil.SWriteLine(File.STempStream, "[1] 0 d");
+                    SWriteLine(File.STempStream, "[1] 0 d");
                     break;
                 // Dash Dot
                 case 3:
-                    StreamUtil.SWriteLine(File.STempStream, "[8 7 2 7] 0 d");
+                    SWriteLine(File.STempStream, "[8 7 2 7] 0 d");
                     break;
                 // Dash Dot Dot
                 case 4:
-                    StreamUtil.SWriteLine(File.STempStream, "[8 4 2 4 2 4] 0 d");
+                    SWriteLine(File.STempStream, "[8 4 2 4 2 4] 0 d");
                     break;
                 // Clear
                 case 5:
                     break;
                 default:
-                    StreamUtil.SWriteLine(File.STempStream, "[] 0 d");
+                    SWriteLine(File.STempStream, "[] 0 d");
                     break;
             }
         }
@@ -374,14 +378,14 @@ namespace Reportman.Drawing
             int LineWidth = 1;
             if (PenWidth > 0)
                 LineWidth = PenWidth;
-            StreamUtil.SWriteLine(File.STempStream, UnitsToTextX(LineWidth) + " w");
+            SWriteLine(File.STempStream, UnitsToTextX(LineWidth) + " w");
 
             WritePenColor(PenColor);
             WriteBrushColor(PenColor);
-            StreamUtil.SWriteLine(File.STempStream, UnitsToTextX(x1) + ' ' + UnitsToTextY(y1) + " m");
-            StreamUtil.SWriteLine(File.STempStream, UnitsToTextX(x2) + ' ' + UnitsToTextY(y2) + " l");
+            SWriteLine(File.STempStream, UnitsToTextX(x1) + ' ' + UnitsToTextY(y1) + " m");
+            SWriteLine(File.STempStream, UnitsToTextX(x2) + ' ' + UnitsToTextY(y2) + " l");
             // S-Solid,  D-Dashed, B-Beveled, I-Inset, U-Underline
-            StreamUtil.SWriteLine(File.STempStream, "S");
+            SWriteLine(File.STempStream, "S");
 
         }
         public void WritePenColor(int NewColor)
@@ -393,7 +397,7 @@ namespace Reportman.Drawing
             }
             if (dowrite)
             {
-                StreamUtil.SWriteLine(File.STempStream, RGBToFloats(NewColor) + " RG");
+                SWriteLine(File.STempStream, RGBToFloats(NewColor) + " RG");
                 OldPenColor = NewColor;
             }
         }
@@ -406,7 +410,7 @@ namespace Reportman.Drawing
             }
             if (dowrite)
             {
-                StreamUtil.SWriteLine(File.STempStream, RGBToFloats(NewColor) + " rg");
+                SWriteLine(File.STempStream, RGBToFloats(NewColor) + " rg");
                 OldBrushColor = NewColor;
             }
         }
@@ -467,26 +471,26 @@ namespace Reportman.Drawing
             LineWidth = 1;
             if (PenWidth > 0)
                 LineWidth = PenWidth;
-            StreamUtil.SWriteLine(File.STempStream, UnitsToTextX(LineWidth) + " w");
+            SWriteLine(File.STempStream, UnitsToTextX(LineWidth) + " w");
             WritePenColor(PenColor);
             WriteBrushColor(BrushColor);
 
             // Draws a ellipse in 4 pass
-            StreamUtil.SWriteLine(File.STempStream, UnitsToTextX(X1) + " " +
+            SWriteLine(File.STempStream, UnitsToTextX(X1) + " " +
                 UnitsToTextY(Y1 + ((int)(H / 2))) + " m");
-            StreamUtil.SWriteLine(File.STempStream,
+            SWriteLine(File.STempStream,
                 UnitsToTextX(X1) + " " + UnitsToTextY(Y1 + ((int)(H / 2)) - (int)Math.Round((double)H / 2 * 11 / 20)) + " " +
                 UnitsToTextX(X1 + ((int)(W / 2)) - (int)Math.Round((double)W / 2 * 11 / 20)) + " " + UnitsToTextY(Y1) + " " +
                 UnitsToTextX(X1 + ((int)(W / 2))) + " " + UnitsToTextY(Y1) + " c");
-            StreamUtil.SWriteLine(File.STempStream,
+            SWriteLine(File.STempStream,
                 UnitsToTextX(X1 + ((int)(W / 2)) + (int)Math.Round((double)W / 2 * 11 / 20)) + ' ' + UnitsToTextY(Y1) + " " +
                 UnitsToTextX(X1 + (int)W) + " " + UnitsToTextY(Y1 + ((int)(H / 2)) - (int)Math.Round((double)H / 2 * 11 / 20)) + " " +
                 UnitsToTextX(X1 + (int)W) + " " + UnitsToTextY(Y1 + ((int)(H / 2))) + " c");
-            StreamUtil.SWriteLine(File.STempStream,
+            SWriteLine(File.STempStream,
                 UnitsToTextX(X1 + (int)W) + " " + UnitsToTextY(Y1 + ((int)(H / 2)) + (int)Math.Round((double)H / 2 * 11 / 20)) + " " +
                 UnitsToTextX(X1 + ((int)(W / 2)) + (int)Math.Round((double)W / 2 * 11 / 20)) + " " + UnitsToTextY(Y1 + (int)H) + " " +
                 UnitsToTextX(X1 + ((int)(W / 2))) + " " + UnitsToTextY(Y1 + (int)H) + " c");
-            StreamUtil.SWriteLine(File.STempStream,
+            SWriteLine(File.STempStream,
                 UnitsToTextX(X1 + ((int)(W / 2)) - (int)Math.Round((double)W / 2 * 11 / 20)) + " " + UnitsToTextY(Y1 + (int)H) + " " +
                 UnitsToTextX(X1) + " " + UnitsToTextY(Y1 + ((int)(H / 2)) + (int)Math.Round((double)H / 2 * 11 / 20)) + " " +
                 UnitsToTextX(X1) + " " + UnitsToTextY(Y1 + ((int)(H / 2))) + " c");
@@ -496,10 +500,10 @@ namespace Reportman.Drawing
                 opfill = "f";
             // Bsclear
             if (BrushStyle == 1)
-                StreamUtil.SWriteLine(File.STempStream, "S");
+                SWriteLine(File.STempStream, "S");
             else
                 // BsSolid
-                StreamUtil.SWriteLine(File.STempStream, opfill);
+                SWriteLine(File.STempStream, opfill);
         }
         public void RoundedRectangle(int x1, int y1, int x2, int y2, int radius)
         {
@@ -511,29 +515,29 @@ namespace Reportman.Drawing
             LineWidth = 1;
             if (PenWidth > 0)
                 LineWidth = PenWidth;
-            StreamUtil.SWriteLine(File.STempStream, UnitsToTextX(LineWidth) + " w");
+            SWriteLine(File.STempStream, UnitsToTextX(LineWidth) + " w");
 
             WritePenColor(PenColor);
             WriteBrushColor(BrushColor);
 
-            StreamUtil.SWriteLine(File.STempStream, UnitsToTextX(x1) + " " + UnitsToTextY(y2 - radius) + " m");
-            StreamUtil.SWriteLine(File.STempStream, UnitsToTextX(x1) + " " + UnitsToTextY(y1 + radius) + " l");
-            StreamUtil.SWriteLine(File.STempStream, UnitsToTextX(x1) + " " + UnitsToTextY(y1) +
+            SWriteLine(File.STempStream, UnitsToTextX(x1) + " " + UnitsToTextY(y2 - radius) + " m");
+            SWriteLine(File.STempStream, UnitsToTextX(x1) + " " + UnitsToTextY(y1 + radius) + " l");
+            SWriteLine(File.STempStream, UnitsToTextX(x1) + " " + UnitsToTextY(y1) +
                 " " + UnitsToTextX(x1 + radius) + " " + UnitsToTextY(y1) + " v");
 
 
 
-            StreamUtil.SWriteLine(File.STempStream, UnitsToTextX(x2 - radius) + " " + UnitsToTextY(y1) + " l");
-            StreamUtil.SWriteLine(File.STempStream, UnitsToTextX(x2) + " " + UnitsToTextY(y1) +
+            SWriteLine(File.STempStream, UnitsToTextX(x2 - radius) + " " + UnitsToTextY(y1) + " l");
+            SWriteLine(File.STempStream, UnitsToTextX(x2) + " " + UnitsToTextY(y1) +
                 " " + UnitsToTextX(x2) + " " + UnitsToTextY(y1 + radius) + " v");
 
 
-            StreamUtil.SWriteLine(File.STempStream, UnitsToTextX(x2) + " " + UnitsToTextY(y2 - radius) + " l");
-            StreamUtil.SWriteLine(File.STempStream, UnitsToTextX(x2) + " " + UnitsToTextY(y2) +
+            SWriteLine(File.STempStream, UnitsToTextX(x2) + " " + UnitsToTextY(y2 - radius) + " l");
+            SWriteLine(File.STempStream, UnitsToTextX(x2) + " " + UnitsToTextY(y2) +
                 " " + UnitsToTextX(x2 - radius) + " " + UnitsToTextY(y2) + " v");
 
-            StreamUtil.SWriteLine(File.STempStream, UnitsToTextX(x1 + radius) + " " + UnitsToTextY(y2) + " l");
-            StreamUtil.SWriteLine(File.STempStream, UnitsToTextX(x1) + " " + UnitsToTextY(y2) +
+            SWriteLine(File.STempStream, UnitsToTextX(x1 + radius) + " " + UnitsToTextY(y2) + " l");
+            SWriteLine(File.STempStream, UnitsToTextX(x1) + " " + UnitsToTextY(y2) +
                 " " + UnitsToTextX(x1) + " " + UnitsToTextY(y2 - radius) + " v");
 
 
@@ -542,10 +546,10 @@ namespace Reportman.Drawing
                 opfill = "f";
             // Bsclear
             if (BrushStyle == 1)
-                StreamUtil.SWriteLine(File.STempStream, "S");
+                SWriteLine(File.STempStream, "S");
             else
                 // BsSolid
-                StreamUtil.SWriteLine(File.STempStream, opfill);
+                SWriteLine(File.STempStream, opfill);
         }
         public void Rectangle(int x1, int y1, int x2, int y2)
         {
@@ -557,32 +561,32 @@ namespace Reportman.Drawing
             LineWidth = 1;
             if (PenWidth > 0)
                 LineWidth = PenWidth;
-            StreamUtil.SWriteLine(File.STempStream, UnitsToTextX(LineWidth) + " w");
+            SWriteLine(File.STempStream, UnitsToTextX(LineWidth) + " w");
 
             WritePenColor(PenColor);
             WriteBrushColor(BrushColor);
 
-            StreamUtil.SWriteLine(File.STempStream, UnitsToTextX(x1) + " " + UnitsToTextY(y1) +
+            SWriteLine(File.STempStream, UnitsToTextX(x1) + " " + UnitsToTextY(y1) +
                 " " + UnitsToTextX(x2 - x1) + " " + UnitsToTextX(-(y2 - y1)) + " re");
             opfill = "B";
             if (PenStyle == 5)
                 opfill = "f";
             // Bsclear
             if (BrushStyle == 1)
-                StreamUtil.SWriteLine(File.STempStream, "S");
+                SWriteLine(File.STempStream, "S");
             else
                 // BsSolid
-                StreamUtil.SWriteLine(File.STempStream, opfill);
+                SWriteLine(File.STempStream, opfill);
         }
         public void SaveGraph()
         {
-            StreamUtil.SWriteLine(File.STempStream, "q");
+            SWriteLine(File.STempStream, "q");
             SavedPenColor = OldPenColor;
             SavedBrushColor = OldBrushColor;
         }
         public void RestoreGraph()
         {
-            StreamUtil.SWriteLine(File.STempStream, "Q");
+            SWriteLine(File.STempStream, "Q");
             translatedy = false;
             OldPenColor = SavedPenColor;
             OldBrushColor = SavedBrushColor;
@@ -679,8 +683,8 @@ namespace Reportman.Drawing
                 WritePenColor(FFont.Color);
                 WriteBrushColor(FFont.Color);
 
-                StreamUtil.SWriteLine(File.STempStream, "BT");
-                StreamUtil.SWriteLine(File.STempStream, "/F" +
+                SWriteLine(File.STempStream, "BT");
+                SWriteLine(File.STempStream, "/F" +
                  Type1FontTopdfFontName(FFont.Name, FFont.Italic, FFont.Bold, FFont.FontName, FFont.Style, PDFConformance) + " " +
                     FFont.Size.ToString() + " Tf");
                 // Rotates
@@ -689,16 +693,16 @@ namespace Reportman.Drawing
                     rotstring = "1 0 0 1 " +
                         UnitsToTextX(X) + " " +
                         UnitsToTextText(Y, FFont.Size);
-                    StreamUtil.SWriteLine(File.STempStream, rotstring + " cm");
+                    SWriteLine(File.STempStream, rotstring + " cm");
                     rotrad = (double)Rotation / 10 * (2 * Math.PI / 360);
                     rotstring = NumberToText(Math.Cos(rotrad)) + " " +
                         NumberToText(Math.Sin(rotrad)) + " " +
                         NumberToText(-Math.Sin(rotrad)) + " " +
                         NumberToText(Math.Cos(rotrad)) + " 0 0";
-                    StreamUtil.SWriteLine(File.STempStream, rotstring + " cm");
+                    SWriteLine(File.STempStream, rotstring + " cm");
                 }
                 else
-                    StreamUtil.SWriteLine(File.STempStream, UnitsToTextX(X) + " " + UnitsToTextText(Y, FFont.Size) + " Td");
+                    SWriteLine(File.STempStream, UnitsToTextX(X) + " " + UnitsToTextText(Y, FFont.Size) + " Td");
                 astring = Text;
                 if (RightToLeft)
                 {
@@ -707,10 +711,10 @@ namespace Reportman.Drawing
                 // Kerning disable for GDI+ compatibility
                 //
                 //if (havekerning)
-                //	StreamUtil.SWriteLine(File.STempStream, PDFCompatibleTextWithKerning(astring, adata, FFont) + " TJ");
+                //	SWriteLine(File.STempStream, PDFCompatibleTextWithKerning(astring, adata, FFont) + " TJ");
                 // else
-                StreamUtil.SWriteLine(File.STempStream, PDFCompatibleText(astring, adata, FFont) + " Tj");
-                StreamUtil.SWriteLine(File.STempStream, "ET");
+                SWriteLine(File.STempStream, PDFCompatibleText(astring, adata, FFont) + " Tj");
+                SWriteLine(File.STempStream, "ET");
             }
             finally
             {
@@ -1142,7 +1146,7 @@ namespace Reportman.Drawing
                 UnitsToTextY(Y);
             translatedy = true;
 
-            StreamUtil.SWriteLine(File.STempStream, transstring + " cm");
+            SWriteLine(File.STempStream, transstring + " cm");
         }
         public void Rotate(double radiants)
         {
@@ -1150,7 +1154,7 @@ namespace Reportman.Drawing
                 NumberToText(Math.Sin(radiants)) + " " +
                 NumberToText(-Math.Sin(radiants)) + " " +
                 NumberToText(Math.Cos(radiants)) + " 0 0";
-            StreamUtil.SWriteLine(File.STempStream, rotstring + " cm");
+            SWriteLine(File.STempStream, rotstring + " cm");
         }
         public void TextRect(Rectangle arect, string Text, int Alignment, bool Clipping,
             bool wordbreak, int Rotation, bool RightToLeft)
@@ -1192,11 +1196,11 @@ namespace Reportman.Drawing
                 if (Clipping)
                 {
                     // Clipping rectangle
-                    StreamUtil.SWriteLine(File.STempStream, UnitsToTextX(arect.Left) + " " + UnitsToTextY(arect.Top) +
+                    SWriteLine(File.STempStream, UnitsToTextX(arect.Left) + " " + UnitsToTextY(arect.Top) +
                         " " + UnitsToTextX(arect.Width) + " " + UnitsToTextX(-(arect.Height)) + " re");
-                    StreamUtil.SWriteLine(File.STempStream, "h"); // ClosePath
-                    StreamUtil.SWriteLine(File.STempStream, "W"); // Clip
-                    StreamUtil.SWriteLine(File.STempStream, "n"); // NewPath
+                    SWriteLine(File.STempStream, "h"); // ClosePath
+                    SWriteLine(File.STempStream, "W"); // Clip
+                    SWriteLine(File.STempStream, "n"); // NewPath
                 }
                 if (Rotation != 0)
                 {
@@ -1503,15 +1507,15 @@ namespace Reportman.Drawing
                                     File.ImageCount = File.ImageCount + 1;
                                     imageindex = File.ImageCount;
                                 }
-                                StreamUtil.SWriteLine(File.STempStream, "q");
+                                SWriteLine(File.STempStream, "q");
                                 if (clip)
                                 {
                                     // Clipping rectangle
-                                    StreamUtil.SWriteLine(File.STempStream, UnitsToTextX(arect.Left) + " " + UnitsToTextY(arect.Top) +
+                                    SWriteLine(File.STempStream, UnitsToTextX(arect.Left) + " " + UnitsToTextY(arect.Top) +
                                         ' ' + UnitsToTextX(arect.Width - arect.Left) + ' ' + UnitsToTextX(-(arect.Height - arect.Top)) + " re");
-                                    StreamUtil.SWriteLine(File.STempStream, "h"); // ClosePath
-                                    StreamUtil.SWriteLine(File.STempStream, "W"); // Clip
-                                    StreamUtil.SWriteLine(File.STempStream, "n"); // NewPath
+                                    SWriteLine(File.STempStream, "h"); // ClosePath
+                                    SWriteLine(File.STempStream, "W"); // Clip
+                                    SWriteLine(File.STempStream, "n"); // NewPath
                                 }
                                 awidth = rec.Width;
                                 aheight = rec.Height;
@@ -1568,15 +1572,15 @@ namespace Reportman.Drawing
                                     File.ImageCount = File.ImageCount + 1;
                                     imageindex = File.ImageCount;
                                 }
-                                StreamUtil.SWriteLine(File.STempStream, "q");
+                                SWriteLine(File.STempStream, "q");
                                 if (clip)
                                 {
                                     // Clipping rectangle
-                                    StreamUtil.SWriteLine(File.STempStream, UnitsToTextX(arect.Left) + " " + UnitsToTextY(arect.Top) +
+                                    SWriteLine(File.STempStream, UnitsToTextX(arect.Left) + " " + UnitsToTextY(arect.Top) +
                                         ' ' + UnitsToTextX(arect.Width - arect.Left) + ' ' + UnitsToTextX(-(arect.Height - arect.Top)) + " re");
-                                    StreamUtil.SWriteLine(File.STempStream, "h"); // ClosePath
-                                    StreamUtil.SWriteLine(File.STempStream, "W"); // Clip
-                                    StreamUtil.SWriteLine(File.STempStream, "n"); // NewPath
+                                    SWriteLine(File.STempStream, "h"); // ClosePath
+                                    SWriteLine(File.STempStream, "W"); // Clip
+                                    SWriteLine(File.STempStream, "n"); // NewPath
                                 }
                                 awidth = rec.Width;
                                 aheight = rec.Height;
@@ -1597,15 +1601,15 @@ namespace Reportman.Drawing
                     File.ImageCount = File.ImageCount + 1;
                     imageindex = File.ImageCount;
                 }
-                StreamUtil.SWriteLine(File.STempStream, "q");
+                SWriteLine(File.STempStream, "q");
                 if (clip)
                 {
                     // Clipping rectangle
-                    StreamUtil.SWriteLine(File.STempStream, UnitsToTextX(arect.Left) + " " + UnitsToTextY(arect.Top) +
+                    SWriteLine(File.STempStream, UnitsToTextX(arect.Left) + " " + UnitsToTextY(arect.Top) +
                         ' ' + UnitsToTextX(arect.Width - arect.Left) + ' ' + UnitsToTextX(-(arect.Height - arect.Top)) + " re");
-                    StreamUtil.SWriteLine(File.STempStream, "h"); // ClosePath
-                    StreamUtil.SWriteLine(File.STempStream, "W"); // Clip
-                    StreamUtil.SWriteLine(File.STempStream, "n"); // NewPath
+                    SWriteLine(File.STempStream, "h"); // ClosePath
+                    SWriteLine(File.STempStream, "W"); // Clip
+                    SWriteLine(File.STempStream, "n"); // NewPath
                 }
                 awidth = rec.Width;
                 aheight = rec.Height;
@@ -1620,18 +1624,18 @@ namespace Reportman.Drawing
                     {
                         /*if (newstream && (imageMaskStream != null))
                         {
-							StreamUtil.SWriteLine(File.STempStream, "AIS false");
+							SWriteLine(File.STempStream, "AIS false");
 						}*/
-                        StreamUtil.SWriteLine(File.STempStream, "q");
+                        SWriteLine(File.STempStream, "q");
                         // Translate
-                        StreamUtil.SWriteLine(File.STempStream, "1 0 0 1 "
+                        SWriteLine(File.STempStream, "1 0 0 1 "
                             + UnitsToTextX(rec.Left) +
                             " " + UnitsToTextY(rec.Top + rec.Height) + " cm");
                         // Scale
-                        StreamUtil.SWriteLine(File.STempStream, UnitsToTextX(rec.Width) +
+                        SWriteLine(File.STempStream, UnitsToTextX(rec.Width) +
                             " 0 0  " + UnitsToTextX(rec.Height) + " 0 0 cm");
-                        StreamUtil.SWriteLine(File.STempStream, "/Im" + imageindex.ToString() + " Do");
-                        StreamUtil.SWriteLine(File.STempStream, "Q");
+                        SWriteLine(File.STempStream, "/Im" + imageindex.ToString() + " Do");
+                        SWriteLine(File.STempStream, "Q");
                         if (!tile)
                             break;
                         rec = new Rectangle(rec.Left + awidth, rec.Top, rec.Left + awidth, rec.Height);
@@ -1654,14 +1658,14 @@ namespace Reportman.Drawing
 
                             // Saves the bitmap to temp bitmaps
                             maskStream = new MemoryStream();
-                            StreamUtil.SWriteLine(maskStream, "<< /Type /XObject");
-                            StreamUtil.SWriteLine(maskStream, "/Subtype /Image");
-                            StreamUtil.SWriteLine(maskStream, "/Width " + bitmapwidth.ToString());
-                            StreamUtil.SWriteLine(maskStream, "/Height " + bitmapheight.ToString());
-                            StreamUtil.SWriteLine(maskStream, "/ColorSpace /DeviceGray");
-                            StreamUtil.SWriteLine(maskStream, "/BitsPerComponent 8");
+                            SWriteLine(maskStream, "<< /Type /XObject");
+                            SWriteLine(maskStream, "/Subtype /Image");
+                            SWriteLine(maskStream, "/Width " + bitmapwidth.ToString());
+                            SWriteLine(maskStream, "/Height " + bitmapheight.ToString());
+                            SWriteLine(maskStream, "/ColorSpace /DeviceGray");
+                            SWriteLine(maskStream, "/BitsPerComponent 8");
                             imageMaskName = "Im" + File.ImageCount.ToString();
-                            StreamUtil.SWriteLine(maskStream, "/Name /" + imageMaskName);
+                            SWriteLine(maskStream, "/Name /" + imageMaskName);
 
 #if REPMAN_ZLIB
                             long lengthPositionMask = 0;
@@ -1670,16 +1674,16 @@ namespace Reportman.Drawing
                                 byte[] bytesLength = ASCIIEncoding.ASCII.GetBytes("/Length ");
                                 maskStream.Write(bytesLength, 0, bytesLength.Length);
                                 lengthPositionMask = maskStream.Position;
-                                StreamUtil.SWriteLine(maskStream, "             ");
-                                StreamUtil.SWriteLine(maskStream, "/Length1 " + imageMaskStream.Length.ToString());
-                                StreamUtil.SWriteLine(maskStream, "/Filter [/FlateDecode]");
+                                SWriteLine(maskStream, "             ");
+                                SWriteLine(maskStream, "/Length1 " + imageMaskStream.Length.ToString());
+                                SWriteLine(maskStream, "/Filter [/FlateDecode]");
                             }
                             else
-                                StreamUtil.SWriteLine(maskStream, "/Length " + imageMaskStream.Length.ToString());
+                                SWriteLine(maskStream, "/Length " + imageMaskStream.Length.ToString());
 #endif
 
-                            StreamUtil.SWriteLine(maskStream, ">>");
-                            StreamUtil.SWriteLine(maskStream, "stream");
+                            SWriteLine(maskStream, ">>");
+                            SWriteLine(maskStream, "stream");
                             imageMaskStream.Seek(0, System.IO.SeekOrigin.Begin);
 #if REPMAN_ZLIB
                             if (File.Compressed)
@@ -1697,50 +1701,50 @@ namespace Reportman.Drawing
                         }
                         // Saves the bitmap to temp bitmaps
                         astream = new MemoryStream();
-                        StreamUtil.SWriteLine(astream, "<< /Type /XObject");
-                        StreamUtil.SWriteLine(astream, "/Subtype /Image");
-                        StreamUtil.SWriteLine(astream, "/Width " + bitmapwidth.ToString());
-                        StreamUtil.SWriteLine(astream, "/Height " + bitmapheight.ToString());
+                        SWriteLine(astream, "<< /Type /XObject");
+                        SWriteLine(astream, "/Subtype /Image");
+                        SWriteLine(astream, "/Width " + bitmapwidth.ToString());
+                        SWriteLine(astream, "/Height " + bitmapheight.ToString());
                         if (indexed)
                         {
-                            StreamUtil.SWriteLine(astream, "/ColorSpace");
-                            StreamUtil.SWriteLine(astream, "[/Indexed");
-                            StreamUtil.SWriteLine(astream, "/DeviceRGB " + numcolors.ToString());
-                            StreamUtil.SWriteLine(astream, palette);
-                            StreamUtil.SWriteLine(astream, "]");
-                            StreamUtil.SWriteLine(astream, "/BitsPerComponent " + bitsperpixel.ToString());
+                            SWriteLine(astream, "/ColorSpace");
+                            SWriteLine(astream, "[/Indexed");
+                            SWriteLine(astream, "/DeviceRGB " + numcolors.ToString());
+                            SWriteLine(astream, palette);
+                            SWriteLine(astream, "]");
+                            SWriteLine(astream, "/BitsPerComponent " + bitsperpixel.ToString());
                             if (mask.Length > 0)
                             {
-                                StreamUtil.SWriteLine(astream, "/Mask " + mask);
+                                SWriteLine(astream, "/Mask " + mask);
 
                             }
                         }
                         else
                         {
-                            StreamUtil.SWriteLine(astream, "/ColorSpace /DeviceRGB");
-                            StreamUtil.SWriteLine(astream, "/BitsPerComponent 8");
+                            SWriteLine(astream, "/ColorSpace /DeviceRGB");
+                            SWriteLine(astream, "/BitsPerComponent 8");
                         }
-                        StreamUtil.SWriteLine(astream, "/Name /" + imageName);
+                        SWriteLine(astream, "/Name /" + imageName);
                         if (maskStream != null)
                         {
-                            // StreamUtil.SWriteLine(astream, "/SMask " + " 26 0 R");
+                            // SWriteLine(astream, "/SMask " + " 26 0 R");
                             byte[] maskBuf = ASCIIEncoding.ASCII.GetBytes("/SMask ");
                             astream.Write(maskBuf, 0, maskBuf.Length);
                             long imageMaskPosition = astream.Position;
                             File.Masks.Add(File.ImageCount - 1, new StreamPosition(astream, imageMaskPosition));
-                            StreamUtil.SWriteLine(astream, "               0 R");
+                            SWriteLine(astream, "               0 R");
                         }
                         long lengthPosition = 0;
                         if (isjpeg)
                         {
-                            StreamUtil.SWriteLine(astream, "/Length " + fimagestream.Length.ToString());
-                            StreamUtil.SWriteLine(astream, "/Filter [/DCTDecode]");
+                            SWriteLine(astream, "/Length " + fimagestream.Length.ToString());
+                            SWriteLine(astream, "/Filter [/DCTDecode]");
                         }
                         else
                             if (isgif)
                         {
-                            StreamUtil.SWriteLine(astream, "/Length " + fimagestream.Length.ToString());
-                            StreamUtil.SWriteLine(astream, "/Filter [/LZWDecode]");
+                            SWriteLine(astream, "/Length " + fimagestream.Length.ToString());
+                            SWriteLine(astream, "/Filter [/LZWDecode]");
                         }
                         else
                         {
@@ -1750,16 +1754,16 @@ namespace Reportman.Drawing
                                 byte[] bytesLength = ASCIIEncoding.ASCII.GetBytes("/Length ");
                                 astream.Write(bytesLength, 0, bytesLength.Length);
                                 lengthPosition = astream.Position;
-                                StreamUtil.SWriteLine(astream, "             ");
-                                StreamUtil.SWriteLine(astream, "/Length1 " + fimagestream.Length.ToString());
-                                StreamUtil.SWriteLine(astream, "/Filter [/FlateDecode]");
+                                SWriteLine(astream, "             ");
+                                SWriteLine(astream, "/Length1 " + fimagestream.Length.ToString());
+                                SWriteLine(astream, "/Filter [/FlateDecode]");
                             }
                             else
 #endif
-                                StreamUtil.SWriteLine(astream, "/Length " + fimagestream.Length.ToString());
+                                SWriteLine(astream, "/Length " + fimagestream.Length.ToString());
                         }
-                        StreamUtil.SWriteLine(astream, ">>");
-                        StreamUtil.SWriteLine(astream, "stream");
+                        SWriteLine(astream, ">>");
+                        SWriteLine(astream, "stream");
                         fimagestream.Seek(0, System.IO.SeekOrigin.Begin);
 #if REPMAN_ZLIB
                         if ((File.Compressed) && (!isjpeg) && (!isgif))
@@ -2405,20 +2409,24 @@ namespace Reportman.Drawing
             FObjectOffset = FObjectOffset + offset;
             FObjectOffsets.Add(FObjectOffset);
         }
+        private void SWriteLine(Stream nstream, string value)
+        {
+            StreamUtil.SWriteLine(nstream, value, PDFConformance == PDFConformanceType.PDF_1_4);
+        }
         void CreateFont(string subtype, string basefont, string encoding)
         {
             FFontCount = FFontCount + 1;
             FObjectCount = FObjectCount + 1;
             FFontList.Add(FObjectCount.ToString());
             FTempStream.SetLength(0);
-            StreamUtil.SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
-            StreamUtil.SWriteLine(FTempStream, "<< /Type /Font");
-            StreamUtil.SWriteLine(FTempStream, "/Subtype /" + subtype);
-            StreamUtil.SWriteLine(FTempStream, "/Name /F" + FFontCount.ToString());
-            StreamUtil.SWriteLine(FTempStream, "/BaseFont /" + basefont);
-            StreamUtil.SWriteLine(FTempStream, "/Encoding /" + encoding);
-            StreamUtil.SWriteLine(FTempStream, ">>");
-            StreamUtil.SWriteLine(FTempStream, "endobj");
+            SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
+            SWriteLine(FTempStream, "<< /Type /Font");
+            SWriteLine(FTempStream, "/Subtype /" + subtype);
+            SWriteLine(FTempStream, "/Name /F" + FFontCount.ToString());
+            SWriteLine(FTempStream, "/BaseFont /" + basefont);
+            SWriteLine(FTempStream, "/Encoding /" + encoding);
+            SWriteLine(FTempStream, ">>");
+            SWriteLine(FTempStream, "endobj");
             AddToOffset(FTempStream.Length);
             FTempStream.Seek(0, SeekOrigin.Begin);
             FTempStream.WriteTo(FMainPDF);
@@ -2428,11 +2436,11 @@ namespace Reportman.Drawing
             FObjectCount = FObjectCount + 1;
             FOutlinesNum = FObjectCount;
             FTempStream.SetLength(0);
-            StreamUtil.SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
-            StreamUtil.SWriteLine(FTempStream, "<< /Type /Outlines");
-            StreamUtil.SWriteLine(FTempStream, "/Count 0");
-            StreamUtil.SWriteLine(FTempStream, ">>");
-            StreamUtil.SWriteLine(FTempStream, "endobj");
+            SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
+            SWriteLine(FTempStream, "<< /Type /Outlines");
+            SWriteLine(FTempStream, "/Count 0");
+            SWriteLine(FTempStream, ">>");
+            SWriteLine(FTempStream, "endobj");
             AddToOffset(FTempStream.Length);
             FTempStream.Seek(0, SeekOrigin.Begin);
             FTempStream.WriteTo(FMainPDF);
@@ -2443,20 +2451,20 @@ namespace Reportman.Drawing
             FObjectCount = FObjectCount + 1;
             FParentNum = FObjectCount;
             FTempStream.SetLength(0);
-            StreamUtil.SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
-            StreamUtil.SWriteLine(FTempStream, "<< /Type /Pages");
-            StreamUtil.SWriteLine(FTempStream, "/Kids [");
+            SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
+            SWriteLine(FTempStream, "<< /Type /Pages");
+            SWriteLine(FTempStream, "/Kids [");
 
             for (i = 1; i <= FPage; i++)
             {
-                StreamUtil.SWriteLine(FTempStream, (FObjectCount + i + 1 + ImageCount).ToString() + " 0 R");
+                SWriteLine(FTempStream, (FObjectCount + i + 1 + ImageCount).ToString() + " 0 R");
                 FPages.Add(PageObjNum.ToString());
                 PageObjNum = PageObjNum + 2;
             }
-            StreamUtil.SWriteLine(FTempStream, "]");
-            StreamUtil.SWriteLine(FTempStream, "/Count " + FPage.ToString());
-            StreamUtil.SWriteLine(FTempStream, ">>");
-            StreamUtil.SWriteLine(FTempStream, "endobj");
+            SWriteLine(FTempStream, "]");
+            SWriteLine(FTempStream, "/Count " + FPage.ToString());
+            SWriteLine(FTempStream, ">>");
+            SWriteLine(FTempStream, "endobj");
             AddToOffset(FTempStream.Length);
             FTempStream.Seek(0, SeekOrigin.Begin);
             FTempStream.WriteTo(FMainPDF);
@@ -2494,7 +2502,7 @@ namespace Reportman.Drawing
                     // Writes font resource data
                     FObjectCount = FObjectCount + 1;
                     FTempStream.SetLength(0);
-                    StreamUtil.SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
+                    SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
                     MemoryStream fontcontent = Canvas.InfoProvider.GetFontStream(adata);
 
                     System.IO.MemoryStream fontcontentstream = new MemoryStream();
@@ -2502,17 +2510,17 @@ namespace Reportman.Drawing
 
                     if (PDFConformance == PDFConformanceType.PDF_A_3)
                     {
-                        StreamUtil.SWriteLine(FTempStream, "<< /Type /FontFile2");
+                        SWriteLine(FTempStream, "<< /Type /FontFile2");
                     }
                     else
                     {
-                        StreamUtil.SWriteLine(FTempStream, "<<");
+                        SWriteLine(FTempStream, "<<");
                     }
                     fontcontent.Seek(0, SeekOrigin.Begin);
                     WriteStream(fontcontent, FTempStream);
                     adata.ObjectIndex = FObjectCount;
                     fontcontent.Seek(0, System.IO.SeekOrigin.Begin);
-                    StreamUtil.SWriteLine(FTempStream, "endobj");
+                    SWriteLine(FTempStream, "endobj");
                     AddToOffset(FTempStream.Length);
                     FTempStream.Seek(0, SeekOrigin.Begin);
                     FTempStream.WriteTo(FMainPDF);
@@ -2524,45 +2532,45 @@ namespace Reportman.Drawing
                 // Writes font descriptor
                 FObjectCount = FObjectCount + 1;
                 FTempStream.SetLength(0);
-                StreamUtil.SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
+                SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
                 adata.DescriptorIndex = FObjectCount;
-                StreamUtil.SWriteLine(FTempStream, "<< /Type /FontDescriptor");
+                SWriteLine(FTempStream, "<< /Type /FontDescriptor");
                 if (adata.IsUnicode)
                 {
-                    StreamUtil.SWriteLine(FTempStream, "/FontName /" + adata.PostcriptName);
-                    StreamUtil.SWriteLine(FTempStream, "/FontFamily(" + adata.FontFamily + ")");
+                    SWriteLine(FTempStream, "/FontName /" + adata.PostcriptName);
+                    SWriteLine(FTempStream, "/FontFamily(" + adata.FontFamily + ")");
                 }
                 else
-                    StreamUtil.SWriteLine(FTempStream, "/FontName /" + adata.PostcriptName);
-                StreamUtil.SWriteLine(FTempStream, "/Flags " + adata.Flags.ToString());
-                StreamUtil.SWriteLine(FTempStream, "/FontBBox [" +
+                    SWriteLine(FTempStream, "/FontName /" + adata.PostcriptName);
+                SWriteLine(FTempStream, "/Flags " + adata.Flags.ToString());
+                SWriteLine(FTempStream, "/FontBBox [" +
                     adata.FontBBox.Left.ToString() + " " +
                     adata.FontBBox.Height.ToString() + " " +
                     adata.FontBBox.Width.ToString() + " " +
                     adata.FontBBox.Top.ToString() + "]");
-                StreamUtil.SWriteLine(FTempStream, "/ItalicAngle " + ((int)Math.Round(adata.ItalicAngle)).ToString());
-                StreamUtil.SWriteLine(FTempStream, "/Ascent " + adata.Ascent.ToString());
-                StreamUtil.SWriteLine(FTempStream, "/Descent " + adata.Descent.ToString());
-                StreamUtil.SWriteLine(FTempStream, "/Leading " + adata.Leading.ToString());
-                StreamUtil.SWriteLine(FTempStream, "/CapHeight " + adata.CapHeight.ToString());
-                StreamUtil.SWriteLine(FTempStream, "/StemV " + ((int)Math.Round(adata.StemV)).ToString());
+                SWriteLine(FTempStream, "/ItalicAngle " + ((int)Math.Round(adata.ItalicAngle)).ToString());
+                SWriteLine(FTempStream, "/Ascent " + adata.Ascent.ToString());
+                SWriteLine(FTempStream, "/Descent " + adata.Descent.ToString());
+                SWriteLine(FTempStream, "/Leading " + adata.Leading.ToString());
+                SWriteLine(FTempStream, "/CapHeight " + adata.CapHeight.ToString());
+                SWriteLine(FTempStream, "/StemV " + ((int)Math.Round(adata.StemV)).ToString());
                 if (adata.AvgWidth != 0)
-                    StreamUtil.SWriteLine(FTempStream, "/AvgWidth " + adata.AvgWidth.ToString());
-                StreamUtil.SWriteLine(FTempStream, "/MaxWidth " + adata.MaxWidth.ToString());
-                StreamUtil.SWriteLine(FTempStream, "/FontStretch /Normal");
+                    SWriteLine(FTempStream, "/AvgWidth " + adata.AvgWidth.ToString());
+                SWriteLine(FTempStream, "/MaxWidth " + adata.MaxWidth.ToString());
+                SWriteLine(FTempStream, "/FontStretch /Normal");
                 if (adata.FontWeight > 0)
-                    StreamUtil.SWriteLine(FTempStream, "/FontWeight " + adata.FontWeight.ToString());
+                    SWriteLine(FTempStream, "/FontWeight " + adata.FontWeight.ToString());
                 if (adata.Embedded)
                 {
                     if (adata.Type1)
-                        StreamUtil.SWriteLine(FTempStream, "/FontFile " +
+                        SWriteLine(FTempStream, "/FontFile " +
                             adata.ObjectIndex.ToString() + " 0 R");
                     else
-                        StreamUtil.SWriteLine(FTempStream, "/FontFile2 " +
+                        SWriteLine(FTempStream, "/FontFile2 " +
                             adata.ObjectIndex.ToString() + " 0 R");
                 }
-                StreamUtil.SWriteLine(FTempStream, ">>");
-                StreamUtil.SWriteLine(FTempStream, "endobj");
+                SWriteLine(FTempStream, ">>");
+                SWriteLine(FTempStream, "endobj");
                 AddToOffset(FTempStream.Length);
                 FTempStream.Seek(0, SeekOrigin.Begin);
                 FTempStream.WriteTo(FMainPDF);
@@ -2646,15 +2654,15 @@ namespace Reportman.Drawing
                     FObjectCount = FObjectCount + 1;
                     adata.ToUnicodeIndex = FObjectCount;
                     FTempStream.SetLength(0);
-                    StreamUtil.SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
+                    SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
                     using (MemoryStream FCMapStream = new MemoryStream())
                     {
                         StreamUtil.WriteStringToStream(cmaphead.ToString(), FCMapStream, Encoding.ASCII);
                         FCMapStream.Seek(0, SeekOrigin.Begin);
-                        StreamUtil.SWriteLine(FTempStream, "<< ");
+                        SWriteLine(FTempStream, "<< ");
                         WriteStream(FCMapStream, FTempStream);
                     }
-                    StreamUtil.SWriteLine(FTempStream, "endobj");
+                    SWriteLine(FTempStream, "endobj");
                     AddToOffset(FTempStream.Length);
                     FTempStream.Seek(0, SeekOrigin.Begin);
                     FTempStream.WriteTo(FMainPDF);
@@ -2669,37 +2677,37 @@ namespace Reportman.Drawing
                     FObjectCount = FObjectCount + 1;
                     FTempStream.SetLength(0);
                     adata.ObjectIndexParent = FObjectCount;
-                    StreamUtil.SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
-                    StreamUtil.SWriteLine(FTempStream, "<< /Type /Font");
-                    StreamUtil.SWriteLine(FTempStream, "/Subtype /Type0");
-                    StreamUtil.SWriteLine(FTempStream, "/Name /F" + adata.ObjectName);
-                    StreamUtil.SWriteLine(FTempStream, "/BaseFont /" + CONS_UNICODEPREDIX + adata.PostcriptName);
-                    StreamUtil.SWriteLine(FTempStream, "/Encoding /Identity-H");
-                    StreamUtil.SWriteLine(FTempStream, "/DescendantFonts [ " + (FObjectCount + 1).ToString() + " 0 R ]");
-                    StreamUtil.SWriteLine(FTempStream, "/ToUnicode " +
+                    SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
+                    SWriteLine(FTempStream, "<< /Type /Font");
+                    SWriteLine(FTempStream, "/Subtype /Type0");
+                    SWriteLine(FTempStream, "/Name /F" + adata.ObjectName);
+                    SWriteLine(FTempStream, "/BaseFont /" + CONS_UNICODEPREDIX + adata.PostcriptName);
+                    SWriteLine(FTempStream, "/Encoding /Identity-H");
+                    SWriteLine(FTempStream, "/DescendantFonts [ " + (FObjectCount + 1).ToString() + " 0 R ]");
+                    SWriteLine(FTempStream, "/ToUnicode " +
                                 adata.ToUnicodeIndex.ToString() + " 0 R");
 
-                    StreamUtil.SWriteLine(FTempStream, ">>");
-                    StreamUtil.SWriteLine(FTempStream, "endobj");
+                    SWriteLine(FTempStream, ">>");
+                    SWriteLine(FTempStream, "endobj");
                     AddToOffset(FTempStream.Length);
                     FTempStream.Seek(0, SeekOrigin.Begin);
                     FTempStream.WriteTo(FMainPDF);
 
                     FObjectCount = FObjectCount + 1;
                     FTempStream.SetLength(0);
-                    StreamUtil.SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
-                    StreamUtil.SWriteLine(FTempStream, "<< /Type /Font");
+                    SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
+                    SWriteLine(FTempStream, "<< /Type /Font");
                     if (adata.Type1)
-                        StreamUtil.SWriteLine(FTempStream, "/Subtype /CIDFontType1");
+                        SWriteLine(FTempStream, "/Subtype /CIDFontType1");
                     else
-                        StreamUtil.SWriteLine(FTempStream, "/Subtype /CIDFontType2");
-                    StreamUtil.SWriteLine(FTempStream, "/BaseFont /" + CONS_UNICODEPREDIX + adata.PostcriptName);
-                    StreamUtil.SWriteLine(FTempStream, "/FontDescriptor " +
+                        SWriteLine(FTempStream, "/Subtype /CIDFontType2");
+                    SWriteLine(FTempStream, "/BaseFont /" + CONS_UNICODEPREDIX + adata.PostcriptName);
+                    SWriteLine(FTempStream, "/FontDescriptor " +
                         adata.DescriptorIndex.ToString() + " 0 R");
-                    StreamUtil.SWriteLine(FTempStream, "/FontFamily(" + adata.FontFamily + ")");
-                    StreamUtil.SWriteLine(FTempStream, "/CIDSystemInfo<</Ordering(Identity)/Registry(Adobe)/Supplement 0>>");
-                    StreamUtil.SWriteLine(FTempStream, "/DW 1000");
-                    StreamUtil.SWriteLine(FTempStream, "/W [");
+                    SWriteLine(FTempStream, "/FontFamily(" + adata.FontFamily + ")");
+                    SWriteLine(FTempStream, "/CIDSystemInfo<</Ordering(Identity)/Registry(Adobe)/Supplement 0>>");
+                    SWriteLine(FTempStream, "/DW 1000");
+                    SWriteLine(FTempStream, "/W [");
                     awidths = "";
                     /*					index = adata.FirstLoaded;
 										acount = 0;
@@ -2730,12 +2738,12 @@ namespace Reportman.Drawing
 
                         index++;
                     }
-                    StreamUtil.SWriteLine(FTempStream, awidths);
-                    StreamUtil.SWriteLine(FTempStream, "]");
-                    StreamUtil.SWriteLine(FTempStream, "/CIDToGIDMap /Identity");
+                    SWriteLine(FTempStream, awidths);
+                    SWriteLine(FTempStream, "]");
+                    SWriteLine(FTempStream, "/CIDToGIDMap /Identity");
 
-                    StreamUtil.SWriteLine(FTempStream, ">>");
-                    StreamUtil.SWriteLine(FTempStream, "endobj");
+                    SWriteLine(FTempStream, ">>");
+                    SWriteLine(FTempStream, "endobj");
                     AddToOffset(FTempStream.Length);
                     FTempStream.Seek(0, SeekOrigin.Begin);
                     FTempStream.WriteTo(FMainPDF);
@@ -2745,16 +2753,16 @@ namespace Reportman.Drawing
                     FObjectCount = FObjectCount + 1;
                     FTempStream.SetLength(0);
                     adata.ObjectIndexParent = FObjectCount;
-                    StreamUtil.SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
-                    StreamUtil.SWriteLine(FTempStream, "<< /Type /Font");
+                    SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
+                    SWriteLine(FTempStream, "<< /Type /Font");
                     if (adata.Type1)
-                        StreamUtil.SWriteLine(FTempStream, "/Subtype /Type1");
+                        SWriteLine(FTempStream, "/Subtype /Type1");
                     else
-                        StreamUtil.SWriteLine(FTempStream, "/Subtype /TrueType");
-                    StreamUtil.SWriteLine(FTempStream, "/Name /F" + adata.ObjectName);
-                    StreamUtil.SWriteLine(FTempStream, "/BaseFont /" + adata.PostcriptName);
-                    StreamUtil.SWriteLine(FTempStream, "/FirstChar " + adata.FirstLoaded.ToString());
-                    StreamUtil.SWriteLine(FTempStream, "/LastChar " + adata.LastLoaded.ToString());
+                        SWriteLine(FTempStream, "/Subtype /TrueType");
+                    SWriteLine(FTempStream, "/Name /F" + adata.ObjectName);
+                    SWriteLine(FTempStream, "/BaseFont /" + adata.PostcriptName);
+                    SWriteLine(FTempStream, "/FirstChar " + adata.FirstLoaded.ToString());
+                    SWriteLine(FTempStream, "/LastChar " + adata.LastLoaded.ToString());
                     awidths = "[";
                     if (adata.LastLoaded > 0)
                     {
@@ -2771,20 +2779,20 @@ namespace Reportman.Drawing
                         }
                         while (index <= adata.LastLoaded);
                         awidths = awidths + "]";
-                        StreamUtil.SWriteLine(FTempStream, "/Widths " + awidths);
+                        SWriteLine(FTempStream, "/Widths " + awidths);
                     }
-                    StreamUtil.SWriteLine(FTempStream, "/FontDescriptor " +
+                    SWriteLine(FTempStream, "/FontDescriptor " +
                         adata.DescriptorIndex.ToString() + " 0 R");
                     if (PDFConformance == PDFConformanceType.PDF_A_3)
                     {
-                        StreamUtil.SWriteLine(FTempStream, "/Encoding /Identity-H");
+                        SWriteLine(FTempStream, "/Encoding /Identity-H");
                     }
                     else
                     {
-                        StreamUtil.SWriteLine(FTempStream, "/Encoding /" + adata.Encoding);
+                        SWriteLine(FTempStream, "/Encoding /" + adata.Encoding);
                     }
-                    StreamUtil.SWriteLine(FTempStream, ">>");
-                    StreamUtil.SWriteLine(FTempStream, "endobj");
+                    SWriteLine(FTempStream, ">>");
+                    SWriteLine(FTempStream, "endobj");
                     AddToOffset(FTempStream.Length);
                     FTempStream.Seek(0, SeekOrigin.Begin);
                     FTempStream.WriteTo(FMainPDF);
@@ -2804,14 +2812,14 @@ namespace Reportman.Drawing
 
 
 
-            StreamUtil.SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
-            StreamUtil.SWriteLine(FTempStream, "<< /Length " + (FObjectCount + 1).ToString() + " 0 R");
+            SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
+            SWriteLine(FTempStream, "<< /Length " + (FObjectCount + 1).ToString() + " 0 R");
 #if REPMAN_ZLIB
             if (Compressed)
-                StreamUtil.SWriteLine(FTempStream, "/Filter [/FlateDecode]");
+                SWriteLine(FTempStream, "/Filter [/FlateDecode]");
 #endif
-            StreamUtil.SWriteLine(FTempStream, " >>");
-            StreamUtil.SWriteLine(FTempStream, "stream");
+            SWriteLine(FTempStream, " >>");
+            SWriteLine(FTempStream, "stream");
             FSTempStream.SetLength(0);
         }
         void EndStream()
@@ -2830,17 +2838,17 @@ namespace Reportman.Drawing
                 FSTempStream.WriteTo(FTempStream);
 
             FSTempStream.SetLength(0);
-            StreamUtil.SWriteLine(FTempStream, PDFCanvas.ENDSTREAM);
-            StreamUtil.SWriteLine(FTempStream, "endobj");
+            SWriteLine(FTempStream, PDFCanvas.ENDSTREAM);
+            SWriteLine(FTempStream, "endobj");
             AddToOffset(FTempStream.Length);
             FTempStream.Seek(0, SeekOrigin.Begin);
             FTempStream.WriteTo(FMainPDF);
 
             FObjectCount++;
             FTempStream.SetLength(0);
-            StreamUtil.SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
-            StreamUtil.SWriteLine(FTempStream, StreamSize.ToString());
-            StreamUtil.SWriteLine(FTempStream, "endobj");
+            SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
+            SWriteLine(FTempStream, StreamSize.ToString());
+            SWriteLine(FTempStream, "endobj");
             AddToOffset(FTempStream.Length);
             FTempStream.Seek(0, SeekOrigin.Begin);
             FTempStream.WriteTo(FMainPDF);
@@ -2941,12 +2949,12 @@ namespace Reportman.Drawing
             // Writes the header
             if (PDFConformance == PDFConformanceType.PDF_1_4)
             {
-                StreamUtil.SWriteLine(FMainPDF, PDF_HEADER_1_4);
+                SWriteLine(FMainPDF, PDF_HEADER_1_4);
                 AddToOffset(PDF_HEADER_1_4.Length);
             }
             else
             {
-                StreamUtil.SWriteLine(FMainPDF, PDF_HEADER_A3);
+                SWriteLine(FMainPDF, PDF_HEADER_A3);
                 byte[] checkArray = { 37, 228, 252, 246, 223, 13, 10 };
                 FMainPDF.Write(checkArray, 0, 7);
                 AddToOffset(7 + PDF_HEADER_A3.Length);
@@ -2954,24 +2962,24 @@ namespace Reportman.Drawing
             // Writes Doc info
             FObjectCount = FObjectCount + 1;
             FTempStream.SetLength(0);
-            StreamUtil.SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
-            StreamUtil.SWriteLine(FTempStream, "<<");
-            StreamUtil.SWriteLine(FTempStream, "/Producer " + EncodePDFText(DocProducer));
-            StreamUtil.SWriteLine(FTempStream, "/Author " + EncodePDFText(DocAuthor));
+            SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
+            SWriteLine(FTempStream, "<<");
+            SWriteLine(FTempStream, "/Producer " + EncodePDFText(DocProducer));
+            SWriteLine(FTempStream, "/Author " + EncodePDFText(DocAuthor));
             if ((DocCreationDate == null) || (DocCreationDate.Length == 0))
             {
-                StreamUtil.SWriteLine(FTempStream, "/CreationDate (D:" + DateUtil.DateToISO8601(FInternalFDocCreationDate, false) + ")");
+                SWriteLine(FTempStream, "/CreationDate (D:" + DateUtil.DateToISO8601(FInternalFDocCreationDate, false) + ")");
             }
             else
             {
-                StreamUtil.SWriteLine(FTempStream, "/CreationDate (D:" + DocCreationDate + ")");
+                SWriteLine(FTempStream, "/CreationDate (D:" + DocCreationDate + ")");
             }
             if (PDFConformance != PDFConformanceType.PDF_A_3)
-                StreamUtil.SWriteLine(FTempStream, "/Creator " + EncodePDFText(DocCreator));
+                SWriteLine(FTempStream, "/Creator " + EncodePDFText(DocCreator));
             if ((DocKeywords != null) && (DocKeywords.Length > 0))
-                StreamUtil.SWriteLine(FTempStream, "/Keywords " + EncodePDFText(DocKeywords));
-            StreamUtil.SWriteLine(FTempStream, "/Subject " + EncodePDFText(DocSubject));
-            StreamUtil.SWriteLine(FTempStream, "/Title " + EncodePDFText(DocTitle));
+                SWriteLine(FTempStream, "/Keywords " + EncodePDFText(DocKeywords));
+            SWriteLine(FTempStream, "/Subject " + EncodePDFText(DocSubject));
+            SWriteLine(FTempStream, "/Title " + EncodePDFText(DocTitle));
             if ((DocModificationDate == null) || (DocModificationDate.Length == 0))
             {
                 // SWriteLine(FTempStream,'/ModDate (D:'+  DateToISO8601(FInternalFDocCreationDate)+')');
@@ -2982,10 +2990,10 @@ namespace Reportman.Drawing
             }
             if (PDFConformance == PDFConformanceType.PDF_A_3)
             {
-                StreamUtil.SWriteLine(FTempStream, "/GTS_PDFXVersion (PDF/A-3B)");
+                SWriteLine(FTempStream, "/GTS_PDFXVersion (PDF/A-3B)");
             }
-            StreamUtil.SWriteLine(FTempStream, ">>");
-            StreamUtil.SWriteLine(FTempStream, "endobj");
+            SWriteLine(FTempStream, ">>");
+            SWriteLine(FTempStream, "endobj");
             AddToOffset(FTempStream.Length);
             FTempStream.Seek(0, SeekOrigin.Begin);
             FTempStream.WriteTo(FMainPDF);
@@ -3004,82 +3012,82 @@ namespace Reportman.Drawing
                 try
                 {
                     // Escribir las líneas iniciales de XMP Metadata
-                    StreamUtil.SWriteLine(xmpStream, "<?xpacket begin=\"\" id=\"W5M0MpCehiHzreSzNTczkc9d\"?>");
-                    StreamUtil.SWriteLine(xmpStream, "<x:xmpmeta xmlns:x=\"adobe:ns:meta/\">");
-                    StreamUtil.SWriteLine(xmpStream, "<rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"");
-                    StreamUtil.SWriteLine(xmpStream, "    xmlns:xmp=\"http://ns.adobe.com/xap/1.0/\"");
-                    StreamUtil.SWriteLine(xmpStream, "    xmlns:pdf=\"http://ns.adobe.com/pdf/1.3/\"");
-                    StreamUtil.SWriteLine(xmpStream, "    xmlns:dc=\"http://purl.org/dc/elements/1.1/\"");
-                    StreamUtil.SWriteLine(xmpStream, "    xmlns:xmpMM=\"http://ns.adobe.com/xap/1.0/mm/\"");
-                    StreamUtil.SWriteLine(xmpStream, "    xmlns:pdfaid=\"http://www.aiim.org/pdfa/ns/id/\">");
-                    StreamUtil.SWriteLine(xmpStream, "  <rdf:Description rdf:about=\"\">");
+                    SWriteLine(xmpStream, "<?xpacket begin=\"\" id=\"W5M0MpCehiHzreSzNTczkc9d\"?>");
+                    SWriteLine(xmpStream, "<x:xmpmeta xmlns:x=\"adobe:ns:meta/\">");
+                    SWriteLine(xmpStream, "<rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"");
+                    SWriteLine(xmpStream, "    xmlns:xmp=\"http://ns.adobe.com/xap/1.0/\"");
+                    SWriteLine(xmpStream, "    xmlns:pdf=\"http://ns.adobe.com/pdf/1.3/\"");
+                    SWriteLine(xmpStream, "    xmlns:dc=\"http://purl.org/dc/elements/1.1/\"");
+                    SWriteLine(xmpStream, "    xmlns:xmpMM=\"http://ns.adobe.com/xap/1.0/mm/\"");
+                    SWriteLine(xmpStream, "    xmlns:pdfaid=\"http://www.aiim.org/pdfa/ns/id/\">");
+                    SWriteLine(xmpStream, "  <rdf:Description rdf:about=\"\">");
 
                     // Autor
-                    StreamUtil.SWriteLine(xmpStream, "    <dc:creator>");
-                    StreamUtil.SWriteLine(xmpStream, "      <rdf:Seq>");
-                    StreamUtil.SWriteLine(xmpStream, "        <rdf:li>" + StringUtil.EscapeXML(DocAuthor) + "</rdf:li>");
-                    StreamUtil.SWriteLine(xmpStream, "      </rdf:Seq>");
-                    StreamUtil.SWriteLine(xmpStream, "    </dc:creator>");
+                    SWriteLine(xmpStream, "    <dc:creator>");
+                    SWriteLine(xmpStream, "      <rdf:Seq>");
+                    SWriteLine(xmpStream, "        <rdf:li>" + StringUtil.EscapeXML(DocAuthor) + "</rdf:li>");
+                    SWriteLine(xmpStream, "      </rdf:Seq>");
+                    SWriteLine(xmpStream, "    </dc:creator>");
 
                     // Título
-                    StreamUtil.SWriteLine(xmpStream, "    <dc:title>");
-                    StreamUtil.SWriteLine(xmpStream, "      <rdf:Alt>");
-                    StreamUtil.SWriteLine(xmpStream, "        <rdf:li xml:lang=\"x-default\">" + StringUtil.EscapeXML(DocTitle) + "</rdf:li>");
-                    StreamUtil.SWriteLine(xmpStream, "      </rdf:Alt>");
-                    StreamUtil.SWriteLine(xmpStream, "    </dc:title>");
+                    SWriteLine(xmpStream, "    <dc:title>");
+                    SWriteLine(xmpStream, "      <rdf:Alt>");
+                    SWriteLine(xmpStream, "        <rdf:li xml:lang=\"x-default\">" + StringUtil.EscapeXML(DocTitle) + "</rdf:li>");
+                    SWriteLine(xmpStream, "      </rdf:Alt>");
+                    SWriteLine(xmpStream, "    </dc:title>");
 
                     // Palabras clave
                     if (!string.IsNullOrEmpty(DocKeywords))
                     {
-                        StreamUtil.SWriteLine(xmpStream, "    <dc:subject>");
-                        StreamUtil.SWriteLine(xmpStream, "      <rdf:Bag>");
+                        SWriteLine(xmpStream, "    <dc:subject>");
+                        SWriteLine(xmpStream, "      <rdf:Bag>");
                         var keywords = DocKeywords.Split(',');
                         foreach (var keyword in keywords)
                         {
-                            StreamUtil.SWriteLine(xmpStream, "        <rdf:li>" + StringUtil.EscapeXML(keyword.Trim()) + "</rdf:li>");
+                            SWriteLine(xmpStream, "        <rdf:li>" + StringUtil.EscapeXML(keyword.Trim()) + "</rdf:li>");
                         }
-                        StreamUtil.SWriteLine(xmpStream, "      </rdf:Bag>");
-                        StreamUtil.SWriteLine(xmpStream, "    </dc:subject>");
+                        SWriteLine(xmpStream, "      </rdf:Bag>");
+                        SWriteLine(xmpStream, "    </dc:subject>");
                     }
 
                     // Descripción
-                    StreamUtil.SWriteLine(xmpStream, "    <dc:description>");
-                    StreamUtil.SWriteLine(xmpStream, "      <rdf:Alt>");
-                    StreamUtil.SWriteLine(xmpStream, "        <rdf:li xml:lang=\"x-default\">" + StringUtil.EscapeXML(DocSubject) + "</rdf:li>");
-                    StreamUtil.SWriteLine(xmpStream, "      </rdf:Alt>");
-                    StreamUtil.SWriteLine(xmpStream, "    </dc:description>");
+                    SWriteLine(xmpStream, "    <dc:description>");
+                    SWriteLine(xmpStream, "      <rdf:Alt>");
+                    SWriteLine(xmpStream, "        <rdf:li xml:lang=\"x-default\">" + StringUtil.EscapeXML(DocSubject) + "</rdf:li>");
+                    SWriteLine(xmpStream, "      </rdf:Alt>");
+                    SWriteLine(xmpStream, "    </dc:description>");
 
                     // Fecha de creación
                     if (string.IsNullOrEmpty(DocCreationDate))
                     {
-                        StreamUtil.SWriteLine(xmpStream, "    <xmp:CreateDate>" + DateUtil.DateToISO8601(FInternalFDocCreationDate, false) + "</xmp:CreateDate>");
+                        SWriteLine(xmpStream, "    <xmp:CreateDate>" + DateUtil.DateToISO8601(FInternalFDocCreationDate, false) + "</xmp:CreateDate>");
                     }
                     else
                     {
-                        StreamUtil.SWriteLine(xmpStream, "    <xmp:CreateDate>" + StringUtil.EscapeXML(DocCreationDate) + "</xmp:CreateDate>");
+                        SWriteLine(xmpStream, "    <xmp:CreateDate>" + StringUtil.EscapeXML(DocCreationDate) + "</xmp:CreateDate>");
                     }
 
                     // Productor
                     if (!string.IsNullOrEmpty(DocProducer))
                     {
-                        StreamUtil.SWriteLine(xmpStream, "    <xmp:CreatorTool>" + StringUtil.EscapeXML(DocProducer) + "</xmp:CreatorTool>");
+                        SWriteLine(xmpStream, "    <xmp:CreatorTool>" + StringUtil.EscapeXML(DocProducer) + "</xmp:CreatorTool>");
                     }
 
                     // Otros metadatos
-                    StreamUtil.SWriteLine(xmpStream, "    <pdfaid:part>3</pdfaid:part>");
-                    StreamUtil.SWriteLine(xmpStream, "    <pdfaid:conformance>B</pdfaid:conformance>");
+                    SWriteLine(xmpStream, "    <pdfaid:part>3</pdfaid:part>");
+                    SWriteLine(xmpStream, "    <pdfaid:conformance>B</pdfaid:conformance>");
 
                     // Contenido XMP adicional
                     if (!string.IsNullOrEmpty(DocXMPContent))
                     {
-                        StreamUtil.SWriteLine(xmpStream, DocXMPContent);
+                        SWriteLine(xmpStream, DocXMPContent);
                     }
 
                     // Cerrar la descripción RDF
-                    StreamUtil.SWriteLine(xmpStream, "  </rdf:Description>");
-                    StreamUtil.SWriteLine(xmpStream, "</rdf:RDF>");
-                    StreamUtil.SWriteLine(xmpStream, "</x:xmpmeta>");
-                    StreamUtil.SWriteLine(xmpStream, "<?xpacket end=\"w\"?>");
+                    SWriteLine(xmpStream, "  </rdf:Description>");
+                    SWriteLine(xmpStream, "</rdf:RDF>");
+                    SWriteLine(xmpStream, "</x:xmpmeta>");
+                    SWriteLine(xmpStream, "<?xpacket end=\"w\"?>");
 
                     xmpStream.Seek(0, SeekOrigin.Begin);
 
@@ -3087,17 +3095,17 @@ namespace Reportman.Drawing
                     FObjectCount++;
                     FXMPMetadataObject = FObjectCount;
                     FTempStream.SetLength(0);
-                    StreamUtil.SWriteLine(FTempStream, $"{FObjectCount} 0 obj");
-                    StreamUtil.SWriteLine(FTempStream, "<< /Type /Metadata");
-                    StreamUtil.SWriteLine(FTempStream, "   /Subtype /XML");
-                    StreamUtil.SWriteLine(FTempStream, "   /Length " + (xmpStream.Length - 1));
-                    StreamUtil.SWriteLine(FTempStream, ">>");
-                    StreamUtil.SWriteLine(FTempStream, "stream");
+                    SWriteLine(FTempStream, $"{FObjectCount} 0 obj");
+                    SWriteLine(FTempStream, "<< /Type /Metadata");
+                    SWriteLine(FTempStream, "   /Subtype /XML");
+                    SWriteLine(FTempStream, "   /Length " + (xmpStream.Length - 1));
+                    SWriteLine(FTempStream, ">>");
+                    SWriteLine(FTempStream, "stream");
 
                     StreamUtil.WriteTo(xmpStream, FTempStream);
 
-                    StreamUtil.SWriteLine(FTempStream, "endstream");
-                    StreamUtil.SWriteLine(FTempStream, "endobj");
+                    SWriteLine(FTempStream, "endstream");
+                    SWriteLine(FTempStream, "endobj");
 
                     AddToOffset((int)FTempStream.Length);
                     FTempStream.Seek(0, SeekOrigin.Begin);
@@ -3118,11 +3126,11 @@ namespace Reportman.Drawing
                 try
                 {
                     StreamUtil.CompressStream(stream, fmem);
-                    StreamUtil.SWriteLine(dest, " /Length " + fmem.Length.ToString() + " /Length1 " +
+                    SWriteLine(dest, " /Length " + fmem.Length.ToString() + " /Length1 " +
                       stream.Length.ToString());
-                    StreamUtil.SWriteLine(dest, "/Filter [/FlateDecode]");
-                    StreamUtil.SWriteLine(dest, ">>");
-                    StreamUtil.SWriteLine(dest, "stream");
+                    SWriteLine(dest, "/Filter [/FlateDecode]");
+                    SWriteLine(dest, ">>");
+                    SWriteLine(dest, "stream");
                     fmem.Seek(0, SeekOrigin.Begin);
                     StreamUtil.WriteTo(fmem, dest);
                 }
@@ -3134,14 +3142,14 @@ namespace Reportman.Drawing
             else
 #endif
             {
-                StreamUtil.SWriteLine(dest, " /Length " + stream.Length.ToString());
-                StreamUtil.SWriteLine(dest, ">>");
-                StreamUtil.SWriteLine(dest, "stream");
+                SWriteLine(dest, " /Length " + stream.Length.ToString());
+                SWriteLine(dest, ">>");
+                SWriteLine(dest, "stream");
                 stream.Seek(0, SeekOrigin.Begin);
                 StreamUtil.WriteTo(stream, dest);
             }
-            StreamUtil.SWriteLine(dest, "");
-            StreamUtil.SWriteLine(dest, "endstream");
+            SWriteLine(dest, "");
+            SWriteLine(dest, "endstream");
         }
 
         private void SetColorSpace()
@@ -3155,11 +3163,11 @@ namespace Reportman.Drawing
                 FObjectCount++;
                 ColorProfileObject = FObjectCount;
                 FTempStream.SetLength(0);
-                StreamUtil.SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
+                SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
                 ICCProfile.Seek(0, SeekOrigin.Begin);
-                StreamUtil.SWriteLine(FTempStream, "<< /N 3 /Alternate /DeviceRGB ");
+                SWriteLine(FTempStream, "<< /N 3 /Alternate /DeviceRGB ");
                 WriteStream(ICCProfile, FTempStream);
-                StreamUtil.SWriteLine(FTempStream, "endobj");
+                SWriteLine(FTempStream, "endobj");
                 AddToOffset(FTempStream.Length);
                 FTempStream.Seek(0, SeekOrigin.Begin);
                 StreamUtil.WriteTo(FTempStream, FMainPDF);
@@ -3173,14 +3181,14 @@ namespace Reportman.Drawing
             FObjectCount++;
             FOutputIntentObject = FObjectCount;
             FTempStream.SetLength(0);
-            StreamUtil.SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
-            StreamUtil.SWriteLine(FTempStream, "<< /Type /OutputIntent");
-            StreamUtil.SWriteLine(FTempStream, "  /S /GTS_PDFA1");
-            StreamUtil.SWriteLine(FTempStream, "  /OutputConditionIdentifier (sRGB IEC61966-2.1) ");
-            StreamUtil.SWriteLine(FTempStream, "  /Info (sRGB IEC61966-2.1) ");
-            StreamUtil.SWriteLine(FTempStream, "  /DestOutputProfile " + ColorProfileObject.ToString() + " 0 R");
-            StreamUtil.SWriteLine(FTempStream, ">>");
-            StreamUtil.SWriteLine(FTempStream, "endobj");
+            SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
+            SWriteLine(FTempStream, "<< /Type /OutputIntent");
+            SWriteLine(FTempStream, "  /S /GTS_PDFA1");
+            SWriteLine(FTempStream, "  /OutputConditionIdentifier (sRGB IEC61966-2.1) ");
+            SWriteLine(FTempStream, "  /Info (sRGB IEC61966-2.1) ");
+            SWriteLine(FTempStream, "  /DestOutputProfile " + ColorProfileObject.ToString() + " 0 R");
+            SWriteLine(FTempStream, ">>");
+            SWriteLine(FTempStream, "endobj");
             AddToOffset(FTempStream.Length);
             FTempStream.Seek(0, SeekOrigin.Begin);
             StreamUtil.WriteTo(FTempStream, FMainPDF);
@@ -3189,10 +3197,10 @@ namespace Reportman.Drawing
             FObjectCount++;
             FColorSpaceObject = FObjectCount;
             FTempStream.SetLength(0);
-            StreamUtil.SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
-            StreamUtil.SWriteLine(FTempStream, "<<  /Type /ColorSpace");
-            StreamUtil.SWriteLine(FTempStream, "    /ColorSpace [/ICCBased " + ColorProfileObject.ToString() + " 0 R] >>");
-            StreamUtil.SWriteLine(FTempStream, "endobj");
+            SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
+            SWriteLine(FTempStream, "<<  /Type /ColorSpace");
+            SWriteLine(FTempStream, "    /ColorSpace [/ICCBased " + ColorProfileObject.ToString() + " 0 R] >>");
+            SWriteLine(FTempStream, "endobj");
             AddToOffset(FTempStream.Length);
             FTempStream.Seek(0, SeekOrigin.Begin);
             StreamUtil.WriteTo(FTempStream, FMainPDF);
@@ -3205,22 +3213,22 @@ namespace Reportman.Drawing
                 FObjectCount++;
                 ResourceStream = FObjectCount;
                 FTempStream.SetLength(0);
-                StreamUtil.SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
-                StreamUtil.SWriteLine(FTempStream, "<< /Type /EmbeddedFile ");
+                SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
+                SWriteLine(FTempStream, "<< /Type /EmbeddedFile ");
                 if ((efile.MimeType != null) && (efile.MimeType.Length > 0))
                 {
-                    StreamUtil.SWriteLine(FTempStream, "   /Subtype /" + efile.MimeType.Replace("/", "#2F"));
-                    StreamUtil.SWriteLine(FTempStream, "   /MimeType " + EncodePDFText(efile.MimeType));
+                    SWriteLine(FTempStream, "   /Subtype /" + efile.MimeType.Replace("/", "#2F"));
+                    SWriteLine(FTempStream, "   /MimeType " + EncodePDFText(efile.MimeType));
                 }
                 if (efile.ModificationDate.Length > 0)
                 {
-                    StreamUtil.SWriteLine(FTempStream, "   /Params <<");
-                    StreamUtil.SWriteLine(FTempStream, "   /ModDate (D:" + (efile.ModificationDate) + ")");
-                    StreamUtil.SWriteLine(FTempStream, "   >>");
+                    SWriteLine(FTempStream, "   /Params <<");
+                    SWriteLine(FTempStream, "   /ModDate (D:" + (efile.ModificationDate) + ")");
+                    SWriteLine(FTempStream, "   >>");
                 }
                 efile.Stream.Seek(0, SeekOrigin.Begin);
                 WriteStream(efile.Stream, FTempStream);
-                StreamUtil.SWriteLine(FTempStream, "endobj");
+                SWriteLine(FTempStream, "endobj");
                 AddToOffset(FTempStream.Length);
                 FTempStream.Seek(0, SeekOrigin.Begin);
                 StreamUtil.WriteTo(FTempStream, FMainPDF);
@@ -3228,33 +3236,33 @@ namespace Reportman.Drawing
                 FObjectCount++;
                 efile.ResourceNumber = FObjectCount;
                 FTempStream.SetLength(0);
-                StreamUtil.SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
-                StreamUtil.SWriteLine(FTempStream, "<< /Type /Filespec ");
-                StreamUtil.SWriteLine(FTempStream, "   /F " + EncodePDFText(efile.FileName));
+                SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
+                SWriteLine(FTempStream, "<< /Type /Filespec ");
+                SWriteLine(FTempStream, "   /F " + EncodePDFText(efile.FileName));
 
-                StreamUtil.SWriteLine(FTempStream, "   /Desc " + EncodePDFText(efile.Description));
-                StreamUtil.SWriteLine(FTempStream, "   /UF " + EncodePDFText(efile.FileName));
-                StreamUtil.SWriteLine(FTempStream, "   /EF << /F " + ResourceStream.ToString() + " 0 R >>");
+                SWriteLine(FTempStream, "   /Desc " + EncodePDFText(efile.Description));
+                SWriteLine(FTempStream, "   /UF " + EncodePDFText(efile.FileName));
+                SWriteLine(FTempStream, "   /EF << /F " + ResourceStream.ToString() + " 0 R >>");
 
-                StreamUtil.SWriteLine(FTempStream, "   /AFRelationship /" + efile.AFRelationShipToString());
-                StreamUtil.SWriteLine(FTempStream, "/Params <<");
-                StreamUtil.SWriteLine(FTempStream, "  /Size " + efile.Stream.Length.ToString());
+                SWriteLine(FTempStream, "   /AFRelationship /" + efile.AFRelationShipToString());
+                SWriteLine(FTempStream, "/Params <<");
+                SWriteLine(FTempStream, "  /Size " + efile.Stream.Length.ToString());
                 if ((efile.MimeType != null) && (efile.MimeType.Length > 0))
                 {
-                    StreamUtil.SWriteLine(FTempStream, "  /MIMEType " + EncodePDFText(efile.MimeType));
+                    SWriteLine(FTempStream, "  /MIMEType " + EncodePDFText(efile.MimeType));
                 }
                 if ((efile.CreationDate != null) && (efile.CreationDate.Length > 0))
                 {
-                    StreamUtil.SWriteLine(FTempStream, "  /CreationDate (D:" + efile.CreationDate + ")");
+                    SWriteLine(FTempStream, "  /CreationDate (D:" + efile.CreationDate + ")");
                 }
                 if ((efile.ModificationDate != null) && (efile.ModificationDate.Length > 0))
                 {
-                    StreamUtil.SWriteLine(FTempStream, "  /ModificationDate (D:" + efile.ModificationDate + ")");
+                    SWriteLine(FTempStream, "  /ModificationDate (D:" + efile.ModificationDate + ")");
                 }
 
-                StreamUtil.SWriteLine(FTempStream, "  >>");
-                StreamUtil.SWriteLine(FTempStream, ">>");
-                StreamUtil.SWriteLine(FTempStream, "endobj");
+                SWriteLine(FTempStream, "  >>");
+                SWriteLine(FTempStream, ">>");
+                SWriteLine(FTempStream, "endobj");
                 AddToOffset(FTempStream.Length);
                 FTempStream.Seek(0, SeekOrigin.Begin);
                 StreamUtil.WriteTo(FTempStream, FMainPDF);
@@ -3290,30 +3298,30 @@ namespace Reportman.Drawing
                 FSTempStream.WriteTo(FTempStream);
 
             FSTempStream.SetLength(0);
-            StreamUtil.SWriteLine(FTempStream, PDFCanvas.ENDSTREAM);
-            StreamUtil.SWriteLine(FTempStream, "endobj");
+            SWriteLine(FTempStream, PDFCanvas.ENDSTREAM);
+            SWriteLine(FTempStream, "endobj");
             AddToOffset(FTempStream.Length);
             FTempStream.Seek(0, SeekOrigin.Begin);
             FTempStream.WriteTo(FMainPDF);
             FObjectCount = FObjectCount + 1;
             FTempStream.SetLength(0);
-            StreamUtil.SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
-            StreamUtil.SWriteLine(FTempStream, StreamSize.ToString());
-            StreamUtil.SWriteLine(FTempStream, "endobj");
+            SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
+            SWriteLine(FTempStream, StreamSize.ToString());
+            SWriteLine(FTempStream, "endobj");
             AddToOffset(FTempStream.Length);
             FTempStream.Seek(0, SeekOrigin.Begin);
             FTempStream.WriteTo(FMainPDF);
 
             FObjectCount = FObjectCount + 1;
             FTempStream.SetLength(0);
-            StreamUtil.SWriteLine(FTempStream, (FObjectCount).ToString() + " 0 obj");
-            StreamUtil.SWriteLine(FTempStream, "<< /Length " + (FObjectCount + 1).ToString() + " 0 R");
+            SWriteLine(FTempStream, (FObjectCount).ToString() + " 0 obj");
+            SWriteLine(FTempStream, "<< /Length " + (FObjectCount + 1).ToString() + " 0 R");
 #if REPMAN_ZLIB
             if (Compressed)
-                StreamUtil.SWriteLine(FTempStream, "/Filter [/FlateDecode]");
+                SWriteLine(FTempStream, "/Filter [/FlateDecode]");
 #endif
-            StreamUtil.SWriteLine(FTempStream, " >>");
-            StreamUtil.SWriteLine(FTempStream, "stream");
+            SWriteLine(FTempStream, " >>");
+            SWriteLine(FTempStream, "stream");
         }
         void SetArray()
         {
@@ -3322,46 +3330,46 @@ namespace Reportman.Drawing
             FObjectCount = FObjectCount + 1;
             FResourceNum = FObjectCount;
             FTempStream.SetLength(0);
-            StreamUtil.SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
+            SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
             if (PDFConformance == PDFConformanceType.PDF_A_3)
-                StreamUtil.SWriteLine(FTempStream, "<< /ProcSet [/PDF]");
+                SWriteLine(FTempStream, "<< /ProcSet [/PDF]");
             else
-                StreamUtil.SWriteLine(FTempStream, "<< /ProcSet [ /PDF /Text /ImageC]");
+                SWriteLine(FTempStream, "<< /ProcSet [ /PDF /Text /ImageC]");
             if (ImageCount > 0)
             {
-                StreamUtil.SWriteLine(FTempStream, "/XObject << ");
+                SWriteLine(FTempStream, "/XObject << ");
                 for (i = 1; i <= ImageCount; i++)
                 {
                     if (!Masks.ContainsKey(i - 1))
                     {
-                        StreamUtil.SWriteLine(FTempStream, "/Im" + i.ToString() + " " + (FObjectCount + i).ToString() + " 0 R");
+                        SWriteLine(FTempStream, "/Im" + i.ToString() + " " + (FObjectCount + i).ToString() + " 0 R");
                     }
                 }
-                StreamUtil.SWriteLine(FTempStream, ">>");
+                SWriteLine(FTempStream, ">>");
             }
-            StreamUtil.SWriteLine(FTempStream, "/Font << ");
+            SWriteLine(FTempStream, "/Font << ");
 
             for (i = 1; i <= FFontCount; i++)
-                StreamUtil.SWriteLine(FTempStream, "/F" + i.ToString() + " " + FFontList[i - 1] + " 0 R ");
+                SWriteLine(FTempStream, "/F" + i.ToString() + " " + FFontList[i - 1] + " 0 R ");
             for (i = 0; i < Canvas.FontData.Count; i++)
             {
                 adata = (TTFontData)Canvas.FontData.GetByIndex(i);
-                StreamUtil.SWriteLine(FTempStream, "/F" + adata.ObjectName +
+                SWriteLine(FTempStream, "/F" + adata.ObjectName +
                     " " + adata.ObjectIndexParent.ToString() + " 0 R ");
             }
-            StreamUtil.SWriteLine(FTempStream, ">>");
+            SWriteLine(FTempStream, ">>");
 
 
             if (PDFConformance == PDFConformanceType.PDF_A_3)
             {
-                StreamUtil.SWriteLine(FTempStream, "/ColorSpace << ");
-                StreamUtil.SWriteLine(FTempStream, "     /CS1 " + FColorSpaceObject.ToString() + " 0 R");
-                StreamUtil.SWriteLine(FTempStream, "  >>");
+                SWriteLine(FTempStream, "/ColorSpace << ");
+                SWriteLine(FTempStream, "     /CS1 " + FColorSpaceObject.ToString() + " 0 R");
+                SWriteLine(FTempStream, "  >>");
             }
 
 
-            StreamUtil.SWriteLine(FTempStream, ">>");
-            StreamUtil.SWriteLine(FTempStream, "endobj");
+            SWriteLine(FTempStream, ">>");
+            SWriteLine(FTempStream, "endobj");
             AddToOffset(FTempStream.Length);
             FTempStream.Seek(0, SeekOrigin.Begin);
             FTempStream.WriteTo(FMainPDF);
@@ -3415,7 +3423,7 @@ namespace Reportman.Drawing
             WriteEmbeddedFiles();
             SetCatalog();
             SetXref();
-            StreamUtil.SWriteLine(FMainPDF, "%%EOF");
+            SWriteLine(FMainPDF, "%%EOF");
 
             // Save to disk if filename assigned
             if (FMainPDF is FileStream)
@@ -3432,15 +3440,15 @@ namespace Reportman.Drawing
             FObjectCount = FObjectCount + 1;
             FCatalogNum = FObjectCount;
             FTempStream.SetLength(0);
-            StreamUtil.SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
-            StreamUtil.SWriteLine(FTempStream, "<< /Type /Catalog");
-            StreamUtil.SWriteLine(FTempStream, "/Pages " + FParentNum.ToString() + " 0 R");
-            StreamUtil.SWriteLine(FTempStream, "/Outlines " + FOutlinesNum.ToString() + " 0 R");
+            SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
+            SWriteLine(FTempStream, "<< /Type /Catalog");
+            SWriteLine(FTempStream, "/Pages " + FParentNum.ToString() + " 0 R");
+            SWriteLine(FTempStream, "/Outlines " + FOutlinesNum.ToString() + " 0 R");
 
             if (PDFConformance == PDFConformanceType.PDF_A_3)
             {
-                StreamUtil.SWriteLine(FTempStream, "/Metadata " + FXMPMetadataObject.ToString() + " 0 R");
-                StreamUtil.SWriteLine(FTempStream, "/OutputIntents [" + FOutputIntentObject.ToString() + " 0 R]");
+                SWriteLine(FTempStream, "/Metadata " + FXMPMetadataObject.ToString() + " 0 R");
+                SWriteLine(FTempStream, "/OutputIntents [" + FOutputIntentObject.ToString() + " 0 R]");
                 if (EmbeddedFiles.Count > 0)
                 {
                     string files = "[";
@@ -3453,18 +3461,18 @@ namespace Reportman.Drawing
                     }
                     files = files + "]";
                     resources = resources + "]";
-                    StreamUtil.SWriteLine(FTempStream, "/Names <<");
-                    StreamUtil.SWriteLine(FTempStream, "  /EmbeddedFiles << /Names " + files + " >>");
-                    StreamUtil.SWriteLine(FTempStream, ">>");
+                    SWriteLine(FTempStream, "/Names <<");
+                    SWriteLine(FTempStream, "  /EmbeddedFiles << /Names " + files + " >>");
+                    SWriteLine(FTempStream, ">>");
                     // /AF << /Names [ (pdfa_validation1.xml) 18 0 R (cajass.png) 20 0 R] >>
                     //    SWriteLine(FTempStream,'/AF << /Names '+ files + ' >> ');
-                    StreamUtil.SWriteLine(FTempStream, "/AF " + resources);
+                    SWriteLine(FTempStream, "/AF " + resources);
                 }
             }
 
 
-            StreamUtil.SWriteLine(FTempStream, ">>");
-            StreamUtil.SWriteLine(FTempStream, "endobj");
+            SWriteLine(FTempStream, ">>");
+            SWriteLine(FTempStream, "endobj");
             AddToOffset(FTempStream.Length);
             FTempStream.Seek(0, SeekOrigin.Begin);
             FTempStream.WriteTo(FMainPDF);
@@ -3484,26 +3492,26 @@ namespace Reportman.Drawing
             int i;
             FObjectCount = FObjectCount + 1;
             FTempStream.SetLength(0);
-            StreamUtil.SWriteLine(FTempStream, "xref");
-            StreamUtil.SWriteLine(FTempStream, "0 " + FObjectCount.ToString());
-            StreamUtil.SWriteLine(FTempStream, "0000000000 65535 f");
+            SWriteLine(FTempStream, "xref");
+            SWriteLine(FTempStream, "0 " + FObjectCount.ToString());
+            SWriteLine(FTempStream, "0000000000 65535 f");
 
             for (i = 0; i <= FObjectCount - 2; i++)
-                StreamUtil.SWriteLine(FTempStream, GetOffsetNumber(FObjectOffsets[i].ToString()) + " 00000 n");
+                SWriteLine(FTempStream, GetOffsetNumber(FObjectOffsets[i].ToString()) + " 00000 n");
 
-            StreamUtil.SWriteLine(FTempStream, "trailer");
-            StreamUtil.SWriteLine(FTempStream, "<< /Size " + FObjectCount.ToString());
-            StreamUtil.SWriteLine(FTempStream, "/Root " + FCatalogNum.ToString() + " 0 R");
-            StreamUtil.SWriteLine(FTempStream, "/Info 1 0 R");
+            SWriteLine(FTempStream, "trailer");
+            SWriteLine(FTempStream, "<< /Size " + FObjectCount.ToString());
+            SWriteLine(FTempStream, "/Root " + FCatalogNum.ToString() + " 0 R");
+            SWriteLine(FTempStream, "/Info 1 0 R");
             if (PDFConformance == PDFConformanceType.PDF_A_3)
             {
                 string guidString = Guid.NewGuid().ToString();
                 guidString = guidString.Replace("-", "");
-                StreamUtil.SWriteLine(FTempStream, "/ID [<" + guidString + "> <1234567890abcdef1234567890abcdef>]");
+                SWriteLine(FTempStream, "/ID [<" + guidString + "> <1234567890abcdef1234567890abcdef>]");
             }
-            StreamUtil.SWriteLine(FTempStream, ">>");
-            StreamUtil.SWriteLine(FTempStream, "startxref");
-            StreamUtil.SWriteLine(FTempStream, FMainPDF.Length.ToString());
+            SWriteLine(FTempStream, ">>");
+            SWriteLine(FTempStream, "startxref");
+            SWriteLine(FTempStream, FMainPDF.Length.ToString());
             FTempStream.Seek(0, SeekOrigin.Begin);
             FTempStream.WriteTo(FMainPDF);
         }
@@ -3517,34 +3525,34 @@ namespace Reportman.Drawing
                     FObjectCount = FObjectCount + 1;
 
                     annotation.StreamNumber = FObjectCount;
-                    StreamUtil.SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
-                    StreamUtil.SWriteLine(FTempStream, "<< /Type /Annot");
+                    SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
+                    SWriteLine(FTempStream, "<< /Type /Annot");
                     string anot = annotation.Annotation;
                     if (anot.Length > 4 && anot.Substring(0, 4).ToUpper() == "URL:")
                     {
-                        StreamUtil.SWriteLine(FTempStream, "   /Subtype /Link");
+                        SWriteLine(FTempStream, "   /Subtype /Link");
                         anot = anot.Substring(4, anot.Length - 4);
                         string coords = Canvas.UnitsToTextX(annotation.PosX) + " " + Canvas.UnitsToTextY(annotation.PosY + annotation.Height) +
                           " " + Canvas.UnitsToTextX(annotation.PosX + annotation.Width)
                           + " " + Canvas.UnitsToTextY(annotation.PosY);
-                        StreamUtil.SWriteLine(FTempStream, "   /Rect [" + coords + "]");
-                        StreamUtil.SWriteLine(FTempStream, "   /A << /Type /Action");
-                        StreamUtil.SWriteLine(FTempStream, "        /S /URI");
-                        StreamUtil.SWriteLine(FTempStream, "        /URI " + EncodePDFText(anot));
-                        StreamUtil.SWriteLine(FTempStream, "   >>");
+                        SWriteLine(FTempStream, "   /Rect [" + coords + "]");
+                        SWriteLine(FTempStream, "   /A << /Type /Action");
+                        SWriteLine(FTempStream, "        /S /URI");
+                        SWriteLine(FTempStream, "        /URI " + EncodePDFText(anot));
+                        SWriteLine(FTempStream, "   >>");
                     }
                     else
                     {
-                        StreamUtil.SWriteLine(FTempStream, "   /Subtype /Text");
+                        SWriteLine(FTempStream, "   /Subtype /Text");
                         string coords = Canvas.UnitsToTextX(annotation.PosX) + " " + Canvas.UnitsToTextY(annotation.PosY + annotation.Height) +
                           " " + Canvas.UnitsToTextX(annotation.PosX + annotation.Width)
                           + " " + Canvas.UnitsToTextY(annotation.PosY);
-                        StreamUtil.SWriteLine(FTempStream, "   /Rect [" + coords + "]");
-                        StreamUtil.SWriteLine(FTempStream, "   /Contents " + EncodePDFText(anot));
-                        StreamUtil.SWriteLine(FTempStream, "   /Open false");
-                        StreamUtil.SWriteLine(FTempStream, "   /C [1 1 0]");
+                        SWriteLine(FTempStream, "   /Rect [" + coords + "]");
+                        SWriteLine(FTempStream, "   /Contents " + EncodePDFText(anot));
+                        SWriteLine(FTempStream, "   /Open false");
+                        SWriteLine(FTempStream, "   /C [1 1 0]");
                     }
-                    StreamUtil.SWriteLine(FTempStream, ">>");
+                    SWriteLine(FTempStream, ">>");
                     AddToOffset(FTempStream.Length);
                     FTempStream.WriteTo(FMainPDF);
                 }
@@ -3577,20 +3585,20 @@ namespace Reportman.Drawing
             }
             FObjectCount = FObjectCount + 1;
             FTempStream.SetLength(0);
-            StreamUtil.SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
-            StreamUtil.SWriteLine(FTempStream, "<< /Type /Page");
-            StreamUtil.SWriteLine(FTempStream, "/Parent " + FParentNum.ToString() + " 0 R");
-            StreamUtil.SWriteLine(FTempStream, "/MediaBox [ 0 0 " +
+            SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
+            SWriteLine(FTempStream, "<< /Type /Page");
+            SWriteLine(FTempStream, "/Parent " + FParentNum.ToString() + " 0 R");
+            SWriteLine(FTempStream, "/MediaBox [ 0 0 " +
                 FCanvas.UnitsToTextX(aobj.PageWidth) + " " + FCanvas.UnitsToTextX(aobj.PageHeight) + "]");
-            StreamUtil.SWriteLine(FTempStream, "/Contents " + FPages[FCurrentSetPageObject] + " 0 R");
-            StreamUtil.SWriteLine(FTempStream, "/Resources " + FResourceNum.ToString() + " 0 R");
+            SWriteLine(FTempStream, "/Contents " + FPages[FCurrentSetPageObject] + " 0 R");
+            SWriteLine(FTempStream, "/Resources " + FResourceNum.ToString() + " 0 R");
             if (annotationsString.Length > 0)
             {
                 annotationsString.Append("]");
-                StreamUtil.SWriteLine(FTempStream, "/Annots " + annotationsString.ToString());
+                SWriteLine(FTempStream, "/Annots " + annotationsString.ToString());
             }
-            StreamUtil.SWriteLine(FTempStream, ">>");
-            StreamUtil.SWriteLine(FTempStream, "endobj");
+            SWriteLine(FTempStream, ">>");
+            SWriteLine(FTempStream, "endobj");
             AddToOffset(FTempStream.Length);
             FTempStream.Seek(0, SeekOrigin.Begin);
             FTempStream.WriteTo(FMainPDF);
@@ -3604,7 +3612,7 @@ namespace Reportman.Drawing
                 FObjectCount = FObjectCount + 1;
                 FTempStream.SetLength(0);
                 string resIndex = FObjectCount.ToString();
-                StreamUtil.SWriteLine(FTempStream, resIndex + " 0 obj");
+                SWriteLine(FTempStream, resIndex + " 0 obj");
                 if (Masks.ContainsKey(index))
                 {
                     string resIndex2 = (FObjectCount + 1).ToString();
@@ -3615,8 +3623,8 @@ namespace Reportman.Drawing
                     streamPos.Stream.Seek(0, SeekOrigin.Begin);
                 }
                 FBitmapStreams[index - 1].WriteTo(FTempStream);
-                StreamUtil.SWriteLine(FTempStream, PDFCanvas.ENDSTREAM);
-                StreamUtil.SWriteLine(FTempStream, "endobj");
+                SWriteLine(FTempStream, PDFCanvas.ENDSTREAM);
+                SWriteLine(FTempStream, "endobj");
                 AddToOffset(FTempStream.Length);
                 FTempStream.Seek(0, SeekOrigin.Begin);
                 FTempStream.WriteTo(FMainPDF);
