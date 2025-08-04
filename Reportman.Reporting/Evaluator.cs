@@ -968,6 +968,7 @@ namespace Reportman.Reporting
             FIdentifierList.Add("MOD", new IdenModul(this));
             FIdentifierList.Add("EVALTEXT", new IdenEvalText(this));
             FIdentifierList.Add("NUMTOTEXT", new IdenNumToText(this));
+            FIdentifierList.Add("REPLACESTR", new IdenReplaceStr(this));
         }
 
         /// <summary> 

@@ -952,4 +952,45 @@ namespace Reportman.Reporting
             return aresult;
         }
     }
+    class IdenReplaceStr : IdenFunction
+    {
+        public IdenReplaceStr(Evaluator eval)
+            : base(eval)
+        {
+            SetParamCount(3);
+            Name = "REPLACESTR";
+            FModel = "function REPLACESTR(s:string;old:string;new:string):string";
+        }
+        protected override Variant GetValue()
+        {
+            Variant aresult = new Variant();           
+            if (Params[0].VarType != VariantType.Null)
+            {
+                if (Params[0].VarType != VariantType.String)
+                {
+                    throw new NamedException(Translator.TranslateStr(438), "REPLACESTR");
+                }
+                string s = Params[0].AsString;
+                if (Params[1].VarType != VariantType.String)
+                {
+                    throw new NamedException(Translator.TranslateStr(438), "REPLACESTR");
+                }
+                string oldstr = Params[1].AsString;
+                if (Params[2].VarType != VariantType.String)
+                {
+                    throw new NamedException(Translator.TranslateStr(438), "REPLACESTR");
+                }
+                string newstr = Params[2].AsString;
+                if (oldstr != null && newstr != null && oldstr.Length > 0)
+                {
+                    aresult = s.Replace(oldstr, newstr);
+                }
+                else
+                {
+                    aresult = s;
+                }
+            }
+            return aresult;
+        }
+    }
 }
