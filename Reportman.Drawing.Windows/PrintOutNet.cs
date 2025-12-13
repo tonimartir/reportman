@@ -127,7 +127,7 @@ namespace Reportman.Drawing
 		override public Point TextExtent(TextObjectStruct aobj, Point extent)
         {
             // Text extent for justify is implemented separately
-            if ((CurrentMetafile.PDFConformance == PDFConformanceType.PDF_A_3) || (((aobj.Alignment & MetaFile.AlignmentFlags_AlignHJustify) > 0) || (aobj.Type1Font == PDFFontType.Linked) || (aobj.Type1Font == PDFFontType.Embedded)))
+            if (!aobj.RightToLeft && ((CurrentMetafile.PDFConformance == PDFConformanceType.PDF_A_3) || (((aobj.Alignment & MetaFile.AlignmentFlags_AlignHJustify) > 0) || (aobj.Type1Font == PDFFontType.Linked) || (aobj.Type1Font == PDFFontType.Embedded))))
             {
                 if (npdfdriver == null)
                     npdfdriver = new PrintOutPDF();
@@ -299,7 +299,12 @@ namespace Reportman.Drawing
         /// <returns>Returns a StringFormat usable in any System.Drawing function</returns>
         public StringFormat MetaObjectToStringFormat(MetaObjectText obj)
         {
-            if (fl == null || stock_WordWrap != obj.WordWrap || stock_RightToLeft != obj.RightToLeft
+            bool wordWrap = obj.WordWrap;
+            if ((obj.Alignment & MetaFile.AlignmentFlags_SingleLine)>0)
+            {
+                wordWrap = false;
+            }
+            if (fl == null || stock_WordWrap != wordWrap || stock_RightToLeft != obj.RightToLeft
                 || stock_Alignment != obj.Alignment || obj.CutText != stock_CutText)
             {
                 if (fl == null)
@@ -316,7 +321,7 @@ namespace Reportman.Drawing
                     fl.FormatFlags = fl.FormatFlags | StringFormatFlags.NoClip;
                     fl.Trimming = StringTrimming.None;
                 }
-                if (!obj.WordWrap)
+                if (!wordWrap)
                     fl.FormatFlags = fl.FormatFlags | StringFormatFlags.NoWrap;
                 if (obj.RightToLeft)
                     fl.FormatFlags = fl.FormatFlags | StringFormatFlags.DirectionRightToLeft;
@@ -479,7 +484,7 @@ namespace Reportman.Drawing
                         }
                         Point oldextent = new Point(objt.Width, objt.Height);
                         Point extent;
-                        if (((objt.Alignment & MetaFile.AlignmentFlags_AlignHJustify) > 0) || (objt.Type1Font == PDFFontType.Linked) || (objt.Type1Font == PDFFontType.Embedded) || (CurrentMetafile.PDFConformance == PDFConformanceType.PDF_A_3))
+                        if (!objt.RightToLeft && ((objt.Alignment & MetaFile.AlignmentFlags_AlignHJustify) > 0) || (objt.Type1Font == PDFFontType.Linked) || (objt.Type1Font == PDFFontType.Embedded) || (CurrentMetafile.PDFConformance == PDFConformanceType.PDF_A_3))
                         {
                             if (npdfdriver == null)
                                 npdfdriver = new PrintOutPDF();
@@ -518,12 +523,18 @@ namespace Reportman.Drawing
                         graph.FillRectangle(stock_backbrush, nrec);
                     }
                     // Text justify is implemented separaterly
-                    if (((objt.Alignment & MetaFile.AlignmentFlags_AlignHJustify) > 0) || (objt.Type1Font == PDFFontType.Embedded) || (objt.Type1Font == PDFFontType.Embedded) || (CurrentMetafile.PDFConformance == PDFConformanceType.PDF_A_3))
+                    if (!objt.RightToLeft &&   
+                         (((objt.Alignment & MetaFile.AlignmentFlags_AlignHJustify) > 0) || (objt.Type1Font == PDFFontType.Embedded) || (objt.Type1Font == PDFFontType.Embedded) || (CurrentMetafile.PDFConformance == PDFConformanceType.PDF_A_3)
+                         ))
                     {
                         TextRectJustify(graph, new Rectangle(aleft, atop, obj.Width, obj.Height), TextObjectStruct.FromMetaObjectText(page, objt), font, stock_brush);
                     }
                     else
                     {
+                        if ((objt.Alignment & MetaFile.AlignmentFlags_SingleLine)>0)
+                        {
+                            atext = atext.Replace("\r\n", " ").Replace("\n", " ").Replace("\r", "");
+                        }
                         DrawString(graph, atext, font, stock_brush, arec, MetaObjectToStringFormat(objt));
                     }
                     if (objt.FontRotation != 0)
@@ -877,7 +888,10 @@ namespace Reportman.Drawing
                 singleline = true;
             }
             if (singleline)
+            {
                 wordbreak = false;
+                Text.Replace("\r\n", " ").Replace("\n", " ").Replace("\r", "");
+            }
             float intdpix = gr.DpiX;
             float intdpiy = gr.DpiY;
             // Calculates text extent and apply alignment
@@ -895,7 +909,7 @@ namespace Reportman.Drawing
                 posy = arect.Bottom - recsize.Height;
             if ((Alignment & MetaFile.AlignmentFlags_AlignVCenter) > 0)
                 posy = arect.Top + (((arect.Bottom - arect.Top) - recsize.Bottom) / 2);
-            LineInfos linfos = npdfdriver.LineInfo;
+            var linfos = npdfdriver.LineInfo;
             bool dojustify;
             for (i = 0; i < linfos.Count; i++)
             {

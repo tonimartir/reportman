@@ -92,6 +92,7 @@ namespace Reportman.Reporting
                 FChecking = false;
             }
         }
+        public event DataNeededEvent OnDatasetNeeded;
         /// <summary>
         /// Add a variable to the evaluator
         /// </summary>
@@ -171,6 +172,14 @@ namespace Reportman.Reporting
             {
                 bool duplicated = false;
                 EvalIdentifier idenfield = FAliasList.FindField(sfield, sdataset, ref duplicated);
+                if (idenfield == null)
+                {
+                    if (OnDatasetNeeded != null)
+                    {
+                        OnDatasetNeeded(new DataNeededEventArgs(this, sdataset));
+                        idenfield = FAliasList.FindField(sfield, sdataset, ref duplicated);
+                    }
+                }
                 if (duplicated)
                     throw new NamedException("Especify variable or file:" + sfield, sfield);
                 if (idenfield != null)
@@ -937,11 +946,14 @@ namespace Reportman.Reporting
             FIdentifierList.Add("UPPERCASE", new IdenUpperCase(this));
             FIdentifierList.Add("STRINGTOBIN", new IdenStringToBin(this));
             FIdentifierList.Add("DAY", new IdenDay(this));
+            FIdentifierList.Add("MONTH", new IdenMonth(this));
             FIdentifierList.Add("MONTHNAME", new IdenMonthName(this));
             FIdentifierList.Add("YEAR", new IdenYear(this));
             FIdentifierList.Add("TRIM", new IdenTrim(this));
             FIdentifierList.Add("FORMATSTR", new IdenFormatStr(this));
+            FIdentifierList.Add("FORMATNUM", new IdenFormatStr(this));
             FIdentifierList.Add("LEFT", new IdenLeft(this));
+            FIdentifierList.Add("REPLACESTR", new IdenReplaceStr(this));
             FIdentifierList.Add("RIGHT", new IdenRight(this));
             FIdentifierList.Add("LENGTH", new IdenLength(this));
             FIdentifierList.Add("POS", new IdenPos(this));
@@ -1001,5 +1013,16 @@ namespace Reportman.Reporting
 
         }
         #endregion
+    }
+    public delegate void DataNeededEvent(DataNeededEventArgs args);
+    public class DataNeededEventArgs
+    {
+        public string Dataset;
+        public Evaluator Evaluator;
+        public DataNeededEventArgs(Evaluator neval, string ndataset)
+        {
+            Evaluator = neval;
+            Dataset = ndataset;
+        }
     }
 }

@@ -63,7 +63,7 @@ namespace Reportman.Drawing
             }
             else
             {
-                return value.ToString("yyyy-MM-ddTHH:mm:ssZ");
+                return value.ToString("yyyy-MM-ddTHH:mm:ssK");
 
             }
         }

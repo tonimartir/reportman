@@ -24,6 +24,8 @@ using System.IO;
 using System.Diagnostics;
 using System.Threading;
 using System.Reflection;
+using System.Text;
+
 
 #if NETSTANDARD2_0
 #else
@@ -219,13 +221,15 @@ namespace Reportman.Drawing
             {
                 if (s.Length >= maxlength)
                 {
-                    if (s.Substring(s.Length - maxlength, maxlength).ToUpper() == nfilename.ToUpper() + "." + extens3)
+                    string toSearch = s.Substring(s.Length - maxlength, maxlength).ToUpper();
+                    if (toSearch == nfilename.ToUpper() + "." + extens3)
                     {
                         resname = s;
                         resourcefound = true;
                         break;
                     }
-                    if (s.Substring(s.Length - maxlength + 1, maxlength - 1).ToUpper() == nfilename.ToUpper() + "." + extens2)
+                    toSearch = s.Substring(s.Length - maxlength + 1, maxlength - 1).ToUpper();
+                    if (toSearch == nfilename.ToUpper() + "." + extens2)
                     {
                         resname = s;
                         resourcefound = true;
@@ -553,6 +557,39 @@ namespace Reportman.Drawing
             if (index == 448)
                 newvalue = newvalue.Replace("%s", "{0}");
             return newvalue;
+        }
+        public static void SaveFileJsonDefault(string fileName)
+        {
+            atrans.SaveFileJson(fileName);
+        }
+        public void SaveFileJson(string fileName)
+        {
+            StringBuilder nbuilder = new StringBuilder();
+            nbuilder.AppendLine("{");
+            string firstIndex = TranslateStr(0);
+            int idx = 0;
+            while (idx < Count)
+            {
+                nbuilder.Append(StringUtil.DoubleQuoteStr("RpKey_" + idx.ToString()) + ": " +
+                    StringUtil.DoubleQuoteStrJson(this[idx]));
+                idx++;
+                if (idx < Count)
+                {
+                    nbuilder.AppendLine(",");
+                }
+                else
+                {
+                    nbuilder.AppendLine();
+                }
+            }
+            nbuilder.AppendLine("}");
+            using (System.IO.FileStream nstream = new FileStream(fileName, FileMode.Create))
+            {
+                using (StreamWriter nwriter = new StreamWriter(nstream, Encoding.UTF8))
+                {
+                    nwriter.Write(nbuilder.ToString());
+                }
+            }
         }
         /// <summary>
         /// You can override the default path to the search of translation files, useful for example

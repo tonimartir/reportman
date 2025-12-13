@@ -565,7 +565,7 @@ namespace Reportman.Drawing.Forms
             toolStrip1.ItemAdded += ToolStrip1_ItemAdded; ;
             toolStrip1.ItemRemoved += ToolStrip1_ItemRemoved;
 
-            int separatorwidth = Convert.ToInt32(4 * Windows.GraphicUtils.DPIScale);
+            int separatorwidth = Convert.ToInt32(4 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
             botonmin.Padding = new Padding(separatorwidth, 0, separatorwidth, 0);
             botonmax.Padding = new Padding(separatorwidth, 0, separatorwidth, 0);
             botonclose.Padding = new Padding(separatorwidth, 0, separatorwidth, 0);
@@ -610,7 +610,7 @@ namespace Reportman.Drawing.Forms
             }
             else
             {
-                firstitem.Margin = new Padding(Convert.ToInt32(20 * Windows.GraphicUtils.DPIScale), 0, 0, 0);
+                firstitem.Margin = new Padding(Convert.ToInt32(20 * Reportman.Drawing.Windows.GraphicUtils.DPIScale), 0, 0, 0);
             }
         }
 

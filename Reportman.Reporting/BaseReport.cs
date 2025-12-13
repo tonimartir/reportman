@@ -109,10 +109,43 @@ namespace Reportman.Reporting
         }
     }
     /// <summary>
+    /// Exception class, used by reporting engine when an error in report item by name
+    /// </summary>
+    public class ReportNamedException : System.Exception
+    {
+        /// <summary>
+        /// Property name when applicable
+        /// </summary>
+        public string PropertyName;
+        /// <summary>
+        /// Report item causing the problem, when applicable
+        /// </summary>
+        public string ItemName;
+        /// <summary>
+        /// Constructor to launch a report exception
+        /// </summary>
+        /// <param name="amessage"></param>
+        /// <param name="element"></param>
+        /// <param name="propname"></param>
+        public ReportNamedException(string amessage, string elementName, string propname)
+            : base(amessage)
+        {
+            ItemName = elementName;
+            PropertyName = propname;
+        }
+    }
+    /// <summary>
     /// Base class for Report, defines basic functionallity
     /// </summary>
-	abstract public class BaseReport : IDisposable
+    abstract public class BaseReport : ReportItem, IDisposable
     {
+        /// <summary>
+        /// Undo cue
+        /// </summary>
+        public UndoCue UndoCue;
+
+        public PageSizeDetail InitialPageDetail;
+
         /// <summary>
         /// Maximum number of pages a report can handle
         /// </summary>
@@ -159,18 +192,24 @@ namespace Reportman.Reporting
         /// </summary>
 		protected string LastErrorProcessing;
         private MetaFile FMetaFile;
+        // protected PageSizeDetail PageDetail = new PageSizeDetail();
+        /// <summary>
+        /// List of subreports to execute, if not assigned or empty all subreports 
+        /// will be executed
+        /// </summary>
+        [System.Text.Json.Serialization.JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
+        public List<int> ExecuteSubReportIndexes;
         /// <summary>
         /// Report Metafile storing drawing information for the report, 
         /// that is pages and objects inside pages
         /// </summary>
+        [System.Text.Json.Serialization.JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
         public MetaFile MetaFile
         {
             get { return FMetaFile; }
             set { FMetaFile = value; }
-        }
-        public bool ShouldSerializeMetaFile()
-        {
-            return false;
         }
         /// <summary>
         /// Sections still not drawn, but mandatory to draw before continuing report
@@ -209,14 +248,12 @@ namespace Reportman.Reporting
 		protected bool FCompose;
 
 
+        [System.Text.Json.Serialization.JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
         public bool Compose
         {
             set { FCompose = value; }
             get { return FCompose; }
-        }
-        public bool ShouldSerializeCompose()
-        {
-            return false;
         }
 
         /// <summary>
@@ -243,13 +280,11 @@ namespace Reportman.Reporting
         /// <summary>
         /// Number of records processed by the main dataset in the current subreport
         /// </summary>
+        [System.Text.Json.Serialization.JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
         public int RecordCount
         {
             get { return FRecordCount; }
-        }
-        public bool ShouldSerializeRecordCount()
-        {
-            return false;
         }
 
         /// <summary>
@@ -345,12 +380,10 @@ namespace Reportman.Reporting
         /// <summary>
         /// The print driver used by the engine to calculate or print the report
         /// </summary>
+        [System.Text.Json.Serialization.JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
         public PrintOut Driver { get { return FDriver; } }
 
-        public bool ShouldSerializeDriver()
-        {
-            return false;
-        }
 
         /// <summary>
         /// Current page number (zero based index)
@@ -373,9 +406,21 @@ namespace Reportman.Reporting
         /// </summary>
 		public int FreeSpace;
         /// <summary>
+        /// Report has been modified (designer)
+        /// </summary>
+        [System.Text.Json.Serialization.JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
+
+        public bool Modified;
+
+
+        /// <summary>
         /// List of all components related to the report
         /// </summary>
-		public ReportItems Components;
+        [System.Text.Json.Serialization.JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
+
+        public ReportItems Components = new ReportItems();
         private int FLanguage;
         /// <summary>
         /// Current language index
@@ -444,10 +489,6 @@ namespace Reportman.Reporting
         /// </summary>
 		public PageSizeType PageSize { get; set; }
 
-        /// <summary>
-        /// Detailed page size for the report
-        /// </summary>
-		public PageSizeDetail PageDetail { get; set; } = new PageSizeDetail();
 
         /// <summary>
         /// Page size index if applicable, when it matchs the Windows GDI page size indexes
@@ -601,22 +642,19 @@ namespace Reportman.Reporting
         public PDFConformanceType PDFConformance = PDFConformanceType.PDF_1_4;
         public bool PDFCompressed;
         // Metadata
-        public string DocAuthor;
-        public string DocTitle;
-        public string DocSubject;
-        public string DocProducer;
-        public string DocCreator;
-        public string DocCreationDate;
-        public string DocModificationDate;
-        public string DocKeywords;
-        public string DocXMPContent;
+        public string DocAuthor { get; set; }
+        public string DocTitle { get; set; }
+        public string DocSubject { get; set; }
+        public string DocProducer { get; set; }
+        public string DocCreator { get; set; }
+        public string DocCreationDate { get; set; }
+        public string DocModificationDate { get; set; }
+        public string DocKeywords { get; set; }
+        public string DocXMPContent { get; set; }
         public bool PreviewMargins { get; set; }
+        [System.Text.Json.Serialization.JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
         public Evaluator Evaluator;
-        public bool ShouldSerializeEvaluator()
-        {
-            return false;
-        }
-
         public OrientationType CurrentOrientation;
         public bool UpdatePageSize;
         /// <summary>
@@ -869,15 +907,15 @@ namespace Reportman.Reporting
             areader.LoadFromFile(filename);
 
         }
-        public void SaveToStream(Stream astream)
+        public void SaveToStream(Stream astream, StreamVersion version = StreamVersion.V2)
         {
             ReportWriter areader = new ReportWriter(this);
-            areader.SaveToStream(astream);
+            areader.SaveToStream(astream, version);
         }
-        public void SaveToFile(string filename)
+        public void SaveToFile(string filename, StreamVersion version = StreamVersion.V2)
         {
             ReportWriter areader = new ReportWriter(this);
-            areader.SaveToFile(filename);
+            areader.SaveToFile(filename, version);
 
         }
         public void AddTotalPagesItem(int apageindex, int aobjectindex,
@@ -1024,8 +1062,35 @@ namespace Reportman.Reporting
         public void InitEvaluator()
         {
             Evaluator = new Evaluator();
+            Evaluator.OnDatasetNeeded += Evaluator_OnDatasetNeeded;
             Evaluator.Language = Language;
         }
+        SortedList<string, string> openingDatasets = new SortedList<string, string>();
+        private void Evaluator_OnDatasetNeeded(DataNeededEventArgs args)
+        {
+            if (openingDatasets.ContainsKey(args.Dataset))
+            {
+                return;
+            }
+            openingDatasets.Add(args.Dataset, args.Dataset);
+            try
+            {
+                DataInfo dinfo = DataInfo[args.Dataset];
+                if (dinfo != null)
+                {
+                    if (dinfo.DataReader == null)
+                    {
+                        UpdateParamsBeforeOpen(DataInfo.IndexOf(args.Dataset), true);
+                        dinfo.Connect();
+                    }
+                }
+            }
+            finally
+            {
+                openingDatasets.Remove(args.Dataset);
+            }
+        }
+
         public void InitializeParams()
         {
             AddReportItemsToEvaluator(Evaluator);
@@ -1170,13 +1235,24 @@ namespace Reportman.Reporting
             int customwidth, int customheight, int papersource,
             string forcepapername, int duplex)
         {
-            PageDetail.Index = pageIndex;
-            PageDetail.Custom = custom;
-            PageDetail.CustomHeight = customheight;
-            PageDetail.CustomWidth = customwidth;
-            PageDetail.PaperSource = papersource;
-            PageDetail.ForcePaperName = forcepapername;
-            UpdatePageSize = true;
+            if (pageIndex < MetaFile.Pages.Count)
+            {
+                var page = MetaFile.Pages[pageIndex];
+                page.UpdatedPageSize = true;
+                if (page.PageDetail == null)
+                {
+                    page.PageDetail = new PageSizeDetail();
+                }
+                PageSizeDetail PageDetail = page.PageDetail;
+                PageDetail.Duplex = Duplex;
+
+                PageDetail.Index = pageIndex;
+                PageDetail.Custom = custom;
+                PageDetail.CustomHeight = customheight;
+                PageDetail.CustomWidth = customwidth;
+                PageDetail.PaperSource = papersource;
+                PageDetail.ForcePaperName = forcepapername;
+            }
             return true;
 
         }
@@ -1209,7 +1285,8 @@ namespace Reportman.Reporting
         {
             Variant FValue;
             string data;
-            BarcodeItem barcode = new BarcodeItem(null);
+            BarcodeItem barcode = new BarcodeItem();
+            barcode.Report = this;
             barcode.Width = Width;
             barcode.Height = Height;
             barcode.BarType = (BarcodeType)BarType;
@@ -1637,6 +1714,25 @@ namespace Reportman.Reporting
                 DatabaseInfo[i].DisConnect();
             }
         }
+        public bool SubreportMustBeExecuted(SubReport nsubreport)
+        {
+            if (ExecuteSubReportIndexes == null)
+            {
+                return true;
+            }
+            if (ExecuteSubReportIndexes.Count == 0)
+            {
+                return true;
+            }
+            foreach (int index in ExecuteSubReportIndexes)
+            {
+                if (index == SubReports.IndexOf(nsubreport))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         public SortedList<string, string> UsedDataReaders = new SortedList<string, string>();
         protected void ActivateDatasets()
         {
@@ -1656,7 +1752,23 @@ namespace Reportman.Reporting
                     dinfo.SQLOverride = "";
                     if (dinfo.OpenOnStart)
                     {
-                        if (dinfo.DataReader == null)
+                        bool openDataset = true;
+                        // Open only if the asociated subreport must be executed
+                        if (ExecuteSubReportIndexes != null && ExecuteSubReportIndexes.Count > 0)
+                        {
+                            openDataset = false;
+                            foreach (SubReport subrep in SubReports)
+                            {
+                                if (subrep.Alias == dinfo.Alias)
+                                {
+                                    if (SubreportMustBeExecuted(subrep))
+                                    {
+                                        openDataset = true;
+                                    }
+                                }
+                            }
+                        }
+                        if (dinfo.DataReader == null && openDataset)
                         {
                             UpdateParamsBeforeOpen(i, true);
                             dinfo.Connect();
@@ -1666,11 +1778,14 @@ namespace Reportman.Reporting
                 for (i = 0; i < SubReports.Count; i++)
                 {
                     alias = SubReports[i].Alias;
-                    if (alias.Length > 0)
+                    if (SubreportMustBeExecuted(SubReports[i]))
                     {
-                        int index = DataInfo.IndexOf(alias);
-                        if (index < 0)
-                            throw new NamedException("Data alias not found:" + alias, alias);
+                        if (alias.Length > 0)
+                        {
+                            int index = DataInfo.IndexOf(alias);
+                            if (index < 0)
+                                throw new NamedException("Data alias not found:" + alias, alias);
+                        }
                     }
                 }
             }
@@ -1687,7 +1802,8 @@ namespace Reportman.Reporting
         }
         public SubReport AddSubReport()
         {
-            SubReport subrep = new SubReport(this);
+            SubReport subrep = new SubReport();
+            subrep.Report = this;
             GenerateNewName(subrep);
             subrep.AddDetail();
             SubReports.Add(subrep);
@@ -1715,6 +1831,47 @@ namespace Reportman.Reporting
                 FTotalPages.Clear();
             }
         }
+        public void DoUpdatePageSize(MetaPage MetaFilepage, PageSizeDetail detail)
+        {
+            Point apagesize;
+            // Sets page orientation and size
+            MetaFilepage.PageDetail = new PageSizeDetail();
+            MetaFilepage.PageDetail.PaperSource = detail.PaperSource;
+            MetaFilepage.PageDetail.Duplex = detail.Duplex;
+            MetaFilepage.PageDetail.ForcePaperName = detail.ForcePaperName;
+
+            MetaFilepage.PageDetail.PhysicWidth = detail.PhysicWidth;
+            MetaFilepage.PageDetail.PhysicHeight = detail.PhysicHeight;
+            MetaFilepage.Orientation = CurrentOrientation;
+            MetaFilepage.PageDetail.Index = detail.Index;
+            MetaFilepage.PageDetail.Custom = detail.Custom;
+            if (detail.Custom)
+            {
+                MetaFilepage.PageDetail.CustomWidth = detail.CustomWidth;
+                MetaFilepage.PageDetail.CustomHeight = detail.CustomHeight;
+            }
+            if (!UpdatePageSize)
+            {
+                return;
+            }
+            MetaFilepage.UpdatedPageSize = true;
+            // Sets and gets page size from the driver
+            FDriver.SetOrientation(CurrentOrientation);
+            if (PageSize != PageSizeType.Default)
+            {
+                apagesize = FDriver.SetPageSize(MetaFilepage.PageDetail);
+            }
+            else
+            {
+                int pageIndex;
+                apagesize = FDriver.GetPageSize(out pageIndex);
+                PageSizeIndex = pageIndex;
+            }
+            InternalPageWidth = apagesize.X;
+            pagespacex = InternalPageWidth;
+            InternalPageHeight = apagesize.Y;
+        }
+
         class IdenSetLanguage : IdenFunctionReport
         {
             public IdenSetLanguage(Evaluator eval, BaseReport rp)
@@ -1838,6 +1995,7 @@ namespace Reportman.Reporting
                 }
                 return aresult;
             }
+
         }
         class IdenOrientationOp : IdenFunctionReport
         {
@@ -1857,6 +2015,9 @@ namespace Reportman.Reporting
                 }
                 int avalue = Params[0];
                 Report.OrientationOp(avalue);
+                PageSizeDetail pageDetail = Report.MetaFile.Pages[Report.MetaFile.Pages.CurrentCount - 1].PageDetail;
+                Report.DoUpdatePageSize(Report.MetaFile.Pages[Report.MetaFile.Pages.CurrentCount - 1], pageDetail);
+
                 return aresult;
             }
         }
@@ -2466,7 +2627,8 @@ end;
         /// <param name="ritem"></param>
         public void GenerateNewName(ReportItem ritem)
         {
-            ritem.Name = FindNewName(ritem);
+            string newName = FindNewName(ritem);
+            ritem.Name = newName;
         }
         /// <summary>
         /// Find  new name for a report item
@@ -2536,5 +2698,666 @@ end;
                 MetaFile = null;
             }
         }
+        public static ReportItem NewComponentByClassName(string className)
+        {
+            ReportItem newItem = null;
+
+            switch (className)
+            {
+                case "TRPLABEL":
+                    var label = new LabelItem();
+                    label.AllStrings = new Strings();
+                    newItem = label;
+                    break;
+
+                case "TRPEXPRESSION":
+                    var expre = new ExpressionItem();
+                    newItem = expre;
+                    break;
+
+                case "TRPSHAPE":
+                    var shape = new ShapeItem();
+                    newItem = shape;
+                    break;
+
+                case "TRPIMAGE":
+                    var image = new ImageItem();
+                    newItem = image;
+                    break;
+
+                case "TRPBARCODE":
+                    var barcode = new BarcodeItem();
+                    newItem = barcode;
+                    break;
+
+                case "TRPCHART":
+                    var chart = new ChartItem();
+                    newItem = chart;
+                    break;
+
+                case "TRPSECTION":
+                    var section = new Section();
+                    newItem = section;
+                    break;
+
+                case "TRPSUBREPORT":
+                    var subreport = new SubReport();
+                    newItem = subreport;
+                    break;
+
+                case "TRPPARAM":
+                    var param = new Param();
+                    newItem = param;
+                    break;
+
+                case "TRPDATAINFOITEM":
+                    var dataInfo = new DataInfo();
+                    newItem = dataInfo;
+                    break;
+
+                case "TRPDATABASEINFOITEM":
+                    var databaseInfo = new DatabaseInfo();
+                    newItem = databaseInfo;
+                    break;
+
+                default:
+                    throw new Exception("Class not found: " + className);
+            }
+
+            return newItem;
+        }
+        public void DeleteItem(ReportItem item, int groupId)
+        {
+            switch (item.ClassName)
+            {
+                case "TRPDATAINFOITEM":
+                    DeleteDataInfo((DataInfo)item, groupId);
+                    break;
+
+                case "TRPDATABASEINFOITEM":
+                    DeleteDatabaseInfo((DatabaseInfo)item, groupId);
+                    break;
+
+                case "TRPSECTION":
+                    var section = (Section)item;
+                    if (section.SectionType == SectionType.Detail)
+                    {
+                        var subreport = GetParentSubReport(section);
+                        if (subreport.DetailCount == 1)
+                            return;
+                    }
+                    DeleteSection(section, groupId);
+                    break;
+
+                case "TRPPARAM":
+                    DeleteParam((Param)item, groupId);
+                    break;
+
+                case "TRPSUBREPORT":
+                    if (SubReports.Count <= 1)
+                        return;
+                    DeleteSubreport((SubReport)item, groupId);
+                    break;
+
+                default:
+                    var printPosItem = (PrintPosItem)item;
+                    var parentSec = GetParentSection(printPosItem);
+                    int index = parentSec.Components.IndexOf(printPosItem);
+                    DeleteComponentPrintPosItem(parentSec, printPosItem, index, groupId);
+                    break;
+            }
+        }
+        public Section GetParentSection(PrintPosItem item)
+        {
+            foreach (SubReport subreport in SubReports)
+            {
+                foreach (Section section in subreport.Sections)
+                {
+                    foreach (PrintPosItem sectionItem in section.Components)
+                    {
+                        if (sectionItem == item)
+                        {
+                            return section;
+                        }
+                    }
+                }
+            }
+            throw new Exception("Component " + item.Name + " not found in report");
+        }
+        public SubReport GetParentSubReport(Section section)
+        {
+            foreach (SubReport subreport in SubReports)
+            {
+                foreach (Section sectionItem in subreport.Sections)
+                {
+                    if (sectionItem == section)
+                    {
+                        return subreport;
+                    }
+                }
+            }
+            throw new Exception("Section " + section.Name + " not found in report");
+        }
+
+        public void DeleteComponentPrintPosItem(Section section, PrintPosItem compo, int index, int groupId)
+        {
+            if (groupId != 0)
+            {
+                var op = new ChangeObjectOperation(OperationType.Remove, groupId)
+                {
+                    ParentName = section.Name,
+                    ComponentClass = compo.ClassName,
+                    ComponentName = compo.Name,
+                    OldItemIndex = 0
+                };
+
+                AddPrintPosItemProperties(compo, op);
+                switch (compo.ClassName)
+                {
+                    case "TRPEXPRESSION":
+                        AddPrintItemTextProperties((PrintItemText)compo, op);
+                        AddExpressionProperties((ExpressionItem)compo, op);
+                        break;
+                    case "TRPLABEL":
+                        AddPrintItemTextProperties((PrintItemText)compo, op);
+                        AddLabelProperties((LabelItem)compo, op);
+                        break;
+                    case "TRPSHAPE":
+                        AddShapeProperties((ShapeItem)compo, op);
+                        break;
+                    case "TRPIMAGE":
+                        AddImageProperties((ImageItem)compo, op);
+                        break;
+                    case "TRPCHART":
+                        AddPrintItemTextProperties((PrintItemText)compo, op);
+                        AddChartProperties((ChartItem)compo, op);
+                        break;
+                    case "TRPBARCODE":
+                        AddBarcodeProperties((BarcodeItem)compo, op);
+                        break;
+                }
+                UndoCue?.AddOperation(op, this);
+            }
+            DeleteComponent(compo);
+            section.Components.RemoveAt(index);
+        }
+
+        private void DeleteSection(Section section, int groupId)
+        {
+            var subreport = GetParentSubReport(section);
+            if (subreport == null)
+                return;
+
+            switch (section.SectionType)
+            {
+                case SectionType.Detail:
+                case SectionType.PageFooter:
+                case SectionType.PageHeader:
+                    DeleteComponents(section, groupId);
+                    int index = subreport.Sections.IndexOf(section);
+                    if (index >= 0)
+                    {
+                        DeleteComponent(section);
+                        if (groupId != 0)
+                        {
+                            var op = new ChangeObjectOperation(OperationType.Remove, UndoCue.GetGroupId())
+                            {
+                                ComponentName = section.Name,
+                                ParentName = subreport.Name,
+                                ComponentClass = section.ClassName,
+                                OldItemIndex = index
+                            };
+                            AddCommonSectionProperties(section, op);
+                            UndoCue?.AddOperation(op, this);
+                        }
+                        subreport.Sections.RemoveAt(index);
+                    }
+                    break;
+
+                case SectionType.GroupFooter:
+                case SectionType.GroupHeader:
+                    string groupName = section.GroupName;
+                    var secToDelete = new List<Section>();
+                    foreach (var sec in subreport.Sections)
+                    {
+                        DeleteComponents(sec, groupId);
+                        if (sec.GroupName == groupName &&
+                           (sec.SectionType == SectionType.GroupFooter || sec.SectionType == SectionType.GroupHeader))
+                        {
+                            secToDelete.Add(sec);
+                        }
+                    }
+                    foreach (var sec in secToDelete)
+                    {
+                        int idx = subreport.Sections.IndexOf(sec);
+                        if (idx >= 0)
+                        {
+                            if (groupId != 0)
+                            {
+                                var op = new ChangeObjectOperation(OperationType.Remove, groupId)
+                                {
+                                    ComponentName = sec.Name,
+                                    ParentName = subreport.Name,
+                                    ComponentClass = sec.ClassName,
+                                    OldItemIndex = idx
+                                };
+                                AddCommonSectionProperties(sec, op);
+                                UndoCue?.AddOperation(op, this);
+                            }
+                            DeleteComponent(sec);
+                            subreport.Sections.RemoveAt(idx);
+                        }
+                    }
+                    break;
+            }
+        }
+        public void DeleteComponents(Section section, int groupId)
+        {
+            while (section.Components.Count > 0)
+            {
+                var compo = section.Components[0];
+                DeleteComponentPrintPosItem(section, compo, 0, groupId);
+            }
+        }
+
+        private void DeleteSubreport(SubReport subreport, int groupId)
+        {
+            int index = SubReports.IndexOf(subreport);
+            if (index < 0)
+                return;
+
+            foreach (var subrep in SubReports)
+            {
+                foreach (var section in subrep.Sections)
+                {
+                    if (section.ChildSubReportName == subreport.Name)
+                    {
+                        if (groupId != 0)
+                        {
+                            var opName = new ChangeObjectOperation(OperationType.Modify, groupId);
+                            opName.AddProperty("childSubreportName", PropertyType.String, section.ChildSubReportName, "");
+                            UndoCue.AddOperation(opName, this);
+                        }
+                        section.ChildSubReportName = "";
+                    }
+                }
+            }
+
+            while (subreport.Sections.Count > 0)
+            {
+                DeleteSection(subreport.Sections[0], groupId);
+            }
+
+            if (groupId != 0)
+            {
+                var op = new ChangeObjectOperation(OperationType.Remove, groupId)
+                {
+                    ComponentName = subreport.Name,
+                    ComponentClass = subreport.ClassName,
+                    OldItemIndex = index
+                };
+                AddSubreportProperties(subreport, op);
+                UndoCue.AddOperation(op, this);
+            }
+
+            DeleteComponent(subreport);
+            SubReports.RemoveAt(index);
+        }
+
+        private void DeleteDataInfo(DataInfo dataInfo, int groupId)
+        {
+            int index = DataInfo.IndexOf(dataInfo);
+            if (index < 0)
+                return;
+
+            // (igual a TS, limpiar alias, datasets y relaciones)
+            // ...
+            if (groupId != 0)
+            {
+                var op = new ChangeObjectOperation(OperationType.Remove, UndoCue.GetGroupId())
+                {
+                    ComponentClass = dataInfo.ClassName,
+                    OldItemIndex = index,
+                    ComponentName = dataInfo.Name
+                };
+                AddDataInfoProperties(dataInfo, op);
+                UndoCue?.AddOperation(op, this);
+            }
+            DataInfo.RemoveAt(index);
+        }
+
+        private void DeleteDatabaseInfo(DatabaseInfo databaseInfo, int groupId)
+        {
+            int index = DatabaseInfo.IndexOf(databaseInfo);
+            if (index < 0)
+                return;
+
+            // limpiar alias en dataInfo
+            if (groupId != 0)
+            {
+                var op = new ChangeObjectOperation(OperationType.Remove, UndoCue.GetGroupId())
+                {
+                    ComponentClass = databaseInfo.ClassName,
+                    OldItemIndex = index,
+                    ComponentName = databaseInfo.Name
+                };
+                AddDatabaseInfoProperties(databaseInfo, op);
+                UndoCue.AddOperation(op, this);
+            }
+
+            DatabaseInfo.RemoveAt(index);
+        }
+
+        private void DeleteParam(Param param, int groupId)
+        {
+            int index = Params.IndexOf(param);
+            if (index < 0)
+                return;
+
+            if (groupId != 0)
+            {
+                var op = new ChangeObjectOperation(OperationType.Remove, groupId)
+                {
+                    ComponentClass = param.ClassName,
+                    OldItemIndex = index,
+                    ComponentName = param.Name
+                };
+                AddParamProperties(param, op);
+                UndoCue?.AddOperation(op, this);
+            }
+            Params.RemoveAt(index);
+        }
+
+        public void DeleteComponent(ReportItem item)
+        {
+            if (Components.ContainsKey(item.Name))
+            {
+                Components.Remove(item.Name);
+            }
+        }
+        private void AddDatabaseInfoProperties(DatabaseInfo item, ChangeObjectOperation op)
+        {
+            op.AddProperty("alias", PropertyType.String, null, item.Alias);
+            op.AddProperty("connectionString", PropertyType.String, null, item.ConnectionString);
+            op.AddProperty("dotNetDriver", PropertyType.Integer, null, item.DotNetDriver);
+            op.AddProperty("driver", PropertyType.Integer, null, item.Driver);
+            op.AddProperty("providerFactory", PropertyType.String, null, item.ProviderFactory);
+            op.AddProperty("reportField", PropertyType.String, null, item.ReportField);
+            op.AddProperty("reportGroupsTable", PropertyType.String, null, item.ReportGroupsTable);
+            op.AddProperty("reportSearchField", PropertyType.String, null, item.ReportSearchField);
+            op.AddProperty("reportTable", PropertyType.String, null, item.ReportTable);
+            op.AddProperty("transIsolation", PropertyType.Integer, null, item.TransIsolation);
+        }
+
+        private void AddParamProperties(Param item, ChangeObjectOperation op)
+        {
+            op.AddProperty("alias", PropertyType.String, null, item.Alias);
+            op.AddProperty("allowNulls", PropertyType.String, null, item.AllowNulls);
+            op.AddProperty("datasets", PropertyType.StringArray, null, item.Datasets);
+            op.AddProperty("descriptions", PropertyType.StringArray, null, item.Descriptions);
+            op.AddProperty("errorMessages", PropertyType.StringArray, null, item.ErrorMessages);
+            op.AddProperty("hints", PropertyType.StringArray, null, item.Hints);
+            op.AddProperty("isReadOnly", PropertyType.Boolean, null, item.IsReadOnly);
+            op.AddProperty("items", PropertyType.StringArray, null, item.Items);
+            op.AddProperty("lookupDataset", PropertyType.String, null, item.LookupDataset);
+            op.AddProperty("neverVisible", PropertyType.Boolean, null, item.NeverVisible);
+            op.AddProperty("paramType", PropertyType.Integer, null, item.ParamType);
+            op.AddProperty("search", PropertyType.String, null, item.Search);
+            op.AddProperty("searchDataset", PropertyType.String, null, item.SearchDataset);
+            op.AddProperty("searchParam", PropertyType.String, null, item.SearchParam);
+            op.AddProperty("selected", PropertyType.StringArray, null, item.Selected);
+            op.AddProperty("validation", PropertyType.String, null, item.Validation);
+            op.AddProperty("value", PropertyType.Variant, null, item.Value);
+            op.AddProperty("values", PropertyType.StringArray, null, item.Values);
+            op.AddProperty("visible", PropertyType.Boolean, null, item.Visible);
+        }
+
+        private void AddDataInfoProperties(DataInfo item, ChangeObjectOperation op)
+        {
+            op.AddProperty("alias", PropertyType.String, null, item.Alias);
+            op.AddProperty("bDEFilter", PropertyType.String, null, item.BDEFilter);
+            op.AddProperty("bDEFirstRange", PropertyType.String, null, item.BDEFirstRange);
+            op.AddProperty("bDEIndexFields", PropertyType.String, null, item.BDEIndexFields);
+            op.AddProperty("bDEIndexName", PropertyType.String, null, item.BDEIndexName);
+            op.AddProperty("bDELastRange", PropertyType.String, null, item.BDELastRange);
+            op.AddProperty("bDEMasterFields", PropertyType.String, null, item.BDEMasterFields);
+            op.AddProperty("bDETable", PropertyType.String, null, item.BDETable);
+            op.AddProperty("bDEType", PropertyType.Integer, null, item.BDEType);
+            op.AddProperty("dataSource", PropertyType.String, null, item.DataSource);
+            op.AddProperty("dataUnions", PropertyType.StringArray, null, item.DataUnions);
+            op.AddProperty("databaseAlias", PropertyType.String, null, item.DatabaseAlias);
+            op.AddProperty("groupUnion", PropertyType.Boolean, null, item.GroupUnion);
+            op.AddProperty("myBaseFields", PropertyType.String, null, item.MyBaseFields);
+            op.AddProperty("myBaseFilename", PropertyType.String, null, item.MyBaseFilename);
+            op.AddProperty("myBaseIndexFields", PropertyType.String, null, item.MyBaseIndexFields);
+            op.AddProperty("myBaseMasterFields", PropertyType.String, null, item.MyBaseMasterFields);
+            op.AddProperty("openOnStart", PropertyType.Boolean, null, item.OpenOnStart);
+            op.AddProperty("parallelUnion", PropertyType.Boolean, null, item.ParallelUnion);
+            op.AddProperty("sql", PropertyType.String, null, item.SQL);
+        }
+
+        private void AddSubreportProperties(SubReport item, ChangeObjectOperation op)
+        {
+            op.AddProperty("alias", PropertyType.String, null, item.Alias);
+            op.AddProperty("printOnlyIfDataAvailable", PropertyType.Boolean, null, item.PrintOnlyIfDataAvailable);
+        }
+
+        private void AddCommonSectionProperties(Section sec, ChangeObjectOperation op)
+        {
+            op.AddProperty("printCondition", PropertyType.String, null, sec.PrintCondition);
+            op.AddProperty("alignBottom", PropertyType.Boolean, null, sec.AlignBottom);
+            op.AddProperty("autoContract", PropertyType.Boolean, null, sec.AutoContract);
+            op.AddProperty("autoExpand", PropertyType.Boolean, null, sec.AutoExpand);
+            op.AddProperty("backExpression", PropertyType.String, null, sec.BackExpression);
+            op.AddProperty("backStyle", PropertyType.Integer, null, sec.BackStyle);
+            op.AddProperty("beginPageExpression", PropertyType.String, null, sec.BeginPageExpression);
+            op.AddProperty("childSubreportName", PropertyType.String, null, sec.ChildSubReportName);
+            op.AddProperty("doAfterPrint", PropertyType.String, null, sec.DoAfterPrint);
+            op.AddProperty("doBeforePrint", PropertyType.String, null, sec.DoBeforePrint);
+            op.AddProperty("dpiRes", PropertyType.Integer, null, sec.dpires);
+            op.AddProperty("drawStyle", PropertyType.Integer, null, sec.DrawStyle);
+            op.AddProperty("forcePrint", PropertyType.Boolean, null, sec.ForcePrint);
+            op.AddProperty("global", PropertyType.Boolean, null, sec.Global);
+            op.AddProperty("height", PropertyType.Integer, null, sec.Height);
+            op.AddProperty("width", PropertyType.Integer, null, sec.Width);
+            op.AddProperty("horzDesp", PropertyType.Boolean, null, sec.HorzDesp);
+            op.AddProperty("iniNumPage", PropertyType.Boolean, null, sec.IniNumPage);
+            op.AddProperty("pageRepeat", PropertyType.Boolean, null, sec.PageRepeat);
+            op.AddProperty("sectionType", PropertyType.Integer, null, sec.SectionType);
+            op.AddProperty("sharedImage", PropertyType.Integer, null, sec.SharedImage);
+            op.AddProperty("skipExpreH", PropertyType.String, null, sec.SkipExpreH);
+            op.AddProperty("skipExpreV", PropertyType.String, null, sec.SkipExpreV);
+            op.AddProperty("skipPage", PropertyType.Boolean, null, sec.SkipPage);
+            op.AddProperty("skipRelativeH", PropertyType.Boolean, null, sec.SkipRelativeH);
+            op.AddProperty("skipRelativeV", PropertyType.Boolean, null, sec.SkipRelativeV);
+            op.AddProperty("skipToPageExpre", PropertyType.String, null, sec.SkipToPageExpre);
+            op.AddProperty("skipType", PropertyType.Integer, null, sec.SkipType);
+            op.AddProperty("streamBase64", PropertyType.String, null, sec.StreamBase64);
+            op.AddProperty("subReportName", PropertyType.String, null, sec.SubReportName);
+            op.AddProperty("streamFormat", PropertyType.Integer, null, sec.StreamFormat);
+            op.AddProperty("vertDesp", PropertyType.Boolean, null, sec.VertDesp);
+            op.AddProperty("groupName", PropertyType.String, null, sec.GroupName);
+            op.AddProperty("changeExpression", PropertyType.String, null, sec.ChangeExpression);
+            op.AddProperty("changeBool", PropertyType.Boolean, null, sec.ChangeBool);
+        }
+
+        private void AddPrintPosItemProperties(PrintPosItem item, ChangeObjectOperation op)
+        {
+            op.AddProperty("align", PropertyType.Integer, null, item.Align);
+            op.AddProperty("annotationExpression", PropertyType.String, null, item.AnnotationExpression);
+            op.AddProperty("doAfterPrint", PropertyType.String, null, item.DoAfterPrint);
+            op.AddProperty("doBeforePrint", PropertyType.String, null, item.DoBeforePrint);
+            op.AddProperty("height", PropertyType.Integer, null, item.Height);
+            op.AddProperty("posX", PropertyType.Integer, null, item.PosX);
+            op.AddProperty("posY", PropertyType.Integer, null, item.PosY);
+            op.AddProperty("printCondition", PropertyType.String, null, item.PrintCondition);
+            op.AddProperty("width", PropertyType.Integer, null, item.Width);
+        }
+
+        private void AddPrintItemTextProperties(PrintItemText item, ChangeObjectOperation op)
+        {
+            op.AddProperty("alignment", PropertyType.Integer, null, item.Alignment);
+            op.AddProperty("rightToLeft", PropertyType.Boolean, null, item.RightToLeft);
+            op.AddProperty("backColor", PropertyType.Integer, null, item.BackColor);
+            op.AddProperty("cutText", PropertyType.Boolean, null, item.CutText);
+            op.AddProperty("fontColor", PropertyType.Integer, null, item.FontColor);
+            op.AddProperty("fontRotation", PropertyType.Integer, null, item.FontRotation);
+            op.AddProperty("fontSize", PropertyType.Integer, null, item.FontSize);
+            op.AddProperty("fontStyle", PropertyType.Integer, null, item.FontStyle);
+            op.AddProperty("interLine", PropertyType.Integer, null, item.InterLine);
+            op.AddProperty("lFontName", PropertyType.String, null, item.LFontName);
+            op.AddProperty("wFontName", PropertyType.String, null, item.WFontName);
+            op.AddProperty("multiPage", PropertyType.Boolean, null, item.MultiPage);
+            op.AddProperty("printStep", PropertyType.Integer, null, item.PrintStep);
+            op.AddProperty("singleLine", PropertyType.Boolean, null, item.SingleLine);
+            op.AddProperty("transparent", PropertyType.Boolean, null, item.Transparent);
+            op.AddProperty("wordBreak", PropertyType.Boolean, null, item.WordBreak);
+            op.AddProperty("wordWrap", PropertyType.Boolean, null, item.WordWrap);
+            op.AddProperty("type1Font", PropertyType.Integer, null, item.Type1Font);
+        }
+
+        private void AddLabelProperties(LabelItem item, ChangeObjectOperation op)
+        {
+            op.AddProperty("allStrings", PropertyType.String, null, item.AllStrings);
+        }
+
+        private void AddExpressionProperties(ExpressionItem item, ChangeObjectOperation op)
+        {
+            op.AddProperty("agIniValue", PropertyType.String, null, item.AgIniValue);
+            op.AddProperty("agType", PropertyType.Integer, null, item.AgType);
+            op.AddProperty("aggregate", PropertyType.Integer, null, item.Aggregate);
+            op.AddProperty("dataType", PropertyType.Integer, null, item.DataType);
+            op.AddProperty("displayFormat", PropertyType.String, null, item.DisplayFormat);
+            op.AddProperty("expression", PropertyType.String, null, item.Expression);
+            op.AddProperty("groupName", PropertyType.String, null, item.GroupName);
+            op.AddProperty("identifier", PropertyType.String, null, item.Identifier);
+            op.AddProperty("printOnlyOne", PropertyType.Boolean, null, item.PrintOnlyOne);
+        }
+
+        private void AddShapeProperties(ShapeItem item, ChangeObjectOperation op)
+        {
+            op.AddProperty("brushColor", PropertyType.Integer, null, item.BrushColor);
+            op.AddProperty("brushStyle", PropertyType.Integer, null, item.BrushStyle);
+            op.AddProperty("penColor", PropertyType.Integer, null, item.PenColor);
+            op.AddProperty("penStyle", PropertyType.Integer, null, item.PenStyle);
+            op.AddProperty("penWidth", PropertyType.Integer, null, item.PenWidth);
+            op.AddProperty("shape", PropertyType.Integer, null, item.Shape);
+        }
+
+        private void AddImageProperties(ImageItem item, ChangeObjectOperation op)
+        {
+            op.AddProperty("copyMode", PropertyType.Integer, null, item.CopyMode);
+            op.AddProperty("dpiRes", PropertyType.Integer, null, item.dpires);
+            op.AddProperty("drawStyle", PropertyType.Integer, null, item.DrawStyle);
+            op.AddProperty("rotation", PropertyType.Integer, null, item.Rotation);
+            op.AddProperty("sharedImage", PropertyType.Integer, null, item.SharedImage);
+            op.AddProperty("streamBase64", PropertyType.String, null, item.StreamBase64);
+            op.AddProperty("expression", PropertyType.String, null, item.Expression);
+        }
+
+        private void AddChartProperties(ChartItem item, ChangeObjectOperation op)
+        {
+            op.AddProperty("autorange", PropertyType.Integer, null, item.AutoRange);
+            op.AddProperty("axisYFinal", PropertyType.Number, null, item.AxisYFinal);
+            op.AddProperty("axisYInitial", PropertyType.Number, null, item.AxisYInitial);
+            op.AddProperty("captionExpression", PropertyType.String, null, item.CaptionExpression);
+            op.AddProperty("changeSerieBool", PropertyType.Boolean, null, item.ChangeSerieBool);
+            op.AddProperty("changeSerieExpression", PropertyType.String, null, item.ChangeSerieExpression);
+            op.AddProperty("chartStyle", PropertyType.Integer, null, item.ChartStyle);
+            op.AddProperty("clearExpression", PropertyType.String, null, item.ClearExpression);
+            op.AddProperty("clearExpressionBool", PropertyType.Boolean, null, item.ClearExpressionBool);
+            op.AddProperty("colorExpression", PropertyType.String, null, item.ColorExpression);
+            op.AddProperty("driver", PropertyType.Integer, null, item.Driver);
+            op.AddProperty("elevation", PropertyType.Number, null, item.Elevation);
+            op.AddProperty("getValueCondition", PropertyType.String, null, item.GetValueCondition);
+            op.AddProperty("horzFontRotation", PropertyType.Integer, null, item.HorzFontRotation);
+            op.AddProperty("horzFontSize", PropertyType.Integer, null, item.HorzFontSize);
+            op.AddProperty("horzOffset", PropertyType.Number, null, item.HorzOffset);
+            op.AddProperty("identifier", PropertyType.String, null, item.Identifier);
+            op.AddProperty("markStyle", PropertyType.Integer, null, item.MarkStyle);
+            op.AddProperty("multiBar", PropertyType.Integer, null, item.MultiBar);
+            op.AddProperty("orthogonal", PropertyType.Boolean, null, item.Orthogonal);
+            op.AddProperty("perspective", PropertyType.Number, null, item.Perspective);
+            op.AddProperty("resolution", PropertyType.Integer, null, item.Resolution);
+            op.AddProperty("rotation", PropertyType.Integer, null, item.Rotation);
+            op.AddProperty("serieCaption", PropertyType.String, null, item.SerieCaption);
+            op.AddProperty("serieColorExpression", PropertyType.String, null, item.SerieColorExpression);
+            op.AddProperty("showHint", PropertyType.Boolean, null, item.ShowHint);
+            op.AddProperty("showLegend", PropertyType.Boolean, null, item.ShowLegend);
+            op.AddProperty("tilt", PropertyType.Number, null, item.Tilt);
+            op.AddProperty("valueExpression", PropertyType.String, null, item.ValueExpression);
+            op.AddProperty("valueXExpression", PropertyType.String, null, item.ValueXExpression);
+            op.AddProperty("vertFontRotation", PropertyType.Integer, null, item.VertFontRotation);
+            op.AddProperty("vertFontSize", PropertyType.Integer, null, item.VertFontSize);
+            op.AddProperty("vertOffset", PropertyType.Number, null, item.VertOffset);
+            op.AddProperty("view3d", PropertyType.Boolean, null, item.View3d);
+            op.AddProperty("view3dWalls", PropertyType.Boolean, null, item.View3dWalls);
+            op.AddProperty("zoom", PropertyType.Integer, null, item.Zoom);
+        }
+
+        private void AddBarcodeProperties(BarcodeItem item, ChangeObjectOperation op)
+        {
+            op.AddProperty("bColor", PropertyType.Integer, null, item.BColor);
+            op.AddProperty("barType", PropertyType.Integer, null, item.BarType);
+            op.AddProperty("checksum", PropertyType.Boolean, null, item.Checksum);
+            op.AddProperty("eccLevel", PropertyType.Integer, null, item.ECCLevel);
+            op.AddProperty("expression", PropertyType.String, null, item.Expression);
+            op.AddProperty("modul", PropertyType.Integer, null, item.Modul);
+            op.AddProperty("numColumns", PropertyType.Integer, null, item.NumColumns);
+            op.AddProperty("numRows", PropertyType.Integer, null, item.NumRows);
+            op.AddProperty("ratio", PropertyType.Number, null, item.Ratio);
+            op.AddProperty("truncated", PropertyType.Boolean, null, item.Truncated);
+        }
+        public void UpdateReferences()
+        {
+            {
+                // Remove duplicate datasets
+                SortedList<string, DataInfo> Duplicates = new SortedList<string, DataInfo>();
+                int i = 0;
+                while (i < DataInfo.Count)
+                {
+                    DataInfo ninfo = DataInfo[i];
+                    if (Duplicates.ContainsKey(ninfo.Alias))
+                    {
+                        DataInfo.RemoveAt(i);
+                    }
+                    else
+                    {
+                        Duplicates.Add(ninfo.Alias, ninfo);
+                        i++;
+                    }
+                }
+            }
+            {
+                // Remove duplicate connections
+                SortedList<string, DatabaseInfo> DuplicatesDb = new SortedList<string, DatabaseInfo>();
+                int i = 0;
+                while (i < DatabaseInfo.Count)
+                {
+                    DatabaseInfo ninfo = DatabaseInfo[i];
+                    if (DuplicatesDb.ContainsKey(ninfo.Alias))
+                    {
+                        DatabaseInfo.RemoveAt(i);
+                    }
+                    else
+                    {
+                        DuplicatesDb.Add(ninfo.Alias, ninfo);
+                        i++;
+                    }
+                }
+            }
+            foreach (SubReport subrep in SubReports)
+            {
+                foreach (Section sec in subrep.Sections)
+                {
+                    sec.SubReport = subrep;
+                    if (sec.ChildSubReportName.Length > 0)
+                    {
+                        sec.ChildSubReport = Components[sec.ChildSubReportName] as SubReport;
+                    }
+                }
+            }
+        }
     }
+
 }

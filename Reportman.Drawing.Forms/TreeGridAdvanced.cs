@@ -22,7 +22,7 @@ namespace Reportman.Drawing.Forms
             {
                 if (findent_first == 0)
                 {
-                    findent_first = Convert.ToInt32(INDENT_FIRST_UNSCALED * Windows.GraphicUtils.DPIScale);
+                    findent_first = Convert.ToInt32(INDENT_FIRST_UNSCALED * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
                 }
                 return findent_first;
             }
@@ -34,7 +34,7 @@ namespace Reportman.Drawing.Forms
             get
             {
                 if (findent_width == 0)
-                    findent_width = Convert.ToInt32(20 * Windows.GraphicUtils.DPIScale);
+                    findent_width = Convert.ToInt32(20 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
                 return findent_width;
             }
         }
@@ -93,6 +93,9 @@ namespace Reportman.Drawing.Forms
         public TreeGridAdvanced()
             : base()
         {
+#if NETCOREAPP
+            ShowCellToolTips = false;
+#endif
             if (System.Windows.Forms.SystemInformation.TerminalServerSession)
                 DoubleBuffered = false;
             else
@@ -720,7 +723,7 @@ namespace Reportman.Drawing.Forms
             get
             {
                 if (findent_width == 0)
-                    findent_width = Convert.ToInt32(INDENT_WIDTH_UNSCALED * Windows.GraphicUtils.DPIScale);
+                    findent_width = Convert.ToInt32(INDENT_WIDTH_UNSCALED * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
                 return findent_width;
             }
         }
@@ -777,7 +780,7 @@ namespace Reportman.Drawing.Forms
                 _imageWidth = glyphWidth;
                 _imageHeight = 0;
             }
-            if (Windows.GraphicUtils.DPIScale != 1)
+            if (Reportman.Drawing.Windows.GraphicUtils.DPIScale != 1)
             {
                 _imageWidth = Convert.ToInt32(_imageWidth * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
                 _imageHeight = Convert.ToInt32(_imageHeight * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
@@ -899,7 +902,7 @@ namespace Reportman.Drawing.Forms
             if (image != null)
             {
                 Point pp;
-                //int newimageHeight = Convert.ToInt32(_imageHeight * GraphicUtils.DPIScale);
+                //int newimageHeight = Convert.ToInt32(_imageHeight * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
                 if (_imageHeight > cellBounds.Height)
                     pp = new Point(glyphRect.X + this.glyphWidth, cellBounds.Y + _imageHeightOffset);
                 else
@@ -910,12 +913,12 @@ namespace Reportman.Drawing.Forms
                 System.Drawing.Drawing2D.GraphicsContainer gc = graphics.BeginContainer();
                 {
                     graphics.SetClip(cellBounds);
-                    if (Windows.GraphicUtils.DPIScale == 1)
+                    if (Reportman.Drawing.Windows.GraphicUtils.DPIScale == 1)
                         graphics.DrawImageUnscaled(image, pp);
                     else
                     {
-                        int offset = Convert.ToInt32(2 * Windows.GraphicUtils.DPIScale);
-                        int offsetx = Convert.ToInt32(glyphWidth * Windows.GraphicUtils.DPIScale) + INDENT_MARGIN;
+                        int offset = Convert.ToInt32(2 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
+                        int offsetx = Convert.ToInt32(glyphWidth * Reportman.Drawing.Windows.GraphicUtils.DPIScale) + INDENT_MARGIN;
                         int newimageHeight = _imageHeight - offset;
                         graphics.DrawImage(image, new Rectangle(glyphRect.X + offsetx, cellBounds.Y + offset / 2, newimageHeight, newimageHeight), new Rectangle(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
                     }
@@ -926,7 +929,7 @@ namespace Reportman.Drawing.Forms
             // Paint tree lines			
             if (((TreeGridAdvanced)(DataGridView)).ShowLines)
             {
-                int drawoffset = Convert.ToInt32(4 * Windows.GraphicUtils.DPIScale);
+                int drawoffset = Convert.ToInt32(4 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
                 using (Pen linePen = new Pen(SystemBrushes.ControlDark, 1.0f))
                 {
                     linePen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dot;

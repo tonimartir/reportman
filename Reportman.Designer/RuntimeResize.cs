@@ -278,8 +278,12 @@ namespace Reportman.Designer
         }
         protected override void Dispose(bool disposing)
         {
-            MyPen.Dispose();
-            MyBrush.Dispose();
+            if (disposing) 
+            {
+                MyPen.Dispose();
+                MyBrush.Dispose();
+            }
+
             base.Dispose(disposing);
         }
         protected override void OnPaint(PaintEventArgs e)

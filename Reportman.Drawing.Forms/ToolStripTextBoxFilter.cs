@@ -22,6 +22,10 @@ namespace Reportman.Drawing.Forms
             panel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             InitializeComponents();
         }
+        public void FocusFilter()
+        {
+            this.textBox.Focus();
+        }
 
         private void InitializeComponents()
         {

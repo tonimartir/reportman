@@ -42,49 +42,14 @@ namespace Reportman.Drawing
         public int TopPos;
         public PrintStepType Step;
         public bool LastLine;
+        public double LineHeight;
+        public List<TGlyphPos> Glyphs;
+        public string Text;
     }
     struct PageInfo
     {
         public int PageWidth;
         public int PageHeight;
-    }
-    public class LineInfos
-    {
-        LineInfo[] FObjects;
-        const int FIRST_ALLOCATION_OBJECTS = 50;
-        int FCount;
-        public LineInfos()
-        {
-            FCount = 0;
-            FObjects = new LineInfo[FIRST_ALLOCATION_OBJECTS];
-        }
-        public void Clear()
-        {
-            FCount = 0;
-        }
-        private void CheckRange(int index)
-        {
-            if ((index < 0) || (index >= FCount))
-                throw new Exception("Index out of range on LineInfos collection");
-        }
-        public LineInfo this[int index]
-        {
-            get { CheckRange(index); return FObjects[index]; }
-            set { CheckRange(index); FObjects[index] = value; }
-        }
-        public int Count { get { return FCount; } }
-        public void Add(LineInfo obj)
-        {
-            if (FCount > (FObjects.Length - 2))
-            {
-                LineInfo[] nobjects = new LineInfo[FCount];
-                System.Array.Copy(FObjects, 0, nobjects, 0, FCount);
-                FObjects = new LineInfo[FObjects.Length * 2];
-                System.Array.Copy(nobjects, 0, FObjects, 0, FCount);
-            }
-            FObjects[FCount] = obj;
-            FCount++;
-        }
     }
     class PageInfos
     {
@@ -224,7 +189,7 @@ namespace Reportman.Drawing
             FFontData = new SortedList();
             FFont = new PDFFont();
             FResolution = Twips.TWIPS_PER_INCH;
-            Lines = new LineInfos();
+            Lines = new List<LineInfo>();
         }
         public static string ENDSTREAM = "" + (char)10 + "endstream";
         public FontInfoProvider FInfoProvider;
@@ -241,10 +206,10 @@ namespace Reportman.Drawing
         private PDFFont FFont;
         public PDFFile File;
         private int FResolution;
-        private LineInfos Lines;
+        private List<LineInfo> Lines;
         private SortedList FFontData;
         public int Resolution;
-        public LineInfos LineInfo
+        public List<LineInfo> LineInfo
         {
             get
             {
@@ -270,7 +235,7 @@ namespace Reportman.Drawing
         }
 
         private bool translatedy;
-        public string UnitsToTextX(int Value)
+        public string UnitsToTextX(double Value)
         {
             double nvalue = ((double)(Value) / FResolution) * PDFFile.CONS_PDFRES;
             string aresult = nvalue.ToString("##0.00");
@@ -281,7 +246,7 @@ namespace Reportman.Drawing
 #endif
             return aresult.Replace(decseparator, ".");
         }
-        public string UnitsToTextY(int Value)
+        public string UnitsToTextY(double Value)
         {
             double nvalue;
             if (translatedy)
@@ -341,6 +306,10 @@ namespace Reportman.Drawing
         private void SWriteLine(Stream nstream, string value)
         {
             StreamUtil.SWriteLine(nstream, value, PDFConformance == PDFConformanceType.PDF_1_4);
+        }
+        public string EOL()
+        {
+            return PDFConformance == PDFConformanceType.PDF_1_4 ? "" + (char)10 + (char)13 : "" + (char)10;
         }
         private void SetDash()
         {
@@ -441,13 +410,13 @@ namespace Reportman.Drawing
             }
             if (InfoProvider == null)
                 return null;
-            searchname = FFont.FontName + FFont.Style.ToString("00000");
+            searchname = FFont.GetFontFamilyKey() + FFont.Style.ToString("00000");
             adata = FFontData[searchname] as TTFontData;
             if (adata == null)
             {
                 adata = new TTFontData();
                 adata.Embedded = false;
-                adata.ObjectName = FFont.FontName + FFont.Style.ToString();
+                adata.ObjectName = FFont.GetFontFamilyKey() + FFont.Style.ToString();
                 FFontData.Add(searchname, adata);
                 adata.Embedded = (FFont.Name == PDFFontType.Embedded) || (PDFConformance == PDFConformanceType.PDF_A_3);
                 if (adata.Embedded)
@@ -646,7 +615,7 @@ namespace Reportman.Drawing
         }
 
         public void TextOut(int X, int Y, string Text, int LineWidth,
-         int Rotation, bool RightToLeft)
+         int Rotation, bool RightToLeft, LineInfo lInfo)
         {
             double rotrad, fsize;
             string rotstring;
@@ -685,8 +654,13 @@ namespace Reportman.Drawing
 
                 SWriteLine(File.STempStream, "BT");
                 SWriteLine(File.STempStream, "/F" +
-                 Type1FontTopdfFontName(FFont.Name, FFont.Italic, FFont.Bold, FFont.FontName, FFont.Style, PDFConformance) + " " +
+                 Type1FontTopdfFontName(FFont.Name, FFont.Italic, FFont.Bold, FFont.GetFontFamilyKey(), FFont.Style, PDFConformance) + " " +
                     FFont.Size.ToString() + " Tf");
+                if (RightToLeft)
+                {
+                    SWriteLine(File.STempStream, "/Span << /ActualText " +
+                     PDFFile.EncodePDFText(Text) + " >> BDC");
+                }
                 // Rotates
                 if (Rotation != 0)
                 {
@@ -706,14 +680,17 @@ namespace Reportman.Drawing
                 astring = Text;
                 if (RightToLeft)
                 {
-                    astring = DoReverseString(astring);
+                    astring = PDFCompatibleTextShaping(lInfo.Text,adata, Font, RightToLeft, X, Y, Font.Size, lInfo);
+                    SWriteLine(File.STempStream, astring);
                 }
-                // Kerning disable for GDI+ compatibility
-                //
-                //if (havekerning)
-                //	SWriteLine(File.STempStream, PDFCompatibleTextWithKerning(astring, adata, FFont) + " TJ");
-                // else
-                SWriteLine(File.STempStream, PDFCompatibleText(astring, adata, FFont) + " Tj");
+                else
+                {
+                    SWriteLine(File.STempStream, PDFCompatibleText(astring, adata, FFont) + " Tj");
+                }
+                if (RightToLeft)
+                {
+                    SWriteLine(File.STempStream, "EMC");
+                }
                 SWriteLine(File.STempStream, "ET");
             }
             finally
@@ -803,7 +780,7 @@ namespace Reportman.Drawing
                 aresult = "[<";
                 for (i = 0; i < astring.Length; i++)
                 {
-                    aresult = aresult + IntToHex(adata.CacheWidths[astring[i]].GlyphIndex);
+                    aresult = aresult + IntToHex(adata.CacheWidths[astring[i]].Glyph);
                     if (i < (astring.Length - 1))
                     {
                         kerningvalue = InfoProvider.GetKerning(FFont, adata, astring[i], astring[i + 1]);
@@ -848,6 +825,77 @@ namespace Reportman.Drawing
             }
             return aresult;
         }
+        public string PDFCompatibleTextShaping(
+            string astring,
+            TTFontData adata,
+            PDFFont pdffont,
+            bool RightToLeft,
+            double posX,
+            double posY,
+            int FontSize,
+            LineInfo lInfo)
+        {
+            string eol = EOL();
+            string result = string.Empty;
+            double cursor = 0.0;
+
+            string actualFontFamily = Font.GetFontFamily();
+            string originalFontFamily = Font.GetFontFamily();
+
+            for (int i = 0; i < lInfo.Glyphs.Count; i++)
+            {
+                TGlyphPos g = lInfo.Glyphs[i];
+
+                // Glyph ID en hexadecimal
+                string gidHex = IntToHex(g.GlyphIndex);
+
+                string newFontFamily = string.IsNullOrEmpty(g.FontFamily) ? originalFontFamily : g.FontFamily;
+
+                if (actualFontFamily != newFontFamily)
+                {
+                    Font.WFontName = newFontFamily;
+                    Font.LFontName = newFontFamily;
+
+                    adata = GetTTFontData();
+
+                    result += "/F" +
+                        Type1FontTopdfFontName(Font.Name, Font.Italic, Font.Bold, Font.GetFontFamilyKey(), Font.Style,File.PDFConformance) + " " +
+                        Font.Size + " Tf" + eol;
+
+                    actualFontFamily = newFontFamily;
+                }
+
+                // Llamadas auxiliares para compatibilidad
+                InfoProvider.GetCharWidth(pdffont, adata, g.CharCode);
+                InfoProvider.GetGlyphWidth(pdffont, adata, g.GlyphIndex, g.CharCode);
+
+                // Calcular posiciones PDF
+                double absY = posY - g.YOffset;
+                double absX = posX + cursor + g.XOffset;
+
+                // Emitir instrucción PDF: Tm + Tj
+                result += string.Format(
+                    System.Globalization.CultureInfo.InvariantCulture,
+                    "1 0 0 1 {0} {1} Tm <{2}> Tj" + eol,
+                    UnitsToTextX(absX),
+                    UnitsToTextY(absY),
+                    gidHex
+                );
+
+                // Avanzar cursor
+                cursor += g.XAdvance;
+            }
+
+            // Restaurar font original si se cambió
+            if (actualFontFamily != originalFontFamily)
+            {
+                Font.WFontName = originalFontFamily;
+                Font.LFontName = originalFontFamily;
+                adata = GetTTFontData();
+            }
+
+            return result;
+        }
         public static string PDFCompatibleText(string astring, TTFontData adata, PDFFont pdffont)
         {
             int i;
@@ -863,7 +911,7 @@ namespace Reportman.Drawing
                 {
                     char key = astring[i];
                     if (adata.CacheWidths.IndexOfKey(key) >= 0)
-                        aresult = aresult + IntToHex(adata.CacheWidths[astring[i]].GlyphIndex);
+                        aresult = aresult + IntToHex(adata.CacheWidths[astring[i]].Glyph);
                 }
                 aresult = aresult + ">";
             }
@@ -1176,6 +1224,11 @@ namespace Reportman.Drawing
             Rectangle arec;
             string aword;
             bool isunicode = false;
+            if (RightToLeft)
+            {
+                Font.Name = PDFFontType.Embedded;
+                Text = Reportman.Drawing.StringUtil.NormalizeToNFC(Text);
+            }
             TTFontData adata = GetTTFontData();
             if (!(adata == null))
             {
@@ -1216,7 +1269,7 @@ namespace Reportman.Drawing
                     wordbreak = false;
                 // Calculates text extent and apply alignment
                 recsize = arect;
-                TextExtent(Text, ref recsize, wordbreak, singleline, true);
+                var linfo = TextExtent(Text, ref recsize, wordbreak, singleline, true,RightToLeft);
                 // Align bottom or center
                 posy = arect.Top;
                 if ((Alignment & AlignmentFlags_AlignBottom) > 0)
@@ -1227,6 +1280,7 @@ namespace Reportman.Drawing
                 {
                     posy = arect.Top + (int)((arect.Height - recsize.Height) / 2);
                 }
+                var Lines = linfo;
                 for (i = 0; i < Lines.Count; i++)
                 {
                     posx = arect.Left;
@@ -1275,7 +1329,7 @@ namespace Reportman.Drawing
                         for (index = 0; index < lwords.Count; index++)
                         {
                             arec = arect;
-                            TextExtent(lwords[index], ref arec, false, true, false);
+                            TextExtent(lwords[index], ref arec, false, true, false,RightToLeft);
                             int nwidth;
                             if (RightToLeft)
                                 nwidth = -(arec.Width);
@@ -1314,7 +1368,7 @@ namespace Reportman.Drawing
                             }
                             for (index = 0; index < lwords.Count; index++)
                             {
-                                TextOut(Convert.ToInt32(currpos), posy + Lines[i].TopPos, lwords[index], Lines[i].Width, 0, RightToLeft);
+                                TextOut(Convert.ToInt32(currpos), posy + Lines[i].TopPos, lwords[index], Lines[i].Width, 0, RightToLeft, Lines[i]);
                                 currpos = currpos + lwidths[index] + alinedif;
                             }
                         }
@@ -1338,7 +1392,7 @@ namespace Reportman.Drawing
                             BrushStyle = PreviousBrushStyle;
                         }
 
-                        TextOut(posx, posy + Lines[i].TopPos, astring, Lines[i].Width, 0, RightToLeft);
+                        TextOut(posx, posy + Lines[i].TopPos, astring, Lines[i].Width, 0, RightToLeft, Lines[i]);
                     }
                 }
             }
@@ -1787,8 +1841,34 @@ namespace Reportman.Drawing
             {
             }
         }
-        public void TextExtent(string Text, ref Rectangle rect, bool wordbreak, bool singleline, bool dolineinfo)
+        public List<LineInfo> TextExtent(string Text, ref Rectangle rect, bool wordbreak, bool singleline, bool dolineinfo,bool RightToLeft)
         {
+            List<LineInfo> result;
+            if (RightToLeft)
+            {
+                Font.Name = PDFFontType.Embedded;
+                var data = GetTTFontData();
+                result = this.InfoProvider.TextExtent(Text,ref rect,Font,data,wordbreak,singleline,Font.Size);
+            }
+            else
+            {
+                TextExtentSimple(Text, ref rect, wordbreak, singleline, dolineinfo);
+                result = new List<LineInfo>();
+                foreach (var ainfo in Lines)
+                {
+                    result.Add(ainfo);
+                }
+            }
+            return result;
+        }
+
+        public void TextExtentSimple(string Text, ref Rectangle rect, bool wordbreak, bool singleline, bool dolineinfo)
+        {
+            if (singleline)
+            {
+                wordbreak = false;
+                Text = Text.Replace("\r\n", " ").Replace("\n", " ").Replace("\r", "");
+            }
             // Calculate leading and line spacing
             //bool havekerning = false;
             TTFontData adata = GetTTFontData();
@@ -2606,7 +2686,7 @@ namespace Reportman.Drawing
                         for (int idx = 0; idx < nsize; idx++)
                         {
                             char nkey = adata.CacheWidths.Keys[currentindex + idx];
-                            int nvalue = adata.CacheWidths[nkey].GlyphIndex;
+                            int nvalue = adata.CacheWidths[nkey].Glyph;
 
                             string fromTo = "<" + PDFCanvas.IntToHex(nvalue) + "> ";
                             cmaphead.Append(fromTo + " <" + PDFCanvas.IntToHex((int)nkey) + ">" + LINE_FEED);
@@ -2729,7 +2809,7 @@ namespace Reportman.Drawing
                     while (index < adata.CacheWidths.Count)
                     {
                         char nkey = adata.CacheWidths.Keys[index];
-                        int nvalue = adata.CacheWidths[nkey].GlyphIndex;
+                        int nvalue = adata.CacheWidths[nkey].Glyph;
                         double nwidth = adata.CacheWidths[nkey].Width;
                         awidths = awidths + nvalue.ToString() + "[" + nwidth.ToString("#0.0", NumberFormatInfo.InvariantInfo) + "] ";
                         acount++;

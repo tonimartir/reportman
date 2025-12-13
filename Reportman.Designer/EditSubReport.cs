@@ -2303,23 +2303,29 @@ namespace Reportman.Designer
                 case SelectedItemPalette.Arrow:
                     break;
                 case SelectedItemPalette.Label:
-                    nresult = new LabelItem(FReport);
+                    nresult = new LabelItem();
+                    nresult.Report = FReport;
                     ((LabelItem)nresult).Text = "Text";
                     break;
                 case SelectedItemPalette.Expression:
-                    nresult = new ExpressionItem(FReport);
+                    nresult = new ExpressionItem();
+                    nresult.Report = FReport;
                     break;
                 case SelectedItemPalette.Shape:
-                    nresult = new ShapeItem(FReport);
+                    nresult = new ShapeItem();
+                    nresult.Report = FReport;
                     break;
                 case SelectedItemPalette.Image:
-                    nresult = new ImageItem(FReport);
+                    nresult = new ImageItem();
+                    nresult.Report = FReport;
                     break;
                 case SelectedItemPalette.Chart:
-                    nresult = new ChartItem(FReport);
+                    nresult = new ChartItem();
+                    nresult.Report = FReport;
                     break;
                 case SelectedItemPalette.Barcode:
-                    nresult = new BarcodeItem(FReport);
+                    nresult = new BarcodeItem();
+                    nresult.Report = FReport;
                     break;
             }
             return nresult;
@@ -2582,7 +2588,7 @@ namespace Reportman.Designer
                 else
                     FReport.WFontName = nfontdialog.Font.FontFamily.Name;
                 FReport.FontSize = System.Convert.ToInt16(Math.Round(nfontdialog.Font.Size));
-                FReport.FontColor = GraphicUtils.IntegerFromColor(nfontdialog.Color);
+                FReport.FontColor = Reportman.Drawing.GraphicUtils.IntegerFromColor(nfontdialog.Color);
                 FReport.FontStyle = Reportman.Drawing.Windows.GraphicUtils.IntegerFromFontStyle(nfontdialog.Font.Style);
             }
         }

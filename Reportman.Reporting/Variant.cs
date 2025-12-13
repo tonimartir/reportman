@@ -98,6 +98,8 @@ namespace Reportman.Reporting
     /// d=d+c.ToString();
     /// </code>
     /// </example>
+    [Newtonsoft.Json.JsonConverter(typeof(VariantJsonConverter))]
+    [System.Text.Json.Serialization.JsonConverter(typeof(VariantSystemTextJsonConverter))]
     public struct Variant : IConvertible, IComparable
     {
         VariantType FVarType;
@@ -2356,15 +2358,25 @@ namespace Reportman.Reporting
         /// <summary>
         /// Type transformation using a IFormatProvider
         /// </summary>
-        public object ToType(System.Type ntype, System.IFormatProvider provid)
+        /* public object ToType(System.Type ntype, System.IFormatProvider provid)
+         {
+             if (this.IsNull)
+             {
+                 return null;
+             }
+             DateTime avalue = this;
+             return avalue;
+         }*/
+        public object ToType(Type conversionType, IFormatProvider provider)
         {
-            if (this.IsNull)
-            {
+            if (IsNull)
                 return null;
-            }
-            DateTime avalue = this;
-            return avalue;
+
+            // Usa Convert.ChangeType que a su vez utiliza IConvertible internamente
+            object baseValue = AsObject();
+            return Convert.ChangeType(baseValue, conversionType, provider);
         }
+
         /// <summary>
         /// Compare a Variant to an object
         /// </summary>
@@ -2420,5 +2432,94 @@ namespace Reportman.Reporting
     {
     }
 
+    public class VariantJsonConverter : Newtonsoft.Json.JsonConverter<Variant>
+    {
+        public override void WriteJson(Newtonsoft.Json.JsonWriter writer, Variant value, Newtonsoft.Json.JsonSerializer serializer)
+        {
+            var obj = new Newtonsoft.Json.Linq.JObject
+            {
+                ["type"] = value.VarType.ToString(),
+                ["value"] = Newtonsoft.Json.Linq.JToken.FromObject(value.AsObject())
+            };
+            obj.WriteTo(writer);
+        }
+
+        public override Variant ReadJson(Newtonsoft.Json.JsonReader reader, Type objectType, Variant existingValue, bool hasExistingValue, Newtonsoft.Json.JsonSerializer serializer)
+        {
+            var obj = Newtonsoft.Json.Linq.JObject.Load(reader);
+            var typeStr = obj["type"]?.ToString();
+            var valueToken = obj["value"];
+
+            if (string.IsNullOrEmpty(typeStr) || valueToken == null)
+                return new Variant(); // Null variant
+
+            if (!Enum.TryParse<VariantType>(typeStr, out var vtype))
+                throw new Newtonsoft.Json.JsonSerializationException($"Unknown VariantType: {typeStr}");
+
+            object value = valueToken.ToObject<object>();
+            var variant = new Variant();
+            variant.AssignFromObject(value);
+            return variant;
+        }
+    }
+    public class VariantSystemTextJsonConverter : System.Text.Json.Serialization.JsonConverter<Variant>
+    {
+        public override Variant Read(ref System.Text.Json.Utf8JsonReader reader, Type typeToConvert, System.Text.Json.JsonSerializerOptions options)
+        {
+            using (System.Text.Json.JsonDocument doc = System.Text.Json.JsonDocument.ParseValue(ref reader))
+            {
+                var root = doc.RootElement;
+                string typeStr = root.GetProperty("Type").GetString();
+                System.Text.Json.JsonElement valueElement = root.GetProperty("Value");
+
+                if (string.IsNullOrEmpty(typeStr))
+                    return new Variant();
+
+                VariantType vtype;
+                if (!Enum.TryParse(typeStr, out vtype))
+                    throw new System.Text.Json.JsonException("Invalid VariantType: " + typeStr);
+
+                object value = null;
+
+                if (vtype == VariantType.Boolean)
+                    value = valueElement.GetBoolean();
+                else if (vtype == VariantType.Byte)
+                    value = valueElement.GetByte();
+                else if (vtype == VariantType.Integer)
+                    value = valueElement.GetInt32();
+                else if (vtype == VariantType.Long)
+                    value = valueElement.GetInt64();
+                else if (vtype == VariantType.Decimal)
+                    value = valueElement.GetDecimal();
+                else if (vtype == VariantType.Double)
+                    value = valueElement.GetDouble();
+                else if (vtype == VariantType.String)
+                    value = valueElement.GetString();
+                else if (vtype == VariantType.DateTime)
+                    value = valueElement.GetDateTime();
+                else if (vtype == VariantType.Null)
+                    value = null;
+                else
+                    throw new System.Text.Json.JsonException("Unsupported VariantType: " + typeStr);
+
+                Variant result = new Variant();
+                result.AssignFromObject(value);
+                return result;
+            }
+        }
+
+        public override void Write(System.Text.Json.Utf8JsonWriter writer, Variant value, System.Text.Json.JsonSerializerOptions options)
+        {
+            writer.WriteStartObject();
+
+            writer.WriteString("Type", value.VarType.ToString());
+
+            writer.WritePropertyName("Value");
+            object val = value.AsObject();
+            System.Text.Json.JsonSerializer.Serialize(writer, val, options);
+
+            writer.WriteEndObject();
+        }
+    }
 }
 

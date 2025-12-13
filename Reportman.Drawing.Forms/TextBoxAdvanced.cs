@@ -23,6 +23,7 @@ namespace Reportman.Drawing.Forms
         public List<KeyValuePair<string, string>> AutoCompleteList;
         public int AutoCompleteMaxVisibleLines = 20;
         private bool FIncludeGoogleTerms;
+        [DefaultValue(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool IncludeGoogleTerms
         {
@@ -109,6 +110,7 @@ namespace Reportman.Drawing.Forms
         public TextBoxAdvanced()
             : base()
         {
+            FDataType = TextBoxDataType.Text;
             FBarCodeBeginChar = '$';
             FBarCodeEndChar = '%';
 
@@ -118,7 +120,6 @@ namespace Reportman.Drawing.Forms
             //Sets some default values to the watermark properties
             _waterMarkColor = Color.LightGray;
             _waterMarkActiveColor = Color.Gray;
-            waterMarkFont = this.Font;
             waterMarkBrush = new SolidBrush(_waterMarkActiveColor);
             waterMarkContainer = null;
 
@@ -131,6 +132,14 @@ namespace Reportman.Drawing.Forms
             this.Leave += new EventHandler(ThisWasLeaved);
             this.TextChanged += new EventHandler(ThisTextChanged);
 
+        }
+        [DefaultValue("")] // Asegúrate de que coincida con el valor por defecto de TextBox
+        [Localizable(true)] // Si necesitas localización
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)] // Fuerza la serialización
+        public override string Text
+        {
+            get => base.Text;
+            set => base.Text = value;
         }
         public object SelectedDropDown
         {
@@ -195,7 +204,7 @@ namespace Reportman.Drawing.Forms
 
             //Drawing the string into the panel 
             Graphics g = e.Graphics;
-            g.DrawString(this._waterMarkText, waterMarkFont, waterMarkBrush, new PointF(-2f, 1f));//Take a look at that point
+            g.DrawString(this._waterMarkText, waterMarkFont ?? this.Font, waterMarkBrush, new PointF(-2f, 1f));//Take a look at that point
             //The reason I'm using the panel at all, is because of this feature, that it has no limits
             //I started out with a label but that looked very very bad because of its paddings 
 
@@ -230,6 +239,10 @@ namespace Reportman.Drawing.Forms
 
         private void ThisTextChanged(object sender, EventArgs e)
         {
+            if (DesignMode)
+            {
+                return;
+            }
             //If the text of the textbox is not empty
             if (this.TextLength > 0)
             {
@@ -264,6 +277,7 @@ namespace Reportman.Drawing.Forms
             this.Focus(); //Makes sure you can click wherever you want on the control to gain focus
         }
         [Category("Watermark attribtues")]
+        [DefaultValue("")]
         [Description("Sets the text of the watermark")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string WaterMark
@@ -276,7 +290,7 @@ namespace Reportman.Drawing.Forms
                 this.Invalidate();
             }
         }
-
+        [DefaultValue(typeof(Color), "Gray")]
         [Category("Watermark attribtues")]
         [Description("When the control gaines focus, this color will be used as the watermark's forecolor")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
@@ -290,6 +304,7 @@ namespace Reportman.Drawing.Forms
                 this.Invalidate();
             }
         }
+        [DefaultValue(typeof(Color), "LightGray")]
 
         [Category("Watermark attribtues")]
         [Description("When the control looses focus, this color will be used as the watermark's forecolor")]
@@ -306,15 +321,15 @@ namespace Reportman.Drawing.Forms
         }
 
         [Category("Watermark attribtues")]
+        [DefaultValue(null)]
         [Description("The font used on the watermark. Default is the same as the control")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Font WaterMarkFont
         {
             get
             {
-                return this.waterMarkFont;
+                return waterMarkFont;
             }
-
             set
             {
                 this.waterMarkFont = value;
@@ -323,7 +338,8 @@ namespace Reportman.Drawing.Forms
         }
 
 
-        private TextBoxDataType FDataType;
+        private TextBoxDataType FDataType = TextBoxDataType.Text;
+        [DefaultValue(TextBoxDataType.Text)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public TextBoxDataType DataType
         {
@@ -333,7 +349,9 @@ namespace Reportman.Drawing.Forms
                 FDataType = value;
             }
         }
+
         private bool FReadBarCode;
+        [DefaultValue(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
 
         public bool ReadBarCode
@@ -359,6 +377,7 @@ namespace Reportman.Drawing.Forms
             base.OnMouseDown(e);
         }
         private char FBarCodeBeginChar;
+        [DefaultValue('$')]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public char BarCodeBeginChar
         {
@@ -533,26 +552,29 @@ namespace Reportman.Drawing.Forms
 
         protected override void OnTextChanged(EventArgs e)
         {
-            if (FReadBarCode)
+            if (!DesignMode)
             {
-                if (Text.Length > 1)
+                if (FReadBarCode)
                 {
-                    if (Text[0] == FBarCodeBeginChar)
+                    if (Text.Length > 1)
                     {
-                        int index = 1;
-                        while (index < Text.Length)
+                        if (Text[0] == FBarCodeBeginChar)
                         {
-                            if (Text[index] == FBarCodeEndChar)
+                            int index = 1;
+                            while (index < Text.Length)
                             {
-                                Text = Text.Substring(1, index - 1);
-                                break;
+                                if (Text[index] == FBarCodeEndChar)
+                                {
+                                    Text = Text.Substring(1, index - 1);
+                                    break;
+                                }
+                                index++;
                             }
-                            index++;
                         }
                     }
                 }
+                HandletextChanged(e);
             }
-            HandletextChanged(e);
             base.OnTextChanged(e);
         }
         char[] separators = { '-', ' ' };
@@ -903,6 +925,7 @@ namespace Reportman.Drawing.Forms
         }
 
         private char FBarCodeEndChar;
+        [DefaultValue('%')]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public char BarCodeEndChar
         {
@@ -1097,6 +1120,7 @@ namespace Reportman.Drawing.Forms
                 }
             }
         }
+        [DefaultValue(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool EnterAsTab { get; set; }
 

@@ -218,8 +218,8 @@ namespace Reportman.Drawing.Forms
              set
              {
                  FNewSize = value;
-                 base.Size = new Size(Convert.ToInt32(Math.Round(Reportman.Drawing.GraphicUtils.DPIScaleX * FNewSize.Width)),
-                      Convert.ToInt32(Math.Round(Reportman.Drawing.GraphicUtils.DPIScaleY * FNewSize.Height)));
+                 base.Size = new Size(Convert.ToInt32(Math.Round(Reportman.Drawing.Windows.GraphicUtils.DPIScaleX * FNewSize.Width)),
+                      Convert.ToInt32(Math.Round(Reportman.Drawing.Windows.GraphicUtils.DPIScaleY * FNewSize.Height)));
              }
              get
              {
@@ -1346,8 +1346,8 @@ namespace Reportman.Drawing.Forms
             set
             {
                 FNewSize = value;
-                base.Size = new Size(Convert.ToInt32(Math.Round(Reportman.Drawing.GraphicUtils.DPIScaleX * FNewSize.Width)),
-                     Convert.ToInt32(Math.Round(Reportman.Drawing.GraphicUtils.DPIScaleY * FNewSize.Height)));
+                base.Size = new Size(Convert.ToInt32(Math.Round(Reportman.Drawing.Windows.GraphicUtils.DPIScaleX * FNewSize.Width)),
+                     Convert.ToInt32(Math.Round(Reportman.Drawing.Windows.GraphicUtils.DPIScaleY * FNewSize.Height)));
             }
             get
             {

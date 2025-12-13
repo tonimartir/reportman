@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Collections;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using System.Linq;
+using Reportman.Drawing;
 
 namespace Reportman.Reporting
 {
+    [JsonConverter(typeof(ParamsConverter))]
     public class Params : IEnumerable, ICloneable
     {
         Param[] FItems;
@@ -100,6 +105,19 @@ namespace Reportman.Reporting
             FItems[FCount] = obj;
             FCount++;
         }
+        public void Insert(int insertIndex, Param obj)
+        {
+            var list = FItems.ToList();
+            list.Insert(insertIndex, obj);
+            FItems = list.ToArray();
+            FCount = FItems.Count();
+        }
+        public void Swap(int index1, int index2)
+        {
+            var list = FItems.ToList();
+            list.Swap(index1, index2);
+            FItems = list.ToArray();
+        }
         // IEnumerable Interface Implementation:
         //   Declaration of the GetEnumerator() method 
         //   required by IEnumerable
@@ -174,6 +192,34 @@ namespace Reportman.Reporting
             Param buf = FItems[index1];
             FItems[index1] = FItems[index2];
             FItems[index2] = buf;
+        }
+    }
+
+    public class ParamsConverter : JsonConverter
+    {
+        public override bool CanConvert(Type objectType) => objectType == typeof(Params);
+
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            var p = (Params)value;
+            writer.WriteStartArray();       // ⬅️ Directamente un array
+            foreach (Param item in p)
+            {
+                serializer.Serialize(writer, item);
+            }
+            writer.WriteEndArray();
+        }
+
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            var array = JArray.Load(reader);  // ⬅️ Cargar directamente el array
+            var result = new Params();
+            foreach (var token in array)
+            {
+                var param = token.ToObject<Param>(serializer);
+                result.Add(param);
+            }
+            return result;
         }
     }
 }

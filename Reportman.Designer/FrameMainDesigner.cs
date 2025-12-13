@@ -341,7 +341,7 @@ namespace Reportman.Designer
                 if (FReport != null)
                 {
                     OriginalStream = new System.IO.MemoryStream();
-                    FReport.SaveToStream(OriginalStream);
+                    FReport.SaveToStream(OriginalStream, StreamVersion.V2);
                 }
                 else
                     OriginalStream = null;
@@ -423,7 +423,7 @@ namespace Reportman.Designer
                 return true;
             using (System.IO.MemoryStream newstream = new System.IO.MemoryStream())
             {
-                FReport.SaveToStream(newstream);
+                FReport.SaveToStream(newstream, StreamVersion.V2);
                 newstream.Seek(0, System.IO.SeekOrigin.Begin);
                 OriginalStream.Seek(0, System.IO.SeekOrigin.Begin);
                 if (StreamUtil.CompareArrayContent(newstream.ToArray(), OriginalStream.ToArray()))
@@ -512,7 +512,7 @@ namespace Reportman.Designer
                 ReportToPrint = new Report();
                 using (System.IO.MemoryStream mstream = new System.IO.MemoryStream())
                 {
-                    Report.SaveToStream(mstream);
+                    Report.SaveToStream(mstream, StreamVersion.V2);
                     mstream.Seek(0, System.IO.SeekOrigin.Begin);
                     ReportToPrint.LoadFromStream(mstream);
                     ReportToPrint.ConvertToDotNet();
@@ -1150,7 +1150,7 @@ namespace Reportman.Designer
                 SaveReportArgs args = new SaveReportArgs();
                 OnSaveClick(this, args);
                 OriginalStream = new System.IO.MemoryStream();
-                FReport.SaveToStream(OriginalStream);
+                FReport.SaveToStream(OriginalStream, StreamVersion.V2);
                 return args.Saved;
             }
             if ((CurrentFilename.Length == 0) && (CurrentReportSelection == null))

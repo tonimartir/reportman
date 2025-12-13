@@ -36,6 +36,8 @@ namespace Reportman.Drawing
         private PDFFile FPDFFile;
         private int FPageWidth;
         private int FPageHeight;
+        private int FPageRealWidth;
+        private int FPageRealHeight;
         private int PageQt;
         /// <summary>
         /// The pdf is not generated but all size calculations are done
@@ -82,10 +84,12 @@ namespace Reportman.Drawing
             PageQt = 0;
             FPageWidth = 11904;
             FPageHeight = 16836;
+            FPageRealWidth = FPageWidth;
+            FPageRealHeight = FPageHeight;
         }
         public abstract FontInfoProvider GetFontInfoProvider();
         public abstract IBitmapInfoProvider GetBitmapInfoProvider();
-        public LineInfos LineInfo
+        public System.Collections.Generic.List<LineInfo> LineInfo
         {
             get
             {
@@ -135,11 +139,23 @@ namespace Reportman.Drawing
             FPDFFile.PageHeight = meta.CustomY;
             FPageWidth = meta.CustomX;
             FPageHeight = meta.CustomY;
+            FOrientation = meta.Orientation;
+            if (FOrientation ==OrientationType.Landscape)
+            {
+                FPageRealWidth = meta.CustomY;
+                FPageRealHeight = meta.CustomX;
+            }
+            else
+            {
+                FPageRealWidth = meta.CustomX;
+                FPageRealHeight = meta.CustomY;
+            }
+
 
             foreach (var efile in meta.EmbeddedFiles)
-            {
-                FPDFFile.EmbeddedFiles.Add((EmbeddedFile)efile.Clone());
-            }
+                {
+                    FPDFFile.EmbeddedFiles.Add((EmbeddedFile)efile.Clone());
+                }
 
             FPDFFile.CalculateOnly = CalculateOnly;
             FPDFFile.BeginDoc();
@@ -172,8 +188,18 @@ namespace Reportman.Drawing
             // Sets the page size for the pdf file, first if it's a qt page
             if (page.UpdatedPageSize)
             {
-                FPageWidth = page.PageDetail.PhysicWidth;
-                FPageHeight = page.PageDetail.PhysicHeight;
+                FPageRealWidth = page.PageDetail.PhysicWidth;
+                FPageRealHeight = page.PageDetail.PhysicHeight;
+                if (page.Orientation == OrientationType.Landscape)
+                {
+                    FPageWidth = page.PageDetail.PhysicHeight;
+                    FPageHeight = page.PageDetail.PhysicWidth;
+                }
+                else
+                {
+                    FPageWidth = page.PageDetail.PhysicWidth;
+                    FPageHeight = page.PageDetail.PhysicHeight;
+                }
             }
             FPDFFile.NewPage(FPageWidth, FPageHeight);
         }
@@ -200,7 +226,6 @@ namespace Reportman.Drawing
                 case MetaObjectType.Text:
                     MetaObjectText objt = (MetaObjectText)obj;
                     FPDFFile.Canvas.Font.WFontName = page.GetWFontNameText(objt);
-                    FPDFFile.Canvas.Font.FontName = FPDFFile.Canvas.Font.WFontName.Replace(" ", "");
                     FPDFFile.Canvas.Font.LFontName = page.GetLFontNameText(objt);
                     FPDFFile.Canvas.Font.Style = objt.FontStyle;
                     // Transparent ?
@@ -434,14 +459,18 @@ namespace Reportman.Drawing
             meta.RequestPage(FCurrentPage);
             if (meta.Pages.CurrentCount < FromPage)
                 return false;
-            SetPageSize(meta.Pages[0].PageDetail);
             SetOrientation(meta.Orientation);
+            SetPageSize(meta.Pages[0].PageDetail);
             MetaPage apage;
             while (meta.Pages.CurrentCount > FCurrentPage)
             {
                 apage = meta.Pages[FCurrentPage];
-                if (apage.PageDetail.Custom)
+                if (apage.UpdatedPageSize)
+                {
+                    SetOrientation(apage.Orientation);
                     SetPageSize(apage.PageDetail);
+
+                }
                 if (FCurrentPage >= FromPage)
                 {
                     NewPage(meta, apage);
@@ -461,7 +490,7 @@ namespace Reportman.Drawing
         public Point WordExtent(string text, Point extent)
         {
             Rectangle rect = new Rectangle(0, 0, extent.X, extent.Y);
-            FPDFFile.Canvas.TextExtent(text, ref rect, false, true, false);
+            FPDFFile.Canvas.TextExtent(text, ref rect, false, true, false,false);
             extent.X = rect.Width;
             extent.Y = rect.Height;
             return extent;
@@ -483,12 +512,11 @@ namespace Reportman.Drawing
             FPDFFile.Canvas.Font.WFontName = aobj.WFontName;
             FPDFFile.Canvas.Font.LFontName = aobj.LFontName;
 
-            FPDFFile.Canvas.Font.FontName = aobj.WFontName.Replace(" ", "");
             FPDFFile.Canvas.Font.Size = aobj.FontSize;
             FPDFFile.Canvas.Font.Bold = (aobj.FontStyle & 1) > 0;
             FPDFFile.Canvas.Font.Italic = (aobj.FontStyle & 2) > 0;
             rect = new Rectangle(0, 0, extent.X, 0);
-            FPDFFile.Canvas.TextExtent(aobj.Text, ref rect, aobj.WordWrap, singleline, false);
+            FPDFFile.Canvas.TextExtent(aobj.Text, ref rect, aobj.WordWrap, singleline, false, aobj.RightToLeft);
             extent.X = rect.Width;
             extent.Y = rect.Height;
             if (aobj.CutText)
@@ -515,12 +543,11 @@ namespace Reportman.Drawing
             FPDFFile.Canvas.Font.WFontName = aobj.WFontName;
             FPDFFile.Canvas.Font.LFontName = aobj.LFontName;
 
-            FPDFFile.Canvas.Font.FontName = aobj.WFontName.Replace(" ", "");
             FPDFFile.Canvas.Font.Size = aobj.FontSize;
             FPDFFile.Canvas.Font.Bold = (aobj.FontStyle & 1) > 0;
             FPDFFile.Canvas.Font.Italic = (aobj.FontStyle & 2) > 0;
             rect = new Rectangle(0, 0, extent.X, 0);
-            FPDFFile.Canvas.TextExtent(aobj.Text, ref rect, aobj.WordWrap, singleline, true);
+            FPDFFile.Canvas.TextExtent(aobj.Text, ref rect, aobj.WordWrap, singleline, true, aobj.RightToLeft);
             extent.X = rect.Width;
             extent.Y = rect.Height;
             if (aobj.CutText)
@@ -575,17 +602,15 @@ namespace Reportman.Drawing
                 return;
             if (PageOrientation == OrientationType.Portrait)
             {
-                int atemp = FPageWidth;
-                FPageWidth = FPageHeight;
-                FPageHeight = atemp;
                 FOrientation = PageOrientation;
+                FPageWidth = FPageRealWidth;
+                FPageHeight = FPageRealHeight;
             }
             else
             {
-                int atemp = FPageWidth;
-                FPageWidth = FPageHeight;
-                FPageHeight = atemp;
                 FOrientation = PageOrientation;
+                FPageWidth = FPageRealHeight;
+                FPageHeight = FPageRealWidth;
             }
         }
         /// <summary>
@@ -609,6 +634,8 @@ namespace Reportman.Drawing
                 newwidth = (int)Math.Round((double)MetaFile.PageSizeArray[psize.Index, 0] / 1000 * Twips.TWIPS_PER_INCH);
                 newheight = (int)Math.Round((double)MetaFile.PageSizeArray[psize.Index, 1] / 1000 * Twips.TWIPS_PER_INCH);
             }
+            FPageRealWidth = newwidth;
+            FPageRealHeight = newheight;
             if (FOrientation == OrientationType.Landscape)
             {
                 FPageWidth = newheight;

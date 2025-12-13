@@ -41,8 +41,8 @@ namespace Reportman.Reporting
 #endif
 #endif
         }
-        public ImageItem(BaseReport rp)
-            : base(rp)
+        public ImageItem()
+            : base()
         {
 #if REPMAN_ZLIB
             FDecompStream = new MemoryStream();
@@ -60,14 +60,12 @@ namespace Reportman.Reporting
             return "TRPIMAGE";
         }
         [Browsable(false)]
+        [System.Text.Json.Serialization.JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
         public MemoryStream Stream
         {
             get { return FStream; }
             private set { FStream = value; }
-        }
-        public bool ShouldSerializeStream()
-        {
-            return false;
         }
         public string StreamBase64
         {

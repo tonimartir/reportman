@@ -1701,7 +1701,8 @@ namespace Reportman.Drawing
                             break;
                     }
                 }
-                if (currentpos < 0)
+                //sergi 01-08-2025: indico <= porqué si el currentpos=0 no termina nunca
+                if (currentpos <= 0)
                     break;
                 objt.Text = originalstring.Substring(0, currentpos);
                 newextent = maxextent;

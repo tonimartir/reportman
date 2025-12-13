@@ -113,7 +113,8 @@ namespace Reportman.Reporting
         /// <returns>A new DataInfo item</returns>
         public object Clone()
         {
-            DataInfo ninfo = new DataInfo(Report);
+            DataInfo ninfo = new DataInfo();
+            ninfo.Report = Report;
             ninfo.Alias = Alias;
             ninfo.BDEFilter = BDEFilter;
             ninfo.BDEFirstRange = this.BDEFirstRange;
@@ -141,8 +142,8 @@ namespace Reportman.Reporting
         /// Constructor
         /// </summary>
         /// <param name="rp">The owner</param>
-        public DataInfo(BaseReport rp)
-            : base(rp)
+        public DataInfo()
+            : base()
         {
             OpenOnStart = true;
             DataUnions = new Strings();
@@ -579,6 +580,7 @@ namespace Reportman.Reporting
                         Command = dbitem.Connection.CreateCommand();
                     else
                         Command = dbitem.SqlExecuter.CreateCommand();
+                    Command.CommandTimeout = 0;
                     Command.Transaction = dbitem.CurrentTransaction;
                     string sqlsentence;
                     if (SQLOverride.Length != 0)

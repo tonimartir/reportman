@@ -95,11 +95,13 @@
             // maincontainer.ContentPanel
             // 
             this.maincontainer.ContentPanel.Controls.Add(this.PParent);
-            this.maincontainer.ContentPanel.Size = new System.Drawing.Size(632, 395);
+            this.maincontainer.ContentPanel.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.maincontainer.ContentPanel.Size = new System.Drawing.Size(1685, 943);
             this.maincontainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.maincontainer.Location = new System.Drawing.Point(0, 0);
+            this.maincontainer.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.maincontainer.Name = "maincontainer";
-            this.maincontainer.Size = new System.Drawing.Size(632, 443);
+            this.maincontainer.Size = new System.Drawing.Size(1685, 1056);
             this.maincontainer.TabIndex = 0;
             // 
             // maincontainer.TopToolStripPanel
@@ -109,32 +111,34 @@
             // mainstatus
             // 
             this.mainstatus.Dock = System.Windows.Forms.DockStyle.None;
+            this.mainstatus.ImageScalingSize = new System.Drawing.Size(40, 40);
             this.mainstatus.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StatusPage,
             this.BarStatusEdit});
             this.mainstatus.Location = new System.Drawing.Point(0, 0);
             this.mainstatus.Name = "mainstatus";
-            this.mainstatus.Size = new System.Drawing.Size(632, 22);
+            this.mainstatus.Size = new System.Drawing.Size(1685, 54);
             this.mainstatus.TabIndex = 0;
             // 
             // StatusPage
             // 
             this.StatusPage.Name = "StatusPage";
-            this.StatusPage.Size = new System.Drawing.Size(31, 17);
+            this.StatusPage.Size = new System.Drawing.Size(82, 41);
             this.StatusPage.Text = "        ";
             // 
             // BarStatusEdit
             // 
             this.BarStatusEdit.Name = "BarStatusEdit";
-            this.BarStatusEdit.Size = new System.Drawing.Size(16, 17);
+            this.BarStatusEdit.Size = new System.Drawing.Size(42, 41);
             this.BarStatusEdit.Text = "   ";
             // 
             // PParent
             // 
             this.PParent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PParent.Location = new System.Drawing.Point(0, 0);
+            this.PParent.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.PParent.Name = "PParent";
-            this.PParent.Size = new System.Drawing.Size(632, 395);
+            this.PParent.Size = new System.Drawing.Size(1685, 943);
             this.PParent.TabIndex = 5;
             this.PParent.Click += new System.EventHandler(this.bsfirst_Click);
             // 
@@ -168,9 +172,9 @@
             this.BZoomPlus,
             this.bdivexit,
             this.BExit});
-            this.maintoolstrip.Location = new System.Drawing.Point(3, 0);
+            this.maintoolstrip.Location = new System.Drawing.Point(8, 0);
             this.maintoolstrip.Name = "maintoolstrip";
-            this.maintoolstrip.Size = new System.Drawing.Size(604, 26);
+            this.maintoolstrip.Size = new System.Drawing.Size(1224, 59);
             this.maintoolstrip.TabIndex = 0;
             this.maintoolstrip.TabStop = true;
             // 
@@ -180,7 +184,7 @@
             this.bsfirst.Image = ((System.Drawing.Image)(resources.GetObject("bsfirst.Image")));
             this.bsfirst.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.bsfirst.Name = "bsfirst";
-            this.bsfirst.Size = new System.Drawing.Size(23, 23);
+            this.bsfirst.Size = new System.Drawing.Size(58, 52);
             this.bsfirst.Click += new System.EventHandler(this.bsfirst_Click);
             // 
             // bsprior
@@ -189,17 +193,18 @@
             this.bsprior.Image = ((System.Drawing.Image)(resources.GetObject("bsprior.Image")));
             this.bsprior.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.bsprior.Name = "bsprior";
-            this.bsprior.Size = new System.Drawing.Size(23, 23);
+            this.bsprior.Size = new System.Drawing.Size(58, 55);
             this.bsprior.Click += new System.EventHandler(this.bsfirst_Click);
             // 
             // EPage
             // 
+            this.EPage.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.EPage.Name = "EPage";
-            this.EPage.Size = new System.Drawing.Size(50, 26);
+            this.EPage.Size = new System.Drawing.Size(75, 62);
             this.EPage.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.EPage.Leave += new System.EventHandler(this.EPage_Leave);
-            this.EPage.Validating += new System.ComponentModel.CancelEventHandler(this.EPage_Validating);
             this.EPage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EPage_KeyPress);
+            this.EPage.Validating += new System.ComponentModel.CancelEventHandler(this.EPage_Validating);
             // 
             // bsnext
             // 
@@ -207,7 +212,7 @@
             this.bsnext.Image = ((System.Drawing.Image)(resources.GetObject("bsnext.Image")));
             this.bsnext.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.bsnext.Name = "bsnext";
-            this.bsnext.Size = new System.Drawing.Size(23, 23);
+            this.bsnext.Size = new System.Drawing.Size(58, 55);
             this.bsnext.Click += new System.EventHandler(this.bsfirst_Click);
             // 
             // bslast
@@ -216,18 +221,19 @@
             this.bslast.Image = ((System.Drawing.Image)(resources.GetObject("bslast.Image")));
             this.bslast.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.bslast.Name = "bslast";
-            this.bslast.Size = new System.Drawing.Size(23, 23);
+            this.bslast.Size = new System.Drawing.Size(58, 55);
             this.bslast.Click += new System.EventHandler(this.bsfirst_Click);
             // 
             // bdivsearch
             // 
             this.bdivsearch.Name = "bdivsearch";
-            this.bdivsearch.Size = new System.Drawing.Size(6, 26);
+            this.bdivsearch.Size = new System.Drawing.Size(6, 62);
             // 
             // textsearch
             // 
+            this.textsearch.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.textsearch.Name = "textsearch";
-            this.textsearch.Size = new System.Drawing.Size(100, 26);
+            this.textsearch.Size = new System.Drawing.Size(150, 62);
             this.textsearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textsearch_KeyPress);
             this.textsearch.TextChanged += new System.EventHandler(this.textsearch_TextChanged);
             // 
@@ -237,13 +243,13 @@
             this.bssearch.Image = ((System.Drawing.Image)(resources.GetObject("bssearch.Image")));
             this.bssearch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.bssearch.Name = "bssearch";
-            this.bssearch.Size = new System.Drawing.Size(23, 23);
+            this.bssearch.Size = new System.Drawing.Size(58, 55);
             this.bssearch.Click += new System.EventHandler(this.bsfirst_Click);
             // 
             // BDivPageSetup
             // 
             this.BDivPageSetup.Name = "BDivPageSetup";
-            this.BDivPageSetup.Size = new System.Drawing.Size(6, 26);
+            this.BDivPageSetup.Size = new System.Drawing.Size(6, 62);
             // 
             // BPageSetup
             // 
@@ -251,7 +257,7 @@
             this.BPageSetup.Image = ((System.Drawing.Image)(resources.GetObject("BPageSetup.Image")));
             this.BPageSetup.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BPageSetup.Name = "BPageSetup";
-            this.BPageSetup.Size = new System.Drawing.Size(23, 23);
+            this.BPageSetup.Size = new System.Drawing.Size(58, 55);
             this.BPageSetup.Click += new System.EventHandler(this.bsfirst_Click);
             // 
             // BParameters
@@ -260,13 +266,13 @@
             this.BParameters.Image = ((System.Drawing.Image)(resources.GetObject("BParameters.Image")));
             this.BParameters.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BParameters.Name = "BParameters";
-            this.BParameters.Size = new System.Drawing.Size(23, 23);
+            this.BParameters.Size = new System.Drawing.Size(58, 55);
             this.BParameters.Click += new System.EventHandler(this.bsfirst_Click);
             // 
             // BDivParams
             // 
             this.BDivParams.Name = "BDivParams";
-            this.BDivParams.Size = new System.Drawing.Size(6, 26);
+            this.BDivParams.Size = new System.Drawing.Size(6, 62);
             // 
             // BPrint
             // 
@@ -274,7 +280,7 @@
             this.BPrint.Image = ((System.Drawing.Image)(resources.GetObject("BPrint.Image")));
             this.BPrint.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BPrint.Name = "BPrint";
-            this.BPrint.Size = new System.Drawing.Size(23, 23);
+            this.BPrint.Size = new System.Drawing.Size(58, 55);
             this.BPrint.Click += new System.EventHandler(this.bsfirst_Click);
             // 
             // BSave
@@ -283,7 +289,7 @@
             this.BSave.Image = ((System.Drawing.Image)(resources.GetObject("BSave.Image")));
             this.BSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BSave.Name = "BSave";
-            this.BSave.Size = new System.Drawing.Size(23, 23);
+            this.BSave.Size = new System.Drawing.Size(58, 55);
             this.BSave.Click += new System.EventHandler(this.bsfirst_Click);
             // 
             // BMail
@@ -292,13 +298,13 @@
             this.BMail.Image = ((System.Drawing.Image)(resources.GetObject("BMail.Image")));
             this.BMail.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BMail.Name = "BMail";
-            this.BMail.Size = new System.Drawing.Size(23, 23);
+            this.BMail.Size = new System.Drawing.Size(58, 55);
             this.BMail.Click += new System.EventHandler(this.bsfirst_Click);
             // 
             // bdivscale
             // 
             this.bdivscale.Name = "bdivscale";
-            this.bdivscale.Size = new System.Drawing.Size(6, 26);
+            this.bdivscale.Size = new System.Drawing.Size(6, 62);
             // 
             // BScaleWide
             // 
@@ -306,7 +312,7 @@
             this.BScaleWide.Image = ((System.Drawing.Image)(resources.GetObject("BScaleWide.Image")));
             this.BScaleWide.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BScaleWide.Name = "BScaleWide";
-            this.BScaleWide.Size = new System.Drawing.Size(23, 23);
+            this.BScaleWide.Size = new System.Drawing.Size(58, 55);
             this.BScaleWide.Click += new System.EventHandler(this.bsfirst_Click);
             // 
             // BScaleFull
@@ -315,7 +321,7 @@
             this.BScaleFull.Image = ((System.Drawing.Image)(resources.GetObject("BScaleFull.Image")));
             this.BScaleFull.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BScaleFull.Name = "BScaleFull";
-            this.BScaleFull.Size = new System.Drawing.Size(23, 23);
+            this.BScaleFull.Size = new System.Drawing.Size(58, 55);
             this.BScaleFull.Click += new System.EventHandler(this.bsfirst_Click);
             // 
             // BScaleEntire
@@ -341,7 +347,7 @@
             this.BScaleEntire.Image = ((System.Drawing.Image)(resources.GetObject("BScaleEntire.Image")));
             this.BScaleEntire.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BScaleEntire.Name = "BScaleEntire";
-            this.BScaleEntire.Size = new System.Drawing.Size(35, 23);
+            this.BScaleEntire.Size = new System.Drawing.Size(81, 55);
             this.BScaleEntire.Click += new System.EventHandler(this.bsfirst_Click);
             // 
             // MScale1
@@ -349,119 +355,119 @@
             this.MScale1.Checked = true;
             this.MScale1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.MScale1.Name = "MScale1";
-            this.MScale1.Size = new System.Drawing.Size(87, 22);
+            this.MScale1.Size = new System.Drawing.Size(217, 54);
             this.MScale1.Text = "1";
             this.MScale1.Click += new System.EventHandler(this.MScale1_Click);
             // 
             // MScale2
             // 
             this.MScale2.Name = "MScale2";
-            this.MScale2.Size = new System.Drawing.Size(87, 22);
+            this.MScale2.Size = new System.Drawing.Size(217, 54);
             this.MScale2.Text = "2";
             this.MScale2.Click += new System.EventHandler(this.MScale1_Click);
             // 
             // MScale3
             // 
             this.MScale3.Name = "MScale3";
-            this.MScale3.Size = new System.Drawing.Size(87, 22);
+            this.MScale3.Size = new System.Drawing.Size(217, 54);
             this.MScale3.Text = "3";
             this.MScale3.Click += new System.EventHandler(this.MScale1_Click);
             // 
             // MScale4
             // 
             this.MScale4.Name = "MScale4";
-            this.MScale4.Size = new System.Drawing.Size(87, 22);
+            this.MScale4.Size = new System.Drawing.Size(217, 54);
             this.MScale4.Text = "4";
             this.MScale4.Click += new System.EventHandler(this.MScale1_Click);
             // 
             // MScale5
             // 
             this.MScale5.Name = "MScale5";
-            this.MScale5.Size = new System.Drawing.Size(87, 22);
+            this.MScale5.Size = new System.Drawing.Size(217, 54);
             this.MScale5.Text = "5";
             this.MScale5.Click += new System.EventHandler(this.MScale1_Click);
             // 
             // MScale6
             // 
             this.MScale6.Name = "MScale6";
-            this.MScale6.Size = new System.Drawing.Size(87, 22);
+            this.MScale6.Size = new System.Drawing.Size(217, 54);
             this.MScale6.Text = "6";
             this.MScale6.Click += new System.EventHandler(this.MScale1_Click);
             // 
             // MScale8
             // 
             this.MScale8.Name = "MScale8";
-            this.MScale8.Size = new System.Drawing.Size(87, 22);
+            this.MScale8.Size = new System.Drawing.Size(217, 54);
             this.MScale8.Text = "8";
             this.MScale8.Click += new System.EventHandler(this.MScale1_Click);
             // 
             // MScale9
             // 
             this.MScale9.Name = "MScale9";
-            this.MScale9.Size = new System.Drawing.Size(87, 22);
+            this.MScale9.Size = new System.Drawing.Size(217, 54);
             this.MScale9.Text = "9";
             this.MScale9.Click += new System.EventHandler(this.MScale1_Click);
             // 
             // MScale12
             // 
             this.MScale12.Name = "MScale12";
-            this.MScale12.Size = new System.Drawing.Size(87, 22);
+            this.MScale12.Size = new System.Drawing.Size(217, 54);
             this.MScale12.Text = "12";
             this.MScale12.Click += new System.EventHandler(this.MScale1_Click);
             // 
             // MScale14
             // 
             this.MScale14.Name = "MScale14";
-            this.MScale14.Size = new System.Drawing.Size(87, 22);
+            this.MScale14.Size = new System.Drawing.Size(217, 54);
             this.MScale14.Text = "14";
             this.MScale14.Click += new System.EventHandler(this.MScale1_Click);
             // 
             // MScale15
             // 
             this.MScale15.Name = "MScale15";
-            this.MScale15.Size = new System.Drawing.Size(87, 22);
+            this.MScale15.Size = new System.Drawing.Size(217, 54);
             this.MScale15.Text = "15";
             this.MScale15.Click += new System.EventHandler(this.MScale1_Click);
             // 
             // MScale16
             // 
             this.MScale16.Name = "MScale16";
-            this.MScale16.Size = new System.Drawing.Size(87, 22);
+            this.MScale16.Size = new System.Drawing.Size(217, 54);
             this.MScale16.Text = "16";
             this.MScale16.Click += new System.EventHandler(this.MScale1_Click);
             // 
             // MScale18
             // 
             this.MScale18.Name = "MScale18";
-            this.MScale18.Size = new System.Drawing.Size(87, 22);
+            this.MScale18.Size = new System.Drawing.Size(217, 54);
             this.MScale18.Text = "18";
             this.MScale18.Click += new System.EventHandler(this.MScale1_Click);
             // 
             // MScale32
             // 
             this.MScale32.Name = "MScale32";
-            this.MScale32.Size = new System.Drawing.Size(87, 22);
+            this.MScale32.Size = new System.Drawing.Size(217, 54);
             this.MScale32.Text = "32";
             this.MScale32.Click += new System.EventHandler(this.MScale1_Click);
             // 
             // MScale64
             // 
             this.MScale64.Name = "MScale64";
-            this.MScale64.Size = new System.Drawing.Size(87, 22);
+            this.MScale64.Size = new System.Drawing.Size(217, 54);
             this.MScale64.Text = "64";
             this.MScale64.Click += new System.EventHandler(this.MScale1_Click);
             // 
             // MTopDown
             // 
             this.MTopDown.Name = "MTopDown";
-            this.MTopDown.Size = new System.Drawing.Size(87, 22);
+            this.MTopDown.Size = new System.Drawing.Size(217, 54);
             this.MTopDown.Text = "->";
             this.MTopDown.Click += new System.EventHandler(this.MScale1_Click);
             // 
             // BDivZoom
             // 
             this.BDivZoom.Name = "BDivZoom";
-            this.BDivZoom.Size = new System.Drawing.Size(6, 26);
+            this.BDivZoom.Size = new System.Drawing.Size(6, 62);
             // 
             // BZoomMinus
             // 
@@ -469,7 +475,7 @@
             this.BZoomMinus.Image = ((System.Drawing.Image)(resources.GetObject("BZoomMinus.Image")));
             this.BZoomMinus.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BZoomMinus.Name = "BZoomMinus";
-            this.BZoomMinus.Size = new System.Drawing.Size(23, 23);
+            this.BZoomMinus.Size = new System.Drawing.Size(58, 55);
             this.BZoomMinus.Click += new System.EventHandler(this.bsfirst_Click);
             // 
             // BZoomPlus
@@ -478,13 +484,13 @@
             this.BZoomPlus.Image = ((System.Drawing.Image)(resources.GetObject("BZoomPlus.Image")));
             this.BZoomPlus.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BZoomPlus.Name = "BZoomPlus";
-            this.BZoomPlus.Size = new System.Drawing.Size(23, 23);
+            this.BZoomPlus.Size = new System.Drawing.Size(58, 55);
             this.BZoomPlus.Click += new System.EventHandler(this.bsfirst_Click);
             // 
             // bdivexit
             // 
             this.bdivexit.Name = "bdivexit";
-            this.bdivexit.Size = new System.Drawing.Size(6, 26);
+            this.bdivexit.Size = new System.Drawing.Size(6, 62);
             // 
             // BExit
             // 
@@ -492,7 +498,7 @@
             this.BExit.Image = ((System.Drawing.Image)(resources.GetObject("BExit.Image")));
             this.BExit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BExit.Name = "BExit";
-            this.BExit.Size = new System.Drawing.Size(23, 23);
+            this.BExit.Size = new System.Drawing.Size(58, 55);
             this.BExit.Text = "BExit";
             this.BExit.Click += new System.EventHandler(this.bsfirst_Click);
             // 
@@ -504,11 +510,12 @@
             // 
             // PreviewWinFormsControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.maincontainer);
+            this.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.Name = "PreviewWinFormsControl";
-            this.Size = new System.Drawing.Size(632, 443);
+            this.Size = new System.Drawing.Size(1685, 1056);
             this.Load += new System.EventHandler(this.PreviewWinForms2_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ExecuteKeyDown);
             this.maincontainer.BottomToolStripPanel.ResumeLayout(false);

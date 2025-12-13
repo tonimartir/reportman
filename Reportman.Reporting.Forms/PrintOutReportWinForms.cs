@@ -309,11 +309,12 @@ namespace Reportman.Reporting.Forms
             idxcol = 0;
             int posx = 0;
             // Grey header
-            ShapeItem sitem = new ShapeItem(nreport);
+            ShapeItem sitem = new ShapeItem();
+            sitem.Report = nreport;
             sitem.Shape = ShapeType.Rectangle;
             sitem.BrushStyle = BrushType.Solid;
             sitem.PenStyle = Reportman.Drawing.PenType.Clear;
-            sitem.BrushColor = GraphicUtils.IntegerFromColor(Color.FromArgb(200, 200, 200));
+            sitem.BrushColor = Reportman.Drawing.GraphicUtils.IntegerFromColor(Color.FromArgb(200, 200, 200));
             sitem.Height = rowheight;
             sitem.Align = PrintItemAlign.TopBottom;
             HorzShapes.Add(sitem);
@@ -321,7 +322,8 @@ namespace Reportman.Reporting.Forms
             GroupHeader.Components.Add(sitem);
 
 
-            sitem = new ShapeItem(nreport);
+            sitem = new ShapeItem();
+            sitem.Report = nreport;
             sitem.Shape = ShapeType.VertLine;
             sitem.Height = rowheight;
             sitem.Align = PrintItemAlign.TopBottom;
@@ -332,7 +334,8 @@ namespace Reportman.Reporting.Forms
             if (opts.DrawBackGroundColors)
             {
                 // Background color
-                sitem = new ShapeItem(nreport);
+                sitem = new ShapeItem();
+                sitem.Report = nreport;
                 sitem.PrintCondition = aliasname + ".BACKCOLOR<>NULL";
                 sitem.BrushColorExpression = aliasname + ".BACKCOLOR";
                 sitem.Shape = ShapeType.Rectangle;
@@ -344,7 +347,8 @@ namespace Reportman.Reporting.Forms
                 HorzShapes.Add(sitem);
             }
 
-            sitem = new ShapeItem(nreport); ;
+            sitem = new ShapeItem(); ;
+            sitem.Report = nreport;
             sitem.Shape = ShapeType.HorzLine;
             sitem.Width = maxwidth;
             HorzShapes.Add(sitem);
@@ -352,14 +356,16 @@ namespace Reportman.Reporting.Forms
             GroupHeader.Components.Add(sitem);
 
 
-            sitem = new ShapeItem(nreport); ;
+            sitem = new ShapeItem();
+            sitem.Report = nreport;
             sitem.Shape = ShapeType.HorzLine;
             sitem.Width = maxwidth;
             HorzShapes.Add(sitem);
             nreport.GenerateNewName(sitem);
             GroupFooter.Components.Add(sitem);
 
-            sitem = new ShapeItem(nreport); ;
+            sitem = new ShapeItem();
+            sitem.Report = nreport;
             sitem.Shape = ShapeType.HorzLine;
             sitem.Width = maxwidth;
             HorzShapes.Add(sitem);
@@ -369,7 +375,8 @@ namespace Reportman.Reporting.Forms
 
             if (opts.VerticalLines)
             {
-                sitem = new ShapeItem(nreport);
+                sitem = new ShapeItem();
+                sitem.Report = nreport;
                 sitem.Shape = ShapeType.VertLine;
                 sitem.Height = rowheight;
                 sitem.Align = PrintItemAlign.TopBottom;
@@ -390,7 +397,8 @@ namespace Reportman.Reporting.Forms
                 {
                     cellalign = ncol.DefaultCellStyle.Alignment;
                 }
-                LabelItem litem = new LabelItem(nreport);
+                LabelItem litem = new LabelItem();
+                litem.Report = nreport;
                 SetAlignFromCellFormat(cellalign, litem);
                 litem.VAlignment = TextAlignVerticalType.Top;
                 if (litem.Alignment == TextAlignType.Left)
@@ -430,7 +438,8 @@ namespace Reportman.Reporting.Forms
                         for (int idxlevel = 1; idxlevel <= ngridav.MaxLevel; idxlevel++)
                         {
                             // Add Image for level
-                            ImageItem imaitem = new ImageItem(nreport);
+                            ImageItem imaitem = new ImageItem();
+                            imaitem.Report = nreport;
                             imaitem.Expression = aliasname + ".IMAGE";
                             imaitem.PrintCondition = aliasname + ".LEVEL=" + idxlevel.ToString();
                             imaitem.Height = rowheight;
@@ -446,7 +455,8 @@ namespace Reportman.Reporting.Forms
                             Detail.Components.Add(imaitem);
 
                             // Add expression foreach level
-                            ExpressionItem exitem = new ExpressionItem(nreport);
+                            ExpressionItem exitem = new ExpressionItem();
+                            exitem.Report = nreport;
                             exitem.Expression = aliasname + "." + Campos[idxcol];
                             exitem.PrintCondition = aliasname + ".LEVEL=" + idxlevel.ToString();
                             exitem.WordWrap = opts.WordWrap;
@@ -467,7 +477,8 @@ namespace Reportman.Reporting.Forms
                             if (opts.DrawTreeLines)
                             {
                                 // Last child line
-                                sitem = new ShapeItem(nreport);
+                                sitem = new ShapeItem();
+                                sitem.Report = nreport;
                                 sitem.PrintCondition = "((" + aliasname + ".LEVEL=" + idxlevel.ToString() + ") AND (" + aliasname + ".LASTCHILD))";
                                 sitem.Shape = ShapeType.VertLine;
                                 sitem.PenStyle = Reportman.Drawing.PenType.Dot;
@@ -476,7 +487,8 @@ namespace Reportman.Reporting.Forms
                                 Detail.Components.Add(sitem);
 
                                 // Not last child horz line
-                                sitem = new ShapeItem(nreport);
+                                sitem = new ShapeItem();
+                                sitem.Report = nreport;
                                 sitem.PrintCondition = "((" + aliasname + ".LEVEL=" + idxlevel.ToString() + ") AND (NOT (" + aliasname + ".LASTCHILD)))";
                                 sitem.Shape = ShapeType.VertLine;
                                 sitem.PenStyle = Reportman.Drawing.PenType.Dot;
@@ -485,7 +497,8 @@ namespace Reportman.Reporting.Forms
                                 Detail.Components.Add(sitem);
 
                                 // Other parent lines
-                                sitem = new ShapeItem(nreport);
+                                sitem = new ShapeItem();
+                                sitem.Report = nreport;
                                 sitem.PrintCondition = aliasname + ".LEVEL>" + idxlevel.ToString();
                                 sitem.Shape = ShapeType.VertLine;
                                 sitem.Align = PrintItemAlign.TopBottom;
@@ -495,7 +508,8 @@ namespace Reportman.Reporting.Forms
                                 Detail.Components.Add(sitem);
 
                                 // Horz arrow
-                                sitem = new ShapeItem(nreport);
+                                sitem = new ShapeItem();
+                                sitem.Report = nreport;
                                 sitem.PrintCondition = aliasname + ".LEVEL=" + idxlevel.ToString();
                                 sitem.PenStyle = Reportman.Drawing.PenType.Dot;
                                 sitem.Shape = ShapeType.HorzLine;
@@ -509,7 +523,8 @@ namespace Reportman.Reporting.Forms
                     }
                     else
                     {
-                        ExpressionItem exitem = new ExpressionItem(nreport);
+                        ExpressionItem exitem = new ExpressionItem();
+                        exitem.Report = nreport;
                         exitem.Expression = aliasname + "." + Campos[idxcol];
                         exitem.WordWrap = opts.WordWrap;
                         exitem.CutText = !opts.WordWrap;
@@ -535,7 +550,7 @@ namespace Reportman.Reporting.Forms
                         ColumnasImage.Add(idxcol, ncol);
                         ntable.Columns.Add(Campos[idxcol], System.Type.GetType("System.Object"));
 
-                        ImageItem imaitem = new ImageItem(nreport);
+                        ImageItem imaitem = new ImageItem();
                         imaitem.Expression = aliasname + "." + Campos[idxcol];
                         imaitem.Height = rowheight;
                         imaitem.Align = PrintItemAlign.TopBottom;
@@ -555,7 +570,8 @@ namespace Reportman.Reporting.Forms
                         ColumnasBool.Add(idxcol, ncol);
                         ntable.Columns.Add(Campos[idxcol], System.Type.GetType("System.Boolean"));
 
-                        ShapeItem cuaditem = new ShapeItem(nreport);
+                        ShapeItem cuaditem = new ShapeItem();
+                        cuaditem.Report = nreport;
                         cuaditem.Shape = ShapeType.Rectangle;
                         cuaditem.PrintCondition = aliasname + "." + Campos[idxcol] + "<>NULL";
                         //cuaditem.Align = PrintItemAlign.TopBottom;
@@ -569,7 +585,8 @@ namespace Reportman.Reporting.Forms
                         nreport.GenerateNewName(cuaditem);
                         Detail.Components.Add(cuaditem);
 
-                        cuaditem = new ShapeItem(nreport);
+                        cuaditem = new ShapeItem();
+                        cuaditem.Report = nreport; ;
                         cuaditem.Shape = ShapeType.Oblique1;
                         cuaditem.PrintCondition = aliasname + "." + Campos[idxcol];
                         //cuaditem.Align = PrintItemAlign.TopBottom;
@@ -583,7 +600,8 @@ namespace Reportman.Reporting.Forms
                         Detail.Components.Add(cuaditem);
 
 
-                        cuaditem = new ShapeItem(nreport);
+                        cuaditem = new ShapeItem();
+                        cuaditem.Report = nreport;
                         cuaditem.Shape = ShapeType.Oblique2;
                         cuaditem.PrintCondition = aliasname + "." + Campos[idxcol];
                         //cuaditem.Align = PrintItemAlign.TopBottom;
@@ -609,7 +627,8 @@ namespace Reportman.Reporting.Forms
 
                 if (opts.VerticalLines)
                 {
-                    sitem = new ShapeItem(nreport);
+                    sitem = new ShapeItem();
+                    sitem.Report = nreport;
                     sitem.Shape = ShapeType.VertLine;
                     sitem.PosX = posx;
                     sitem.Height = rowheight;
@@ -617,7 +636,8 @@ namespace Reportman.Reporting.Forms
                     Detail.Components.Add(sitem);
                 }
 
-                sitem = new ShapeItem(nreport);
+                sitem = new ShapeItem();
+                sitem.Report = nreport;
                 sitem.Shape = ShapeType.VertLine;
                 sitem.PosX = posx;
                 sitem.Height = rowheight;
@@ -626,14 +646,16 @@ namespace Reportman.Reporting.Forms
 
                 if (opts.HorizontalLines)
                 {
-                    sitem = new ShapeItem(nreport);
+                    sitem = new ShapeItem();
+                    sitem.Report = nreport;
                     sitem.Shape = ShapeType.HorzLine;
                     sitem.Width = maxwidth;
                     HorzShapes.Add(sitem);
                     //sitem.Align = PrintItemAlign.Top;
                     Detail.Components.Add(sitem);
 
-                    sitem = new ShapeItem(nreport);
+                    sitem = new ShapeItem();
+                    sitem.Report = nreport;
                     sitem.PrintCondition = "CURRENTGROUP=0";
                     sitem.Shape = ShapeType.HorzLine;
                     sitem.Width = maxwidth;
@@ -712,7 +734,7 @@ namespace Reportman.Reporting.Forms
                             if (nstyle.BackColor != Color.White)
                                 if (nstyle.BackColor != Color.FromArgb(255, 255, 255))
                                 {
-                                    nvalues[colbackground] = GraphicUtils.IntegerFromColor(nstyle.BackColor);
+                                    nvalues[colbackground] = Reportman.Drawing.GraphicUtils.IntegerFromColor(nstyle.BackColor);
                                 }
                         }
                     }

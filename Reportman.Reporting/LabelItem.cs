@@ -28,12 +28,15 @@ namespace Reportman.Reporting
     public class LabelItem : PrintItemText
     {
         Strings FAllStrings;
-        public LabelItem(BaseReport rp)
-            : base(rp)
+        public LabelItem()
+            : base()
         {
             FAllStrings = new Strings();
         }
         public Strings AllStrings { get { return FAllStrings; } set { FAllStrings = value; } }
+        [System.Text.Json.Serialization.JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
+
         public string Text
         {
             get
@@ -64,10 +67,6 @@ namespace Reportman.Reporting
                 }
                 FAllStrings[lang] = value;
             }
-        }
-        public bool ShouldSerializeText()
-        {
-            return false;
         }
         protected override string GetClassName()
         {

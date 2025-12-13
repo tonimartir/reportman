@@ -46,7 +46,7 @@ namespace Reportman.Designer
                     nreport.GridEnabled = ndia.checkenabled.Checked;
                     nreport.GridWidth = Twips.TwipsFromText(ndia.textwidth.Text);
                     nreport.GridHeight = Twips.TwipsFromText(ndia.textheight.Text);
-                    nreport.GridColor = GraphicUtils.IntegerFromColor(ndia.bcolor.BackColor);
+                    nreport.GridColor = Reportman.Drawing.GraphicUtils.IntegerFromColor(ndia.bcolor.BackColor);
                     nreport.GridVisible = ndia.checkvisible.Checked;
                     nresult = true;
                 }

@@ -18,6 +18,7 @@
 */
 #endregion
 
+using Newtonsoft.Json;
 using Reportman.Drawing;
 using System;
 using System.ComponentModel;
@@ -237,6 +238,8 @@ namespace Reportman.Reporting
         /// If a child subreport is assigned it will be processed and printed after 
         /// printing this section
         /// </summary>
+        [System.Text.Json.Serialization.JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
         public SubReport ChildSubReport;
         /// <summary>
         /// This expression is evaluated before printing, if result is true the group 
@@ -292,7 +295,7 @@ namespace Reportman.Reporting
         /// <summary>
         /// List of child components, this components are labels, expressions, images...
         /// </summary>
-        public PrintPosItems Components;
+        public System.Collections.Generic.List<PrintPosItem> Components { get; set;}
         /// <summary>
         /// The backgorund image can be embedded (Stream propery) or obtained throught 
         /// this expression property, the expression is evaluated, if the expression result 
@@ -331,9 +334,16 @@ namespace Reportman.Reporting
         /// to enhace performance.
         /// </summary>
         [Browsable(false)]
+        [System.Text.Json.Serialization.JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
         public MemoryStream Stream
         {
             get { return FStream; }
+        }
+        public string StreamBase64
+        {
+            get { return Convert.ToBase64String(Stream.ToArray()); }
+            set { FStream = new MemoryStream(Convert.FromBase64String(value)); }
         }
         /// <summary>
         /// Free resources used by the section
@@ -401,7 +411,9 @@ namespace Reportman.Reporting
         /// <summary>
         /// Parent subreport of the section
         /// </summary>
-		public SubReport SubReport;
+        [System.Text.Json.Serialization.JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
+        public SubReport SubReport;
         /// <summary>
         /// Child subreport name, it stores the reference to the other subreport
         /// </summary>
@@ -411,11 +423,15 @@ namespace Reportman.Reporting
         /// </summary>
 		public string SubReportName;
         /// <summary>
+        /// At designtime sincrhonize width with other sections with syncWidth true
+        /// </summary>
+        public bool SyncWidth = true;
+        /// <summary>
         /// Initialization of the section
         /// </summary>
         /// <param name="rp"></param>
-		public Section(BaseReport rp)
-            : base(rp)
+		public Section()
+            : base()
         {
             FPageGroupCountList = new TotalPages();
             FStream = new MemoryStream();
@@ -424,7 +440,7 @@ namespace Reportman.Reporting
 #endif
             Height = DEF_DRAWWIDTH;
             Width = Height;
-            Components = new PrintPosItems();
+            Components = new System.Collections.Generic.List<PrintPosItem>();
             ExternalTable = "REPMAN_REPORTS";
             ExternalField = "REPORT";
             ExternalSearchField = "REPORT_NAME";
@@ -446,6 +462,8 @@ namespace Reportman.Reporting
             ExternalFilename = ""; ExternalConnection = ""; ExternalTable = "";
             ExternalField = ""; ExternalSearchField = ""; ExternalSearchValue = "";
         }
+
+
         /// <summary>
         /// Evaluates the begin page expression, if true, the section must be the first
         /// page in the page, excluding page headers,group repeats
@@ -466,7 +484,7 @@ namespace Reportman.Reporting
             }
             catch (Exception E)
             {
-                throw new ReportException(E.Message + ":BeginPageExpression",
+                throw new ReportException(E.Message + (char)10 + Name + " Prop:BeginPageExpression",
                     this, "BeginPageExpression");
             }
             return aresult;

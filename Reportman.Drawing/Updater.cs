@@ -1,4 +1,6 @@
 using System;
+using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Reflection;
@@ -80,9 +82,10 @@ namespace Reportman.Drawing
             PerformBackup = false;
             ExcludeExecutingAssembly = false;
         }
-        public static DataTable GetModifiedFiles(DataTable olderfiles, DataTable files, string filesdir, bool copycontent, bool compareDates = false)
+        public static DataTable GetModifiedFiles(DataTable files, string filesdir, bool copycontent, 
+            SortedList<string, FileHash> olderHashes, SortedList<string, FileHash> updatedHashes)
         {
-            var tarea = GetModifiedFilesAsync(olderfiles, files, filesdir, copycontent, compareDates);
+            var tarea = GetModifiedFilesAsync(files, filesdir, copycontent, olderHashes, updatedHashes);
             tarea.Wait();
             if (tarea.Exception != null)
             {
@@ -91,7 +94,8 @@ namespace Reportman.Drawing
             return tarea.Result;
         }
 
-        public static async System.Threading.Tasks.Task<DataTable> GetModifiedFilesAsync(DataTable olderfiles, DataTable files, string filesdir, bool copycontent, bool compareDates = false)
+        public static async System.Threading.Tasks.Task<DataTable> GetModifiedFilesAsync(DataTable files, string filesdir, 
+            bool copycontent, SortedList<string, FileHash> olderHashes, SortedList<string, FileHash> updatedHashes)
         {
             DataTable xtable = CreateFilesTable();
             try
@@ -99,28 +103,35 @@ namespace Reportman.Drawing
                 foreach (DataRow newrow in files.Rows)
                 {
                     bool doupdate = false;
-                    DataRow xrow = olderfiles.Rows.Find(newrow["FULLPATH"]);
-                    if ((xrow == null) || (!compareDates))
+                    string fullPath = newrow["FULLPATH"].ToString();
+                    if (olderHashes!= null && updatedHashes != null)
+                    {
+                        if (!olderHashes.ContainsKey(fullPath))
+                        {
+                            doupdate = true;
+                        } else 
+                        if (!updatedHashes.ContainsKey(fullPath))
+                        {
+                            doupdate = true;
+                        } else
+                        {
+                            var oldHash = olderHashes[fullPath];
+                            var newHash = updatedHashes[fullPath];
+                            if (oldHash.Hash != newHash.Hash)
+                            {
+                                doupdate = true;
+                            }
+                        }
+                    } else
                     {
                         doupdate = true;
                     }
-                    else
-                    {
-                        TimeSpan nspan = (DateTime)newrow["MODIFIED"] - (DateTime)xrow["MODIFIED"];
-                        // Actualización cuando la diferencia es mayor de 3 segundos
-                        if (Math.Abs(nspan.TotalSeconds) > 3)
-                            doupdate = true;
-                    }
                     if (doupdate)
                     {
-                        xrow = xtable.NewRow();
+                        DataRow xrow = xtable.NewRow();
                         foreach (DataColumn ncol in files.Columns)
                         {
                             xrow[ncol.ColumnName] = newrow[ncol.ColumnName];
-                        }
-                        if (!compareDates)
-                        {
-                            xrow["MODIFIED"] = System.DateTime.Now;
                         }
                         if (copycontent)
                         {
@@ -151,6 +162,7 @@ namespace Reportman.Drawing
             xtable.Columns.Add("FILE", System.Type.GetType("System.String"));
             xtable.Columns.Add("STREAM", System.Type.GetType("System.Byte[]"));
             xtable.Columns.Add("MODIFIED", System.Type.GetType("System.DateTime"));
+            xtable.Columns.Add("CREATED", System.Type.GetType("System.DateTime"));
 
             xtable.Constraints.Add("PRIMPATH", xtable.Columns[0], true);
             return xtable;
@@ -167,6 +179,7 @@ namespace Reportman.Drawing
                     DataRow xrow = xtable.NewRow();
                     //xrow["MODIFIED"] = ninfo.LastWriteTimeUtc;
                     xrow["MODIFIED"] = ninfo.LastWriteTime;
+                    xrow["CREATED"] = ninfo.CreationTime;
                     string dirname = Path.GetDirectoryName(fname);
                     int findex = fname.IndexOf(sourcedir);
                     if (findex >= 0)
@@ -183,7 +196,8 @@ namespace Reportman.Drawing
 
                     xrow["PATH"] = dirname;
                     xrow["FILE"] = Path.GetFileName(fname);
-                    xrow["FULLPATH"] = Path.Combine(dirname, xrow["FILE"].ToString()).ToUpper();
+                    string fullpath = Path.Combine(dirname, xrow["FILE"].ToString()).ToUpper();
+                    xrow["FULLPATH"] = fullpath;
                     if (copycontent)
                     {
                         using (FileStream fstream = new FileStream(fname, FileMode.Open, FileAccess.Read))
@@ -278,10 +292,17 @@ namespace Reportman.Drawing
                     }
                 }
             }
+            bool hasCreatedColumn = files.Columns.IndexOf("CREATED")>=0;
             foreach (DataRow xrow in files.Rows)
             {
+
                 // Only update if version newer
                 DateTime datemodified = (DateTime)xrow["MODIFIED"];
+                DateTime dateCreated = datemodified;
+                if (hasCreatedColumn)
+                {
+                    dateCreated = (DateTime)xrow["CREATED"];
+                }
                 string npath = Path.Combine(FFilePath, xrow["PATH"].ToString());
                 Directory.CreateDirectory(npath);
                 string filename = npath + Path.DirectorySeparatorChar + xrow["FILE"].ToString();
@@ -290,23 +311,6 @@ namespace Reportman.Drawing
                 if (OnProgress != null)
                     OnProgress(filename, countfile, files.Rows.Count, 0, ((byte[])xrow["STREAM"]).Length, ref docancel);
                 bool doupdate = true;
-                if (nfinfo.Exists)
-                {
-#if PocketPC
-/*            DateTime nlastwritetime;
-            if (OnGetLastWriteTime != null)
-                nlastwritetime = OnGetLastWriteTime(filename);
-            else
-                nlastwritetime = nfinfo.LastWriteTime;
-            if (nlastwritetime >= datemodified)
-                doupdate = false;*/
-            doupdate = true;
-#else
-                    //          if (nfinfo.LastWriteTimeUtc >= datemodified)
-                    if (nfinfo.LastWriteTime >= datemodified)
-                        doupdate = false;
-#endif
-                }
                 if (excludefilename.Length > 0)
                 {
                     if (xrow["FILE"].ToString().ToUpper() == excludefilename)
@@ -352,6 +356,8 @@ namespace Reportman.Drawing
                             }
                         } while (index < original.Length);
                     }
+                    File.SetCreationTime(filename, dateCreated);
+                    File.SetLastWriteTime(filename, datemodified);
                     OnProgress(filename, countfile, files.Rows.Count, original.Length, original.Length, ref docancel);
 
                     nfinfo = new FileInfo(filename);

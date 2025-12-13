@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static ICSharpCode.SharpZipLib.Zip.ExtendedUnixData;
 
-namespace Reportman.Drawing
+namespace Reportman.Drawing.Windows
 {
     public class GraphicUtils
     {

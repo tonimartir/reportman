@@ -57,7 +57,7 @@ namespace Reportman.Reporting
         public int ECCLevel { get; set; }
         public bool Truncated;
         public string CurrentText;
-        public BarcodeItem(BaseReport rp) : base(rp)
+        public BarcodeItem() : base()
         {
             Height = DEF_DRAWWIDTH;
             Width = Height;
@@ -67,7 +67,7 @@ namespace Reportman.Reporting
             Expression = "'5449000000996'";
             ECCLevel = -1;
             DisplayFormat = "";
-            BackColor = GraphicUtils.IntegerFromColor(Color.White);
+            BackColor = Reportman.Drawing.GraphicUtils.IntegerFromColor(Color.White);
         }
         protected override string GetClassName()
         {
@@ -132,7 +132,24 @@ namespace Reportman.Reporting
                     ZXing.QrCode.QRCodeWriter qrCode = new ZXing.QrCode.QRCodeWriter();
                     int widthPixels = 0;
                     int heightPixels = 0;
-                    ZXing.Common.BitMatrix qrResult = qrCode.encode(CurrentText, ZXing.BarcodeFormat.QR_CODE, widthPixels, heightPixels);
+                    var hints = new System.Collections.Generic.Dictionary<ZXing.EncodeHintType, object>();
+                    switch (ECCLevel)
+                    {
+                        case 2:
+                            hints.Add(ZXing.EncodeHintType.ERROR_CORRECTION, ZXing.QrCode.Internal.ErrorCorrectionLevel.L);
+                            break;
+                        case 3:
+                            hints.Add(ZXing.EncodeHintType.ERROR_CORRECTION, ZXing.QrCode.Internal.ErrorCorrectionLevel.M);
+                            break;
+                        case 4:
+                            hints.Add(ZXing.EncodeHintType.ERROR_CORRECTION, ZXing.QrCode.Internal.ErrorCorrectionLevel.Q);
+                            break;
+                        case 5:
+                            hints.Add(ZXing.EncodeHintType.ERROR_CORRECTION, ZXing.QrCode.Internal.ErrorCorrectionLevel.H);
+                            break;
+                            // { EncodeHintType.MARGIN, 1 } 
+                    }
+                    ZXing.Common.BitMatrix qrResult = qrCode.encode(CurrentText, ZXing.BarcodeFormat.QR_CODE, widthPixels, heightPixels, hints);
                     int barcodeHeight = qrResult.Height;
                     int barcodeWidth = qrResult.Width;
                     int squareWidth = Width / barcodeWidth;

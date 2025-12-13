@@ -117,7 +117,9 @@ namespace Reportman.Designer
                 MessageBox.Show(Translator.TranslateStr(505));
                 return;
             }
-            DatabaseInfo dbinfo = new DatabaseInfo(FReport);
+            DatabaseInfo dbinfo = new DatabaseInfo();
+            dbinfo.Report = FReport;
+            FReport.GenerateNewName(dbinfo);
             dbinfo.Alias = conname;
             FReport.DatabaseInfo.Add(dbinfo);
             RefreshInterface();
@@ -167,7 +169,9 @@ namespace Reportman.Designer
                 MessageBox.Show(Translator.TranslateStr(519));
                 return;
             }
-            DataInfo dinfo = new DataInfo(FReport);
+            DataInfo dinfo = new DataInfo();
+            dinfo.Report = FReport;
+            FReport.GenerateNewName(dinfo);
             dinfo.Alias = conname;
             if (FReport.DatabaseInfo.Count > 0)
                 dinfo.DatabaseAlias = FReport.DatabaseInfo[0].Alias;
@@ -187,7 +191,9 @@ namespace Reportman.Designer
                 MessageBox.Show(Translator.TranslateStr(545));
                 return;
             }
-            Param nparam = new Param(FReport);
+            Param nparam = new Param();
+            nparam.Report = FReport;
+            FReport.GenerateNewName(nparam);
             nparam.Alias = paramname;
             FReport.Params.Add(nparam);
             RefreshInterface();

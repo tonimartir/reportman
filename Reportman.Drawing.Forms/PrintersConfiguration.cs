@@ -115,7 +115,7 @@ namespace Reportman.Drawing.Forms
             {
                 foreach (ColumnHeader column in ldefinedprinters.Columns)
                 {
-                    column.Width = Convert.ToInt32(column.Width * Windows.GraphicUtils.DPIScale);
+                    column.Width = Convert.ToInt32(column.Width * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
                 }
             }
 

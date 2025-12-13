@@ -18,12 +18,18 @@
 */
 #endregion
 
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 using Reportman.Drawing;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
+using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Reportman.Reporting
 {
@@ -82,7 +88,7 @@ namespace Reportman.Reporting
     /// <see cref="Variant">Report</see>
     /// <see cref="Variant">Section</see>
     /// </summary>
-    [TypeConverter(typeof(ReportItemTypeConverter))]
+    //[TypeConverter(typeof(ReportItemTypeConverter))]
     public class ReportItem : IDisposable
     {
         private string FName;
@@ -109,9 +115,9 @@ namespace Reportman.Reporting
                     }
                 }
                 FName = value;
-                if (FName.Length > 0)
+                if (FName.Length > 0 && Report != null)
                 {
-                    if (Report.Components.IndexOfKey(FName.ToUpper()) >= 0)
+                    if (Report.Components.IndexOfKey(FName) >= 0)
                     {
                         FName = Report.FindNewName(this);
                     }
@@ -124,23 +130,24 @@ namespace Reportman.Reporting
         /// Constructor
         /// </summary>
         /// <param name="rp">Report, the owner of the item</param>
-		public ReportItem(BaseReport rp)
+		public ReportItem()
         {
-            FReport = rp;
             FName = "";
         }
         /// <summary>
         /// Report that owns the item
         /// </summary>
         [Browsable(false)]
+        [System.Text.Json.Serialization.JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
         public BaseReport Report
         {
             get { return FReport; }
-            set { FReport = value; }
+            set { SetReport(value); }
         }
-        public bool ShouldSerializeReport()
+        public virtual void SetReport(BaseReport rp)
         {
-            return false;
+            FReport = rp;
         }
         /// <summary>
         /// Internal function to determine the object type name
@@ -160,10 +167,6 @@ namespace Reportman.Reporting
             {
                 return GetClassName();
             }
-        }
-        public bool ShouldSerializeClassName()
-        {
-            return false;
         }
         /// <summary>
         /// Disposes any memory used
@@ -207,8 +210,8 @@ namespace Reportman.Reporting
         /// <summary>
         /// Constructor
         /// </summary>
-		public PrintItem(BaseReport rp)
-            : base(rp)
+		public PrintItem()
+            : base()
         {
             Visible = true;
             Height = 0;
@@ -238,7 +241,7 @@ namespace Reportman.Reporting
             }
             catch (Exception E)
             {
-                throw new ReportException(E.Message + ":" + Name + " Prop:PrintCondition " + PrintCondition, this, "PrintCondition");
+                throw new ReportException(E.Message + (char)10 + Name + " Prop:PrintCondition " + (char)10 + PrintCondition, this, "PrintCondition");
             }
             return nresult;
         }
@@ -330,7 +333,7 @@ namespace Reportman.Reporting
                 }
                 catch (Exception E)
                 {
-                    throw new ReportException(E.Message + ":BeforePrint " + Name,
+                    throw new ReportException(E.Message + (char)10 + Name + " Prop:BeforePrint",
                         this, "BeforePrint");
                 }
             }
@@ -353,7 +356,7 @@ namespace Reportman.Reporting
                 }
                 catch (Exception E)
                 {
-                    throw new ReportException(E.Message + ":AfterPrint " + Name,
+                    throw new ReportException(E.Message + (char)10 + Name  + " Prop:AfterPrint" ,
                         this, "AfterPrint");
                 }
             }
@@ -452,6 +455,7 @@ namespace Reportman.Reporting
     /// <summary>
     /// Base print item providing position and alignment properties
     /// </summary>
+    [JsonConverter(typeof(PrintPosItemConverter))]
     public class PrintPosItem : PrintItem
     {
         /// <summary>
@@ -484,6 +488,8 @@ namespace Reportman.Reporting
         /// <summary>
         /// Parent section
         /// </summary>
+        [System.Text.Json.Serialization.JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
         public Section Section;
         /// <summary>
         /// Annotation expression
@@ -492,8 +498,8 @@ namespace Reportman.Reporting
         /// <summary>
         /// Constructor
         /// </summary>
-        public PrintPosItem(BaseReport rp)
-            : base(rp)
+        public PrintPosItem()
+            : base()
         {
 
         }
@@ -537,26 +543,12 @@ namespace Reportman.Reporting
             }
             catch (Exception E)
             {
-                throw new ReportException(E.Message + ":AnnotationExpression-" + Name + " Prop: AnnotationExpression", this, "AnnotationExpression");
+                throw new ReportException(E.Message + (char)10 + Name + " Prop:AnnotationExpression", this, "AnnotationExpression");
             }
 
         }
     }
-
-    /// <summary>
-    /// Collections of PrintItems
-    /// </summary>
-    public class PrintItems : System.Collections.Generic.List<PrintItem>
-    {
-
-    }
-    /// <summary>
-    /// Collections of PrintPosItems
-    /// </summary>
-    public class PrintPosItems : System.Collections.Generic.List<PrintPosItem>
-    {
-
-    }
+    
     /// <summary>
     /// Base class for any report item containing text properties, ExpressionItem and LabelItem are examples
     /// </summary>
@@ -614,8 +606,8 @@ namespace Reportman.Reporting
         /// <summary>
         /// Constructor
         /// </summary>
-		public PrintItemText(BaseReport rp)
-            : base(rp)
+		public PrintItemText()
+            : base()
         {
             Transparent = true;
             FontSize = 10;
@@ -646,6 +638,8 @@ namespace Reportman.Reporting
         /// <summary>
         /// Returns the vertical alignment converted to an integer value
         /// </summary>
+        [System.Text.Json.Serialization.JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
         public int VPrintAlignment
         {
             get
@@ -659,167 +653,264 @@ namespace Reportman.Reporting
                     aresult = MetaFile.AlignmentFlags_AlignBottom;
                 return aresult;
             }
-        }
-        public bool ShouldSerializeVPrintAlignment()
-        {
-            return false;
-        }
+        }        
     }
-    class ReportItemTypeConverter : ExpandableObjectConverter
-    {
-        public override PropertyDescriptorCollection GetProperties(ITypeDescriptorContext context, object value, Attribute[] attributes)
+    /*    class ReportItemTypeConverter : ExpandableObjectConverter
         {
-            PropertyDescriptorCollection props = base.GetProperties(context, value, attributes);
-            List<PropertyDescriptor> list = new List<PropertyDescriptor>(props.Count);
-            foreach (PropertyDescriptor prop in props)
+            public override PropertyDescriptorCollection GetProperties(ITypeDescriptorContext context, object value, Attribute[] attributes)
             {
-                switch (prop.Name)
+                PropertyDescriptorCollection props = base.GetProperties(context, value, attributes);
+                List<PropertyDescriptor> list = new List<PropertyDescriptor>(props.Count);
+                foreach (PropertyDescriptor prop in props)
+                {
+                    switch (prop.Name)
+                    {
+                        case "Width":
+                            list.Add(new DisplayNamePropertyDescriptor(
+                                prop, Translator.TranslateStr(554), "Twips", Translator.TranslateStr(280)));
+                            break;
+                        case "Height":
+                            list.Add(new DisplayNamePropertyDescriptor(
+                                prop, Translator.TranslateStr(555), "Twips", Translator.TranslateStr(280)));
+                            break;
+                        default:
+                            list.Add(prop);
+                            break;
+                    }
+                }
+                return new PropertyDescriptorCollection(list.ToArray(), true);
+            }
+        }
+        class DisplayNamePropertyDescriptor : PropertyDescriptor
+        {
+            private readonly string displayName;
+            private readonly PropertyDescriptor parent;
+            private readonly string categoryName;
+            private readonly string sType;
+            public DisplayNamePropertyDescriptor(
+                PropertyDescriptor parent, string displayName, string sType, string categoryName) : base(parent)
+            {
+                this.displayName = displayName;
+                this.parent = parent;
+                this.categoryName = categoryName;
+                this.sType = sType;
+            }
+            public override string DisplayName
+            { get { return displayName; } }
+            public override string Category
+            {
+                get { return categoryName; }
+            }
+            public override bool ShouldSerializeValue(object component)
+            { return parent.ShouldSerializeValue(component); }
+
+            public override void SetValue(object component, object value)
+            {
+                switch (sType)
+                {
+                    case "Twips":
+                        int twipsValue = Twips.TwipsFromUnits(Variant.VariantFromObject(Convert.ToDecimal(value)));
+                        parent.SetValue(component, twipsValue);
+                        break;
+                    default:
+                        parent.SetValue(component, value);
+                        break;
+                }
+                switch (parent.Name)
                 {
                     case "Width":
-                        list.Add(new DisplayNamePropertyDescriptor(
-                            prop, Translator.TranslateStr(554), "Twips", Translator.TranslateStr(280)));
                         break;
                     case "Height":
-                        list.Add(new DisplayNamePropertyDescriptor(
-                            prop, Translator.TranslateStr(555), "Twips", Translator.TranslateStr(280)));
-                        break;
-                    default:
-                        list.Add(prop);
                         break;
                 }
+
             }
-            return new PropertyDescriptorCollection(list.ToArray(), true);
+            public override object GetValue(object component)
+            {
+                switch (sType)
+                {
+                    case "Twips":
+                        int twipsValue = Convert.ToInt32(parent.GetValue(component));
+                        decimal unitValue = Convert.ToDecimal(Twips.UnitsFromTwips(Convert.ToInt32(twipsValue)));
+                        unitValue = Math.Round(unitValue, 6);
+                        return unitValue;
+                    default:
+                        return parent.GetValue(component);
+                }
+            }
+            public override void ResetValue(object component)
+            {
+                parent.ResetValue(component);
+            }
+            public override bool CanResetValue(object component)
+            {
+                return parent.CanResetValue(component);
+            }
+            public override bool IsReadOnly
+            {
+                get { return parent.IsReadOnly; }
+            }
+            public override void AddValueChanged(object component, EventHandler handler)
+            {
+                parent.AddValueChanged(component, handler);
+            }
+            public override void RemoveValueChanged(object component, EventHandler handler)
+            {
+                parent.RemoveValueChanged(component, handler);
+            }
+            public override bool SupportsChangeEvents
+            {
+                get { return parent.SupportsChangeEvents; }
+            }
+            public override Type PropertyType
+            {
+                get { return parent.PropertyType; }
+            }
+            DecimalConverter decimalConverter = new DecimalConverter();
+            public override TypeConverter Converter
+            {
+                get
+                {
+                    switch (sType)
+                    {
+                        case "Twips":
+                            //Twips.TwipsFromUnits(Variant.VariantFromObject(args.Row["VALUE"])
+                            return this.decimalConverter;
+                        default:
+                            return parent.Converter;
+                    }
+
+                }
+            }
+            public override Type ComponentType
+            {
+                get
+                {
+                    switch (sType)
+                    {
+                        case "Twips":
+                            //Twips.TwipsFromUnits(Variant.VariantFromObject(args.Row["VALUE"])
+                            return Type.GetType("System.Decimal");
+                        default:
+                            return parent.ComponentType;
+                    }
+
+                }
+            }
+            public override string Description
+            {
+                get { return parent.Description; }
+            }
+            public override PropertyDescriptorCollection GetChildProperties(object instance, Attribute[] filter)
+            {
+                return parent.GetChildProperties(instance, filter);
+            }
+            public override string Name
+            {
+                get { return parent.Name; }
+            }
+
         }
-    }
-    class DisplayNamePropertyDescriptor : PropertyDescriptor
+        */
+    public class PrintPosItemConverter : JsonConverter
     {
-        private readonly string displayName;
-        private readonly PropertyDescriptor parent;
-        private readonly string categoryName;
-        private readonly string sType;
-        public DisplayNamePropertyDescriptor(
-            PropertyDescriptor parent, string displayName, string sType, string categoryName) : base(parent)
+        public override bool CanConvert(Type objectType)
         {
-            this.displayName = displayName;
-            this.parent = parent;
-            this.categoryName = categoryName;
-            this.sType = sType;
+            return typeof(PrintPosItem).IsAssignableFrom(objectType);
         }
-        public override string DisplayName
-        { get { return displayName; } }
-        public override string Category
-        {
-            get { return categoryName; }
-        }
-        public override bool ShouldSerializeValue(object component)
-        { return parent.ShouldSerializeValue(component); }
 
-        public override void SetValue(object component, object value)
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            switch (sType)
+            JObject jo = JObject.Load(reader);           
+            
+            // Lee el discriminador
+            var className = (string)jo["className"];
+            if (string.IsNullOrEmpty(className))
             {
-                case "Twips":
-                    int twipsValue = Twips.TwipsFromUnits(Variant.VariantFromObject(Convert.ToDecimal(value)));
-                    parent.SetValue(component, twipsValue);
+                // fallback al tipo base
+            }
+            Type targetType;
+            switch (className)
+            {
+                case "TRPSHAPE":
+                    targetType = typeof(ShapeItem);
+                    break;
+                case "TRPLABEL":
+                    targetType = typeof(LabelItem);
+                    break;
+                case "TRPEXPRESSION":
+                    targetType = typeof(ExpressionItem);
+                    break;
+                case "TRPIMAGE":
+                    targetType = typeof(ImageItem);
+                    break;
+                case "TRPBARCODE":
+                    targetType = typeof(BarcodeItem);
+                    break;
+                case "TRPCHART":
+                    targetType = typeof(ChartItem);
                     break;
                 default:
-                    parent.SetValue(component, value);
-                    break;
+                    throw new Exception("No se puede instanciar un PrintPosItem: " + className);
             }
-            switch (parent.Name)
-            {
-                case "Width":
-                    break;
-                case "Height":
-                    break;
-            }
+            // Crear instancia manualmente
+            var obj = Activator.CreateInstance(targetType);
 
-        }
-        public override object GetValue(object component)
-        {
-            switch (sType)
+            // Asignar propiedades de forma segura
+            var contract = serializer.ContractResolver.ResolveContract(targetType) as JsonObjectContract;
+            foreach (var prop in contract.Properties)
             {
-                case "Twips":
-                    int twipsValue = Convert.ToInt32(parent.GetValue(component));
-                    decimal unitValue = Convert.ToDecimal(Twips.UnitsFromTwips(Convert.ToInt32(twipsValue)));
-                    unitValue = Math.Round(unitValue, 6);
-                    return unitValue;
-                default:
-                    return parent.GetValue(component);
-            }
-        }
-        public override void ResetValue(object component)
-        {
-            parent.ResetValue(component);
-        }
-        public override bool CanResetValue(object component)
-        {
-            return parent.CanResetValue(component);
-        }
-        public override bool IsReadOnly
-        {
-            get { return parent.IsReadOnly; }
-        }
-        public override void AddValueChanged(object component, EventHandler handler)
-        {
-            parent.AddValueChanged(component, handler);
-        }
-        public override void RemoveValueChanged(object component, EventHandler handler)
-        {
-            parent.RemoveValueChanged(component, handler);
-        }
-        public override bool SupportsChangeEvents
-        {
-            get { return parent.SupportsChangeEvents; }
-        }
-        public override Type PropertyType
-        {
-            get { return parent.PropertyType; }
-        }
-        DecimalConverter decimalConverter = new DecimalConverter();
-        public override TypeConverter Converter
-        {
-            get
-            {
-                switch (sType)
+                if (!prop.Writable || !prop.Readable)
                 {
-                    case "Twips":
-                        //Twips.TwipsFromUnits(Variant.VariantFromObject(args.Row["VALUE"])
-                        return this.decimalConverter;
-                    default:
-                        return parent.Converter;
+                    continue;
                 }
-
-            }
-        }
-        public override Type ComponentType
-        {
-            get
-            {
-                switch (sType)
+                if (!jo.TryGetValue(prop.PropertyName, StringComparison.OrdinalIgnoreCase, out JToken token))
                 {
-                    case "Twips":
-                        //Twips.TwipsFromUnits(Variant.VariantFromObject(args.Row["VALUE"])
-                        return Type.GetType("System.Decimal");
-                    default:
-                        return parent.ComponentType;
+                    continue;
                 }
-
+                /*if (prop.PropertyType.Name == "Int32")
+                {
+                    var valueInt64 = token.ToObject(System.Type.GetType("System.Int64"), serializer);
+                    int valueInt32 = Convert.ToInt32(valueInt64);
+                    prop.ValueProvider.SetValue(obj, valueInt32);
+                }
+                else
+                {*/
+                    var value = token.ToObject(prop.PropertyType, serializer);
+                    prop.ValueProvider.SetValue(obj, value);
+                //}
             }
-        }
-        public override string Description
-        {
-            get { return parent.Description; }
-        }
-        public override PropertyDescriptorCollection GetChildProperties(object instance, Attribute[] filter)
-        {
-            return parent.GetChildProperties(instance, filter);
-        }
-        public override string Name
-        {
-            get { return parent.Name; }
+
+            return obj;
+
         }
 
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            if (value == null)
+            {
+                writer.WriteNull();
+                return;
+            }
+
+            var item = (PrintPosItem)value;
+            writer.WriteStartObject();
+
+            // Escribir classname
+            //writer.WritePropertyName("classname");
+            //writer.WriteValue(GetClassName(item.GetType()));
+
+            // Serializar otras propiedades automáticamente
+            var contract = serializer.ContractResolver.ResolveContract(item.GetType()) as JsonObjectContract;
+            foreach (var prop in contract.Properties)
+            {
+                if (prop.Ignored || !prop.Readable) continue;
+                writer.WritePropertyName(prop.PropertyName);
+                var propValue = prop.ValueProvider.GetValue(item);
+                serializer.Serialize(writer, propValue);
+            }
+
+            writer.WriteEndObject();
+        }
     }
-
 }

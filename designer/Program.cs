@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
+using System.Data.Common;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -36,41 +38,18 @@ namespace designer
         }
         static void AddCustomFactories()
         {
+            DbProviderFactories.RegisterFactory(Reportman.Reporting.DatabaseInfo.FIREBIRD_PROVIDER2, FirebirdSql.Data.FirebirdClient.FirebirdClientFactory.Instance);
+            DbProviderFactories.RegisterFactory(Reportman.Reporting.DatabaseInfo.MYSQL_PROVIDER, MySql.Data.MySqlClient.MySqlClientFactory.Instance);
+            DbProviderFactories.RegisterFactory(Reportman.Reporting.DatabaseInfo.SQLITE_PROVIDER, System.Data.SQLite.SQLiteFactory.Instance);
+            DbProviderFactories.RegisterFactory("SQLiteCore", Microsoft.Data.Sqlite.SqliteFactory.Instance);
+            DbProviderFactories.RegisterFactory("System.Data.Odbc", System.Data.Odbc.OdbcFactory.Instance);
+            DbProviderFactories.RegisterFactory("SQLServer", Microsoft.Data.SqlClient.SqlClientFactory.Instance);
+            DbProviderFactories.RegisterFactory("MySQLConnector", MySqlConnector.MySqlConnectorFactory.Instance);
+            DbProviderFactories.RegisterFactory("PostgreSQL", Npgsql.NpgsqlFactory.Instance);
+            DbProviderFactories.RegisterFactory("Oracle", Oracle.ManagedDataAccess.Client.OracleClientFactory.Instance);
+
             if (Reportman.Reporting.DatabaseInfo.CustomProviderFactories.Count == 0)
             {
-                try
-                {
-                    Reportman.Reporting.DatabaseInfo.CustomProviderFactories.Add(Reportman.Reporting.DatabaseInfo.FIREBIRD_PROVIDER2, FirebirdSql.Data.FirebirdClient.FirebirdClientFactory.Instance);
-                }
-                catch (Exception E)
-                {
-                    System.Console.WriteLine("Error in Firebird provider: " + E.Message);
-                }
-                try
-                {
-#if MONODEBUG
-#else
-                    Reportman.Reporting.DatabaseInfo.CustomProviderFactories.Add(Reportman.Reporting.DatabaseInfo.MYSQL_PROVIDER, MySql.Data.MySqlClient.MySqlClientFactory.Instance);
-#endif
-
-                }
-                catch (Exception E)
-                {
-                    System.Console.WriteLine("Error in MySQL factory: " + E.Message);
-                }
-                try
-                {
-#if MONODEBUG
-                    //DatabaseInfo.CustomProviderFactories.Add(DatabaseInfo.SQLITE_PROVIDER,Mono.Data.Sqlite.SqliteFactory.Instance);
-#else
-                    Reportman.Reporting.DatabaseInfo.CustomProviderFactories.Add(Reportman.Reporting.DatabaseInfo.SQLITE_PROVIDER, System.Data.SQLite.SQLiteFactory.Instance);
-#endif
-                }
-                catch (Exception E)
-                {
-                    System.Console.WriteLine("Error in Sqlite factory: " + E.Message);
-                }
-                
             }
         }
         // Creates a class to handle the exception event.

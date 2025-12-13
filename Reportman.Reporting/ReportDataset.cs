@@ -206,11 +206,14 @@ namespace Reportman.Reporting
                     Rows.Add(arow);
                     for (i = 0; i < Columns.Count; i++)
                         arow[i] = FCurrentReader[i];
-                    //if (OnUpdateDataAsync != null)
-                    //{
-                    //    var tareaUpdate = OnUpdateDataAsync(this, arow);
-                    //    tareaUpdate.Wait();
-                    //}
+                    if (OnUpdateDataAsync != null)
+                    {
+                        object[] values = new object[Columns.Count];
+                        for (i = 0; i < Columns.Count; i++)
+                            values[i] = FCurrentReader[i];
+                        var tareaUpdate = OnUpdateDataAsync(this, null, values, this);
+                        tareaUpdate.Wait();
+                    }
                     if ((OnUpdateData != null) && (OnUpdateDataAsync == null))
                     {
                         OnUpdateData(this, arow);
@@ -479,13 +482,16 @@ namespace Reportman.Reporting
             }
             for (i = 0; i < Columns.Count; i++)
                 arow[i] = FCurrentReader[i];
-            if ((OnUpdateData != null) && (OnUpdateDataAsync != null))
+            if (OnUpdateData != null)
                 OnUpdateData(this, arow);
-            // if (OnUpdateDataAsync != null)
-            // {
-            //var tareaAsync = OnUpdateDataAsync(this, arow);
-            //tareaAsync.Wait();
-            //}
+            if (OnUpdateDataAsync != null)
+            {
+                object[] values = new object[Columns.Count];
+                for (i = 0; i < Columns.Count; i++)
+                    values[i] = FCurrentReader[i];
+                var tareaUpdate = OnUpdateDataAsync(this, null, values, this);
+                tareaUpdate.Wait();
+            }
 
             if (OnDataChange != null)
                 OnDataChange(this);

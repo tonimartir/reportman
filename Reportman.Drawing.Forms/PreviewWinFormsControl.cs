@@ -594,8 +594,8 @@ namespace Reportman.Drawing.Forms
                                     StreamUtil.WriteStringToStream(nresult, nfstream, Encoding.GetEncoding(1252));
                             }
                             break;
+                        case 10:
                         case 11:
-                        case 13:
                             bool mono = saveFileDialog1.FilterIndex == 11;
                             string bitmapExtension = System.IO.Path.GetExtension(saveFileDialog1.FileName).ToUpper();
                             System.Drawing.Bitmap outputImage = PrintOutBitmap.ExportToBitmap(fmetapr.MetaFile, true, 0, 0, mono, 96, 96);
@@ -778,6 +778,14 @@ namespace Reportman.Drawing.Forms
         {
             DoDispose();
             base.Dispose();
+        }
+        protected override void OnFontChanged(EventArgs e)
+        {
+            maintoolstrip.Font = Font;
+            textsearch.Font = Font;
+            EPage.Font = Font;
+            mainstatus.Font = Font;
+            base.OnFontChanged(e);
         }
 
 

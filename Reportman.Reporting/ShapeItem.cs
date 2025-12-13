@@ -34,8 +34,8 @@ namespace Reportman.Reporting
         public int PenWidth { get; set; }
         public int PenColor { get; set; }
         public string BrushColorExpression { get; set; }
-        public ShapeItem(BaseReport rp)
-            : base(rp)
+        public ShapeItem()
+            : base()
         {
             BrushColor = 0xFFFFFF;
             Height = DEF_DRAWWIDTH;

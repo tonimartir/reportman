@@ -24,6 +24,9 @@ using System.Text;
 using System.Globalization;
 using Reportman.Drawing;
 using System.Threading;
+using System.Diagnostics;
+
+
 
 
 #if REPMAN_ZLIB
@@ -107,7 +110,8 @@ namespace Reportman.Reporting
                                     Param nparam;
                                     if (index2 < 0)
                                     {
-                                        nparam = new Param(rp);
+                                        nparam = new Param();
+                                        nparam.Report = rp;
                                         nparam.Value = "";
                                         nparam.Alias = aparam;
                                         rp.Params.Add(nparam);
@@ -159,7 +163,8 @@ namespace Reportman.Reporting
                     Param nparam;
                     if (index2 < 0)
                     {
-                        nparam = new Param(rp);
+                        nparam = new Param();
+                        nparam.Report = rp;
                         nparam.Value = "";
                         nparam.Alias = aparam;
                         rp.Params.Add(nparam);
@@ -498,6 +503,18 @@ namespace Reportman.Reporting
         {
             return (propvalue == "True");
         }
+        private UndoCue ReadUndoCue()
+        {
+            UndoCue cue = null;
+            using (var memstream = new System.IO.MemoryStream())
+            {
+                BinToStream(memstream);
+                byte[] bytes = memstream.ToArray();
+                string jsonString = UTF8Encoding.UTF8.GetString(bytes);
+                cue = Newtonsoft.Json.JsonConvert.DeserializeObject<UndoCue>(jsonString);
+            }
+            return cue;
+        }
         private void IntReadFromString()
         {
             position = astring.IndexOf("<REPORT");
@@ -514,7 +531,8 @@ namespace Reportman.Reporting
                     FindNextName();
                     if (propname != "ALIAS")
                         InvalidFormatException();
-                    DatabaseInfo dbitem = new DatabaseInfo(areport);
+                    DatabaseInfo dbitem = new DatabaseInfo();
+                    dbitem.Report = areport;
                     dbitem.Alias = GetAsString();
                     areport.DatabaseInfo.Add(dbitem);
                     FindNextName();
@@ -530,7 +548,8 @@ namespace Reportman.Reporting
                     FindNextName();
                     if (propname != "ALIAS")
                         InvalidFormatException();
-                    DataInfo ditem = new DataInfo(areport);
+                    DataInfo ditem = new DataInfo();
+                    ditem.Report = areport;
                     ditem.Alias = GetAsString();
                     areport.DataInfo.Add(ditem);
                     FindNextName();
@@ -546,7 +565,8 @@ namespace Reportman.Reporting
                     FindNextName();
                     if (propname != "NAME")
                         InvalidFormatException();
-                    Param aparam = new Param(areport);
+                    Param aparam = new Param();
+                    aparam.Report = areport;
                     aparam.Alias = GetAsString();
                     //                            aparam.Name = GetAsString();
                     areport.Params.Add(aparam);
@@ -609,7 +629,8 @@ namespace Reportman.Reporting
                     FindNextName();
                     if (propname != "NAME")
                         InvalidFormatException();
-                    SubReport subrep = new SubReport(areport);
+                    SubReport subrep = new SubReport();
+                    subrep.Report = areport;
                     subrep.Name = GetAsString();
                     areport.SubReports.Add(subrep);
                     FindNextName();
@@ -621,7 +642,8 @@ namespace Reportman.Reporting
                             FindNextName();
                             if (propname != "NAME")
                                 InvalidFormatException();
-                            Section sec = new Section(areport);
+                            Section sec = new Section();
+                            sec.Report = areport;
                             subrep.Sections.Add(sec);
                             sec.Name = GetAsString();
                             FindNextName();
@@ -717,6 +739,9 @@ namespace Reportman.Reporting
             {
                 case "WFONTNAME":
                     areport.WFontName = GetAsString();
+                    break;
+                case "BINCUE":
+                    areport.UndoCue = ReadUndoCue();
                     break;
                 case "LFONTNAME":
                     areport.LFontName = GetAsString();
@@ -948,6 +973,9 @@ namespace Reportman.Reporting
                 case "REOPENONPRINT":
                     subrep.ReOpenOnPrint = GetAsBool();
                     break;
+                case "NAME":
+                    subrep.Name = GetAsString();
+                    break;
                 default:
                     if (propname[0] != '/')
                         throw new NamedException("Property not supported in SubReport: " + propname, propname);
@@ -960,26 +988,27 @@ namespace Reportman.Reporting
             switch (propvalue)
             {
                 case "TRPEXPRESSION":
-                    aresult = new ExpressionItem(areport);
+                    aresult = new ExpressionItem();
                     break;
                 case "TRPLABEL":
-                    aresult = new LabelItem(areport);
+                    aresult = new LabelItem();
                     break;
                 case "TRPCHART":
-                    aresult = new ChartItem(areport);
+                    aresult = new ChartItem();
                     break;
                 case "TRPSHAPE":
-                    aresult = new ShapeItem(areport);
+                    aresult = new ShapeItem();
                     break;
                 case "TRPIMAGE":
-                    aresult = new ImageItem(areport);
+                    aresult = new ImageItem();
                     break;
                 case "TRPBARCODE":
-                    aresult = new BarcodeItem(areport);
+                    aresult = new BarcodeItem();
                     break;
                 default:
                     throw new NamedException("Class not supported:" + propvalue, propvalue);
             }
+            aresult.Report = areport;
             return (aresult);
         }
         private void BinToStream(Stream astream)
@@ -1056,6 +1085,9 @@ namespace Reportman.Reporting
                     case "ALIGNBOTTOM":
                         sec.AlignBottom = GetAsBool();
                         break;
+                    case "SYNCWIDTH":
+                        sec.SyncWidth = GetAsBool();
+                        break;
                     case "SECTIONTYPE":
                         sec.SectionType = (SectionType)GetAsInteger();
                         break;
@@ -1126,6 +1158,9 @@ namespace Reportman.Reporting
                     case "STREAM":
                         BinToStream(sec.Stream);
                         break;
+                    case "NAME":
+                        sec.Name = GetAsString();
+                        break;
                     default:
                         if (propname[0] != '/')
                             throw new NamedException("Property not suported in Section:" + propname, propname);
@@ -1177,6 +1212,9 @@ namespace Reportman.Reporting
                 case "ADOCONNECTIONSTRING":
                     dbitem.ConnectionString = GetAsString();
                     break;
+                case "NAME":
+                    dbitem.Name = GetAsString();
+                    break;
                 default:
                     if (propname[0] != '/')
                         throw new NamedException("Property not suported in Databaseinfo:" + propname, propname);
@@ -1189,6 +1227,9 @@ namespace Reportman.Reporting
             {
                 case "DATABASEALIAS":
                     ditem.DatabaseAlias = GetAsString();
+                    break;
+                case "NAME":
+                    ditem.Name = GetAsString();
                     break;
                 case "SQL":
                     ditem.SQL = GetAsString();
@@ -1336,6 +1377,9 @@ namespace Reportman.Reporting
                             aparam.Value = GetAsBool();
                             break;
                     }
+                    break;
+                case "INTNAME":
+                    aparam.Name = GetAsString();
                     break;
                 default:
                     if (propname[0] != '/')
@@ -2029,8 +2073,16 @@ namespace Reportman.Reporting
                 RpDoubleToStr(DateUtil.DateTimeToDelphiDate(propvalue)) + "</" + propname + ">";
             StreamUtil.SWriteLine(astream, astring);
         }
-        private void WriteReportPropsXML(BaseReport areport, Stream astream)
+        private void WriteReportPropsXML(BaseReport areport, Stream astream, StreamVersion version)
         {
+            // Write UndoCue
+            if ((version == StreamVersion.V2) && (areport.UndoCue != null))
+            {
+                if ((areport.UndoCue.UndoOperations.Count != 0) || (areport.UndoCue.RedoOperations.Count != 0))
+                {
+                    WriteUndoCue(astream, areport.UndoCue);
+                }
+            }
             WritePropertyS("WFONTNAME", areport.WFontName, astream);
             WritePropertyS("LFONTNAME", areport.LFontName, astream);
             WritePropertyBool("GRIDVISIBLE", areport.GridVisible, astream);
@@ -2135,6 +2187,10 @@ namespace Reportman.Reporting
             StreamUtil.SWriteLine(astream, "<COMPONENT>");
 
             WritePropertyS("NAME", comp.Name, astream);
+            if (comp.ClassName.Length == 0)
+            {
+                throw new Exception("No ClassName providem for component with name: " + comp.Name);
+            }
             WritePropertyS("CLASSNAME", comp.ClassName, astream);
             WritePropertyI("WIDTH", comp.Width, astream);
             WritePropertyI("HEIGHT", comp.Height, astream);
@@ -2329,9 +2385,13 @@ namespace Reportman.Reporting
             StreamUtil.SWriteLine(astream, "</COMPONENT>");
 
         }
-        private void WriteDatabaseInfoXML(DatabaseInfo dbinfo, Stream astream)
+        private void WriteDatabaseInfoXML(DatabaseInfo dbinfo, Stream astream, StreamVersion version)
         {
             WritePropertyS("ALIAS", dbinfo.Alias, astream);
+            if (version > StreamVersion.V1)
+            {
+                WritePropertyS("NAME", dbinfo.Name, astream);
+            }
             //            WritePropertyS("CONFIGFILE",dbinfo.Configfile,astream);
             //            WritePropertyBool("LOADPARAMS",dbinfo.LoadParams,astream);
             //            WritePropertyBool("LOADDRIVERPARAMS",dbinfo.LoadDriverParams,astream);
@@ -2345,9 +2405,13 @@ namespace Reportman.Reporting
             WritePropertyI("DOTNETDRIVER", (int)dbinfo.DotNetDriver, astream);
             WritePropertyS("PROVIDERFACTORY", dbinfo.ProviderFactory, astream);
         }
-        private void WriteDataInfoXML(DataInfo dinfo, Stream astream)
+        private void WriteDataInfoXML(DataInfo dinfo, Stream astream, StreamVersion version)
         {
             WritePropertyS("ALIAS", dinfo.Alias, astream);
+            if (version>StreamVersion.V1)
+            {
+                WritePropertyS("NAME", dinfo.Name, astream);
+            }
             WritePropertyS("DATABASEALIAS", dinfo.DatabaseAlias, astream);
             WritePropertyS("SQL", dinfo.SQL, astream);
             WritePropertyS("DATASOURCE", dinfo.DataSource, astream);
@@ -2368,9 +2432,13 @@ namespace Reportman.Reporting
             WritePropertyBool("OPENONSTART", dinfo.OpenOnStart, astream);
             WritePropertyBool("PARALLELUNION", dinfo.ParallelUnion, astream);
         }
-        private void WriteParamXML(Param aparam, Stream astream)
+        private void WriteParamXML(Param aparam, Stream astream, StreamVersion version)
         {
             WritePropertyS("NAME", aparam.Alias, astream);
+            if (version > StreamVersion.V1)
+            {
+                WritePropertyS("INTNAME", aparam.Name, astream);
+            }
             WritePropertyS("DESCRIPTION", aparam.Descriptions, astream);
             WritePropertyS("HINT", aparam.Hints, astream);
             WritePropertyS("ERRORMESSAGE", aparam.ErrorMessage, astream);
@@ -2467,7 +2535,7 @@ namespace Reportman.Reporting
             WritePropertyBool("PRINTONLYIFDATAAVAILABLE", subrep.PrintOnlyIfDataAvailable, astream);
             WritePropertyBool("REOPENONPRINT", subrep.ReOpenOnPrint, astream);
         }
-        private void WriteSectionXML(Section asection, Stream astream)
+        private void WriteSectionXML(Section asection, Stream astream, StreamVersion  version)
         {
             StreamUtil.SWriteLine(astream, "<SECTION>");
 
@@ -2524,6 +2592,10 @@ namespace Reportman.Reporting
                     WritePropertyB("STREAM", asection.Stream, astream);
                 }
             }
+            if (version>StreamVersion.V1)
+            {
+                WritePropertyBool("SYNCWIDTH", asection.SyncWidth, astream);
+            }
             foreach (PrintPosItem aitem in asection.Components)
             {
                 WriteComponentXML(aitem, astream);
@@ -2551,7 +2623,7 @@ namespace Reportman.Reporting
         /// Save the report template to a stream, in xml format
         /// </summary>
         /// <param name="astream"></param>
-        public void SaveToStream(Stream astream)
+        public void SaveToStream(Stream astream, StreamVersion streamVersion = StreamVersion.V2)
         {
             // Check if the format should be compressed
             if (areport.StreamFormat == StreamFormatType.XMLZlib)
@@ -2561,7 +2633,7 @@ namespace Reportman.Reporting
                 ICSharpCode.SharpZipLib.Zip.Compression.Streams.DeflaterOutputStream zstream = new ICSharpCode.SharpZipLib.Zip.Compression.Streams.DeflaterOutputStream(astream, inf, 131072);
                 try
                 {
-                    IntSaveToStream(zstream);
+                    IntSaveToStream(zstream, streamVersion);
                 }
                 finally
                 {
@@ -2573,9 +2645,9 @@ namespace Reportman.Reporting
 
             }
             else
-                IntSaveToStream(astream);
+                IntSaveToStream(astream, streamVersion);
         }
-        private void IntSaveToStream(Stream astream)
+        private void IntSaveToStream(Stream astream, StreamVersion version)
         {
             // Write header
             string astring = "<?xml version=\"1.0\" standalone=\"no\"?>";
@@ -2585,14 +2657,25 @@ namespace Reportman.Reporting
             // Write XML Report properties
             astring = "<REPORT>";
             StreamUtil.SWriteLine(astream, astring);
-            WriteReportPropsXML(areport, astream);
+            WriteReportPropsXML(areport, astream, version);
+
+
+
+            foreach (DatabaseInfo dbinfo in areport.DatabaseInfo)
+            {
+                astring = "<DATABASEINFO>";
+                StreamUtil.SWriteLine(astream, astring);
+                WriteDatabaseInfoXML(dbinfo, astream, version);
+                astring = "</DATABASEINFO>";
+                StreamUtil.SWriteLine(astream, astring);
+            }
 
             // Write database info list
             foreach (DatabaseInfo dbinfo in areport.DatabaseInfo)
             {
                 astring = "<DATABASEINFO>";
                 StreamUtil.SWriteLine(astream, astring);
-                WriteDatabaseInfoXML(dbinfo, astream);
+                WriteDatabaseInfoXML(dbinfo, astream, version);
                 astring = "</DATABASEINFO>";
                 StreamUtil.SWriteLine(astream, astring);
             }
@@ -2601,7 +2684,7 @@ namespace Reportman.Reporting
             {
                 astring = "<DATAINFO>";
                 StreamUtil.SWriteLine(astream, astring);
-                WriteDataInfoXML(dinfo, astream);
+                WriteDataInfoXML(dinfo, astream, version);
                 astring = "</DATAINFO>";
                 StreamUtil.SWriteLine(astream, astring);
             }
@@ -2610,7 +2693,7 @@ namespace Reportman.Reporting
             {
                 astring = "<PARAMETER>";
                 StreamUtil.SWriteLine(astream, astring);
-                WriteParamXML(aparam, astream);
+                WriteParamXML(aparam, astream, version);
                 astring = "</PARAMETER>";
                 StreamUtil.SWriteLine(astream, astring);
             }
@@ -2622,7 +2705,7 @@ namespace Reportman.Reporting
                 WriteSubReportXML(asubrep, astream);
                 foreach (Section asection in asubrep.Sections)
                 {
-                    WriteSectionXML(asection, astream);
+                    WriteSectionXML(asection, astream, version);
                 }
                 astring = "</SUBREPORT>";
                 StreamUtil.SWriteLine(astream, astring);
@@ -2647,16 +2730,31 @@ namespace Reportman.Reporting
             StreamUtil.SWriteLine(astream, astring);
         }
         /// <summary>
+        /// Write undo cue in json format as binary embedded in xml
+        /// </summary>
+        /// <param name="astream"></param>
+        /// <param name="undoCue"></param>
+        private void WriteUndoCue(Stream astream, UndoCue undoCue)
+        {
+            string jsonCue = Newtonsoft.Json.JsonConvert.SerializeObject(undoCue);
+            byte[] bytes = UTF8Encoding.UTF8.GetBytes(jsonCue);
+            using (new MemoryStream(bytes))
+            {
+                WritePropertyB("BINCUE", new MemoryStream(bytes), astream);
+            }
+        }
+
+        /// <summary>
         /// Save the report template to a file, in xml report template format
         /// </summary>
         /// <param name="afilename"></param>
-        public void SaveToFile(string afilename)
+        public void SaveToFile(string afilename, StreamVersion version)
         {
             FileStream astream = new FileStream(afilename, System.IO.FileMode.Create,
                 System.IO.FileAccess.Write);
             try
             {
-                SaveToStream(astream);
+                SaveToStream(astream, version);
             }
             finally
             {
@@ -2664,4 +2762,6 @@ namespace Reportman.Reporting
             }
         }
     }
+    public enum StreamVersion { V1, V2 };
+
 }

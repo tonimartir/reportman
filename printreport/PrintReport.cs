@@ -34,6 +34,10 @@ using System.Data;
 using System.Data.Common;
 using System.Reflection;
 using System.Collections.Generic;
+using System.Diagnostics;
+using FirebirdSql.Data.FirebirdClient;
+using System.Data.SqlClient;
+using System.Data.Odbc;
 
 namespace Reportman.Commands
 {
@@ -480,8 +484,9 @@ namespace Reportman.Commands
                             if (rp.Params.IndexOf(nparamname) < 0)
                             {
                                 System.Console.WriteLine("Warning: parameter not found created: " + nparamname);
-                                Reportman.Reporting.Param xparam = new Reportman.Reporting.Param(rp)
+                                Reportman.Reporting.Param xparam = new Reportman.Reporting.Param()
                                 {
+                                    Report = rp,
                                     Alias = nparamname,
                                     Visible = false
                                 };
@@ -758,51 +763,33 @@ namespace Reportman.Commands
         }
         static void AddCustomFactories()
         {
-#if NETSTANDARD6_0
-            DbProviderFactories.RegisterFactory("System.Data.Odbc", System.Data.Odbc.OdbcFactory.Instance);
+#if NETCOREAPP
+            // Implementación para .NET Core / .NET 5+
             DbProviderFactories.RegisterFactory(DatabaseInfo.FIREBIRD_PROVIDER2, FirebirdSql.Data.FirebirdClient.FirebirdClientFactory.Instance);
             DbProviderFactories.RegisterFactory(DatabaseInfo.MYSQL_PROVIDER, MySql.Data.MySqlClient.MySqlClientFactory.Instance);
-            DbProviderFactories.RegisterFactory(DatabaseInfo.SQLITE_PROVIDER, Microsoft.Data.Sqlite.SqliteFactory.Instance);
-#endif
-            if (DatabaseInfo.CustomProviderFactories.Count == 0)
-            {
-                try
-                {
-                    Reportman.Reporting.DatabaseInfo.CustomProviderFactories.Add(Reportman.Reporting.DatabaseInfo.FIREBIRD_PROVIDER2, FirebirdSql.Data.FirebirdClient.FirebirdClientFactory.Instance);
-                }
-                catch (Exception E)
-                {
-                    System.Console.WriteLine("Error in Firebird provider: " + E.Message);
-                }
-                try
-                {
-#if MONODEBUG
+            DbProviderFactories.RegisterFactory(DatabaseInfo.SQLITE_PROVIDER, System.Data.SQLite.SQLiteFactory.Instance); // si tienes el paquete
+            DbProviderFactories.RegisterFactory("SQLiteCore", Microsoft.Data.Sqlite.SqliteFactory.Instance);
+            DbProviderFactories.RegisterFactory("System.Data.Odbc", System.Data.Odbc.OdbcFactory.Instance);
+            DbProviderFactories.RegisterFactory("SQLServer", Microsoft.Data.SqlClient.SqlClientFactory.Instance);
+            DbProviderFactories.RegisterFactory("MySQLConnector", MySqlConnector.MySqlConnectorFactory.Instance);
+            DbProviderFactories.RegisterFactory("PostgreSQL", Npgsql.NpgsqlFactory.Instance);
+            // Oracle.ManagedDataAccess (classic) no está disponible en .NET Core; usar Oracle.ManagedDataAccess.Core o ODP.NET Core si procede.
+            // Si usas ODP.NET Core, la factory puede tener otro tipo/namespace, revisa la documentación y añade aquí la línea correspondiente.
 #else
-                    DatabaseInfo.CustomProviderFactories.Add(DatabaseInfo.MYSQL_PROVIDER, MySql.Data.MySqlClient.MySqlClientFactory.Instance);
+            // Implementación para .NET Framework 4.8 (referencias clásicas)
+            Reportman.Reporting.DatabaseInfo.CustomProviderFactories.Add(DatabaseInfo.FIREBIRD_PROVIDER2, FirebirdSql.Data.FirebirdClient.FirebirdClientFactory.Instance);
+            Reportman.Reporting.DatabaseInfo.CustomProviderFactories.Add(DatabaseInfo.MYSQL_PROVIDER, MySqlConnector.MySqlConnectorFactory.Instance);
+            Reportman.Reporting.DatabaseInfo.CustomProviderFactories.Add(DatabaseInfo.SQLITE_PROVIDER, Microsoft.Data.Sqlite.SqliteFactory.Instance);
+            Reportman.Reporting.DatabaseInfo.CustomProviderFactories.Add("System.Data.Odbc", OdbcFactory.Instance);
+            Reportman.Reporting.DatabaseInfo.CustomProviderFactories.Add("SQLServer", SqlClientFactory.Instance);
+            Reportman.Reporting.DatabaseInfo.CustomProviderFactories.Add("PostgreSQL", Npgsql.NpgsqlFactory.Instance);
+            Reportman.Reporting.DatabaseInfo.CustomProviderFactories.Add("Oracle", Oracle.ManagedDataAccess.Client.OracleClientFactory.Instance);
+            // MySqlConnector y Microsoft.Data.SqlClient pueden o no estar referenciados en net48 según tu proyecto.
+            // Si los tienes como paquetes, podrías registrarlos también:
+            // DbProviderFactories.RegisterFactory("MySQLConnector", MySqlConnector.MySqlConnectorFactory.Instance);
+            // DbProviderFactories.RegisterFactory("SQLiteCore", Microsoft.Data.Sqlite.SqliteFactory.Instance);
 #endif
 
-                }
-                catch (Exception E)
-                {
-                    System.Console.WriteLine("Error in MySQL factory: " + E.Message);
-                }
-                try
-                {
-#if NETCOREAPP2_0
-                    DatabaseInfo.CustomProviderFactories.Add(DatabaseInfo.SQLITE_PROVIDER, Microsoft.Data.Sqlite.SqliteFactory.Instance);
-#else
-#if NETSTANDARD6_0
-                    DatabaseInfo.CustomProviderFactories.Add(DatabaseInfo.SQLITE_PROVIDER, Microsoft.Data.Sqlite.SqliteFactory.Instance);
-#else
-                    DatabaseInfo.CustomProviderFactories.Add(DatabaseInfo.SQLITE_PROVIDER, System.Data.SQLite.SQLiteFactory.Instance);
-#endif
-#endif
-                }
-                catch (Exception E)
-                {
-                    System.Console.WriteLine("Error in Sqlite factory: " + E.Message);
-                }
-            }
         }
     }
 

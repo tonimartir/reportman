@@ -249,8 +249,8 @@ namespace Reportman.Drawing.Forms
             _imageButtonWidth = Convert.ToInt32(_imageButtonWidth * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
 
             _MouseOffsetTriggerReorder = Convert.ToInt32(5 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
-            //_imageButtonWidth = Convert.ToInt32(_imageButtonWidth * Reportman.Drawing.GraphicUtils.DPIScale);
-            //_imageButtonHeight = Convert.ToInt32(_imageButtonHeight * Reportman.Drawing.GraphicUtils.DPIScale);
+            //_imageButtonWidth = Convert.ToInt32(_imageButtonWidth * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
+            //_imageButtonHeight = Convert.ToInt32(_imageButtonHeight * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
 
             // Create a strip of images by loading an embedded bitmap resource
             _internalImages = new ImageList();
@@ -3576,9 +3576,9 @@ namespace Reportman.Drawing.Forms
                     const int CURVEMARGIN = 2;
                     using (Pen npen = new Pen(penbrush))
                     {
-                        int tab_separation = Convert.ToInt32(TABSEP * Windows.GraphicUtils.DPIScale);
-                        int curve_separation = Convert.ToInt32(CURVESEP * Windows.GraphicUtils.DPIScale);
-                        int curve_margin = Convert.ToInt32(CURVEMARGIN * Windows.GraphicUtils.DPIScale);
+                        int tab_separation = Convert.ToInt32(TABSEP * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
+                        int curve_separation = Convert.ToInt32(CURVESEP * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
+                        int curve_margin = Convert.ToInt32(CURVEMARGIN * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
                         //int curve_separation = CURVESEP;
                         //int curve_margin = CURVEMARGIN;
                         //g.SmoothingMode = SmoothingMode.AntiAlias;
@@ -3631,7 +3631,7 @@ namespace Reportman.Drawing.Forms
                         bottomrightcurve[2] = bottomrightcurve1;
                         bottomrightcurve[3] = bottomrightcurve2;
 
-                        float cornerradius = 2.5f * Windows.GraphicUtils.DPIScale;
+                        float cornerradius = 2.5f * Reportman.Drawing.Windows.GraphicUtils.DPIScale;
                         PointF[] newpoints = new PointF[6];
                         newpoints[0] = bottomleftbegin;
                         newpoints[1] = bottomleft;

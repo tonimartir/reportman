@@ -108,6 +108,10 @@ namespace Reportman.Designer
             {
                 if (datainfo.Data != null)
                 {
+                    if (datainfo.Data.Columns.Count == 0)
+                    {
+                        datainfo.Connect();
+                    }
                     foreach (DataColumn ndata in datainfo.Data.Columns)
                     {
                         HelpInformation newhelp = new HelpInformation(datainfo.Alias + "." + ndata.ColumnName, "", "", "");
@@ -158,10 +162,10 @@ namespace Reportman.Designer
             oplist.Add(new HelpInformation("*", Translator.TranslateStr(455), "", ""));
             // /
             oplist.Add(new HelpInformation("/", Translator.TranslateStr(456), "", ""));
+            // :=
+            oplist.Add(new HelpInformation(":=", "Assign value to variable", "", ""));
             // =
             oplist.Add(new HelpInformation("=", Translator.TranslateStr(457), "", ""));
-            // ==
-            oplist.Add(new HelpInformation("==", Translator.TranslateStr(457), "", ""));
             // >=
             oplist.Add(new HelpInformation(">=", Translator.TranslateStr(457), "", ""));
             // <=

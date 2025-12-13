@@ -1123,8 +1123,8 @@ namespace Reportman.Drawing
             metaobj.BrushStyle = (int)BrushType.Solid;
             metaobj.PenStyle = (int)PenType.Clear;
             metaobj.PenWidth = 0;
-            metaobj.PenColor = GraphicUtils.IntegerFromColor(qrCodeBackgroundColor);
-            metaobj.BrushColor = GraphicUtils.IntegerFromColor(qrCodeBackgroundColor);
+            metaobj.PenColor = Reportman.Drawing.GraphicUtils.IntegerFromColor(qrCodeBackgroundColor);
+            metaobj.BrushColor = Reportman.Drawing.GraphicUtils.IntegerFromColor(qrCodeBackgroundColor);
             metafile.Pages[metafile.CurrentPage].Objects.Add(metaobj);*/
 
 
@@ -1145,8 +1145,8 @@ namespace Reportman.Drawing
                         metaobj.BrushStyle = (int)BrushType.Solid;
                         metaobj.PenStyle = (int)PenType.Solid;
                         metaobj.PenWidth = 0;
-                        metaobj.PenColor = GraphicUtils.IntegerFromColor(qrCodeForegroundColor);
-                        metaobj.BrushColor = GraphicUtils.IntegerFromColor(qrCodeForegroundColor);
+                        metaobj.PenColor = Reportman.Drawing.GraphicUtils.IntegerFromColor(qrCodeForegroundColor);
+                        metaobj.BrushColor = Reportman.Drawing.GraphicUtils.IntegerFromColor(qrCodeForegroundColor);
                         metafile.Pages[metafile.CurrentPage].Objects.Add(metaobj);
                     }
                 }

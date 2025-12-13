@@ -559,7 +559,7 @@ namespace Reportman.Designer
                 nreport.ConvertToDotNet();
 
                 System.IO.MemoryStream mstream = new System.IO.MemoryStream();
-                nreport.SaveToStream(mstream);
+                nreport.SaveToStream(mstream,StreamVersion.V2);
 
                 param = ncommand.CreateParameter();
                 param.ParameterName = "REPORT";
@@ -1525,7 +1525,7 @@ namespace Reportman.Designer
 
 
                 System.IO.MemoryStream mstream = new System.IO.MemoryStream();
-                newreport.SaveToStream(mstream);
+                newreport.SaveToStream(mstream, StreamVersion.V2);
 
                 param = ncommand.CreateParameter();
                 param.ParameterName = "REPORT";

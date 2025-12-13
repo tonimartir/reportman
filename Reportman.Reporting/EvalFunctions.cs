@@ -143,6 +143,29 @@ namespace Reportman.Reporting
             return aresult;
         }
     }
+    class IdenMonth : IdenFunction
+    {
+        public IdenMonth(Evaluator eval)
+            : base(eval)
+        {
+            SetParamCount(1);
+            Name = "MONTH";
+            FModel = "function MONTH(value:DateTime):Integer";
+        }
+        protected override Variant GetValue()
+        {
+            Variant aresult = new Variant();
+            if (Params[0].VarType != VariantType.Null)
+            {
+                if (Params[0].VarType != VariantType.DateTime)
+                {
+                    throw new NamedException(Translator.TranslateStr(438), "MONTH");
+                }
+                aresult = ((DateTime)Params[0]).Month;
+            }
+            return aresult;
+        }
+    }
     class IdenMonthName : IdenFunction
     {
         public IdenMonthName(Evaluator eval)
@@ -395,6 +418,37 @@ namespace Reportman.Reporting
                     count = astring.Length;
                 aresult = astring.Substring(0, count);
             }
+            return aresult;
+        }
+    }
+    class IdenReplaceStr : IdenFunction
+    {
+        public IdenReplaceStr(Evaluator eval)
+            : base(eval)
+        {
+            SetParamCount(3);
+            Name = "REPLACESTR";
+            FModel = "function Replace(const S:string;OldPattern,NewPattern: string):string";
+        }
+        protected override Variant GetValue()
+        {
+            if (Params[0].VarType != VariantType.String)
+            {
+                throw new NamedException(Translator.TranslateStr(438), "S");
+            }
+            if (Params[1].VarType != VariantType.String)
+            {
+                throw new NamedException(Translator.TranslateStr(438), "OldPattern");
+            }
+            if (Params[2].VarType != VariantType.String)
+            {
+                throw new NamedException(Translator.TranslateStr(438), "NewPattern");
+            }
+            Variant aresult = new Variant();
+            String source = Params[0].ToString();
+            String oldpattern = Params[1].ToString();
+            String newpattern = Params[2].ToString();
+            aresult = source.Replace(oldpattern, newpattern);
             return aresult;
         }
     }

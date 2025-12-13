@@ -57,6 +57,7 @@ namespace Reportman.Drawing
         public bool havekerning;
         public bool type1;
         public double widthmult = 1;
+        public double convfactor = 1;
         public double heightmult = 1;
         public string keyname;
         public FT_LibraryRec_* ftlibrary;
@@ -229,7 +230,7 @@ namespace Reportman.Drawing
                                     else
                                 {
                                         //aobj.convfactor=1;
-                                        //       aobj.convfactor:=1000/aface.units_per_EM;
+                                        aobj.convfactor=1000.0/iface->units_per_EM;
                                         aobj.widthmult = 1;
                                         aobj.heightmult = 1;
                                         //aobj.widthmult = 1024.0 / aface.UnitsPerEM;
@@ -534,7 +535,7 @@ namespace Reportman.Drawing
             {
                 GlyphInfo ninfo = data.CacheWidths[charCode];
                 newwidth = ninfo.Width;
-                glyphindex = ninfo.GlyphIndex;
+                glyphindex = ninfo.Glyph;
             }
             else
             {
@@ -547,6 +548,7 @@ namespace Reportman.Drawing
                 }
                 LogFontFt cfont = (LogFontFt)data.LogFont;
                 cfont.OpenFont();
+                data.UnitsPerEM = cfont.ftface->units_per_EM;
 
                 double awidth = 0;
                 Monitor.Enter(flag);
@@ -594,6 +596,7 @@ namespace Reportman.Drawing
                             long unitsPerEM = cfont.ftface->units_per_EM;
 
 
+
                             // Opcional: Escalar el ancho a píxeles
                             double scaleFactor = 1000.0 / unitsPerEM; // Asume 1000 como base
                             double scaledWidth = advanceWidth * scaleFactor;
@@ -609,7 +612,7 @@ namespace Reportman.Drawing
                         if (data.LastLoaded < aint)
                             data.LastLoaded = aint;
                         GlyphInfo ninfo = new GlyphInfo();
-                        ninfo.GlyphIndex = Convert.ToInt32(glyphIndex);
+                        ninfo.Glyph = Convert.ToInt32(glyphIndex);
                         ninfo.Width = newwidth;
                         if (data.CacheWidths.IndexOfKey(charCode) < 0)
                         {
@@ -762,6 +765,16 @@ namespace Reportman.Drawing
                     break;
             }
             return dirs;
+        }
+
+        public override double GetGlyphWidth(PDFFont pdfFont, TTFontData fontData, int glyph, char charC)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override List<LineInfo> TextExtent(string Text, ref Rectangle Rect, PDFFont pdfFont, TTFontData fontData, bool wordwrap, bool singleline, double FontSize)
+        {
+            throw new NotImplementedException();
         }
     }
 }

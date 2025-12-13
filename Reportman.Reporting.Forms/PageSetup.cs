@@ -1793,7 +1793,7 @@ namespace Reportman.Reporting.Forms
                     rp.PageOrientation = OrientationType.Landscape;
             }
             rp.PrinterSelect = (PrinterSelectType)ComboSelPrinter.SelectedIndex;
-            rp.PageBackColor = GraphicUtils.IntegerFromColor(PanelColor.BackColor);
+            rp.PageBackColor = Reportman.Drawing.GraphicUtils.IntegerFromColor(PanelColor.BackColor);
             rp.Language = ComboLanguage.SelectedIndex - 1;
             rp.PrinterFonts = (PrinterFontsType)ComboPrinterFonts.SelectedIndex;
             rp.PreviewMargins = CheckMargins.Checked;

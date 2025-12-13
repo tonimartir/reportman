@@ -38,13 +38,11 @@ namespace Reportman.Reporting
         public string AgIniValue { get; set; }
         public bool PrintOnlyOne { get; set; }
         public bool PrintNulls { get; set; }
+        [System.Text.Json.Serialization.JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
         public bool IsPartial
         {
             get { return FIsPartial; }
-        }
-        public bool ShouldSerializeIsPartial()
-        {
-            return false;
         }
         public int PartialPos;
         public string ExportExpression { get; set; }
@@ -121,6 +119,7 @@ namespace Reportman.Reporting
             aobj.LFontNameS = LFontName.Length;
             aobj.WFontNameP = apage.AddString(WFontName);
             aobj.WFontNameS = WFontName.Length;
+            aobj.RightToLeft = TextObj.RightToLeft;
             apage.Objects.Add(aobj);
 
             LastMetaIndex = metafile.Pages[metafile.CurrentPage].Objects.Count - 1;
@@ -151,11 +150,13 @@ namespace Reportman.Reporting
                 }
                 catch (Exception E)
                 {
-                    throw new ReportException(E.Message + "Expression-" + Name + " ExportDisplayFormat",
+                    throw new ReportException(E.Message + (char)10 + Name + " Prop:ExportDisplayFormat",
                         this, "ExportDisplayFormat");
                 }
             }
         }
+        [System.Text.Json.Serialization.JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
         public EvalIdenExpression IdenExpression
         {
             get { return FIdenExpression; }
@@ -171,8 +172,14 @@ namespace Reportman.Reporting
                 if (astring == "GROUPPAGECOUNT")
                 IsGroupPageCount = true;
         }
-        public ExpressionItem(BaseReport rp)
-            : base(rp)
+        public override void SetReport(BaseReport rp)
+        {
+            base.SetReport(rp);
+            FIdenExpression = new EvalIdenExpression(rp.Evaluator);
+            FIdenExpression.ExpreItem = this;
+        }
+        public ExpressionItem()
+            : base()
         {
             FExportValue = new Variant();
             FValues = new Doubles();
@@ -181,8 +188,6 @@ namespace Reportman.Reporting
             Height = 275;
             AgIniValue = "0";
             Width = 1440;
-            FIdenExpression = new EvalIdenExpression(Report.Evaluator);
-            FIdenExpression.ExpreItem = this;
             DataType = ParamType.Unknown;
             ExportSize = 20;
             ExportSize = 1;
@@ -207,7 +212,7 @@ namespace Reportman.Reporting
             }
             catch (Exception E)
             {
-                throw new ReportException(E.Message + ":Expression-" + Name + " Prop:Expression", this, "Expression");
+                throw new ReportException(E.Message + (char)10 + Name  + " Prop:Expression", this, "Expression");
             }
             FExportValue = new Variant();
             if (ExportExpression.Length > 0)
@@ -219,7 +224,7 @@ namespace Reportman.Reporting
                 }
                 catch (Exception E)
                 {
-                    throw new ReportException(E.Message + ":ExportExpression-" + Name + " Prop:ExportExpression", this, "ExportExpression");
+                    throw new ReportException(E.Message + (char)10 + Name + " Prop:ExportExpression", this, "ExportExpression");
                 }
 
             }
@@ -245,7 +250,7 @@ namespace Reportman.Reporting
             }
             catch (Exception E)
             {
-                throw new ReportException(E.Message + ":Expression-" + Name + " Prop:Expression",
+                throw new ReportException(E.Message + (char)10 + Name + " Prop:Expression",
                     this, "Expression");
             }
             if (IsPartial)
@@ -285,7 +290,7 @@ namespace Reportman.Reporting
                         }
                         catch (Exception E)
                         {
-                            throw new ReportException(E.Message + ":Expression-" + Name + " Prop:AgIniValue", this, "AgIniValue");
+                            throw new ReportException(E.Message + (char)10 + Name + " Prop:AgIniValue", this, "AgIniValue");
                         }
                     }
                     break;
@@ -309,7 +314,7 @@ namespace Reportman.Reporting
                         }
                         catch (Exception E)
                         {
-                            throw new ReportException(E.Message + ":Expression-" + Name + " Prop:AgIniValue", this, "AgIniValue");
+                            throw new ReportException(E.Message + (char)10 + Name + " Prop:AgIniValue", this, "AgIniValue");
                         }
                     }
                     break;
@@ -373,7 +378,7 @@ namespace Reportman.Reporting
                         }
                         catch (Exception E)
                         {
-                            throw new ReportException(E.Message + ":Expression-" + Name + " Prop:Expression", this, "Expression");
+                            throw new ReportException(E.Message + (char)10 + Name + " Prop:Expression", this, "Expression");
                         }
                     }
                     break;
@@ -398,7 +403,7 @@ namespace Reportman.Reporting
                             }
                             catch (Exception E)
                             {
-                                throw new ReportException(E.Message + ":Expression-" + Name + " Prop:AgIniValue", this, "AgIniValue");
+                                throw new ReportException(E.Message + (char)10  + Name + " Prop:AgIniValue", this, "AgIniValue");
                             }
                         }
                     }
@@ -424,7 +429,7 @@ namespace Reportman.Reporting
                         }
                         catch (Exception E)
                         {
-                            throw new ReportException(E.Message + ":Expression-" + Name + " Prop:AgIniValue", this, "AgIniValue");
+                            throw new ReportException(E.Message + (char)10 + Name + " Prop:AgIniValue", this, "AgIniValue");
                         }
                         SubReportChanged(SubReportEvent.DataChange, "");
                     }

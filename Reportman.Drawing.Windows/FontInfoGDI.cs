@@ -18,6 +18,7 @@
 */
 #endregion
 
+using Reportman.Drawing.Windows;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -60,12 +61,22 @@ namespace Reportman.Drawing
         {
             //    return new MemoryStream(data.FontData.Data);
             Dictionary<int, int[]> glyps = new Dictionary<int, int[]>();
+            foreach (var info in data.glyphsInfo.Values)
+            {
+                double width = info.Width;
+                int gl = info.Glyph;
+                char xchar = info.Char;
+                glyps[gl] = new int[] { gl, (int)Math.Round(width), (int)xchar };
+            }
             foreach (char xchar in data.Glyphs.Keys)
             {
                 int gl = data.Glyphs[xchar];
-                double width = data.Widths[xchar];
-                if (!glyps.ContainsKey(gl))
-                    glyps[gl] = new int[] { gl, (int)Math.Round(width), (int)xchar };
+                if (!data.glyphsInfo.ContainsKey(gl))
+                {
+                    double width = data.Widths[xchar];
+                    if (!glyps.ContainsKey(gl))
+                        glyps[gl] = new int[] { gl, (int)Math.Round(width), (int)xchar };
+                }
             }
             TrueTypeFontSubSet subset = new TrueTypeFontSubSet(
                 data.PostcriptName, data.FontData.Data,
@@ -482,7 +493,7 @@ namespace Reportman.Drawing
             {
                 GlyphInfo ninfo = fontData.CacheWidths[charcode];
                 newwidth = ninfo.Width;
-                glyphindex = ninfo.GlyphIndex;
+                glyphindex = ninfo.Glyph;
             }
             else
             {
@@ -492,7 +503,7 @@ namespace Reportman.Drawing
                     ABC nresult = GetCharWidthABC(charcode, font, gr, ref glyphindex, ref glyphsupported);
                     newwidth = (double)(nresult.abcA + nresult.abcB + nresult.abcC) / dpix * 72;
                     GlyphInfo ninfo = new GlyphInfo();
-                    ninfo.GlyphIndex = glyphindex;
+                    ninfo.Glyph = glyphindex;
                     ninfo.Width = newwidth;
                     if (fontData.CacheWidths.IndexOfKey(charcode) < 0)
                     {
@@ -515,6 +526,18 @@ namespace Reportman.Drawing
                 fontData.FirstLoaded = aint;
             if (fontData.LastLoaded < aint)
                 fontData.LastLoaded = aint;
+            // Guardarlo en caché si no existía
+            if (glyphindex!=0 && (!fontData.glyphsInfo.ContainsKey(glyphindex)))
+            {
+                GlyphInfo ginfo = new GlyphInfo
+                {
+                    Glyph = glyphindex,
+                    Width = newwidth,
+                    Char = charcode
+                };
+                fontData.glyphsInfo.Add(glyphindex, ginfo);
+            }
+
             return newwidth;
         }
         public override int GetKerning(PDFFont pdffont, TTFontData fontData,
@@ -528,6 +551,295 @@ namespace Reportman.Drawing
             else
                 return 0;
         }
+        [StructLayout(LayoutKind.Sequential)]
+        public struct POINT
+        {
+            public int x;
+            public int y;
+        }
+        [StructLayout(LayoutKind.Sequential)]
+        public struct FIXED
+        {
+            public short value;   // integer part
+            public ushort fract;  // fractional part
+        }
 
+        [StructLayout(LayoutKind.Sequential)]
+        public struct MAT2
+        {
+            public FIXED eM11;
+            public FIXED eM12;
+            public FIXED eM21;
+            public FIXED eM22;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct GLYPHMETRICS
+        {
+            public uint gmBlackBoxX;
+            public uint gmBlackBoxY;
+            public POINT gmptGlyphOrigin;
+            public short gmCellIncX;
+            public short gmCellIncY;
+        }
+        private const uint GGO_METRICS = 0;            // obtener sólo métricas
+        private const uint GGO_GLYPH_INDEX = 0x0008;   // indica que uChar es índice de glifo (uChar es un glyph index)
+        private const uint GDI_ERROR = 0xFFFFFFFF;
+
+        [DllImport("gdi32.dll", CharSet = CharSet.Unicode)]
+        private static extern uint GetGlyphOutlineW(
+            IntPtr hdc,
+            uint uChar,
+            uint fuFormat,
+            out GLYPHMETRICS lpgm,
+            uint cjBuffer,
+            IntPtr pvBuffer,
+            ref MAT2 lpmat2);
+
+        public override double GetGlyphWidth(PDFFont pdffont, TTFontData data, int glyph, char charC)
+        {
+            // Si ya lo tenemos en caché, devolverlo
+            if (data.glyphsInfo != null && data.glyphsInfo.ContainsKey(glyph))
+            {
+                return data.glyphsInfo[glyph].Width;
+            }
+
+            // Preparar MAT2 como identidad (sin escala, rotación ni sesgo)
+            MAT2 mat = new MAT2();
+            // eM11 = 1.0
+            mat.eM11.value = 1;
+            mat.eM11.fract = 0;
+            // eM12 = 0.0
+            mat.eM12.value = 0;
+            mat.eM12.fract = 0;
+            // eM21 = 0.0
+            mat.eM21.value = 0;
+            mat.eM21.fract = 0;
+            // eM22 = 1.0
+            mat.eM22.value = 1;
+            mat.eM22.fract = 0;
+
+            GLYPHMETRICS gm;
+            uint flags = GGO_METRICS | GGO_GLYPH_INDEX;
+
+            uint res = GetGlyphOutlineW(hDC, (uint)glyph, flags, out gm, 0, IntPtr.Zero, ref mat);
+
+            int width;
+            if (res == GDI_ERROR)
+            {
+                width = 0;
+            }
+            else
+            {
+                // gmCellIncX es el advance horizontal (short)
+                width = gm.gmCellIncX;
+            }
+
+            // Guardarlo en caché si no existía
+            if (!data.glyphsInfo.ContainsKey(glyph))
+            {
+                GlyphInfo ginfo = new GlyphInfo
+                {
+                    Glyph = glyph,
+                    Width = width,
+                    Char = charC
+                };
+                data.glyphsInfo.Add(glyph, ginfo);
+            }
+
+            return width;
+        }
+        private void AdjustLineSpaces(TGlyphLine line)
+        {
+            bool keepNBSP = true;
+
+            if (!line.IsRTL)
+            {
+                // Dirección principal LTR
+                int lastIndex = line.Glyphs.Count - 1;
+
+                while (lastIndex >= 0)
+                {
+                    char ch = line.Glyphs[lastIndex].CharCode;
+                    bool isWS = ch == ' ' || ch == '\t' || ch == '\n' || ch == '\r';
+
+                    // Tratar NBSP (U+00A0)
+                    if (ch == '\u00A0')
+                    {
+                        isWS = !keepNBSP;
+                    }
+
+                    if (!isWS)
+                        break;
+
+                    // Eliminar último glifo lógico (trailing whitespace)
+                    line.Glyphs.RemoveAt(lastIndex);
+                    lastIndex--;
+                }
+            }
+            else
+            {
+                // Dirección principal RTL
+                while (line.Glyphs.Count > 0)
+                {
+                    char ch = line.Glyphs[0].CharCode;
+                    bool isWS = ch == ' ' || ch == '\t' || ch == '\n' || ch == '\r';
+
+                    // Tratar NBSP (U+00A0)
+                    if (ch == '\u00A0')
+                    {
+                        isWS = !keepNBSP;
+                    }
+
+                    if (!isWS)
+                        break;
+
+                    // Eliminar primer glifo lógico (trailing whitespace en RTL)
+                    line.Glyphs.RemoveAt(0);
+                }
+            }
+        }
+        public override List<LineInfo> TextExtent(
+            string Text,
+            ref Rectangle Rect,
+            PDFFont pdfFont,
+            TTFontData fontData,
+            bool wordwrap,
+            bool singleline,
+            double FontSize)
+        {
+            const float DIP_TO_TWIPS_FACTOR = 15f;
+            const float POINTS_TO_DIPS_FACTOR = 4f / 3f;
+
+            var result = new List<LineInfo>();
+
+            if (string.IsNullOrEmpty(Text))
+                return result;
+
+            var factory = new SharpDX.DirectWrite.Factory();
+            if (factory == null)
+                return result;
+
+            string familyName = fontData.FontFamily;
+
+            SharpDX.DirectWrite.FontWeight fontWeight = pdfFont.Bold ? SharpDX.DirectWrite.FontWeight.Bold : SharpDX.DirectWrite.FontWeight.Normal;
+            SharpDX.DirectWrite.FontStyle fontStyle = pdfFont.Italic ? SharpDX.DirectWrite.FontStyle.Italic : SharpDX.DirectWrite.FontStyle.Normal;
+
+            float maxLineWidth = Rect.Right - Rect.Left;
+            float fontSizeInDips = (float)(FontSize * POINTS_TO_DIPS_FACTOR);
+
+            Rect = new Rectangle(0, 0, (int)maxLineWidth, Rect.Height);
+
+            // --- Obtener FontFace ---
+            SharpDX.DirectWrite.FontFace fontFace = null;
+            SharpDX.DirectWrite.FontCollection fontCollection = factory.GetSystemFontCollection(false);
+
+            int index;
+            bool exists = fontCollection.FindFamilyName(familyName, out index);
+            if (!exists)
+            {
+                exists = fontCollection.FindFamilyName("Segoe UI", out index);
+                if (!exists)
+                {
+                    fontCollection.FindFamilyName("Arial", out index);
+                }
+            }
+            if (exists)
+            {
+                var fontFamily = fontCollection.GetFontFamily(index);
+                var font = fontFamily.GetFirstMatchingFont(fontWeight, SharpDX.DirectWrite.FontStretch.Normal, fontStyle);
+                var method = typeof(SharpDX.DirectWrite.Font).GetMethod("CreateFontFace", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+                fontFace = new SharpDX.DirectWrite.FontFace(font);
+                // method.Invoke(font, new object[] { fontFace });
+                // fontFace = new SharpDX.DirectWrite.FontFace(font.NativePointer);
+            } else
+            {
+               // Workaround, set default ont?
+                throw new Exception("Font face not found: " + familyName+ " Fallback: Arial + Segou UI");
+            }
+
+                // --- Crear TextFormat ---
+                var textFormat = new SharpDX.DirectWrite.TextFormat(factory, familyName, fontWeight, fontStyle, SharpDX.DirectWrite.FontStretch.Normal, fontSizeInDips);
+            // --- Crear TextLayout ---
+            var textLayout = new SharpDX.DirectWrite.TextLayout(factory, Text, textFormat, maxLineWidth / DIP_TO_TWIPS_FACTOR, 0);
+            // --- Obtener métricas de la fuente ---
+            var fontMetrics = fontFace.Metrics;
+            float scale = fontSizeInDips / fontMetrics.DesignUnitsPerEm;
+
+            // --- Crear Renderer y disparar layout ---
+            var renderer = new TTextExtentRenderer(Text);
+            try
+            {
+                renderer._fontFace = fontFace;
+                textLayout.Draw(null, renderer, 0, 0);
+
+                float rectTopTwips = 0f;
+                int ascentSpacing = (int)Math.Round(fontMetrics.Ascent * scale * DIP_TO_TWIPS_FACTOR);
+                rectTopTwips += ascentSpacing;
+
+                float totalWidth = 0f;
+
+                for (int i = 0; i < renderer.Lines.Count; i++)
+                {
+                    AdjustLineSpaces(renderer.Lines[i]);
+
+                    int minLineCluster = int.MaxValue;
+                    int maxLineCluster = -1;
+
+                    var line = renderer.Lines[i];
+                    var lineInfo = new LineInfo
+                    {
+                        Glyphs = line.Glyphs,
+                        Width = 0
+                    };
+
+                    for (int j = 0; j < lineInfo.Glyphs.Count; j++)
+                    {
+                        int lineCluster = lineInfo.Glyphs[j].LineCluster;
+                        lineInfo.Width += lineInfo.Glyphs[j].XAdvance;
+
+                        if (lineCluster < minLineCluster)
+                            minLineCluster = lineCluster;
+                        if (lineCluster > maxLineCluster)
+                            maxLineCluster = lineCluster;
+                    }
+
+                    if (lineInfo.Glyphs.Count > 0 && minLineCluster >= 0)
+                    {
+                        lineInfo.Position = minLineCluster;
+                        lineInfo.Size = maxLineCluster - minLineCluster + 1;
+                        lineInfo.Text = Text.Substring(lineInfo.Position, lineInfo.Size);
+                    }
+                    else
+                    {
+                        lineInfo.Position = 0;
+                        lineInfo.Size = 0;
+                        lineInfo.Text = string.Empty;
+                    }
+
+                    lineInfo.TopPos = (int)Math.Round(rectTopTwips);
+                    lineInfo.LineHeight = (int)Math.Round((fontMetrics.Ascent + fontMetrics.Descent + fontMetrics.LineGap) * scale * DIP_TO_TWIPS_FACTOR);
+                    lineInfo.Height = Convert.ToInt32(lineInfo.LineHeight);
+                    lineInfo.LastLine = (i == renderer.Lines.Count - 1);
+
+                    rectTopTwips += Convert.ToInt32(lineInfo.LineHeight);
+
+                    if (lineInfo.Width > totalWidth)
+                        totalWidth = lineInfo.Width;
+
+                    result.Add(lineInfo);
+                }
+
+                // Ajustar rectángulo final
+                Rect.Width = (int)totalWidth;
+                Rect.Height = (int)(rectTopTwips - ascentSpacing);
+
+                return result;
+            }
+            finally
+            {
+                renderer.Dispose();
+            }
+        }
     }
 }

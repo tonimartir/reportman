@@ -7,9 +7,26 @@
 	  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
-  <ItemGroup>
+	<PropertyGroup>
+		<PackageId>Reportman.Drawing.CrossPlatform</PackageId>
+		<Version>3.9.15</Version>
+		<Authors>Toni Martir</Authors>
+		<Company>Reportman</Company>
+		<Description>Reportman, Cross-Platform PDF Output, using FreeType and SkiaSharp.</Description>
+		<PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
+		<RepositoryUrl>https://github.com/tonimartir/reportman</RepositoryUrl>
+		<PackageProjectUrl>https://reportman.es</PackageProjectUrl>
+		<PackageReleaseNotes>Initial release</PackageReleaseNotes>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Include="..\README.md" Pack="true" PackagePath="" />
+	</ItemGroup>
+	<ItemGroup>
     <PackageReference Include="FreeTypeSharp" Version="3.0.0" />
-    <PackageReference Include="SkiaSharp" Version="3.116.1" />
+    <PackageReference Include="HarfBuzzSharp" Version="8.3.1.2" />
+    <PackageReference Include="SkiaSharp" Version="3.119.0" />
   </ItemGroup>
 
   <ItemGroup>

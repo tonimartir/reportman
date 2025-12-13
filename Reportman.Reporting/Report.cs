@@ -20,7 +20,10 @@
 
 using Reportman.Drawing;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
+using System.Runtime.Serialization;
 using System.Threading;
 
 namespace Reportman.Reporting
@@ -31,8 +34,80 @@ namespace Reportman.Reporting
             : base()
         {
         }
+        [OnDeserialized]
+        internal void OnDeserializedMethod(StreamingContext context)
+        {
+            foreach (Param xparam in Params)
+            {
+                xparam.Report = this;
+                this.Components.Add(xparam.Name, xparam);
+            }
+            foreach (DatabaseInfo dbInfo in DatabaseInfo)
+            {
+                dbInfo.Report = this;
+                this.Components.Add(dbInfo.Name, dbInfo);
+            }
+            foreach (DataInfo dInfo in DataInfo)
+            {
+                dInfo.Report = this;
+                this.Components.Add(dInfo.Name, dInfo);
+            }
+            foreach (SubReport subrep in SubReports)
+            {
+                this.Components.Add(subrep.Name, subrep);
+                subrep.Report = this;
+                foreach (Section sec in subrep.Sections)
+                {
+                    this.Components.Add(sec.Name, sec);
+                    foreach (PrintPosItem item in sec.Components)
+                    {
+                        item.Report = this;
+                        this.Components.Add(item.Name,item);
+                    }
+                }
+            }
+        }
+        private void UpdateChildSubreportIndexes()
+        {
+            if (ExecuteSubReportIndexes == null || ExecuteSubReportIndexes.Count == 0)
+            {
+                return;
+            }
+            List<int> subreportIndexes = ExecuteSubReportIndexes.ToList();
+            UpdateExecuteSubreportIndexes(subreportIndexes, 0);
+        }
+        private void UpdateExecuteSubreportIndexes(List<int> subreportIndexes, int recCount)
+        {
+            recCount++;
+            if (recCount>100)
+            {
+                throw new Exception("Circular childsubreport reference");
+            }
+            foreach (int idx in subreportIndexes) {
+                var subreport = this.SubReports[idx];
+                foreach (Section sec in subreport.Sections)
+                {
+                    if (sec.ChildSubReport != null)
+                    {
+                        var newIdx = SubReports.IndexOf(sec.ChildSubReport);
+                        if (!ExecuteSubReportIndexes.Contains(newIdx))
+                        {
+                            ExecuteSubReportIndexes.Add(newIdx);
+                        }
+                        // Search for child of child supreports
+                        var childList = new List<int>();
+                        childList.Add(newIdx);
+                        UpdateExecuteSubreportIndexes(childList, recCount);
+                    }
+                }
+            }
+        }
         override public void BeginPrint(PrintOut driver)
         {
+            if (ExecuteSubReportIndexes != null && ExecuteSubReportIndexes.Count > 0)
+            {
+                UpdateChildSubreportIndexes();
+            }
             base.BeginPrint(driver);
             if (FExecuting)
             {
@@ -99,6 +174,8 @@ namespace Reportman.Reporting
                     {
                         FDriver.SetOrientation(PageOrientation);
                     }
+                    var PageDetail = new PageSizeDetail();
+                    InitialPageDetail = PageDetail;
                     PageDetail.PaperSource = PaperSource;
                     PageDetail.Duplex = Duplex;
                     PageDetail.ForcePaperName = ForcePaperName;
@@ -107,10 +184,14 @@ namespace Reportman.Reporting
                         if (PageSize == PageSizeType.User)
                         {
                             MetaFile.PageSizeIndex = -1;
-                            PageDetail.Index = PageSizeIndex;
+                            PageDetail.Index = MetaFile.PageSizeIndex;
                             PageDetail.Custom = true;
                             PageDetail.CustomHeight = CustomPageHeight;
                             PageDetail.CustomWidth = CustomPageWidth;
+                            MetaFile.CustomX = CustomPageWidth;
+                            MetaFile.CustomY = CustomPageHeight;
+                            PageDetail.PhysicHeight = CustomPageHeight;
+                            PageDetail.PhysicWidth = CustomPageWidth;
                         }
                         else
                         {
@@ -119,6 +200,10 @@ namespace Reportman.Reporting
                             PageDetail.Custom = false;
                             PageDetail.CustomWidth = CustomPageWidth;
                             PageDetail.CustomHeight = CustomPageHeight;
+                            MetaFile.CustomX = CustomPageWidth;
+                            MetaFile.CustomY = CustomPageHeight;
+                            PageDetail.PhysicHeight = CustomPageHeight;
+                            PageDetail.PhysicWidth = CustomPageWidth;
                         }
                         apagesize = FDriver.SetPageSize(PageDetail);
                     }
@@ -127,6 +212,10 @@ namespace Reportman.Reporting
                         int newpagesize = MetaFile.PageSizeIndex;
                         apagesize = FDriver.GetPageSize(out newpagesize);
                         MetaFile.PageSizeIndex = newpagesize;
+                        MetaFile.CustomX = CustomPageWidth;
+                        MetaFile.CustomY = CustomPageHeight;
+                        PageDetail.PhysicHeight = apagesize.Y;
+                        PageDetail.PhysicWidth = apagesize.X;
                     }
                     InternalPageWidth = apagesize.X;
                     InternalPageHeight = apagesize.Y;
@@ -176,14 +265,20 @@ namespace Reportman.Reporting
                 PrepareParamsAfterOpen();
                 for (i = 0; i < SubReports.Count; i++)
                 {
-                    SubReports[i].SubReportChanged(SubReportEvent.Start, "");
+                    if (SubreportMustBeExecuted(SubReports[i])) {
+                        SubReports[i].SubReportChanged(SubReportEvent.Start, "");
+                    }
                 }
                 CurrentSubReportIndex = -1;
                 SubReport subrep;
                 bool dataavail = false;
                 do
                 {
-                    CurrentSubReportIndex++;
+                    do
+                    {
+                        CurrentSubReportIndex++;
+                    }
+                    while (CurrentSubReportIndex< SubReports.Count && !SubreportMustBeExecuted(SubReports[CurrentSubReportIndex]));
                     if (CurrentSubReportIndex >= SubReports.Count)
                         break;
                     subrep = SubReports[CurrentSubReportIndex];
@@ -476,7 +571,11 @@ namespace Reportman.Reporting
                     do
                     {
                         subrep.SubReportChanged(SubReportEvent.SubReportEnd, "");
-                        CurrentSubReportIndex++;
+                        do
+                        {
+                            CurrentSubReportIndex++;
+                        }
+                        while (CurrentSubReportIndex < SubReports.Count && !SubreportMustBeExecuted(SubReports[CurrentSubReportIndex]));
                         if (CurrentSubReportIndex >= SubReports.Count)
                             break;
                         subrep = SubReports[CurrentSubReportIndex];
@@ -541,7 +640,8 @@ namespace Reportman.Reporting
                     {
                         MetaFile.Pages.Add(new MetaPage(MetaFile));
                         MetaFile.Pages[MetaFile.Pages.CurrentCount - 1].Orientation = CurrentOrientation;
-                        MetaFile.Pages[MetaFile.Pages.CurrentCount - 1].PageDetail = PageDetail;
+                        var pageDetail = MetaFile.Pages[MetaFile.Pages.CurrentCount - 1].PageDetail;
+                        DoUpdatePageSize(MetaFile.Pages[MetaFile.Pages.CurrentCount - 1], pageDetail);
                         CheckProgress(false);
                     }
                     MetaFile.CurrentPage = newpage;
@@ -910,39 +1010,6 @@ namespace Reportman.Reporting
             }
             return aresult;
         }
-        public void DoUpdatePageSize(MetaPage MetaFilepage)
-        {
-            Point apagesize;
-            // Sets page orientation and size
-            PageDetail.PhysicWidth = MetaFile.CustomX;
-            PageDetail.PhysicHeight = MetaFile.CustomY;
-            MetaFilepage.Orientation = CurrentOrientation;
-            MetaFilepage.PageDetail.Index = PageSizeIndex;
-            if (!UpdatePageSize)
-            {
-                MetaFilepage.PageDetail = PageDetail;
-                return;
-            }
-            MetaFilepage.UpdatedPageSize = true;
-            // Sets and gets page size from the driver
-            FDriver.SetOrientation(CurrentOrientation);
-            if (PageSize != PageSizeType.Default)
-            {
-                apagesize = FDriver.SetPageSize(PageDetail);
-            }
-            else
-            {
-                int pageIndex;
-                apagesize = FDriver.GetPageSize(out pageIndex);
-                PageSizeIndex = pageIndex;
-            }
-            InternalPageWidth = apagesize.X;
-            InternalPageHeight = apagesize.Y;
-
-            PageDetail.PhysicWidth = apagesize.X;
-            PageDetail.PhysicHeight = apagesize.Y;
-            MetaFilepage.PageDetail = PageDetail;
-        }
 
         override public bool PrintNextPage()
         {
@@ -959,7 +1026,8 @@ namespace Reportman.Reporting
                 MetaFile.Pages.Add(new MetaPage(MetaFile));
             }
             MetaFile.CurrentPage = PageNum;
-            DoUpdatePageSize(MetaFile.Pages[MetaFile.Pages.CurrentCount - 1]);
+            PageSizeDetail pageDetail = InitialPageDetail;
+            DoUpdatePageSize(MetaFile.Pages[MetaFile.Pages.CurrentCount - 1],pageDetail);
             FGroupHeaders.Clear();
             PrintedSomething = false;
             if (section == null)
@@ -993,7 +1061,8 @@ namespace Reportman.Reporting
                     FreeSpace = FreeSpace - TopMargin - BottomMargin;
                     pageposy = TopMargin;
                     pageposx = LeftMargin;
-                    DoUpdatePageSize(MetaFile.Pages[MetaFile.Pages.CurrentCount - 1]);
+                    // pageDetail = MetaFile.Pages[MetaFile.Pages.CurrentCount - 1].PageDetail;
+                    DoUpdatePageSize(MetaFile.Pages[MetaFile.Pages.CurrentCount - 1],pageDetail);
                 }
                 else
                 {

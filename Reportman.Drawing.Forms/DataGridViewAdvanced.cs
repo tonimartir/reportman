@@ -45,15 +45,18 @@ namespace Reportman.Drawing.Forms
         public static DataGridViewCellBorderStyle DefaultCellBorderStyle = DataGridViewCellBorderStyle.Single;
         private SortedList<int, Control> controlskeydown;
         private int taggedcontrols;
-        private Graphics gr;
         public SelectNextRowAfterEnterKeyEvent OnSelectNextRowAfterEnterKey;
         public Keys DoubleClickKey = Keys.F7;
-        float zerosize;
+        // static float zerosize;
+        //static Bitmap nbitmap;
         /// <summary>
         /// Creates a new DataGridView with advanced features
         /// </summary>
         public DataGridViewAdvanced()
         {
+#if NETCOREAPP
+            ShowCellToolTips = false;
+#endif
             FAdjustColumnsFontChange = true;
             CellBorderStyle = DefaultCellBorderStyle;
             if (System.Windows.Forms.SystemInformation.TerminalServerSession)
@@ -63,13 +66,20 @@ namespace Reportman.Drawing.Forms
             InitializeComponent();
             FCreatePopUpForImage = true;
             controlskeydown = new SortedList<int, Control>();
-            gr = this.CreateGraphics();
-            /*using (Font origfont = new Font("Microsoft Sans Serif", 8.25f))
+            /*if (nbitmap == null)
             {
-                zerosize = gr.MeasureString("0000",origfont).Width;
+                nbitmap = new Bitmap(10, 10);
+                nbitmap.SetResolution(96, 96);
+                using (Graphics gr = Graphics.FromImage(nbitmap))
+                {
+                    using (Font origfont = new Font("Microsoft Sans Serif", 8.25f))
+                    {
+                        zerosize = gr.MeasureString("0000",origfont).Width;
+                    }
+                    
+                }
             }*/
-            zerosize = gr.MeasureString("0000", Font).Width;
-            onlygridkeys = new SortedList<Keys, Keys>
+             onlygridkeys = new SortedList<Keys, Keys>
             {
                 { Keys.F1, Keys.F1 },
                 { Keys.F2, Keys.F2 },
@@ -854,7 +864,12 @@ namespace Reportman.Drawing.Forms
                     MemoryStream mems = new MemoryStream(data);
                     Image nimage = Image.FromStream(mems);
                     nimage.Save(archivo, System.Drawing.Imaging.ImageFormat.Bmp);
-                    System.Diagnostics.Process proceso = new System.Diagnostics.Process();
+                    var proceso = new System.Diagnostics.Process();
+                    proceso.StartInfo = new System.Diagnostics.ProcessStartInfo
+                    {
+                        FileName = archivo,
+                        UseShellExecute = true
+                    };
                     proceso.StartInfo.FileName = archivo;
                     proceso.Start();
                 }
@@ -918,27 +933,30 @@ namespace Reportman.Drawing.Forms
         protected override void OnFontChanged(EventArgs e)
         {
             // Adjust size of column if property enable
-            if (FAdjustColumnsFontChange)
+           /* if (FAdjustColumnsFontChange)
             {
-                float newsize = gr.MeasureString("0000", Font).Width;
-                if (zerosize != 0)
+                using (Graphics gr = this.CreateGraphics())
                 {
-                    float relation = newsize / zerosize;
-                    if ((relation > 1.05f) || (relation < 0.95f))
+                    float newsize = gr.MeasureString("0000", Font).Width;
+                    if (zerosize != 0)
                     {
-                        if (Math.Abs(oldzerosize - newsize) > 2)
+                        float relation = newsize / zerosize;
+                        if ((relation > 1.05f) || (relation < 0.95f))
                         {
-                            // Original widhts based on 8.25 size
-                            for (int i = 0; i < Columns.Count; i++)
+                            if (Math.Abs(oldzerosize - newsize) > 2)
                             {
-                                Columns[i].Width = System.Convert.ToInt32(Columns[i].Width * relation);
+                                // Original widhts based on 8.25 size
+                                for (int i = 0; i < Columns.Count; i++)
+                                {
+                                    Columns[i].Width = System.Convert.ToInt32(Columns[i].Width * relation);
 
+                                }
+                                oldzerosize = newsize;
                             }
-                            oldzerosize = newsize;
                         }
                     }
                 }
-            }
+            }*/
             try
             {
                 // Error index out of bounds when parent changes
@@ -1114,101 +1132,104 @@ namespace Reportman.Drawing.Forms
             Enabled = false;
             try
             {
-                int initialcolumn = CurrentCell.ColumnIndex;
-                int initialrow = CurrentCell.RowIndex;
-                string s = Clipboard.GetText();
-                string[] lines = s.Split('\n');
-                if (lines.Length > 1000)
+                if (CurrentCell != null)
                 {
-                    if (Visible)
+                    int initialcolumn = CurrentCell.ColumnIndex;
+                    int initialrow = CurrentCell.RowIndex;
+                    string s = Clipboard.GetText();
+                    string[] lines = s.Split('\n');
+                    if (lines.Length > 1000)
                     {
-                        makevisible = true;
-                        Visible = false;
-                    }
-                }
-                foreach (string line in lines)
-                {
-                    if (line.Length > 0)
-                    {
-                        DataRow nrow;
-                        bool added = false;
-                        if (this.Rows.Count <= initialrow)
+                        if (Visible)
                         {
-                            this.BindingContext[this.DataSource, DataMember].CancelCurrentEdit();
-                            this.BindingContext[this.DataSource, DataMember].AddNew();
-                            nrow = ((DataRowView)this.BindingContext[this.DataSource, DataMember].Current).Row;
-                            added = true;
+                            makevisible = true;
+                            Visible = false;
                         }
-                        else
+                    }
+                    foreach (string line in lines)
+                    {
+                        if (line.Length > 0)
                         {
-                            DataGridViewRow nvrow;
-                            nvrow = this.Rows[initialrow];
-                            // DataView nv = (DataView)nvrow.DataBoundItem;
-                            if (nvrow.DataBoundItem == null)
+                            DataRow nrow;
+                            bool added = false;
+                            if (this.Rows.Count <= initialrow)
                             {
-                                //nrow = ntable.NewRow();
                                 this.BindingContext[this.DataSource, DataMember].CancelCurrentEdit();
                                 this.BindingContext[this.DataSource, DataMember].AddNew();
                                 nrow = ((DataRowView)this.BindingContext[this.DataSource, DataMember].Current).Row;
                                 added = true;
                             }
                             else
-                                nrow = ((DataRowView)nvrow.DataBoundItem).Row;
-                        }
-                        string[] words = line.Split('\t');
-                        int col = initialcolumn - 1;
-                        int upbound = words.GetUpperBound(0);
-                        for (int i = 0; i <= upbound; i++)
-                        {
-                            string word = words[i].Trim();
-                            while (col < Columns.Count)
                             {
-                                col++;
-                                if (col < Columns.Count)
-                                    if (Columns[col].Visible)
-                                        break;
-                            }
-                            if (col < Columns.Count)
-                            {
-                                if (!Columns[col].ReadOnly)
+                                DataGridViewRow nvrow;
+                                nvrow = this.Rows[initialrow];
+                                // DataView nv = (DataView)nvrow.DataBoundItem;
+                                if (nvrow.DataBoundItem == null)
                                 {
-                                    // Binary
-                                    string propname = Columns[col].DataPropertyName;
-                                    if (Columns[col] is DataGridViewImageColumn)
+                                    //nrow = ntable.NewRow();
+                                    this.BindingContext[this.DataSource, DataMember].CancelCurrentEdit();
+                                    this.BindingContext[this.DataSource, DataMember].AddNew();
+                                    nrow = ((DataRowView)this.BindingContext[this.DataSource, DataMember].Current).Row;
+                                    added = true;
+                                }
+                                else
+                                    nrow = ((DataRowView)nvrow.DataBoundItem).Row;
+                            }
+                            string[] words = line.Split('\t');
+                            int col = initialcolumn - 1;
+                            int upbound = words.GetUpperBound(0);
+                            for (int i = 0; i <= upbound; i++)
+                            {
+                                string word = words[i].Trim();
+                                while (col < Columns.Count)
+                                {
+                                    col++;
+                                    if (col < Columns.Count)
+                                        if (Columns[col].Visible)
+                                            break;
+                                }
+                                if (col < Columns.Count)
+                                {
+                                    if (!Columns[col].ReadOnly)
                                     {
-                                        if (word.Length > 0)
+                                        // Binary
+                                        string propname = Columns[col].DataPropertyName;
+                                        if (Columns[col] is DataGridViewImageColumn)
                                         {
+                                            if (word.Length > 0)
+                                            {
 
-                                            nrow[propname] = Convert.FromBase64String(word);
-                                        }
-                                        else
-                                            nrow[propname] = DBNull.Value;
-                                    }
-                                    else
-                                    {
-                                        if (word.Length > 0)
-                                        {
-                                            if (nrow[propname].ToString() != word)
-                                                nrow[propname] = word;
-                                        }
-                                        else
-                                        {
-                                            if (assignnulls)
+                                                nrow[propname] = Convert.FromBase64String(word);
+                                            }
+                                            else
                                                 nrow[propname] = DBNull.Value;
+                                        }
+                                        else
+                                        {
+                                            if (word.Length > 0)
+                                            {
+                                                if (nrow[propname].ToString() != word)
+                                                    nrow[propname] = word;
+                                            }
+                                            else
+                                            {
+                                                if (assignnulls)
+                                                    nrow[propname] = DBNull.Value;
+                                            }
                                         }
                                     }
                                 }
                             }
+                            if (added)
+                            {
+                                this.BindingContext[this.DataSource].EndCurrentEdit();
+                                //ntable.Rows.Add(nrow);
+                            }
+                            initialrow++;
                         }
-                        if (added)
-                        {
-                            this.BindingContext[this.DataSource].EndCurrentEdit();
-                            //ntable.Rows.Add(nrow);
-                        }
-                        initialrow++;
                     }
+                    Invalidate();
                 }
-                Invalidate();
             }
             finally
             {
@@ -1880,18 +1901,56 @@ namespace Reportman.Drawing.Forms
                         if (gridcolumn.Visible)
                         {
                             object value = gridrow.Cells[gridcolumn.Index].Value;
-                            if (value != null)
+                            var cell = worksheet.Cell(linia, columna);
+                            if (value != null && value != DBNull.Value)
                             {
+                                switch (value)
+                                {
+                                    case int i:
+                                        cell.Value = i;
+                                        break;
+                                    case short sh:
+                                        cell.Value = sh;
+                                        break;
+                                    case long lg:
+                                        cell.Value = lg;
+                                        break;
+                                    case double d:
+                                        cell.Value = d;
+                                        break;
+                                    case float f:
+                                        cell.Value = f;
+                                        break;
+                                    case decimal dec:
+                                        cell.Value = (double)dec; // ClosedXML prefiere double
+                                        break;
+                                    case string s:
+                                        cell.Value = s;
+                                        break;
+                                    case DateTime dt:
+                                        cell.Value = dt;
+                                        break;
+                                    case bool b:
+                                        cell.Value = b;
+                                        break;
+                                    case byte[] bb:
+                                        break;
+                                    default:
+                                        // Convertir a string si es otro tipo no compatible
+                                        cell.Value = value.ToString();
+                                        break;
+                                }
+
+
                                 switch (value.GetType().ToString())
                                 {
                                     case "System.Byte[]":
                                         value = DBNull.Value;
                                         break;
                                     default:
+
                                         break;
                                 }
-                                if (value != DBNull.Value)
-                                    worksheet.Cell(linia, columna).Value = value.ToString();
                             }
                             columna++;
                         }

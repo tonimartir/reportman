@@ -54,7 +54,10 @@ namespace Reportman.Reporting
             }
             set
             {
-                Descriptions = Strings.SetStringByIndex(Descriptions, value, Report.Language);
+                if (Report != null)
+                {
+                    Descriptions = Strings.SetStringByIndex(Descriptions, value, Report.Language);
+                }
             }
         }
         public string Hints;
@@ -74,7 +77,10 @@ namespace Reportman.Reporting
             }
             set
             {
-                Hints = Strings.SetStringByIndex(Hints, value, Report.Language);
+                if (Report != null)
+                {
+                    Hints = Strings.SetStringByIndex(Hints, value, Report.Language);
+                }
             }
         }
         public string ErrorMessages;
@@ -94,7 +100,10 @@ namespace Reportman.Reporting
             }
             set
             {
-                ErrorMessages = Strings.SetStringByIndex(ErrorMessages, value, Report.Language);
+                if (Report != null)
+                {
+                    ErrorMessages = Strings.SetStringByIndex(ErrorMessages, value, Report.Language);
+                }
             }
         }
         public string Validation;
@@ -118,8 +127,8 @@ namespace Reportman.Reporting
 
         }
         public bool Visible, IsReadOnly, NeverVisible, AllowNulls;
-        public Param(BaseReport rp)
-            : base(rp)
+        public Param()
+            : base()
         {
             Items = new Strings();
             Values = new Strings();
@@ -253,7 +262,8 @@ namespace Reportman.Reporting
         }
         public object Clone()
         {
-            Param p = new Param(Report);
+            Param p = new Param();
+            p.Report = Report;
             p.AllowNulls = AllowNulls;
             p.Alias = Alias;
             p.Datasets = (Strings)Datasets.Clone();

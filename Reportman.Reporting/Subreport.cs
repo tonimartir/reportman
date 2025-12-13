@@ -37,15 +37,19 @@ namespace Reportman.Reporting
         public int CurrentGroupIndex;
         public Sections Sections;
         public string Alias;
+        [System.Text.Json.Serialization.JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
         public SubReport ParentSubReport;
+        [System.Text.Json.Serialization.JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
         public Section ParentSection;
         public bool PrintOnlyIfDataAvailable;
         public bool ReOpenOnPrint;
         public string ParentSub;
         public string ParentSec;
         public string CurrentGroupName;
-        public SubReport(BaseReport rp)
-            : base(rp)
+        public SubReport()
+            : base()
         {
             PrintOnlyIfDataAvailable = true;
             ReOpenOnPrint = true;
@@ -399,7 +403,8 @@ namespace Reportman.Reporting
         /// <returns></returns>
         private Section CreateSection()
         {
-            Section sec = new Section(Report);
+            Section sec = new Section();
+            sec.Report = Report;
             Report.GenerateNewName(sec);
             sec.SubReport = this;
             sec.Width = DEFAULT_SECTION_WITH;
@@ -616,5 +621,6 @@ namespace Reportman.Reporting
 
     }
 #endif
+
 
 }

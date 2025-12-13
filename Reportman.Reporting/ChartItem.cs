@@ -73,6 +73,8 @@ namespace Reportman.Reporting
         public double AxisYInitial { get; set; } = 0;
         public double AxisYFinal { get; set; } = 0;
 
+        [System.Text.Json.Serialization.JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
         internal VariableGraph IdenChart
         {
             get
@@ -80,20 +82,20 @@ namespace Reportman.Reporting
                 return FIdenChart;
             }
         }
-        public bool ShouldSerializeIdenChart()
+        public override void SetReport(BaseReport rp)
         {
-            return false;
+            base.SetReport(rp);
+            FIdenChart = new VariableGraph(Report.Evaluator, Report);
+            FIdenChart.NewChart = this;
         }
-        public ChartItem(BaseReport rp)
-            : base(rp)
+        public ChartItem()
+            : base()
         {
             Height = DEF_DRAWWIDTH;
             Width = Height;
             ShowHint = true;
             FSeries = new Series();
             FSeries.Logaritmic = false;
-            FIdenChart = new VariableGraph(Report.Evaluator, Report);
-            FIdenChart.NewChart = this;
             //      FIdenChart.OnClear:=OnClear;
             //      FIdenChart.OnNewValue:=OnNewValue;
             //      FIdenChart.OnSerieColor:=OnSerieColor;
@@ -239,7 +241,7 @@ namespace Reportman.Reporting
             }
             catch (Exception E)
             {
-                throw new ReportException(E.Message + ":" + Name + " Prop:CheckValueCondition " + PrintCondition, this, "GetValueCondition");
+                throw new ReportException(E.Message + (char)10 + Name + " Prop:ClearExpression ", this, "ClearExpression");
             }
         }
         public bool EvaluateChangeSerieExpression()
@@ -272,7 +274,7 @@ namespace Reportman.Reporting
             }
             catch (Exception E)
             {
-                throw new ReportException(E.Message + ":" + Name + " Prop:CheckValueCondition " + PrintCondition, this, "GetValueCondition");
+                throw new ReportException(E.Message + (char)10 + Name + " Prop:ChangeSerieExpression " + (char)10 + PrintCondition, this, "ChangeSerieExpression");
             }
             return nresult;
         }
@@ -291,7 +293,7 @@ namespace Reportman.Reporting
             }
             catch (Exception E)
             {
-                throw new ReportException(E.Message + ":" + Name + " Prop:SerieCaption " + PrintCondition, this, "SerieCaption");
+                throw new ReportException(E.Message +(char)10 + Name + " Prop:SerieCaption " + (char)10 + PrintCondition, this, "SerieCaption");
             }
             return aresult;
         }
@@ -312,7 +314,7 @@ namespace Reportman.Reporting
             }
             catch (Exception E)
             {
-                throw new ReportException(E.Message + ":" + Name + " Prop:CheckValueCondition " + PrintCondition, this, "GetValueCondition");
+                throw new ReportException(E.Message + (char)10 + Name + " Prop:GetValueCondition " + (char)10 + PrintCondition, this, "GetValueCondition");
             }
             return nresult;
         }

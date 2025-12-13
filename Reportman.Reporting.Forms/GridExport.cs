@@ -57,12 +57,14 @@ namespace Reportman.Reporting.Forms
 
             using (DataTable tlines = new DataTable())
             {
-                Reportman.Reporting.DatabaseInfo dbinfo = new Reportman.Reporting.DatabaseInfo(nreport);
+                Reportman.Reporting.DatabaseInfo dbinfo = new Reportman.Reporting.DatabaseInfo();
+                dbinfo.Report = nreport;
                 dbinfo.Driver = Reportman.Reporting.DriverType.Mybase;
                 dbinfo.Alias = "DB";
                 nreport.DatabaseInfo.Add(dbinfo);
 
-                Reportman.Reporting.DataInfo dinfo = new Reportman.Reporting.DataInfo(nreport);
+                Reportman.Reporting.DataInfo dinfo = new Reportman.Reporting.DataInfo();
+                dinfo.Report = nreport;
                 nreport.DataInfo.Add(dinfo);
                 dinfo.DatabaseAlias = "DB";
                 dinfo.Alias = "P1";
@@ -77,7 +79,8 @@ namespace Reportman.Reporting.Forms
                     {
                         tlines.Columns.Add(gcol.Index.ToString(), System.Type.GetType("System.String"));
                         string headerTitle = gcol.HeaderText;
-                        Reportman.Reporting.LabelItem label = new Reportman.Reporting.LabelItem(nreport);
+                        Reportman.Reporting.LabelItem label = new Reportman.Reporting.LabelItem();
+                        label.Report = nreport;
                         label.Height = 750;
                         label.Width = gcol.Width * 1440 / 96;
                         label.PosX = xpos;
@@ -88,7 +91,8 @@ namespace Reportman.Reporting.Forms
                         SetAlignment(label, gcol.DefaultCellStyle);
                         header.Components.Add(label);
 
-                        Reportman.Reporting.ExpressionItem expre = new Reportman.Reporting.ExpressionItem(nreport);
+                        Reportman.Reporting.ExpressionItem expre = new Reportman.Reporting.ExpressionItem();
+                        expre.Report = nreport;
                         expre.Height = 250;
                         expre.Width = gcol.Width * 1440 / 96;
                         expre.PosX = xpos;

@@ -5,9 +5,25 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWindowsForms>true</UseWindowsForms>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-    <Configurations>CodeAnalysisDebug;Debug;MonoDebug;Release_35;Release_40;Release_45;Release_Mono_w_Linux;Release;Signed;TPVOnline</Configurations>
+    <Configurations>Debug;Release</Configurations>
     <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
+	<PropertyGroup>
+		<PackageId>Reportman.Designer</PackageId>
+		<Version>3.9.15</Version>
+		<Authors>Toni Martir</Authors>
+		<Company>Reportman</Company>
+		<Description>Reportman template designer, allows template design , execution , preview, print and export results.</Description>
+		<PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
+		<RepositoryUrl>https://github.com/tonimartir/reportman</RepositoryUrl>
+		<PackageProjectUrl>https://reportman.es</PackageProjectUrl>
+		<PackageReleaseNotes>Initial release</PackageReleaseNotes>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Include="..\README.md" Pack="true" PackagePath="" />
+	</ItemGroup>
   <ItemGroup>
     <Compile Update="Inspector.cs">
       <SubType>Component</SubType>
@@ -62,12 +78,6 @@
     <ProjectReference Include="..\Reportman.Drawing\Reportman.Drawing.csproj" />
     <ProjectReference Include="..\Reportman.Reporting.Forms\Reportman.Reporting.Forms.csproj" />
     <ProjectReference Include="..\Reportman.Reporting\Reportman.Reporting.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-    <PackageReference Include="System.Memory" Version="4.6.0" />
-    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.6.0" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">

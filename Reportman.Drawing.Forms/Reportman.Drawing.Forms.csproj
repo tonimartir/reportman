@@ -1,14 +1,40 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-	<TargetFrameworks>net48;;net8.0-windows;net9.0-windows</TargetFrameworks>
+	<TargetFrameworks>net48;net9.0-windows;net8.0-windows</TargetFrameworks>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWindowsForms>true</UseWindowsForms>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-    <Configurations>CodeAnalysisDebug;Debug;MonoDebug;Release_35;Release_40;Release_45;Release_Mono_w_Linux;Release;Signed;TPVOnline</Configurations>
+    <Configurations>Debug;Release</Configurations>
     <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
-  <ItemGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<DefineConstants>TRACE;DEBUG;REPMAN_ZLIB</DefineConstants>
+		<DebugType>portable</DebugType>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<DefineConstants>RELEASE;REPMAN_ZLIB</DefineConstants>
+		<DebugType>none</DebugType>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<PackageId>Reportman.Drawing.Forms</PackageId>
+		<Version>3.9.15</Version>
+		<Authors>Toni Martir</Authors>
+		<Company>Reportman</Company>
+		<Description>Reportman Metafile preview and print, Windows Forms, includes PDF and Excel output.</Description>
+		<PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
+		<RepositoryUrl>https://github.com/tonimartir/reportman</RepositoryUrl>
+		<PackageProjectUrl>https://reportman.es</PackageProjectUrl>
+		<PackageReleaseNotes>Initial release</PackageReleaseNotes>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Include="..\README.md" Pack="true" PackagePath="" />
+	</ItemGroup>
+
+	<ItemGroup>
     <Compile Update="CueHelper.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -77,10 +103,6 @@
 			<Version>4.0</Version>
 		</Reference>
 	</ItemGroup>
-
-	<ItemGroup>
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.2" />
-  </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net8.0-windows'">
     <PackageReference Include="WinForms.DataVisualization">
       <Version>1.10.0</Version>

@@ -4,6 +4,7 @@
 using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 
@@ -27,10 +28,31 @@ namespace Reportman.Drawing.Forms
         private bool m_bValidTimeFormat = true;
         private DateTime m_dteMaxDate = DateTime.MaxValue;
         private DateTime m_dteMinDate = DateTime.MinValue;
+        private Font FCalendarFont;
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public Font CalendarFont
+        {
+            get
+            {
+                return FCalendarFont;
+            }
+            set
+            {
+                FCalendarFont = value;
+                m_wndCalendar.Font = FCalendarFont;
+                m_ctlCalendar.Font = FCalendarFont;
+            }
+        }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public bool HandleKeyUpDown { get; set; }
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public bool HandleLeftRightTabs { get; set; }
+
 
         protected const string NOSUPPORTDATECHARS = "fFgKz%\\";
 
-        private MonthCalendar m_ctlCalendar = null;
+        private MonthCalendarUnThemed m_ctlCalendar = null;
         private PopupWindow m_wndCalendar = null;
 
         /// <summary>
@@ -244,14 +266,30 @@ namespace Reportman.Drawing.Forms
                     else if (value == DateTime.MinValue)
                     {
                         if (this.ContainsFocus)
-                            txtDate.Text = m_szDateTimeEntryPattern;
+                        {
+                            if (txtDate.Text != m_szDateTimeEntryPattern)
+                            {
+                                txtDate.Text = m_szDateTimeEntryPattern;
+                            }
+                        }
                         else
-                            txtDate.Text = "";
+                        {
+                            if (txtDate.Text != "")
+                            {
+                                txtDate.Text = "";
+                            }
+                        }
                         //txtDate.Text = "";
                         //txtDate.Text = m_szDateTimeEntryPattern;
                     }
                     else
-                        txtDate.Text = GBLMethods.FormatDate(value, m_szCombinedDisplayFormat);
+                    {
+                        string newValue = GBLMethods.FormatDate(value, m_szCombinedDisplayFormat);
+                        if (newValue != txtDate.Text)
+                        {
+                            txtDate.Text = newValue;
+                        }
+                    }
                     OnValueChanged(new EventArgs());
                 }
                 else if (!DesignMode)
@@ -394,6 +432,8 @@ namespace Reportman.Drawing.Forms
         /// </summary>
         protected virtual void OnValueChanged(EventArgs eventargs)
         {
+            UpdateColor();
+
             if (ValueChanged != null)
                 ValueChanged(this, eventargs);
         }
@@ -407,9 +447,29 @@ namespace Reportman.Drawing.Forms
             //m_szCombinedEntryFormat = m_szDateEntryFormat + m_szTimeEntryFormat;
             m_rectButton = btnCalendar.ClientRectangle;
 
-            m_ctlCalendar = new MonthCalendar();
+            m_ctlCalendar = new MonthCalendarUnThemed();
             m_ctlCalendar.MaxSelectionCount = 1;
-            m_wndCalendar = new PopupWindow(m_ctlCalendar);
+            FlowLayoutPanel fLayout = new FlowLayoutPanel();
+            fLayout.Margin = new Padding(0);
+            fLayout.Padding = new Padding(0);
+            fLayout.AutoSize = true;
+            fLayout.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            fLayout.FlowDirection = FlowDirection.TopDown;
+            fLayout.Controls.Add(m_ctlCalendar);
+            m_ctlCalendar.Margin = new Padding(0);
+            Button btnClear = new Button();
+            btnClear.Margin = new Padding(0);
+            btnClear.Padding = new Padding(3);
+            btnClear.Height = Convert.ToInt32(30 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
+            btnClear.Anchor = AnchorStyles.Right | AnchorStyles.Left;
+            btnClear.Text = "Limpiar";
+            btnClear.Click += (e, args) =>
+            {
+                m_wndCalendar.Close();
+                this.Value = DateTime.MinValue;
+            };
+            fLayout.Controls.Add(btnClear);
+            m_wndCalendar = new PopupWindow(fLayout);
 
             btnCalendar.Paint += btnCalendar_Paint;
             btnCalendar.MouseMove += btnCalendar_MouseMove;
@@ -654,10 +714,13 @@ namespace Reportman.Drawing.Forms
         }
         private void TxtDate_KeyUp(object sender, KeyEventArgs e)
         {
-            if ((e.KeyCode == Keys.Down) || (e.KeyCode == Keys.Up))
+            if (HandleKeyUpDown)
             {
-                e.SuppressKeyPress = true;
-                e.Handled = true;
+                if ((e.KeyCode == Keys.Down) || (e.KeyCode == Keys.Up))
+                {
+                    e.SuppressKeyPress = true;
+                    e.Handled = true;
+                }
             }
         }
         void txtDate_KeyDown(object sender, KeyEventArgs e)
@@ -682,7 +745,7 @@ namespace Reportman.Drawing.Forms
                 //if (CheckAllSelectedResetControl())
                 // OnValueChanged(new EventArgs());
                 txtDate.Text = m_szDateTimeEntryPattern;
-                //Value = DateTime.MinValue;
+                Value = DateTime.MinValue;
                 //OnValueChanged(new EventArgs());
 
                 //else
@@ -691,7 +754,25 @@ namespace Reportman.Drawing.Forms
                 e.Handled = true;
                 e.SuppressKeyPress = true;
             }
-            if (e.KeyCode == Keys.Down)
+            if (e.KeyCode == Keys.Left && HandleLeftRightTabs)
+            {
+                if (txtDate.SelectionStart == 0 && txtDate.SelectionLength == 0)
+                {
+                    SendKeys.Send("+{TAB}");
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+                }
+            }
+            if (e.KeyCode == Keys.Right && HandleLeftRightTabs)
+            {
+                    if (txtDate.SelectionStart == (txtDate.Text.Length) && txtDate.SelectionLength == 0)
+                {
+                    SendKeys.Send("{TAB}");
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+                }
+            }
+            if (e.KeyCode == Keys.Down && HandleKeyUpDown)
             {
                 if (txtDate.SelectionStart > 0)
                 {
@@ -749,7 +830,7 @@ namespace Reportman.Drawing.Forms
                 }
 
             }
-            if (e.KeyCode == Keys.Up)
+            if (e.KeyCode == Keys.Up && HandleKeyUpDown)
             {
                 if (txtDate.SelectionStart > 0)
                 {
@@ -828,6 +909,11 @@ namespace Reportman.Drawing.Forms
         void m_ctlCalendar_DateSelected(object sender, DateRangeEventArgs e)
         {
             m_wndCalendar.Hide();
+            var dteCurrent = GBLMethods.CDate(txtDate.Text, m_szCombinedEntryFormat);
+            if (e.Start != dteCurrent)
+            {
+                m_ctlCalendar_DateChanged(this, e);
+            }
             txtDate.Focus();
         }
 
@@ -863,7 +949,7 @@ namespace Reportman.Drawing.Forms
             {
                 e.Cancel = true;
                 ShowValFailMsg(eResult);
-                txtDate.SelectAll();
+                txtDate.Text = "";
             }
         }
         public void ShowValFailMsg(IsDateValidResult eResult)
@@ -924,13 +1010,46 @@ namespace Reportman.Drawing.Forms
         #region Process User Keyed Char
         void txtDate_KeyPress(object sender, KeyPressEventArgs e)
         {
+            var currentValue = Value;
             e.Handled = true; //This class will process all keypress characters.
             if (!ProcessChar(e.KeyChar))
                 GBLMethods.MessageBeep(MessageBeepTypes.Default);
-
-            OnValueChanged(new EventArgs());
+            var newvalue = Value;
+            if (newvalue != currentValue)
+            {
+                OnValueChanged(new EventArgs());
+            }
+            else
+                UpdateColor();
 
             OnKeyPress(e);
+        }
+        private bool AllDigitZero(string text)
+        {
+            foreach (var nchar in text)
+            {
+                if (Char.IsDigit(nchar))
+                {
+                    if (nchar != '0')
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        private void UpdateColor()
+        {
+            var dteValue = GBLMethods.CDate(txtDate.Text, m_szCombinedEntryFormat);
+            if ((dteValue == DateTime.MinValue) && (!AllDigitZero(txtDate.Text)))
+            {
+                txtDate.ForeColor = Color.Red;
+            }
+            else
+            {
+                txtDate.ForeColor = Color.Black;
+            }
+            
         }
         private bool ProcessChar(char cChar)
         {
@@ -1675,5 +1794,16 @@ namespace Reportman.Drawing.Forms
         {
             this.Size = _content.Size;
         }
+    }
+}
+
+public class MonthCalendarUnThemed : MonthCalendar
+{
+    [DllImport("uxtheme.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
+    static extern int SetWindowTheme(IntPtr hwnd, string pszSubAppName, string pszSubIdList);    
+    protected override void OnHandleCreated(EventArgs e)
+    {
+        SetWindowTheme(Handle, string.Empty, string.Empty);
+        base.OnHandleCreated(e);
     }
 }

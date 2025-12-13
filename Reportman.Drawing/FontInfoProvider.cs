@@ -18,23 +18,35 @@
 */
 #endregion
 
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-
 namespace Reportman.Drawing
 {
     public struct GlyphInfo
     {
         public double Width;
+        public int Glyph;
+        public char Char;
+    }
+    public struct TGlyphPos
+    {
         public int GlyphIndex;
+        public int XOffset;
+        public int YOffset;
+        public int XAdvance;
+        public int YAdvance;
+        public char CharCode;
+        public int Cluster;
+        public int LineCluster;
+        public string FontFamily;
     }
     public class PDFFont
     {
         public PDFFontType Name;
         public string WFontName;
         public string LFontName;
-        public string FontName;
         public int Size;
         public int Color;
         public int Style;
@@ -49,6 +61,20 @@ namespace Reportman.Drawing
             Name = PDFFontType.Courier;
             Size = 10;
             BackColor = 0xFFFFFF;
+        }
+        public string GetFontFamily()
+        {
+            if (PlatformID.Unix == System.Environment.OSVersion.Platform)
+                return LFontName;
+            else
+                return WFontName;
+        }
+        public string GetFontFamilyKey()
+        {
+            if (PlatformID.Unix == System.Environment.OSVersion.Platform)
+                return LFontName.Replace(" ", "");
+            else
+                return WFontName.Replace(" ", "");
         }
     }
     public class AdvFontData
@@ -80,6 +106,7 @@ namespace Reportman.Drawing
         public long ObjectIndexParent;
         public long DescriptorIndex;
         public long ToUnicodeIndex;
+        public double UnitsPerEM;
         public int FirstLoaded;
         public int LastLoaded;
         public bool IsUnicode;
@@ -90,6 +117,7 @@ namespace Reportman.Drawing
         public SortedList<char, GlyphInfo> CacheWidths;
         public bool IsBold;
         public bool IsItalic;
+        public SortedList<int, GlyphInfo> glyphsInfo = new SortedList<int, GlyphInfo>();
 
 
         public TTFontData()
@@ -108,6 +136,7 @@ namespace Reportman.Drawing
             Widths = new SortedList<char, double>();
             Kernings = new SortedList<ulong, int>();
             Glyphs = new SortedList<char, int>();
+            UnitsPerEM = 1024;
         }
     }
     public abstract class FontInfoProvider
@@ -115,6 +144,11 @@ namespace Reportman.Drawing
         public abstract void FillFontData(PDFFont pdfFont, TTFontData fontData);
         public abstract double GetCharWidth(PDFFont pdfFont, TTFontData fontData,
                  char charCode);
+        public abstract double GetGlyphWidth(PDFFont pdfFont, TTFontData fontData, int glyph, char charC);
+        public abstract List<LineInfo>  TextExtent(string Text,
+           ref Rectangle Rect, PDFFont pdfFont, TTFontData fontData,
+            bool wordwrap,bool singleline,double FontSize);
+  
         public abstract int GetKerning(PDFFont pdfFont, TTFontData fontData,
                  char leftChar, char rightChar);
         public abstract MemoryStream GetFontStream(TTFontData data);

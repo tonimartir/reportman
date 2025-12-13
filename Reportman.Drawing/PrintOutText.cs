@@ -46,7 +46,7 @@ namespace Reportman.Drawing
         public int blacklines;
         public int whitelines;
         private PrintLine PreviousLine;
-        private LineInfos linfos;
+        private List<LineInfo> linfos;
         bool masterselect;
         bool limitedmaster;
         bool condensedmaster;
@@ -74,7 +74,7 @@ namespace Reportman.Drawing
             : base()
         {
             PrintResultStream = new System.IO.MemoryStream();
-            linfos = new LineInfos();
+            linfos = new List<LineInfo>();
             FLinesPerInch = DEFAULT_LINESPERINCH;
             Lines = new List<PrintLine>();
             ForceDriverName = "";

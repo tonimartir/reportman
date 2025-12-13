@@ -3,7 +3,7 @@
 	<TargetFrameworks>net8.0;net9.0;net48</TargetFrameworks>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <Configurations>CodeAnalysisDebug;Debug;MonoDebug;Release_35;Release_40;Release_45;Release_Mono_w_Linux;Release;Signed;TPVOnline</Configurations>
+    <Configurations>Debug;Release</Configurations>
     <AssemblyTitle>Reportman.Reporting</AssemblyTitle>
     <Product>Reportman.Reporting</Product>
     <Copyright>Copyright ©  2017</Copyright>
@@ -11,6 +11,22 @@
     <FileVersion>1.0.0.0</FileVersion>
     <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
+	<PropertyGroup>
+		<PackageId>Reportman.Reporting</PackageId>
+		<Version>3.9.15</Version>
+		<Authors>Toni Martir</Authors>
+		<Company>Reportman</Company>
+		<Description>Reportman reporting engine.</Description>
+		<PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
+		<RepositoryUrl>https://github.com/tonimartir/reportman</RepositoryUrl>
+		<PackageProjectUrl>https://reportman.es</PackageProjectUrl>
+		<PackageReleaseNotes>Initial release</PackageReleaseNotes>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Include="..\README.md" Pack="true" PackagePath="" />
+	</ItemGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DefineConstants>TRACE;DEBUG;REPMAN_ZLIB</DefineConstants>
   </PropertyGroup>
@@ -24,27 +40,12 @@
     <DefineConstants>TRACE;REPMAN_ZLIB</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Update="DatasetAlias.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Update="Evaluator.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Update="ReportDataset.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Update="PagedDataTable.cs">
-      <SubType>Component</SubType>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Reportman.Drawing\Reportman.Drawing.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="SharpZipLib" Version="1.4.2" />
+    <PackageReference Include="System.Text.Json" Version="9.0.5" />
     <PackageReference Include="ZXing.Net" Version="0.16.10" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
   </ItemGroup>
 </Project>

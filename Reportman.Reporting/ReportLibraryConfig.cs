@@ -123,13 +123,13 @@ namespace Reportman.Reporting
             }
             return result;
         }
-        public System.IO.MemoryStream SaveReport(Report nreport, string reportName)
+        public System.IO.MemoryStream SaveReport(Report nreport, string reportName, StreamVersion version)
         {
             string sqltext = "UPDATE " + ReportTable + " SET " + ReportField + "=@REPORT" +
                  " WHERE " + ReportSearchField + "=" + StringUtil.QuoteStr(reportName);
             bool closeConnection = false;
             System.IO.MemoryStream newStream = new System.IO.MemoryStream();
-            nreport.SaveToStream(newStream);
+            nreport.SaveToStream(newStream, version);
             if (CurrentConnection == null)
             {
                 DbProviderFactory factory = GetFactory();
@@ -178,7 +178,7 @@ namespace Reportman.Reporting
         public System.IO.MemoryStream Stream;
         public void Save(Report nreport)
         {
-            Stream = ReportLibrary.SaveReport(nreport, ReportName);
+            Stream = ReportLibrary.SaveReport(nreport, ReportName, StreamVersion.V2);
         }
     }
     public class ReportLibraryConfigCollection : List<ReportLibraryConfig>

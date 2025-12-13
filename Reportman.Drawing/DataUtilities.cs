@@ -165,8 +165,14 @@ namespace Reportman.Drawing
         }
         public static DataTable GroupBy(List<DataTable> sources, string groupCols, string sumCols)
         {
-            List<string> groupColumns = groupCols.Split(';').ToList();
-            List<string> sumColumns = sumCols.Split(';').ToList();
+            char char_split = ';';
+            if (groupCols.Contains(","))
+                char_split = ',';
+            List<string> groupColumns = groupCols.Split(char_split).ToList();
+            char_split = ';';
+            if (sumCols.Contains(","))
+                char_split = ',';
+            List<string> sumColumns = sumCols.Split(char_split).ToList();
             DataTable result = (DataTable)sources[0].Clone();
             DataView nview = new DataView(result, "", String.Join(",", groupColumns), DataViewRowState.CurrentRows);
             var keys = new object[groupColumns.Count];

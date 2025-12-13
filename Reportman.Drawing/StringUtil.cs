@@ -682,6 +682,17 @@ namespace Reportman.Drawing
             sbuilder.Append('"');
             return sbuilder.ToString();
         }
+        public static string DoubleQuoteStrJson(string ident)
+        {
+            return "\"" + ident
+                .Replace("\\", "\\\\")
+                .Replace("\"", "\\\"")
+                .Replace("\b", "\\b")
+                .Replace("\f", "\\f")
+                .Replace("\n", "\\n")
+                .Replace("\r", "\\r")
+                .Replace("\t", "\\t") + "\"";
+        }
         /// <summary>
         /// Returns a string quoted with custom 'quote' separator, if
         /// quote separator is contained, doubles de double quote
@@ -1196,6 +1207,12 @@ namespace Reportman.Drawing
             }
 
             return (sb.ToString().Normalize(NormalizationForm.FormC));
+        }
+        public static string NormalizeToNFC(string s)
+        {
+            if (string.IsNullOrEmpty(s))
+                return string.Empty;
+            return s.Normalize(System.Text.NormalizationForm.FormC);
         }
         public static string NormalizeLineBreaks(string input)
         {

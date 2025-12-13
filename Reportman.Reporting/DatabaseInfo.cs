@@ -122,6 +122,8 @@ namespace Reportman.Reporting
         /// Obtain current active transaction to execute querys
         /// </summary>
         ///
+        [System.Text.Json.Serialization.JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
         public System.Data.IDbTransaction CurrentTransaction
         {
             get
@@ -131,10 +133,6 @@ namespace Reportman.Reporting
                 else
                     return IntTransaction;
             }
-        }
-        public bool ShouldSerializeCurrentTransaction()
-        {
-            return false;
         }
 
         public static List<string> GetDriverDescriptions()
@@ -162,6 +160,8 @@ namespace Reportman.Reporting
         /// all the settings inside DatabaseInfo related to perform connection will be ignored and all
         /// querys will be executed against the provided connection
         /// </summary>
+        [System.Text.Json.Serialization.JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
         public System.Data.IDbConnection Connection
         {
             get
@@ -187,10 +187,6 @@ namespace Reportman.Reporting
                 }
             }
         }
-        public bool ShouldSerializeCurrentConnection()
-        {
-            return false;
-        }
         public IDbCommandExecuter SqlExecuter;
         protected override string GetClassName()
         {
@@ -202,7 +198,8 @@ namespace Reportman.Reporting
         /// <returns>A new DatabaseInfo item with same data as the original</returns>
 		public object Clone()
         {
-            DatabaseInfo ninfo = new DatabaseInfo(Report);
+            DatabaseInfo ninfo = new DatabaseInfo();
+            ninfo.Report = Report;
             ninfo.Alias = Alias;
             ninfo.Driver = Driver;
             ninfo.ProviderFactory = ProviderFactory;
@@ -255,8 +252,8 @@ namespace Reportman.Reporting
         /// <summary>
         /// Constructor
         /// </summary>
-		public DatabaseInfo(BaseReport rp)
-            : base(rp)
+		public DatabaseInfo()
+            : base()
         {
             Driver = DriverType.DotNet2;
             ReportTable = "REPMAN_REPORTS";

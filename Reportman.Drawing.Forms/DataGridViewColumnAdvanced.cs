@@ -267,6 +267,7 @@ namespace Reportman.Drawing.Forms
         }
         public AdvancedEditingControl()
         {
+
         }
         private void MValueChange(object sender, EventArgs ev)
         {
@@ -438,7 +439,7 @@ namespace Reportman.Drawing.Forms
                     nresult = textcontrol.Text;
                     break;
                 case ColumnDataType.Date:
-                    if (NewDatePicker)
+                    if (datecontrol2 != null)
                     {
                         if (datecontrol2.Value == DateTime.MinValue)
                             nresult = DBNull.Value;
@@ -757,9 +758,12 @@ namespace Reportman.Drawing.Forms
                             textcontrol = new TextBoxAdvanced();
                             textcontrol.BorderStyle = BorderStyle.None;
                             textcontrol.Font = this.EditingControlDataGridView.Font;
-                            textcontrol.Multiline = true;
-                            textcontrol.MinimumSize = new System.Drawing.Size(0, textcontrol.Height);
-                            textcontrol.Multiline = false;
+#if NETCOREAPP
+#else
+                            //textcontrol.Multiline = true;
+                            //textcontrol.MinimumSize = new System.Drawing.Size(0, textcontrol.Height);
+                            //textcontrol.Multiline = false;
+#endif
                             //textcontrol.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
                             textcontrol.LostFocus += new EventHandler(MLostFocus);
                             textcontrol.TextChanged += new EventHandler(MValueChange);
@@ -808,6 +812,7 @@ namespace Reportman.Drawing.Forms
                         if (NewDatePicker)
                         {
                             datecontrol2 = new DateTimePickerAdvanced();
+                            datecontrol2.HandleLeftRightTabs = true;
                             datecontrol2.ValueChanged += new EventHandler(Datecontrol1_ValueChanged);
                             //datecontrol2 = new DateTimePickerNullable();
                             //datecontrol2.ValueChanged += new EventHandler(datecontrol1_ValueChanged);
@@ -912,7 +917,11 @@ namespace Reportman.Drawing.Forms
                 MainControl.Top = (this.Height - MainControl.Height) / 2;
                 int offset = 0;
                 if (picbo != null)
+                {
+                    picbo.Width = DataGridViewColumnAdvanced.ImageWidth;
                     offset = picbo.Width;
+
+                }
                 //if (FDataType == ColumnDataType.DateTime)
                 //{
                 //   datecontrol1.Width = (this.Width - offset) / 2;

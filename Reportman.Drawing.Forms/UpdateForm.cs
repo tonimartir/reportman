@@ -9,17 +9,19 @@ namespace Reportman.Drawing.Forms
         private Updater update;
         private bool working;
         private DataTable tfiles;
+        private bool compareDates;
         public UpdateForm()
         {
             InitializeComponent();
             larchivo.Text = "";
             lkbytes.Text = "";
         }
-        public static void DoUpdate(string FilePath, DataTable files, bool DoBackup)
+        public static void DoUpdate(string FilePath, DataTable files, bool DoBackup, bool compareDates)
         {
             using (UpdateForm ndia = new UpdateForm())
             {
                 ndia.tfiles = files;
+                ndia.compareDates = compareDates;
                 ndia.update = new Updater(FilePath);
                 ndia.update.PerformBackup = DoBackup;
                 ndia.ShowDialog();

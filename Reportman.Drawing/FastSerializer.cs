@@ -192,10 +192,8 @@ namespace Reportman.Drawing
             }
         }
 
-
-        public static MemoryStream SerializeDataSet(DataSet ndata)
+        public static void SerializeDataSetToStream(DataSet ndata,Stream nstream)
         {
-            MemoryStream nstream = new MemoryStream();
             BinaryWriter nwriter = new BinaryWriter(nstream);
             nstream.Write(signature, 0, 4);
 
@@ -249,9 +247,15 @@ namespace Reportman.Drawing
                     }
                 }
             }
+
+        }
+        public static MemoryStream SerializeDataSet(DataSet ndata)
+        {
+            MemoryStream nstream = new MemoryStream();
+            SerializeDataSetToStream(ndata, nstream);
             return nstream;
         }
-        private static void WriteValue(MemoryStream nstream, BinaryWriter nwriter, TypeData ntype, object nvalue)
+        private static void WriteValue(Stream nstream, BinaryWriter nwriter, TypeData ntype, object nvalue)
         {
             if (nvalue == DBNull.Value)
             {
@@ -534,12 +538,12 @@ namespace Reportman.Drawing
                     throw new Exception("Data type not supported in FastSerializer");
             }
         }
-        private static void WriteInteger(MemoryStream nstream, int nvalue)
+        private static void WriteInteger(Stream nstream, int nvalue)
         {
             byte[] nbyte = StreamUtil.IntToByteArray(nvalue);
             nstream.Write(nbyte, 0, 4);
         }
-        private static void WriteString(MemoryStream nstream, string nvalue)
+        private static void WriteString(Stream nstream, string nvalue)
         {
             byte[] nbytes = nencoder.GetBytes(nvalue);
             WriteInteger(nstream, nbytes.Length);

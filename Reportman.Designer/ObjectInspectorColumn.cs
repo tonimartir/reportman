@@ -159,7 +159,7 @@ namespace Reportman.Designer
                 if (nvalue.IsNull)
                 {
                     ColorPickerc.TextDisplayed = false;
-                    ColorPickerc.Color = GraphicUtils.IntegerFromColor(Color.White);
+                    ColorPickerc.Color = Reportman.Drawing.GraphicUtils.IntegerFromColor(Color.White);
                 }
                 else
                 {
@@ -385,7 +385,7 @@ namespace Reportman.Designer
                 ndialog.Font = new Font(nfont.FontFamily, nfont.Size, nfont.Style);
                 if (ndialog.ShowDialog() == DialogResult.OK)
                 {
-                    //SetNewFont(ndialog.Font.FontFamily.ToString(), (int)Math.Round(ndialog.Font.Size), GraphicUtils.IntegerFromFontStyle(ndialog.Font.Style));
+                    //SetNewFont(ndialog.Font.FontFamily.ToString(), (int)Math.Round(ndialog.Font.Size), Reportman.Drawing.Windows.GraphicUtils.IntegerFromFontStyle(ndialog.Font.Style));
                     // Above line seems to have a bug. It sets value like [Font Family: Arial] in FontName property, which is undefined when again opened from FontName property
                     // and Microsoft Sans Serif default font gets selected
                     SetNewFont(ndialog.Font.Name, (int)Math.Round(ndialog.Font.Size), Reportman.Drawing.Windows.GraphicUtils.IntegerFromFontStyle(ndialog.Font.Style));
@@ -1089,7 +1089,7 @@ namespace Reportman.Designer
                 ndia.Color = GraphicUtils.ColorFromInteger(FBackColor);
                 if (ndia.ShowDialog() == DialogResult.OK)
                 {
-                    FBackColor = GraphicUtils.IntegerFromColor(ndia.Color);
+                    FBackColor = Reportman.Drawing.GraphicUtils.IntegerFromColor(ndia.Color);
                     BackColor = ndia.Color;
                     NotifyDataGridViewOfValueChange();
                 }
@@ -1130,7 +1130,7 @@ namespace Reportman.Designer
             {
                 if (value is Color)
                 {
-                    FBackColor = GraphicUtils.IntegerFromColor((Color)value);
+                    FBackColor = Reportman.Drawing.GraphicUtils.IntegerFromColor((Color)value);
                     BackColor = (Color)value;
                 }
                 else

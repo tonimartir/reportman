@@ -574,7 +574,7 @@ namespace Reportman.Designer
                     return;
                 using (System.IO.FileStream fstream = new System.IO.FileStream(ndiag.FileName, System.IO.FileMode.Create, System.IO.FileAccess.Write, System.IO.FileShare.None))
                 {
-                    ExternalReport.ExportSubReport(subrep, fstream);
+                    ExternalReport.ExportSubReport(subrep, fstream, StreamVersion.V2);
                 }
             }
         }
