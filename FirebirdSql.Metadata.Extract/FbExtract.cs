@@ -134,6 +134,10 @@ namespace FirebirdSql.Metadata.Extract
                 case 23:
                     aresult = "BOOLEAN";
                     break;
+                case 28:
+                    aresult = "TIME WITH TIME ZONE";
+                    int_type = "DOUBLE PRECISION";
+                    break;
                 case 29:
                     aresult = "TIMESTAMP WITH TIME ZONE";
                     int_type = "DOUBLE PRECISION";
@@ -987,8 +991,8 @@ namespace FirebirdSql.Metadata.Extract
         }
         private static string FormatIdenSpaces(string iden)
         {
-            string aresult = iden + "                               ";
-            return aresult.Substring(0, 31);
+            string aresult = iden + "                                                                ";
+            return aresult.Substring(0, 63);
         }
         public string ExtractPrimaryKey(string tablename,
             DataTable table, SortedList<string, List<string>> primary_columns)
@@ -1133,7 +1137,7 @@ namespace FirebirdSql.Metadata.Extract
 
             return sbuilder.ToString();
         }
-        internal static void GetTablesSql(string tablename, bool domains, bool primary_key, bool hasrelationtype,
+        internal static void GetTablesSql(string tablename, bool domains, bool primary_key, bool hasrelationtype, bool hasidentity,
              ref string sql, ref string checksql, ref string relsql)
         {
             sql = "SELECT R.RDB$RELATION_NAME AS RELATION_NAME,F.RDB$FIELD_NAME AS FIELD_NAME," +
@@ -1153,10 +1157,17 @@ namespace FirebirdSql.Metadata.Extract
                 " CO2.RDB$COLLATION_NAME AS COLLATION_NAME_DOMAIN,R.RDB$OWNER_NAME,R.RDB$EXTERNAL_FILE";
             if (hasrelationtype)
                 sql = sql + ",R.RDB$RELATION_TYPE ";
+            if (hasidentity)
+                sql = sql + ",F.RDB$IDENTITY_TYPE,F.RDB$GENERATOR_NAME,G.RDB$INITIAL_VALUE,G.RDB$GENERATOR_INCREMENT ";
             sql = sql +
                 " FROM RDB$RELATIONS R" +
                 " LEFT OUTER JOIN RDB$RELATION_FIELDS F" +
-                " ON F.RDB$RELATION_NAME=R.RDB$RELATION_NAME" +
+                " ON F.RDB$RELATION_NAME=R.RDB$RELATION_NAME";
+            if (hasidentity)
+            {
+                sql = sql + " LEFT OUTER JOIN RDB$GENERATORS G ON G.RDB$GENERATOR_NAME = F.RDB$GENERATOR_NAME ";
+            }
+            sql = sql +
                 " LEFT OUTER JOIN RDB$FIELDS D" +
                 " ON F.RDB$FIELD_SOURCE=D.RDB$FIELD_NAME" +
                 " LEFT OUTER JOIN RDB$CHARACTER_SETS CH" +
@@ -1297,7 +1308,7 @@ namespace FirebirdSql.Metadata.Extract
                                 sbuilder.Append("/* Table: " + tname + " Owner:" +
                                     owner_name + " */" + System.Environment.NewLine);
                             string line = "CREATE";
-                            if (ttype == 5)
+                            if ((ttype == 5) || (ttype == 4))
                                 line = line + " GLOBAL TEMPORARY";
                             line = line + " TABLE " + QuoteIdentifier(tname, dialect);
                             if (external_file != "")
@@ -1376,7 +1387,12 @@ namespace FirebirdSql.Metadata.Extract
                                 }
                             }
                             fields.Append(System.Environment.NewLine);
-                            fields.AppendLine(")" + SentenceSeparator);
+                            fields.Append(")");
+                            if (ttype == 4)
+                                fields.Append(" ON COMMIT PRESERVE ROWS");
+                            if (ttype == 5)
+                                fields.Append(" ON COMMIT DELETE ROWS");
+                            fields.AppendLine(SentenceSeparator);
                             line = line + System.Environment.NewLine + fields.ToString() + System.Environment.NewLine;
                             if (sbuilder != null)
                                 sbuilder.Append(line);
@@ -1585,6 +1601,35 @@ namespace FirebirdSql.Metadata.Extract
                         }
                         if (collation.Length > 0)
                             fieldsource = fieldsource + " COLLATE " + collation;
+                        if (areader.Table.Columns.IndexOf("RDB$IDENTITY_TYPE") >= 0)
+                        {
+                            if (areader["RDB$IDENTITY_TYPE"] != DBNull.Value)
+                            {
+                                int identityType = Convert.ToInt32(areader["RDB$IDENTITY_TYPE"]);
+                                string identityClause = " GENERATED ";
+                                if (identityType == 0)
+                                    identityClause = identityClause + "ALWAYS";
+                                else
+                                    identityClause = identityClause + "BY DEFAULT";
+                                identityClause = identityClause + " AS IDENTITY";
+
+                                long startWith = 1;
+                                int incrementBy = 1;
+                                if (areader["RDB$INITIAL_VALUE"] != DBNull.Value)
+                                    startWith = Convert.ToInt64(areader["RDB$INITIAL_VALUE"]);
+                                if (areader["RDB$GENERATOR_INCREMENT"] != DBNull.Value)
+                                    incrementBy = Convert.ToInt32(areader["RDB$GENERATOR_INCREMENT"]);
+
+                                if ((startWith != 1) || (incrementBy != 1))
+                                {
+                                    identityClause = identityClause + " (START WITH " + startWith.ToString();
+                                    if (incrementBy != 1)
+                                        identityClause = identityClause + " INCREMENT BY " + incrementBy.ToString();
+                                    identityClause = identityClause + ")";
+                                }
+                                fieldsource = fieldsource + identityClause;
+                            }
+                        }
                         last_charset = charset;
                         last_length = char_length;
                     }
@@ -1645,12 +1690,13 @@ namespace FirebirdSql.Metadata.Extract
                 sbuilder.Append(ExtractDomain("", tablename, null));
 
             bool hasrelationtype = (OdsVersion > 11) || ((OdsVersion > 10) && (OdsSubVersion > 0));
+            bool hasidentity = OdsVersion >= 12;
 
             string sql = "";
             string relsql = "";
             string checksql = "";
 
-            GetTablesSql(tablename, domains, primary_key, hasrelationtype, ref sql, ref checksql, ref relsql);
+            GetTablesSql(tablename, domains, primary_key, hasrelationtype, hasidentity, ref sql, ref checksql, ref relsql);
 
 
 
@@ -2070,7 +2116,7 @@ namespace FirebirdSql.Metadata.Extract
         {
             string sql = "SELECT G.RDB$GENERATOR_NAME " +
                 " FROM RDB$GENERATORS G " +
-                " WHERE (G.RDB$SYSTEM_FLAG IS NULL OR G.RDB$SYSTEM_FLAG <> 1)";
+                " WHERE (G.RDB$SYSTEM_FLAG IS NULL OR (G.RDB$SYSTEM_FLAG <> 1 AND G.RDB$SYSTEM_FLAG <> 6))";
             if (generatorname != "")
                 sql = sql + " AND G.RDB$GENERATOR_NAME=" + QuoteStr(generatorname);
             sql = sql + " ORDER BY G.RDB$GENERATOR_NAME";

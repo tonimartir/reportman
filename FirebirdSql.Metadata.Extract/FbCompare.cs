@@ -1589,8 +1589,9 @@ namespace FirebirdSql.Metadata.Extract
             string checksql = "";
 
             bool hasrelationtype = true;
+            bool hasidentity = OdsVersion >= 12;
 
-            FbExtract.GetTablesSql("", false, false, hasrelationtype, ref sql, ref checksql, ref relsql);
+            FbExtract.GetTablesSql("", false, false, hasrelationtype, hasidentity, ref sql, ref checksql, ref relsql);
 
             DoProgress(0, 0, "Reading destination table checks", "");
             OldDb.Open(OldData, checksql, "CHECKS");
