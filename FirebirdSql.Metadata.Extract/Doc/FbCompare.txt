@@ -1,0 +1,15 @@
+           FbConnection conecorign = new FbConnection();
+//           conecorign.ConnectionString = @"Data Source=espdb1;Database=e:\sysvol\db\cinta.gdb;User=SYSDBA;Password=masterkey;Dialect=1;Charset=WIN1252";
+           conecorign.ConnectionString = @"Data Source=espdb1;Database=e:\sysvol\db\weights.gdb;User=SYSDBA;Password=masterkey;Dialect=3;Charset=NONE";
+           conecorign.Open();
+           FbConnection conecdesti = new FbConnection();
+           conecdesti.ConnectionString = @"Data Source=plutrillas;Database=e:\sysvol\espera\dades\ib\weights.gdb;User=SYSDBA;Password=masterkey;Dialect=3;Charset=NONE";
+           conecdesti.Open();
+
+           FirebirdSql.Metadata.Extract.FbSqlExecuter execorigin = new FirebirdSql.Metadata.Extract.FbSqlExecuter(conecorign);
+           FirebirdSql.Metadata.Extract.FbSqlExecuter execdesti = new FirebirdSql.Metadata.Extract.FbSqlExecuter(conecdesti);
+
+           FirebirdSql.Metadata.Extract.FbCompare ncomp = new FirebirdSql.Metadata.Extract.FbCompare(execdesti, execorigin, 1);
+           ncomp.Execute();
+
+           Clipboard.SetText(ncomp.Result.ToString());
