@@ -1,0 +1,250 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.PageDrawnEvent
+  commentId: T:Reportman.Drawing.Forms.PageDrawnEvent
+  id: PageDrawnEvent
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.PageDrawnEvent.#ctor(System.Object,System.IntPtr)
+  - Reportman.Drawing.Forms.PageDrawnEvent.BeginInvoke(Reportman.Drawing.Forms.PreviewMetaFile,System.AsyncCallback,System.Object)
+  - Reportman.Drawing.Forms.PageDrawnEvent.EndInvoke(System.IAsyncResult)
+  - Reportman.Drawing.Forms.PageDrawnEvent.Invoke(Reportman.Drawing.Forms.PreviewMetaFile)
+  langs:
+  - csharp
+  - vb
+  name: PageDrawnEvent
+  nameWithType: PageDrawnEvent
+  fullName: Reportman.Drawing.Forms.PageDrawnEvent
+  type: Delegate
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  summary: Event launched after a page is drawn
+  example: []
+  syntax:
+    content: public delegate void PageDrawnEvent(PreviewMetaFile prm)
+    parameters:
+    - id: prm
+      type: Reportman.Drawing.Forms.PreviewMetaFile
+      description: PreviewMetaFile containing the page
+    content.vb: Public Delegate Sub PageDrawnEvent(prm As PreviewMetaFile)
+- uid: Reportman.Drawing.Forms.PageDrawnEvent.#ctor(System.Object,System.IntPtr)
+  commentId: M:Reportman.Drawing.Forms.PageDrawnEvent.#ctor(System.Object,System.IntPtr)
+  id: '#ctor(System.Object,System.IntPtr)'
+  parent: Reportman.Drawing.Forms.PageDrawnEvent
+  langs:
+  - csharp
+  - vb
+  name: PageDrawnEvent(object, nint)
+  nameWithType: PageDrawnEvent.PageDrawnEvent(object, nint)
+  fullName: Reportman.Drawing.Forms.PageDrawnEvent.PageDrawnEvent(object, nint)
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public PageDrawnEvent(object @object, nint method)
+    parameters:
+    - id: object
+      type: System.Object
+    - id: method
+      type: System.IntPtr
+    content.vb: Public Sub New([object] As Object, method As IntPtr)
+  overload: Reportman.Drawing.Forms.PageDrawnEvent.#ctor*
+  nameWithType.vb: PageDrawnEvent.New(Object, IntPtr)
+  fullName.vb: Reportman.Drawing.Forms.PageDrawnEvent.New(Object, System.IntPtr)
+  name.vb: New(Object, IntPtr)
+- uid: Reportman.Drawing.Forms.PageDrawnEvent.Invoke(Reportman.Drawing.Forms.PreviewMetaFile)
+  commentId: M:Reportman.Drawing.Forms.PageDrawnEvent.Invoke(Reportman.Drawing.Forms.PreviewMetaFile)
+  id: Invoke(Reportman.Drawing.Forms.PreviewMetaFile)
+  parent: Reportman.Drawing.Forms.PageDrawnEvent
+  langs:
+  - csharp
+  - vb
+  name: Invoke(PreviewMetaFile)
+  nameWithType: PageDrawnEvent.Invoke(PreviewMetaFile)
+  fullName: Reportman.Drawing.Forms.PageDrawnEvent.Invoke(Reportman.Drawing.Forms.PreviewMetaFile)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual void Invoke(PreviewMetaFile prm)
+    parameters:
+    - id: prm
+      type: Reportman.Drawing.Forms.PreviewMetaFile
+    content.vb: Public Overridable Sub Invoke(prm As PreviewMetaFile)
+  overload: Reportman.Drawing.Forms.PageDrawnEvent.Invoke*
+- uid: Reportman.Drawing.Forms.PageDrawnEvent.BeginInvoke(Reportman.Drawing.Forms.PreviewMetaFile,System.AsyncCallback,System.Object)
+  commentId: M:Reportman.Drawing.Forms.PageDrawnEvent.BeginInvoke(Reportman.Drawing.Forms.PreviewMetaFile,System.AsyncCallback,System.Object)
+  id: BeginInvoke(Reportman.Drawing.Forms.PreviewMetaFile,System.AsyncCallback,System.Object)
+  parent: Reportman.Drawing.Forms.PageDrawnEvent
+  langs:
+  - csharp
+  - vb
+  name: BeginInvoke(PreviewMetaFile, AsyncCallback, object)
+  nameWithType: PageDrawnEvent.BeginInvoke(PreviewMetaFile, AsyncCallback, object)
+  fullName: Reportman.Drawing.Forms.PageDrawnEvent.BeginInvoke(Reportman.Drawing.Forms.PreviewMetaFile, System.AsyncCallback, object)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual IAsyncResult BeginInvoke(PreviewMetaFile prm, AsyncCallback callback, object @object)
+    parameters:
+    - id: prm
+      type: Reportman.Drawing.Forms.PreviewMetaFile
+    - id: callback
+      type: System.AsyncCallback
+    - id: object
+      type: System.Object
+    return:
+      type: System.IAsyncResult
+    content.vb: Public Overridable Function BeginInvoke(prm As PreviewMetaFile, callback As AsyncCallback, [object] As Object) As IAsyncResult
+  overload: Reportman.Drawing.Forms.PageDrawnEvent.BeginInvoke*
+  nameWithType.vb: PageDrawnEvent.BeginInvoke(PreviewMetaFile, AsyncCallback, Object)
+  fullName.vb: Reportman.Drawing.Forms.PageDrawnEvent.BeginInvoke(Reportman.Drawing.Forms.PreviewMetaFile, System.AsyncCallback, Object)
+  name.vb: BeginInvoke(PreviewMetaFile, AsyncCallback, Object)
+- uid: Reportman.Drawing.Forms.PageDrawnEvent.EndInvoke(System.IAsyncResult)
+  commentId: M:Reportman.Drawing.Forms.PageDrawnEvent.EndInvoke(System.IAsyncResult)
+  id: EndInvoke(System.IAsyncResult)
+  parent: Reportman.Drawing.Forms.PageDrawnEvent
+  langs:
+  - csharp
+  - vb
+  name: EndInvoke(IAsyncResult)
+  nameWithType: PageDrawnEvent.EndInvoke(IAsyncResult)
+  fullName: Reportman.Drawing.Forms.PageDrawnEvent.EndInvoke(System.IAsyncResult)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual void EndInvoke(IAsyncResult result)
+    parameters:
+    - id: result
+      type: System.IAsyncResult
+    content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
+  overload: Reportman.Drawing.Forms.PageDrawnEvent.EndInvoke*
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: Reportman.Drawing.Forms.PreviewMetaFile
+  commentId: T:Reportman.Drawing.Forms.PreviewMetaFile
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.PreviewMetaFile.html
+  name: PreviewMetaFile
+  nameWithType: PreviewMetaFile
+  fullName: Reportman.Drawing.Forms.PreviewMetaFile
+- uid: Reportman.Drawing.Forms.PageDrawnEvent.#ctor*
+  commentId: Overload:Reportman.Drawing.Forms.PageDrawnEvent.#ctor
+  isExternal: true
+  href: Reportman.Drawing.Forms.PageDrawnEvent.html#Reportman_Drawing_Forms_PageDrawnEvent__ctor_System_Object_System_IntPtr_
+  name: PageDrawnEvent
+  nameWithType: PageDrawnEvent.PageDrawnEvent
+  fullName: Reportman.Drawing.Forms.PageDrawnEvent.PageDrawnEvent
+  nameWithType.vb: PageDrawnEvent.New
+  fullName.vb: Reportman.Drawing.Forms.PageDrawnEvent.New
+  name.vb: New
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.Forms.PageDrawnEvent.Invoke*
+  commentId: Overload:Reportman.Drawing.Forms.PageDrawnEvent.Invoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.PageDrawnEvent.html#Reportman_Drawing_Forms_PageDrawnEvent_Invoke_Reportman_Drawing_Forms_PreviewMetaFile_
+  name: Invoke
+  nameWithType: PageDrawnEvent.Invoke
+  fullName: Reportman.Drawing.Forms.PageDrawnEvent.Invoke
+- uid: Reportman.Drawing.Forms.PageDrawnEvent.BeginInvoke*
+  commentId: Overload:Reportman.Drawing.Forms.PageDrawnEvent.BeginInvoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.PageDrawnEvent.html#Reportman_Drawing_Forms_PageDrawnEvent_BeginInvoke_Reportman_Drawing_Forms_PreviewMetaFile_System_AsyncCallback_System_Object_
+  name: BeginInvoke
+  nameWithType: PageDrawnEvent.BeginInvoke
+  fullName: Reportman.Drawing.Forms.PageDrawnEvent.BeginInvoke
+- uid: System.AsyncCallback
+  commentId: T:System.AsyncCallback
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.asynccallback
+  name: AsyncCallback
+  nameWithType: AsyncCallback
+  fullName: System.AsyncCallback
+- uid: System.IAsyncResult
+  commentId: T:System.IAsyncResult
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncresult
+  name: IAsyncResult
+  nameWithType: IAsyncResult
+  fullName: System.IAsyncResult
+- uid: Reportman.Drawing.Forms.PageDrawnEvent.EndInvoke*
+  commentId: Overload:Reportman.Drawing.Forms.PageDrawnEvent.EndInvoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.PageDrawnEvent.html#Reportman_Drawing_Forms_PageDrawnEvent_EndInvoke_System_IAsyncResult_
+  name: EndInvoke
+  nameWithType: PageDrawnEvent.EndInvoke
+  fullName: Reportman.Drawing.Forms.PageDrawnEvent.EndInvoke

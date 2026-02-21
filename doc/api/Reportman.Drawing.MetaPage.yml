@@ -1,0 +1,1649 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.MetaPage
+  commentId: T:Reportman.Drawing.MetaPage
+  id: MetaPage
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.MetaPage.#ctor(Reportman.Drawing.MetaFile)
+  - Reportman.Drawing.MetaPage.AddStream(System.IO.MemoryStream,System.Boolean)
+  - Reportman.Drawing.MetaPage.AddString(System.String)
+  - Reportman.Drawing.MetaPage.Clear
+  - Reportman.Drawing.MetaPage.Dispose
+  - Reportman.Drawing.MetaPage.DrawImage(System.Int32,System.Int32,System.Int32,System.Int32,Reportman.Drawing.ImageDrawStyleType,System.Int32,System.IO.MemoryStream)
+  - Reportman.Drawing.MetaPage.DrawShape(System.Int32,System.Int32,System.Int32,System.Int32,Reportman.Drawing.ShapeType,Reportman.Drawing.BrushType,Reportman.Drawing.PenType,System.Int32,System.Int32,System.Int32)
+  - Reportman.Drawing.MetaPage.DrawText(System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.String,System.String,System.Int16,System.Int16,System.Int32,System.Int32,System.Boolean,System.Int32,Reportman.Drawing.PDFFontType,Reportman.Drawing.TextAlignType,Reportman.Drawing.TextAlignVerticalType,System.Boolean,System.Boolean,System.Boolean,Reportman.Drawing.PrintStepType)
+  - Reportman.Drawing.MetaPage.GetAnnotationText(Reportman.Drawing.MetaObject)
+  - Reportman.Drawing.MetaPage.GetLFontNameText(Reportman.Drawing.MetaObjectText)
+  - Reportman.Drawing.MetaPage.GetStream(Reportman.Drawing.MetaObjectImage)
+  - Reportman.Drawing.MetaPage.GetText(Reportman.Drawing.MetaObjectText)
+  - Reportman.Drawing.MetaPage.GetWFontNameText(Reportman.Drawing.MetaObjectText)
+  - Reportman.Drawing.MetaPage.LoadFromStream(System.IO.Stream)
+  - Reportman.Drawing.MetaPage.MemStream
+  - Reportman.Drawing.MetaPage.MetaFile
+  - Reportman.Drawing.MetaPage.Objects
+  - Reportman.Drawing.MetaPage.Orientation
+  - Reportman.Drawing.MetaPage.PageDetail
+  - Reportman.Drawing.MetaPage.PhysicHeight
+  - Reportman.Drawing.MetaPage.PhysicWidth
+  - Reportman.Drawing.MetaPage.Pool
+  - Reportman.Drawing.MetaPage.SaveToStream(System.IO.Stream)
+  - Reportman.Drawing.MetaPage.UpdatedPageSize
+  - Reportman.Drawing.MetaPage.Version
+  - Reportman.Drawing.MetaPage.WindowsMetafile
+  - Reportman.Drawing.MetaPage.WindowsMetafileScale
+  - Reportman.Drawing.MetaPage.stringlist
+  langs:
+  - csharp
+  - vb
+  name: MetaPage
+  nameWithType: MetaPage
+  fullName: Reportman.Drawing.MetaPage
+  type: Class
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Metafile page, part of metafile
+  example: []
+  syntax:
+    content: 'public class MetaPage : IDisposable'
+    content.vb: Public Class MetaPage Implements IDisposable
+  inheritance:
+  - System.Object
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.MetaPage.Version
+  commentId: F:Reportman.Drawing.MetaPage.Version
+  id: Version
+  parent: Reportman.Drawing.MetaPage
+  langs:
+  - csharp
+  - vb
+  name: Version
+  nameWithType: MetaPage.Version
+  fullName: Reportman.Drawing.MetaPage.Version
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Metafile version format
+  example: []
+  syntax:
+    content: public MetaFile.MetaFileVersion Version
+    return:
+      type: Reportman.Drawing.MetaFile.MetaFileVersion
+    content.vb: Public Version As MetaFile.MetaFileVersion
+- uid: Reportman.Drawing.MetaPage.UpdatedPageSize
+  commentId: F:Reportman.Drawing.MetaPage.UpdatedPageSize
+  id: UpdatedPageSize
+  parent: Reportman.Drawing.MetaPage
+  langs:
+  - csharp
+  - vb
+  name: UpdatedPageSize
+  nameWithType: MetaPage.UpdatedPageSize
+  fullName: Reportman.Drawing.MetaPage.UpdatedPageSize
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: If true, the page size differs from the default page size in the MetaFile
+  example: []
+  syntax:
+    content: public bool UpdatedPageSize
+    return:
+      type: System.Boolean
+    content.vb: Public UpdatedPageSize As Boolean
+- uid: Reportman.Drawing.MetaPage.Objects
+  commentId: F:Reportman.Drawing.MetaPage.Objects
+  id: Objects
+  parent: Reportman.Drawing.MetaPage
+  langs:
+  - csharp
+  - vb
+  name: Objects
+  nameWithType: MetaPage.Objects
+  fullName: Reportman.Drawing.MetaPage.Objects
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Collection of objects in the page
+  example: []
+  syntax:
+    content: public List<MetaObject> Objects
+    return:
+      type: System.Collections.Generic.List{Reportman.Drawing.MetaObject}
+    content.vb: Public Objects As List(Of MetaObject)
+- uid: Reportman.Drawing.MetaPage.Orientation
+  commentId: F:Reportman.Drawing.MetaPage.Orientation
+  id: Orientation
+  parent: Reportman.Drawing.MetaPage
+  langs:
+  - csharp
+  - vb
+  name: Orientation
+  nameWithType: MetaPage.Orientation
+  fullName: Reportman.Drawing.MetaPage.Orientation
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Page orientation
+  example: []
+  syntax:
+    content: public OrientationType Orientation
+    return:
+      type: Reportman.Drawing.OrientationType
+    content.vb: Public Orientation As OrientationType
+- uid: Reportman.Drawing.MetaPage.PageDetail
+  commentId: F:Reportman.Drawing.MetaPage.PageDetail
+  id: PageDetail
+  parent: Reportman.Drawing.MetaPage
+  langs:
+  - csharp
+  - vb
+  name: PageDetail
+  nameWithType: MetaPage.PageDetail
+  fullName: Reportman.Drawing.MetaPage.PageDetail
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Page size information, filled when UpdatedPageSize is true
+  example: []
+  syntax:
+    content: public PageSizeDetail PageDetail
+    return:
+      type: Reportman.Drawing.PageSizeDetail
+    content.vb: Public PageDetail As PageSizeDetail
+- uid: Reportman.Drawing.MetaPage.stringlist
+  commentId: F:Reportman.Drawing.MetaPage.stringlist
+  id: stringlist
+  parent: Reportman.Drawing.MetaPage
+  langs:
+  - csharp
+  - vb
+  name: stringlist
+  nameWithType: MetaPage.stringlist
+  fullName: Reportman.Drawing.MetaPage.stringlist
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: The strings in the page are save to into this list, for memory and file size optimization
+  example: []
+  syntax:
+    content: public SortedList stringlist
+    return:
+      type: System.Collections.SortedList
+    content.vb: Public stringlist As SortedList
+- uid: Reportman.Drawing.MetaPage.WindowsMetafile
+  commentId: F:Reportman.Drawing.MetaPage.WindowsMetafile
+  id: WindowsMetafile
+  parent: Reportman.Drawing.MetaPage
+  langs:
+  - csharp
+  - vb
+  name: WindowsMetafile
+  nameWithType: MetaPage.WindowsMetafile
+  fullName: Reportman.Drawing.MetaPage.WindowsMetafile
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    Reference to a Windows Metafile, for optimization, and depending on configuration of
+                print driver, the variable will contain a System.Drawing.Image.Metafile with page contents
+  example: []
+  syntax:
+    content: public object WindowsMetafile
+    return:
+      type: System.Object
+    content.vb: Public WindowsMetafile As Object
+- uid: Reportman.Drawing.MetaPage.WindowsMetafileScale
+  commentId: F:Reportman.Drawing.MetaPage.WindowsMetafileScale
+  id: WindowsMetafileScale
+  parent: Reportman.Drawing.MetaPage
+  langs:
+  - csharp
+  - vb
+  name: WindowsMetafileScale
+  nameWithType: MetaPage.WindowsMetafileScale
+  fullName: Reportman.Drawing.MetaPage.WindowsMetafileScale
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Windows Metafile scale, valid only if WindowsMetafile is assigned
+  example: []
+  syntax:
+    content: public float WindowsMetafileScale
+    return:
+      type: System.Single
+    content.vb: Public WindowsMetafileScale As Single
+- uid: Reportman.Drawing.MetaPage.Dispose
+  commentId: M:Reportman.Drawing.MetaPage.Dispose
+  id: Dispose
+  parent: Reportman.Drawing.MetaPage
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: MetaPage.Dispose()
+  fullName: Reportman.Drawing.MetaPage.Dispose()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Free resources
+  example: []
+  syntax:
+    content: public virtual void Dispose()
+    content.vb: Public Overridable Sub Dispose()
+  overload: Reportman.Drawing.MetaPage.Dispose*
+  implements:
+  - System.IDisposable.Dispose
+- uid: Reportman.Drawing.MetaPage.#ctor(Reportman.Drawing.MetaFile)
+  commentId: M:Reportman.Drawing.MetaPage.#ctor(Reportman.Drawing.MetaFile)
+  id: '#ctor(Reportman.Drawing.MetaFile)'
+  parent: Reportman.Drawing.MetaPage
+  langs:
+  - csharp
+  - vb
+  name: MetaPage(MetaFile)
+  nameWithType: MetaPage.MetaPage(MetaFile)
+  fullName: Reportman.Drawing.MetaPage.MetaPage(Reportman.Drawing.MetaFile)
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Constructor
+  example: []
+  syntax:
+    content: public MetaPage(MetaFile meta)
+    parameters:
+    - id: meta
+      type: Reportman.Drawing.MetaFile
+    content.vb: Public Sub New(meta As MetaFile)
+  overload: Reportman.Drawing.MetaPage.#ctor*
+  nameWithType.vb: MetaPage.New(MetaFile)
+  fullName.vb: Reportman.Drawing.MetaPage.New(Reportman.Drawing.MetaFile)
+  name.vb: New(MetaFile)
+- uid: Reportman.Drawing.MetaPage.Clear
+  commentId: M:Reportman.Drawing.MetaPage.Clear
+  id: Clear
+  parent: Reportman.Drawing.MetaPage
+  langs:
+  - csharp
+  - vb
+  name: Clear()
+  nameWithType: MetaPage.Clear()
+  fullName: Reportman.Drawing.MetaPage.Clear()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Clear all objects in the page
+  example: []
+  syntax:
+    content: public void Clear()
+    content.vb: Public Sub Clear()
+  overload: Reportman.Drawing.MetaPage.Clear*
+- uid: Reportman.Drawing.MetaPage.AddString(System.String)
+  commentId: M:Reportman.Drawing.MetaPage.AddString(System.String)
+  id: AddString(System.String)
+  parent: Reportman.Drawing.MetaPage
+  langs:
+  - csharp
+  - vb
+  name: AddString(string)
+  nameWithType: MetaPage.AddString(string)
+  fullName: Reportman.Drawing.MetaPage.AddString(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Add a string
+  example: []
+  syntax:
+    content: public int AddString(string value)
+    parameters:
+    - id: value
+      type: System.String
+      description: String to add
+    return:
+      type: System.Int32
+      description: >-
+        Postion where the string was added into the pool, if the string already exists, it returns the
+                    position of the string
+    content.vb: Public Function AddString(value As String) As Integer
+  overload: Reportman.Drawing.MetaPage.AddString*
+  nameWithType.vb: MetaPage.AddString(String)
+  fullName.vb: Reportman.Drawing.MetaPage.AddString(String)
+  name.vb: AddString(String)
+- uid: Reportman.Drawing.MetaPage.GetText(Reportman.Drawing.MetaObjectText)
+  commentId: M:Reportman.Drawing.MetaPage.GetText(Reportman.Drawing.MetaObjectText)
+  id: GetText(Reportman.Drawing.MetaObjectText)
+  parent: Reportman.Drawing.MetaPage
+  langs:
+  - csharp
+  - vb
+  name: GetText(MetaObjectText)
+  nameWithType: MetaPage.GetText(MetaObjectText)
+  fullName: Reportman.Drawing.MetaPage.GetText(Reportman.Drawing.MetaObjectText)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Get the text value from the pool
+  example: []
+  syntax:
+    content: public string GetText(MetaObjectText obj)
+    parameters:
+    - id: obj
+      type: Reportman.Drawing.MetaObjectText
+    return:
+      type: System.String
+      description: The text referenced in the TexP position
+    content.vb: Public Function GetText(obj As MetaObjectText) As String
+  overload: Reportman.Drawing.MetaPage.GetText*
+- uid: Reportman.Drawing.MetaPage.GetWFontNameText(Reportman.Drawing.MetaObjectText)
+  commentId: M:Reportman.Drawing.MetaPage.GetWFontNameText(Reportman.Drawing.MetaObjectText)
+  id: GetWFontNameText(Reportman.Drawing.MetaObjectText)
+  parent: Reportman.Drawing.MetaPage
+  langs:
+  - csharp
+  - vb
+  name: GetWFontNameText(MetaObjectText)
+  nameWithType: MetaPage.GetWFontNameText(MetaObjectText)
+  fullName: Reportman.Drawing.MetaPage.GetWFontNameText(Reportman.Drawing.MetaObjectText)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Get the Windows Font Name text value from the pool
+  example: []
+  syntax:
+    content: public string GetWFontNameText(MetaObjectText obj)
+    parameters:
+    - id: obj
+      type: Reportman.Drawing.MetaObjectText
+    return:
+      type: System.String
+      description: The text referenced in the WFontNameP position
+    content.vb: Public Function GetWFontNameText(obj As MetaObjectText) As String
+  overload: Reportman.Drawing.MetaPage.GetWFontNameText*
+- uid: Reportman.Drawing.MetaPage.GetAnnotationText(Reportman.Drawing.MetaObject)
+  commentId: M:Reportman.Drawing.MetaPage.GetAnnotationText(Reportman.Drawing.MetaObject)
+  id: GetAnnotationText(Reportman.Drawing.MetaObject)
+  parent: Reportman.Drawing.MetaPage
+  langs:
+  - csharp
+  - vb
+  name: GetAnnotationText(MetaObject)
+  nameWithType: MetaPage.GetAnnotationText(MetaObject)
+  fullName: Reportman.Drawing.MetaPage.GetAnnotationText(Reportman.Drawing.MetaObject)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Get the annotation value
+  example: []
+  syntax:
+    content: public string GetAnnotationText(MetaObject obj)
+    parameters:
+    - id: obj
+      type: Reportman.Drawing.MetaObject
+    return:
+      type: System.String
+      description: The text referenced in the AnnotationP position
+    content.vb: Public Function GetAnnotationText(obj As MetaObject) As String
+  overload: Reportman.Drawing.MetaPage.GetAnnotationText*
+- uid: Reportman.Drawing.MetaPage.GetLFontNameText(Reportman.Drawing.MetaObjectText)
+  commentId: M:Reportman.Drawing.MetaPage.GetLFontNameText(Reportman.Drawing.MetaObjectText)
+  id: GetLFontNameText(Reportman.Drawing.MetaObjectText)
+  parent: Reportman.Drawing.MetaPage
+  langs:
+  - csharp
+  - vb
+  name: GetLFontNameText(MetaObjectText)
+  nameWithType: MetaPage.GetLFontNameText(MetaObjectText)
+  fullName: Reportman.Drawing.MetaPage.GetLFontNameText(Reportman.Drawing.MetaObjectText)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Get the Linux Font Name text value from the pool
+  example: []
+  syntax:
+    content: public string GetLFontNameText(MetaObjectText obj)
+    parameters:
+    - id: obj
+      type: Reportman.Drawing.MetaObjectText
+    return:
+      type: System.String
+      description: The text referenced in the LFontNameP position
+    content.vb: Public Function GetLFontNameText(obj As MetaObjectText) As String
+  overload: Reportman.Drawing.MetaPage.GetLFontNameText*
+- uid: Reportman.Drawing.MetaPage.GetStream(Reportman.Drawing.MetaObjectImage)
+  commentId: M:Reportman.Drawing.MetaPage.GetStream(Reportman.Drawing.MetaObjectImage)
+  id: GetStream(Reportman.Drawing.MetaObjectImage)
+  parent: Reportman.Drawing.MetaPage
+  langs:
+  - csharp
+  - vb
+  name: GetStream(MetaObjectImage)
+  nameWithType: MetaPage.GetStream(MetaObjectImage)
+  fullName: Reportman.Drawing.MetaPage.GetStream(Reportman.Drawing.MetaObjectImage)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Get a memory stream from a MetaObjectImage
+  example: []
+  syntax:
+    content: public MemoryStream GetStream(MetaObjectImage obj)
+    parameters:
+    - id: obj
+      type: Reportman.Drawing.MetaObjectImage
+    return:
+      type: System.IO.MemoryStream
+      description: The stream referenced in StreamPos
+    content.vb: Public Function GetStream(obj As MetaObjectImage) As MemoryStream
+  overload: Reportman.Drawing.MetaPage.GetStream*
+- uid: Reportman.Drawing.MetaPage.AddStream(System.IO.MemoryStream,System.Boolean)
+  commentId: M:Reportman.Drawing.MetaPage.AddStream(System.IO.MemoryStream,System.Boolean)
+  id: AddStream(System.IO.MemoryStream,System.Boolean)
+  parent: Reportman.Drawing.MetaPage
+  langs:
+  - csharp
+  - vb
+  name: AddStream(MemoryStream, bool)
+  nameWithType: MetaPage.AddStream(MemoryStream, bool)
+  fullName: Reportman.Drawing.MetaPage.AddStream(System.IO.MemoryStream, bool)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Add a stream to the main stream of the page
+  example: []
+  syntax:
+    content: public int AddStream(MemoryStream astream, bool shared)
+    parameters:
+    - id: astream
+      type: System.IO.MemoryStream
+      description: Stream to add
+    - id: shared
+      type: System.Boolean
+      description: If true, the stream will be added to the MetaFile instead to the MetaPage
+    return:
+      type: System.Int32
+      description: Stream position
+    content.vb: Public Function AddStream(astream As MemoryStream, [shared] As Boolean) As Integer
+  overload: Reportman.Drawing.MetaPage.AddStream*
+  nameWithType.vb: MetaPage.AddStream(MemoryStream, Boolean)
+  fullName.vb: Reportman.Drawing.MetaPage.AddStream(System.IO.MemoryStream, Boolean)
+  name.vb: AddStream(MemoryStream, Boolean)
+- uid: Reportman.Drawing.MetaPage.SaveToStream(System.IO.Stream)
+  commentId: M:Reportman.Drawing.MetaPage.SaveToStream(System.IO.Stream)
+  id: SaveToStream(System.IO.Stream)
+  parent: Reportman.Drawing.MetaPage
+  langs:
+  - csharp
+  - vb
+  name: SaveToStream(Stream)
+  nameWithType: MetaPage.SaveToStream(Stream)
+  fullName: Reportman.Drawing.MetaPage.SaveToStream(System.IO.Stream)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Save the MetaPage into a stream
+  example: []
+  syntax:
+    content: public void SaveToStream(Stream astream)
+    parameters:
+    - id: astream
+      type: System.IO.Stream
+      description: Destination stream
+    content.vb: Public Sub SaveToStream(astream As Stream)
+  overload: Reportman.Drawing.MetaPage.SaveToStream*
+- uid: Reportman.Drawing.MetaPage.LoadFromStream(System.IO.Stream)
+  commentId: M:Reportman.Drawing.MetaPage.LoadFromStream(System.IO.Stream)
+  id: LoadFromStream(System.IO.Stream)
+  parent: Reportman.Drawing.MetaPage
+  langs:
+  - csharp
+  - vb
+  name: LoadFromStream(Stream)
+  nameWithType: MetaPage.LoadFromStream(Stream)
+  fullName: Reportman.Drawing.MetaPage.LoadFromStream(System.IO.Stream)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Load the MetaPage from a stream
+  example: []
+  syntax:
+    content: public void LoadFromStream(Stream astream)
+    parameters:
+    - id: astream
+      type: System.IO.Stream
+      description: Source stream
+    content.vb: Public Sub LoadFromStream(astream As Stream)
+  overload: Reportman.Drawing.MetaPage.LoadFromStream*
+- uid: Reportman.Drawing.MetaPage.DrawText(System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.String,System.String,System.Int16,System.Int16,System.Int32,System.Int32,System.Boolean,System.Int32,Reportman.Drawing.PDFFontType,Reportman.Drawing.TextAlignType,Reportman.Drawing.TextAlignVerticalType,System.Boolean,System.Boolean,System.Boolean,Reportman.Drawing.PrintStepType)
+  commentId: M:Reportman.Drawing.MetaPage.DrawText(System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.String,System.String,System.Int16,System.Int16,System.Int32,System.Int32,System.Boolean,System.Int32,Reportman.Drawing.PDFFontType,Reportman.Drawing.TextAlignType,Reportman.Drawing.TextAlignVerticalType,System.Boolean,System.Boolean,System.Boolean,Reportman.Drawing.PrintStepType)
+  id: DrawText(System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.String,System.String,System.Int16,System.Int16,System.Int32,System.Int32,System.Boolean,System.Int32,Reportman.Drawing.PDFFontType,Reportman.Drawing.TextAlignType,Reportman.Drawing.TextAlignVerticalType,System.Boolean,System.Boolean,System.Boolean,Reportman.Drawing.PrintStepType)
+  parent: Reportman.Drawing.MetaPage
+  langs:
+  - csharp
+  - vb
+  name: DrawText(int, int, int, int, string, string, string, short, short, int, int, bool, int, PDFFontType, TextAlignType, TextAlignVerticalType, bool, bool, bool, PrintStepType)
+  nameWithType: MetaPage.DrawText(int, int, int, int, string, string, string, short, short, int, int, bool, int, PDFFontType, TextAlignType, TextAlignVerticalType, bool, bool, bool, PrintStepType)
+  fullName: Reportman.Drawing.MetaPage.DrawText(int, int, int, int, string, string, string, short, short, int, int, bool, int, Reportman.Drawing.PDFFontType, Reportman.Drawing.TextAlignType, Reportman.Drawing.TextAlignVerticalType, bool, bool, bool, Reportman.Drawing.PrintStepType)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public MetaObjectText DrawText(int PosX, int PosY, int PrintWidth, int PrintHeight, string Text, string WFontName, string LFontName, short FontSize, short FontRotation, int FontColor, int BackColor, bool Transparent, int FontStyle, PDFFontType Type1Font, TextAlignType horzalign, TextAlignVerticalType vertalign, bool SingleLine, bool WordWrap, bool CutText, PrintStepType PrintStep)
+    parameters:
+    - id: PosX
+      type: System.Int32
+    - id: PosY
+      type: System.Int32
+    - id: PrintWidth
+      type: System.Int32
+    - id: PrintHeight
+      type: System.Int32
+    - id: Text
+      type: System.String
+    - id: WFontName
+      type: System.String
+    - id: LFontName
+      type: System.String
+    - id: FontSize
+      type: System.Int16
+    - id: FontRotation
+      type: System.Int16
+    - id: FontColor
+      type: System.Int32
+    - id: BackColor
+      type: System.Int32
+    - id: Transparent
+      type: System.Boolean
+    - id: FontStyle
+      type: System.Int32
+    - id: Type1Font
+      type: Reportman.Drawing.PDFFontType
+    - id: horzalign
+      type: Reportman.Drawing.TextAlignType
+    - id: vertalign
+      type: Reportman.Drawing.TextAlignVerticalType
+    - id: SingleLine
+      type: System.Boolean
+    - id: WordWrap
+      type: System.Boolean
+    - id: CutText
+      type: System.Boolean
+    - id: PrintStep
+      type: Reportman.Drawing.PrintStepType
+    return:
+      type: Reportman.Drawing.MetaObjectText
+    content.vb: Public Function DrawText(PosX As Integer, PosY As Integer, PrintWidth As Integer, PrintHeight As Integer, Text As String, WFontName As String, LFontName As String, FontSize As Short, FontRotation As Short, FontColor As Integer, BackColor As Integer, Transparent As Boolean, FontStyle As Integer, Type1Font As PDFFontType, horzalign As TextAlignType, vertalign As TextAlignVerticalType, SingleLine As Boolean, WordWrap As Boolean, CutText As Boolean, PrintStep As PrintStepType) As MetaObjectText
+  overload: Reportman.Drawing.MetaPage.DrawText*
+  nameWithType.vb: MetaPage.DrawText(Integer, Integer, Integer, Integer, String, String, String, Short, Short, Integer, Integer, Boolean, Integer, PDFFontType, TextAlignType, TextAlignVerticalType, Boolean, Boolean, Boolean, PrintStepType)
+  fullName.vb: Reportman.Drawing.MetaPage.DrawText(Integer, Integer, Integer, Integer, String, String, String, Short, Short, Integer, Integer, Boolean, Integer, Reportman.Drawing.PDFFontType, Reportman.Drawing.TextAlignType, Reportman.Drawing.TextAlignVerticalType, Boolean, Boolean, Boolean, Reportman.Drawing.PrintStepType)
+  name.vb: DrawText(Integer, Integer, Integer, Integer, String, String, String, Short, Short, Integer, Integer, Boolean, Integer, PDFFontType, TextAlignType, TextAlignVerticalType, Boolean, Boolean, Boolean, PrintStepType)
+- uid: Reportman.Drawing.MetaPage.DrawShape(System.Int32,System.Int32,System.Int32,System.Int32,Reportman.Drawing.ShapeType,Reportman.Drawing.BrushType,Reportman.Drawing.PenType,System.Int32,System.Int32,System.Int32)
+  commentId: M:Reportman.Drawing.MetaPage.DrawShape(System.Int32,System.Int32,System.Int32,System.Int32,Reportman.Drawing.ShapeType,Reportman.Drawing.BrushType,Reportman.Drawing.PenType,System.Int32,System.Int32,System.Int32)
+  id: DrawShape(System.Int32,System.Int32,System.Int32,System.Int32,Reportman.Drawing.ShapeType,Reportman.Drawing.BrushType,Reportman.Drawing.PenType,System.Int32,System.Int32,System.Int32)
+  parent: Reportman.Drawing.MetaPage
+  langs:
+  - csharp
+  - vb
+  name: DrawShape(int, int, int, int, ShapeType, BrushType, PenType, int, int, int)
+  nameWithType: MetaPage.DrawShape(int, int, int, int, ShapeType, BrushType, PenType, int, int, int)
+  fullName: Reportman.Drawing.MetaPage.DrawShape(int, int, int, int, Reportman.Drawing.ShapeType, Reportman.Drawing.BrushType, Reportman.Drawing.PenType, int, int, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public MetaObjectDraw DrawShape(int PosX, int PosY, int PrintWidth, int PrintHeight, ShapeType Shape, BrushType BrushStyle, PenType PenStyle, int PenWidth, int PenColor, int BrushColor)
+    parameters:
+    - id: PosX
+      type: System.Int32
+    - id: PosY
+      type: System.Int32
+    - id: PrintWidth
+      type: System.Int32
+    - id: PrintHeight
+      type: System.Int32
+    - id: Shape
+      type: Reportman.Drawing.ShapeType
+    - id: BrushStyle
+      type: Reportman.Drawing.BrushType
+    - id: PenStyle
+      type: Reportman.Drawing.PenType
+    - id: PenWidth
+      type: System.Int32
+    - id: PenColor
+      type: System.Int32
+    - id: BrushColor
+      type: System.Int32
+    return:
+      type: Reportman.Drawing.MetaObjectDraw
+    content.vb: Public Function DrawShape(PosX As Integer, PosY As Integer, PrintWidth As Integer, PrintHeight As Integer, Shape As ShapeType, BrushStyle As BrushType, PenStyle As PenType, PenWidth As Integer, PenColor As Integer, BrushColor As Integer) As MetaObjectDraw
+  overload: Reportman.Drawing.MetaPage.DrawShape*
+  nameWithType.vb: MetaPage.DrawShape(Integer, Integer, Integer, Integer, ShapeType, BrushType, PenType, Integer, Integer, Integer)
+  fullName.vb: Reportman.Drawing.MetaPage.DrawShape(Integer, Integer, Integer, Integer, Reportman.Drawing.ShapeType, Reportman.Drawing.BrushType, Reportman.Drawing.PenType, Integer, Integer, Integer)
+  name.vb: DrawShape(Integer, Integer, Integer, Integer, ShapeType, BrushType, PenType, Integer, Integer, Integer)
+- uid: Reportman.Drawing.MetaPage.DrawImage(System.Int32,System.Int32,System.Int32,System.Int32,Reportman.Drawing.ImageDrawStyleType,System.Int32,System.IO.MemoryStream)
+  commentId: M:Reportman.Drawing.MetaPage.DrawImage(System.Int32,System.Int32,System.Int32,System.Int32,Reportman.Drawing.ImageDrawStyleType,System.Int32,System.IO.MemoryStream)
+  id: DrawImage(System.Int32,System.Int32,System.Int32,System.Int32,Reportman.Drawing.ImageDrawStyleType,System.Int32,System.IO.MemoryStream)
+  parent: Reportman.Drawing.MetaPage
+  langs:
+  - csharp
+  - vb
+  name: DrawImage(int, int, int, int, ImageDrawStyleType, int, MemoryStream)
+  nameWithType: MetaPage.DrawImage(int, int, int, int, ImageDrawStyleType, int, MemoryStream)
+  fullName: Reportman.Drawing.MetaPage.DrawImage(int, int, int, int, Reportman.Drawing.ImageDrawStyleType, int, System.IO.MemoryStream)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public MetaObjectImage DrawImage(int PosX, int PosY, int PrintWidth, int PrintHeight, ImageDrawStyleType DrawStyle, int dpires, MemoryStream nvalue)
+    parameters:
+    - id: PosX
+      type: System.Int32
+    - id: PosY
+      type: System.Int32
+    - id: PrintWidth
+      type: System.Int32
+    - id: PrintHeight
+      type: System.Int32
+    - id: DrawStyle
+      type: Reportman.Drawing.ImageDrawStyleType
+    - id: dpires
+      type: System.Int32
+    - id: nvalue
+      type: System.IO.MemoryStream
+    return:
+      type: Reportman.Drawing.MetaObjectImage
+    content.vb: Public Function DrawImage(PosX As Integer, PosY As Integer, PrintWidth As Integer, PrintHeight As Integer, DrawStyle As ImageDrawStyleType, dpires As Integer, nvalue As MemoryStream) As MetaObjectImage
+  overload: Reportman.Drawing.MetaPage.DrawImage*
+  nameWithType.vb: MetaPage.DrawImage(Integer, Integer, Integer, Integer, ImageDrawStyleType, Integer, MemoryStream)
+  fullName.vb: Reportman.Drawing.MetaPage.DrawImage(Integer, Integer, Integer, Integer, Reportman.Drawing.ImageDrawStyleType, Integer, System.IO.MemoryStream)
+  name.vb: DrawImage(Integer, Integer, Integer, Integer, ImageDrawStyleType, Integer, MemoryStream)
+- uid: Reportman.Drawing.MetaPage.MemStream
+  commentId: P:Reportman.Drawing.MetaPage.MemStream
+  id: MemStream
+  parent: Reportman.Drawing.MetaPage
+  langs:
+  - csharp
+  - vb
+  name: MemStream
+  nameWithType: MetaPage.MemStream
+  fullName: Reportman.Drawing.MetaPage.MemStream
+  type: Property
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: The memory stream contains information from objects in the page, la MetaObjectImages not shared
+  example: []
+  syntax:
+    content: public MemoryStream MemStream { get; }
+    parameters: []
+    return:
+      type: System.IO.MemoryStream
+    content.vb: Public ReadOnly Property MemStream As MemoryStream
+  overload: Reportman.Drawing.MetaPage.MemStream*
+- uid: Reportman.Drawing.MetaPage.Pool
+  commentId: P:Reportman.Drawing.MetaPage.Pool
+  id: Pool
+  parent: Reportman.Drawing.MetaPage
+  langs:
+  - csharp
+  - vb
+  name: Pool
+  nameWithType: MetaPage.Pool
+  fullName: Reportman.Drawing.MetaPage.Pool
+  type: Property
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    The Pool is a char array containing all the strings in the page, the MetaObjects reference strings
+
+    by position and length inside this array
+  example: []
+  syntax:
+    content: public char[] Pool { get; }
+    parameters: []
+    return:
+      type: System.Char[]
+    content.vb: Public ReadOnly Property Pool As Char()
+  overload: Reportman.Drawing.MetaPage.Pool*
+- uid: Reportman.Drawing.MetaPage.MetaFile
+  commentId: P:Reportman.Drawing.MetaPage.MetaFile
+  id: MetaFile
+  parent: Reportman.Drawing.MetaPage
+  langs:
+  - csharp
+  - vb
+  name: MetaFile
+  nameWithType: MetaPage.MetaFile
+  fullName: Reportman.Drawing.MetaPage.MetaFile
+  type: Property
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: The MetaFile owner of the page
+  example: []
+  syntax:
+    content: public MetaFile MetaFile { get; }
+    parameters: []
+    return:
+      type: Reportman.Drawing.MetaFile
+    content.vb: Public ReadOnly Property MetaFile As MetaFile
+  overload: Reportman.Drawing.MetaPage.MetaFile*
+- uid: Reportman.Drawing.MetaPage.PhysicWidth
+  commentId: P:Reportman.Drawing.MetaPage.PhysicWidth
+  id: PhysicWidth
+  parent: Reportman.Drawing.MetaPage
+  langs:
+  - csharp
+  - vb
+  name: PhysicWidth
+  nameWithType: MetaPage.PhysicWidth
+  fullName: Reportman.Drawing.MetaPage.PhysicWidth
+  type: Property
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Physic with of the page
+  example: []
+  syntax:
+    content: public int PhysicWidth { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property PhysicWidth As Integer
+  overload: Reportman.Drawing.MetaPage.PhysicWidth*
+- uid: Reportman.Drawing.MetaPage.PhysicHeight
+  commentId: P:Reportman.Drawing.MetaPage.PhysicHeight
+  id: PhysicHeight
+  parent: Reportman.Drawing.MetaPage
+  langs:
+  - csharp
+  - vb
+  name: PhysicHeight
+  nameWithType: MetaPage.PhysicHeight
+  fullName: Reportman.Drawing.MetaPage.PhysicHeight
+  type: Property
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Physic height of the page
+  example: []
+  syntax:
+    content: public int PhysicHeight { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property PhysicHeight As Integer
+  overload: Reportman.Drawing.MetaPage.PhysicHeight*
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.MetaFile.MetaFileVersion
+  commentId: T:Reportman.Drawing.MetaFile.MetaFileVersion
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html
+  name: MetaFile.MetaFileVersion
+  nameWithType: MetaFile.MetaFileVersion
+  fullName: Reportman.Drawing.MetaFile.MetaFileVersion
+  spec.csharp:
+  - uid: Reportman.Drawing.MetaFile
+    name: MetaFile
+    isExternal: true
+    href: Reportman.Drawing.MetaFile.html
+  - name: .
+  - uid: Reportman.Drawing.MetaFile.MetaFileVersion
+    name: MetaFileVersion
+    isExternal: true
+    href: Reportman.Drawing.MetaFile.MetaFileVersion.html
+  spec.vb:
+  - uid: Reportman.Drawing.MetaFile
+    name: MetaFile
+    isExternal: true
+    href: Reportman.Drawing.MetaFile.html
+  - name: .
+  - uid: Reportman.Drawing.MetaFile.MetaFileVersion
+    name: MetaFileVersion
+    isExternal: true
+    href: Reportman.Drawing.MetaFile.MetaFileVersion.html
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Collections.Generic.List{Reportman.Drawing.MetaObject}
+  commentId: T:System.Collections.Generic.List{Reportman.Drawing.MetaObject}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<MetaObject>
+  nameWithType: List<MetaObject>
+  fullName: System.Collections.Generic.List<Reportman.Drawing.MetaObject>
+  nameWithType.vb: List(Of MetaObject)
+  fullName.vb: System.Collections.Generic.List(Of Reportman.Drawing.MetaObject)
+  name.vb: List(Of MetaObject)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Reportman.Drawing.MetaObject
+    name: MetaObject
+    isExternal: true
+    href: Reportman.Drawing.MetaObject.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Reportman.Drawing.MetaObject
+    name: MetaObject
+    isExternal: true
+    href: Reportman.Drawing.MetaObject.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Reportman.Drawing.OrientationType
+  commentId: T:Reportman.Drawing.OrientationType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.OrientationType.html
+  name: OrientationType
+  nameWithType: OrientationType
+  fullName: Reportman.Drawing.OrientationType
+- uid: Reportman.Drawing.PageSizeDetail
+  commentId: T:Reportman.Drawing.PageSizeDetail
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PageSizeDetail.html
+  name: PageSizeDetail
+  nameWithType: PageSizeDetail
+  fullName: Reportman.Drawing.PageSizeDetail
+- uid: System.Collections.SortedList
+  commentId: T:System.Collections.SortedList
+  parent: System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.sortedlist
+  name: SortedList
+  nameWithType: SortedList
+  fullName: System.Collections.SortedList
+- uid: System.Collections
+  commentId: N:System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections
+  nameWithType: System.Collections
+  fullName: System.Collections
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: Reportman.Drawing.MetaPage.Dispose*
+  commentId: Overload:Reportman.Drawing.MetaPage.Dispose
+  isExternal: true
+  href: Reportman.Drawing.MetaPage.html#Reportman_Drawing_MetaPage_Dispose
+  name: Dispose
+  nameWithType: MetaPage.Dispose
+  fullName: Reportman.Drawing.MetaPage.Dispose
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
+  spec.csharp:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )
+- uid: Reportman.Drawing.MetaPage.#ctor*
+  commentId: Overload:Reportman.Drawing.MetaPage.#ctor
+  isExternal: true
+  href: Reportman.Drawing.MetaPage.html#Reportman_Drawing_MetaPage__ctor_Reportman_Drawing_MetaFile_
+  name: MetaPage
+  nameWithType: MetaPage.MetaPage
+  fullName: Reportman.Drawing.MetaPage.MetaPage
+  nameWithType.vb: MetaPage.New
+  fullName.vb: Reportman.Drawing.MetaPage.New
+  name.vb: New
+- uid: Reportman.Drawing.MetaFile
+  commentId: T:Reportman.Drawing.MetaFile
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html
+  name: MetaFile
+  nameWithType: MetaFile
+  fullName: Reportman.Drawing.MetaFile
+- uid: Reportman.Drawing.MetaPage.Clear*
+  commentId: Overload:Reportman.Drawing.MetaPage.Clear
+  isExternal: true
+  href: Reportman.Drawing.MetaPage.html#Reportman_Drawing_MetaPage_Clear
+  name: Clear
+  nameWithType: MetaPage.Clear
+  fullName: Reportman.Drawing.MetaPage.Clear
+- uid: Reportman.Drawing.MetaPage.AddString*
+  commentId: Overload:Reportman.Drawing.MetaPage.AddString
+  isExternal: true
+  href: Reportman.Drawing.MetaPage.html#Reportman_Drawing_MetaPage_AddString_System_String_
+  name: AddString
+  nameWithType: MetaPage.AddString
+  fullName: Reportman.Drawing.MetaPage.AddString
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Reportman.Drawing.MetaPage.GetText*
+  commentId: Overload:Reportman.Drawing.MetaPage.GetText
+  isExternal: true
+  href: Reportman.Drawing.MetaPage.html#Reportman_Drawing_MetaPage_GetText_Reportman_Drawing_MetaObjectText_
+  name: GetText
+  nameWithType: MetaPage.GetText
+  fullName: Reportman.Drawing.MetaPage.GetText
+- uid: Reportman.Drawing.MetaObjectText
+  commentId: T:Reportman.Drawing.MetaObjectText
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.MetaObjectText.html
+  name: MetaObjectText
+  nameWithType: MetaObjectText
+  fullName: Reportman.Drawing.MetaObjectText
+- uid: Reportman.Drawing.MetaPage.GetWFontNameText*
+  commentId: Overload:Reportman.Drawing.MetaPage.GetWFontNameText
+  isExternal: true
+  href: Reportman.Drawing.MetaPage.html#Reportman_Drawing_MetaPage_GetWFontNameText_Reportman_Drawing_MetaObjectText_
+  name: GetWFontNameText
+  nameWithType: MetaPage.GetWFontNameText
+  fullName: Reportman.Drawing.MetaPage.GetWFontNameText
+- uid: Reportman.Drawing.MetaPage.GetAnnotationText*
+  commentId: Overload:Reportman.Drawing.MetaPage.GetAnnotationText
+  isExternal: true
+  href: Reportman.Drawing.MetaPage.html#Reportman_Drawing_MetaPage_GetAnnotationText_Reportman_Drawing_MetaObject_
+  name: GetAnnotationText
+  nameWithType: MetaPage.GetAnnotationText
+  fullName: Reportman.Drawing.MetaPage.GetAnnotationText
+- uid: Reportman.Drawing.MetaObject
+  commentId: T:Reportman.Drawing.MetaObject
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.MetaObject.html
+  name: MetaObject
+  nameWithType: MetaObject
+  fullName: Reportman.Drawing.MetaObject
+- uid: Reportman.Drawing.MetaPage.GetLFontNameText*
+  commentId: Overload:Reportman.Drawing.MetaPage.GetLFontNameText
+  isExternal: true
+  href: Reportman.Drawing.MetaPage.html#Reportman_Drawing_MetaPage_GetLFontNameText_Reportman_Drawing_MetaObjectText_
+  name: GetLFontNameText
+  nameWithType: MetaPage.GetLFontNameText
+  fullName: Reportman.Drawing.MetaPage.GetLFontNameText
+- uid: Reportman.Drawing.MetaPage.GetStream*
+  commentId: Overload:Reportman.Drawing.MetaPage.GetStream
+  isExternal: true
+  href: Reportman.Drawing.MetaPage.html#Reportman_Drawing_MetaPage_GetStream_Reportman_Drawing_MetaObjectImage_
+  name: GetStream
+  nameWithType: MetaPage.GetStream
+  fullName: Reportman.Drawing.MetaPage.GetStream
+- uid: Reportman.Drawing.MetaObjectImage
+  commentId: T:Reportman.Drawing.MetaObjectImage
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.MetaObjectImage.html
+  name: MetaObjectImage
+  nameWithType: MetaObjectImage
+  fullName: Reportman.Drawing.MetaObjectImage
+- uid: System.IO.MemoryStream
+  commentId: T:System.IO.MemoryStream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.memorystream
+  name: MemoryStream
+  nameWithType: MemoryStream
+  fullName: System.IO.MemoryStream
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+- uid: Reportman.Drawing.MetaPage.AddStream*
+  commentId: Overload:Reportman.Drawing.MetaPage.AddStream
+  isExternal: true
+  href: Reportman.Drawing.MetaPage.html#Reportman_Drawing_MetaPage_AddStream_System_IO_MemoryStream_System_Boolean_
+  name: AddStream
+  nameWithType: MetaPage.AddStream
+  fullName: Reportman.Drawing.MetaPage.AddStream
+- uid: Reportman.Drawing.MetaPage.SaveToStream*
+  commentId: Overload:Reportman.Drawing.MetaPage.SaveToStream
+  isExternal: true
+  href: Reportman.Drawing.MetaPage.html#Reportman_Drawing_MetaPage_SaveToStream_System_IO_Stream_
+  name: SaveToStream
+  nameWithType: MetaPage.SaveToStream
+  fullName: Reportman.Drawing.MetaPage.SaveToStream
+- uid: System.IO.Stream
+  commentId: T:System.IO.Stream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  name: Stream
+  nameWithType: Stream
+  fullName: System.IO.Stream
+- uid: Reportman.Drawing.MetaPage.LoadFromStream*
+  commentId: Overload:Reportman.Drawing.MetaPage.LoadFromStream
+  isExternal: true
+  href: Reportman.Drawing.MetaPage.html#Reportman_Drawing_MetaPage_LoadFromStream_System_IO_Stream_
+  name: LoadFromStream
+  nameWithType: MetaPage.LoadFromStream
+  fullName: Reportman.Drawing.MetaPage.LoadFromStream
+- uid: Reportman.Drawing.MetaPage.DrawText*
+  commentId: Overload:Reportman.Drawing.MetaPage.DrawText
+  isExternal: true
+  href: Reportman.Drawing.MetaPage.html#Reportman_Drawing_MetaPage_DrawText_System_Int32_System_Int32_System_Int32_System_Int32_System_String_System_String_System_String_System_Int16_System_Int16_System_Int32_System_Int32_System_Boolean_System_Int32_Reportman_Drawing_PDFFontType_Reportman_Drawing_TextAlignType_Reportman_Drawing_TextAlignVerticalType_System_Boolean_System_Boolean_System_Boolean_Reportman_Drawing_PrintStepType_
+  name: DrawText
+  nameWithType: MetaPage.DrawText
+  fullName: Reportman.Drawing.MetaPage.DrawText
+- uid: System.Int16
+  commentId: T:System.Int16
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int16
+  name: short
+  nameWithType: short
+  fullName: short
+  nameWithType.vb: Short
+  fullName.vb: Short
+  name.vb: Short
+- uid: Reportman.Drawing.PDFFontType
+  commentId: T:Reportman.Drawing.PDFFontType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PDFFontType.html
+  name: PDFFontType
+  nameWithType: PDFFontType
+  fullName: Reportman.Drawing.PDFFontType
+- uid: Reportman.Drawing.TextAlignType
+  commentId: T:Reportman.Drawing.TextAlignType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.TextAlignType.html
+  name: TextAlignType
+  nameWithType: TextAlignType
+  fullName: Reportman.Drawing.TextAlignType
+- uid: Reportman.Drawing.TextAlignVerticalType
+  commentId: T:Reportman.Drawing.TextAlignVerticalType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.TextAlignVerticalType.html
+  name: TextAlignVerticalType
+  nameWithType: TextAlignVerticalType
+  fullName: Reportman.Drawing.TextAlignVerticalType
+- uid: Reportman.Drawing.PrintStepType
+  commentId: T:Reportman.Drawing.PrintStepType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PrintStepType.html
+  name: PrintStepType
+  nameWithType: PrintStepType
+  fullName: Reportman.Drawing.PrintStepType
+- uid: Reportman.Drawing.MetaPage.DrawShape*
+  commentId: Overload:Reportman.Drawing.MetaPage.DrawShape
+  isExternal: true
+  href: Reportman.Drawing.MetaPage.html#Reportman_Drawing_MetaPage_DrawShape_System_Int32_System_Int32_System_Int32_System_Int32_Reportman_Drawing_ShapeType_Reportman_Drawing_BrushType_Reportman_Drawing_PenType_System_Int32_System_Int32_System_Int32_
+  name: DrawShape
+  nameWithType: MetaPage.DrawShape
+  fullName: Reportman.Drawing.MetaPage.DrawShape
+- uid: Reportman.Drawing.ShapeType
+  commentId: T:Reportman.Drawing.ShapeType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.ShapeType.html
+  name: ShapeType
+  nameWithType: ShapeType
+  fullName: Reportman.Drawing.ShapeType
+- uid: Reportman.Drawing.BrushType
+  commentId: T:Reportman.Drawing.BrushType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.BrushType.html
+  name: BrushType
+  nameWithType: BrushType
+  fullName: Reportman.Drawing.BrushType
+- uid: Reportman.Drawing.PenType
+  commentId: T:Reportman.Drawing.PenType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PenType.html
+  name: PenType
+  nameWithType: PenType
+  fullName: Reportman.Drawing.PenType
+- uid: Reportman.Drawing.MetaObjectDraw
+  commentId: T:Reportman.Drawing.MetaObjectDraw
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.MetaObjectDraw.html
+  name: MetaObjectDraw
+  nameWithType: MetaObjectDraw
+  fullName: Reportman.Drawing.MetaObjectDraw
+- uid: Reportman.Drawing.MetaPage.DrawImage*
+  commentId: Overload:Reportman.Drawing.MetaPage.DrawImage
+  isExternal: true
+  href: Reportman.Drawing.MetaPage.html#Reportman_Drawing_MetaPage_DrawImage_System_Int32_System_Int32_System_Int32_System_Int32_Reportman_Drawing_ImageDrawStyleType_System_Int32_System_IO_MemoryStream_
+  name: DrawImage
+  nameWithType: MetaPage.DrawImage
+  fullName: Reportman.Drawing.MetaPage.DrawImage
+- uid: Reportman.Drawing.ImageDrawStyleType
+  commentId: T:Reportman.Drawing.ImageDrawStyleType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.ImageDrawStyleType.html
+  name: ImageDrawStyleType
+  nameWithType: ImageDrawStyleType
+  fullName: Reportman.Drawing.ImageDrawStyleType
+- uid: Reportman.Drawing.MetaPage.MemStream*
+  commentId: Overload:Reportman.Drawing.MetaPage.MemStream
+  isExternal: true
+  href: Reportman.Drawing.MetaPage.html#Reportman_Drawing_MetaPage_MemStream
+  name: MemStream
+  nameWithType: MetaPage.MemStream
+  fullName: Reportman.Drawing.MetaPage.MemStream
+- uid: Reportman.Drawing.MetaPage.Pool*
+  commentId: Overload:Reportman.Drawing.MetaPage.Pool
+  isExternal: true
+  href: Reportman.Drawing.MetaPage.html#Reportman_Drawing_MetaPage_Pool
+  name: Pool
+  nameWithType: MetaPage.Pool
+  fullName: Reportman.Drawing.MetaPage.Pool
+- uid: System.Char[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.char
+  name: char[]
+  nameWithType: char[]
+  fullName: char[]
+  nameWithType.vb: Char()
+  fullName.vb: Char()
+  name.vb: Char()
+  spec.csharp:
+  - uid: System.Char
+    name: char
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.char
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Char
+    name: Char
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.char
+  - name: (
+  - name: )
+- uid: Reportman.Drawing.MetaPage.MetaFile*
+  commentId: Overload:Reportman.Drawing.MetaPage.MetaFile
+  isExternal: true
+  href: Reportman.Drawing.MetaPage.html#Reportman_Drawing_MetaPage_MetaFile
+  name: MetaFile
+  nameWithType: MetaPage.MetaFile
+  fullName: Reportman.Drawing.MetaPage.MetaFile
+- uid: Reportman.Drawing.MetaPage.PhysicWidth*
+  commentId: Overload:Reportman.Drawing.MetaPage.PhysicWidth
+  isExternal: true
+  href: Reportman.Drawing.MetaPage.html#Reportman_Drawing_MetaPage_PhysicWidth
+  name: PhysicWidth
+  nameWithType: MetaPage.PhysicWidth
+  fullName: Reportman.Drawing.MetaPage.PhysicWidth
+- uid: Reportman.Drawing.MetaPage.PhysicHeight*
+  commentId: Overload:Reportman.Drawing.MetaPage.PhysicHeight
+  isExternal: true
+  href: Reportman.Drawing.MetaPage.html#Reportman_Drawing_MetaPage_PhysicHeight
+  name: PhysicHeight
+  nameWithType: MetaPage.PhysicHeight
+  fullName: Reportman.Drawing.MetaPage.PhysicHeight

@@ -1,0 +1,189 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.SubReportEvent
+  commentId: T:Reportman.Reporting.SubReportEvent
+  id: SubReportEvent
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.SubReportEvent.DataChange
+  - Reportman.Reporting.SubReportEvent.GroupChange
+  - Reportman.Reporting.SubReportEvent.InvalidateValue
+  - Reportman.Reporting.SubReportEvent.PageChange
+  - Reportman.Reporting.SubReportEvent.Start
+  - Reportman.Reporting.SubReportEvent.SubReportEnd
+  - Reportman.Reporting.SubReportEvent.SubReportStart
+  langs:
+  - csharp
+  - vb
+  name: SubReportEvent
+  nameWithType: SubReportEvent
+  fullName: Reportman.Reporting.SubReportEvent
+  type: Enum
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public enum SubReportEvent
+    content.vb: Public Enum SubReportEvent
+- uid: Reportman.Reporting.SubReportEvent.Start
+  commentId: F:Reportman.Reporting.SubReportEvent.Start
+  id: Start
+  parent: Reportman.Reporting.SubReportEvent
+  langs:
+  - csharp
+  - vb
+  name: Start
+  nameWithType: SubReportEvent.Start
+  fullName: Reportman.Reporting.SubReportEvent.Start
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Start = 0
+    return:
+      type: Reportman.Reporting.SubReportEvent
+- uid: Reportman.Reporting.SubReportEvent.DataChange
+  commentId: F:Reportman.Reporting.SubReportEvent.DataChange
+  id: DataChange
+  parent: Reportman.Reporting.SubReportEvent
+  langs:
+  - csharp
+  - vb
+  name: DataChange
+  nameWithType: SubReportEvent.DataChange
+  fullName: Reportman.Reporting.SubReportEvent.DataChange
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: DataChange = 1
+    return:
+      type: Reportman.Reporting.SubReportEvent
+- uid: Reportman.Reporting.SubReportEvent.GroupChange
+  commentId: F:Reportman.Reporting.SubReportEvent.GroupChange
+  id: GroupChange
+  parent: Reportman.Reporting.SubReportEvent
+  langs:
+  - csharp
+  - vb
+  name: GroupChange
+  nameWithType: SubReportEvent.GroupChange
+  fullName: Reportman.Reporting.SubReportEvent.GroupChange
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: GroupChange = 2
+    return:
+      type: Reportman.Reporting.SubReportEvent
+- uid: Reportman.Reporting.SubReportEvent.PageChange
+  commentId: F:Reportman.Reporting.SubReportEvent.PageChange
+  id: PageChange
+  parent: Reportman.Reporting.SubReportEvent
+  langs:
+  - csharp
+  - vb
+  name: PageChange
+  nameWithType: SubReportEvent.PageChange
+  fullName: Reportman.Reporting.SubReportEvent.PageChange
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: PageChange = 3
+    return:
+      type: Reportman.Reporting.SubReportEvent
+- uid: Reportman.Reporting.SubReportEvent.InvalidateValue
+  commentId: F:Reportman.Reporting.SubReportEvent.InvalidateValue
+  id: InvalidateValue
+  parent: Reportman.Reporting.SubReportEvent
+  langs:
+  - csharp
+  - vb
+  name: InvalidateValue
+  nameWithType: SubReportEvent.InvalidateValue
+  fullName: Reportman.Reporting.SubReportEvent.InvalidateValue
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: InvalidateValue = 4
+    return:
+      type: Reportman.Reporting.SubReportEvent
+- uid: Reportman.Reporting.SubReportEvent.SubReportStart
+  commentId: F:Reportman.Reporting.SubReportEvent.SubReportStart
+  id: SubReportStart
+  parent: Reportman.Reporting.SubReportEvent
+  langs:
+  - csharp
+  - vb
+  name: SubReportStart
+  nameWithType: SubReportEvent.SubReportStart
+  fullName: Reportman.Reporting.SubReportEvent.SubReportStart
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: SubReportStart = 5
+    return:
+      type: Reportman.Reporting.SubReportEvent
+- uid: Reportman.Reporting.SubReportEvent.SubReportEnd
+  commentId: F:Reportman.Reporting.SubReportEvent.SubReportEnd
+  id: SubReportEnd
+  parent: Reportman.Reporting.SubReportEvent
+  langs:
+  - csharp
+  - vb
+  name: SubReportEnd
+  nameWithType: SubReportEvent.SubReportEnd
+  fullName: Reportman.Reporting.SubReportEvent.SubReportEnd
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: SubReportEnd = 6
+    return:
+      type: Reportman.Reporting.SubReportEvent
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: Reportman.Reporting.SubReportEvent
+  commentId: T:Reportman.Reporting.SubReportEvent
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.SubReportEvent.html
+  name: SubReportEvent
+  nameWithType: SubReportEvent
+  fullName: Reportman.Reporting.SubReportEvent

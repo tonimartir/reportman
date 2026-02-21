@@ -1,0 +1,104 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.Direction
+  commentId: T:Reportman.Drawing.Forms.Direction
+  id: Direction
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.Direction.Horizontal
+  - Reportman.Drawing.Forms.Direction.Vertical
+  langs:
+  - csharp
+  - vb
+  name: Direction
+  nameWithType: Direction
+  fullName: Reportman.Drawing.Forms.Direction
+  type: Enum
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public enum Direction
+    content.vb: Public Enum Direction
+- uid: Reportman.Drawing.Forms.Direction.Vertical
+  commentId: F:Reportman.Drawing.Forms.Direction.Vertical
+  id: Vertical
+  parent: Reportman.Drawing.Forms.Direction
+  langs:
+  - csharp
+  - vb
+  name: Vertical
+  nameWithType: Direction.Vertical
+  fullName: Reportman.Drawing.Forms.Direction.Vertical
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Vertical = 0
+    return:
+      type: Reportman.Drawing.Forms.Direction
+- uid: Reportman.Drawing.Forms.Direction.Horizontal
+  commentId: F:Reportman.Drawing.Forms.Direction.Horizontal
+  id: Horizontal
+  parent: Reportman.Drawing.Forms.Direction
+  langs:
+  - csharp
+  - vb
+  name: Horizontal
+  nameWithType: Direction.Horizontal
+  fullName: Reportman.Drawing.Forms.Direction.Horizontal
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Horizontal = 1
+    return:
+      type: Reportman.Drawing.Forms.Direction
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: Reportman.Drawing.Forms.Direction
+  commentId: T:Reportman.Drawing.Forms.Direction
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.Direction.html
+  name: Direction
+  nameWithType: Direction
+  fullName: Reportman.Drawing.Forms.Direction

@@ -1,0 +1,184 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.PenType
+  commentId: T:Reportman.Drawing.PenType
+  id: PenType
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.PenType.Clear
+  - Reportman.Drawing.PenType.Dash
+  - Reportman.Drawing.PenType.DashDot
+  - Reportman.Drawing.PenType.DashDotDot
+  - Reportman.Drawing.PenType.Dot
+  - Reportman.Drawing.PenType.Solid
+  langs:
+  - csharp
+  - vb
+  name: PenType
+  nameWithType: PenType
+  fullName: Reportman.Drawing.PenType
+  type: Enum
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Pen types, used when drawing shapes
+  example: []
+  syntax:
+    content: public enum PenType
+    content.vb: Public Enum PenType
+- uid: Reportman.Drawing.PenType.Solid
+  commentId: F:Reportman.Drawing.PenType.Solid
+  id: Solid
+  parent: Reportman.Drawing.PenType
+  langs:
+  - csharp
+  - vb
+  name: Solid
+  nameWithType: PenType.Solid
+  fullName: Reportman.Drawing.PenType.Solid
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Solid normal pen
+  example: []
+  syntax:
+    content: Solid = 0
+    return:
+      type: Reportman.Drawing.PenType
+- uid: Reportman.Drawing.PenType.Dash
+  commentId: F:Reportman.Drawing.PenType.Dash
+  id: Dash
+  parent: Reportman.Drawing.PenType
+  langs:
+  - csharp
+  - vb
+  name: Dash
+  nameWithType: PenType.Dash
+  fullName: Reportman.Drawing.PenType.Dash
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Dashed pen
+  example: []
+  syntax:
+    content: Dash = 1
+    return:
+      type: Reportman.Drawing.PenType
+- uid: Reportman.Drawing.PenType.Dot
+  commentId: F:Reportman.Drawing.PenType.Dot
+  id: Dot
+  parent: Reportman.Drawing.PenType
+  langs:
+  - csharp
+  - vb
+  name: Dot
+  nameWithType: PenType.Dot
+  fullName: Reportman.Drawing.PenType.Dot
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Doted pen
+  example: []
+  syntax:
+    content: Dot = 2
+    return:
+      type: Reportman.Drawing.PenType
+- uid: Reportman.Drawing.PenType.DashDot
+  commentId: F:Reportman.Drawing.PenType.DashDot
+  id: DashDot
+  parent: Reportman.Drawing.PenType
+  langs:
+  - csharp
+  - vb
+  name: DashDot
+  nameWithType: PenType.DashDot
+  fullName: Reportman.Drawing.PenType.DashDot
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Dash Dot pen
+  example: []
+  syntax:
+    content: DashDot = 3
+    return:
+      type: Reportman.Drawing.PenType
+- uid: Reportman.Drawing.PenType.DashDotDot
+  commentId: F:Reportman.Drawing.PenType.DashDotDot
+  id: DashDotDot
+  parent: Reportman.Drawing.PenType
+  langs:
+  - csharp
+  - vb
+  name: DashDotDot
+  nameWithType: PenType.DashDotDot
+  fullName: Reportman.Drawing.PenType.DashDotDot
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Dash Dot Dot pen
+  example: []
+  syntax:
+    content: DashDotDot = 4
+    return:
+      type: Reportman.Drawing.PenType
+- uid: Reportman.Drawing.PenType.Clear
+  commentId: F:Reportman.Drawing.PenType.Clear
+  id: Clear
+  parent: Reportman.Drawing.PenType
+  langs:
+  - csharp
+  - vb
+  name: Clear
+  nameWithType: PenType.Clear
+  fullName: Reportman.Drawing.PenType.Clear
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Transparent pen
+  example: []
+  syntax:
+    content: Clear = 5
+    return:
+      type: Reportman.Drawing.PenType
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.PenType
+  commentId: T:Reportman.Drawing.PenType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PenType.html
+  name: PenType
+  nameWithType: PenType
+  fullName: Reportman.Drawing.PenType

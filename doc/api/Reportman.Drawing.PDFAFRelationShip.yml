@@ -1,0 +1,151 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.PDFAFRelationShip
+  commentId: T:Reportman.Drawing.PDFAFRelationShip
+  id: PDFAFRelationShip
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.PDFAFRelationShip.Alternative
+  - Reportman.Drawing.PDFAFRelationShip.Data
+  - Reportman.Drawing.PDFAFRelationShip.Source
+  - Reportman.Drawing.PDFAFRelationShip.Supplement
+  - Reportman.Drawing.PDFAFRelationShip.Unspecified
+  langs:
+  - csharp
+  - vb
+  name: PDFAFRelationShip
+  nameWithType: PDFAFRelationShip
+  fullName: Reportman.Drawing.PDFAFRelationShip
+  type: Enum
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public enum PDFAFRelationShip
+    content.vb: Public Enum PDFAFRelationShip
+- uid: Reportman.Drawing.PDFAFRelationShip.Unspecified
+  commentId: F:Reportman.Drawing.PDFAFRelationShip.Unspecified
+  id: Unspecified
+  parent: Reportman.Drawing.PDFAFRelationShip
+  langs:
+  - csharp
+  - vb
+  name: Unspecified
+  nameWithType: PDFAFRelationShip.Unspecified
+  fullName: Reportman.Drawing.PDFAFRelationShip.Unspecified
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Unspecified = 0
+    return:
+      type: Reportman.Drawing.PDFAFRelationShip
+- uid: Reportman.Drawing.PDFAFRelationShip.Alternative
+  commentId: F:Reportman.Drawing.PDFAFRelationShip.Alternative
+  id: Alternative
+  parent: Reportman.Drawing.PDFAFRelationShip
+  langs:
+  - csharp
+  - vb
+  name: Alternative
+  nameWithType: PDFAFRelationShip.Alternative
+  fullName: Reportman.Drawing.PDFAFRelationShip.Alternative
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Alternative = 1
+    return:
+      type: Reportman.Drawing.PDFAFRelationShip
+- uid: Reportman.Drawing.PDFAFRelationShip.Data
+  commentId: F:Reportman.Drawing.PDFAFRelationShip.Data
+  id: Data
+  parent: Reportman.Drawing.PDFAFRelationShip
+  langs:
+  - csharp
+  - vb
+  name: Data
+  nameWithType: PDFAFRelationShip.Data
+  fullName: Reportman.Drawing.PDFAFRelationShip.Data
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Data = 2
+    return:
+      type: Reportman.Drawing.PDFAFRelationShip
+- uid: Reportman.Drawing.PDFAFRelationShip.Source
+  commentId: F:Reportman.Drawing.PDFAFRelationShip.Source
+  id: Source
+  parent: Reportman.Drawing.PDFAFRelationShip
+  langs:
+  - csharp
+  - vb
+  name: Source
+  nameWithType: PDFAFRelationShip.Source
+  fullName: Reportman.Drawing.PDFAFRelationShip.Source
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Source = 3
+    return:
+      type: Reportman.Drawing.PDFAFRelationShip
+- uid: Reportman.Drawing.PDFAFRelationShip.Supplement
+  commentId: F:Reportman.Drawing.PDFAFRelationShip.Supplement
+  id: Supplement
+  parent: Reportman.Drawing.PDFAFRelationShip
+  langs:
+  - csharp
+  - vb
+  name: Supplement
+  nameWithType: PDFAFRelationShip.Supplement
+  fullName: Reportman.Drawing.PDFAFRelationShip.Supplement
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Supplement = 4
+    return:
+      type: Reportman.Drawing.PDFAFRelationShip
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.PDFAFRelationShip
+  commentId: T:Reportman.Drawing.PDFAFRelationShip
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PDFAFRelationShip.html
+  name: PDFAFRelationShip
+  nameWithType: PDFAFRelationShip
+  fullName: Reportman.Drawing.PDFAFRelationShip

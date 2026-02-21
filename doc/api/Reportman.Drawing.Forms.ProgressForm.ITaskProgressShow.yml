@@ -1,0 +1,110 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow
+  commentId: T:Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow
+  id: ProgressForm.ITaskProgressShow
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow.ShowProgress(System.Int32,System.Int32)
+  langs:
+  - csharp
+  - vb
+  name: ProgressForm.ITaskProgressShow
+  nameWithType: ProgressForm.ITaskProgressShow
+  fullName: Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow
+  type: Interface
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public interface ProgressForm.ITaskProgressShow
+    content.vb: Public Interface ProgressForm.ITaskProgressShow
+- uid: Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow.ShowProgress(System.Int32,System.Int32)
+  commentId: M:Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow.ShowProgress(System.Int32,System.Int32)
+  id: ShowProgress(System.Int32,System.Int32)
+  parent: Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow
+  langs:
+  - csharp
+  - vb
+  name: ShowProgress(int, int)
+  nameWithType: ProgressForm.ITaskProgressShow.ShowProgress(int, int)
+  fullName: Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow.ShowProgress(int, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: void ShowProgress(int current, int total)
+    parameters:
+    - id: current
+      type: System.Int32
+    - id: total
+      type: System.Int32
+    content.vb: Sub ShowProgress(current As Integer, total As Integer)
+  overload: Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow.ShowProgress*
+  nameWithType.vb: ProgressForm.ITaskProgressShow.ShowProgress(Integer, Integer)
+  fullName.vb: Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow.ShowProgress(Integer, Integer)
+  name.vb: ShowProgress(Integer, Integer)
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow.ShowProgress*
+  commentId: Overload:Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow.ShowProgress
+  isExternal: true
+  href: Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow.html#Reportman_Drawing_Forms_ProgressForm_ITaskProgressShow_ShowProgress_System_Int32_System_Int32_
+  name: ShowProgress
+  nameWithType: ProgressForm.ITaskProgressShow.ShowProgress
+  fullName: Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow.ShowProgress
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System

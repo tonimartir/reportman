@@ -1,0 +1,1233 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.QRCodeEncoder
+  commentId: T:Reportman.Drawing.QRCodeEncoder
+  id: QRCodeEncoder
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.QRCodeEncoder.#ctor
+  - Reportman.Drawing.QRCodeEncoder.AsciiStringToByteArray(System.String)
+  - Reportman.Drawing.QRCodeEncoder.EncodeInMetafile(Reportman.Drawing.MetaFile,System.Int32,System.Int32,System.Int32,System.String,System.Text.Encoding)
+  - Reportman.Drawing.QRCodeEncoder.FromASCIIByteArray(System.Byte[])
+  - Reportman.Drawing.QRCodeEncoder.FromUnicodeByteArray(System.Byte[])
+  - Reportman.Drawing.QRCodeEncoder.IsUniCode(System.String)
+  - Reportman.Drawing.QRCodeEncoder.QRCodeBackgroundColor
+  - Reportman.Drawing.QRCodeEncoder.QRCodeEncodeMode
+  - Reportman.Drawing.QRCodeEncoder.QRCodeErrorCorrect
+  - Reportman.Drawing.QRCodeEncoder.QRCodeForegroundColor
+  - Reportman.Drawing.QRCodeEncoder.QRCodeScale
+  - Reportman.Drawing.QRCodeEncoder.QRCodeVersion
+  - Reportman.Drawing.QRCodeEncoder.ReadInput(System.IO.Stream,System.SByte[],System.Int32,System.Int32)
+  - Reportman.Drawing.QRCodeEncoder.URShift(System.Int32,System.Int32)
+  - Reportman.Drawing.QRCodeEncoder.UnicodeStringToByteArray(System.String)
+  - Reportman.Drawing.QRCodeEncoder.WriteStackTrace(System.Exception,System.IO.TextWriter)
+  - Reportman.Drawing.QRCodeEncoder.calQrcode(System.Byte[])
+  - Reportman.Drawing.QRCodeEncoder.calStructureappendParity(System.SByte[])
+  - Reportman.Drawing.QRCodeEncoder.setStructureappend(System.Int32,System.Int32,System.Int32)
+  langs:
+  - csharp
+  - vb
+  name: QRCodeEncoder
+  nameWithType: QRCodeEncoder
+  fullName: Reportman.Drawing.QRCodeEncoder
+  type: Class
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Drawing
+  syntax:
+    content: public class QRCodeEncoder
+    content.vb: Public Class QRCodeEncoder
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.QRCodeEncoder.#ctor
+  commentId: M:Reportman.Drawing.QRCodeEncoder.#ctor
+  id: '#ctor'
+  parent: Reportman.Drawing.QRCodeEncoder
+  langs:
+  - csharp
+  - vb
+  name: QRCodeEncoder()
+  nameWithType: QRCodeEncoder.QRCodeEncoder()
+  fullName: Reportman.Drawing.QRCodeEncoder.QRCodeEncoder()
+  type: Constructor
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Drawing
+  summary: Constructor
+  example: []
+  syntax:
+    content: public QRCodeEncoder()
+    content.vb: Public Sub New()
+  overload: Reportman.Drawing.QRCodeEncoder.#ctor*
+  nameWithType.vb: QRCodeEncoder.New()
+  fullName.vb: Reportman.Drawing.QRCodeEncoder.New()
+  name.vb: New()
+- uid: Reportman.Drawing.QRCodeEncoder.setStructureappend(System.Int32,System.Int32,System.Int32)
+  commentId: M:Reportman.Drawing.QRCodeEncoder.setStructureappend(System.Int32,System.Int32,System.Int32)
+  id: setStructureappend(System.Int32,System.Int32,System.Int32)
+  parent: Reportman.Drawing.QRCodeEncoder
+  langs:
+  - csharp
+  - vb
+  name: setStructureappend(int, int, int)
+  nameWithType: QRCodeEncoder.setStructureappend(int, int, int)
+  fullName: Reportman.Drawing.QRCodeEncoder.setStructureappend(int, int, int)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Drawing
+  syntax:
+    content: public virtual void setStructureappend(int m, int n, int p)
+    parameters:
+    - id: m
+      type: System.Int32
+    - id: n
+      type: System.Int32
+    - id: p
+      type: System.Int32
+    content.vb: Public Overridable Sub setStructureappend(m As Integer, n As Integer, p As Integer)
+  overload: Reportman.Drawing.QRCodeEncoder.setStructureappend*
+  nameWithType.vb: QRCodeEncoder.setStructureappend(Integer, Integer, Integer)
+  fullName.vb: Reportman.Drawing.QRCodeEncoder.setStructureappend(Integer, Integer, Integer)
+  name.vb: setStructureappend(Integer, Integer, Integer)
+- uid: Reportman.Drawing.QRCodeEncoder.calStructureappendParity(System.SByte[])
+  commentId: M:Reportman.Drawing.QRCodeEncoder.calStructureappendParity(System.SByte[])
+  id: calStructureappendParity(System.SByte[])
+  parent: Reportman.Drawing.QRCodeEncoder
+  langs:
+  - csharp
+  - vb
+  name: calStructureappendParity(sbyte[])
+  nameWithType: QRCodeEncoder.calStructureappendParity(sbyte[])
+  fullName: Reportman.Drawing.QRCodeEncoder.calStructureappendParity(sbyte[])
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Drawing
+  syntax:
+    content: public virtual int calStructureappendParity(sbyte[] originaldata)
+    parameters:
+    - id: originaldata
+      type: System.SByte[]
+    return:
+      type: System.Int32
+    content.vb: Public Overridable Function calStructureappendParity(originaldata As SByte()) As Integer
+  overload: Reportman.Drawing.QRCodeEncoder.calStructureappendParity*
+  nameWithType.vb: QRCodeEncoder.calStructureappendParity(SByte())
+  fullName.vb: Reportman.Drawing.QRCodeEncoder.calStructureappendParity(SByte())
+  name.vb: calStructureappendParity(SByte())
+- uid: Reportman.Drawing.QRCodeEncoder.WriteStackTrace(System.Exception,System.IO.TextWriter)
+  commentId: M:Reportman.Drawing.QRCodeEncoder.WriteStackTrace(System.Exception,System.IO.TextWriter)
+  id: WriteStackTrace(System.Exception,System.IO.TextWriter)
+  parent: Reportman.Drawing.QRCodeEncoder
+  langs:
+  - csharp
+  - vb
+  name: WriteStackTrace(Exception, TextWriter)
+  nameWithType: QRCodeEncoder.WriteStackTrace(Exception, TextWriter)
+  fullName: Reportman.Drawing.QRCodeEncoder.WriteStackTrace(System.Exception, System.IO.TextWriter)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static void WriteStackTrace(Exception throwable, TextWriter stream)
+    parameters:
+    - id: throwable
+      type: System.Exception
+    - id: stream
+      type: System.IO.TextWriter
+    content.vb: Public Shared Sub WriteStackTrace(throwable As Exception, stream As TextWriter)
+  overload: Reportman.Drawing.QRCodeEncoder.WriteStackTrace*
+- uid: Reportman.Drawing.QRCodeEncoder.calQrcode(System.Byte[])
+  commentId: M:Reportman.Drawing.QRCodeEncoder.calQrcode(System.Byte[])
+  id: calQrcode(System.Byte[])
+  parent: Reportman.Drawing.QRCodeEncoder
+  langs:
+  - csharp
+  - vb
+  name: calQrcode(byte[])
+  nameWithType: QRCodeEncoder.calQrcode(byte[])
+  fullName: Reportman.Drawing.QRCodeEncoder.calQrcode(byte[])
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Drawing
+  syntax:
+    content: public virtual bool[][] calQrcode(byte[] qrcodeData)
+    parameters:
+    - id: qrcodeData
+      type: System.Byte[]
+    return:
+      type: System.Boolean[][]
+    content.vb: Public Overridable Function calQrcode(qrcodeData As Byte()) As Boolean()()
+  overload: Reportman.Drawing.QRCodeEncoder.calQrcode*
+  nameWithType.vb: QRCodeEncoder.calQrcode(Byte())
+  fullName.vb: Reportman.Drawing.QRCodeEncoder.calQrcode(Byte())
+  name.vb: calQrcode(Byte())
+- uid: Reportman.Drawing.QRCodeEncoder.ReadInput(System.IO.Stream,System.SByte[],System.Int32,System.Int32)
+  commentId: M:Reportman.Drawing.QRCodeEncoder.ReadInput(System.IO.Stream,System.SByte[],System.Int32,System.Int32)
+  id: ReadInput(System.IO.Stream,System.SByte[],System.Int32,System.Int32)
+  parent: Reportman.Drawing.QRCodeEncoder
+  langs:
+  - csharp
+  - vb
+  name: ReadInput(Stream, sbyte[], int, int)
+  nameWithType: QRCodeEncoder.ReadInput(Stream, sbyte[], int, int)
+  fullName: Reportman.Drawing.QRCodeEncoder.ReadInput(System.IO.Stream, sbyte[], int, int)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Drawing
+  summary: Reads a number of characters from the current source Stream and writes the data to the target array at the specified index.
+  example: []
+  syntax:
+    content: public static int ReadInput(Stream sourceStream, sbyte[] target, int start, int count)
+    parameters:
+    - id: sourceStream
+      type: System.IO.Stream
+      description: The source Stream to read from.
+    - id: target
+      type: System.SByte[]
+      description: Contains the array of characteres read from the source Stream.
+    - id: start
+      type: System.Int32
+      description: The starting index of the target array.
+    - id: count
+      type: System.Int32
+      description: The maximum number of characters to read from the source Stream.
+    return:
+      type: System.Int32
+      description: The number of characters read. The number will be less than or equal to count depending on the data available in the source Stream. Returns -1 if the end of the stream is reached.
+    content.vb: Public Shared Function ReadInput(sourceStream As Stream, target As SByte(), start As Integer, count As Integer) As Integer
+  overload: Reportman.Drawing.QRCodeEncoder.ReadInput*
+  nameWithType.vb: QRCodeEncoder.ReadInput(Stream, SByte(), Integer, Integer)
+  fullName.vb: Reportman.Drawing.QRCodeEncoder.ReadInput(System.IO.Stream, SByte(), Integer, Integer)
+  name.vb: ReadInput(Stream, SByte(), Integer, Integer)
+- uid: Reportman.Drawing.QRCodeEncoder.EncodeInMetafile(Reportman.Drawing.MetaFile,System.Int32,System.Int32,System.Int32,System.String,System.Text.Encoding)
+  commentId: M:Reportman.Drawing.QRCodeEncoder.EncodeInMetafile(Reportman.Drawing.MetaFile,System.Int32,System.Int32,System.Int32,System.String,System.Text.Encoding)
+  id: EncodeInMetafile(Reportman.Drawing.MetaFile,System.Int32,System.Int32,System.Int32,System.String,System.Text.Encoding)
+  parent: Reportman.Drawing.QRCodeEncoder
+  langs:
+  - csharp
+  - vb
+  name: EncodeInMetafile(MetaFile, int, int, int, string, Encoding)
+  nameWithType: QRCodeEncoder.EncodeInMetafile(MetaFile, int, int, int, string, Encoding)
+  fullName: Reportman.Drawing.QRCodeEncoder.EncodeInMetafile(Reportman.Drawing.MetaFile, int, int, int, string, System.Text.Encoding)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Drawing
+  summary: Encode the content using the encoding scheme given
+  example: []
+  syntax:
+    content: public virtual void EncodeInMetafile(MetaFile metafile, int posx, int posy, int modul, string content, Encoding encoding)
+    parameters:
+    - id: metafile
+      type: Reportman.Drawing.MetaFile
+    - id: posx
+      type: System.Int32
+    - id: posy
+      type: System.Int32
+    - id: modul
+      type: System.Int32
+    - id: content
+      type: System.String
+      description: ''
+    - id: encoding
+      type: System.Text.Encoding
+      description: ''
+    content.vb: Public Overridable Sub EncodeInMetafile(metafile As MetaFile, posx As Integer, posy As Integer, modul As Integer, content As String, encoding As Encoding)
+  overload: Reportman.Drawing.QRCodeEncoder.EncodeInMetafile*
+  nameWithType.vb: QRCodeEncoder.EncodeInMetafile(MetaFile, Integer, Integer, Integer, String, Encoding)
+  fullName.vb: Reportman.Drawing.QRCodeEncoder.EncodeInMetafile(Reportman.Drawing.MetaFile, Integer, Integer, Integer, String, System.Text.Encoding)
+  name.vb: EncodeInMetafile(MetaFile, Integer, Integer, Integer, String, Encoding)
+- uid: Reportman.Drawing.QRCodeEncoder.URShift(System.Int32,System.Int32)
+  commentId: M:Reportman.Drawing.QRCodeEncoder.URShift(System.Int32,System.Int32)
+  id: URShift(System.Int32,System.Int32)
+  parent: Reportman.Drawing.QRCodeEncoder
+  langs:
+  - csharp
+  - vb
+  name: URShift(int, int)
+  nameWithType: QRCodeEncoder.URShift(int, int)
+  fullName: Reportman.Drawing.QRCodeEncoder.URShift(int, int)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Drawing
+  summary: Performs an unsigned bitwise right shift with the specified number
+  example: []
+  syntax:
+    content: public static int URShift(int number, int bits)
+    parameters:
+    - id: number
+      type: System.Int32
+      description: Number to operate on
+    - id: bits
+      type: System.Int32
+      description: Ammount of bits to shift
+    return:
+      type: System.Int32
+      description: The resulting number from the shift operation
+    content.vb: Public Shared Function URShift(number As Integer, bits As Integer) As Integer
+  overload: Reportman.Drawing.QRCodeEncoder.URShift*
+  nameWithType.vb: QRCodeEncoder.URShift(Integer, Integer)
+  fullName.vb: Reportman.Drawing.QRCodeEncoder.URShift(Integer, Integer)
+  name.vb: URShift(Integer, Integer)
+- uid: Reportman.Drawing.QRCodeEncoder.AsciiStringToByteArray(System.String)
+  commentId: M:Reportman.Drawing.QRCodeEncoder.AsciiStringToByteArray(System.String)
+  id: AsciiStringToByteArray(System.String)
+  parent: Reportman.Drawing.QRCodeEncoder
+  langs:
+  - csharp
+  - vb
+  name: AsciiStringToByteArray(string)
+  nameWithType: QRCodeEncoder.AsciiStringToByteArray(string)
+  fullName: Reportman.Drawing.QRCodeEncoder.AsciiStringToByteArray(string)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static byte[] AsciiStringToByteArray(string str)
+    parameters:
+    - id: str
+      type: System.String
+    return:
+      type: System.Byte[]
+    content.vb: Public Shared Function AsciiStringToByteArray(str As String) As Byte()
+  overload: Reportman.Drawing.QRCodeEncoder.AsciiStringToByteArray*
+  nameWithType.vb: QRCodeEncoder.AsciiStringToByteArray(String)
+  fullName.vb: Reportman.Drawing.QRCodeEncoder.AsciiStringToByteArray(String)
+  name.vb: AsciiStringToByteArray(String)
+- uid: Reportman.Drawing.QRCodeEncoder.UnicodeStringToByteArray(System.String)
+  commentId: M:Reportman.Drawing.QRCodeEncoder.UnicodeStringToByteArray(System.String)
+  id: UnicodeStringToByteArray(System.String)
+  parent: Reportman.Drawing.QRCodeEncoder
+  langs:
+  - csharp
+  - vb
+  name: UnicodeStringToByteArray(string)
+  nameWithType: QRCodeEncoder.UnicodeStringToByteArray(string)
+  fullName: Reportman.Drawing.QRCodeEncoder.UnicodeStringToByteArray(string)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static byte[] UnicodeStringToByteArray(string str)
+    parameters:
+    - id: str
+      type: System.String
+    return:
+      type: System.Byte[]
+    content.vb: Public Shared Function UnicodeStringToByteArray(str As String) As Byte()
+  overload: Reportman.Drawing.QRCodeEncoder.UnicodeStringToByteArray*
+  nameWithType.vb: QRCodeEncoder.UnicodeStringToByteArray(String)
+  fullName.vb: Reportman.Drawing.QRCodeEncoder.UnicodeStringToByteArray(String)
+  name.vb: UnicodeStringToByteArray(String)
+- uid: Reportman.Drawing.QRCodeEncoder.FromASCIIByteArray(System.Byte[])
+  commentId: M:Reportman.Drawing.QRCodeEncoder.FromASCIIByteArray(System.Byte[])
+  id: FromASCIIByteArray(System.Byte[])
+  parent: Reportman.Drawing.QRCodeEncoder
+  langs:
+  - csharp
+  - vb
+  name: FromASCIIByteArray(byte[])
+  nameWithType: QRCodeEncoder.FromASCIIByteArray(byte[])
+  fullName: Reportman.Drawing.QRCodeEncoder.FromASCIIByteArray(byte[])
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string FromASCIIByteArray(byte[] characters)
+    parameters:
+    - id: characters
+      type: System.Byte[]
+    return:
+      type: System.String
+    content.vb: Public Shared Function FromASCIIByteArray(characters As Byte()) As String
+  overload: Reportman.Drawing.QRCodeEncoder.FromASCIIByteArray*
+  nameWithType.vb: QRCodeEncoder.FromASCIIByteArray(Byte())
+  fullName.vb: Reportman.Drawing.QRCodeEncoder.FromASCIIByteArray(Byte())
+  name.vb: FromASCIIByteArray(Byte())
+- uid: Reportman.Drawing.QRCodeEncoder.FromUnicodeByteArray(System.Byte[])
+  commentId: M:Reportman.Drawing.QRCodeEncoder.FromUnicodeByteArray(System.Byte[])
+  id: FromUnicodeByteArray(System.Byte[])
+  parent: Reportman.Drawing.QRCodeEncoder
+  langs:
+  - csharp
+  - vb
+  name: FromUnicodeByteArray(byte[])
+  nameWithType: QRCodeEncoder.FromUnicodeByteArray(byte[])
+  fullName: Reportman.Drawing.QRCodeEncoder.FromUnicodeByteArray(byte[])
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string FromUnicodeByteArray(byte[] characters)
+    parameters:
+    - id: characters
+      type: System.Byte[]
+    return:
+      type: System.String
+    content.vb: Public Shared Function FromUnicodeByteArray(characters As Byte()) As String
+  overload: Reportman.Drawing.QRCodeEncoder.FromUnicodeByteArray*
+  nameWithType.vb: QRCodeEncoder.FromUnicodeByteArray(Byte())
+  fullName.vb: Reportman.Drawing.QRCodeEncoder.FromUnicodeByteArray(Byte())
+  name.vb: FromUnicodeByteArray(Byte())
+- uid: Reportman.Drawing.QRCodeEncoder.IsUniCode(System.String)
+  commentId: M:Reportman.Drawing.QRCodeEncoder.IsUniCode(System.String)
+  id: IsUniCode(System.String)
+  parent: Reportman.Drawing.QRCodeEncoder
+  langs:
+  - csharp
+  - vb
+  name: IsUniCode(string)
+  nameWithType: QRCodeEncoder.IsUniCode(string)
+  fullName: Reportman.Drawing.QRCodeEncoder.IsUniCode(string)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static bool IsUniCode(string value)
+    parameters:
+    - id: value
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function IsUniCode(value As String) As Boolean
+  overload: Reportman.Drawing.QRCodeEncoder.IsUniCode*
+  nameWithType.vb: QRCodeEncoder.IsUniCode(String)
+  fullName.vb: Reportman.Drawing.QRCodeEncoder.IsUniCode(String)
+  name.vb: IsUniCode(String)
+- uid: Reportman.Drawing.QRCodeEncoder.QRCodeErrorCorrect
+  commentId: P:Reportman.Drawing.QRCodeEncoder.QRCodeErrorCorrect
+  id: QRCodeErrorCorrect
+  parent: Reportman.Drawing.QRCodeEncoder
+  langs:
+  - csharp
+  - vb
+  name: QRCodeErrorCorrect
+  nameWithType: QRCodeEncoder.QRCodeErrorCorrect
+  fullName: Reportman.Drawing.QRCodeEncoder.QRCodeErrorCorrect
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Drawing
+  syntax:
+    content: public virtual QRCodeEncoder.ERROR_CORRECTION QRCodeErrorCorrect { get; set; }
+    parameters: []
+    return:
+      type: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION
+    content.vb: Public Overridable Property QRCodeErrorCorrect As QRCodeEncoder.ERROR_CORRECTION
+  overload: Reportman.Drawing.QRCodeEncoder.QRCodeErrorCorrect*
+- uid: Reportman.Drawing.QRCodeEncoder.QRCodeVersion
+  commentId: P:Reportman.Drawing.QRCodeEncoder.QRCodeVersion
+  id: QRCodeVersion
+  parent: Reportman.Drawing.QRCodeEncoder
+  langs:
+  - csharp
+  - vb
+  name: QRCodeVersion
+  nameWithType: QRCodeEncoder.QRCodeVersion
+  fullName: Reportman.Drawing.QRCodeEncoder.QRCodeVersion
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Drawing
+  syntax:
+    content: public virtual int QRCodeVersion { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Overridable Property QRCodeVersion As Integer
+  overload: Reportman.Drawing.QRCodeEncoder.QRCodeVersion*
+- uid: Reportman.Drawing.QRCodeEncoder.QRCodeEncodeMode
+  commentId: P:Reportman.Drawing.QRCodeEncoder.QRCodeEncodeMode
+  id: QRCodeEncodeMode
+  parent: Reportman.Drawing.QRCodeEncoder
+  langs:
+  - csharp
+  - vb
+  name: QRCodeEncodeMode
+  nameWithType: QRCodeEncoder.QRCodeEncodeMode
+  fullName: Reportman.Drawing.QRCodeEncoder.QRCodeEncodeMode
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Drawing
+  syntax:
+    content: public virtual QRCodeEncoder.ENCODE_MODE QRCodeEncodeMode { get; set; }
+    parameters: []
+    return:
+      type: Reportman.Drawing.QRCodeEncoder.ENCODE_MODE
+    content.vb: Public Overridable Property QRCodeEncodeMode As QRCodeEncoder.ENCODE_MODE
+  overload: Reportman.Drawing.QRCodeEncoder.QRCodeEncodeMode*
+- uid: Reportman.Drawing.QRCodeEncoder.QRCodeScale
+  commentId: P:Reportman.Drawing.QRCodeEncoder.QRCodeScale
+  id: QRCodeScale
+  parent: Reportman.Drawing.QRCodeEncoder
+  langs:
+  - csharp
+  - vb
+  name: QRCodeScale
+  nameWithType: QRCodeEncoder.QRCodeScale
+  fullName: Reportman.Drawing.QRCodeEncoder.QRCodeScale
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Drawing
+  syntax:
+    content: public virtual int QRCodeScale { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Overridable Property QRCodeScale As Integer
+  overload: Reportman.Drawing.QRCodeEncoder.QRCodeScale*
+- uid: Reportman.Drawing.QRCodeEncoder.QRCodeBackgroundColor
+  commentId: P:Reportman.Drawing.QRCodeEncoder.QRCodeBackgroundColor
+  id: QRCodeBackgroundColor
+  parent: Reportman.Drawing.QRCodeEncoder
+  langs:
+  - csharp
+  - vb
+  name: QRCodeBackgroundColor
+  nameWithType: QRCodeEncoder.QRCodeBackgroundColor
+  fullName: Reportman.Drawing.QRCodeEncoder.QRCodeBackgroundColor
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Drawing
+  syntax:
+    content: public virtual Color QRCodeBackgroundColor { get; set; }
+    parameters: []
+    return:
+      type: System.Drawing.Color
+    content.vb: Public Overridable Property QRCodeBackgroundColor As Color
+  overload: Reportman.Drawing.QRCodeEncoder.QRCodeBackgroundColor*
+- uid: Reportman.Drawing.QRCodeEncoder.QRCodeForegroundColor
+  commentId: P:Reportman.Drawing.QRCodeEncoder.QRCodeForegroundColor
+  id: QRCodeForegroundColor
+  parent: Reportman.Drawing.QRCodeEncoder
+  langs:
+  - csharp
+  - vb
+  name: QRCodeForegroundColor
+  nameWithType: QRCodeEncoder.QRCodeForegroundColor
+  fullName: Reportman.Drawing.QRCodeEncoder.QRCodeForegroundColor
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Drawing
+  syntax:
+    content: public virtual Color QRCodeForegroundColor { get; set; }
+    parameters: []
+    return:
+      type: System.Drawing.Color
+    content.vb: Public Overridable Property QRCodeForegroundColor As Color
+  overload: Reportman.Drawing.QRCodeEncoder.QRCodeForegroundColor*
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.QRCodeEncoder.#ctor*
+  commentId: Overload:Reportman.Drawing.QRCodeEncoder.#ctor
+  isExternal: true
+  href: Reportman.Drawing.QRCodeEncoder.html#Reportman_Drawing_QRCodeEncoder__ctor
+  name: QRCodeEncoder
+  nameWithType: QRCodeEncoder.QRCodeEncoder
+  fullName: Reportman.Drawing.QRCodeEncoder.QRCodeEncoder
+  nameWithType.vb: QRCodeEncoder.New
+  fullName.vb: Reportman.Drawing.QRCodeEncoder.New
+  name.vb: New
+- uid: Reportman.Drawing.QRCodeEncoder.setStructureappend*
+  commentId: Overload:Reportman.Drawing.QRCodeEncoder.setStructureappend
+  isExternal: true
+  href: Reportman.Drawing.QRCodeEncoder.html#Reportman_Drawing_QRCodeEncoder_setStructureappend_System_Int32_System_Int32_System_Int32_
+  name: setStructureappend
+  nameWithType: QRCodeEncoder.setStructureappend
+  fullName: Reportman.Drawing.QRCodeEncoder.setStructureappend
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Reportman.Drawing.QRCodeEncoder.calStructureappendParity*
+  commentId: Overload:Reportman.Drawing.QRCodeEncoder.calStructureappendParity
+  isExternal: true
+  href: Reportman.Drawing.QRCodeEncoder.html#Reportman_Drawing_QRCodeEncoder_calStructureappendParity_System_SByte___
+  name: calStructureappendParity
+  nameWithType: QRCodeEncoder.calStructureappendParity
+  fullName: Reportman.Drawing.QRCodeEncoder.calStructureappendParity
+- uid: System.SByte[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.sbyte
+  name: sbyte[]
+  nameWithType: sbyte[]
+  fullName: sbyte[]
+  nameWithType.vb: SByte()
+  fullName.vb: SByte()
+  name.vb: SByte()
+  spec.csharp:
+  - uid: System.SByte
+    name: sbyte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.sbyte
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.SByte
+    name: SByte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.sbyte
+  - name: (
+  - name: )
+- uid: Reportman.Drawing.QRCodeEncoder.WriteStackTrace*
+  commentId: Overload:Reportman.Drawing.QRCodeEncoder.WriteStackTrace
+  isExternal: true
+  href: Reportman.Drawing.QRCodeEncoder.html#Reportman_Drawing_QRCodeEncoder_WriteStackTrace_System_Exception_System_IO_TextWriter_
+  name: WriteStackTrace
+  nameWithType: QRCodeEncoder.WriteStackTrace
+  fullName: Reportman.Drawing.QRCodeEncoder.WriteStackTrace
+- uid: System.Exception
+  commentId: T:System.Exception
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.exception
+  name: Exception
+  nameWithType: Exception
+  fullName: System.Exception
+- uid: System.IO.TextWriter
+  commentId: T:System.IO.TextWriter
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.textwriter
+  name: TextWriter
+  nameWithType: TextWriter
+  fullName: System.IO.TextWriter
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+- uid: Reportman.Drawing.QRCodeEncoder.calQrcode*
+  commentId: Overload:Reportman.Drawing.QRCodeEncoder.calQrcode
+  isExternal: true
+  href: Reportman.Drawing.QRCodeEncoder.html#Reportman_Drawing_QRCodeEncoder_calQrcode_System_Byte___
+  name: calQrcode
+  nameWithType: QRCodeEncoder.calQrcode
+  fullName: Reportman.Drawing.QRCodeEncoder.calQrcode
+- uid: System.Byte[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte[]
+  nameWithType: byte[]
+  fullName: byte[]
+  nameWithType.vb: Byte()
+  fullName.vb: Byte()
+  name.vb: Byte()
+  spec.csharp:
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: (
+  - name: )
+- uid: System.Boolean[][]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool[][]
+  nameWithType: bool[][]
+  fullName: bool[][]
+  nameWithType.vb: Boolean()()
+  fullName.vb: Boolean()()
+  name.vb: Boolean()()
+  spec.csharp:
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '['
+  - name: ']'
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: (
+  - name: )
+  - name: (
+  - name: )
+- uid: Reportman.Drawing.QRCodeEncoder.ReadInput*
+  commentId: Overload:Reportman.Drawing.QRCodeEncoder.ReadInput
+  isExternal: true
+  href: Reportman.Drawing.QRCodeEncoder.html#Reportman_Drawing_QRCodeEncoder_ReadInput_System_IO_Stream_System_SByte___System_Int32_System_Int32_
+  name: ReadInput
+  nameWithType: QRCodeEncoder.ReadInput
+  fullName: Reportman.Drawing.QRCodeEncoder.ReadInput
+- uid: System.IO.Stream
+  commentId: T:System.IO.Stream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  name: Stream
+  nameWithType: Stream
+  fullName: System.IO.Stream
+- uid: Reportman.Drawing.QRCodeEncoder.EncodeInMetafile*
+  commentId: Overload:Reportman.Drawing.QRCodeEncoder.EncodeInMetafile
+  isExternal: true
+  href: Reportman.Drawing.QRCodeEncoder.html#Reportman_Drawing_QRCodeEncoder_EncodeInMetafile_Reportman_Drawing_MetaFile_System_Int32_System_Int32_System_Int32_System_String_System_Text_Encoding_
+  name: EncodeInMetafile
+  nameWithType: QRCodeEncoder.EncodeInMetafile
+  fullName: Reportman.Drawing.QRCodeEncoder.EncodeInMetafile
+- uid: Reportman.Drawing.MetaFile
+  commentId: T:Reportman.Drawing.MetaFile
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html
+  name: MetaFile
+  nameWithType: MetaFile
+  fullName: Reportman.Drawing.MetaFile
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Text.Encoding
+  commentId: T:System.Text.Encoding
+  parent: System.Text
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.text.encoding
+  name: Encoding
+  nameWithType: Encoding
+  fullName: System.Text.Encoding
+- uid: System.Text
+  commentId: N:System.Text
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Text
+  nameWithType: System.Text
+  fullName: System.Text
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+- uid: Reportman.Drawing.QRCodeEncoder.URShift*
+  commentId: Overload:Reportman.Drawing.QRCodeEncoder.URShift
+  isExternal: true
+  href: Reportman.Drawing.QRCodeEncoder.html#Reportman_Drawing_QRCodeEncoder_URShift_System_Int32_System_Int32_
+  name: URShift
+  nameWithType: QRCodeEncoder.URShift
+  fullName: Reportman.Drawing.QRCodeEncoder.URShift
+- uid: Reportman.Drawing.QRCodeEncoder.AsciiStringToByteArray*
+  commentId: Overload:Reportman.Drawing.QRCodeEncoder.AsciiStringToByteArray
+  isExternal: true
+  href: Reportman.Drawing.QRCodeEncoder.html#Reportman_Drawing_QRCodeEncoder_AsciiStringToByteArray_System_String_
+  name: AsciiStringToByteArray
+  nameWithType: QRCodeEncoder.AsciiStringToByteArray
+  fullName: Reportman.Drawing.QRCodeEncoder.AsciiStringToByteArray
+- uid: Reportman.Drawing.QRCodeEncoder.UnicodeStringToByteArray*
+  commentId: Overload:Reportman.Drawing.QRCodeEncoder.UnicodeStringToByteArray
+  isExternal: true
+  href: Reportman.Drawing.QRCodeEncoder.html#Reportman_Drawing_QRCodeEncoder_UnicodeStringToByteArray_System_String_
+  name: UnicodeStringToByteArray
+  nameWithType: QRCodeEncoder.UnicodeStringToByteArray
+  fullName: Reportman.Drawing.QRCodeEncoder.UnicodeStringToByteArray
+- uid: Reportman.Drawing.QRCodeEncoder.FromASCIIByteArray*
+  commentId: Overload:Reportman.Drawing.QRCodeEncoder.FromASCIIByteArray
+  isExternal: true
+  href: Reportman.Drawing.QRCodeEncoder.html#Reportman_Drawing_QRCodeEncoder_FromASCIIByteArray_System_Byte___
+  name: FromASCIIByteArray
+  nameWithType: QRCodeEncoder.FromASCIIByteArray
+  fullName: Reportman.Drawing.QRCodeEncoder.FromASCIIByteArray
+- uid: Reportman.Drawing.QRCodeEncoder.FromUnicodeByteArray*
+  commentId: Overload:Reportman.Drawing.QRCodeEncoder.FromUnicodeByteArray
+  isExternal: true
+  href: Reportman.Drawing.QRCodeEncoder.html#Reportman_Drawing_QRCodeEncoder_FromUnicodeByteArray_System_Byte___
+  name: FromUnicodeByteArray
+  nameWithType: QRCodeEncoder.FromUnicodeByteArray
+  fullName: Reportman.Drawing.QRCodeEncoder.FromUnicodeByteArray
+- uid: Reportman.Drawing.QRCodeEncoder.IsUniCode*
+  commentId: Overload:Reportman.Drawing.QRCodeEncoder.IsUniCode
+  isExternal: true
+  href: Reportman.Drawing.QRCodeEncoder.html#Reportman_Drawing_QRCodeEncoder_IsUniCode_System_String_
+  name: IsUniCode
+  nameWithType: QRCodeEncoder.IsUniCode
+  fullName: Reportman.Drawing.QRCodeEncoder.IsUniCode
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Reportman.Drawing.QRCodeEncoder.QRCodeErrorCorrect*
+  commentId: Overload:Reportman.Drawing.QRCodeEncoder.QRCodeErrorCorrect
+  isExternal: true
+  href: Reportman.Drawing.QRCodeEncoder.html#Reportman_Drawing_QRCodeEncoder_QRCodeErrorCorrect
+  name: QRCodeErrorCorrect
+  nameWithType: QRCodeEncoder.QRCodeErrorCorrect
+  fullName: Reportman.Drawing.QRCodeEncoder.QRCodeErrorCorrect
+- uid: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION
+  commentId: T:Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.QRCodeEncoder.html
+  name: QRCodeEncoder.ERROR_CORRECTION
+  nameWithType: QRCodeEncoder.ERROR_CORRECTION
+  fullName: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION
+  spec.csharp:
+  - uid: Reportman.Drawing.QRCodeEncoder
+    name: QRCodeEncoder
+    isExternal: true
+    href: Reportman.Drawing.QRCodeEncoder.html
+  - name: .
+  - uid: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION
+    name: ERROR_CORRECTION
+    isExternal: true
+    href: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION.html
+  spec.vb:
+  - uid: Reportman.Drawing.QRCodeEncoder
+    name: QRCodeEncoder
+    isExternal: true
+    href: Reportman.Drawing.QRCodeEncoder.html
+  - name: .
+  - uid: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION
+    name: ERROR_CORRECTION
+    isExternal: true
+    href: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION.html
+- uid: Reportman.Drawing.QRCodeEncoder.QRCodeVersion*
+  commentId: Overload:Reportman.Drawing.QRCodeEncoder.QRCodeVersion
+  isExternal: true
+  href: Reportman.Drawing.QRCodeEncoder.html#Reportman_Drawing_QRCodeEncoder_QRCodeVersion
+  name: QRCodeVersion
+  nameWithType: QRCodeEncoder.QRCodeVersion
+  fullName: Reportman.Drawing.QRCodeEncoder.QRCodeVersion
+- uid: Reportman.Drawing.QRCodeEncoder.QRCodeEncodeMode*
+  commentId: Overload:Reportman.Drawing.QRCodeEncoder.QRCodeEncodeMode
+  isExternal: true
+  href: Reportman.Drawing.QRCodeEncoder.html#Reportman_Drawing_QRCodeEncoder_QRCodeEncodeMode
+  name: QRCodeEncodeMode
+  nameWithType: QRCodeEncoder.QRCodeEncodeMode
+  fullName: Reportman.Drawing.QRCodeEncoder.QRCodeEncodeMode
+- uid: Reportman.Drawing.QRCodeEncoder.ENCODE_MODE
+  commentId: T:Reportman.Drawing.QRCodeEncoder.ENCODE_MODE
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.QRCodeEncoder.html
+  name: QRCodeEncoder.ENCODE_MODE
+  nameWithType: QRCodeEncoder.ENCODE_MODE
+  fullName: Reportman.Drawing.QRCodeEncoder.ENCODE_MODE
+  spec.csharp:
+  - uid: Reportman.Drawing.QRCodeEncoder
+    name: QRCodeEncoder
+    isExternal: true
+    href: Reportman.Drawing.QRCodeEncoder.html
+  - name: .
+  - uid: Reportman.Drawing.QRCodeEncoder.ENCODE_MODE
+    name: ENCODE_MODE
+    isExternal: true
+    href: Reportman.Drawing.QRCodeEncoder.ENCODE_MODE.html
+  spec.vb:
+  - uid: Reportman.Drawing.QRCodeEncoder
+    name: QRCodeEncoder
+    isExternal: true
+    href: Reportman.Drawing.QRCodeEncoder.html
+  - name: .
+  - uid: Reportman.Drawing.QRCodeEncoder.ENCODE_MODE
+    name: ENCODE_MODE
+    isExternal: true
+    href: Reportman.Drawing.QRCodeEncoder.ENCODE_MODE.html
+- uid: Reportman.Drawing.QRCodeEncoder.QRCodeScale*
+  commentId: Overload:Reportman.Drawing.QRCodeEncoder.QRCodeScale
+  isExternal: true
+  href: Reportman.Drawing.QRCodeEncoder.html#Reportman_Drawing_QRCodeEncoder_QRCodeScale
+  name: QRCodeScale
+  nameWithType: QRCodeEncoder.QRCodeScale
+  fullName: Reportman.Drawing.QRCodeEncoder.QRCodeScale
+- uid: Reportman.Drawing.QRCodeEncoder.QRCodeBackgroundColor*
+  commentId: Overload:Reportman.Drawing.QRCodeEncoder.QRCodeBackgroundColor
+  isExternal: true
+  href: Reportman.Drawing.QRCodeEncoder.html#Reportman_Drawing_QRCodeEncoder_QRCodeBackgroundColor
+  name: QRCodeBackgroundColor
+  nameWithType: QRCodeEncoder.QRCodeBackgroundColor
+  fullName: Reportman.Drawing.QRCodeEncoder.QRCodeBackgroundColor
+- uid: System.Drawing.Color
+  commentId: T:System.Drawing.Color
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.color
+  name: Color
+  nameWithType: Color
+  fullName: System.Drawing.Color
+- uid: System.Drawing
+  commentId: N:System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Drawing
+  nameWithType: System.Drawing
+  fullName: System.Drawing
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+- uid: Reportman.Drawing.QRCodeEncoder.QRCodeForegroundColor*
+  commentId: Overload:Reportman.Drawing.QRCodeEncoder.QRCodeForegroundColor
+  isExternal: true
+  href: Reportman.Drawing.QRCodeEncoder.html#Reportman_Drawing_QRCodeEncoder_QRCodeForegroundColor
+  name: QRCodeForegroundColor
+  nameWithType: QRCodeEncoder.QRCodeForegroundColor
+  fullName: Reportman.Drawing.QRCodeEncoder.QRCodeForegroundColor

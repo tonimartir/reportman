@@ -1,0 +1,256 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.ShowSearchWindowEvent
+  commentId: T:Reportman.Drawing.Forms.ShowSearchWindowEvent
+  id: ShowSearchWindowEvent
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.ShowSearchWindowEvent.#ctor(System.Object,System.IntPtr)
+  - Reportman.Drawing.Forms.ShowSearchWindowEvent.BeginInvoke(System.Object,Reportman.Drawing.Forms.ShowSearchWindowArgs,System.AsyncCallback,System.Object)
+  - Reportman.Drawing.Forms.ShowSearchWindowEvent.EndInvoke(System.IAsyncResult)
+  - Reportman.Drawing.Forms.ShowSearchWindowEvent.Invoke(System.Object,Reportman.Drawing.Forms.ShowSearchWindowArgs)
+  langs:
+  - csharp
+  - vb
+  name: ShowSearchWindowEvent
+  nameWithType: ShowSearchWindowEvent
+  fullName: Reportman.Drawing.Forms.ShowSearchWindowEvent
+  type: Delegate
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public delegate void ShowSearchWindowEvent(object sender, ShowSearchWindowArgs args)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: Reportman.Drawing.Forms.ShowSearchWindowArgs
+    content.vb: Public Delegate Sub ShowSearchWindowEvent(sender As Object, args As ShowSearchWindowArgs)
+- uid: Reportman.Drawing.Forms.ShowSearchWindowEvent.#ctor(System.Object,System.IntPtr)
+  commentId: M:Reportman.Drawing.Forms.ShowSearchWindowEvent.#ctor(System.Object,System.IntPtr)
+  id: '#ctor(System.Object,System.IntPtr)'
+  parent: Reportman.Drawing.Forms.ShowSearchWindowEvent
+  langs:
+  - csharp
+  - vb
+  name: ShowSearchWindowEvent(object, nint)
+  nameWithType: ShowSearchWindowEvent.ShowSearchWindowEvent(object, nint)
+  fullName: Reportman.Drawing.Forms.ShowSearchWindowEvent.ShowSearchWindowEvent(object, nint)
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public ShowSearchWindowEvent(object @object, nint method)
+    parameters:
+    - id: object
+      type: System.Object
+    - id: method
+      type: System.IntPtr
+    content.vb: Public Sub New([object] As Object, method As IntPtr)
+  overload: Reportman.Drawing.Forms.ShowSearchWindowEvent.#ctor*
+  nameWithType.vb: ShowSearchWindowEvent.New(Object, IntPtr)
+  fullName.vb: Reportman.Drawing.Forms.ShowSearchWindowEvent.New(Object, System.IntPtr)
+  name.vb: New(Object, IntPtr)
+- uid: Reportman.Drawing.Forms.ShowSearchWindowEvent.Invoke(System.Object,Reportman.Drawing.Forms.ShowSearchWindowArgs)
+  commentId: M:Reportman.Drawing.Forms.ShowSearchWindowEvent.Invoke(System.Object,Reportman.Drawing.Forms.ShowSearchWindowArgs)
+  id: Invoke(System.Object,Reportman.Drawing.Forms.ShowSearchWindowArgs)
+  parent: Reportman.Drawing.Forms.ShowSearchWindowEvent
+  langs:
+  - csharp
+  - vb
+  name: Invoke(object, ShowSearchWindowArgs)
+  nameWithType: ShowSearchWindowEvent.Invoke(object, ShowSearchWindowArgs)
+  fullName: Reportman.Drawing.Forms.ShowSearchWindowEvent.Invoke(object, Reportman.Drawing.Forms.ShowSearchWindowArgs)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual void Invoke(object sender, ShowSearchWindowArgs args)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: Reportman.Drawing.Forms.ShowSearchWindowArgs
+    content.vb: Public Overridable Sub Invoke(sender As Object, args As ShowSearchWindowArgs)
+  overload: Reportman.Drawing.Forms.ShowSearchWindowEvent.Invoke*
+  nameWithType.vb: ShowSearchWindowEvent.Invoke(Object, ShowSearchWindowArgs)
+  fullName.vb: Reportman.Drawing.Forms.ShowSearchWindowEvent.Invoke(Object, Reportman.Drawing.Forms.ShowSearchWindowArgs)
+  name.vb: Invoke(Object, ShowSearchWindowArgs)
+- uid: Reportman.Drawing.Forms.ShowSearchWindowEvent.BeginInvoke(System.Object,Reportman.Drawing.Forms.ShowSearchWindowArgs,System.AsyncCallback,System.Object)
+  commentId: M:Reportman.Drawing.Forms.ShowSearchWindowEvent.BeginInvoke(System.Object,Reportman.Drawing.Forms.ShowSearchWindowArgs,System.AsyncCallback,System.Object)
+  id: BeginInvoke(System.Object,Reportman.Drawing.Forms.ShowSearchWindowArgs,System.AsyncCallback,System.Object)
+  parent: Reportman.Drawing.Forms.ShowSearchWindowEvent
+  langs:
+  - csharp
+  - vb
+  name: BeginInvoke(object, ShowSearchWindowArgs, AsyncCallback, object)
+  nameWithType: ShowSearchWindowEvent.BeginInvoke(object, ShowSearchWindowArgs, AsyncCallback, object)
+  fullName: Reportman.Drawing.Forms.ShowSearchWindowEvent.BeginInvoke(object, Reportman.Drawing.Forms.ShowSearchWindowArgs, System.AsyncCallback, object)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual IAsyncResult BeginInvoke(object sender, ShowSearchWindowArgs args, AsyncCallback callback, object @object)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: Reportman.Drawing.Forms.ShowSearchWindowArgs
+    - id: callback
+      type: System.AsyncCallback
+    - id: object
+      type: System.Object
+    return:
+      type: System.IAsyncResult
+    content.vb: Public Overridable Function BeginInvoke(sender As Object, args As ShowSearchWindowArgs, callback As AsyncCallback, [object] As Object) As IAsyncResult
+  overload: Reportman.Drawing.Forms.ShowSearchWindowEvent.BeginInvoke*
+  nameWithType.vb: ShowSearchWindowEvent.BeginInvoke(Object, ShowSearchWindowArgs, AsyncCallback, Object)
+  fullName.vb: Reportman.Drawing.Forms.ShowSearchWindowEvent.BeginInvoke(Object, Reportman.Drawing.Forms.ShowSearchWindowArgs, System.AsyncCallback, Object)
+  name.vb: BeginInvoke(Object, ShowSearchWindowArgs, AsyncCallback, Object)
+- uid: Reportman.Drawing.Forms.ShowSearchWindowEvent.EndInvoke(System.IAsyncResult)
+  commentId: M:Reportman.Drawing.Forms.ShowSearchWindowEvent.EndInvoke(System.IAsyncResult)
+  id: EndInvoke(System.IAsyncResult)
+  parent: Reportman.Drawing.Forms.ShowSearchWindowEvent
+  langs:
+  - csharp
+  - vb
+  name: EndInvoke(IAsyncResult)
+  nameWithType: ShowSearchWindowEvent.EndInvoke(IAsyncResult)
+  fullName: Reportman.Drawing.Forms.ShowSearchWindowEvent.EndInvoke(System.IAsyncResult)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual void EndInvoke(IAsyncResult result)
+    parameters:
+    - id: result
+      type: System.IAsyncResult
+    content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
+  overload: Reportman.Drawing.Forms.ShowSearchWindowEvent.EndInvoke*
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Reportman.Drawing.Forms.ShowSearchWindowArgs
+  commentId: T:Reportman.Drawing.Forms.ShowSearchWindowArgs
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.ShowSearchWindowArgs.html
+  name: ShowSearchWindowArgs
+  nameWithType: ShowSearchWindowArgs
+  fullName: Reportman.Drawing.Forms.ShowSearchWindowArgs
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.Forms.ShowSearchWindowEvent.#ctor*
+  commentId: Overload:Reportman.Drawing.Forms.ShowSearchWindowEvent.#ctor
+  isExternal: true
+  href: Reportman.Drawing.Forms.ShowSearchWindowEvent.html#Reportman_Drawing_Forms_ShowSearchWindowEvent__ctor_System_Object_System_IntPtr_
+  name: ShowSearchWindowEvent
+  nameWithType: ShowSearchWindowEvent.ShowSearchWindowEvent
+  fullName: Reportman.Drawing.Forms.ShowSearchWindowEvent.ShowSearchWindowEvent
+  nameWithType.vb: ShowSearchWindowEvent.New
+  fullName.vb: Reportman.Drawing.Forms.ShowSearchWindowEvent.New
+  name.vb: New
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: Reportman.Drawing.Forms.ShowSearchWindowEvent.Invoke*
+  commentId: Overload:Reportman.Drawing.Forms.ShowSearchWindowEvent.Invoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.ShowSearchWindowEvent.html#Reportman_Drawing_Forms_ShowSearchWindowEvent_Invoke_System_Object_Reportman_Drawing_Forms_ShowSearchWindowArgs_
+  name: Invoke
+  nameWithType: ShowSearchWindowEvent.Invoke
+  fullName: Reportman.Drawing.Forms.ShowSearchWindowEvent.Invoke
+- uid: Reportman.Drawing.Forms.ShowSearchWindowEvent.BeginInvoke*
+  commentId: Overload:Reportman.Drawing.Forms.ShowSearchWindowEvent.BeginInvoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.ShowSearchWindowEvent.html#Reportman_Drawing_Forms_ShowSearchWindowEvent_BeginInvoke_System_Object_Reportman_Drawing_Forms_ShowSearchWindowArgs_System_AsyncCallback_System_Object_
+  name: BeginInvoke
+  nameWithType: ShowSearchWindowEvent.BeginInvoke
+  fullName: Reportman.Drawing.Forms.ShowSearchWindowEvent.BeginInvoke
+- uid: System.AsyncCallback
+  commentId: T:System.AsyncCallback
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.asynccallback
+  name: AsyncCallback
+  nameWithType: AsyncCallback
+  fullName: System.AsyncCallback
+- uid: System.IAsyncResult
+  commentId: T:System.IAsyncResult
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncresult
+  name: IAsyncResult
+  nameWithType: IAsyncResult
+  fullName: System.IAsyncResult
+- uid: Reportman.Drawing.Forms.ShowSearchWindowEvent.EndInvoke*
+  commentId: Overload:Reportman.Drawing.Forms.ShowSearchWindowEvent.EndInvoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.ShowSearchWindowEvent.html#Reportman_Drawing_Forms_ShowSearchWindowEvent_EndInvoke_System_IAsyncResult_
+  name: EndInvoke
+  nameWithType: ShowSearchWindowEvent.EndInvoke
+  fullName: Reportman.Drawing.Forms.ShowSearchWindowEvent.EndInvoke

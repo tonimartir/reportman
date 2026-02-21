@@ -1,0 +1,268 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.ShapeType
+  commentId: T:Reportman.Drawing.ShapeType
+  id: ShapeType
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.ShapeType.Circle
+  - Reportman.Drawing.ShapeType.Ellipse
+  - Reportman.Drawing.ShapeType.HorzLine
+  - Reportman.Drawing.ShapeType.Oblique1
+  - Reportman.Drawing.ShapeType.Oblique2
+  - Reportman.Drawing.ShapeType.Rectangle
+  - Reportman.Drawing.ShapeType.RoundRect
+  - Reportman.Drawing.ShapeType.RoundSquare
+  - Reportman.Drawing.ShapeType.Square
+  - Reportman.Drawing.ShapeType.VertLine
+  langs:
+  - csharp
+  - vb
+  name: ShapeType
+  nameWithType: ShapeType
+  fullName: Reportman.Drawing.ShapeType
+  type: Enum
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Available shape types
+  example: []
+  syntax:
+    content: public enum ShapeType
+    content.vb: Public Enum ShapeType
+- uid: Reportman.Drawing.ShapeType.Rectangle
+  commentId: F:Reportman.Drawing.ShapeType.Rectangle
+  id: Rectangle
+  parent: Reportman.Drawing.ShapeType
+  langs:
+  - csharp
+  - vb
+  name: Rectangle
+  nameWithType: ShapeType.Rectangle
+  fullName: Reportman.Drawing.ShapeType.Rectangle
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Rectangle
+  example: []
+  syntax:
+    content: Rectangle = 0
+    return:
+      type: Reportman.Drawing.ShapeType
+- uid: Reportman.Drawing.ShapeType.Square
+  commentId: F:Reportman.Drawing.ShapeType.Square
+  id: Square
+  parent: Reportman.Drawing.ShapeType
+  langs:
+  - csharp
+  - vb
+  name: Square
+  nameWithType: ShapeType.Square
+  fullName: Reportman.Drawing.ShapeType.Square
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Square, if the bounding box is a rectangle the smaller distance will be used to draw the rectangle
+  example: []
+  syntax:
+    content: Square = 1
+    return:
+      type: Reportman.Drawing.ShapeType
+- uid: Reportman.Drawing.ShapeType.RoundRect
+  commentId: F:Reportman.Drawing.ShapeType.RoundRect
+  id: RoundRect
+  parent: Reportman.Drawing.ShapeType
+  langs:
+  - csharp
+  - vb
+  name: RoundRect
+  nameWithType: ShapeType.RoundRect
+  fullName: Reportman.Drawing.ShapeType.RoundRect
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Rectangle with rounded corners
+  example: []
+  syntax:
+    content: RoundRect = 2
+    return:
+      type: Reportman.Drawing.ShapeType
+- uid: Reportman.Drawing.ShapeType.RoundSquare
+  commentId: F:Reportman.Drawing.ShapeType.RoundSquare
+  id: RoundSquare
+  parent: Reportman.Drawing.ShapeType
+  langs:
+  - csharp
+  - vb
+  name: RoundSquare
+  nameWithType: ShapeType.RoundSquare
+  fullName: Reportman.Drawing.ShapeType.RoundSquare
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Like square but with rounded corners
+  example: []
+  syntax:
+    content: RoundSquare = 3
+    return:
+      type: Reportman.Drawing.ShapeType
+- uid: Reportman.Drawing.ShapeType.Ellipse
+  commentId: F:Reportman.Drawing.ShapeType.Ellipse
+  id: Ellipse
+  parent: Reportman.Drawing.ShapeType
+  langs:
+  - csharp
+  - vb
+  name: Ellipse
+  nameWithType: ShapeType.Ellipse
+  fullName: Reportman.Drawing.ShapeType.Ellipse
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: An ellipse will be drawn filling the bounding box
+  example: []
+  syntax:
+    content: Ellipse = 4
+    return:
+      type: Reportman.Drawing.ShapeType
+- uid: Reportman.Drawing.ShapeType.Circle
+  commentId: F:Reportman.Drawing.ShapeType.Circle
+  id: Circle
+  parent: Reportman.Drawing.ShapeType
+  langs:
+  - csharp
+  - vb
+  name: Circle
+  nameWithType: ShapeType.Circle
+  fullName: Reportman.Drawing.ShapeType.Circle
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: A circle will be drawn filling the bounding box, smaller distance will be used when the bounding box is a rectangle
+  example: []
+  syntax:
+    content: Circle = 5
+    return:
+      type: Reportman.Drawing.ShapeType
+- uid: Reportman.Drawing.ShapeType.HorzLine
+  commentId: F:Reportman.Drawing.ShapeType.HorzLine
+  id: HorzLine
+  parent: Reportman.Drawing.ShapeType
+  langs:
+  - csharp
+  - vb
+  name: HorzLine
+  nameWithType: ShapeType.HorzLine
+  fullName: Reportman.Drawing.ShapeType.HorzLine
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Horizontal line
+  example: []
+  syntax:
+    content: HorzLine = 6
+    return:
+      type: Reportman.Drawing.ShapeType
+- uid: Reportman.Drawing.ShapeType.VertLine
+  commentId: F:Reportman.Drawing.ShapeType.VertLine
+  id: VertLine
+  parent: Reportman.Drawing.ShapeType
+  langs:
+  - csharp
+  - vb
+  name: VertLine
+  nameWithType: ShapeType.VertLine
+  fullName: Reportman.Drawing.ShapeType.VertLine
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Vertical line
+  example: []
+  syntax:
+    content: VertLine = 7
+    return:
+      type: Reportman.Drawing.ShapeType
+- uid: Reportman.Drawing.ShapeType.Oblique1
+  commentId: F:Reportman.Drawing.ShapeType.Oblique1
+  id: Oblique1
+  parent: Reportman.Drawing.ShapeType
+  langs:
+  - csharp
+  - vb
+  name: Oblique1
+  nameWithType: ShapeType.Oblique1
+  fullName: Reportman.Drawing.ShapeType.Oblique1
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Oblique line
+  example: []
+  syntax:
+    content: Oblique1 = 8
+    return:
+      type: Reportman.Drawing.ShapeType
+- uid: Reportman.Drawing.ShapeType.Oblique2
+  commentId: F:Reportman.Drawing.ShapeType.Oblique2
+  id: Oblique2
+  parent: Reportman.Drawing.ShapeType
+  langs:
+  - csharp
+  - vb
+  name: Oblique2
+  nameWithType: ShapeType.Oblique2
+  fullName: Reportman.Drawing.ShapeType.Oblique2
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Oblique reversed line
+  example: []
+  syntax:
+    content: Oblique2 = 9
+    return:
+      type: Reportman.Drawing.ShapeType
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.ShapeType
+  commentId: T:Reportman.Drawing.ShapeType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.ShapeType.html
+  name: ShapeType
+  nameWithType: ShapeType
+  fullName: Reportman.Drawing.ShapeType

@@ -1,0 +1,219 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip
+  commentId: T:Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip
+  id: TabControlAdvanced.ImageStrip
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.Close
+  - Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.DropDown
+  - Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.Error
+  - Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.LeftDisabled
+  - Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.LeftEnabled
+  - Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.RightDisabled
+  - Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.RightEnabled
+  langs:
+  - csharp
+  - vb
+  name: TabControlAdvanced.ImageStrip
+  nameWithType: TabControlAdvanced.ImageStrip
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip
+  type: Enum
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: protected enum TabControlAdvanced.ImageStrip
+    content.vb: Protected Enum TabControlAdvanced.ImageStrip
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.LeftEnabled
+  commentId: F:Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.LeftEnabled
+  id: LeftEnabled
+  parent: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip
+  langs:
+  - csharp
+  - vb
+  name: LeftEnabled
+  nameWithType: TabControlAdvanced.ImageStrip.LeftEnabled
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.LeftEnabled
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: LeftEnabled = 0
+    return:
+      type: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.LeftDisabled
+  commentId: F:Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.LeftDisabled
+  id: LeftDisabled
+  parent: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip
+  langs:
+  - csharp
+  - vb
+  name: LeftDisabled
+  nameWithType: TabControlAdvanced.ImageStrip.LeftDisabled
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.LeftDisabled
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: LeftDisabled = 1
+    return:
+      type: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.RightEnabled
+  commentId: F:Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.RightEnabled
+  id: RightEnabled
+  parent: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip
+  langs:
+  - csharp
+  - vb
+  name: RightEnabled
+  nameWithType: TabControlAdvanced.ImageStrip.RightEnabled
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.RightEnabled
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: RightEnabled = 2
+    return:
+      type: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.RightDisabled
+  commentId: F:Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.RightDisabled
+  id: RightDisabled
+  parent: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip
+  langs:
+  - csharp
+  - vb
+  name: RightDisabled
+  nameWithType: TabControlAdvanced.ImageStrip.RightDisabled
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.RightDisabled
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: RightDisabled = 3
+    return:
+      type: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.Close
+  commentId: F:Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.Close
+  id: Close
+  parent: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip
+  langs:
+  - csharp
+  - vb
+  name: Close
+  nameWithType: TabControlAdvanced.ImageStrip.Close
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.Close
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Close = 4
+    return:
+      type: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.Error
+  commentId: F:Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.Error
+  id: Error
+  parent: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip
+  langs:
+  - csharp
+  - vb
+  name: Error
+  nameWithType: TabControlAdvanced.ImageStrip.Error
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.Error
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Error = 5
+    return:
+      type: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.DropDown
+  commentId: F:Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.DropDown
+  id: DropDown
+  parent: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip
+  langs:
+  - csharp
+  - vb
+  name: DropDown
+  nameWithType: TabControlAdvanced.ImageStrip.DropDown
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.DropDown
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: DropDown = 6
+    return:
+      type: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip
+  commentId: T:Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  name: TabControlAdvanced.ImageStrip
+  nameWithType: TabControlAdvanced.ImageStrip
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced
+    name: TabControlAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip
+    name: ImageStrip
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced
+    name: TabControlAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip
+    name: ImageStrip
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.html

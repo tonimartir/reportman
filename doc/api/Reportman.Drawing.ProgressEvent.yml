@@ -1,0 +1,246 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.ProgressEvent
+  commentId: T:Reportman.Drawing.ProgressEvent
+  id: ProgressEvent
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.ProgressEvent.#ctor(System.Object,System.IntPtr)
+  - Reportman.Drawing.ProgressEvent.BeginInvoke(System.Object,Reportman.Drawing.ProgressArgs,System.AsyncCallback,System.Object)
+  - Reportman.Drawing.ProgressEvent.EndInvoke(System.IAsyncResult)
+  - Reportman.Drawing.ProgressEvent.Invoke(System.Object,Reportman.Drawing.ProgressArgs)
+  langs:
+  - csharp
+  - vb
+  name: ProgressEvent
+  nameWithType: ProgressEvent
+  fullName: Reportman.Drawing.ProgressEvent
+  type: Delegate
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public delegate void ProgressEvent(object sender, ProgressArgs args)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: Reportman.Drawing.ProgressArgs
+    content.vb: Public Delegate Sub ProgressEvent(sender As Object, args As ProgressArgs)
+- uid: Reportman.Drawing.ProgressEvent.#ctor(System.Object,System.IntPtr)
+  commentId: M:Reportman.Drawing.ProgressEvent.#ctor(System.Object,System.IntPtr)
+  id: '#ctor(System.Object,System.IntPtr)'
+  parent: Reportman.Drawing.ProgressEvent
+  langs:
+  - csharp
+  - vb
+  name: ProgressEvent(object, nint)
+  nameWithType: ProgressEvent.ProgressEvent(object, nint)
+  fullName: Reportman.Drawing.ProgressEvent.ProgressEvent(object, nint)
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public ProgressEvent(object @object, nint method)
+    parameters:
+    - id: object
+      type: System.Object
+    - id: method
+      type: System.IntPtr
+    content.vb: Public Sub New([object] As Object, method As IntPtr)
+  overload: Reportman.Drawing.ProgressEvent.#ctor*
+  nameWithType.vb: ProgressEvent.New(Object, IntPtr)
+  fullName.vb: Reportman.Drawing.ProgressEvent.New(Object, System.IntPtr)
+  name.vb: New(Object, IntPtr)
+- uid: Reportman.Drawing.ProgressEvent.Invoke(System.Object,Reportman.Drawing.ProgressArgs)
+  commentId: M:Reportman.Drawing.ProgressEvent.Invoke(System.Object,Reportman.Drawing.ProgressArgs)
+  id: Invoke(System.Object,Reportman.Drawing.ProgressArgs)
+  parent: Reportman.Drawing.ProgressEvent
+  langs:
+  - csharp
+  - vb
+  name: Invoke(object, ProgressArgs)
+  nameWithType: ProgressEvent.Invoke(object, ProgressArgs)
+  fullName: Reportman.Drawing.ProgressEvent.Invoke(object, Reportman.Drawing.ProgressArgs)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public virtual void Invoke(object sender, ProgressArgs args)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: Reportman.Drawing.ProgressArgs
+    content.vb: Public Overridable Sub Invoke(sender As Object, args As ProgressArgs)
+  overload: Reportman.Drawing.ProgressEvent.Invoke*
+  nameWithType.vb: ProgressEvent.Invoke(Object, ProgressArgs)
+  fullName.vb: Reportman.Drawing.ProgressEvent.Invoke(Object, Reportman.Drawing.ProgressArgs)
+  name.vb: Invoke(Object, ProgressArgs)
+- uid: Reportman.Drawing.ProgressEvent.BeginInvoke(System.Object,Reportman.Drawing.ProgressArgs,System.AsyncCallback,System.Object)
+  commentId: M:Reportman.Drawing.ProgressEvent.BeginInvoke(System.Object,Reportman.Drawing.ProgressArgs,System.AsyncCallback,System.Object)
+  id: BeginInvoke(System.Object,Reportman.Drawing.ProgressArgs,System.AsyncCallback,System.Object)
+  parent: Reportman.Drawing.ProgressEvent
+  langs:
+  - csharp
+  - vb
+  name: BeginInvoke(object, ProgressArgs, AsyncCallback, object)
+  nameWithType: ProgressEvent.BeginInvoke(object, ProgressArgs, AsyncCallback, object)
+  fullName: Reportman.Drawing.ProgressEvent.BeginInvoke(object, Reportman.Drawing.ProgressArgs, System.AsyncCallback, object)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public virtual IAsyncResult BeginInvoke(object sender, ProgressArgs args, AsyncCallback callback, object @object)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: Reportman.Drawing.ProgressArgs
+    - id: callback
+      type: System.AsyncCallback
+    - id: object
+      type: System.Object
+    return:
+      type: System.IAsyncResult
+    content.vb: Public Overridable Function BeginInvoke(sender As Object, args As ProgressArgs, callback As AsyncCallback, [object] As Object) As IAsyncResult
+  overload: Reportman.Drawing.ProgressEvent.BeginInvoke*
+  nameWithType.vb: ProgressEvent.BeginInvoke(Object, ProgressArgs, AsyncCallback, Object)
+  fullName.vb: Reportman.Drawing.ProgressEvent.BeginInvoke(Object, Reportman.Drawing.ProgressArgs, System.AsyncCallback, Object)
+  name.vb: BeginInvoke(Object, ProgressArgs, AsyncCallback, Object)
+- uid: Reportman.Drawing.ProgressEvent.EndInvoke(System.IAsyncResult)
+  commentId: M:Reportman.Drawing.ProgressEvent.EndInvoke(System.IAsyncResult)
+  id: EndInvoke(System.IAsyncResult)
+  parent: Reportman.Drawing.ProgressEvent
+  langs:
+  - csharp
+  - vb
+  name: EndInvoke(IAsyncResult)
+  nameWithType: ProgressEvent.EndInvoke(IAsyncResult)
+  fullName: Reportman.Drawing.ProgressEvent.EndInvoke(System.IAsyncResult)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public virtual void EndInvoke(IAsyncResult result)
+    parameters:
+    - id: result
+      type: System.IAsyncResult
+    content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
+  overload: Reportman.Drawing.ProgressEvent.EndInvoke*
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Reportman.Drawing.ProgressArgs
+  commentId: T:Reportman.Drawing.ProgressArgs
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.ProgressArgs.html
+  name: ProgressArgs
+  nameWithType: ProgressArgs
+  fullName: Reportman.Drawing.ProgressArgs
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.ProgressEvent.#ctor*
+  commentId: Overload:Reportman.Drawing.ProgressEvent.#ctor
+  isExternal: true
+  href: Reportman.Drawing.ProgressEvent.html#Reportman_Drawing_ProgressEvent__ctor_System_Object_System_IntPtr_
+  name: ProgressEvent
+  nameWithType: ProgressEvent.ProgressEvent
+  fullName: Reportman.Drawing.ProgressEvent.ProgressEvent
+  nameWithType.vb: ProgressEvent.New
+  fullName.vb: Reportman.Drawing.ProgressEvent.New
+  name.vb: New
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: Reportman.Drawing.ProgressEvent.Invoke*
+  commentId: Overload:Reportman.Drawing.ProgressEvent.Invoke
+  isExternal: true
+  href: Reportman.Drawing.ProgressEvent.html#Reportman_Drawing_ProgressEvent_Invoke_System_Object_Reportman_Drawing_ProgressArgs_
+  name: Invoke
+  nameWithType: ProgressEvent.Invoke
+  fullName: Reportman.Drawing.ProgressEvent.Invoke
+- uid: Reportman.Drawing.ProgressEvent.BeginInvoke*
+  commentId: Overload:Reportman.Drawing.ProgressEvent.BeginInvoke
+  isExternal: true
+  href: Reportman.Drawing.ProgressEvent.html#Reportman_Drawing_ProgressEvent_BeginInvoke_System_Object_Reportman_Drawing_ProgressArgs_System_AsyncCallback_System_Object_
+  name: BeginInvoke
+  nameWithType: ProgressEvent.BeginInvoke
+  fullName: Reportman.Drawing.ProgressEvent.BeginInvoke
+- uid: System.AsyncCallback
+  commentId: T:System.AsyncCallback
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.asynccallback
+  name: AsyncCallback
+  nameWithType: AsyncCallback
+  fullName: System.AsyncCallback
+- uid: System.IAsyncResult
+  commentId: T:System.IAsyncResult
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncresult
+  name: IAsyncResult
+  nameWithType: IAsyncResult
+  fullName: System.IAsyncResult
+- uid: Reportman.Drawing.ProgressEvent.EndInvoke*
+  commentId: Overload:Reportman.Drawing.ProgressEvent.EndInvoke
+  isExternal: true
+  href: Reportman.Drawing.ProgressEvent.html#Reportman_Drawing_ProgressEvent_EndInvoke_System_IAsyncResult_
+  name: EndInvoke
+  nameWithType: ProgressEvent.EndInvoke
+  fullName: Reportman.Drawing.ProgressEvent.EndInvoke

@@ -1,0 +1,1397 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.PrinterSelectType
+  commentId: T:Reportman.Drawing.PrinterSelectType
+  id: PrinterSelectType
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.PrinterSelectType.Characterprinter
+  - Reportman.Drawing.PrinterSelectType.DefaultPrinter
+  - Reportman.Drawing.PrinterSelectType.Graphicprinter
+  - Reportman.Drawing.PrinterSelectType.PlainFullPrinter
+  - Reportman.Drawing.PrinterSelectType.PlainPrinter
+  - Reportman.Drawing.PrinterSelectType.Printer1
+  - Reportman.Drawing.PrinterSelectType.Printer10
+  - Reportman.Drawing.PrinterSelectType.Printer11
+  - Reportman.Drawing.PrinterSelectType.Printer12
+  - Reportman.Drawing.PrinterSelectType.Printer13
+  - Reportman.Drawing.PrinterSelectType.Printer14
+  - Reportman.Drawing.PrinterSelectType.Printer15
+  - Reportman.Drawing.PrinterSelectType.Printer16
+  - Reportman.Drawing.PrinterSelectType.Printer17
+  - Reportman.Drawing.PrinterSelectType.Printer18
+  - Reportman.Drawing.PrinterSelectType.Printer19
+  - Reportman.Drawing.PrinterSelectType.Printer2
+  - Reportman.Drawing.PrinterSelectType.Printer20
+  - Reportman.Drawing.PrinterSelectType.Printer21
+  - Reportman.Drawing.PrinterSelectType.Printer22
+  - Reportman.Drawing.PrinterSelectType.Printer23
+  - Reportman.Drawing.PrinterSelectType.Printer24
+  - Reportman.Drawing.PrinterSelectType.Printer25
+  - Reportman.Drawing.PrinterSelectType.Printer26
+  - Reportman.Drawing.PrinterSelectType.Printer27
+  - Reportman.Drawing.PrinterSelectType.Printer28
+  - Reportman.Drawing.PrinterSelectType.Printer29
+  - Reportman.Drawing.PrinterSelectType.Printer3
+  - Reportman.Drawing.PrinterSelectType.Printer30
+  - Reportman.Drawing.PrinterSelectType.Printer31
+  - Reportman.Drawing.PrinterSelectType.Printer32
+  - Reportman.Drawing.PrinterSelectType.Printer33
+  - Reportman.Drawing.PrinterSelectType.Printer34
+  - Reportman.Drawing.PrinterSelectType.Printer35
+  - Reportman.Drawing.PrinterSelectType.Printer36
+  - Reportman.Drawing.PrinterSelectType.Printer37
+  - Reportman.Drawing.PrinterSelectType.Printer38
+  - Reportman.Drawing.PrinterSelectType.Printer39
+  - Reportman.Drawing.PrinterSelectType.Printer4
+  - Reportman.Drawing.PrinterSelectType.Printer40
+  - Reportman.Drawing.PrinterSelectType.Printer41
+  - Reportman.Drawing.PrinterSelectType.Printer42
+  - Reportman.Drawing.PrinterSelectType.Printer43
+  - Reportman.Drawing.PrinterSelectType.Printer44
+  - Reportman.Drawing.PrinterSelectType.Printer45
+  - Reportman.Drawing.PrinterSelectType.Printer46
+  - Reportman.Drawing.PrinterSelectType.Printer47
+  - Reportman.Drawing.PrinterSelectType.Printer48
+  - Reportman.Drawing.PrinterSelectType.Printer49
+  - Reportman.Drawing.PrinterSelectType.Printer5
+  - Reportman.Drawing.PrinterSelectType.Printer50
+  - Reportman.Drawing.PrinterSelectType.Printer6
+  - Reportman.Drawing.PrinterSelectType.Printer7
+  - Reportman.Drawing.PrinterSelectType.Printer8
+  - Reportman.Drawing.PrinterSelectType.Printer9
+  - Reportman.Drawing.PrinterSelectType.ReportPrinter
+  - Reportman.Drawing.PrinterSelectType.ReportPrinter2
+  - Reportman.Drawing.PrinterSelectType.TicketPrinter
+  - Reportman.Drawing.PrinterSelectType.TicketPrinter2
+  - Reportman.Drawing.PrinterSelectType.UserPrinter1
+  - Reportman.Drawing.PrinterSelectType.UserPrinter2
+  - Reportman.Drawing.PrinterSelectType.UserPrinter3
+  - Reportman.Drawing.PrinterSelectType.UserPrinter4
+  - Reportman.Drawing.PrinterSelectType.UserPrinter5
+  - Reportman.Drawing.PrinterSelectType.UserPrinter6
+  - Reportman.Drawing.PrinterSelectType.UserPrinter7
+  - Reportman.Drawing.PrinterSelectType.UserPrinter8
+  - Reportman.Drawing.PrinterSelectType.UserPrinter9
+  langs:
+  - csharp
+  - vb
+  name: PrinterSelectType
+  nameWithType: PrinterSelectType
+  fullName: Reportman.Drawing.PrinterSelectType
+  type: Enum
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    Report Manager allow automatic printer selection when processing reports, so you can assign
+
+    a predefined printer to a report, then assign on each computer a diferent printer to predefined
+
+    printers.
+  remarks: >-
+    This is useful for automatic output to ticket printer without the need for showing a print dialog
+
+    or setting it as default printer.
+  example: []
+  syntax:
+    content: public enum PrinterSelectType
+    content.vb: Public Enum PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.DefaultPrinter
+  commentId: F:Reportman.Drawing.PrinterSelectType.DefaultPrinter
+  id: DefaultPrinter
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: DefaultPrinter
+  nameWithType: PrinterSelectType.DefaultPrinter
+  fullName: Reportman.Drawing.PrinterSelectType.DefaultPrinter
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Default printer
+  example: []
+  syntax:
+    content: DefaultPrinter = 0
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.ReportPrinter
+  commentId: F:Reportman.Drawing.PrinterSelectType.ReportPrinter
+  id: ReportPrinter
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: ReportPrinter
+  nameWithType: PrinterSelectType.ReportPrinter
+  fullName: Reportman.Drawing.PrinterSelectType.ReportPrinter
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Report Printer, user predefined printer
+  example: []
+  syntax:
+    content: ReportPrinter = 1
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.TicketPrinter
+  commentId: F:Reportman.Drawing.PrinterSelectType.TicketPrinter
+  id: TicketPrinter
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: TicketPrinter
+  nameWithType: PrinterSelectType.TicketPrinter
+  fullName: Reportman.Drawing.PrinterSelectType.TicketPrinter
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Ticket Printer, user predefined printer, by default the text driver TM-U210 will be used
+  example: []
+  syntax:
+    content: TicketPrinter = 2
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Graphicprinter
+  commentId: F:Reportman.Drawing.PrinterSelectType.Graphicprinter
+  id: Graphicprinter
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Graphicprinter
+  nameWithType: PrinterSelectType.Graphicprinter
+  fullName: Reportman.Drawing.PrinterSelectType.Graphicprinter
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Graphic Printer, user predefined printer
+  example: []
+  syntax:
+    content: Graphicprinter = 3
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Characterprinter
+  commentId: F:Reportman.Drawing.PrinterSelectType.Characterprinter
+  id: Characterprinter
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Characterprinter
+  nameWithType: PrinterSelectType.Characterprinter
+  fullName: Reportman.Drawing.PrinterSelectType.Characterprinter
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Character Printer, user predefined printer, by default the text driver EPSON will be used
+  example: []
+  syntax:
+    content: Characterprinter = 4
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.ReportPrinter2
+  commentId: F:Reportman.Drawing.PrinterSelectType.ReportPrinter2
+  id: ReportPrinter2
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: ReportPrinter2
+  nameWithType: PrinterSelectType.ReportPrinter2
+  fullName: Reportman.Drawing.PrinterSelectType.ReportPrinter2
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Report Printer 2, user predefined printer
+  example: []
+  syntax:
+    content: ReportPrinter2 = 5
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.TicketPrinter2
+  commentId: F:Reportman.Drawing.PrinterSelectType.TicketPrinter2
+  id: TicketPrinter2
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: TicketPrinter2
+  nameWithType: PrinterSelectType.TicketPrinter2
+  fullName: Reportman.Drawing.PrinterSelectType.TicketPrinter2
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Ticket Printer 2, user predefined printer, by default the text driver TM-U210 will be used
+  example: []
+  syntax:
+    content: TicketPrinter2 = 6
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.UserPrinter1
+  commentId: F:Reportman.Drawing.PrinterSelectType.UserPrinter1
+  id: UserPrinter1
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: UserPrinter1
+  nameWithType: PrinterSelectType.UserPrinter1
+  fullName: Reportman.Drawing.PrinterSelectType.UserPrinter1
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: User Printer 1, user predefined printer
+  example: []
+  syntax:
+    content: UserPrinter1 = 7
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.UserPrinter2
+  commentId: F:Reportman.Drawing.PrinterSelectType.UserPrinter2
+  id: UserPrinter2
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: UserPrinter2
+  nameWithType: PrinterSelectType.UserPrinter2
+  fullName: Reportman.Drawing.PrinterSelectType.UserPrinter2
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: User Printer 2, user predefined printer
+  example: []
+  syntax:
+    content: UserPrinter2 = 8
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.UserPrinter3
+  commentId: F:Reportman.Drawing.PrinterSelectType.UserPrinter3
+  id: UserPrinter3
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: UserPrinter3
+  nameWithType: PrinterSelectType.UserPrinter3
+  fullName: Reportman.Drawing.PrinterSelectType.UserPrinter3
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: User Printer 3, user predefined printer
+  example: []
+  syntax:
+    content: UserPrinter3 = 9
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.UserPrinter4
+  commentId: F:Reportman.Drawing.PrinterSelectType.UserPrinter4
+  id: UserPrinter4
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: UserPrinter4
+  nameWithType: PrinterSelectType.UserPrinter4
+  fullName: Reportman.Drawing.PrinterSelectType.UserPrinter4
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: User Printer 4, user predefined printer
+  example: []
+  syntax:
+    content: UserPrinter4 = 10
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.UserPrinter5
+  commentId: F:Reportman.Drawing.PrinterSelectType.UserPrinter5
+  id: UserPrinter5
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: UserPrinter5
+  nameWithType: PrinterSelectType.UserPrinter5
+  fullName: Reportman.Drawing.PrinterSelectType.UserPrinter5
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: User Printer 5, user predefined printer
+  example: []
+  syntax:
+    content: UserPrinter5 = 11
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.UserPrinter6
+  commentId: F:Reportman.Drawing.PrinterSelectType.UserPrinter6
+  id: UserPrinter6
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: UserPrinter6
+  nameWithType: PrinterSelectType.UserPrinter6
+  fullName: Reportman.Drawing.PrinterSelectType.UserPrinter6
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: User Printer 6, user predefined printer
+  example: []
+  syntax:
+    content: UserPrinter6 = 12
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.UserPrinter7
+  commentId: F:Reportman.Drawing.PrinterSelectType.UserPrinter7
+  id: UserPrinter7
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: UserPrinter7
+  nameWithType: PrinterSelectType.UserPrinter7
+  fullName: Reportman.Drawing.PrinterSelectType.UserPrinter7
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: User Printer 7, user predefined printer
+  example: []
+  syntax:
+    content: UserPrinter7 = 13
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.UserPrinter8
+  commentId: F:Reportman.Drawing.PrinterSelectType.UserPrinter8
+  id: UserPrinter8
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: UserPrinter8
+  nameWithType: PrinterSelectType.UserPrinter8
+  fullName: Reportman.Drawing.PrinterSelectType.UserPrinter8
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: User Printer 8, user predefined printer
+  example: []
+  syntax:
+    content: UserPrinter8 = 14
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.UserPrinter9
+  commentId: F:Reportman.Drawing.PrinterSelectType.UserPrinter9
+  id: UserPrinter9
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: UserPrinter9
+  nameWithType: PrinterSelectType.UserPrinter9
+  fullName: Reportman.Drawing.PrinterSelectType.UserPrinter9
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: User Printer 9, user predefined printer
+  example: []
+  syntax:
+    content: UserPrinter9 = 15
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.PlainPrinter
+  commentId: F:Reportman.Drawing.PrinterSelectType.PlainPrinter
+  id: PlainPrinter
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: PlainPrinter
+  nameWithType: PrinterSelectType.PlainPrinter
+  fullName: Reportman.Drawing.PrinterSelectType.PlainPrinter
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Plain Printer, by default PLAIN text driver will be used
+  example: []
+  syntax:
+    content: PlainPrinter = 16
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.PlainFullPrinter
+  commentId: F:Reportman.Drawing.PrinterSelectType.PlainFullPrinter
+  id: PlainFullPrinter
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: PlainFullPrinter
+  nameWithType: PrinterSelectType.PlainFullPrinter
+  fullName: Reportman.Drawing.PrinterSelectType.PlainFullPrinter
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Plain Full Printer, by default PLAIN text driver without form feed will be used
+  example: []
+  syntax:
+    content: PlainFullPrinter = 17
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer1
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer1
+  id: Printer1
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer1
+  nameWithType: PrinterSelectType.Printer1
+  fullName: Reportman.Drawing.PrinterSelectType.Printer1
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Other printers
+  example: []
+  syntax:
+    content: Printer1 = 18
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer2
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer2
+  id: Printer2
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer2
+  nameWithType: PrinterSelectType.Printer2
+  fullName: Reportman.Drawing.PrinterSelectType.Printer2
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer2 = 19
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer3
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer3
+  id: Printer3
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer3
+  nameWithType: PrinterSelectType.Printer3
+  fullName: Reportman.Drawing.PrinterSelectType.Printer3
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer3 = 20
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer4
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer4
+  id: Printer4
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer4
+  nameWithType: PrinterSelectType.Printer4
+  fullName: Reportman.Drawing.PrinterSelectType.Printer4
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer4 = 21
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer5
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer5
+  id: Printer5
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer5
+  nameWithType: PrinterSelectType.Printer5
+  fullName: Reportman.Drawing.PrinterSelectType.Printer5
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer5 = 22
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer6
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer6
+  id: Printer6
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer6
+  nameWithType: PrinterSelectType.Printer6
+  fullName: Reportman.Drawing.PrinterSelectType.Printer6
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer6 = 23
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer7
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer7
+  id: Printer7
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer7
+  nameWithType: PrinterSelectType.Printer7
+  fullName: Reportman.Drawing.PrinterSelectType.Printer7
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer7 = 24
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer8
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer8
+  id: Printer8
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer8
+  nameWithType: PrinterSelectType.Printer8
+  fullName: Reportman.Drawing.PrinterSelectType.Printer8
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer8 = 25
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer9
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer9
+  id: Printer9
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer9
+  nameWithType: PrinterSelectType.Printer9
+  fullName: Reportman.Drawing.PrinterSelectType.Printer9
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer9 = 26
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer10
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer10
+  id: Printer10
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer10
+  nameWithType: PrinterSelectType.Printer10
+  fullName: Reportman.Drawing.PrinterSelectType.Printer10
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer10 = 27
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer11
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer11
+  id: Printer11
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer11
+  nameWithType: PrinterSelectType.Printer11
+  fullName: Reportman.Drawing.PrinterSelectType.Printer11
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer11 = 28
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer12
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer12
+  id: Printer12
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer12
+  nameWithType: PrinterSelectType.Printer12
+  fullName: Reportman.Drawing.PrinterSelectType.Printer12
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer12 = 29
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer13
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer13
+  id: Printer13
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer13
+  nameWithType: PrinterSelectType.Printer13
+  fullName: Reportman.Drawing.PrinterSelectType.Printer13
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer13 = 30
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer14
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer14
+  id: Printer14
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer14
+  nameWithType: PrinterSelectType.Printer14
+  fullName: Reportman.Drawing.PrinterSelectType.Printer14
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer14 = 31
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer15
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer15
+  id: Printer15
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer15
+  nameWithType: PrinterSelectType.Printer15
+  fullName: Reportman.Drawing.PrinterSelectType.Printer15
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer15 = 32
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer16
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer16
+  id: Printer16
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer16
+  nameWithType: PrinterSelectType.Printer16
+  fullName: Reportman.Drawing.PrinterSelectType.Printer16
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer16 = 33
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer17
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer17
+  id: Printer17
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer17
+  nameWithType: PrinterSelectType.Printer17
+  fullName: Reportman.Drawing.PrinterSelectType.Printer17
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer17 = 34
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer18
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer18
+  id: Printer18
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer18
+  nameWithType: PrinterSelectType.Printer18
+  fullName: Reportman.Drawing.PrinterSelectType.Printer18
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer18 = 35
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer19
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer19
+  id: Printer19
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer19
+  nameWithType: PrinterSelectType.Printer19
+  fullName: Reportman.Drawing.PrinterSelectType.Printer19
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer19 = 36
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer20
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer20
+  id: Printer20
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer20
+  nameWithType: PrinterSelectType.Printer20
+  fullName: Reportman.Drawing.PrinterSelectType.Printer20
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer20 = 37
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer21
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer21
+  id: Printer21
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer21
+  nameWithType: PrinterSelectType.Printer21
+  fullName: Reportman.Drawing.PrinterSelectType.Printer21
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer21 = 38
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer22
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer22
+  id: Printer22
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer22
+  nameWithType: PrinterSelectType.Printer22
+  fullName: Reportman.Drawing.PrinterSelectType.Printer22
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer22 = 39
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer23
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer23
+  id: Printer23
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer23
+  nameWithType: PrinterSelectType.Printer23
+  fullName: Reportman.Drawing.PrinterSelectType.Printer23
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer23 = 40
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer24
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer24
+  id: Printer24
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer24
+  nameWithType: PrinterSelectType.Printer24
+  fullName: Reportman.Drawing.PrinterSelectType.Printer24
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer24 = 41
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer25
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer25
+  id: Printer25
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer25
+  nameWithType: PrinterSelectType.Printer25
+  fullName: Reportman.Drawing.PrinterSelectType.Printer25
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer25 = 42
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer26
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer26
+  id: Printer26
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer26
+  nameWithType: PrinterSelectType.Printer26
+  fullName: Reportman.Drawing.PrinterSelectType.Printer26
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer26 = 43
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer27
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer27
+  id: Printer27
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer27
+  nameWithType: PrinterSelectType.Printer27
+  fullName: Reportman.Drawing.PrinterSelectType.Printer27
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer27 = 44
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer28
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer28
+  id: Printer28
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer28
+  nameWithType: PrinterSelectType.Printer28
+  fullName: Reportman.Drawing.PrinterSelectType.Printer28
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer28 = 45
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer29
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer29
+  id: Printer29
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer29
+  nameWithType: PrinterSelectType.Printer29
+  fullName: Reportman.Drawing.PrinterSelectType.Printer29
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer29 = 46
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer30
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer30
+  id: Printer30
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer30
+  nameWithType: PrinterSelectType.Printer30
+  fullName: Reportman.Drawing.PrinterSelectType.Printer30
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer30 = 47
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer31
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer31
+  id: Printer31
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer31
+  nameWithType: PrinterSelectType.Printer31
+  fullName: Reportman.Drawing.PrinterSelectType.Printer31
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer31 = 48
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer32
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer32
+  id: Printer32
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer32
+  nameWithType: PrinterSelectType.Printer32
+  fullName: Reportman.Drawing.PrinterSelectType.Printer32
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer32 = 49
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer33
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer33
+  id: Printer33
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer33
+  nameWithType: PrinterSelectType.Printer33
+  fullName: Reportman.Drawing.PrinterSelectType.Printer33
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer33 = 50
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer34
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer34
+  id: Printer34
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer34
+  nameWithType: PrinterSelectType.Printer34
+  fullName: Reportman.Drawing.PrinterSelectType.Printer34
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer34 = 51
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer35
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer35
+  id: Printer35
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer35
+  nameWithType: PrinterSelectType.Printer35
+  fullName: Reportman.Drawing.PrinterSelectType.Printer35
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer35 = 52
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer36
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer36
+  id: Printer36
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer36
+  nameWithType: PrinterSelectType.Printer36
+  fullName: Reportman.Drawing.PrinterSelectType.Printer36
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer36 = 53
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer37
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer37
+  id: Printer37
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer37
+  nameWithType: PrinterSelectType.Printer37
+  fullName: Reportman.Drawing.PrinterSelectType.Printer37
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer37 = 54
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer38
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer38
+  id: Printer38
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer38
+  nameWithType: PrinterSelectType.Printer38
+  fullName: Reportman.Drawing.PrinterSelectType.Printer38
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer38 = 55
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer39
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer39
+  id: Printer39
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer39
+  nameWithType: PrinterSelectType.Printer39
+  fullName: Reportman.Drawing.PrinterSelectType.Printer39
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer39 = 56
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer40
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer40
+  id: Printer40
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer40
+  nameWithType: PrinterSelectType.Printer40
+  fullName: Reportman.Drawing.PrinterSelectType.Printer40
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer40 = 57
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer41
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer41
+  id: Printer41
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer41
+  nameWithType: PrinterSelectType.Printer41
+  fullName: Reportman.Drawing.PrinterSelectType.Printer41
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer41 = 58
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer42
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer42
+  id: Printer42
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer42
+  nameWithType: PrinterSelectType.Printer42
+  fullName: Reportman.Drawing.PrinterSelectType.Printer42
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer42 = 59
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer43
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer43
+  id: Printer43
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer43
+  nameWithType: PrinterSelectType.Printer43
+  fullName: Reportman.Drawing.PrinterSelectType.Printer43
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer43 = 60
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer44
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer44
+  id: Printer44
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer44
+  nameWithType: PrinterSelectType.Printer44
+  fullName: Reportman.Drawing.PrinterSelectType.Printer44
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer44 = 61
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer45
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer45
+  id: Printer45
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer45
+  nameWithType: PrinterSelectType.Printer45
+  fullName: Reportman.Drawing.PrinterSelectType.Printer45
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer45 = 62
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer46
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer46
+  id: Printer46
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer46
+  nameWithType: PrinterSelectType.Printer46
+  fullName: Reportman.Drawing.PrinterSelectType.Printer46
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer46 = 63
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer47
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer47
+  id: Printer47
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer47
+  nameWithType: PrinterSelectType.Printer47
+  fullName: Reportman.Drawing.PrinterSelectType.Printer47
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer47 = 64
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer48
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer48
+  id: Printer48
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer48
+  nameWithType: PrinterSelectType.Printer48
+  fullName: Reportman.Drawing.PrinterSelectType.Printer48
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer48 = 65
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer49
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer49
+  id: Printer49
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer49
+  nameWithType: PrinterSelectType.Printer49
+  fullName: Reportman.Drawing.PrinterSelectType.Printer49
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer49 = 66
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterSelectType.Printer50
+  commentId: F:Reportman.Drawing.PrinterSelectType.Printer50
+  id: Printer50
+  parent: Reportman.Drawing.PrinterSelectType
+  langs:
+  - csharp
+  - vb
+  name: Printer50
+  nameWithType: PrinterSelectType.Printer50
+  fullName: Reportman.Drawing.PrinterSelectType.Printer50
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Printer50 = 67
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.PrinterSelectType
+  commentId: T:Reportman.Drawing.PrinterSelectType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PrinterSelectType.html
+  name: PrinterSelectType
+  nameWithType: PrinterSelectType
+  fullName: Reportman.Drawing.PrinterSelectType

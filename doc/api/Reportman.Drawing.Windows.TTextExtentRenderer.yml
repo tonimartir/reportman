@@ -1,0 +1,1699 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Windows.TTextExtentRenderer
+  commentId: T:Reportman.Drawing.Windows.TTextExtentRenderer
+  id: TTextExtentRenderer
+  parent: Reportman.Drawing.Windows
+  children:
+  - Reportman.Drawing.Windows.TTextExtentRenderer.#ctor(System.String)
+  - Reportman.Drawing.Windows.TTextExtentRenderer.DrawGlyphRun(System.Object,System.Single,System.Single,SharpDX.Direct2D1.MeasuringMode,SharpDX.DirectWrite.GlyphRun,SharpDX.DirectWrite.GlyphRunDescription,SharpDX.ComObject)
+  - Reportman.Drawing.Windows.TTextExtentRenderer.DrawInlineObject(System.Object,System.Single,System.Single,SharpDX.DirectWrite.InlineObject,System.Boolean,System.Boolean,SharpDX.ComObject)
+  - Reportman.Drawing.Windows.TTextExtentRenderer.DrawStrikethrough(System.Object,System.Single,System.Single,SharpDX.DirectWrite.Strikethrough@,SharpDX.ComObject)
+  - Reportman.Drawing.Windows.TTextExtentRenderer.DrawUnderline(System.Object,System.Single,System.Single,SharpDX.DirectWrite.Underline@,SharpDX.ComObject)
+  - Reportman.Drawing.Windows.TTextExtentRenderer.GetCurrentTransform(System.Object)
+  - Reportman.Drawing.Windows.TTextExtentRenderer.GetPixelsPerDip(System.Object)
+  - Reportman.Drawing.Windows.TTextExtentRenderer.GlyphPositions
+  - Reportman.Drawing.Windows.TTextExtentRenderer.IsPixelSnappingDisabled(System.Object)
+  - Reportman.Drawing.Windows.TTextExtentRenderer.Lines
+  - Reportman.Drawing.Windows.TTextExtentRenderer._fontFace
+  langs:
+  - csharp
+  - vb
+  name: TTextExtentRenderer
+  nameWithType: TTextExtentRenderer
+  fullName: Reportman.Drawing.Windows.TTextExtentRenderer
+  type: Class
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: 'public class TTextExtentRenderer : TextRendererBase, TextRenderer, PixelSnapping, IUnknown, ICallbackable, IDisposable'
+    content.vb: Public Class TTextExtentRenderer Inherits TextRendererBase Implements TextRenderer, PixelSnapping, IUnknown, ICallbackable, IDisposable
+  inheritance:
+  - System.Object
+  - SharpDX.DisposeBase
+  - SharpDX.CallbackBase
+  - SharpDX.DirectWrite.TextRendererBase
+  implements:
+  - SharpDX.DirectWrite.TextRenderer
+  - SharpDX.DirectWrite.PixelSnapping
+  - SharpDX.IUnknown
+  - SharpDX.ICallbackable
+  - System.IDisposable
+  inheritedMembers:
+  - SharpDX.CallbackBase.Dispose(System.Boolean)
+  - SharpDX.CallbackBase.AddReference
+  - SharpDX.CallbackBase.Release
+  - SharpDX.CallbackBase.QueryInterface(System.Guid@,System.IntPtr@)
+  - SharpDX.DisposeBase.Dispose
+  - SharpDX.DisposeBase.IsDisposed
+  - SharpDX.DisposeBase.Disposing
+  - SharpDX.DisposeBase.Disposed
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.Windows.TTextExtentRenderer._fontFace
+  commentId: F:Reportman.Drawing.Windows.TTextExtentRenderer._fontFace
+  id: _fontFace
+  parent: Reportman.Drawing.Windows.TTextExtentRenderer
+  langs:
+  - csharp
+  - vb
+  name: _fontFace
+  nameWithType: TTextExtentRenderer._fontFace
+  fullName: Reportman.Drawing.Windows.TTextExtentRenderer._fontFace
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public FontFace _fontFace
+    return:
+      type: SharpDX.DirectWrite.FontFace
+    content.vb: Public _fontFace As FontFace
+- uid: Reportman.Drawing.Windows.TTextExtentRenderer.#ctor(System.String)
+  commentId: M:Reportman.Drawing.Windows.TTextExtentRenderer.#ctor(System.String)
+  id: '#ctor(System.String)'
+  parent: Reportman.Drawing.Windows.TTextExtentRenderer
+  langs:
+  - csharp
+  - vb
+  name: TTextExtentRenderer(string)
+  nameWithType: TTextExtentRenderer.TTextExtentRenderer(string)
+  fullName: Reportman.Drawing.Windows.TTextExtentRenderer.TTextExtentRenderer(string)
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public TTextExtentRenderer(string originalText)
+    parameters:
+    - id: originalText
+      type: System.String
+    content.vb: Public Sub New(originalText As String)
+  overload: Reportman.Drawing.Windows.TTextExtentRenderer.#ctor*
+  nameWithType.vb: TTextExtentRenderer.New(String)
+  fullName.vb: Reportman.Drawing.Windows.TTextExtentRenderer.New(String)
+  name.vb: New(String)
+- uid: Reportman.Drawing.Windows.TTextExtentRenderer.DrawGlyphRun(System.Object,System.Single,System.Single,SharpDX.Direct2D1.MeasuringMode,SharpDX.DirectWrite.GlyphRun,SharpDX.DirectWrite.GlyphRunDescription,SharpDX.ComObject)
+  commentId: M:Reportman.Drawing.Windows.TTextExtentRenderer.DrawGlyphRun(System.Object,System.Single,System.Single,SharpDX.Direct2D1.MeasuringMode,SharpDX.DirectWrite.GlyphRun,SharpDX.DirectWrite.GlyphRunDescription,SharpDX.ComObject)
+  id: DrawGlyphRun(System.Object,System.Single,System.Single,SharpDX.Direct2D1.MeasuringMode,SharpDX.DirectWrite.GlyphRun,SharpDX.DirectWrite.GlyphRunDescription,SharpDX.ComObject)
+  parent: Reportman.Drawing.Windows.TTextExtentRenderer
+  langs:
+  - csharp
+  - vb
+  name: DrawGlyphRun(object, float, float, MeasuringMode, GlyphRun, GlyphRunDescription, ComObject)
+  nameWithType: TTextExtentRenderer.DrawGlyphRun(object, float, float, MeasuringMode, GlyphRun, GlyphRunDescription, ComObject)
+  fullName: Reportman.Drawing.Windows.TTextExtentRenderer.DrawGlyphRun(object, float, float, SharpDX.Direct2D1.MeasuringMode, SharpDX.DirectWrite.GlyphRun, SharpDX.DirectWrite.GlyphRunDescription, SharpDX.ComObject)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  example: []
+  syntax:
+    content: public override Result DrawGlyphRun(object clientDrawingContext, float baselineOriginX, float baselineOriginY, MeasuringMode measuringMode, GlyphRun glyphRun, GlyphRunDescription glyphRunDescription, ComObject clientDrawingEffect)
+    parameters:
+    - id: clientDrawingContext
+      type: System.Object
+    - id: baselineOriginX
+      type: System.Single
+    - id: baselineOriginY
+      type: System.Single
+    - id: measuringMode
+      type: SharpDX.Direct2D1.MeasuringMode
+    - id: glyphRun
+      type: SharpDX.DirectWrite.GlyphRun
+    - id: glyphRunDescription
+      type: SharpDX.DirectWrite.GlyphRunDescription
+    - id: clientDrawingEffect
+      type: SharpDX.ComObject
+    return:
+      type: SharpDX.Result
+    content.vb: Public Overrides Function DrawGlyphRun(clientDrawingContext As Object, baselineOriginX As Single, baselineOriginY As Single, measuringMode As MeasuringMode, glyphRun As GlyphRun, glyphRunDescription As GlyphRunDescription, clientDrawingEffect As ComObject) As Result
+  overridden: SharpDX.DirectWrite.TextRendererBase.DrawGlyphRun(System.Object,System.Single,System.Single,SharpDX.Direct2D1.MeasuringMode,SharpDX.DirectWrite.GlyphRun,SharpDX.DirectWrite.GlyphRunDescription,SharpDX.ComObject)
+  overload: Reportman.Drawing.Windows.TTextExtentRenderer.DrawGlyphRun*
+  nameWithType.vb: TTextExtentRenderer.DrawGlyphRun(Object, Single, Single, MeasuringMode, GlyphRun, GlyphRunDescription, ComObject)
+  fullName.vb: Reportman.Drawing.Windows.TTextExtentRenderer.DrawGlyphRun(Object, Single, Single, SharpDX.Direct2D1.MeasuringMode, SharpDX.DirectWrite.GlyphRun, SharpDX.DirectWrite.GlyphRunDescription, SharpDX.ComObject)
+  name.vb: DrawGlyphRun(Object, Single, Single, MeasuringMode, GlyphRun, GlyphRunDescription, ComObject)
+- uid: Reportman.Drawing.Windows.TTextExtentRenderer.DrawUnderline(System.Object,System.Single,System.Single,SharpDX.DirectWrite.Underline@,SharpDX.ComObject)
+  commentId: M:Reportman.Drawing.Windows.TTextExtentRenderer.DrawUnderline(System.Object,System.Single,System.Single,SharpDX.DirectWrite.Underline@,SharpDX.ComObject)
+  id: DrawUnderline(System.Object,System.Single,System.Single,SharpDX.DirectWrite.Underline@,SharpDX.ComObject)
+  parent: Reportman.Drawing.Windows.TTextExtentRenderer
+  langs:
+  - csharp
+  - vb
+  name: DrawUnderline(object, float, float, ref Underline, ComObject)
+  nameWithType: TTextExtentRenderer.DrawUnderline(object, float, float, ref Underline, ComObject)
+  fullName: Reportman.Drawing.Windows.TTextExtentRenderer.DrawUnderline(object, float, float, ref SharpDX.DirectWrite.Underline, SharpDX.ComObject)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  example: []
+  syntax:
+    content: public override Result DrawUnderline(object clientDrawingContext, float baselineOriginX, float baselineOriginY, ref Underline underline, ComObject clientDrawingEffect)
+    parameters:
+    - id: clientDrawingContext
+      type: System.Object
+    - id: baselineOriginX
+      type: System.Single
+    - id: baselineOriginY
+      type: System.Single
+    - id: underline
+      type: SharpDX.DirectWrite.Underline
+    - id: clientDrawingEffect
+      type: SharpDX.ComObject
+    return:
+      type: SharpDX.Result
+    content.vb: Public Overrides Function DrawUnderline(clientDrawingContext As Object, baselineOriginX As Single, baselineOriginY As Single, underline As Underline, clientDrawingEffect As ComObject) As Result
+  overridden: SharpDX.DirectWrite.TextRendererBase.DrawUnderline(System.Object,System.Single,System.Single,SharpDX.DirectWrite.Underline@,SharpDX.ComObject)
+  overload: Reportman.Drawing.Windows.TTextExtentRenderer.DrawUnderline*
+  nameWithType.vb: TTextExtentRenderer.DrawUnderline(Object, Single, Single, Underline, ComObject)
+  fullName.vb: Reportman.Drawing.Windows.TTextExtentRenderer.DrawUnderline(Object, Single, Single, SharpDX.DirectWrite.Underline, SharpDX.ComObject)
+  name.vb: DrawUnderline(Object, Single, Single, Underline, ComObject)
+- uid: Reportman.Drawing.Windows.TTextExtentRenderer.DrawStrikethrough(System.Object,System.Single,System.Single,SharpDX.DirectWrite.Strikethrough@,SharpDX.ComObject)
+  commentId: M:Reportman.Drawing.Windows.TTextExtentRenderer.DrawStrikethrough(System.Object,System.Single,System.Single,SharpDX.DirectWrite.Strikethrough@,SharpDX.ComObject)
+  id: DrawStrikethrough(System.Object,System.Single,System.Single,SharpDX.DirectWrite.Strikethrough@,SharpDX.ComObject)
+  parent: Reportman.Drawing.Windows.TTextExtentRenderer
+  langs:
+  - csharp
+  - vb
+  name: DrawStrikethrough(object, float, float, ref Strikethrough, ComObject)
+  nameWithType: TTextExtentRenderer.DrawStrikethrough(object, float, float, ref Strikethrough, ComObject)
+  fullName: Reportman.Drawing.Windows.TTextExtentRenderer.DrawStrikethrough(object, float, float, ref SharpDX.DirectWrite.Strikethrough, SharpDX.ComObject)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  example: []
+  syntax:
+    content: public override Result DrawStrikethrough(object clientDrawingContext, float baselineOriginX, float baselineOriginY, ref Strikethrough strikethrough, ComObject clientDrawingEffect)
+    parameters:
+    - id: clientDrawingContext
+      type: System.Object
+    - id: baselineOriginX
+      type: System.Single
+    - id: baselineOriginY
+      type: System.Single
+    - id: strikethrough
+      type: SharpDX.DirectWrite.Strikethrough
+    - id: clientDrawingEffect
+      type: SharpDX.ComObject
+    return:
+      type: SharpDX.Result
+    content.vb: Public Overrides Function DrawStrikethrough(clientDrawingContext As Object, baselineOriginX As Single, baselineOriginY As Single, strikethrough As Strikethrough, clientDrawingEffect As ComObject) As Result
+  overridden: SharpDX.DirectWrite.TextRendererBase.DrawStrikethrough(System.Object,System.Single,System.Single,SharpDX.DirectWrite.Strikethrough@,SharpDX.ComObject)
+  overload: Reportman.Drawing.Windows.TTextExtentRenderer.DrawStrikethrough*
+  nameWithType.vb: TTextExtentRenderer.DrawStrikethrough(Object, Single, Single, Strikethrough, ComObject)
+  fullName.vb: Reportman.Drawing.Windows.TTextExtentRenderer.DrawStrikethrough(Object, Single, Single, SharpDX.DirectWrite.Strikethrough, SharpDX.ComObject)
+  name.vb: DrawStrikethrough(Object, Single, Single, Strikethrough, ComObject)
+- uid: Reportman.Drawing.Windows.TTextExtentRenderer.DrawInlineObject(System.Object,System.Single,System.Single,SharpDX.DirectWrite.InlineObject,System.Boolean,System.Boolean,SharpDX.ComObject)
+  commentId: M:Reportman.Drawing.Windows.TTextExtentRenderer.DrawInlineObject(System.Object,System.Single,System.Single,SharpDX.DirectWrite.InlineObject,System.Boolean,System.Boolean,SharpDX.ComObject)
+  id: DrawInlineObject(System.Object,System.Single,System.Single,SharpDX.DirectWrite.InlineObject,System.Boolean,System.Boolean,SharpDX.ComObject)
+  parent: Reportman.Drawing.Windows.TTextExtentRenderer
+  langs:
+  - csharp
+  - vb
+  name: DrawInlineObject(object, float, float, InlineObject, bool, bool, ComObject)
+  nameWithType: TTextExtentRenderer.DrawInlineObject(object, float, float, InlineObject, bool, bool, ComObject)
+  fullName: Reportman.Drawing.Windows.TTextExtentRenderer.DrawInlineObject(object, float, float, SharpDX.DirectWrite.InlineObject, bool, bool, SharpDX.ComObject)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  example: []
+  syntax:
+    content: public override Result DrawInlineObject(object clientDrawingContext, float originX, float originY, InlineObject inlineObject, bool isSideways, bool isRightToLeft, ComObject clientDrawingEffect)
+    parameters:
+    - id: clientDrawingContext
+      type: System.Object
+    - id: originX
+      type: System.Single
+    - id: originY
+      type: System.Single
+    - id: inlineObject
+      type: SharpDX.DirectWrite.InlineObject
+    - id: isSideways
+      type: System.Boolean
+    - id: isRightToLeft
+      type: System.Boolean
+    - id: clientDrawingEffect
+      type: SharpDX.ComObject
+    return:
+      type: SharpDX.Result
+    content.vb: Public Overrides Function DrawInlineObject(clientDrawingContext As Object, originX As Single, originY As Single, inlineObject As InlineObject, isSideways As Boolean, isRightToLeft As Boolean, clientDrawingEffect As ComObject) As Result
+  overridden: SharpDX.DirectWrite.TextRendererBase.DrawInlineObject(System.Object,System.Single,System.Single,SharpDX.DirectWrite.InlineObject,System.Boolean,System.Boolean,SharpDX.ComObject)
+  overload: Reportman.Drawing.Windows.TTextExtentRenderer.DrawInlineObject*
+  nameWithType.vb: TTextExtentRenderer.DrawInlineObject(Object, Single, Single, InlineObject, Boolean, Boolean, ComObject)
+  fullName.vb: Reportman.Drawing.Windows.TTextExtentRenderer.DrawInlineObject(Object, Single, Single, SharpDX.DirectWrite.InlineObject, Boolean, Boolean, SharpDX.ComObject)
+  name.vb: DrawInlineObject(Object, Single, Single, InlineObject, Boolean, Boolean, ComObject)
+- uid: Reportman.Drawing.Windows.TTextExtentRenderer.IsPixelSnappingDisabled(System.Object)
+  commentId: M:Reportman.Drawing.Windows.TTextExtentRenderer.IsPixelSnappingDisabled(System.Object)
+  id: IsPixelSnappingDisabled(System.Object)
+  parent: Reportman.Drawing.Windows.TTextExtentRenderer
+  langs:
+  - csharp
+  - vb
+  name: IsPixelSnappingDisabled(object)
+  nameWithType: TTextExtentRenderer.IsPixelSnappingDisabled(object)
+  fullName: Reportman.Drawing.Windows.TTextExtentRenderer.IsPixelSnappingDisabled(object)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  example: []
+  syntax:
+    content: public override bool IsPixelSnappingDisabled(object clientDrawingContext)
+    parameters:
+    - id: clientDrawingContext
+      type: System.Object
+    return:
+      type: System.Boolean
+    content.vb: Public Overrides Function IsPixelSnappingDisabled(clientDrawingContext As Object) As Boolean
+  overridden: SharpDX.DirectWrite.TextRendererBase.IsPixelSnappingDisabled(System.Object)
+  overload: Reportman.Drawing.Windows.TTextExtentRenderer.IsPixelSnappingDisabled*
+  nameWithType.vb: TTextExtentRenderer.IsPixelSnappingDisabled(Object)
+  fullName.vb: Reportman.Drawing.Windows.TTextExtentRenderer.IsPixelSnappingDisabled(Object)
+  name.vb: IsPixelSnappingDisabled(Object)
+- uid: Reportman.Drawing.Windows.TTextExtentRenderer.GetCurrentTransform(System.Object)
+  commentId: M:Reportman.Drawing.Windows.TTextExtentRenderer.GetCurrentTransform(System.Object)
+  id: GetCurrentTransform(System.Object)
+  parent: Reportman.Drawing.Windows.TTextExtentRenderer
+  langs:
+  - csharp
+  - vb
+  name: GetCurrentTransform(object)
+  nameWithType: TTextExtentRenderer.GetCurrentTransform(object)
+  fullName: Reportman.Drawing.Windows.TTextExtentRenderer.GetCurrentTransform(object)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  example: []
+  syntax:
+    content: public override RawMatrix3x2 GetCurrentTransform(object clientDrawingContext)
+    parameters:
+    - id: clientDrawingContext
+      type: System.Object
+    return:
+      type: SharpDX.Mathematics.Interop.RawMatrix3x2
+    content.vb: Public Overrides Function GetCurrentTransform(clientDrawingContext As Object) As RawMatrix3x2
+  overridden: SharpDX.DirectWrite.TextRendererBase.GetCurrentTransform(System.Object)
+  overload: Reportman.Drawing.Windows.TTextExtentRenderer.GetCurrentTransform*
+  nameWithType.vb: TTextExtentRenderer.GetCurrentTransform(Object)
+  fullName.vb: Reportman.Drawing.Windows.TTextExtentRenderer.GetCurrentTransform(Object)
+  name.vb: GetCurrentTransform(Object)
+- uid: Reportman.Drawing.Windows.TTextExtentRenderer.GetPixelsPerDip(System.Object)
+  commentId: M:Reportman.Drawing.Windows.TTextExtentRenderer.GetPixelsPerDip(System.Object)
+  id: GetPixelsPerDip(System.Object)
+  parent: Reportman.Drawing.Windows.TTextExtentRenderer
+  langs:
+  - csharp
+  - vb
+  name: GetPixelsPerDip(object)
+  nameWithType: TTextExtentRenderer.GetPixelsPerDip(object)
+  fullName: Reportman.Drawing.Windows.TTextExtentRenderer.GetPixelsPerDip(object)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  example: []
+  syntax:
+    content: public override float GetPixelsPerDip(object clientDrawingContext)
+    parameters:
+    - id: clientDrawingContext
+      type: System.Object
+    return:
+      type: System.Single
+    content.vb: Public Overrides Function GetPixelsPerDip(clientDrawingContext As Object) As Single
+  overridden: SharpDX.DirectWrite.TextRendererBase.GetPixelsPerDip(System.Object)
+  overload: Reportman.Drawing.Windows.TTextExtentRenderer.GetPixelsPerDip*
+  nameWithType.vb: TTextExtentRenderer.GetPixelsPerDip(Object)
+  fullName.vb: Reportman.Drawing.Windows.TTextExtentRenderer.GetPixelsPerDip(Object)
+  name.vb: GetPixelsPerDip(Object)
+- uid: Reportman.Drawing.Windows.TTextExtentRenderer.GlyphPositions
+  commentId: P:Reportman.Drawing.Windows.TTextExtentRenderer.GlyphPositions
+  id: GlyphPositions
+  parent: Reportman.Drawing.Windows.TTextExtentRenderer
+  langs:
+  - csharp
+  - vb
+  name: GlyphPositions
+  nameWithType: TTextExtentRenderer.GlyphPositions
+  fullName: Reportman.Drawing.Windows.TTextExtentRenderer.GlyphPositions
+  type: Property
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public List<TGlyphPos> GlyphPositions { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{Reportman.Drawing.TGlyphPos}
+    content.vb: Public ReadOnly Property GlyphPositions As List(Of TGlyphPos)
+  overload: Reportman.Drawing.Windows.TTextExtentRenderer.GlyphPositions*
+- uid: Reportman.Drawing.Windows.TTextExtentRenderer.Lines
+  commentId: P:Reportman.Drawing.Windows.TTextExtentRenderer.Lines
+  id: Lines
+  parent: Reportman.Drawing.Windows.TTextExtentRenderer
+  langs:
+  - csharp
+  - vb
+  name: Lines
+  nameWithType: TTextExtentRenderer.Lines
+  fullName: Reportman.Drawing.Windows.TTextExtentRenderer.Lines
+  type: Property
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public List<TGlyphLine> Lines { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{Reportman.Drawing.Windows.TGlyphLine}
+    content.vb: Public ReadOnly Property Lines As List(Of TGlyphLine)
+  overload: Reportman.Drawing.Windows.TTextExtentRenderer.Lines*
+references:
+- uid: Reportman.Drawing.Windows
+  commentId: N:Reportman.Drawing.Windows
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Windows
+  nameWithType: Reportman.Drawing.Windows
+  fullName: Reportman.Drawing.Windows
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Windows
+    name: Windows
+    isExternal: true
+    href: Reportman.Drawing.Windows.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Windows
+    name: Windows
+    isExternal: true
+    href: Reportman.Drawing.Windows.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: SharpDX.DisposeBase
+  commentId: T:SharpDX.DisposeBase
+  parent: SharpDX
+  isExternal: true
+  name: DisposeBase
+  nameWithType: DisposeBase
+  fullName: SharpDX.DisposeBase
+- uid: SharpDX.CallbackBase
+  commentId: T:SharpDX.CallbackBase
+  parent: SharpDX
+  isExternal: true
+  name: CallbackBase
+  nameWithType: CallbackBase
+  fullName: SharpDX.CallbackBase
+- uid: SharpDX.DirectWrite.TextRendererBase
+  commentId: T:SharpDX.DirectWrite.TextRendererBase
+  parent: SharpDX.DirectWrite
+  isExternal: true
+  name: TextRendererBase
+  nameWithType: TextRendererBase
+  fullName: SharpDX.DirectWrite.TextRendererBase
+- uid: SharpDX.DirectWrite.TextRenderer
+  commentId: T:SharpDX.DirectWrite.TextRenderer
+  parent: SharpDX.DirectWrite
+  isExternal: true
+  name: TextRenderer
+  nameWithType: TextRenderer
+  fullName: SharpDX.DirectWrite.TextRenderer
+- uid: SharpDX.DirectWrite.PixelSnapping
+  commentId: T:SharpDX.DirectWrite.PixelSnapping
+  parent: SharpDX.DirectWrite
+  isExternal: true
+  name: PixelSnapping
+  nameWithType: PixelSnapping
+  fullName: SharpDX.DirectWrite.PixelSnapping
+- uid: SharpDX.IUnknown
+  commentId: T:SharpDX.IUnknown
+  parent: SharpDX
+  isExternal: true
+  name: IUnknown
+  nameWithType: IUnknown
+  fullName: SharpDX.IUnknown
+- uid: SharpDX.ICallbackable
+  commentId: T:SharpDX.ICallbackable
+  parent: SharpDX
+  isExternal: true
+  name: ICallbackable
+  nameWithType: ICallbackable
+  fullName: SharpDX.ICallbackable
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: SharpDX.CallbackBase.Dispose(System.Boolean)
+  commentId: M:SharpDX.CallbackBase.Dispose(System.Boolean)
+  parent: SharpDX.CallbackBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: Dispose(bool)
+  nameWithType: CallbackBase.Dispose(bool)
+  fullName: SharpDX.CallbackBase.Dispose(bool)
+  nameWithType.vb: CallbackBase.Dispose(Boolean)
+  fullName.vb: SharpDX.CallbackBase.Dispose(Boolean)
+  name.vb: Dispose(Boolean)
+  spec.csharp:
+  - uid: SharpDX.CallbackBase.Dispose(System.Boolean)
+    name: Dispose
+    isExternal: true
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: SharpDX.CallbackBase.Dispose(System.Boolean)
+    name: Dispose
+    isExternal: true
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: SharpDX.CallbackBase.AddReference
+  commentId: M:SharpDX.CallbackBase.AddReference
+  parent: SharpDX.CallbackBase
+  isExternal: true
+  name: AddReference()
+  nameWithType: CallbackBase.AddReference()
+  fullName: SharpDX.CallbackBase.AddReference()
+  spec.csharp:
+  - uid: SharpDX.CallbackBase.AddReference
+    name: AddReference
+    isExternal: true
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: SharpDX.CallbackBase.AddReference
+    name: AddReference
+    isExternal: true
+  - name: (
+  - name: )
+- uid: SharpDX.CallbackBase.Release
+  commentId: M:SharpDX.CallbackBase.Release
+  parent: SharpDX.CallbackBase
+  isExternal: true
+  name: Release()
+  nameWithType: CallbackBase.Release()
+  fullName: SharpDX.CallbackBase.Release()
+  spec.csharp:
+  - uid: SharpDX.CallbackBase.Release
+    name: Release
+    isExternal: true
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: SharpDX.CallbackBase.Release
+    name: Release
+    isExternal: true
+  - name: (
+  - name: )
+- uid: SharpDX.CallbackBase.QueryInterface(System.Guid@,System.IntPtr@)
+  commentId: M:SharpDX.CallbackBase.QueryInterface(System.Guid@,System.IntPtr@)
+  parent: SharpDX.CallbackBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.guid
+  name: QueryInterface(ref Guid, out nint)
+  nameWithType: CallbackBase.QueryInterface(ref Guid, out nint)
+  fullName: SharpDX.CallbackBase.QueryInterface(ref System.Guid, out nint)
+  nameWithType.vb: CallbackBase.QueryInterface(Guid, IntPtr)
+  fullName.vb: SharpDX.CallbackBase.QueryInterface(System.Guid, System.IntPtr)
+  name.vb: QueryInterface(Guid, IntPtr)
+  spec.csharp:
+  - uid: SharpDX.CallbackBase.QueryInterface(System.Guid@,System.IntPtr@)
+    name: QueryInterface
+    isExternal: true
+  - name: (
+  - name: ref
+  - name: " "
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - name: out
+  - name: " "
+  - uid: System.IntPtr
+    name: nint
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.intptr
+  - name: )
+  spec.vb:
+  - uid: SharpDX.CallbackBase.QueryInterface(System.Guid@,System.IntPtr@)
+    name: QueryInterface
+    isExternal: true
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: System.IntPtr
+    name: IntPtr
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.intptr
+  - name: )
+- uid: SharpDX.DisposeBase.Dispose
+  commentId: M:SharpDX.DisposeBase.Dispose
+  parent: SharpDX.DisposeBase
+  isExternal: true
+  name: Dispose()
+  nameWithType: DisposeBase.Dispose()
+  fullName: SharpDX.DisposeBase.Dispose()
+  spec.csharp:
+  - uid: SharpDX.DisposeBase.Dispose
+    name: Dispose
+    isExternal: true
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: SharpDX.DisposeBase.Dispose
+    name: Dispose
+    isExternal: true
+  - name: (
+  - name: )
+- uid: SharpDX.DisposeBase.IsDisposed
+  commentId: P:SharpDX.DisposeBase.IsDisposed
+  parent: SharpDX.DisposeBase
+  isExternal: true
+  name: IsDisposed
+  nameWithType: DisposeBase.IsDisposed
+  fullName: SharpDX.DisposeBase.IsDisposed
+- uid: SharpDX.DisposeBase.Disposing
+  commentId: E:SharpDX.DisposeBase.Disposing
+  parent: SharpDX.DisposeBase
+  isExternal: true
+  name: Disposing
+  nameWithType: DisposeBase.Disposing
+  fullName: SharpDX.DisposeBase.Disposing
+- uid: SharpDX.DisposeBase.Disposed
+  commentId: E:SharpDX.DisposeBase.Disposed
+  parent: SharpDX.DisposeBase
+  isExternal: true
+  name: Disposed
+  nameWithType: DisposeBase.Disposed
+  fullName: SharpDX.DisposeBase.Disposed
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SharpDX
+  commentId: N:SharpDX
+  isExternal: true
+  name: SharpDX
+  nameWithType: SharpDX
+  fullName: SharpDX
+- uid: SharpDX.DirectWrite
+  commentId: N:SharpDX.DirectWrite
+  isExternal: true
+  name: SharpDX.DirectWrite
+  nameWithType: SharpDX.DirectWrite
+  fullName: SharpDX.DirectWrite
+  spec.csharp:
+  - uid: SharpDX
+    name: SharpDX
+    isExternal: true
+  - name: .
+  - uid: SharpDX.DirectWrite
+    name: DirectWrite
+    isExternal: true
+  spec.vb:
+  - uid: SharpDX
+    name: SharpDX
+    isExternal: true
+  - name: .
+  - uid: SharpDX.DirectWrite
+    name: DirectWrite
+    isExternal: true
+- uid: SharpDX.DirectWrite.FontFace
+  commentId: T:SharpDX.DirectWrite.FontFace
+  parent: SharpDX.DirectWrite
+  isExternal: true
+  name: FontFace
+  nameWithType: FontFace
+  fullName: SharpDX.DirectWrite.FontFace
+- uid: Reportman.Drawing.Windows.TTextExtentRenderer.#ctor*
+  commentId: Overload:Reportman.Drawing.Windows.TTextExtentRenderer.#ctor
+  isExternal: true
+  href: Reportman.Drawing.Windows.TTextExtentRenderer.html#Reportman_Drawing_Windows_TTextExtentRenderer__ctor_System_String_
+  name: TTextExtentRenderer
+  nameWithType: TTextExtentRenderer.TTextExtentRenderer
+  fullName: Reportman.Drawing.Windows.TTextExtentRenderer.TTextExtentRenderer
+  nameWithType.vb: TTextExtentRenderer.New
+  fullName.vb: Reportman.Drawing.Windows.TTextExtentRenderer.New
+  name.vb: New
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: SharpDX.DirectWrite.TextRendererBase.DrawGlyphRun(System.Object,System.Single,System.Single,SharpDX.Direct2D1.MeasuringMode,SharpDX.DirectWrite.GlyphRun,SharpDX.DirectWrite.GlyphRunDescription,SharpDX.ComObject)
+  commentId: M:SharpDX.DirectWrite.TextRendererBase.DrawGlyphRun(System.Object,System.Single,System.Single,SharpDX.Direct2D1.MeasuringMode,SharpDX.DirectWrite.GlyphRun,SharpDX.DirectWrite.GlyphRunDescription,SharpDX.ComObject)
+  parent: SharpDX.DirectWrite.TextRendererBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: DrawGlyphRun(object, float, float, MeasuringMode, GlyphRun, GlyphRunDescription, ComObject)
+  nameWithType: TextRendererBase.DrawGlyphRun(object, float, float, MeasuringMode, GlyphRun, GlyphRunDescription, ComObject)
+  fullName: SharpDX.DirectWrite.TextRendererBase.DrawGlyphRun(object, float, float, SharpDX.Direct2D1.MeasuringMode, SharpDX.DirectWrite.GlyphRun, SharpDX.DirectWrite.GlyphRunDescription, SharpDX.ComObject)
+  nameWithType.vb: TextRendererBase.DrawGlyphRun(Object, Single, Single, MeasuringMode, GlyphRun, GlyphRunDescription, ComObject)
+  fullName.vb: SharpDX.DirectWrite.TextRendererBase.DrawGlyphRun(Object, Single, Single, SharpDX.Direct2D1.MeasuringMode, SharpDX.DirectWrite.GlyphRun, SharpDX.DirectWrite.GlyphRunDescription, SharpDX.ComObject)
+  name.vb: DrawGlyphRun(Object, Single, Single, MeasuringMode, GlyphRun, GlyphRunDescription, ComObject)
+  spec.csharp:
+  - uid: SharpDX.DirectWrite.TextRendererBase.DrawGlyphRun(System.Object,System.Single,System.Single,SharpDX.Direct2D1.MeasuringMode,SharpDX.DirectWrite.GlyphRun,SharpDX.DirectWrite.GlyphRunDescription,SharpDX.ComObject)
+    name: DrawGlyphRun
+    isExternal: true
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: SharpDX.Direct2D1.MeasuringMode
+    name: MeasuringMode
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: SharpDX.DirectWrite.GlyphRun
+    name: GlyphRun
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: SharpDX.DirectWrite.GlyphRunDescription
+    name: GlyphRunDescription
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: SharpDX.ComObject
+    name: ComObject
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: SharpDX.DirectWrite.TextRendererBase.DrawGlyphRun(System.Object,System.Single,System.Single,SharpDX.Direct2D1.MeasuringMode,SharpDX.DirectWrite.GlyphRun,SharpDX.DirectWrite.GlyphRunDescription,SharpDX.ComObject)
+    name: DrawGlyphRun
+    isExternal: true
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: SharpDX.Direct2D1.MeasuringMode
+    name: MeasuringMode
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: SharpDX.DirectWrite.GlyphRun
+    name: GlyphRun
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: SharpDX.DirectWrite.GlyphRunDescription
+    name: GlyphRunDescription
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: SharpDX.ComObject
+    name: ComObject
+    isExternal: true
+  - name: )
+- uid: Reportman.Drawing.Windows.TTextExtentRenderer.DrawGlyphRun*
+  commentId: Overload:Reportman.Drawing.Windows.TTextExtentRenderer.DrawGlyphRun
+  isExternal: true
+  href: Reportman.Drawing.Windows.TTextExtentRenderer.html#Reportman_Drawing_Windows_TTextExtentRenderer_DrawGlyphRun_System_Object_System_Single_System_Single_SharpDX_Direct2D1_MeasuringMode_SharpDX_DirectWrite_GlyphRun_SharpDX_DirectWrite_GlyphRunDescription_SharpDX_ComObject_
+  name: DrawGlyphRun
+  nameWithType: TTextExtentRenderer.DrawGlyphRun
+  fullName: Reportman.Drawing.Windows.TTextExtentRenderer.DrawGlyphRun
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: SharpDX.Direct2D1.MeasuringMode
+  commentId: T:SharpDX.Direct2D1.MeasuringMode
+  parent: SharpDX.Direct2D1
+  isExternal: true
+  name: MeasuringMode
+  nameWithType: MeasuringMode
+  fullName: SharpDX.Direct2D1.MeasuringMode
+- uid: SharpDX.DirectWrite.GlyphRun
+  commentId: T:SharpDX.DirectWrite.GlyphRun
+  parent: SharpDX.DirectWrite
+  isExternal: true
+  name: GlyphRun
+  nameWithType: GlyphRun
+  fullName: SharpDX.DirectWrite.GlyphRun
+- uid: SharpDX.DirectWrite.GlyphRunDescription
+  commentId: T:SharpDX.DirectWrite.GlyphRunDescription
+  parent: SharpDX.DirectWrite
+  isExternal: true
+  name: GlyphRunDescription
+  nameWithType: GlyphRunDescription
+  fullName: SharpDX.DirectWrite.GlyphRunDescription
+- uid: SharpDX.ComObject
+  commentId: T:SharpDX.ComObject
+  parent: SharpDX
+  isExternal: true
+  name: ComObject
+  nameWithType: ComObject
+  fullName: SharpDX.ComObject
+- uid: SharpDX.Result
+  commentId: T:SharpDX.Result
+  parent: SharpDX
+  isExternal: true
+  name: Result
+  nameWithType: Result
+  fullName: SharpDX.Result
+- uid: SharpDX.Direct2D1
+  commentId: N:SharpDX.Direct2D1
+  isExternal: true
+  name: SharpDX.Direct2D1
+  nameWithType: SharpDX.Direct2D1
+  fullName: SharpDX.Direct2D1
+  spec.csharp:
+  - uid: SharpDX
+    name: SharpDX
+    isExternal: true
+  - name: .
+  - uid: SharpDX.Direct2D1
+    name: Direct2D1
+    isExternal: true
+  spec.vb:
+  - uid: SharpDX
+    name: SharpDX
+    isExternal: true
+  - name: .
+  - uid: SharpDX.Direct2D1
+    name: Direct2D1
+    isExternal: true
+- uid: SharpDX.DirectWrite.TextRendererBase.DrawUnderline(System.Object,System.Single,System.Single,SharpDX.DirectWrite.Underline@,SharpDX.ComObject)
+  commentId: M:SharpDX.DirectWrite.TextRendererBase.DrawUnderline(System.Object,System.Single,System.Single,SharpDX.DirectWrite.Underline@,SharpDX.ComObject)
+  parent: SharpDX.DirectWrite.TextRendererBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: DrawUnderline(object, float, float, ref Underline, ComObject)
+  nameWithType: TextRendererBase.DrawUnderline(object, float, float, ref Underline, ComObject)
+  fullName: SharpDX.DirectWrite.TextRendererBase.DrawUnderline(object, float, float, ref SharpDX.DirectWrite.Underline, SharpDX.ComObject)
+  nameWithType.vb: TextRendererBase.DrawUnderline(Object, Single, Single, Underline, ComObject)
+  fullName.vb: SharpDX.DirectWrite.TextRendererBase.DrawUnderline(Object, Single, Single, SharpDX.DirectWrite.Underline, SharpDX.ComObject)
+  name.vb: DrawUnderline(Object, Single, Single, Underline, ComObject)
+  spec.csharp:
+  - uid: SharpDX.DirectWrite.TextRendererBase.DrawUnderline(System.Object,System.Single,System.Single,SharpDX.DirectWrite.Underline@,SharpDX.ComObject)
+    name: DrawUnderline
+    isExternal: true
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - name: ref
+  - name: " "
+  - uid: SharpDX.DirectWrite.Underline
+    name: Underline
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: SharpDX.ComObject
+    name: ComObject
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: SharpDX.DirectWrite.TextRendererBase.DrawUnderline(System.Object,System.Single,System.Single,SharpDX.DirectWrite.Underline@,SharpDX.ComObject)
+    name: DrawUnderline
+    isExternal: true
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: SharpDX.DirectWrite.Underline
+    name: Underline
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: SharpDX.ComObject
+    name: ComObject
+    isExternal: true
+  - name: )
+- uid: Reportman.Drawing.Windows.TTextExtentRenderer.DrawUnderline*
+  commentId: Overload:Reportman.Drawing.Windows.TTextExtentRenderer.DrawUnderline
+  isExternal: true
+  href: Reportman.Drawing.Windows.TTextExtentRenderer.html#Reportman_Drawing_Windows_TTextExtentRenderer_DrawUnderline_System_Object_System_Single_System_Single_SharpDX_DirectWrite_Underline__SharpDX_ComObject_
+  name: DrawUnderline
+  nameWithType: TTextExtentRenderer.DrawUnderline
+  fullName: Reportman.Drawing.Windows.TTextExtentRenderer.DrawUnderline
+- uid: SharpDX.DirectWrite.Underline
+  commentId: T:SharpDX.DirectWrite.Underline
+  parent: SharpDX.DirectWrite
+  isExternal: true
+  name: Underline
+  nameWithType: Underline
+  fullName: SharpDX.DirectWrite.Underline
+- uid: SharpDX.DirectWrite.TextRendererBase.DrawStrikethrough(System.Object,System.Single,System.Single,SharpDX.DirectWrite.Strikethrough@,SharpDX.ComObject)
+  commentId: M:SharpDX.DirectWrite.TextRendererBase.DrawStrikethrough(System.Object,System.Single,System.Single,SharpDX.DirectWrite.Strikethrough@,SharpDX.ComObject)
+  parent: SharpDX.DirectWrite.TextRendererBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: DrawStrikethrough(object, float, float, ref Strikethrough, ComObject)
+  nameWithType: TextRendererBase.DrawStrikethrough(object, float, float, ref Strikethrough, ComObject)
+  fullName: SharpDX.DirectWrite.TextRendererBase.DrawStrikethrough(object, float, float, ref SharpDX.DirectWrite.Strikethrough, SharpDX.ComObject)
+  nameWithType.vb: TextRendererBase.DrawStrikethrough(Object, Single, Single, Strikethrough, ComObject)
+  fullName.vb: SharpDX.DirectWrite.TextRendererBase.DrawStrikethrough(Object, Single, Single, SharpDX.DirectWrite.Strikethrough, SharpDX.ComObject)
+  name.vb: DrawStrikethrough(Object, Single, Single, Strikethrough, ComObject)
+  spec.csharp:
+  - uid: SharpDX.DirectWrite.TextRendererBase.DrawStrikethrough(System.Object,System.Single,System.Single,SharpDX.DirectWrite.Strikethrough@,SharpDX.ComObject)
+    name: DrawStrikethrough
+    isExternal: true
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - name: ref
+  - name: " "
+  - uid: SharpDX.DirectWrite.Strikethrough
+    name: Strikethrough
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: SharpDX.ComObject
+    name: ComObject
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: SharpDX.DirectWrite.TextRendererBase.DrawStrikethrough(System.Object,System.Single,System.Single,SharpDX.DirectWrite.Strikethrough@,SharpDX.ComObject)
+    name: DrawStrikethrough
+    isExternal: true
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: SharpDX.DirectWrite.Strikethrough
+    name: Strikethrough
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: SharpDX.ComObject
+    name: ComObject
+    isExternal: true
+  - name: )
+- uid: Reportman.Drawing.Windows.TTextExtentRenderer.DrawStrikethrough*
+  commentId: Overload:Reportman.Drawing.Windows.TTextExtentRenderer.DrawStrikethrough
+  isExternal: true
+  href: Reportman.Drawing.Windows.TTextExtentRenderer.html#Reportman_Drawing_Windows_TTextExtentRenderer_DrawStrikethrough_System_Object_System_Single_System_Single_SharpDX_DirectWrite_Strikethrough__SharpDX_ComObject_
+  name: DrawStrikethrough
+  nameWithType: TTextExtentRenderer.DrawStrikethrough
+  fullName: Reportman.Drawing.Windows.TTextExtentRenderer.DrawStrikethrough
+- uid: SharpDX.DirectWrite.Strikethrough
+  commentId: T:SharpDX.DirectWrite.Strikethrough
+  parent: SharpDX.DirectWrite
+  isExternal: true
+  name: Strikethrough
+  nameWithType: Strikethrough
+  fullName: SharpDX.DirectWrite.Strikethrough
+- uid: SharpDX.DirectWrite.TextRendererBase.DrawInlineObject(System.Object,System.Single,System.Single,SharpDX.DirectWrite.InlineObject,System.Boolean,System.Boolean,SharpDX.ComObject)
+  commentId: M:SharpDX.DirectWrite.TextRendererBase.DrawInlineObject(System.Object,System.Single,System.Single,SharpDX.DirectWrite.InlineObject,System.Boolean,System.Boolean,SharpDX.ComObject)
+  parent: SharpDX.DirectWrite.TextRendererBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: DrawInlineObject(object, float, float, InlineObject, bool, bool, ComObject)
+  nameWithType: TextRendererBase.DrawInlineObject(object, float, float, InlineObject, bool, bool, ComObject)
+  fullName: SharpDX.DirectWrite.TextRendererBase.DrawInlineObject(object, float, float, SharpDX.DirectWrite.InlineObject, bool, bool, SharpDX.ComObject)
+  nameWithType.vb: TextRendererBase.DrawInlineObject(Object, Single, Single, InlineObject, Boolean, Boolean, ComObject)
+  fullName.vb: SharpDX.DirectWrite.TextRendererBase.DrawInlineObject(Object, Single, Single, SharpDX.DirectWrite.InlineObject, Boolean, Boolean, SharpDX.ComObject)
+  name.vb: DrawInlineObject(Object, Single, Single, InlineObject, Boolean, Boolean, ComObject)
+  spec.csharp:
+  - uid: SharpDX.DirectWrite.TextRendererBase.DrawInlineObject(System.Object,System.Single,System.Single,SharpDX.DirectWrite.InlineObject,System.Boolean,System.Boolean,SharpDX.ComObject)
+    name: DrawInlineObject
+    isExternal: true
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: SharpDX.DirectWrite.InlineObject
+    name: InlineObject
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: SharpDX.ComObject
+    name: ComObject
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: SharpDX.DirectWrite.TextRendererBase.DrawInlineObject(System.Object,System.Single,System.Single,SharpDX.DirectWrite.InlineObject,System.Boolean,System.Boolean,SharpDX.ComObject)
+    name: DrawInlineObject
+    isExternal: true
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: SharpDX.DirectWrite.InlineObject
+    name: InlineObject
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: SharpDX.ComObject
+    name: ComObject
+    isExternal: true
+  - name: )
+- uid: Reportman.Drawing.Windows.TTextExtentRenderer.DrawInlineObject*
+  commentId: Overload:Reportman.Drawing.Windows.TTextExtentRenderer.DrawInlineObject
+  isExternal: true
+  href: Reportman.Drawing.Windows.TTextExtentRenderer.html#Reportman_Drawing_Windows_TTextExtentRenderer_DrawInlineObject_System_Object_System_Single_System_Single_SharpDX_DirectWrite_InlineObject_System_Boolean_System_Boolean_SharpDX_ComObject_
+  name: DrawInlineObject
+  nameWithType: TTextExtentRenderer.DrawInlineObject
+  fullName: Reportman.Drawing.Windows.TTextExtentRenderer.DrawInlineObject
+- uid: SharpDX.DirectWrite.InlineObject
+  commentId: T:SharpDX.DirectWrite.InlineObject
+  parent: SharpDX.DirectWrite
+  isExternal: true
+  name: InlineObject
+  nameWithType: InlineObject
+  fullName: SharpDX.DirectWrite.InlineObject
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: SharpDX.DirectWrite.TextRendererBase.IsPixelSnappingDisabled(System.Object)
+  commentId: M:SharpDX.DirectWrite.TextRendererBase.IsPixelSnappingDisabled(System.Object)
+  parent: SharpDX.DirectWrite.TextRendererBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: IsPixelSnappingDisabled(object)
+  nameWithType: TextRendererBase.IsPixelSnappingDisabled(object)
+  fullName: SharpDX.DirectWrite.TextRendererBase.IsPixelSnappingDisabled(object)
+  nameWithType.vb: TextRendererBase.IsPixelSnappingDisabled(Object)
+  fullName.vb: SharpDX.DirectWrite.TextRendererBase.IsPixelSnappingDisabled(Object)
+  name.vb: IsPixelSnappingDisabled(Object)
+  spec.csharp:
+  - uid: SharpDX.DirectWrite.TextRendererBase.IsPixelSnappingDisabled(System.Object)
+    name: IsPixelSnappingDisabled
+    isExternal: true
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: SharpDX.DirectWrite.TextRendererBase.IsPixelSnappingDisabled(System.Object)
+    name: IsPixelSnappingDisabled
+    isExternal: true
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Reportman.Drawing.Windows.TTextExtentRenderer.IsPixelSnappingDisabled*
+  commentId: Overload:Reportman.Drawing.Windows.TTextExtentRenderer.IsPixelSnappingDisabled
+  isExternal: true
+  href: Reportman.Drawing.Windows.TTextExtentRenderer.html#Reportman_Drawing_Windows_TTextExtentRenderer_IsPixelSnappingDisabled_System_Object_
+  name: IsPixelSnappingDisabled
+  nameWithType: TTextExtentRenderer.IsPixelSnappingDisabled
+  fullName: Reportman.Drawing.Windows.TTextExtentRenderer.IsPixelSnappingDisabled
+- uid: SharpDX.DirectWrite.TextRendererBase.GetCurrentTransform(System.Object)
+  commentId: M:SharpDX.DirectWrite.TextRendererBase.GetCurrentTransform(System.Object)
+  parent: SharpDX.DirectWrite.TextRendererBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: GetCurrentTransform(object)
+  nameWithType: TextRendererBase.GetCurrentTransform(object)
+  fullName: SharpDX.DirectWrite.TextRendererBase.GetCurrentTransform(object)
+  nameWithType.vb: TextRendererBase.GetCurrentTransform(Object)
+  fullName.vb: SharpDX.DirectWrite.TextRendererBase.GetCurrentTransform(Object)
+  name.vb: GetCurrentTransform(Object)
+  spec.csharp:
+  - uid: SharpDX.DirectWrite.TextRendererBase.GetCurrentTransform(System.Object)
+    name: GetCurrentTransform
+    isExternal: true
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: SharpDX.DirectWrite.TextRendererBase.GetCurrentTransform(System.Object)
+    name: GetCurrentTransform
+    isExternal: true
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Reportman.Drawing.Windows.TTextExtentRenderer.GetCurrentTransform*
+  commentId: Overload:Reportman.Drawing.Windows.TTextExtentRenderer.GetCurrentTransform
+  isExternal: true
+  href: Reportman.Drawing.Windows.TTextExtentRenderer.html#Reportman_Drawing_Windows_TTextExtentRenderer_GetCurrentTransform_System_Object_
+  name: GetCurrentTransform
+  nameWithType: TTextExtentRenderer.GetCurrentTransform
+  fullName: Reportman.Drawing.Windows.TTextExtentRenderer.GetCurrentTransform
+- uid: SharpDX.Mathematics.Interop.RawMatrix3x2
+  commentId: T:SharpDX.Mathematics.Interop.RawMatrix3x2
+  parent: SharpDX.Mathematics.Interop
+  isExternal: true
+  name: RawMatrix3x2
+  nameWithType: RawMatrix3x2
+  fullName: SharpDX.Mathematics.Interop.RawMatrix3x2
+- uid: SharpDX.Mathematics.Interop
+  commentId: N:SharpDX.Mathematics.Interop
+  isExternal: true
+  name: SharpDX.Mathematics.Interop
+  nameWithType: SharpDX.Mathematics.Interop
+  fullName: SharpDX.Mathematics.Interop
+  spec.csharp:
+  - uid: SharpDX
+    name: SharpDX
+    isExternal: true
+  - name: .
+  - uid: SharpDX.Mathematics
+    name: Mathematics
+    isExternal: true
+  - name: .
+  - uid: SharpDX.Mathematics.Interop
+    name: Interop
+    isExternal: true
+  spec.vb:
+  - uid: SharpDX
+    name: SharpDX
+    isExternal: true
+  - name: .
+  - uid: SharpDX.Mathematics
+    name: Mathematics
+    isExternal: true
+  - name: .
+  - uid: SharpDX.Mathematics.Interop
+    name: Interop
+    isExternal: true
+- uid: SharpDX.DirectWrite.TextRendererBase.GetPixelsPerDip(System.Object)
+  commentId: M:SharpDX.DirectWrite.TextRendererBase.GetPixelsPerDip(System.Object)
+  parent: SharpDX.DirectWrite.TextRendererBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: GetPixelsPerDip(object)
+  nameWithType: TextRendererBase.GetPixelsPerDip(object)
+  fullName: SharpDX.DirectWrite.TextRendererBase.GetPixelsPerDip(object)
+  nameWithType.vb: TextRendererBase.GetPixelsPerDip(Object)
+  fullName.vb: SharpDX.DirectWrite.TextRendererBase.GetPixelsPerDip(Object)
+  name.vb: GetPixelsPerDip(Object)
+  spec.csharp:
+  - uid: SharpDX.DirectWrite.TextRendererBase.GetPixelsPerDip(System.Object)
+    name: GetPixelsPerDip
+    isExternal: true
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: SharpDX.DirectWrite.TextRendererBase.GetPixelsPerDip(System.Object)
+    name: GetPixelsPerDip
+    isExternal: true
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Reportman.Drawing.Windows.TTextExtentRenderer.GetPixelsPerDip*
+  commentId: Overload:Reportman.Drawing.Windows.TTextExtentRenderer.GetPixelsPerDip
+  isExternal: true
+  href: Reportman.Drawing.Windows.TTextExtentRenderer.html#Reportman_Drawing_Windows_TTextExtentRenderer_GetPixelsPerDip_System_Object_
+  name: GetPixelsPerDip
+  nameWithType: TTextExtentRenderer.GetPixelsPerDip
+  fullName: Reportman.Drawing.Windows.TTextExtentRenderer.GetPixelsPerDip
+- uid: Reportman.Drawing.Windows.TTextExtentRenderer.GlyphPositions*
+  commentId: Overload:Reportman.Drawing.Windows.TTextExtentRenderer.GlyphPositions
+  isExternal: true
+  href: Reportman.Drawing.Windows.TTextExtentRenderer.html#Reportman_Drawing_Windows_TTextExtentRenderer_GlyphPositions
+  name: GlyphPositions
+  nameWithType: TTextExtentRenderer.GlyphPositions
+  fullName: Reportman.Drawing.Windows.TTextExtentRenderer.GlyphPositions
+- uid: System.Collections.Generic.List{Reportman.Drawing.TGlyphPos}
+  commentId: T:System.Collections.Generic.List{Reportman.Drawing.TGlyphPos}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<TGlyphPos>
+  nameWithType: List<TGlyphPos>
+  fullName: System.Collections.Generic.List<Reportman.Drawing.TGlyphPos>
+  nameWithType.vb: List(Of TGlyphPos)
+  fullName.vb: System.Collections.Generic.List(Of Reportman.Drawing.TGlyphPos)
+  name.vb: List(Of TGlyphPos)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Reportman.Drawing.TGlyphPos
+    name: TGlyphPos
+    isExternal: true
+    href: Reportman.Drawing.TGlyphPos.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Reportman.Drawing.TGlyphPos
+    name: TGlyphPos
+    isExternal: true
+    href: Reportman.Drawing.TGlyphPos.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Reportman.Drawing.Windows.TTextExtentRenderer.Lines*
+  commentId: Overload:Reportman.Drawing.Windows.TTextExtentRenderer.Lines
+  isExternal: true
+  href: Reportman.Drawing.Windows.TTextExtentRenderer.html#Reportman_Drawing_Windows_TTextExtentRenderer_Lines
+  name: Lines
+  nameWithType: TTextExtentRenderer.Lines
+  fullName: Reportman.Drawing.Windows.TTextExtentRenderer.Lines
+- uid: System.Collections.Generic.List{Reportman.Drawing.Windows.TGlyphLine}
+  commentId: T:System.Collections.Generic.List{Reportman.Drawing.Windows.TGlyphLine}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<TGlyphLine>
+  nameWithType: List<TGlyphLine>
+  fullName: System.Collections.Generic.List<Reportman.Drawing.Windows.TGlyphLine>
+  nameWithType.vb: List(Of TGlyphLine)
+  fullName.vb: System.Collections.Generic.List(Of Reportman.Drawing.Windows.TGlyphLine)
+  name.vb: List(Of TGlyphLine)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Reportman.Drawing.Windows.TGlyphLine
+    name: TGlyphLine
+    isExternal: true
+    href: Reportman.Drawing.Windows.TGlyphLine.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Reportman.Drawing.Windows.TGlyphLine
+    name: TGlyphLine
+    isExternal: true
+    href: Reportman.Drawing.Windows.TGlyphLine.html
+  - name: )

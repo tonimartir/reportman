@@ -1,0 +1,920 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.GraphicUtils
+  commentId: T:Reportman.Drawing.GraphicUtils
+  id: GraphicUtils
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.GraphicUtils.#ctor
+  - Reportman.Drawing.GraphicUtils.ColorFromHtml(System.String)
+  - Reportman.Drawing.GraphicUtils.ColorFromInteger(System.Int32)
+  - Reportman.Drawing.GraphicUtils.ColorFromIntegerA(System.Int32)
+  - Reportman.Drawing.GraphicUtils.ColorFromString(System.String)
+  - Reportman.Drawing.GraphicUtils.ColorNames
+  - Reportman.Drawing.GraphicUtils.DefaultDPI
+  - Reportman.Drawing.GraphicUtils.FontStyleIsBold(System.Int32)
+  - Reportman.Drawing.GraphicUtils.FontStyleIsItalic(System.Int32)
+  - Reportman.Drawing.GraphicUtils.FontStyleIsStrikeOut(System.Int32)
+  - Reportman.Drawing.GraphicUtils.FontStyleIsUnderline(System.Int32)
+  - Reportman.Drawing.GraphicUtils.IntegerFromColor(System.Drawing.Color)
+  - Reportman.Drawing.GraphicUtils.IntegerFromColorA(System.Drawing.Color)
+  - Reportman.Drawing.GraphicUtils.flag
+  langs:
+  - csharp
+  - vb
+  name: GraphicUtils
+  nameWithType: GraphicUtils
+  fullName: Reportman.Drawing.GraphicUtils
+  type: Class
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public class GraphicUtils
+    content.vb: Public Class GraphicUtils
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.GraphicUtils.flag
+  commentId: F:Reportman.Drawing.GraphicUtils.flag
+  id: flag
+  parent: Reportman.Drawing.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: flag
+  nameWithType: GraphicUtils.flag
+  fullName: Reportman.Drawing.GraphicUtils.flag
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static object flag
+    return:
+      type: System.Object
+    content.vb: Public Shared flag As Object
+- uid: Reportman.Drawing.GraphicUtils.DefaultDPI
+  commentId: F:Reportman.Drawing.GraphicUtils.DefaultDPI
+  id: DefaultDPI
+  parent: Reportman.Drawing.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: DefaultDPI
+  nameWithType: GraphicUtils.DefaultDPI
+  fullName: Reportman.Drawing.GraphicUtils.DefaultDPI
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static int DefaultDPI
+    return:
+      type: System.Int32
+    content.vb: Public Shared DefaultDPI As Integer
+- uid: Reportman.Drawing.GraphicUtils.ColorNames
+  commentId: F:Reportman.Drawing.GraphicUtils.ColorNames
+  id: ColorNames
+  parent: Reportman.Drawing.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: ColorNames
+  nameWithType: GraphicUtils.ColorNames
+  fullName: Reportman.Drawing.GraphicUtils.ColorNames
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static SortedList<string, KnownColor> ColorNames
+    return:
+      type: System.Collections.Generic.SortedList{System.String,System.Drawing.KnownColor}
+    content.vb: Public Shared ColorNames As SortedList(Of String, KnownColor)
+- uid: Reportman.Drawing.GraphicUtils.FontStyleIsBold(System.Int32)
+  commentId: M:Reportman.Drawing.GraphicUtils.FontStyleIsBold(System.Int32)
+  id: FontStyleIsBold(System.Int32)
+  parent: Reportman.Drawing.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: FontStyleIsBold(int)
+  nameWithType: GraphicUtils.FontStyleIsBold(int)
+  fullName: Reportman.Drawing.GraphicUtils.FontStyleIsBold(int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static bool FontStyleIsBold(int intfontstyle)
+    parameters:
+    - id: intfontstyle
+      type: System.Int32
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function FontStyleIsBold(intfontstyle As Integer) As Boolean
+  overload: Reportman.Drawing.GraphicUtils.FontStyleIsBold*
+  nameWithType.vb: GraphicUtils.FontStyleIsBold(Integer)
+  fullName.vb: Reportman.Drawing.GraphicUtils.FontStyleIsBold(Integer)
+  name.vb: FontStyleIsBold(Integer)
+- uid: Reportman.Drawing.GraphicUtils.FontStyleIsItalic(System.Int32)
+  commentId: M:Reportman.Drawing.GraphicUtils.FontStyleIsItalic(System.Int32)
+  id: FontStyleIsItalic(System.Int32)
+  parent: Reportman.Drawing.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: FontStyleIsItalic(int)
+  nameWithType: GraphicUtils.FontStyleIsItalic(int)
+  fullName: Reportman.Drawing.GraphicUtils.FontStyleIsItalic(int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static bool FontStyleIsItalic(int intfontstyle)
+    parameters:
+    - id: intfontstyle
+      type: System.Int32
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function FontStyleIsItalic(intfontstyle As Integer) As Boolean
+  overload: Reportman.Drawing.GraphicUtils.FontStyleIsItalic*
+  nameWithType.vb: GraphicUtils.FontStyleIsItalic(Integer)
+  fullName.vb: Reportman.Drawing.GraphicUtils.FontStyleIsItalic(Integer)
+  name.vb: FontStyleIsItalic(Integer)
+- uid: Reportman.Drawing.GraphicUtils.FontStyleIsUnderline(System.Int32)
+  commentId: M:Reportman.Drawing.GraphicUtils.FontStyleIsUnderline(System.Int32)
+  id: FontStyleIsUnderline(System.Int32)
+  parent: Reportman.Drawing.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: FontStyleIsUnderline(int)
+  nameWithType: GraphicUtils.FontStyleIsUnderline(int)
+  fullName: Reportman.Drawing.GraphicUtils.FontStyleIsUnderline(int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static bool FontStyleIsUnderline(int intfontstyle)
+    parameters:
+    - id: intfontstyle
+      type: System.Int32
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function FontStyleIsUnderline(intfontstyle As Integer) As Boolean
+  overload: Reportman.Drawing.GraphicUtils.FontStyleIsUnderline*
+  nameWithType.vb: GraphicUtils.FontStyleIsUnderline(Integer)
+  fullName.vb: Reportman.Drawing.GraphicUtils.FontStyleIsUnderline(Integer)
+  name.vb: FontStyleIsUnderline(Integer)
+- uid: Reportman.Drawing.GraphicUtils.FontStyleIsStrikeOut(System.Int32)
+  commentId: M:Reportman.Drawing.GraphicUtils.FontStyleIsStrikeOut(System.Int32)
+  id: FontStyleIsStrikeOut(System.Int32)
+  parent: Reportman.Drawing.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: FontStyleIsStrikeOut(int)
+  nameWithType: GraphicUtils.FontStyleIsStrikeOut(int)
+  fullName: Reportman.Drawing.GraphicUtils.FontStyleIsStrikeOut(int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static bool FontStyleIsStrikeOut(int intfontstyle)
+    parameters:
+    - id: intfontstyle
+      type: System.Int32
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function FontStyleIsStrikeOut(intfontstyle As Integer) As Boolean
+  overload: Reportman.Drawing.GraphicUtils.FontStyleIsStrikeOut*
+  nameWithType.vb: GraphicUtils.FontStyleIsStrikeOut(Integer)
+  fullName.vb: Reportman.Drawing.GraphicUtils.FontStyleIsStrikeOut(Integer)
+  name.vb: FontStyleIsStrikeOut(Integer)
+- uid: Reportman.Drawing.GraphicUtils.ColorFromInteger(System.Int32)
+  commentId: M:Reportman.Drawing.GraphicUtils.ColorFromInteger(System.Int32)
+  id: ColorFromInteger(System.Int32)
+  parent: Reportman.Drawing.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: ColorFromInteger(int)
+  nameWithType: GraphicUtils.ColorFromInteger(int)
+  fullName: Reportman.Drawing.GraphicUtils.ColorFromInteger(int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Create a Color based on a 32 bit integer
+  example: []
+  syntax:
+    content: public static Color ColorFromInteger(int aint)
+    parameters:
+    - id: aint
+      type: System.Int32
+      description: Integer color value in the form of $00BBGGRR
+    return:
+      type: System.Drawing.Color
+      description: Returs a Color usable in any System.Drawing function
+    content.vb: Public Shared Function ColorFromInteger(aint As Integer) As Color
+  overload: Reportman.Drawing.GraphicUtils.ColorFromInteger*
+  nameWithType.vb: GraphicUtils.ColorFromInteger(Integer)
+  fullName.vb: Reportman.Drawing.GraphicUtils.ColorFromInteger(Integer)
+  name.vb: ColorFromInteger(Integer)
+- uid: Reportman.Drawing.GraphicUtils.IntegerFromColor(System.Drawing.Color)
+  commentId: M:Reportman.Drawing.GraphicUtils.IntegerFromColor(System.Drawing.Color)
+  id: IntegerFromColor(System.Drawing.Color)
+  parent: Reportman.Drawing.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: IntegerFromColor(Color)
+  nameWithType: GraphicUtils.IntegerFromColor(Color)
+  fullName: Reportman.Drawing.GraphicUtils.IntegerFromColor(System.Drawing.Color)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Create an integer value based on a Color        ///
+  example: []
+  syntax:
+    content: public static int IntegerFromColor(Color acolor)
+    parameters:
+    - id: acolor
+      type: System.Drawing.Color
+      description: Color value
+    return:
+      type: System.Int32
+      description: Returs an integer value  in the form of $00BBGGRR
+    content.vb: Public Shared Function IntegerFromColor(acolor As Color) As Integer
+  overload: Reportman.Drawing.GraphicUtils.IntegerFromColor*
+- uid: Reportman.Drawing.GraphicUtils.IntegerFromColorA(System.Drawing.Color)
+  commentId: M:Reportman.Drawing.GraphicUtils.IntegerFromColorA(System.Drawing.Color)
+  id: IntegerFromColorA(System.Drawing.Color)
+  parent: Reportman.Drawing.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: IntegerFromColorA(Color)
+  nameWithType: GraphicUtils.IntegerFromColorA(Color)
+  fullName: Reportman.Drawing.GraphicUtils.IntegerFromColorA(System.Drawing.Color)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static int IntegerFromColorA(Color acolor)
+    parameters:
+    - id: acolor
+      type: System.Drawing.Color
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function IntegerFromColorA(acolor As Color) As Integer
+  overload: Reportman.Drawing.GraphicUtils.IntegerFromColorA*
+- uid: Reportman.Drawing.GraphicUtils.ColorFromHtml(System.String)
+  commentId: M:Reportman.Drawing.GraphicUtils.ColorFromHtml(System.String)
+  id: ColorFromHtml(System.String)
+  parent: Reportman.Drawing.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: ColorFromHtml(string)
+  nameWithType: GraphicUtils.ColorFromHtml(string)
+  fullName: Reportman.Drawing.GraphicUtils.ColorFromHtml(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  example: []
+  syntax:
+    content: public static Color ColorFromHtml(string htmlColor)
+    parameters:
+    - id: htmlColor
+      type: System.String
+    return:
+      type: System.Drawing.Color
+    content.vb: Public Shared Function ColorFromHtml(htmlColor As String) As Color
+  overload: Reportman.Drawing.GraphicUtils.ColorFromHtml*
+  nameWithType.vb: GraphicUtils.ColorFromHtml(String)
+  fullName.vb: Reportman.Drawing.GraphicUtils.ColorFromHtml(String)
+  name.vb: ColorFromHtml(String)
+- uid: Reportman.Drawing.GraphicUtils.ColorFromString(System.String)
+  commentId: M:Reportman.Drawing.GraphicUtils.ColorFromString(System.String)
+  id: ColorFromString(System.String)
+  parent: Reportman.Drawing.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: ColorFromString(string)
+  nameWithType: GraphicUtils.ColorFromString(string)
+  fullName: Reportman.Drawing.GraphicUtils.ColorFromString(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static Color ColorFromString(string ncolor)
+    parameters:
+    - id: ncolor
+      type: System.String
+    return:
+      type: System.Drawing.Color
+    content.vb: Public Shared Function ColorFromString(ncolor As String) As Color
+  overload: Reportman.Drawing.GraphicUtils.ColorFromString*
+  nameWithType.vb: GraphicUtils.ColorFromString(String)
+  fullName.vb: Reportman.Drawing.GraphicUtils.ColorFromString(String)
+  name.vb: ColorFromString(String)
+- uid: Reportman.Drawing.GraphicUtils.ColorFromIntegerA(System.Int32)
+  commentId: M:Reportman.Drawing.GraphicUtils.ColorFromIntegerA(System.Int32)
+  id: ColorFromIntegerA(System.Int32)
+  parent: Reportman.Drawing.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: ColorFromIntegerA(int)
+  nameWithType: GraphicUtils.ColorFromIntegerA(int)
+  fullName: Reportman.Drawing.GraphicUtils.ColorFromIntegerA(int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Create a Color based on a 32 bit integer
+  example: []
+  syntax:
+    content: public static Color ColorFromIntegerA(int aint)
+    parameters:
+    - id: aint
+      type: System.Int32
+      description: Integer color value in the form of $00BBGGRR
+    return:
+      type: System.Drawing.Color
+      description: Returs a Color usable in any System.Drawing function
+    content.vb: Public Shared Function ColorFromIntegerA(aint As Integer) As Color
+  overload: Reportman.Drawing.GraphicUtils.ColorFromIntegerA*
+  nameWithType.vb: GraphicUtils.ColorFromIntegerA(Integer)
+  fullName.vb: Reportman.Drawing.GraphicUtils.ColorFromIntegerA(Integer)
+  name.vb: ColorFromIntegerA(Integer)
+- uid: Reportman.Drawing.GraphicUtils.#ctor
+  commentId: M:Reportman.Drawing.GraphicUtils.#ctor
+  id: '#ctor'
+  parent: Reportman.Drawing.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: GraphicUtils()
+  nameWithType: GraphicUtils.GraphicUtils()
+  fullName: Reportman.Drawing.GraphicUtils.GraphicUtils()
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public GraphicUtils()
+    content.vb: Public Sub New()
+  overload: Reportman.Drawing.GraphicUtils.#ctor*
+  nameWithType.vb: GraphicUtils.New()
+  fullName.vb: Reportman.Drawing.GraphicUtils.New()
+  name.vb: New()
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Collections.Generic.SortedList{System.String,System.Drawing.KnownColor}
+  commentId: T:System.Collections.Generic.SortedList{System.String,System.Drawing.KnownColor}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.SortedList`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  name: SortedList<string, KnownColor>
+  nameWithType: SortedList<string, KnownColor>
+  fullName: System.Collections.Generic.SortedList<string, System.Drawing.KnownColor>
+  nameWithType.vb: SortedList(Of String, KnownColor)
+  fullName.vb: System.Collections.Generic.SortedList(Of String, System.Drawing.KnownColor)
+  name.vb: SortedList(Of String, KnownColor)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.KnownColor
+    name: KnownColor
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.knowncolor
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.KnownColor
+    name: KnownColor
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.knowncolor
+  - name: )
+- uid: System.Collections.Generic.SortedList`2
+  commentId: T:System.Collections.Generic.SortedList`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  name: SortedList<TKey, TValue>
+  nameWithType: SortedList<TKey, TValue>
+  fullName: System.Collections.Generic.SortedList<TKey, TValue>
+  nameWithType.vb: SortedList(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.SortedList(Of TKey, TValue)
+  name.vb: SortedList(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Reportman.Drawing.GraphicUtils.FontStyleIsBold*
+  commentId: Overload:Reportman.Drawing.GraphicUtils.FontStyleIsBold
+  isExternal: true
+  href: Reportman.Drawing.GraphicUtils.html#Reportman_Drawing_GraphicUtils_FontStyleIsBold_System_Int32_
+  name: FontStyleIsBold
+  nameWithType: GraphicUtils.FontStyleIsBold
+  fullName: Reportman.Drawing.GraphicUtils.FontStyleIsBold
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Reportman.Drawing.GraphicUtils.FontStyleIsItalic*
+  commentId: Overload:Reportman.Drawing.GraphicUtils.FontStyleIsItalic
+  isExternal: true
+  href: Reportman.Drawing.GraphicUtils.html#Reportman_Drawing_GraphicUtils_FontStyleIsItalic_System_Int32_
+  name: FontStyleIsItalic
+  nameWithType: GraphicUtils.FontStyleIsItalic
+  fullName: Reportman.Drawing.GraphicUtils.FontStyleIsItalic
+- uid: Reportman.Drawing.GraphicUtils.FontStyleIsUnderline*
+  commentId: Overload:Reportman.Drawing.GraphicUtils.FontStyleIsUnderline
+  isExternal: true
+  href: Reportman.Drawing.GraphicUtils.html#Reportman_Drawing_GraphicUtils_FontStyleIsUnderline_System_Int32_
+  name: FontStyleIsUnderline
+  nameWithType: GraphicUtils.FontStyleIsUnderline
+  fullName: Reportman.Drawing.GraphicUtils.FontStyleIsUnderline
+- uid: Reportman.Drawing.GraphicUtils.FontStyleIsStrikeOut*
+  commentId: Overload:Reportman.Drawing.GraphicUtils.FontStyleIsStrikeOut
+  isExternal: true
+  href: Reportman.Drawing.GraphicUtils.html#Reportman_Drawing_GraphicUtils_FontStyleIsStrikeOut_System_Int32_
+  name: FontStyleIsStrikeOut
+  nameWithType: GraphicUtils.FontStyleIsStrikeOut
+  fullName: Reportman.Drawing.GraphicUtils.FontStyleIsStrikeOut
+- uid: Reportman.Drawing.GraphicUtils.ColorFromInteger*
+  commentId: Overload:Reportman.Drawing.GraphicUtils.ColorFromInteger
+  isExternal: true
+  href: Reportman.Drawing.GraphicUtils.html#Reportman_Drawing_GraphicUtils_ColorFromInteger_System_Int32_
+  name: ColorFromInteger
+  nameWithType: GraphicUtils.ColorFromInteger
+  fullName: Reportman.Drawing.GraphicUtils.ColorFromInteger
+- uid: System.Drawing.Color
+  commentId: T:System.Drawing.Color
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.color
+  name: Color
+  nameWithType: Color
+  fullName: System.Drawing.Color
+- uid: System.Drawing
+  commentId: N:System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Drawing
+  nameWithType: System.Drawing
+  fullName: System.Drawing
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+- uid: Reportman.Drawing.GraphicUtils.IntegerFromColor*
+  commentId: Overload:Reportman.Drawing.GraphicUtils.IntegerFromColor
+  isExternal: true
+  href: Reportman.Drawing.GraphicUtils.html#Reportman_Drawing_GraphicUtils_IntegerFromColor_System_Drawing_Color_
+  name: IntegerFromColor
+  nameWithType: GraphicUtils.IntegerFromColor
+  fullName: Reportman.Drawing.GraphicUtils.IntegerFromColor
+- uid: Reportman.Drawing.GraphicUtils.IntegerFromColorA*
+  commentId: Overload:Reportman.Drawing.GraphicUtils.IntegerFromColorA
+  isExternal: true
+  href: Reportman.Drawing.GraphicUtils.html#Reportman_Drawing_GraphicUtils_IntegerFromColorA_System_Drawing_Color_
+  name: IntegerFromColorA
+  nameWithType: GraphicUtils.IntegerFromColorA
+  fullName: Reportman.Drawing.GraphicUtils.IntegerFromColorA
+- uid: Reportman.Drawing.GraphicUtils.ColorFromHtml*
+  commentId: Overload:Reportman.Drawing.GraphicUtils.ColorFromHtml
+  isExternal: true
+  href: Reportman.Drawing.GraphicUtils.html#Reportman_Drawing_GraphicUtils_ColorFromHtml_System_String_
+  name: ColorFromHtml
+  nameWithType: GraphicUtils.ColorFromHtml
+  fullName: Reportman.Drawing.GraphicUtils.ColorFromHtml
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Reportman.Drawing.GraphicUtils.ColorFromString*
+  commentId: Overload:Reportman.Drawing.GraphicUtils.ColorFromString
+  isExternal: true
+  href: Reportman.Drawing.GraphicUtils.html#Reportman_Drawing_GraphicUtils_ColorFromString_System_String_
+  name: ColorFromString
+  nameWithType: GraphicUtils.ColorFromString
+  fullName: Reportman.Drawing.GraphicUtils.ColorFromString
+- uid: Reportman.Drawing.GraphicUtils.ColorFromIntegerA*
+  commentId: Overload:Reportman.Drawing.GraphicUtils.ColorFromIntegerA
+  isExternal: true
+  href: Reportman.Drawing.GraphicUtils.html#Reportman_Drawing_GraphicUtils_ColorFromIntegerA_System_Int32_
+  name: ColorFromIntegerA
+  nameWithType: GraphicUtils.ColorFromIntegerA
+  fullName: Reportman.Drawing.GraphicUtils.ColorFromIntegerA
+- uid: Reportman.Drawing.GraphicUtils.#ctor*
+  commentId: Overload:Reportman.Drawing.GraphicUtils.#ctor
+  isExternal: true
+  href: Reportman.Drawing.GraphicUtils.html#Reportman_Drawing_GraphicUtils__ctor
+  name: GraphicUtils
+  nameWithType: GraphicUtils.GraphicUtils
+  fullName: Reportman.Drawing.GraphicUtils.GraphicUtils
+  nameWithType.vb: GraphicUtils.New
+  fullName.vb: Reportman.Drawing.GraphicUtils.New
+  name.vb: New

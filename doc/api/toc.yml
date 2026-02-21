@@ -1,0 +1,1128 @@
+### YamlMime:TableOfContent
+items:
+- uid: Reportman.Drawing
+  name: Reportman.Drawing
+  type: Namespace
+  items:
+  - uid: Reportman.Drawing.AdvFontData
+    name: AdvFontData
+    type: Class
+  - uid: Reportman.Drawing.AssemblyResolver
+    name: AssemblyResolver
+    type: Class
+  - uid: Reportman.Drawing.AutoScaleType
+    name: AutoScaleType
+    type: Enum
+  - uid: Reportman.Drawing.BarType
+    name: BarType
+    type: Enum
+  - uid: Reportman.Drawing.BeginPrintOut
+    name: BeginPrintOut
+    type: Delegate
+  - uid: Reportman.Drawing.BitmapInfo
+    name: BitmapInfo
+    type: Class
+  - uid: Reportman.Drawing.BitmapUtil
+    name: BitmapUtil
+    type: Class
+  - uid: Reportman.Drawing.BrushType
+    name: BrushType
+    type: Enum
+  - uid: Reportman.Drawing.ChartDriver
+    name: ChartDriver
+    type: Enum
+  - uid: Reportman.Drawing.ChartType
+    name: ChartType
+    type: Enum
+  - uid: Reportman.Drawing.CompressionTask
+    name: CompressionTask
+    type: Class
+  - uid: Reportman.Drawing.CopyProgress
+    name: CopyProgress
+    type: Delegate
+  - uid: Reportman.Drawing.DataUtilities
+    name: DataUtilities
+    type: Class
+  - uid: Reportman.Drawing.DateUtil
+    name: DateUtil
+    type: Class
+  - uid: Reportman.Drawing.DbSqlExecuter
+    name: DbSqlExecuter
+    type: Class
+  - uid: Reportman.Drawing.DoubleUtil
+    name: DoubleUtil
+    type: Class
+  - uid: Reportman.Drawing.Doubles
+    name: Doubles
+    type: Class
+  - uid: Reportman.Drawing.EmbeddedFile
+    name: EmbeddedFile
+    type: Class
+  - uid: Reportman.Drawing.Encrypter
+    name: Encrypter
+    type: Class
+  - uid: Reportman.Drawing.Encrypter.RijndaelSimple
+    name: Encrypter.RijndaelSimple
+    type: Class
+  - uid: Reportman.Drawing.ExcelFileFormat
+    name: ExcelFileFormat
+    type: Enum
+  - uid: Reportman.Drawing.ExceptionUtil
+    name: ExceptionUtil
+    type: Class
+  - uid: Reportman.Drawing.FastSerializer
+    name: FastSerializer
+    type: Class
+  - uid: Reportman.Drawing.FileHash
+    name: FileHash
+    type: Class
+  - uid: Reportman.Drawing.FileHashes
+    name: FileHashes
+    type: Class
+  - uid: Reportman.Drawing.FontInfoProvider
+    name: FontInfoProvider
+    type: Class
+  - uid: Reportman.Drawing.GS1_128
+    name: GS1_128
+    type: Class
+  - uid: Reportman.Drawing.GlyphInfo
+    name: GlyphInfo
+    type: Struct
+  - uid: Reportman.Drawing.GraphicUtils
+    name: GraphicUtils
+    type: Class
+  - uid: Reportman.Drawing.HashGenerator
+    name: HashGenerator
+    type: Class
+  - uid: Reportman.Drawing.IBitmapInfoProvider
+    name: IBitmapInfoProvider
+    type: Interface
+  - uid: Reportman.Drawing.IDbCommandExecuter
+    name: IDbCommandExecuter
+    type: Interface
+  - uid: Reportman.Drawing.ISqlExecuter
+    name: ISqlExecuter
+    type: Interface
+  - uid: Reportman.Drawing.ISqlExecuterPartialFillArgs
+    name: ISqlExecuterPartialFillArgs
+    type: Class
+  - uid: Reportman.Drawing.ISqlExecuterPartialFillEvent
+    name: ISqlExecuterPartialFillEvent
+    type: Delegate
+  - uid: Reportman.Drawing.ISqlExecuterProgressEvent
+    name: ISqlExecuterProgressEvent
+    type: Delegate
+  - uid: Reportman.Drawing.ImageDrawStyleType
+    name: ImageDrawStyleType
+    type: Enum
+  - uid: Reportman.Drawing.IniFile
+    name: IniFile
+    type: Class
+  - uid: Reportman.Drawing.IniSection
+    name: IniSection
+    type: Class
+  - uid: Reportman.Drawing.Integers
+    name: Integers
+    type: Class
+  - uid: Reportman.Drawing.LineInfo
+    name: LineInfo
+    type: Struct
+  - uid: Reportman.Drawing.ListExtensions
+    name: ListExtensions
+    type: Class
+  - uid: Reportman.Drawing.Longs
+    name: Longs
+    type: Class
+  - uid: Reportman.Drawing.MAPI
+    name: MAPI
+    type: Class
+  - uid: Reportman.Drawing.MemStreams
+    name: MemStreams
+    type: Class
+  - uid: Reportman.Drawing.MetaFile
+    name: MetaFile
+    type: Class
+  - uid: Reportman.Drawing.MetaFile.MetaFileVersion
+    name: MetaFile.MetaFileVersion
+    type: Enum
+  - uid: Reportman.Drawing.MetaFileLoadError
+    name: MetaFileLoadError
+    type: Delegate
+  - uid: Reportman.Drawing.MetaFileLoadProgress
+    name: MetaFileLoadProgress
+    type: Delegate
+  - uid: Reportman.Drawing.MetaFileSaveWorkProgress
+    name: MetaFileSaveWorkProgress
+    type: Delegate
+  - uid: Reportman.Drawing.MetaFileWorkAsyncError
+    name: MetaFileWorkAsyncError
+    type: Delegate
+  - uid: Reportman.Drawing.MetaFileWorkProgress
+    name: MetaFileWorkProgress
+    type: Delegate
+  - uid: Reportman.Drawing.MetaObject
+    name: MetaObject
+    type: Class
+  - uid: Reportman.Drawing.MetaObjectDraw
+    name: MetaObjectDraw
+    type: Class
+  - uid: Reportman.Drawing.MetaObjectExport
+    name: MetaObjectExport
+    type: Class
+  - uid: Reportman.Drawing.MetaObjectImage
+    name: MetaObjectImage
+    type: Class
+  - uid: Reportman.Drawing.MetaObjectPolygon
+    name: MetaObjectPolygon
+    type: Class
+  - uid: Reportman.Drawing.MetaObjectText
+    name: MetaObjectText
+    type: Class
+  - uid: Reportman.Drawing.MetaObjectType
+    name: MetaObjectType
+    type: Enum
+  - uid: Reportman.Drawing.MetaPage
+    name: MetaPage
+    type: Class
+  - uid: Reportman.Drawing.MetaPages
+    name: MetaPages
+    type: Class
+  - uid: Reportman.Drawing.MetaStopWork
+    name: MetaStopWork
+    type: Delegate
+  - uid: Reportman.Drawing.NamedException
+    name: NamedException
+    type: Class
+  - uid: Reportman.Drawing.NoDataToPrintEvent
+    name: NoDataToPrintEvent
+    type: Delegate
+  - uid: Reportman.Drawing.NoDataToPrintException
+    name: NoDataToPrintException
+    type: Class
+  - uid: Reportman.Drawing.ObjectViewModel
+    name: ObjectViewModel
+    type: Class
+  - uid: Reportman.Drawing.ObjectViewModelHierarchy
+    name: ObjectViewModelHierarchy
+    type: Class
+  - uid: Reportman.Drawing.OrientationType
+    name: OrientationType
+    type: Enum
+  - uid: Reportman.Drawing.PDFAFRelationShip
+    name: PDFAFRelationShip
+    type: Enum
+  - uid: Reportman.Drawing.PDFCanvas
+    name: PDFCanvas
+    type: Class
+  - uid: Reportman.Drawing.PDFConformance
+    name: PDFConformance
+    type: Enum
+  - uid: Reportman.Drawing.PDFConformanceType
+    name: PDFConformanceType
+    type: Enum
+  - uid: Reportman.Drawing.PDFFile
+    name: PDFFile
+    type: Class
+  - uid: Reportman.Drawing.PDFFile.PDFAnnotation
+    name: PDFFile.PDFAnnotation
+    type: Class
+  - uid: Reportman.Drawing.PDFFont
+    name: PDFFont
+    type: Class
+  - uid: Reportman.Drawing.PDFFontType
+    name: PDFFontType
+    type: Enum
+  - uid: Reportman.Drawing.PageSizeDetail
+    name: PageSizeDetail
+    type: Class
+  - uid: Reportman.Drawing.PenType
+    name: PenType
+    type: Enum
+  - uid: Reportman.Drawing.PosText
+    name: PosText
+    type: Struct
+  - uid: Reportman.Drawing.PreviewWindowStyleType
+    name: PreviewWindowStyleType
+    type: Enum
+  - uid: Reportman.Drawing.PrintLine
+    name: PrintLine
+    type: Class
+  - uid: Reportman.Drawing.PrintOut
+    name: PrintOut
+    type: Class
+  - uid: Reportman.Drawing.PrintOutBitmap
+    name: PrintOutBitmap
+    type: Class
+  - uid: Reportman.Drawing.PrintOutCSV
+    name: PrintOutCSV
+    type: Class
+  - uid: Reportman.Drawing.PrintOutCSV.TextFormat
+    name: PrintOutCSV.TextFormat
+    type: Class
+  - uid: Reportman.Drawing.PrintOutCSV.TextFormat.AlignmentType
+    name: PrintOutCSV.TextFormat.AlignmentType
+    type: Enum
+  - uid: Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle
+    name: PrintOutCSV.TextFormat.FontStyle
+    type: Enum
+  - uid: Reportman.Drawing.PrintOutExcel
+    name: PrintOutExcel
+    type: Class
+  - uid: Reportman.Drawing.PrintOutNet
+    name: PrintOutNet
+    type: Class
+  - uid: Reportman.Drawing.PrintOutPDF
+    name: PrintOutPDF
+    type: Class
+  - uid: Reportman.Drawing.PrintOutPDF.ImageDepth
+    name: PrintOutPDF.ImageDepth
+    type: Enum
+  - uid: Reportman.Drawing.PrintOutPDFBase
+    name: PrintOutPDFBase
+    type: Class
+  - uid: Reportman.Drawing.PrintOutPrint
+    name: PrintOutPrint
+    type: Class
+  - uid: Reportman.Drawing.PrintOutText
+    name: PrintOutText
+    type: Class
+  - uid: Reportman.Drawing.PrintOutText.OemConvertOverride
+    name: PrintOutText.OemConvertOverride
+    type: Enum
+  - uid: Reportman.Drawing.PrintStepType
+    name: PrintStepType
+    type: Enum
+  - uid: Reportman.Drawing.PrinterConfig
+    name: PrinterConfig
+    type: Class
+  - uid: Reportman.Drawing.PrinterFontsType
+    name: PrinterFontsType
+    type: Enum
+  - uid: Reportman.Drawing.PrinterRawOperation
+    name: PrinterRawOperation
+    type: Enum
+  - uid: Reportman.Drawing.PrinterSelectType
+    name: PrinterSelectType
+    type: Enum
+  - uid: Reportman.Drawing.ProcessUtil
+    name: ProcessUtil
+    type: Class
+  - uid: Reportman.Drawing.ProgressArgs
+    name: ProgressArgs
+    type: Class
+  - uid: Reportman.Drawing.ProgressEvent
+    name: ProgressEvent
+    type: Delegate
+  - uid: Reportman.Drawing.QRCodeEncoder
+    name: QRCodeEncoder
+    type: Class
+  - uid: Reportman.Drawing.QRCodeEncoder.ENCODE_MODE
+    name: QRCodeEncoder.ENCODE_MODE
+    type: Enum
+  - uid: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION
+    name: QRCodeEncoder.ERROR_CORRECTION
+    type: Enum
+  - uid: Reportman.Drawing.RequestPageEvent
+    name: RequestPageEvent
+    type: Delegate
+  - uid: Reportman.Drawing.Series
+    name: Series
+    type: Class
+  - uid: Reportman.Drawing.Series.AutoRangeAxis
+    name: Series.AutoRangeAxis
+    type: Enum
+  - uid: Reportman.Drawing.SeriesItem
+    name: SeriesItem
+    type: Class
+  - uid: Reportman.Drawing.ShapeType
+    name: ShapeType
+    type: Enum
+  - uid: Reportman.Drawing.StreamPosition
+    name: StreamPosition
+    type: Class
+  - uid: Reportman.Drawing.StreamUtil
+    name: StreamUtil
+    type: Class
+  - uid: Reportman.Drawing.StringExtensions
+    name: StringExtensions
+    type: Class
+  - uid: Reportman.Drawing.StringUtil
+    name: StringUtil
+    type: Class
+  - uid: Reportman.Drawing.Strings
+    name: Strings
+    type: Class
+  - uid: Reportman.Drawing.TGlyphPos
+    name: TGlyphPos
+    type: Struct
+  - uid: Reportman.Drawing.TTFontData
+    name: TTFontData
+    type: Class
+  - uid: Reportman.Drawing.TableData
+    name: TableData
+    type: Class
+  - uid: Reportman.Drawing.TaskCompressResult
+    name: TaskCompressResult
+    type: Class
+  - uid: Reportman.Drawing.TextAlignType
+    name: TextAlignType
+    type: Enum
+  - uid: Reportman.Drawing.TextAlignVerticalType
+    name: TextAlignVerticalType
+    type: Enum
+  - uid: Reportman.Drawing.TextObjectStruct
+    name: TextObjectStruct
+    type: Struct
+  - uid: Reportman.Drawing.TotalPage
+    name: TotalPage
+    type: Struct
+  - uid: Reportman.Drawing.TotalPages
+    name: TotalPages
+    type: Class
+  - uid: Reportman.Drawing.Translator
+    name: Translator
+    type: Class
+  - uid: Reportman.Drawing.TrueTypeFontSubSet
+    name: TrueTypeFontSubSet
+    type: Class
+  - uid: Reportman.Drawing.Twips
+    name: Twips
+    type: Class
+  - uid: Reportman.Drawing.TwipsGraphics
+    name: TwipsGraphics
+    type: Class
+  - uid: Reportman.Drawing.UnNamedException
+    name: UnNamedException
+    type: Class
+  - uid: Reportman.Drawing.Units
+    name: Units
+    type: Enum
+  - uid: Reportman.Drawing.Updater
+    name: Updater
+    type: Class
+  - uid: Reportman.Drawing.VersionInfo
+    name: VersionInfo
+    type: Class
+  - uid: Reportman.Drawing.WMFOptimization
+    name: WMFOptimization
+    type: Enum
+- uid: Reportman.Drawing.Forms
+  name: Reportman.Drawing.Forms
+  type: Namespace
+  items:
+  - uid: Reportman.Drawing.Forms.AdvancedEditingControl
+    name: AdvancedEditingControl
+    type: Class
+  - uid: Reportman.Drawing.Forms.AlterReportEvent
+    name: AlterReportEvent
+    type: Delegate
+  - uid: Reportman.Drawing.Forms.AutoCompleteInfo
+    name: AutoCompleteInfo
+    type: Class
+  - uid: Reportman.Drawing.Forms.BeforeEnterTabEvent
+    name: BeforeEnterTabEvent
+    type: Delegate
+  - uid: Reportman.Drawing.Forms.ButtonCalc
+    name: ButtonCalc
+    type: Class
+  - uid: Reportman.Drawing.Forms.CalcReportProgress
+    name: CalcReportProgress
+    type: Class
+  - uid: Reportman.Drawing.Forms.Calculator
+    name: Calculator
+    type: Class
+  - uid: Reportman.Drawing.Forms.CancelArgs
+    name: CancelArgs
+    type: Class
+  - uid: Reportman.Drawing.Forms.CancelEvent
+    name: CancelEvent
+    type: Delegate
+  - uid: Reportman.Drawing.Forms.CheckBoxAdvanced
+    name: CheckBoxAdvanced
+    type: Class
+  - uid: Reportman.Drawing.Forms.CollectionChange
+    name: CollectionChange
+    type: Delegate
+  - uid: Reportman.Drawing.Forms.CollectionClear
+    name: CollectionClear
+    type: Delegate
+  - uid: Reportman.Drawing.Forms.CollectionWithEvents
+    name: CollectionWithEvents
+    type: Class
+  - uid: Reportman.Drawing.Forms.ColorHelper
+    name: ColorHelper
+    type: Class
+  - uid: Reportman.Drawing.Forms.ColumnDataType
+    name: ColumnDataType
+    type: Enum
+  - uid: Reportman.Drawing.Forms.ComboBoxAdvanced
+    name: ComboBoxAdvanced
+    type: Class
+  - uid: Reportman.Drawing.Forms.ComboBoxAdvancedItem
+    name: ComboBoxAdvancedItem
+    type: Class
+  - uid: Reportman.Drawing.Forms.ComboListMatcher
+    name: ComboListMatcher
+    type: Class
+  - uid: Reportman.Drawing.Forms.ControlHelper
+    name: ControlHelper
+    type: Class
+  - uid: Reportman.Drawing.Forms.CueHelper
+    name: CueHelper
+    type: Class
+  - uid: Reportman.Drawing.Forms.CustomPaintControl
+    name: CustomPaintControl
+    type: Class
+  - uid: Reportman.Drawing.Forms.DataColumnButtonClickEvent
+    name: DataColumnButtonClickEvent
+    type: Delegate
+  - uid: Reportman.Drawing.Forms.DataGridViewAdvanced
+    name: DataGridViewAdvanced
+    type: Class
+  - uid: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent
+    name: DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent
+    type: Delegate
+  - uid: Reportman.Drawing.Forms.DataGridViewCellAdvanced
+    name: DataGridViewCellAdvanced
+    type: Class
+  - uid: Reportman.Drawing.Forms.DataGridViewColumnAdvanced
+    name: DataGridViewColumnAdvanced
+    type: Class
+  - uid: Reportman.Drawing.Forms.DataGridViewNumericUpDownCell
+    name: DataGridViewNumericUpDownCell
+    type: Class
+  - uid: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn
+    name: DataGridViewNumericUpDownColumn
+    type: Class
+  - uid: Reportman.Drawing.Forms.DateDropButton
+    name: DateDropButton
+    type: Class
+  - uid: Reportman.Drawing.Forms.DateTimePickerAdvanced
+    name: DateTimePickerAdvanced
+    type: Class
+  - uid: Reportman.Drawing.Forms.DateTimePickerAdvanced.ValueChangedEventHandler
+    name: DateTimePickerAdvanced.ValueChangedEventHandler
+    type: Delegate
+  - uid: Reportman.Drawing.Forms.DateTimePickerNullable
+    name: DateTimePickerNullable
+    type: Class
+  - uid: Reportman.Drawing.Forms.Direction
+    name: Direction
+    type: Enum
+  - uid: Reportman.Drawing.Forms.DoubleClickControlEvent
+    name: DoubleClickControlEvent
+    type: Delegate
+  - uid: Reportman.Drawing.Forms.DrawHelper
+    name: DrawHelper
+    type: Class
+  - uid: Reportman.Drawing.Forms.DrawHelper.CommandState
+    name: DrawHelper.CommandState
+    type: Enum
+  - uid: Reportman.Drawing.Forms.Edge
+    name: Edge
+    type: Enum
+  - uid: Reportman.Drawing.Forms.EditCalc
+    name: EditCalc
+    type: Class
+  - uid: Reportman.Drawing.Forms.EventPrinterNamesArgs
+    name: EventPrinterNamesArgs
+    type: Class
+  - uid: Reportman.Drawing.Forms.EventPrinterNamesHandler
+    name: EventPrinterNamesHandler
+    type: Delegate
+  - uid: Reportman.Drawing.Forms.FormUtils
+    name: FormUtils
+    type: Class
+  - uid: Reportman.Drawing.Forms.GroupBoxAdvanced
+    name: GroupBoxAdvanced
+    type: Class
+  - uid: Reportman.Drawing.Forms.IDisplayDisable
+    name: IDisplayDisable
+    type: Interface
+  - uid: Reportman.Drawing.Forms.ISearchWindow
+    name: ISearchWindow
+    type: Interface
+  - uid: Reportman.Drawing.Forms.InertButton
+    name: InertButton
+    type: Class
+  - uid: Reportman.Drawing.Forms.InputBox
+    name: InputBox
+    type: Class
+  - uid: Reportman.Drawing.Forms.IsDateValidResult
+    name: IsDateValidResult
+    type: Enum
+  - uid: Reportman.Drawing.Forms.ListBoxNonSelectable
+    name: ListBoxNonSelectable
+    type: Class
+  - uid: Reportman.Drawing.Forms.MessageBoxError
+    name: MessageBoxError
+    type: Class
+  - uid: Reportman.Drawing.Forms.NextColumnFocusEvent
+    name: NextColumnFocusEvent
+    type: Delegate
+  - uid: Reportman.Drawing.Forms.NoTitleForm
+    name: NoTitleForm
+    type: Class
+  - uid: Reportman.Drawing.Forms.Number
+    name: Number
+    type: Struct
+  - uid: Reportman.Drawing.Forms.PageDrawnEvent
+    name: PageDrawnEvent
+    type: Delegate
+  - uid: Reportman.Drawing.Forms.PanelAdvanced
+    name: PanelAdvanced
+    type: Class
+  - uid: Reportman.Drawing.Forms.PopupWindow
+    name: PopupWindow
+    type: Class
+  - uid: Reportman.Drawing.Forms.PreviewMetaFile
+    name: PreviewMetaFile
+    type: Class
+  - uid: Reportman.Drawing.Forms.PreviewWinFormsControl
+    name: PreviewWinFormsControl
+    type: Class
+  - uid: Reportman.Drawing.Forms.PreviewWindowMode
+    name: PreviewWindowMode
+    type: Enum
+  - uid: Reportman.Drawing.Forms.PrintOutWinForms
+    name: PrintOutWinForms
+    type: Class
+  - uid: Reportman.Drawing.Forms.PrintersConfiguration
+    name: PrintersConfiguration
+    type: Class
+  - uid: Reportman.Drawing.Forms.ProgresEvent
+    name: ProgresEvent
+    type: Delegate
+  - uid: Reportman.Drawing.Forms.ProgressBarAdvanced
+    name: ProgressBarAdvanced
+    type: Class
+  - uid: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler
+    name: ProgressBarAdvanced.MaxChangedHandler
+    type: Delegate
+  - uid: Reportman.Drawing.Forms.ProgressBarAdvanced.MinChangedHandler
+    name: ProgressBarAdvanced.MinChangedHandler
+    type: Delegate
+  - uid: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler
+    name: ProgressBarAdvanced.ValueChangedHandler
+    type: Delegate
+  - uid: Reportman.Drawing.Forms.ProgressForm
+    name: ProgressForm
+    type: Class
+  - uid: Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow
+    name: ProgressForm.ITaskProgressShow
+    type: Interface
+  - uid: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback
+    name: ProgressForm.SetProgressCallback
+    type: Delegate
+  - uid: Reportman.Drawing.Forms.RadioGroup
+    name: RadioGroup
+    type: Class
+  - uid: Reportman.Drawing.Forms.RawPrinterHelper
+    name: RawPrinterHelper
+    type: Class
+  - uid: Reportman.Drawing.Forms.ReportProgressForm
+    name: ReportProgressForm
+    type: Class
+  - uid: Reportman.Drawing.Forms.Ruler
+    name: Ruler
+    type: Class
+  - uid: Reportman.Drawing.Forms.RulerBorder
+    name: RulerBorder
+    type: Enum
+  - uid: Reportman.Drawing.Forms.RulerStyle
+    name: RulerStyle
+    type: Enum
+  - uid: Reportman.Drawing.Forms.ScreenKeyboard
+    name: ScreenKeyboard
+    type: Class
+  - uid: Reportman.Drawing.Forms.ScreenKeyboard.Command
+    name: ScreenKeyboard.Command
+    type: Enum
+  - uid: Reportman.Drawing.Forms.ScrollTextPanel
+    name: ScrollTextPanel
+    type: Class
+  - uid: Reportman.Drawing.Forms.SearchWindowKeyOperation
+    name: SearchWindowKeyOperation
+    type: Enum
+  - uid: Reportman.Drawing.Forms.SendMailEvent
+    name: SendMailEvent
+    type: Delegate
+  - uid: Reportman.Drawing.Forms.SendMailEventArgs
+    name: SendMailEventArgs
+    type: Class
+  - uid: Reportman.Drawing.Forms.ShowSearchWindowArgs
+    name: ShowSearchWindowArgs
+    type: Class
+  - uid: Reportman.Drawing.Forms.ShowSearchWindowEvent
+    name: ShowSearchWindowEvent
+    type: Delegate
+  - uid: Reportman.Drawing.Forms.SignatureControl
+    name: SignatureControl
+    type: Class
+  - uid: Reportman.Drawing.Forms.SignatureControl.SignatureStyle
+    name: SignatureControl.SignatureStyle
+    type: Enum
+  - uid: Reportman.Drawing.Forms.StandardEvent
+    name: StandardEvent
+    type: Delegate
+  - uid: Reportman.Drawing.Forms.StringEvent
+    name: StringEvent
+    type: Delegate
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced
+    name: TabControlAdvanced
+    type: Class
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler
+    name: TabControlAdvanced.DoubleClickTabHandler
+    type: Delegate
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes
+    name: TabControlAdvanced.HideTabsModes
+    type: Enum
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced.HostPanel
+    name: TabControlAdvanced.HostPanel
+    type: Class
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip
+    name: TabControlAdvanced.ImageStrip
+    type: Enum
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced.MultiRect
+    name: TabControlAdvanced.MultiRect
+    type: Class
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+    name: TabControlAdvanced.PositionIndex
+    type: Enum
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance
+    name: TabControlAdvanced.VisualAppearance
+    type: Enum
+  - uid: Reportman.Drawing.Forms.TabPageAdvanced
+    name: TabPageAdvanced
+    type: Class
+  - uid: Reportman.Drawing.Forms.TabPageAdvanced.PropChangeHandler
+    name: TabPageAdvanced.PropChangeHandler
+    type: Delegate
+  - uid: Reportman.Drawing.Forms.TabPageAdvanced.Property
+    name: TabPageAdvanced.Property
+    type: Enum
+  - uid: Reportman.Drawing.Forms.TabPageCollection
+    name: TabPageCollection
+    type: Class
+  - uid: Reportman.Drawing.Forms.TableLayoutPanelAdvanced
+    name: TableLayoutPanelAdvanced
+    type: Class
+  - uid: Reportman.Drawing.Forms.TextBoxAdvanced
+    name: TextBoxAdvanced
+    type: Class
+  - uid: Reportman.Drawing.Forms.TextBoxDataType
+    name: TextBoxDataType
+    type: Enum
+  - uid: Reportman.Drawing.Forms.TokenCalc
+    name: TokenCalc
+    type: Class
+  - uid: Reportman.Drawing.Forms.TokenCalc.TokenType
+    name: TokenCalc.TokenType
+    type: Enum
+  - uid: Reportman.Drawing.Forms.ToolStripAdvanced
+    name: ToolStripAdvanced
+    type: Class
+  - uid: Reportman.Drawing.Forms.ToolStripButtonAllowDisable
+    name: ToolStripButtonAllowDisable
+    type: Class
+  - uid: Reportman.Drawing.Forms.ToolStripComboBoxAdvanced
+    name: ToolStripComboBoxAdvanced
+    type: Class
+  - uid: Reportman.Drawing.Forms.ToolStripDropDownButtonAllowDisable
+    name: ToolStripDropDownButtonAllowDisable
+    type: Class
+  - uid: Reportman.Drawing.Forms.ToolStripTextBoxAdvanced
+    name: ToolStripTextBoxAdvanced
+    type: Class
+  - uid: Reportman.Drawing.Forms.ToolStripTextBoxFilter
+    name: ToolStripTextBoxFilter
+    type: Class
+  - uid: Reportman.Drawing.Forms.ToolTipAdvanced
+    name: ToolTipAdvanced
+    type: Class
+  - uid: Reportman.Drawing.Forms.TransformImageForm
+    name: TransformImageForm
+    type: Class
+  - uid: Reportman.Drawing.Forms.TransparentPanel
+    name: TransparentPanel
+    type: Class
+  - uid: Reportman.Drawing.Forms.TreeGridAdvanced
+    name: TreeGridAdvanced
+    type: Class
+  - uid: Reportman.Drawing.Forms.TreeGridAdvancedCell
+    name: TreeGridAdvancedCell
+    type: Class
+  - uid: Reportman.Drawing.Forms.TreeGridAdvancedColumn
+    name: TreeGridAdvancedColumn
+    type: Class
+  - uid: Reportman.Drawing.Forms.TreeGridAdvancedNode
+    name: TreeGridAdvancedNode
+    type: Class
+  - uid: Reportman.Drawing.Forms.TreeGridRow
+    name: TreeGridRow
+    type: Class
+  - uid: Reportman.Drawing.Forms.UnSelectableButton
+    name: UnSelectableButton
+    type: Class
+  - uid: Reportman.Drawing.Forms.UpdateForm
+    name: UpdateForm
+    type: Class
+  - uid: Reportman.Drawing.Forms.VisualStyle
+    name: VisualStyle
+    type: Enum
+  - uid: Reportman.Drawing.Forms.WinFormsGraphics
+    name: WinFormsGraphics
+    type: Class
+  - uid: Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness
+    name: WinFormsGraphics.DpiAwareness
+    type: Enum
+- uid: Reportman.Drawing.Windows
+  name: Reportman.Drawing.Windows
+  type: Namespace
+  items:
+  - uid: Reportman.Drawing.Windows.BitmapUtilWindows
+    name: BitmapUtilWindows
+    type: Class
+  - uid: Reportman.Drawing.Windows.FontUtils
+    name: FontUtils
+    type: Class
+  - uid: Reportman.Drawing.Windows.GraphicUtils
+    name: GraphicUtils
+    type: Class
+  - uid: Reportman.Drawing.Windows.PrintOutPDFWindows
+    name: PrintOutPDFWindows
+    type: Class
+  - uid: Reportman.Drawing.Windows.TFontFaceCache
+    name: TFontFaceCache
+    type: Class
+  - uid: Reportman.Drawing.Windows.TGlyphLine
+    name: TGlyphLine
+    type: Class
+  - uid: Reportman.Drawing.Windows.TTextExtentRenderer
+    name: TTextExtentRenderer
+    type: Class
+- uid: Reportman.Reporting
+  name: Reportman.Reporting
+  type: Namespace
+  items:
+  - uid: Reportman.Reporting.Aggregate
+    name: Aggregate
+    type: Enum
+  - uid: Reportman.Reporting.AggregateType
+    name: AggregateType
+    type: Enum
+  - uid: Reportman.Reporting.AliasCollection
+    name: AliasCollection
+    type: Class
+  - uid: Reportman.Reporting.AliasCollectionItem
+    name: AliasCollectionItem
+    type: Class
+  - uid: Reportman.Reporting.BackStyleType
+    name: BackStyleType
+    type: Enum
+  - uid: Reportman.Reporting.BarcodeItem
+    name: BarcodeItem
+    type: Class
+  - uid: Reportman.Reporting.BarcodeType
+    name: BarcodeType
+    type: Enum
+  - uid: Reportman.Reporting.BaseReport
+    name: BaseReport
+    type: Class
+  - uid: Reportman.Reporting.ChangeObjectOperation
+    name: ChangeObjectOperation
+    type: Class
+  - uid: Reportman.Reporting.ChangeOperationItem
+    name: ChangeOperationItem
+    type: Class
+  - uid: Reportman.Reporting.ChartItem
+    name: ChartItem
+    type: Class
+  - uid: Reportman.Reporting.DBFExport
+    name: DBFExport
+    type: Class
+  - uid: Reportman.Reporting.DataChange
+    name: DataChange
+    type: Delegate
+  - uid: Reportman.Reporting.DataInfo
+    name: DataInfo
+    type: Class
+  - uid: Reportman.Reporting.DataInfos
+    name: DataInfos
+    type: Class
+  - uid: Reportman.Reporting.DataNeededEvent
+    name: DataNeededEvent
+    type: Delegate
+  - uid: Reportman.Reporting.DataNeededEventArgs
+    name: DataNeededEventArgs
+    type: Class
+  - uid: Reportman.Reporting.DataProgressEvent
+    name: DataProgressEvent
+    type: Delegate
+  - uid: Reportman.Reporting.DatabaseInfo
+    name: DatabaseInfo
+    type: Class
+  - uid: Reportman.Reporting.DatabaseInfos
+    name: DatabaseInfos
+    type: Class
+  - uid: Reportman.Reporting.DatasetAlias
+    name: DatasetAlias
+    type: Class
+  - uid: Reportman.Reporting.DatasetType
+    name: DatasetType
+    type: Enum
+  - uid: Reportman.Reporting.DotNetDriverType
+    name: DotNetDriverType
+    type: Enum
+  - uid: Reportman.Reporting.DriverType
+    name: DriverType
+    type: Enum
+  - uid: Reportman.Reporting.EvalException
+    name: EvalException
+    type: Class
+  - uid: Reportman.Reporting.EvalIdenExpression
+    name: EvalIdenExpression
+    type: Class
+  - uid: Reportman.Reporting.EvalIdentifier
+    name: EvalIdentifier
+    type: Class
+  - uid: Reportman.Reporting.EvalIdentifiers
+    name: EvalIdentifiers
+    type: Class
+  - uid: Reportman.Reporting.EvalIdentifiers.EvalIdentifierEnumerator
+    name: EvalIdentifiers.EvalIdentifierEnumerator
+    type: Class
+  - uid: Reportman.Reporting.EvalParser
+    name: EvalParser
+    type: Class
+  - uid: Reportman.Reporting.Evaluator
+    name: Evaluator
+    type: Class
+  - uid: Reportman.Reporting.ExpressionItem
+    name: ExpressionItem
+    type: Class
+  - uid: Reportman.Reporting.ExternalReport
+    name: ExternalReport
+    type: Class
+  - uid: Reportman.Reporting.IdenConstant
+    name: IdenConstant
+    type: Class
+  - uid: Reportman.Reporting.IdenFunction
+    name: IdenFunction
+    type: Class
+  - uid: Reportman.Reporting.IdenVariable
+    name: IdenVariable
+    type: Class
+  - uid: Reportman.Reporting.IdenVariableParam
+    name: IdenVariableParam
+    type: Class
+  - uid: Reportman.Reporting.ImageItem
+    name: ImageItem
+    type: Class
+  - uid: Reportman.Reporting.LabelItem
+    name: LabelItem
+    type: Class
+  - uid: Reportman.Reporting.OperationType
+    name: OperationType
+    type: Enum
+  - uid: Reportman.Reporting.PageSizeType
+    name: PageSizeType
+    type: Enum
+  - uid: Reportman.Reporting.PagedDataChange
+    name: PagedDataChange
+    type: Delegate
+  - uid: Reportman.Reporting.PagedDataTable
+    name: PagedDataTable
+    type: Class
+  - uid: Reportman.Reporting.Param
+    name: Param
+    type: Class
+  - uid: Reportman.Reporting.ParamType
+    name: ParamType
+    type: Enum
+  - uid: Reportman.Reporting.Params
+    name: Params
+    type: Class
+  - uid: Reportman.Reporting.Params.ParamEnumerator
+    name: Params.ParamEnumerator
+    type: Class
+  - uid: Reportman.Reporting.ParamsConverter
+    name: ParamsConverter
+    type: Class
+  - uid: Reportman.Reporting.PrintItem
+    name: PrintItem
+    type: Class
+  - uid: Reportman.Reporting.PrintItemAlign
+    name: PrintItemAlign
+    type: Enum
+  - uid: Reportman.Reporting.PrintItemText
+    name: PrintItemText
+    type: Class
+  - uid: Reportman.Reporting.PrintPosItem
+    name: PrintPosItem
+    type: Class
+  - uid: Reportman.Reporting.PrintPosItemConverter
+    name: PrintPosItemConverter
+    type: Class
+  - uid: Reportman.Reporting.PropertyType
+    name: PropertyType
+    type: Enum
+  - uid: Reportman.Reporting.Report
+    name: Report
+    type: Class
+  - uid: Reportman.Reporting.ReportDataset
+    name: ReportDataset
+    type: Class
+  - uid: Reportman.Reporting.ReportDataset.CreateTableEvent
+    name: ReportDataset.CreateTableEvent
+    type: Delegate
+  - uid: Reportman.Reporting.ReportDataset.UpdateDataEvent
+    name: ReportDataset.UpdateDataEvent
+    type: Delegate
+  - uid: Reportman.Reporting.ReportDataset.UpdateDataEventAsync
+    name: ReportDataset.UpdateDataEventAsync
+    type: Delegate
+  - uid: Reportman.Reporting.ReportException
+    name: ReportException
+    type: Class
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    type: Class
+  - uid: Reportman.Reporting.ReportItems
+    name: ReportItems
+    type: Class
+  - uid: Reportman.Reporting.ReportItems.ReportItemEnumerator
+    name: ReportItems.ReportItemEnumerator
+    type: Class
+  - uid: Reportman.Reporting.ReportLibraryConfig
+    name: ReportLibraryConfig
+    type: Class
+  - uid: Reportman.Reporting.ReportLibraryConfigCollection
+    name: ReportLibraryConfigCollection
+    type: Class
+  - uid: Reportman.Reporting.ReportLibrarySelection
+    name: ReportLibrarySelection
+    type: Class
+  - uid: Reportman.Reporting.ReportNamedException
+    name: ReportNamedException
+    type: Class
+  - uid: Reportman.Reporting.ReportProgress
+    name: ReportProgress
+    type: Delegate
+  - uid: Reportman.Reporting.ReportReader
+    name: ReportReader
+    type: Class
+  - uid: Reportman.Reporting.ReportWriter
+    name: ReportWriter
+    type: Class
+  - uid: Reportman.Reporting.Section
+    name: Section
+    type: Class
+  - uid: Reportman.Reporting.SectionType
+    name: SectionType
+    type: Enum
+  - uid: Reportman.Reporting.Sections
+    name: Sections
+    type: Class
+  - uid: Reportman.Reporting.ShapeItem
+    name: ShapeItem
+    type: Class
+  - uid: Reportman.Reporting.SharedImageType
+    name: SharedImageType
+    type: Enum
+  - uid: Reportman.Reporting.SkipType
+    name: SkipType
+    type: Enum
+  - uid: Reportman.Reporting.SqlParser
+    name: SqlParser
+    type: Class
+  - uid: Reportman.Reporting.StreamFormatType
+    name: StreamFormatType
+    type: Enum
+  - uid: Reportman.Reporting.StreamVersion
+    name: StreamVersion
+    type: Enum
+  - uid: Reportman.Reporting.SubReport
+    name: SubReport
+    type: Class
+  - uid: Reportman.Reporting.SubReportEvent
+    name: SubReportEvent
+    type: Enum
+  - uid: Reportman.Reporting.SubReports
+    name: SubReports
+    type: Class
+  - uid: Reportman.Reporting.TokenType
+    name: TokenType
+    type: Enum
+  - uid: Reportman.Reporting.UndoCue
+    name: UndoCue
+    type: Class
+  - uid: Reportman.Reporting.Variant
+    name: Variant
+    type: Struct
+  - uid: Reportman.Reporting.VariantJsonConverter
+    name: VariantJsonConverter
+    type: Class
+  - uid: Reportman.Reporting.VariantSystemTextJsonConverter
+    name: VariantSystemTextJsonConverter
+    type: Class
+  - uid: Reportman.Reporting.VariantType
+    name: VariantType
+    type: Enum
+  - uid: Reportman.Reporting.Variants
+    name: Variants
+    type: Class
+- uid: Reportman.Reporting.Forms
+  name: Reportman.Reporting.Forms
+  type: Namespace
+  items:
+  - uid: Reportman.Reporting.Forms.DataGridViewPrint
+    name: DataGridViewPrint
+    type: Class
+  - uid: Reportman.Reporting.Forms.DataGridViewPrintOptions
+    name: DataGridViewPrintOptions
+    type: Class
+  - uid: Reportman.Reporting.Forms.DataProgress
+    name: DataProgress
+    type: Class
+  - uid: Reportman.Reporting.Forms.DataProgressEventHandler
+    name: DataProgressEventHandler
+    type: Delegate
+  - uid: Reportman.Reporting.Forms.DataShow
+    name: DataShow
+    type: Class
+  - uid: Reportman.Reporting.Forms.EmbeddedFileForm
+    name: EmbeddedFileForm
+    type: Class
+  - uid: Reportman.Reporting.Forms.GridExport
+    name: GridExport
+    type: Class
+  - uid: Reportman.Reporting.Forms.PageSetup
+    name: PageSetup
+    type: Class
+  - uid: Reportman.Reporting.Forms.ParamsControl
+    name: ParamsControl
+    type: Class
+  - uid: Reportman.Reporting.Forms.ParamsForm
+    name: ParamsForm
+    type: Class
+  - uid: Reportman.Reporting.Forms.PrintOutReportWinForms
+    name: PrintOutReportWinForms
+    type: Class
+  - uid: Reportman.Reporting.Forms.SearchForm
+    name: SearchForm
+    type: Class
+- uid: Reportman.WPF
+  name: Reportman.WPF
+  type: Namespace
+  items:
+  - uid: Reportman.WPF.PreviewWPF
+    name: PreviewWPF
+    type: Class
+  - uid: Reportman.WPF.PreviewWindow
+    name: PreviewWindow
+    type: Class
+  - uid: Reportman.WPF.PrintOutWPF
+    name: PrintOutWPF
+    type: Class
+memberLayout: SamePage

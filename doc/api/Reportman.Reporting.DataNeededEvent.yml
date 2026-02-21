@@ -1,0 +1,237 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.DataNeededEvent
+  commentId: T:Reportman.Reporting.DataNeededEvent
+  id: DataNeededEvent
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.DataNeededEvent.#ctor(System.Object,System.IntPtr)
+  - Reportman.Reporting.DataNeededEvent.BeginInvoke(Reportman.Reporting.DataNeededEventArgs,System.AsyncCallback,System.Object)
+  - Reportman.Reporting.DataNeededEvent.EndInvoke(System.IAsyncResult)
+  - Reportman.Reporting.DataNeededEvent.Invoke(Reportman.Reporting.DataNeededEventArgs)
+  langs:
+  - csharp
+  - vb
+  name: DataNeededEvent
+  nameWithType: DataNeededEvent
+  fullName: Reportman.Reporting.DataNeededEvent
+  type: Delegate
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public delegate void DataNeededEvent(DataNeededEventArgs args)
+    parameters:
+    - id: args
+      type: Reportman.Reporting.DataNeededEventArgs
+    content.vb: Public Delegate Sub DataNeededEvent(args As DataNeededEventArgs)
+- uid: Reportman.Reporting.DataNeededEvent.#ctor(System.Object,System.IntPtr)
+  commentId: M:Reportman.Reporting.DataNeededEvent.#ctor(System.Object,System.IntPtr)
+  id: '#ctor(System.Object,System.IntPtr)'
+  parent: Reportman.Reporting.DataNeededEvent
+  langs:
+  - csharp
+  - vb
+  name: DataNeededEvent(object, nint)
+  nameWithType: DataNeededEvent.DataNeededEvent(object, nint)
+  fullName: Reportman.Reporting.DataNeededEvent.DataNeededEvent(object, nint)
+  type: Constructor
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public DataNeededEvent(object @object, nint method)
+    parameters:
+    - id: object
+      type: System.Object
+    - id: method
+      type: System.IntPtr
+    content.vb: Public Sub New([object] As Object, method As IntPtr)
+  overload: Reportman.Reporting.DataNeededEvent.#ctor*
+  nameWithType.vb: DataNeededEvent.New(Object, IntPtr)
+  fullName.vb: Reportman.Reporting.DataNeededEvent.New(Object, System.IntPtr)
+  name.vb: New(Object, IntPtr)
+- uid: Reportman.Reporting.DataNeededEvent.Invoke(Reportman.Reporting.DataNeededEventArgs)
+  commentId: M:Reportman.Reporting.DataNeededEvent.Invoke(Reportman.Reporting.DataNeededEventArgs)
+  id: Invoke(Reportman.Reporting.DataNeededEventArgs)
+  parent: Reportman.Reporting.DataNeededEvent
+  langs:
+  - csharp
+  - vb
+  name: Invoke(DataNeededEventArgs)
+  nameWithType: DataNeededEvent.Invoke(DataNeededEventArgs)
+  fullName: Reportman.Reporting.DataNeededEvent.Invoke(Reportman.Reporting.DataNeededEventArgs)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public virtual void Invoke(DataNeededEventArgs args)
+    parameters:
+    - id: args
+      type: Reportman.Reporting.DataNeededEventArgs
+    content.vb: Public Overridable Sub Invoke(args As DataNeededEventArgs)
+  overload: Reportman.Reporting.DataNeededEvent.Invoke*
+- uid: Reportman.Reporting.DataNeededEvent.BeginInvoke(Reportman.Reporting.DataNeededEventArgs,System.AsyncCallback,System.Object)
+  commentId: M:Reportman.Reporting.DataNeededEvent.BeginInvoke(Reportman.Reporting.DataNeededEventArgs,System.AsyncCallback,System.Object)
+  id: BeginInvoke(Reportman.Reporting.DataNeededEventArgs,System.AsyncCallback,System.Object)
+  parent: Reportman.Reporting.DataNeededEvent
+  langs:
+  - csharp
+  - vb
+  name: BeginInvoke(DataNeededEventArgs, AsyncCallback, object)
+  nameWithType: DataNeededEvent.BeginInvoke(DataNeededEventArgs, AsyncCallback, object)
+  fullName: Reportman.Reporting.DataNeededEvent.BeginInvoke(Reportman.Reporting.DataNeededEventArgs, System.AsyncCallback, object)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public virtual IAsyncResult BeginInvoke(DataNeededEventArgs args, AsyncCallback callback, object @object)
+    parameters:
+    - id: args
+      type: Reportman.Reporting.DataNeededEventArgs
+    - id: callback
+      type: System.AsyncCallback
+    - id: object
+      type: System.Object
+    return:
+      type: System.IAsyncResult
+    content.vb: Public Overridable Function BeginInvoke(args As DataNeededEventArgs, callback As AsyncCallback, [object] As Object) As IAsyncResult
+  overload: Reportman.Reporting.DataNeededEvent.BeginInvoke*
+  nameWithType.vb: DataNeededEvent.BeginInvoke(DataNeededEventArgs, AsyncCallback, Object)
+  fullName.vb: Reportman.Reporting.DataNeededEvent.BeginInvoke(Reportman.Reporting.DataNeededEventArgs, System.AsyncCallback, Object)
+  name.vb: BeginInvoke(DataNeededEventArgs, AsyncCallback, Object)
+- uid: Reportman.Reporting.DataNeededEvent.EndInvoke(System.IAsyncResult)
+  commentId: M:Reportman.Reporting.DataNeededEvent.EndInvoke(System.IAsyncResult)
+  id: EndInvoke(System.IAsyncResult)
+  parent: Reportman.Reporting.DataNeededEvent
+  langs:
+  - csharp
+  - vb
+  name: EndInvoke(IAsyncResult)
+  nameWithType: DataNeededEvent.EndInvoke(IAsyncResult)
+  fullName: Reportman.Reporting.DataNeededEvent.EndInvoke(System.IAsyncResult)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public virtual void EndInvoke(IAsyncResult result)
+    parameters:
+    - id: result
+      type: System.IAsyncResult
+    content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
+  overload: Reportman.Reporting.DataNeededEvent.EndInvoke*
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: Reportman.Reporting.DataNeededEventArgs
+  commentId: T:Reportman.Reporting.DataNeededEventArgs
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.DataNeededEventArgs.html
+  name: DataNeededEventArgs
+  nameWithType: DataNeededEventArgs
+  fullName: Reportman.Reporting.DataNeededEventArgs
+- uid: Reportman.Reporting.DataNeededEvent.#ctor*
+  commentId: Overload:Reportman.Reporting.DataNeededEvent.#ctor
+  isExternal: true
+  href: Reportman.Reporting.DataNeededEvent.html#Reportman_Reporting_DataNeededEvent__ctor_System_Object_System_IntPtr_
+  name: DataNeededEvent
+  nameWithType: DataNeededEvent.DataNeededEvent
+  fullName: Reportman.Reporting.DataNeededEvent.DataNeededEvent
+  nameWithType.vb: DataNeededEvent.New
+  fullName.vb: Reportman.Reporting.DataNeededEvent.New
+  name.vb: New
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Reporting.DataNeededEvent.Invoke*
+  commentId: Overload:Reportman.Reporting.DataNeededEvent.Invoke
+  isExternal: true
+  href: Reportman.Reporting.DataNeededEvent.html#Reportman_Reporting_DataNeededEvent_Invoke_Reportman_Reporting_DataNeededEventArgs_
+  name: Invoke
+  nameWithType: DataNeededEvent.Invoke
+  fullName: Reportman.Reporting.DataNeededEvent.Invoke
+- uid: Reportman.Reporting.DataNeededEvent.BeginInvoke*
+  commentId: Overload:Reportman.Reporting.DataNeededEvent.BeginInvoke
+  isExternal: true
+  href: Reportman.Reporting.DataNeededEvent.html#Reportman_Reporting_DataNeededEvent_BeginInvoke_Reportman_Reporting_DataNeededEventArgs_System_AsyncCallback_System_Object_
+  name: BeginInvoke
+  nameWithType: DataNeededEvent.BeginInvoke
+  fullName: Reportman.Reporting.DataNeededEvent.BeginInvoke
+- uid: System.AsyncCallback
+  commentId: T:System.AsyncCallback
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.asynccallback
+  name: AsyncCallback
+  nameWithType: AsyncCallback
+  fullName: System.AsyncCallback
+- uid: System.IAsyncResult
+  commentId: T:System.IAsyncResult
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncresult
+  name: IAsyncResult
+  nameWithType: IAsyncResult
+  fullName: System.IAsyncResult
+- uid: Reportman.Reporting.DataNeededEvent.EndInvoke*
+  commentId: Overload:Reportman.Reporting.DataNeededEvent.EndInvoke
+  isExternal: true
+  href: Reportman.Reporting.DataNeededEvent.html#Reportman_Reporting_DataNeededEvent_EndInvoke_System_IAsyncResult_
+  name: EndInvoke
+  nameWithType: DataNeededEvent.EndInvoke
+  fullName: Reportman.Reporting.DataNeededEvent.EndInvoke

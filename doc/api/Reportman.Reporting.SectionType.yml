@@ -1,0 +1,163 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.SectionType
+  commentId: T:Reportman.Reporting.SectionType
+  id: SectionType
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.SectionType.Detail
+  - Reportman.Reporting.SectionType.GroupFooter
+  - Reportman.Reporting.SectionType.GroupHeader
+  - Reportman.Reporting.SectionType.PageFooter
+  - Reportman.Reporting.SectionType.PageHeader
+  langs:
+  - csharp
+  - vb
+  name: SectionType
+  nameWithType: SectionType
+  fullName: Reportman.Reporting.SectionType
+  type: Enum
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Section type, each section of a subreport have different function
+  example: []
+  syntax:
+    content: public enum SectionType
+    content.vb: Public Enum SectionType
+- uid: Reportman.Reporting.SectionType.PageHeader
+  commentId: F:Reportman.Reporting.SectionType.PageHeader
+  id: PageHeader
+  parent: Reportman.Reporting.SectionType
+  langs:
+  - csharp
+  - vb
+  name: PageHeader
+  nameWithType: SectionType.PageHeader
+  fullName: Reportman.Reporting.SectionType.PageHeader
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Printed at the page begin
+  example: []
+  syntax:
+    content: PageHeader = 0
+    return:
+      type: Reportman.Reporting.SectionType
+- uid: Reportman.Reporting.SectionType.GroupHeader
+  commentId: F:Reportman.Reporting.SectionType.GroupHeader
+  id: GroupHeader
+  parent: Reportman.Reporting.SectionType
+  langs:
+  - csharp
+  - vb
+  name: GroupHeader
+  nameWithType: SectionType.GroupHeader
+  fullName: Reportman.Reporting.SectionType.GroupHeader
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Printed when a group starts
+  example: []
+  syntax:
+    content: GroupHeader = 1
+    return:
+      type: Reportman.Reporting.SectionType
+- uid: Reportman.Reporting.SectionType.Detail
+  commentId: F:Reportman.Reporting.SectionType.Detail
+  id: Detail
+  parent: Reportman.Reporting.SectionType
+  langs:
+  - csharp
+  - vb
+  name: Detail
+  nameWithType: SectionType.Detail
+  fullName: Reportman.Reporting.SectionType.Detail
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Printed for each record in the main dataset of the subreport containg the section
+  example: []
+  syntax:
+    content: Detail = 2
+    return:
+      type: Reportman.Reporting.SectionType
+- uid: Reportman.Reporting.SectionType.GroupFooter
+  commentId: F:Reportman.Reporting.SectionType.GroupFooter
+  id: GroupFooter
+  parent: Reportman.Reporting.SectionType
+  langs:
+  - csharp
+  - vb
+  name: GroupFooter
+  nameWithType: SectionType.GroupFooter
+  fullName: Reportman.Reporting.SectionType.GroupFooter
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Printed when a group ends
+  example: []
+  syntax:
+    content: GroupFooter = 3
+    return:
+      type: Reportman.Reporting.SectionType
+- uid: Reportman.Reporting.SectionType.PageFooter
+  commentId: F:Reportman.Reporting.SectionType.PageFooter
+  id: PageFooter
+  parent: Reportman.Reporting.SectionType
+  langs:
+  - csharp
+  - vb
+  name: PageFooter
+  nameWithType: SectionType.PageFooter
+  fullName: Reportman.Reporting.SectionType.PageFooter
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Printed at the page begin
+  example: []
+  syntax:
+    content: PageFooter = 4
+    return:
+      type: Reportman.Reporting.SectionType
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: Reportman.Reporting.SectionType
+  commentId: T:Reportman.Reporting.SectionType
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.SectionType.html
+  name: SectionType
+  nameWithType: SectionType
+  fullName: Reportman.Reporting.SectionType

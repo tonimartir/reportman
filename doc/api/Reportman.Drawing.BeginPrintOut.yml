@@ -1,0 +1,240 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.BeginPrintOut
+  commentId: T:Reportman.Drawing.BeginPrintOut
+  id: BeginPrintOut
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.BeginPrintOut.#ctor(System.Object,System.IntPtr)
+  - Reportman.Drawing.BeginPrintOut.BeginInvoke(Reportman.Drawing.PrintOut,System.AsyncCallback,System.Object)
+  - Reportman.Drawing.BeginPrintOut.EndInvoke(System.IAsyncResult)
+  - Reportman.Drawing.BeginPrintOut.Invoke(Reportman.Drawing.PrintOut)
+  langs:
+  - csharp
+  - vb
+  name: BeginPrintOut
+  nameWithType: BeginPrintOut
+  fullName: Reportman.Drawing.BeginPrintOut
+  type: Delegate
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Event triggered when a driver starts printing
+  example: []
+  syntax:
+    content: public delegate void BeginPrintOut(PrintOut driver)
+    parameters:
+    - id: driver
+      type: Reportman.Drawing.PrintOut
+      description: ''
+    content.vb: Public Delegate Sub BeginPrintOut(driver As PrintOut)
+- uid: Reportman.Drawing.BeginPrintOut.#ctor(System.Object,System.IntPtr)
+  commentId: M:Reportman.Drawing.BeginPrintOut.#ctor(System.Object,System.IntPtr)
+  id: '#ctor(System.Object,System.IntPtr)'
+  parent: Reportman.Drawing.BeginPrintOut
+  langs:
+  - csharp
+  - vb
+  name: BeginPrintOut(object, nint)
+  nameWithType: BeginPrintOut.BeginPrintOut(object, nint)
+  fullName: Reportman.Drawing.BeginPrintOut.BeginPrintOut(object, nint)
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public BeginPrintOut(object @object, nint method)
+    parameters:
+    - id: object
+      type: System.Object
+    - id: method
+      type: System.IntPtr
+    content.vb: Public Sub New([object] As Object, method As IntPtr)
+  overload: Reportman.Drawing.BeginPrintOut.#ctor*
+  nameWithType.vb: BeginPrintOut.New(Object, IntPtr)
+  fullName.vb: Reportman.Drawing.BeginPrintOut.New(Object, System.IntPtr)
+  name.vb: New(Object, IntPtr)
+- uid: Reportman.Drawing.BeginPrintOut.Invoke(Reportman.Drawing.PrintOut)
+  commentId: M:Reportman.Drawing.BeginPrintOut.Invoke(Reportman.Drawing.PrintOut)
+  id: Invoke(Reportman.Drawing.PrintOut)
+  parent: Reportman.Drawing.BeginPrintOut
+  langs:
+  - csharp
+  - vb
+  name: Invoke(PrintOut)
+  nameWithType: BeginPrintOut.Invoke(PrintOut)
+  fullName: Reportman.Drawing.BeginPrintOut.Invoke(Reportman.Drawing.PrintOut)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public virtual void Invoke(PrintOut driver)
+    parameters:
+    - id: driver
+      type: Reportman.Drawing.PrintOut
+    content.vb: Public Overridable Sub Invoke(driver As PrintOut)
+  overload: Reportman.Drawing.BeginPrintOut.Invoke*
+- uid: Reportman.Drawing.BeginPrintOut.BeginInvoke(Reportman.Drawing.PrintOut,System.AsyncCallback,System.Object)
+  commentId: M:Reportman.Drawing.BeginPrintOut.BeginInvoke(Reportman.Drawing.PrintOut,System.AsyncCallback,System.Object)
+  id: BeginInvoke(Reportman.Drawing.PrintOut,System.AsyncCallback,System.Object)
+  parent: Reportman.Drawing.BeginPrintOut
+  langs:
+  - csharp
+  - vb
+  name: BeginInvoke(PrintOut, AsyncCallback, object)
+  nameWithType: BeginPrintOut.BeginInvoke(PrintOut, AsyncCallback, object)
+  fullName: Reportman.Drawing.BeginPrintOut.BeginInvoke(Reportman.Drawing.PrintOut, System.AsyncCallback, object)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public virtual IAsyncResult BeginInvoke(PrintOut driver, AsyncCallback callback, object @object)
+    parameters:
+    - id: driver
+      type: Reportman.Drawing.PrintOut
+    - id: callback
+      type: System.AsyncCallback
+    - id: object
+      type: System.Object
+    return:
+      type: System.IAsyncResult
+    content.vb: Public Overridable Function BeginInvoke(driver As PrintOut, callback As AsyncCallback, [object] As Object) As IAsyncResult
+  overload: Reportman.Drawing.BeginPrintOut.BeginInvoke*
+  nameWithType.vb: BeginPrintOut.BeginInvoke(PrintOut, AsyncCallback, Object)
+  fullName.vb: Reportman.Drawing.BeginPrintOut.BeginInvoke(Reportman.Drawing.PrintOut, System.AsyncCallback, Object)
+  name.vb: BeginInvoke(PrintOut, AsyncCallback, Object)
+- uid: Reportman.Drawing.BeginPrintOut.EndInvoke(System.IAsyncResult)
+  commentId: M:Reportman.Drawing.BeginPrintOut.EndInvoke(System.IAsyncResult)
+  id: EndInvoke(System.IAsyncResult)
+  parent: Reportman.Drawing.BeginPrintOut
+  langs:
+  - csharp
+  - vb
+  name: EndInvoke(IAsyncResult)
+  nameWithType: BeginPrintOut.EndInvoke(IAsyncResult)
+  fullName: Reportman.Drawing.BeginPrintOut.EndInvoke(System.IAsyncResult)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public virtual void EndInvoke(IAsyncResult result)
+    parameters:
+    - id: result
+      type: System.IAsyncResult
+    content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
+  overload: Reportman.Drawing.BeginPrintOut.EndInvoke*
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.PrintOut
+  commentId: T:Reportman.Drawing.PrintOut
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PrintOut.html
+  name: PrintOut
+  nameWithType: PrintOut
+  fullName: Reportman.Drawing.PrintOut
+- uid: Reportman.Drawing.BeginPrintOut.#ctor*
+  commentId: Overload:Reportman.Drawing.BeginPrintOut.#ctor
+  isExternal: true
+  href: Reportman.Drawing.BeginPrintOut.html#Reportman_Drawing_BeginPrintOut__ctor_System_Object_System_IntPtr_
+  name: BeginPrintOut
+  nameWithType: BeginPrintOut.BeginPrintOut
+  fullName: Reportman.Drawing.BeginPrintOut.BeginPrintOut
+  nameWithType.vb: BeginPrintOut.New
+  fullName.vb: Reportman.Drawing.BeginPrintOut.New
+  name.vb: New
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.BeginPrintOut.Invoke*
+  commentId: Overload:Reportman.Drawing.BeginPrintOut.Invoke
+  isExternal: true
+  href: Reportman.Drawing.BeginPrintOut.html#Reportman_Drawing_BeginPrintOut_Invoke_Reportman_Drawing_PrintOut_
+  name: Invoke
+  nameWithType: BeginPrintOut.Invoke
+  fullName: Reportman.Drawing.BeginPrintOut.Invoke
+- uid: Reportman.Drawing.BeginPrintOut.BeginInvoke*
+  commentId: Overload:Reportman.Drawing.BeginPrintOut.BeginInvoke
+  isExternal: true
+  href: Reportman.Drawing.BeginPrintOut.html#Reportman_Drawing_BeginPrintOut_BeginInvoke_Reportman_Drawing_PrintOut_System_AsyncCallback_System_Object_
+  name: BeginInvoke
+  nameWithType: BeginPrintOut.BeginInvoke
+  fullName: Reportman.Drawing.BeginPrintOut.BeginInvoke
+- uid: System.AsyncCallback
+  commentId: T:System.AsyncCallback
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.asynccallback
+  name: AsyncCallback
+  nameWithType: AsyncCallback
+  fullName: System.AsyncCallback
+- uid: System.IAsyncResult
+  commentId: T:System.IAsyncResult
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncresult
+  name: IAsyncResult
+  nameWithType: IAsyncResult
+  fullName: System.IAsyncResult
+- uid: Reportman.Drawing.BeginPrintOut.EndInvoke*
+  commentId: Overload:Reportman.Drawing.BeginPrintOut.EndInvoke
+  isExternal: true
+  href: Reportman.Drawing.BeginPrintOut.html#Reportman_Drawing_BeginPrintOut_EndInvoke_System_IAsyncResult_
+  name: EndInvoke
+  nameWithType: BeginPrintOut.EndInvoke
+  fullName: Reportman.Drawing.BeginPrintOut.EndInvoke

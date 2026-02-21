@@ -1,0 +1,436 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.ChartType
+  commentId: T:Reportman.Drawing.ChartType
+  id: ChartType
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.ChartType.Area
+  - Reportman.Drawing.ChartType.Arrow
+  - Reportman.Drawing.ChartType.Bar
+  - Reportman.Drawing.ChartType.Bubble
+  - Reportman.Drawing.ChartType.CandleStick
+  - Reportman.Drawing.ChartType.Doughnut
+  - Reportman.Drawing.ChartType.ErrorBar
+  - Reportman.Drawing.ChartType.Funnel
+  - Reportman.Drawing.ChartType.Gantt
+  - Reportman.Drawing.ChartType.Horzbar
+  - Reportman.Drawing.ChartType.Kagi
+  - Reportman.Drawing.ChartType.Line
+  - Reportman.Drawing.ChartType.Pie
+  - Reportman.Drawing.ChartType.Point
+  - Reportman.Drawing.ChartType.PointFigure
+  - Reportman.Drawing.ChartType.Polar
+  - Reportman.Drawing.ChartType.Pyramid
+  - Reportman.Drawing.ChartType.Radar
+  - Reportman.Drawing.ChartType.Renko
+  - Reportman.Drawing.ChartType.Splines
+  langs:
+  - csharp
+  - vb
+  name: ChartType
+  nameWithType: ChartType
+  fullName: Reportman.Drawing.ChartType
+  type: Enum
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public enum ChartType
+    content.vb: Public Enum ChartType
+- uid: Reportman.Drawing.ChartType.Line
+  commentId: F:Reportman.Drawing.ChartType.Line
+  id: Line
+  parent: Reportman.Drawing.ChartType
+  langs:
+  - csharp
+  - vb
+  name: Line
+  nameWithType: ChartType.Line
+  fullName: Reportman.Drawing.ChartType.Line
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Line = 0
+    return:
+      type: Reportman.Drawing.ChartType
+- uid: Reportman.Drawing.ChartType.Bar
+  commentId: F:Reportman.Drawing.ChartType.Bar
+  id: Bar
+  parent: Reportman.Drawing.ChartType
+  langs:
+  - csharp
+  - vb
+  name: Bar
+  nameWithType: ChartType.Bar
+  fullName: Reportman.Drawing.ChartType.Bar
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Bar = 1
+    return:
+      type: Reportman.Drawing.ChartType
+- uid: Reportman.Drawing.ChartType.Point
+  commentId: F:Reportman.Drawing.ChartType.Point
+  id: Point
+  parent: Reportman.Drawing.ChartType
+  langs:
+  - csharp
+  - vb
+  name: Point
+  nameWithType: ChartType.Point
+  fullName: Reportman.Drawing.ChartType.Point
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Point = 2
+    return:
+      type: Reportman.Drawing.ChartType
+- uid: Reportman.Drawing.ChartType.Horzbar
+  commentId: F:Reportman.Drawing.ChartType.Horzbar
+  id: Horzbar
+  parent: Reportman.Drawing.ChartType
+  langs:
+  - csharp
+  - vb
+  name: Horzbar
+  nameWithType: ChartType.Horzbar
+  fullName: Reportman.Drawing.ChartType.Horzbar
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Horzbar = 3
+    return:
+      type: Reportman.Drawing.ChartType
+- uid: Reportman.Drawing.ChartType.Area
+  commentId: F:Reportman.Drawing.ChartType.Area
+  id: Area
+  parent: Reportman.Drawing.ChartType
+  langs:
+  - csharp
+  - vb
+  name: Area
+  nameWithType: ChartType.Area
+  fullName: Reportman.Drawing.ChartType.Area
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Area = 4
+    return:
+      type: Reportman.Drawing.ChartType
+- uid: Reportman.Drawing.ChartType.Pie
+  commentId: F:Reportman.Drawing.ChartType.Pie
+  id: Pie
+  parent: Reportman.Drawing.ChartType
+  langs:
+  - csharp
+  - vb
+  name: Pie
+  nameWithType: ChartType.Pie
+  fullName: Reportman.Drawing.ChartType.Pie
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Pie = 5
+    return:
+      type: Reportman.Drawing.ChartType
+- uid: Reportman.Drawing.ChartType.Arrow
+  commentId: F:Reportman.Drawing.ChartType.Arrow
+  id: Arrow
+  parent: Reportman.Drawing.ChartType
+  langs:
+  - csharp
+  - vb
+  name: Arrow
+  nameWithType: ChartType.Arrow
+  fullName: Reportman.Drawing.ChartType.Arrow
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Arrow = 6
+    return:
+      type: Reportman.Drawing.ChartType
+- uid: Reportman.Drawing.ChartType.Bubble
+  commentId: F:Reportman.Drawing.ChartType.Bubble
+  id: Bubble
+  parent: Reportman.Drawing.ChartType
+  langs:
+  - csharp
+  - vb
+  name: Bubble
+  nameWithType: ChartType.Bubble
+  fullName: Reportman.Drawing.ChartType.Bubble
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Bubble = 7
+    return:
+      type: Reportman.Drawing.ChartType
+- uid: Reportman.Drawing.ChartType.Gantt
+  commentId: F:Reportman.Drawing.ChartType.Gantt
+  id: Gantt
+  parent: Reportman.Drawing.ChartType
+  langs:
+  - csharp
+  - vb
+  name: Gantt
+  nameWithType: ChartType.Gantt
+  fullName: Reportman.Drawing.ChartType.Gantt
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Gantt = 8
+    return:
+      type: Reportman.Drawing.ChartType
+- uid: Reportman.Drawing.ChartType.Splines
+  commentId: F:Reportman.Drawing.ChartType.Splines
+  id: Splines
+  parent: Reportman.Drawing.ChartType
+  langs:
+  - csharp
+  - vb
+  name: Splines
+  nameWithType: ChartType.Splines
+  fullName: Reportman.Drawing.ChartType.Splines
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Splines = 9
+    return:
+      type: Reportman.Drawing.ChartType
+- uid: Reportman.Drawing.ChartType.CandleStick
+  commentId: F:Reportman.Drawing.ChartType.CandleStick
+  id: CandleStick
+  parent: Reportman.Drawing.ChartType
+  langs:
+  - csharp
+  - vb
+  name: CandleStick
+  nameWithType: ChartType.CandleStick
+  fullName: Reportman.Drawing.ChartType.CandleStick
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: CandleStick = 10
+    return:
+      type: Reportman.Drawing.ChartType
+- uid: Reportman.Drawing.ChartType.Pyramid
+  commentId: F:Reportman.Drawing.ChartType.Pyramid
+  id: Pyramid
+  parent: Reportman.Drawing.ChartType
+  langs:
+  - csharp
+  - vb
+  name: Pyramid
+  nameWithType: ChartType.Pyramid
+  fullName: Reportman.Drawing.ChartType.Pyramid
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Pyramid = 11
+    return:
+      type: Reportman.Drawing.ChartType
+- uid: Reportman.Drawing.ChartType.Polar
+  commentId: F:Reportman.Drawing.ChartType.Polar
+  id: Polar
+  parent: Reportman.Drawing.ChartType
+  langs:
+  - csharp
+  - vb
+  name: Polar
+  nameWithType: ChartType.Polar
+  fullName: Reportman.Drawing.ChartType.Polar
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Polar = 12
+    return:
+      type: Reportman.Drawing.ChartType
+- uid: Reportman.Drawing.ChartType.PointFigure
+  commentId: F:Reportman.Drawing.ChartType.PointFigure
+  id: PointFigure
+  parent: Reportman.Drawing.ChartType
+  langs:
+  - csharp
+  - vb
+  name: PointFigure
+  nameWithType: ChartType.PointFigure
+  fullName: Reportman.Drawing.ChartType.PointFigure
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: PointFigure = 13
+    return:
+      type: Reportman.Drawing.ChartType
+- uid: Reportman.Drawing.ChartType.Funnel
+  commentId: F:Reportman.Drawing.ChartType.Funnel
+  id: Funnel
+  parent: Reportman.Drawing.ChartType
+  langs:
+  - csharp
+  - vb
+  name: Funnel
+  nameWithType: ChartType.Funnel
+  fullName: Reportman.Drawing.ChartType.Funnel
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Funnel = 14
+    return:
+      type: Reportman.Drawing.ChartType
+- uid: Reportman.Drawing.ChartType.Kagi
+  commentId: F:Reportman.Drawing.ChartType.Kagi
+  id: Kagi
+  parent: Reportman.Drawing.ChartType
+  langs:
+  - csharp
+  - vb
+  name: Kagi
+  nameWithType: ChartType.Kagi
+  fullName: Reportman.Drawing.ChartType.Kagi
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Kagi = 15
+    return:
+      type: Reportman.Drawing.ChartType
+- uid: Reportman.Drawing.ChartType.Doughnut
+  commentId: F:Reportman.Drawing.ChartType.Doughnut
+  id: Doughnut
+  parent: Reportman.Drawing.ChartType
+  langs:
+  - csharp
+  - vb
+  name: Doughnut
+  nameWithType: ChartType.Doughnut
+  fullName: Reportman.Drawing.ChartType.Doughnut
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Doughnut = 16
+    return:
+      type: Reportman.Drawing.ChartType
+- uid: Reportman.Drawing.ChartType.Radar
+  commentId: F:Reportman.Drawing.ChartType.Radar
+  id: Radar
+  parent: Reportman.Drawing.ChartType
+  langs:
+  - csharp
+  - vb
+  name: Radar
+  nameWithType: ChartType.Radar
+  fullName: Reportman.Drawing.ChartType.Radar
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Radar = 17
+    return:
+      type: Reportman.Drawing.ChartType
+- uid: Reportman.Drawing.ChartType.Renko
+  commentId: F:Reportman.Drawing.ChartType.Renko
+  id: Renko
+  parent: Reportman.Drawing.ChartType
+  langs:
+  - csharp
+  - vb
+  name: Renko
+  nameWithType: ChartType.Renko
+  fullName: Reportman.Drawing.ChartType.Renko
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Renko = 18
+    return:
+      type: Reportman.Drawing.ChartType
+- uid: Reportman.Drawing.ChartType.ErrorBar
+  commentId: F:Reportman.Drawing.ChartType.ErrorBar
+  id: ErrorBar
+  parent: Reportman.Drawing.ChartType
+  langs:
+  - csharp
+  - vb
+  name: ErrorBar
+  nameWithType: ChartType.ErrorBar
+  fullName: Reportman.Drawing.ChartType.ErrorBar
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: ErrorBar = 19
+    return:
+      type: Reportman.Drawing.ChartType
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.ChartType
+  commentId: T:Reportman.Drawing.ChartType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.ChartType.html
+  name: ChartType
+  nameWithType: ChartType
+  fullName: Reportman.Drawing.ChartType

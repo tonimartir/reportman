@@ -1,0 +1,664 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.PDFFont
+  commentId: T:Reportman.Drawing.PDFFont
+  id: PDFFont
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.PDFFont.#ctor
+  - Reportman.Drawing.PDFFont.BackColor
+  - Reportman.Drawing.PDFFont.Bold
+  - Reportman.Drawing.PDFFont.Color
+  - Reportman.Drawing.PDFFont.GetFontFamily
+  - Reportman.Drawing.PDFFont.GetFontFamilyKey
+  - Reportman.Drawing.PDFFont.Italic
+  - Reportman.Drawing.PDFFont.LFontName
+  - Reportman.Drawing.PDFFont.Name
+  - Reportman.Drawing.PDFFont.Size
+  - Reportman.Drawing.PDFFont.StrikeOut
+  - Reportman.Drawing.PDFFont.Style
+  - Reportman.Drawing.PDFFont.Transparent
+  - Reportman.Drawing.PDFFont.Underline
+  - Reportman.Drawing.PDFFont.WFontName
+  langs:
+  - csharp
+  - vb
+  name: PDFFont
+  nameWithType: PDFFont
+  fullName: Reportman.Drawing.PDFFont
+  type: Class
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public class PDFFont
+    content.vb: Public Class PDFFont
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.PDFFont.Name
+  commentId: F:Reportman.Drawing.PDFFont.Name
+  id: Name
+  parent: Reportman.Drawing.PDFFont
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: PDFFont.Name
+  fullName: Reportman.Drawing.PDFFont.Name
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public PDFFontType Name
+    return:
+      type: Reportman.Drawing.PDFFontType
+    content.vb: Public Name As PDFFontType
+- uid: Reportman.Drawing.PDFFont.WFontName
+  commentId: F:Reportman.Drawing.PDFFont.WFontName
+  id: WFontName
+  parent: Reportman.Drawing.PDFFont
+  langs:
+  - csharp
+  - vb
+  name: WFontName
+  nameWithType: PDFFont.WFontName
+  fullName: Reportman.Drawing.PDFFont.WFontName
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string WFontName
+    return:
+      type: System.String
+    content.vb: Public WFontName As String
+- uid: Reportman.Drawing.PDFFont.LFontName
+  commentId: F:Reportman.Drawing.PDFFont.LFontName
+  id: LFontName
+  parent: Reportman.Drawing.PDFFont
+  langs:
+  - csharp
+  - vb
+  name: LFontName
+  nameWithType: PDFFont.LFontName
+  fullName: Reportman.Drawing.PDFFont.LFontName
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string LFontName
+    return:
+      type: System.String
+    content.vb: Public LFontName As String
+- uid: Reportman.Drawing.PDFFont.Size
+  commentId: F:Reportman.Drawing.PDFFont.Size
+  id: Size
+  parent: Reportman.Drawing.PDFFont
+  langs:
+  - csharp
+  - vb
+  name: Size
+  nameWithType: PDFFont.Size
+  fullName: Reportman.Drawing.PDFFont.Size
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int Size
+    return:
+      type: System.Int32
+    content.vb: Public Size As Integer
+- uid: Reportman.Drawing.PDFFont.Color
+  commentId: F:Reportman.Drawing.PDFFont.Color
+  id: Color
+  parent: Reportman.Drawing.PDFFont
+  langs:
+  - csharp
+  - vb
+  name: Color
+  nameWithType: PDFFont.Color
+  fullName: Reportman.Drawing.PDFFont.Color
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int Color
+    return:
+      type: System.Int32
+    content.vb: Public Color As Integer
+- uid: Reportman.Drawing.PDFFont.Style
+  commentId: F:Reportman.Drawing.PDFFont.Style
+  id: Style
+  parent: Reportman.Drawing.PDFFont
+  langs:
+  - csharp
+  - vb
+  name: Style
+  nameWithType: PDFFont.Style
+  fullName: Reportman.Drawing.PDFFont.Style
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int Style
+    return:
+      type: System.Int32
+    content.vb: Public Style As Integer
+- uid: Reportman.Drawing.PDFFont.Italic
+  commentId: F:Reportman.Drawing.PDFFont.Italic
+  id: Italic
+  parent: Reportman.Drawing.PDFFont
+  langs:
+  - csharp
+  - vb
+  name: Italic
+  nameWithType: PDFFont.Italic
+  fullName: Reportman.Drawing.PDFFont.Italic
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public bool Italic
+    return:
+      type: System.Boolean
+    content.vb: Public Italic As Boolean
+- uid: Reportman.Drawing.PDFFont.Underline
+  commentId: F:Reportman.Drawing.PDFFont.Underline
+  id: Underline
+  parent: Reportman.Drawing.PDFFont
+  langs:
+  - csharp
+  - vb
+  name: Underline
+  nameWithType: PDFFont.Underline
+  fullName: Reportman.Drawing.PDFFont.Underline
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public bool Underline
+    return:
+      type: System.Boolean
+    content.vb: Public Underline As Boolean
+- uid: Reportman.Drawing.PDFFont.Bold
+  commentId: F:Reportman.Drawing.PDFFont.Bold
+  id: Bold
+  parent: Reportman.Drawing.PDFFont
+  langs:
+  - csharp
+  - vb
+  name: Bold
+  nameWithType: PDFFont.Bold
+  fullName: Reportman.Drawing.PDFFont.Bold
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public bool Bold
+    return:
+      type: System.Boolean
+    content.vb: Public Bold As Boolean
+- uid: Reportman.Drawing.PDFFont.StrikeOut
+  commentId: F:Reportman.Drawing.PDFFont.StrikeOut
+  id: StrikeOut
+  parent: Reportman.Drawing.PDFFont
+  langs:
+  - csharp
+  - vb
+  name: StrikeOut
+  nameWithType: PDFFont.StrikeOut
+  fullName: Reportman.Drawing.PDFFont.StrikeOut
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public bool StrikeOut
+    return:
+      type: System.Boolean
+    content.vb: Public StrikeOut As Boolean
+- uid: Reportman.Drawing.PDFFont.Transparent
+  commentId: F:Reportman.Drawing.PDFFont.Transparent
+  id: Transparent
+  parent: Reportman.Drawing.PDFFont
+  langs:
+  - csharp
+  - vb
+  name: Transparent
+  nameWithType: PDFFont.Transparent
+  fullName: Reportman.Drawing.PDFFont.Transparent
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public bool Transparent
+    return:
+      type: System.Boolean
+    content.vb: Public Transparent As Boolean
+- uid: Reportman.Drawing.PDFFont.BackColor
+  commentId: F:Reportman.Drawing.PDFFont.BackColor
+  id: BackColor
+  parent: Reportman.Drawing.PDFFont
+  langs:
+  - csharp
+  - vb
+  name: BackColor
+  nameWithType: PDFFont.BackColor
+  fullName: Reportman.Drawing.PDFFont.BackColor
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int BackColor
+    return:
+      type: System.Int32
+    content.vb: Public BackColor As Integer
+- uid: Reportman.Drawing.PDFFont.#ctor
+  commentId: M:Reportman.Drawing.PDFFont.#ctor
+  id: '#ctor'
+  parent: Reportman.Drawing.PDFFont
+  langs:
+  - csharp
+  - vb
+  name: PDFFont()
+  nameWithType: PDFFont.PDFFont()
+  fullName: Reportman.Drawing.PDFFont.PDFFont()
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public PDFFont()
+    content.vb: Public Sub New()
+  overload: Reportman.Drawing.PDFFont.#ctor*
+  nameWithType.vb: PDFFont.New()
+  fullName.vb: Reportman.Drawing.PDFFont.New()
+  name.vb: New()
+- uid: Reportman.Drawing.PDFFont.GetFontFamily
+  commentId: M:Reportman.Drawing.PDFFont.GetFontFamily
+  id: GetFontFamily
+  parent: Reportman.Drawing.PDFFont
+  langs:
+  - csharp
+  - vb
+  name: GetFontFamily()
+  nameWithType: PDFFont.GetFontFamily()
+  fullName: Reportman.Drawing.PDFFont.GetFontFamily()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string GetFontFamily()
+    return:
+      type: System.String
+    content.vb: Public Function GetFontFamily() As String
+  overload: Reportman.Drawing.PDFFont.GetFontFamily*
+- uid: Reportman.Drawing.PDFFont.GetFontFamilyKey
+  commentId: M:Reportman.Drawing.PDFFont.GetFontFamilyKey
+  id: GetFontFamilyKey
+  parent: Reportman.Drawing.PDFFont
+  langs:
+  - csharp
+  - vb
+  name: GetFontFamilyKey()
+  nameWithType: PDFFont.GetFontFamilyKey()
+  fullName: Reportman.Drawing.PDFFont.GetFontFamilyKey()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string GetFontFamilyKey()
+    return:
+      type: System.String
+    content.vb: Public Function GetFontFamilyKey() As String
+  overload: Reportman.Drawing.PDFFont.GetFontFamilyKey*
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.PDFFontType
+  commentId: T:Reportman.Drawing.PDFFontType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PDFFontType.html
+  name: PDFFontType
+  nameWithType: PDFFontType
+  fullName: Reportman.Drawing.PDFFontType
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Reportman.Drawing.PDFFont.#ctor*
+  commentId: Overload:Reportman.Drawing.PDFFont.#ctor
+  isExternal: true
+  href: Reportman.Drawing.PDFFont.html#Reportman_Drawing_PDFFont__ctor
+  name: PDFFont
+  nameWithType: PDFFont.PDFFont
+  fullName: Reportman.Drawing.PDFFont.PDFFont
+  nameWithType.vb: PDFFont.New
+  fullName.vb: Reportman.Drawing.PDFFont.New
+  name.vb: New
+- uid: Reportman.Drawing.PDFFont.GetFontFamily*
+  commentId: Overload:Reportman.Drawing.PDFFont.GetFontFamily
+  isExternal: true
+  href: Reportman.Drawing.PDFFont.html#Reportman_Drawing_PDFFont_GetFontFamily
+  name: GetFontFamily
+  nameWithType: PDFFont.GetFontFamily
+  fullName: Reportman.Drawing.PDFFont.GetFontFamily
+- uid: Reportman.Drawing.PDFFont.GetFontFamilyKey*
+  commentId: Overload:Reportman.Drawing.PDFFont.GetFontFamilyKey
+  isExternal: true
+  href: Reportman.Drawing.PDFFont.html#Reportman_Drawing_PDFFont_GetFontFamilyKey
+  name: GetFontFamilyKey
+  nameWithType: PDFFont.GetFontFamilyKey
+  fullName: Reportman.Drawing.PDFFont.GetFontFamilyKey

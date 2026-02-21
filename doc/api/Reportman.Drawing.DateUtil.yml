@@ -1,0 +1,871 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.DateUtil
+  commentId: T:Reportman.Drawing.DateUtil
+  id: DateUtil
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.DateUtil.#ctor
+  - Reportman.Drawing.DateUtil.AddWorkableDays(System.DateTime,System.Int32)
+  - Reportman.Drawing.DateUtil.DateTimeToDelphiDate(System.DateTime)
+  - Reportman.Drawing.DateUtil.DateTimeToFbLiteralHour(System.DateTime)
+  - Reportman.Drawing.DateUtil.DateTimeToUnixTimestamp(System.DateTime)
+  - Reportman.Drawing.DateUtil.DateToISO8601(System.DateTime,System.Boolean)
+  - Reportman.Drawing.DateUtil.DateToSqlLiteral(System.DateTime)
+  - Reportman.Drawing.DateUtil.DelphiDateTimeToTimeSpan(System.Double)
+  - Reportman.Drawing.DateUtil.DelphiDateToDateTime(System.Double)
+  - Reportman.Drawing.DateUtil.FIRST_DELPHI_DAY
+  - Reportman.Drawing.DateUtil.IsDateTime(System.String,System.DateTime@)
+  - Reportman.Drawing.DateUtil.LastDayOfMonth(System.DateTime)
+  - Reportman.Drawing.DateUtil.NextDayOfMonth(System.DateTime,System.Int32)
+  - Reportman.Drawing.DateUtil.NextFriDay(System.DateTime)
+  - Reportman.Drawing.DateUtil.NextSaturday(System.DateTime)
+  langs:
+  - csharp
+  - vb
+  name: DateUtil
+  nameWithType: DateUtil
+  fullName: Reportman.Drawing.DateUtil
+  type: Class
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Provide utitilies about handling DateTime values
+  example: []
+  syntax:
+    content: public class DateUtil
+    content.vb: Public Class DateUtil
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.DateUtil.FIRST_DELPHI_DAY
+  commentId: F:Reportman.Drawing.DateUtil.FIRST_DELPHI_DAY
+  id: FIRST_DELPHI_DAY
+  parent: Reportman.Drawing.DateUtil
+  langs:
+  - csharp
+  - vb
+  name: FIRST_DELPHI_DAY
+  nameWithType: DateUtil.FIRST_DELPHI_DAY
+  fullName: Reportman.Drawing.DateUtil.FIRST_DELPHI_DAY
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static DateTime FIRST_DELPHI_DAY
+    return:
+      type: System.DateTime
+    content.vb: Public Shared FIRST_DELPHI_DAY As Date
+- uid: Reportman.Drawing.DateUtil.DelphiDateToDateTime(System.Double)
+  commentId: M:Reportman.Drawing.DateUtil.DelphiDateToDateTime(System.Double)
+  id: DelphiDateToDateTime(System.Double)
+  parent: Reportman.Drawing.DateUtil
+  langs:
+  - csharp
+  - vb
+  name: DelphiDateToDateTime(double)
+  nameWithType: DateUtil.DelphiDateToDateTime(double)
+  fullName: Reportman.Drawing.DateUtil.DelphiDateToDateTime(double)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Converts a double representing the number of days from 30 Dec 1899 to DateTime
+  example: []
+  syntax:
+    content: public static DateTime DelphiDateToDateTime(double avalue)
+    parameters:
+    - id: avalue
+      type: System.Double
+    return:
+      type: System.DateTime
+    content.vb: Public Shared Function DelphiDateToDateTime(avalue As Double) As Date
+  overload: Reportman.Drawing.DateUtil.DelphiDateToDateTime*
+  nameWithType.vb: DateUtil.DelphiDateToDateTime(Double)
+  fullName.vb: Reportman.Drawing.DateUtil.DelphiDateToDateTime(Double)
+  name.vb: DelphiDateToDateTime(Double)
+- uid: Reportman.Drawing.DateUtil.DateTimeToFbLiteralHour(System.DateTime)
+  commentId: M:Reportman.Drawing.DateUtil.DateTimeToFbLiteralHour(System.DateTime)
+  id: DateTimeToFbLiteralHour(System.DateTime)
+  parent: Reportman.Drawing.DateUtil
+  langs:
+  - csharp
+  - vb
+  name: DateTimeToFbLiteralHour(DateTime)
+  nameWithType: DateUtil.DateTimeToFbLiteralHour(DateTime)
+  fullName: Reportman.Drawing.DateUtil.DateTimeToFbLiteralHour(System.DateTime)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string DateTimeToFbLiteralHour(DateTime nvalue)
+    parameters:
+    - id: nvalue
+      type: System.DateTime
+    return:
+      type: System.String
+    content.vb: Public Shared Function DateTimeToFbLiteralHour(nvalue As Date) As String
+  overload: Reportman.Drawing.DateUtil.DateTimeToFbLiteralHour*
+  nameWithType.vb: DateUtil.DateTimeToFbLiteralHour(Date)
+  fullName.vb: Reportman.Drawing.DateUtil.DateTimeToFbLiteralHour(Date)
+  name.vb: DateTimeToFbLiteralHour(Date)
+- uid: Reportman.Drawing.DateUtil.DateTimeToDelphiDate(System.DateTime)
+  commentId: M:Reportman.Drawing.DateUtil.DateTimeToDelphiDate(System.DateTime)
+  id: DateTimeToDelphiDate(System.DateTime)
+  parent: Reportman.Drawing.DateUtil
+  langs:
+  - csharp
+  - vb
+  name: DateTimeToDelphiDate(DateTime)
+  nameWithType: DateUtil.DateTimeToDelphiDate(DateTime)
+  fullName: Reportman.Drawing.DateUtil.DateTimeToDelphiDate(System.DateTime)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Converts a DateTime to a double value representing the number of days from 30 Dec 1899
+  example: []
+  syntax:
+    content: public static double DateTimeToDelphiDate(DateTime avalue)
+    parameters:
+    - id: avalue
+      type: System.DateTime
+    return:
+      type: System.Double
+    content.vb: Public Shared Function DateTimeToDelphiDate(avalue As Date) As Double
+  overload: Reportman.Drawing.DateUtil.DateTimeToDelphiDate*
+  nameWithType.vb: DateUtil.DateTimeToDelphiDate(Date)
+  fullName.vb: Reportman.Drawing.DateUtil.DateTimeToDelphiDate(Date)
+  name.vb: DateTimeToDelphiDate(Date)
+- uid: Reportman.Drawing.DateUtil.DateToSqlLiteral(System.DateTime)
+  commentId: M:Reportman.Drawing.DateUtil.DateToSqlLiteral(System.DateTime)
+  id: DateToSqlLiteral(System.DateTime)
+  parent: Reportman.Drawing.DateUtil
+  langs:
+  - csharp
+  - vb
+  name: DateToSqlLiteral(DateTime)
+  nameWithType: DateUtil.DateToSqlLiteral(DateTime)
+  fullName: Reportman.Drawing.DateUtil.DateToSqlLiteral(System.DateTime)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Calculates the sql literal date value, to include it in sql sentences
+  example: []
+  syntax:
+    content: public static string DateToSqlLiteral(DateTime value)
+    parameters:
+    - id: value
+      type: System.DateTime
+    return:
+      type: System.String
+      description: The sql representation, with quotes of the date (not including time information)
+    content.vb: Public Shared Function DateToSqlLiteral(value As Date) As String
+  overload: Reportman.Drawing.DateUtil.DateToSqlLiteral*
+  nameWithType.vb: DateUtil.DateToSqlLiteral(Date)
+  fullName.vb: Reportman.Drawing.DateUtil.DateToSqlLiteral(Date)
+  name.vb: DateToSqlLiteral(Date)
+- uid: Reportman.Drawing.DateUtil.DelphiDateTimeToTimeSpan(System.Double)
+  commentId: M:Reportman.Drawing.DateUtil.DelphiDateTimeToTimeSpan(System.Double)
+  id: DelphiDateTimeToTimeSpan(System.Double)
+  parent: Reportman.Drawing.DateUtil
+  langs:
+  - csharp
+  - vb
+  name: DelphiDateTimeToTimeSpan(double)
+  nameWithType: DateUtil.DelphiDateTimeToTimeSpan(double)
+  fullName: Reportman.Drawing.DateUtil.DelphiDateTimeToTimeSpan(double)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Converts a Delphi DateTime to a TimeSpan, time since 30 DEC 1899
+  example: []
+  syntax:
+    content: public static TimeSpan DelphiDateTimeToTimeSpan(double avalue)
+    parameters:
+    - id: avalue
+      type: System.Double
+    return:
+      type: System.TimeSpan
+    content.vb: Public Shared Function DelphiDateTimeToTimeSpan(avalue As Double) As TimeSpan
+  overload: Reportman.Drawing.DateUtil.DelphiDateTimeToTimeSpan*
+  nameWithType.vb: DateUtil.DelphiDateTimeToTimeSpan(Double)
+  fullName.vb: Reportman.Drawing.DateUtil.DelphiDateTimeToTimeSpan(Double)
+  name.vb: DelphiDateTimeToTimeSpan(Double)
+- uid: Reportman.Drawing.DateUtil.DateToISO8601(System.DateTime,System.Boolean)
+  commentId: M:Reportman.Drawing.DateUtil.DateToISO8601(System.DateTime,System.Boolean)
+  id: DateToISO8601(System.DateTime,System.Boolean)
+  parent: Reportman.Drawing.DateUtil
+  langs:
+  - csharp
+  - vb
+  name: DateToISO8601(DateTime, bool)
+  nameWithType: DateUtil.DateToISO8601(DateTime, bool)
+  fullName: Reportman.Drawing.DateUtil.DateToISO8601(System.DateTime, bool)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string DateToISO8601(DateTime value, bool useZone)
+    parameters:
+    - id: value
+      type: System.DateTime
+    - id: useZone
+      type: System.Boolean
+    return:
+      type: System.String
+    content.vb: Public Shared Function DateToISO8601(value As Date, useZone As Boolean) As String
+  overload: Reportman.Drawing.DateUtil.DateToISO8601*
+  nameWithType.vb: DateUtil.DateToISO8601(Date, Boolean)
+  fullName.vb: Reportman.Drawing.DateUtil.DateToISO8601(Date, Boolean)
+  name.vb: DateToISO8601(Date, Boolean)
+- uid: Reportman.Drawing.DateUtil.IsDateTime(System.String,System.DateTime@)
+  commentId: M:Reportman.Drawing.DateUtil.IsDateTime(System.String,System.DateTime@)
+  id: IsDateTime(System.String,System.DateTime@)
+  parent: Reportman.Drawing.DateUtil
+  langs:
+  - csharp
+  - vb
+  name: IsDateTime(string, out DateTime)
+  nameWithType: DateUtil.IsDateTime(string, out DateTime)
+  fullName: Reportman.Drawing.DateUtil.IsDateTime(string, out System.DateTime)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static bool IsDateTime(string val, out DateTime result)
+    parameters:
+    - id: val
+      type: System.String
+    - id: result
+      type: System.DateTime
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function IsDateTime(val As String, result As Date) As Boolean
+  overload: Reportman.Drawing.DateUtil.IsDateTime*
+  nameWithType.vb: DateUtil.IsDateTime(String, Date)
+  fullName.vb: Reportman.Drawing.DateUtil.IsDateTime(String, Date)
+  name.vb: IsDateTime(String, Date)
+- uid: Reportman.Drawing.DateUtil.NextSaturday(System.DateTime)
+  commentId: M:Reportman.Drawing.DateUtil.NextSaturday(System.DateTime)
+  id: NextSaturday(System.DateTime)
+  parent: Reportman.Drawing.DateUtil
+  langs:
+  - csharp
+  - vb
+  name: NextSaturday(DateTime)
+  nameWithType: DateUtil.NextSaturday(DateTime)
+  fullName: Reportman.Drawing.DateUtil.NextSaturday(System.DateTime)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static DateTime NextSaturday(DateTime value)
+    parameters:
+    - id: value
+      type: System.DateTime
+    return:
+      type: System.DateTime
+    content.vb: Public Shared Function NextSaturday(value As Date) As Date
+  overload: Reportman.Drawing.DateUtil.NextSaturday*
+  nameWithType.vb: DateUtil.NextSaturday(Date)
+  fullName.vb: Reportman.Drawing.DateUtil.NextSaturday(Date)
+  name.vb: NextSaturday(Date)
+- uid: Reportman.Drawing.DateUtil.NextFriDay(System.DateTime)
+  commentId: M:Reportman.Drawing.DateUtil.NextFriDay(System.DateTime)
+  id: NextFriDay(System.DateTime)
+  parent: Reportman.Drawing.DateUtil
+  langs:
+  - csharp
+  - vb
+  name: NextFriDay(DateTime)
+  nameWithType: DateUtil.NextFriDay(DateTime)
+  fullName: Reportman.Drawing.DateUtil.NextFriDay(System.DateTime)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static DateTime NextFriDay(DateTime value)
+    parameters:
+    - id: value
+      type: System.DateTime
+    return:
+      type: System.DateTime
+    content.vb: Public Shared Function NextFriDay(value As Date) As Date
+  overload: Reportman.Drawing.DateUtil.NextFriDay*
+  nameWithType.vb: DateUtil.NextFriDay(Date)
+  fullName.vb: Reportman.Drawing.DateUtil.NextFriDay(Date)
+  name.vb: NextFriDay(Date)
+- uid: Reportman.Drawing.DateUtil.NextDayOfMonth(System.DateTime,System.Int32)
+  commentId: M:Reportman.Drawing.DateUtil.NextDayOfMonth(System.DateTime,System.Int32)
+  id: NextDayOfMonth(System.DateTime,System.Int32)
+  parent: Reportman.Drawing.DateUtil
+  langs:
+  - csharp
+  - vb
+  name: NextDayOfMonth(DateTime, int)
+  nameWithType: DateUtil.NextDayOfMonth(DateTime, int)
+  fullName: Reportman.Drawing.DateUtil.NextDayOfMonth(System.DateTime, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static DateTime NextDayOfMonth(DateTime value, int nday)
+    parameters:
+    - id: value
+      type: System.DateTime
+    - id: nday
+      type: System.Int32
+    return:
+      type: System.DateTime
+    content.vb: Public Shared Function NextDayOfMonth(value As Date, nday As Integer) As Date
+  overload: Reportman.Drawing.DateUtil.NextDayOfMonth*
+  nameWithType.vb: DateUtil.NextDayOfMonth(Date, Integer)
+  fullName.vb: Reportman.Drawing.DateUtil.NextDayOfMonth(Date, Integer)
+  name.vb: NextDayOfMonth(Date, Integer)
+- uid: Reportman.Drawing.DateUtil.LastDayOfMonth(System.DateTime)
+  commentId: M:Reportman.Drawing.DateUtil.LastDayOfMonth(System.DateTime)
+  id: LastDayOfMonth(System.DateTime)
+  parent: Reportman.Drawing.DateUtil
+  langs:
+  - csharp
+  - vb
+  name: LastDayOfMonth(DateTime)
+  nameWithType: DateUtil.LastDayOfMonth(DateTime)
+  fullName: Reportman.Drawing.DateUtil.LastDayOfMonth(System.DateTime)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static DateTime LastDayOfMonth(DateTime value)
+    parameters:
+    - id: value
+      type: System.DateTime
+    return:
+      type: System.DateTime
+    content.vb: Public Shared Function LastDayOfMonth(value As Date) As Date
+  overload: Reportman.Drawing.DateUtil.LastDayOfMonth*
+  nameWithType.vb: DateUtil.LastDayOfMonth(Date)
+  fullName.vb: Reportman.Drawing.DateUtil.LastDayOfMonth(Date)
+  name.vb: LastDayOfMonth(Date)
+- uid: Reportman.Drawing.DateUtil.AddWorkableDays(System.DateTime,System.Int32)
+  commentId: M:Reportman.Drawing.DateUtil.AddWorkableDays(System.DateTime,System.Int32)
+  id: AddWorkableDays(System.DateTime,System.Int32)
+  parent: Reportman.Drawing.DateUtil
+  langs:
+  - csharp
+  - vb
+  name: AddWorkableDays(DateTime, int)
+  nameWithType: DateUtil.AddWorkableDays(DateTime, int)
+  fullName: Reportman.Drawing.DateUtil.AddWorkableDays(System.DateTime, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static DateTime AddWorkableDays(DateTime value, int days)
+    parameters:
+    - id: value
+      type: System.DateTime
+    - id: days
+      type: System.Int32
+    return:
+      type: System.DateTime
+    content.vb: Public Shared Function AddWorkableDays(value As Date, days As Integer) As Date
+  overload: Reportman.Drawing.DateUtil.AddWorkableDays*
+  nameWithType.vb: DateUtil.AddWorkableDays(Date, Integer)
+  fullName.vb: Reportman.Drawing.DateUtil.AddWorkableDays(Date, Integer)
+  name.vb: AddWorkableDays(Date, Integer)
+- uid: Reportman.Drawing.DateUtil.DateTimeToUnixTimestamp(System.DateTime)
+  commentId: M:Reportman.Drawing.DateUtil.DateTimeToUnixTimestamp(System.DateTime)
+  id: DateTimeToUnixTimestamp(System.DateTime)
+  parent: Reportman.Drawing.DateUtil
+  langs:
+  - csharp
+  - vb
+  name: DateTimeToUnixTimestamp(DateTime)
+  nameWithType: DateUtil.DateTimeToUnixTimestamp(DateTime)
+  fullName: Reportman.Drawing.DateUtil.DateTimeToUnixTimestamp(System.DateTime)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static double DateTimeToUnixTimestamp(DateTime dateTime)
+    parameters:
+    - id: dateTime
+      type: System.DateTime
+    return:
+      type: System.Double
+    content.vb: Public Shared Function DateTimeToUnixTimestamp(dateTime As Date) As Double
+  overload: Reportman.Drawing.DateUtil.DateTimeToUnixTimestamp*
+  nameWithType.vb: DateUtil.DateTimeToUnixTimestamp(Date)
+  fullName.vb: Reportman.Drawing.DateUtil.DateTimeToUnixTimestamp(Date)
+  name.vb: DateTimeToUnixTimestamp(Date)
+- uid: Reportman.Drawing.DateUtil.#ctor
+  commentId: M:Reportman.Drawing.DateUtil.#ctor
+  id: '#ctor'
+  parent: Reportman.Drawing.DateUtil
+  langs:
+  - csharp
+  - vb
+  name: DateUtil()
+  nameWithType: DateUtil.DateUtil()
+  fullName: Reportman.Drawing.DateUtil.DateUtil()
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public DateUtil()
+    content.vb: Public Sub New()
+  overload: Reportman.Drawing.DateUtil.#ctor*
+  nameWithType.vb: DateUtil.New()
+  fullName.vb: Reportman.Drawing.DateUtil.New()
+  name.vb: New()
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.DateTime
+  commentId: T:System.DateTime
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+  nameWithType.vb: Date
+  fullName.vb: Date
+  name.vb: Date
+- uid: Reportman.Drawing.DateUtil.DelphiDateToDateTime*
+  commentId: Overload:Reportman.Drawing.DateUtil.DelphiDateToDateTime
+  isExternal: true
+  href: Reportman.Drawing.DateUtil.html#Reportman_Drawing_DateUtil_DelphiDateToDateTime_System_Double_
+  name: DelphiDateToDateTime
+  nameWithType: DateUtil.DelphiDateToDateTime
+  fullName: Reportman.Drawing.DateUtil.DelphiDateToDateTime
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.double
+  name: double
+  nameWithType: double
+  fullName: double
+  nameWithType.vb: Double
+  fullName.vb: Double
+  name.vb: Double
+- uid: Reportman.Drawing.DateUtil.DateTimeToFbLiteralHour*
+  commentId: Overload:Reportman.Drawing.DateUtil.DateTimeToFbLiteralHour
+  isExternal: true
+  href: Reportman.Drawing.DateUtil.html#Reportman_Drawing_DateUtil_DateTimeToFbLiteralHour_System_DateTime_
+  name: DateTimeToFbLiteralHour
+  nameWithType: DateUtil.DateTimeToFbLiteralHour
+  fullName: Reportman.Drawing.DateUtil.DateTimeToFbLiteralHour
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Reportman.Drawing.DateUtil.DateTimeToDelphiDate*
+  commentId: Overload:Reportman.Drawing.DateUtil.DateTimeToDelphiDate
+  isExternal: true
+  href: Reportman.Drawing.DateUtil.html#Reportman_Drawing_DateUtil_DateTimeToDelphiDate_System_DateTime_
+  name: DateTimeToDelphiDate
+  nameWithType: DateUtil.DateTimeToDelphiDate
+  fullName: Reportman.Drawing.DateUtil.DateTimeToDelphiDate
+- uid: Reportman.Drawing.DateUtil.DateToSqlLiteral*
+  commentId: Overload:Reportman.Drawing.DateUtil.DateToSqlLiteral
+  isExternal: true
+  href: Reportman.Drawing.DateUtil.html#Reportman_Drawing_DateUtil_DateToSqlLiteral_System_DateTime_
+  name: DateToSqlLiteral
+  nameWithType: DateUtil.DateToSqlLiteral
+  fullName: Reportman.Drawing.DateUtil.DateToSqlLiteral
+- uid: Reportman.Drawing.DateUtil.DelphiDateTimeToTimeSpan*
+  commentId: Overload:Reportman.Drawing.DateUtil.DelphiDateTimeToTimeSpan
+  isExternal: true
+  href: Reportman.Drawing.DateUtil.html#Reportman_Drawing_DateUtil_DelphiDateTimeToTimeSpan_System_Double_
+  name: DelphiDateTimeToTimeSpan
+  nameWithType: DateUtil.DelphiDateTimeToTimeSpan
+  fullName: Reportman.Drawing.DateUtil.DelphiDateTimeToTimeSpan
+- uid: System.TimeSpan
+  commentId: T:System.TimeSpan
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.timespan
+  name: TimeSpan
+  nameWithType: TimeSpan
+  fullName: System.TimeSpan
+- uid: Reportman.Drawing.DateUtil.DateToISO8601*
+  commentId: Overload:Reportman.Drawing.DateUtil.DateToISO8601
+  isExternal: true
+  href: Reportman.Drawing.DateUtil.html#Reportman_Drawing_DateUtil_DateToISO8601_System_DateTime_System_Boolean_
+  name: DateToISO8601
+  nameWithType: DateUtil.DateToISO8601
+  fullName: Reportman.Drawing.DateUtil.DateToISO8601
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Reportman.Drawing.DateUtil.IsDateTime*
+  commentId: Overload:Reportman.Drawing.DateUtil.IsDateTime
+  isExternal: true
+  href: Reportman.Drawing.DateUtil.html#Reportman_Drawing_DateUtil_IsDateTime_System_String_System_DateTime__
+  name: IsDateTime
+  nameWithType: DateUtil.IsDateTime
+  fullName: Reportman.Drawing.DateUtil.IsDateTime
+- uid: Reportman.Drawing.DateUtil.NextSaturday*
+  commentId: Overload:Reportman.Drawing.DateUtil.NextSaturday
+  isExternal: true
+  href: Reportman.Drawing.DateUtil.html#Reportman_Drawing_DateUtil_NextSaturday_System_DateTime_
+  name: NextSaturday
+  nameWithType: DateUtil.NextSaturday
+  fullName: Reportman.Drawing.DateUtil.NextSaturday
+- uid: Reportman.Drawing.DateUtil.NextFriDay*
+  commentId: Overload:Reportman.Drawing.DateUtil.NextFriDay
+  isExternal: true
+  href: Reportman.Drawing.DateUtil.html#Reportman_Drawing_DateUtil_NextFriDay_System_DateTime_
+  name: NextFriDay
+  nameWithType: DateUtil.NextFriDay
+  fullName: Reportman.Drawing.DateUtil.NextFriDay
+- uid: Reportman.Drawing.DateUtil.NextDayOfMonth*
+  commentId: Overload:Reportman.Drawing.DateUtil.NextDayOfMonth
+  isExternal: true
+  href: Reportman.Drawing.DateUtil.html#Reportman_Drawing_DateUtil_NextDayOfMonth_System_DateTime_System_Int32_
+  name: NextDayOfMonth
+  nameWithType: DateUtil.NextDayOfMonth
+  fullName: Reportman.Drawing.DateUtil.NextDayOfMonth
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Reportman.Drawing.DateUtil.LastDayOfMonth*
+  commentId: Overload:Reportman.Drawing.DateUtil.LastDayOfMonth
+  isExternal: true
+  href: Reportman.Drawing.DateUtil.html#Reportman_Drawing_DateUtil_LastDayOfMonth_System_DateTime_
+  name: LastDayOfMonth
+  nameWithType: DateUtil.LastDayOfMonth
+  fullName: Reportman.Drawing.DateUtil.LastDayOfMonth
+- uid: Reportman.Drawing.DateUtil.AddWorkableDays*
+  commentId: Overload:Reportman.Drawing.DateUtil.AddWorkableDays
+  isExternal: true
+  href: Reportman.Drawing.DateUtil.html#Reportman_Drawing_DateUtil_AddWorkableDays_System_DateTime_System_Int32_
+  name: AddWorkableDays
+  nameWithType: DateUtil.AddWorkableDays
+  fullName: Reportman.Drawing.DateUtil.AddWorkableDays
+- uid: Reportman.Drawing.DateUtil.DateTimeToUnixTimestamp*
+  commentId: Overload:Reportman.Drawing.DateUtil.DateTimeToUnixTimestamp
+  isExternal: true
+  href: Reportman.Drawing.DateUtil.html#Reportman_Drawing_DateUtil_DateTimeToUnixTimestamp_System_DateTime_
+  name: DateTimeToUnixTimestamp
+  nameWithType: DateUtil.DateTimeToUnixTimestamp
+  fullName: Reportman.Drawing.DateUtil.DateTimeToUnixTimestamp
+- uid: Reportman.Drawing.DateUtil.#ctor*
+  commentId: Overload:Reportman.Drawing.DateUtil.#ctor
+  isExternal: true
+  href: Reportman.Drawing.DateUtil.html#Reportman_Drawing_DateUtil__ctor
+  name: DateUtil
+  nameWithType: DateUtil.DateUtil
+  fullName: Reportman.Drawing.DateUtil.DateUtil
+  nameWithType.vb: DateUtil.New
+  fullName.vb: Reportman.Drawing.DateUtil.New
+  name.vb: New

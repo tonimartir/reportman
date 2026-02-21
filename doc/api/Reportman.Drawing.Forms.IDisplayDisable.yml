@@ -1,0 +1,104 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.IDisplayDisable
+  commentId: T:Reportman.Drawing.Forms.IDisplayDisable
+  id: IDisplayDisable
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.IDisplayDisable.DisplayDisable
+  langs:
+  - csharp
+  - vb
+  name: IDisplayDisable
+  nameWithType: IDisplayDisable
+  fullName: Reportman.Drawing.Forms.IDisplayDisable
+  type: Interface
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public interface IDisplayDisable
+    content.vb: Public Interface IDisplayDisable
+- uid: Reportman.Drawing.Forms.IDisplayDisable.DisplayDisable
+  commentId: M:Reportman.Drawing.Forms.IDisplayDisable.DisplayDisable
+  id: DisplayDisable
+  parent: Reportman.Drawing.Forms.IDisplayDisable
+  langs:
+  - csharp
+  - vb
+  name: DisplayDisable()
+  nameWithType: IDisplayDisable.DisplayDisable()
+  fullName: Reportman.Drawing.Forms.IDisplayDisable.DisplayDisable()
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: bool DisplayDisable()
+    return:
+      type: System.Boolean
+    content.vb: Function DisplayDisable() As Boolean
+  overload: Reportman.Drawing.Forms.IDisplayDisable.DisplayDisable*
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: Reportman.Drawing.Forms.IDisplayDisable.DisplayDisable*
+  commentId: Overload:Reportman.Drawing.Forms.IDisplayDisable.DisplayDisable
+  isExternal: true
+  href: Reportman.Drawing.Forms.IDisplayDisable.html#Reportman_Drawing_Forms_IDisplayDisable_DisplayDisable
+  name: DisplayDisable
+  nameWithType: IDisplayDisable.DisplayDisable
+  fullName: Reportman.Drawing.Forms.IDisplayDisable.DisplayDisable
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System

@@ -1261,6 +1261,10 @@ namespace Reportman.Designer
         {
             libs.LoadFromFile(configFilenameLibs);
             ReportLibrarySelection selection = OpenFromLibraryForm.SelectReportFromLibraries(libs, OpenFromLibrary.SelectionModeType.SelectionEdit, this.FindForm());
+            if (selection == null)
+            {
+                return;
+            }
             Report nrep = new Report();
             System.IO.MemoryStream memstream = selection.Stream;
             memstream.Seek(0, System.IO.SeekOrigin.Begin);

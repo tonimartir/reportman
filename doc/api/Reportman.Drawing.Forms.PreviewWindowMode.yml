@@ -1,0 +1,123 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.PreviewWindowMode
+  commentId: T:Reportman.Drawing.Forms.PreviewWindowMode
+  id: PreviewWindowMode
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.PreviewWindowMode.Form
+  - Reportman.Drawing.Forms.PreviewWindowMode.ModalForm
+  - Reportman.Drawing.Forms.PreviewWindowMode.Window
+  langs:
+  - csharp
+  - vb
+  name: PreviewWindowMode
+  nameWithType: PreviewWindowMode
+  fullName: Reportman.Drawing.Forms.PreviewWindowMode
+  type: Enum
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public enum PreviewWindowMode
+    content.vb: Public Enum PreviewWindowMode
+- uid: Reportman.Drawing.Forms.PreviewWindowMode.Form
+  commentId: F:Reportman.Drawing.Forms.PreviewWindowMode.Form
+  id: Form
+  parent: Reportman.Drawing.Forms.PreviewWindowMode
+  langs:
+  - csharp
+  - vb
+  name: Form
+  nameWithType: PreviewWindowMode.Form
+  fullName: Reportman.Drawing.Forms.PreviewWindowMode.Form
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Form = 0
+    return:
+      type: Reportman.Drawing.Forms.PreviewWindowMode
+- uid: Reportman.Drawing.Forms.PreviewWindowMode.ModalForm
+  commentId: F:Reportman.Drawing.Forms.PreviewWindowMode.ModalForm
+  id: ModalForm
+  parent: Reportman.Drawing.Forms.PreviewWindowMode
+  langs:
+  - csharp
+  - vb
+  name: ModalForm
+  nameWithType: PreviewWindowMode.ModalForm
+  fullName: Reportman.Drawing.Forms.PreviewWindowMode.ModalForm
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: ModalForm = 1
+    return:
+      type: Reportman.Drawing.Forms.PreviewWindowMode
+- uid: Reportman.Drawing.Forms.PreviewWindowMode.Window
+  commentId: F:Reportman.Drawing.Forms.PreviewWindowMode.Window
+  id: Window
+  parent: Reportman.Drawing.Forms.PreviewWindowMode
+  langs:
+  - csharp
+  - vb
+  name: Window
+  nameWithType: PreviewWindowMode.Window
+  fullName: Reportman.Drawing.Forms.PreviewWindowMode.Window
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Window = 2
+    return:
+      type: Reportman.Drawing.Forms.PreviewWindowMode
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: Reportman.Drawing.Forms.PreviewWindowMode
+  commentId: T:Reportman.Drawing.Forms.PreviewWindowMode
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.PreviewWindowMode.html
+  name: PreviewWindowMode
+  nameWithType: PreviewWindowMode
+  fullName: Reportman.Drawing.Forms.PreviewWindowMode

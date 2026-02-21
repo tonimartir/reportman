@@ -1,0 +1,189 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.ExcelFileFormat
+  commentId: T:Reportman.Drawing.ExcelFileFormat
+  id: ExcelFileFormat
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.ExcelFileFormat.Auto
+  - Reportman.Drawing.ExcelFileFormat.Csv
+  - Reportman.Drawing.ExcelFileFormat.Excel2007
+  - Reportman.Drawing.ExcelFileFormat.Excel97
+  - Reportman.Drawing.ExcelFileFormat.Normal
+  - Reportman.Drawing.ExcelFileFormat.Prn
+  - Reportman.Drawing.ExcelFileFormat.Txt
+  langs:
+  - csharp
+  - vb
+  name: ExcelFileFormat
+  nameWithType: ExcelFileFormat
+  fullName: Reportman.Drawing.ExcelFileFormat
+  type: Enum
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing
+  syntax:
+    content: public enum ExcelFileFormat
+    content.vb: Public Enum ExcelFileFormat
+- uid: Reportman.Drawing.ExcelFileFormat.Auto
+  commentId: F:Reportman.Drawing.ExcelFileFormat.Auto
+  id: Auto
+  parent: Reportman.Drawing.ExcelFileFormat
+  langs:
+  - csharp
+  - vb
+  name: Auto
+  nameWithType: ExcelFileFormat.Auto
+  fullName: Reportman.Drawing.ExcelFileFormat.Auto
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing
+  syntax:
+    content: Auto = 0
+    return:
+      type: Reportman.Drawing.ExcelFileFormat
+- uid: Reportman.Drawing.ExcelFileFormat.Normal
+  commentId: F:Reportman.Drawing.ExcelFileFormat.Normal
+  id: Normal
+  parent: Reportman.Drawing.ExcelFileFormat
+  langs:
+  - csharp
+  - vb
+  name: Normal
+  nameWithType: ExcelFileFormat.Normal
+  fullName: Reportman.Drawing.ExcelFileFormat.Normal
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing
+  syntax:
+    content: Normal = -4143
+    return:
+      type: Reportman.Drawing.ExcelFileFormat
+- uid: Reportman.Drawing.ExcelFileFormat.Excel97
+  commentId: F:Reportman.Drawing.ExcelFileFormat.Excel97
+  id: Excel97
+  parent: Reportman.Drawing.ExcelFileFormat
+  langs:
+  - csharp
+  - vb
+  name: Excel97
+  nameWithType: ExcelFileFormat.Excel97
+  fullName: Reportman.Drawing.ExcelFileFormat.Excel97
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing
+  syntax:
+    content: Excel97 = 56
+    return:
+      type: Reportman.Drawing.ExcelFileFormat
+- uid: Reportman.Drawing.ExcelFileFormat.Csv
+  commentId: F:Reportman.Drawing.ExcelFileFormat.Csv
+  id: Csv
+  parent: Reportman.Drawing.ExcelFileFormat
+  langs:
+  - csharp
+  - vb
+  name: Csv
+  nameWithType: ExcelFileFormat.Csv
+  fullName: Reportman.Drawing.ExcelFileFormat.Csv
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing
+  syntax:
+    content: Csv = 6
+    return:
+      type: Reportman.Drawing.ExcelFileFormat
+- uid: Reportman.Drawing.ExcelFileFormat.Txt
+  commentId: F:Reportman.Drawing.ExcelFileFormat.Txt
+  id: Txt
+  parent: Reportman.Drawing.ExcelFileFormat
+  langs:
+  - csharp
+  - vb
+  name: Txt
+  nameWithType: ExcelFileFormat.Txt
+  fullName: Reportman.Drawing.ExcelFileFormat.Txt
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing
+  syntax:
+    content: Txt = -4158
+    return:
+      type: Reportman.Drawing.ExcelFileFormat
+- uid: Reportman.Drawing.ExcelFileFormat.Prn
+  commentId: F:Reportman.Drawing.ExcelFileFormat.Prn
+  id: Prn
+  parent: Reportman.Drawing.ExcelFileFormat
+  langs:
+  - csharp
+  - vb
+  name: Prn
+  nameWithType: ExcelFileFormat.Prn
+  fullName: Reportman.Drawing.ExcelFileFormat.Prn
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing
+  syntax:
+    content: Prn = 36
+    return:
+      type: Reportman.Drawing.ExcelFileFormat
+- uid: Reportman.Drawing.ExcelFileFormat.Excel2007
+  commentId: F:Reportman.Drawing.ExcelFileFormat.Excel2007
+  id: Excel2007
+  parent: Reportman.Drawing.ExcelFileFormat
+  langs:
+  - csharp
+  - vb
+  name: Excel2007
+  nameWithType: ExcelFileFormat.Excel2007
+  fullName: Reportman.Drawing.ExcelFileFormat.Excel2007
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing
+  syntax:
+    content: Excel2007 = 51
+    return:
+      type: Reportman.Drawing.ExcelFileFormat
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.ExcelFileFormat
+  commentId: T:Reportman.Drawing.ExcelFileFormat
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.ExcelFileFormat.html
+  name: ExcelFileFormat
+  nameWithType: ExcelFileFormat
+  fullName: Reportman.Drawing.ExcelFileFormat

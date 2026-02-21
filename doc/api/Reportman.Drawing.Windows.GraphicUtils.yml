@@ -1,0 +1,2274 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Windows.GraphicUtils
+  commentId: T:Reportman.Drawing.Windows.GraphicUtils
+  id: GraphicUtils
+  parent: Reportman.Drawing.Windows
+  children:
+  - Reportman.Drawing.Windows.GraphicUtils.#ctor
+  - Reportman.Drawing.Windows.GraphicUtils.ConvertToBitonal(System.Drawing.Bitmap,System.Int32)
+  - Reportman.Drawing.Windows.GraphicUtils.CreateWindowsMetafile(System.Int32,System.Int32)
+  - Reportman.Drawing.Windows.GraphicUtils.DPIScale
+  - Reportman.Drawing.Windows.GraphicUtils.DPIScaleX
+  - Reportman.Drawing.Windows.GraphicUtils.DPIScaleY
+  - Reportman.Drawing.Windows.GraphicUtils.DefaultDPI
+  - Reportman.Drawing.Windows.GraphicUtils.DrawGrid(System.Drawing.Graphics,System.Int32,System.Int32,System.Int32,System.Int32,System.Drawing.Color,System.Boolean,System.Int32,System.Int32,System.Double)
+  - Reportman.Drawing.Windows.GraphicUtils.ExifRotate(System.Drawing.Image)
+  - Reportman.Drawing.Windows.GraphicUtils.FontStyleFromInteger(System.Int32)
+  - Reportman.Drawing.Windows.GraphicUtils.GetAvgFontSizeTwips(System.String,System.Single,System.Drawing.FontStyle)
+  - Reportman.Drawing.Windows.GraphicUtils.GetBitmapGrid(System.Int32,System.Int32,System.Int32,System.Int32,System.Drawing.Color,System.Drawing.Color,System.Boolean,System.Double)
+  - Reportman.Drawing.Windows.GraphicUtils.GetEncoderInfo(System.String)
+  - Reportman.Drawing.Windows.GraphicUtils.GetImageCodec(System.String)
+  - Reportman.Drawing.Windows.GraphicUtils.GetImageCodecFromExtension(System.String)
+  - Reportman.Drawing.Windows.GraphicUtils.GetImageCodecs
+  - Reportman.Drawing.Windows.GraphicUtils.GetImageGrid(System.Int32,System.Int32,System.Int32,System.Int32,System.Drawing.Color,System.Drawing.Color,System.Boolean,System.Double)
+  - Reportman.Drawing.Windows.GraphicUtils.GetInvertedBlackWhite(System.Drawing.Color)
+  - Reportman.Drawing.Windows.GraphicUtils.GetMetafileGrid(System.Int32,System.Int32,System.Int32,System.Int32,System.Drawing.Color,System.Drawing.Color,System.Boolean,System.Double)
+  - Reportman.Drawing.Windows.GraphicUtils.GetMimeType(System.Drawing.Image)
+  - Reportman.Drawing.Windows.GraphicUtils.GetRotateFlipTypeByExifOrientationData(System.Int32)
+  - Reportman.Drawing.Windows.GraphicUtils.GetRoundedLine(System.Drawing.PointF[],System.Single)
+  - Reportman.Drawing.Windows.GraphicUtils.ImageFromStream(System.IO.Stream)
+  - Reportman.Drawing.Windows.GraphicUtils.ImageToByteArray(System.Drawing.Image)
+  - Reportman.Drawing.Windows.GraphicUtils.ImageToStream(System.Drawing.Image)
+  - Reportman.Drawing.Windows.GraphicUtils.IntegerFromFontStyle(System.Drawing.FontStyle)
+  - Reportman.Drawing.Windows.GraphicUtils.IntegerFromStringFontStyle(System.String)
+  - Reportman.Drawing.Windows.GraphicUtils.LengthenLine(System.Drawing.PointF,System.Drawing.PointF@,System.Single)
+  - Reportman.Drawing.Windows.GraphicUtils.MeasureDisplayStringWidth(System.Drawing.Graphics,System.String,System.Drawing.Font)
+  - Reportman.Drawing.Windows.GraphicUtils.RemapImageTransparentColor(System.Drawing.Image,System.Drawing.Color)
+  - Reportman.Drawing.Windows.GraphicUtils.ScaleBitmapDPI(System.Drawing.Image)
+  - Reportman.Drawing.Windows.GraphicUtils.ScaleToDPI(System.Int32)
+  - Reportman.Drawing.Windows.GraphicUtils.ScaledBitmapRatio(System.Drawing.Image,System.Int32,System.Int32,System.Boolean)
+  - Reportman.Drawing.Windows.GraphicUtils.ScaledBitmapRatio(System.Drawing.Image,System.Int32,System.Int32,System.Boolean,System.Boolean)
+  - Reportman.Drawing.Windows.GraphicUtils.ScreenDPI
+  - Reportman.Drawing.Windows.GraphicUtils.ScreenDPIX
+  - Reportman.Drawing.Windows.GraphicUtils.ScreenDPIY
+  - Reportman.Drawing.Windows.GraphicUtils.SimpleThresholdBW(System.Byte[],System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  - Reportman.Drawing.Windows.GraphicUtils.StringFontStyleFromInteger(System.Int32)
+  - Reportman.Drawing.Windows.GraphicUtils.StringFromFontStyle(System.Drawing.FontStyle)
+  - Reportman.Drawing.Windows.GraphicUtils.TextToBitmap(System.Int32,System.String,System.String,System.Single)
+  - Reportman.Drawing.Windows.GraphicUtils.WriteWindowsMetaFile(System.Drawing.Imaging.Metafile,System.IO.Stream,System.Single)
+  - Reportman.Drawing.Windows.GraphicUtils.WriteWindowsMetaFileCodec(System.Drawing.Imaging.Metafile,System.IO.Stream,System.Single,System.String,System.String@)
+  langs:
+  - csharp
+  - vb
+  name: GraphicUtils
+  nameWithType: GraphicUtils
+  fullName: Reportman.Drawing.Windows.GraphicUtils
+  type: Class
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public class GraphicUtils
+    content.vb: Public Class GraphicUtils
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.Windows.GraphicUtils.DefaultDPI
+  commentId: F:Reportman.Drawing.Windows.GraphicUtils.DefaultDPI
+  id: DefaultDPI
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: DefaultDPI
+  nameWithType: GraphicUtils.DefaultDPI
+  fullName: Reportman.Drawing.Windows.GraphicUtils.DefaultDPI
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public static int DefaultDPI
+    return:
+      type: System.Int32
+    content.vb: Public Shared DefaultDPI As Integer
+- uid: Reportman.Drawing.Windows.GraphicUtils.GetMimeType(System.Drawing.Image)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.GetMimeType(System.Drawing.Image)
+  id: GetMimeType(System.Drawing.Image)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: GetMimeType(Image)
+  nameWithType: GraphicUtils.GetMimeType(Image)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.GetMimeType(System.Drawing.Image)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public static string GetMimeType(Image i)
+    parameters:
+    - id: i
+      type: System.Drawing.Image
+    return:
+      type: System.String
+    content.vb: Public Shared Function GetMimeType(i As Image) As String
+  overload: Reportman.Drawing.Windows.GraphicUtils.GetMimeType*
+- uid: Reportman.Drawing.Windows.GraphicUtils.LengthenLine(System.Drawing.PointF,System.Drawing.PointF@,System.Single)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.LengthenLine(System.Drawing.PointF,System.Drawing.PointF@,System.Single)
+  id: LengthenLine(System.Drawing.PointF,System.Drawing.PointF@,System.Single)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: LengthenLine(PointF, ref PointF, float)
+  nameWithType: GraphicUtils.LengthenLine(PointF, ref PointF, float)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.LengthenLine(System.Drawing.PointF, ref System.Drawing.PointF, float)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public static void LengthenLine(PointF startPoint, ref PointF endPoint, float pixelCount)
+    parameters:
+    - id: startPoint
+      type: System.Drawing.PointF
+    - id: endPoint
+      type: System.Drawing.PointF
+    - id: pixelCount
+      type: System.Single
+    content.vb: Public Shared Sub LengthenLine(startPoint As PointF, endPoint As PointF, pixelCount As Single)
+  overload: Reportman.Drawing.Windows.GraphicUtils.LengthenLine*
+  nameWithType.vb: GraphicUtils.LengthenLine(PointF, PointF, Single)
+  fullName.vb: Reportman.Drawing.Windows.GraphicUtils.LengthenLine(System.Drawing.PointF, System.Drawing.PointF, Single)
+  name.vb: LengthenLine(PointF, PointF, Single)
+- uid: Reportman.Drawing.Windows.GraphicUtils.GetRoundedLine(System.Drawing.PointF[],System.Single)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.GetRoundedLine(System.Drawing.PointF[],System.Single)
+  id: GetRoundedLine(System.Drawing.PointF[],System.Single)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: GetRoundedLine(PointF[], float)
+  nameWithType: GraphicUtils.GetRoundedLine(PointF[], float)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.GetRoundedLine(System.Drawing.PointF[], float)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public static GraphicsPath GetRoundedLine(PointF[] points, float cornerRadius)
+    parameters:
+    - id: points
+      type: System.Drawing.PointF[]
+    - id: cornerRadius
+      type: System.Single
+    return:
+      type: System.Drawing.Drawing2D.GraphicsPath
+    content.vb: Public Shared Function GetRoundedLine(points As PointF(), cornerRadius As Single) As GraphicsPath
+  overload: Reportman.Drawing.Windows.GraphicUtils.GetRoundedLine*
+  nameWithType.vb: GraphicUtils.GetRoundedLine(PointF(), Single)
+  fullName.vb: Reportman.Drawing.Windows.GraphicUtils.GetRoundedLine(System.Drawing.PointF(), Single)
+  name.vb: GetRoundedLine(PointF(), Single)
+- uid: Reportman.Drawing.Windows.GraphicUtils.ScreenDPIY
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.ScreenDPIY
+  id: ScreenDPIY
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: ScreenDPIY()
+  nameWithType: GraphicUtils.ScreenDPIY()
+  fullName: Reportman.Drawing.Windows.GraphicUtils.ScreenDPIY()
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public static int ScreenDPIY()
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function ScreenDPIY() As Integer
+  overload: Reportman.Drawing.Windows.GraphicUtils.ScreenDPIY*
+- uid: Reportman.Drawing.Windows.GraphicUtils.ScreenDPIX
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.ScreenDPIX
+  id: ScreenDPIX
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: ScreenDPIX()
+  nameWithType: GraphicUtils.ScreenDPIX()
+  fullName: Reportman.Drawing.Windows.GraphicUtils.ScreenDPIX()
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public static int ScreenDPIX()
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function ScreenDPIX() As Integer
+  overload: Reportman.Drawing.Windows.GraphicUtils.ScreenDPIX*
+- uid: Reportman.Drawing.Windows.GraphicUtils.ScreenDPI
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.ScreenDPI
+  id: ScreenDPI
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: ScreenDPI()
+  nameWithType: GraphicUtils.ScreenDPI()
+  fullName: Reportman.Drawing.Windows.GraphicUtils.ScreenDPI()
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public static int ScreenDPI()
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function ScreenDPI() As Integer
+  overload: Reportman.Drawing.Windows.GraphicUtils.ScreenDPI*
+- uid: Reportman.Drawing.Windows.GraphicUtils.GetImageGrid(System.Int32,System.Int32,System.Int32,System.Int32,System.Drawing.Color,System.Drawing.Color,System.Boolean,System.Double)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.GetImageGrid(System.Int32,System.Int32,System.Int32,System.Int32,System.Drawing.Color,System.Drawing.Color,System.Boolean,System.Double)
+  id: GetImageGrid(System.Int32,System.Int32,System.Int32,System.Int32,System.Drawing.Color,System.Drawing.Color,System.Boolean,System.Double)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: GetImageGrid(int, int, int, int, Color, Color, bool, double)
+  nameWithType: GraphicUtils.GetImageGrid(int, int, int, int, Color, Color, bool, double)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.GetImageGrid(int, int, int, int, System.Drawing.Color, System.Drawing.Color, bool, double)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  summary: >-
+    Obtain a Image (Metafile or Bitmap) to perform fast drawing of a grid, 
+
+    so consecutive calls with similar parameters will execute faster.
+
+    The implementation uses a shared bitmap or metafile.
+  example: []
+  syntax:
+    content: public static Image GetImageGrid(int Width, int Height, int GWidth, int GHeight, Color GColor, Color BackColor, bool Lines, double Scale)
+    parameters:
+    - id: Width
+      type: System.Int32
+      description: ''
+    - id: Height
+      type: System.Int32
+      description: ''
+    - id: GWidth
+      type: System.Int32
+      description: ''
+    - id: GHeight
+      type: System.Int32
+      description: ''
+    - id: GColor
+      type: System.Drawing.Color
+      description: ''
+    - id: BackColor
+      type: System.Drawing.Color
+      description: ''
+    - id: Lines
+      type: System.Boolean
+      description: ''
+    - id: Scale
+      type: System.Double
+      description: ''
+    return:
+      type: System.Drawing.Image
+      description: ''
+    content.vb: Public Shared Function GetImageGrid(Width As Integer, Height As Integer, GWidth As Integer, GHeight As Integer, GColor As Color, BackColor As Color, Lines As Boolean, Scale As Double) As Image
+  overload: Reportman.Drawing.Windows.GraphicUtils.GetImageGrid*
+  nameWithType.vb: GraphicUtils.GetImageGrid(Integer, Integer, Integer, Integer, Color, Color, Boolean, Double)
+  fullName.vb: Reportman.Drawing.Windows.GraphicUtils.GetImageGrid(Integer, Integer, Integer, Integer, System.Drawing.Color, System.Drawing.Color, Boolean, Double)
+  name.vb: GetImageGrid(Integer, Integer, Integer, Integer, Color, Color, Boolean, Double)
+- uid: Reportman.Drawing.Windows.GraphicUtils.GetBitmapGrid(System.Int32,System.Int32,System.Int32,System.Int32,System.Drawing.Color,System.Drawing.Color,System.Boolean,System.Double)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.GetBitmapGrid(System.Int32,System.Int32,System.Int32,System.Int32,System.Drawing.Color,System.Drawing.Color,System.Boolean,System.Double)
+  id: GetBitmapGrid(System.Int32,System.Int32,System.Int32,System.Int32,System.Drawing.Color,System.Drawing.Color,System.Boolean,System.Double)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: GetBitmapGrid(int, int, int, int, Color, Color, bool, double)
+  nameWithType: GraphicUtils.GetBitmapGrid(int, int, int, int, Color, Color, bool, double)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.GetBitmapGrid(int, int, int, int, System.Drawing.Color, System.Drawing.Color, bool, double)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  summary: >-
+    Obtain a bitmap to perform fast drawing of a grid, 
+
+    so consecutive calls with similar parameters will execute faster.
+
+    The implementation uses a shared bitmap.
+  example: []
+  syntax:
+    content: public static Bitmap GetBitmapGrid(int Width, int Height, int GWidth, int GHeight, Color GColor, Color BackColor, bool Lines, double Scale)
+    parameters:
+    - id: Width
+      type: System.Int32
+      description: ''
+    - id: Height
+      type: System.Int32
+      description: ''
+    - id: GWidth
+      type: System.Int32
+      description: ''
+    - id: GHeight
+      type: System.Int32
+      description: ''
+    - id: GColor
+      type: System.Drawing.Color
+      description: ''
+    - id: BackColor
+      type: System.Drawing.Color
+      description: ''
+    - id: Lines
+      type: System.Boolean
+      description: ''
+    - id: Scale
+      type: System.Double
+      description: ''
+    return:
+      type: System.Drawing.Bitmap
+      description: ''
+    content.vb: Public Shared Function GetBitmapGrid(Width As Integer, Height As Integer, GWidth As Integer, GHeight As Integer, GColor As Color, BackColor As Color, Lines As Boolean, Scale As Double) As Bitmap
+  overload: Reportman.Drawing.Windows.GraphicUtils.GetBitmapGrid*
+  nameWithType.vb: GraphicUtils.GetBitmapGrid(Integer, Integer, Integer, Integer, Color, Color, Boolean, Double)
+  fullName.vb: Reportman.Drawing.Windows.GraphicUtils.GetBitmapGrid(Integer, Integer, Integer, Integer, System.Drawing.Color, System.Drawing.Color, Boolean, Double)
+  name.vb: GetBitmapGrid(Integer, Integer, Integer, Integer, Color, Color, Boolean, Double)
+- uid: Reportman.Drawing.Windows.GraphicUtils.CreateWindowsMetafile(System.Int32,System.Int32)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.CreateWindowsMetafile(System.Int32,System.Int32)
+  id: CreateWindowsMetafile(System.Int32,System.Int32)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: CreateWindowsMetafile(int, int)
+  nameWithType: GraphicUtils.CreateWindowsMetafile(int, int)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.CreateWindowsMetafile(int, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public static Metafile CreateWindowsMetafile(int Width, int Height)
+    parameters:
+    - id: Width
+      type: System.Int32
+    - id: Height
+      type: System.Int32
+    return:
+      type: System.Drawing.Imaging.Metafile
+    content.vb: Public Shared Function CreateWindowsMetafile(Width As Integer, Height As Integer) As Metafile
+  overload: Reportman.Drawing.Windows.GraphicUtils.CreateWindowsMetafile*
+  nameWithType.vb: GraphicUtils.CreateWindowsMetafile(Integer, Integer)
+  fullName.vb: Reportman.Drawing.Windows.GraphicUtils.CreateWindowsMetafile(Integer, Integer)
+  name.vb: CreateWindowsMetafile(Integer, Integer)
+- uid: Reportman.Drawing.Windows.GraphicUtils.GetMetafileGrid(System.Int32,System.Int32,System.Int32,System.Int32,System.Drawing.Color,System.Drawing.Color,System.Boolean,System.Double)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.GetMetafileGrid(System.Int32,System.Int32,System.Int32,System.Int32,System.Drawing.Color,System.Drawing.Color,System.Boolean,System.Double)
+  id: GetMetafileGrid(System.Int32,System.Int32,System.Int32,System.Int32,System.Drawing.Color,System.Drawing.Color,System.Boolean,System.Double)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: GetMetafileGrid(int, int, int, int, Color, Color, bool, double)
+  nameWithType: GraphicUtils.GetMetafileGrid(int, int, int, int, Color, Color, bool, double)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.GetMetafileGrid(int, int, int, int, System.Drawing.Color, System.Drawing.Color, bool, double)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  summary: >-
+    Obtain a metafile to perform fast drawing of a grid, 
+
+    so consecutive calls with similar parameters will execute faster.
+
+    The implementation uses a shared metafile.
+  example: []
+  syntax:
+    content: public static Metafile GetMetafileGrid(int Width, int Height, int GWidth, int GHeight, Color GColor, Color BackColor, bool Lines, double Scale)
+    parameters:
+    - id: Width
+      type: System.Int32
+      description: ''
+    - id: Height
+      type: System.Int32
+      description: ''
+    - id: GWidth
+      type: System.Int32
+      description: ''
+    - id: GHeight
+      type: System.Int32
+      description: ''
+    - id: GColor
+      type: System.Drawing.Color
+      description: ''
+    - id: BackColor
+      type: System.Drawing.Color
+      description: ''
+    - id: Lines
+      type: System.Boolean
+      description: ''
+    - id: Scale
+      type: System.Double
+      description: ''
+    return:
+      type: System.Drawing.Imaging.Metafile
+      description: ''
+    content.vb: Public Shared Function GetMetafileGrid(Width As Integer, Height As Integer, GWidth As Integer, GHeight As Integer, GColor As Color, BackColor As Color, Lines As Boolean, Scale As Double) As Metafile
+  overload: Reportman.Drawing.Windows.GraphicUtils.GetMetafileGrid*
+  nameWithType.vb: GraphicUtils.GetMetafileGrid(Integer, Integer, Integer, Integer, Color, Color, Boolean, Double)
+  fullName.vb: Reportman.Drawing.Windows.GraphicUtils.GetMetafileGrid(Integer, Integer, Integer, Integer, System.Drawing.Color, System.Drawing.Color, Boolean, Double)
+  name.vb: GetMetafileGrid(Integer, Integer, Integer, Integer, Color, Color, Boolean, Double)
+- uid: Reportman.Drawing.Windows.GraphicUtils.DrawGrid(System.Drawing.Graphics,System.Int32,System.Int32,System.Int32,System.Int32,System.Drawing.Color,System.Boolean,System.Int32,System.Int32,System.Double)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.DrawGrid(System.Drawing.Graphics,System.Int32,System.Int32,System.Int32,System.Int32,System.Drawing.Color,System.Boolean,System.Int32,System.Int32,System.Double)
+  id: DrawGrid(System.Drawing.Graphics,System.Int32,System.Int32,System.Int32,System.Int32,System.Drawing.Color,System.Boolean,System.Int32,System.Int32,System.Double)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: DrawGrid(Graphics, int, int, int, int, Color, bool, int, int, double)
+  nameWithType: GraphicUtils.DrawGrid(Graphics, int, int, int, int, Color, bool, int, int, double)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.DrawGrid(System.Drawing.Graphics, int, int, int, int, System.Drawing.Color, bool, int, int, double)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  summary: Draw a grid given a distance in twips
+  example: []
+  syntax:
+    content: public static void DrawGrid(Graphics gr, int XWidth, int XHeight, int PixelsWidth, int PixelsHeight, Color GridColor, bool Lines, int XOffset, int YOffset, double Scale)
+    parameters:
+    - id: gr
+      type: System.Drawing.Graphics
+      description: Destination
+    - id: XWidth
+      type: System.Int32
+      description: Width in twips (1440 twips=1 inch)
+    - id: XHeight
+      type: System.Int32
+      description: Height in twips
+    - id: PixelsWidth
+      type: System.Int32
+      description: Width in pixels
+    - id: PixelsHeight
+      type: System.Int32
+      description: Height in pixels
+    - id: GridColor
+      type: System.Drawing.Color
+      description: Color of the points or lines drawn
+    - id: Lines
+      type: System.Boolean
+      description: Set to true to draw lines instead of points
+    - id: XOffset
+      type: System.Int32
+      description: Horizontal offset
+    - id: YOffset
+      type: System.Int32
+      description: Vertical offset
+    - id: Scale
+      type: System.Double
+      description: Scale the grid, set to 1.0 to draw in real size
+    content.vb: Public Shared Sub DrawGrid(gr As Graphics, XWidth As Integer, XHeight As Integer, PixelsWidth As Integer, PixelsHeight As Integer, GridColor As Color, Lines As Boolean, XOffset As Integer, YOffset As Integer, Scale As Double)
+  overload: Reportman.Drawing.Windows.GraphicUtils.DrawGrid*
+  nameWithType.vb: GraphicUtils.DrawGrid(Graphics, Integer, Integer, Integer, Integer, Color, Boolean, Integer, Integer, Double)
+  fullName.vb: Reportman.Drawing.Windows.GraphicUtils.DrawGrid(System.Drawing.Graphics, Integer, Integer, Integer, Integer, System.Drawing.Color, Boolean, Integer, Integer, Double)
+  name.vb: DrawGrid(Graphics, Integer, Integer, Integer, Integer, Color, Boolean, Integer, Integer, Double)
+- uid: Reportman.Drawing.Windows.GraphicUtils.MeasureDisplayStringWidth(System.Drawing.Graphics,System.String,System.Drawing.Font)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.MeasureDisplayStringWidth(System.Drawing.Graphics,System.String,System.Drawing.Font)
+  id: MeasureDisplayStringWidth(System.Drawing.Graphics,System.String,System.Drawing.Font)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: MeasureDisplayStringWidth(Graphics, string, Font)
+  nameWithType: GraphicUtils.MeasureDisplayStringWidth(Graphics, string, Font)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.MeasureDisplayStringWidth(System.Drawing.Graphics, string, System.Drawing.Font)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  summary: Calculates the with in current graphics units of a text
+  example: []
+  syntax:
+    content: public static double MeasureDisplayStringWidth(Graphics graphics, string text, Font font)
+    parameters:
+    - id: graphics
+      type: System.Drawing.Graphics
+      description: Graphics object where the measurement will be done
+    - id: text
+      type: System.String
+      description: Text to be measured
+    - id: font
+      type: System.Drawing.Font
+      description: Font used for the measurement
+    return:
+      type: System.Double
+      description: Width in graphic units of the measured text
+    content.vb: Public Shared Function MeasureDisplayStringWidth(graphics As Graphics, text As String, font As Font) As Double
+  overload: Reportman.Drawing.Windows.GraphicUtils.MeasureDisplayStringWidth*
+  nameWithType.vb: GraphicUtils.MeasureDisplayStringWidth(Graphics, String, Font)
+  fullName.vb: Reportman.Drawing.Windows.GraphicUtils.MeasureDisplayStringWidth(System.Drawing.Graphics, String, System.Drawing.Font)
+  name.vb: MeasureDisplayStringWidth(Graphics, String, Font)
+- uid: Reportman.Drawing.Windows.GraphicUtils.WriteWindowsMetaFile(System.Drawing.Imaging.Metafile,System.IO.Stream,System.Single)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.WriteWindowsMetaFile(System.Drawing.Imaging.Metafile,System.IO.Stream,System.Single)
+  id: WriteWindowsMetaFile(System.Drawing.Imaging.Metafile,System.IO.Stream,System.Single)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: WriteWindowsMetaFile(Metafile, Stream, float)
+  nameWithType: GraphicUtils.WriteWindowsMetaFile(Metafile, Stream, float)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.WriteWindowsMetaFile(System.Drawing.Imaging.Metafile, System.IO.Stream, float)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  summary: Write a Windows Metafile into a stream
+  example: []
+  syntax:
+    content: public static void WriteWindowsMetaFile(Metafile metaf, Stream destination, float Scale)
+    parameters:
+    - id: metaf
+      type: System.Drawing.Imaging.Metafile
+      description: Metafile to write
+    - id: destination
+      type: System.IO.Stream
+      description: Stream destination
+    - id: Scale
+      type: System.Single
+      description: Scale of the Windows Metafile
+    content.vb: Public Shared Sub WriteWindowsMetaFile(metaf As Metafile, destination As Stream, Scale As Single)
+  overload: Reportman.Drawing.Windows.GraphicUtils.WriteWindowsMetaFile*
+  nameWithType.vb: GraphicUtils.WriteWindowsMetaFile(Metafile, Stream, Single)
+  fullName.vb: Reportman.Drawing.Windows.GraphicUtils.WriteWindowsMetaFile(System.Drawing.Imaging.Metafile, System.IO.Stream, Single)
+  name.vb: WriteWindowsMetaFile(Metafile, Stream, Single)
+- uid: Reportman.Drawing.Windows.GraphicUtils.GetImageCodecs
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.GetImageCodecs
+  id: GetImageCodecs
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: GetImageCodecs()
+  nameWithType: GraphicUtils.GetImageCodecs()
+  fullName: Reportman.Drawing.Windows.GraphicUtils.GetImageCodecs()
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  summary: Obtain a list of available image codecs
+  example: []
+  syntax:
+    content: public static Strings GetImageCodecs()
+    return:
+      type: Reportman.Drawing.Strings
+      description: A list, string collection of image codecs
+    content.vb: Public Shared Function GetImageCodecs() As Strings
+  overload: Reportman.Drawing.Windows.GraphicUtils.GetImageCodecs*
+- uid: Reportman.Drawing.Windows.GraphicUtils.GetAvgFontSizeTwips(System.String,System.Single,System.Drawing.FontStyle)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.GetAvgFontSizeTwips(System.String,System.Single,System.Drawing.FontStyle)
+  id: GetAvgFontSizeTwips(System.String,System.Single,System.Drawing.FontStyle)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: GetAvgFontSizeTwips(string, float, FontStyle)
+  nameWithType: GraphicUtils.GetAvgFontSizeTwips(string, float, FontStyle)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.GetAvgFontSizeTwips(string, float, System.Drawing.FontStyle)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public static Size GetAvgFontSizeTwips(string FontFamily, float FontSize, FontStyle FStyle)
+    parameters:
+    - id: FontFamily
+      type: System.String
+    - id: FontSize
+      type: System.Single
+    - id: FStyle
+      type: System.Drawing.FontStyle
+    return:
+      type: System.Drawing.Size
+    content.vb: Public Shared Function GetAvgFontSizeTwips(FontFamily As String, FontSize As Single, FStyle As FontStyle) As Size
+  overload: Reportman.Drawing.Windows.GraphicUtils.GetAvgFontSizeTwips*
+  nameWithType.vb: GraphicUtils.GetAvgFontSizeTwips(String, Single, FontStyle)
+  fullName.vb: Reportman.Drawing.Windows.GraphicUtils.GetAvgFontSizeTwips(String, Single, System.Drawing.FontStyle)
+  name.vb: GetAvgFontSizeTwips(String, Single, FontStyle)
+- uid: Reportman.Drawing.Windows.GraphicUtils.TextToBitmap(System.Int32,System.String,System.String,System.Single)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.TextToBitmap(System.Int32,System.String,System.String,System.Single)
+  id: TextToBitmap(System.Int32,System.String,System.String,System.Single)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: TextToBitmap(int, string, string, float)
+  nameWithType: GraphicUtils.TextToBitmap(int, string, string, float)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.TextToBitmap(int, string, string, float)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  summary: Converts a text to his representation in bitmap form
+  example: []
+  syntax:
+    content: public static Bitmap TextToBitmap(int width, string text, string fontfamily, float fontsize)
+    parameters:
+    - id: width
+      type: System.Int32
+      description: Witdh of the resulting bitmap
+    - id: text
+      type: System.String
+      description: Text to be printed into the bitmap
+    - id: fontfamily
+      type: System.String
+      description: Font family
+    - id: fontsize
+      type: System.Single
+      description: Font size
+    return:
+      type: System.Drawing.Bitmap
+      description: Returns a bitmap with the text drawn on it
+    content.vb: Public Shared Function TextToBitmap(width As Integer, text As String, fontfamily As String, fontsize As Single) As Bitmap
+  overload: Reportman.Drawing.Windows.GraphicUtils.TextToBitmap*
+  nameWithType.vb: GraphicUtils.TextToBitmap(Integer, String, String, Single)
+  fullName.vb: Reportman.Drawing.Windows.GraphicUtils.TextToBitmap(Integer, String, String, Single)
+  name.vb: TextToBitmap(Integer, String, String, Single)
+- uid: Reportman.Drawing.Windows.GraphicUtils.WriteWindowsMetaFileCodec(System.Drawing.Imaging.Metafile,System.IO.Stream,System.Single,System.String,System.String@)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.WriteWindowsMetaFileCodec(System.Drawing.Imaging.Metafile,System.IO.Stream,System.Single,System.String,System.String@)
+  id: WriteWindowsMetaFileCodec(System.Drawing.Imaging.Metafile,System.IO.Stream,System.Single,System.String,System.String@)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: WriteWindowsMetaFileCodec(Metafile, Stream, float, string, out string)
+  nameWithType: GraphicUtils.WriteWindowsMetaFileCodec(Metafile, Stream, float, string, out string)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.WriteWindowsMetaFileCodec(System.Drawing.Imaging.Metafile, System.IO.Stream, float, string, out string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  summary: Convert a windows metafile to a image format saved into a stream
+  example: []
+  syntax:
+    content: public static void WriteWindowsMetaFileCodec(Metafile metaf, Stream destination, float Scale, string codecstring, out string mimetype)
+    parameters:
+    - id: metaf
+      type: System.Drawing.Imaging.Metafile
+      description: Windows Metafile to be converted
+    - id: destination
+      type: System.IO.Stream
+      description: Destination stream
+    - id: Scale
+      type: System.Single
+      description: Scale of the metafile
+    - id: codecstring
+      type: System.String
+      description: Codec to be used you can obtain a list by using GetImageCodecs
+    - id: mimetype
+      type: System.String
+      description: Mimetype of the selected codec
+    content.vb: Public Shared Sub WriteWindowsMetaFileCodec(metaf As Metafile, destination As Stream, Scale As Single, codecstring As String, mimetype As String)
+  overload: Reportman.Drawing.Windows.GraphicUtils.WriteWindowsMetaFileCodec*
+  nameWithType.vb: GraphicUtils.WriteWindowsMetaFileCodec(Metafile, Stream, Single, String, String)
+  fullName.vb: Reportman.Drawing.Windows.GraphicUtils.WriteWindowsMetaFileCodec(System.Drawing.Imaging.Metafile, System.IO.Stream, Single, String, String)
+  name.vb: WriteWindowsMetaFileCodec(Metafile, Stream, Single, String, String)
+- uid: Reportman.Drawing.Windows.GraphicUtils.GetInvertedBlackWhite(System.Drawing.Color)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.GetInvertedBlackWhite(System.Drawing.Color)
+  id: GetInvertedBlackWhite(System.Drawing.Color)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: GetInvertedBlackWhite(Color)
+  nameWithType: GraphicUtils.GetInvertedBlackWhite(Color)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.GetInvertedBlackWhite(System.Drawing.Color)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public static Color GetInvertedBlackWhite(Color c)
+    parameters:
+    - id: c
+      type: System.Drawing.Color
+    return:
+      type: System.Drawing.Color
+    content.vb: Public Shared Function GetInvertedBlackWhite(c As Color) As Color
+  overload: Reportman.Drawing.Windows.GraphicUtils.GetInvertedBlackWhite*
+- uid: Reportman.Drawing.Windows.GraphicUtils.StringFontStyleFromInteger(System.Int32)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.StringFontStyleFromInteger(System.Int32)
+  id: StringFontStyleFromInteger(System.Int32)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: StringFontStyleFromInteger(int)
+  nameWithType: GraphicUtils.StringFontStyleFromInteger(int)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.StringFontStyleFromInteger(int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public static string StringFontStyleFromInteger(int intstyle)
+    parameters:
+    - id: intstyle
+      type: System.Int32
+    return:
+      type: System.String
+    content.vb: Public Shared Function StringFontStyleFromInteger(intstyle As Integer) As String
+  overload: Reportman.Drawing.Windows.GraphicUtils.StringFontStyleFromInteger*
+  nameWithType.vb: GraphicUtils.StringFontStyleFromInteger(Integer)
+  fullName.vb: Reportman.Drawing.Windows.GraphicUtils.StringFontStyleFromInteger(Integer)
+  name.vb: StringFontStyleFromInteger(Integer)
+- uid: Reportman.Drawing.Windows.GraphicUtils.IntegerFromStringFontStyle(System.String)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.IntegerFromStringFontStyle(System.String)
+  id: IntegerFromStringFontStyle(System.String)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: IntegerFromStringFontStyle(string)
+  nameWithType: GraphicUtils.IntegerFromStringFontStyle(string)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.IntegerFromStringFontStyle(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public static int IntegerFromStringFontStyle(string sfontstyle)
+    parameters:
+    - id: sfontstyle
+      type: System.String
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function IntegerFromStringFontStyle(sfontstyle As String) As Integer
+  overload: Reportman.Drawing.Windows.GraphicUtils.IntegerFromStringFontStyle*
+  nameWithType.vb: GraphicUtils.IntegerFromStringFontStyle(String)
+  fullName.vb: Reportman.Drawing.Windows.GraphicUtils.IntegerFromStringFontStyle(String)
+  name.vb: IntegerFromStringFontStyle(String)
+- uid: Reportman.Drawing.Windows.GraphicUtils.StringFromFontStyle(System.Drawing.FontStyle)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.StringFromFontStyle(System.Drawing.FontStyle)
+  id: StringFromFontStyle(System.Drawing.FontStyle)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: StringFromFontStyle(FontStyle)
+  nameWithType: GraphicUtils.StringFromFontStyle(FontStyle)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.StringFromFontStyle(System.Drawing.FontStyle)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public static string StringFromFontStyle(FontStyle astyle)
+    parameters:
+    - id: astyle
+      type: System.Drawing.FontStyle
+    return:
+      type: System.String
+    content.vb: Public Shared Function StringFromFontStyle(astyle As FontStyle) As String
+  overload: Reportman.Drawing.Windows.GraphicUtils.StringFromFontStyle*
+- uid: Reportman.Drawing.Windows.GraphicUtils.RemapImageTransparentColor(System.Drawing.Image,System.Drawing.Color)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.RemapImageTransparentColor(System.Drawing.Image,System.Drawing.Color)
+  id: RemapImageTransparentColor(System.Drawing.Image,System.Drawing.Color)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: RemapImageTransparentColor(Image, Color)
+  nameWithType: GraphicUtils.RemapImageTransparentColor(Image, Color)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.RemapImageTransparentColor(System.Drawing.Image, System.Drawing.Color)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public static Image RemapImageTransparentColor(Image img, Color OldColor)
+    parameters:
+    - id: img
+      type: System.Drawing.Image
+    - id: OldColor
+      type: System.Drawing.Color
+    return:
+      type: System.Drawing.Image
+    content.vb: Public Shared Function RemapImageTransparentColor(img As Image, OldColor As Color) As Image
+  overload: Reportman.Drawing.Windows.GraphicUtils.RemapImageTransparentColor*
+- uid: Reportman.Drawing.Windows.GraphicUtils.ImageToStream(System.Drawing.Image)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.ImageToStream(System.Drawing.Image)
+  id: ImageToStream(System.Drawing.Image)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: ImageToStream(Image)
+  nameWithType: GraphicUtils.ImageToStream(Image)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.ImageToStream(System.Drawing.Image)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public static MemoryStream ImageToStream(Image nimage)
+    parameters:
+    - id: nimage
+      type: System.Drawing.Image
+    return:
+      type: System.IO.MemoryStream
+    content.vb: Public Shared Function ImageToStream(nimage As Image) As MemoryStream
+  overload: Reportman.Drawing.Windows.GraphicUtils.ImageToStream*
+- uid: Reportman.Drawing.Windows.GraphicUtils.ImageToByteArray(System.Drawing.Image)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.ImageToByteArray(System.Drawing.Image)
+  id: ImageToByteArray(System.Drawing.Image)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: ImageToByteArray(Image)
+  nameWithType: GraphicUtils.ImageToByteArray(Image)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.ImageToByteArray(System.Drawing.Image)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public static byte[] ImageToByteArray(Image nimage)
+    parameters:
+    - id: nimage
+      type: System.Drawing.Image
+    return:
+      type: System.Byte[]
+    content.vb: Public Shared Function ImageToByteArray(nimage As Image) As Byte()
+  overload: Reportman.Drawing.Windows.GraphicUtils.ImageToByteArray*
+- uid: Reportman.Drawing.Windows.GraphicUtils.ScaleToDPI(System.Int32)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.ScaleToDPI(System.Int32)
+  id: ScaleToDPI(System.Int32)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: ScaleToDPI(int)
+  nameWithType: GraphicUtils.ScaleToDPI(int)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.ScaleToDPI(int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public static int ScaleToDPI(int pixels)
+    parameters:
+    - id: pixels
+      type: System.Int32
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function ScaleToDPI(pixels As Integer) As Integer
+  overload: Reportman.Drawing.Windows.GraphicUtils.ScaleToDPI*
+  nameWithType.vb: GraphicUtils.ScaleToDPI(Integer)
+  fullName.vb: Reportman.Drawing.Windows.GraphicUtils.ScaleToDPI(Integer)
+  name.vb: ScaleToDPI(Integer)
+- uid: Reportman.Drawing.Windows.GraphicUtils.ScaleBitmapDPI(System.Drawing.Image)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.ScaleBitmapDPI(System.Drawing.Image)
+  id: ScaleBitmapDPI(System.Drawing.Image)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: ScaleBitmapDPI(Image)
+  nameWithType: GraphicUtils.ScaleBitmapDPI(Image)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.ScaleBitmapDPI(System.Drawing.Image)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public static Image ScaleBitmapDPI(Image image)
+    parameters:
+    - id: image
+      type: System.Drawing.Image
+    return:
+      type: System.Drawing.Image
+    content.vb: Public Shared Function ScaleBitmapDPI(image As Image) As Image
+  overload: Reportman.Drawing.Windows.GraphicUtils.ScaleBitmapDPI*
+- uid: Reportman.Drawing.Windows.GraphicUtils.ScaledBitmapRatio(System.Drawing.Image,System.Int32,System.Int32,System.Boolean,System.Boolean)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.ScaledBitmapRatio(System.Drawing.Image,System.Int32,System.Int32,System.Boolean,System.Boolean)
+  id: ScaledBitmapRatio(System.Drawing.Image,System.Int32,System.Int32,System.Boolean,System.Boolean)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: ScaledBitmapRatio(Image, int, int, bool, bool)
+  nameWithType: GraphicUtils.ScaledBitmapRatio(Image, int, int, bool, bool)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.ScaledBitmapRatio(System.Drawing.Image, int, int, bool, bool)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public static Image ScaledBitmapRatio(Image image, int width, int height, bool highquality, bool allowexpand)
+    parameters:
+    - id: image
+      type: System.Drawing.Image
+    - id: width
+      type: System.Int32
+    - id: height
+      type: System.Int32
+    - id: highquality
+      type: System.Boolean
+    - id: allowexpand
+      type: System.Boolean
+    return:
+      type: System.Drawing.Image
+    content.vb: Public Shared Function ScaledBitmapRatio(image As Image, width As Integer, height As Integer, highquality As Boolean, allowexpand As Boolean) As Image
+  overload: Reportman.Drawing.Windows.GraphicUtils.ScaledBitmapRatio*
+  nameWithType.vb: GraphicUtils.ScaledBitmapRatio(Image, Integer, Integer, Boolean, Boolean)
+  fullName.vb: Reportman.Drawing.Windows.GraphicUtils.ScaledBitmapRatio(System.Drawing.Image, Integer, Integer, Boolean, Boolean)
+  name.vb: ScaledBitmapRatio(Image, Integer, Integer, Boolean, Boolean)
+- uid: Reportman.Drawing.Windows.GraphicUtils.ScaledBitmapRatio(System.Drawing.Image,System.Int32,System.Int32,System.Boolean)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.ScaledBitmapRatio(System.Drawing.Image,System.Int32,System.Int32,System.Boolean)
+  id: ScaledBitmapRatio(System.Drawing.Image,System.Int32,System.Int32,System.Boolean)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: ScaledBitmapRatio(Image, int, int, bool)
+  nameWithType: GraphicUtils.ScaledBitmapRatio(Image, int, int, bool)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.ScaledBitmapRatio(System.Drawing.Image, int, int, bool)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  summary: Scale bitmap to a maximum of width and height
+  example: []
+  syntax:
+    content: public static Image ScaledBitmapRatio(Image image, int width, int height, bool highquality)
+    parameters:
+    - id: image
+      type: System.Drawing.Image
+      description: ''
+    - id: width
+      type: System.Int32
+      description: ''
+    - id: height
+      type: System.Int32
+      description: ''
+    - id: highquality
+      type: System.Boolean
+      description: ''
+    return:
+      type: System.Drawing.Image
+      description: ''
+    content.vb: Public Shared Function ScaledBitmapRatio(image As Image, width As Integer, height As Integer, highquality As Boolean) As Image
+  overload: Reportman.Drawing.Windows.GraphicUtils.ScaledBitmapRatio*
+  nameWithType.vb: GraphicUtils.ScaledBitmapRatio(Image, Integer, Integer, Boolean)
+  fullName.vb: Reportman.Drawing.Windows.GraphicUtils.ScaledBitmapRatio(System.Drawing.Image, Integer, Integer, Boolean)
+  name.vb: ScaledBitmapRatio(Image, Integer, Integer, Boolean)
+- uid: Reportman.Drawing.Windows.GraphicUtils.ImageFromStream(System.IO.Stream)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.ImageFromStream(System.IO.Stream)
+  id: ImageFromStream(System.IO.Stream)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: ImageFromStream(Stream)
+  nameWithType: GraphicUtils.ImageFromStream(Stream)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.ImageFromStream(System.IO.Stream)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  summary: Returns a Image from stream. Do rotation for jpeg camera images
+  example: []
+  syntax:
+    content: public static Image ImageFromStream(Stream mstream)
+    parameters:
+    - id: mstream
+      type: System.IO.Stream
+      description: Memory stream to read Image from
+    return:
+      type: System.Drawing.Image
+      description: Image object
+    content.vb: Public Shared Function ImageFromStream(mstream As Stream) As Image
+  overload: Reportman.Drawing.Windows.GraphicUtils.ImageFromStream*
+- uid: Reportman.Drawing.Windows.GraphicUtils.GetRotateFlipTypeByExifOrientationData(System.Int32)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.GetRotateFlipTypeByExifOrientationData(System.Int32)
+  id: GetRotateFlipTypeByExifOrientationData(System.Int32)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: GetRotateFlipTypeByExifOrientationData(int)
+  nameWithType: GraphicUtils.GetRotateFlipTypeByExifOrientationData(int)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.GetRotateFlipTypeByExifOrientationData(int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public static RotateFlipType GetRotateFlipTypeByExifOrientationData(int orientation)
+    parameters:
+    - id: orientation
+      type: System.Int32
+    return:
+      type: System.Drawing.RotateFlipType
+    content.vb: Public Shared Function GetRotateFlipTypeByExifOrientationData(orientation As Integer) As RotateFlipType
+  overload: Reportman.Drawing.Windows.GraphicUtils.GetRotateFlipTypeByExifOrientationData*
+  nameWithType.vb: GraphicUtils.GetRotateFlipTypeByExifOrientationData(Integer)
+  fullName.vb: Reportman.Drawing.Windows.GraphicUtils.GetRotateFlipTypeByExifOrientationData(Integer)
+  name.vb: GetRotateFlipTypeByExifOrientationData(Integer)
+- uid: Reportman.Drawing.Windows.GraphicUtils.IntegerFromFontStyle(System.Drawing.FontStyle)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.IntegerFromFontStyle(System.Drawing.FontStyle)
+  id: IntegerFromFontStyle(System.Drawing.FontStyle)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: IntegerFromFontStyle(FontStyle)
+  nameWithType: GraphicUtils.IntegerFromFontStyle(FontStyle)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.IntegerFromFontStyle(System.Drawing.FontStyle)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public static int IntegerFromFontStyle(FontStyle astyle)
+    parameters:
+    - id: astyle
+      type: System.Drawing.FontStyle
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function IntegerFromFontStyle(astyle As FontStyle) As Integer
+  overload: Reportman.Drawing.Windows.GraphicUtils.IntegerFromFontStyle*
+- uid: Reportman.Drawing.Windows.GraphicUtils.GetEncoderInfo(System.String)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.GetEncoderInfo(System.String)
+  id: GetEncoderInfo(System.String)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: GetEncoderInfo(string)
+  nameWithType: GraphicUtils.GetEncoderInfo(string)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.GetEncoderInfo(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public static ImageCodecInfo GetEncoderInfo(string mimeType)
+    parameters:
+    - id: mimeType
+      type: System.String
+    return:
+      type: System.Drawing.Imaging.ImageCodecInfo
+    content.vb: Public Shared Function GetEncoderInfo(mimeType As String) As ImageCodecInfo
+  overload: Reportman.Drawing.Windows.GraphicUtils.GetEncoderInfo*
+  nameWithType.vb: GraphicUtils.GetEncoderInfo(String)
+  fullName.vb: Reportman.Drawing.Windows.GraphicUtils.GetEncoderInfo(String)
+  name.vb: GetEncoderInfo(String)
+- uid: Reportman.Drawing.Windows.GraphicUtils.ExifRotate(System.Drawing.Image)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.ExifRotate(System.Drawing.Image)
+  id: ExifRotate(System.Drawing.Image)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: ExifRotate(Image)
+  nameWithType: GraphicUtils.ExifRotate(Image)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.ExifRotate(System.Drawing.Image)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public static bool ExifRotate(Image img)
+    parameters:
+    - id: img
+      type: System.Drawing.Image
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function ExifRotate(img As Image) As Boolean
+  overload: Reportman.Drawing.Windows.GraphicUtils.ExifRotate*
+- uid: Reportman.Drawing.Windows.GraphicUtils.GetImageCodecFromExtension(System.String)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.GetImageCodecFromExtension(System.String)
+  id: GetImageCodecFromExtension(System.String)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: GetImageCodecFromExtension(string)
+  nameWithType: GraphicUtils.GetImageCodecFromExtension(string)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.GetImageCodecFromExtension(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  summary: Retuns a codec with the mime type or null if not found
+  example: []
+  syntax:
+    content: public static ImageCodecInfo GetImageCodecFromExtension(string extension)
+    parameters:
+    - id: extension
+      type: System.String
+    return:
+      type: System.Drawing.Imaging.ImageCodecInfo
+      description: ''
+    content.vb: Public Shared Function GetImageCodecFromExtension(extension As String) As ImageCodecInfo
+  overload: Reportman.Drawing.Windows.GraphicUtils.GetImageCodecFromExtension*
+  nameWithType.vb: GraphicUtils.GetImageCodecFromExtension(String)
+  fullName.vb: Reportman.Drawing.Windows.GraphicUtils.GetImageCodecFromExtension(String)
+  name.vb: GetImageCodecFromExtension(String)
+- uid: Reportman.Drawing.Windows.GraphicUtils.GetImageCodec(System.String)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.GetImageCodec(System.String)
+  id: GetImageCodec(System.String)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: GetImageCodec(string)
+  nameWithType: GraphicUtils.GetImageCodec(string)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.GetImageCodec(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  summary: Retuns a codec with the mime type or null if not found
+  example: []
+  syntax:
+    content: public static ImageCodecInfo GetImageCodec(string mimeType)
+    parameters:
+    - id: mimeType
+      type: System.String
+      description: Codec string, example "image/jpeg"
+    return:
+      type: System.Drawing.Imaging.ImageCodecInfo
+      description: ''
+    content.vb: Public Shared Function GetImageCodec(mimeType As String) As ImageCodecInfo
+  overload: Reportman.Drawing.Windows.GraphicUtils.GetImageCodec*
+  nameWithType.vb: GraphicUtils.GetImageCodec(String)
+  fullName.vb: Reportman.Drawing.Windows.GraphicUtils.GetImageCodec(String)
+  name.vb: GetImageCodec(String)
+- uid: Reportman.Drawing.Windows.GraphicUtils.FontStyleFromInteger(System.Int32)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.FontStyleFromInteger(System.Int32)
+  id: FontStyleFromInteger(System.Int32)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: FontStyleFromInteger(int)
+  nameWithType: GraphicUtils.FontStyleFromInteger(int)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.FontStyleFromInteger(int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  summary: Create a FontStyle from  integer
+  example: []
+  syntax:
+    content: public static FontStyle FontStyleFromInteger(int intfontstyle)
+    parameters:
+    - id: intfontstyle
+      type: System.Int32
+    return:
+      type: System.Drawing.FontStyle
+      description: ''
+    content.vb: Public Shared Function FontStyleFromInteger(intfontstyle As Integer) As FontStyle
+  overload: Reportman.Drawing.Windows.GraphicUtils.FontStyleFromInteger*
+  nameWithType.vb: GraphicUtils.FontStyleFromInteger(Integer)
+  fullName.vb: Reportman.Drawing.Windows.GraphicUtils.FontStyleFromInteger(Integer)
+  name.vb: FontStyleFromInteger(Integer)
+- uid: Reportman.Drawing.Windows.GraphicUtils.ConvertToBitonal(System.Drawing.Bitmap,System.Int32)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.ConvertToBitonal(System.Drawing.Bitmap,System.Int32)
+  id: ConvertToBitonal(System.Drawing.Bitmap,System.Int32)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: ConvertToBitonal(Bitmap, int)
+  nameWithType: GraphicUtils.ConvertToBitonal(Bitmap, int)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.ConvertToBitonal(System.Drawing.Bitmap, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public static Bitmap ConvertToBitonal(Bitmap original, int threshold)
+    parameters:
+    - id: original
+      type: System.Drawing.Bitmap
+    - id: threshold
+      type: System.Int32
+    return:
+      type: System.Drawing.Bitmap
+    content.vb: Public Shared Function ConvertToBitonal(original As Bitmap, threshold As Integer) As Bitmap
+  overload: Reportman.Drawing.Windows.GraphicUtils.ConvertToBitonal*
+  nameWithType.vb: GraphicUtils.ConvertToBitonal(Bitmap, Integer)
+  fullName.vb: Reportman.Drawing.Windows.GraphicUtils.ConvertToBitonal(System.Drawing.Bitmap, Integer)
+  name.vb: ConvertToBitonal(Bitmap, Integer)
+- uid: Reportman.Drawing.Windows.GraphicUtils.SimpleThresholdBW(System.Byte[],System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.SimpleThresholdBW(System.Byte[],System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  id: SimpleThresholdBW(System.Byte[],System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: SimpleThresholdBW(byte[], int, int, int, int, int)
+  nameWithType: GraphicUtils.SimpleThresholdBW(byte[], int, int, int, int, int)
+  fullName: Reportman.Drawing.Windows.GraphicUtils.SimpleThresholdBW(byte[], int, int, int, int, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public static byte[] SimpleThresholdBW(byte[] sourceBuffer, int width, int height, int srcStride, int dstStride, int threshold)
+    parameters:
+    - id: sourceBuffer
+      type: System.Byte[]
+    - id: width
+      type: System.Int32
+    - id: height
+      type: System.Int32
+    - id: srcStride
+      type: System.Int32
+    - id: dstStride
+      type: System.Int32
+    - id: threshold
+      type: System.Int32
+    return:
+      type: System.Byte[]
+    content.vb: Public Shared Function SimpleThresholdBW(sourceBuffer As Byte(), width As Integer, height As Integer, srcStride As Integer, dstStride As Integer, threshold As Integer) As Byte()
+  overload: Reportman.Drawing.Windows.GraphicUtils.SimpleThresholdBW*
+  nameWithType.vb: GraphicUtils.SimpleThresholdBW(Byte(), Integer, Integer, Integer, Integer, Integer)
+  fullName.vb: Reportman.Drawing.Windows.GraphicUtils.SimpleThresholdBW(Byte(), Integer, Integer, Integer, Integer, Integer)
+  name.vb: SimpleThresholdBW(Byte(), Integer, Integer, Integer, Integer, Integer)
+- uid: Reportman.Drawing.Windows.GraphicUtils.#ctor
+  commentId: M:Reportman.Drawing.Windows.GraphicUtils.#ctor
+  id: '#ctor'
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: GraphicUtils()
+  nameWithType: GraphicUtils.GraphicUtils()
+  fullName: Reportman.Drawing.Windows.GraphicUtils.GraphicUtils()
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public GraphicUtils()
+    content.vb: Public Sub New()
+  overload: Reportman.Drawing.Windows.GraphicUtils.#ctor*
+  nameWithType.vb: GraphicUtils.New()
+  fullName.vb: Reportman.Drawing.Windows.GraphicUtils.New()
+  name.vb: New()
+- uid: Reportman.Drawing.Windows.GraphicUtils.DPIScale
+  commentId: P:Reportman.Drawing.Windows.GraphicUtils.DPIScale
+  id: DPIScale
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: DPIScale
+  nameWithType: GraphicUtils.DPIScale
+  fullName: Reportman.Drawing.Windows.GraphicUtils.DPIScale
+  type: Property
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public static float DPIScale { get; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Shared ReadOnly Property DPIScale As Single
+  overload: Reportman.Drawing.Windows.GraphicUtils.DPIScale*
+- uid: Reportman.Drawing.Windows.GraphicUtils.DPIScaleX
+  commentId: P:Reportman.Drawing.Windows.GraphicUtils.DPIScaleX
+  id: DPIScaleX
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: DPIScaleX
+  nameWithType: GraphicUtils.DPIScaleX
+  fullName: Reportman.Drawing.Windows.GraphicUtils.DPIScaleX
+  type: Property
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public static float DPIScaleX { get; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Shared ReadOnly Property DPIScaleX As Single
+  overload: Reportman.Drawing.Windows.GraphicUtils.DPIScaleX*
+- uid: Reportman.Drawing.Windows.GraphicUtils.DPIScaleY
+  commentId: P:Reportman.Drawing.Windows.GraphicUtils.DPIScaleY
+  id: DPIScaleY
+  parent: Reportman.Drawing.Windows.GraphicUtils
+  langs:
+  - csharp
+  - vb
+  name: DPIScaleY
+  nameWithType: GraphicUtils.DPIScaleY
+  fullName: Reportman.Drawing.Windows.GraphicUtils.DPIScaleY
+  type: Property
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing.Windows
+  syntax:
+    content: public static float DPIScaleY { get; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Shared ReadOnly Property DPIScaleY As Single
+  overload: Reportman.Drawing.Windows.GraphicUtils.DPIScaleY*
+references:
+- uid: Reportman.Drawing.Windows
+  commentId: N:Reportman.Drawing.Windows
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Windows
+  nameWithType: Reportman.Drawing.Windows
+  fullName: Reportman.Drawing.Windows
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Windows
+    name: Windows
+    isExternal: true
+    href: Reportman.Drawing.Windows.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Windows
+    name: Windows
+    isExternal: true
+    href: Reportman.Drawing.Windows.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Reportman.Drawing.Windows.GraphicUtils.GetMimeType*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.GetMimeType
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_GetMimeType_System_Drawing_Image_
+  name: GetMimeType
+  nameWithType: GraphicUtils.GetMimeType
+  fullName: Reportman.Drawing.Windows.GraphicUtils.GetMimeType
+- uid: System.Drawing.Image
+  commentId: T:System.Drawing.Image
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.image
+  name: Image
+  nameWithType: Image
+  fullName: System.Drawing.Image
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Drawing
+  commentId: N:System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Drawing
+  nameWithType: System.Drawing
+  fullName: System.Drawing
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+- uid: Reportman.Drawing.Windows.GraphicUtils.LengthenLine*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.LengthenLine
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_LengthenLine_System_Drawing_PointF_System_Drawing_PointF__System_Single_
+  name: LengthenLine
+  nameWithType: GraphicUtils.LengthenLine
+  fullName: Reportman.Drawing.Windows.GraphicUtils.LengthenLine
+- uid: System.Drawing.PointF
+  commentId: T:System.Drawing.PointF
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.pointf
+  name: PointF
+  nameWithType: PointF
+  fullName: System.Drawing.PointF
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: Reportman.Drawing.Windows.GraphicUtils.GetRoundedLine*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.GetRoundedLine
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_GetRoundedLine_System_Drawing_PointF___System_Single_
+  name: GetRoundedLine
+  nameWithType: GraphicUtils.GetRoundedLine
+  fullName: Reportman.Drawing.Windows.GraphicUtils.GetRoundedLine
+- uid: System.Drawing.PointF[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.pointf
+  name: PointF[]
+  nameWithType: PointF[]
+  fullName: System.Drawing.PointF[]
+  nameWithType.vb: PointF()
+  fullName.vb: System.Drawing.PointF()
+  name.vb: PointF()
+  spec.csharp:
+  - uid: System.Drawing.PointF
+    name: PointF
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.pointf
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Drawing.PointF
+    name: PointF
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.pointf
+  - name: (
+  - name: )
+- uid: System.Drawing.Drawing2D.GraphicsPath
+  commentId: T:System.Drawing.Drawing2D.GraphicsPath
+  parent: System.Drawing.Drawing2D
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.drawing2d.graphicspath
+  name: GraphicsPath
+  nameWithType: GraphicsPath
+  fullName: System.Drawing.Drawing2D.GraphicsPath
+- uid: System.Drawing.Drawing2D
+  commentId: N:System.Drawing.Drawing2D
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Drawing.Drawing2D
+  nameWithType: System.Drawing.Drawing2D
+  fullName: System.Drawing.Drawing2D
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+  - name: .
+  - uid: System.Drawing.Drawing2D
+    name: Drawing2D
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.drawing2d
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+  - name: .
+  - uid: System.Drawing.Drawing2D
+    name: Drawing2D
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.drawing2d
+- uid: Reportman.Drawing.Windows.GraphicUtils.ScreenDPIY*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.ScreenDPIY
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_ScreenDPIY
+  name: ScreenDPIY
+  nameWithType: GraphicUtils.ScreenDPIY
+  fullName: Reportman.Drawing.Windows.GraphicUtils.ScreenDPIY
+- uid: Reportman.Drawing.Windows.GraphicUtils.ScreenDPIX*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.ScreenDPIX
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_ScreenDPIX
+  name: ScreenDPIX
+  nameWithType: GraphicUtils.ScreenDPIX
+  fullName: Reportman.Drawing.Windows.GraphicUtils.ScreenDPIX
+- uid: Reportman.Drawing.Windows.GraphicUtils.ScreenDPI*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.ScreenDPI
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_ScreenDPI
+  name: ScreenDPI
+  nameWithType: GraphicUtils.ScreenDPI
+  fullName: Reportman.Drawing.Windows.GraphicUtils.ScreenDPI
+- uid: Reportman.Drawing.Windows.GraphicUtils.GetImageGrid*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.GetImageGrid
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_GetImageGrid_System_Int32_System_Int32_System_Int32_System_Int32_System_Drawing_Color_System_Drawing_Color_System_Boolean_System_Double_
+  name: GetImageGrid
+  nameWithType: GraphicUtils.GetImageGrid
+  fullName: Reportman.Drawing.Windows.GraphicUtils.GetImageGrid
+- uid: System.Drawing.Color
+  commentId: T:System.Drawing.Color
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.color
+  name: Color
+  nameWithType: Color
+  fullName: System.Drawing.Color
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.double
+  name: double
+  nameWithType: double
+  fullName: double
+  nameWithType.vb: Double
+  fullName.vb: Double
+  name.vb: Double
+- uid: Reportman.Drawing.Windows.GraphicUtils.GetBitmapGrid*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.GetBitmapGrid
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_GetBitmapGrid_System_Int32_System_Int32_System_Int32_System_Int32_System_Drawing_Color_System_Drawing_Color_System_Boolean_System_Double_
+  name: GetBitmapGrid
+  nameWithType: GraphicUtils.GetBitmapGrid
+  fullName: Reportman.Drawing.Windows.GraphicUtils.GetBitmapGrid
+- uid: System.Drawing.Bitmap
+  commentId: T:System.Drawing.Bitmap
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.bitmap
+  name: Bitmap
+  nameWithType: Bitmap
+  fullName: System.Drawing.Bitmap
+- uid: Reportman.Drawing.Windows.GraphicUtils.CreateWindowsMetafile*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.CreateWindowsMetafile
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_CreateWindowsMetafile_System_Int32_System_Int32_
+  name: CreateWindowsMetafile
+  nameWithType: GraphicUtils.CreateWindowsMetafile
+  fullName: Reportman.Drawing.Windows.GraphicUtils.CreateWindowsMetafile
+- uid: System.Drawing.Imaging.Metafile
+  commentId: T:System.Drawing.Imaging.Metafile
+  parent: System.Drawing.Imaging
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.imaging.metafile
+  name: Metafile
+  nameWithType: Metafile
+  fullName: System.Drawing.Imaging.Metafile
+- uid: System.Drawing.Imaging
+  commentId: N:System.Drawing.Imaging
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Drawing.Imaging
+  nameWithType: System.Drawing.Imaging
+  fullName: System.Drawing.Imaging
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+  - name: .
+  - uid: System.Drawing.Imaging
+    name: Imaging
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.imaging
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+  - name: .
+  - uid: System.Drawing.Imaging
+    name: Imaging
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.imaging
+- uid: Reportman.Drawing.Windows.GraphicUtils.GetMetafileGrid*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.GetMetafileGrid
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_GetMetafileGrid_System_Int32_System_Int32_System_Int32_System_Int32_System_Drawing_Color_System_Drawing_Color_System_Boolean_System_Double_
+  name: GetMetafileGrid
+  nameWithType: GraphicUtils.GetMetafileGrid
+  fullName: Reportman.Drawing.Windows.GraphicUtils.GetMetafileGrid
+- uid: Reportman.Drawing.Windows.GraphicUtils.DrawGrid*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.DrawGrid
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_DrawGrid_System_Drawing_Graphics_System_Int32_System_Int32_System_Int32_System_Int32_System_Drawing_Color_System_Boolean_System_Int32_System_Int32_System_Double_
+  name: DrawGrid
+  nameWithType: GraphicUtils.DrawGrid
+  fullName: Reportman.Drawing.Windows.GraphicUtils.DrawGrid
+- uid: System.Drawing.Graphics
+  commentId: T:System.Drawing.Graphics
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.graphics
+  name: Graphics
+  nameWithType: Graphics
+  fullName: System.Drawing.Graphics
+- uid: Reportman.Drawing.Windows.GraphicUtils.MeasureDisplayStringWidth*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.MeasureDisplayStringWidth
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_MeasureDisplayStringWidth_System_Drawing_Graphics_System_String_System_Drawing_Font_
+  name: MeasureDisplayStringWidth
+  nameWithType: GraphicUtils.MeasureDisplayStringWidth
+  fullName: Reportman.Drawing.Windows.GraphicUtils.MeasureDisplayStringWidth
+- uid: System.Drawing.Font
+  commentId: T:System.Drawing.Font
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.font
+  name: Font
+  nameWithType: Font
+  fullName: System.Drawing.Font
+- uid: Reportman.Drawing.Windows.GraphicUtils.WriteWindowsMetaFile*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.WriteWindowsMetaFile
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_WriteWindowsMetaFile_System_Drawing_Imaging_Metafile_System_IO_Stream_System_Single_
+  name: WriteWindowsMetaFile
+  nameWithType: GraphicUtils.WriteWindowsMetaFile
+  fullName: Reportman.Drawing.Windows.GraphicUtils.WriteWindowsMetaFile
+- uid: System.IO.Stream
+  commentId: T:System.IO.Stream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  name: Stream
+  nameWithType: Stream
+  fullName: System.IO.Stream
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+- uid: Reportman.Drawing.Windows.GraphicUtils.GetImageCodecs*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.GetImageCodecs
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_GetImageCodecs
+  name: GetImageCodecs
+  nameWithType: GraphicUtils.GetImageCodecs
+  fullName: Reportman.Drawing.Windows.GraphicUtils.GetImageCodecs
+- uid: Reportman.Drawing.Strings
+  commentId: T:Reportman.Drawing.Strings
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.Strings.html
+  name: Strings
+  nameWithType: Strings
+  fullName: Reportman.Drawing.Strings
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.Windows.GraphicUtils.GetAvgFontSizeTwips*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.GetAvgFontSizeTwips
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_GetAvgFontSizeTwips_System_String_System_Single_System_Drawing_FontStyle_
+  name: GetAvgFontSizeTwips
+  nameWithType: GraphicUtils.GetAvgFontSizeTwips
+  fullName: Reportman.Drawing.Windows.GraphicUtils.GetAvgFontSizeTwips
+- uid: System.Drawing.FontStyle
+  commentId: T:System.Drawing.FontStyle
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.fontstyle
+  name: FontStyle
+  nameWithType: FontStyle
+  fullName: System.Drawing.FontStyle
+- uid: System.Drawing.Size
+  commentId: T:System.Drawing.Size
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.size
+  name: Size
+  nameWithType: Size
+  fullName: System.Drawing.Size
+- uid: Reportman.Drawing.Windows.GraphicUtils.TextToBitmap*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.TextToBitmap
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_TextToBitmap_System_Int32_System_String_System_String_System_Single_
+  name: TextToBitmap
+  nameWithType: GraphicUtils.TextToBitmap
+  fullName: Reportman.Drawing.Windows.GraphicUtils.TextToBitmap
+- uid: Reportman.Drawing.Windows.GraphicUtils.WriteWindowsMetaFileCodec*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.WriteWindowsMetaFileCodec
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_WriteWindowsMetaFileCodec_System_Drawing_Imaging_Metafile_System_IO_Stream_System_Single_System_String_System_String__
+  name: WriteWindowsMetaFileCodec
+  nameWithType: GraphicUtils.WriteWindowsMetaFileCodec
+  fullName: Reportman.Drawing.Windows.GraphicUtils.WriteWindowsMetaFileCodec
+- uid: Reportman.Drawing.Windows.GraphicUtils.GetInvertedBlackWhite*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.GetInvertedBlackWhite
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_GetInvertedBlackWhite_System_Drawing_Color_
+  name: GetInvertedBlackWhite
+  nameWithType: GraphicUtils.GetInvertedBlackWhite
+  fullName: Reportman.Drawing.Windows.GraphicUtils.GetInvertedBlackWhite
+- uid: Reportman.Drawing.Windows.GraphicUtils.StringFontStyleFromInteger*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.StringFontStyleFromInteger
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_StringFontStyleFromInteger_System_Int32_
+  name: StringFontStyleFromInteger
+  nameWithType: GraphicUtils.StringFontStyleFromInteger
+  fullName: Reportman.Drawing.Windows.GraphicUtils.StringFontStyleFromInteger
+- uid: Reportman.Drawing.Windows.GraphicUtils.IntegerFromStringFontStyle*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.IntegerFromStringFontStyle
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_IntegerFromStringFontStyle_System_String_
+  name: IntegerFromStringFontStyle
+  nameWithType: GraphicUtils.IntegerFromStringFontStyle
+  fullName: Reportman.Drawing.Windows.GraphicUtils.IntegerFromStringFontStyle
+- uid: Reportman.Drawing.Windows.GraphicUtils.StringFromFontStyle*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.StringFromFontStyle
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_StringFromFontStyle_System_Drawing_FontStyle_
+  name: StringFromFontStyle
+  nameWithType: GraphicUtils.StringFromFontStyle
+  fullName: Reportman.Drawing.Windows.GraphicUtils.StringFromFontStyle
+- uid: Reportman.Drawing.Windows.GraphicUtils.RemapImageTransparentColor*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.RemapImageTransparentColor
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_RemapImageTransparentColor_System_Drawing_Image_System_Drawing_Color_
+  name: RemapImageTransparentColor
+  nameWithType: GraphicUtils.RemapImageTransparentColor
+  fullName: Reportman.Drawing.Windows.GraphicUtils.RemapImageTransparentColor
+- uid: Reportman.Drawing.Windows.GraphicUtils.ImageToStream*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.ImageToStream
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_ImageToStream_System_Drawing_Image_
+  name: ImageToStream
+  nameWithType: GraphicUtils.ImageToStream
+  fullName: Reportman.Drawing.Windows.GraphicUtils.ImageToStream
+- uid: System.IO.MemoryStream
+  commentId: T:System.IO.MemoryStream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.memorystream
+  name: MemoryStream
+  nameWithType: MemoryStream
+  fullName: System.IO.MemoryStream
+- uid: Reportman.Drawing.Windows.GraphicUtils.ImageToByteArray*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.ImageToByteArray
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_ImageToByteArray_System_Drawing_Image_
+  name: ImageToByteArray
+  nameWithType: GraphicUtils.ImageToByteArray
+  fullName: Reportman.Drawing.Windows.GraphicUtils.ImageToByteArray
+- uid: System.Byte[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte[]
+  nameWithType: byte[]
+  fullName: byte[]
+  nameWithType.vb: Byte()
+  fullName.vb: Byte()
+  name.vb: Byte()
+  spec.csharp:
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: (
+  - name: )
+- uid: Reportman.Drawing.Windows.GraphicUtils.ScaleToDPI*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.ScaleToDPI
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_ScaleToDPI_System_Int32_
+  name: ScaleToDPI
+  nameWithType: GraphicUtils.ScaleToDPI
+  fullName: Reportman.Drawing.Windows.GraphicUtils.ScaleToDPI
+- uid: Reportman.Drawing.Windows.GraphicUtils.ScaleBitmapDPI*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.ScaleBitmapDPI
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_ScaleBitmapDPI_System_Drawing_Image_
+  name: ScaleBitmapDPI
+  nameWithType: GraphicUtils.ScaleBitmapDPI
+  fullName: Reportman.Drawing.Windows.GraphicUtils.ScaleBitmapDPI
+- uid: Reportman.Drawing.Windows.GraphicUtils.ScaledBitmapRatio*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.ScaledBitmapRatio
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_ScaledBitmapRatio_System_Drawing_Image_System_Int32_System_Int32_System_Boolean_System_Boolean_
+  name: ScaledBitmapRatio
+  nameWithType: GraphicUtils.ScaledBitmapRatio
+  fullName: Reportman.Drawing.Windows.GraphicUtils.ScaledBitmapRatio
+- uid: Reportman.Drawing.Windows.GraphicUtils.ImageFromStream*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.ImageFromStream
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_ImageFromStream_System_IO_Stream_
+  name: ImageFromStream
+  nameWithType: GraphicUtils.ImageFromStream
+  fullName: Reportman.Drawing.Windows.GraphicUtils.ImageFromStream
+- uid: Reportman.Drawing.Windows.GraphicUtils.GetRotateFlipTypeByExifOrientationData*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.GetRotateFlipTypeByExifOrientationData
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_GetRotateFlipTypeByExifOrientationData_System_Int32_
+  name: GetRotateFlipTypeByExifOrientationData
+  nameWithType: GraphicUtils.GetRotateFlipTypeByExifOrientationData
+  fullName: Reportman.Drawing.Windows.GraphicUtils.GetRotateFlipTypeByExifOrientationData
+- uid: System.Drawing.RotateFlipType
+  commentId: T:System.Drawing.RotateFlipType
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.rotatefliptype
+  name: RotateFlipType
+  nameWithType: RotateFlipType
+  fullName: System.Drawing.RotateFlipType
+- uid: Reportman.Drawing.Windows.GraphicUtils.IntegerFromFontStyle*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.IntegerFromFontStyle
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_IntegerFromFontStyle_System_Drawing_FontStyle_
+  name: IntegerFromFontStyle
+  nameWithType: GraphicUtils.IntegerFromFontStyle
+  fullName: Reportman.Drawing.Windows.GraphicUtils.IntegerFromFontStyle
+- uid: Reportman.Drawing.Windows.GraphicUtils.GetEncoderInfo*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.GetEncoderInfo
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_GetEncoderInfo_System_String_
+  name: GetEncoderInfo
+  nameWithType: GraphicUtils.GetEncoderInfo
+  fullName: Reportman.Drawing.Windows.GraphicUtils.GetEncoderInfo
+- uid: System.Drawing.Imaging.ImageCodecInfo
+  commentId: T:System.Drawing.Imaging.ImageCodecInfo
+  parent: System.Drawing.Imaging
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.imaging.imagecodecinfo
+  name: ImageCodecInfo
+  nameWithType: ImageCodecInfo
+  fullName: System.Drawing.Imaging.ImageCodecInfo
+- uid: Reportman.Drawing.Windows.GraphicUtils.ExifRotate*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.ExifRotate
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_ExifRotate_System_Drawing_Image_
+  name: ExifRotate
+  nameWithType: GraphicUtils.ExifRotate
+  fullName: Reportman.Drawing.Windows.GraphicUtils.ExifRotate
+- uid: Reportman.Drawing.Windows.GraphicUtils.GetImageCodecFromExtension*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.GetImageCodecFromExtension
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_GetImageCodecFromExtension_System_String_
+  name: GetImageCodecFromExtension
+  nameWithType: GraphicUtils.GetImageCodecFromExtension
+  fullName: Reportman.Drawing.Windows.GraphicUtils.GetImageCodecFromExtension
+- uid: Reportman.Drawing.Windows.GraphicUtils.GetImageCodec*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.GetImageCodec
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_GetImageCodec_System_String_
+  name: GetImageCodec
+  nameWithType: GraphicUtils.GetImageCodec
+  fullName: Reportman.Drawing.Windows.GraphicUtils.GetImageCodec
+- uid: Reportman.Drawing.Windows.GraphicUtils.FontStyleFromInteger*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.FontStyleFromInteger
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_FontStyleFromInteger_System_Int32_
+  name: FontStyleFromInteger
+  nameWithType: GraphicUtils.FontStyleFromInteger
+  fullName: Reportman.Drawing.Windows.GraphicUtils.FontStyleFromInteger
+- uid: Reportman.Drawing.Windows.GraphicUtils.ConvertToBitonal*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.ConvertToBitonal
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_ConvertToBitonal_System_Drawing_Bitmap_System_Int32_
+  name: ConvertToBitonal
+  nameWithType: GraphicUtils.ConvertToBitonal
+  fullName: Reportman.Drawing.Windows.GraphicUtils.ConvertToBitonal
+- uid: Reportman.Drawing.Windows.GraphicUtils.SimpleThresholdBW*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.SimpleThresholdBW
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_SimpleThresholdBW_System_Byte___System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_
+  name: SimpleThresholdBW
+  nameWithType: GraphicUtils.SimpleThresholdBW
+  fullName: Reportman.Drawing.Windows.GraphicUtils.SimpleThresholdBW
+- uid: Reportman.Drawing.Windows.GraphicUtils.#ctor*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.#ctor
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils__ctor
+  name: GraphicUtils
+  nameWithType: GraphicUtils.GraphicUtils
+  fullName: Reportman.Drawing.Windows.GraphicUtils.GraphicUtils
+  nameWithType.vb: GraphicUtils.New
+  fullName.vb: Reportman.Drawing.Windows.GraphicUtils.New
+  name.vb: New
+- uid: Reportman.Drawing.Windows.GraphicUtils.DPIScale*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.DPIScale
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_DPIScale
+  name: DPIScale
+  nameWithType: GraphicUtils.DPIScale
+  fullName: Reportman.Drawing.Windows.GraphicUtils.DPIScale
+- uid: Reportman.Drawing.Windows.GraphicUtils.DPIScaleX*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.DPIScaleX
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_DPIScaleX
+  name: DPIScaleX
+  nameWithType: GraphicUtils.DPIScaleX
+  fullName: Reportman.Drawing.Windows.GraphicUtils.DPIScaleX
+- uid: Reportman.Drawing.Windows.GraphicUtils.DPIScaleY*
+  commentId: Overload:Reportman.Drawing.Windows.GraphicUtils.DPIScaleY
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html#Reportman_Drawing_Windows_GraphicUtils_DPIScaleY
+  name: DPIScaleY
+  nameWithType: GraphicUtils.DPIScaleY
+  fullName: Reportman.Drawing.Windows.GraphicUtils.DPIScaleY

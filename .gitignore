@@ -482,3 +482,9 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+Standard/
+Standard v3/
+net6/
+net6core/
+libs/
+InnnoSetup/Output/

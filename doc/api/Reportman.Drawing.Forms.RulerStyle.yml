@@ -1,0 +1,104 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.RulerStyle
+  commentId: T:Reportman.Drawing.Forms.RulerStyle
+  id: RulerStyle
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.RulerStyle.Horizontal
+  - Reportman.Drawing.Forms.RulerStyle.Vertical
+  langs:
+  - csharp
+  - vb
+  name: RulerStyle
+  nameWithType: RulerStyle
+  fullName: Reportman.Drawing.Forms.RulerStyle
+  type: Enum
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public enum RulerStyle
+    content.vb: Public Enum RulerStyle
+- uid: Reportman.Drawing.Forms.RulerStyle.Horizontal
+  commentId: F:Reportman.Drawing.Forms.RulerStyle.Horizontal
+  id: Horizontal
+  parent: Reportman.Drawing.Forms.RulerStyle
+  langs:
+  - csharp
+  - vb
+  name: Horizontal
+  nameWithType: RulerStyle.Horizontal
+  fullName: Reportman.Drawing.Forms.RulerStyle.Horizontal
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Horizontal = 0
+    return:
+      type: Reportman.Drawing.Forms.RulerStyle
+- uid: Reportman.Drawing.Forms.RulerStyle.Vertical
+  commentId: F:Reportman.Drawing.Forms.RulerStyle.Vertical
+  id: Vertical
+  parent: Reportman.Drawing.Forms.RulerStyle
+  langs:
+  - csharp
+  - vb
+  name: Vertical
+  nameWithType: RulerStyle.Vertical
+  fullName: Reportman.Drawing.Forms.RulerStyle.Vertical
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Vertical = 1
+    return:
+      type: Reportman.Drawing.Forms.RulerStyle
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: Reportman.Drawing.Forms.RulerStyle
+  commentId: T:Reportman.Drawing.Forms.RulerStyle
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.RulerStyle.html
+  name: RulerStyle
+  nameWithType: RulerStyle
+  fullName: Reportman.Drawing.Forms.RulerStyle

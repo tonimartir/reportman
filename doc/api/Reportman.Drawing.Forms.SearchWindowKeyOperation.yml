@@ -1,0 +1,161 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.SearchWindowKeyOperation
+  commentId: T:Reportman.Drawing.Forms.SearchWindowKeyOperation
+  id: SearchWindowKeyOperation
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.SearchWindowKeyOperation.Down
+  - Reportman.Drawing.Forms.SearchWindowKeyOperation.PageDown
+  - Reportman.Drawing.Forms.SearchWindowKeyOperation.PageUp
+  - Reportman.Drawing.Forms.SearchWindowKeyOperation.Return
+  - Reportman.Drawing.Forms.SearchWindowKeyOperation.Up
+  langs:
+  - csharp
+  - vb
+  name: SearchWindowKeyOperation
+  nameWithType: SearchWindowKeyOperation
+  fullName: Reportman.Drawing.Forms.SearchWindowKeyOperation
+  type: Enum
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public enum SearchWindowKeyOperation
+    content.vb: Public Enum SearchWindowKeyOperation
+- uid: Reportman.Drawing.Forms.SearchWindowKeyOperation.Up
+  commentId: F:Reportman.Drawing.Forms.SearchWindowKeyOperation.Up
+  id: Up
+  parent: Reportman.Drawing.Forms.SearchWindowKeyOperation
+  langs:
+  - csharp
+  - vb
+  name: Up
+  nameWithType: SearchWindowKeyOperation.Up
+  fullName: Reportman.Drawing.Forms.SearchWindowKeyOperation.Up
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Up = 0
+    return:
+      type: Reportman.Drawing.Forms.SearchWindowKeyOperation
+- uid: Reportman.Drawing.Forms.SearchWindowKeyOperation.Down
+  commentId: F:Reportman.Drawing.Forms.SearchWindowKeyOperation.Down
+  id: Down
+  parent: Reportman.Drawing.Forms.SearchWindowKeyOperation
+  langs:
+  - csharp
+  - vb
+  name: Down
+  nameWithType: SearchWindowKeyOperation.Down
+  fullName: Reportman.Drawing.Forms.SearchWindowKeyOperation.Down
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Down = 1
+    return:
+      type: Reportman.Drawing.Forms.SearchWindowKeyOperation
+- uid: Reportman.Drawing.Forms.SearchWindowKeyOperation.PageUp
+  commentId: F:Reportman.Drawing.Forms.SearchWindowKeyOperation.PageUp
+  id: PageUp
+  parent: Reportman.Drawing.Forms.SearchWindowKeyOperation
+  langs:
+  - csharp
+  - vb
+  name: PageUp
+  nameWithType: SearchWindowKeyOperation.PageUp
+  fullName: Reportman.Drawing.Forms.SearchWindowKeyOperation.PageUp
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: PageUp = 2
+    return:
+      type: Reportman.Drawing.Forms.SearchWindowKeyOperation
+- uid: Reportman.Drawing.Forms.SearchWindowKeyOperation.PageDown
+  commentId: F:Reportman.Drawing.Forms.SearchWindowKeyOperation.PageDown
+  id: PageDown
+  parent: Reportman.Drawing.Forms.SearchWindowKeyOperation
+  langs:
+  - csharp
+  - vb
+  name: PageDown
+  nameWithType: SearchWindowKeyOperation.PageDown
+  fullName: Reportman.Drawing.Forms.SearchWindowKeyOperation.PageDown
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: PageDown = 3
+    return:
+      type: Reportman.Drawing.Forms.SearchWindowKeyOperation
+- uid: Reportman.Drawing.Forms.SearchWindowKeyOperation.Return
+  commentId: F:Reportman.Drawing.Forms.SearchWindowKeyOperation.Return
+  id: Return
+  parent: Reportman.Drawing.Forms.SearchWindowKeyOperation
+  langs:
+  - csharp
+  - vb
+  name: Return
+  nameWithType: SearchWindowKeyOperation.Return
+  fullName: Reportman.Drawing.Forms.SearchWindowKeyOperation.Return
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Return = 4
+    return:
+      type: Reportman.Drawing.Forms.SearchWindowKeyOperation
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: Reportman.Drawing.Forms.SearchWindowKeyOperation
+  commentId: T:Reportman.Drawing.Forms.SearchWindowKeyOperation
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.SearchWindowKeyOperation.html
+  name: SearchWindowKeyOperation
+  nameWithType: SearchWindowKeyOperation
+  fullName: Reportman.Drawing.Forms.SearchWindowKeyOperation

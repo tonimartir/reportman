@@ -1,0 +1,246 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.ISqlExecuterPartialFillEvent
+  commentId: T:Reportman.Drawing.ISqlExecuterPartialFillEvent
+  id: ISqlExecuterPartialFillEvent
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.ISqlExecuterPartialFillEvent.#ctor(System.Object,System.IntPtr)
+  - Reportman.Drawing.ISqlExecuterPartialFillEvent.BeginInvoke(System.Object,Reportman.Drawing.ISqlExecuterPartialFillArgs,System.AsyncCallback,System.Object)
+  - Reportman.Drawing.ISqlExecuterPartialFillEvent.EndInvoke(System.IAsyncResult)
+  - Reportman.Drawing.ISqlExecuterPartialFillEvent.Invoke(System.Object,Reportman.Drawing.ISqlExecuterPartialFillArgs)
+  langs:
+  - csharp
+  - vb
+  name: ISqlExecuterPartialFillEvent
+  nameWithType: ISqlExecuterPartialFillEvent
+  fullName: Reportman.Drawing.ISqlExecuterPartialFillEvent
+  type: Delegate
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public delegate void ISqlExecuterPartialFillEvent(object sender, ISqlExecuterPartialFillArgs args)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: Reportman.Drawing.ISqlExecuterPartialFillArgs
+    content.vb: Public Delegate Sub ISqlExecuterPartialFillEvent(sender As Object, args As ISqlExecuterPartialFillArgs)
+- uid: Reportman.Drawing.ISqlExecuterPartialFillEvent.#ctor(System.Object,System.IntPtr)
+  commentId: M:Reportman.Drawing.ISqlExecuterPartialFillEvent.#ctor(System.Object,System.IntPtr)
+  id: '#ctor(System.Object,System.IntPtr)'
+  parent: Reportman.Drawing.ISqlExecuterPartialFillEvent
+  langs:
+  - csharp
+  - vb
+  name: ISqlExecuterPartialFillEvent(object, nint)
+  nameWithType: ISqlExecuterPartialFillEvent.ISqlExecuterPartialFillEvent(object, nint)
+  fullName: Reportman.Drawing.ISqlExecuterPartialFillEvent.ISqlExecuterPartialFillEvent(object, nint)
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public ISqlExecuterPartialFillEvent(object @object, nint method)
+    parameters:
+    - id: object
+      type: System.Object
+    - id: method
+      type: System.IntPtr
+    content.vb: Public Sub New([object] As Object, method As IntPtr)
+  overload: Reportman.Drawing.ISqlExecuterPartialFillEvent.#ctor*
+  nameWithType.vb: ISqlExecuterPartialFillEvent.New(Object, IntPtr)
+  fullName.vb: Reportman.Drawing.ISqlExecuterPartialFillEvent.New(Object, System.IntPtr)
+  name.vb: New(Object, IntPtr)
+- uid: Reportman.Drawing.ISqlExecuterPartialFillEvent.Invoke(System.Object,Reportman.Drawing.ISqlExecuterPartialFillArgs)
+  commentId: M:Reportman.Drawing.ISqlExecuterPartialFillEvent.Invoke(System.Object,Reportman.Drawing.ISqlExecuterPartialFillArgs)
+  id: Invoke(System.Object,Reportman.Drawing.ISqlExecuterPartialFillArgs)
+  parent: Reportman.Drawing.ISqlExecuterPartialFillEvent
+  langs:
+  - csharp
+  - vb
+  name: Invoke(object, ISqlExecuterPartialFillArgs)
+  nameWithType: ISqlExecuterPartialFillEvent.Invoke(object, ISqlExecuterPartialFillArgs)
+  fullName: Reportman.Drawing.ISqlExecuterPartialFillEvent.Invoke(object, Reportman.Drawing.ISqlExecuterPartialFillArgs)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public virtual void Invoke(object sender, ISqlExecuterPartialFillArgs args)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: Reportman.Drawing.ISqlExecuterPartialFillArgs
+    content.vb: Public Overridable Sub Invoke(sender As Object, args As ISqlExecuterPartialFillArgs)
+  overload: Reportman.Drawing.ISqlExecuterPartialFillEvent.Invoke*
+  nameWithType.vb: ISqlExecuterPartialFillEvent.Invoke(Object, ISqlExecuterPartialFillArgs)
+  fullName.vb: Reportman.Drawing.ISqlExecuterPartialFillEvent.Invoke(Object, Reportman.Drawing.ISqlExecuterPartialFillArgs)
+  name.vb: Invoke(Object, ISqlExecuterPartialFillArgs)
+- uid: Reportman.Drawing.ISqlExecuterPartialFillEvent.BeginInvoke(System.Object,Reportman.Drawing.ISqlExecuterPartialFillArgs,System.AsyncCallback,System.Object)
+  commentId: M:Reportman.Drawing.ISqlExecuterPartialFillEvent.BeginInvoke(System.Object,Reportman.Drawing.ISqlExecuterPartialFillArgs,System.AsyncCallback,System.Object)
+  id: BeginInvoke(System.Object,Reportman.Drawing.ISqlExecuterPartialFillArgs,System.AsyncCallback,System.Object)
+  parent: Reportman.Drawing.ISqlExecuterPartialFillEvent
+  langs:
+  - csharp
+  - vb
+  name: BeginInvoke(object, ISqlExecuterPartialFillArgs, AsyncCallback, object)
+  nameWithType: ISqlExecuterPartialFillEvent.BeginInvoke(object, ISqlExecuterPartialFillArgs, AsyncCallback, object)
+  fullName: Reportman.Drawing.ISqlExecuterPartialFillEvent.BeginInvoke(object, Reportman.Drawing.ISqlExecuterPartialFillArgs, System.AsyncCallback, object)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public virtual IAsyncResult BeginInvoke(object sender, ISqlExecuterPartialFillArgs args, AsyncCallback callback, object @object)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: Reportman.Drawing.ISqlExecuterPartialFillArgs
+    - id: callback
+      type: System.AsyncCallback
+    - id: object
+      type: System.Object
+    return:
+      type: System.IAsyncResult
+    content.vb: Public Overridable Function BeginInvoke(sender As Object, args As ISqlExecuterPartialFillArgs, callback As AsyncCallback, [object] As Object) As IAsyncResult
+  overload: Reportman.Drawing.ISqlExecuterPartialFillEvent.BeginInvoke*
+  nameWithType.vb: ISqlExecuterPartialFillEvent.BeginInvoke(Object, ISqlExecuterPartialFillArgs, AsyncCallback, Object)
+  fullName.vb: Reportman.Drawing.ISqlExecuterPartialFillEvent.BeginInvoke(Object, Reportman.Drawing.ISqlExecuterPartialFillArgs, System.AsyncCallback, Object)
+  name.vb: BeginInvoke(Object, ISqlExecuterPartialFillArgs, AsyncCallback, Object)
+- uid: Reportman.Drawing.ISqlExecuterPartialFillEvent.EndInvoke(System.IAsyncResult)
+  commentId: M:Reportman.Drawing.ISqlExecuterPartialFillEvent.EndInvoke(System.IAsyncResult)
+  id: EndInvoke(System.IAsyncResult)
+  parent: Reportman.Drawing.ISqlExecuterPartialFillEvent
+  langs:
+  - csharp
+  - vb
+  name: EndInvoke(IAsyncResult)
+  nameWithType: ISqlExecuterPartialFillEvent.EndInvoke(IAsyncResult)
+  fullName: Reportman.Drawing.ISqlExecuterPartialFillEvent.EndInvoke(System.IAsyncResult)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public virtual void EndInvoke(IAsyncResult result)
+    parameters:
+    - id: result
+      type: System.IAsyncResult
+    content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
+  overload: Reportman.Drawing.ISqlExecuterPartialFillEvent.EndInvoke*
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Reportman.Drawing.ISqlExecuterPartialFillArgs
+  commentId: T:Reportman.Drawing.ISqlExecuterPartialFillArgs
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuterPartialFillArgs.html
+  name: ISqlExecuterPartialFillArgs
+  nameWithType: ISqlExecuterPartialFillArgs
+  fullName: Reportman.Drawing.ISqlExecuterPartialFillArgs
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.ISqlExecuterPartialFillEvent.#ctor*
+  commentId: Overload:Reportman.Drawing.ISqlExecuterPartialFillEvent.#ctor
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuterPartialFillEvent.html#Reportman_Drawing_ISqlExecuterPartialFillEvent__ctor_System_Object_System_IntPtr_
+  name: ISqlExecuterPartialFillEvent
+  nameWithType: ISqlExecuterPartialFillEvent.ISqlExecuterPartialFillEvent
+  fullName: Reportman.Drawing.ISqlExecuterPartialFillEvent.ISqlExecuterPartialFillEvent
+  nameWithType.vb: ISqlExecuterPartialFillEvent.New
+  fullName.vb: Reportman.Drawing.ISqlExecuterPartialFillEvent.New
+  name.vb: New
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: Reportman.Drawing.ISqlExecuterPartialFillEvent.Invoke*
+  commentId: Overload:Reportman.Drawing.ISqlExecuterPartialFillEvent.Invoke
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuterPartialFillEvent.html#Reportman_Drawing_ISqlExecuterPartialFillEvent_Invoke_System_Object_Reportman_Drawing_ISqlExecuterPartialFillArgs_
+  name: Invoke
+  nameWithType: ISqlExecuterPartialFillEvent.Invoke
+  fullName: Reportman.Drawing.ISqlExecuterPartialFillEvent.Invoke
+- uid: Reportman.Drawing.ISqlExecuterPartialFillEvent.BeginInvoke*
+  commentId: Overload:Reportman.Drawing.ISqlExecuterPartialFillEvent.BeginInvoke
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuterPartialFillEvent.html#Reportman_Drawing_ISqlExecuterPartialFillEvent_BeginInvoke_System_Object_Reportman_Drawing_ISqlExecuterPartialFillArgs_System_AsyncCallback_System_Object_
+  name: BeginInvoke
+  nameWithType: ISqlExecuterPartialFillEvent.BeginInvoke
+  fullName: Reportman.Drawing.ISqlExecuterPartialFillEvent.BeginInvoke
+- uid: System.AsyncCallback
+  commentId: T:System.AsyncCallback
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.asynccallback
+  name: AsyncCallback
+  nameWithType: AsyncCallback
+  fullName: System.AsyncCallback
+- uid: System.IAsyncResult
+  commentId: T:System.IAsyncResult
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncresult
+  name: IAsyncResult
+  nameWithType: IAsyncResult
+  fullName: System.IAsyncResult
+- uid: Reportman.Drawing.ISqlExecuterPartialFillEvent.EndInvoke*
+  commentId: Overload:Reportman.Drawing.ISqlExecuterPartialFillEvent.EndInvoke
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuterPartialFillEvent.html#Reportman_Drawing_ISqlExecuterPartialFillEvent_EndInvoke_System_IAsyncResult_
+  name: EndInvoke
+  nameWithType: ISqlExecuterPartialFillEvent.EndInvoke
+  fullName: Reportman.Drawing.ISqlExecuterPartialFillEvent.EndInvoke

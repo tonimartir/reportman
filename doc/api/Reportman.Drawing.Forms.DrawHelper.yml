@@ -1,0 +1,863 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.DrawHelper
+  commentId: T:Reportman.Drawing.Forms.DrawHelper
+  id: DrawHelper
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.DrawHelper.#ctor
+  - Reportman.Drawing.Forms.DrawHelper.DrawButtonCommand(System.Drawing.Graphics,Reportman.Drawing.Forms.VisualStyle,Reportman.Drawing.Forms.Direction,System.Drawing.Rectangle,Reportman.Drawing.Forms.DrawHelper.CommandState,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color)
+  - Reportman.Drawing.Forms.DrawHelper.DrawPlainRaised(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color)
+  - Reportman.Drawing.Forms.DrawHelper.DrawPlainRaisedBorder(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color)
+  - Reportman.Drawing.Forms.DrawHelper.DrawPlainRaisedBorderTopOrBottom(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color,System.Boolean)
+  - Reportman.Drawing.Forms.DrawHelper.DrawPlainSunken(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color)
+  - Reportman.Drawing.Forms.DrawHelper.DrawPlainSunkenBorder(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color)
+  - Reportman.Drawing.Forms.DrawHelper.DrawPlainSunkenBorderTopOrBottom(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color,System.Boolean)
+  - Reportman.Drawing.Forms.DrawHelper.DrawReverseString(System.Drawing.Graphics,System.String,System.Drawing.Font,System.Drawing.Rectangle,System.Drawing.Brush,System.Drawing.StringFormat)
+  - Reportman.Drawing.Forms.DrawHelper.DrawSeparatorCommand(System.Drawing.Graphics,Reportman.Drawing.Forms.VisualStyle,Reportman.Drawing.Forms.Direction,System.Drawing.Rectangle,System.Drawing.Color)
+  - Reportman.Drawing.Forms.DrawHelper._halfToneBrush
+  langs:
+  - csharp
+  - vb
+  name: DrawHelper
+  nameWithType: DrawHelper
+  fullName: Reportman.Drawing.Forms.DrawHelper
+  type: Class
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public class DrawHelper
+    content.vb: Public Class DrawHelper
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.Forms.DrawHelper._halfToneBrush
+  commentId: F:Reportman.Drawing.Forms.DrawHelper._halfToneBrush
+  id: _halfToneBrush
+  parent: Reportman.Drawing.Forms.DrawHelper
+  langs:
+  - csharp
+  - vb
+  name: _halfToneBrush
+  nameWithType: DrawHelper._halfToneBrush
+  fullName: Reportman.Drawing.Forms.DrawHelper._halfToneBrush
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: protected static nint _halfToneBrush
+    return:
+      type: System.IntPtr
+    content.vb: Protected Shared _halfToneBrush As IntPtr
+- uid: Reportman.Drawing.Forms.DrawHelper.DrawReverseString(System.Drawing.Graphics,System.String,System.Drawing.Font,System.Drawing.Rectangle,System.Drawing.Brush,System.Drawing.StringFormat)
+  commentId: M:Reportman.Drawing.Forms.DrawHelper.DrawReverseString(System.Drawing.Graphics,System.String,System.Drawing.Font,System.Drawing.Rectangle,System.Drawing.Brush,System.Drawing.StringFormat)
+  id: DrawReverseString(System.Drawing.Graphics,System.String,System.Drawing.Font,System.Drawing.Rectangle,System.Drawing.Brush,System.Drawing.StringFormat)
+  parent: Reportman.Drawing.Forms.DrawHelper
+  langs:
+  - csharp
+  - vb
+  name: DrawReverseString(Graphics, string, Font, Rectangle, Brush, StringFormat)
+  nameWithType: DrawHelper.DrawReverseString(Graphics, string, Font, Rectangle, Brush, StringFormat)
+  fullName: Reportman.Drawing.Forms.DrawHelper.DrawReverseString(System.Drawing.Graphics, string, System.Drawing.Font, System.Drawing.Rectangle, System.Drawing.Brush, System.Drawing.StringFormat)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public static void DrawReverseString(Graphics g, string drawText, Font drawFont, Rectangle drawRect, Brush drawBrush, StringFormat drawFormat)
+    parameters:
+    - id: g
+      type: System.Drawing.Graphics
+    - id: drawText
+      type: System.String
+    - id: drawFont
+      type: System.Drawing.Font
+    - id: drawRect
+      type: System.Drawing.Rectangle
+    - id: drawBrush
+      type: System.Drawing.Brush
+    - id: drawFormat
+      type: System.Drawing.StringFormat
+    content.vb: Public Shared Sub DrawReverseString(g As Graphics, drawText As String, drawFont As Font, drawRect As Rectangle, drawBrush As Brush, drawFormat As StringFormat)
+  overload: Reportman.Drawing.Forms.DrawHelper.DrawReverseString*
+  nameWithType.vb: DrawHelper.DrawReverseString(Graphics, String, Font, Rectangle, Brush, StringFormat)
+  fullName.vb: Reportman.Drawing.Forms.DrawHelper.DrawReverseString(System.Drawing.Graphics, String, System.Drawing.Font, System.Drawing.Rectangle, System.Drawing.Brush, System.Drawing.StringFormat)
+  name.vb: DrawReverseString(Graphics, String, Font, Rectangle, Brush, StringFormat)
+- uid: Reportman.Drawing.Forms.DrawHelper.DrawPlainRaised(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color)
+  commentId: M:Reportman.Drawing.Forms.DrawHelper.DrawPlainRaised(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color)
+  id: DrawPlainRaised(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color)
+  parent: Reportman.Drawing.Forms.DrawHelper
+  langs:
+  - csharp
+  - vb
+  name: DrawPlainRaised(Graphics, Rectangle, Color)
+  nameWithType: DrawHelper.DrawPlainRaised(Graphics, Rectangle, Color)
+  fullName: Reportman.Drawing.Forms.DrawHelper.DrawPlainRaised(System.Drawing.Graphics, System.Drawing.Rectangle, System.Drawing.Color)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public static void DrawPlainRaised(Graphics g, Rectangle boxRect, Color baseColor)
+    parameters:
+    - id: g
+      type: System.Drawing.Graphics
+    - id: boxRect
+      type: System.Drawing.Rectangle
+    - id: baseColor
+      type: System.Drawing.Color
+    content.vb: Public Shared Sub DrawPlainRaised(g As Graphics, boxRect As Rectangle, baseColor As Color)
+  overload: Reportman.Drawing.Forms.DrawHelper.DrawPlainRaised*
+- uid: Reportman.Drawing.Forms.DrawHelper.DrawPlainSunken(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color)
+  commentId: M:Reportman.Drawing.Forms.DrawHelper.DrawPlainSunken(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color)
+  id: DrawPlainSunken(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color)
+  parent: Reportman.Drawing.Forms.DrawHelper
+  langs:
+  - csharp
+  - vb
+  name: DrawPlainSunken(Graphics, Rectangle, Color)
+  nameWithType: DrawHelper.DrawPlainSunken(Graphics, Rectangle, Color)
+  fullName: Reportman.Drawing.Forms.DrawHelper.DrawPlainSunken(System.Drawing.Graphics, System.Drawing.Rectangle, System.Drawing.Color)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public static void DrawPlainSunken(Graphics g, Rectangle boxRect, Color baseColor)
+    parameters:
+    - id: g
+      type: System.Drawing.Graphics
+    - id: boxRect
+      type: System.Drawing.Rectangle
+    - id: baseColor
+      type: System.Drawing.Color
+    content.vb: Public Shared Sub DrawPlainSunken(g As Graphics, boxRect As Rectangle, baseColor As Color)
+  overload: Reportman.Drawing.Forms.DrawHelper.DrawPlainSunken*
+- uid: Reportman.Drawing.Forms.DrawHelper.DrawPlainRaisedBorder(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color)
+  commentId: M:Reportman.Drawing.Forms.DrawHelper.DrawPlainRaisedBorder(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color)
+  id: DrawPlainRaisedBorder(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color)
+  parent: Reportman.Drawing.Forms.DrawHelper
+  langs:
+  - csharp
+  - vb
+  name: DrawPlainRaisedBorder(Graphics, Rectangle, Color, Color, Color, Color)
+  nameWithType: DrawHelper.DrawPlainRaisedBorder(Graphics, Rectangle, Color, Color, Color, Color)
+  fullName: Reportman.Drawing.Forms.DrawHelper.DrawPlainRaisedBorder(System.Drawing.Graphics, System.Drawing.Rectangle, System.Drawing.Color, System.Drawing.Color, System.Drawing.Color, System.Drawing.Color)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public static void DrawPlainRaisedBorder(Graphics g, Rectangle rect, Color lightLight, Color baseColor, Color dark, Color darkDark)
+    parameters:
+    - id: g
+      type: System.Drawing.Graphics
+    - id: rect
+      type: System.Drawing.Rectangle
+    - id: lightLight
+      type: System.Drawing.Color
+    - id: baseColor
+      type: System.Drawing.Color
+    - id: dark
+      type: System.Drawing.Color
+    - id: darkDark
+      type: System.Drawing.Color
+    content.vb: Public Shared Sub DrawPlainRaisedBorder(g As Graphics, rect As Rectangle, lightLight As Color, baseColor As Color, dark As Color, darkDark As Color)
+  overload: Reportman.Drawing.Forms.DrawHelper.DrawPlainRaisedBorder*
+- uid: Reportman.Drawing.Forms.DrawHelper.DrawPlainRaisedBorderTopOrBottom(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color,System.Boolean)
+  commentId: M:Reportman.Drawing.Forms.DrawHelper.DrawPlainRaisedBorderTopOrBottom(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color,System.Boolean)
+  id: DrawPlainRaisedBorderTopOrBottom(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color,System.Boolean)
+  parent: Reportman.Drawing.Forms.DrawHelper
+  langs:
+  - csharp
+  - vb
+  name: DrawPlainRaisedBorderTopOrBottom(Graphics, Rectangle, Color, Color, Color, Color, bool)
+  nameWithType: DrawHelper.DrawPlainRaisedBorderTopOrBottom(Graphics, Rectangle, Color, Color, Color, Color, bool)
+  fullName: Reportman.Drawing.Forms.DrawHelper.DrawPlainRaisedBorderTopOrBottom(System.Drawing.Graphics, System.Drawing.Rectangle, System.Drawing.Color, System.Drawing.Color, System.Drawing.Color, System.Drawing.Color, bool)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public static void DrawPlainRaisedBorderTopOrBottom(Graphics g, Rectangle rect, Color lightLight, Color baseColor, Color dark, Color darkDark, bool drawTop)
+    parameters:
+    - id: g
+      type: System.Drawing.Graphics
+    - id: rect
+      type: System.Drawing.Rectangle
+    - id: lightLight
+      type: System.Drawing.Color
+    - id: baseColor
+      type: System.Drawing.Color
+    - id: dark
+      type: System.Drawing.Color
+    - id: darkDark
+      type: System.Drawing.Color
+    - id: drawTop
+      type: System.Boolean
+    content.vb: Public Shared Sub DrawPlainRaisedBorderTopOrBottom(g As Graphics, rect As Rectangle, lightLight As Color, baseColor As Color, dark As Color, darkDark As Color, drawTop As Boolean)
+  overload: Reportman.Drawing.Forms.DrawHelper.DrawPlainRaisedBorderTopOrBottom*
+  nameWithType.vb: DrawHelper.DrawPlainRaisedBorderTopOrBottom(Graphics, Rectangle, Color, Color, Color, Color, Boolean)
+  fullName.vb: Reportman.Drawing.Forms.DrawHelper.DrawPlainRaisedBorderTopOrBottom(System.Drawing.Graphics, System.Drawing.Rectangle, System.Drawing.Color, System.Drawing.Color, System.Drawing.Color, System.Drawing.Color, Boolean)
+  name.vb: DrawPlainRaisedBorderTopOrBottom(Graphics, Rectangle, Color, Color, Color, Color, Boolean)
+- uid: Reportman.Drawing.Forms.DrawHelper.DrawPlainSunkenBorder(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color)
+  commentId: M:Reportman.Drawing.Forms.DrawHelper.DrawPlainSunkenBorder(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color)
+  id: DrawPlainSunkenBorder(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color)
+  parent: Reportman.Drawing.Forms.DrawHelper
+  langs:
+  - csharp
+  - vb
+  name: DrawPlainSunkenBorder(Graphics, Rectangle, Color, Color, Color, Color)
+  nameWithType: DrawHelper.DrawPlainSunkenBorder(Graphics, Rectangle, Color, Color, Color, Color)
+  fullName: Reportman.Drawing.Forms.DrawHelper.DrawPlainSunkenBorder(System.Drawing.Graphics, System.Drawing.Rectangle, System.Drawing.Color, System.Drawing.Color, System.Drawing.Color, System.Drawing.Color)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public static void DrawPlainSunkenBorder(Graphics g, Rectangle rect, Color lightLight, Color baseColor, Color dark, Color darkDark)
+    parameters:
+    - id: g
+      type: System.Drawing.Graphics
+    - id: rect
+      type: System.Drawing.Rectangle
+    - id: lightLight
+      type: System.Drawing.Color
+    - id: baseColor
+      type: System.Drawing.Color
+    - id: dark
+      type: System.Drawing.Color
+    - id: darkDark
+      type: System.Drawing.Color
+    content.vb: Public Shared Sub DrawPlainSunkenBorder(g As Graphics, rect As Rectangle, lightLight As Color, baseColor As Color, dark As Color, darkDark As Color)
+  overload: Reportman.Drawing.Forms.DrawHelper.DrawPlainSunkenBorder*
+- uid: Reportman.Drawing.Forms.DrawHelper.DrawPlainSunkenBorderTopOrBottom(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color,System.Boolean)
+  commentId: M:Reportman.Drawing.Forms.DrawHelper.DrawPlainSunkenBorderTopOrBottom(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color,System.Boolean)
+  id: DrawPlainSunkenBorderTopOrBottom(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color,System.Boolean)
+  parent: Reportman.Drawing.Forms.DrawHelper
+  langs:
+  - csharp
+  - vb
+  name: DrawPlainSunkenBorderTopOrBottom(Graphics, Rectangle, Color, Color, Color, Color, bool)
+  nameWithType: DrawHelper.DrawPlainSunkenBorderTopOrBottom(Graphics, Rectangle, Color, Color, Color, Color, bool)
+  fullName: Reportman.Drawing.Forms.DrawHelper.DrawPlainSunkenBorderTopOrBottom(System.Drawing.Graphics, System.Drawing.Rectangle, System.Drawing.Color, System.Drawing.Color, System.Drawing.Color, System.Drawing.Color, bool)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public static void DrawPlainSunkenBorderTopOrBottom(Graphics g, Rectangle rect, Color lightLight, Color baseColor, Color dark, Color darkDark, bool drawTop)
+    parameters:
+    - id: g
+      type: System.Drawing.Graphics
+    - id: rect
+      type: System.Drawing.Rectangle
+    - id: lightLight
+      type: System.Drawing.Color
+    - id: baseColor
+      type: System.Drawing.Color
+    - id: dark
+      type: System.Drawing.Color
+    - id: darkDark
+      type: System.Drawing.Color
+    - id: drawTop
+      type: System.Boolean
+    content.vb: Public Shared Sub DrawPlainSunkenBorderTopOrBottom(g As Graphics, rect As Rectangle, lightLight As Color, baseColor As Color, dark As Color, darkDark As Color, drawTop As Boolean)
+  overload: Reportman.Drawing.Forms.DrawHelper.DrawPlainSunkenBorderTopOrBottom*
+  nameWithType.vb: DrawHelper.DrawPlainSunkenBorderTopOrBottom(Graphics, Rectangle, Color, Color, Color, Color, Boolean)
+  fullName.vb: Reportman.Drawing.Forms.DrawHelper.DrawPlainSunkenBorderTopOrBottom(System.Drawing.Graphics, System.Drawing.Rectangle, System.Drawing.Color, System.Drawing.Color, System.Drawing.Color, System.Drawing.Color, Boolean)
+  name.vb: DrawPlainSunkenBorderTopOrBottom(Graphics, Rectangle, Color, Color, Color, Color, Boolean)
+- uid: Reportman.Drawing.Forms.DrawHelper.DrawButtonCommand(System.Drawing.Graphics,Reportman.Drawing.Forms.VisualStyle,Reportman.Drawing.Forms.Direction,System.Drawing.Rectangle,Reportman.Drawing.Forms.DrawHelper.CommandState,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color)
+  commentId: M:Reportman.Drawing.Forms.DrawHelper.DrawButtonCommand(System.Drawing.Graphics,Reportman.Drawing.Forms.VisualStyle,Reportman.Drawing.Forms.Direction,System.Drawing.Rectangle,Reportman.Drawing.Forms.DrawHelper.CommandState,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color)
+  id: DrawButtonCommand(System.Drawing.Graphics,Reportman.Drawing.Forms.VisualStyle,Reportman.Drawing.Forms.Direction,System.Drawing.Rectangle,Reportman.Drawing.Forms.DrawHelper.CommandState,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color)
+  parent: Reportman.Drawing.Forms.DrawHelper
+  langs:
+  - csharp
+  - vb
+  name: DrawButtonCommand(Graphics, VisualStyle, Direction, Rectangle, CommandState, Color, Color, Color)
+  nameWithType: DrawHelper.DrawButtonCommand(Graphics, VisualStyle, Direction, Rectangle, DrawHelper.CommandState, Color, Color, Color)
+  fullName: Reportman.Drawing.Forms.DrawHelper.DrawButtonCommand(System.Drawing.Graphics, Reportman.Drawing.Forms.VisualStyle, Reportman.Drawing.Forms.Direction, System.Drawing.Rectangle, Reportman.Drawing.Forms.DrawHelper.CommandState, System.Drawing.Color, System.Drawing.Color, System.Drawing.Color)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public static void DrawButtonCommand(Graphics g, VisualStyle style, Direction direction, Rectangle drawRect, DrawHelper.CommandState state, Color baseColor, Color trackLight, Color trackBorder)
+    parameters:
+    - id: g
+      type: System.Drawing.Graphics
+    - id: style
+      type: Reportman.Drawing.Forms.VisualStyle
+    - id: direction
+      type: Reportman.Drawing.Forms.Direction
+    - id: drawRect
+      type: System.Drawing.Rectangle
+    - id: state
+      type: Reportman.Drawing.Forms.DrawHelper.CommandState
+    - id: baseColor
+      type: System.Drawing.Color
+    - id: trackLight
+      type: System.Drawing.Color
+    - id: trackBorder
+      type: System.Drawing.Color
+    content.vb: Public Shared Sub DrawButtonCommand(g As Graphics, style As VisualStyle, direction As Direction, drawRect As Rectangle, state As DrawHelper.CommandState, baseColor As Color, trackLight As Color, trackBorder As Color)
+  overload: Reportman.Drawing.Forms.DrawHelper.DrawButtonCommand*
+- uid: Reportman.Drawing.Forms.DrawHelper.DrawSeparatorCommand(System.Drawing.Graphics,Reportman.Drawing.Forms.VisualStyle,Reportman.Drawing.Forms.Direction,System.Drawing.Rectangle,System.Drawing.Color)
+  commentId: M:Reportman.Drawing.Forms.DrawHelper.DrawSeparatorCommand(System.Drawing.Graphics,Reportman.Drawing.Forms.VisualStyle,Reportman.Drawing.Forms.Direction,System.Drawing.Rectangle,System.Drawing.Color)
+  id: DrawSeparatorCommand(System.Drawing.Graphics,Reportman.Drawing.Forms.VisualStyle,Reportman.Drawing.Forms.Direction,System.Drawing.Rectangle,System.Drawing.Color)
+  parent: Reportman.Drawing.Forms.DrawHelper
+  langs:
+  - csharp
+  - vb
+  name: DrawSeparatorCommand(Graphics, VisualStyle, Direction, Rectangle, Color)
+  nameWithType: DrawHelper.DrawSeparatorCommand(Graphics, VisualStyle, Direction, Rectangle, Color)
+  fullName: Reportman.Drawing.Forms.DrawHelper.DrawSeparatorCommand(System.Drawing.Graphics, Reportman.Drawing.Forms.VisualStyle, Reportman.Drawing.Forms.Direction, System.Drawing.Rectangle, System.Drawing.Color)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public static void DrawSeparatorCommand(Graphics g, VisualStyle style, Direction direction, Rectangle drawRect, Color baseColor)
+    parameters:
+    - id: g
+      type: System.Drawing.Graphics
+    - id: style
+      type: Reportman.Drawing.Forms.VisualStyle
+    - id: direction
+      type: Reportman.Drawing.Forms.Direction
+    - id: drawRect
+      type: System.Drawing.Rectangle
+    - id: baseColor
+      type: System.Drawing.Color
+    content.vb: Public Shared Sub DrawSeparatorCommand(g As Graphics, style As VisualStyle, direction As Direction, drawRect As Rectangle, baseColor As Color)
+  overload: Reportman.Drawing.Forms.DrawHelper.DrawSeparatorCommand*
+- uid: Reportman.Drawing.Forms.DrawHelper.#ctor
+  commentId: M:Reportman.Drawing.Forms.DrawHelper.#ctor
+  id: '#ctor'
+  parent: Reportman.Drawing.Forms.DrawHelper
+  langs:
+  - csharp
+  - vb
+  name: DrawHelper()
+  nameWithType: DrawHelper.DrawHelper()
+  fullName: Reportman.Drawing.Forms.DrawHelper.DrawHelper()
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public DrawHelper()
+    content.vb: Public Sub New()
+  overload: Reportman.Drawing.Forms.DrawHelper.#ctor*
+  nameWithType.vb: DrawHelper.New()
+  fullName.vb: Reportman.Drawing.Forms.DrawHelper.New()
+  name.vb: New()
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: Reportman.Drawing.Forms.DrawHelper.DrawReverseString*
+  commentId: Overload:Reportman.Drawing.Forms.DrawHelper.DrawReverseString
+  isExternal: true
+  href: Reportman.Drawing.Forms.DrawHelper.html#Reportman_Drawing_Forms_DrawHelper_DrawReverseString_System_Drawing_Graphics_System_String_System_Drawing_Font_System_Drawing_Rectangle_System_Drawing_Brush_System_Drawing_StringFormat_
+  name: DrawReverseString
+  nameWithType: DrawHelper.DrawReverseString
+  fullName: Reportman.Drawing.Forms.DrawHelper.DrawReverseString
+- uid: System.Drawing.Graphics
+  commentId: T:System.Drawing.Graphics
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.graphics
+  name: Graphics
+  nameWithType: Graphics
+  fullName: System.Drawing.Graphics
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Drawing.Font
+  commentId: T:System.Drawing.Font
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.font
+  name: Font
+  nameWithType: Font
+  fullName: System.Drawing.Font
+- uid: System.Drawing.Rectangle
+  commentId: T:System.Drawing.Rectangle
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.rectangle
+  name: Rectangle
+  nameWithType: Rectangle
+  fullName: System.Drawing.Rectangle
+- uid: System.Drawing.Brush
+  commentId: T:System.Drawing.Brush
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.brush
+  name: Brush
+  nameWithType: Brush
+  fullName: System.Drawing.Brush
+- uid: System.Drawing.StringFormat
+  commentId: T:System.Drawing.StringFormat
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.stringformat
+  name: StringFormat
+  nameWithType: StringFormat
+  fullName: System.Drawing.StringFormat
+- uid: System.Drawing
+  commentId: N:System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Drawing
+  nameWithType: System.Drawing
+  fullName: System.Drawing
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+- uid: Reportman.Drawing.Forms.DrawHelper.DrawPlainRaised*
+  commentId: Overload:Reportman.Drawing.Forms.DrawHelper.DrawPlainRaised
+  isExternal: true
+  href: Reportman.Drawing.Forms.DrawHelper.html#Reportman_Drawing_Forms_DrawHelper_DrawPlainRaised_System_Drawing_Graphics_System_Drawing_Rectangle_System_Drawing_Color_
+  name: DrawPlainRaised
+  nameWithType: DrawHelper.DrawPlainRaised
+  fullName: Reportman.Drawing.Forms.DrawHelper.DrawPlainRaised
+- uid: System.Drawing.Color
+  commentId: T:System.Drawing.Color
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.color
+  name: Color
+  nameWithType: Color
+  fullName: System.Drawing.Color
+- uid: Reportman.Drawing.Forms.DrawHelper.DrawPlainSunken*
+  commentId: Overload:Reportman.Drawing.Forms.DrawHelper.DrawPlainSunken
+  isExternal: true
+  href: Reportman.Drawing.Forms.DrawHelper.html#Reportman_Drawing_Forms_DrawHelper_DrawPlainSunken_System_Drawing_Graphics_System_Drawing_Rectangle_System_Drawing_Color_
+  name: DrawPlainSunken
+  nameWithType: DrawHelper.DrawPlainSunken
+  fullName: Reportman.Drawing.Forms.DrawHelper.DrawPlainSunken
+- uid: Reportman.Drawing.Forms.DrawHelper.DrawPlainRaisedBorder*
+  commentId: Overload:Reportman.Drawing.Forms.DrawHelper.DrawPlainRaisedBorder
+  isExternal: true
+  href: Reportman.Drawing.Forms.DrawHelper.html#Reportman_Drawing_Forms_DrawHelper_DrawPlainRaisedBorder_System_Drawing_Graphics_System_Drawing_Rectangle_System_Drawing_Color_System_Drawing_Color_System_Drawing_Color_System_Drawing_Color_
+  name: DrawPlainRaisedBorder
+  nameWithType: DrawHelper.DrawPlainRaisedBorder
+  fullName: Reportman.Drawing.Forms.DrawHelper.DrawPlainRaisedBorder
+- uid: Reportman.Drawing.Forms.DrawHelper.DrawPlainRaisedBorderTopOrBottom*
+  commentId: Overload:Reportman.Drawing.Forms.DrawHelper.DrawPlainRaisedBorderTopOrBottom
+  isExternal: true
+  href: Reportman.Drawing.Forms.DrawHelper.html#Reportman_Drawing_Forms_DrawHelper_DrawPlainRaisedBorderTopOrBottom_System_Drawing_Graphics_System_Drawing_Rectangle_System_Drawing_Color_System_Drawing_Color_System_Drawing_Color_System_Drawing_Color_System_Boolean_
+  name: DrawPlainRaisedBorderTopOrBottom
+  nameWithType: DrawHelper.DrawPlainRaisedBorderTopOrBottom
+  fullName: Reportman.Drawing.Forms.DrawHelper.DrawPlainRaisedBorderTopOrBottom
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Reportman.Drawing.Forms.DrawHelper.DrawPlainSunkenBorder*
+  commentId: Overload:Reportman.Drawing.Forms.DrawHelper.DrawPlainSunkenBorder
+  isExternal: true
+  href: Reportman.Drawing.Forms.DrawHelper.html#Reportman_Drawing_Forms_DrawHelper_DrawPlainSunkenBorder_System_Drawing_Graphics_System_Drawing_Rectangle_System_Drawing_Color_System_Drawing_Color_System_Drawing_Color_System_Drawing_Color_
+  name: DrawPlainSunkenBorder
+  nameWithType: DrawHelper.DrawPlainSunkenBorder
+  fullName: Reportman.Drawing.Forms.DrawHelper.DrawPlainSunkenBorder
+- uid: Reportman.Drawing.Forms.DrawHelper.DrawPlainSunkenBorderTopOrBottom*
+  commentId: Overload:Reportman.Drawing.Forms.DrawHelper.DrawPlainSunkenBorderTopOrBottom
+  isExternal: true
+  href: Reportman.Drawing.Forms.DrawHelper.html#Reportman_Drawing_Forms_DrawHelper_DrawPlainSunkenBorderTopOrBottom_System_Drawing_Graphics_System_Drawing_Rectangle_System_Drawing_Color_System_Drawing_Color_System_Drawing_Color_System_Drawing_Color_System_Boolean_
+  name: DrawPlainSunkenBorderTopOrBottom
+  nameWithType: DrawHelper.DrawPlainSunkenBorderTopOrBottom
+  fullName: Reportman.Drawing.Forms.DrawHelper.DrawPlainSunkenBorderTopOrBottom
+- uid: Reportman.Drawing.Forms.DrawHelper.DrawButtonCommand*
+  commentId: Overload:Reportman.Drawing.Forms.DrawHelper.DrawButtonCommand
+  isExternal: true
+  href: Reportman.Drawing.Forms.DrawHelper.html#Reportman_Drawing_Forms_DrawHelper_DrawButtonCommand_System_Drawing_Graphics_Reportman_Drawing_Forms_VisualStyle_Reportman_Drawing_Forms_Direction_System_Drawing_Rectangle_Reportman_Drawing_Forms_DrawHelper_CommandState_System_Drawing_Color_System_Drawing_Color_System_Drawing_Color_
+  name: DrawButtonCommand
+  nameWithType: DrawHelper.DrawButtonCommand
+  fullName: Reportman.Drawing.Forms.DrawHelper.DrawButtonCommand
+- uid: Reportman.Drawing.Forms.VisualStyle
+  commentId: T:Reportman.Drawing.Forms.VisualStyle
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.VisualStyle.html
+  name: VisualStyle
+  nameWithType: VisualStyle
+  fullName: Reportman.Drawing.Forms.VisualStyle
+- uid: Reportman.Drawing.Forms.Direction
+  commentId: T:Reportman.Drawing.Forms.Direction
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.Direction.html
+  name: Direction
+  nameWithType: Direction
+  fullName: Reportman.Drawing.Forms.Direction
+- uid: Reportman.Drawing.Forms.DrawHelper.CommandState
+  commentId: T:Reportman.Drawing.Forms.DrawHelper.CommandState
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.DrawHelper.html
+  name: DrawHelper.CommandState
+  nameWithType: DrawHelper.CommandState
+  fullName: Reportman.Drawing.Forms.DrawHelper.CommandState
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.DrawHelper
+    name: DrawHelper
+    isExternal: true
+    href: Reportman.Drawing.Forms.DrawHelper.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.DrawHelper.CommandState
+    name: CommandState
+    isExternal: true
+    href: Reportman.Drawing.Forms.DrawHelper.CommandState.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.DrawHelper
+    name: DrawHelper
+    isExternal: true
+    href: Reportman.Drawing.Forms.DrawHelper.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.DrawHelper.CommandState
+    name: CommandState
+    isExternal: true
+    href: Reportman.Drawing.Forms.DrawHelper.CommandState.html
+- uid: Reportman.Drawing.Forms.DrawHelper.DrawSeparatorCommand*
+  commentId: Overload:Reportman.Drawing.Forms.DrawHelper.DrawSeparatorCommand
+  isExternal: true
+  href: Reportman.Drawing.Forms.DrawHelper.html#Reportman_Drawing_Forms_DrawHelper_DrawSeparatorCommand_System_Drawing_Graphics_Reportman_Drawing_Forms_VisualStyle_Reportman_Drawing_Forms_Direction_System_Drawing_Rectangle_System_Drawing_Color_
+  name: DrawSeparatorCommand
+  nameWithType: DrawHelper.DrawSeparatorCommand
+  fullName: Reportman.Drawing.Forms.DrawHelper.DrawSeparatorCommand
+- uid: Reportman.Drawing.Forms.DrawHelper.#ctor*
+  commentId: Overload:Reportman.Drawing.Forms.DrawHelper.#ctor
+  isExternal: true
+  href: Reportman.Drawing.Forms.DrawHelper.html#Reportman_Drawing_Forms_DrawHelper__ctor
+  name: DrawHelper
+  nameWithType: DrawHelper.DrawHelper
+  fullName: Reportman.Drawing.Forms.DrawHelper.DrawHelper
+  nameWithType.vb: DrawHelper.New
+  fullName.vb: Reportman.Drawing.Forms.DrawHelper.New
+  name.vb: New

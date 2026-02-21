@@ -1,0 +1,163 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.AutoScaleType
+  commentId: T:Reportman.Drawing.AutoScaleType
+  id: AutoScaleType
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.AutoScaleType.Custom
+  - Reportman.Drawing.AutoScaleType.EntirePage
+  - Reportman.Drawing.AutoScaleType.Height
+  - Reportman.Drawing.AutoScaleType.Real
+  - Reportman.Drawing.AutoScaleType.Wide
+  langs:
+  - csharp
+  - vb
+  name: AutoScaleType
+  nameWithType: AutoScaleType
+  fullName: Reportman.Drawing.AutoScaleType
+  type: Enum
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: When previewing pages of a report, visualization scale can be adjusted to predetermined sizes
+  example: []
+  syntax:
+    content: public enum AutoScaleType
+    content.vb: Public Enum AutoScaleType
+- uid: Reportman.Drawing.AutoScaleType.Wide
+  commentId: F:Reportman.Drawing.AutoScaleType.Wide
+  id: Wide
+  parent: Reportman.Drawing.AutoScaleType
+  langs:
+  - csharp
+  - vb
+  name: Wide
+  nameWithType: AutoScaleType.Wide
+  fullName: Reportman.Drawing.AutoScaleType.Wide
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: The page will fit the width of the window application
+  example: []
+  syntax:
+    content: Wide = 0
+    return:
+      type: Reportman.Drawing.AutoScaleType
+- uid: Reportman.Drawing.AutoScaleType.Real
+  commentId: F:Reportman.Drawing.AutoScaleType.Real
+  id: Real
+  parent: Reportman.Drawing.AutoScaleType
+  langs:
+  - csharp
+  - vb
+  name: Real
+  nameWithType: AutoScaleType.Real
+  fullName: Reportman.Drawing.AutoScaleType.Real
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Real size, using dots per inch of screen
+  example: []
+  syntax:
+    content: Real = 1
+    return:
+      type: Reportman.Drawing.AutoScaleType
+- uid: Reportman.Drawing.AutoScaleType.EntirePage
+  commentId: F:Reportman.Drawing.AutoScaleType.EntirePage
+  id: EntirePage
+  parent: Reportman.Drawing.AutoScaleType
+  langs:
+  - csharp
+  - vb
+  name: EntirePage
+  nameWithType: AutoScaleType.EntirePage
+  fullName: Reportman.Drawing.AutoScaleType.EntirePage
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: The entire page will be scaled to be visible inside the window application
+  example: []
+  syntax:
+    content: EntirePage = 2
+    return:
+      type: Reportman.Drawing.AutoScaleType
+- uid: Reportman.Drawing.AutoScaleType.Custom
+  commentId: F:Reportman.Drawing.AutoScaleType.Custom
+  id: Custom
+  parent: Reportman.Drawing.AutoScaleType
+  langs:
+  - csharp
+  - vb
+  name: Custom
+  nameWithType: AutoScaleType.Custom
+  fullName: Reportman.Drawing.AutoScaleType.Custom
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: The page will have a custom scale
+  example: []
+  syntax:
+    content: Custom = 3
+    return:
+      type: Reportman.Drawing.AutoScaleType
+- uid: Reportman.Drawing.AutoScaleType.Height
+  commentId: F:Reportman.Drawing.AutoScaleType.Height
+  id: Height
+  parent: Reportman.Drawing.AutoScaleType
+  langs:
+  - csharp
+  - vb
+  name: Height
+  nameWithType: AutoScaleType.Height
+  fullName: Reportman.Drawing.AutoScaleType.Height
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: The page will fit the height of the window
+  example: []
+  syntax:
+    content: Height = 4
+    return:
+      type: Reportman.Drawing.AutoScaleType
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.AutoScaleType
+  commentId: T:Reportman.Drawing.AutoScaleType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.AutoScaleType.html
+  name: AutoScaleType
+  nameWithType: AutoScaleType
+  fullName: Reportman.Drawing.AutoScaleType

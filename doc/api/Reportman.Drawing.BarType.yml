@@ -1,0 +1,132 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.BarType
+  commentId: T:Reportman.Drawing.BarType
+  id: BarType
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.BarType.None
+  - Reportman.Drawing.BarType.Side
+  - Reportman.Drawing.BarType.Stacked
+  - Reportman.Drawing.BarType.Stacked100
+  langs:
+  - csharp
+  - vb
+  name: BarType
+  nameWithType: BarType
+  fullName: Reportman.Drawing.BarType
+  type: Enum
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public enum BarType
+    content.vb: Public Enum BarType
+- uid: Reportman.Drawing.BarType.None
+  commentId: F:Reportman.Drawing.BarType.None
+  id: None
+  parent: Reportman.Drawing.BarType
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: BarType.None
+  fullName: Reportman.Drawing.BarType.None
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: None = 0
+    return:
+      type: Reportman.Drawing.BarType
+- uid: Reportman.Drawing.BarType.Side
+  commentId: F:Reportman.Drawing.BarType.Side
+  id: Side
+  parent: Reportman.Drawing.BarType
+  langs:
+  - csharp
+  - vb
+  name: Side
+  nameWithType: BarType.Side
+  fullName: Reportman.Drawing.BarType.Side
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Side = 1
+    return:
+      type: Reportman.Drawing.BarType
+- uid: Reportman.Drawing.BarType.Stacked
+  commentId: F:Reportman.Drawing.BarType.Stacked
+  id: Stacked
+  parent: Reportman.Drawing.BarType
+  langs:
+  - csharp
+  - vb
+  name: Stacked
+  nameWithType: BarType.Stacked
+  fullName: Reportman.Drawing.BarType.Stacked
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Stacked = 2
+    return:
+      type: Reportman.Drawing.BarType
+- uid: Reportman.Drawing.BarType.Stacked100
+  commentId: F:Reportman.Drawing.BarType.Stacked100
+  id: Stacked100
+  parent: Reportman.Drawing.BarType
+  langs:
+  - csharp
+  - vb
+  name: Stacked100
+  nameWithType: BarType.Stacked100
+  fullName: Reportman.Drawing.BarType.Stacked100
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Stacked100 = 3
+    return:
+      type: Reportman.Drawing.BarType
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.BarType
+  commentId: T:Reportman.Drawing.BarType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.BarType.html
+  name: BarType
+  nameWithType: BarType
+  fullName: Reportman.Drawing.BarType

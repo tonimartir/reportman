@@ -1,0 +1,161 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.Edge
+  commentId: T:Reportman.Drawing.Forms.Edge
+  id: Edge
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.Edge.Bottom
+  - Reportman.Drawing.Forms.Edge.Left
+  - Reportman.Drawing.Forms.Edge.None
+  - Reportman.Drawing.Forms.Edge.Right
+  - Reportman.Drawing.Forms.Edge.Top
+  langs:
+  - csharp
+  - vb
+  name: Edge
+  nameWithType: Edge
+  fullName: Reportman.Drawing.Forms.Edge
+  type: Enum
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public enum Edge
+    content.vb: Public Enum Edge
+- uid: Reportman.Drawing.Forms.Edge.Top
+  commentId: F:Reportman.Drawing.Forms.Edge.Top
+  id: Top
+  parent: Reportman.Drawing.Forms.Edge
+  langs:
+  - csharp
+  - vb
+  name: Top
+  nameWithType: Edge.Top
+  fullName: Reportman.Drawing.Forms.Edge.Top
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Top = 0
+    return:
+      type: Reportman.Drawing.Forms.Edge
+- uid: Reportman.Drawing.Forms.Edge.Left
+  commentId: F:Reportman.Drawing.Forms.Edge.Left
+  id: Left
+  parent: Reportman.Drawing.Forms.Edge
+  langs:
+  - csharp
+  - vb
+  name: Left
+  nameWithType: Edge.Left
+  fullName: Reportman.Drawing.Forms.Edge.Left
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Left = 1
+    return:
+      type: Reportman.Drawing.Forms.Edge
+- uid: Reportman.Drawing.Forms.Edge.Bottom
+  commentId: F:Reportman.Drawing.Forms.Edge.Bottom
+  id: Bottom
+  parent: Reportman.Drawing.Forms.Edge
+  langs:
+  - csharp
+  - vb
+  name: Bottom
+  nameWithType: Edge.Bottom
+  fullName: Reportman.Drawing.Forms.Edge.Bottom
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Bottom = 2
+    return:
+      type: Reportman.Drawing.Forms.Edge
+- uid: Reportman.Drawing.Forms.Edge.Right
+  commentId: F:Reportman.Drawing.Forms.Edge.Right
+  id: Right
+  parent: Reportman.Drawing.Forms.Edge
+  langs:
+  - csharp
+  - vb
+  name: Right
+  nameWithType: Edge.Right
+  fullName: Reportman.Drawing.Forms.Edge.Right
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Right = 3
+    return:
+      type: Reportman.Drawing.Forms.Edge
+- uid: Reportman.Drawing.Forms.Edge.None
+  commentId: F:Reportman.Drawing.Forms.Edge.None
+  id: None
+  parent: Reportman.Drawing.Forms.Edge
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: Edge.None
+  fullName: Reportman.Drawing.Forms.Edge.None
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: None = 4
+    return:
+      type: Reportman.Drawing.Forms.Edge
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: Reportman.Drawing.Forms.Edge
+  commentId: T:Reportman.Drawing.Forms.Edge
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.Edge.html
+  name: Edge
+  nameWithType: Edge
+  fullName: Reportman.Drawing.Forms.Edge

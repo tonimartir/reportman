@@ -1,0 +1,3566 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.ToolStripButtonAllowDisable
+  commentId: T:Reportman.Drawing.Forms.ToolStripButtonAllowDisable
+  id: ToolStripButtonAllowDisable
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.ToolStripButtonAllowDisable.#ctor
+  - Reportman.Drawing.Forms.ToolStripButtonAllowDisable.DisplayDisable
+  langs:
+  - csharp
+  - vb
+  name: ToolStripButtonAllowDisable
+  nameWithType: ToolStripButtonAllowDisable
+  fullName: Reportman.Drawing.Forms.ToolStripButtonAllowDisable
+  type: Class
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: 'public class ToolStripButtonAllowDisable : ToolStripButton, IBindableComponent, IDropTarget, IComponent, IDisposable, IDisplayDisable'
+    content.vb: Public Class ToolStripButtonAllowDisable Inherits ToolStripButton Implements IBindableComponent, IDropTarget, IComponent, IDisposable, IDisplayDisable
+  inheritance:
+  - System.Object
+  - System.MarshalByRefObject
+  - System.ComponentModel.Component
+  - System.Windows.Forms.BindableComponent
+  - System.Windows.Forms.ToolStripItem
+  - System.Windows.Forms.ToolStripButton
+  implements:
+  - System.Windows.Forms.IBindableComponent
+  - System.Windows.Forms.IDropTarget
+  - System.ComponentModel.IComponent
+  - System.IDisposable
+  - Reportman.Drawing.Forms.IDisplayDisable
+  inheritedMembers:
+  - System.Windows.Forms.ToolStripButton.CreateAccessibilityInstance
+  - System.Windows.Forms.ToolStripButton.GetPreferredSize(System.Drawing.Size)
+  - System.Windows.Forms.ToolStripButton.OnCheckedChanged(System.EventArgs)
+  - System.Windows.Forms.ToolStripButton.OnCheckStateChanged(System.EventArgs)
+  - System.Windows.Forms.ToolStripButton.OnPaint(System.Windows.Forms.PaintEventArgs)
+  - System.Windows.Forms.ToolStripButton.OnClick(System.EventArgs)
+  - System.Windows.Forms.ToolStripButton.ProcessDialogKey(System.Windows.Forms.Keys)
+  - System.Windows.Forms.ToolStripButton.AutoToolTip
+  - System.Windows.Forms.ToolStripButton.CheckOnClick
+  - System.Windows.Forms.ToolStripButton.Checked
+  - System.Windows.Forms.ToolStripButton.CheckState
+  - System.Windows.Forms.ToolStripButton.DefaultAutoToolTip
+  - System.Windows.Forms.ToolStripButton.CheckedChanged
+  - System.Windows.Forms.ToolStripButton.CheckStateChanged
+  - System.Windows.Forms.ToolStripItem.OnSelectedChanged(System.EventArgs)
+  - System.Windows.Forms.ToolStripItem.Dispose(System.Boolean)
+  - System.Windows.Forms.ToolStripItem.DoDragDrop(System.Object,System.Windows.Forms.DragDropEffects)
+  - System.Windows.Forms.ToolStripItem.DoDragDrop(System.Object,System.Windows.Forms.DragDropEffects,System.Drawing.Bitmap,System.Drawing.Point,System.Boolean)
+  - System.Windows.Forms.ToolStripItem.GetCurrentParent
+  - System.Windows.Forms.ToolStripItem.Invalidate
+  - System.Windows.Forms.ToolStripItem.Invalidate(System.Drawing.Rectangle)
+  - System.Windows.Forms.ToolStripItem.IsInputKey(System.Windows.Forms.Keys)
+  - System.Windows.Forms.ToolStripItem.IsInputChar(System.Char)
+  - System.Windows.Forms.ToolStripItem.OnBackColorChanged(System.EventArgs)
+  - System.Windows.Forms.ToolStripItem.OnBoundsChanged
+  - System.Windows.Forms.ToolStripItem.OnLayout(System.Windows.Forms.LayoutEventArgs)
+  - System.Windows.Forms.ToolStripItem.OnAvailableChanged(System.EventArgs)
+  - System.Windows.Forms.ToolStripItem.OnCommandChanged(System.EventArgs)
+  - System.Windows.Forms.ToolStripItem.OnCommandCanExecuteChanged(System.EventArgs)
+  - System.Windows.Forms.ToolStripItem.OnCommandParameterChanged(System.EventArgs)
+  - System.Windows.Forms.ToolStripItem.OnRequestCommandExecute(System.EventArgs)
+  - System.Windows.Forms.ToolStripItem.OnDragEnter(System.Windows.Forms.DragEventArgs)
+  - System.Windows.Forms.ToolStripItem.OnDragOver(System.Windows.Forms.DragEventArgs)
+  - System.Windows.Forms.ToolStripItem.OnDragLeave(System.EventArgs)
+  - System.Windows.Forms.ToolStripItem.OnDragDrop(System.Windows.Forms.DragEventArgs)
+  - System.Windows.Forms.ToolStripItem.OnDisplayStyleChanged(System.EventArgs)
+  - System.Windows.Forms.ToolStripItem.OnGiveFeedback(System.Windows.Forms.GiveFeedbackEventArgs)
+  - System.Windows.Forms.ToolStripItem.OnQueryContinueDrag(System.Windows.Forms.QueryContinueDragEventArgs)
+  - System.Windows.Forms.ToolStripItem.OnDoubleClick(System.EventArgs)
+  - System.Windows.Forms.ToolStripItem.OnEnabledChanged(System.EventArgs)
+  - System.Windows.Forms.ToolStripItem.OnForeColorChanged(System.EventArgs)
+  - System.Windows.Forms.ToolStripItem.OnFontChanged(System.EventArgs)
+  - System.Windows.Forms.ToolStripItem.OnLocationChanged(System.EventArgs)
+  - System.Windows.Forms.ToolStripItem.OnMouseEnter(System.EventArgs)
+  - System.Windows.Forms.ToolStripItem.OnMouseMove(System.Windows.Forms.MouseEventArgs)
+  - System.Windows.Forms.ToolStripItem.OnMouseHover(System.EventArgs)
+  - System.Windows.Forms.ToolStripItem.OnMouseLeave(System.EventArgs)
+  - System.Windows.Forms.ToolStripItem.OnMouseDown(System.Windows.Forms.MouseEventArgs)
+  - System.Windows.Forms.ToolStripItem.OnMouseUp(System.Windows.Forms.MouseEventArgs)
+  - System.Windows.Forms.ToolStripItem.OnParentBackColorChanged(System.EventArgs)
+  - System.Windows.Forms.ToolStripItem.OnParentChanged(System.Windows.Forms.ToolStrip,System.Windows.Forms.ToolStrip)
+  - System.Windows.Forms.ToolStripItem.OnParentEnabledChanged(System.EventArgs)
+  - System.Windows.Forms.ToolStripItem.OnOwnerFontChanged(System.EventArgs)
+  - System.Windows.Forms.ToolStripItem.OnParentForeColorChanged(System.EventArgs)
+  - System.Windows.Forms.ToolStripItem.OnParentRightToLeftChanged(System.EventArgs)
+  - System.Windows.Forms.ToolStripItem.OnOwnerChanged(System.EventArgs)
+  - System.Windows.Forms.ToolStripItem.OnRightToLeftChanged(System.EventArgs)
+  - System.Windows.Forms.ToolStripItem.OnTextChanged(System.EventArgs)
+  - System.Windows.Forms.ToolStripItem.OnVisibleChanged(System.EventArgs)
+  - System.Windows.Forms.ToolStripItem.PerformClick
+  - System.Windows.Forms.ToolStripItem.ProcessCmdKey(System.Windows.Forms.Message@,System.Windows.Forms.Keys)
+  - System.Windows.Forms.ToolStripItem.ProcessMnemonic(System.Char)
+  - System.Windows.Forms.ToolStripItem.Select
+  - System.Windows.Forms.ToolStripItem.SetVisibleCore(System.Boolean)
+  - System.Windows.Forms.ToolStripItem.SetBounds(System.Drawing.Rectangle)
+  - System.Windows.Forms.ToolStripItem.ToString
+  - System.Windows.Forms.ToolStripItem.AccessibilityObject
+  - System.Windows.Forms.ToolStripItem.AccessibleDefaultActionDescription
+  - System.Windows.Forms.ToolStripItem.AccessibleDescription
+  - System.Windows.Forms.ToolStripItem.AccessibleName
+  - System.Windows.Forms.ToolStripItem.AccessibleRole
+  - System.Windows.Forms.ToolStripItem.Alignment
+  - System.Windows.Forms.ToolStripItem.AllowDrop
+  - System.Windows.Forms.ToolStripItem.AutoSize
+  - System.Windows.Forms.ToolStripItem.Available
+  - System.Windows.Forms.ToolStripItem.BackgroundImage
+  - System.Windows.Forms.ToolStripItem.Command
+  - System.Windows.Forms.ToolStripItem.CommandParameter
+  - System.Windows.Forms.ToolStripItem.BackgroundImageLayout
+  - System.Windows.Forms.ToolStripItem.BackColor
+  - System.Windows.Forms.ToolStripItem.Bounds
+  - System.Windows.Forms.ToolStripItem.ContentRectangle
+  - System.Windows.Forms.ToolStripItem.CanSelect
+  - System.Windows.Forms.ToolStripItem.Anchor
+  - System.Windows.Forms.ToolStripItem.Dock
+  - System.Windows.Forms.ToolStripItem.DefaultMargin
+  - System.Windows.Forms.ToolStripItem.DefaultPadding
+  - System.Windows.Forms.ToolStripItem.DefaultSize
+  - System.Windows.Forms.ToolStripItem.DefaultDisplayStyle
+  - System.Windows.Forms.ToolStripItem.DismissWhenClicked
+  - System.Windows.Forms.ToolStripItem.DisplayStyle
+  - System.Windows.Forms.ToolStripItem.DoubleClickEnabled
+  - System.Windows.Forms.ToolStripItem.Enabled
+  - System.Windows.Forms.ToolStripItem.ForeColor
+  - System.Windows.Forms.ToolStripItem.Font
+  - System.Windows.Forms.ToolStripItem.Height
+  - System.Windows.Forms.ToolStripItem.ImageAlign
+  - System.Windows.Forms.ToolStripItem.Image
+  - System.Windows.Forms.ToolStripItem.ImageTransparentColor
+  - System.Windows.Forms.ToolStripItem.ImageIndex
+  - System.Windows.Forms.ToolStripItem.ImageKey
+  - System.Windows.Forms.ToolStripItem.ImageScaling
+  - System.Windows.Forms.ToolStripItem.IsDisposed
+  - System.Windows.Forms.ToolStripItem.IsOnDropDown
+  - System.Windows.Forms.ToolStripItem.IsOnOverflow
+  - System.Windows.Forms.ToolStripItem.Margin
+  - System.Windows.Forms.ToolStripItem.MergeAction
+  - System.Windows.Forms.ToolStripItem.MergeIndex
+  - System.Windows.Forms.ToolStripItem.Name
+  - System.Windows.Forms.ToolStripItem.Owner
+  - System.Windows.Forms.ToolStripItem.OwnerItem
+  - System.Windows.Forms.ToolStripItem.Parent
+  - System.Windows.Forms.ToolStripItem.Overflow
+  - System.Windows.Forms.ToolStripItem.Padding
+  - System.Windows.Forms.ToolStripItem.Placement
+  - System.Windows.Forms.ToolStripItem.Pressed
+  - System.Windows.Forms.ToolStripItem.Renderer
+  - System.Windows.Forms.ToolStripItem.RightToLeft
+  - System.Windows.Forms.ToolStripItem.RightToLeftAutoMirrorImage
+  - System.Windows.Forms.ToolStripItem.Selected
+  - System.Windows.Forms.ToolStripItem.ShowKeyboardCues
+  - System.Windows.Forms.ToolStripItem.Size
+  - System.Windows.Forms.ToolStripItem.Tag
+  - System.Windows.Forms.ToolStripItem.Text
+  - System.Windows.Forms.ToolStripItem.TextAlign
+  - System.Windows.Forms.ToolStripItem.TextDirection
+  - System.Windows.Forms.ToolStripItem.TextImageRelation
+  - System.Windows.Forms.ToolStripItem.ToolTipText
+  - System.Windows.Forms.ToolStripItem.Visible
+  - System.Windows.Forms.ToolStripItem.Width
+  - System.Windows.Forms.ToolStripItem.AvailableChanged
+  - System.Windows.Forms.ToolStripItem.CommandCanExecuteChanged
+  - System.Windows.Forms.ToolStripItem.CommandChanged
+  - System.Windows.Forms.ToolStripItem.CommandParameterChanged
+  - System.Windows.Forms.ToolStripItem.BackColorChanged
+  - System.Windows.Forms.ToolStripItem.Click
+  - System.Windows.Forms.ToolStripItem.DisplayStyleChanged
+  - System.Windows.Forms.ToolStripItem.DoubleClick
+  - System.Windows.Forms.ToolStripItem.DragDrop
+  - System.Windows.Forms.ToolStripItem.DragEnter
+  - System.Windows.Forms.ToolStripItem.DragOver
+  - System.Windows.Forms.ToolStripItem.DragLeave
+  - System.Windows.Forms.ToolStripItem.EnabledChanged
+  - System.Windows.Forms.ToolStripItem.ForeColorChanged
+  - System.Windows.Forms.ToolStripItem.GiveFeedback
+  - System.Windows.Forms.ToolStripItem.LocationChanged
+  - System.Windows.Forms.ToolStripItem.MouseDown
+  - System.Windows.Forms.ToolStripItem.MouseEnter
+  - System.Windows.Forms.ToolStripItem.MouseLeave
+  - System.Windows.Forms.ToolStripItem.MouseHover
+  - System.Windows.Forms.ToolStripItem.MouseMove
+  - System.Windows.Forms.ToolStripItem.MouseUp
+  - System.Windows.Forms.ToolStripItem.OwnerChanged
+  - System.Windows.Forms.ToolStripItem.Paint
+  - System.Windows.Forms.ToolStripItem.QueryContinueDrag
+  - System.Windows.Forms.ToolStripItem.QueryAccessibilityHelp
+  - System.Windows.Forms.ToolStripItem.RightToLeftChanged
+  - System.Windows.Forms.ToolStripItem.SelectedChanged
+  - System.Windows.Forms.ToolStripItem.TextChanged
+  - System.Windows.Forms.ToolStripItem.VisibleChanged
+  - System.Windows.Forms.BindableComponent.OnBindingContextChanged(System.EventArgs)
+  - System.Windows.Forms.BindableComponent.BindingContext
+  - System.Windows.Forms.BindableComponent.DataBindings
+  - System.Windows.Forms.BindableComponent.BindingContextChanged
+  - System.ComponentModel.Component.Dispose
+  - System.ComponentModel.Component.GetService(System.Type)
+  - System.ComponentModel.Component.CanRaiseEvents
+  - System.ComponentModel.Component.Events
+  - System.ComponentModel.Component.Site
+  - System.ComponentModel.Component.Container
+  - System.ComponentModel.Component.DesignMode
+  - System.ComponentModel.Component.Disposed
+  - System.MarshalByRefObject.GetLifetimeService
+  - System.MarshalByRefObject.InitializeLifetimeService
+  - System.MarshalByRefObject.MemberwiseClone(System.Boolean)
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.Forms.ToolStripButtonAllowDisable.DisplayDisable
+  commentId: M:Reportman.Drawing.Forms.ToolStripButtonAllowDisable.DisplayDisable
+  id: DisplayDisable
+  parent: Reportman.Drawing.Forms.ToolStripButtonAllowDisable
+  langs:
+  - csharp
+  - vb
+  name: DisplayDisable()
+  nameWithType: ToolStripButtonAllowDisable.DisplayDisable()
+  fullName: Reportman.Drawing.Forms.ToolStripButtonAllowDisable.DisplayDisable()
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  example: []
+  syntax:
+    content: public bool DisplayDisable()
+    return:
+      type: System.Boolean
+    content.vb: Public Function DisplayDisable() As Boolean
+  overload: Reportman.Drawing.Forms.ToolStripButtonAllowDisable.DisplayDisable*
+  implements:
+  - Reportman.Drawing.Forms.IDisplayDisable.DisplayDisable
+- uid: Reportman.Drawing.Forms.ToolStripButtonAllowDisable.#ctor
+  commentId: M:Reportman.Drawing.Forms.ToolStripButtonAllowDisable.#ctor
+  id: '#ctor'
+  parent: Reportman.Drawing.Forms.ToolStripButtonAllowDisable
+  langs:
+  - csharp
+  - vb
+  name: ToolStripButtonAllowDisable()
+  nameWithType: ToolStripButtonAllowDisable.ToolStripButtonAllowDisable()
+  fullName: Reportman.Drawing.Forms.ToolStripButtonAllowDisable.ToolStripButtonAllowDisable()
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public ToolStripButtonAllowDisable()
+    content.vb: Public Sub New()
+  overload: Reportman.Drawing.Forms.ToolStripButtonAllowDisable.#ctor*
+  nameWithType.vb: ToolStripButtonAllowDisable.New()
+  fullName.vb: Reportman.Drawing.Forms.ToolStripButtonAllowDisable.New()
+  name.vb: New()
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.MarshalByRefObject
+  commentId: T:System.MarshalByRefObject
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject
+  name: MarshalByRefObject
+  nameWithType: MarshalByRefObject
+  fullName: System.MarshalByRefObject
+- uid: System.ComponentModel.Component
+  commentId: T:System.ComponentModel.Component
+  parent: System.ComponentModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component
+  name: Component
+  nameWithType: Component
+  fullName: System.ComponentModel.Component
+- uid: System.Windows.Forms.BindableComponent
+  commentId: T:System.Windows.Forms.BindableComponent
+  parent: System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.bindablecomponent
+  name: BindableComponent
+  nameWithType: BindableComponent
+  fullName: System.Windows.Forms.BindableComponent
+- uid: System.Windows.Forms.ToolStripItem
+  commentId: T:System.Windows.Forms.ToolStripItem
+  parent: System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem
+  name: ToolStripItem
+  nameWithType: ToolStripItem
+  fullName: System.Windows.Forms.ToolStripItem
+- uid: System.Windows.Forms.ToolStripButton
+  commentId: T:System.Windows.Forms.ToolStripButton
+  parent: System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripbutton
+  name: ToolStripButton
+  nameWithType: ToolStripButton
+  fullName: System.Windows.Forms.ToolStripButton
+- uid: System.Windows.Forms.IBindableComponent
+  commentId: T:System.Windows.Forms.IBindableComponent
+  parent: System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.ibindablecomponent
+  name: IBindableComponent
+  nameWithType: IBindableComponent
+  fullName: System.Windows.Forms.IBindableComponent
+- uid: System.Windows.Forms.IDropTarget
+  commentId: T:System.Windows.Forms.IDropTarget
+  parent: System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.idroptarget
+  name: IDropTarget
+  nameWithType: IDropTarget
+  fullName: System.Windows.Forms.IDropTarget
+- uid: System.ComponentModel.IComponent
+  commentId: T:System.ComponentModel.IComponent
+  parent: System.ComponentModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.icomponent
+  name: IComponent
+  nameWithType: IComponent
+  fullName: System.ComponentModel.IComponent
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: Reportman.Drawing.Forms.IDisplayDisable
+  commentId: T:Reportman.Drawing.Forms.IDisplayDisable
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.IDisplayDisable.html
+  name: IDisplayDisable
+  nameWithType: IDisplayDisable
+  fullName: Reportman.Drawing.Forms.IDisplayDisable
+- uid: System.Windows.Forms.ToolStripButton.CreateAccessibilityInstance
+  commentId: M:System.Windows.Forms.ToolStripButton.CreateAccessibilityInstance
+  parent: System.Windows.Forms.ToolStripButton
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripbutton.createaccessibilityinstance
+  name: CreateAccessibilityInstance()
+  nameWithType: ToolStripButton.CreateAccessibilityInstance()
+  fullName: System.Windows.Forms.ToolStripButton.CreateAccessibilityInstance()
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripButton.CreateAccessibilityInstance
+    name: CreateAccessibilityInstance
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripbutton.createaccessibilityinstance
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripButton.CreateAccessibilityInstance
+    name: CreateAccessibilityInstance
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripbutton.createaccessibilityinstance
+  - name: (
+  - name: )
+- uid: System.Windows.Forms.ToolStripButton.GetPreferredSize(System.Drawing.Size)
+  commentId: M:System.Windows.Forms.ToolStripButton.GetPreferredSize(System.Drawing.Size)
+  parent: System.Windows.Forms.ToolStripButton
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripbutton.getpreferredsize
+  name: GetPreferredSize(Size)
+  nameWithType: ToolStripButton.GetPreferredSize(Size)
+  fullName: System.Windows.Forms.ToolStripButton.GetPreferredSize(System.Drawing.Size)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripButton.GetPreferredSize(System.Drawing.Size)
+    name: GetPreferredSize
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripbutton.getpreferredsize
+  - name: (
+  - uid: System.Drawing.Size
+    name: Size
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.size
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripButton.GetPreferredSize(System.Drawing.Size)
+    name: GetPreferredSize
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripbutton.getpreferredsize
+  - name: (
+  - uid: System.Drawing.Size
+    name: Size
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.size
+  - name: )
+- uid: System.Windows.Forms.ToolStripButton.OnCheckedChanged(System.EventArgs)
+  commentId: M:System.Windows.Forms.ToolStripButton.OnCheckedChanged(System.EventArgs)
+  parent: System.Windows.Forms.ToolStripButton
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripbutton.oncheckedchanged
+  name: OnCheckedChanged(EventArgs)
+  nameWithType: ToolStripButton.OnCheckedChanged(EventArgs)
+  fullName: System.Windows.Forms.ToolStripButton.OnCheckedChanged(System.EventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripButton.OnCheckedChanged(System.EventArgs)
+    name: OnCheckedChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripbutton.oncheckedchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripButton.OnCheckedChanged(System.EventArgs)
+    name: OnCheckedChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripbutton.oncheckedchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripButton.OnCheckStateChanged(System.EventArgs)
+  commentId: M:System.Windows.Forms.ToolStripButton.OnCheckStateChanged(System.EventArgs)
+  parent: System.Windows.Forms.ToolStripButton
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripbutton.oncheckstatechanged
+  name: OnCheckStateChanged(EventArgs)
+  nameWithType: ToolStripButton.OnCheckStateChanged(EventArgs)
+  fullName: System.Windows.Forms.ToolStripButton.OnCheckStateChanged(System.EventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripButton.OnCheckStateChanged(System.EventArgs)
+    name: OnCheckStateChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripbutton.oncheckstatechanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripButton.OnCheckStateChanged(System.EventArgs)
+    name: OnCheckStateChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripbutton.oncheckstatechanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripButton.OnPaint(System.Windows.Forms.PaintEventArgs)
+  commentId: M:System.Windows.Forms.ToolStripButton.OnPaint(System.Windows.Forms.PaintEventArgs)
+  parent: System.Windows.Forms.ToolStripButton
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripbutton.onpaint
+  name: OnPaint(PaintEventArgs)
+  nameWithType: ToolStripButton.OnPaint(PaintEventArgs)
+  fullName: System.Windows.Forms.ToolStripButton.OnPaint(System.Windows.Forms.PaintEventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripButton.OnPaint(System.Windows.Forms.PaintEventArgs)
+    name: OnPaint
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripbutton.onpaint
+  - name: (
+  - uid: System.Windows.Forms.PaintEventArgs
+    name: PaintEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.painteventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripButton.OnPaint(System.Windows.Forms.PaintEventArgs)
+    name: OnPaint
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripbutton.onpaint
+  - name: (
+  - uid: System.Windows.Forms.PaintEventArgs
+    name: PaintEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.painteventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripButton.OnClick(System.EventArgs)
+  commentId: M:System.Windows.Forms.ToolStripButton.OnClick(System.EventArgs)
+  parent: System.Windows.Forms.ToolStripButton
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripbutton.onclick
+  name: OnClick(EventArgs)
+  nameWithType: ToolStripButton.OnClick(EventArgs)
+  fullName: System.Windows.Forms.ToolStripButton.OnClick(System.EventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripButton.OnClick(System.EventArgs)
+    name: OnClick
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripbutton.onclick
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripButton.OnClick(System.EventArgs)
+    name: OnClick
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripbutton.onclick
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripButton.ProcessDialogKey(System.Windows.Forms.Keys)
+  commentId: M:System.Windows.Forms.ToolStripButton.ProcessDialogKey(System.Windows.Forms.Keys)
+  parent: System.Windows.Forms.ToolStripButton
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripbutton.processdialogkey
+  name: ProcessDialogKey(Keys)
+  nameWithType: ToolStripButton.ProcessDialogKey(Keys)
+  fullName: System.Windows.Forms.ToolStripButton.ProcessDialogKey(System.Windows.Forms.Keys)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripButton.ProcessDialogKey(System.Windows.Forms.Keys)
+    name: ProcessDialogKey
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripbutton.processdialogkey
+  - name: (
+  - uid: System.Windows.Forms.Keys
+    name: Keys
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.keys
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripButton.ProcessDialogKey(System.Windows.Forms.Keys)
+    name: ProcessDialogKey
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripbutton.processdialogkey
+  - name: (
+  - uid: System.Windows.Forms.Keys
+    name: Keys
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.keys
+  - name: )
+- uid: System.Windows.Forms.ToolStripButton.AutoToolTip
+  commentId: P:System.Windows.Forms.ToolStripButton.AutoToolTip
+  parent: System.Windows.Forms.ToolStripButton
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripbutton.autotooltip
+  name: AutoToolTip
+  nameWithType: ToolStripButton.AutoToolTip
+  fullName: System.Windows.Forms.ToolStripButton.AutoToolTip
+- uid: System.Windows.Forms.ToolStripButton.CheckOnClick
+  commentId: P:System.Windows.Forms.ToolStripButton.CheckOnClick
+  parent: System.Windows.Forms.ToolStripButton
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripbutton.checkonclick
+  name: CheckOnClick
+  nameWithType: ToolStripButton.CheckOnClick
+  fullName: System.Windows.Forms.ToolStripButton.CheckOnClick
+- uid: System.Windows.Forms.ToolStripButton.Checked
+  commentId: P:System.Windows.Forms.ToolStripButton.Checked
+  parent: System.Windows.Forms.ToolStripButton
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripbutton.checked
+  name: Checked
+  nameWithType: ToolStripButton.Checked
+  fullName: System.Windows.Forms.ToolStripButton.Checked
+- uid: System.Windows.Forms.ToolStripButton.CheckState
+  commentId: P:System.Windows.Forms.ToolStripButton.CheckState
+  parent: System.Windows.Forms.ToolStripButton
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripbutton.checkstate
+  name: CheckState
+  nameWithType: ToolStripButton.CheckState
+  fullName: System.Windows.Forms.ToolStripButton.CheckState
+- uid: System.Windows.Forms.ToolStripButton.DefaultAutoToolTip
+  commentId: P:System.Windows.Forms.ToolStripButton.DefaultAutoToolTip
+  parent: System.Windows.Forms.ToolStripButton
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripbutton.defaultautotooltip
+  name: DefaultAutoToolTip
+  nameWithType: ToolStripButton.DefaultAutoToolTip
+  fullName: System.Windows.Forms.ToolStripButton.DefaultAutoToolTip
+- uid: System.Windows.Forms.ToolStripButton.CheckedChanged
+  commentId: E:System.Windows.Forms.ToolStripButton.CheckedChanged
+  parent: System.Windows.Forms.ToolStripButton
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripbutton.checkedchanged
+  name: CheckedChanged
+  nameWithType: ToolStripButton.CheckedChanged
+  fullName: System.Windows.Forms.ToolStripButton.CheckedChanged
+- uid: System.Windows.Forms.ToolStripButton.CheckStateChanged
+  commentId: E:System.Windows.Forms.ToolStripButton.CheckStateChanged
+  parent: System.Windows.Forms.ToolStripButton
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripbutton.checkstatechanged
+  name: CheckStateChanged
+  nameWithType: ToolStripButton.CheckStateChanged
+  fullName: System.Windows.Forms.ToolStripButton.CheckStateChanged
+- uid: System.Windows.Forms.ToolStripItem.OnSelectedChanged(System.EventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnSelectedChanged(System.EventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onselectedchanged
+  name: OnSelectedChanged(EventArgs)
+  nameWithType: ToolStripItem.OnSelectedChanged(EventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnSelectedChanged(System.EventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnSelectedChanged(System.EventArgs)
+    name: OnSelectedChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onselectedchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnSelectedChanged(System.EventArgs)
+    name: OnSelectedChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onselectedchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.Dispose(System.Boolean)
+  commentId: M:System.Windows.Forms.ToolStripItem.Dispose(System.Boolean)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.dispose
+  name: Dispose(bool)
+  nameWithType: ToolStripItem.Dispose(bool)
+  fullName: System.Windows.Forms.ToolStripItem.Dispose(bool)
+  nameWithType.vb: ToolStripItem.Dispose(Boolean)
+  fullName.vb: System.Windows.Forms.ToolStripItem.Dispose(Boolean)
+  name.vb: Dispose(Boolean)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.Dispose(System.Boolean)
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.dispose
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.Dispose(System.Boolean)
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.dispose
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.DoDragDrop(System.Object,System.Windows.Forms.DragDropEffects)
+  commentId: M:System.Windows.Forms.ToolStripItem.DoDragDrop(System.Object,System.Windows.Forms.DragDropEffects)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.dodragdrop#system-windows-forms-toolstripitem-dodragdrop(system-object-system-windows-forms-dragdropeffects)
+  name: DoDragDrop(object, DragDropEffects)
+  nameWithType: ToolStripItem.DoDragDrop(object, DragDropEffects)
+  fullName: System.Windows.Forms.ToolStripItem.DoDragDrop(object, System.Windows.Forms.DragDropEffects)
+  nameWithType.vb: ToolStripItem.DoDragDrop(Object, DragDropEffects)
+  fullName.vb: System.Windows.Forms.ToolStripItem.DoDragDrop(Object, System.Windows.Forms.DragDropEffects)
+  name.vb: DoDragDrop(Object, DragDropEffects)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.DoDragDrop(System.Object,System.Windows.Forms.DragDropEffects)
+    name: DoDragDrop
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.dodragdrop#system-windows-forms-toolstripitem-dodragdrop(system-object-system-windows-forms-dragdropeffects)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Windows.Forms.DragDropEffects
+    name: DragDropEffects
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.dragdropeffects
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.DoDragDrop(System.Object,System.Windows.Forms.DragDropEffects)
+    name: DoDragDrop
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.dodragdrop#system-windows-forms-toolstripitem-dodragdrop(system-object-system-windows-forms-dragdropeffects)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Windows.Forms.DragDropEffects
+    name: DragDropEffects
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.dragdropeffects
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.DoDragDrop(System.Object,System.Windows.Forms.DragDropEffects,System.Drawing.Bitmap,System.Drawing.Point,System.Boolean)
+  commentId: M:System.Windows.Forms.ToolStripItem.DoDragDrop(System.Object,System.Windows.Forms.DragDropEffects,System.Drawing.Bitmap,System.Drawing.Point,System.Boolean)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.dodragdrop#system-windows-forms-toolstripitem-dodragdrop(system-object-system-windows-forms-dragdropeffects-system-drawing-bitmap-system-drawing-point-system-boolean)
+  name: DoDragDrop(object, DragDropEffects, Bitmap, Point, bool)
+  nameWithType: ToolStripItem.DoDragDrop(object, DragDropEffects, Bitmap, Point, bool)
+  fullName: System.Windows.Forms.ToolStripItem.DoDragDrop(object, System.Windows.Forms.DragDropEffects, System.Drawing.Bitmap, System.Drawing.Point, bool)
+  nameWithType.vb: ToolStripItem.DoDragDrop(Object, DragDropEffects, Bitmap, Point, Boolean)
+  fullName.vb: System.Windows.Forms.ToolStripItem.DoDragDrop(Object, System.Windows.Forms.DragDropEffects, System.Drawing.Bitmap, System.Drawing.Point, Boolean)
+  name.vb: DoDragDrop(Object, DragDropEffects, Bitmap, Point, Boolean)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.DoDragDrop(System.Object,System.Windows.Forms.DragDropEffects,System.Drawing.Bitmap,System.Drawing.Point,System.Boolean)
+    name: DoDragDrop
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.dodragdrop#system-windows-forms-toolstripitem-dodragdrop(system-object-system-windows-forms-dragdropeffects-system-drawing-bitmap-system-drawing-point-system-boolean)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Windows.Forms.DragDropEffects
+    name: DragDropEffects
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.dragdropeffects
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.Bitmap
+    name: Bitmap
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.bitmap
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.Point
+    name: Point
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.point
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.DoDragDrop(System.Object,System.Windows.Forms.DragDropEffects,System.Drawing.Bitmap,System.Drawing.Point,System.Boolean)
+    name: DoDragDrop
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.dodragdrop#system-windows-forms-toolstripitem-dodragdrop(system-object-system-windows-forms-dragdropeffects-system-drawing-bitmap-system-drawing-point-system-boolean)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Windows.Forms.DragDropEffects
+    name: DragDropEffects
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.dragdropeffects
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.Bitmap
+    name: Bitmap
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.bitmap
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.Point
+    name: Point
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.point
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.GetCurrentParent
+  commentId: M:System.Windows.Forms.ToolStripItem.GetCurrentParent
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.getcurrentparent
+  name: GetCurrentParent()
+  nameWithType: ToolStripItem.GetCurrentParent()
+  fullName: System.Windows.Forms.ToolStripItem.GetCurrentParent()
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.GetCurrentParent
+    name: GetCurrentParent
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.getcurrentparent
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.GetCurrentParent
+    name: GetCurrentParent
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.getcurrentparent
+  - name: (
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.Invalidate
+  commentId: M:System.Windows.Forms.ToolStripItem.Invalidate
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.invalidate#system-windows-forms-toolstripitem-invalidate
+  name: Invalidate()
+  nameWithType: ToolStripItem.Invalidate()
+  fullName: System.Windows.Forms.ToolStripItem.Invalidate()
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.Invalidate
+    name: Invalidate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.invalidate#system-windows-forms-toolstripitem-invalidate
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.Invalidate
+    name: Invalidate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.invalidate#system-windows-forms-toolstripitem-invalidate
+  - name: (
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.Invalidate(System.Drawing.Rectangle)
+  commentId: M:System.Windows.Forms.ToolStripItem.Invalidate(System.Drawing.Rectangle)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.invalidate#system-windows-forms-toolstripitem-invalidate(system-drawing-rectangle)
+  name: Invalidate(Rectangle)
+  nameWithType: ToolStripItem.Invalidate(Rectangle)
+  fullName: System.Windows.Forms.ToolStripItem.Invalidate(System.Drawing.Rectangle)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.Invalidate(System.Drawing.Rectangle)
+    name: Invalidate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.invalidate#system-windows-forms-toolstripitem-invalidate(system-drawing-rectangle)
+  - name: (
+  - uid: System.Drawing.Rectangle
+    name: Rectangle
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.rectangle
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.Invalidate(System.Drawing.Rectangle)
+    name: Invalidate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.invalidate#system-windows-forms-toolstripitem-invalidate(system-drawing-rectangle)
+  - name: (
+  - uid: System.Drawing.Rectangle
+    name: Rectangle
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.rectangle
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.IsInputKey(System.Windows.Forms.Keys)
+  commentId: M:System.Windows.Forms.ToolStripItem.IsInputKey(System.Windows.Forms.Keys)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.isinputkey
+  name: IsInputKey(Keys)
+  nameWithType: ToolStripItem.IsInputKey(Keys)
+  fullName: System.Windows.Forms.ToolStripItem.IsInputKey(System.Windows.Forms.Keys)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.IsInputKey(System.Windows.Forms.Keys)
+    name: IsInputKey
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.isinputkey
+  - name: (
+  - uid: System.Windows.Forms.Keys
+    name: Keys
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.keys
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.IsInputKey(System.Windows.Forms.Keys)
+    name: IsInputKey
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.isinputkey
+  - name: (
+  - uid: System.Windows.Forms.Keys
+    name: Keys
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.keys
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.IsInputChar(System.Char)
+  commentId: M:System.Windows.Forms.ToolStripItem.IsInputChar(System.Char)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.isinputchar
+  name: IsInputChar(char)
+  nameWithType: ToolStripItem.IsInputChar(char)
+  fullName: System.Windows.Forms.ToolStripItem.IsInputChar(char)
+  nameWithType.vb: ToolStripItem.IsInputChar(Char)
+  fullName.vb: System.Windows.Forms.ToolStripItem.IsInputChar(Char)
+  name.vb: IsInputChar(Char)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.IsInputChar(System.Char)
+    name: IsInputChar
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.isinputchar
+  - name: (
+  - uid: System.Char
+    name: char
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.char
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.IsInputChar(System.Char)
+    name: IsInputChar
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.isinputchar
+  - name: (
+  - uid: System.Char
+    name: Char
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.char
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnBackColorChanged(System.EventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnBackColorChanged(System.EventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onbackcolorchanged
+  name: OnBackColorChanged(EventArgs)
+  nameWithType: ToolStripItem.OnBackColorChanged(EventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnBackColorChanged(System.EventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnBackColorChanged(System.EventArgs)
+    name: OnBackColorChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onbackcolorchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnBackColorChanged(System.EventArgs)
+    name: OnBackColorChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onbackcolorchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnBoundsChanged
+  commentId: M:System.Windows.Forms.ToolStripItem.OnBoundsChanged
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onboundschanged
+  name: OnBoundsChanged()
+  nameWithType: ToolStripItem.OnBoundsChanged()
+  fullName: System.Windows.Forms.ToolStripItem.OnBoundsChanged()
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnBoundsChanged
+    name: OnBoundsChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onboundschanged
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnBoundsChanged
+    name: OnBoundsChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onboundschanged
+  - name: (
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnLayout(System.Windows.Forms.LayoutEventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnLayout(System.Windows.Forms.LayoutEventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onlayout
+  name: OnLayout(LayoutEventArgs)
+  nameWithType: ToolStripItem.OnLayout(LayoutEventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnLayout(System.Windows.Forms.LayoutEventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnLayout(System.Windows.Forms.LayoutEventArgs)
+    name: OnLayout
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onlayout
+  - name: (
+  - uid: System.Windows.Forms.LayoutEventArgs
+    name: LayoutEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.layouteventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnLayout(System.Windows.Forms.LayoutEventArgs)
+    name: OnLayout
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onlayout
+  - name: (
+  - uid: System.Windows.Forms.LayoutEventArgs
+    name: LayoutEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.layouteventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnAvailableChanged(System.EventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnAvailableChanged(System.EventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onavailablechanged
+  name: OnAvailableChanged(EventArgs)
+  nameWithType: ToolStripItem.OnAvailableChanged(EventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnAvailableChanged(System.EventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnAvailableChanged(System.EventArgs)
+    name: OnAvailableChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onavailablechanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnAvailableChanged(System.EventArgs)
+    name: OnAvailableChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onavailablechanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnCommandChanged(System.EventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnCommandChanged(System.EventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.oncommandchanged
+  name: OnCommandChanged(EventArgs)
+  nameWithType: ToolStripItem.OnCommandChanged(EventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnCommandChanged(System.EventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnCommandChanged(System.EventArgs)
+    name: OnCommandChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.oncommandchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnCommandChanged(System.EventArgs)
+    name: OnCommandChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.oncommandchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnCommandCanExecuteChanged(System.EventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnCommandCanExecuteChanged(System.EventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.oncommandcanexecutechanged
+  name: OnCommandCanExecuteChanged(EventArgs)
+  nameWithType: ToolStripItem.OnCommandCanExecuteChanged(EventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnCommandCanExecuteChanged(System.EventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnCommandCanExecuteChanged(System.EventArgs)
+    name: OnCommandCanExecuteChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.oncommandcanexecutechanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnCommandCanExecuteChanged(System.EventArgs)
+    name: OnCommandCanExecuteChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.oncommandcanexecutechanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnCommandParameterChanged(System.EventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnCommandParameterChanged(System.EventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.oncommandparameterchanged
+  name: OnCommandParameterChanged(EventArgs)
+  nameWithType: ToolStripItem.OnCommandParameterChanged(EventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnCommandParameterChanged(System.EventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnCommandParameterChanged(System.EventArgs)
+    name: OnCommandParameterChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.oncommandparameterchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnCommandParameterChanged(System.EventArgs)
+    name: OnCommandParameterChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.oncommandparameterchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnRequestCommandExecute(System.EventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnRequestCommandExecute(System.EventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onrequestcommandexecute
+  name: OnRequestCommandExecute(EventArgs)
+  nameWithType: ToolStripItem.OnRequestCommandExecute(EventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnRequestCommandExecute(System.EventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnRequestCommandExecute(System.EventArgs)
+    name: OnRequestCommandExecute
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onrequestcommandexecute
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnRequestCommandExecute(System.EventArgs)
+    name: OnRequestCommandExecute
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onrequestcommandexecute
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnDragEnter(System.Windows.Forms.DragEventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnDragEnter(System.Windows.Forms.DragEventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.ondragenter
+  name: OnDragEnter(DragEventArgs)
+  nameWithType: ToolStripItem.OnDragEnter(DragEventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnDragEnter(System.Windows.Forms.DragEventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnDragEnter(System.Windows.Forms.DragEventArgs)
+    name: OnDragEnter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.ondragenter
+  - name: (
+  - uid: System.Windows.Forms.DragEventArgs
+    name: DragEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.drageventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnDragEnter(System.Windows.Forms.DragEventArgs)
+    name: OnDragEnter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.ondragenter
+  - name: (
+  - uid: System.Windows.Forms.DragEventArgs
+    name: DragEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.drageventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnDragOver(System.Windows.Forms.DragEventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnDragOver(System.Windows.Forms.DragEventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.ondragover
+  name: OnDragOver(DragEventArgs)
+  nameWithType: ToolStripItem.OnDragOver(DragEventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnDragOver(System.Windows.Forms.DragEventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnDragOver(System.Windows.Forms.DragEventArgs)
+    name: OnDragOver
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.ondragover
+  - name: (
+  - uid: System.Windows.Forms.DragEventArgs
+    name: DragEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.drageventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnDragOver(System.Windows.Forms.DragEventArgs)
+    name: OnDragOver
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.ondragover
+  - name: (
+  - uid: System.Windows.Forms.DragEventArgs
+    name: DragEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.drageventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnDragLeave(System.EventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnDragLeave(System.EventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.ondragleave
+  name: OnDragLeave(EventArgs)
+  nameWithType: ToolStripItem.OnDragLeave(EventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnDragLeave(System.EventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnDragLeave(System.EventArgs)
+    name: OnDragLeave
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.ondragleave
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnDragLeave(System.EventArgs)
+    name: OnDragLeave
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.ondragleave
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnDragDrop(System.Windows.Forms.DragEventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnDragDrop(System.Windows.Forms.DragEventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.ondragdrop
+  name: OnDragDrop(DragEventArgs)
+  nameWithType: ToolStripItem.OnDragDrop(DragEventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnDragDrop(System.Windows.Forms.DragEventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnDragDrop(System.Windows.Forms.DragEventArgs)
+    name: OnDragDrop
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.ondragdrop
+  - name: (
+  - uid: System.Windows.Forms.DragEventArgs
+    name: DragEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.drageventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnDragDrop(System.Windows.Forms.DragEventArgs)
+    name: OnDragDrop
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.ondragdrop
+  - name: (
+  - uid: System.Windows.Forms.DragEventArgs
+    name: DragEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.drageventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnDisplayStyleChanged(System.EventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnDisplayStyleChanged(System.EventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.ondisplaystylechanged
+  name: OnDisplayStyleChanged(EventArgs)
+  nameWithType: ToolStripItem.OnDisplayStyleChanged(EventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnDisplayStyleChanged(System.EventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnDisplayStyleChanged(System.EventArgs)
+    name: OnDisplayStyleChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.ondisplaystylechanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnDisplayStyleChanged(System.EventArgs)
+    name: OnDisplayStyleChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.ondisplaystylechanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnGiveFeedback(System.Windows.Forms.GiveFeedbackEventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnGiveFeedback(System.Windows.Forms.GiveFeedbackEventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.ongivefeedback
+  name: OnGiveFeedback(GiveFeedbackEventArgs)
+  nameWithType: ToolStripItem.OnGiveFeedback(GiveFeedbackEventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnGiveFeedback(System.Windows.Forms.GiveFeedbackEventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnGiveFeedback(System.Windows.Forms.GiveFeedbackEventArgs)
+    name: OnGiveFeedback
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.ongivefeedback
+  - name: (
+  - uid: System.Windows.Forms.GiveFeedbackEventArgs
+    name: GiveFeedbackEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.givefeedbackeventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnGiveFeedback(System.Windows.Forms.GiveFeedbackEventArgs)
+    name: OnGiveFeedback
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.ongivefeedback
+  - name: (
+  - uid: System.Windows.Forms.GiveFeedbackEventArgs
+    name: GiveFeedbackEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.givefeedbackeventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnQueryContinueDrag(System.Windows.Forms.QueryContinueDragEventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnQueryContinueDrag(System.Windows.Forms.QueryContinueDragEventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onquerycontinuedrag
+  name: OnQueryContinueDrag(QueryContinueDragEventArgs)
+  nameWithType: ToolStripItem.OnQueryContinueDrag(QueryContinueDragEventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnQueryContinueDrag(System.Windows.Forms.QueryContinueDragEventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnQueryContinueDrag(System.Windows.Forms.QueryContinueDragEventArgs)
+    name: OnQueryContinueDrag
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onquerycontinuedrag
+  - name: (
+  - uid: System.Windows.Forms.QueryContinueDragEventArgs
+    name: QueryContinueDragEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.querycontinuedrageventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnQueryContinueDrag(System.Windows.Forms.QueryContinueDragEventArgs)
+    name: OnQueryContinueDrag
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onquerycontinuedrag
+  - name: (
+  - uid: System.Windows.Forms.QueryContinueDragEventArgs
+    name: QueryContinueDragEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.querycontinuedrageventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnDoubleClick(System.EventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnDoubleClick(System.EventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.ondoubleclick
+  name: OnDoubleClick(EventArgs)
+  nameWithType: ToolStripItem.OnDoubleClick(EventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnDoubleClick(System.EventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnDoubleClick(System.EventArgs)
+    name: OnDoubleClick
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.ondoubleclick
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnDoubleClick(System.EventArgs)
+    name: OnDoubleClick
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.ondoubleclick
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnEnabledChanged(System.EventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnEnabledChanged(System.EventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onenabledchanged
+  name: OnEnabledChanged(EventArgs)
+  nameWithType: ToolStripItem.OnEnabledChanged(EventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnEnabledChanged(System.EventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnEnabledChanged(System.EventArgs)
+    name: OnEnabledChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onenabledchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnEnabledChanged(System.EventArgs)
+    name: OnEnabledChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onenabledchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnForeColorChanged(System.EventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnForeColorChanged(System.EventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onforecolorchanged
+  name: OnForeColorChanged(EventArgs)
+  nameWithType: ToolStripItem.OnForeColorChanged(EventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnForeColorChanged(System.EventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnForeColorChanged(System.EventArgs)
+    name: OnForeColorChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onforecolorchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnForeColorChanged(System.EventArgs)
+    name: OnForeColorChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onforecolorchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnFontChanged(System.EventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnFontChanged(System.EventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onfontchanged
+  name: OnFontChanged(EventArgs)
+  nameWithType: ToolStripItem.OnFontChanged(EventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnFontChanged(System.EventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnFontChanged(System.EventArgs)
+    name: OnFontChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onfontchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnFontChanged(System.EventArgs)
+    name: OnFontChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onfontchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnLocationChanged(System.EventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnLocationChanged(System.EventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onlocationchanged
+  name: OnLocationChanged(EventArgs)
+  nameWithType: ToolStripItem.OnLocationChanged(EventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnLocationChanged(System.EventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnLocationChanged(System.EventArgs)
+    name: OnLocationChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onlocationchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnLocationChanged(System.EventArgs)
+    name: OnLocationChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onlocationchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnMouseEnter(System.EventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnMouseEnter(System.EventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onmouseenter
+  name: OnMouseEnter(EventArgs)
+  nameWithType: ToolStripItem.OnMouseEnter(EventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnMouseEnter(System.EventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnMouseEnter(System.EventArgs)
+    name: OnMouseEnter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onmouseenter
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnMouseEnter(System.EventArgs)
+    name: OnMouseEnter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onmouseenter
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnMouseMove(System.Windows.Forms.MouseEventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnMouseMove(System.Windows.Forms.MouseEventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onmousemove
+  name: OnMouseMove(MouseEventArgs)
+  nameWithType: ToolStripItem.OnMouseMove(MouseEventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnMouseMove(System.Windows.Forms.MouseEventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnMouseMove(System.Windows.Forms.MouseEventArgs)
+    name: OnMouseMove
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onmousemove
+  - name: (
+  - uid: System.Windows.Forms.MouseEventArgs
+    name: MouseEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.mouseeventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnMouseMove(System.Windows.Forms.MouseEventArgs)
+    name: OnMouseMove
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onmousemove
+  - name: (
+  - uid: System.Windows.Forms.MouseEventArgs
+    name: MouseEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.mouseeventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnMouseHover(System.EventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnMouseHover(System.EventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onmousehover
+  name: OnMouseHover(EventArgs)
+  nameWithType: ToolStripItem.OnMouseHover(EventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnMouseHover(System.EventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnMouseHover(System.EventArgs)
+    name: OnMouseHover
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onmousehover
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnMouseHover(System.EventArgs)
+    name: OnMouseHover
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onmousehover
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnMouseLeave(System.EventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnMouseLeave(System.EventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onmouseleave
+  name: OnMouseLeave(EventArgs)
+  nameWithType: ToolStripItem.OnMouseLeave(EventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnMouseLeave(System.EventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnMouseLeave(System.EventArgs)
+    name: OnMouseLeave
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onmouseleave
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnMouseLeave(System.EventArgs)
+    name: OnMouseLeave
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onmouseleave
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnMouseDown(System.Windows.Forms.MouseEventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnMouseDown(System.Windows.Forms.MouseEventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onmousedown
+  name: OnMouseDown(MouseEventArgs)
+  nameWithType: ToolStripItem.OnMouseDown(MouseEventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnMouseDown(System.Windows.Forms.MouseEventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnMouseDown(System.Windows.Forms.MouseEventArgs)
+    name: OnMouseDown
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onmousedown
+  - name: (
+  - uid: System.Windows.Forms.MouseEventArgs
+    name: MouseEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.mouseeventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnMouseDown(System.Windows.Forms.MouseEventArgs)
+    name: OnMouseDown
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onmousedown
+  - name: (
+  - uid: System.Windows.Forms.MouseEventArgs
+    name: MouseEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.mouseeventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnMouseUp(System.Windows.Forms.MouseEventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnMouseUp(System.Windows.Forms.MouseEventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onmouseup
+  name: OnMouseUp(MouseEventArgs)
+  nameWithType: ToolStripItem.OnMouseUp(MouseEventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnMouseUp(System.Windows.Forms.MouseEventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnMouseUp(System.Windows.Forms.MouseEventArgs)
+    name: OnMouseUp
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onmouseup
+  - name: (
+  - uid: System.Windows.Forms.MouseEventArgs
+    name: MouseEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.mouseeventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnMouseUp(System.Windows.Forms.MouseEventArgs)
+    name: OnMouseUp
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onmouseup
+  - name: (
+  - uid: System.Windows.Forms.MouseEventArgs
+    name: MouseEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.mouseeventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnParentBackColorChanged(System.EventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnParentBackColorChanged(System.EventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onparentbackcolorchanged
+  name: OnParentBackColorChanged(EventArgs)
+  nameWithType: ToolStripItem.OnParentBackColorChanged(EventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnParentBackColorChanged(System.EventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnParentBackColorChanged(System.EventArgs)
+    name: OnParentBackColorChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onparentbackcolorchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnParentBackColorChanged(System.EventArgs)
+    name: OnParentBackColorChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onparentbackcolorchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnParentChanged(System.Windows.Forms.ToolStrip,System.Windows.Forms.ToolStrip)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnParentChanged(System.Windows.Forms.ToolStrip,System.Windows.Forms.ToolStrip)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onparentchanged
+  name: OnParentChanged(ToolStrip, ToolStrip)
+  nameWithType: ToolStripItem.OnParentChanged(ToolStrip, ToolStrip)
+  fullName: System.Windows.Forms.ToolStripItem.OnParentChanged(System.Windows.Forms.ToolStrip, System.Windows.Forms.ToolStrip)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnParentChanged(System.Windows.Forms.ToolStrip,System.Windows.Forms.ToolStrip)
+    name: OnParentChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onparentchanged
+  - name: (
+  - uid: System.Windows.Forms.ToolStrip
+    name: ToolStrip
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstrip
+  - name: ','
+  - name: " "
+  - uid: System.Windows.Forms.ToolStrip
+    name: ToolStrip
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstrip
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnParentChanged(System.Windows.Forms.ToolStrip,System.Windows.Forms.ToolStrip)
+    name: OnParentChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onparentchanged
+  - name: (
+  - uid: System.Windows.Forms.ToolStrip
+    name: ToolStrip
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstrip
+  - name: ','
+  - name: " "
+  - uid: System.Windows.Forms.ToolStrip
+    name: ToolStrip
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstrip
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnParentEnabledChanged(System.EventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnParentEnabledChanged(System.EventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onparentenabledchanged
+  name: OnParentEnabledChanged(EventArgs)
+  nameWithType: ToolStripItem.OnParentEnabledChanged(EventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnParentEnabledChanged(System.EventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnParentEnabledChanged(System.EventArgs)
+    name: OnParentEnabledChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onparentenabledchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnParentEnabledChanged(System.EventArgs)
+    name: OnParentEnabledChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onparentenabledchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnOwnerFontChanged(System.EventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnOwnerFontChanged(System.EventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onownerfontchanged
+  name: OnOwnerFontChanged(EventArgs)
+  nameWithType: ToolStripItem.OnOwnerFontChanged(EventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnOwnerFontChanged(System.EventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnOwnerFontChanged(System.EventArgs)
+    name: OnOwnerFontChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onownerfontchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnOwnerFontChanged(System.EventArgs)
+    name: OnOwnerFontChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onownerfontchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnParentForeColorChanged(System.EventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnParentForeColorChanged(System.EventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onparentforecolorchanged
+  name: OnParentForeColorChanged(EventArgs)
+  nameWithType: ToolStripItem.OnParentForeColorChanged(EventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnParentForeColorChanged(System.EventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnParentForeColorChanged(System.EventArgs)
+    name: OnParentForeColorChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onparentforecolorchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnParentForeColorChanged(System.EventArgs)
+    name: OnParentForeColorChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onparentforecolorchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnParentRightToLeftChanged(System.EventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnParentRightToLeftChanged(System.EventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onparentrighttoleftchanged
+  name: OnParentRightToLeftChanged(EventArgs)
+  nameWithType: ToolStripItem.OnParentRightToLeftChanged(EventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnParentRightToLeftChanged(System.EventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnParentRightToLeftChanged(System.EventArgs)
+    name: OnParentRightToLeftChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onparentrighttoleftchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnParentRightToLeftChanged(System.EventArgs)
+    name: OnParentRightToLeftChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onparentrighttoleftchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnOwnerChanged(System.EventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnOwnerChanged(System.EventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onownerchanged
+  name: OnOwnerChanged(EventArgs)
+  nameWithType: ToolStripItem.OnOwnerChanged(EventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnOwnerChanged(System.EventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnOwnerChanged(System.EventArgs)
+    name: OnOwnerChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onownerchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnOwnerChanged(System.EventArgs)
+    name: OnOwnerChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onownerchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnRightToLeftChanged(System.EventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnRightToLeftChanged(System.EventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onrighttoleftchanged
+  name: OnRightToLeftChanged(EventArgs)
+  nameWithType: ToolStripItem.OnRightToLeftChanged(EventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnRightToLeftChanged(System.EventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnRightToLeftChanged(System.EventArgs)
+    name: OnRightToLeftChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onrighttoleftchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnRightToLeftChanged(System.EventArgs)
+    name: OnRightToLeftChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onrighttoleftchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnTextChanged(System.EventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnTextChanged(System.EventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.ontextchanged
+  name: OnTextChanged(EventArgs)
+  nameWithType: ToolStripItem.OnTextChanged(EventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnTextChanged(System.EventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnTextChanged(System.EventArgs)
+    name: OnTextChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.ontextchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnTextChanged(System.EventArgs)
+    name: OnTextChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.ontextchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.OnVisibleChanged(System.EventArgs)
+  commentId: M:System.Windows.Forms.ToolStripItem.OnVisibleChanged(System.EventArgs)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onvisiblechanged
+  name: OnVisibleChanged(EventArgs)
+  nameWithType: ToolStripItem.OnVisibleChanged(EventArgs)
+  fullName: System.Windows.Forms.ToolStripItem.OnVisibleChanged(System.EventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.OnVisibleChanged(System.EventArgs)
+    name: OnVisibleChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onvisiblechanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.OnVisibleChanged(System.EventArgs)
+    name: OnVisibleChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.onvisiblechanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.PerformClick
+  commentId: M:System.Windows.Forms.ToolStripItem.PerformClick
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.performclick
+  name: PerformClick()
+  nameWithType: ToolStripItem.PerformClick()
+  fullName: System.Windows.Forms.ToolStripItem.PerformClick()
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.PerformClick
+    name: PerformClick
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.performclick
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.PerformClick
+    name: PerformClick
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.performclick
+  - name: (
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.ProcessCmdKey(System.Windows.Forms.Message@,System.Windows.Forms.Keys)
+  commentId: M:System.Windows.Forms.ToolStripItem.ProcessCmdKey(System.Windows.Forms.Message@,System.Windows.Forms.Keys)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.processcmdkey
+  name: ProcessCmdKey(ref Message, Keys)
+  nameWithType: ToolStripItem.ProcessCmdKey(ref Message, Keys)
+  fullName: System.Windows.Forms.ToolStripItem.ProcessCmdKey(ref System.Windows.Forms.Message, System.Windows.Forms.Keys)
+  nameWithType.vb: ToolStripItem.ProcessCmdKey(Message, Keys)
+  fullName.vb: System.Windows.Forms.ToolStripItem.ProcessCmdKey(System.Windows.Forms.Message, System.Windows.Forms.Keys)
+  name.vb: ProcessCmdKey(Message, Keys)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.ProcessCmdKey(System.Windows.Forms.Message@,System.Windows.Forms.Keys)
+    name: ProcessCmdKey
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.processcmdkey
+  - name: (
+  - name: ref
+  - name: " "
+  - uid: System.Windows.Forms.Message
+    name: Message
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.message
+  - name: ','
+  - name: " "
+  - uid: System.Windows.Forms.Keys
+    name: Keys
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.keys
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.ProcessCmdKey(System.Windows.Forms.Message@,System.Windows.Forms.Keys)
+    name: ProcessCmdKey
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.processcmdkey
+  - name: (
+  - uid: System.Windows.Forms.Message
+    name: Message
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.message
+  - name: ','
+  - name: " "
+  - uid: System.Windows.Forms.Keys
+    name: Keys
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.keys
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.ProcessMnemonic(System.Char)
+  commentId: M:System.Windows.Forms.ToolStripItem.ProcessMnemonic(System.Char)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.processmnemonic
+  name: ProcessMnemonic(char)
+  nameWithType: ToolStripItem.ProcessMnemonic(char)
+  fullName: System.Windows.Forms.ToolStripItem.ProcessMnemonic(char)
+  nameWithType.vb: ToolStripItem.ProcessMnemonic(Char)
+  fullName.vb: System.Windows.Forms.ToolStripItem.ProcessMnemonic(Char)
+  name.vb: ProcessMnemonic(Char)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.ProcessMnemonic(System.Char)
+    name: ProcessMnemonic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.processmnemonic
+  - name: (
+  - uid: System.Char
+    name: char
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.char
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.ProcessMnemonic(System.Char)
+    name: ProcessMnemonic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.processmnemonic
+  - name: (
+  - uid: System.Char
+    name: Char
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.char
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.Select
+  commentId: M:System.Windows.Forms.ToolStripItem.Select
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.select
+  name: Select()
+  nameWithType: ToolStripItem.Select()
+  fullName: System.Windows.Forms.ToolStripItem.Select()
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.Select
+    name: Select
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.select
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.Select
+    name: Select
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.select
+  - name: (
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.SetVisibleCore(System.Boolean)
+  commentId: M:System.Windows.Forms.ToolStripItem.SetVisibleCore(System.Boolean)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.setvisiblecore
+  name: SetVisibleCore(bool)
+  nameWithType: ToolStripItem.SetVisibleCore(bool)
+  fullName: System.Windows.Forms.ToolStripItem.SetVisibleCore(bool)
+  nameWithType.vb: ToolStripItem.SetVisibleCore(Boolean)
+  fullName.vb: System.Windows.Forms.ToolStripItem.SetVisibleCore(Boolean)
+  name.vb: SetVisibleCore(Boolean)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.SetVisibleCore(System.Boolean)
+    name: SetVisibleCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.setvisiblecore
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.SetVisibleCore(System.Boolean)
+    name: SetVisibleCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.setvisiblecore
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.SetBounds(System.Drawing.Rectangle)
+  commentId: M:System.Windows.Forms.ToolStripItem.SetBounds(System.Drawing.Rectangle)
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.setbounds
+  name: SetBounds(Rectangle)
+  nameWithType: ToolStripItem.SetBounds(Rectangle)
+  fullName: System.Windows.Forms.ToolStripItem.SetBounds(System.Drawing.Rectangle)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.SetBounds(System.Drawing.Rectangle)
+    name: SetBounds
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.setbounds
+  - name: (
+  - uid: System.Drawing.Rectangle
+    name: Rectangle
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.rectangle
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.SetBounds(System.Drawing.Rectangle)
+    name: SetBounds
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.setbounds
+  - name: (
+  - uid: System.Drawing.Rectangle
+    name: Rectangle
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.rectangle
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.ToString
+  commentId: M:System.Windows.Forms.ToolStripItem.ToString
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.tostring
+  name: ToString()
+  nameWithType: ToolStripItem.ToString()
+  fullName: System.Windows.Forms.ToolStripItem.ToString()
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolStripItem.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolStripItem.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.tostring
+  - name: (
+  - name: )
+- uid: System.Windows.Forms.ToolStripItem.AccessibilityObject
+  commentId: P:System.Windows.Forms.ToolStripItem.AccessibilityObject
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.accessibilityobject
+  name: AccessibilityObject
+  nameWithType: ToolStripItem.AccessibilityObject
+  fullName: System.Windows.Forms.ToolStripItem.AccessibilityObject
+- uid: System.Windows.Forms.ToolStripItem.AccessibleDefaultActionDescription
+  commentId: P:System.Windows.Forms.ToolStripItem.AccessibleDefaultActionDescription
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.accessibledefaultactiondescription
+  name: AccessibleDefaultActionDescription
+  nameWithType: ToolStripItem.AccessibleDefaultActionDescription
+  fullName: System.Windows.Forms.ToolStripItem.AccessibleDefaultActionDescription
+- uid: System.Windows.Forms.ToolStripItem.AccessibleDescription
+  commentId: P:System.Windows.Forms.ToolStripItem.AccessibleDescription
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.accessibledescription
+  name: AccessibleDescription
+  nameWithType: ToolStripItem.AccessibleDescription
+  fullName: System.Windows.Forms.ToolStripItem.AccessibleDescription
+- uid: System.Windows.Forms.ToolStripItem.AccessibleName
+  commentId: P:System.Windows.Forms.ToolStripItem.AccessibleName
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.accessiblename
+  name: AccessibleName
+  nameWithType: ToolStripItem.AccessibleName
+  fullName: System.Windows.Forms.ToolStripItem.AccessibleName
+- uid: System.Windows.Forms.ToolStripItem.AccessibleRole
+  commentId: P:System.Windows.Forms.ToolStripItem.AccessibleRole
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.accessiblerole
+  name: AccessibleRole
+  nameWithType: ToolStripItem.AccessibleRole
+  fullName: System.Windows.Forms.ToolStripItem.AccessibleRole
+- uid: System.Windows.Forms.ToolStripItem.Alignment
+  commentId: P:System.Windows.Forms.ToolStripItem.Alignment
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.alignment
+  name: Alignment
+  nameWithType: ToolStripItem.Alignment
+  fullName: System.Windows.Forms.ToolStripItem.Alignment
+- uid: System.Windows.Forms.ToolStripItem.AllowDrop
+  commentId: P:System.Windows.Forms.ToolStripItem.AllowDrop
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.allowdrop
+  name: AllowDrop
+  nameWithType: ToolStripItem.AllowDrop
+  fullName: System.Windows.Forms.ToolStripItem.AllowDrop
+- uid: System.Windows.Forms.ToolStripItem.AutoSize
+  commentId: P:System.Windows.Forms.ToolStripItem.AutoSize
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.autosize
+  name: AutoSize
+  nameWithType: ToolStripItem.AutoSize
+  fullName: System.Windows.Forms.ToolStripItem.AutoSize
+- uid: System.Windows.Forms.ToolStripItem.Available
+  commentId: P:System.Windows.Forms.ToolStripItem.Available
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.available
+  name: Available
+  nameWithType: ToolStripItem.Available
+  fullName: System.Windows.Forms.ToolStripItem.Available
+- uid: System.Windows.Forms.ToolStripItem.BackgroundImage
+  commentId: P:System.Windows.Forms.ToolStripItem.BackgroundImage
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.backgroundimage
+  name: BackgroundImage
+  nameWithType: ToolStripItem.BackgroundImage
+  fullName: System.Windows.Forms.ToolStripItem.BackgroundImage
+- uid: System.Windows.Forms.ToolStripItem.Command
+  commentId: P:System.Windows.Forms.ToolStripItem.Command
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.command
+  name: Command
+  nameWithType: ToolStripItem.Command
+  fullName: System.Windows.Forms.ToolStripItem.Command
+- uid: System.Windows.Forms.ToolStripItem.CommandParameter
+  commentId: P:System.Windows.Forms.ToolStripItem.CommandParameter
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.commandparameter
+  name: CommandParameter
+  nameWithType: ToolStripItem.CommandParameter
+  fullName: System.Windows.Forms.ToolStripItem.CommandParameter
+- uid: System.Windows.Forms.ToolStripItem.BackgroundImageLayout
+  commentId: P:System.Windows.Forms.ToolStripItem.BackgroundImageLayout
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.backgroundimagelayout
+  name: BackgroundImageLayout
+  nameWithType: ToolStripItem.BackgroundImageLayout
+  fullName: System.Windows.Forms.ToolStripItem.BackgroundImageLayout
+- uid: System.Windows.Forms.ToolStripItem.BackColor
+  commentId: P:System.Windows.Forms.ToolStripItem.BackColor
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.backcolor
+  name: BackColor
+  nameWithType: ToolStripItem.BackColor
+  fullName: System.Windows.Forms.ToolStripItem.BackColor
+- uid: System.Windows.Forms.ToolStripItem.Bounds
+  commentId: P:System.Windows.Forms.ToolStripItem.Bounds
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.bounds
+  name: Bounds
+  nameWithType: ToolStripItem.Bounds
+  fullName: System.Windows.Forms.ToolStripItem.Bounds
+- uid: System.Windows.Forms.ToolStripItem.ContentRectangle
+  commentId: P:System.Windows.Forms.ToolStripItem.ContentRectangle
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.contentrectangle
+  name: ContentRectangle
+  nameWithType: ToolStripItem.ContentRectangle
+  fullName: System.Windows.Forms.ToolStripItem.ContentRectangle
+- uid: System.Windows.Forms.ToolStripItem.CanSelect
+  commentId: P:System.Windows.Forms.ToolStripItem.CanSelect
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.canselect
+  name: CanSelect
+  nameWithType: ToolStripItem.CanSelect
+  fullName: System.Windows.Forms.ToolStripItem.CanSelect
+- uid: System.Windows.Forms.ToolStripItem.Anchor
+  commentId: P:System.Windows.Forms.ToolStripItem.Anchor
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.anchor
+  name: Anchor
+  nameWithType: ToolStripItem.Anchor
+  fullName: System.Windows.Forms.ToolStripItem.Anchor
+- uid: System.Windows.Forms.ToolStripItem.Dock
+  commentId: P:System.Windows.Forms.ToolStripItem.Dock
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.dock
+  name: Dock
+  nameWithType: ToolStripItem.Dock
+  fullName: System.Windows.Forms.ToolStripItem.Dock
+- uid: System.Windows.Forms.ToolStripItem.DefaultMargin
+  commentId: P:System.Windows.Forms.ToolStripItem.DefaultMargin
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.defaultmargin
+  name: DefaultMargin
+  nameWithType: ToolStripItem.DefaultMargin
+  fullName: System.Windows.Forms.ToolStripItem.DefaultMargin
+- uid: System.Windows.Forms.ToolStripItem.DefaultPadding
+  commentId: P:System.Windows.Forms.ToolStripItem.DefaultPadding
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.defaultpadding
+  name: DefaultPadding
+  nameWithType: ToolStripItem.DefaultPadding
+  fullName: System.Windows.Forms.ToolStripItem.DefaultPadding
+- uid: System.Windows.Forms.ToolStripItem.DefaultSize
+  commentId: P:System.Windows.Forms.ToolStripItem.DefaultSize
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.defaultsize
+  name: DefaultSize
+  nameWithType: ToolStripItem.DefaultSize
+  fullName: System.Windows.Forms.ToolStripItem.DefaultSize
+- uid: System.Windows.Forms.ToolStripItem.DefaultDisplayStyle
+  commentId: P:System.Windows.Forms.ToolStripItem.DefaultDisplayStyle
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.defaultdisplaystyle
+  name: DefaultDisplayStyle
+  nameWithType: ToolStripItem.DefaultDisplayStyle
+  fullName: System.Windows.Forms.ToolStripItem.DefaultDisplayStyle
+- uid: System.Windows.Forms.ToolStripItem.DismissWhenClicked
+  commentId: P:System.Windows.Forms.ToolStripItem.DismissWhenClicked
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.dismisswhenclicked
+  name: DismissWhenClicked
+  nameWithType: ToolStripItem.DismissWhenClicked
+  fullName: System.Windows.Forms.ToolStripItem.DismissWhenClicked
+- uid: System.Windows.Forms.ToolStripItem.DisplayStyle
+  commentId: P:System.Windows.Forms.ToolStripItem.DisplayStyle
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.displaystyle
+  name: DisplayStyle
+  nameWithType: ToolStripItem.DisplayStyle
+  fullName: System.Windows.Forms.ToolStripItem.DisplayStyle
+- uid: System.Windows.Forms.ToolStripItem.DoubleClickEnabled
+  commentId: P:System.Windows.Forms.ToolStripItem.DoubleClickEnabled
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.doubleclickenabled
+  name: DoubleClickEnabled
+  nameWithType: ToolStripItem.DoubleClickEnabled
+  fullName: System.Windows.Forms.ToolStripItem.DoubleClickEnabled
+- uid: System.Windows.Forms.ToolStripItem.Enabled
+  commentId: P:System.Windows.Forms.ToolStripItem.Enabled
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.enabled
+  name: Enabled
+  nameWithType: ToolStripItem.Enabled
+  fullName: System.Windows.Forms.ToolStripItem.Enabled
+- uid: System.Windows.Forms.ToolStripItem.ForeColor
+  commentId: P:System.Windows.Forms.ToolStripItem.ForeColor
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.forecolor
+  name: ForeColor
+  nameWithType: ToolStripItem.ForeColor
+  fullName: System.Windows.Forms.ToolStripItem.ForeColor
+- uid: System.Windows.Forms.ToolStripItem.Font
+  commentId: P:System.Windows.Forms.ToolStripItem.Font
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.font
+  name: Font
+  nameWithType: ToolStripItem.Font
+  fullName: System.Windows.Forms.ToolStripItem.Font
+- uid: System.Windows.Forms.ToolStripItem.Height
+  commentId: P:System.Windows.Forms.ToolStripItem.Height
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.height
+  name: Height
+  nameWithType: ToolStripItem.Height
+  fullName: System.Windows.Forms.ToolStripItem.Height
+- uid: System.Windows.Forms.ToolStripItem.ImageAlign
+  commentId: P:System.Windows.Forms.ToolStripItem.ImageAlign
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.imagealign
+  name: ImageAlign
+  nameWithType: ToolStripItem.ImageAlign
+  fullName: System.Windows.Forms.ToolStripItem.ImageAlign
+- uid: System.Windows.Forms.ToolStripItem.Image
+  commentId: P:System.Windows.Forms.ToolStripItem.Image
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.image
+  name: Image
+  nameWithType: ToolStripItem.Image
+  fullName: System.Windows.Forms.ToolStripItem.Image
+- uid: System.Windows.Forms.ToolStripItem.ImageTransparentColor
+  commentId: P:System.Windows.Forms.ToolStripItem.ImageTransparentColor
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.imagetransparentcolor
+  name: ImageTransparentColor
+  nameWithType: ToolStripItem.ImageTransparentColor
+  fullName: System.Windows.Forms.ToolStripItem.ImageTransparentColor
+- uid: System.Windows.Forms.ToolStripItem.ImageIndex
+  commentId: P:System.Windows.Forms.ToolStripItem.ImageIndex
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.imageindex
+  name: ImageIndex
+  nameWithType: ToolStripItem.ImageIndex
+  fullName: System.Windows.Forms.ToolStripItem.ImageIndex
+- uid: System.Windows.Forms.ToolStripItem.ImageKey
+  commentId: P:System.Windows.Forms.ToolStripItem.ImageKey
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.imagekey
+  name: ImageKey
+  nameWithType: ToolStripItem.ImageKey
+  fullName: System.Windows.Forms.ToolStripItem.ImageKey
+- uid: System.Windows.Forms.ToolStripItem.ImageScaling
+  commentId: P:System.Windows.Forms.ToolStripItem.ImageScaling
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.imagescaling
+  name: ImageScaling
+  nameWithType: ToolStripItem.ImageScaling
+  fullName: System.Windows.Forms.ToolStripItem.ImageScaling
+- uid: System.Windows.Forms.ToolStripItem.IsDisposed
+  commentId: P:System.Windows.Forms.ToolStripItem.IsDisposed
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.isdisposed
+  name: IsDisposed
+  nameWithType: ToolStripItem.IsDisposed
+  fullName: System.Windows.Forms.ToolStripItem.IsDisposed
+- uid: System.Windows.Forms.ToolStripItem.IsOnDropDown
+  commentId: P:System.Windows.Forms.ToolStripItem.IsOnDropDown
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.isondropdown
+  name: IsOnDropDown
+  nameWithType: ToolStripItem.IsOnDropDown
+  fullName: System.Windows.Forms.ToolStripItem.IsOnDropDown
+- uid: System.Windows.Forms.ToolStripItem.IsOnOverflow
+  commentId: P:System.Windows.Forms.ToolStripItem.IsOnOverflow
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.isonoverflow
+  name: IsOnOverflow
+  nameWithType: ToolStripItem.IsOnOverflow
+  fullName: System.Windows.Forms.ToolStripItem.IsOnOverflow
+- uid: System.Windows.Forms.ToolStripItem.Margin
+  commentId: P:System.Windows.Forms.ToolStripItem.Margin
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.margin
+  name: Margin
+  nameWithType: ToolStripItem.Margin
+  fullName: System.Windows.Forms.ToolStripItem.Margin
+- uid: System.Windows.Forms.ToolStripItem.MergeAction
+  commentId: P:System.Windows.Forms.ToolStripItem.MergeAction
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.mergeaction
+  name: MergeAction
+  nameWithType: ToolStripItem.MergeAction
+  fullName: System.Windows.Forms.ToolStripItem.MergeAction
+- uid: System.Windows.Forms.ToolStripItem.MergeIndex
+  commentId: P:System.Windows.Forms.ToolStripItem.MergeIndex
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.mergeindex
+  name: MergeIndex
+  nameWithType: ToolStripItem.MergeIndex
+  fullName: System.Windows.Forms.ToolStripItem.MergeIndex
+- uid: System.Windows.Forms.ToolStripItem.Name
+  commentId: P:System.Windows.Forms.ToolStripItem.Name
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.name
+  name: Name
+  nameWithType: ToolStripItem.Name
+  fullName: System.Windows.Forms.ToolStripItem.Name
+- uid: System.Windows.Forms.ToolStripItem.Owner
+  commentId: P:System.Windows.Forms.ToolStripItem.Owner
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.owner
+  name: Owner
+  nameWithType: ToolStripItem.Owner
+  fullName: System.Windows.Forms.ToolStripItem.Owner
+- uid: System.Windows.Forms.ToolStripItem.OwnerItem
+  commentId: P:System.Windows.Forms.ToolStripItem.OwnerItem
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.owneritem
+  name: OwnerItem
+  nameWithType: ToolStripItem.OwnerItem
+  fullName: System.Windows.Forms.ToolStripItem.OwnerItem
+- uid: System.Windows.Forms.ToolStripItem.Parent
+  commentId: P:System.Windows.Forms.ToolStripItem.Parent
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.parent
+  name: Parent
+  nameWithType: ToolStripItem.Parent
+  fullName: System.Windows.Forms.ToolStripItem.Parent
+- uid: System.Windows.Forms.ToolStripItem.Overflow
+  commentId: P:System.Windows.Forms.ToolStripItem.Overflow
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.overflow
+  name: Overflow
+  nameWithType: ToolStripItem.Overflow
+  fullName: System.Windows.Forms.ToolStripItem.Overflow
+- uid: System.Windows.Forms.ToolStripItem.Padding
+  commentId: P:System.Windows.Forms.ToolStripItem.Padding
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.padding
+  name: Padding
+  nameWithType: ToolStripItem.Padding
+  fullName: System.Windows.Forms.ToolStripItem.Padding
+- uid: System.Windows.Forms.ToolStripItem.Placement
+  commentId: P:System.Windows.Forms.ToolStripItem.Placement
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.placement
+  name: Placement
+  nameWithType: ToolStripItem.Placement
+  fullName: System.Windows.Forms.ToolStripItem.Placement
+- uid: System.Windows.Forms.ToolStripItem.Pressed
+  commentId: P:System.Windows.Forms.ToolStripItem.Pressed
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.pressed
+  name: Pressed
+  nameWithType: ToolStripItem.Pressed
+  fullName: System.Windows.Forms.ToolStripItem.Pressed
+- uid: System.Windows.Forms.ToolStripItem.Renderer
+  commentId: P:System.Windows.Forms.ToolStripItem.Renderer
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.renderer
+  name: Renderer
+  nameWithType: ToolStripItem.Renderer
+  fullName: System.Windows.Forms.ToolStripItem.Renderer
+- uid: System.Windows.Forms.ToolStripItem.RightToLeft
+  commentId: P:System.Windows.Forms.ToolStripItem.RightToLeft
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.righttoleft
+  name: RightToLeft
+  nameWithType: ToolStripItem.RightToLeft
+  fullName: System.Windows.Forms.ToolStripItem.RightToLeft
+- uid: System.Windows.Forms.ToolStripItem.RightToLeftAutoMirrorImage
+  commentId: P:System.Windows.Forms.ToolStripItem.RightToLeftAutoMirrorImage
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.righttoleftautomirrorimage
+  name: RightToLeftAutoMirrorImage
+  nameWithType: ToolStripItem.RightToLeftAutoMirrorImage
+  fullName: System.Windows.Forms.ToolStripItem.RightToLeftAutoMirrorImage
+- uid: System.Windows.Forms.ToolStripItem.Selected
+  commentId: P:System.Windows.Forms.ToolStripItem.Selected
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.selected
+  name: Selected
+  nameWithType: ToolStripItem.Selected
+  fullName: System.Windows.Forms.ToolStripItem.Selected
+- uid: System.Windows.Forms.ToolStripItem.ShowKeyboardCues
+  commentId: P:System.Windows.Forms.ToolStripItem.ShowKeyboardCues
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.showkeyboardcues
+  name: ShowKeyboardCues
+  nameWithType: ToolStripItem.ShowKeyboardCues
+  fullName: System.Windows.Forms.ToolStripItem.ShowKeyboardCues
+- uid: System.Windows.Forms.ToolStripItem.Size
+  commentId: P:System.Windows.Forms.ToolStripItem.Size
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.size
+  name: Size
+  nameWithType: ToolStripItem.Size
+  fullName: System.Windows.Forms.ToolStripItem.Size
+- uid: System.Windows.Forms.ToolStripItem.Tag
+  commentId: P:System.Windows.Forms.ToolStripItem.Tag
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.tag
+  name: Tag
+  nameWithType: ToolStripItem.Tag
+  fullName: System.Windows.Forms.ToolStripItem.Tag
+- uid: System.Windows.Forms.ToolStripItem.Text
+  commentId: P:System.Windows.Forms.ToolStripItem.Text
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.text
+  name: Text
+  nameWithType: ToolStripItem.Text
+  fullName: System.Windows.Forms.ToolStripItem.Text
+- uid: System.Windows.Forms.ToolStripItem.TextAlign
+  commentId: P:System.Windows.Forms.ToolStripItem.TextAlign
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.textalign
+  name: TextAlign
+  nameWithType: ToolStripItem.TextAlign
+  fullName: System.Windows.Forms.ToolStripItem.TextAlign
+- uid: System.Windows.Forms.ToolStripItem.TextDirection
+  commentId: P:System.Windows.Forms.ToolStripItem.TextDirection
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.textdirection
+  name: TextDirection
+  nameWithType: ToolStripItem.TextDirection
+  fullName: System.Windows.Forms.ToolStripItem.TextDirection
+- uid: System.Windows.Forms.ToolStripItem.TextImageRelation
+  commentId: P:System.Windows.Forms.ToolStripItem.TextImageRelation
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.textimagerelation
+  name: TextImageRelation
+  nameWithType: ToolStripItem.TextImageRelation
+  fullName: System.Windows.Forms.ToolStripItem.TextImageRelation
+- uid: System.Windows.Forms.ToolStripItem.ToolTipText
+  commentId: P:System.Windows.Forms.ToolStripItem.ToolTipText
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.tooltiptext
+  name: ToolTipText
+  nameWithType: ToolStripItem.ToolTipText
+  fullName: System.Windows.Forms.ToolStripItem.ToolTipText
+- uid: System.Windows.Forms.ToolStripItem.Visible
+  commentId: P:System.Windows.Forms.ToolStripItem.Visible
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.visible
+  name: Visible
+  nameWithType: ToolStripItem.Visible
+  fullName: System.Windows.Forms.ToolStripItem.Visible
+- uid: System.Windows.Forms.ToolStripItem.Width
+  commentId: P:System.Windows.Forms.ToolStripItem.Width
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.width
+  name: Width
+  nameWithType: ToolStripItem.Width
+  fullName: System.Windows.Forms.ToolStripItem.Width
+- uid: System.Windows.Forms.ToolStripItem.AvailableChanged
+  commentId: E:System.Windows.Forms.ToolStripItem.AvailableChanged
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.availablechanged
+  name: AvailableChanged
+  nameWithType: ToolStripItem.AvailableChanged
+  fullName: System.Windows.Forms.ToolStripItem.AvailableChanged
+- uid: System.Windows.Forms.ToolStripItem.CommandCanExecuteChanged
+  commentId: E:System.Windows.Forms.ToolStripItem.CommandCanExecuteChanged
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.commandcanexecutechanged
+  name: CommandCanExecuteChanged
+  nameWithType: ToolStripItem.CommandCanExecuteChanged
+  fullName: System.Windows.Forms.ToolStripItem.CommandCanExecuteChanged
+- uid: System.Windows.Forms.ToolStripItem.CommandChanged
+  commentId: E:System.Windows.Forms.ToolStripItem.CommandChanged
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.commandchanged
+  name: CommandChanged
+  nameWithType: ToolStripItem.CommandChanged
+  fullName: System.Windows.Forms.ToolStripItem.CommandChanged
+- uid: System.Windows.Forms.ToolStripItem.CommandParameterChanged
+  commentId: E:System.Windows.Forms.ToolStripItem.CommandParameterChanged
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.commandparameterchanged
+  name: CommandParameterChanged
+  nameWithType: ToolStripItem.CommandParameterChanged
+  fullName: System.Windows.Forms.ToolStripItem.CommandParameterChanged
+- uid: System.Windows.Forms.ToolStripItem.BackColorChanged
+  commentId: E:System.Windows.Forms.ToolStripItem.BackColorChanged
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.backcolorchanged
+  name: BackColorChanged
+  nameWithType: ToolStripItem.BackColorChanged
+  fullName: System.Windows.Forms.ToolStripItem.BackColorChanged
+- uid: System.Windows.Forms.ToolStripItem.Click
+  commentId: E:System.Windows.Forms.ToolStripItem.Click
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.click
+  name: Click
+  nameWithType: ToolStripItem.Click
+  fullName: System.Windows.Forms.ToolStripItem.Click
+- uid: System.Windows.Forms.ToolStripItem.DisplayStyleChanged
+  commentId: E:System.Windows.Forms.ToolStripItem.DisplayStyleChanged
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.displaystylechanged
+  name: DisplayStyleChanged
+  nameWithType: ToolStripItem.DisplayStyleChanged
+  fullName: System.Windows.Forms.ToolStripItem.DisplayStyleChanged
+- uid: System.Windows.Forms.ToolStripItem.DoubleClick
+  commentId: E:System.Windows.Forms.ToolStripItem.DoubleClick
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.doubleclick
+  name: DoubleClick
+  nameWithType: ToolStripItem.DoubleClick
+  fullName: System.Windows.Forms.ToolStripItem.DoubleClick
+- uid: System.Windows.Forms.ToolStripItem.DragDrop
+  commentId: E:System.Windows.Forms.ToolStripItem.DragDrop
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.dragdrop
+  name: DragDrop
+  nameWithType: ToolStripItem.DragDrop
+  fullName: System.Windows.Forms.ToolStripItem.DragDrop
+- uid: System.Windows.Forms.ToolStripItem.DragEnter
+  commentId: E:System.Windows.Forms.ToolStripItem.DragEnter
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.dragenter
+  name: DragEnter
+  nameWithType: ToolStripItem.DragEnter
+  fullName: System.Windows.Forms.ToolStripItem.DragEnter
+- uid: System.Windows.Forms.ToolStripItem.DragOver
+  commentId: E:System.Windows.Forms.ToolStripItem.DragOver
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.dragover
+  name: DragOver
+  nameWithType: ToolStripItem.DragOver
+  fullName: System.Windows.Forms.ToolStripItem.DragOver
+- uid: System.Windows.Forms.ToolStripItem.DragLeave
+  commentId: E:System.Windows.Forms.ToolStripItem.DragLeave
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.dragleave
+  name: DragLeave
+  nameWithType: ToolStripItem.DragLeave
+  fullName: System.Windows.Forms.ToolStripItem.DragLeave
+- uid: System.Windows.Forms.ToolStripItem.EnabledChanged
+  commentId: E:System.Windows.Forms.ToolStripItem.EnabledChanged
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.enabledchanged
+  name: EnabledChanged
+  nameWithType: ToolStripItem.EnabledChanged
+  fullName: System.Windows.Forms.ToolStripItem.EnabledChanged
+- uid: System.Windows.Forms.ToolStripItem.ForeColorChanged
+  commentId: E:System.Windows.Forms.ToolStripItem.ForeColorChanged
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.forecolorchanged
+  name: ForeColorChanged
+  nameWithType: ToolStripItem.ForeColorChanged
+  fullName: System.Windows.Forms.ToolStripItem.ForeColorChanged
+- uid: System.Windows.Forms.ToolStripItem.GiveFeedback
+  commentId: E:System.Windows.Forms.ToolStripItem.GiveFeedback
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.givefeedback
+  name: GiveFeedback
+  nameWithType: ToolStripItem.GiveFeedback
+  fullName: System.Windows.Forms.ToolStripItem.GiveFeedback
+- uid: System.Windows.Forms.ToolStripItem.LocationChanged
+  commentId: E:System.Windows.Forms.ToolStripItem.LocationChanged
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.locationchanged
+  name: LocationChanged
+  nameWithType: ToolStripItem.LocationChanged
+  fullName: System.Windows.Forms.ToolStripItem.LocationChanged
+- uid: System.Windows.Forms.ToolStripItem.MouseDown
+  commentId: E:System.Windows.Forms.ToolStripItem.MouseDown
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.mousedown
+  name: MouseDown
+  nameWithType: ToolStripItem.MouseDown
+  fullName: System.Windows.Forms.ToolStripItem.MouseDown
+- uid: System.Windows.Forms.ToolStripItem.MouseEnter
+  commentId: E:System.Windows.Forms.ToolStripItem.MouseEnter
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.mouseenter
+  name: MouseEnter
+  nameWithType: ToolStripItem.MouseEnter
+  fullName: System.Windows.Forms.ToolStripItem.MouseEnter
+- uid: System.Windows.Forms.ToolStripItem.MouseLeave
+  commentId: E:System.Windows.Forms.ToolStripItem.MouseLeave
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.mouseleave
+  name: MouseLeave
+  nameWithType: ToolStripItem.MouseLeave
+  fullName: System.Windows.Forms.ToolStripItem.MouseLeave
+- uid: System.Windows.Forms.ToolStripItem.MouseHover
+  commentId: E:System.Windows.Forms.ToolStripItem.MouseHover
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.mousehover
+  name: MouseHover
+  nameWithType: ToolStripItem.MouseHover
+  fullName: System.Windows.Forms.ToolStripItem.MouseHover
+- uid: System.Windows.Forms.ToolStripItem.MouseMove
+  commentId: E:System.Windows.Forms.ToolStripItem.MouseMove
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.mousemove
+  name: MouseMove
+  nameWithType: ToolStripItem.MouseMove
+  fullName: System.Windows.Forms.ToolStripItem.MouseMove
+- uid: System.Windows.Forms.ToolStripItem.MouseUp
+  commentId: E:System.Windows.Forms.ToolStripItem.MouseUp
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.mouseup
+  name: MouseUp
+  nameWithType: ToolStripItem.MouseUp
+  fullName: System.Windows.Forms.ToolStripItem.MouseUp
+- uid: System.Windows.Forms.ToolStripItem.OwnerChanged
+  commentId: E:System.Windows.Forms.ToolStripItem.OwnerChanged
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.ownerchanged
+  name: OwnerChanged
+  nameWithType: ToolStripItem.OwnerChanged
+  fullName: System.Windows.Forms.ToolStripItem.OwnerChanged
+- uid: System.Windows.Forms.ToolStripItem.Paint
+  commentId: E:System.Windows.Forms.ToolStripItem.Paint
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.paint
+  name: Paint
+  nameWithType: ToolStripItem.Paint
+  fullName: System.Windows.Forms.ToolStripItem.Paint
+- uid: System.Windows.Forms.ToolStripItem.QueryContinueDrag
+  commentId: E:System.Windows.Forms.ToolStripItem.QueryContinueDrag
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.querycontinuedrag
+  name: QueryContinueDrag
+  nameWithType: ToolStripItem.QueryContinueDrag
+  fullName: System.Windows.Forms.ToolStripItem.QueryContinueDrag
+- uid: System.Windows.Forms.ToolStripItem.QueryAccessibilityHelp
+  commentId: E:System.Windows.Forms.ToolStripItem.QueryAccessibilityHelp
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.queryaccessibilityhelp
+  name: QueryAccessibilityHelp
+  nameWithType: ToolStripItem.QueryAccessibilityHelp
+  fullName: System.Windows.Forms.ToolStripItem.QueryAccessibilityHelp
+- uid: System.Windows.Forms.ToolStripItem.RightToLeftChanged
+  commentId: E:System.Windows.Forms.ToolStripItem.RightToLeftChanged
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.righttoleftchanged
+  name: RightToLeftChanged
+  nameWithType: ToolStripItem.RightToLeftChanged
+  fullName: System.Windows.Forms.ToolStripItem.RightToLeftChanged
+- uid: System.Windows.Forms.ToolStripItem.SelectedChanged
+  commentId: E:System.Windows.Forms.ToolStripItem.SelectedChanged
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.selectedchanged
+  name: SelectedChanged
+  nameWithType: ToolStripItem.SelectedChanged
+  fullName: System.Windows.Forms.ToolStripItem.SelectedChanged
+- uid: System.Windows.Forms.ToolStripItem.TextChanged
+  commentId: E:System.Windows.Forms.ToolStripItem.TextChanged
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.textchanged
+  name: TextChanged
+  nameWithType: ToolStripItem.TextChanged
+  fullName: System.Windows.Forms.ToolStripItem.TextChanged
+- uid: System.Windows.Forms.ToolStripItem.VisibleChanged
+  commentId: E:System.Windows.Forms.ToolStripItem.VisibleChanged
+  parent: System.Windows.Forms.ToolStripItem
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.toolstripitem.visiblechanged
+  name: VisibleChanged
+  nameWithType: ToolStripItem.VisibleChanged
+  fullName: System.Windows.Forms.ToolStripItem.VisibleChanged
+- uid: System.Windows.Forms.BindableComponent.OnBindingContextChanged(System.EventArgs)
+  commentId: M:System.Windows.Forms.BindableComponent.OnBindingContextChanged(System.EventArgs)
+  parent: System.Windows.Forms.BindableComponent
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.bindablecomponent.onbindingcontextchanged
+  name: OnBindingContextChanged(EventArgs)
+  nameWithType: BindableComponent.OnBindingContextChanged(EventArgs)
+  fullName: System.Windows.Forms.BindableComponent.OnBindingContextChanged(System.EventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.BindableComponent.OnBindingContextChanged(System.EventArgs)
+    name: OnBindingContextChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.bindablecomponent.onbindingcontextchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.BindableComponent.OnBindingContextChanged(System.EventArgs)
+    name: OnBindingContextChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.bindablecomponent.onbindingcontextchanged
+  - name: (
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+- uid: System.Windows.Forms.BindableComponent.BindingContext
+  commentId: P:System.Windows.Forms.BindableComponent.BindingContext
+  parent: System.Windows.Forms.BindableComponent
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.bindablecomponent.bindingcontext
+  name: BindingContext
+  nameWithType: BindableComponent.BindingContext
+  fullName: System.Windows.Forms.BindableComponent.BindingContext
+- uid: System.Windows.Forms.BindableComponent.DataBindings
+  commentId: P:System.Windows.Forms.BindableComponent.DataBindings
+  parent: System.Windows.Forms.BindableComponent
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.bindablecomponent.databindings
+  name: DataBindings
+  nameWithType: BindableComponent.DataBindings
+  fullName: System.Windows.Forms.BindableComponent.DataBindings
+- uid: System.Windows.Forms.BindableComponent.BindingContextChanged
+  commentId: E:System.Windows.Forms.BindableComponent.BindingContextChanged
+  parent: System.Windows.Forms.BindableComponent
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.bindablecomponent.bindingcontextchanged
+  name: BindingContextChanged
+  nameWithType: BindableComponent.BindingContextChanged
+  fullName: System.Windows.Forms.BindableComponent.BindingContextChanged
+- uid: System.ComponentModel.Component.Dispose
+  commentId: M:System.ComponentModel.Component.Dispose
+  parent: System.ComponentModel.Component
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.dispose#system-componentmodel-component-dispose
+  name: Dispose()
+  nameWithType: Component.Dispose()
+  fullName: System.ComponentModel.Component.Dispose()
+  spec.csharp:
+  - uid: System.ComponentModel.Component.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.dispose#system-componentmodel-component-dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.Component.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.dispose#system-componentmodel-component-dispose
+  - name: (
+  - name: )
+- uid: System.ComponentModel.Component.GetService(System.Type)
+  commentId: M:System.ComponentModel.Component.GetService(System.Type)
+  parent: System.ComponentModel.Component
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.getservice
+  name: GetService(Type)
+  nameWithType: Component.GetService(Type)
+  fullName: System.ComponentModel.Component.GetService(System.Type)
+  spec.csharp:
+  - uid: System.ComponentModel.Component.GetService(System.Type)
+    name: GetService
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.getservice
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.Component.GetService(System.Type)
+    name: GetService
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.getservice
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+- uid: System.ComponentModel.Component.CanRaiseEvents
+  commentId: P:System.ComponentModel.Component.CanRaiseEvents
+  parent: System.ComponentModel.Component
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.canraiseevents
+  name: CanRaiseEvents
+  nameWithType: Component.CanRaiseEvents
+  fullName: System.ComponentModel.Component.CanRaiseEvents
+- uid: System.ComponentModel.Component.Events
+  commentId: P:System.ComponentModel.Component.Events
+  parent: System.ComponentModel.Component
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.events
+  name: Events
+  nameWithType: Component.Events
+  fullName: System.ComponentModel.Component.Events
+- uid: System.ComponentModel.Component.Site
+  commentId: P:System.ComponentModel.Component.Site
+  parent: System.ComponentModel.Component
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.site
+  name: Site
+  nameWithType: Component.Site
+  fullName: System.ComponentModel.Component.Site
+- uid: System.ComponentModel.Component.Container
+  commentId: P:System.ComponentModel.Component.Container
+  parent: System.ComponentModel.Component
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.container
+  name: Container
+  nameWithType: Component.Container
+  fullName: System.ComponentModel.Component.Container
+- uid: System.ComponentModel.Component.DesignMode
+  commentId: P:System.ComponentModel.Component.DesignMode
+  parent: System.ComponentModel.Component
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.designmode
+  name: DesignMode
+  nameWithType: Component.DesignMode
+  fullName: System.ComponentModel.Component.DesignMode
+- uid: System.ComponentModel.Component.Disposed
+  commentId: E:System.ComponentModel.Component.Disposed
+  parent: System.ComponentModel.Component
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.disposed
+  name: Disposed
+  nameWithType: Component.Disposed
+  fullName: System.ComponentModel.Component.Disposed
+- uid: System.MarshalByRefObject.GetLifetimeService
+  commentId: M:System.MarshalByRefObject.GetLifetimeService
+  parent: System.MarshalByRefObject
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.getlifetimeservice
+  name: GetLifetimeService()
+  nameWithType: MarshalByRefObject.GetLifetimeService()
+  fullName: System.MarshalByRefObject.GetLifetimeService()
+  spec.csharp:
+  - uid: System.MarshalByRefObject.GetLifetimeService
+    name: GetLifetimeService
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.getlifetimeservice
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.MarshalByRefObject.GetLifetimeService
+    name: GetLifetimeService
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.getlifetimeservice
+  - name: (
+  - name: )
+- uid: System.MarshalByRefObject.InitializeLifetimeService
+  commentId: M:System.MarshalByRefObject.InitializeLifetimeService
+  parent: System.MarshalByRefObject
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.initializelifetimeservice
+  name: InitializeLifetimeService()
+  nameWithType: MarshalByRefObject.InitializeLifetimeService()
+  fullName: System.MarshalByRefObject.InitializeLifetimeService()
+  spec.csharp:
+  - uid: System.MarshalByRefObject.InitializeLifetimeService
+    name: InitializeLifetimeService
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.initializelifetimeservice
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.MarshalByRefObject.InitializeLifetimeService
+    name: InitializeLifetimeService
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.initializelifetimeservice
+  - name: (
+  - name: )
+- uid: System.MarshalByRefObject.MemberwiseClone(System.Boolean)
+  commentId: M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)
+  parent: System.MarshalByRefObject
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.memberwiseclone
+  name: MemberwiseClone(bool)
+  nameWithType: MarshalByRefObject.MemberwiseClone(bool)
+  fullName: System.MarshalByRefObject.MemberwiseClone(bool)
+  nameWithType.vb: MarshalByRefObject.MemberwiseClone(Boolean)
+  fullName.vb: System.MarshalByRefObject.MemberwiseClone(Boolean)
+  name.vb: MemberwiseClone(Boolean)
+  spec.csharp:
+  - uid: System.MarshalByRefObject.MemberwiseClone(System.Boolean)
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.memberwiseclone
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: System.MarshalByRefObject.MemberwiseClone(System.Boolean)
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.memberwiseclone
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ComponentModel
+  commentId: N:System.ComponentModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.ComponentModel
+  nameWithType: System.ComponentModel
+  fullName: System.ComponentModel
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.ComponentModel
+    name: ComponentModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.ComponentModel
+    name: ComponentModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel
+- uid: System.Windows.Forms
+  commentId: N:System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Windows.Forms
+  nameWithType: System.Windows.Forms
+  fullName: System.Windows.Forms
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Windows
+    name: Windows
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows
+  - name: .
+  - uid: System.Windows.Forms
+    name: Forms
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Windows
+    name: Windows
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows
+  - name: .
+  - uid: System.Windows.Forms
+    name: Forms
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms
+- uid: Reportman.Drawing.Forms.ToolStripButtonAllowDisable.DisplayDisable*
+  commentId: Overload:Reportman.Drawing.Forms.ToolStripButtonAllowDisable.DisplayDisable
+  isExternal: true
+  href: Reportman.Drawing.Forms.ToolStripButtonAllowDisable.html#Reportman_Drawing_Forms_ToolStripButtonAllowDisable_DisplayDisable
+  name: DisplayDisable
+  nameWithType: ToolStripButtonAllowDisable.DisplayDisable
+  fullName: Reportman.Drawing.Forms.ToolStripButtonAllowDisable.DisplayDisable
+- uid: Reportman.Drawing.Forms.IDisplayDisable.DisplayDisable
+  commentId: M:Reportman.Drawing.Forms.IDisplayDisable.DisplayDisable
+  parent: Reportman.Drawing.Forms.IDisplayDisable
+  isExternal: true
+  href: Reportman.Drawing.Forms.IDisplayDisable.html#Reportman_Drawing_Forms_IDisplayDisable_DisplayDisable
+  name: DisplayDisable()
+  nameWithType: IDisplayDisable.DisplayDisable()
+  fullName: Reportman.Drawing.Forms.IDisplayDisable.DisplayDisable()
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.IDisplayDisable.DisplayDisable
+    name: DisplayDisable
+    isExternal: true
+    href: Reportman.Drawing.Forms.IDisplayDisable.html#Reportman_Drawing_Forms_IDisplayDisable_DisplayDisable
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.IDisplayDisable.DisplayDisable
+    name: DisplayDisable
+    isExternal: true
+    href: Reportman.Drawing.Forms.IDisplayDisable.html#Reportman_Drawing_Forms_IDisplayDisable_DisplayDisable
+  - name: (
+  - name: )
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Reportman.Drawing.Forms.ToolStripButtonAllowDisable.#ctor*
+  commentId: Overload:Reportman.Drawing.Forms.ToolStripButtonAllowDisable.#ctor
+  isExternal: true
+  href: Reportman.Drawing.Forms.ToolStripButtonAllowDisable.html#Reportman_Drawing_Forms_ToolStripButtonAllowDisable__ctor
+  name: ToolStripButtonAllowDisable
+  nameWithType: ToolStripButtonAllowDisable.ToolStripButtonAllowDisable
+  fullName: Reportman.Drawing.Forms.ToolStripButtonAllowDisable.ToolStripButtonAllowDisable
+  nameWithType.vb: ToolStripButtonAllowDisable.New
+  fullName.vb: Reportman.Drawing.Forms.ToolStripButtonAllowDisable.New
+  name.vb: New

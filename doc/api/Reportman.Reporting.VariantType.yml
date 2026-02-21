@@ -1,0 +1,297 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.VariantType
+  commentId: T:Reportman.Reporting.VariantType
+  id: VariantType
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.VariantType.Binary
+  - Reportman.Reporting.VariantType.Boolean
+  - Reportman.Reporting.VariantType.Byte
+  - Reportman.Reporting.VariantType.Char
+  - Reportman.Reporting.VariantType.DateTime
+  - Reportman.Reporting.VariantType.Decimal
+  - Reportman.Reporting.VariantType.Double
+  - Reportman.Reporting.VariantType.Integer
+  - Reportman.Reporting.VariantType.Long
+  - Reportman.Reporting.VariantType.Null
+  - Reportman.Reporting.VariantType.String
+  langs:
+  - csharp
+  - vb
+  name: VariantType
+  nameWithType: VariantType
+  fullName: Reportman.Reporting.VariantType
+  type: Enum
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Variant internal type, used to store current type value for a <xref href="Reportman.Reporting.Variant?text=Variant" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public enum VariantType
+    content.vb: Public Enum VariantType
+- uid: Reportman.Reporting.VariantType.Null
+  commentId: F:Reportman.Reporting.VariantType.Null
+  id: "Null"
+  parent: Reportman.Reporting.VariantType
+  langs:
+  - csharp
+  - vb
+  name: "Null"
+  nameWithType: VariantType.Null
+  fullName: Reportman.Reporting.VariantType.Null
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Null value type
+  example: []
+  syntax:
+    content: Null = 0
+    return:
+      type: Reportman.Reporting.VariantType
+- uid: Reportman.Reporting.VariantType.Byte
+  commentId: F:Reportman.Reporting.VariantType.Byte
+  id: Byte
+  parent: Reportman.Reporting.VariantType
+  langs:
+  - csharp
+  - vb
+  name: Byte
+  nameWithType: VariantType.Byte
+  fullName: Reportman.Reporting.VariantType.Byte
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Internally stores a byte value
+  example: []
+  syntax:
+    content: Byte = 1
+    return:
+      type: Reportman.Reporting.VariantType
+- uid: Reportman.Reporting.VariantType.Boolean
+  commentId: F:Reportman.Reporting.VariantType.Boolean
+  id: Boolean
+  parent: Reportman.Reporting.VariantType
+  langs:
+  - csharp
+  - vb
+  name: Boolean
+  nameWithType: VariantType.Boolean
+  fullName: Reportman.Reporting.VariantType.Boolean
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Internally stores a boolean value
+  example: []
+  syntax:
+    content: Boolean = 2
+    return:
+      type: Reportman.Reporting.VariantType
+- uid: Reportman.Reporting.VariantType.Char
+  commentId: F:Reportman.Reporting.VariantType.Char
+  id: Char
+  parent: Reportman.Reporting.VariantType
+  langs:
+  - csharp
+  - vb
+  name: Char
+  nameWithType: VariantType.Char
+  fullName: Reportman.Reporting.VariantType.Char
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Internally stores a byte Char
+  example: []
+  syntax:
+    content: Char = 3
+    return:
+      type: Reportman.Reporting.VariantType
+- uid: Reportman.Reporting.VariantType.Integer
+  commentId: F:Reportman.Reporting.VariantType.Integer
+  id: Integer
+  parent: Reportman.Reporting.VariantType
+  langs:
+  - csharp
+  - vb
+  name: Integer
+  nameWithType: VariantType.Integer
+  fullName: Reportman.Reporting.VariantType.Integer
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Internally stores an integer value
+  example: []
+  syntax:
+    content: Integer = 4
+    return:
+      type: Reportman.Reporting.VariantType
+- uid: Reportman.Reporting.VariantType.String
+  commentId: F:Reportman.Reporting.VariantType.String
+  id: String
+  parent: Reportman.Reporting.VariantType
+  langs:
+  - csharp
+  - vb
+  name: String
+  nameWithType: VariantType.String
+  fullName: Reportman.Reporting.VariantType.String
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Internally stores a string value
+  example: []
+  syntax:
+    content: String = 5
+    return:
+      type: Reportman.Reporting.VariantType
+- uid: Reportman.Reporting.VariantType.Double
+  commentId: F:Reportman.Reporting.VariantType.Double
+  id: Double
+  parent: Reportman.Reporting.VariantType
+  langs:
+  - csharp
+  - vb
+  name: Double
+  nameWithType: VariantType.Double
+  fullName: Reportman.Reporting.VariantType.Double
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Internally stores a double value
+  example: []
+  syntax:
+    content: Double = 6
+    return:
+      type: Reportman.Reporting.VariantType
+- uid: Reportman.Reporting.VariantType.Decimal
+  commentId: F:Reportman.Reporting.VariantType.Decimal
+  id: Decimal
+  parent: Reportman.Reporting.VariantType
+  langs:
+  - csharp
+  - vb
+  name: Decimal
+  nameWithType: VariantType.Decimal
+  fullName: Reportman.Reporting.VariantType.Decimal
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Internally stores a decimal value
+  example: []
+  syntax:
+    content: Decimal = 7
+    return:
+      type: Reportman.Reporting.VariantType
+- uid: Reportman.Reporting.VariantType.DateTime
+  commentId: F:Reportman.Reporting.VariantType.DateTime
+  id: DateTime
+  parent: Reportman.Reporting.VariantType
+  langs:
+  - csharp
+  - vb
+  name: DateTime
+  nameWithType: VariantType.DateTime
+  fullName: Reportman.Reporting.VariantType.DateTime
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Internally stores a DateTime value
+  example: []
+  syntax:
+    content: DateTime = 8
+    return:
+      type: Reportman.Reporting.VariantType
+- uid: Reportman.Reporting.VariantType.Binary
+  commentId: F:Reportman.Reporting.VariantType.Binary
+  id: Binary
+  parent: Reportman.Reporting.VariantType
+  langs:
+  - csharp
+  - vb
+  name: Binary
+  nameWithType: VariantType.Binary
+  fullName: Reportman.Reporting.VariantType.Binary
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Internally stores a binary byte[] value
+  example: []
+  syntax:
+    content: Binary = 9
+    return:
+      type: Reportman.Reporting.VariantType
+- uid: Reportman.Reporting.VariantType.Long
+  commentId: F:Reportman.Reporting.VariantType.Long
+  id: Long
+  parent: Reportman.Reporting.VariantType
+  langs:
+  - csharp
+  - vb
+  name: Long
+  nameWithType: VariantType.Long
+  fullName: Reportman.Reporting.VariantType.Long
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Internally stores a long value
+  example: []
+  syntax:
+    content: Long = 10
+    return:
+      type: Reportman.Reporting.VariantType
+references:
+- uid: Reportman.Reporting.Variant
+  commentId: T:Reportman.Reporting.Variant
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.Variant.html
+  name: Variant
+  nameWithType: Variant
+  fullName: Reportman.Reporting.Variant
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: Reportman.Reporting.VariantType
+  commentId: T:Reportman.Reporting.VariantType
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.VariantType.html
+  name: VariantType
+  nameWithType: VariantType
+  fullName: Reportman.Reporting.VariantType

@@ -1,0 +1,500 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.PDFFile.PDFAnnotation
+  commentId: T:Reportman.Drawing.PDFFile.PDFAnnotation
+  id: PDFFile.PDFAnnotation
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.PDFFile.PDFAnnotation.#ctor
+  - Reportman.Drawing.PDFFile.PDFAnnotation.Annotation
+  - Reportman.Drawing.PDFFile.PDFAnnotation.Height
+  - Reportman.Drawing.PDFFile.PDFAnnotation.Page
+  - Reportman.Drawing.PDFFile.PDFAnnotation.PosX
+  - Reportman.Drawing.PDFFile.PDFAnnotation.PosY
+  - Reportman.Drawing.PDFFile.PDFAnnotation.StreamNumber
+  - Reportman.Drawing.PDFFile.PDFAnnotation.Width
+  langs:
+  - csharp
+  - vb
+  name: PDFFile.PDFAnnotation
+  nameWithType: PDFFile.PDFAnnotation
+  fullName: Reportman.Drawing.PDFFile.PDFAnnotation
+  type: Class
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public class PDFFile.PDFAnnotation
+    content.vb: Public Class PDFFile.PDFAnnotation
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.PDFFile.PDFAnnotation.StreamNumber
+  commentId: F:Reportman.Drawing.PDFFile.PDFAnnotation.StreamNumber
+  id: StreamNumber
+  parent: Reportman.Drawing.PDFFile.PDFAnnotation
+  langs:
+  - csharp
+  - vb
+  name: StreamNumber
+  nameWithType: PDFFile.PDFAnnotation.StreamNumber
+  fullName: Reportman.Drawing.PDFFile.PDFAnnotation.StreamNumber
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public long StreamNumber
+    return:
+      type: System.Int64
+    content.vb: Public StreamNumber As Long
+- uid: Reportman.Drawing.PDFFile.PDFAnnotation.PosX
+  commentId: F:Reportman.Drawing.PDFFile.PDFAnnotation.PosX
+  id: PosX
+  parent: Reportman.Drawing.PDFFile.PDFAnnotation
+  langs:
+  - csharp
+  - vb
+  name: PosX
+  nameWithType: PDFFile.PDFAnnotation.PosX
+  fullName: Reportman.Drawing.PDFFile.PDFAnnotation.PosX
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int PosX
+    return:
+      type: System.Int32
+    content.vb: Public PosX As Integer
+- uid: Reportman.Drawing.PDFFile.PDFAnnotation.PosY
+  commentId: F:Reportman.Drawing.PDFFile.PDFAnnotation.PosY
+  id: PosY
+  parent: Reportman.Drawing.PDFFile.PDFAnnotation
+  langs:
+  - csharp
+  - vb
+  name: PosY
+  nameWithType: PDFFile.PDFAnnotation.PosY
+  fullName: Reportman.Drawing.PDFFile.PDFAnnotation.PosY
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int PosY
+    return:
+      type: System.Int32
+    content.vb: Public PosY As Integer
+- uid: Reportman.Drawing.PDFFile.PDFAnnotation.Width
+  commentId: F:Reportman.Drawing.PDFFile.PDFAnnotation.Width
+  id: Width
+  parent: Reportman.Drawing.PDFFile.PDFAnnotation
+  langs:
+  - csharp
+  - vb
+  name: Width
+  nameWithType: PDFFile.PDFAnnotation.Width
+  fullName: Reportman.Drawing.PDFFile.PDFAnnotation.Width
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int Width
+    return:
+      type: System.Int32
+    content.vb: Public Width As Integer
+- uid: Reportman.Drawing.PDFFile.PDFAnnotation.Height
+  commentId: F:Reportman.Drawing.PDFFile.PDFAnnotation.Height
+  id: Height
+  parent: Reportman.Drawing.PDFFile.PDFAnnotation
+  langs:
+  - csharp
+  - vb
+  name: Height
+  nameWithType: PDFFile.PDFAnnotation.Height
+  fullName: Reportman.Drawing.PDFFile.PDFAnnotation.Height
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int Height
+    return:
+      type: System.Int32
+    content.vb: Public Height As Integer
+- uid: Reportman.Drawing.PDFFile.PDFAnnotation.Annotation
+  commentId: F:Reportman.Drawing.PDFFile.PDFAnnotation.Annotation
+  id: Annotation
+  parent: Reportman.Drawing.PDFFile.PDFAnnotation
+  langs:
+  - csharp
+  - vb
+  name: Annotation
+  nameWithType: PDFFile.PDFAnnotation.Annotation
+  fullName: Reportman.Drawing.PDFFile.PDFAnnotation.Annotation
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string Annotation
+    return:
+      type: System.String
+    content.vb: Public Annotation As String
+- uid: Reportman.Drawing.PDFFile.PDFAnnotation.Page
+  commentId: F:Reportman.Drawing.PDFFile.PDFAnnotation.Page
+  id: Page
+  parent: Reportman.Drawing.PDFFile.PDFAnnotation
+  langs:
+  - csharp
+  - vb
+  name: Page
+  nameWithType: PDFFile.PDFAnnotation.Page
+  fullName: Reportman.Drawing.PDFFile.PDFAnnotation.Page
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int Page
+    return:
+      type: System.Int32
+    content.vb: Public Page As Integer
+- uid: Reportman.Drawing.PDFFile.PDFAnnotation.#ctor
+  commentId: M:Reportman.Drawing.PDFFile.PDFAnnotation.#ctor
+  id: '#ctor'
+  parent: Reportman.Drawing.PDFFile.PDFAnnotation
+  langs:
+  - csharp
+  - vb
+  name: PDFAnnotation()
+  nameWithType: PDFFile.PDFAnnotation.PDFAnnotation()
+  fullName: Reportman.Drawing.PDFFile.PDFAnnotation.PDFAnnotation()
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public PDFAnnotation()
+    content.vb: Public Sub New()
+  overload: Reportman.Drawing.PDFFile.PDFAnnotation.#ctor*
+  nameWithType.vb: PDFFile.PDFAnnotation.New()
+  fullName.vb: Reportman.Drawing.PDFFile.PDFAnnotation.New()
+  name.vb: New()
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Reportman.Drawing.PDFFile.PDFAnnotation.#ctor*
+  commentId: Overload:Reportman.Drawing.PDFFile.PDFAnnotation.#ctor
+  isExternal: true
+  href: Reportman.Drawing.PDFFile.PDFAnnotation.html#Reportman_Drawing_PDFFile_PDFAnnotation__ctor
+  name: PDFAnnotation
+  nameWithType: PDFFile.PDFAnnotation.PDFAnnotation
+  fullName: Reportman.Drawing.PDFFile.PDFAnnotation.PDFAnnotation
+  nameWithType.vb: PDFFile.PDFAnnotation.New
+  fullName.vb: Reportman.Drawing.PDFFile.PDFAnnotation.New
+  name.vb: New

@@ -1,0 +1,151 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.AggregateType
+  commentId: T:Reportman.Reporting.AggregateType
+  id: AggregateType
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.AggregateType.Average
+  - Reportman.Reporting.AggregateType.Maximum
+  - Reportman.Reporting.AggregateType.Minimum
+  - Reportman.Reporting.AggregateType.StandardDeviation
+  - Reportman.Reporting.AggregateType.Summary
+  langs:
+  - csharp
+  - vb
+  name: AggregateType
+  nameWithType: AggregateType
+  fullName: Reportman.Reporting.AggregateType
+  type: Enum
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public enum AggregateType
+    content.vb: Public Enum AggregateType
+- uid: Reportman.Reporting.AggregateType.Summary
+  commentId: F:Reportman.Reporting.AggregateType.Summary
+  id: Summary
+  parent: Reportman.Reporting.AggregateType
+  langs:
+  - csharp
+  - vb
+  name: Summary
+  nameWithType: AggregateType.Summary
+  fullName: Reportman.Reporting.AggregateType.Summary
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Summary = 0
+    return:
+      type: Reportman.Reporting.AggregateType
+- uid: Reportman.Reporting.AggregateType.Minimum
+  commentId: F:Reportman.Reporting.AggregateType.Minimum
+  id: Minimum
+  parent: Reportman.Reporting.AggregateType
+  langs:
+  - csharp
+  - vb
+  name: Minimum
+  nameWithType: AggregateType.Minimum
+  fullName: Reportman.Reporting.AggregateType.Minimum
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Minimum = 1
+    return:
+      type: Reportman.Reporting.AggregateType
+- uid: Reportman.Reporting.AggregateType.Maximum
+  commentId: F:Reportman.Reporting.AggregateType.Maximum
+  id: Maximum
+  parent: Reportman.Reporting.AggregateType
+  langs:
+  - csharp
+  - vb
+  name: Maximum
+  nameWithType: AggregateType.Maximum
+  fullName: Reportman.Reporting.AggregateType.Maximum
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Maximum = 2
+    return:
+      type: Reportman.Reporting.AggregateType
+- uid: Reportman.Reporting.AggregateType.Average
+  commentId: F:Reportman.Reporting.AggregateType.Average
+  id: Average
+  parent: Reportman.Reporting.AggregateType
+  langs:
+  - csharp
+  - vb
+  name: Average
+  nameWithType: AggregateType.Average
+  fullName: Reportman.Reporting.AggregateType.Average
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Average = 3
+    return:
+      type: Reportman.Reporting.AggregateType
+- uid: Reportman.Reporting.AggregateType.StandardDeviation
+  commentId: F:Reportman.Reporting.AggregateType.StandardDeviation
+  id: StandardDeviation
+  parent: Reportman.Reporting.AggregateType
+  langs:
+  - csharp
+  - vb
+  name: StandardDeviation
+  nameWithType: AggregateType.StandardDeviation
+  fullName: Reportman.Reporting.AggregateType.StandardDeviation
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: StandardDeviation = 4
+    return:
+      type: Reportman.Reporting.AggregateType
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: Reportman.Reporting.AggregateType
+  commentId: T:Reportman.Reporting.AggregateType
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.AggregateType.html
+  name: AggregateType
+  nameWithType: AggregateType
+  fullName: Reportman.Reporting.AggregateType

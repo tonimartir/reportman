@@ -1,0 +1,667 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.ButtonCalc
+  commentId: T:Reportman.Drawing.Forms.ButtonCalc
+  id: ButtonCalc
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.ButtonCalc.#ctor(System.Windows.Forms.Control,System.Drawing.Font,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.Drawing.Color,Reportman.Drawing.Forms.ScreenKeyboard.Command)
+  - Reportman.Drawing.Forms.ButtonCalc.Cmd
+  - Reportman.Drawing.Forms.ButtonCalc.IsHit(System.Int32,System.Int32)
+  - Reportman.Drawing.Forms.ButtonCalc.IsSelected
+  - Reportman.Drawing.Forms.ButtonCalc.IsTall
+  - Reportman.Drawing.Forms.ButtonCalc.Render(System.Drawing.Graphics)
+  langs:
+  - csharp
+  - vb
+  name: ButtonCalc
+  nameWithType: ButtonCalc
+  fullName: Reportman.Drawing.Forms.ButtonCalc
+  type: Class
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public class ButtonCalc
+    content.vb: Public Class ButtonCalc
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.Forms.ButtonCalc.#ctor(System.Windows.Forms.Control,System.Drawing.Font,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.Drawing.Color,Reportman.Drawing.Forms.ScreenKeyboard.Command)
+  commentId: M:Reportman.Drawing.Forms.ButtonCalc.#ctor(System.Windows.Forms.Control,System.Drawing.Font,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.Drawing.Color,Reportman.Drawing.Forms.ScreenKeyboard.Command)
+  id: '#ctor(System.Windows.Forms.Control,System.Drawing.Font,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.Drawing.Color,Reportman.Drawing.Forms.ScreenKeyboard.Command)'
+  parent: Reportman.Drawing.Forms.ButtonCalc
+  langs:
+  - csharp
+  - vb
+  name: ButtonCalc(Control, Font, int, int, int, int, int, string, Color, Command)
+  nameWithType: ButtonCalc.ButtonCalc(Control, Font, int, int, int, int, int, string, Color, ScreenKeyboard.Command)
+  fullName: Reportman.Drawing.Forms.ButtonCalc.ButtonCalc(System.Windows.Forms.Control, System.Drawing.Font, int, int, int, int, int, string, System.Drawing.Color, Reportman.Drawing.Forms.ScreenKeyboard.Command)
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public ButtonCalc(Control MControl, Font font, int x, int y, int width, int height, int margin, string capString, Color capColor, ScreenKeyboard.Command cmd)
+    parameters:
+    - id: MControl
+      type: System.Windows.Forms.Control
+    - id: font
+      type: System.Drawing.Font
+    - id: x
+      type: System.Int32
+    - id: y
+      type: System.Int32
+    - id: width
+      type: System.Int32
+    - id: height
+      type: System.Int32
+    - id: margin
+      type: System.Int32
+    - id: capString
+      type: System.String
+    - id: capColor
+      type: System.Drawing.Color
+    - id: cmd
+      type: Reportman.Drawing.Forms.ScreenKeyboard.Command
+    content.vb: Public Sub New(MControl As Control, font As Font, x As Integer, y As Integer, width As Integer, height As Integer, margin As Integer, capString As String, capColor As Color, cmd As ScreenKeyboard.Command)
+  overload: Reportman.Drawing.Forms.ButtonCalc.#ctor*
+  nameWithType.vb: ButtonCalc.New(Control, Font, Integer, Integer, Integer, Integer, Integer, String, Color, ScreenKeyboard.Command)
+  fullName.vb: Reportman.Drawing.Forms.ButtonCalc.New(System.Windows.Forms.Control, System.Drawing.Font, Integer, Integer, Integer, Integer, Integer, String, System.Drawing.Color, Reportman.Drawing.Forms.ScreenKeyboard.Command)
+  name.vb: New(Control, Font, Integer, Integer, Integer, Integer, Integer, String, Color, Command)
+- uid: Reportman.Drawing.Forms.ButtonCalc.Render(System.Drawing.Graphics)
+  commentId: M:Reportman.Drawing.Forms.ButtonCalc.Render(System.Drawing.Graphics)
+  id: Render(System.Drawing.Graphics)
+  parent: Reportman.Drawing.Forms.ButtonCalc
+  langs:
+  - csharp
+  - vb
+  name: Render(Graphics)
+  nameWithType: ButtonCalc.Render(Graphics)
+  fullName: Reportman.Drawing.Forms.ButtonCalc.Render(System.Drawing.Graphics)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public void Render(Graphics graphics)
+    parameters:
+    - id: graphics
+      type: System.Drawing.Graphics
+    content.vb: Public Sub Render(graphics As Graphics)
+  overload: Reportman.Drawing.Forms.ButtonCalc.Render*
+- uid: Reportman.Drawing.Forms.ButtonCalc.IsHit(System.Int32,System.Int32)
+  commentId: M:Reportman.Drawing.Forms.ButtonCalc.IsHit(System.Int32,System.Int32)
+  id: IsHit(System.Int32,System.Int32)
+  parent: Reportman.Drawing.Forms.ButtonCalc
+  langs:
+  - csharp
+  - vb
+  name: IsHit(int, int)
+  nameWithType: ButtonCalc.IsHit(int, int)
+  fullName: Reportman.Drawing.Forms.ButtonCalc.IsHit(int, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public bool IsHit(int x, int y)
+    parameters:
+    - id: x
+      type: System.Int32
+    - id: y
+      type: System.Int32
+    return:
+      type: System.Boolean
+    content.vb: Public Function IsHit(x As Integer, y As Integer) As Boolean
+  overload: Reportman.Drawing.Forms.ButtonCalc.IsHit*
+  nameWithType.vb: ButtonCalc.IsHit(Integer, Integer)
+  fullName.vb: Reportman.Drawing.Forms.ButtonCalc.IsHit(Integer, Integer)
+  name.vb: IsHit(Integer, Integer)
+- uid: Reportman.Drawing.Forms.ButtonCalc.IsTall
+  commentId: P:Reportman.Drawing.Forms.ButtonCalc.IsTall
+  id: IsTall
+  parent: Reportman.Drawing.Forms.ButtonCalc
+  langs:
+  - csharp
+  - vb
+  name: IsTall
+  nameWithType: ButtonCalc.IsTall
+  fullName: Reportman.Drawing.Forms.ButtonCalc.IsTall
+  type: Property
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public bool IsTall { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsTall As Boolean
+  overload: Reportman.Drawing.Forms.ButtonCalc.IsTall*
+- uid: Reportman.Drawing.Forms.ButtonCalc.IsSelected
+  commentId: P:Reportman.Drawing.Forms.ButtonCalc.IsSelected
+  id: IsSelected
+  parent: Reportman.Drawing.Forms.ButtonCalc
+  langs:
+  - csharp
+  - vb
+  name: IsSelected
+  nameWithType: ButtonCalc.IsSelected
+  fullName: Reportman.Drawing.Forms.ButtonCalc.IsSelected
+  type: Property
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public bool IsSelected { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsSelected As Boolean
+  overload: Reportman.Drawing.Forms.ButtonCalc.IsSelected*
+- uid: Reportman.Drawing.Forms.ButtonCalc.Cmd
+  commentId: P:Reportman.Drawing.Forms.ButtonCalc.Cmd
+  id: Cmd
+  parent: Reportman.Drawing.Forms.ButtonCalc
+  langs:
+  - csharp
+  - vb
+  name: Cmd
+  nameWithType: ButtonCalc.Cmd
+  fullName: Reportman.Drawing.Forms.ButtonCalc.Cmd
+  type: Property
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public ScreenKeyboard.Command Cmd { get; }
+    parameters: []
+    return:
+      type: Reportman.Drawing.Forms.ScreenKeyboard.Command
+    content.vb: Public ReadOnly Property Cmd As ScreenKeyboard.Command
+  overload: Reportman.Drawing.Forms.ButtonCalc.Cmd*
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.Forms.ButtonCalc.#ctor*
+  commentId: Overload:Reportman.Drawing.Forms.ButtonCalc.#ctor
+  isExternal: true
+  href: Reportman.Drawing.Forms.ButtonCalc.html#Reportman_Drawing_Forms_ButtonCalc__ctor_System_Windows_Forms_Control_System_Drawing_Font_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_System_String_System_Drawing_Color_Reportman_Drawing_Forms_ScreenKeyboard_Command_
+  name: ButtonCalc
+  nameWithType: ButtonCalc.ButtonCalc
+  fullName: Reportman.Drawing.Forms.ButtonCalc.ButtonCalc
+  nameWithType.vb: ButtonCalc.New
+  fullName.vb: Reportman.Drawing.Forms.ButtonCalc.New
+  name.vb: New
+- uid: System.Windows.Forms.Control
+  commentId: T:System.Windows.Forms.Control
+  parent: System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.control
+  name: Control
+  nameWithType: Control
+  fullName: System.Windows.Forms.Control
+- uid: System.Drawing.Font
+  commentId: T:System.Drawing.Font
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.font
+  name: Font
+  nameWithType: Font
+  fullName: System.Drawing.Font
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Drawing.Color
+  commentId: T:System.Drawing.Color
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.color
+  name: Color
+  nameWithType: Color
+  fullName: System.Drawing.Color
+- uid: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  commentId: T:Reportman.Drawing.Forms.ScreenKeyboard.Command
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.ScreenKeyboard.html
+  name: ScreenKeyboard.Command
+  nameWithType: ScreenKeyboard.Command
+  fullName: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.ScreenKeyboard
+    name: ScreenKeyboard
+    isExternal: true
+    href: Reportman.Drawing.Forms.ScreenKeyboard.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.ScreenKeyboard.Command
+    name: Command
+    isExternal: true
+    href: Reportman.Drawing.Forms.ScreenKeyboard.Command.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.ScreenKeyboard
+    name: ScreenKeyboard
+    isExternal: true
+    href: Reportman.Drawing.Forms.ScreenKeyboard.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.ScreenKeyboard.Command
+    name: Command
+    isExternal: true
+    href: Reportman.Drawing.Forms.ScreenKeyboard.Command.html
+- uid: System.Windows.Forms
+  commentId: N:System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Windows.Forms
+  nameWithType: System.Windows.Forms
+  fullName: System.Windows.Forms
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Windows
+    name: Windows
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows
+  - name: .
+  - uid: System.Windows.Forms
+    name: Forms
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Windows
+    name: Windows
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows
+  - name: .
+  - uid: System.Windows.Forms
+    name: Forms
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms
+- uid: System.Drawing
+  commentId: N:System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Drawing
+  nameWithType: System.Drawing
+  fullName: System.Drawing
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+- uid: Reportman.Drawing.Forms.ButtonCalc.Render*
+  commentId: Overload:Reportman.Drawing.Forms.ButtonCalc.Render
+  isExternal: true
+  href: Reportman.Drawing.Forms.ButtonCalc.html#Reportman_Drawing_Forms_ButtonCalc_Render_System_Drawing_Graphics_
+  name: Render
+  nameWithType: ButtonCalc.Render
+  fullName: Reportman.Drawing.Forms.ButtonCalc.Render
+- uid: System.Drawing.Graphics
+  commentId: T:System.Drawing.Graphics
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.graphics
+  name: Graphics
+  nameWithType: Graphics
+  fullName: System.Drawing.Graphics
+- uid: Reportman.Drawing.Forms.ButtonCalc.IsHit*
+  commentId: Overload:Reportman.Drawing.Forms.ButtonCalc.IsHit
+  isExternal: true
+  href: Reportman.Drawing.Forms.ButtonCalc.html#Reportman_Drawing_Forms_ButtonCalc_IsHit_System_Int32_System_Int32_
+  name: IsHit
+  nameWithType: ButtonCalc.IsHit
+  fullName: Reportman.Drawing.Forms.ButtonCalc.IsHit
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Reportman.Drawing.Forms.ButtonCalc.IsTall*
+  commentId: Overload:Reportman.Drawing.Forms.ButtonCalc.IsTall
+  isExternal: true
+  href: Reportman.Drawing.Forms.ButtonCalc.html#Reportman_Drawing_Forms_ButtonCalc_IsTall
+  name: IsTall
+  nameWithType: ButtonCalc.IsTall
+  fullName: Reportman.Drawing.Forms.ButtonCalc.IsTall
+- uid: Reportman.Drawing.Forms.ButtonCalc.IsSelected*
+  commentId: Overload:Reportman.Drawing.Forms.ButtonCalc.IsSelected
+  isExternal: true
+  href: Reportman.Drawing.Forms.ButtonCalc.html#Reportman_Drawing_Forms_ButtonCalc_IsSelected
+  name: IsSelected
+  nameWithType: ButtonCalc.IsSelected
+  fullName: Reportman.Drawing.Forms.ButtonCalc.IsSelected
+- uid: Reportman.Drawing.Forms.ButtonCalc.Cmd*
+  commentId: Overload:Reportman.Drawing.Forms.ButtonCalc.Cmd
+  isExternal: true
+  href: Reportman.Drawing.Forms.ButtonCalc.html#Reportman_Drawing_Forms_ButtonCalc_Cmd
+  name: Cmd
+  nameWithType: ButtonCalc.Cmd
+  fullName: Reportman.Drawing.Forms.ButtonCalc.Cmd

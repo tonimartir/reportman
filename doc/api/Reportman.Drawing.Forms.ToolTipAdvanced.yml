@@ -1,0 +1,1483 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.ToolTipAdvanced
+  commentId: T:Reportman.Drawing.Forms.ToolTipAdvanced
+  id: ToolTipAdvanced
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.ToolTipAdvanced.#ctor
+  - Reportman.Drawing.Forms.ToolTipAdvanced.Image
+  langs:
+  - csharp
+  - vb
+  name: ToolTipAdvanced
+  nameWithType: ToolTipAdvanced
+  fullName: Reportman.Drawing.Forms.ToolTipAdvanced
+  type: Class
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: 'public class ToolTipAdvanced : ToolTip, IComponent, IDisposable, IExtenderProvider'
+    content.vb: Public Class ToolTipAdvanced Inherits ToolTip Implements IComponent, IDisposable, IExtenderProvider
+  inheritance:
+  - System.Object
+  - System.MarshalByRefObject
+  - System.ComponentModel.Component
+  - System.Windows.Forms.ToolTip
+  implements:
+  - System.ComponentModel.IComponent
+  - System.IDisposable
+  - System.ComponentModel.IExtenderProvider
+  inheritedMembers:
+  - System.Windows.Forms.ToolTip.CanExtend(System.Object)
+  - System.Windows.Forms.ToolTip.Dispose(System.Boolean)
+  - System.Windows.Forms.ToolTip.GetToolTip(System.Windows.Forms.Control)
+  - System.Windows.Forms.ToolTip.RemoveAll
+  - System.Windows.Forms.ToolTip.SetToolTip(System.Windows.Forms.Control,System.String)
+  - System.Windows.Forms.ToolTip.Show(System.String,System.Windows.Forms.IWin32Window)
+  - System.Windows.Forms.ToolTip.Show(System.String,System.Windows.Forms.IWin32Window,System.Int32)
+  - System.Windows.Forms.ToolTip.Show(System.String,System.Windows.Forms.IWin32Window,System.Drawing.Point)
+  - System.Windows.Forms.ToolTip.Show(System.String,System.Windows.Forms.IWin32Window,System.Drawing.Point,System.Int32)
+  - System.Windows.Forms.ToolTip.Show(System.String,System.Windows.Forms.IWin32Window,System.Int32,System.Int32)
+  - System.Windows.Forms.ToolTip.Show(System.String,System.Windows.Forms.IWin32Window,System.Int32,System.Int32,System.Int32)
+  - System.Windows.Forms.ToolTip.Hide(System.Windows.Forms.IWin32Window)
+  - System.Windows.Forms.ToolTip.StopTimer
+  - System.Windows.Forms.ToolTip.ToString
+  - System.Windows.Forms.ToolTip.Active
+  - System.Windows.Forms.ToolTip.AutomaticDelay
+  - System.Windows.Forms.ToolTip.AutoPopDelay
+  - System.Windows.Forms.ToolTip.BackColor
+  - System.Windows.Forms.ToolTip.CreateParams
+  - System.Windows.Forms.ToolTip.ForeColor
+  - System.Windows.Forms.ToolTip.IsBalloon
+  - System.Windows.Forms.ToolTip.InitialDelay
+  - System.Windows.Forms.ToolTip.OwnerDraw
+  - System.Windows.Forms.ToolTip.ReshowDelay
+  - System.Windows.Forms.ToolTip.ShowAlways
+  - System.Windows.Forms.ToolTip.StripAmpersands
+  - System.Windows.Forms.ToolTip.Tag
+  - System.Windows.Forms.ToolTip.ToolTipIcon
+  - System.Windows.Forms.ToolTip.ToolTipTitle
+  - System.Windows.Forms.ToolTip.UseAnimation
+  - System.Windows.Forms.ToolTip.UseFading
+  - System.Windows.Forms.ToolTip.Draw
+  - System.Windows.Forms.ToolTip.Popup
+  - System.ComponentModel.Component.Dispose
+  - System.ComponentModel.Component.GetService(System.Type)
+  - System.ComponentModel.Component.CanRaiseEvents
+  - System.ComponentModel.Component.Events
+  - System.ComponentModel.Component.Site
+  - System.ComponentModel.Component.Container
+  - System.ComponentModel.Component.DesignMode
+  - System.ComponentModel.Component.Disposed
+  - System.MarshalByRefObject.GetLifetimeService
+  - System.MarshalByRefObject.InitializeLifetimeService
+  - System.MarshalByRefObject.MemberwiseClone(System.Boolean)
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.Forms.ToolTipAdvanced.#ctor
+  commentId: M:Reportman.Drawing.Forms.ToolTipAdvanced.#ctor
+  id: '#ctor'
+  parent: Reportman.Drawing.Forms.ToolTipAdvanced
+  langs:
+  - csharp
+  - vb
+  name: ToolTipAdvanced()
+  nameWithType: ToolTipAdvanced.ToolTipAdvanced()
+  fullName: Reportman.Drawing.Forms.ToolTipAdvanced.ToolTipAdvanced()
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public ToolTipAdvanced()
+    content.vb: Public Sub New()
+  overload: Reportman.Drawing.Forms.ToolTipAdvanced.#ctor*
+  nameWithType.vb: ToolTipAdvanced.New()
+  fullName.vb: Reportman.Drawing.Forms.ToolTipAdvanced.New()
+  name.vb: New()
+- uid: Reportman.Drawing.Forms.ToolTipAdvanced.Image
+  commentId: P:Reportman.Drawing.Forms.ToolTipAdvanced.Image
+  id: Image
+  parent: Reportman.Drawing.Forms.ToolTipAdvanced
+  langs:
+  - csharp
+  - vb
+  name: Image
+  nameWithType: ToolTipAdvanced.Image
+  fullName: Reportman.Drawing.Forms.ToolTipAdvanced.Image
+  type: Property
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public Image Image { get; set; }
+    parameters: []
+    return:
+      type: System.Drawing.Image
+    content.vb: Public Property Image As Image
+  overload: Reportman.Drawing.Forms.ToolTipAdvanced.Image*
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.MarshalByRefObject
+  commentId: T:System.MarshalByRefObject
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject
+  name: MarshalByRefObject
+  nameWithType: MarshalByRefObject
+  fullName: System.MarshalByRefObject
+- uid: System.ComponentModel.Component
+  commentId: T:System.ComponentModel.Component
+  parent: System.ComponentModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component
+  name: Component
+  nameWithType: Component
+  fullName: System.ComponentModel.Component
+- uid: System.Windows.Forms.ToolTip
+  commentId: T:System.Windows.Forms.ToolTip
+  parent: System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip
+  name: ToolTip
+  nameWithType: ToolTip
+  fullName: System.Windows.Forms.ToolTip
+- uid: System.ComponentModel.IComponent
+  commentId: T:System.ComponentModel.IComponent
+  parent: System.ComponentModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.icomponent
+  name: IComponent
+  nameWithType: IComponent
+  fullName: System.ComponentModel.IComponent
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System.ComponentModel.IExtenderProvider
+  commentId: T:System.ComponentModel.IExtenderProvider
+  parent: System.ComponentModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.iextenderprovider
+  name: IExtenderProvider
+  nameWithType: IExtenderProvider
+  fullName: System.ComponentModel.IExtenderProvider
+- uid: System.Windows.Forms.ToolTip.CanExtend(System.Object)
+  commentId: M:System.Windows.Forms.ToolTip.CanExtend(System.Object)
+  parent: System.Windows.Forms.ToolTip
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.canextend
+  name: CanExtend(object)
+  nameWithType: ToolTip.CanExtend(object)
+  fullName: System.Windows.Forms.ToolTip.CanExtend(object)
+  nameWithType.vb: ToolTip.CanExtend(Object)
+  fullName.vb: System.Windows.Forms.ToolTip.CanExtend(Object)
+  name.vb: CanExtend(Object)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolTip.CanExtend(System.Object)
+    name: CanExtend
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.canextend
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolTip.CanExtend(System.Object)
+    name: CanExtend
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.canextend
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Windows.Forms.ToolTip.Dispose(System.Boolean)
+  commentId: M:System.Windows.Forms.ToolTip.Dispose(System.Boolean)
+  parent: System.Windows.Forms.ToolTip
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.dispose
+  name: Dispose(bool)
+  nameWithType: ToolTip.Dispose(bool)
+  fullName: System.Windows.Forms.ToolTip.Dispose(bool)
+  nameWithType.vb: ToolTip.Dispose(Boolean)
+  fullName.vb: System.Windows.Forms.ToolTip.Dispose(Boolean)
+  name.vb: Dispose(Boolean)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolTip.Dispose(System.Boolean)
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.dispose
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolTip.Dispose(System.Boolean)
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.dispose
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Windows.Forms.ToolTip.GetToolTip(System.Windows.Forms.Control)
+  commentId: M:System.Windows.Forms.ToolTip.GetToolTip(System.Windows.Forms.Control)
+  parent: System.Windows.Forms.ToolTip
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.gettooltip
+  name: GetToolTip(Control)
+  nameWithType: ToolTip.GetToolTip(Control)
+  fullName: System.Windows.Forms.ToolTip.GetToolTip(System.Windows.Forms.Control)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolTip.GetToolTip(System.Windows.Forms.Control)
+    name: GetToolTip
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.gettooltip
+  - name: (
+  - uid: System.Windows.Forms.Control
+    name: Control
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.control
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolTip.GetToolTip(System.Windows.Forms.Control)
+    name: GetToolTip
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.gettooltip
+  - name: (
+  - uid: System.Windows.Forms.Control
+    name: Control
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.control
+  - name: )
+- uid: System.Windows.Forms.ToolTip.RemoveAll
+  commentId: M:System.Windows.Forms.ToolTip.RemoveAll
+  parent: System.Windows.Forms.ToolTip
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.removeall
+  name: RemoveAll()
+  nameWithType: ToolTip.RemoveAll()
+  fullName: System.Windows.Forms.ToolTip.RemoveAll()
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolTip.RemoveAll
+    name: RemoveAll
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.removeall
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolTip.RemoveAll
+    name: RemoveAll
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.removeall
+  - name: (
+  - name: )
+- uid: System.Windows.Forms.ToolTip.SetToolTip(System.Windows.Forms.Control,System.String)
+  commentId: M:System.Windows.Forms.ToolTip.SetToolTip(System.Windows.Forms.Control,System.String)
+  parent: System.Windows.Forms.ToolTip
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.settooltip
+  name: SetToolTip(Control, string)
+  nameWithType: ToolTip.SetToolTip(Control, string)
+  fullName: System.Windows.Forms.ToolTip.SetToolTip(System.Windows.Forms.Control, string)
+  nameWithType.vb: ToolTip.SetToolTip(Control, String)
+  fullName.vb: System.Windows.Forms.ToolTip.SetToolTip(System.Windows.Forms.Control, String)
+  name.vb: SetToolTip(Control, String)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolTip.SetToolTip(System.Windows.Forms.Control,System.String)
+    name: SetToolTip
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.settooltip
+  - name: (
+  - uid: System.Windows.Forms.Control
+    name: Control
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.control
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolTip.SetToolTip(System.Windows.Forms.Control,System.String)
+    name: SetToolTip
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.settooltip
+  - name: (
+  - uid: System.Windows.Forms.Control
+    name: Control
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.control
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Windows.Forms.ToolTip.Show(System.String,System.Windows.Forms.IWin32Window)
+  commentId: M:System.Windows.Forms.ToolTip.Show(System.String,System.Windows.Forms.IWin32Window)
+  parent: System.Windows.Forms.ToolTip
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.show#system-windows-forms-tooltip-show(system-string-system-windows-forms-iwin32window)
+  name: Show(string, IWin32Window)
+  nameWithType: ToolTip.Show(string, IWin32Window)
+  fullName: System.Windows.Forms.ToolTip.Show(string, System.Windows.Forms.IWin32Window)
+  nameWithType.vb: ToolTip.Show(String, IWin32Window)
+  fullName.vb: System.Windows.Forms.ToolTip.Show(String, System.Windows.Forms.IWin32Window)
+  name.vb: Show(String, IWin32Window)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolTip.Show(System.String,System.Windows.Forms.IWin32Window)
+    name: Show
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.show#system-windows-forms-tooltip-show(system-string-system-windows-forms-iwin32window)
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Windows.Forms.IWin32Window
+    name: IWin32Window
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.iwin32window
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolTip.Show(System.String,System.Windows.Forms.IWin32Window)
+    name: Show
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.show#system-windows-forms-tooltip-show(system-string-system-windows-forms-iwin32window)
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Windows.Forms.IWin32Window
+    name: IWin32Window
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.iwin32window
+  - name: )
+- uid: System.Windows.Forms.ToolTip.Show(System.String,System.Windows.Forms.IWin32Window,System.Int32)
+  commentId: M:System.Windows.Forms.ToolTip.Show(System.String,System.Windows.Forms.IWin32Window,System.Int32)
+  parent: System.Windows.Forms.ToolTip
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.show#system-windows-forms-tooltip-show(system-string-system-windows-forms-iwin32window-system-int32)
+  name: Show(string, IWin32Window, int)
+  nameWithType: ToolTip.Show(string, IWin32Window, int)
+  fullName: System.Windows.Forms.ToolTip.Show(string, System.Windows.Forms.IWin32Window, int)
+  nameWithType.vb: ToolTip.Show(String, IWin32Window, Integer)
+  fullName.vb: System.Windows.Forms.ToolTip.Show(String, System.Windows.Forms.IWin32Window, Integer)
+  name.vb: Show(String, IWin32Window, Integer)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolTip.Show(System.String,System.Windows.Forms.IWin32Window,System.Int32)
+    name: Show
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.show#system-windows-forms-tooltip-show(system-string-system-windows-forms-iwin32window-system-int32)
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Windows.Forms.IWin32Window
+    name: IWin32Window
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.iwin32window
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolTip.Show(System.String,System.Windows.Forms.IWin32Window,System.Int32)
+    name: Show
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.show#system-windows-forms-tooltip-show(system-string-system-windows-forms-iwin32window-system-int32)
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Windows.Forms.IWin32Window
+    name: IWin32Window
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.iwin32window
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Windows.Forms.ToolTip.Show(System.String,System.Windows.Forms.IWin32Window,System.Drawing.Point)
+  commentId: M:System.Windows.Forms.ToolTip.Show(System.String,System.Windows.Forms.IWin32Window,System.Drawing.Point)
+  parent: System.Windows.Forms.ToolTip
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.show#system-windows-forms-tooltip-show(system-string-system-windows-forms-iwin32window-system-drawing-point)
+  name: Show(string, IWin32Window, Point)
+  nameWithType: ToolTip.Show(string, IWin32Window, Point)
+  fullName: System.Windows.Forms.ToolTip.Show(string, System.Windows.Forms.IWin32Window, System.Drawing.Point)
+  nameWithType.vb: ToolTip.Show(String, IWin32Window, Point)
+  fullName.vb: System.Windows.Forms.ToolTip.Show(String, System.Windows.Forms.IWin32Window, System.Drawing.Point)
+  name.vb: Show(String, IWin32Window, Point)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolTip.Show(System.String,System.Windows.Forms.IWin32Window,System.Drawing.Point)
+    name: Show
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.show#system-windows-forms-tooltip-show(system-string-system-windows-forms-iwin32window-system-drawing-point)
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Windows.Forms.IWin32Window
+    name: IWin32Window
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.iwin32window
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.Point
+    name: Point
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.point
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolTip.Show(System.String,System.Windows.Forms.IWin32Window,System.Drawing.Point)
+    name: Show
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.show#system-windows-forms-tooltip-show(system-string-system-windows-forms-iwin32window-system-drawing-point)
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Windows.Forms.IWin32Window
+    name: IWin32Window
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.iwin32window
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.Point
+    name: Point
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.point
+  - name: )
+- uid: System.Windows.Forms.ToolTip.Show(System.String,System.Windows.Forms.IWin32Window,System.Drawing.Point,System.Int32)
+  commentId: M:System.Windows.Forms.ToolTip.Show(System.String,System.Windows.Forms.IWin32Window,System.Drawing.Point,System.Int32)
+  parent: System.Windows.Forms.ToolTip
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.show#system-windows-forms-tooltip-show(system-string-system-windows-forms-iwin32window-system-drawing-point-system-int32)
+  name: Show(string, IWin32Window, Point, int)
+  nameWithType: ToolTip.Show(string, IWin32Window, Point, int)
+  fullName: System.Windows.Forms.ToolTip.Show(string, System.Windows.Forms.IWin32Window, System.Drawing.Point, int)
+  nameWithType.vb: ToolTip.Show(String, IWin32Window, Point, Integer)
+  fullName.vb: System.Windows.Forms.ToolTip.Show(String, System.Windows.Forms.IWin32Window, System.Drawing.Point, Integer)
+  name.vb: Show(String, IWin32Window, Point, Integer)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolTip.Show(System.String,System.Windows.Forms.IWin32Window,System.Drawing.Point,System.Int32)
+    name: Show
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.show#system-windows-forms-tooltip-show(system-string-system-windows-forms-iwin32window-system-drawing-point-system-int32)
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Windows.Forms.IWin32Window
+    name: IWin32Window
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.iwin32window
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.Point
+    name: Point
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.point
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolTip.Show(System.String,System.Windows.Forms.IWin32Window,System.Drawing.Point,System.Int32)
+    name: Show
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.show#system-windows-forms-tooltip-show(system-string-system-windows-forms-iwin32window-system-drawing-point-system-int32)
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Windows.Forms.IWin32Window
+    name: IWin32Window
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.iwin32window
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.Point
+    name: Point
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.point
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Windows.Forms.ToolTip.Show(System.String,System.Windows.Forms.IWin32Window,System.Int32,System.Int32)
+  commentId: M:System.Windows.Forms.ToolTip.Show(System.String,System.Windows.Forms.IWin32Window,System.Int32,System.Int32)
+  parent: System.Windows.Forms.ToolTip
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.show#system-windows-forms-tooltip-show(system-string-system-windows-forms-iwin32window-system-int32-system-int32)
+  name: Show(string, IWin32Window, int, int)
+  nameWithType: ToolTip.Show(string, IWin32Window, int, int)
+  fullName: System.Windows.Forms.ToolTip.Show(string, System.Windows.Forms.IWin32Window, int, int)
+  nameWithType.vb: ToolTip.Show(String, IWin32Window, Integer, Integer)
+  fullName.vb: System.Windows.Forms.ToolTip.Show(String, System.Windows.Forms.IWin32Window, Integer, Integer)
+  name.vb: Show(String, IWin32Window, Integer, Integer)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolTip.Show(System.String,System.Windows.Forms.IWin32Window,System.Int32,System.Int32)
+    name: Show
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.show#system-windows-forms-tooltip-show(system-string-system-windows-forms-iwin32window-system-int32-system-int32)
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Windows.Forms.IWin32Window
+    name: IWin32Window
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.iwin32window
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolTip.Show(System.String,System.Windows.Forms.IWin32Window,System.Int32,System.Int32)
+    name: Show
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.show#system-windows-forms-tooltip-show(system-string-system-windows-forms-iwin32window-system-int32-system-int32)
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Windows.Forms.IWin32Window
+    name: IWin32Window
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.iwin32window
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Windows.Forms.ToolTip.Show(System.String,System.Windows.Forms.IWin32Window,System.Int32,System.Int32,System.Int32)
+  commentId: M:System.Windows.Forms.ToolTip.Show(System.String,System.Windows.Forms.IWin32Window,System.Int32,System.Int32,System.Int32)
+  parent: System.Windows.Forms.ToolTip
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.show#system-windows-forms-tooltip-show(system-string-system-windows-forms-iwin32window-system-int32-system-int32-system-int32)
+  name: Show(string, IWin32Window, int, int, int)
+  nameWithType: ToolTip.Show(string, IWin32Window, int, int, int)
+  fullName: System.Windows.Forms.ToolTip.Show(string, System.Windows.Forms.IWin32Window, int, int, int)
+  nameWithType.vb: ToolTip.Show(String, IWin32Window, Integer, Integer, Integer)
+  fullName.vb: System.Windows.Forms.ToolTip.Show(String, System.Windows.Forms.IWin32Window, Integer, Integer, Integer)
+  name.vb: Show(String, IWin32Window, Integer, Integer, Integer)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolTip.Show(System.String,System.Windows.Forms.IWin32Window,System.Int32,System.Int32,System.Int32)
+    name: Show
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.show#system-windows-forms-tooltip-show(system-string-system-windows-forms-iwin32window-system-int32-system-int32-system-int32)
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Windows.Forms.IWin32Window
+    name: IWin32Window
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.iwin32window
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolTip.Show(System.String,System.Windows.Forms.IWin32Window,System.Int32,System.Int32,System.Int32)
+    name: Show
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.show#system-windows-forms-tooltip-show(system-string-system-windows-forms-iwin32window-system-int32-system-int32-system-int32)
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Windows.Forms.IWin32Window
+    name: IWin32Window
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.iwin32window
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Windows.Forms.ToolTip.Hide(System.Windows.Forms.IWin32Window)
+  commentId: M:System.Windows.Forms.ToolTip.Hide(System.Windows.Forms.IWin32Window)
+  parent: System.Windows.Forms.ToolTip
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.hide
+  name: Hide(IWin32Window)
+  nameWithType: ToolTip.Hide(IWin32Window)
+  fullName: System.Windows.Forms.ToolTip.Hide(System.Windows.Forms.IWin32Window)
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolTip.Hide(System.Windows.Forms.IWin32Window)
+    name: Hide
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.hide
+  - name: (
+  - uid: System.Windows.Forms.IWin32Window
+    name: IWin32Window
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.iwin32window
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolTip.Hide(System.Windows.Forms.IWin32Window)
+    name: Hide
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.hide
+  - name: (
+  - uid: System.Windows.Forms.IWin32Window
+    name: IWin32Window
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.iwin32window
+  - name: )
+- uid: System.Windows.Forms.ToolTip.StopTimer
+  commentId: M:System.Windows.Forms.ToolTip.StopTimer
+  parent: System.Windows.Forms.ToolTip
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.stoptimer
+  name: StopTimer()
+  nameWithType: ToolTip.StopTimer()
+  fullName: System.Windows.Forms.ToolTip.StopTimer()
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolTip.StopTimer
+    name: StopTimer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.stoptimer
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolTip.StopTimer
+    name: StopTimer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.stoptimer
+  - name: (
+  - name: )
+- uid: System.Windows.Forms.ToolTip.ToString
+  commentId: M:System.Windows.Forms.ToolTip.ToString
+  parent: System.Windows.Forms.ToolTip
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.tostring
+  name: ToString()
+  nameWithType: ToolTip.ToString()
+  fullName: System.Windows.Forms.ToolTip.ToString()
+  spec.csharp:
+  - uid: System.Windows.Forms.ToolTip.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.ToolTip.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.tostring
+  - name: (
+  - name: )
+- uid: System.Windows.Forms.ToolTip.Active
+  commentId: P:System.Windows.Forms.ToolTip.Active
+  parent: System.Windows.Forms.ToolTip
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.active
+  name: Active
+  nameWithType: ToolTip.Active
+  fullName: System.Windows.Forms.ToolTip.Active
+- uid: System.Windows.Forms.ToolTip.AutomaticDelay
+  commentId: P:System.Windows.Forms.ToolTip.AutomaticDelay
+  parent: System.Windows.Forms.ToolTip
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.automaticdelay
+  name: AutomaticDelay
+  nameWithType: ToolTip.AutomaticDelay
+  fullName: System.Windows.Forms.ToolTip.AutomaticDelay
+- uid: System.Windows.Forms.ToolTip.AutoPopDelay
+  commentId: P:System.Windows.Forms.ToolTip.AutoPopDelay
+  parent: System.Windows.Forms.ToolTip
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.autopopdelay
+  name: AutoPopDelay
+  nameWithType: ToolTip.AutoPopDelay
+  fullName: System.Windows.Forms.ToolTip.AutoPopDelay
+- uid: System.Windows.Forms.ToolTip.BackColor
+  commentId: P:System.Windows.Forms.ToolTip.BackColor
+  parent: System.Windows.Forms.ToolTip
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.backcolor
+  name: BackColor
+  nameWithType: ToolTip.BackColor
+  fullName: System.Windows.Forms.ToolTip.BackColor
+- uid: System.Windows.Forms.ToolTip.CreateParams
+  commentId: P:System.Windows.Forms.ToolTip.CreateParams
+  parent: System.Windows.Forms.ToolTip
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.createparams
+  name: CreateParams
+  nameWithType: ToolTip.CreateParams
+  fullName: System.Windows.Forms.ToolTip.CreateParams
+- uid: System.Windows.Forms.ToolTip.ForeColor
+  commentId: P:System.Windows.Forms.ToolTip.ForeColor
+  parent: System.Windows.Forms.ToolTip
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.forecolor
+  name: ForeColor
+  nameWithType: ToolTip.ForeColor
+  fullName: System.Windows.Forms.ToolTip.ForeColor
+- uid: System.Windows.Forms.ToolTip.IsBalloon
+  commentId: P:System.Windows.Forms.ToolTip.IsBalloon
+  parent: System.Windows.Forms.ToolTip
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.isballoon
+  name: IsBalloon
+  nameWithType: ToolTip.IsBalloon
+  fullName: System.Windows.Forms.ToolTip.IsBalloon
+- uid: System.Windows.Forms.ToolTip.InitialDelay
+  commentId: P:System.Windows.Forms.ToolTip.InitialDelay
+  parent: System.Windows.Forms.ToolTip
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.initialdelay
+  name: InitialDelay
+  nameWithType: ToolTip.InitialDelay
+  fullName: System.Windows.Forms.ToolTip.InitialDelay
+- uid: System.Windows.Forms.ToolTip.OwnerDraw
+  commentId: P:System.Windows.Forms.ToolTip.OwnerDraw
+  parent: System.Windows.Forms.ToolTip
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.ownerdraw
+  name: OwnerDraw
+  nameWithType: ToolTip.OwnerDraw
+  fullName: System.Windows.Forms.ToolTip.OwnerDraw
+- uid: System.Windows.Forms.ToolTip.ReshowDelay
+  commentId: P:System.Windows.Forms.ToolTip.ReshowDelay
+  parent: System.Windows.Forms.ToolTip
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.reshowdelay
+  name: ReshowDelay
+  nameWithType: ToolTip.ReshowDelay
+  fullName: System.Windows.Forms.ToolTip.ReshowDelay
+- uid: System.Windows.Forms.ToolTip.ShowAlways
+  commentId: P:System.Windows.Forms.ToolTip.ShowAlways
+  parent: System.Windows.Forms.ToolTip
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.showalways
+  name: ShowAlways
+  nameWithType: ToolTip.ShowAlways
+  fullName: System.Windows.Forms.ToolTip.ShowAlways
+- uid: System.Windows.Forms.ToolTip.StripAmpersands
+  commentId: P:System.Windows.Forms.ToolTip.StripAmpersands
+  parent: System.Windows.Forms.ToolTip
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.stripampersands
+  name: StripAmpersands
+  nameWithType: ToolTip.StripAmpersands
+  fullName: System.Windows.Forms.ToolTip.StripAmpersands
+- uid: System.Windows.Forms.ToolTip.Tag
+  commentId: P:System.Windows.Forms.ToolTip.Tag
+  parent: System.Windows.Forms.ToolTip
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.tag
+  name: Tag
+  nameWithType: ToolTip.Tag
+  fullName: System.Windows.Forms.ToolTip.Tag
+- uid: System.Windows.Forms.ToolTip.ToolTipIcon
+  commentId: P:System.Windows.Forms.ToolTip.ToolTipIcon
+  parent: System.Windows.Forms.ToolTip
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.tooltipicon
+  name: ToolTipIcon
+  nameWithType: ToolTip.ToolTipIcon
+  fullName: System.Windows.Forms.ToolTip.ToolTipIcon
+- uid: System.Windows.Forms.ToolTip.ToolTipTitle
+  commentId: P:System.Windows.Forms.ToolTip.ToolTipTitle
+  parent: System.Windows.Forms.ToolTip
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.tooltiptitle
+  name: ToolTipTitle
+  nameWithType: ToolTip.ToolTipTitle
+  fullName: System.Windows.Forms.ToolTip.ToolTipTitle
+- uid: System.Windows.Forms.ToolTip.UseAnimation
+  commentId: P:System.Windows.Forms.ToolTip.UseAnimation
+  parent: System.Windows.Forms.ToolTip
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.useanimation
+  name: UseAnimation
+  nameWithType: ToolTip.UseAnimation
+  fullName: System.Windows.Forms.ToolTip.UseAnimation
+- uid: System.Windows.Forms.ToolTip.UseFading
+  commentId: P:System.Windows.Forms.ToolTip.UseFading
+  parent: System.Windows.Forms.ToolTip
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.usefading
+  name: UseFading
+  nameWithType: ToolTip.UseFading
+  fullName: System.Windows.Forms.ToolTip.UseFading
+- uid: System.Windows.Forms.ToolTip.Draw
+  commentId: E:System.Windows.Forms.ToolTip.Draw
+  parent: System.Windows.Forms.ToolTip
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.draw
+  name: Draw
+  nameWithType: ToolTip.Draw
+  fullName: System.Windows.Forms.ToolTip.Draw
+- uid: System.Windows.Forms.ToolTip.Popup
+  commentId: E:System.Windows.Forms.ToolTip.Popup
+  parent: System.Windows.Forms.ToolTip
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip.popup
+  name: Popup
+  nameWithType: ToolTip.Popup
+  fullName: System.Windows.Forms.ToolTip.Popup
+- uid: System.ComponentModel.Component.Dispose
+  commentId: M:System.ComponentModel.Component.Dispose
+  parent: System.ComponentModel.Component
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.dispose#system-componentmodel-component-dispose
+  name: Dispose()
+  nameWithType: Component.Dispose()
+  fullName: System.ComponentModel.Component.Dispose()
+  spec.csharp:
+  - uid: System.ComponentModel.Component.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.dispose#system-componentmodel-component-dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.Component.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.dispose#system-componentmodel-component-dispose
+  - name: (
+  - name: )
+- uid: System.ComponentModel.Component.GetService(System.Type)
+  commentId: M:System.ComponentModel.Component.GetService(System.Type)
+  parent: System.ComponentModel.Component
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.getservice
+  name: GetService(Type)
+  nameWithType: Component.GetService(Type)
+  fullName: System.ComponentModel.Component.GetService(System.Type)
+  spec.csharp:
+  - uid: System.ComponentModel.Component.GetService(System.Type)
+    name: GetService
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.getservice
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.Component.GetService(System.Type)
+    name: GetService
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.getservice
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+- uid: System.ComponentModel.Component.CanRaiseEvents
+  commentId: P:System.ComponentModel.Component.CanRaiseEvents
+  parent: System.ComponentModel.Component
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.canraiseevents
+  name: CanRaiseEvents
+  nameWithType: Component.CanRaiseEvents
+  fullName: System.ComponentModel.Component.CanRaiseEvents
+- uid: System.ComponentModel.Component.Events
+  commentId: P:System.ComponentModel.Component.Events
+  parent: System.ComponentModel.Component
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.events
+  name: Events
+  nameWithType: Component.Events
+  fullName: System.ComponentModel.Component.Events
+- uid: System.ComponentModel.Component.Site
+  commentId: P:System.ComponentModel.Component.Site
+  parent: System.ComponentModel.Component
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.site
+  name: Site
+  nameWithType: Component.Site
+  fullName: System.ComponentModel.Component.Site
+- uid: System.ComponentModel.Component.Container
+  commentId: P:System.ComponentModel.Component.Container
+  parent: System.ComponentModel.Component
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.container
+  name: Container
+  nameWithType: Component.Container
+  fullName: System.ComponentModel.Component.Container
+- uid: System.ComponentModel.Component.DesignMode
+  commentId: P:System.ComponentModel.Component.DesignMode
+  parent: System.ComponentModel.Component
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.designmode
+  name: DesignMode
+  nameWithType: Component.DesignMode
+  fullName: System.ComponentModel.Component.DesignMode
+- uid: System.ComponentModel.Component.Disposed
+  commentId: E:System.ComponentModel.Component.Disposed
+  parent: System.ComponentModel.Component
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.disposed
+  name: Disposed
+  nameWithType: Component.Disposed
+  fullName: System.ComponentModel.Component.Disposed
+- uid: System.MarshalByRefObject.GetLifetimeService
+  commentId: M:System.MarshalByRefObject.GetLifetimeService
+  parent: System.MarshalByRefObject
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.getlifetimeservice
+  name: GetLifetimeService()
+  nameWithType: MarshalByRefObject.GetLifetimeService()
+  fullName: System.MarshalByRefObject.GetLifetimeService()
+  spec.csharp:
+  - uid: System.MarshalByRefObject.GetLifetimeService
+    name: GetLifetimeService
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.getlifetimeservice
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.MarshalByRefObject.GetLifetimeService
+    name: GetLifetimeService
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.getlifetimeservice
+  - name: (
+  - name: )
+- uid: System.MarshalByRefObject.InitializeLifetimeService
+  commentId: M:System.MarshalByRefObject.InitializeLifetimeService
+  parent: System.MarshalByRefObject
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.initializelifetimeservice
+  name: InitializeLifetimeService()
+  nameWithType: MarshalByRefObject.InitializeLifetimeService()
+  fullName: System.MarshalByRefObject.InitializeLifetimeService()
+  spec.csharp:
+  - uid: System.MarshalByRefObject.InitializeLifetimeService
+    name: InitializeLifetimeService
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.initializelifetimeservice
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.MarshalByRefObject.InitializeLifetimeService
+    name: InitializeLifetimeService
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.initializelifetimeservice
+  - name: (
+  - name: )
+- uid: System.MarshalByRefObject.MemberwiseClone(System.Boolean)
+  commentId: M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)
+  parent: System.MarshalByRefObject
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.memberwiseclone
+  name: MemberwiseClone(bool)
+  nameWithType: MarshalByRefObject.MemberwiseClone(bool)
+  fullName: System.MarshalByRefObject.MemberwiseClone(bool)
+  nameWithType.vb: MarshalByRefObject.MemberwiseClone(Boolean)
+  fullName.vb: System.MarshalByRefObject.MemberwiseClone(Boolean)
+  name.vb: MemberwiseClone(Boolean)
+  spec.csharp:
+  - uid: System.MarshalByRefObject.MemberwiseClone(System.Boolean)
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.memberwiseclone
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: System.MarshalByRefObject.MemberwiseClone(System.Boolean)
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.memberwiseclone
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ComponentModel
+  commentId: N:System.ComponentModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.ComponentModel
+  nameWithType: System.ComponentModel
+  fullName: System.ComponentModel
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.ComponentModel
+    name: ComponentModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.ComponentModel
+    name: ComponentModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel
+- uid: System.Windows.Forms
+  commentId: N:System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Windows.Forms
+  nameWithType: System.Windows.Forms
+  fullName: System.Windows.Forms
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Windows
+    name: Windows
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows
+  - name: .
+  - uid: System.Windows.Forms
+    name: Forms
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Windows
+    name: Windows
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows
+  - name: .
+  - uid: System.Windows.Forms
+    name: Forms
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms
+- uid: Reportman.Drawing.Forms.ToolTipAdvanced.#ctor*
+  commentId: Overload:Reportman.Drawing.Forms.ToolTipAdvanced.#ctor
+  isExternal: true
+  href: Reportman.Drawing.Forms.ToolTipAdvanced.html#Reportman_Drawing_Forms_ToolTipAdvanced__ctor
+  name: ToolTipAdvanced
+  nameWithType: ToolTipAdvanced.ToolTipAdvanced
+  fullName: Reportman.Drawing.Forms.ToolTipAdvanced.ToolTipAdvanced
+  nameWithType.vb: ToolTipAdvanced.New
+  fullName.vb: Reportman.Drawing.Forms.ToolTipAdvanced.New
+  name.vb: New
+- uid: Reportman.Drawing.Forms.ToolTipAdvanced.Image*
+  commentId: Overload:Reportman.Drawing.Forms.ToolTipAdvanced.Image
+  isExternal: true
+  href: Reportman.Drawing.Forms.ToolTipAdvanced.html#Reportman_Drawing_Forms_ToolTipAdvanced_Image
+  name: Image
+  nameWithType: ToolTipAdvanced.Image
+  fullName: Reportman.Drawing.Forms.ToolTipAdvanced.Image
+- uid: System.Drawing.Image
+  commentId: T:System.Drawing.Image
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.image
+  name: Image
+  nameWithType: Image
+  fullName: System.Drawing.Image
+- uid: System.Drawing
+  commentId: N:System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Drawing
+  nameWithType: System.Drawing
+  fullName: System.Drawing
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing

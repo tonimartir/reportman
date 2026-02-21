@@ -1,0 +1,744 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.SeriesItem
+  commentId: T:Reportman.Drawing.SeriesItem
+  id: SeriesItem
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.SeriesItem.#ctor
+  - Reportman.Drawing.SeriesItem.Caption
+  - Reportman.Drawing.SeriesItem.ChartStyle
+  - Reportman.Drawing.SeriesItem.Color
+  - Reportman.Drawing.SeriesItem.Colors
+  - Reportman.Drawing.SeriesItem.FunctionName
+  - Reportman.Drawing.SeriesItem.FunctionParams
+  - Reportman.Drawing.SeriesItem.MaxValue
+  - Reportman.Drawing.SeriesItem.MinValue
+  - Reportman.Drawing.SeriesItem.SetLastValueColor(System.Int32)
+  - Reportman.Drawing.SeriesItem.ValueCaptions
+  - Reportman.Drawing.SeriesItem.Values
+  - Reportman.Drawing.SeriesItem.ValuesX
+  langs:
+  - csharp
+  - vb
+  name: SeriesItem
+  nameWithType: SeriesItem
+  fullName: Reportman.Drawing.SeriesItem
+  type: Class
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public class SeriesItem
+    content.vb: Public Class SeriesItem
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.SeriesItem.Values
+  commentId: F:Reportman.Drawing.SeriesItem.Values
+  id: Values
+  parent: Reportman.Drawing.SeriesItem
+  langs:
+  - csharp
+  - vb
+  name: Values
+  nameWithType: SeriesItem.Values
+  fullName: Reportman.Drawing.SeriesItem.Values
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public Doubles Values
+    return:
+      type: Reportman.Drawing.Doubles
+    content.vb: Public Values As Doubles
+- uid: Reportman.Drawing.SeriesItem.ValuesX
+  commentId: F:Reportman.Drawing.SeriesItem.ValuesX
+  id: ValuesX
+  parent: Reportman.Drawing.SeriesItem
+  langs:
+  - csharp
+  - vb
+  name: ValuesX
+  nameWithType: SeriesItem.ValuesX
+  fullName: Reportman.Drawing.SeriesItem.ValuesX
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public List<object> ValuesX
+    return:
+      type: System.Collections.Generic.List{System.Object}
+    content.vb: Public ValuesX As List(Of Object)
+- uid: Reportman.Drawing.SeriesItem.Colors
+  commentId: F:Reportman.Drawing.SeriesItem.Colors
+  id: Colors
+  parent: Reportman.Drawing.SeriesItem
+  langs:
+  - csharp
+  - vb
+  name: Colors
+  nameWithType: SeriesItem.Colors
+  fullName: Reportman.Drawing.SeriesItem.Colors
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public Integers Colors
+    return:
+      type: Reportman.Drawing.Integers
+    content.vb: Public Colors As Integers
+- uid: Reportman.Drawing.SeriesItem.ValueCaptions
+  commentId: F:Reportman.Drawing.SeriesItem.ValueCaptions
+  id: ValueCaptions
+  parent: Reportman.Drawing.SeriesItem
+  langs:
+  - csharp
+  - vb
+  name: ValueCaptions
+  nameWithType: SeriesItem.ValueCaptions
+  fullName: Reportman.Drawing.SeriesItem.ValueCaptions
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public Strings ValueCaptions
+    return:
+      type: Reportman.Drawing.Strings
+    content.vb: Public ValueCaptions As Strings
+- uid: Reportman.Drawing.SeriesItem.Color
+  commentId: F:Reportman.Drawing.SeriesItem.Color
+  id: Color
+  parent: Reportman.Drawing.SeriesItem
+  langs:
+  - csharp
+  - vb
+  name: Color
+  nameWithType: SeriesItem.Color
+  fullName: Reportman.Drawing.SeriesItem.Color
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int Color
+    return:
+      type: System.Int32
+    content.vb: Public Color As Integer
+- uid: Reportman.Drawing.SeriesItem.Caption
+  commentId: F:Reportman.Drawing.SeriesItem.Caption
+  id: Caption
+  parent: Reportman.Drawing.SeriesItem
+  langs:
+  - csharp
+  - vb
+  name: Caption
+  nameWithType: SeriesItem.Caption
+  fullName: Reportman.Drawing.SeriesItem.Caption
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string Caption
+    return:
+      type: System.String
+    content.vb: Public Caption As String
+- uid: Reportman.Drawing.SeriesItem.MaxValue
+  commentId: F:Reportman.Drawing.SeriesItem.MaxValue
+  id: MaxValue
+  parent: Reportman.Drawing.SeriesItem
+  langs:
+  - csharp
+  - vb
+  name: MaxValue
+  nameWithType: SeriesItem.MaxValue
+  fullName: Reportman.Drawing.SeriesItem.MaxValue
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public double MaxValue
+    return:
+      type: System.Double
+    content.vb: Public MaxValue As Double
+- uid: Reportman.Drawing.SeriesItem.MinValue
+  commentId: F:Reportman.Drawing.SeriesItem.MinValue
+  id: MinValue
+  parent: Reportman.Drawing.SeriesItem
+  langs:
+  - csharp
+  - vb
+  name: MinValue
+  nameWithType: SeriesItem.MinValue
+  fullName: Reportman.Drawing.SeriesItem.MinValue
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public double MinValue
+    return:
+      type: System.Double
+    content.vb: Public MinValue As Double
+- uid: Reportman.Drawing.SeriesItem.ChartStyle
+  commentId: F:Reportman.Drawing.SeriesItem.ChartStyle
+  id: ChartStyle
+  parent: Reportman.Drawing.SeriesItem
+  langs:
+  - csharp
+  - vb
+  name: ChartStyle
+  nameWithType: SeriesItem.ChartStyle
+  fullName: Reportman.Drawing.SeriesItem.ChartStyle
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public ChartType ChartStyle
+    return:
+      type: Reportman.Drawing.ChartType
+    content.vb: Public ChartStyle As ChartType
+- uid: Reportman.Drawing.SeriesItem.FunctionName
+  commentId: F:Reportman.Drawing.SeriesItem.FunctionName
+  id: FunctionName
+  parent: Reportman.Drawing.SeriesItem
+  langs:
+  - csharp
+  - vb
+  name: FunctionName
+  nameWithType: SeriesItem.FunctionName
+  fullName: Reportman.Drawing.SeriesItem.FunctionName
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string FunctionName
+    return:
+      type: System.String
+    content.vb: Public FunctionName As String
+- uid: Reportman.Drawing.SeriesItem.FunctionParams
+  commentId: F:Reportman.Drawing.SeriesItem.FunctionParams
+  id: FunctionParams
+  parent: Reportman.Drawing.SeriesItem
+  langs:
+  - csharp
+  - vb
+  name: FunctionParams
+  nameWithType: SeriesItem.FunctionParams
+  fullName: Reportman.Drawing.SeriesItem.FunctionParams
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string FunctionParams
+    return:
+      type: System.String
+    content.vb: Public FunctionParams As String
+- uid: Reportman.Drawing.SeriesItem.#ctor
+  commentId: M:Reportman.Drawing.SeriesItem.#ctor
+  id: '#ctor'
+  parent: Reportman.Drawing.SeriesItem
+  langs:
+  - csharp
+  - vb
+  name: SeriesItem()
+  nameWithType: SeriesItem.SeriesItem()
+  fullName: Reportman.Drawing.SeriesItem.SeriesItem()
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public SeriesItem()
+    content.vb: Public Sub New()
+  overload: Reportman.Drawing.SeriesItem.#ctor*
+  nameWithType.vb: SeriesItem.New()
+  fullName.vb: Reportman.Drawing.SeriesItem.New()
+  name.vb: New()
+- uid: Reportman.Drawing.SeriesItem.SetLastValueColor(System.Int32)
+  commentId: M:Reportman.Drawing.SeriesItem.SetLastValueColor(System.Int32)
+  id: SetLastValueColor(System.Int32)
+  parent: Reportman.Drawing.SeriesItem
+  langs:
+  - csharp
+  - vb
+  name: SetLastValueColor(int)
+  nameWithType: SeriesItem.SetLastValueColor(int)
+  fullName: Reportman.Drawing.SeriesItem.SetLastValueColor(int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public void SetLastValueColor(int newcolor)
+    parameters:
+    - id: newcolor
+      type: System.Int32
+    content.vb: Public Sub SetLastValueColor(newcolor As Integer)
+  overload: Reportman.Drawing.SeriesItem.SetLastValueColor*
+  nameWithType.vb: SeriesItem.SetLastValueColor(Integer)
+  fullName.vb: Reportman.Drawing.SeriesItem.SetLastValueColor(Integer)
+  name.vb: SetLastValueColor(Integer)
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.Doubles
+  commentId: T:Reportman.Drawing.Doubles
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.Doubles.html
+  name: Doubles
+  nameWithType: Doubles
+  fullName: Reportman.Drawing.Doubles
+- uid: System.Collections.Generic.List{System.Object}
+  commentId: T:System.Collections.Generic.List{System.Object}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<object>
+  nameWithType: List<object>
+  fullName: System.Collections.Generic.List<object>
+  nameWithType.vb: List(Of Object)
+  fullName.vb: System.Collections.Generic.List(Of Object)
+  name.vb: List(Of Object)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Reportman.Drawing.Integers
+  commentId: T:Reportman.Drawing.Integers
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.Integers.html
+  name: Integers
+  nameWithType: Integers
+  fullName: Reportman.Drawing.Integers
+- uid: Reportman.Drawing.Strings
+  commentId: T:Reportman.Drawing.Strings
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.Strings.html
+  name: Strings
+  nameWithType: Strings
+  fullName: Reportman.Drawing.Strings
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.double
+  name: double
+  nameWithType: double
+  fullName: double
+  nameWithType.vb: Double
+  fullName.vb: Double
+  name.vb: Double
+- uid: Reportman.Drawing.ChartType
+  commentId: T:Reportman.Drawing.ChartType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.ChartType.html
+  name: ChartType
+  nameWithType: ChartType
+  fullName: Reportman.Drawing.ChartType
+- uid: Reportman.Drawing.SeriesItem.#ctor*
+  commentId: Overload:Reportman.Drawing.SeriesItem.#ctor
+  isExternal: true
+  href: Reportman.Drawing.SeriesItem.html#Reportman_Drawing_SeriesItem__ctor
+  name: SeriesItem
+  nameWithType: SeriesItem.SeriesItem
+  fullName: Reportman.Drawing.SeriesItem.SeriesItem
+  nameWithType.vb: SeriesItem.New
+  fullName.vb: Reportman.Drawing.SeriesItem.New
+  name.vb: New
+- uid: Reportman.Drawing.SeriesItem.SetLastValueColor*
+  commentId: Overload:Reportman.Drawing.SeriesItem.SetLastValueColor
+  isExternal: true
+  href: Reportman.Drawing.SeriesItem.html#Reportman_Drawing_SeriesItem_SetLastValueColor_System_Int32_
+  name: SetLastValueColor
+  nameWithType: SeriesItem.SetLastValueColor
+  fullName: Reportman.Drawing.SeriesItem.SetLastValueColor

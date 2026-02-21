@@ -66,12 +66,16 @@ namespace Reportman.Reporting
         ZEOS = 6,
         /// <summary>Driver used to connect to databases in .Net 1.x, because no abstraction is provided in .Net 1.x, 
         /// you must select alse the driver (object instances) to be used. <see cref="Variant">DotNetDriverType</see>
-        /// Available only in .Net 1.x</summary>
+        /// Available only in .Net 1.x, deprecated</summary>
         DotNet = 7,
         /// <summary>Driver used to connect to databases in .Net 2.x, it's used with ProviderFactory property inside
         /// DatabaseInfo to perform the connection<see cref="Variant">DatabaseInfo</see>
-        /// Available only in .Net 2.x</summary>
-        DotNet2 = 8
+        /// Available only in .Net</summary>
+        DotNet2 = 8,
+        /// <summary>Driver used to connect to databases using Firedac Delphi/C++Buider drivers
+        /// DatabaseInfo to perform the connection<see cref="Variant">DatabaseInfo</see>
+        /// Not Available only in .Net</summary>
+        Firedac = 9
     };
     /// <summary>
     /// The DotNetDriverType indicates the database provider to be used when you select DriverType.DotNet, that
@@ -147,7 +151,8 @@ namespace Reportman.Reporting
                 "Interbase Objects",
                 "Zeos Database Objects",
                 "Dot Net Connection",
-                "Dot Net 2 Connection"
+                "Dot Net 2 Connection",
+                "Firedac"
             };
             return alist;
         }

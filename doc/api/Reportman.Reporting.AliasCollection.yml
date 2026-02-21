@@ -1,0 +1,1307 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.AliasCollection
+  commentId: T:Reportman.Reporting.AliasCollection
+  id: AliasCollection
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.AliasCollection.#ctor
+  - Reportman.Reporting.AliasCollection.Add(Reportman.Reporting.AliasCollectionItem)
+  - Reportman.Reporting.AliasCollection.Contains(Reportman.Reporting.AliasCollectionItem)
+  - Reportman.Reporting.AliasCollection.CopyTo(Reportman.Reporting.AliasCollectionItem[],System.Int32)
+  - Reportman.Reporting.AliasCollection.IndexOf(Reportman.Reporting.AliasCollectionItem)
+  - Reportman.Reporting.AliasCollection.Insert(System.Int32,Reportman.Reporting.AliasCollectionItem)
+  - Reportman.Reporting.AliasCollection.Item(System.Int32)
+  - Reportman.Reporting.AliasCollection.OnInsert(System.Int32,System.Object)
+  - Reportman.Reporting.AliasCollection.OnRemove(System.Int32,System.Object)
+  - Reportman.Reporting.AliasCollection.OnSet(System.Int32,System.Object,System.Object)
+  - Reportman.Reporting.AliasCollection.OnValidate(System.Object)
+  - Reportman.Reporting.AliasCollection.Remove(Reportman.Reporting.AliasCollectionItem)
+  langs:
+  - csharp
+  - vb
+  name: AliasCollection
+  nameWithType: AliasCollection
+  fullName: Reportman.Reporting.AliasCollection
+  type: Class
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: 'public class AliasCollection : CollectionBase, IList, ICollection, IEnumerable'
+    content.vb: Public Class AliasCollection Inherits CollectionBase Implements IList, ICollection, IEnumerable
+  inheritance:
+  - System.Object
+  - System.Collections.CollectionBase
+  implements:
+  - System.Collections.IList
+  - System.Collections.ICollection
+  - System.Collections.IEnumerable
+  inheritedMembers:
+  - System.Collections.CollectionBase.Clear
+  - System.Collections.CollectionBase.RemoveAt(System.Int32)
+  - System.Collections.CollectionBase.GetEnumerator
+  - System.Collections.CollectionBase.OnClear
+  - System.Collections.CollectionBase.OnSetComplete(System.Int32,System.Object,System.Object)
+  - System.Collections.CollectionBase.OnInsertComplete(System.Int32,System.Object)
+  - System.Collections.CollectionBase.OnClearComplete
+  - System.Collections.CollectionBase.OnRemoveComplete(System.Int32,System.Object)
+  - System.Collections.CollectionBase.InnerList
+  - System.Collections.CollectionBase.List
+  - System.Collections.CollectionBase.Capacity
+  - System.Collections.CollectionBase.Count
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Reporting.AliasCollection.Add(Reportman.Reporting.AliasCollectionItem)
+  commentId: M:Reportman.Reporting.AliasCollection.Add(Reportman.Reporting.AliasCollectionItem)
+  id: Add(Reportman.Reporting.AliasCollectionItem)
+  parent: Reportman.Reporting.AliasCollection
+  langs:
+  - csharp
+  - vb
+  name: Add(AliasCollectionItem)
+  nameWithType: AliasCollection.Add(AliasCollectionItem)
+  fullName: Reportman.Reporting.AliasCollection.Add(Reportman.Reporting.AliasCollectionItem)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public int Add(AliasCollectionItem value)
+    parameters:
+    - id: value
+      type: Reportman.Reporting.AliasCollectionItem
+    return:
+      type: System.Int32
+    content.vb: Public Function Add(value As AliasCollectionItem) As Integer
+  overload: Reportman.Reporting.AliasCollection.Add*
+- uid: Reportman.Reporting.AliasCollection.IndexOf(Reportman.Reporting.AliasCollectionItem)
+  commentId: M:Reportman.Reporting.AliasCollection.IndexOf(Reportman.Reporting.AliasCollectionItem)
+  id: IndexOf(Reportman.Reporting.AliasCollectionItem)
+  parent: Reportman.Reporting.AliasCollection
+  langs:
+  - csharp
+  - vb
+  name: IndexOf(AliasCollectionItem)
+  nameWithType: AliasCollection.IndexOf(AliasCollectionItem)
+  fullName: Reportman.Reporting.AliasCollection.IndexOf(Reportman.Reporting.AliasCollectionItem)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public int IndexOf(AliasCollectionItem value)
+    parameters:
+    - id: value
+      type: Reportman.Reporting.AliasCollectionItem
+    return:
+      type: System.Int32
+    content.vb: Public Function IndexOf(value As AliasCollectionItem) As Integer
+  overload: Reportman.Reporting.AliasCollection.IndexOf*
+- uid: Reportman.Reporting.AliasCollection.Insert(System.Int32,Reportman.Reporting.AliasCollectionItem)
+  commentId: M:Reportman.Reporting.AliasCollection.Insert(System.Int32,Reportman.Reporting.AliasCollectionItem)
+  id: Insert(System.Int32,Reportman.Reporting.AliasCollectionItem)
+  parent: Reportman.Reporting.AliasCollection
+  langs:
+  - csharp
+  - vb
+  name: Insert(int, AliasCollectionItem)
+  nameWithType: AliasCollection.Insert(int, AliasCollectionItem)
+  fullName: Reportman.Reporting.AliasCollection.Insert(int, Reportman.Reporting.AliasCollectionItem)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public void Insert(int index, AliasCollectionItem value)
+    parameters:
+    - id: index
+      type: System.Int32
+    - id: value
+      type: Reportman.Reporting.AliasCollectionItem
+    content.vb: Public Sub Insert(index As Integer, value As AliasCollectionItem)
+  overload: Reportman.Reporting.AliasCollection.Insert*
+  nameWithType.vb: AliasCollection.Insert(Integer, AliasCollectionItem)
+  fullName.vb: Reportman.Reporting.AliasCollection.Insert(Integer, Reportman.Reporting.AliasCollectionItem)
+  name.vb: Insert(Integer, AliasCollectionItem)
+- uid: Reportman.Reporting.AliasCollection.Remove(Reportman.Reporting.AliasCollectionItem)
+  commentId: M:Reportman.Reporting.AliasCollection.Remove(Reportman.Reporting.AliasCollectionItem)
+  id: Remove(Reportman.Reporting.AliasCollectionItem)
+  parent: Reportman.Reporting.AliasCollection
+  langs:
+  - csharp
+  - vb
+  name: Remove(AliasCollectionItem)
+  nameWithType: AliasCollection.Remove(AliasCollectionItem)
+  fullName: Reportman.Reporting.AliasCollection.Remove(Reportman.Reporting.AliasCollectionItem)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public void Remove(AliasCollectionItem value)
+    parameters:
+    - id: value
+      type: Reportman.Reporting.AliasCollectionItem
+    content.vb: Public Sub Remove(value As AliasCollectionItem)
+  overload: Reportman.Reporting.AliasCollection.Remove*
+- uid: Reportman.Reporting.AliasCollection.Contains(Reportman.Reporting.AliasCollectionItem)
+  commentId: M:Reportman.Reporting.AliasCollection.Contains(Reportman.Reporting.AliasCollectionItem)
+  id: Contains(Reportman.Reporting.AliasCollectionItem)
+  parent: Reportman.Reporting.AliasCollection
+  langs:
+  - csharp
+  - vb
+  name: Contains(AliasCollectionItem)
+  nameWithType: AliasCollection.Contains(AliasCollectionItem)
+  fullName: Reportman.Reporting.AliasCollection.Contains(Reportman.Reporting.AliasCollectionItem)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public bool Contains(AliasCollectionItem value)
+    parameters:
+    - id: value
+      type: Reportman.Reporting.AliasCollectionItem
+    return:
+      type: System.Boolean
+    content.vb: Public Function Contains(value As AliasCollectionItem) As Boolean
+  overload: Reportman.Reporting.AliasCollection.Contains*
+- uid: Reportman.Reporting.AliasCollection.OnInsert(System.Int32,System.Object)
+  commentId: M:Reportman.Reporting.AliasCollection.OnInsert(System.Int32,System.Object)
+  id: OnInsert(System.Int32,System.Object)
+  parent: Reportman.Reporting.AliasCollection
+  langs:
+  - csharp
+  - vb
+  name: OnInsert(int, object)
+  nameWithType: AliasCollection.OnInsert(int, object)
+  fullName: Reportman.Reporting.AliasCollection.OnInsert(int, object)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  example: []
+  syntax:
+    content: protected override void OnInsert(int index, object value)
+    parameters:
+    - id: index
+      type: System.Int32
+    - id: value
+      type: System.Object
+    content.vb: Protected Overrides Sub OnInsert(index As Integer, value As Object)
+  overridden: System.Collections.CollectionBase.OnInsert(System.Int32,System.Object)
+  overload: Reportman.Reporting.AliasCollection.OnInsert*
+  nameWithType.vb: AliasCollection.OnInsert(Integer, Object)
+  fullName.vb: Reportman.Reporting.AliasCollection.OnInsert(Integer, Object)
+  name.vb: OnInsert(Integer, Object)
+- uid: Reportman.Reporting.AliasCollection.OnRemove(System.Int32,System.Object)
+  commentId: M:Reportman.Reporting.AliasCollection.OnRemove(System.Int32,System.Object)
+  id: OnRemove(System.Int32,System.Object)
+  parent: Reportman.Reporting.AliasCollection
+  langs:
+  - csharp
+  - vb
+  name: OnRemove(int, object)
+  nameWithType: AliasCollection.OnRemove(int, object)
+  fullName: Reportman.Reporting.AliasCollection.OnRemove(int, object)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  example: []
+  syntax:
+    content: protected override void OnRemove(int index, object value)
+    parameters:
+    - id: index
+      type: System.Int32
+    - id: value
+      type: System.Object
+    content.vb: Protected Overrides Sub OnRemove(index As Integer, value As Object)
+  overridden: System.Collections.CollectionBase.OnRemove(System.Int32,System.Object)
+  overload: Reportman.Reporting.AliasCollection.OnRemove*
+  nameWithType.vb: AliasCollection.OnRemove(Integer, Object)
+  fullName.vb: Reportman.Reporting.AliasCollection.OnRemove(Integer, Object)
+  name.vb: OnRemove(Integer, Object)
+- uid: Reportman.Reporting.AliasCollection.OnSet(System.Int32,System.Object,System.Object)
+  commentId: M:Reportman.Reporting.AliasCollection.OnSet(System.Int32,System.Object,System.Object)
+  id: OnSet(System.Int32,System.Object,System.Object)
+  parent: Reportman.Reporting.AliasCollection
+  langs:
+  - csharp
+  - vb
+  name: OnSet(int, object, object)
+  nameWithType: AliasCollection.OnSet(int, object, object)
+  fullName: Reportman.Reporting.AliasCollection.OnSet(int, object, object)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  example: []
+  syntax:
+    content: protected override void OnSet(int index, object oldValue, object newValue)
+    parameters:
+    - id: index
+      type: System.Int32
+    - id: oldValue
+      type: System.Object
+    - id: newValue
+      type: System.Object
+    content.vb: Protected Overrides Sub OnSet(index As Integer, oldValue As Object, newValue As Object)
+  overridden: System.Collections.CollectionBase.OnSet(System.Int32,System.Object,System.Object)
+  overload: Reportman.Reporting.AliasCollection.OnSet*
+  nameWithType.vb: AliasCollection.OnSet(Integer, Object, Object)
+  fullName.vb: Reportman.Reporting.AliasCollection.OnSet(Integer, Object, Object)
+  name.vb: OnSet(Integer, Object, Object)
+- uid: Reportman.Reporting.AliasCollection.OnValidate(System.Object)
+  commentId: M:Reportman.Reporting.AliasCollection.OnValidate(System.Object)
+  id: OnValidate(System.Object)
+  parent: Reportman.Reporting.AliasCollection
+  langs:
+  - csharp
+  - vb
+  name: OnValidate(object)
+  nameWithType: AliasCollection.OnValidate(object)
+  fullName: Reportman.Reporting.AliasCollection.OnValidate(object)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  example: []
+  syntax:
+    content: protected override void OnValidate(object value)
+    parameters:
+    - id: value
+      type: System.Object
+    content.vb: Protected Overrides Sub OnValidate(value As Object)
+  overridden: System.Collections.CollectionBase.OnValidate(System.Object)
+  overload: Reportman.Reporting.AliasCollection.OnValidate*
+  nameWithType.vb: AliasCollection.OnValidate(Object)
+  fullName.vb: Reportman.Reporting.AliasCollection.OnValidate(Object)
+  name.vb: OnValidate(Object)
+- uid: Reportman.Reporting.AliasCollection.CopyTo(Reportman.Reporting.AliasCollectionItem[],System.Int32)
+  commentId: M:Reportman.Reporting.AliasCollection.CopyTo(Reportman.Reporting.AliasCollectionItem[],System.Int32)
+  id: CopyTo(Reportman.Reporting.AliasCollectionItem[],System.Int32)
+  parent: Reportman.Reporting.AliasCollection
+  langs:
+  - csharp
+  - vb
+  name: CopyTo(AliasCollectionItem[], int)
+  nameWithType: AliasCollection.CopyTo(AliasCollectionItem[], int)
+  fullName: Reportman.Reporting.AliasCollection.CopyTo(Reportman.Reporting.AliasCollectionItem[], int)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public void CopyTo(AliasCollectionItem[] array, int index)
+    parameters:
+    - id: array
+      type: Reportman.Reporting.AliasCollectionItem[]
+    - id: index
+      type: System.Int32
+    content.vb: Public Sub CopyTo(array As AliasCollectionItem(), index As Integer)
+  overload: Reportman.Reporting.AliasCollection.CopyTo*
+  nameWithType.vb: AliasCollection.CopyTo(AliasCollectionItem(), Integer)
+  fullName.vb: Reportman.Reporting.AliasCollection.CopyTo(Reportman.Reporting.AliasCollectionItem(), Integer)
+  name.vb: CopyTo(AliasCollectionItem(), Integer)
+- uid: Reportman.Reporting.AliasCollection.#ctor
+  commentId: M:Reportman.Reporting.AliasCollection.#ctor
+  id: '#ctor'
+  parent: Reportman.Reporting.AliasCollection
+  langs:
+  - csharp
+  - vb
+  name: AliasCollection()
+  nameWithType: AliasCollection.AliasCollection()
+  fullName: Reportman.Reporting.AliasCollection.AliasCollection()
+  type: Constructor
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public AliasCollection()
+    content.vb: Public Sub New()
+  overload: Reportman.Reporting.AliasCollection.#ctor*
+  nameWithType.vb: AliasCollection.New()
+  fullName.vb: Reportman.Reporting.AliasCollection.New()
+  name.vb: New()
+- uid: Reportman.Reporting.AliasCollection.Item(System.Int32)
+  commentId: P:Reportman.Reporting.AliasCollection.Item(System.Int32)
+  id: Item(System.Int32)
+  parent: Reportman.Reporting.AliasCollection
+  langs:
+  - csharp
+  - vb
+  name: this[int]
+  nameWithType: AliasCollection.this[int]
+  fullName: Reportman.Reporting.AliasCollection.this[int]
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public AliasCollectionItem this[int index] { get; set; }
+    parameters:
+    - id: index
+      type: System.Int32
+    return:
+      type: Reportman.Reporting.AliasCollectionItem
+    content.vb: Public Default Property this[](index As Integer) As AliasCollectionItem
+  overload: Reportman.Reporting.AliasCollection.Item*
+  nameWithType.vb: AliasCollection.this[](Integer)
+  fullName.vb: Reportman.Reporting.AliasCollection.this[](Integer)
+  name.vb: this[](Integer)
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Collections.CollectionBase
+  commentId: T:System.Collections.CollectionBase
+  parent: System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase
+  name: CollectionBase
+  nameWithType: CollectionBase
+  fullName: System.Collections.CollectionBase
+- uid: System.Collections.IList
+  commentId: T:System.Collections.IList
+  parent: System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ilist
+  name: IList
+  nameWithType: IList
+  fullName: System.Collections.IList
+- uid: System.Collections.ICollection
+  commentId: T:System.Collections.ICollection
+  parent: System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.icollection
+  name: ICollection
+  nameWithType: ICollection
+  fullName: System.Collections.ICollection
+- uid: System.Collections.IEnumerable
+  commentId: T:System.Collections.IEnumerable
+  parent: System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ienumerable
+  name: IEnumerable
+  nameWithType: IEnumerable
+  fullName: System.Collections.IEnumerable
+- uid: System.Collections.CollectionBase.Clear
+  commentId: M:System.Collections.CollectionBase.Clear
+  parent: System.Collections.CollectionBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.clear
+  name: Clear()
+  nameWithType: CollectionBase.Clear()
+  fullName: System.Collections.CollectionBase.Clear()
+  spec.csharp:
+  - uid: System.Collections.CollectionBase.Clear
+    name: Clear
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.clear
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.CollectionBase.Clear
+    name: Clear
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.clear
+  - name: (
+  - name: )
+- uid: System.Collections.CollectionBase.RemoveAt(System.Int32)
+  commentId: M:System.Collections.CollectionBase.RemoveAt(System.Int32)
+  parent: System.Collections.CollectionBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.removeat
+  name: RemoveAt(int)
+  nameWithType: CollectionBase.RemoveAt(int)
+  fullName: System.Collections.CollectionBase.RemoveAt(int)
+  nameWithType.vb: CollectionBase.RemoveAt(Integer)
+  fullName.vb: System.Collections.CollectionBase.RemoveAt(Integer)
+  name.vb: RemoveAt(Integer)
+  spec.csharp:
+  - uid: System.Collections.CollectionBase.RemoveAt(System.Int32)
+    name: RemoveAt
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.removeat
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Collections.CollectionBase.RemoveAt(System.Int32)
+    name: RemoveAt
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.removeat
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Collections.CollectionBase.GetEnumerator
+  commentId: M:System.Collections.CollectionBase.GetEnumerator
+  parent: System.Collections.CollectionBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.getenumerator
+  name: GetEnumerator()
+  nameWithType: CollectionBase.GetEnumerator()
+  fullName: System.Collections.CollectionBase.GetEnumerator()
+  spec.csharp:
+  - uid: System.Collections.CollectionBase.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.getenumerator
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.CollectionBase.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.getenumerator
+  - name: (
+  - name: )
+- uid: System.Collections.CollectionBase.OnClear
+  commentId: M:System.Collections.CollectionBase.OnClear
+  parent: System.Collections.CollectionBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.onclear
+  name: OnClear()
+  nameWithType: CollectionBase.OnClear()
+  fullName: System.Collections.CollectionBase.OnClear()
+  spec.csharp:
+  - uid: System.Collections.CollectionBase.OnClear
+    name: OnClear
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.onclear
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.CollectionBase.OnClear
+    name: OnClear
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.onclear
+  - name: (
+  - name: )
+- uid: System.Collections.CollectionBase.OnSetComplete(System.Int32,System.Object,System.Object)
+  commentId: M:System.Collections.CollectionBase.OnSetComplete(System.Int32,System.Object,System.Object)
+  parent: System.Collections.CollectionBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.onsetcomplete
+  name: OnSetComplete(int, object, object)
+  nameWithType: CollectionBase.OnSetComplete(int, object, object)
+  fullName: System.Collections.CollectionBase.OnSetComplete(int, object, object)
+  nameWithType.vb: CollectionBase.OnSetComplete(Integer, Object, Object)
+  fullName.vb: System.Collections.CollectionBase.OnSetComplete(Integer, Object, Object)
+  name.vb: OnSetComplete(Integer, Object, Object)
+  spec.csharp:
+  - uid: System.Collections.CollectionBase.OnSetComplete(System.Int32,System.Object,System.Object)
+    name: OnSetComplete
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.onsetcomplete
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Collections.CollectionBase.OnSetComplete(System.Int32,System.Object,System.Object)
+    name: OnSetComplete
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.onsetcomplete
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Collections.CollectionBase.OnInsertComplete(System.Int32,System.Object)
+  commentId: M:System.Collections.CollectionBase.OnInsertComplete(System.Int32,System.Object)
+  parent: System.Collections.CollectionBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.oninsertcomplete
+  name: OnInsertComplete(int, object)
+  nameWithType: CollectionBase.OnInsertComplete(int, object)
+  fullName: System.Collections.CollectionBase.OnInsertComplete(int, object)
+  nameWithType.vb: CollectionBase.OnInsertComplete(Integer, Object)
+  fullName.vb: System.Collections.CollectionBase.OnInsertComplete(Integer, Object)
+  name.vb: OnInsertComplete(Integer, Object)
+  spec.csharp:
+  - uid: System.Collections.CollectionBase.OnInsertComplete(System.Int32,System.Object)
+    name: OnInsertComplete
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.oninsertcomplete
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Collections.CollectionBase.OnInsertComplete(System.Int32,System.Object)
+    name: OnInsertComplete
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.oninsertcomplete
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Collections.CollectionBase.OnClearComplete
+  commentId: M:System.Collections.CollectionBase.OnClearComplete
+  parent: System.Collections.CollectionBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.onclearcomplete
+  name: OnClearComplete()
+  nameWithType: CollectionBase.OnClearComplete()
+  fullName: System.Collections.CollectionBase.OnClearComplete()
+  spec.csharp:
+  - uid: System.Collections.CollectionBase.OnClearComplete
+    name: OnClearComplete
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.onclearcomplete
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.CollectionBase.OnClearComplete
+    name: OnClearComplete
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.onclearcomplete
+  - name: (
+  - name: )
+- uid: System.Collections.CollectionBase.OnRemoveComplete(System.Int32,System.Object)
+  commentId: M:System.Collections.CollectionBase.OnRemoveComplete(System.Int32,System.Object)
+  parent: System.Collections.CollectionBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.onremovecomplete
+  name: OnRemoveComplete(int, object)
+  nameWithType: CollectionBase.OnRemoveComplete(int, object)
+  fullName: System.Collections.CollectionBase.OnRemoveComplete(int, object)
+  nameWithType.vb: CollectionBase.OnRemoveComplete(Integer, Object)
+  fullName.vb: System.Collections.CollectionBase.OnRemoveComplete(Integer, Object)
+  name.vb: OnRemoveComplete(Integer, Object)
+  spec.csharp:
+  - uid: System.Collections.CollectionBase.OnRemoveComplete(System.Int32,System.Object)
+    name: OnRemoveComplete
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.onremovecomplete
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Collections.CollectionBase.OnRemoveComplete(System.Int32,System.Object)
+    name: OnRemoveComplete
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.onremovecomplete
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Collections.CollectionBase.InnerList
+  commentId: P:System.Collections.CollectionBase.InnerList
+  parent: System.Collections.CollectionBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.innerlist
+  name: InnerList
+  nameWithType: CollectionBase.InnerList
+  fullName: System.Collections.CollectionBase.InnerList
+- uid: System.Collections.CollectionBase.List
+  commentId: P:System.Collections.CollectionBase.List
+  parent: System.Collections.CollectionBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.list
+  name: List
+  nameWithType: CollectionBase.List
+  fullName: System.Collections.CollectionBase.List
+- uid: System.Collections.CollectionBase.Capacity
+  commentId: P:System.Collections.CollectionBase.Capacity
+  parent: System.Collections.CollectionBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.capacity
+  name: Capacity
+  nameWithType: CollectionBase.Capacity
+  fullName: System.Collections.CollectionBase.Capacity
+- uid: System.Collections.CollectionBase.Count
+  commentId: P:System.Collections.CollectionBase.Count
+  parent: System.Collections.CollectionBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.count
+  name: Count
+  nameWithType: CollectionBase.Count
+  fullName: System.Collections.CollectionBase.Count
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Collections
+  commentId: N:System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections
+  nameWithType: System.Collections
+  fullName: System.Collections
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+- uid: Reportman.Reporting.AliasCollection.Add*
+  commentId: Overload:Reportman.Reporting.AliasCollection.Add
+  isExternal: true
+  href: Reportman.Reporting.AliasCollection.html#Reportman_Reporting_AliasCollection_Add_Reportman_Reporting_AliasCollectionItem_
+  name: Add
+  nameWithType: AliasCollection.Add
+  fullName: Reportman.Reporting.AliasCollection.Add
+- uid: Reportman.Reporting.AliasCollectionItem
+  commentId: T:Reportman.Reporting.AliasCollectionItem
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.AliasCollectionItem.html
+  name: AliasCollectionItem
+  nameWithType: AliasCollectionItem
+  fullName: Reportman.Reporting.AliasCollectionItem
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Reportman.Reporting.AliasCollection.IndexOf*
+  commentId: Overload:Reportman.Reporting.AliasCollection.IndexOf
+  isExternal: true
+  href: Reportman.Reporting.AliasCollection.html#Reportman_Reporting_AliasCollection_IndexOf_Reportman_Reporting_AliasCollectionItem_
+  name: IndexOf
+  nameWithType: AliasCollection.IndexOf
+  fullName: Reportman.Reporting.AliasCollection.IndexOf
+- uid: Reportman.Reporting.AliasCollection.Insert*
+  commentId: Overload:Reportman.Reporting.AliasCollection.Insert
+  isExternal: true
+  href: Reportman.Reporting.AliasCollection.html#Reportman_Reporting_AliasCollection_Insert_System_Int32_Reportman_Reporting_AliasCollectionItem_
+  name: Insert
+  nameWithType: AliasCollection.Insert
+  fullName: Reportman.Reporting.AliasCollection.Insert
+- uid: Reportman.Reporting.AliasCollection.Remove*
+  commentId: Overload:Reportman.Reporting.AliasCollection.Remove
+  isExternal: true
+  href: Reportman.Reporting.AliasCollection.html#Reportman_Reporting_AliasCollection_Remove_Reportman_Reporting_AliasCollectionItem_
+  name: Remove
+  nameWithType: AliasCollection.Remove
+  fullName: Reportman.Reporting.AliasCollection.Remove
+- uid: Reportman.Reporting.AliasCollection.Contains*
+  commentId: Overload:Reportman.Reporting.AliasCollection.Contains
+  isExternal: true
+  href: Reportman.Reporting.AliasCollection.html#Reportman_Reporting_AliasCollection_Contains_Reportman_Reporting_AliasCollectionItem_
+  name: Contains
+  nameWithType: AliasCollection.Contains
+  fullName: Reportman.Reporting.AliasCollection.Contains
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Collections.CollectionBase.OnInsert(System.Int32,System.Object)
+  commentId: M:System.Collections.CollectionBase.OnInsert(System.Int32,System.Object)
+  parent: System.Collections.CollectionBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.oninsert
+  name: OnInsert(int, object)
+  nameWithType: CollectionBase.OnInsert(int, object)
+  fullName: System.Collections.CollectionBase.OnInsert(int, object)
+  nameWithType.vb: CollectionBase.OnInsert(Integer, Object)
+  fullName.vb: System.Collections.CollectionBase.OnInsert(Integer, Object)
+  name.vb: OnInsert(Integer, Object)
+  spec.csharp:
+  - uid: System.Collections.CollectionBase.OnInsert(System.Int32,System.Object)
+    name: OnInsert
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.oninsert
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Collections.CollectionBase.OnInsert(System.Int32,System.Object)
+    name: OnInsert
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.oninsert
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Reportman.Reporting.AliasCollection.OnInsert*
+  commentId: Overload:Reportman.Reporting.AliasCollection.OnInsert
+  isExternal: true
+  href: Reportman.Reporting.AliasCollection.html#Reportman_Reporting_AliasCollection_OnInsert_System_Int32_System_Object_
+  name: OnInsert
+  nameWithType: AliasCollection.OnInsert
+  fullName: Reportman.Reporting.AliasCollection.OnInsert
+- uid: System.Collections.CollectionBase.OnRemove(System.Int32,System.Object)
+  commentId: M:System.Collections.CollectionBase.OnRemove(System.Int32,System.Object)
+  parent: System.Collections.CollectionBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.onremove
+  name: OnRemove(int, object)
+  nameWithType: CollectionBase.OnRemove(int, object)
+  fullName: System.Collections.CollectionBase.OnRemove(int, object)
+  nameWithType.vb: CollectionBase.OnRemove(Integer, Object)
+  fullName.vb: System.Collections.CollectionBase.OnRemove(Integer, Object)
+  name.vb: OnRemove(Integer, Object)
+  spec.csharp:
+  - uid: System.Collections.CollectionBase.OnRemove(System.Int32,System.Object)
+    name: OnRemove
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.onremove
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Collections.CollectionBase.OnRemove(System.Int32,System.Object)
+    name: OnRemove
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.onremove
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Reportman.Reporting.AliasCollection.OnRemove*
+  commentId: Overload:Reportman.Reporting.AliasCollection.OnRemove
+  isExternal: true
+  href: Reportman.Reporting.AliasCollection.html#Reportman_Reporting_AliasCollection_OnRemove_System_Int32_System_Object_
+  name: OnRemove
+  nameWithType: AliasCollection.OnRemove
+  fullName: Reportman.Reporting.AliasCollection.OnRemove
+- uid: System.Collections.CollectionBase.OnSet(System.Int32,System.Object,System.Object)
+  commentId: M:System.Collections.CollectionBase.OnSet(System.Int32,System.Object,System.Object)
+  parent: System.Collections.CollectionBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.onset
+  name: OnSet(int, object, object)
+  nameWithType: CollectionBase.OnSet(int, object, object)
+  fullName: System.Collections.CollectionBase.OnSet(int, object, object)
+  nameWithType.vb: CollectionBase.OnSet(Integer, Object, Object)
+  fullName.vb: System.Collections.CollectionBase.OnSet(Integer, Object, Object)
+  name.vb: OnSet(Integer, Object, Object)
+  spec.csharp:
+  - uid: System.Collections.CollectionBase.OnSet(System.Int32,System.Object,System.Object)
+    name: OnSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.onset
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Collections.CollectionBase.OnSet(System.Int32,System.Object,System.Object)
+    name: OnSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.onset
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Reportman.Reporting.AliasCollection.OnSet*
+  commentId: Overload:Reportman.Reporting.AliasCollection.OnSet
+  isExternal: true
+  href: Reportman.Reporting.AliasCollection.html#Reportman_Reporting_AliasCollection_OnSet_System_Int32_System_Object_System_Object_
+  name: OnSet
+  nameWithType: AliasCollection.OnSet
+  fullName: Reportman.Reporting.AliasCollection.OnSet
+- uid: System.Collections.CollectionBase.OnValidate(System.Object)
+  commentId: M:System.Collections.CollectionBase.OnValidate(System.Object)
+  parent: System.Collections.CollectionBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.onvalidate
+  name: OnValidate(object)
+  nameWithType: CollectionBase.OnValidate(object)
+  fullName: System.Collections.CollectionBase.OnValidate(object)
+  nameWithType.vb: CollectionBase.OnValidate(Object)
+  fullName.vb: System.Collections.CollectionBase.OnValidate(Object)
+  name.vb: OnValidate(Object)
+  spec.csharp:
+  - uid: System.Collections.CollectionBase.OnValidate(System.Object)
+    name: OnValidate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.onvalidate
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Collections.CollectionBase.OnValidate(System.Object)
+    name: OnValidate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.onvalidate
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Reportman.Reporting.AliasCollection.OnValidate*
+  commentId: Overload:Reportman.Reporting.AliasCollection.OnValidate
+  isExternal: true
+  href: Reportman.Reporting.AliasCollection.html#Reportman_Reporting_AliasCollection_OnValidate_System_Object_
+  name: OnValidate
+  nameWithType: AliasCollection.OnValidate
+  fullName: Reportman.Reporting.AliasCollection.OnValidate
+- uid: Reportman.Reporting.AliasCollection.CopyTo*
+  commentId: Overload:Reportman.Reporting.AliasCollection.CopyTo
+  isExternal: true
+  href: Reportman.Reporting.AliasCollection.html#Reportman_Reporting_AliasCollection_CopyTo_Reportman_Reporting_AliasCollectionItem___System_Int32_
+  name: CopyTo
+  nameWithType: AliasCollection.CopyTo
+  fullName: Reportman.Reporting.AliasCollection.CopyTo
+- uid: Reportman.Reporting.AliasCollectionItem[]
+  isExternal: true
+  href: Reportman.Reporting.AliasCollectionItem.html
+  name: AliasCollectionItem[]
+  nameWithType: AliasCollectionItem[]
+  fullName: Reportman.Reporting.AliasCollectionItem[]
+  nameWithType.vb: AliasCollectionItem()
+  fullName.vb: Reportman.Reporting.AliasCollectionItem()
+  name.vb: AliasCollectionItem()
+  spec.csharp:
+  - uid: Reportman.Reporting.AliasCollectionItem
+    name: AliasCollectionItem
+    isExternal: true
+    href: Reportman.Reporting.AliasCollectionItem.html
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: Reportman.Reporting.AliasCollectionItem
+    name: AliasCollectionItem
+    isExternal: true
+    href: Reportman.Reporting.AliasCollectionItem.html
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.AliasCollection.#ctor*
+  commentId: Overload:Reportman.Reporting.AliasCollection.#ctor
+  isExternal: true
+  href: Reportman.Reporting.AliasCollection.html#Reportman_Reporting_AliasCollection__ctor
+  name: AliasCollection
+  nameWithType: AliasCollection.AliasCollection
+  fullName: Reportman.Reporting.AliasCollection.AliasCollection
+  nameWithType.vb: AliasCollection.New
+  fullName.vb: Reportman.Reporting.AliasCollection.New
+  name.vb: New
+- uid: Reportman.Reporting.AliasCollection.Item*
+  commentId: Overload:Reportman.Reporting.AliasCollection.Item
+  isExternal: true
+  href: Reportman.Reporting.AliasCollection.html#Reportman_Reporting_AliasCollection_Item_System_Int32_
+  name: this
+  nameWithType: AliasCollection.this
+  fullName: Reportman.Reporting.AliasCollection.this
+  nameWithType.vb: AliasCollection.this[]
+  fullName.vb: Reportman.Reporting.AliasCollection.this[]
+  name.vb: this[]

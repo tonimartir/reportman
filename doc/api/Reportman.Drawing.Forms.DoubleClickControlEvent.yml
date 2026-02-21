@@ -1,0 +1,293 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.DoubleClickControlEvent
+  commentId: T:Reportman.Drawing.Forms.DoubleClickControlEvent
+  id: DoubleClickControlEvent
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.DoubleClickControlEvent.#ctor(System.Object,System.IntPtr)
+  - Reportman.Drawing.Forms.DoubleClickControlEvent.BeginInvoke(System.Object,System.Windows.Forms.Control,System.AsyncCallback,System.Object)
+  - Reportman.Drawing.Forms.DoubleClickControlEvent.EndInvoke(System.IAsyncResult)
+  - Reportman.Drawing.Forms.DoubleClickControlEvent.Invoke(System.Object,System.Windows.Forms.Control)
+  langs:
+  - csharp
+  - vb
+  name: DoubleClickControlEvent
+  nameWithType: DoubleClickControlEvent
+  fullName: Reportman.Drawing.Forms.DoubleClickControlEvent
+  type: Delegate
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public delegate void DoubleClickControlEvent(object sender, Control ncontrol)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: ncontrol
+      type: System.Windows.Forms.Control
+    content.vb: Public Delegate Sub DoubleClickControlEvent(sender As Object, ncontrol As Control)
+- uid: Reportman.Drawing.Forms.DoubleClickControlEvent.#ctor(System.Object,System.IntPtr)
+  commentId: M:Reportman.Drawing.Forms.DoubleClickControlEvent.#ctor(System.Object,System.IntPtr)
+  id: '#ctor(System.Object,System.IntPtr)'
+  parent: Reportman.Drawing.Forms.DoubleClickControlEvent
+  langs:
+  - csharp
+  - vb
+  name: DoubleClickControlEvent(object, nint)
+  nameWithType: DoubleClickControlEvent.DoubleClickControlEvent(object, nint)
+  fullName: Reportman.Drawing.Forms.DoubleClickControlEvent.DoubleClickControlEvent(object, nint)
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public DoubleClickControlEvent(object @object, nint method)
+    parameters:
+    - id: object
+      type: System.Object
+    - id: method
+      type: System.IntPtr
+    content.vb: Public Sub New([object] As Object, method As IntPtr)
+  overload: Reportman.Drawing.Forms.DoubleClickControlEvent.#ctor*
+  nameWithType.vb: DoubleClickControlEvent.New(Object, IntPtr)
+  fullName.vb: Reportman.Drawing.Forms.DoubleClickControlEvent.New(Object, System.IntPtr)
+  name.vb: New(Object, IntPtr)
+- uid: Reportman.Drawing.Forms.DoubleClickControlEvent.Invoke(System.Object,System.Windows.Forms.Control)
+  commentId: M:Reportman.Drawing.Forms.DoubleClickControlEvent.Invoke(System.Object,System.Windows.Forms.Control)
+  id: Invoke(System.Object,System.Windows.Forms.Control)
+  parent: Reportman.Drawing.Forms.DoubleClickControlEvent
+  langs:
+  - csharp
+  - vb
+  name: Invoke(object, Control)
+  nameWithType: DoubleClickControlEvent.Invoke(object, Control)
+  fullName: Reportman.Drawing.Forms.DoubleClickControlEvent.Invoke(object, System.Windows.Forms.Control)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual void Invoke(object sender, Control ncontrol)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: ncontrol
+      type: System.Windows.Forms.Control
+    content.vb: Public Overridable Sub Invoke(sender As Object, ncontrol As Control)
+  overload: Reportman.Drawing.Forms.DoubleClickControlEvent.Invoke*
+  nameWithType.vb: DoubleClickControlEvent.Invoke(Object, Control)
+  fullName.vb: Reportman.Drawing.Forms.DoubleClickControlEvent.Invoke(Object, System.Windows.Forms.Control)
+  name.vb: Invoke(Object, Control)
+- uid: Reportman.Drawing.Forms.DoubleClickControlEvent.BeginInvoke(System.Object,System.Windows.Forms.Control,System.AsyncCallback,System.Object)
+  commentId: M:Reportman.Drawing.Forms.DoubleClickControlEvent.BeginInvoke(System.Object,System.Windows.Forms.Control,System.AsyncCallback,System.Object)
+  id: BeginInvoke(System.Object,System.Windows.Forms.Control,System.AsyncCallback,System.Object)
+  parent: Reportman.Drawing.Forms.DoubleClickControlEvent
+  langs:
+  - csharp
+  - vb
+  name: BeginInvoke(object, Control, AsyncCallback, object)
+  nameWithType: DoubleClickControlEvent.BeginInvoke(object, Control, AsyncCallback, object)
+  fullName: Reportman.Drawing.Forms.DoubleClickControlEvent.BeginInvoke(object, System.Windows.Forms.Control, System.AsyncCallback, object)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual IAsyncResult BeginInvoke(object sender, Control ncontrol, AsyncCallback callback, object @object)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: ncontrol
+      type: System.Windows.Forms.Control
+    - id: callback
+      type: System.AsyncCallback
+    - id: object
+      type: System.Object
+    return:
+      type: System.IAsyncResult
+    content.vb: Public Overridable Function BeginInvoke(sender As Object, ncontrol As Control, callback As AsyncCallback, [object] As Object) As IAsyncResult
+  overload: Reportman.Drawing.Forms.DoubleClickControlEvent.BeginInvoke*
+  nameWithType.vb: DoubleClickControlEvent.BeginInvoke(Object, Control, AsyncCallback, Object)
+  fullName.vb: Reportman.Drawing.Forms.DoubleClickControlEvent.BeginInvoke(Object, System.Windows.Forms.Control, System.AsyncCallback, Object)
+  name.vb: BeginInvoke(Object, Control, AsyncCallback, Object)
+- uid: Reportman.Drawing.Forms.DoubleClickControlEvent.EndInvoke(System.IAsyncResult)
+  commentId: M:Reportman.Drawing.Forms.DoubleClickControlEvent.EndInvoke(System.IAsyncResult)
+  id: EndInvoke(System.IAsyncResult)
+  parent: Reportman.Drawing.Forms.DoubleClickControlEvent
+  langs:
+  - csharp
+  - vb
+  name: EndInvoke(IAsyncResult)
+  nameWithType: DoubleClickControlEvent.EndInvoke(IAsyncResult)
+  fullName: Reportman.Drawing.Forms.DoubleClickControlEvent.EndInvoke(System.IAsyncResult)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual void EndInvoke(IAsyncResult result)
+    parameters:
+    - id: result
+      type: System.IAsyncResult
+    content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
+  overload: Reportman.Drawing.Forms.DoubleClickControlEvent.EndInvoke*
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Windows.Forms.Control
+  commentId: T:System.Windows.Forms.Control
+  parent: System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.control
+  name: Control
+  nameWithType: Control
+  fullName: System.Windows.Forms.Control
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Windows.Forms
+  commentId: N:System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Windows.Forms
+  nameWithType: System.Windows.Forms
+  fullName: System.Windows.Forms
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Windows
+    name: Windows
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows
+  - name: .
+  - uid: System.Windows.Forms
+    name: Forms
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Windows
+    name: Windows
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows
+  - name: .
+  - uid: System.Windows.Forms
+    name: Forms
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms
+- uid: Reportman.Drawing.Forms.DoubleClickControlEvent.#ctor*
+  commentId: Overload:Reportman.Drawing.Forms.DoubleClickControlEvent.#ctor
+  isExternal: true
+  href: Reportman.Drawing.Forms.DoubleClickControlEvent.html#Reportman_Drawing_Forms_DoubleClickControlEvent__ctor_System_Object_System_IntPtr_
+  name: DoubleClickControlEvent
+  nameWithType: DoubleClickControlEvent.DoubleClickControlEvent
+  fullName: Reportman.Drawing.Forms.DoubleClickControlEvent.DoubleClickControlEvent
+  nameWithType.vb: DoubleClickControlEvent.New
+  fullName.vb: Reportman.Drawing.Forms.DoubleClickControlEvent.New
+  name.vb: New
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: Reportman.Drawing.Forms.DoubleClickControlEvent.Invoke*
+  commentId: Overload:Reportman.Drawing.Forms.DoubleClickControlEvent.Invoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.DoubleClickControlEvent.html#Reportman_Drawing_Forms_DoubleClickControlEvent_Invoke_System_Object_System_Windows_Forms_Control_
+  name: Invoke
+  nameWithType: DoubleClickControlEvent.Invoke
+  fullName: Reportman.Drawing.Forms.DoubleClickControlEvent.Invoke
+- uid: Reportman.Drawing.Forms.DoubleClickControlEvent.BeginInvoke*
+  commentId: Overload:Reportman.Drawing.Forms.DoubleClickControlEvent.BeginInvoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.DoubleClickControlEvent.html#Reportman_Drawing_Forms_DoubleClickControlEvent_BeginInvoke_System_Object_System_Windows_Forms_Control_System_AsyncCallback_System_Object_
+  name: BeginInvoke
+  nameWithType: DoubleClickControlEvent.BeginInvoke
+  fullName: Reportman.Drawing.Forms.DoubleClickControlEvent.BeginInvoke
+- uid: System.AsyncCallback
+  commentId: T:System.AsyncCallback
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.asynccallback
+  name: AsyncCallback
+  nameWithType: AsyncCallback
+  fullName: System.AsyncCallback
+- uid: System.IAsyncResult
+  commentId: T:System.IAsyncResult
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncresult
+  name: IAsyncResult
+  nameWithType: IAsyncResult
+  fullName: System.IAsyncResult
+- uid: Reportman.Drawing.Forms.DoubleClickControlEvent.EndInvoke*
+  commentId: Overload:Reportman.Drawing.Forms.DoubleClickControlEvent.EndInvoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.DoubleClickControlEvent.html#Reportman_Drawing_Forms_DoubleClickControlEvent_EndInvoke_System_IAsyncResult_
+  name: EndInvoke
+  nameWithType: DoubleClickControlEvent.EndInvoke
+  fullName: Reportman.Drawing.Forms.DoubleClickControlEvent.EndInvoke

@@ -1,0 +1,1389 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.PrintOut
+  commentId: T:Reportman.Drawing.PrintOut
+  id: PrintOut
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.PrintOut.#ctor
+  - Reportman.Drawing.PrintOut.Copies
+  - Reportman.Drawing.PrintOut.CurrentMetafile
+  - Reportman.Drawing.PrintOut.DefaultPrinterName
+  - Reportman.Drawing.PrintOut.Dispose
+  - Reportman.Drawing.PrintOut.DrawChart(Reportman.Drawing.Series,Reportman.Drawing.MetaFile,System.Int32,System.Int32,System.Object)
+  - Reportman.Drawing.PrintOut.DrawFound
+  - Reportman.Drawing.PrintOut.DrawPage(Reportman.Drawing.MetaFile,Reportman.Drawing.MetaPage)
+  - Reportman.Drawing.PrintOut.EmptyReportThrowException
+  - Reportman.Drawing.PrintOut.EndDocument(Reportman.Drawing.MetaFile)
+  - Reportman.Drawing.PrintOut.EndPage(Reportman.Drawing.MetaFile)
+  - Reportman.Drawing.PrintOut.FOrientation
+  - Reportman.Drawing.PrintOut.ForcePrinterName
+  - Reportman.Drawing.PrintOut.FromPage
+  - Reportman.Drawing.PrintOut.GetPageSize(System.Int32@)
+  - Reportman.Drawing.PrintOut.GraphicExtent(System.IO.MemoryStream,System.Drawing.Point,System.Int32)
+  - Reportman.Drawing.PrintOut.NewDocument(Reportman.Drawing.MetaFile)
+  - Reportman.Drawing.PrintOut.NewPage(Reportman.Drawing.MetaFile,Reportman.Drawing.MetaPage)
+  - Reportman.Drawing.PrintOut.NoData
+  - Reportman.Drawing.PrintOut.PRINTOUT_MAX_PAGES
+  - Reportman.Drawing.PrintOut.PageSizeArray
+  - Reportman.Drawing.PrintOut.PageSizeName(System.Int32)
+  - Reportman.Drawing.PrintOut.PreparePrint(Reportman.Drawing.MetaFile)
+  - Reportman.Drawing.PrintOut.Previewing
+  - Reportman.Drawing.PrintOut.Print(Reportman.Drawing.MetaFile)
+  - Reportman.Drawing.PrintOut.ProcessNoDataToPrint
+  - Reportman.Drawing.PrintOut.SelectPrinter(Reportman.Drawing.PrinterSelectType)
+  - Reportman.Drawing.PrintOut.SetOrientation(Reportman.Drawing.OrientationType)
+  - Reportman.Drawing.PrintOut.SetPageSize(Reportman.Drawing.PageSizeDetail)
+  - Reportman.Drawing.PrintOut.TextExtent(Reportman.Drawing.TextObjectStruct,System.Drawing.Point)
+  - Reportman.Drawing.PrintOut.ToPage
+  langs:
+  - csharp
+  - vb
+  name: PrintOut
+  nameWithType: PrintOut
+  fullName: Reportman.Drawing.PrintOut
+  type: Class
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    Base class for print drivers define the funtions to be implemented by
+
+    any print driver (Report processing driver)
+  example: []
+  syntax:
+    content: public abstract class PrintOut
+    content.vb: Public MustInherit Class PrintOut
+  inheritance:
+  - System.Object
+  derivedClasses:
+  - Reportman.Drawing.PrintOutExcel
+  - Reportman.Drawing.PrintOutNet
+  - Reportman.Drawing.PrintOutPDFBase
+  - Reportman.Drawing.PrintOutText
+  - Reportman.WPF.PrintOutWPF
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.PrintOut.DefaultPrinterName
+  commentId: F:Reportman.Drawing.PrintOut.DefaultPrinterName
+  id: DefaultPrinterName
+  parent: Reportman.Drawing.PrintOut
+  langs:
+  - csharp
+  - vb
+  name: DefaultPrinterName
+  nameWithType: PrintOut.DefaultPrinterName
+  fullName: Reportman.Drawing.PrintOut.DefaultPrinterName
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string DefaultPrinterName
+    return:
+      type: System.String
+    content.vb: Public Shared DefaultPrinterName As String
+- uid: Reportman.Drawing.PrintOut.ForcePrinterName
+  commentId: F:Reportman.Drawing.PrintOut.ForcePrinterName
+  id: ForcePrinterName
+  parent: Reportman.Drawing.PrintOut
+  langs:
+  - csharp
+  - vb
+  name: ForcePrinterName
+  nameWithType: PrintOut.ForcePrinterName
+  fullName: Reportman.Drawing.PrintOut.ForcePrinterName
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string ForcePrinterName
+    return:
+      type: System.String
+    content.vb: Public ForcePrinterName As String
+- uid: Reportman.Drawing.PrintOut.Previewing
+  commentId: F:Reportman.Drawing.PrintOut.Previewing
+  id: Previewing
+  parent: Reportman.Drawing.PrintOut
+  langs:
+  - csharp
+  - vb
+  name: Previewing
+  nameWithType: PrintOut.Previewing
+  fullName: Reportman.Drawing.PrintOut.Previewing
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public bool Previewing
+    return:
+      type: System.Boolean
+    content.vb: Public Previewing As Boolean
+- uid: Reportman.Drawing.PrintOut.PageSizeArray
+  commentId: F:Reportman.Drawing.PrintOut.PageSizeArray
+  id: PageSizeArray
+  parent: Reportman.Drawing.PrintOut
+  langs:
+  - csharp
+  - vb
+  name: PageSizeArray
+  nameWithType: PrintOut.PageSizeArray
+  fullName: Reportman.Drawing.PrintOut.PageSizeArray
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Array of predefined page sizes
+  example: []
+  syntax:
+    content: public static int[,] PageSizeArray
+    return:
+      type: System.Int32[,]
+    content.vb: Public Shared PageSizeArray As Integer(,)
+- uid: Reportman.Drawing.PrintOut.CurrentMetafile
+  commentId: F:Reportman.Drawing.PrintOut.CurrentMetafile
+  id: CurrentMetafile
+  parent: Reportman.Drawing.PrintOut
+  langs:
+  - csharp
+  - vb
+  name: CurrentMetafile
+  nameWithType: PrintOut.CurrentMetafile
+  fullName: Reportman.Drawing.PrintOut.CurrentMetafile
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public MetaFile CurrentMetafile
+    return:
+      type: Reportman.Drawing.MetaFile
+    content.vb: Public CurrentMetafile As MetaFile
+- uid: Reportman.Drawing.PrintOut.PRINTOUT_MAX_PAGES
+  commentId: F:Reportman.Drawing.PrintOut.PRINTOUT_MAX_PAGES
+  id: PRINTOUT_MAX_PAGES
+  parent: Reportman.Drawing.PrintOut
+  langs:
+  - csharp
+  - vb
+  name: PRINTOUT_MAX_PAGES
+  nameWithType: PrintOut.PRINTOUT_MAX_PAGES
+  fullName: Reportman.Drawing.PrintOut.PRINTOUT_MAX_PAGES
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Maximum number of pages allowed (this is to avoid stack overflow recursions)
+  example: []
+  syntax:
+    content: protected int PRINTOUT_MAX_PAGES
+    return:
+      type: System.Int32
+    content.vb: Protected PRINTOUT_MAX_PAGES As Integer
+- uid: Reportman.Drawing.PrintOut.FromPage
+  commentId: F:Reportman.Drawing.PrintOut.FromPage
+  id: FromPage
+  parent: Reportman.Drawing.PrintOut
+  langs:
+  - csharp
+  - vb
+  name: FromPage
+  nameWithType: PrintOut.FromPage
+  fullName: Reportman.Drawing.PrintOut.FromPage
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Starting page, by default 1
+  example: []
+  syntax:
+    content: public int FromPage
+    return:
+      type: System.Int32
+    content.vb: Public FromPage As Integer
+- uid: Reportman.Drawing.PrintOut.ToPage
+  commentId: F:Reportman.Drawing.PrintOut.ToPage
+  id: ToPage
+  parent: Reportman.Drawing.PrintOut
+  langs:
+  - csharp
+  - vb
+  name: ToPage
+  nameWithType: PrintOut.ToPage
+  fullName: Reportman.Drawing.PrintOut.ToPage
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: End page, by default, the maximum
+  example: []
+  syntax:
+    content: public int ToPage
+    return:
+      type: System.Int32
+    content.vb: Public ToPage As Integer
+- uid: Reportman.Drawing.PrintOut.Copies
+  commentId: F:Reportman.Drawing.PrintOut.Copies
+  id: Copies
+  parent: Reportman.Drawing.PrintOut
+  langs:
+  - csharp
+  - vb
+  name: Copies
+  nameWithType: PrintOut.Copies
+  fullName: Reportman.Drawing.PrintOut.Copies
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Number of copies, by default 1
+  example: []
+  syntax:
+    content: public int Copies
+    return:
+      type: System.Int32
+    content.vb: Public Copies As Integer
+- uid: Reportman.Drawing.PrintOut.FOrientation
+  commentId: F:Reportman.Drawing.PrintOut.FOrientation
+  id: FOrientation
+  parent: Reportman.Drawing.PrintOut
+  langs:
+  - csharp
+  - vb
+  name: FOrientation
+  nameWithType: PrintOut.FOrientation
+  fullName: Reportman.Drawing.PrintOut.FOrientation
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Default orientation, by default Portrait
+  example: []
+  syntax:
+    content: protected OrientationType FOrientation
+    return:
+      type: Reportman.Drawing.OrientationType
+    content.vb: Protected FOrientation As OrientationType
+- uid: Reportman.Drawing.PrintOut.EmptyReportThrowException
+  commentId: F:Reportman.Drawing.PrintOut.EmptyReportThrowException
+  id: EmptyReportThrowException
+  parent: Reportman.Drawing.PrintOut
+  langs:
+  - csharp
+  - vb
+  name: EmptyReportThrowException
+  nameWithType: PrintOut.EmptyReportThrowException
+  fullName: Reportman.Drawing.PrintOut.EmptyReportThrowException
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Throw exception when there is no data available to print
+  example: []
+  syntax:
+    content: public bool EmptyReportThrowException
+    return:
+      type: System.Boolean
+    content.vb: Public EmptyReportThrowException As Boolean
+- uid: Reportman.Drawing.PrintOut.NoData
+  commentId: F:Reportman.Drawing.PrintOut.NoData
+  id: NoData
+  parent: Reportman.Drawing.PrintOut
+  langs:
+  - csharp
+  - vb
+  name: NoData
+  nameWithType: PrintOut.NoData
+  fullName: Reportman.Drawing.PrintOut.NoData
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Event to control
+  example: []
+  syntax:
+    content: public NoDataToPrintEvent NoData
+    return:
+      type: Reportman.Drawing.NoDataToPrintEvent
+    content.vb: Public NoData As NoDataToPrintEvent
+- uid: Reportman.Drawing.PrintOut.DrawFound
+  commentId: F:Reportman.Drawing.PrintOut.DrawFound
+  id: DrawFound
+  parent: Reportman.Drawing.PrintOut
+  langs:
+  - csharp
+  - vb
+  name: DrawFound
+  nameWithType: PrintOut.DrawFound
+  fullName: Reportman.Drawing.PrintOut.DrawFound
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    Internally determines if the searched texts must be drawn as a selection.
+
+    Used in preview.
+  example: []
+  syntax:
+    content: protected bool DrawFound
+    return:
+      type: System.Boolean
+    content.vb: Protected DrawFound As Boolean
+- uid: Reportman.Drawing.PrintOut.PageSizeName(System.Int32)
+  commentId: M:Reportman.Drawing.PrintOut.PageSizeName(System.Int32)
+  id: PageSizeName(System.Int32)
+  parent: Reportman.Drawing.PrintOut
+  langs:
+  - csharp
+  - vb
+  name: PageSizeName(int)
+  nameWithType: PrintOut.PageSizeName(int)
+  fullName: Reportman.Drawing.PrintOut.PageSizeName(int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Returns page size name for provided index
+  example: []
+  syntax:
+    content: public static string PageSizeName(int index)
+    parameters:
+    - id: index
+      type: System.Int32
+      description: Index inside page size array
+    return:
+      type: System.String
+      description: String result, containing page size name
+    content.vb: Public Shared Function PageSizeName(index As Integer) As String
+  overload: Reportman.Drawing.PrintOut.PageSizeName*
+  nameWithType.vb: PrintOut.PageSizeName(Integer)
+  fullName.vb: Reportman.Drawing.PrintOut.PageSizeName(Integer)
+  name.vb: PageSizeName(Integer)
+- uid: Reportman.Drawing.PrintOut.#ctor
+  commentId: M:Reportman.Drawing.PrintOut.#ctor
+  id: '#ctor'
+  parent: Reportman.Drawing.PrintOut
+  langs:
+  - csharp
+  - vb
+  name: PrintOut()
+  nameWithType: PrintOut.PrintOut()
+  fullName: Reportman.Drawing.PrintOut.PrintOut()
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Constructor, set default values only
+  example: []
+  syntax:
+    content: protected PrintOut()
+    content.vb: Protected Sub New()
+  overload: Reportman.Drawing.PrintOut.#ctor*
+  nameWithType.vb: PrintOut.New()
+  fullName.vb: Reportman.Drawing.PrintOut.New()
+  name.vb: New()
+- uid: Reportman.Drawing.PrintOut.Dispose
+  commentId: M:Reportman.Drawing.PrintOut.Dispose
+  id: Dispose
+  parent: Reportman.Drawing.PrintOut
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: PrintOut.Dispose()
+  fullName: Reportman.Drawing.PrintOut.Dispose()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Free memory consumed by graphics resources
+  example: []
+  syntax:
+    content: public virtual void Dispose()
+    content.vb: Public Overridable Sub Dispose()
+  overload: Reportman.Drawing.PrintOut.Dispose*
+- uid: Reportman.Drawing.PrintOut.NewDocument(Reportman.Drawing.MetaFile)
+  commentId: M:Reportman.Drawing.PrintOut.NewDocument(Reportman.Drawing.MetaFile)
+  id: NewDocument(Reportman.Drawing.MetaFile)
+  parent: Reportman.Drawing.PrintOut
+  langs:
+  - csharp
+  - vb
+  name: NewDocument(MetaFile)
+  nameWithType: PrintOut.NewDocument(MetaFile)
+  fullName: Reportman.Drawing.PrintOut.NewDocument(Reportman.Drawing.MetaFile)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    The driver should do initialization here, a print driver should start a print document,
+
+    while a preview driver should initialize a bitmap
+  example: []
+  syntax:
+    content: public virtual void NewDocument(MetaFile meta)
+    parameters:
+    - id: meta
+      type: Reportman.Drawing.MetaFile
+    content.vb: Public Overridable Sub NewDocument(meta As MetaFile)
+  overload: Reportman.Drawing.PrintOut.NewDocument*
+- uid: Reportman.Drawing.PrintOut.EndDocument(Reportman.Drawing.MetaFile)
+  commentId: M:Reportman.Drawing.PrintOut.EndDocument(Reportman.Drawing.MetaFile)
+  id: EndDocument(Reportman.Drawing.MetaFile)
+  parent: Reportman.Drawing.PrintOut
+  langs:
+  - csharp
+  - vb
+  name: EndDocument(MetaFile)
+  nameWithType: PrintOut.EndDocument(MetaFile)
+  fullName: Reportman.Drawing.PrintOut.EndDocument(Reportman.Drawing.MetaFile)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: The driver should do cleanup here, a print driver should finish print document.
+  example: []
+  syntax:
+    content: public virtual void EndDocument(MetaFile meta)
+    parameters:
+    - id: meta
+      type: Reportman.Drawing.MetaFile
+    content.vb: Public Overridable Sub EndDocument(meta As MetaFile)
+  overload: Reportman.Drawing.PrintOut.EndDocument*
+- uid: Reportman.Drawing.PrintOut.NewPage(Reportman.Drawing.MetaFile,Reportman.Drawing.MetaPage)
+  commentId: M:Reportman.Drawing.PrintOut.NewPage(Reportman.Drawing.MetaFile,Reportman.Drawing.MetaPage)
+  id: NewPage(Reportman.Drawing.MetaFile,Reportman.Drawing.MetaPage)
+  parent: Reportman.Drawing.PrintOut
+  langs:
+  - csharp
+  - vb
+  name: NewPage(MetaFile, MetaPage)
+  nameWithType: PrintOut.NewPage(MetaFile, MetaPage)
+  fullName: Reportman.Drawing.PrintOut.NewPage(Reportman.Drawing.MetaFile, Reportman.Drawing.MetaPage)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: The driver should start a new page
+  example: []
+  syntax:
+    content: public virtual void NewPage(MetaFile meta, MetaPage page)
+    parameters:
+    - id: meta
+      type: Reportman.Drawing.MetaFile
+    - id: page
+      type: Reportman.Drawing.MetaPage
+    content.vb: Public Overridable Sub NewPage(meta As MetaFile, page As MetaPage)
+  overload: Reportman.Drawing.PrintOut.NewPage*
+- uid: Reportman.Drawing.PrintOut.EndPage(Reportman.Drawing.MetaFile)
+  commentId: M:Reportman.Drawing.PrintOut.EndPage(Reportman.Drawing.MetaFile)
+  id: EndPage(Reportman.Drawing.MetaFile)
+  parent: Reportman.Drawing.PrintOut
+  langs:
+  - csharp
+  - vb
+  name: EndPage(MetaFile)
+  nameWithType: PrintOut.EndPage(MetaFile)
+  fullName: Reportman.Drawing.PrintOut.EndPage(Reportman.Drawing.MetaFile)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: The driver should end current page
+  example: []
+  syntax:
+    content: public virtual void EndPage(MetaFile meta)
+    parameters:
+    - id: meta
+      type: Reportman.Drawing.MetaFile
+    content.vb: Public Overridable Sub EndPage(meta As MetaFile)
+  overload: Reportman.Drawing.PrintOut.EndPage*
+- uid: Reportman.Drawing.PrintOut.DrawPage(Reportman.Drawing.MetaFile,Reportman.Drawing.MetaPage)
+  commentId: M:Reportman.Drawing.PrintOut.DrawPage(Reportman.Drawing.MetaFile,Reportman.Drawing.MetaPage)
+  id: DrawPage(Reportman.Drawing.MetaFile,Reportman.Drawing.MetaPage)
+  parent: Reportman.Drawing.PrintOut
+  langs:
+  - csharp
+  - vb
+  name: DrawPage(MetaFile, MetaPage)
+  nameWithType: PrintOut.DrawPage(MetaFile, MetaPage)
+  fullName: Reportman.Drawing.PrintOut.DrawPage(Reportman.Drawing.MetaFile, Reportman.Drawing.MetaPage)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: The driver should draw the page
+  example: []
+  syntax:
+    content: public abstract void DrawPage(MetaFile meta, MetaPage page)
+    parameters:
+    - id: meta
+      type: Reportman.Drawing.MetaFile
+    - id: page
+      type: Reportman.Drawing.MetaPage
+    content.vb: Public MustOverride Sub DrawPage(meta As MetaFile, page As MetaPage)
+  overload: Reportman.Drawing.PrintOut.DrawPage*
+- uid: Reportman.Drawing.PrintOut.TextExtent(Reportman.Drawing.TextObjectStruct,System.Drawing.Point)
+  commentId: M:Reportman.Drawing.PrintOut.TextExtent(Reportman.Drawing.TextObjectStruct,System.Drawing.Point)
+  id: TextExtent(Reportman.Drawing.TextObjectStruct,System.Drawing.Point)
+  parent: Reportman.Drawing.PrintOut
+  langs:
+  - csharp
+  - vb
+  name: TextExtent(TextObjectStruct, Point)
+  nameWithType: PrintOut.TextExtent(TextObjectStruct, Point)
+  fullName: Reportman.Drawing.PrintOut.TextExtent(Reportman.Drawing.TextObjectStruct, System.Drawing.Point)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: The driver must return the text extent in twips
+  example: []
+  syntax:
+    content: public abstract Point TextExtent(TextObjectStruct aobj, Point extent)
+    parameters:
+    - id: aobj
+      type: Reportman.Drawing.TextObjectStruct
+    - id: extent
+      type: System.Drawing.Point
+    return:
+      type: System.Drawing.Point
+    content.vb: Public MustOverride Function TextExtent(aobj As TextObjectStruct, extent As Point) As Point
+  overload: Reportman.Drawing.PrintOut.TextExtent*
+- uid: Reportman.Drawing.PrintOut.GraphicExtent(System.IO.MemoryStream,System.Drawing.Point,System.Int32)
+  commentId: M:Reportman.Drawing.PrintOut.GraphicExtent(System.IO.MemoryStream,System.Drawing.Point,System.Int32)
+  id: GraphicExtent(System.IO.MemoryStream,System.Drawing.Point,System.Int32)
+  parent: Reportman.Drawing.PrintOut
+  langs:
+  - csharp
+  - vb
+  name: GraphicExtent(MemoryStream, Point, int)
+  nameWithType: PrintOut.GraphicExtent(MemoryStream, Point, int)
+  fullName: Reportman.Drawing.PrintOut.GraphicExtent(System.IO.MemoryStream, System.Drawing.Point, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: The driver must return the image extent in twips
+  example: []
+  syntax:
+    content: public abstract Point GraphicExtent(MemoryStream astream, Point extent, int dpi)
+    parameters:
+    - id: astream
+      type: System.IO.MemoryStream
+    - id: extent
+      type: System.Drawing.Point
+    - id: dpi
+      type: System.Int32
+    return:
+      type: System.Drawing.Point
+    content.vb: Public MustOverride Function GraphicExtent(astream As MemoryStream, extent As Point, dpi As Integer) As Point
+  overload: Reportman.Drawing.PrintOut.GraphicExtent*
+  nameWithType.vb: PrintOut.GraphicExtent(MemoryStream, Point, Integer)
+  fullName.vb: Reportman.Drawing.PrintOut.GraphicExtent(System.IO.MemoryStream, System.Drawing.Point, Integer)
+  name.vb: GraphicExtent(MemoryStream, Point, Integer)
+- uid: Reportman.Drawing.PrintOut.SelectPrinter(Reportman.Drawing.PrinterSelectType)
+  commentId: M:Reportman.Drawing.PrintOut.SelectPrinter(Reportman.Drawing.PrinterSelectType)
+  id: SelectPrinter(Reportman.Drawing.PrinterSelectType)
+  parent: Reportman.Drawing.PrintOut
+  langs:
+  - csharp
+  - vb
+  name: SelectPrinter(PrinterSelectType)
+  nameWithType: PrintOut.SelectPrinter(PrinterSelectType)
+  fullName: Reportman.Drawing.PrintOut.SelectPrinter(Reportman.Drawing.PrinterSelectType)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: The driver must select a printer
+  example: []
+  syntax:
+    content: public virtual void SelectPrinter(PrinterSelectType PrinterSelect)
+    parameters:
+    - id: PrinterSelect
+      type: Reportman.Drawing.PrinterSelectType
+    content.vb: Public Overridable Sub SelectPrinter(PrinterSelect As PrinterSelectType)
+  overload: Reportman.Drawing.PrintOut.SelectPrinter*
+- uid: Reportman.Drawing.PrintOut.SetOrientation(Reportman.Drawing.OrientationType)
+  commentId: M:Reportman.Drawing.PrintOut.SetOrientation(Reportman.Drawing.OrientationType)
+  id: SetOrientation(Reportman.Drawing.OrientationType)
+  parent: Reportman.Drawing.PrintOut
+  langs:
+  - csharp
+  - vb
+  name: SetOrientation(OrientationType)
+  nameWithType: PrintOut.SetOrientation(OrientationType)
+  fullName: Reportman.Drawing.PrintOut.SetOrientation(Reportman.Drawing.OrientationType)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Sets page orientation
+  example: []
+  syntax:
+    content: public virtual void SetOrientation(OrientationType PageOrientation)
+    parameters:
+    - id: PageOrientation
+      type: Reportman.Drawing.OrientationType
+    content.vb: Public Overridable Sub SetOrientation(PageOrientation As OrientationType)
+  overload: Reportman.Drawing.PrintOut.SetOrientation*
+- uid: Reportman.Drawing.PrintOut.DrawChart(Reportman.Drawing.Series,Reportman.Drawing.MetaFile,System.Int32,System.Int32,System.Object)
+  commentId: M:Reportman.Drawing.PrintOut.DrawChart(Reportman.Drawing.Series,Reportman.Drawing.MetaFile,System.Int32,System.Int32,System.Object)
+  id: DrawChart(Reportman.Drawing.Series,Reportman.Drawing.MetaFile,System.Int32,System.Int32,System.Object)
+  parent: Reportman.Drawing.PrintOut
+  langs:
+  - csharp
+  - vb
+  name: DrawChart(Series, MetaFile, int, int, object)
+  nameWithType: PrintOut.DrawChart(Series, MetaFile, int, int, object)
+  fullName: Reportman.Drawing.PrintOut.DrawChart(Reportman.Drawing.Series, Reportman.Drawing.MetaFile, int, int, object)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public virtual void DrawChart(Series nseries, MetaFile ametafile, int posx, int posy, object achart)
+    parameters:
+    - id: nseries
+      type: Reportman.Drawing.Series
+    - id: ametafile
+      type: Reportman.Drawing.MetaFile
+    - id: posx
+      type: System.Int32
+    - id: posy
+      type: System.Int32
+    - id: achart
+      type: System.Object
+    content.vb: Public Overridable Sub DrawChart(nseries As Series, ametafile As MetaFile, posx As Integer, posy As Integer, achart As Object)
+  overload: Reportman.Drawing.PrintOut.DrawChart*
+  nameWithType.vb: PrintOut.DrawChart(Series, MetaFile, Integer, Integer, Object)
+  fullName.vb: Reportman.Drawing.PrintOut.DrawChart(Reportman.Drawing.Series, Reportman.Drawing.MetaFile, Integer, Integer, Object)
+  name.vb: DrawChart(Series, MetaFile, Integer, Integer, Object)
+- uid: Reportman.Drawing.PrintOut.SetPageSize(Reportman.Drawing.PageSizeDetail)
+  commentId: M:Reportman.Drawing.PrintOut.SetPageSize(Reportman.Drawing.PageSizeDetail)
+  id: SetPageSize(Reportman.Drawing.PageSizeDetail)
+  parent: Reportman.Drawing.PrintOut
+  langs:
+  - csharp
+  - vb
+  name: SetPageSize(PageSizeDetail)
+  nameWithType: PrintOut.SetPageSize(PageSizeDetail)
+  fullName: Reportman.Drawing.PrintOut.SetPageSize(Reportman.Drawing.PageSizeDetail)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: The driver must set a new page size
+  example: []
+  syntax:
+    content: public abstract Point SetPageSize(PageSizeDetail psize)
+    parameters:
+    - id: psize
+      type: Reportman.Drawing.PageSizeDetail
+    return:
+      type: System.Drawing.Point
+    content.vb: Public MustOverride Function SetPageSize(psize As PageSizeDetail) As Point
+  overload: Reportman.Drawing.PrintOut.SetPageSize*
+- uid: Reportman.Drawing.PrintOut.GetPageSize(System.Int32@)
+  commentId: M:Reportman.Drawing.PrintOut.GetPageSize(System.Int32@)
+  id: GetPageSize(System.Int32@)
+  parent: Reportman.Drawing.PrintOut
+  langs:
+  - csharp
+  - vb
+  name: GetPageSize(out int)
+  nameWithType: PrintOut.GetPageSize(out int)
+  fullName: Reportman.Drawing.PrintOut.GetPageSize(out int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: The driver must return the default page size
+  example: []
+  syntax:
+    content: public abstract Point GetPageSize(out int indexqt)
+    parameters:
+    - id: indexqt
+      type: System.Int32
+    return:
+      type: System.Drawing.Point
+    content.vb: Public MustOverride Function GetPageSize(indexqt As Integer) As Point
+  overload: Reportman.Drawing.PrintOut.GetPageSize*
+  nameWithType.vb: PrintOut.GetPageSize(Integer)
+  fullName.vb: Reportman.Drawing.PrintOut.GetPageSize(Integer)
+  name.vb: GetPageSize(Integer)
+- uid: Reportman.Drawing.PrintOut.PreparePrint(Reportman.Drawing.MetaFile)
+  commentId: M:Reportman.Drawing.PrintOut.PreparePrint(Reportman.Drawing.MetaFile)
+  id: PreparePrint(Reportman.Drawing.MetaFile)
+  parent: Reportman.Drawing.PrintOut
+  langs:
+  - csharp
+  - vb
+  name: PreparePrint(MetaFile)
+  nameWithType: PrintOut.PreparePrint(MetaFile)
+  fullName: Reportman.Drawing.PrintOut.PreparePrint(Reportman.Drawing.MetaFile)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Print initialization, it calls Metafile.BeginPrint, and NewDocument for this driver
+  example: []
+  syntax:
+    content: public virtual bool PreparePrint(MetaFile meta)
+    parameters:
+    - id: meta
+      type: Reportman.Drawing.MetaFile
+    return:
+      type: System.Boolean
+    content.vb: Public Overridable Function PreparePrint(meta As MetaFile) As Boolean
+  overload: Reportman.Drawing.PrintOut.PreparePrint*
+- uid: Reportman.Drawing.PrintOut.ProcessNoDataToPrint
+  commentId: M:Reportman.Drawing.PrintOut.ProcessNoDataToPrint
+  id: ProcessNoDataToPrint
+  parent: Reportman.Drawing.PrintOut
+  langs:
+  - csharp
+  - vb
+  name: ProcessNoDataToPrint()
+  nameWithType: PrintOut.ProcessNoDataToPrint()
+  fullName: Reportman.Drawing.PrintOut.ProcessNoDataToPrint()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    This procedure is called when the user does not handle the
+
+    no data to print event. Depending on the ouput driver the output
+
+    will be a message to the user.
+  example: []
+  syntax:
+    content: protected virtual void ProcessNoDataToPrint()
+    content.vb: Protected Overridable Sub ProcessNoDataToPrint()
+  overload: Reportman.Drawing.PrintOut.ProcessNoDataToPrint*
+- uid: Reportman.Drawing.PrintOut.Print(Reportman.Drawing.MetaFile)
+  commentId: M:Reportman.Drawing.PrintOut.Print(Reportman.Drawing.MetaFile)
+  id: Print(Reportman.Drawing.MetaFile)
+  parent: Reportman.Drawing.PrintOut
+  langs:
+  - csharp
+  - vb
+  name: Print(MetaFile)
+  nameWithType: PrintOut.Print(MetaFile)
+  fullName: Reportman.Drawing.PrintOut.Print(Reportman.Drawing.MetaFile)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    Print method, it the PreparePrint, the driver should override this to perform additional
+
+    actions
+  example: []
+  syntax:
+    content: public virtual bool Print(MetaFile meta)
+    parameters:
+    - id: meta
+      type: Reportman.Drawing.MetaFile
+    return:
+      type: System.Boolean
+    content.vb: Public Overridable Function Print(meta As MetaFile) As Boolean
+  overload: Reportman.Drawing.PrintOut.Print*
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Int32[,]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int[,]
+  nameWithType: int[,]
+  fullName: int[,]
+  nameWithType.vb: Integer(,)
+  fullName.vb: Integer(,)
+  name.vb: Integer(,)
+  spec.csharp:
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '['
+  - name: ','
+  - name: ']'
+  spec.vb:
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: (
+  - name: ','
+  - name: )
+- uid: Reportman.Drawing.MetaFile
+  commentId: T:Reportman.Drawing.MetaFile
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html
+  name: MetaFile
+  nameWithType: MetaFile
+  fullName: Reportman.Drawing.MetaFile
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Reportman.Drawing.OrientationType
+  commentId: T:Reportman.Drawing.OrientationType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.OrientationType.html
+  name: OrientationType
+  nameWithType: OrientationType
+  fullName: Reportman.Drawing.OrientationType
+- uid: Reportman.Drawing.NoDataToPrintEvent
+  commentId: T:Reportman.Drawing.NoDataToPrintEvent
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.NoDataToPrintEvent.html
+  name: NoDataToPrintEvent
+  nameWithType: NoDataToPrintEvent
+  fullName: Reportman.Drawing.NoDataToPrintEvent
+- uid: Reportman.Drawing.PrintOut.PageSizeName*
+  commentId: Overload:Reportman.Drawing.PrintOut.PageSizeName
+  isExternal: true
+  href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_PageSizeName_System_Int32_
+  name: PageSizeName
+  nameWithType: PrintOut.PageSizeName
+  fullName: Reportman.Drawing.PrintOut.PageSizeName
+- uid: Reportman.Drawing.PrintOut.#ctor*
+  commentId: Overload:Reportman.Drawing.PrintOut.#ctor
+  isExternal: true
+  href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut__ctor
+  name: PrintOut
+  nameWithType: PrintOut.PrintOut
+  fullName: Reportman.Drawing.PrintOut.PrintOut
+  nameWithType.vb: PrintOut.New
+  fullName.vb: Reportman.Drawing.PrintOut.New
+  name.vb: New
+- uid: Reportman.Drawing.PrintOut.Dispose*
+  commentId: Overload:Reportman.Drawing.PrintOut.Dispose
+  isExternal: true
+  href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_Dispose
+  name: Dispose
+  nameWithType: PrintOut.Dispose
+  fullName: Reportman.Drawing.PrintOut.Dispose
+- uid: Reportman.Drawing.PrintOut.NewDocument*
+  commentId: Overload:Reportman.Drawing.PrintOut.NewDocument
+  isExternal: true
+  href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_NewDocument_Reportman_Drawing_MetaFile_
+  name: NewDocument
+  nameWithType: PrintOut.NewDocument
+  fullName: Reportman.Drawing.PrintOut.NewDocument
+- uid: Reportman.Drawing.PrintOut.EndDocument*
+  commentId: Overload:Reportman.Drawing.PrintOut.EndDocument
+  isExternal: true
+  href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_EndDocument_Reportman_Drawing_MetaFile_
+  name: EndDocument
+  nameWithType: PrintOut.EndDocument
+  fullName: Reportman.Drawing.PrintOut.EndDocument
+- uid: Reportman.Drawing.PrintOut.NewPage*
+  commentId: Overload:Reportman.Drawing.PrintOut.NewPage
+  isExternal: true
+  href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_NewPage_Reportman_Drawing_MetaFile_Reportman_Drawing_MetaPage_
+  name: NewPage
+  nameWithType: PrintOut.NewPage
+  fullName: Reportman.Drawing.PrintOut.NewPage
+- uid: Reportman.Drawing.MetaPage
+  commentId: T:Reportman.Drawing.MetaPage
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.MetaPage.html
+  name: MetaPage
+  nameWithType: MetaPage
+  fullName: Reportman.Drawing.MetaPage
+- uid: Reportman.Drawing.PrintOut.EndPage*
+  commentId: Overload:Reportman.Drawing.PrintOut.EndPage
+  isExternal: true
+  href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_EndPage_Reportman_Drawing_MetaFile_
+  name: EndPage
+  nameWithType: PrintOut.EndPage
+  fullName: Reportman.Drawing.PrintOut.EndPage
+- uid: Reportman.Drawing.PrintOut.DrawPage*
+  commentId: Overload:Reportman.Drawing.PrintOut.DrawPage
+  isExternal: true
+  href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_DrawPage_Reportman_Drawing_MetaFile_Reportman_Drawing_MetaPage_
+  name: DrawPage
+  nameWithType: PrintOut.DrawPage
+  fullName: Reportman.Drawing.PrintOut.DrawPage
+- uid: Reportman.Drawing.PrintOut.TextExtent*
+  commentId: Overload:Reportman.Drawing.PrintOut.TextExtent
+  isExternal: true
+  href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_TextExtent_Reportman_Drawing_TextObjectStruct_System_Drawing_Point_
+  name: TextExtent
+  nameWithType: PrintOut.TextExtent
+  fullName: Reportman.Drawing.PrintOut.TextExtent
+- uid: Reportman.Drawing.TextObjectStruct
+  commentId: T:Reportman.Drawing.TextObjectStruct
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.TextObjectStruct.html
+  name: TextObjectStruct
+  nameWithType: TextObjectStruct
+  fullName: Reportman.Drawing.TextObjectStruct
+- uid: System.Drawing.Point
+  commentId: T:System.Drawing.Point
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.point
+  name: Point
+  nameWithType: Point
+  fullName: System.Drawing.Point
+- uid: System.Drawing
+  commentId: N:System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Drawing
+  nameWithType: System.Drawing
+  fullName: System.Drawing
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+- uid: Reportman.Drawing.PrintOut.GraphicExtent*
+  commentId: Overload:Reportman.Drawing.PrintOut.GraphicExtent
+  isExternal: true
+  href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_GraphicExtent_System_IO_MemoryStream_System_Drawing_Point_System_Int32_
+  name: GraphicExtent
+  nameWithType: PrintOut.GraphicExtent
+  fullName: Reportman.Drawing.PrintOut.GraphicExtent
+- uid: System.IO.MemoryStream
+  commentId: T:System.IO.MemoryStream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.memorystream
+  name: MemoryStream
+  nameWithType: MemoryStream
+  fullName: System.IO.MemoryStream
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+- uid: Reportman.Drawing.PrintOut.SelectPrinter*
+  commentId: Overload:Reportman.Drawing.PrintOut.SelectPrinter
+  isExternal: true
+  href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_SelectPrinter_Reportman_Drawing_PrinterSelectType_
+  name: SelectPrinter
+  nameWithType: PrintOut.SelectPrinter
+  fullName: Reportman.Drawing.PrintOut.SelectPrinter
+- uid: Reportman.Drawing.PrinterSelectType
+  commentId: T:Reportman.Drawing.PrinterSelectType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PrinterSelectType.html
+  name: PrinterSelectType
+  nameWithType: PrinterSelectType
+  fullName: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrintOut.SetOrientation*
+  commentId: Overload:Reportman.Drawing.PrintOut.SetOrientation
+  isExternal: true
+  href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_SetOrientation_Reportman_Drawing_OrientationType_
+  name: SetOrientation
+  nameWithType: PrintOut.SetOrientation
+  fullName: Reportman.Drawing.PrintOut.SetOrientation
+- uid: Reportman.Drawing.PrintOut.DrawChart*
+  commentId: Overload:Reportman.Drawing.PrintOut.DrawChart
+  isExternal: true
+  href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_DrawChart_Reportman_Drawing_Series_Reportman_Drawing_MetaFile_System_Int32_System_Int32_System_Object_
+  name: DrawChart
+  nameWithType: PrintOut.DrawChart
+  fullName: Reportman.Drawing.PrintOut.DrawChart
+- uid: Reportman.Drawing.Series
+  commentId: T:Reportman.Drawing.Series
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.Series.html
+  name: Series
+  nameWithType: Series
+  fullName: Reportman.Drawing.Series
+- uid: Reportman.Drawing.PrintOut.SetPageSize*
+  commentId: Overload:Reportman.Drawing.PrintOut.SetPageSize
+  isExternal: true
+  href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_SetPageSize_Reportman_Drawing_PageSizeDetail_
+  name: SetPageSize
+  nameWithType: PrintOut.SetPageSize
+  fullName: Reportman.Drawing.PrintOut.SetPageSize
+- uid: Reportman.Drawing.PageSizeDetail
+  commentId: T:Reportman.Drawing.PageSizeDetail
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PageSizeDetail.html
+  name: PageSizeDetail
+  nameWithType: PageSizeDetail
+  fullName: Reportman.Drawing.PageSizeDetail
+- uid: Reportman.Drawing.PrintOut.GetPageSize*
+  commentId: Overload:Reportman.Drawing.PrintOut.GetPageSize
+  isExternal: true
+  href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_GetPageSize_System_Int32__
+  name: GetPageSize
+  nameWithType: PrintOut.GetPageSize
+  fullName: Reportman.Drawing.PrintOut.GetPageSize
+- uid: Reportman.Drawing.PrintOut.PreparePrint*
+  commentId: Overload:Reportman.Drawing.PrintOut.PreparePrint
+  isExternal: true
+  href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_PreparePrint_Reportman_Drawing_MetaFile_
+  name: PreparePrint
+  nameWithType: PrintOut.PreparePrint
+  fullName: Reportman.Drawing.PrintOut.PreparePrint
+- uid: Reportman.Drawing.PrintOut.ProcessNoDataToPrint*
+  commentId: Overload:Reportman.Drawing.PrintOut.ProcessNoDataToPrint
+  isExternal: true
+  href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_ProcessNoDataToPrint
+  name: ProcessNoDataToPrint
+  nameWithType: PrintOut.ProcessNoDataToPrint
+  fullName: Reportman.Drawing.PrintOut.ProcessNoDataToPrint
+- uid: Reportman.Drawing.PrintOut.Print*
+  commentId: Overload:Reportman.Drawing.PrintOut.Print
+  isExternal: true
+  href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_Print_Reportman_Drawing_MetaFile_
+  name: Print
+  nameWithType: PrintOut.Print
+  fullName: Reportman.Drawing.PrintOut.Print

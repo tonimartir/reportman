@@ -1,0 +1,561 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  commentId: T:Reportman.Drawing.Forms.ScreenKeyboard.Command
+  id: ScreenKeyboard.Command
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.ScreenKeyboard.Command.Add
+  - Reportman.Drawing.Forms.ScreenKeyboard.Command.ClearAll
+  - Reportman.Drawing.Forms.ScreenKeyboard.Command.ClearEntry
+  - Reportman.Drawing.Forms.ScreenKeyboard.Command.Div
+  - Reportman.Drawing.Forms.ScreenKeyboard.Command.Dot
+  - Reportman.Drawing.Forms.ScreenKeyboard.Command.Eight
+  - Reportman.Drawing.Forms.ScreenKeyboard.Command.Enter
+  - Reportman.Drawing.Forms.ScreenKeyboard.Command.Equal
+  - Reportman.Drawing.Forms.ScreenKeyboard.Command.Five
+  - Reportman.Drawing.Forms.ScreenKeyboard.Command.Four
+  - Reportman.Drawing.Forms.ScreenKeyboard.Command.MemoryClear
+  - Reportman.Drawing.Forms.ScreenKeyboard.Command.MemoryRecall
+  - Reportman.Drawing.Forms.ScreenKeyboard.Command.MemorySet
+  - Reportman.Drawing.Forms.ScreenKeyboard.Command.Minus
+  - Reportman.Drawing.Forms.ScreenKeyboard.Command.Multiply
+  - Reportman.Drawing.Forms.ScreenKeyboard.Command.Nine
+  - Reportman.Drawing.Forms.ScreenKeyboard.Command.One
+  - Reportman.Drawing.Forms.ScreenKeyboard.Command.OneOver
+  - Reportman.Drawing.Forms.ScreenKeyboard.Command.Percent
+  - Reportman.Drawing.Forms.ScreenKeyboard.Command.Seven
+  - Reportman.Drawing.Forms.ScreenKeyboard.Command.Six
+  - Reportman.Drawing.Forms.ScreenKeyboard.Command.Sub
+  - Reportman.Drawing.Forms.ScreenKeyboard.Command.Three
+  - Reportman.Drawing.Forms.ScreenKeyboard.Command.Two
+  - Reportman.Drawing.Forms.ScreenKeyboard.Command.Zero
+  langs:
+  - csharp
+  - vb
+  name: ScreenKeyboard.Command
+  nameWithType: ScreenKeyboard.Command
+  fullName: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  type: Enum
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public enum ScreenKeyboard.Command
+    content.vb: Public Enum ScreenKeyboard.Command
+- uid: Reportman.Drawing.Forms.ScreenKeyboard.Command.MemorySet
+  commentId: F:Reportman.Drawing.Forms.ScreenKeyboard.Command.MemorySet
+  id: MemorySet
+  parent: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  langs:
+  - csharp
+  - vb
+  name: MemorySet
+  nameWithType: ScreenKeyboard.Command.MemorySet
+  fullName: Reportman.Drawing.Forms.ScreenKeyboard.Command.MemorySet
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: MemorySet = 0
+    return:
+      type: Reportman.Drawing.Forms.ScreenKeyboard.Command
+- uid: Reportman.Drawing.Forms.ScreenKeyboard.Command.MemoryRecall
+  commentId: F:Reportman.Drawing.Forms.ScreenKeyboard.Command.MemoryRecall
+  id: MemoryRecall
+  parent: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  langs:
+  - csharp
+  - vb
+  name: MemoryRecall
+  nameWithType: ScreenKeyboard.Command.MemoryRecall
+  fullName: Reportman.Drawing.Forms.ScreenKeyboard.Command.MemoryRecall
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: MemoryRecall = 1
+    return:
+      type: Reportman.Drawing.Forms.ScreenKeyboard.Command
+- uid: Reportman.Drawing.Forms.ScreenKeyboard.Command.MemoryClear
+  commentId: F:Reportman.Drawing.Forms.ScreenKeyboard.Command.MemoryClear
+  id: MemoryClear
+  parent: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  langs:
+  - csharp
+  - vb
+  name: MemoryClear
+  nameWithType: ScreenKeyboard.Command.MemoryClear
+  fullName: Reportman.Drawing.Forms.ScreenKeyboard.Command.MemoryClear
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: MemoryClear = 2
+    return:
+      type: Reportman.Drawing.Forms.ScreenKeyboard.Command
+- uid: Reportman.Drawing.Forms.ScreenKeyboard.Command.OneOver
+  commentId: F:Reportman.Drawing.Forms.ScreenKeyboard.Command.OneOver
+  id: OneOver
+  parent: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  langs:
+  - csharp
+  - vb
+  name: OneOver
+  nameWithType: ScreenKeyboard.Command.OneOver
+  fullName: Reportman.Drawing.Forms.ScreenKeyboard.Command.OneOver
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: OneOver = 3
+    return:
+      type: Reportman.Drawing.Forms.ScreenKeyboard.Command
+- uid: Reportman.Drawing.Forms.ScreenKeyboard.Command.Div
+  commentId: F:Reportman.Drawing.Forms.ScreenKeyboard.Command.Div
+  id: Div
+  parent: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  langs:
+  - csharp
+  - vb
+  name: Div
+  nameWithType: ScreenKeyboard.Command.Div
+  fullName: Reportman.Drawing.Forms.ScreenKeyboard.Command.Div
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Div = 4
+    return:
+      type: Reportman.Drawing.Forms.ScreenKeyboard.Command
+- uid: Reportman.Drawing.Forms.ScreenKeyboard.Command.Minus
+  commentId: F:Reportman.Drawing.Forms.ScreenKeyboard.Command.Minus
+  id: Minus
+  parent: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  langs:
+  - csharp
+  - vb
+  name: Minus
+  nameWithType: ScreenKeyboard.Command.Minus
+  fullName: Reportman.Drawing.Forms.ScreenKeyboard.Command.Minus
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Minus = 5
+    return:
+      type: Reportman.Drawing.Forms.ScreenKeyboard.Command
+- uid: Reportman.Drawing.Forms.ScreenKeyboard.Command.Seven
+  commentId: F:Reportman.Drawing.Forms.ScreenKeyboard.Command.Seven
+  id: Seven
+  parent: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  langs:
+  - csharp
+  - vb
+  name: Seven
+  nameWithType: ScreenKeyboard.Command.Seven
+  fullName: Reportman.Drawing.Forms.ScreenKeyboard.Command.Seven
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Seven = 6
+    return:
+      type: Reportman.Drawing.Forms.ScreenKeyboard.Command
+- uid: Reportman.Drawing.Forms.ScreenKeyboard.Command.Eight
+  commentId: F:Reportman.Drawing.Forms.ScreenKeyboard.Command.Eight
+  id: Eight
+  parent: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  langs:
+  - csharp
+  - vb
+  name: Eight
+  nameWithType: ScreenKeyboard.Command.Eight
+  fullName: Reportman.Drawing.Forms.ScreenKeyboard.Command.Eight
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Eight = 7
+    return:
+      type: Reportman.Drawing.Forms.ScreenKeyboard.Command
+- uid: Reportman.Drawing.Forms.ScreenKeyboard.Command.Nine
+  commentId: F:Reportman.Drawing.Forms.ScreenKeyboard.Command.Nine
+  id: Nine
+  parent: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  langs:
+  - csharp
+  - vb
+  name: Nine
+  nameWithType: ScreenKeyboard.Command.Nine
+  fullName: Reportman.Drawing.Forms.ScreenKeyboard.Command.Nine
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Nine = 8
+    return:
+      type: Reportman.Drawing.Forms.ScreenKeyboard.Command
+- uid: Reportman.Drawing.Forms.ScreenKeyboard.Command.Multiply
+  commentId: F:Reportman.Drawing.Forms.ScreenKeyboard.Command.Multiply
+  id: Multiply
+  parent: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  langs:
+  - csharp
+  - vb
+  name: Multiply
+  nameWithType: ScreenKeyboard.Command.Multiply
+  fullName: Reportman.Drawing.Forms.ScreenKeyboard.Command.Multiply
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Multiply = 9
+    return:
+      type: Reportman.Drawing.Forms.ScreenKeyboard.Command
+- uid: Reportman.Drawing.Forms.ScreenKeyboard.Command.Percent
+  commentId: F:Reportman.Drawing.Forms.ScreenKeyboard.Command.Percent
+  id: Percent
+  parent: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  langs:
+  - csharp
+  - vb
+  name: Percent
+  nameWithType: ScreenKeyboard.Command.Percent
+  fullName: Reportman.Drawing.Forms.ScreenKeyboard.Command.Percent
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Percent = 10
+    return:
+      type: Reportman.Drawing.Forms.ScreenKeyboard.Command
+- uid: Reportman.Drawing.Forms.ScreenKeyboard.Command.Four
+  commentId: F:Reportman.Drawing.Forms.ScreenKeyboard.Command.Four
+  id: Four
+  parent: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  langs:
+  - csharp
+  - vb
+  name: Four
+  nameWithType: ScreenKeyboard.Command.Four
+  fullName: Reportman.Drawing.Forms.ScreenKeyboard.Command.Four
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Four = 11
+    return:
+      type: Reportman.Drawing.Forms.ScreenKeyboard.Command
+- uid: Reportman.Drawing.Forms.ScreenKeyboard.Command.Five
+  commentId: F:Reportman.Drawing.Forms.ScreenKeyboard.Command.Five
+  id: Five
+  parent: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  langs:
+  - csharp
+  - vb
+  name: Five
+  nameWithType: ScreenKeyboard.Command.Five
+  fullName: Reportman.Drawing.Forms.ScreenKeyboard.Command.Five
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Five = 12
+    return:
+      type: Reportman.Drawing.Forms.ScreenKeyboard.Command
+- uid: Reportman.Drawing.Forms.ScreenKeyboard.Command.Six
+  commentId: F:Reportman.Drawing.Forms.ScreenKeyboard.Command.Six
+  id: Six
+  parent: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  langs:
+  - csharp
+  - vb
+  name: Six
+  nameWithType: ScreenKeyboard.Command.Six
+  fullName: Reportman.Drawing.Forms.ScreenKeyboard.Command.Six
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Six = 13
+    return:
+      type: Reportman.Drawing.Forms.ScreenKeyboard.Command
+- uid: Reportman.Drawing.Forms.ScreenKeyboard.Command.Sub
+  commentId: F:Reportman.Drawing.Forms.ScreenKeyboard.Command.Sub
+  id: Sub
+  parent: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  langs:
+  - csharp
+  - vb
+  name: Sub
+  nameWithType: ScreenKeyboard.Command.Sub
+  fullName: Reportman.Drawing.Forms.ScreenKeyboard.Command.Sub
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Sub = 14
+    return:
+      type: Reportman.Drawing.Forms.ScreenKeyboard.Command
+- uid: Reportman.Drawing.Forms.ScreenKeyboard.Command.ClearEntry
+  commentId: F:Reportman.Drawing.Forms.ScreenKeyboard.Command.ClearEntry
+  id: ClearEntry
+  parent: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  langs:
+  - csharp
+  - vb
+  name: ClearEntry
+  nameWithType: ScreenKeyboard.Command.ClearEntry
+  fullName: Reportman.Drawing.Forms.ScreenKeyboard.Command.ClearEntry
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: ClearEntry = 15
+    return:
+      type: Reportman.Drawing.Forms.ScreenKeyboard.Command
+- uid: Reportman.Drawing.Forms.ScreenKeyboard.Command.One
+  commentId: F:Reportman.Drawing.Forms.ScreenKeyboard.Command.One
+  id: One
+  parent: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  langs:
+  - csharp
+  - vb
+  name: One
+  nameWithType: ScreenKeyboard.Command.One
+  fullName: Reportman.Drawing.Forms.ScreenKeyboard.Command.One
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: One = 16
+    return:
+      type: Reportman.Drawing.Forms.ScreenKeyboard.Command
+- uid: Reportman.Drawing.Forms.ScreenKeyboard.Command.Two
+  commentId: F:Reportman.Drawing.Forms.ScreenKeyboard.Command.Two
+  id: Two
+  parent: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  langs:
+  - csharp
+  - vb
+  name: Two
+  nameWithType: ScreenKeyboard.Command.Two
+  fullName: Reportman.Drawing.Forms.ScreenKeyboard.Command.Two
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Two = 17
+    return:
+      type: Reportman.Drawing.Forms.ScreenKeyboard.Command
+- uid: Reportman.Drawing.Forms.ScreenKeyboard.Command.Three
+  commentId: F:Reportman.Drawing.Forms.ScreenKeyboard.Command.Three
+  id: Three
+  parent: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  langs:
+  - csharp
+  - vb
+  name: Three
+  nameWithType: ScreenKeyboard.Command.Three
+  fullName: Reportman.Drawing.Forms.ScreenKeyboard.Command.Three
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Three = 18
+    return:
+      type: Reportman.Drawing.Forms.ScreenKeyboard.Command
+- uid: Reportman.Drawing.Forms.ScreenKeyboard.Command.Add
+  commentId: F:Reportman.Drawing.Forms.ScreenKeyboard.Command.Add
+  id: Add
+  parent: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  langs:
+  - csharp
+  - vb
+  name: Add
+  nameWithType: ScreenKeyboard.Command.Add
+  fullName: Reportman.Drawing.Forms.ScreenKeyboard.Command.Add
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Add = 19
+    return:
+      type: Reportman.Drawing.Forms.ScreenKeyboard.Command
+- uid: Reportman.Drawing.Forms.ScreenKeyboard.Command.ClearAll
+  commentId: F:Reportman.Drawing.Forms.ScreenKeyboard.Command.ClearAll
+  id: ClearAll
+  parent: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  langs:
+  - csharp
+  - vb
+  name: ClearAll
+  nameWithType: ScreenKeyboard.Command.ClearAll
+  fullName: Reportman.Drawing.Forms.ScreenKeyboard.Command.ClearAll
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: ClearAll = 20
+    return:
+      type: Reportman.Drawing.Forms.ScreenKeyboard.Command
+- uid: Reportman.Drawing.Forms.ScreenKeyboard.Command.Zero
+  commentId: F:Reportman.Drawing.Forms.ScreenKeyboard.Command.Zero
+  id: Zero
+  parent: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  langs:
+  - csharp
+  - vb
+  name: Zero
+  nameWithType: ScreenKeyboard.Command.Zero
+  fullName: Reportman.Drawing.Forms.ScreenKeyboard.Command.Zero
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Zero = 21
+    return:
+      type: Reportman.Drawing.Forms.ScreenKeyboard.Command
+- uid: Reportman.Drawing.Forms.ScreenKeyboard.Command.Dot
+  commentId: F:Reportman.Drawing.Forms.ScreenKeyboard.Command.Dot
+  id: Dot
+  parent: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  langs:
+  - csharp
+  - vb
+  name: Dot
+  nameWithType: ScreenKeyboard.Command.Dot
+  fullName: Reportman.Drawing.Forms.ScreenKeyboard.Command.Dot
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Dot = 22
+    return:
+      type: Reportman.Drawing.Forms.ScreenKeyboard.Command
+- uid: Reportman.Drawing.Forms.ScreenKeyboard.Command.Equal
+  commentId: F:Reportman.Drawing.Forms.ScreenKeyboard.Command.Equal
+  id: Equal
+  parent: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  langs:
+  - csharp
+  - vb
+  name: Equal
+  nameWithType: ScreenKeyboard.Command.Equal
+  fullName: Reportman.Drawing.Forms.ScreenKeyboard.Command.Equal
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Equal = 23
+    return:
+      type: Reportman.Drawing.Forms.ScreenKeyboard.Command
+- uid: Reportman.Drawing.Forms.ScreenKeyboard.Command.Enter
+  commentId: F:Reportman.Drawing.Forms.ScreenKeyboard.Command.Enter
+  id: Enter
+  parent: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  langs:
+  - csharp
+  - vb
+  name: Enter
+  nameWithType: ScreenKeyboard.Command.Enter
+  fullName: Reportman.Drawing.Forms.ScreenKeyboard.Command.Enter
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Enter = 24
+    return:
+      type: Reportman.Drawing.Forms.ScreenKeyboard.Command
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  commentId: T:Reportman.Drawing.Forms.ScreenKeyboard.Command
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.ScreenKeyboard.html
+  name: ScreenKeyboard.Command
+  nameWithType: ScreenKeyboard.Command
+  fullName: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.ScreenKeyboard
+    name: ScreenKeyboard
+    isExternal: true
+    href: Reportman.Drawing.Forms.ScreenKeyboard.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.ScreenKeyboard.Command
+    name: Command
+    isExternal: true
+    href: Reportman.Drawing.Forms.ScreenKeyboard.Command.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.ScreenKeyboard
+    name: ScreenKeyboard
+    isExternal: true
+    href: Reportman.Drawing.Forms.ScreenKeyboard.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.ScreenKeyboard.Command
+    name: Command
+    isExternal: true
+    href: Reportman.Drawing.Forms.ScreenKeyboard.Command.html

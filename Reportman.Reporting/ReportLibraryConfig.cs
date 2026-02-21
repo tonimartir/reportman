@@ -65,7 +65,7 @@ namespace Reportman.Reporting
                     if (DatabaseInfo.CustomProviderFactories.IndexOfKey(DatabaseInfo.FIREBIRD_PROVIDER2) >= 0)
                         return DatabaseInfo.CustomProviderFactories[DatabaseInfo.FIREBIRD_PROVIDER2];
                     else
-                        throw new Exception("Firebird provider not found: " + DatabaseInfo.FIREBIRD_PROVIDER2);
+                        return DbProviderFactories.GetFactory(DatabaseInfo.FIREBIRD_PROVIDER2);
                 case DriverType.DotNet2:
                     DbProviderFactory factory = DbProviderFactories.GetFactory(ProviderName);
                     if (factory == null)

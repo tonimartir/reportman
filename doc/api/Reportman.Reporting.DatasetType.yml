@@ -1,0 +1,111 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.DatasetType
+  commentId: T:Reportman.Reporting.DatasetType
+  id: DatasetType
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.DatasetType.Query
+  - Reportman.Reporting.DatasetType.Table
+  langs:
+  - csharp
+  - vb
+  name: DatasetType
+  nameWithType: DatasetType
+  fullName: Reportman.Reporting.DatasetType
+  type: Enum
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    A dataset definition could represent a table inside a database or
+
+    a sql query, in .Net version, it's always a Query. <xref href="Reportman.Reporting.Variant?text=DataInfo" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public enum DatasetType
+    content.vb: Public Enum DatasetType
+- uid: Reportman.Reporting.DatasetType.Query
+  commentId: F:Reportman.Reporting.DatasetType.Query
+  id: Query
+  parent: Reportman.Reporting.DatasetType
+  langs:
+  - csharp
+  - vb
+  name: Query
+  nameWithType: DatasetType.Query
+  fullName: Reportman.Reporting.DatasetType.Query
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: The DataInfo will open (execute) a query
+  example: []
+  syntax:
+    content: Query = 0
+    return:
+      type: Reportman.Reporting.DatasetType
+- uid: Reportman.Reporting.DatasetType.Table
+  commentId: F:Reportman.Reporting.DatasetType.Table
+  id: Table
+  parent: Reportman.Reporting.DatasetType
+  langs:
+  - csharp
+  - vb
+  name: Table
+  nameWithType: DatasetType.Table
+  fullName: Reportman.Reporting.DatasetType.Table
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: The DataInfo will open a table inside a database
+  example: []
+  syntax:
+    content: Table = 1
+    return:
+      type: Reportman.Reporting.DatasetType
+references:
+- uid: Reportman.Reporting.Variant
+  commentId: T:Reportman.Reporting.Variant
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.Variant.html
+  name: Variant
+  nameWithType: Variant
+  fullName: Reportman.Reporting.Variant
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: Reportman.Reporting.DatasetType
+  commentId: T:Reportman.Reporting.DatasetType
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.DatasetType.html
+  name: DatasetType
+  nameWithType: DatasetType
+  fullName: Reportman.Reporting.DatasetType

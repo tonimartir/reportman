@@ -1,0 +1,258 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler
+  commentId: T:Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler
+  id: ProgressBarAdvanced.MaxChangedHandler
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.#ctor(System.Object,System.IntPtr)
+  - Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.BeginInvoke(System.Object,System.EventArgs,System.AsyncCallback,System.Object)
+  - Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.EndInvoke(System.IAsyncResult)
+  - Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.Invoke(System.Object,System.EventArgs)
+  langs:
+  - csharp
+  - vb
+  name: ProgressBarAdvanced.MaxChangedHandler
+  nameWithType: ProgressBarAdvanced.MaxChangedHandler
+  fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler
+  type: Delegate
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  summary: When the MaxValue property is changed.
+  example: []
+  syntax:
+    content: public delegate void ProgressBarAdvanced.MaxChangedHandler(object sender, EventArgs e)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: e
+      type: System.EventArgs
+    content.vb: Public Delegate Sub ProgressBarAdvanced.MaxChangedHandler(sender As Object, e As EventArgs)
+- uid: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.#ctor(System.Object,System.IntPtr)
+  commentId: M:Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.#ctor(System.Object,System.IntPtr)
+  id: '#ctor(System.Object,System.IntPtr)'
+  parent: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler
+  langs:
+  - csharp
+  - vb
+  name: MaxChangedHandler(object, nint)
+  nameWithType: ProgressBarAdvanced.MaxChangedHandler.MaxChangedHandler(object, nint)
+  fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.MaxChangedHandler(object, nint)
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public MaxChangedHandler(object @object, nint method)
+    parameters:
+    - id: object
+      type: System.Object
+    - id: method
+      type: System.IntPtr
+    content.vb: Public Sub New([object] As Object, method As IntPtr)
+  overload: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.#ctor*
+  nameWithType.vb: ProgressBarAdvanced.MaxChangedHandler.New(Object, IntPtr)
+  fullName.vb: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.New(Object, System.IntPtr)
+  name.vb: New(Object, IntPtr)
+- uid: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.Invoke(System.Object,System.EventArgs)
+  commentId: M:Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.Invoke(System.Object,System.EventArgs)
+  id: Invoke(System.Object,System.EventArgs)
+  parent: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler
+  langs:
+  - csharp
+  - vb
+  name: Invoke(object, EventArgs)
+  nameWithType: ProgressBarAdvanced.MaxChangedHandler.Invoke(object, EventArgs)
+  fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.Invoke(object, System.EventArgs)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual void Invoke(object sender, EventArgs e)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: e
+      type: System.EventArgs
+    content.vb: Public Overridable Sub Invoke(sender As Object, e As EventArgs)
+  overload: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.Invoke*
+  nameWithType.vb: ProgressBarAdvanced.MaxChangedHandler.Invoke(Object, EventArgs)
+  fullName.vb: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.Invoke(Object, System.EventArgs)
+  name.vb: Invoke(Object, EventArgs)
+- uid: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.BeginInvoke(System.Object,System.EventArgs,System.AsyncCallback,System.Object)
+  commentId: M:Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.BeginInvoke(System.Object,System.EventArgs,System.AsyncCallback,System.Object)
+  id: BeginInvoke(System.Object,System.EventArgs,System.AsyncCallback,System.Object)
+  parent: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler
+  langs:
+  - csharp
+  - vb
+  name: BeginInvoke(object, EventArgs, AsyncCallback, object)
+  nameWithType: ProgressBarAdvanced.MaxChangedHandler.BeginInvoke(object, EventArgs, AsyncCallback, object)
+  fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.BeginInvoke(object, System.EventArgs, System.AsyncCallback, object)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual IAsyncResult BeginInvoke(object sender, EventArgs e, AsyncCallback callback, object @object)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: e
+      type: System.EventArgs
+    - id: callback
+      type: System.AsyncCallback
+    - id: object
+      type: System.Object
+    return:
+      type: System.IAsyncResult
+    content.vb: Public Overridable Function BeginInvoke(sender As Object, e As EventArgs, callback As AsyncCallback, [object] As Object) As IAsyncResult
+  overload: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.BeginInvoke*
+  nameWithType.vb: ProgressBarAdvanced.MaxChangedHandler.BeginInvoke(Object, EventArgs, AsyncCallback, Object)
+  fullName.vb: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.BeginInvoke(Object, System.EventArgs, System.AsyncCallback, Object)
+  name.vb: BeginInvoke(Object, EventArgs, AsyncCallback, Object)
+- uid: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.EndInvoke(System.IAsyncResult)
+  commentId: M:Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.EndInvoke(System.IAsyncResult)
+  id: EndInvoke(System.IAsyncResult)
+  parent: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler
+  langs:
+  - csharp
+  - vb
+  name: EndInvoke(IAsyncResult)
+  nameWithType: ProgressBarAdvanced.MaxChangedHandler.EndInvoke(IAsyncResult)
+  fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.EndInvoke(System.IAsyncResult)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual void EndInvoke(IAsyncResult result)
+    parameters:
+    - id: result
+      type: System.IAsyncResult
+    content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
+  overload: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.EndInvoke*
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.EventArgs
+  commentId: T:System.EventArgs
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  name: EventArgs
+  nameWithType: EventArgs
+  fullName: System.EventArgs
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.#ctor*
+  commentId: Overload:Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.#ctor
+  isExternal: true
+  href: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.html#Reportman_Drawing_Forms_ProgressBarAdvanced_MaxChangedHandler__ctor_System_Object_System_IntPtr_
+  name: MaxChangedHandler
+  nameWithType: ProgressBarAdvanced.MaxChangedHandler.MaxChangedHandler
+  fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.MaxChangedHandler
+  nameWithType.vb: ProgressBarAdvanced.MaxChangedHandler.New
+  fullName.vb: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.New
+  name.vb: New
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.Invoke*
+  commentId: Overload:Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.Invoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.html#Reportman_Drawing_Forms_ProgressBarAdvanced_MaxChangedHandler_Invoke_System_Object_System_EventArgs_
+  name: Invoke
+  nameWithType: ProgressBarAdvanced.MaxChangedHandler.Invoke
+  fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.Invoke
+- uid: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.BeginInvoke*
+  commentId: Overload:Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.BeginInvoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.html#Reportman_Drawing_Forms_ProgressBarAdvanced_MaxChangedHandler_BeginInvoke_System_Object_System_EventArgs_System_AsyncCallback_System_Object_
+  name: BeginInvoke
+  nameWithType: ProgressBarAdvanced.MaxChangedHandler.BeginInvoke
+  fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.BeginInvoke
+- uid: System.AsyncCallback
+  commentId: T:System.AsyncCallback
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.asynccallback
+  name: AsyncCallback
+  nameWithType: AsyncCallback
+  fullName: System.AsyncCallback
+- uid: System.IAsyncResult
+  commentId: T:System.IAsyncResult
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncresult
+  name: IAsyncResult
+  nameWithType: IAsyncResult
+  fullName: System.IAsyncResult
+- uid: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.EndInvoke*
+  commentId: Overload:Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.EndInvoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.html#Reportman_Drawing_Forms_ProgressBarAdvanced_MaxChangedHandler_EndInvoke_System_IAsyncResult_
+  name: EndInvoke
+  nameWithType: ProgressBarAdvanced.MaxChangedHandler.EndInvoke
+  fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.EndInvoke

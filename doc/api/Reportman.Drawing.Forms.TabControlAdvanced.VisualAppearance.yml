@@ -1,0 +1,143 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance
+  commentId: T:Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance
+  id: TabControlAdvanced.VisualAppearance
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance.MultiBox
+  - Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance.MultiDocument
+  - Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance.MultiForm
+  langs:
+  - csharp
+  - vb
+  name: TabControlAdvanced.VisualAppearance
+  nameWithType: TabControlAdvanced.VisualAppearance
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance
+  type: Enum
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public enum TabControlAdvanced.VisualAppearance
+    content.vb: Public Enum TabControlAdvanced.VisualAppearance
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance.MultiDocument
+  commentId: F:Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance.MultiDocument
+  id: MultiDocument
+  parent: Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance
+  langs:
+  - csharp
+  - vb
+  name: MultiDocument
+  nameWithType: TabControlAdvanced.VisualAppearance.MultiDocument
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance.MultiDocument
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: MultiDocument = 0
+    return:
+      type: Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance.MultiForm
+  commentId: F:Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance.MultiForm
+  id: MultiForm
+  parent: Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance
+  langs:
+  - csharp
+  - vb
+  name: MultiForm
+  nameWithType: TabControlAdvanced.VisualAppearance.MultiForm
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance.MultiForm
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: MultiForm = 1
+    return:
+      type: Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance.MultiBox
+  commentId: F:Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance.MultiBox
+  id: MultiBox
+  parent: Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance
+  langs:
+  - csharp
+  - vb
+  name: MultiBox
+  nameWithType: TabControlAdvanced.VisualAppearance.MultiBox
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance.MultiBox
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: MultiBox = 2
+    return:
+      type: Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance
+  commentId: T:Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  name: TabControlAdvanced.VisualAppearance
+  nameWithType: TabControlAdvanced.VisualAppearance
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced
+    name: TabControlAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance
+    name: VisualAppearance
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced
+    name: TabControlAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance
+    name: VisualAppearance
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance.html

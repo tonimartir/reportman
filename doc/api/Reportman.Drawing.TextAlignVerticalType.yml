@@ -1,0 +1,124 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.TextAlignVerticalType
+  commentId: T:Reportman.Drawing.TextAlignVerticalType
+  id: TextAlignVerticalType
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.TextAlignVerticalType.Bottom
+  - Reportman.Drawing.TextAlignVerticalType.Center
+  - Reportman.Drawing.TextAlignVerticalType.Top
+  langs:
+  - csharp
+  - vb
+  name: TextAlignVerticalType
+  nameWithType: TextAlignVerticalType
+  fullName: Reportman.Drawing.TextAlignVerticalType
+  type: Enum
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    Enumeration indicating vertical text alignment, that is how the full text, after horizontal alignment is done, is drawn inside the defined box
+
+    Variant
+  example: []
+  syntax:
+    content: public enum TextAlignVerticalType
+    content.vb: Public Enum TextAlignVerticalType
+- uid: Reportman.Drawing.TextAlignVerticalType.Top
+  commentId: F:Reportman.Drawing.TextAlignVerticalType.Top
+  id: Top
+  parent: Reportman.Drawing.TextAlignVerticalType
+  langs:
+  - csharp
+  - vb
+  name: Top
+  nameWithType: TextAlignVerticalType.Top
+  fullName: Reportman.Drawing.TextAlignVerticalType.Top
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Align the text to the top of the bounding box
+  example: []
+  syntax:
+    content: Top = 0
+    return:
+      type: Reportman.Drawing.TextAlignVerticalType
+- uid: Reportman.Drawing.TextAlignVerticalType.Bottom
+  commentId: F:Reportman.Drawing.TextAlignVerticalType.Bottom
+  id: Bottom
+  parent: Reportman.Drawing.TextAlignVerticalType
+  langs:
+  - csharp
+  - vb
+  name: Bottom
+  nameWithType: TextAlignVerticalType.Bottom
+  fullName: Reportman.Drawing.TextAlignVerticalType.Bottom
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Align the text to the bottom of the bounding box
+  example: []
+  syntax:
+    content: Bottom = 1
+    return:
+      type: Reportman.Drawing.TextAlignVerticalType
+- uid: Reportman.Drawing.TextAlignVerticalType.Center
+  commentId: F:Reportman.Drawing.TextAlignVerticalType.Center
+  id: Center
+  parent: Reportman.Drawing.TextAlignVerticalType
+  langs:
+  - csharp
+  - vb
+  name: Center
+  nameWithType: TextAlignVerticalType.Center
+  fullName: Reportman.Drawing.TextAlignVerticalType.Center
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Align the text to the center of the bounding box
+  example: []
+  syntax:
+    content: Center = 2
+    return:
+      type: Reportman.Drawing.TextAlignVerticalType
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.TextAlignVerticalType
+  commentId: T:Reportman.Drawing.TextAlignVerticalType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.TextAlignVerticalType.html
+  name: TextAlignVerticalType
+  nameWithType: TextAlignVerticalType
+  fullName: Reportman.Drawing.TextAlignVerticalType

@@ -1,0 +1,115 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.PDFConformance
+  commentId: T:Reportman.Drawing.PDFConformance
+  id: PDFConformance
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.PDFConformance.SetPDFDefault
+  - Reportman.Drawing.PDFConformance.SetPDF_A_3
+  - Reportman.Drawing.PDFConformance.SettPDF_1_4
+  langs:
+  - csharp
+  - vb
+  name: PDFConformance
+  nameWithType: PDFConformance
+  fullName: Reportman.Drawing.PDFConformance
+  type: Enum
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: PDF Conformance behaviour, modify default PDF Conformance
+  example: []
+  syntax:
+    content: public enum PDFConformance
+    content.vb: Public Enum PDFConformance
+- uid: Reportman.Drawing.PDFConformance.SetPDFDefault
+  commentId: F:Reportman.Drawing.PDFConformance.SetPDFDefault
+  id: SetPDFDefault
+  parent: Reportman.Drawing.PDFConformance
+  langs:
+  - csharp
+  - vb
+  name: SetPDFDefault
+  nameWithType: PDFConformance.SetPDFDefault
+  fullName: Reportman.Drawing.PDFConformance.SetPDFDefault
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: SetPDFDefault = 0
+    return:
+      type: Reportman.Drawing.PDFConformance
+- uid: Reportman.Drawing.PDFConformance.SettPDF_1_4
+  commentId: F:Reportman.Drawing.PDFConformance.SettPDF_1_4
+  id: SettPDF_1_4
+  parent: Reportman.Drawing.PDFConformance
+  langs:
+  - csharp
+  - vb
+  name: SettPDF_1_4
+  nameWithType: PDFConformance.SettPDF_1_4
+  fullName: Reportman.Drawing.PDFConformance.SettPDF_1_4
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: SettPDF_1_4 = 1
+    return:
+      type: Reportman.Drawing.PDFConformance
+- uid: Reportman.Drawing.PDFConformance.SetPDF_A_3
+  commentId: F:Reportman.Drawing.PDFConformance.SetPDF_A_3
+  id: SetPDF_A_3
+  parent: Reportman.Drawing.PDFConformance
+  langs:
+  - csharp
+  - vb
+  name: SetPDF_A_3
+  nameWithType: PDFConformance.SetPDF_A_3
+  fullName: Reportman.Drawing.PDFConformance.SetPDF_A_3
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: SetPDF_A_3 = 2
+    return:
+      type: Reportman.Drawing.PDFConformance
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.PDFConformance
+  commentId: T:Reportman.Drawing.PDFConformance
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PDFConformance.html
+  name: PDFConformance
+  nameWithType: PDFConformance
+  fullName: Reportman.Drawing.PDFConformance

@@ -1,0 +1,876 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.Calculator
+  commentId: T:Reportman.Drawing.Forms.Calculator
+  id: Calculator
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.Calculator.#ctor
+  - Reportman.Drawing.Forms.Calculator.DoClearAll
+  - Reportman.Drawing.Forms.Calculator.DoClearCurrentToken
+  - Reportman.Drawing.Forms.Calculator.DoDecimal
+  - Reportman.Drawing.Forms.Calculator.DoDigit(System.Int32)
+  - Reportman.Drawing.Forms.Calculator.DoEvaluate
+  - Reportman.Drawing.Forms.Calculator.DoMemoryClear
+  - Reportman.Drawing.Forms.Calculator.DoMemoryRecall
+  - Reportman.Drawing.Forms.Calculator.DoMemorySet
+  - Reportman.Drawing.Forms.Calculator.DoNegative
+  - Reportman.Drawing.Forms.Calculator.DoOneOver
+  - Reportman.Drawing.Forms.Calculator.DoOperator(Reportman.Drawing.Forms.TokenCalc.TokenType)
+  - Reportman.Drawing.Forms.Calculator.DoPercent
+  - Reportman.Drawing.Forms.Calculator.Render
+  - Reportman.Drawing.Forms.Calculator.ShowCalc(System.Decimal,System.Boolean@,System.Boolean)
+  - Reportman.Drawing.Forms.Calculator.ShowCalc(System.Decimal,System.Boolean@,System.Boolean,System.String,System.Windows.Forms.IWin32Window)
+  langs:
+  - csharp
+  - vb
+  name: Calculator
+  nameWithType: Calculator
+  fullName: Reportman.Drawing.Forms.Calculator
+  type: Class
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public class Calculator
+    content.vb: Public Class Calculator
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.Forms.Calculator.#ctor
+  commentId: M:Reportman.Drawing.Forms.Calculator.#ctor
+  id: '#ctor'
+  parent: Reportman.Drawing.Forms.Calculator
+  langs:
+  - csharp
+  - vb
+  name: Calculator()
+  nameWithType: Calculator.Calculator()
+  fullName: Reportman.Drawing.Forms.Calculator.Calculator()
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public Calculator()
+    content.vb: Public Sub New()
+  overload: Reportman.Drawing.Forms.Calculator.#ctor*
+  nameWithType.vb: Calculator.New()
+  fullName.vb: Reportman.Drawing.Forms.Calculator.New()
+  name.vb: New()
+- uid: Reportman.Drawing.Forms.Calculator.DoMemorySet
+  commentId: M:Reportman.Drawing.Forms.Calculator.DoMemorySet
+  id: DoMemorySet
+  parent: Reportman.Drawing.Forms.Calculator
+  langs:
+  - csharp
+  - vb
+  name: DoMemorySet()
+  nameWithType: Calculator.DoMemorySet()
+  fullName: Reportman.Drawing.Forms.Calculator.DoMemorySet()
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public void DoMemorySet()
+    content.vb: Public Sub DoMemorySet()
+  overload: Reportman.Drawing.Forms.Calculator.DoMemorySet*
+- uid: Reportman.Drawing.Forms.Calculator.DoMemoryClear
+  commentId: M:Reportman.Drawing.Forms.Calculator.DoMemoryClear
+  id: DoMemoryClear
+  parent: Reportman.Drawing.Forms.Calculator
+  langs:
+  - csharp
+  - vb
+  name: DoMemoryClear()
+  nameWithType: Calculator.DoMemoryClear()
+  fullName: Reportman.Drawing.Forms.Calculator.DoMemoryClear()
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public void DoMemoryClear()
+    content.vb: Public Sub DoMemoryClear()
+  overload: Reportman.Drawing.Forms.Calculator.DoMemoryClear*
+- uid: Reportman.Drawing.Forms.Calculator.DoMemoryRecall
+  commentId: M:Reportman.Drawing.Forms.Calculator.DoMemoryRecall
+  id: DoMemoryRecall
+  parent: Reportman.Drawing.Forms.Calculator
+  langs:
+  - csharp
+  - vb
+  name: DoMemoryRecall()
+  nameWithType: Calculator.DoMemoryRecall()
+  fullName: Reportman.Drawing.Forms.Calculator.DoMemoryRecall()
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public void DoMemoryRecall()
+    content.vb: Public Sub DoMemoryRecall()
+  overload: Reportman.Drawing.Forms.Calculator.DoMemoryRecall*
+- uid: Reportman.Drawing.Forms.Calculator.DoDecimal
+  commentId: M:Reportman.Drawing.Forms.Calculator.DoDecimal
+  id: DoDecimal
+  parent: Reportman.Drawing.Forms.Calculator
+  langs:
+  - csharp
+  - vb
+  name: DoDecimal()
+  nameWithType: Calculator.DoDecimal()
+  fullName: Reportman.Drawing.Forms.Calculator.DoDecimal()
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public void DoDecimal()
+    content.vb: Public Sub DoDecimal()
+  overload: Reportman.Drawing.Forms.Calculator.DoDecimal*
+- uid: Reportman.Drawing.Forms.Calculator.DoDigit(System.Int32)
+  commentId: M:Reportman.Drawing.Forms.Calculator.DoDigit(System.Int32)
+  id: DoDigit(System.Int32)
+  parent: Reportman.Drawing.Forms.Calculator
+  langs:
+  - csharp
+  - vb
+  name: DoDigit(int)
+  nameWithType: Calculator.DoDigit(int)
+  fullName: Reportman.Drawing.Forms.Calculator.DoDigit(int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public void DoDigit(int n)
+    parameters:
+    - id: n
+      type: System.Int32
+    content.vb: Public Sub DoDigit(n As Integer)
+  overload: Reportman.Drawing.Forms.Calculator.DoDigit*
+  nameWithType.vb: Calculator.DoDigit(Integer)
+  fullName.vb: Reportman.Drawing.Forms.Calculator.DoDigit(Integer)
+  name.vb: DoDigit(Integer)
+- uid: Reportman.Drawing.Forms.Calculator.DoOperator(Reportman.Drawing.Forms.TokenCalc.TokenType)
+  commentId: M:Reportman.Drawing.Forms.Calculator.DoOperator(Reportman.Drawing.Forms.TokenCalc.TokenType)
+  id: DoOperator(Reportman.Drawing.Forms.TokenCalc.TokenType)
+  parent: Reportman.Drawing.Forms.Calculator
+  langs:
+  - csharp
+  - vb
+  name: DoOperator(TokenType)
+  nameWithType: Calculator.DoOperator(TokenCalc.TokenType)
+  fullName: Reportman.Drawing.Forms.Calculator.DoOperator(Reportman.Drawing.Forms.TokenCalc.TokenType)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public void DoOperator(TokenCalc.TokenType type)
+    parameters:
+    - id: type
+      type: Reportman.Drawing.Forms.TokenCalc.TokenType
+    content.vb: Public Sub DoOperator(type As TokenCalc.TokenType)
+  overload: Reportman.Drawing.Forms.Calculator.DoOperator*
+- uid: Reportman.Drawing.Forms.Calculator.DoNegative
+  commentId: M:Reportman.Drawing.Forms.Calculator.DoNegative
+  id: DoNegative
+  parent: Reportman.Drawing.Forms.Calculator
+  langs:
+  - csharp
+  - vb
+  name: DoNegative()
+  nameWithType: Calculator.DoNegative()
+  fullName: Reportman.Drawing.Forms.Calculator.DoNegative()
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public void DoNegative()
+    content.vb: Public Sub DoNegative()
+  overload: Reportman.Drawing.Forms.Calculator.DoNegative*
+- uid: Reportman.Drawing.Forms.Calculator.DoOneOver
+  commentId: M:Reportman.Drawing.Forms.Calculator.DoOneOver
+  id: DoOneOver
+  parent: Reportman.Drawing.Forms.Calculator
+  langs:
+  - csharp
+  - vb
+  name: DoOneOver()
+  nameWithType: Calculator.DoOneOver()
+  fullName: Reportman.Drawing.Forms.Calculator.DoOneOver()
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public void DoOneOver()
+    content.vb: Public Sub DoOneOver()
+  overload: Reportman.Drawing.Forms.Calculator.DoOneOver*
+- uid: Reportman.Drawing.Forms.Calculator.DoClearAll
+  commentId: M:Reportman.Drawing.Forms.Calculator.DoClearAll
+  id: DoClearAll
+  parent: Reportman.Drawing.Forms.Calculator
+  langs:
+  - csharp
+  - vb
+  name: DoClearAll()
+  nameWithType: Calculator.DoClearAll()
+  fullName: Reportman.Drawing.Forms.Calculator.DoClearAll()
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public void DoClearAll()
+    content.vb: Public Sub DoClearAll()
+  overload: Reportman.Drawing.Forms.Calculator.DoClearAll*
+- uid: Reportman.Drawing.Forms.Calculator.DoClearCurrentToken
+  commentId: M:Reportman.Drawing.Forms.Calculator.DoClearCurrentToken
+  id: DoClearCurrentToken
+  parent: Reportman.Drawing.Forms.Calculator
+  langs:
+  - csharp
+  - vb
+  name: DoClearCurrentToken()
+  nameWithType: Calculator.DoClearCurrentToken()
+  fullName: Reportman.Drawing.Forms.Calculator.DoClearCurrentToken()
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public void DoClearCurrentToken()
+    content.vb: Public Sub DoClearCurrentToken()
+  overload: Reportman.Drawing.Forms.Calculator.DoClearCurrentToken*
+- uid: Reportman.Drawing.Forms.Calculator.DoPercent
+  commentId: M:Reportman.Drawing.Forms.Calculator.DoPercent
+  id: DoPercent
+  parent: Reportman.Drawing.Forms.Calculator
+  langs:
+  - csharp
+  - vb
+  name: DoPercent()
+  nameWithType: Calculator.DoPercent()
+  fullName: Reportman.Drawing.Forms.Calculator.DoPercent()
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public void DoPercent()
+    content.vb: Public Sub DoPercent()
+  overload: Reportman.Drawing.Forms.Calculator.DoPercent*
+- uid: Reportman.Drawing.Forms.Calculator.DoEvaluate
+  commentId: M:Reportman.Drawing.Forms.Calculator.DoEvaluate
+  id: DoEvaluate
+  parent: Reportman.Drawing.Forms.Calculator
+  langs:
+  - csharp
+  - vb
+  name: DoEvaluate()
+  nameWithType: Calculator.DoEvaluate()
+  fullName: Reportman.Drawing.Forms.Calculator.DoEvaluate()
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public void DoEvaluate()
+    content.vb: Public Sub DoEvaluate()
+  overload: Reportman.Drawing.Forms.Calculator.DoEvaluate*
+- uid: Reportman.Drawing.Forms.Calculator.Render
+  commentId: M:Reportman.Drawing.Forms.Calculator.Render
+  id: Render
+  parent: Reportman.Drawing.Forms.Calculator
+  langs:
+  - csharp
+  - vb
+  name: Render()
+  nameWithType: Calculator.Render()
+  fullName: Reportman.Drawing.Forms.Calculator.Render()
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public string Render()
+    return:
+      type: System.String
+    content.vb: Public Function Render() As String
+  overload: Reportman.Drawing.Forms.Calculator.Render*
+- uid: Reportman.Drawing.Forms.Calculator.ShowCalc(System.Decimal,System.Boolean@,System.Boolean,System.String,System.Windows.Forms.IWin32Window)
+  commentId: M:Reportman.Drawing.Forms.Calculator.ShowCalc(System.Decimal,System.Boolean@,System.Boolean,System.String,System.Windows.Forms.IWin32Window)
+  id: ShowCalc(System.Decimal,System.Boolean@,System.Boolean,System.String,System.Windows.Forms.IWin32Window)
+  parent: Reportman.Drawing.Forms.Calculator
+  langs:
+  - csharp
+  - vb
+  name: ShowCalc(decimal, ref bool, bool, string, IWin32Window)
+  nameWithType: Calculator.ShowCalc(decimal, ref bool, bool, string, IWin32Window)
+  fullName: Reportman.Drawing.Forms.Calculator.ShowCalc(decimal, ref bool, bool, string, System.Windows.Forms.IWin32Window)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public static decimal ShowCalc(decimal currentvalue, ref bool aceptado, bool IsPassword, string titulo, IWin32Window nwindow)
+    parameters:
+    - id: currentvalue
+      type: System.Decimal
+    - id: aceptado
+      type: System.Boolean
+    - id: IsPassword
+      type: System.Boolean
+    - id: titulo
+      type: System.String
+    - id: nwindow
+      type: System.Windows.Forms.IWin32Window
+    return:
+      type: System.Decimal
+    content.vb: Public Shared Function ShowCalc(currentvalue As Decimal, aceptado As Boolean, IsPassword As Boolean, titulo As String, nwindow As IWin32Window) As Decimal
+  overload: Reportman.Drawing.Forms.Calculator.ShowCalc*
+  nameWithType.vb: Calculator.ShowCalc(Decimal, Boolean, Boolean, String, IWin32Window)
+  fullName.vb: Reportman.Drawing.Forms.Calculator.ShowCalc(Decimal, Boolean, Boolean, String, System.Windows.Forms.IWin32Window)
+  name.vb: ShowCalc(Decimal, Boolean, Boolean, String, IWin32Window)
+- uid: Reportman.Drawing.Forms.Calculator.ShowCalc(System.Decimal,System.Boolean@,System.Boolean)
+  commentId: M:Reportman.Drawing.Forms.Calculator.ShowCalc(System.Decimal,System.Boolean@,System.Boolean)
+  id: ShowCalc(System.Decimal,System.Boolean@,System.Boolean)
+  parent: Reportman.Drawing.Forms.Calculator
+  langs:
+  - csharp
+  - vb
+  name: ShowCalc(decimal, ref bool, bool)
+  nameWithType: Calculator.ShowCalc(decimal, ref bool, bool)
+  fullName: Reportman.Drawing.Forms.Calculator.ShowCalc(decimal, ref bool, bool)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public static decimal ShowCalc(decimal currentvalue, ref bool aceptado, bool IsPassword)
+    parameters:
+    - id: currentvalue
+      type: System.Decimal
+    - id: aceptado
+      type: System.Boolean
+    - id: IsPassword
+      type: System.Boolean
+    return:
+      type: System.Decimal
+    content.vb: Public Shared Function ShowCalc(currentvalue As Decimal, aceptado As Boolean, IsPassword As Boolean) As Decimal
+  overload: Reportman.Drawing.Forms.Calculator.ShowCalc*
+  nameWithType.vb: Calculator.ShowCalc(Decimal, Boolean, Boolean)
+  fullName.vb: Reportman.Drawing.Forms.Calculator.ShowCalc(Decimal, Boolean, Boolean)
+  name.vb: ShowCalc(Decimal, Boolean, Boolean)
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.Forms.Calculator.#ctor*
+  commentId: Overload:Reportman.Drawing.Forms.Calculator.#ctor
+  isExternal: true
+  href: Reportman.Drawing.Forms.Calculator.html#Reportman_Drawing_Forms_Calculator__ctor
+  name: Calculator
+  nameWithType: Calculator.Calculator
+  fullName: Reportman.Drawing.Forms.Calculator.Calculator
+  nameWithType.vb: Calculator.New
+  fullName.vb: Reportman.Drawing.Forms.Calculator.New
+  name.vb: New
+- uid: Reportman.Drawing.Forms.Calculator.DoMemorySet*
+  commentId: Overload:Reportman.Drawing.Forms.Calculator.DoMemorySet
+  isExternal: true
+  href: Reportman.Drawing.Forms.Calculator.html#Reportman_Drawing_Forms_Calculator_DoMemorySet
+  name: DoMemorySet
+  nameWithType: Calculator.DoMemorySet
+  fullName: Reportman.Drawing.Forms.Calculator.DoMemorySet
+- uid: Reportman.Drawing.Forms.Calculator.DoMemoryClear*
+  commentId: Overload:Reportman.Drawing.Forms.Calculator.DoMemoryClear
+  isExternal: true
+  href: Reportman.Drawing.Forms.Calculator.html#Reportman_Drawing_Forms_Calculator_DoMemoryClear
+  name: DoMemoryClear
+  nameWithType: Calculator.DoMemoryClear
+  fullName: Reportman.Drawing.Forms.Calculator.DoMemoryClear
+- uid: Reportman.Drawing.Forms.Calculator.DoMemoryRecall*
+  commentId: Overload:Reportman.Drawing.Forms.Calculator.DoMemoryRecall
+  isExternal: true
+  href: Reportman.Drawing.Forms.Calculator.html#Reportman_Drawing_Forms_Calculator_DoMemoryRecall
+  name: DoMemoryRecall
+  nameWithType: Calculator.DoMemoryRecall
+  fullName: Reportman.Drawing.Forms.Calculator.DoMemoryRecall
+- uid: Reportman.Drawing.Forms.Calculator.DoDecimal*
+  commentId: Overload:Reportman.Drawing.Forms.Calculator.DoDecimal
+  isExternal: true
+  href: Reportman.Drawing.Forms.Calculator.html#Reportman_Drawing_Forms_Calculator_DoDecimal
+  name: DoDecimal
+  nameWithType: Calculator.DoDecimal
+  fullName: Reportman.Drawing.Forms.Calculator.DoDecimal
+- uid: Reportman.Drawing.Forms.Calculator.DoDigit*
+  commentId: Overload:Reportman.Drawing.Forms.Calculator.DoDigit
+  isExternal: true
+  href: Reportman.Drawing.Forms.Calculator.html#Reportman_Drawing_Forms_Calculator_DoDigit_System_Int32_
+  name: DoDigit
+  nameWithType: Calculator.DoDigit
+  fullName: Reportman.Drawing.Forms.Calculator.DoDigit
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Reportman.Drawing.Forms.Calculator.DoOperator*
+  commentId: Overload:Reportman.Drawing.Forms.Calculator.DoOperator
+  isExternal: true
+  href: Reportman.Drawing.Forms.Calculator.html#Reportman_Drawing_Forms_Calculator_DoOperator_Reportman_Drawing_Forms_TokenCalc_TokenType_
+  name: DoOperator
+  nameWithType: Calculator.DoOperator
+  fullName: Reportman.Drawing.Forms.Calculator.DoOperator
+- uid: Reportman.Drawing.Forms.TokenCalc.TokenType
+  commentId: T:Reportman.Drawing.Forms.TokenCalc.TokenType
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TokenCalc.html
+  name: TokenCalc.TokenType
+  nameWithType: TokenCalc.TokenType
+  fullName: Reportman.Drawing.Forms.TokenCalc.TokenType
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.TokenCalc
+    name: TokenCalc
+    isExternal: true
+    href: Reportman.Drawing.Forms.TokenCalc.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TokenCalc.TokenType
+    name: TokenType
+    isExternal: true
+    href: Reportman.Drawing.Forms.TokenCalc.TokenType.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.TokenCalc
+    name: TokenCalc
+    isExternal: true
+    href: Reportman.Drawing.Forms.TokenCalc.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TokenCalc.TokenType
+    name: TokenType
+    isExternal: true
+    href: Reportman.Drawing.Forms.TokenCalc.TokenType.html
+- uid: Reportman.Drawing.Forms.Calculator.DoNegative*
+  commentId: Overload:Reportman.Drawing.Forms.Calculator.DoNegative
+  isExternal: true
+  href: Reportman.Drawing.Forms.Calculator.html#Reportman_Drawing_Forms_Calculator_DoNegative
+  name: DoNegative
+  nameWithType: Calculator.DoNegative
+  fullName: Reportman.Drawing.Forms.Calculator.DoNegative
+- uid: Reportman.Drawing.Forms.Calculator.DoOneOver*
+  commentId: Overload:Reportman.Drawing.Forms.Calculator.DoOneOver
+  isExternal: true
+  href: Reportman.Drawing.Forms.Calculator.html#Reportman_Drawing_Forms_Calculator_DoOneOver
+  name: DoOneOver
+  nameWithType: Calculator.DoOneOver
+  fullName: Reportman.Drawing.Forms.Calculator.DoOneOver
+- uid: Reportman.Drawing.Forms.Calculator.DoClearAll*
+  commentId: Overload:Reportman.Drawing.Forms.Calculator.DoClearAll
+  isExternal: true
+  href: Reportman.Drawing.Forms.Calculator.html#Reportman_Drawing_Forms_Calculator_DoClearAll
+  name: DoClearAll
+  nameWithType: Calculator.DoClearAll
+  fullName: Reportman.Drawing.Forms.Calculator.DoClearAll
+- uid: Reportman.Drawing.Forms.Calculator.DoClearCurrentToken*
+  commentId: Overload:Reportman.Drawing.Forms.Calculator.DoClearCurrentToken
+  isExternal: true
+  href: Reportman.Drawing.Forms.Calculator.html#Reportman_Drawing_Forms_Calculator_DoClearCurrentToken
+  name: DoClearCurrentToken
+  nameWithType: Calculator.DoClearCurrentToken
+  fullName: Reportman.Drawing.Forms.Calculator.DoClearCurrentToken
+- uid: Reportman.Drawing.Forms.Calculator.DoPercent*
+  commentId: Overload:Reportman.Drawing.Forms.Calculator.DoPercent
+  isExternal: true
+  href: Reportman.Drawing.Forms.Calculator.html#Reportman_Drawing_Forms_Calculator_DoPercent
+  name: DoPercent
+  nameWithType: Calculator.DoPercent
+  fullName: Reportman.Drawing.Forms.Calculator.DoPercent
+- uid: Reportman.Drawing.Forms.Calculator.DoEvaluate*
+  commentId: Overload:Reportman.Drawing.Forms.Calculator.DoEvaluate
+  isExternal: true
+  href: Reportman.Drawing.Forms.Calculator.html#Reportman_Drawing_Forms_Calculator_DoEvaluate
+  name: DoEvaluate
+  nameWithType: Calculator.DoEvaluate
+  fullName: Reportman.Drawing.Forms.Calculator.DoEvaluate
+- uid: Reportman.Drawing.Forms.Calculator.Render*
+  commentId: Overload:Reportman.Drawing.Forms.Calculator.Render
+  isExternal: true
+  href: Reportman.Drawing.Forms.Calculator.html#Reportman_Drawing_Forms_Calculator_Render
+  name: Render
+  nameWithType: Calculator.Render
+  fullName: Reportman.Drawing.Forms.Calculator.Render
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Reportman.Drawing.Forms.Calculator.ShowCalc*
+  commentId: Overload:Reportman.Drawing.Forms.Calculator.ShowCalc
+  isExternal: true
+  href: Reportman.Drawing.Forms.Calculator.html#Reportman_Drawing_Forms_Calculator_ShowCalc_System_Decimal_System_Boolean__System_Boolean_System_String_System_Windows_Forms_IWin32Window_
+  name: ShowCalc
+  nameWithType: Calculator.ShowCalc
+  fullName: Reportman.Drawing.Forms.Calculator.ShowCalc
+- uid: System.Decimal
+  commentId: T:System.Decimal
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.decimal
+  name: decimal
+  nameWithType: decimal
+  fullName: decimal
+  nameWithType.vb: Decimal
+  fullName.vb: Decimal
+  name.vb: Decimal
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Windows.Forms.IWin32Window
+  commentId: T:System.Windows.Forms.IWin32Window
+  parent: System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.iwin32window
+  name: IWin32Window
+  nameWithType: IWin32Window
+  fullName: System.Windows.Forms.IWin32Window
+- uid: System.Windows.Forms
+  commentId: N:System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Windows.Forms
+  nameWithType: System.Windows.Forms
+  fullName: System.Windows.Forms
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Windows
+    name: Windows
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows
+  - name: .
+  - uid: System.Windows.Forms
+    name: Forms
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Windows
+    name: Windows
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows
+  - name: .
+  - uid: System.Windows.Forms
+    name: Forms
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms

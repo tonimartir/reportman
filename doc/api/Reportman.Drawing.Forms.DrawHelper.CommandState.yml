@@ -1,0 +1,143 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.DrawHelper.CommandState
+  commentId: T:Reportman.Drawing.Forms.DrawHelper.CommandState
+  id: DrawHelper.CommandState
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.DrawHelper.CommandState.HotTrack
+  - Reportman.Drawing.Forms.DrawHelper.CommandState.Normal
+  - Reportman.Drawing.Forms.DrawHelper.CommandState.Pushed
+  langs:
+  - csharp
+  - vb
+  name: DrawHelper.CommandState
+  nameWithType: DrawHelper.CommandState
+  fullName: Reportman.Drawing.Forms.DrawHelper.CommandState
+  type: Enum
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public enum DrawHelper.CommandState
+    content.vb: Public Enum DrawHelper.CommandState
+- uid: Reportman.Drawing.Forms.DrawHelper.CommandState.Normal
+  commentId: F:Reportman.Drawing.Forms.DrawHelper.CommandState.Normal
+  id: Normal
+  parent: Reportman.Drawing.Forms.DrawHelper.CommandState
+  langs:
+  - csharp
+  - vb
+  name: Normal
+  nameWithType: DrawHelper.CommandState.Normal
+  fullName: Reportman.Drawing.Forms.DrawHelper.CommandState.Normal
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Normal = 0
+    return:
+      type: Reportman.Drawing.Forms.DrawHelper.CommandState
+- uid: Reportman.Drawing.Forms.DrawHelper.CommandState.HotTrack
+  commentId: F:Reportman.Drawing.Forms.DrawHelper.CommandState.HotTrack
+  id: HotTrack
+  parent: Reportman.Drawing.Forms.DrawHelper.CommandState
+  langs:
+  - csharp
+  - vb
+  name: HotTrack
+  nameWithType: DrawHelper.CommandState.HotTrack
+  fullName: Reportman.Drawing.Forms.DrawHelper.CommandState.HotTrack
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: HotTrack = 1
+    return:
+      type: Reportman.Drawing.Forms.DrawHelper.CommandState
+- uid: Reportman.Drawing.Forms.DrawHelper.CommandState.Pushed
+  commentId: F:Reportman.Drawing.Forms.DrawHelper.CommandState.Pushed
+  id: Pushed
+  parent: Reportman.Drawing.Forms.DrawHelper.CommandState
+  langs:
+  - csharp
+  - vb
+  name: Pushed
+  nameWithType: DrawHelper.CommandState.Pushed
+  fullName: Reportman.Drawing.Forms.DrawHelper.CommandState.Pushed
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Pushed = 2
+    return:
+      type: Reportman.Drawing.Forms.DrawHelper.CommandState
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: Reportman.Drawing.Forms.DrawHelper.CommandState
+  commentId: T:Reportman.Drawing.Forms.DrawHelper.CommandState
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.DrawHelper.html
+  name: DrawHelper.CommandState
+  nameWithType: DrawHelper.CommandState
+  fullName: Reportman.Drawing.Forms.DrawHelper.CommandState
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.DrawHelper
+    name: DrawHelper
+    isExternal: true
+    href: Reportman.Drawing.Forms.DrawHelper.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.DrawHelper.CommandState
+    name: CommandState
+    isExternal: true
+    href: Reportman.Drawing.Forms.DrawHelper.CommandState.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.DrawHelper
+    name: DrawHelper
+    isExternal: true
+    href: Reportman.Drawing.Forms.DrawHelper.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.DrawHelper.CommandState
+    name: CommandState
+    isExternal: true
+    href: Reportman.Drawing.Forms.DrawHelper.CommandState.html

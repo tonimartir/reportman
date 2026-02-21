@@ -1,0 +1,2097 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.DbSqlExecuter
+  commentId: T:Reportman.Drawing.DbSqlExecuter
+  id: DbSqlExecuter
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.DbSqlExecuter.#ctor(System.Data.Common.DbConnection,System.Data.Common.DbProviderFactory)
+  - Reportman.Drawing.DbSqlExecuter.AddCustomOperation(System.Int32,System.String,System.Byte[])
+  - Reportman.Drawing.DbSqlExecuter.AddExternalColumnsToLastCommand(System.String,System.String)
+  - Reportman.Drawing.DbSqlExecuter.BeginInsertBlock
+  - Reportman.Drawing.DbSqlExecuter.Commit
+  - Reportman.Drawing.DbSqlExecuter.Connect
+  - Reportman.Drawing.DbSqlExecuter.CreateCommand(System.String)
+  - Reportman.Drawing.DbSqlExecuter.Disconnect
+  - Reportman.Drawing.DbSqlExecuter.EndInsertBlock
+  - Reportman.Drawing.DbSqlExecuter.Execute(System.Data.Common.DbCommand)
+  - Reportman.Drawing.DbSqlExecuter.Execute(System.String)
+  - Reportman.Drawing.DbSqlExecuter.ExecuteInmediate(System.String)
+  - Reportman.Drawing.DbSqlExecuter.Flush
+  - Reportman.Drawing.DbSqlExecuter.Flush(Reportman.Drawing.ISqlExecuterProgressEvent)
+  - Reportman.Drawing.DbSqlExecuter.GetGenerator(System.String,System.Int32)
+  - Reportman.Drawing.DbSqlExecuter.GetValueFromSql(System.String)
+  - Reportman.Drawing.DbSqlExecuter.Open(System.Data.DataSet,System.Data.Common.DbCommand,System.String)
+  - Reportman.Drawing.DbSqlExecuter.Open(System.Data.DataSet,System.String,System.String)
+  - Reportman.Drawing.DbSqlExecuter.Open(System.Data.DataSet,System.String,System.String,System.Int32,Reportman.Drawing.ISqlExecuterPartialFillEvent)
+  - Reportman.Drawing.DbSqlExecuter.OpenInmediate(System.Data.DataSet,System.String,System.String)
+  - Reportman.Drawing.DbSqlExecuter.Rollback
+  - Reportman.Drawing.DbSqlExecuter.RollbackInmediate
+  - Reportman.Drawing.DbSqlExecuter.StartTransaction
+  - Reportman.Drawing.DbSqlExecuter.StartTransaction(System.Data.IsolationLevel)
+  - Reportman.Drawing.DbSqlExecuter.transaction
+  langs:
+  - csharp
+  - vb
+  name: DbSqlExecuter
+  nameWithType: DbSqlExecuter
+  fullName: Reportman.Drawing.DbSqlExecuter
+  type: Class
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: 'public class DbSqlExecuter : ISqlExecuter'
+    content.vb: Public Class DbSqlExecuter Implements ISqlExecuter
+  inheritance:
+  - System.Object
+  implements:
+  - Reportman.Drawing.ISqlExecuter
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.DbSqlExecuter.transaction
+  commentId: F:Reportman.Drawing.DbSqlExecuter.transaction
+  id: transaction
+  parent: Reportman.Drawing.DbSqlExecuter
+  langs:
+  - csharp
+  - vb
+  name: transaction
+  nameWithType: DbSqlExecuter.transaction
+  fullName: Reportman.Drawing.DbSqlExecuter.transaction
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public DbTransaction transaction
+    return:
+      type: System.Data.Common.DbTransaction
+    content.vb: Public transaction As DbTransaction
+- uid: Reportman.Drawing.DbSqlExecuter.#ctor(System.Data.Common.DbConnection,System.Data.Common.DbProviderFactory)
+  commentId: M:Reportman.Drawing.DbSqlExecuter.#ctor(System.Data.Common.DbConnection,System.Data.Common.DbProviderFactory)
+  id: '#ctor(System.Data.Common.DbConnection,System.Data.Common.DbProviderFactory)'
+  parent: Reportman.Drawing.DbSqlExecuter
+  langs:
+  - csharp
+  - vb
+  name: DbSqlExecuter(DbConnection, DbProviderFactory)
+  nameWithType: DbSqlExecuter.DbSqlExecuter(DbConnection, DbProviderFactory)
+  fullName: Reportman.Drawing.DbSqlExecuter.DbSqlExecuter(System.Data.Common.DbConnection, System.Data.Common.DbProviderFactory)
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public DbSqlExecuter(DbConnection nconnection, DbProviderFactory nfactory)
+    parameters:
+    - id: nconnection
+      type: System.Data.Common.DbConnection
+    - id: nfactory
+      type: System.Data.Common.DbProviderFactory
+    content.vb: Public Sub New(nconnection As DbConnection, nfactory As DbProviderFactory)
+  overload: Reportman.Drawing.DbSqlExecuter.#ctor*
+  nameWithType.vb: DbSqlExecuter.New(DbConnection, DbProviderFactory)
+  fullName.vb: Reportman.Drawing.DbSqlExecuter.New(System.Data.Common.DbConnection, System.Data.Common.DbProviderFactory)
+  name.vb: New(DbConnection, DbProviderFactory)
+- uid: Reportman.Drawing.DbSqlExecuter.BeginInsertBlock
+  commentId: M:Reportman.Drawing.DbSqlExecuter.BeginInsertBlock
+  id: BeginInsertBlock
+  parent: Reportman.Drawing.DbSqlExecuter
+  langs:
+  - csharp
+  - vb
+  name: BeginInsertBlock()
+  nameWithType: DbSqlExecuter.BeginInsertBlock()
+  fullName: Reportman.Drawing.DbSqlExecuter.BeginInsertBlock()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  example: []
+  syntax:
+    content: public void BeginInsertBlock()
+    content.vb: Public Sub BeginInsertBlock()
+  overload: Reportman.Drawing.DbSqlExecuter.BeginInsertBlock*
+  implements:
+  - Reportman.Drawing.ISqlExecuter.BeginInsertBlock
+- uid: Reportman.Drawing.DbSqlExecuter.EndInsertBlock
+  commentId: M:Reportman.Drawing.DbSqlExecuter.EndInsertBlock
+  id: EndInsertBlock
+  parent: Reportman.Drawing.DbSqlExecuter
+  langs:
+  - csharp
+  - vb
+  name: EndInsertBlock()
+  nameWithType: DbSqlExecuter.EndInsertBlock()
+  fullName: Reportman.Drawing.DbSqlExecuter.EndInsertBlock()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  example: []
+  syntax:
+    content: public void EndInsertBlock()
+    content.vb: Public Sub EndInsertBlock()
+  overload: Reportman.Drawing.DbSqlExecuter.EndInsertBlock*
+  implements:
+  - Reportman.Drawing.ISqlExecuter.EndInsertBlock
+- uid: Reportman.Drawing.DbSqlExecuter.GetValueFromSql(System.String)
+  commentId: M:Reportman.Drawing.DbSqlExecuter.GetValueFromSql(System.String)
+  id: GetValueFromSql(System.String)
+  parent: Reportman.Drawing.DbSqlExecuter
+  langs:
+  - csharp
+  - vb
+  name: GetValueFromSql(string)
+  nameWithType: DbSqlExecuter.GetValueFromSql(string)
+  fullName: Reportman.Drawing.DbSqlExecuter.GetValueFromSql(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  example: []
+  syntax:
+    content: public object GetValueFromSql(string sql)
+    parameters:
+    - id: sql
+      type: System.String
+    return:
+      type: System.Object
+    content.vb: Public Function GetValueFromSql(sql As String) As Object
+  overload: Reportman.Drawing.DbSqlExecuter.GetValueFromSql*
+  implements:
+  - Reportman.Drawing.ISqlExecuter.GetValueFromSql(System.String)
+  nameWithType.vb: DbSqlExecuter.GetValueFromSql(String)
+  fullName.vb: Reportman.Drawing.DbSqlExecuter.GetValueFromSql(String)
+  name.vb: GetValueFromSql(String)
+- uid: Reportman.Drawing.DbSqlExecuter.GetGenerator(System.String,System.Int32)
+  commentId: M:Reportman.Drawing.DbSqlExecuter.GetGenerator(System.String,System.Int32)
+  id: GetGenerator(System.String,System.Int32)
+  parent: Reportman.Drawing.DbSqlExecuter
+  langs:
+  - csharp
+  - vb
+  name: GetGenerator(string, int)
+  nameWithType: DbSqlExecuter.GetGenerator(string, int)
+  fullName: Reportman.Drawing.DbSqlExecuter.GetGenerator(string, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  example: []
+  syntax:
+    content: public long GetGenerator(string generatorName, int increment)
+    parameters:
+    - id: generatorName
+      type: System.String
+    - id: increment
+      type: System.Int32
+    return:
+      type: System.Int64
+    content.vb: Public Function GetGenerator(generatorName As String, increment As Integer) As Long
+  overload: Reportman.Drawing.DbSqlExecuter.GetGenerator*
+  implements:
+  - Reportman.Drawing.ISqlExecuter.GetGenerator(System.String,System.Int32)
+  nameWithType.vb: DbSqlExecuter.GetGenerator(String, Integer)
+  fullName.vb: Reportman.Drawing.DbSqlExecuter.GetGenerator(String, Integer)
+  name.vb: GetGenerator(String, Integer)
+- uid: Reportman.Drawing.DbSqlExecuter.OpenInmediate(System.Data.DataSet,System.String,System.String)
+  commentId: M:Reportman.Drawing.DbSqlExecuter.OpenInmediate(System.Data.DataSet,System.String,System.String)
+  id: OpenInmediate(System.Data.DataSet,System.String,System.String)
+  parent: Reportman.Drawing.DbSqlExecuter
+  langs:
+  - csharp
+  - vb
+  name: OpenInmediate(DataSet, string, string)
+  nameWithType: DbSqlExecuter.OpenInmediate(DataSet, string, string)
+  fullName: Reportman.Drawing.DbSqlExecuter.OpenInmediate(System.Data.DataSet, string, string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  example: []
+  syntax:
+    content: public DataTable OpenInmediate(DataSet ndataset, string sql, string tablename)
+    parameters:
+    - id: ndataset
+      type: System.Data.DataSet
+    - id: sql
+      type: System.String
+    - id: tablename
+      type: System.String
+    return:
+      type: System.Data.DataTable
+    content.vb: Public Function OpenInmediate(ndataset As DataSet, sql As String, tablename As String) As DataTable
+  overload: Reportman.Drawing.DbSqlExecuter.OpenInmediate*
+  implements:
+  - Reportman.Drawing.ISqlExecuter.OpenInmediate(System.Data.DataSet,System.String,System.String)
+  nameWithType.vb: DbSqlExecuter.OpenInmediate(DataSet, String, String)
+  fullName.vb: Reportman.Drawing.DbSqlExecuter.OpenInmediate(System.Data.DataSet, String, String)
+  name.vb: OpenInmediate(DataSet, String, String)
+- uid: Reportman.Drawing.DbSqlExecuter.Open(System.Data.DataSet,System.String,System.String,System.Int32,Reportman.Drawing.ISqlExecuterPartialFillEvent)
+  commentId: M:Reportman.Drawing.DbSqlExecuter.Open(System.Data.DataSet,System.String,System.String,System.Int32,Reportman.Drawing.ISqlExecuterPartialFillEvent)
+  id: Open(System.Data.DataSet,System.String,System.String,System.Int32,Reportman.Drawing.ISqlExecuterPartialFillEvent)
+  parent: Reportman.Drawing.DbSqlExecuter
+  langs:
+  - csharp
+  - vb
+  name: Open(DataSet, string, string, int, ISqlExecuterPartialFillEvent)
+  nameWithType: DbSqlExecuter.Open(DataSet, string, string, int, ISqlExecuterPartialFillEvent)
+  fullName: Reportman.Drawing.DbSqlExecuter.Open(System.Data.DataSet, string, string, int, Reportman.Drawing.ISqlExecuterPartialFillEvent)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  example: []
+  syntax:
+    content: public void Open(DataSet ndataset, string sql, string tablename, int maxrecords, ISqlExecuterPartialFillEvent nevent)
+    parameters:
+    - id: ndataset
+      type: System.Data.DataSet
+    - id: sql
+      type: System.String
+    - id: tablename
+      type: System.String
+    - id: maxrecords
+      type: System.Int32
+    - id: nevent
+      type: Reportman.Drawing.ISqlExecuterPartialFillEvent
+    content.vb: Public Sub Open(ndataset As DataSet, sql As String, tablename As String, maxrecords As Integer, nevent As ISqlExecuterPartialFillEvent)
+  overload: Reportman.Drawing.DbSqlExecuter.Open*
+  implements:
+  - Reportman.Drawing.ISqlExecuter.Open(System.Data.DataSet,System.String,System.String,System.Int32,Reportman.Drawing.ISqlExecuterPartialFillEvent)
+  nameWithType.vb: DbSqlExecuter.Open(DataSet, String, String, Integer, ISqlExecuterPartialFillEvent)
+  fullName.vb: Reportman.Drawing.DbSqlExecuter.Open(System.Data.DataSet, String, String, Integer, Reportman.Drawing.ISqlExecuterPartialFillEvent)
+  name.vb: Open(DataSet, String, String, Integer, ISqlExecuterPartialFillEvent)
+- uid: Reportman.Drawing.DbSqlExecuter.Open(System.Data.DataSet,System.String,System.String)
+  commentId: M:Reportman.Drawing.DbSqlExecuter.Open(System.Data.DataSet,System.String,System.String)
+  id: Open(System.Data.DataSet,System.String,System.String)
+  parent: Reportman.Drawing.DbSqlExecuter
+  langs:
+  - csharp
+  - vb
+  name: Open(DataSet, string, string)
+  nameWithType: DbSqlExecuter.Open(DataSet, string, string)
+  fullName: Reportman.Drawing.DbSqlExecuter.Open(System.Data.DataSet, string, string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  example: []
+  syntax:
+    content: public void Open(DataSet ndataset, string sql, string tablename)
+    parameters:
+    - id: ndataset
+      type: System.Data.DataSet
+    - id: sql
+      type: System.String
+    - id: tablename
+      type: System.String
+    content.vb: Public Sub Open(ndataset As DataSet, sql As String, tablename As String)
+  overload: Reportman.Drawing.DbSqlExecuter.Open*
+  implements:
+  - Reportman.Drawing.ISqlExecuter.Open(System.Data.DataSet,System.String,System.String)
+  nameWithType.vb: DbSqlExecuter.Open(DataSet, String, String)
+  fullName.vb: Reportman.Drawing.DbSqlExecuter.Open(System.Data.DataSet, String, String)
+  name.vb: Open(DataSet, String, String)
+- uid: Reportman.Drawing.DbSqlExecuter.Open(System.Data.DataSet,System.Data.Common.DbCommand,System.String)
+  commentId: M:Reportman.Drawing.DbSqlExecuter.Open(System.Data.DataSet,System.Data.Common.DbCommand,System.String)
+  id: Open(System.Data.DataSet,System.Data.Common.DbCommand,System.String)
+  parent: Reportman.Drawing.DbSqlExecuter
+  langs:
+  - csharp
+  - vb
+  name: Open(DataSet, DbCommand, string)
+  nameWithType: DbSqlExecuter.Open(DataSet, DbCommand, string)
+  fullName: Reportman.Drawing.DbSqlExecuter.Open(System.Data.DataSet, System.Data.Common.DbCommand, string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  example: []
+  syntax:
+    content: public void Open(DataSet ndataset, DbCommand nCommand, string tablename)
+    parameters:
+    - id: ndataset
+      type: System.Data.DataSet
+    - id: nCommand
+      type: System.Data.Common.DbCommand
+    - id: tablename
+      type: System.String
+    content.vb: Public Sub Open(ndataset As DataSet, nCommand As DbCommand, tablename As String)
+  overload: Reportman.Drawing.DbSqlExecuter.Open*
+  implements:
+  - Reportman.Drawing.ISqlExecuter.Open(System.Data.DataSet,System.Data.Common.DbCommand,System.String)
+  nameWithType.vb: DbSqlExecuter.Open(DataSet, DbCommand, String)
+  fullName.vb: Reportman.Drawing.DbSqlExecuter.Open(System.Data.DataSet, System.Data.Common.DbCommand, String)
+  name.vb: Open(DataSet, DbCommand, String)
+- uid: Reportman.Drawing.DbSqlExecuter.Execute(System.String)
+  commentId: M:Reportman.Drawing.DbSqlExecuter.Execute(System.String)
+  id: Execute(System.String)
+  parent: Reportman.Drawing.DbSqlExecuter
+  langs:
+  - csharp
+  - vb
+  name: Execute(string)
+  nameWithType: DbSqlExecuter.Execute(string)
+  fullName: Reportman.Drawing.DbSqlExecuter.Execute(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  example: []
+  syntax:
+    content: public void Execute(string sql)
+    parameters:
+    - id: sql
+      type: System.String
+    content.vb: Public Sub Execute(sql As String)
+  overload: Reportman.Drawing.DbSqlExecuter.Execute*
+  implements:
+  - Reportman.Drawing.ISqlExecuter.Execute(System.String)
+  nameWithType.vb: DbSqlExecuter.Execute(String)
+  fullName.vb: Reportman.Drawing.DbSqlExecuter.Execute(String)
+  name.vb: Execute(String)
+- uid: Reportman.Drawing.DbSqlExecuter.Execute(System.Data.Common.DbCommand)
+  commentId: M:Reportman.Drawing.DbSqlExecuter.Execute(System.Data.Common.DbCommand)
+  id: Execute(System.Data.Common.DbCommand)
+  parent: Reportman.Drawing.DbSqlExecuter
+  langs:
+  - csharp
+  - vb
+  name: Execute(DbCommand)
+  nameWithType: DbSqlExecuter.Execute(DbCommand)
+  fullName: Reportman.Drawing.DbSqlExecuter.Execute(System.Data.Common.DbCommand)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  example: []
+  syntax:
+    content: public void Execute(DbCommand ncommand)
+    parameters:
+    - id: ncommand
+      type: System.Data.Common.DbCommand
+    content.vb: Public Sub Execute(ncommand As DbCommand)
+  overload: Reportman.Drawing.DbSqlExecuter.Execute*
+  implements:
+  - Reportman.Drawing.ISqlExecuter.Execute(System.Data.Common.DbCommand)
+- uid: Reportman.Drawing.DbSqlExecuter.CreateCommand(System.String)
+  commentId: M:Reportman.Drawing.DbSqlExecuter.CreateCommand(System.String)
+  id: CreateCommand(System.String)
+  parent: Reportman.Drawing.DbSqlExecuter
+  langs:
+  - csharp
+  - vb
+  name: CreateCommand(string)
+  nameWithType: DbSqlExecuter.CreateCommand(string)
+  fullName: Reportman.Drawing.DbSqlExecuter.CreateCommand(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  example: []
+  syntax:
+    content: public DbCommand CreateCommand(string cadsql)
+    parameters:
+    - id: cadsql
+      type: System.String
+    return:
+      type: System.Data.Common.DbCommand
+    content.vb: Public Function CreateCommand(cadsql As String) As DbCommand
+  overload: Reportman.Drawing.DbSqlExecuter.CreateCommand*
+  implements:
+  - Reportman.Drawing.ISqlExecuter.CreateCommand(System.String)
+  nameWithType.vb: DbSqlExecuter.CreateCommand(String)
+  fullName.vb: Reportman.Drawing.DbSqlExecuter.CreateCommand(String)
+  name.vb: CreateCommand(String)
+- uid: Reportman.Drawing.DbSqlExecuter.RollbackInmediate
+  commentId: M:Reportman.Drawing.DbSqlExecuter.RollbackInmediate
+  id: RollbackInmediate
+  parent: Reportman.Drawing.DbSqlExecuter
+  langs:
+  - csharp
+  - vb
+  name: RollbackInmediate()
+  nameWithType: DbSqlExecuter.RollbackInmediate()
+  fullName: Reportman.Drawing.DbSqlExecuter.RollbackInmediate()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  example: []
+  syntax:
+    content: public void RollbackInmediate()
+    content.vb: Public Sub RollbackInmediate()
+  overload: Reportman.Drawing.DbSqlExecuter.RollbackInmediate*
+  implements:
+  - Reportman.Drawing.ISqlExecuter.RollbackInmediate
+- uid: Reportman.Drawing.DbSqlExecuter.Commit
+  commentId: M:Reportman.Drawing.DbSqlExecuter.Commit
+  id: Commit
+  parent: Reportman.Drawing.DbSqlExecuter
+  langs:
+  - csharp
+  - vb
+  name: Commit()
+  nameWithType: DbSqlExecuter.Commit()
+  fullName: Reportman.Drawing.DbSqlExecuter.Commit()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  example: []
+  syntax:
+    content: public void Commit()
+    content.vb: Public Sub Commit()
+  overload: Reportman.Drawing.DbSqlExecuter.Commit*
+  implements:
+  - Reportman.Drawing.ISqlExecuter.Commit
+- uid: Reportman.Drawing.DbSqlExecuter.StartTransaction
+  commentId: M:Reportman.Drawing.DbSqlExecuter.StartTransaction
+  id: StartTransaction
+  parent: Reportman.Drawing.DbSqlExecuter
+  langs:
+  - csharp
+  - vb
+  name: StartTransaction()
+  nameWithType: DbSqlExecuter.StartTransaction()
+  fullName: Reportman.Drawing.DbSqlExecuter.StartTransaction()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public void StartTransaction()
+    content.vb: Public Sub StartTransaction()
+  overload: Reportman.Drawing.DbSqlExecuter.StartTransaction*
+- uid: Reportman.Drawing.DbSqlExecuter.Rollback
+  commentId: M:Reportman.Drawing.DbSqlExecuter.Rollback
+  id: Rollback
+  parent: Reportman.Drawing.DbSqlExecuter
+  langs:
+  - csharp
+  - vb
+  name: Rollback()
+  nameWithType: DbSqlExecuter.Rollback()
+  fullName: Reportman.Drawing.DbSqlExecuter.Rollback()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  example: []
+  syntax:
+    content: public void Rollback()
+    content.vb: Public Sub Rollback()
+  overload: Reportman.Drawing.DbSqlExecuter.Rollback*
+  implements:
+  - Reportman.Drawing.ISqlExecuter.Rollback
+- uid: Reportman.Drawing.DbSqlExecuter.StartTransaction(System.Data.IsolationLevel)
+  commentId: M:Reportman.Drawing.DbSqlExecuter.StartTransaction(System.Data.IsolationLevel)
+  id: StartTransaction(System.Data.IsolationLevel)
+  parent: Reportman.Drawing.DbSqlExecuter
+  langs:
+  - csharp
+  - vb
+  name: StartTransaction(IsolationLevel)
+  nameWithType: DbSqlExecuter.StartTransaction(IsolationLevel)
+  fullName: Reportman.Drawing.DbSqlExecuter.StartTransaction(System.Data.IsolationLevel)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  example: []
+  syntax:
+    content: public void StartTransaction(IsolationLevel nlevel)
+    parameters:
+    - id: nlevel
+      type: System.Data.IsolationLevel
+    content.vb: Public Sub StartTransaction(nlevel As IsolationLevel)
+  overload: Reportman.Drawing.DbSqlExecuter.StartTransaction*
+  implements:
+  - Reportman.Drawing.ISqlExecuter.StartTransaction(System.Data.IsolationLevel)
+- uid: Reportman.Drawing.DbSqlExecuter.ExecuteInmediate(System.String)
+  commentId: M:Reportman.Drawing.DbSqlExecuter.ExecuteInmediate(System.String)
+  id: ExecuteInmediate(System.String)
+  parent: Reportman.Drawing.DbSqlExecuter
+  langs:
+  - csharp
+  - vb
+  name: ExecuteInmediate(string)
+  nameWithType: DbSqlExecuter.ExecuteInmediate(string)
+  fullName: Reportman.Drawing.DbSqlExecuter.ExecuteInmediate(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  example: []
+  syntax:
+    content: public int ExecuteInmediate(string sql)
+    parameters:
+    - id: sql
+      type: System.String
+    return:
+      type: System.Int32
+    content.vb: Public Function ExecuteInmediate(sql As String) As Integer
+  overload: Reportman.Drawing.DbSqlExecuter.ExecuteInmediate*
+  implements:
+  - Reportman.Drawing.ISqlExecuter.ExecuteInmediate(System.String)
+  nameWithType.vb: DbSqlExecuter.ExecuteInmediate(String)
+  fullName.vb: Reportman.Drawing.DbSqlExecuter.ExecuteInmediate(String)
+  name.vb: ExecuteInmediate(String)
+- uid: Reportman.Drawing.DbSqlExecuter.Flush
+  commentId: M:Reportman.Drawing.DbSqlExecuter.Flush
+  id: Flush
+  parent: Reportman.Drawing.DbSqlExecuter
+  langs:
+  - csharp
+  - vb
+  name: Flush()
+  nameWithType: DbSqlExecuter.Flush()
+  fullName: Reportman.Drawing.DbSqlExecuter.Flush()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  example: []
+  syntax:
+    content: public void Flush()
+    content.vb: Public Sub Flush()
+  overload: Reportman.Drawing.DbSqlExecuter.Flush*
+  implements:
+  - Reportman.Drawing.ISqlExecuter.Flush
+- uid: Reportman.Drawing.DbSqlExecuter.Flush(Reportman.Drawing.ISqlExecuterProgressEvent)
+  commentId: M:Reportman.Drawing.DbSqlExecuter.Flush(Reportman.Drawing.ISqlExecuterProgressEvent)
+  id: Flush(Reportman.Drawing.ISqlExecuterProgressEvent)
+  parent: Reportman.Drawing.DbSqlExecuter
+  langs:
+  - csharp
+  - vb
+  name: Flush(ISqlExecuterProgressEvent)
+  nameWithType: DbSqlExecuter.Flush(ISqlExecuterProgressEvent)
+  fullName: Reportman.Drawing.DbSqlExecuter.Flush(Reportman.Drawing.ISqlExecuterProgressEvent)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  example: []
+  syntax:
+    content: public void Flush(ISqlExecuterProgressEvent nevent)
+    parameters:
+    - id: nevent
+      type: Reportman.Drawing.ISqlExecuterProgressEvent
+    content.vb: Public Sub Flush(nevent As ISqlExecuterProgressEvent)
+  overload: Reportman.Drawing.DbSqlExecuter.Flush*
+  implements:
+  - Reportman.Drawing.ISqlExecuter.Flush(Reportman.Drawing.ISqlExecuterProgressEvent)
+- uid: Reportman.Drawing.DbSqlExecuter.AddExternalColumnsToLastCommand(System.String,System.String)
+  commentId: M:Reportman.Drawing.DbSqlExecuter.AddExternalColumnsToLastCommand(System.String,System.String)
+  id: AddExternalColumnsToLastCommand(System.String,System.String)
+  parent: Reportman.Drawing.DbSqlExecuter
+  langs:
+  - csharp
+  - vb
+  name: AddExternalColumnsToLastCommand(string, string)
+  nameWithType: DbSqlExecuter.AddExternalColumnsToLastCommand(string, string)
+  fullName: Reportman.Drawing.DbSqlExecuter.AddExternalColumnsToLastCommand(string, string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  example: []
+  syntax:
+    content: public void AddExternalColumnsToLastCommand(string external_columns, string deletions)
+    parameters:
+    - id: external_columns
+      type: System.String
+    - id: deletions
+      type: System.String
+    content.vb: Public Sub AddExternalColumnsToLastCommand(external_columns As String, deletions As String)
+  overload: Reportman.Drawing.DbSqlExecuter.AddExternalColumnsToLastCommand*
+  implements:
+  - Reportman.Drawing.ISqlExecuter.AddExternalColumnsToLastCommand(System.String,System.String)
+  nameWithType.vb: DbSqlExecuter.AddExternalColumnsToLastCommand(String, String)
+  fullName.vb: Reportman.Drawing.DbSqlExecuter.AddExternalColumnsToLastCommand(String, String)
+  name.vb: AddExternalColumnsToLastCommand(String, String)
+- uid: Reportman.Drawing.DbSqlExecuter.AddCustomOperation(System.Int32,System.String,System.Byte[])
+  commentId: M:Reportman.Drawing.DbSqlExecuter.AddCustomOperation(System.Int32,System.String,System.Byte[])
+  id: AddCustomOperation(System.Int32,System.String,System.Byte[])
+  parent: Reportman.Drawing.DbSqlExecuter
+  langs:
+  - csharp
+  - vb
+  name: AddCustomOperation(int, string, byte[])
+  nameWithType: DbSqlExecuter.AddCustomOperation(int, string, byte[])
+  fullName: Reportman.Drawing.DbSqlExecuter.AddCustomOperation(int, string, byte[])
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  example: []
+  syntax:
+    content: public void AddCustomOperation(int operation, string data, byte[] binarydata)
+    parameters:
+    - id: operation
+      type: System.Int32
+    - id: data
+      type: System.String
+    - id: binarydata
+      type: System.Byte[]
+    content.vb: Public Sub AddCustomOperation(operation As Integer, data As String, binarydata As Byte())
+  overload: Reportman.Drawing.DbSqlExecuter.AddCustomOperation*
+  implements:
+  - Reportman.Drawing.ISqlExecuter.AddCustomOperation(System.Int32,System.String,System.Byte[])
+  nameWithType.vb: DbSqlExecuter.AddCustomOperation(Integer, String, Byte())
+  fullName.vb: Reportman.Drawing.DbSqlExecuter.AddCustomOperation(Integer, String, Byte())
+  name.vb: AddCustomOperation(Integer, String, Byte())
+- uid: Reportman.Drawing.DbSqlExecuter.Connect
+  commentId: M:Reportman.Drawing.DbSqlExecuter.Connect
+  id: Connect
+  parent: Reportman.Drawing.DbSqlExecuter
+  langs:
+  - csharp
+  - vb
+  name: Connect()
+  nameWithType: DbSqlExecuter.Connect()
+  fullName: Reportman.Drawing.DbSqlExecuter.Connect()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  example: []
+  syntax:
+    content: public void Connect()
+    content.vb: Public Sub Connect()
+  overload: Reportman.Drawing.DbSqlExecuter.Connect*
+  implements:
+  - Reportman.Drawing.ISqlExecuter.Connect
+- uid: Reportman.Drawing.DbSqlExecuter.Disconnect
+  commentId: M:Reportman.Drawing.DbSqlExecuter.Disconnect
+  id: Disconnect
+  parent: Reportman.Drawing.DbSqlExecuter
+  langs:
+  - csharp
+  - vb
+  name: Disconnect()
+  nameWithType: DbSqlExecuter.Disconnect()
+  fullName: Reportman.Drawing.DbSqlExecuter.Disconnect()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  example: []
+  syntax:
+    content: public void Disconnect()
+    content.vb: Public Sub Disconnect()
+  overload: Reportman.Drawing.DbSqlExecuter.Disconnect*
+  implements:
+  - Reportman.Drawing.ISqlExecuter.Disconnect
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Reportman.Drawing.ISqlExecuter
+  commentId: T:Reportman.Drawing.ISqlExecuter
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuter.html
+  name: ISqlExecuter
+  nameWithType: ISqlExecuter
+  fullName: Reportman.Drawing.ISqlExecuter
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Data.Common.DbTransaction
+  commentId: T:System.Data.Common.DbTransaction
+  parent: System.Data.Common
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.common.dbtransaction
+  name: DbTransaction
+  nameWithType: DbTransaction
+  fullName: System.Data.Common.DbTransaction
+- uid: System.Data.Common
+  commentId: N:System.Data.Common
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Data.Common
+  nameWithType: System.Data.Common
+  fullName: System.Data.Common
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+  - name: .
+  - uid: System.Data.Common
+    name: Common
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.common
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+  - name: .
+  - uid: System.Data.Common
+    name: Common
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.common
+- uid: Reportman.Drawing.DbSqlExecuter.#ctor*
+  commentId: Overload:Reportman.Drawing.DbSqlExecuter.#ctor
+  isExternal: true
+  href: Reportman.Drawing.DbSqlExecuter.html#Reportman_Drawing_DbSqlExecuter__ctor_System_Data_Common_DbConnection_System_Data_Common_DbProviderFactory_
+  name: DbSqlExecuter
+  nameWithType: DbSqlExecuter.DbSqlExecuter
+  fullName: Reportman.Drawing.DbSqlExecuter.DbSqlExecuter
+  nameWithType.vb: DbSqlExecuter.New
+  fullName.vb: Reportman.Drawing.DbSqlExecuter.New
+  name.vb: New
+- uid: System.Data.Common.DbConnection
+  commentId: T:System.Data.Common.DbConnection
+  parent: System.Data.Common
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.common.dbconnection
+  name: DbConnection
+  nameWithType: DbConnection
+  fullName: System.Data.Common.DbConnection
+- uid: System.Data.Common.DbProviderFactory
+  commentId: T:System.Data.Common.DbProviderFactory
+  parent: System.Data.Common
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.common.dbproviderfactory
+  name: DbProviderFactory
+  nameWithType: DbProviderFactory
+  fullName: System.Data.Common.DbProviderFactory
+- uid: Reportman.Drawing.DbSqlExecuter.BeginInsertBlock*
+  commentId: Overload:Reportman.Drawing.DbSqlExecuter.BeginInsertBlock
+  isExternal: true
+  href: Reportman.Drawing.DbSqlExecuter.html#Reportman_Drawing_DbSqlExecuter_BeginInsertBlock
+  name: BeginInsertBlock
+  nameWithType: DbSqlExecuter.BeginInsertBlock
+  fullName: Reportman.Drawing.DbSqlExecuter.BeginInsertBlock
+- uid: Reportman.Drawing.ISqlExecuter.BeginInsertBlock
+  commentId: M:Reportman.Drawing.ISqlExecuter.BeginInsertBlock
+  parent: Reportman.Drawing.ISqlExecuter
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_BeginInsertBlock
+  name: BeginInsertBlock()
+  nameWithType: ISqlExecuter.BeginInsertBlock()
+  fullName: Reportman.Drawing.ISqlExecuter.BeginInsertBlock()
+  spec.csharp:
+  - uid: Reportman.Drawing.ISqlExecuter.BeginInsertBlock
+    name: BeginInsertBlock
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_BeginInsertBlock
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.ISqlExecuter.BeginInsertBlock
+    name: BeginInsertBlock
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_BeginInsertBlock
+  - name: (
+  - name: )
+- uid: Reportman.Drawing.DbSqlExecuter.EndInsertBlock*
+  commentId: Overload:Reportman.Drawing.DbSqlExecuter.EndInsertBlock
+  isExternal: true
+  href: Reportman.Drawing.DbSqlExecuter.html#Reportman_Drawing_DbSqlExecuter_EndInsertBlock
+  name: EndInsertBlock
+  nameWithType: DbSqlExecuter.EndInsertBlock
+  fullName: Reportman.Drawing.DbSqlExecuter.EndInsertBlock
+- uid: Reportman.Drawing.ISqlExecuter.EndInsertBlock
+  commentId: M:Reportman.Drawing.ISqlExecuter.EndInsertBlock
+  parent: Reportman.Drawing.ISqlExecuter
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_EndInsertBlock
+  name: EndInsertBlock()
+  nameWithType: ISqlExecuter.EndInsertBlock()
+  fullName: Reportman.Drawing.ISqlExecuter.EndInsertBlock()
+  spec.csharp:
+  - uid: Reportman.Drawing.ISqlExecuter.EndInsertBlock
+    name: EndInsertBlock
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_EndInsertBlock
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.ISqlExecuter.EndInsertBlock
+    name: EndInsertBlock
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_EndInsertBlock
+  - name: (
+  - name: )
+- uid: Reportman.Drawing.DbSqlExecuter.GetValueFromSql*
+  commentId: Overload:Reportman.Drawing.DbSqlExecuter.GetValueFromSql
+  isExternal: true
+  href: Reportman.Drawing.DbSqlExecuter.html#Reportman_Drawing_DbSqlExecuter_GetValueFromSql_System_String_
+  name: GetValueFromSql
+  nameWithType: DbSqlExecuter.GetValueFromSql
+  fullName: Reportman.Drawing.DbSqlExecuter.GetValueFromSql
+- uid: Reportman.Drawing.ISqlExecuter.GetValueFromSql(System.String)
+  commentId: M:Reportman.Drawing.ISqlExecuter.GetValueFromSql(System.String)
+  parent: Reportman.Drawing.ISqlExecuter
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_GetValueFromSql_System_String_
+  name: GetValueFromSql(string)
+  nameWithType: ISqlExecuter.GetValueFromSql(string)
+  fullName: Reportman.Drawing.ISqlExecuter.GetValueFromSql(string)
+  nameWithType.vb: ISqlExecuter.GetValueFromSql(String)
+  fullName.vb: Reportman.Drawing.ISqlExecuter.GetValueFromSql(String)
+  name.vb: GetValueFromSql(String)
+  spec.csharp:
+  - uid: Reportman.Drawing.ISqlExecuter.GetValueFromSql(System.String)
+    name: GetValueFromSql
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_GetValueFromSql_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.ISqlExecuter.GetValueFromSql(System.String)
+    name: GetValueFromSql
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_GetValueFromSql_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Reportman.Drawing.DbSqlExecuter.GetGenerator*
+  commentId: Overload:Reportman.Drawing.DbSqlExecuter.GetGenerator
+  isExternal: true
+  href: Reportman.Drawing.DbSqlExecuter.html#Reportman_Drawing_DbSqlExecuter_GetGenerator_System_String_System_Int32_
+  name: GetGenerator
+  nameWithType: DbSqlExecuter.GetGenerator
+  fullName: Reportman.Drawing.DbSqlExecuter.GetGenerator
+- uid: Reportman.Drawing.ISqlExecuter.GetGenerator(System.String,System.Int32)
+  commentId: M:Reportman.Drawing.ISqlExecuter.GetGenerator(System.String,System.Int32)
+  parent: Reportman.Drawing.ISqlExecuter
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_GetGenerator_System_String_System_Int32_
+  name: GetGenerator(string, int)
+  nameWithType: ISqlExecuter.GetGenerator(string, int)
+  fullName: Reportman.Drawing.ISqlExecuter.GetGenerator(string, int)
+  nameWithType.vb: ISqlExecuter.GetGenerator(String, Integer)
+  fullName.vb: Reportman.Drawing.ISqlExecuter.GetGenerator(String, Integer)
+  name.vb: GetGenerator(String, Integer)
+  spec.csharp:
+  - uid: Reportman.Drawing.ISqlExecuter.GetGenerator(System.String,System.Int32)
+    name: GetGenerator
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_GetGenerator_System_String_System_Int32_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.ISqlExecuter.GetGenerator(System.String,System.Int32)
+    name: GetGenerator
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_GetGenerator_System_String_System_Int32_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: Reportman.Drawing.DbSqlExecuter.OpenInmediate*
+  commentId: Overload:Reportman.Drawing.DbSqlExecuter.OpenInmediate
+  isExternal: true
+  href: Reportman.Drawing.DbSqlExecuter.html#Reportman_Drawing_DbSqlExecuter_OpenInmediate_System_Data_DataSet_System_String_System_String_
+  name: OpenInmediate
+  nameWithType: DbSqlExecuter.OpenInmediate
+  fullName: Reportman.Drawing.DbSqlExecuter.OpenInmediate
+- uid: Reportman.Drawing.ISqlExecuter.OpenInmediate(System.Data.DataSet,System.String,System.String)
+  commentId: M:Reportman.Drawing.ISqlExecuter.OpenInmediate(System.Data.DataSet,System.String,System.String)
+  parent: Reportman.Drawing.ISqlExecuter
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_OpenInmediate_System_Data_DataSet_System_String_System_String_
+  name: OpenInmediate(DataSet, string, string)
+  nameWithType: ISqlExecuter.OpenInmediate(DataSet, string, string)
+  fullName: Reportman.Drawing.ISqlExecuter.OpenInmediate(System.Data.DataSet, string, string)
+  nameWithType.vb: ISqlExecuter.OpenInmediate(DataSet, String, String)
+  fullName.vb: Reportman.Drawing.ISqlExecuter.OpenInmediate(System.Data.DataSet, String, String)
+  name.vb: OpenInmediate(DataSet, String, String)
+  spec.csharp:
+  - uid: Reportman.Drawing.ISqlExecuter.OpenInmediate(System.Data.DataSet,System.String,System.String)
+    name: OpenInmediate
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_OpenInmediate_System_Data_DataSet_System_String_System_String_
+  - name: (
+  - uid: System.Data.DataSet
+    name: DataSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.dataset
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.ISqlExecuter.OpenInmediate(System.Data.DataSet,System.String,System.String)
+    name: OpenInmediate
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_OpenInmediate_System_Data_DataSet_System_String_System_String_
+  - name: (
+  - uid: System.Data.DataSet
+    name: DataSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.dataset
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Data.DataSet
+  commentId: T:System.Data.DataSet
+  parent: System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.dataset
+  name: DataSet
+  nameWithType: DataSet
+  fullName: System.Data.DataSet
+- uid: System.Data.DataTable
+  commentId: T:System.Data.DataTable
+  parent: System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable
+  name: DataTable
+  nameWithType: DataTable
+  fullName: System.Data.DataTable
+- uid: System.Data
+  commentId: N:System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Data
+  nameWithType: System.Data
+  fullName: System.Data
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+- uid: Reportman.Drawing.DbSqlExecuter.Open*
+  commentId: Overload:Reportman.Drawing.DbSqlExecuter.Open
+  isExternal: true
+  href: Reportman.Drawing.DbSqlExecuter.html#Reportman_Drawing_DbSqlExecuter_Open_System_Data_DataSet_System_String_System_String_System_Int32_Reportman_Drawing_ISqlExecuterPartialFillEvent_
+  name: Open
+  nameWithType: DbSqlExecuter.Open
+  fullName: Reportman.Drawing.DbSqlExecuter.Open
+- uid: Reportman.Drawing.ISqlExecuter.Open(System.Data.DataSet,System.String,System.String,System.Int32,Reportman.Drawing.ISqlExecuterPartialFillEvent)
+  commentId: M:Reportman.Drawing.ISqlExecuter.Open(System.Data.DataSet,System.String,System.String,System.Int32,Reportman.Drawing.ISqlExecuterPartialFillEvent)
+  parent: Reportman.Drawing.ISqlExecuter
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_Open_System_Data_DataSet_System_String_System_String_System_Int32_Reportman_Drawing_ISqlExecuterPartialFillEvent_
+  name: Open(DataSet, string, string, int, ISqlExecuterPartialFillEvent)
+  nameWithType: ISqlExecuter.Open(DataSet, string, string, int, ISqlExecuterPartialFillEvent)
+  fullName: Reportman.Drawing.ISqlExecuter.Open(System.Data.DataSet, string, string, int, Reportman.Drawing.ISqlExecuterPartialFillEvent)
+  nameWithType.vb: ISqlExecuter.Open(DataSet, String, String, Integer, ISqlExecuterPartialFillEvent)
+  fullName.vb: Reportman.Drawing.ISqlExecuter.Open(System.Data.DataSet, String, String, Integer, Reportman.Drawing.ISqlExecuterPartialFillEvent)
+  name.vb: Open(DataSet, String, String, Integer, ISqlExecuterPartialFillEvent)
+  spec.csharp:
+  - uid: Reportman.Drawing.ISqlExecuter.Open(System.Data.DataSet,System.String,System.String,System.Int32,Reportman.Drawing.ISqlExecuterPartialFillEvent)
+    name: Open
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_Open_System_Data_DataSet_System_String_System_String_System_Int32_Reportman_Drawing_ISqlExecuterPartialFillEvent_
+  - name: (
+  - uid: System.Data.DataSet
+    name: DataSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.dataset
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.ISqlExecuterPartialFillEvent
+    name: ISqlExecuterPartialFillEvent
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuterPartialFillEvent.html
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.ISqlExecuter.Open(System.Data.DataSet,System.String,System.String,System.Int32,Reportman.Drawing.ISqlExecuterPartialFillEvent)
+    name: Open
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_Open_System_Data_DataSet_System_String_System_String_System_Int32_Reportman_Drawing_ISqlExecuterPartialFillEvent_
+  - name: (
+  - uid: System.Data.DataSet
+    name: DataSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.dataset
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.ISqlExecuterPartialFillEvent
+    name: ISqlExecuterPartialFillEvent
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuterPartialFillEvent.html
+  - name: )
+- uid: Reportman.Drawing.ISqlExecuterPartialFillEvent
+  commentId: T:Reportman.Drawing.ISqlExecuterPartialFillEvent
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuterPartialFillEvent.html
+  name: ISqlExecuterPartialFillEvent
+  nameWithType: ISqlExecuterPartialFillEvent
+  fullName: Reportman.Drawing.ISqlExecuterPartialFillEvent
+- uid: Reportman.Drawing.ISqlExecuter.Open(System.Data.DataSet,System.String,System.String)
+  commentId: M:Reportman.Drawing.ISqlExecuter.Open(System.Data.DataSet,System.String,System.String)
+  parent: Reportman.Drawing.ISqlExecuter
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_Open_System_Data_DataSet_System_String_System_String_
+  name: Open(DataSet, string, string)
+  nameWithType: ISqlExecuter.Open(DataSet, string, string)
+  fullName: Reportman.Drawing.ISqlExecuter.Open(System.Data.DataSet, string, string)
+  nameWithType.vb: ISqlExecuter.Open(DataSet, String, String)
+  fullName.vb: Reportman.Drawing.ISqlExecuter.Open(System.Data.DataSet, String, String)
+  name.vb: Open(DataSet, String, String)
+  spec.csharp:
+  - uid: Reportman.Drawing.ISqlExecuter.Open(System.Data.DataSet,System.String,System.String)
+    name: Open
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_Open_System_Data_DataSet_System_String_System_String_
+  - name: (
+  - uid: System.Data.DataSet
+    name: DataSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.dataset
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.ISqlExecuter.Open(System.Data.DataSet,System.String,System.String)
+    name: Open
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_Open_System_Data_DataSet_System_String_System_String_
+  - name: (
+  - uid: System.Data.DataSet
+    name: DataSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.dataset
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Reportman.Drawing.ISqlExecuter.Open(System.Data.DataSet,System.Data.Common.DbCommand,System.String)
+  commentId: M:Reportman.Drawing.ISqlExecuter.Open(System.Data.DataSet,System.Data.Common.DbCommand,System.String)
+  parent: Reportman.Drawing.ISqlExecuter
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_Open_System_Data_DataSet_System_Data_Common_DbCommand_System_String_
+  name: Open(DataSet, DbCommand, string)
+  nameWithType: ISqlExecuter.Open(DataSet, DbCommand, string)
+  fullName: Reportman.Drawing.ISqlExecuter.Open(System.Data.DataSet, System.Data.Common.DbCommand, string)
+  nameWithType.vb: ISqlExecuter.Open(DataSet, DbCommand, String)
+  fullName.vb: Reportman.Drawing.ISqlExecuter.Open(System.Data.DataSet, System.Data.Common.DbCommand, String)
+  name.vb: Open(DataSet, DbCommand, String)
+  spec.csharp:
+  - uid: Reportman.Drawing.ISqlExecuter.Open(System.Data.DataSet,System.Data.Common.DbCommand,System.String)
+    name: Open
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_Open_System_Data_DataSet_System_Data_Common_DbCommand_System_String_
+  - name: (
+  - uid: System.Data.DataSet
+    name: DataSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.dataset
+  - name: ','
+  - name: " "
+  - uid: System.Data.Common.DbCommand
+    name: DbCommand
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.ISqlExecuter.Open(System.Data.DataSet,System.Data.Common.DbCommand,System.String)
+    name: Open
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_Open_System_Data_DataSet_System_Data_Common_DbCommand_System_String_
+  - name: (
+  - uid: System.Data.DataSet
+    name: DataSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.dataset
+  - name: ','
+  - name: " "
+  - uid: System.Data.Common.DbCommand
+    name: DbCommand
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Data.Common.DbCommand
+  commentId: T:System.Data.Common.DbCommand
+  parent: System.Data.Common
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand
+  name: DbCommand
+  nameWithType: DbCommand
+  fullName: System.Data.Common.DbCommand
+- uid: Reportman.Drawing.DbSqlExecuter.Execute*
+  commentId: Overload:Reportman.Drawing.DbSqlExecuter.Execute
+  isExternal: true
+  href: Reportman.Drawing.DbSqlExecuter.html#Reportman_Drawing_DbSqlExecuter_Execute_System_String_
+  name: Execute
+  nameWithType: DbSqlExecuter.Execute
+  fullName: Reportman.Drawing.DbSqlExecuter.Execute
+- uid: Reportman.Drawing.ISqlExecuter.Execute(System.String)
+  commentId: M:Reportman.Drawing.ISqlExecuter.Execute(System.String)
+  parent: Reportman.Drawing.ISqlExecuter
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_Execute_System_String_
+  name: Execute(string)
+  nameWithType: ISqlExecuter.Execute(string)
+  fullName: Reportman.Drawing.ISqlExecuter.Execute(string)
+  nameWithType.vb: ISqlExecuter.Execute(String)
+  fullName.vb: Reportman.Drawing.ISqlExecuter.Execute(String)
+  name.vb: Execute(String)
+  spec.csharp:
+  - uid: Reportman.Drawing.ISqlExecuter.Execute(System.String)
+    name: Execute
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_Execute_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.ISqlExecuter.Execute(System.String)
+    name: Execute
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_Execute_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Reportman.Drawing.ISqlExecuter.Execute(System.Data.Common.DbCommand)
+  commentId: M:Reportman.Drawing.ISqlExecuter.Execute(System.Data.Common.DbCommand)
+  parent: Reportman.Drawing.ISqlExecuter
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_Execute_System_Data_Common_DbCommand_
+  name: Execute(DbCommand)
+  nameWithType: ISqlExecuter.Execute(DbCommand)
+  fullName: Reportman.Drawing.ISqlExecuter.Execute(System.Data.Common.DbCommand)
+  spec.csharp:
+  - uid: Reportman.Drawing.ISqlExecuter.Execute(System.Data.Common.DbCommand)
+    name: Execute
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_Execute_System_Data_Common_DbCommand_
+  - name: (
+  - uid: System.Data.Common.DbCommand
+    name: DbCommand
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.ISqlExecuter.Execute(System.Data.Common.DbCommand)
+    name: Execute
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_Execute_System_Data_Common_DbCommand_
+  - name: (
+  - uid: System.Data.Common.DbCommand
+    name: DbCommand
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand
+  - name: )
+- uid: Reportman.Drawing.DbSqlExecuter.CreateCommand*
+  commentId: Overload:Reportman.Drawing.DbSqlExecuter.CreateCommand
+  isExternal: true
+  href: Reportman.Drawing.DbSqlExecuter.html#Reportman_Drawing_DbSqlExecuter_CreateCommand_System_String_
+  name: CreateCommand
+  nameWithType: DbSqlExecuter.CreateCommand
+  fullName: Reportman.Drawing.DbSqlExecuter.CreateCommand
+- uid: Reportman.Drawing.ISqlExecuter.CreateCommand(System.String)
+  commentId: M:Reportman.Drawing.ISqlExecuter.CreateCommand(System.String)
+  parent: Reportman.Drawing.ISqlExecuter
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_CreateCommand_System_String_
+  name: CreateCommand(string)
+  nameWithType: ISqlExecuter.CreateCommand(string)
+  fullName: Reportman.Drawing.ISqlExecuter.CreateCommand(string)
+  nameWithType.vb: ISqlExecuter.CreateCommand(String)
+  fullName.vb: Reportman.Drawing.ISqlExecuter.CreateCommand(String)
+  name.vb: CreateCommand(String)
+  spec.csharp:
+  - uid: Reportman.Drawing.ISqlExecuter.CreateCommand(System.String)
+    name: CreateCommand
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_CreateCommand_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.ISqlExecuter.CreateCommand(System.String)
+    name: CreateCommand
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_CreateCommand_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Reportman.Drawing.DbSqlExecuter.RollbackInmediate*
+  commentId: Overload:Reportman.Drawing.DbSqlExecuter.RollbackInmediate
+  isExternal: true
+  href: Reportman.Drawing.DbSqlExecuter.html#Reportman_Drawing_DbSqlExecuter_RollbackInmediate
+  name: RollbackInmediate
+  nameWithType: DbSqlExecuter.RollbackInmediate
+  fullName: Reportman.Drawing.DbSqlExecuter.RollbackInmediate
+- uid: Reportman.Drawing.ISqlExecuter.RollbackInmediate
+  commentId: M:Reportman.Drawing.ISqlExecuter.RollbackInmediate
+  parent: Reportman.Drawing.ISqlExecuter
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_RollbackInmediate
+  name: RollbackInmediate()
+  nameWithType: ISqlExecuter.RollbackInmediate()
+  fullName: Reportman.Drawing.ISqlExecuter.RollbackInmediate()
+  spec.csharp:
+  - uid: Reportman.Drawing.ISqlExecuter.RollbackInmediate
+    name: RollbackInmediate
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_RollbackInmediate
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.ISqlExecuter.RollbackInmediate
+    name: RollbackInmediate
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_RollbackInmediate
+  - name: (
+  - name: )
+- uid: Reportman.Drawing.DbSqlExecuter.Commit*
+  commentId: Overload:Reportman.Drawing.DbSqlExecuter.Commit
+  isExternal: true
+  href: Reportman.Drawing.DbSqlExecuter.html#Reportman_Drawing_DbSqlExecuter_Commit
+  name: Commit
+  nameWithType: DbSqlExecuter.Commit
+  fullName: Reportman.Drawing.DbSqlExecuter.Commit
+- uid: Reportman.Drawing.ISqlExecuter.Commit
+  commentId: M:Reportman.Drawing.ISqlExecuter.Commit
+  parent: Reportman.Drawing.ISqlExecuter
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_Commit
+  name: Commit()
+  nameWithType: ISqlExecuter.Commit()
+  fullName: Reportman.Drawing.ISqlExecuter.Commit()
+  spec.csharp:
+  - uid: Reportman.Drawing.ISqlExecuter.Commit
+    name: Commit
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_Commit
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.ISqlExecuter.Commit
+    name: Commit
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_Commit
+  - name: (
+  - name: )
+- uid: Reportman.Drawing.DbSqlExecuter.StartTransaction*
+  commentId: Overload:Reportman.Drawing.DbSqlExecuter.StartTransaction
+  isExternal: true
+  href: Reportman.Drawing.DbSqlExecuter.html#Reportman_Drawing_DbSqlExecuter_StartTransaction
+  name: StartTransaction
+  nameWithType: DbSqlExecuter.StartTransaction
+  fullName: Reportman.Drawing.DbSqlExecuter.StartTransaction
+- uid: Reportman.Drawing.DbSqlExecuter.Rollback*
+  commentId: Overload:Reportman.Drawing.DbSqlExecuter.Rollback
+  isExternal: true
+  href: Reportman.Drawing.DbSqlExecuter.html#Reportman_Drawing_DbSqlExecuter_Rollback
+  name: Rollback
+  nameWithType: DbSqlExecuter.Rollback
+  fullName: Reportman.Drawing.DbSqlExecuter.Rollback
+- uid: Reportman.Drawing.ISqlExecuter.Rollback
+  commentId: M:Reportman.Drawing.ISqlExecuter.Rollback
+  parent: Reportman.Drawing.ISqlExecuter
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_Rollback
+  name: Rollback()
+  nameWithType: ISqlExecuter.Rollback()
+  fullName: Reportman.Drawing.ISqlExecuter.Rollback()
+  spec.csharp:
+  - uid: Reportman.Drawing.ISqlExecuter.Rollback
+    name: Rollback
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_Rollback
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.ISqlExecuter.Rollback
+    name: Rollback
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_Rollback
+  - name: (
+  - name: )
+- uid: Reportman.Drawing.ISqlExecuter.StartTransaction(System.Data.IsolationLevel)
+  commentId: M:Reportman.Drawing.ISqlExecuter.StartTransaction(System.Data.IsolationLevel)
+  parent: Reportman.Drawing.ISqlExecuter
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_StartTransaction_System_Data_IsolationLevel_
+  name: StartTransaction(IsolationLevel)
+  nameWithType: ISqlExecuter.StartTransaction(IsolationLevel)
+  fullName: Reportman.Drawing.ISqlExecuter.StartTransaction(System.Data.IsolationLevel)
+  spec.csharp:
+  - uid: Reportman.Drawing.ISqlExecuter.StartTransaction(System.Data.IsolationLevel)
+    name: StartTransaction
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_StartTransaction_System_Data_IsolationLevel_
+  - name: (
+  - uid: System.Data.IsolationLevel
+    name: IsolationLevel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.isolationlevel
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.ISqlExecuter.StartTransaction(System.Data.IsolationLevel)
+    name: StartTransaction
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_StartTransaction_System_Data_IsolationLevel_
+  - name: (
+  - uid: System.Data.IsolationLevel
+    name: IsolationLevel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.isolationlevel
+  - name: )
+- uid: System.Data.IsolationLevel
+  commentId: T:System.Data.IsolationLevel
+  parent: System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.isolationlevel
+  name: IsolationLevel
+  nameWithType: IsolationLevel
+  fullName: System.Data.IsolationLevel
+- uid: Reportman.Drawing.DbSqlExecuter.ExecuteInmediate*
+  commentId: Overload:Reportman.Drawing.DbSqlExecuter.ExecuteInmediate
+  isExternal: true
+  href: Reportman.Drawing.DbSqlExecuter.html#Reportman_Drawing_DbSqlExecuter_ExecuteInmediate_System_String_
+  name: ExecuteInmediate
+  nameWithType: DbSqlExecuter.ExecuteInmediate
+  fullName: Reportman.Drawing.DbSqlExecuter.ExecuteInmediate
+- uid: Reportman.Drawing.ISqlExecuter.ExecuteInmediate(System.String)
+  commentId: M:Reportman.Drawing.ISqlExecuter.ExecuteInmediate(System.String)
+  parent: Reportman.Drawing.ISqlExecuter
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_ExecuteInmediate_System_String_
+  name: ExecuteInmediate(string)
+  nameWithType: ISqlExecuter.ExecuteInmediate(string)
+  fullName: Reportman.Drawing.ISqlExecuter.ExecuteInmediate(string)
+  nameWithType.vb: ISqlExecuter.ExecuteInmediate(String)
+  fullName.vb: Reportman.Drawing.ISqlExecuter.ExecuteInmediate(String)
+  name.vb: ExecuteInmediate(String)
+  spec.csharp:
+  - uid: Reportman.Drawing.ISqlExecuter.ExecuteInmediate(System.String)
+    name: ExecuteInmediate
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_ExecuteInmediate_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.ISqlExecuter.ExecuteInmediate(System.String)
+    name: ExecuteInmediate
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_ExecuteInmediate_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Reportman.Drawing.DbSqlExecuter.Flush*
+  commentId: Overload:Reportman.Drawing.DbSqlExecuter.Flush
+  isExternal: true
+  href: Reportman.Drawing.DbSqlExecuter.html#Reportman_Drawing_DbSqlExecuter_Flush
+  name: Flush
+  nameWithType: DbSqlExecuter.Flush
+  fullName: Reportman.Drawing.DbSqlExecuter.Flush
+- uid: Reportman.Drawing.ISqlExecuter.Flush
+  commentId: M:Reportman.Drawing.ISqlExecuter.Flush
+  parent: Reportman.Drawing.ISqlExecuter
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_Flush
+  name: Flush()
+  nameWithType: ISqlExecuter.Flush()
+  fullName: Reportman.Drawing.ISqlExecuter.Flush()
+  spec.csharp:
+  - uid: Reportman.Drawing.ISqlExecuter.Flush
+    name: Flush
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_Flush
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.ISqlExecuter.Flush
+    name: Flush
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_Flush
+  - name: (
+  - name: )
+- uid: Reportman.Drawing.ISqlExecuter.Flush(Reportman.Drawing.ISqlExecuterProgressEvent)
+  commentId: M:Reportman.Drawing.ISqlExecuter.Flush(Reportman.Drawing.ISqlExecuterProgressEvent)
+  parent: Reportman.Drawing.ISqlExecuter
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_Flush_Reportman_Drawing_ISqlExecuterProgressEvent_
+  name: Flush(ISqlExecuterProgressEvent)
+  nameWithType: ISqlExecuter.Flush(ISqlExecuterProgressEvent)
+  fullName: Reportman.Drawing.ISqlExecuter.Flush(Reportman.Drawing.ISqlExecuterProgressEvent)
+  spec.csharp:
+  - uid: Reportman.Drawing.ISqlExecuter.Flush(Reportman.Drawing.ISqlExecuterProgressEvent)
+    name: Flush
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_Flush_Reportman_Drawing_ISqlExecuterProgressEvent_
+  - name: (
+  - uid: Reportman.Drawing.ISqlExecuterProgressEvent
+    name: ISqlExecuterProgressEvent
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuterProgressEvent.html
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.ISqlExecuter.Flush(Reportman.Drawing.ISqlExecuterProgressEvent)
+    name: Flush
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_Flush_Reportman_Drawing_ISqlExecuterProgressEvent_
+  - name: (
+  - uid: Reportman.Drawing.ISqlExecuterProgressEvent
+    name: ISqlExecuterProgressEvent
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuterProgressEvent.html
+  - name: )
+- uid: Reportman.Drawing.ISqlExecuterProgressEvent
+  commentId: T:Reportman.Drawing.ISqlExecuterProgressEvent
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuterProgressEvent.html
+  name: ISqlExecuterProgressEvent
+  nameWithType: ISqlExecuterProgressEvent
+  fullName: Reportman.Drawing.ISqlExecuterProgressEvent
+- uid: Reportman.Drawing.DbSqlExecuter.AddExternalColumnsToLastCommand*
+  commentId: Overload:Reportman.Drawing.DbSqlExecuter.AddExternalColumnsToLastCommand
+  isExternal: true
+  href: Reportman.Drawing.DbSqlExecuter.html#Reportman_Drawing_DbSqlExecuter_AddExternalColumnsToLastCommand_System_String_System_String_
+  name: AddExternalColumnsToLastCommand
+  nameWithType: DbSqlExecuter.AddExternalColumnsToLastCommand
+  fullName: Reportman.Drawing.DbSqlExecuter.AddExternalColumnsToLastCommand
+- uid: Reportman.Drawing.ISqlExecuter.AddExternalColumnsToLastCommand(System.String,System.String)
+  commentId: M:Reportman.Drawing.ISqlExecuter.AddExternalColumnsToLastCommand(System.String,System.String)
+  parent: Reportman.Drawing.ISqlExecuter
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_AddExternalColumnsToLastCommand_System_String_System_String_
+  name: AddExternalColumnsToLastCommand(string, string)
+  nameWithType: ISqlExecuter.AddExternalColumnsToLastCommand(string, string)
+  fullName: Reportman.Drawing.ISqlExecuter.AddExternalColumnsToLastCommand(string, string)
+  nameWithType.vb: ISqlExecuter.AddExternalColumnsToLastCommand(String, String)
+  fullName.vb: Reportman.Drawing.ISqlExecuter.AddExternalColumnsToLastCommand(String, String)
+  name.vb: AddExternalColumnsToLastCommand(String, String)
+  spec.csharp:
+  - uid: Reportman.Drawing.ISqlExecuter.AddExternalColumnsToLastCommand(System.String,System.String)
+    name: AddExternalColumnsToLastCommand
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_AddExternalColumnsToLastCommand_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.ISqlExecuter.AddExternalColumnsToLastCommand(System.String,System.String)
+    name: AddExternalColumnsToLastCommand
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_AddExternalColumnsToLastCommand_System_String_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Reportman.Drawing.DbSqlExecuter.AddCustomOperation*
+  commentId: Overload:Reportman.Drawing.DbSqlExecuter.AddCustomOperation
+  isExternal: true
+  href: Reportman.Drawing.DbSqlExecuter.html#Reportman_Drawing_DbSqlExecuter_AddCustomOperation_System_Int32_System_String_System_Byte___
+  name: AddCustomOperation
+  nameWithType: DbSqlExecuter.AddCustomOperation
+  fullName: Reportman.Drawing.DbSqlExecuter.AddCustomOperation
+- uid: Reportman.Drawing.ISqlExecuter.AddCustomOperation(System.Int32,System.String,System.Byte[])
+  commentId: M:Reportman.Drawing.ISqlExecuter.AddCustomOperation(System.Int32,System.String,System.Byte[])
+  parent: Reportman.Drawing.ISqlExecuter
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_AddCustomOperation_System_Int32_System_String_System_Byte___
+  name: AddCustomOperation(int, string, byte[])
+  nameWithType: ISqlExecuter.AddCustomOperation(int, string, byte[])
+  fullName: Reportman.Drawing.ISqlExecuter.AddCustomOperation(int, string, byte[])
+  nameWithType.vb: ISqlExecuter.AddCustomOperation(Integer, String, Byte())
+  fullName.vb: Reportman.Drawing.ISqlExecuter.AddCustomOperation(Integer, String, Byte())
+  name.vb: AddCustomOperation(Integer, String, Byte())
+  spec.csharp:
+  - uid: Reportman.Drawing.ISqlExecuter.AddCustomOperation(System.Int32,System.String,System.Byte[])
+    name: AddCustomOperation
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_AddCustomOperation_System_Int32_System_String_System_Byte___
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '['
+  - name: ']'
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.ISqlExecuter.AddCustomOperation(System.Int32,System.String,System.Byte[])
+    name: AddCustomOperation
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_AddCustomOperation_System_Int32_System_String_System_Byte___
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: (
+  - name: )
+  - name: )
+- uid: System.Byte[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte[]
+  nameWithType: byte[]
+  fullName: byte[]
+  nameWithType.vb: Byte()
+  fullName.vb: Byte()
+  name.vb: Byte()
+  spec.csharp:
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: (
+  - name: )
+- uid: Reportman.Drawing.DbSqlExecuter.Connect*
+  commentId: Overload:Reportman.Drawing.DbSqlExecuter.Connect
+  isExternal: true
+  href: Reportman.Drawing.DbSqlExecuter.html#Reportman_Drawing_DbSqlExecuter_Connect
+  name: Connect
+  nameWithType: DbSqlExecuter.Connect
+  fullName: Reportman.Drawing.DbSqlExecuter.Connect
+- uid: Reportman.Drawing.ISqlExecuter.Connect
+  commentId: M:Reportman.Drawing.ISqlExecuter.Connect
+  parent: Reportman.Drawing.ISqlExecuter
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_Connect
+  name: Connect()
+  nameWithType: ISqlExecuter.Connect()
+  fullName: Reportman.Drawing.ISqlExecuter.Connect()
+  spec.csharp:
+  - uid: Reportman.Drawing.ISqlExecuter.Connect
+    name: Connect
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_Connect
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.ISqlExecuter.Connect
+    name: Connect
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_Connect
+  - name: (
+  - name: )
+- uid: Reportman.Drawing.DbSqlExecuter.Disconnect*
+  commentId: Overload:Reportman.Drawing.DbSqlExecuter.Disconnect
+  isExternal: true
+  href: Reportman.Drawing.DbSqlExecuter.html#Reportman_Drawing_DbSqlExecuter_Disconnect
+  name: Disconnect
+  nameWithType: DbSqlExecuter.Disconnect
+  fullName: Reportman.Drawing.DbSqlExecuter.Disconnect
+- uid: Reportman.Drawing.ISqlExecuter.Disconnect
+  commentId: M:Reportman.Drawing.ISqlExecuter.Disconnect
+  parent: Reportman.Drawing.ISqlExecuter
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_Disconnect
+  name: Disconnect()
+  nameWithType: ISqlExecuter.Disconnect()
+  fullName: Reportman.Drawing.ISqlExecuter.Disconnect()
+  spec.csharp:
+  - uid: Reportman.Drawing.ISqlExecuter.Disconnect
+    name: Disconnect
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_Disconnect
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.ISqlExecuter.Disconnect
+    name: Disconnect
+    isExternal: true
+    href: Reportman.Drawing.ISqlExecuter.html#Reportman_Drawing_ISqlExecuter_Disconnect
+  - name: (
+  - name: )

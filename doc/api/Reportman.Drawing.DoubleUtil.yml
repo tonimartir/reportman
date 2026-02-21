@@ -1,0 +1,1027 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.DoubleUtil
+  commentId: T:Reportman.Drawing.DoubleUtil
+  id: DoubleUtil
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.DoubleUtil.#ctor
+  - Reportman.Drawing.DoubleUtil.CompareValue(System.Decimal,System.Decimal,System.Decimal)
+  - Reportman.Drawing.DoubleUtil.DecimalToSqlLiteral(System.Decimal)
+  - Reportman.Drawing.DoubleUtil.DoubleToSqlLiteral(System.Double)
+  - Reportman.Drawing.DoubleUtil.FormatCurrAdv(System.String,System.Double)
+  - Reportman.Drawing.DoubleUtil.FormatStringDecimals(System.Int32)
+  - Reportman.Drawing.DoubleUtil.Frac(System.Decimal)
+  - Reportman.Drawing.DoubleUtil.IsNumeric(System.String,System.Globalization.NumberStyles)
+  - Reportman.Drawing.DoubleUtil.IsNumericType(System.Object)
+  - Reportman.Drawing.DoubleUtil.NumberToText(System.Decimal,System.Boolean,System.Int32)
+  - Reportman.Drawing.DoubleUtil.RoundDecimalUp(System.Decimal,System.Decimal)
+  - Reportman.Drawing.DoubleUtil.StandardDeviation(System.Collections.Generic.IEnumerable{System.Double})
+  - Reportman.Drawing.DoubleUtil.Trunc(System.Decimal)
+  - Reportman.Drawing.DoubleUtil.Truncate(System.Decimal)
+  langs:
+  - csharp
+  - vb
+  name: DoubleUtil
+  nameWithType: DoubleUtil
+  fullName: Reportman.Drawing.DoubleUtil
+  type: Class
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Provide utitilies about handling double values
+  example: []
+  syntax:
+    content: public class DoubleUtil
+    content.vb: Public Class DoubleUtil
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.DoubleUtil.IsNumeric(System.String,System.Globalization.NumberStyles)
+  commentId: M:Reportman.Drawing.DoubleUtil.IsNumeric(System.String,System.Globalization.NumberStyles)
+  id: IsNumeric(System.String,System.Globalization.NumberStyles)
+  parent: Reportman.Drawing.DoubleUtil
+  langs:
+  - csharp
+  - vb
+  name: IsNumeric(string, NumberStyles)
+  nameWithType: DoubleUtil.IsNumeric(string, NumberStyles)
+  fullName: Reportman.Drawing.DoubleUtil.IsNumeric(string, System.Globalization.NumberStyles)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Check if a string can be converted to a number
+  example: []
+  syntax:
+    content: public static bool IsNumeric(string val, NumberStyles NumberStyle)
+    parameters:
+    - id: val
+      type: System.String
+      description: ''
+    - id: NumberStyle
+      type: System.Globalization.NumberStyles
+      description: ''
+    return:
+      type: System.Boolean
+      description: ''
+    content.vb: Public Shared Function IsNumeric(val As String, NumberStyle As NumberStyles) As Boolean
+  overload: Reportman.Drawing.DoubleUtil.IsNumeric*
+  nameWithType.vb: DoubleUtil.IsNumeric(String, NumberStyles)
+  fullName.vb: Reportman.Drawing.DoubleUtil.IsNumeric(String, System.Globalization.NumberStyles)
+  name.vb: IsNumeric(String, NumberStyles)
+- uid: Reportman.Drawing.DoubleUtil.IsNumericType(System.Object)
+  commentId: M:Reportman.Drawing.DoubleUtil.IsNumericType(System.Object)
+  id: IsNumericType(System.Object)
+  parent: Reportman.Drawing.DoubleUtil
+  langs:
+  - csharp
+  - vb
+  name: IsNumericType(object)
+  nameWithType: DoubleUtil.IsNumericType(object)
+  fullName: Reportman.Drawing.DoubleUtil.IsNumericType(object)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static bool IsNumericType(object o)
+    parameters:
+    - id: o
+      type: System.Object
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function IsNumericType(o As Object) As Boolean
+  overload: Reportman.Drawing.DoubleUtil.IsNumericType*
+  nameWithType.vb: DoubleUtil.IsNumericType(Object)
+  fullName.vb: Reportman.Drawing.DoubleUtil.IsNumericType(Object)
+  name.vb: IsNumericType(Object)
+- uid: Reportman.Drawing.DoubleUtil.Truncate(System.Decimal)
+  commentId: M:Reportman.Drawing.DoubleUtil.Truncate(System.Decimal)
+  id: Truncate(System.Decimal)
+  parent: Reportman.Drawing.DoubleUtil
+  langs:
+  - csharp
+  - vb
+  name: Truncate(decimal)
+  nameWithType: DoubleUtil.Truncate(decimal)
+  fullName: Reportman.Drawing.DoubleUtil.Truncate(decimal)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Truncate a decimal number
+  example: []
+  syntax:
+    content: public static decimal Truncate(decimal nvalue)
+    parameters:
+    - id: nvalue
+      type: System.Decimal
+      description: ''
+    return:
+      type: System.Decimal
+      description: ''
+    content.vb: Public Shared Function Truncate(nvalue As Decimal) As Decimal
+  overload: Reportman.Drawing.DoubleUtil.Truncate*
+  nameWithType.vb: DoubleUtil.Truncate(Decimal)
+  fullName.vb: Reportman.Drawing.DoubleUtil.Truncate(Decimal)
+  name.vb: Truncate(Decimal)
+- uid: Reportman.Drawing.DoubleUtil.StandardDeviation(System.Collections.Generic.IEnumerable{System.Double})
+  commentId: M:Reportman.Drawing.DoubleUtil.StandardDeviation(System.Collections.Generic.IEnumerable{System.Double})
+  id: StandardDeviation(System.Collections.Generic.IEnumerable{System.Double})
+  parent: Reportman.Drawing.DoubleUtil
+  langs:
+  - csharp
+  - vb
+  name: StandardDeviation(IEnumerable<double>)
+  nameWithType: DoubleUtil.StandardDeviation(IEnumerable<double>)
+  fullName: Reportman.Drawing.DoubleUtil.StandardDeviation(System.Collections.Generic.IEnumerable<double>)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Calculate standard deviation
+  example: []
+  syntax:
+    content: public static double StandardDeviation(IEnumerable<double> values)
+    parameters:
+    - id: values
+      type: System.Collections.Generic.IEnumerable{System.Double}
+      description: ''
+    return:
+      type: System.Double
+      description: ''
+    content.vb: Public Shared Function StandardDeviation(values As IEnumerable(Of Double)) As Double
+  overload: Reportman.Drawing.DoubleUtil.StandardDeviation*
+  nameWithType.vb: DoubleUtil.StandardDeviation(IEnumerable(Of Double))
+  fullName.vb: Reportman.Drawing.DoubleUtil.StandardDeviation(System.Collections.Generic.IEnumerable(Of Double))
+  name.vb: StandardDeviation(IEnumerable(Of Double))
+- uid: Reportman.Drawing.DoubleUtil.FormatCurrAdv(System.String,System.Double)
+  commentId: M:Reportman.Drawing.DoubleUtil.FormatCurrAdv(System.String,System.Double)
+  id: FormatCurrAdv(System.String,System.Double)
+  parent: Reportman.Drawing.DoubleUtil
+  langs:
+  - csharp
+  - vb
+  name: FormatCurrAdv(string, double)
+  nameWithType: DoubleUtil.FormatCurrAdv(string, double)
+  fullName: Reportman.Drawing.DoubleUtil.FormatCurrAdv(string, double)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Format a number with a mask
+  example: []
+  syntax:
+    content: public static string FormatCurrAdv(string mask, double number)
+    parameters:
+    - id: mask
+      type: System.String
+    - id: number
+      type: System.Double
+    return:
+      type: System.String
+    content.vb: Public Shared Function FormatCurrAdv(mask As String, number As Double) As String
+  overload: Reportman.Drawing.DoubleUtil.FormatCurrAdv*
+  nameWithType.vb: DoubleUtil.FormatCurrAdv(String, Double)
+  fullName.vb: Reportman.Drawing.DoubleUtil.FormatCurrAdv(String, Double)
+  name.vb: FormatCurrAdv(String, Double)
+- uid: Reportman.Drawing.DoubleUtil.FormatStringDecimals(System.Int32)
+  commentId: M:Reportman.Drawing.DoubleUtil.FormatStringDecimals(System.Int32)
+  id: FormatStringDecimals(System.Int32)
+  parent: Reportman.Drawing.DoubleUtil
+  langs:
+  - csharp
+  - vb
+  name: FormatStringDecimals(int)
+  nameWithType: DoubleUtil.FormatStringDecimals(int)
+  fullName: Reportman.Drawing.DoubleUtil.FormatStringDecimals(int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Default format string for a number of decimals
+  example: []
+  syntax:
+    content: public static string FormatStringDecimals(int decimals)
+    parameters:
+    - id: decimals
+      type: System.Int32
+      description: ''
+    return:
+      type: System.String
+      description: ''
+    content.vb: Public Shared Function FormatStringDecimals(decimals As Integer) As String
+  overload: Reportman.Drawing.DoubleUtil.FormatStringDecimals*
+  nameWithType.vb: DoubleUtil.FormatStringDecimals(Integer)
+  fullName.vb: Reportman.Drawing.DoubleUtil.FormatStringDecimals(Integer)
+  name.vb: FormatStringDecimals(Integer)
+- uid: Reportman.Drawing.DoubleUtil.Frac(System.Decimal)
+  commentId: M:Reportman.Drawing.DoubleUtil.Frac(System.Decimal)
+  id: Frac(System.Decimal)
+  parent: Reportman.Drawing.DoubleUtil
+  langs:
+  - csharp
+  - vb
+  name: Frac(decimal)
+  nameWithType: DoubleUtil.Frac(decimal)
+  fullName: Reportman.Drawing.DoubleUtil.Frac(decimal)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Calculates the fractionary value of a number
+  example: []
+  syntax:
+    content: public static decimal Frac(decimal number)
+    parameters:
+    - id: number
+      type: System.Decimal
+      description: Decimal number
+    return:
+      type: System.Decimal
+      description: Fractionary part of the decimal number
+    content.vb: Public Shared Function Frac(number As Decimal) As Decimal
+  overload: Reportman.Drawing.DoubleUtil.Frac*
+  nameWithType.vb: DoubleUtil.Frac(Decimal)
+  fullName.vb: Reportman.Drawing.DoubleUtil.Frac(Decimal)
+  name.vb: Frac(Decimal)
+- uid: Reportman.Drawing.DoubleUtil.Trunc(System.Decimal)
+  commentId: M:Reportman.Drawing.DoubleUtil.Trunc(System.Decimal)
+  id: Trunc(System.Decimal)
+  parent: Reportman.Drawing.DoubleUtil
+  langs:
+  - csharp
+  - vb
+  name: Trunc(decimal)
+  nameWithType: DoubleUtil.Trunc(decimal)
+  fullName: Reportman.Drawing.DoubleUtil.Trunc(decimal)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Calculates the integer part of a number
+  example: []
+  syntax:
+    content: public static long Trunc(decimal number)
+    parameters:
+    - id: number
+      type: System.Decimal
+      description: Decimal number
+    return:
+      type: System.Int64
+      description: Truncated numberr
+    content.vb: Public Shared Function Trunc(number As Decimal) As Long
+  overload: Reportman.Drawing.DoubleUtil.Trunc*
+  nameWithType.vb: DoubleUtil.Trunc(Decimal)
+  fullName.vb: Reportman.Drawing.DoubleUtil.Trunc(Decimal)
+  name.vb: Trunc(Decimal)
+- uid: Reportman.Drawing.DoubleUtil.RoundDecimalUp(System.Decimal,System.Decimal)
+  commentId: M:Reportman.Drawing.DoubleUtil.RoundDecimalUp(System.Decimal,System.Decimal)
+  id: RoundDecimalUp(System.Decimal,System.Decimal)
+  parent: Reportman.Drawing.DoubleUtil
+  langs:
+  - csharp
+  - vb
+  name: RoundDecimalUp(decimal, decimal)
+  nameWithType: DoubleUtil.RoundDecimalUp(decimal, decimal)
+  fullName: Reportman.Drawing.DoubleUtil.RoundDecimalUp(decimal, decimal)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Round a decimal to the nearest multiple value, the midpoint will be rounded up
+  example: []
+  syntax:
+    content: public static decimal RoundDecimalUp(decimal number, decimal multiple)
+    parameters:
+    - id: number
+      type: System.Decimal
+    - id: multiple
+      type: System.Decimal
+    return:
+      type: System.Decimal
+    content.vb: Public Shared Function RoundDecimalUp(number As Decimal, multiple As Decimal) As Decimal
+  overload: Reportman.Drawing.DoubleUtil.RoundDecimalUp*
+  nameWithType.vb: DoubleUtil.RoundDecimalUp(Decimal, Decimal)
+  fullName.vb: Reportman.Drawing.DoubleUtil.RoundDecimalUp(Decimal, Decimal)
+  name.vb: RoundDecimalUp(Decimal, Decimal)
+- uid: Reportman.Drawing.DoubleUtil.CompareValue(System.Decimal,System.Decimal,System.Decimal)
+  commentId: M:Reportman.Drawing.DoubleUtil.CompareValue(System.Decimal,System.Decimal,System.Decimal)
+  id: CompareValue(System.Decimal,System.Decimal,System.Decimal)
+  parent: Reportman.Drawing.DoubleUtil
+  langs:
+  - csharp
+  - vb
+  name: CompareValue(decimal, decimal, decimal)
+  nameWithType: DoubleUtil.CompareValue(decimal, decimal, decimal)
+  fullName: Reportman.Drawing.DoubleUtil.CompareValue(decimal, decimal, decimal)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Compare values, but an difference lower than epsilon will return as equal
+  example: []
+  syntax:
+    content: public static int CompareValue(decimal p1, decimal p2, decimal epsilon)
+    parameters:
+    - id: p1
+      type: System.Decimal
+    - id: p2
+      type: System.Decimal
+    - id: epsilon
+      type: System.Decimal
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function CompareValue(p1 As Decimal, p2 As Decimal, epsilon As Decimal) As Integer
+  overload: Reportman.Drawing.DoubleUtil.CompareValue*
+  nameWithType.vb: DoubleUtil.CompareValue(Decimal, Decimal, Decimal)
+  fullName.vb: Reportman.Drawing.DoubleUtil.CompareValue(Decimal, Decimal, Decimal)
+  name.vb: CompareValue(Decimal, Decimal, Decimal)
+- uid: Reportman.Drawing.DoubleUtil.NumberToText(System.Decimal,System.Boolean,System.Int32)
+  commentId: M:Reportman.Drawing.DoubleUtil.NumberToText(System.Decimal,System.Boolean,System.Int32)
+  id: NumberToText(System.Decimal,System.Boolean,System.Int32)
+  parent: Reportman.Drawing.DoubleUtil
+  langs:
+  - csharp
+  - vb
+  name: NumberToText(decimal, bool, int)
+  nameWithType: DoubleUtil.NumberToText(decimal, bool, int)
+  fullName: Reportman.Drawing.DoubleUtil.NumberToText(decimal, bool, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Converts a number to his representation in natural words
+  example: []
+  syntax:
+    content: public static string NumberToText(decimal number, bool female, int lang)
+    parameters:
+    - id: number
+      type: System.Decimal
+    - id: female
+      type: System.Boolean
+    - id: lang
+      type: System.Int32
+    return:
+      type: System.String
+    content.vb: Public Shared Function NumberToText(number As Decimal, female As Boolean, lang As Integer) As String
+  overload: Reportman.Drawing.DoubleUtil.NumberToText*
+  nameWithType.vb: DoubleUtil.NumberToText(Decimal, Boolean, Integer)
+  fullName.vb: Reportman.Drawing.DoubleUtil.NumberToText(Decimal, Boolean, Integer)
+  name.vb: NumberToText(Decimal, Boolean, Integer)
+- uid: Reportman.Drawing.DoubleUtil.DecimalToSqlLiteral(System.Decimal)
+  commentId: M:Reportman.Drawing.DoubleUtil.DecimalToSqlLiteral(System.Decimal)
+  id: DecimalToSqlLiteral(System.Decimal)
+  parent: Reportman.Drawing.DoubleUtil
+  langs:
+  - csharp
+  - vb
+  name: DecimalToSqlLiteral(decimal)
+  nameWithType: DoubleUtil.DecimalToSqlLiteral(decimal)
+  fullName: Reportman.Drawing.DoubleUtil.DecimalToSqlLiteral(decimal)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Converts a numeric decimal value to sql literal
+  example: []
+  syntax:
+    content: public static string DecimalToSqlLiteral(decimal nvalue)
+    parameters:
+    - id: nvalue
+      type: System.Decimal
+      description: Value to convert
+    return:
+      type: System.String
+      description: Formatted string to insert directly into SQL Statement
+    content.vb: Public Shared Function DecimalToSqlLiteral(nvalue As Decimal) As String
+  overload: Reportman.Drawing.DoubleUtil.DecimalToSqlLiteral*
+  nameWithType.vb: DoubleUtil.DecimalToSqlLiteral(Decimal)
+  fullName.vb: Reportman.Drawing.DoubleUtil.DecimalToSqlLiteral(Decimal)
+  name.vb: DecimalToSqlLiteral(Decimal)
+- uid: Reportman.Drawing.DoubleUtil.DoubleToSqlLiteral(System.Double)
+  commentId: M:Reportman.Drawing.DoubleUtil.DoubleToSqlLiteral(System.Double)
+  id: DoubleToSqlLiteral(System.Double)
+  parent: Reportman.Drawing.DoubleUtil
+  langs:
+  - csharp
+  - vb
+  name: DoubleToSqlLiteral(double)
+  nameWithType: DoubleUtil.DoubleToSqlLiteral(double)
+  fullName: Reportman.Drawing.DoubleUtil.DoubleToSqlLiteral(double)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Converts a double value to sql literal
+  example: []
+  syntax:
+    content: public static string DoubleToSqlLiteral(double nvalue)
+    parameters:
+    - id: nvalue
+      type: System.Double
+      description: Value to convert
+    return:
+      type: System.String
+      description: Formatted string to insert directly into SQL Statement
+    content.vb: Public Shared Function DoubleToSqlLiteral(nvalue As Double) As String
+  overload: Reportman.Drawing.DoubleUtil.DoubleToSqlLiteral*
+  nameWithType.vb: DoubleUtil.DoubleToSqlLiteral(Double)
+  fullName.vb: Reportman.Drawing.DoubleUtil.DoubleToSqlLiteral(Double)
+  name.vb: DoubleToSqlLiteral(Double)
+- uid: Reportman.Drawing.DoubleUtil.#ctor
+  commentId: M:Reportman.Drawing.DoubleUtil.#ctor
+  id: '#ctor'
+  parent: Reportman.Drawing.DoubleUtil
+  langs:
+  - csharp
+  - vb
+  name: DoubleUtil()
+  nameWithType: DoubleUtil.DoubleUtil()
+  fullName: Reportman.Drawing.DoubleUtil.DoubleUtil()
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public DoubleUtil()
+    content.vb: Public Sub New()
+  overload: Reportman.Drawing.DoubleUtil.#ctor*
+  nameWithType.vb: DoubleUtil.New()
+  fullName.vb: Reportman.Drawing.DoubleUtil.New()
+  name.vb: New()
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.DoubleUtil.IsNumeric*
+  commentId: Overload:Reportman.Drawing.DoubleUtil.IsNumeric
+  isExternal: true
+  href: Reportman.Drawing.DoubleUtil.html#Reportman_Drawing_DoubleUtil_IsNumeric_System_String_System_Globalization_NumberStyles_
+  name: IsNumeric
+  nameWithType: DoubleUtil.IsNumeric
+  fullName: Reportman.Drawing.DoubleUtil.IsNumeric
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Globalization.NumberStyles
+  commentId: T:System.Globalization.NumberStyles
+  parent: System.Globalization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.globalization.numberstyles
+  name: NumberStyles
+  nameWithType: NumberStyles
+  fullName: System.Globalization.NumberStyles
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Globalization
+  commentId: N:System.Globalization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Globalization
+  nameWithType: System.Globalization
+  fullName: System.Globalization
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Globalization
+    name: Globalization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.globalization
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Globalization
+    name: Globalization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.globalization
+- uid: Reportman.Drawing.DoubleUtil.IsNumericType*
+  commentId: Overload:Reportman.Drawing.DoubleUtil.IsNumericType
+  isExternal: true
+  href: Reportman.Drawing.DoubleUtil.html#Reportman_Drawing_DoubleUtil_IsNumericType_System_Object_
+  name: IsNumericType
+  nameWithType: DoubleUtil.IsNumericType
+  fullName: Reportman.Drawing.DoubleUtil.IsNumericType
+- uid: Reportman.Drawing.DoubleUtil.Truncate*
+  commentId: Overload:Reportman.Drawing.DoubleUtil.Truncate
+  isExternal: true
+  href: Reportman.Drawing.DoubleUtil.html#Reportman_Drawing_DoubleUtil_Truncate_System_Decimal_
+  name: Truncate
+  nameWithType: DoubleUtil.Truncate
+  fullName: Reportman.Drawing.DoubleUtil.Truncate
+- uid: System.Decimal
+  commentId: T:System.Decimal
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.decimal
+  name: decimal
+  nameWithType: decimal
+  fullName: decimal
+  nameWithType.vb: Decimal
+  fullName.vb: Decimal
+  name.vb: Decimal
+- uid: Reportman.Drawing.DoubleUtil.StandardDeviation*
+  commentId: Overload:Reportman.Drawing.DoubleUtil.StandardDeviation
+  isExternal: true
+  href: Reportman.Drawing.DoubleUtil.html#Reportman_Drawing_DoubleUtil_StandardDeviation_System_Collections_Generic_IEnumerable_System_Double__
+  name: StandardDeviation
+  nameWithType: DoubleUtil.StandardDeviation
+  fullName: Reportman.Drawing.DoubleUtil.StandardDeviation
+- uid: System.Collections.Generic.IEnumerable{System.Double}
+  commentId: T:System.Collections.Generic.IEnumerable{System.Double}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<double>
+  nameWithType: IEnumerable<double>
+  fullName: System.Collections.Generic.IEnumerable<double>
+  nameWithType.vb: IEnumerable(Of Double)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of Double)
+  name.vb: IEnumerable(Of Double)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: System.Double
+    name: double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Double
+    name: Double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: )
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.double
+  name: double
+  nameWithType: double
+  fullName: double
+  nameWithType.vb: Double
+  fullName.vb: Double
+  name.vb: Double
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Reportman.Drawing.DoubleUtil.FormatCurrAdv*
+  commentId: Overload:Reportman.Drawing.DoubleUtil.FormatCurrAdv
+  isExternal: true
+  href: Reportman.Drawing.DoubleUtil.html#Reportman_Drawing_DoubleUtil_FormatCurrAdv_System_String_System_Double_
+  name: FormatCurrAdv
+  nameWithType: DoubleUtil.FormatCurrAdv
+  fullName: Reportman.Drawing.DoubleUtil.FormatCurrAdv
+- uid: Reportman.Drawing.DoubleUtil.FormatStringDecimals*
+  commentId: Overload:Reportman.Drawing.DoubleUtil.FormatStringDecimals
+  isExternal: true
+  href: Reportman.Drawing.DoubleUtil.html#Reportman_Drawing_DoubleUtil_FormatStringDecimals_System_Int32_
+  name: FormatStringDecimals
+  nameWithType: DoubleUtil.FormatStringDecimals
+  fullName: Reportman.Drawing.DoubleUtil.FormatStringDecimals
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Reportman.Drawing.DoubleUtil.Frac*
+  commentId: Overload:Reportman.Drawing.DoubleUtil.Frac
+  isExternal: true
+  href: Reportman.Drawing.DoubleUtil.html#Reportman_Drawing_DoubleUtil_Frac_System_Decimal_
+  name: Frac
+  nameWithType: DoubleUtil.Frac
+  fullName: Reportman.Drawing.DoubleUtil.Frac
+- uid: Reportman.Drawing.DoubleUtil.Trunc*
+  commentId: Overload:Reportman.Drawing.DoubleUtil.Trunc
+  isExternal: true
+  href: Reportman.Drawing.DoubleUtil.html#Reportman_Drawing_DoubleUtil_Trunc_System_Decimal_
+  name: Trunc
+  nameWithType: DoubleUtil.Trunc
+  fullName: Reportman.Drawing.DoubleUtil.Trunc
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: Reportman.Drawing.DoubleUtil.RoundDecimalUp*
+  commentId: Overload:Reportman.Drawing.DoubleUtil.RoundDecimalUp
+  isExternal: true
+  href: Reportman.Drawing.DoubleUtil.html#Reportman_Drawing_DoubleUtil_RoundDecimalUp_System_Decimal_System_Decimal_
+  name: RoundDecimalUp
+  nameWithType: DoubleUtil.RoundDecimalUp
+  fullName: Reportman.Drawing.DoubleUtil.RoundDecimalUp
+- uid: Reportman.Drawing.DoubleUtil.CompareValue*
+  commentId: Overload:Reportman.Drawing.DoubleUtil.CompareValue
+  isExternal: true
+  href: Reportman.Drawing.DoubleUtil.html#Reportman_Drawing_DoubleUtil_CompareValue_System_Decimal_System_Decimal_System_Decimal_
+  name: CompareValue
+  nameWithType: DoubleUtil.CompareValue
+  fullName: Reportman.Drawing.DoubleUtil.CompareValue
+- uid: Reportman.Drawing.DoubleUtil.NumberToText*
+  commentId: Overload:Reportman.Drawing.DoubleUtil.NumberToText
+  isExternal: true
+  href: Reportman.Drawing.DoubleUtil.html#Reportman_Drawing_DoubleUtil_NumberToText_System_Decimal_System_Boolean_System_Int32_
+  name: NumberToText
+  nameWithType: DoubleUtil.NumberToText
+  fullName: Reportman.Drawing.DoubleUtil.NumberToText
+- uid: Reportman.Drawing.DoubleUtil.DecimalToSqlLiteral*
+  commentId: Overload:Reportman.Drawing.DoubleUtil.DecimalToSqlLiteral
+  isExternal: true
+  href: Reportman.Drawing.DoubleUtil.html#Reportman_Drawing_DoubleUtil_DecimalToSqlLiteral_System_Decimal_
+  name: DecimalToSqlLiteral
+  nameWithType: DoubleUtil.DecimalToSqlLiteral
+  fullName: Reportman.Drawing.DoubleUtil.DecimalToSqlLiteral
+- uid: Reportman.Drawing.DoubleUtil.DoubleToSqlLiteral*
+  commentId: Overload:Reportman.Drawing.DoubleUtil.DoubleToSqlLiteral
+  isExternal: true
+  href: Reportman.Drawing.DoubleUtil.html#Reportman_Drawing_DoubleUtil_DoubleToSqlLiteral_System_Double_
+  name: DoubleToSqlLiteral
+  nameWithType: DoubleUtil.DoubleToSqlLiteral
+  fullName: Reportman.Drawing.DoubleUtil.DoubleToSqlLiteral
+- uid: Reportman.Drawing.DoubleUtil.#ctor*
+  commentId: Overload:Reportman.Drawing.DoubleUtil.#ctor
+  isExternal: true
+  href: Reportman.Drawing.DoubleUtil.html#Reportman_Drawing_DoubleUtil__ctor
+  name: DoubleUtil
+  nameWithType: DoubleUtil.DoubleUtil
+  fullName: Reportman.Drawing.DoubleUtil.DoubleUtil
+  nameWithType.vb: DoubleUtil.New
+  fullName.vb: Reportman.Drawing.DoubleUtil.New
+  name.vb: New

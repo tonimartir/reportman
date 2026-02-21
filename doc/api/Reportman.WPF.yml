@@ -1,0 +1,40 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.WPF
+  commentId: N:Reportman.WPF
+  id: Reportman.WPF
+  children:
+  - Reportman.WPF.PreviewWPF
+  - Reportman.WPF.PreviewWindow
+  - Reportman.WPF.PrintOutWPF
+  langs:
+  - csharp
+  - vb
+  name: Reportman.WPF
+  nameWithType: Reportman.WPF
+  fullName: Reportman.WPF
+  type: Namespace
+  assemblies:
+  - Reportman.WPF
+references:
+- uid: Reportman.WPF.PreviewWindow
+  commentId: T:Reportman.WPF.PreviewWindow
+  isExternal: true
+  href: Reportman.WPF.PreviewWindow.html
+  name: PreviewWindow
+  nameWithType: PreviewWindow
+  fullName: Reportman.WPF.PreviewWindow
+- uid: Reportman.WPF.PreviewWPF
+  commentId: T:Reportman.WPF.PreviewWPF
+  isExternal: true
+  href: Reportman.WPF.PreviewWPF.html
+  name: PreviewWPF
+  nameWithType: PreviewWPF
+  fullName: Reportman.WPF.PreviewWPF
+- uid: Reportman.WPF.PrintOutWPF
+  commentId: T:Reportman.WPF.PrintOutWPF
+  isExternal: true
+  href: Reportman.WPF.PrintOutWPF.html
+  name: PrintOutWPF
+  nameWithType: PrintOutWPF
+  fullName: Reportman.WPF.PrintOutWPF

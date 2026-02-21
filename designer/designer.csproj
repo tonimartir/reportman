@@ -6,13 +6,21 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
     <Configurations>Debug;Release_35;Release_40;Release_45;Release_Mono_w_Linux;Release</Configurations>
+    <ApplicationIcon>repmand_Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="repmand_Icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Reportman.Designer\Reportman.Designer.csproj" />
+    <ProjectReference Include="..\Reportman.Drawing.CrossPlatform\Reportman.Drawing.CrossPlatform.csproj" />
+    <ProjectReference Include="..\Reportman.Drawing.Excel\Reportman.Drawing.Excel.csproj" />
     <ProjectReference Include="..\Reportman.Drawing.Forms\Reportman.Drawing.Forms.csproj" />
+    <ProjectReference Include="..\Reportman.Drawing.Windows\Reportman.Drawing.Windows.csproj" />
     <ProjectReference Include="..\Reportman.Drawing\Reportman.Drawing.csproj" />
     <ProjectReference Include="..\Reportman.Reporting.Forms\Reportman.Reporting.Forms.csproj" />
     <ProjectReference Include="..\Reportman.Reporting\Reportman.Reporting.csproj" />
+    <ProjectReference Include="..\Reportman.WPF\Reportman.WPF.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FirebirdSql.Data.FirebirdClient" Version="10.3.2" />

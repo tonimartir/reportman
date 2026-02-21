@@ -1,0 +1,143 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness
+  commentId: T:Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness
+  id: WinFormsGraphics.DpiAwareness
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness.PerMonitorAware
+  - Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness.SystemAware
+  - Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness.Unaware
+  langs:
+  - csharp
+  - vb
+  name: WinFormsGraphics.DpiAwareness
+  nameWithType: WinFormsGraphics.DpiAwareness
+  fullName: Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness
+  type: Enum
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public enum WinFormsGraphics.DpiAwareness
+    content.vb: Public Enum WinFormsGraphics.DpiAwareness
+- uid: Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness.Unaware
+  commentId: F:Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness.Unaware
+  id: Unaware
+  parent: Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness
+  langs:
+  - csharp
+  - vb
+  name: Unaware
+  nameWithType: WinFormsGraphics.DpiAwareness.Unaware
+  fullName: Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness.Unaware
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Unaware = 0
+    return:
+      type: Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness
+- uid: Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness.SystemAware
+  commentId: F:Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness.SystemAware
+  id: SystemAware
+  parent: Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness
+  langs:
+  - csharp
+  - vb
+  name: SystemAware
+  nameWithType: WinFormsGraphics.DpiAwareness.SystemAware
+  fullName: Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness.SystemAware
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: SystemAware = 1
+    return:
+      type: Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness
+- uid: Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness.PerMonitorAware
+  commentId: F:Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness.PerMonitorAware
+  id: PerMonitorAware
+  parent: Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness
+  langs:
+  - csharp
+  - vb
+  name: PerMonitorAware
+  nameWithType: WinFormsGraphics.DpiAwareness.PerMonitorAware
+  fullName: Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness.PerMonitorAware
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: PerMonitorAware = 2
+    return:
+      type: Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness
+  commentId: T:Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.WinFormsGraphics.html
+  name: WinFormsGraphics.DpiAwareness
+  nameWithType: WinFormsGraphics.DpiAwareness
+  fullName: Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.WinFormsGraphics
+    name: WinFormsGraphics
+    isExternal: true
+    href: Reportman.Drawing.Forms.WinFormsGraphics.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness
+    name: DpiAwareness
+    isExternal: true
+    href: Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.WinFormsGraphics
+    name: WinFormsGraphics
+    isExternal: true
+    href: Reportman.Drawing.Forms.WinFormsGraphics.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness
+    name: DpiAwareness
+    isExternal: true
+    href: Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness.html

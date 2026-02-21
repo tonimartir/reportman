@@ -1,0 +1,72 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Windows
+  commentId: N:Reportman.Drawing.Windows
+  id: Reportman.Drawing.Windows
+  children:
+  - Reportman.Drawing.Windows.BitmapUtilWindows
+  - Reportman.Drawing.Windows.FontUtils
+  - Reportman.Drawing.Windows.GraphicUtils
+  - Reportman.Drawing.Windows.PrintOutPDFWindows
+  - Reportman.Drawing.Windows.TFontFaceCache
+  - Reportman.Drawing.Windows.TGlyphLine
+  - Reportman.Drawing.Windows.TTextExtentRenderer
+  langs:
+  - csharp
+  - vb
+  name: Reportman.Drawing.Windows
+  nameWithType: Reportman.Drawing.Windows
+  fullName: Reportman.Drawing.Windows
+  type: Namespace
+  assemblies:
+  - Reportman.Drawing.Windows
+references:
+- uid: Reportman.Drawing.Windows.BitmapUtilWindows
+  commentId: T:Reportman.Drawing.Windows.BitmapUtilWindows
+  isExternal: true
+  href: Reportman.Drawing.Windows.BitmapUtilWindows.html
+  name: BitmapUtilWindows
+  nameWithType: BitmapUtilWindows
+  fullName: Reportman.Drawing.Windows.BitmapUtilWindows
+- uid: Reportman.Drawing.Windows.TGlyphLine
+  commentId: T:Reportman.Drawing.Windows.TGlyphLine
+  isExternal: true
+  href: Reportman.Drawing.Windows.TGlyphLine.html
+  name: TGlyphLine
+  nameWithType: TGlyphLine
+  fullName: Reportman.Drawing.Windows.TGlyphLine
+- uid: Reportman.Drawing.Windows.TFontFaceCache
+  commentId: T:Reportman.Drawing.Windows.TFontFaceCache
+  isExternal: true
+  href: Reportman.Drawing.Windows.TFontFaceCache.html
+  name: TFontFaceCache
+  nameWithType: TFontFaceCache
+  fullName: Reportman.Drawing.Windows.TFontFaceCache
+- uid: Reportman.Drawing.Windows.TTextExtentRenderer
+  commentId: T:Reportman.Drawing.Windows.TTextExtentRenderer
+  isExternal: true
+  href: Reportman.Drawing.Windows.TTextExtentRenderer.html
+  name: TTextExtentRenderer
+  nameWithType: TTextExtentRenderer
+  fullName: Reportman.Drawing.Windows.TTextExtentRenderer
+- uid: Reportman.Drawing.Windows.FontUtils
+  commentId: T:Reportman.Drawing.Windows.FontUtils
+  isExternal: true
+  href: Reportman.Drawing.Windows.FontUtils.html
+  name: FontUtils
+  nameWithType: FontUtils
+  fullName: Reportman.Drawing.Windows.FontUtils
+- uid: Reportman.Drawing.Windows.GraphicUtils
+  commentId: T:Reportman.Drawing.Windows.GraphicUtils
+  isExternal: true
+  href: Reportman.Drawing.Windows.GraphicUtils.html
+  name: GraphicUtils
+  nameWithType: GraphicUtils
+  fullName: Reportman.Drawing.Windows.GraphicUtils
+- uid: Reportman.Drawing.Windows.PrintOutPDFWindows
+  commentId: T:Reportman.Drawing.Windows.PrintOutPDFWindows
+  isExternal: true
+  href: Reportman.Drawing.Windows.PrintOutPDFWindows.html
+  name: PrintOutPDFWindows
+  nameWithType: PrintOutPDFWindows
+  fullName: Reportman.Drawing.Windows.PrintOutPDFWindows

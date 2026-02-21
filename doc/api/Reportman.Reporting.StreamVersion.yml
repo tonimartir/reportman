@@ -1,0 +1,94 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.StreamVersion
+  commentId: T:Reportman.Reporting.StreamVersion
+  id: StreamVersion
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.StreamVersion.V1
+  - Reportman.Reporting.StreamVersion.V2
+  langs:
+  - csharp
+  - vb
+  name: StreamVersion
+  nameWithType: StreamVersion
+  fullName: Reportman.Reporting.StreamVersion
+  type: Enum
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public enum StreamVersion
+    content.vb: Public Enum StreamVersion
+- uid: Reportman.Reporting.StreamVersion.V1
+  commentId: F:Reportman.Reporting.StreamVersion.V1
+  id: V1
+  parent: Reportman.Reporting.StreamVersion
+  langs:
+  - csharp
+  - vb
+  name: V1
+  nameWithType: StreamVersion.V1
+  fullName: Reportman.Reporting.StreamVersion.V1
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: V1 = 0
+    return:
+      type: Reportman.Reporting.StreamVersion
+- uid: Reportman.Reporting.StreamVersion.V2
+  commentId: F:Reportman.Reporting.StreamVersion.V2
+  id: V2
+  parent: Reportman.Reporting.StreamVersion
+  langs:
+  - csharp
+  - vb
+  name: V2
+  nameWithType: StreamVersion.V2
+  fullName: Reportman.Reporting.StreamVersion.V2
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: V2 = 1
+    return:
+      type: Reportman.Reporting.StreamVersion
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: Reportman.Reporting.StreamVersion
+  commentId: T:Reportman.Reporting.StreamVersion
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.StreamVersion.html
+  name: StreamVersion
+  nameWithType: StreamVersion
+  fullName: Reportman.Reporting.StreamVersion

@@ -1,0 +1,293 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent
+  commentId: T:Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent
+  id: DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.#ctor(System.Object,System.IntPtr)
+  - Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.BeginInvoke(System.Object,System.Windows.Forms.DataGridViewRow,System.AsyncCallback,System.Object)
+  - Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.EndInvoke(System.IAsyncResult)
+  - Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.Invoke(System.Object,System.Windows.Forms.DataGridViewRow)
+  langs:
+  - csharp
+  - vb
+  name: DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent
+  nameWithType: DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent
+  fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent
+  type: Delegate
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public delegate void DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent(object sender, DataGridViewRow gridRow)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: gridRow
+      type: System.Windows.Forms.DataGridViewRow
+    content.vb: Public Delegate Sub DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent(sender As Object, gridRow As DataGridViewRow)
+- uid: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.#ctor(System.Object,System.IntPtr)
+  commentId: M:Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.#ctor(System.Object,System.IntPtr)
+  id: '#ctor(System.Object,System.IntPtr)'
+  parent: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent
+  langs:
+  - csharp
+  - vb
+  name: SelectNextRowAfterEnterKeyEvent(object, nint)
+  nameWithType: DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.SelectNextRowAfterEnterKeyEvent(object, nint)
+  fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.SelectNextRowAfterEnterKeyEvent(object, nint)
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public SelectNextRowAfterEnterKeyEvent(object @object, nint method)
+    parameters:
+    - id: object
+      type: System.Object
+    - id: method
+      type: System.IntPtr
+    content.vb: Public Sub New([object] As Object, method As IntPtr)
+  overload: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.#ctor*
+  nameWithType.vb: DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.New(Object, IntPtr)
+  fullName.vb: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.New(Object, System.IntPtr)
+  name.vb: New(Object, IntPtr)
+- uid: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.Invoke(System.Object,System.Windows.Forms.DataGridViewRow)
+  commentId: M:Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.Invoke(System.Object,System.Windows.Forms.DataGridViewRow)
+  id: Invoke(System.Object,System.Windows.Forms.DataGridViewRow)
+  parent: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent
+  langs:
+  - csharp
+  - vb
+  name: Invoke(object, DataGridViewRow)
+  nameWithType: DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.Invoke(object, DataGridViewRow)
+  fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.Invoke(object, System.Windows.Forms.DataGridViewRow)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual void Invoke(object sender, DataGridViewRow gridRow)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: gridRow
+      type: System.Windows.Forms.DataGridViewRow
+    content.vb: Public Overridable Sub Invoke(sender As Object, gridRow As DataGridViewRow)
+  overload: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.Invoke*
+  nameWithType.vb: DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.Invoke(Object, DataGridViewRow)
+  fullName.vb: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.Invoke(Object, System.Windows.Forms.DataGridViewRow)
+  name.vb: Invoke(Object, DataGridViewRow)
+- uid: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.BeginInvoke(System.Object,System.Windows.Forms.DataGridViewRow,System.AsyncCallback,System.Object)
+  commentId: M:Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.BeginInvoke(System.Object,System.Windows.Forms.DataGridViewRow,System.AsyncCallback,System.Object)
+  id: BeginInvoke(System.Object,System.Windows.Forms.DataGridViewRow,System.AsyncCallback,System.Object)
+  parent: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent
+  langs:
+  - csharp
+  - vb
+  name: BeginInvoke(object, DataGridViewRow, AsyncCallback, object)
+  nameWithType: DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.BeginInvoke(object, DataGridViewRow, AsyncCallback, object)
+  fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.BeginInvoke(object, System.Windows.Forms.DataGridViewRow, System.AsyncCallback, object)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual IAsyncResult BeginInvoke(object sender, DataGridViewRow gridRow, AsyncCallback callback, object @object)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: gridRow
+      type: System.Windows.Forms.DataGridViewRow
+    - id: callback
+      type: System.AsyncCallback
+    - id: object
+      type: System.Object
+    return:
+      type: System.IAsyncResult
+    content.vb: Public Overridable Function BeginInvoke(sender As Object, gridRow As DataGridViewRow, callback As AsyncCallback, [object] As Object) As IAsyncResult
+  overload: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.BeginInvoke*
+  nameWithType.vb: DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.BeginInvoke(Object, DataGridViewRow, AsyncCallback, Object)
+  fullName.vb: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.BeginInvoke(Object, System.Windows.Forms.DataGridViewRow, System.AsyncCallback, Object)
+  name.vb: BeginInvoke(Object, DataGridViewRow, AsyncCallback, Object)
+- uid: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.EndInvoke(System.IAsyncResult)
+  commentId: M:Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.EndInvoke(System.IAsyncResult)
+  id: EndInvoke(System.IAsyncResult)
+  parent: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent
+  langs:
+  - csharp
+  - vb
+  name: EndInvoke(IAsyncResult)
+  nameWithType: DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.EndInvoke(IAsyncResult)
+  fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.EndInvoke(System.IAsyncResult)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual void EndInvoke(IAsyncResult result)
+    parameters:
+    - id: result
+      type: System.IAsyncResult
+    content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
+  overload: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.EndInvoke*
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Windows.Forms.DataGridViewRow
+  commentId: T:System.Windows.Forms.DataGridViewRow
+  parent: System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewrow
+  name: DataGridViewRow
+  nameWithType: DataGridViewRow
+  fullName: System.Windows.Forms.DataGridViewRow
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Windows.Forms
+  commentId: N:System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Windows.Forms
+  nameWithType: System.Windows.Forms
+  fullName: System.Windows.Forms
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Windows
+    name: Windows
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows
+  - name: .
+  - uid: System.Windows.Forms
+    name: Forms
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Windows
+    name: Windows
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows
+  - name: .
+  - uid: System.Windows.Forms
+    name: Forms
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms
+- uid: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.#ctor*
+  commentId: Overload:Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.#ctor
+  isExternal: true
+  href: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.html#Reportman_Drawing_Forms_DataGridViewAdvanced_SelectNextRowAfterEnterKeyEvent__ctor_System_Object_System_IntPtr_
+  name: SelectNextRowAfterEnterKeyEvent
+  nameWithType: DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.SelectNextRowAfterEnterKeyEvent
+  fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.SelectNextRowAfterEnterKeyEvent
+  nameWithType.vb: DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.New
+  fullName.vb: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.New
+  name.vb: New
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.Invoke*
+  commentId: Overload:Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.Invoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.html#Reportman_Drawing_Forms_DataGridViewAdvanced_SelectNextRowAfterEnterKeyEvent_Invoke_System_Object_System_Windows_Forms_DataGridViewRow_
+  name: Invoke
+  nameWithType: DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.Invoke
+  fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.Invoke
+- uid: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.BeginInvoke*
+  commentId: Overload:Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.BeginInvoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.html#Reportman_Drawing_Forms_DataGridViewAdvanced_SelectNextRowAfterEnterKeyEvent_BeginInvoke_System_Object_System_Windows_Forms_DataGridViewRow_System_AsyncCallback_System_Object_
+  name: BeginInvoke
+  nameWithType: DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.BeginInvoke
+  fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.BeginInvoke
+- uid: System.AsyncCallback
+  commentId: T:System.AsyncCallback
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.asynccallback
+  name: AsyncCallback
+  nameWithType: AsyncCallback
+  fullName: System.AsyncCallback
+- uid: System.IAsyncResult
+  commentId: T:System.IAsyncResult
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncresult
+  name: IAsyncResult
+  nameWithType: IAsyncResult
+  fullName: System.IAsyncResult
+- uid: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.EndInvoke*
+  commentId: Overload:Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.EndInvoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.html#Reportman_Drawing_Forms_DataGridViewAdvanced_SelectNextRowAfterEnterKeyEvent_EndInvoke_System_IAsyncResult_
+  name: EndInvoke
+  nameWithType: DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.EndInvoke
+  fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.EndInvoke

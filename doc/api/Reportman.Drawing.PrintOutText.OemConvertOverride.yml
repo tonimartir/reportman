@@ -1,0 +1,133 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.PrintOutText.OemConvertOverride
+  commentId: T:Reportman.Drawing.PrintOutText.OemConvertOverride
+  id: PrintOutText.OemConvertOverride
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.PrintOutText.OemConvertOverride.False
+  - Reportman.Drawing.PrintOutText.OemConvertOverride.None
+  - Reportman.Drawing.PrintOutText.OemConvertOverride.True
+  langs:
+  - csharp
+  - vb
+  name: PrintOutText.OemConvertOverride
+  nameWithType: PrintOutText.OemConvertOverride
+  fullName: Reportman.Drawing.PrintOutText.OemConvertOverride
+  type: Enum
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public enum PrintOutText.OemConvertOverride
+    content.vb: Public Enum PrintOutText.OemConvertOverride
+- uid: Reportman.Drawing.PrintOutText.OemConvertOverride.None
+  commentId: F:Reportman.Drawing.PrintOutText.OemConvertOverride.None
+  id: None
+  parent: Reportman.Drawing.PrintOutText.OemConvertOverride
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: PrintOutText.OemConvertOverride.None
+  fullName: Reportman.Drawing.PrintOutText.OemConvertOverride.None
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: None = 0
+    return:
+      type: Reportman.Drawing.PrintOutText.OemConvertOverride
+- uid: Reportman.Drawing.PrintOutText.OemConvertOverride.False
+  commentId: F:Reportman.Drawing.PrintOutText.OemConvertOverride.False
+  id: "False"
+  parent: Reportman.Drawing.PrintOutText.OemConvertOverride
+  langs:
+  - csharp
+  - vb
+  name: "False"
+  nameWithType: PrintOutText.OemConvertOverride.False
+  fullName: Reportman.Drawing.PrintOutText.OemConvertOverride.False
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: False = 1
+    return:
+      type: Reportman.Drawing.PrintOutText.OemConvertOverride
+- uid: Reportman.Drawing.PrintOutText.OemConvertOverride.True
+  commentId: F:Reportman.Drawing.PrintOutText.OemConvertOverride.True
+  id: "True"
+  parent: Reportman.Drawing.PrintOutText.OemConvertOverride
+  langs:
+  - csharp
+  - vb
+  name: "True"
+  nameWithType: PrintOutText.OemConvertOverride.True
+  fullName: Reportman.Drawing.PrintOutText.OemConvertOverride.True
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: True = 2
+    return:
+      type: Reportman.Drawing.PrintOutText.OemConvertOverride
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.PrintOutText.OemConvertOverride
+  commentId: T:Reportman.Drawing.PrintOutText.OemConvertOverride
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PrintOutText.html
+  name: PrintOutText.OemConvertOverride
+  nameWithType: PrintOutText.OemConvertOverride
+  fullName: Reportman.Drawing.PrintOutText.OemConvertOverride
+  spec.csharp:
+  - uid: Reportman.Drawing.PrintOutText
+    name: PrintOutText
+    isExternal: true
+    href: Reportman.Drawing.PrintOutText.html
+  - name: .
+  - uid: Reportman.Drawing.PrintOutText.OemConvertOverride
+    name: OemConvertOverride
+    isExternal: true
+    href: Reportman.Drawing.PrintOutText.OemConvertOverride.html
+  spec.vb:
+  - uid: Reportman.Drawing.PrintOutText
+    name: PrintOutText
+    isExternal: true
+    href: Reportman.Drawing.PrintOutText.html
+  - name: .
+  - uid: Reportman.Drawing.PrintOutText.OemConvertOverride
+    name: OemConvertOverride
+    isExternal: true
+    href: Reportman.Drawing.PrintOutText.OemConvertOverride.html

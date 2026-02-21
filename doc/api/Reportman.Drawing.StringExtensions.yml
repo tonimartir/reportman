@@ -1,0 +1,709 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.StringExtensions
+  commentId: T:Reportman.Drawing.StringExtensions
+  id: StringExtensions
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.StringExtensions.DoubleQuoteStr(System.String)
+  - Reportman.Drawing.StringExtensions.Escape(System.String,System.String,System.Char)
+  - Reportman.Drawing.StringExtensions.QuoteStr(System.String)
+  - Reportman.Drawing.StringExtensions.RemoveDiacritics(System.String)
+  - Reportman.Drawing.StringExtensions.Split(System.String,System.Char,System.Char,System.Boolean)
+  - Reportman.Drawing.StringExtensions.Split(System.String,System.Char,System.Char,System.Boolean,System.Boolean)
+  - Reportman.Drawing.StringExtensions.Unescape(System.String,System.Char)
+  langs:
+  - csharp
+  - vb
+  name: StringExtensions
+  nameWithType: StringExtensions
+  fullName: Reportman.Drawing.StringExtensions
+  type: Class
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static class StringExtensions
+    content.vb: Public Module StringExtensions
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.StringExtensions.Split(System.String,System.Char,System.Char,System.Boolean,System.Boolean)
+  commentId: M:Reportman.Drawing.StringExtensions.Split(System.String,System.Char,System.Char,System.Boolean,System.Boolean)
+  id: Split(System.String,System.Char,System.Char,System.Boolean,System.Boolean)
+  isExtensionMethod: true
+  parent: Reportman.Drawing.StringExtensions
+  langs:
+  - csharp
+  - vb
+  name: Split(string, char, char, bool, bool)
+  nameWithType: StringExtensions.Split(string, char, char, bool, bool)
+  fullName: Reportman.Drawing.StringExtensions.Split(string, char, char, bool, bool)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static IEnumerable<string> Split(this string text, char separator, char escapeCharacter, bool useextension, bool ex)
+    parameters:
+    - id: text
+      type: System.String
+    - id: separator
+      type: System.Char
+    - id: escapeCharacter
+      type: System.Char
+    - id: useextension
+      type: System.Boolean
+    - id: ex
+      type: System.Boolean
+    return:
+      type: System.Collections.Generic.IEnumerable{System.String}
+    content.vb: Public Shared Function Split(text As String, separator As Char, escapeCharacter As Char, useextension As Boolean, ex As Boolean) As IEnumerable(Of String)
+  overload: Reportman.Drawing.StringExtensions.Split*
+  nameWithType.vb: StringExtensions.Split(String, Char, Char, Boolean, Boolean)
+  fullName.vb: Reportman.Drawing.StringExtensions.Split(String, Char, Char, Boolean, Boolean)
+  name.vb: Split(String, Char, Char, Boolean, Boolean)
+- uid: Reportman.Drawing.StringExtensions.Split(System.String,System.Char,System.Char,System.Boolean)
+  commentId: M:Reportman.Drawing.StringExtensions.Split(System.String,System.Char,System.Char,System.Boolean)
+  id: Split(System.String,System.Char,System.Char,System.Boolean)
+  isExtensionMethod: true
+  parent: Reportman.Drawing.StringExtensions
+  langs:
+  - csharp
+  - vb
+  name: Split(string, char, char, bool)
+  nameWithType: StringExtensions.Split(string, char, char, bool)
+  fullName: Reportman.Drawing.StringExtensions.Split(string, char, char, bool)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string[] Split(this string text, char separator, char escapeCharacter, bool escape)
+    parameters:
+    - id: text
+      type: System.String
+    - id: separator
+      type: System.Char
+    - id: escapeCharacter
+      type: System.Char
+    - id: escape
+      type: System.Boolean
+    return:
+      type: System.String[]
+    content.vb: Public Shared Function Split(text As String, separator As Char, escapeCharacter As Char, escape As Boolean) As String()
+  overload: Reportman.Drawing.StringExtensions.Split*
+  nameWithType.vb: StringExtensions.Split(String, Char, Char, Boolean)
+  fullName.vb: Reportman.Drawing.StringExtensions.Split(String, Char, Char, Boolean)
+  name.vb: Split(String, Char, Char, Boolean)
+- uid: Reportman.Drawing.StringExtensions.Escape(System.String,System.String,System.Char)
+  commentId: M:Reportman.Drawing.StringExtensions.Escape(System.String,System.String,System.Char)
+  id: Escape(System.String,System.String,System.Char)
+  isExtensionMethod: true
+  parent: Reportman.Drawing.StringExtensions
+  langs:
+  - csharp
+  - vb
+  name: Escape(string, string, char)
+  nameWithType: StringExtensions.Escape(string, string, char)
+  fullName: Reportman.Drawing.StringExtensions.Escape(string, string, char)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string Escape(this string text, string controlChars, char escapeCharacter)
+    parameters:
+    - id: text
+      type: System.String
+    - id: controlChars
+      type: System.String
+    - id: escapeCharacter
+      type: System.Char
+    return:
+      type: System.String
+    content.vb: Public Shared Function Escape(text As String, controlChars As String, escapeCharacter As Char) As String
+  overload: Reportman.Drawing.StringExtensions.Escape*
+  nameWithType.vb: StringExtensions.Escape(String, String, Char)
+  fullName.vb: Reportman.Drawing.StringExtensions.Escape(String, String, Char)
+  name.vb: Escape(String, String, Char)
+- uid: Reportman.Drawing.StringExtensions.Unescape(System.String,System.Char)
+  commentId: M:Reportman.Drawing.StringExtensions.Unescape(System.String,System.Char)
+  id: Unescape(System.String,System.Char)
+  isExtensionMethod: true
+  parent: Reportman.Drawing.StringExtensions
+  langs:
+  - csharp
+  - vb
+  name: Unescape(string, char)
+  nameWithType: StringExtensions.Unescape(string, char)
+  fullName: Reportman.Drawing.StringExtensions.Unescape(string, char)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string Unescape(this string text, char escapeCharacter)
+    parameters:
+    - id: text
+      type: System.String
+    - id: escapeCharacter
+      type: System.Char
+    return:
+      type: System.String
+    content.vb: Public Shared Function Unescape(text As String, escapeCharacter As Char) As String
+  overload: Reportman.Drawing.StringExtensions.Unescape*
+  nameWithType.vb: StringExtensions.Unescape(String, Char)
+  fullName.vb: Reportman.Drawing.StringExtensions.Unescape(String, Char)
+  name.vb: Unescape(String, Char)
+- uid: Reportman.Drawing.StringExtensions.RemoveDiacritics(System.String)
+  commentId: M:Reportman.Drawing.StringExtensions.RemoveDiacritics(System.String)
+  id: RemoveDiacritics(System.String)
+  isExtensionMethod: true
+  parent: Reportman.Drawing.StringExtensions
+  langs:
+  - csharp
+  - vb
+  name: RemoveDiacritics(string)
+  nameWithType: StringExtensions.RemoveDiacritics(string)
+  fullName: Reportman.Drawing.StringExtensions.RemoveDiacritics(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string RemoveDiacritics(this string input)
+    parameters:
+    - id: input
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function RemoveDiacritics(input As String) As String
+  overload: Reportman.Drawing.StringExtensions.RemoveDiacritics*
+  nameWithType.vb: StringExtensions.RemoveDiacritics(String)
+  fullName.vb: Reportman.Drawing.StringExtensions.RemoveDiacritics(String)
+  name.vb: RemoveDiacritics(String)
+- uid: Reportman.Drawing.StringExtensions.QuoteStr(System.String)
+  commentId: M:Reportman.Drawing.StringExtensions.QuoteStr(System.String)
+  id: QuoteStr(System.String)
+  isExtensionMethod: true
+  parent: Reportman.Drawing.StringExtensions
+  langs:
+  - csharp
+  - vb
+  name: QuoteStr(string)
+  nameWithType: StringExtensions.QuoteStr(string)
+  fullName: Reportman.Drawing.StringExtensions.QuoteStr(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string QuoteStr(this string input)
+    parameters:
+    - id: input
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function QuoteStr(input As String) As String
+  overload: Reportman.Drawing.StringExtensions.QuoteStr*
+  nameWithType.vb: StringExtensions.QuoteStr(String)
+  fullName.vb: Reportman.Drawing.StringExtensions.QuoteStr(String)
+  name.vb: QuoteStr(String)
+- uid: Reportman.Drawing.StringExtensions.DoubleQuoteStr(System.String)
+  commentId: M:Reportman.Drawing.StringExtensions.DoubleQuoteStr(System.String)
+  id: DoubleQuoteStr(System.String)
+  isExtensionMethod: true
+  parent: Reportman.Drawing.StringExtensions
+  langs:
+  - csharp
+  - vb
+  name: DoubleQuoteStr(string)
+  nameWithType: StringExtensions.DoubleQuoteStr(string)
+  fullName: Reportman.Drawing.StringExtensions.DoubleQuoteStr(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string DoubleQuoteStr(this string input)
+    parameters:
+    - id: input
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function DoubleQuoteStr(input As String) As String
+  overload: Reportman.Drawing.StringExtensions.DoubleQuoteStr*
+  nameWithType.vb: StringExtensions.DoubleQuoteStr(String)
+  fullName.vb: Reportman.Drawing.StringExtensions.DoubleQuoteStr(String)
+  name.vb: DoubleQuoteStr(String)
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.StringExtensions.Split*
+  commentId: Overload:Reportman.Drawing.StringExtensions.Split
+  isExternal: true
+  href: Reportman.Drawing.StringExtensions.html#Reportman_Drawing_StringExtensions_Split_System_String_System_Char_System_Char_System_Boolean_System_Boolean_
+  name: Split
+  nameWithType: StringExtensions.Split
+  fullName: Reportman.Drawing.StringExtensions.Split
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Char
+  commentId: T:System.Char
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.char
+  name: char
+  nameWithType: char
+  fullName: char
+  nameWithType.vb: Char
+  fullName.vb: Char
+  name.vb: Char
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Collections.Generic.IEnumerable{System.String}
+  commentId: T:System.Collections.Generic.IEnumerable{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<string>
+  nameWithType: IEnumerable<string>
+  fullName: System.Collections.Generic.IEnumerable<string>
+  nameWithType.vb: IEnumerable(Of String)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of String)
+  name.vb: IEnumerable(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.String[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string[]
+  nameWithType: string[]
+  fullName: string[]
+  nameWithType.vb: String()
+  fullName.vb: String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: (
+  - name: )
+- uid: Reportman.Drawing.StringExtensions.Escape*
+  commentId: Overload:Reportman.Drawing.StringExtensions.Escape
+  isExternal: true
+  href: Reportman.Drawing.StringExtensions.html#Reportman_Drawing_StringExtensions_Escape_System_String_System_String_System_Char_
+  name: Escape
+  nameWithType: StringExtensions.Escape
+  fullName: Reportman.Drawing.StringExtensions.Escape
+- uid: Reportman.Drawing.StringExtensions.Unescape*
+  commentId: Overload:Reportman.Drawing.StringExtensions.Unescape
+  isExternal: true
+  href: Reportman.Drawing.StringExtensions.html#Reportman_Drawing_StringExtensions_Unescape_System_String_System_Char_
+  name: Unescape
+  nameWithType: StringExtensions.Unescape
+  fullName: Reportman.Drawing.StringExtensions.Unescape
+- uid: Reportman.Drawing.StringExtensions.RemoveDiacritics*
+  commentId: Overload:Reportman.Drawing.StringExtensions.RemoveDiacritics
+  isExternal: true
+  href: Reportman.Drawing.StringExtensions.html#Reportman_Drawing_StringExtensions_RemoveDiacritics_System_String_
+  name: RemoveDiacritics
+  nameWithType: StringExtensions.RemoveDiacritics
+  fullName: Reportman.Drawing.StringExtensions.RemoveDiacritics
+- uid: Reportman.Drawing.StringExtensions.QuoteStr*
+  commentId: Overload:Reportman.Drawing.StringExtensions.QuoteStr
+  isExternal: true
+  href: Reportman.Drawing.StringExtensions.html#Reportman_Drawing_StringExtensions_QuoteStr_System_String_
+  name: QuoteStr
+  nameWithType: StringExtensions.QuoteStr
+  fullName: Reportman.Drawing.StringExtensions.QuoteStr
+- uid: Reportman.Drawing.StringExtensions.DoubleQuoteStr*
+  commentId: Overload:Reportman.Drawing.StringExtensions.DoubleQuoteStr
+  isExternal: true
+  href: Reportman.Drawing.StringExtensions.html#Reportman_Drawing_StringExtensions_DoubleQuoteStr_System_String_
+  name: DoubleQuoteStr
+  nameWithType: StringExtensions.DoubleQuoteStr
+  fullName: Reportman.Drawing.StringExtensions.DoubleQuoteStr

@@ -1,0 +1,132 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.Aggregate
+  commentId: T:Reportman.Reporting.Aggregate
+  id: Aggregate
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.Aggregate.General
+  - Reportman.Reporting.Aggregate.Group
+  - Reportman.Reporting.Aggregate.None
+  - Reportman.Reporting.Aggregate.Page
+  langs:
+  - csharp
+  - vb
+  name: Aggregate
+  nameWithType: Aggregate
+  fullName: Reportman.Reporting.Aggregate
+  type: Enum
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public enum Aggregate
+    content.vb: Public Enum Aggregate
+- uid: Reportman.Reporting.Aggregate.None
+  commentId: F:Reportman.Reporting.Aggregate.None
+  id: None
+  parent: Reportman.Reporting.Aggregate
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: Aggregate.None
+  fullName: Reportman.Reporting.Aggregate.None
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: None = 0
+    return:
+      type: Reportman.Reporting.Aggregate
+- uid: Reportman.Reporting.Aggregate.Group
+  commentId: F:Reportman.Reporting.Aggregate.Group
+  id: Group
+  parent: Reportman.Reporting.Aggregate
+  langs:
+  - csharp
+  - vb
+  name: Group
+  nameWithType: Aggregate.Group
+  fullName: Reportman.Reporting.Aggregate.Group
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Group = 1
+    return:
+      type: Reportman.Reporting.Aggregate
+- uid: Reportman.Reporting.Aggregate.Page
+  commentId: F:Reportman.Reporting.Aggregate.Page
+  id: Page
+  parent: Reportman.Reporting.Aggregate
+  langs:
+  - csharp
+  - vb
+  name: Page
+  nameWithType: Aggregate.Page
+  fullName: Reportman.Reporting.Aggregate.Page
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Page = 2
+    return:
+      type: Reportman.Reporting.Aggregate
+- uid: Reportman.Reporting.Aggregate.General
+  commentId: F:Reportman.Reporting.Aggregate.General
+  id: General
+  parent: Reportman.Reporting.Aggregate
+  langs:
+  - csharp
+  - vb
+  name: General
+  nameWithType: Aggregate.General
+  fullName: Reportman.Reporting.Aggregate.General
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: General = 3
+    return:
+      type: Reportman.Reporting.Aggregate
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: Reportman.Reporting.Aggregate
+  commentId: T:Reportman.Reporting.Aggregate
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.Aggregate.html
+  name: Aggregate
+  nameWithType: Aggregate
+  fullName: Reportman.Reporting.Aggregate

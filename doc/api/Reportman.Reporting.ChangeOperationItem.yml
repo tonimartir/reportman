@@ -1,0 +1,471 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.ChangeOperationItem
+  commentId: T:Reportman.Reporting.ChangeOperationItem
+  id: ChangeOperationItem
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.ChangeOperationItem.#ctor(System.String,Reportman.Reporting.PropertyType,System.Object,System.Object)
+  - Reportman.Reporting.ChangeOperationItem.NewValue
+  - Reportman.Reporting.ChangeOperationItem.OldValue
+  - Reportman.Reporting.ChangeOperationItem.PropertyName
+  - Reportman.Reporting.ChangeOperationItem.PropertyType
+  langs:
+  - csharp
+  - vb
+  name: ChangeOperationItem
+  nameWithType: ChangeOperationItem
+  fullName: Reportman.Reporting.ChangeOperationItem
+  type: Class
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public class ChangeOperationItem
+    content.vb: Public Class ChangeOperationItem
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Reporting.ChangeOperationItem.#ctor(System.String,Reportman.Reporting.PropertyType,System.Object,System.Object)
+  commentId: M:Reportman.Reporting.ChangeOperationItem.#ctor(System.String,Reportman.Reporting.PropertyType,System.Object,System.Object)
+  id: '#ctor(System.String,Reportman.Reporting.PropertyType,System.Object,System.Object)'
+  parent: Reportman.Reporting.ChangeOperationItem
+  langs:
+  - csharp
+  - vb
+  name: ChangeOperationItem(string, PropertyType, object, object)
+  nameWithType: ChangeOperationItem.ChangeOperationItem(string, PropertyType, object, object)
+  fullName: Reportman.Reporting.ChangeOperationItem.ChangeOperationItem(string, Reportman.Reporting.PropertyType, object, object)
+  type: Constructor
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public ChangeOperationItem(string propertyName, PropertyType propertyType, object oldValue = null, object newValue = null)
+    parameters:
+    - id: propertyName
+      type: System.String
+    - id: propertyType
+      type: Reportman.Reporting.PropertyType
+    - id: oldValue
+      type: System.Object
+    - id: newValue
+      type: System.Object
+    content.vb: Public Sub New(propertyName As String, propertyType As PropertyType, oldValue As Object = Nothing, newValue As Object = Nothing)
+  overload: Reportman.Reporting.ChangeOperationItem.#ctor*
+  nameWithType.vb: ChangeOperationItem.New(String, PropertyType, Object, Object)
+  fullName.vb: Reportman.Reporting.ChangeOperationItem.New(String, Reportman.Reporting.PropertyType, Object, Object)
+  name.vb: New(String, PropertyType, Object, Object)
+- uid: Reportman.Reporting.ChangeOperationItem.PropertyName
+  commentId: P:Reportman.Reporting.ChangeOperationItem.PropertyName
+  id: PropertyName
+  parent: Reportman.Reporting.ChangeOperationItem
+  langs:
+  - csharp
+  - vb
+  name: PropertyName
+  nameWithType: ChangeOperationItem.PropertyName
+  fullName: Reportman.Reporting.ChangeOperationItem.PropertyName
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public string PropertyName { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property PropertyName As String
+  overload: Reportman.Reporting.ChangeOperationItem.PropertyName*
+- uid: Reportman.Reporting.ChangeOperationItem.PropertyType
+  commentId: P:Reportman.Reporting.ChangeOperationItem.PropertyType
+  id: PropertyType
+  parent: Reportman.Reporting.ChangeOperationItem
+  langs:
+  - csharp
+  - vb
+  name: PropertyType
+  nameWithType: ChangeOperationItem.PropertyType
+  fullName: Reportman.Reporting.ChangeOperationItem.PropertyType
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public PropertyType PropertyType { get; set; }
+    parameters: []
+    return:
+      type: Reportman.Reporting.PropertyType
+    content.vb: Public Property PropertyType As PropertyType
+  overload: Reportman.Reporting.ChangeOperationItem.PropertyType*
+- uid: Reportman.Reporting.ChangeOperationItem.OldValue
+  commentId: P:Reportman.Reporting.ChangeOperationItem.OldValue
+  id: OldValue
+  parent: Reportman.Reporting.ChangeOperationItem
+  langs:
+  - csharp
+  - vb
+  name: OldValue
+  nameWithType: ChangeOperationItem.OldValue
+  fullName: Reportman.Reporting.ChangeOperationItem.OldValue
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public object OldValue { get; set; }
+    parameters: []
+    return:
+      type: System.Object
+    content.vb: Public Property OldValue As Object
+  overload: Reportman.Reporting.ChangeOperationItem.OldValue*
+- uid: Reportman.Reporting.ChangeOperationItem.NewValue
+  commentId: P:Reportman.Reporting.ChangeOperationItem.NewValue
+  id: NewValue
+  parent: Reportman.Reporting.ChangeOperationItem
+  langs:
+  - csharp
+  - vb
+  name: NewValue
+  nameWithType: ChangeOperationItem.NewValue
+  fullName: Reportman.Reporting.ChangeOperationItem.NewValue
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public object NewValue { get; set; }
+    parameters: []
+    return:
+      type: System.Object
+    content.vb: Public Property NewValue As Object
+  overload: Reportman.Reporting.ChangeOperationItem.NewValue*
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Reporting.ChangeOperationItem.#ctor*
+  commentId: Overload:Reportman.Reporting.ChangeOperationItem.#ctor
+  isExternal: true
+  href: Reportman.Reporting.ChangeOperationItem.html#Reportman_Reporting_ChangeOperationItem__ctor_System_String_Reportman_Reporting_PropertyType_System_Object_System_Object_
+  name: ChangeOperationItem
+  nameWithType: ChangeOperationItem.ChangeOperationItem
+  fullName: Reportman.Reporting.ChangeOperationItem.ChangeOperationItem
+  nameWithType.vb: ChangeOperationItem.New
+  fullName.vb: Reportman.Reporting.ChangeOperationItem.New
+  name.vb: New
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Reportman.Reporting.PropertyType
+  commentId: T:Reportman.Reporting.PropertyType
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.PropertyType.html
+  name: PropertyType
+  nameWithType: PropertyType
+  fullName: Reportman.Reporting.PropertyType
+- uid: Reportman.Reporting.ChangeOperationItem.PropertyName*
+  commentId: Overload:Reportman.Reporting.ChangeOperationItem.PropertyName
+  isExternal: true
+  href: Reportman.Reporting.ChangeOperationItem.html#Reportman_Reporting_ChangeOperationItem_PropertyName
+  name: PropertyName
+  nameWithType: ChangeOperationItem.PropertyName
+  fullName: Reportman.Reporting.ChangeOperationItem.PropertyName
+- uid: Reportman.Reporting.ChangeOperationItem.PropertyType*
+  commentId: Overload:Reportman.Reporting.ChangeOperationItem.PropertyType
+  isExternal: true
+  href: Reportman.Reporting.ChangeOperationItem.html#Reportman_Reporting_ChangeOperationItem_PropertyType
+  name: PropertyType
+  nameWithType: ChangeOperationItem.PropertyType
+  fullName: Reportman.Reporting.ChangeOperationItem.PropertyType
+- uid: Reportman.Reporting.ChangeOperationItem.OldValue*
+  commentId: Overload:Reportman.Reporting.ChangeOperationItem.OldValue
+  isExternal: true
+  href: Reportman.Reporting.ChangeOperationItem.html#Reportman_Reporting_ChangeOperationItem_OldValue
+  name: OldValue
+  nameWithType: ChangeOperationItem.OldValue
+  fullName: Reportman.Reporting.ChangeOperationItem.OldValue
+- uid: Reportman.Reporting.ChangeOperationItem.NewValue*
+  commentId: Overload:Reportman.Reporting.ChangeOperationItem.NewValue
+  isExternal: true
+  href: Reportman.Reporting.ChangeOperationItem.html#Reportman_Reporting_ChangeOperationItem_NewValue
+  name: NewValue
+  nameWithType: ChangeOperationItem.NewValue
+  fullName: Reportman.Reporting.ChangeOperationItem.NewValue

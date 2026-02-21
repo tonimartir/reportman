@@ -1,0 +1,100 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.PDFConformanceType
+  commentId: T:Reportman.Drawing.PDFConformanceType
+  id: PDFConformanceType
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.PDFConformanceType.PDF_1_4
+  - Reportman.Drawing.PDFConformanceType.PDF_A_3
+  langs:
+  - csharp
+  - vb
+  name: PDFConformanceType
+  nameWithType: PDFConformanceType
+  fullName: Reportman.Drawing.PDFConformanceType
+  type: Enum
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: PDF Conformance when writting a PDF
+  example: []
+  syntax:
+    content: public enum PDFConformanceType
+    content.vb: Public Enum PDFConformanceType
+- uid: Reportman.Drawing.PDFConformanceType.PDF_1_4
+  commentId: F:Reportman.Drawing.PDFConformanceType.PDF_1_4
+  id: PDF_1_4
+  parent: Reportman.Drawing.PDFConformanceType
+  langs:
+  - csharp
+  - vb
+  name: PDF_1_4
+  nameWithType: PDFConformanceType.PDF_1_4
+  fullName: Reportman.Drawing.PDFConformanceType.PDF_1_4
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Smaller, older format supporting not embedded fonts
+  example: []
+  syntax:
+    content: PDF_1_4 = 0
+    return:
+      type: Reportman.Drawing.PDFConformanceType
+- uid: Reportman.Drawing.PDFConformanceType.PDF_A_3
+  commentId: F:Reportman.Drawing.PDFConformanceType.PDF_A_3
+  id: PDF_A_3
+  parent: Reportman.Drawing.PDFConformanceType
+  langs:
+  - csharp
+  - vb
+  name: PDF_A_3
+  nameWithType: PDFConformanceType.PDF_A_3
+  fullName: Reportman.Drawing.PDFConformanceType.PDF_A_3
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Portable modern standard, fonts will be embedded and embedded files can be added
+  example: []
+  syntax:
+    content: PDF_A_3 = 1
+    return:
+      type: Reportman.Drawing.PDFConformanceType
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.PDFConformanceType
+  commentId: T:Reportman.Drawing.PDFConformanceType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PDFConformanceType.html
+  name: PDFConformanceType
+  nameWithType: PDFConformanceType
+  fullName: Reportman.Drawing.PDFConformanceType

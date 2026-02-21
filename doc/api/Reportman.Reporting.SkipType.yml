@@ -1,0 +1,130 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.SkipType
+  commentId: T:Reportman.Reporting.SkipType
+  id: SkipType
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.SkipType.After
+  - Reportman.Reporting.SkipType.Before
+  - Reportman.Reporting.SkipType.Default
+  langs:
+  - csharp
+  - vb
+  name: SkipType
+  nameWithType: SkipType
+  fullName: Reportman.Reporting.SkipType
+  type: Enum
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: A section can skip to a page or position
+  example: []
+  syntax:
+    content: public enum SkipType
+    content.vb: Public Enum SkipType
+- uid: Reportman.Reporting.SkipType.Default
+  commentId: F:Reportman.Reporting.SkipType.Default
+  id: Default
+  parent: Reportman.Reporting.SkipType
+  langs:
+  - csharp
+  - vb
+  name: Default
+  nameWithType: SkipType.Default
+  fullName: Reportman.Reporting.SkipType.Default
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    The section will be printed in the natural place, just bellow the previous section, or
+
+    right to it if Horzontal displacement property is true and there is enought space
+  example: []
+  syntax:
+    content: Default = 0
+    return:
+      type: Reportman.Reporting.SkipType
+- uid: Reportman.Reporting.SkipType.Before
+  commentId: F:Reportman.Reporting.SkipType.Before
+  id: Before
+  parent: Reportman.Reporting.SkipType
+  langs:
+  - csharp
+  - vb
+  name: Before
+  nameWithType: SkipType.Before
+  fullName: Reportman.Reporting.SkipType.Before
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    The section will skip to a diferent position before print, the other properties
+
+    related (Skip to page,Horizontal Skip...) will be used to determine the position
+  example: []
+  syntax:
+    content: Before = 1
+    return:
+      type: Reportman.Reporting.SkipType
+- uid: Reportman.Reporting.SkipType.After
+  commentId: F:Reportman.Reporting.SkipType.After
+  id: After
+  parent: Reportman.Reporting.SkipType
+  langs:
+  - csharp
+  - vb
+  name: After
+  nameWithType: SkipType.After
+  fullName: Reportman.Reporting.SkipType.After
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    The section will skip to a diferent position before print, the other properties
+
+    related (Skip to page,Horizontal Skip...) will be used to determine the position
+  example: []
+  syntax:
+    content: After = 2
+    return:
+      type: Reportman.Reporting.SkipType
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: Reportman.Reporting.SkipType
+  commentId: T:Reportman.Reporting.SkipType
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.SkipType.html
+  name: SkipType
+  nameWithType: SkipType
+  fullName: Reportman.Reporting.SkipType

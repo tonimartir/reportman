@@ -1,0 +1,683 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.FastSerializer
+  commentId: T:Reportman.Drawing.FastSerializer
+  id: FastSerializer
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.FastSerializer.#ctor
+  - Reportman.Drawing.FastSerializer.DeSerializeDataSet(System.Byte[])
+  - Reportman.Drawing.FastSerializer.DeSerializeDataSet(System.IO.Stream)
+  - Reportman.Drawing.FastSerializer.IsFastSerialized(System.Byte[])
+  - Reportman.Drawing.FastSerializer.ReadString(System.Byte[],System.Int32@)
+  - Reportman.Drawing.FastSerializer.ReadString(System.IO.BinaryReader)
+  - Reportman.Drawing.FastSerializer.SerializeDataSet(System.Data.DataSet)
+  - Reportman.Drawing.FastSerializer.SerializeDataSetToStream(System.Data.DataSet,System.IO.Stream)
+  langs:
+  - csharp
+  - vb
+  name: FastSerializer
+  nameWithType: FastSerializer
+  fullName: Reportman.Drawing.FastSerializer
+  type: Class
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public class FastSerializer
+    content.vb: Public Class FastSerializer
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.FastSerializer.SerializeDataSetToStream(System.Data.DataSet,System.IO.Stream)
+  commentId: M:Reportman.Drawing.FastSerializer.SerializeDataSetToStream(System.Data.DataSet,System.IO.Stream)
+  id: SerializeDataSetToStream(System.Data.DataSet,System.IO.Stream)
+  parent: Reportman.Drawing.FastSerializer
+  langs:
+  - csharp
+  - vb
+  name: SerializeDataSetToStream(DataSet, Stream)
+  nameWithType: FastSerializer.SerializeDataSetToStream(DataSet, Stream)
+  fullName: Reportman.Drawing.FastSerializer.SerializeDataSetToStream(System.Data.DataSet, System.IO.Stream)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static void SerializeDataSetToStream(DataSet ndata, Stream nstream)
+    parameters:
+    - id: ndata
+      type: System.Data.DataSet
+    - id: nstream
+      type: System.IO.Stream
+    content.vb: Public Shared Sub SerializeDataSetToStream(ndata As DataSet, nstream As Stream)
+  overload: Reportman.Drawing.FastSerializer.SerializeDataSetToStream*
+- uid: Reportman.Drawing.FastSerializer.SerializeDataSet(System.Data.DataSet)
+  commentId: M:Reportman.Drawing.FastSerializer.SerializeDataSet(System.Data.DataSet)
+  id: SerializeDataSet(System.Data.DataSet)
+  parent: Reportman.Drawing.FastSerializer
+  langs:
+  - csharp
+  - vb
+  name: SerializeDataSet(DataSet)
+  nameWithType: FastSerializer.SerializeDataSet(DataSet)
+  fullName: Reportman.Drawing.FastSerializer.SerializeDataSet(System.Data.DataSet)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static MemoryStream SerializeDataSet(DataSet ndata)
+    parameters:
+    - id: ndata
+      type: System.Data.DataSet
+    return:
+      type: System.IO.MemoryStream
+    content.vb: Public Shared Function SerializeDataSet(ndata As DataSet) As MemoryStream
+  overload: Reportman.Drawing.FastSerializer.SerializeDataSet*
+- uid: Reportman.Drawing.FastSerializer.ReadString(System.Byte[],System.Int32@)
+  commentId: M:Reportman.Drawing.FastSerializer.ReadString(System.Byte[],System.Int32@)
+  id: ReadString(System.Byte[],System.Int32@)
+  parent: Reportman.Drawing.FastSerializer
+  langs:
+  - csharp
+  - vb
+  name: ReadString(byte[], ref int)
+  nameWithType: FastSerializer.ReadString(byte[], ref int)
+  fullName: Reportman.Drawing.FastSerializer.ReadString(byte[], ref int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string ReadString(byte[] nbytes, ref int index)
+    parameters:
+    - id: nbytes
+      type: System.Byte[]
+    - id: index
+      type: System.Int32
+    return:
+      type: System.String
+    content.vb: Public Shared Function ReadString(nbytes As Byte(), index As Integer) As String
+  overload: Reportman.Drawing.FastSerializer.ReadString*
+  nameWithType.vb: FastSerializer.ReadString(Byte(), Integer)
+  fullName.vb: Reportman.Drawing.FastSerializer.ReadString(Byte(), Integer)
+  name.vb: ReadString(Byte(), Integer)
+- uid: Reportman.Drawing.FastSerializer.IsFastSerialized(System.Byte[])
+  commentId: M:Reportman.Drawing.FastSerializer.IsFastSerialized(System.Byte[])
+  id: IsFastSerialized(System.Byte[])
+  parent: Reportman.Drawing.FastSerializer
+  langs:
+  - csharp
+  - vb
+  name: IsFastSerialized(byte[])
+  nameWithType: FastSerializer.IsFastSerialized(byte[])
+  fullName: Reportman.Drawing.FastSerializer.IsFastSerialized(byte[])
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static bool IsFastSerialized(byte[] nbytes)
+    parameters:
+    - id: nbytes
+      type: System.Byte[]
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function IsFastSerialized(nbytes As Byte()) As Boolean
+  overload: Reportman.Drawing.FastSerializer.IsFastSerialized*
+  nameWithType.vb: FastSerializer.IsFastSerialized(Byte())
+  fullName.vb: Reportman.Drawing.FastSerializer.IsFastSerialized(Byte())
+  name.vb: IsFastSerialized(Byte())
+- uid: Reportman.Drawing.FastSerializer.DeSerializeDataSet(System.Byte[])
+  commentId: M:Reportman.Drawing.FastSerializer.DeSerializeDataSet(System.Byte[])
+  id: DeSerializeDataSet(System.Byte[])
+  parent: Reportman.Drawing.FastSerializer
+  langs:
+  - csharp
+  - vb
+  name: DeSerializeDataSet(byte[])
+  nameWithType: FastSerializer.DeSerializeDataSet(byte[])
+  fullName: Reportman.Drawing.FastSerializer.DeSerializeDataSet(byte[])
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static DataSet DeSerializeDataSet(byte[] nbytes)
+    parameters:
+    - id: nbytes
+      type: System.Byte[]
+    return:
+      type: System.Data.DataSet
+    content.vb: Public Shared Function DeSerializeDataSet(nbytes As Byte()) As DataSet
+  overload: Reportman.Drawing.FastSerializer.DeSerializeDataSet*
+  nameWithType.vb: FastSerializer.DeSerializeDataSet(Byte())
+  fullName.vb: Reportman.Drawing.FastSerializer.DeSerializeDataSet(Byte())
+  name.vb: DeSerializeDataSet(Byte())
+- uid: Reportman.Drawing.FastSerializer.ReadString(System.IO.BinaryReader)
+  commentId: M:Reportman.Drawing.FastSerializer.ReadString(System.IO.BinaryReader)
+  id: ReadString(System.IO.BinaryReader)
+  parent: Reportman.Drawing.FastSerializer
+  langs:
+  - csharp
+  - vb
+  name: ReadString(BinaryReader)
+  nameWithType: FastSerializer.ReadString(BinaryReader)
+  fullName: Reportman.Drawing.FastSerializer.ReadString(System.IO.BinaryReader)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string ReadString(BinaryReader nreader)
+    parameters:
+    - id: nreader
+      type: System.IO.BinaryReader
+    return:
+      type: System.String
+    content.vb: Public Shared Function ReadString(nreader As BinaryReader) As String
+  overload: Reportman.Drawing.FastSerializer.ReadString*
+- uid: Reportman.Drawing.FastSerializer.DeSerializeDataSet(System.IO.Stream)
+  commentId: M:Reportman.Drawing.FastSerializer.DeSerializeDataSet(System.IO.Stream)
+  id: DeSerializeDataSet(System.IO.Stream)
+  parent: Reportman.Drawing.FastSerializer
+  langs:
+  - csharp
+  - vb
+  name: DeSerializeDataSet(Stream)
+  nameWithType: FastSerializer.DeSerializeDataSet(Stream)
+  fullName: Reportman.Drawing.FastSerializer.DeSerializeDataSet(System.IO.Stream)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static DataSet DeSerializeDataSet(Stream nsource)
+    parameters:
+    - id: nsource
+      type: System.IO.Stream
+    return:
+      type: System.Data.DataSet
+    content.vb: Public Shared Function DeSerializeDataSet(nsource As Stream) As DataSet
+  overload: Reportman.Drawing.FastSerializer.DeSerializeDataSet*
+- uid: Reportman.Drawing.FastSerializer.#ctor
+  commentId: M:Reportman.Drawing.FastSerializer.#ctor
+  id: '#ctor'
+  parent: Reportman.Drawing.FastSerializer
+  langs:
+  - csharp
+  - vb
+  name: FastSerializer()
+  nameWithType: FastSerializer.FastSerializer()
+  fullName: Reportman.Drawing.FastSerializer.FastSerializer()
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public FastSerializer()
+    content.vb: Public Sub New()
+  overload: Reportman.Drawing.FastSerializer.#ctor*
+  nameWithType.vb: FastSerializer.New()
+  fullName.vb: Reportman.Drawing.FastSerializer.New()
+  name.vb: New()
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.FastSerializer.SerializeDataSetToStream*
+  commentId: Overload:Reportman.Drawing.FastSerializer.SerializeDataSetToStream
+  isExternal: true
+  href: Reportman.Drawing.FastSerializer.html#Reportman_Drawing_FastSerializer_SerializeDataSetToStream_System_Data_DataSet_System_IO_Stream_
+  name: SerializeDataSetToStream
+  nameWithType: FastSerializer.SerializeDataSetToStream
+  fullName: Reportman.Drawing.FastSerializer.SerializeDataSetToStream
+- uid: System.Data.DataSet
+  commentId: T:System.Data.DataSet
+  parent: System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.dataset
+  name: DataSet
+  nameWithType: DataSet
+  fullName: System.Data.DataSet
+- uid: System.IO.Stream
+  commentId: T:System.IO.Stream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  name: Stream
+  nameWithType: Stream
+  fullName: System.IO.Stream
+- uid: System.Data
+  commentId: N:System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Data
+  nameWithType: System.Data
+  fullName: System.Data
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+- uid: Reportman.Drawing.FastSerializer.SerializeDataSet*
+  commentId: Overload:Reportman.Drawing.FastSerializer.SerializeDataSet
+  isExternal: true
+  href: Reportman.Drawing.FastSerializer.html#Reportman_Drawing_FastSerializer_SerializeDataSet_System_Data_DataSet_
+  name: SerializeDataSet
+  nameWithType: FastSerializer.SerializeDataSet
+  fullName: Reportman.Drawing.FastSerializer.SerializeDataSet
+- uid: System.IO.MemoryStream
+  commentId: T:System.IO.MemoryStream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.memorystream
+  name: MemoryStream
+  nameWithType: MemoryStream
+  fullName: System.IO.MemoryStream
+- uid: Reportman.Drawing.FastSerializer.ReadString*
+  commentId: Overload:Reportman.Drawing.FastSerializer.ReadString
+  isExternal: true
+  href: Reportman.Drawing.FastSerializer.html#Reportman_Drawing_FastSerializer_ReadString_System_Byte___System_Int32__
+  name: ReadString
+  nameWithType: FastSerializer.ReadString
+  fullName: Reportman.Drawing.FastSerializer.ReadString
+- uid: System.Byte[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte[]
+  nameWithType: byte[]
+  fullName: byte[]
+  nameWithType.vb: Byte()
+  fullName.vb: Byte()
+  name.vb: Byte()
+  spec.csharp:
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: (
+  - name: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Reportman.Drawing.FastSerializer.IsFastSerialized*
+  commentId: Overload:Reportman.Drawing.FastSerializer.IsFastSerialized
+  isExternal: true
+  href: Reportman.Drawing.FastSerializer.html#Reportman_Drawing_FastSerializer_IsFastSerialized_System_Byte___
+  name: IsFastSerialized
+  nameWithType: FastSerializer.IsFastSerialized
+  fullName: Reportman.Drawing.FastSerializer.IsFastSerialized
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Reportman.Drawing.FastSerializer.DeSerializeDataSet*
+  commentId: Overload:Reportman.Drawing.FastSerializer.DeSerializeDataSet
+  isExternal: true
+  href: Reportman.Drawing.FastSerializer.html#Reportman_Drawing_FastSerializer_DeSerializeDataSet_System_Byte___
+  name: DeSerializeDataSet
+  nameWithType: FastSerializer.DeSerializeDataSet
+  fullName: Reportman.Drawing.FastSerializer.DeSerializeDataSet
+- uid: System.IO.BinaryReader
+  commentId: T:System.IO.BinaryReader
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.binaryreader
+  name: BinaryReader
+  nameWithType: BinaryReader
+  fullName: System.IO.BinaryReader
+- uid: Reportman.Drawing.FastSerializer.#ctor*
+  commentId: Overload:Reportman.Drawing.FastSerializer.#ctor
+  isExternal: true
+  href: Reportman.Drawing.FastSerializer.html#Reportman_Drawing_FastSerializer__ctor
+  name: FastSerializer
+  nameWithType: FastSerializer.FastSerializer
+  fullName: Reportman.Drawing.FastSerializer.FastSerializer
+  nameWithType.vb: FastSerializer.New
+  fullName.vb: Reportman.Drawing.FastSerializer.New
+  name.vb: New

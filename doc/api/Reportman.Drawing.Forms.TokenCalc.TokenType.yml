@@ -1,0 +1,200 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.TokenCalc.TokenType
+  commentId: T:Reportman.Drawing.Forms.TokenCalc.TokenType
+  id: TokenCalc.TokenType
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.TokenCalc.TokenType.Add
+  - Reportman.Drawing.Forms.TokenCalc.TokenType.Divide
+  - Reportman.Drawing.Forms.TokenCalc.TokenType.Multiply
+  - Reportman.Drawing.Forms.TokenCalc.TokenType.Nil
+  - Reportman.Drawing.Forms.TokenCalc.TokenType.Subtract
+  - Reportman.Drawing.Forms.TokenCalc.TokenType.TokenNumber
+  langs:
+  - csharp
+  - vb
+  name: TokenCalc.TokenType
+  nameWithType: TokenCalc.TokenType
+  fullName: Reportman.Drawing.Forms.TokenCalc.TokenType
+  type: Enum
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public enum TokenCalc.TokenType
+    content.vb: Public Enum TokenCalc.TokenType
+- uid: Reportman.Drawing.Forms.TokenCalc.TokenType.Nil
+  commentId: F:Reportman.Drawing.Forms.TokenCalc.TokenType.Nil
+  id: Nil
+  parent: Reportman.Drawing.Forms.TokenCalc.TokenType
+  langs:
+  - csharp
+  - vb
+  name: Nil
+  nameWithType: TokenCalc.TokenType.Nil
+  fullName: Reportman.Drawing.Forms.TokenCalc.TokenType.Nil
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Nil = -1
+    return:
+      type: Reportman.Drawing.Forms.TokenCalc.TokenType
+- uid: Reportman.Drawing.Forms.TokenCalc.TokenType.Add
+  commentId: F:Reportman.Drawing.Forms.TokenCalc.TokenType.Add
+  id: Add
+  parent: Reportman.Drawing.Forms.TokenCalc.TokenType
+  langs:
+  - csharp
+  - vb
+  name: Add
+  nameWithType: TokenCalc.TokenType.Add
+  fullName: Reportman.Drawing.Forms.TokenCalc.TokenType.Add
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Add = 0
+    return:
+      type: Reportman.Drawing.Forms.TokenCalc.TokenType
+- uid: Reportman.Drawing.Forms.TokenCalc.TokenType.Subtract
+  commentId: F:Reportman.Drawing.Forms.TokenCalc.TokenType.Subtract
+  id: Subtract
+  parent: Reportman.Drawing.Forms.TokenCalc.TokenType
+  langs:
+  - csharp
+  - vb
+  name: Subtract
+  nameWithType: TokenCalc.TokenType.Subtract
+  fullName: Reportman.Drawing.Forms.TokenCalc.TokenType.Subtract
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Subtract = 1
+    return:
+      type: Reportman.Drawing.Forms.TokenCalc.TokenType
+- uid: Reportman.Drawing.Forms.TokenCalc.TokenType.Multiply
+  commentId: F:Reportman.Drawing.Forms.TokenCalc.TokenType.Multiply
+  id: Multiply
+  parent: Reportman.Drawing.Forms.TokenCalc.TokenType
+  langs:
+  - csharp
+  - vb
+  name: Multiply
+  nameWithType: TokenCalc.TokenType.Multiply
+  fullName: Reportman.Drawing.Forms.TokenCalc.TokenType.Multiply
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Multiply = 2
+    return:
+      type: Reportman.Drawing.Forms.TokenCalc.TokenType
+- uid: Reportman.Drawing.Forms.TokenCalc.TokenType.Divide
+  commentId: F:Reportman.Drawing.Forms.TokenCalc.TokenType.Divide
+  id: Divide
+  parent: Reportman.Drawing.Forms.TokenCalc.TokenType
+  langs:
+  - csharp
+  - vb
+  name: Divide
+  nameWithType: TokenCalc.TokenType.Divide
+  fullName: Reportman.Drawing.Forms.TokenCalc.TokenType.Divide
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Divide = 3
+    return:
+      type: Reportman.Drawing.Forms.TokenCalc.TokenType
+- uid: Reportman.Drawing.Forms.TokenCalc.TokenType.TokenNumber
+  commentId: F:Reportman.Drawing.Forms.TokenCalc.TokenType.TokenNumber
+  id: TokenNumber
+  parent: Reportman.Drawing.Forms.TokenCalc.TokenType
+  langs:
+  - csharp
+  - vb
+  name: TokenNumber
+  nameWithType: TokenCalc.TokenType.TokenNumber
+  fullName: Reportman.Drawing.Forms.TokenCalc.TokenType.TokenNumber
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: TokenNumber = 4
+    return:
+      type: Reportman.Drawing.Forms.TokenCalc.TokenType
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: Reportman.Drawing.Forms.TokenCalc.TokenType
+  commentId: T:Reportman.Drawing.Forms.TokenCalc.TokenType
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TokenCalc.html
+  name: TokenCalc.TokenType
+  nameWithType: TokenCalc.TokenType
+  fullName: Reportman.Drawing.Forms.TokenCalc.TokenType
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.TokenCalc
+    name: TokenCalc
+    isExternal: true
+    href: Reportman.Drawing.Forms.TokenCalc.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TokenCalc.TokenType
+    name: TokenType
+    isExternal: true
+    href: Reportman.Drawing.Forms.TokenCalc.TokenType.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.TokenCalc
+    name: TokenCalc
+    isExternal: true
+    href: Reportman.Drawing.Forms.TokenCalc.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TokenCalc.TokenType
+    name: TokenType
+    isExternal: true
+    href: Reportman.Drawing.Forms.TokenCalc.TokenType.html

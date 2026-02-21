@@ -1,0 +1,306 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.DotNetDriverType
+  commentId: T:Reportman.Reporting.DotNetDriverType
+  id: DotNetDriverType
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.DotNetDriverType.DB2
+  - Reportman.Reporting.DotNetDriverType.Firebird
+  - Reportman.Reporting.DotNetDriverType.MySql
+  - Reportman.Reporting.DotNetDriverType.Odbc
+  - Reportman.Reporting.DotNetDriverType.OleDb
+  - Reportman.Reporting.DotNetDriverType.Oracle
+  - Reportman.Reporting.DotNetDriverType.PostgreSql
+  - Reportman.Reporting.DotNetDriverType.SQLite
+  - Reportman.Reporting.DotNetDriverType.Sql
+  - Reportman.Reporting.DotNetDriverType.SqlCE
+  - Reportman.Reporting.DotNetDriverType.Sybase
+  langs:
+  - csharp
+  - vb
+  name: DotNetDriverType
+  nameWithType: DotNetDriverType
+  fullName: Reportman.Reporting.DotNetDriverType
+  type: Enum
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    The DotNetDriverType indicates the database provider to be used when you select DriverType.DotNet, that
+
+    is .Net 1.x, in this versions of .Net there were no abstraction for Database access, so you must select
+
+    and pre-link into your executable references to the database client library. 
+
+    This type is not used in .Net 2.x because the functionality of database providers, 
+
+    configured in machine.config or application.config<xref href="Reportman.Reporting.Variant?text=DatabaseInfo" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public enum DotNetDriverType
+    content.vb: Public Enum DotNetDriverType
+- uid: Reportman.Reporting.DotNetDriverType.OleDb
+  commentId: F:Reportman.Reporting.DotNetDriverType.OleDb
+  id: OleDb
+  parent: Reportman.Reporting.DotNetDriverType
+  langs:
+  - csharp
+  - vb
+  name: OleDb
+  nameWithType: DotNetDriverType.OleDb
+  fullName: Reportman.Reporting.DotNetDriverType.OleDb
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: OleDb .Net 1.x Data Provider
+  example: []
+  syntax:
+    content: OleDb = 0
+    return:
+      type: Reportman.Reporting.DotNetDriverType
+- uid: Reportman.Reporting.DotNetDriverType.Odbc
+  commentId: F:Reportman.Reporting.DotNetDriverType.Odbc
+  id: Odbc
+  parent: Reportman.Reporting.DotNetDriverType
+  langs:
+  - csharp
+  - vb
+  name: Odbc
+  nameWithType: DotNetDriverType.Odbc
+  fullName: Reportman.Reporting.DotNetDriverType.Odbc
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Odbc .Net 1.x Data Provider
+  example: []
+  syntax:
+    content: Odbc = 1
+    return:
+      type: Reportman.Reporting.DotNetDriverType
+- uid: Reportman.Reporting.DotNetDriverType.Firebird
+  commentId: F:Reportman.Reporting.DotNetDriverType.Firebird
+  id: Firebird
+  parent: Reportman.Reporting.DotNetDriverType
+  langs:
+  - csharp
+  - vb
+  name: Firebird
+  nameWithType: DotNetDriverType.Firebird
+  fullName: Reportman.Reporting.DotNetDriverType.Firebird
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Firebird for .Net 1.x Data Provider
+  example: []
+  syntax:
+    content: Firebird = 2
+    return:
+      type: Reportman.Reporting.DotNetDriverType
+- uid: Reportman.Reporting.DotNetDriverType.Sql
+  commentId: F:Reportman.Reporting.DotNetDriverType.Sql
+  id: Sql
+  parent: Reportman.Reporting.DotNetDriverType
+  langs:
+  - csharp
+  - vb
+  name: Sql
+  nameWithType: DotNetDriverType.Sql
+  fullName: Reportman.Reporting.DotNetDriverType.Sql
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: SqlServer .Net 1.x Data Provider
+  example: []
+  syntax:
+    content: Sql = 3
+    return:
+      type: Reportman.Reporting.DotNetDriverType
+- uid: Reportman.Reporting.DotNetDriverType.PostgreSql
+  commentId: F:Reportman.Reporting.DotNetDriverType.PostgreSql
+  id: PostgreSql
+  parent: Reportman.Reporting.DotNetDriverType
+  langs:
+  - csharp
+  - vb
+  name: PostgreSql
+  nameWithType: DotNetDriverType.PostgreSql
+  fullName: Reportman.Reporting.DotNetDriverType.PostgreSql
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: PostgreSql .Net 1.x Data Provider
+  example: []
+  syntax:
+    content: PostgreSql = 4
+    return:
+      type: Reportman.Reporting.DotNetDriverType
+- uid: Reportman.Reporting.DotNetDriverType.MySql
+  commentId: F:Reportman.Reporting.DotNetDriverType.MySql
+  id: MySql
+  parent: Reportman.Reporting.DotNetDriverType
+  langs:
+  - csharp
+  - vb
+  name: MySql
+  nameWithType: DotNetDriverType.MySql
+  fullName: Reportman.Reporting.DotNetDriverType.MySql
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: MySql .Net 1.x Data Provider
+  example: []
+  syntax:
+    content: MySql = 5
+    return:
+      type: Reportman.Reporting.DotNetDriverType
+- uid: Reportman.Reporting.DotNetDriverType.SQLite
+  commentId: F:Reportman.Reporting.DotNetDriverType.SQLite
+  id: SQLite
+  parent: Reportman.Reporting.DotNetDriverType
+  langs:
+  - csharp
+  - vb
+  name: SQLite
+  nameWithType: DotNetDriverType.SQLite
+  fullName: Reportman.Reporting.DotNetDriverType.SQLite
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: SQLite .Net 1.x Data Provider
+  example: []
+  syntax:
+    content: SQLite = 6
+    return:
+      type: Reportman.Reporting.DotNetDriverType
+- uid: Reportman.Reporting.DotNetDriverType.Oracle
+  commentId: F:Reportman.Reporting.DotNetDriverType.Oracle
+  id: Oracle
+  parent: Reportman.Reporting.DotNetDriverType
+  langs:
+  - csharp
+  - vb
+  name: Oracle
+  nameWithType: DotNetDriverType.Oracle
+  fullName: Reportman.Reporting.DotNetDriverType.Oracle
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Oracle .Net 1.x Data Provider
+  example: []
+  syntax:
+    content: Oracle = 7
+    return:
+      type: Reportman.Reporting.DotNetDriverType
+- uid: Reportman.Reporting.DotNetDriverType.DB2
+  commentId: F:Reportman.Reporting.DotNetDriverType.DB2
+  id: DB2
+  parent: Reportman.Reporting.DotNetDriverType
+  langs:
+  - csharp
+  - vb
+  name: DB2
+  nameWithType: DotNetDriverType.DB2
+  fullName: Reportman.Reporting.DotNetDriverType.DB2
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: DB2 .Net 1.x Data Provider
+  example: []
+  syntax:
+    content: DB2 = 8
+    return:
+      type: Reportman.Reporting.DotNetDriverType
+- uid: Reportman.Reporting.DotNetDriverType.Sybase
+  commentId: F:Reportman.Reporting.DotNetDriverType.Sybase
+  id: Sybase
+  parent: Reportman.Reporting.DotNetDriverType
+  langs:
+  - csharp
+  - vb
+  name: Sybase
+  nameWithType: DotNetDriverType.Sybase
+  fullName: Reportman.Reporting.DotNetDriverType.Sybase
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Sybase .Net 1.x Data Provider
+  example: []
+  syntax:
+    content: Sybase = 9
+    return:
+      type: Reportman.Reporting.DotNetDriverType
+- uid: Reportman.Reporting.DotNetDriverType.SqlCE
+  commentId: F:Reportman.Reporting.DotNetDriverType.SqlCE
+  id: SqlCE
+  parent: Reportman.Reporting.DotNetDriverType
+  langs:
+  - csharp
+  - vb
+  name: SqlCE
+  nameWithType: DotNetDriverType.SqlCE
+  fullName: Reportman.Reporting.DotNetDriverType.SqlCE
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: SqlCE .Net 1.x Data Provider
+  example: []
+  syntax:
+    content: SqlCE = 10
+    return:
+      type: Reportman.Reporting.DotNetDriverType
+references:
+- uid: Reportman.Reporting.Variant
+  commentId: T:Reportman.Reporting.Variant
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.Variant.html
+  name: Variant
+  nameWithType: Variant
+  fullName: Reportman.Reporting.Variant
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: Reportman.Reporting.DotNetDriverType
+  commentId: T:Reportman.Reporting.DotNetDriverType
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.DotNetDriverType.html
+  name: DotNetDriverType
+  nameWithType: DotNetDriverType
+  fullName: Reportman.Reporting.DotNetDriverType

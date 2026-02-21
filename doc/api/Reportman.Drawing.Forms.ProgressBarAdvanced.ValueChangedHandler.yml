@@ -1,0 +1,258 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler
+  commentId: T:Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler
+  id: ProgressBarAdvanced.ValueChangedHandler
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.#ctor(System.Object,System.IntPtr)
+  - Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.BeginInvoke(System.Object,System.EventArgs,System.AsyncCallback,System.Object)
+  - Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.EndInvoke(System.IAsyncResult)
+  - Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.Invoke(System.Object,System.EventArgs)
+  langs:
+  - csharp
+  - vb
+  name: ProgressBarAdvanced.ValueChangedHandler
+  nameWithType: ProgressBarAdvanced.ValueChangedHandler
+  fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler
+  type: Delegate
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  summary: When the Value property is changed.
+  example: []
+  syntax:
+    content: public delegate void ProgressBarAdvanced.ValueChangedHandler(object sender, EventArgs e)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: e
+      type: System.EventArgs
+    content.vb: Public Delegate Sub ProgressBarAdvanced.ValueChangedHandler(sender As Object, e As EventArgs)
+- uid: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.#ctor(System.Object,System.IntPtr)
+  commentId: M:Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.#ctor(System.Object,System.IntPtr)
+  id: '#ctor(System.Object,System.IntPtr)'
+  parent: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler
+  langs:
+  - csharp
+  - vb
+  name: ValueChangedHandler(object, nint)
+  nameWithType: ProgressBarAdvanced.ValueChangedHandler.ValueChangedHandler(object, nint)
+  fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.ValueChangedHandler(object, nint)
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public ValueChangedHandler(object @object, nint method)
+    parameters:
+    - id: object
+      type: System.Object
+    - id: method
+      type: System.IntPtr
+    content.vb: Public Sub New([object] As Object, method As IntPtr)
+  overload: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.#ctor*
+  nameWithType.vb: ProgressBarAdvanced.ValueChangedHandler.New(Object, IntPtr)
+  fullName.vb: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.New(Object, System.IntPtr)
+  name.vb: New(Object, IntPtr)
+- uid: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.Invoke(System.Object,System.EventArgs)
+  commentId: M:Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.Invoke(System.Object,System.EventArgs)
+  id: Invoke(System.Object,System.EventArgs)
+  parent: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler
+  langs:
+  - csharp
+  - vb
+  name: Invoke(object, EventArgs)
+  nameWithType: ProgressBarAdvanced.ValueChangedHandler.Invoke(object, EventArgs)
+  fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.Invoke(object, System.EventArgs)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual void Invoke(object sender, EventArgs e)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: e
+      type: System.EventArgs
+    content.vb: Public Overridable Sub Invoke(sender As Object, e As EventArgs)
+  overload: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.Invoke*
+  nameWithType.vb: ProgressBarAdvanced.ValueChangedHandler.Invoke(Object, EventArgs)
+  fullName.vb: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.Invoke(Object, System.EventArgs)
+  name.vb: Invoke(Object, EventArgs)
+- uid: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.BeginInvoke(System.Object,System.EventArgs,System.AsyncCallback,System.Object)
+  commentId: M:Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.BeginInvoke(System.Object,System.EventArgs,System.AsyncCallback,System.Object)
+  id: BeginInvoke(System.Object,System.EventArgs,System.AsyncCallback,System.Object)
+  parent: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler
+  langs:
+  - csharp
+  - vb
+  name: BeginInvoke(object, EventArgs, AsyncCallback, object)
+  nameWithType: ProgressBarAdvanced.ValueChangedHandler.BeginInvoke(object, EventArgs, AsyncCallback, object)
+  fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.BeginInvoke(object, System.EventArgs, System.AsyncCallback, object)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual IAsyncResult BeginInvoke(object sender, EventArgs e, AsyncCallback callback, object @object)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: e
+      type: System.EventArgs
+    - id: callback
+      type: System.AsyncCallback
+    - id: object
+      type: System.Object
+    return:
+      type: System.IAsyncResult
+    content.vb: Public Overridable Function BeginInvoke(sender As Object, e As EventArgs, callback As AsyncCallback, [object] As Object) As IAsyncResult
+  overload: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.BeginInvoke*
+  nameWithType.vb: ProgressBarAdvanced.ValueChangedHandler.BeginInvoke(Object, EventArgs, AsyncCallback, Object)
+  fullName.vb: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.BeginInvoke(Object, System.EventArgs, System.AsyncCallback, Object)
+  name.vb: BeginInvoke(Object, EventArgs, AsyncCallback, Object)
+- uid: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.EndInvoke(System.IAsyncResult)
+  commentId: M:Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.EndInvoke(System.IAsyncResult)
+  id: EndInvoke(System.IAsyncResult)
+  parent: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler
+  langs:
+  - csharp
+  - vb
+  name: EndInvoke(IAsyncResult)
+  nameWithType: ProgressBarAdvanced.ValueChangedHandler.EndInvoke(IAsyncResult)
+  fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.EndInvoke(System.IAsyncResult)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual void EndInvoke(IAsyncResult result)
+    parameters:
+    - id: result
+      type: System.IAsyncResult
+    content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
+  overload: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.EndInvoke*
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.EventArgs
+  commentId: T:System.EventArgs
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  name: EventArgs
+  nameWithType: EventArgs
+  fullName: System.EventArgs
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.#ctor*
+  commentId: Overload:Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.#ctor
+  isExternal: true
+  href: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.html#Reportman_Drawing_Forms_ProgressBarAdvanced_ValueChangedHandler__ctor_System_Object_System_IntPtr_
+  name: ValueChangedHandler
+  nameWithType: ProgressBarAdvanced.ValueChangedHandler.ValueChangedHandler
+  fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.ValueChangedHandler
+  nameWithType.vb: ProgressBarAdvanced.ValueChangedHandler.New
+  fullName.vb: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.New
+  name.vb: New
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.Invoke*
+  commentId: Overload:Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.Invoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.html#Reportman_Drawing_Forms_ProgressBarAdvanced_ValueChangedHandler_Invoke_System_Object_System_EventArgs_
+  name: Invoke
+  nameWithType: ProgressBarAdvanced.ValueChangedHandler.Invoke
+  fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.Invoke
+- uid: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.BeginInvoke*
+  commentId: Overload:Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.BeginInvoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.html#Reportman_Drawing_Forms_ProgressBarAdvanced_ValueChangedHandler_BeginInvoke_System_Object_System_EventArgs_System_AsyncCallback_System_Object_
+  name: BeginInvoke
+  nameWithType: ProgressBarAdvanced.ValueChangedHandler.BeginInvoke
+  fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.BeginInvoke
+- uid: System.AsyncCallback
+  commentId: T:System.AsyncCallback
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.asynccallback
+  name: AsyncCallback
+  nameWithType: AsyncCallback
+  fullName: System.AsyncCallback
+- uid: System.IAsyncResult
+  commentId: T:System.IAsyncResult
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncresult
+  name: IAsyncResult
+  nameWithType: IAsyncResult
+  fullName: System.IAsyncResult
+- uid: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.EndInvoke*
+  commentId: Overload:Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.EndInvoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.html#Reportman_Drawing_Forms_ProgressBarAdvanced_ValueChangedHandler_EndInvoke_System_IAsyncResult_
+  name: EndInvoke
+  nameWithType: ProgressBarAdvanced.ValueChangedHandler.EndInvoke
+  fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.EndInvoke

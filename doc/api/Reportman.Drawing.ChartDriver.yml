@@ -1,0 +1,113 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.ChartDriver
+  commentId: T:Reportman.Drawing.ChartDriver
+  id: ChartDriver
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.ChartDriver.Default
+  - Reportman.Drawing.ChartDriver.Engine
+  - Reportman.Drawing.ChartDriver.Teechart
+  langs:
+  - csharp
+  - vb
+  name: ChartDriver
+  nameWithType: ChartDriver
+  fullName: Reportman.Drawing.ChartDriver
+  type: Enum
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public enum ChartDriver
+    content.vb: Public Enum ChartDriver
+- uid: Reportman.Drawing.ChartDriver.Default
+  commentId: F:Reportman.Drawing.ChartDriver.Default
+  id: Default
+  parent: Reportman.Drawing.ChartDriver
+  langs:
+  - csharp
+  - vb
+  name: Default
+  nameWithType: ChartDriver.Default
+  fullName: Reportman.Drawing.ChartDriver.Default
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Default = 0
+    return:
+      type: Reportman.Drawing.ChartDriver
+- uid: Reportman.Drawing.ChartDriver.Engine
+  commentId: F:Reportman.Drawing.ChartDriver.Engine
+  id: Engine
+  parent: Reportman.Drawing.ChartDriver
+  langs:
+  - csharp
+  - vb
+  name: Engine
+  nameWithType: ChartDriver.Engine
+  fullName: Reportman.Drawing.ChartDriver.Engine
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Engine = 1
+    return:
+      type: Reportman.Drawing.ChartDriver
+- uid: Reportman.Drawing.ChartDriver.Teechart
+  commentId: F:Reportman.Drawing.ChartDriver.Teechart
+  id: Teechart
+  parent: Reportman.Drawing.ChartDriver
+  langs:
+  - csharp
+  - vb
+  name: Teechart
+  nameWithType: ChartDriver.Teechart
+  fullName: Reportman.Drawing.ChartDriver.Teechart
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Teechart = 2
+    return:
+      type: Reportman.Drawing.ChartDriver
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.ChartDriver
+  commentId: T:Reportman.Drawing.ChartDriver
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.ChartDriver.html
+  name: ChartDriver
+  nameWithType: ChartDriver
+  fullName: Reportman.Drawing.ChartDriver

@@ -1,0 +1,171 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Series.AutoRangeAxis
+  commentId: T:Reportman.Drawing.Series.AutoRangeAxis
+  id: Series.AutoRangeAxis
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.Series.AutoRangeAxis.AutoBoth
+  - Reportman.Drawing.Series.AutoRangeAxis.AutoLower
+  - Reportman.Drawing.Series.AutoRangeAxis.AutoUpper
+  - Reportman.Drawing.Series.AutoRangeAxis.Default
+  - Reportman.Drawing.Series.AutoRangeAxis.None
+  langs:
+  - csharp
+  - vb
+  name: Series.AutoRangeAxis
+  nameWithType: Series.AutoRangeAxis
+  fullName: Reportman.Drawing.Series.AutoRangeAxis
+  type: Enum
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public enum Series.AutoRangeAxis
+    content.vb: Public Enum Series.AutoRangeAxis
+- uid: Reportman.Drawing.Series.AutoRangeAxis.Default
+  commentId: F:Reportman.Drawing.Series.AutoRangeAxis.Default
+  id: Default
+  parent: Reportman.Drawing.Series.AutoRangeAxis
+  langs:
+  - csharp
+  - vb
+  name: Default
+  nameWithType: Series.AutoRangeAxis.Default
+  fullName: Reportman.Drawing.Series.AutoRangeAxis.Default
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Default = 0
+    return:
+      type: Reportman.Drawing.Series.AutoRangeAxis
+- uid: Reportman.Drawing.Series.AutoRangeAxis.AutoBoth
+  commentId: F:Reportman.Drawing.Series.AutoRangeAxis.AutoBoth
+  id: AutoBoth
+  parent: Reportman.Drawing.Series.AutoRangeAxis
+  langs:
+  - csharp
+  - vb
+  name: AutoBoth
+  nameWithType: Series.AutoRangeAxis.AutoBoth
+  fullName: Reportman.Drawing.Series.AutoRangeAxis.AutoBoth
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: AutoBoth = 1
+    return:
+      type: Reportman.Drawing.Series.AutoRangeAxis
+- uid: Reportman.Drawing.Series.AutoRangeAxis.AutoUpper
+  commentId: F:Reportman.Drawing.Series.AutoRangeAxis.AutoUpper
+  id: AutoUpper
+  parent: Reportman.Drawing.Series.AutoRangeAxis
+  langs:
+  - csharp
+  - vb
+  name: AutoUpper
+  nameWithType: Series.AutoRangeAxis.AutoUpper
+  fullName: Reportman.Drawing.Series.AutoRangeAxis.AutoUpper
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: AutoUpper = 2
+    return:
+      type: Reportman.Drawing.Series.AutoRangeAxis
+- uid: Reportman.Drawing.Series.AutoRangeAxis.AutoLower
+  commentId: F:Reportman.Drawing.Series.AutoRangeAxis.AutoLower
+  id: AutoLower
+  parent: Reportman.Drawing.Series.AutoRangeAxis
+  langs:
+  - csharp
+  - vb
+  name: AutoLower
+  nameWithType: Series.AutoRangeAxis.AutoLower
+  fullName: Reportman.Drawing.Series.AutoRangeAxis.AutoLower
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: AutoLower = 3
+    return:
+      type: Reportman.Drawing.Series.AutoRangeAxis
+- uid: Reportman.Drawing.Series.AutoRangeAxis.None
+  commentId: F:Reportman.Drawing.Series.AutoRangeAxis.None
+  id: None
+  parent: Reportman.Drawing.Series.AutoRangeAxis
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: Series.AutoRangeAxis.None
+  fullName: Reportman.Drawing.Series.AutoRangeAxis.None
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: None = 4
+    return:
+      type: Reportman.Drawing.Series.AutoRangeAxis
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.Series.AutoRangeAxis
+  commentId: T:Reportman.Drawing.Series.AutoRangeAxis
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.Series.html
+  name: Series.AutoRangeAxis
+  nameWithType: Series.AutoRangeAxis
+  fullName: Reportman.Drawing.Series.AutoRangeAxis
+  spec.csharp:
+  - uid: Reportman.Drawing.Series
+    name: Series
+    isExternal: true
+    href: Reportman.Drawing.Series.html
+  - name: .
+  - uid: Reportman.Drawing.Series.AutoRangeAxis
+    name: AutoRangeAxis
+    isExternal: true
+    href: Reportman.Drawing.Series.AutoRangeAxis.html
+  spec.vb:
+  - uid: Reportman.Drawing.Series
+    name: Series
+    isExternal: true
+    href: Reportman.Drawing.Series.html
+  - name: .
+  - uid: Reportman.Drawing.Series.AutoRangeAxis
+    name: AutoRangeAxis
+    isExternal: true
+    href: Reportman.Drawing.Series.AutoRangeAxis.html

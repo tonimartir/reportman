@@ -1,0 +1,258 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.BeforeEnterTabEvent
+  commentId: T:Reportman.Drawing.Forms.BeforeEnterTabEvent
+  id: BeforeEnterTabEvent
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.BeforeEnterTabEvent.#ctor(System.Object,System.IntPtr)
+  - Reportman.Drawing.Forms.BeforeEnterTabEvent.BeginInvoke(System.Boolean@,System.AsyncCallback,System.Object)
+  - Reportman.Drawing.Forms.BeforeEnterTabEvent.EndInvoke(System.Boolean@,System.IAsyncResult)
+  - Reportman.Drawing.Forms.BeforeEnterTabEvent.Invoke(System.Boolean@)
+  langs:
+  - csharp
+  - vb
+  name: BeforeEnterTabEvent
+  nameWithType: BeforeEnterTabEvent
+  fullName: Reportman.Drawing.Forms.BeforeEnterTabEvent
+  type: Delegate
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public delegate void BeforeEnterTabEvent(ref bool cancel)
+    parameters:
+    - id: cancel
+      type: System.Boolean
+    content.vb: Public Delegate Sub BeforeEnterTabEvent(cancel As Boolean)
+- uid: Reportman.Drawing.Forms.BeforeEnterTabEvent.#ctor(System.Object,System.IntPtr)
+  commentId: M:Reportman.Drawing.Forms.BeforeEnterTabEvent.#ctor(System.Object,System.IntPtr)
+  id: '#ctor(System.Object,System.IntPtr)'
+  parent: Reportman.Drawing.Forms.BeforeEnterTabEvent
+  langs:
+  - csharp
+  - vb
+  name: BeforeEnterTabEvent(object, nint)
+  nameWithType: BeforeEnterTabEvent.BeforeEnterTabEvent(object, nint)
+  fullName: Reportman.Drawing.Forms.BeforeEnterTabEvent.BeforeEnterTabEvent(object, nint)
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public BeforeEnterTabEvent(object @object, nint method)
+    parameters:
+    - id: object
+      type: System.Object
+    - id: method
+      type: System.IntPtr
+    content.vb: Public Sub New([object] As Object, method As IntPtr)
+  overload: Reportman.Drawing.Forms.BeforeEnterTabEvent.#ctor*
+  nameWithType.vb: BeforeEnterTabEvent.New(Object, IntPtr)
+  fullName.vb: Reportman.Drawing.Forms.BeforeEnterTabEvent.New(Object, System.IntPtr)
+  name.vb: New(Object, IntPtr)
+- uid: Reportman.Drawing.Forms.BeforeEnterTabEvent.Invoke(System.Boolean@)
+  commentId: M:Reportman.Drawing.Forms.BeforeEnterTabEvent.Invoke(System.Boolean@)
+  id: Invoke(System.Boolean@)
+  parent: Reportman.Drawing.Forms.BeforeEnterTabEvent
+  langs:
+  - csharp
+  - vb
+  name: Invoke(ref bool)
+  nameWithType: BeforeEnterTabEvent.Invoke(ref bool)
+  fullName: Reportman.Drawing.Forms.BeforeEnterTabEvent.Invoke(ref bool)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual void Invoke(ref bool cancel)
+    parameters:
+    - id: cancel
+      type: System.Boolean
+    content.vb: Public Overridable Sub Invoke(cancel As Boolean)
+  overload: Reportman.Drawing.Forms.BeforeEnterTabEvent.Invoke*
+  nameWithType.vb: BeforeEnterTabEvent.Invoke(Boolean)
+  fullName.vb: Reportman.Drawing.Forms.BeforeEnterTabEvent.Invoke(Boolean)
+  name.vb: Invoke(Boolean)
+- uid: Reportman.Drawing.Forms.BeforeEnterTabEvent.BeginInvoke(System.Boolean@,System.AsyncCallback,System.Object)
+  commentId: M:Reportman.Drawing.Forms.BeforeEnterTabEvent.BeginInvoke(System.Boolean@,System.AsyncCallback,System.Object)
+  id: BeginInvoke(System.Boolean@,System.AsyncCallback,System.Object)
+  parent: Reportman.Drawing.Forms.BeforeEnterTabEvent
+  langs:
+  - csharp
+  - vb
+  name: BeginInvoke(ref bool, AsyncCallback, object)
+  nameWithType: BeforeEnterTabEvent.BeginInvoke(ref bool, AsyncCallback, object)
+  fullName: Reportman.Drawing.Forms.BeforeEnterTabEvent.BeginInvoke(ref bool, System.AsyncCallback, object)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual IAsyncResult BeginInvoke(ref bool cancel, AsyncCallback callback, object @object)
+    parameters:
+    - id: cancel
+      type: System.Boolean
+    - id: callback
+      type: System.AsyncCallback
+    - id: object
+      type: System.Object
+    return:
+      type: System.IAsyncResult
+    content.vb: Public Overridable Function BeginInvoke(cancel As Boolean, callback As AsyncCallback, [object] As Object) As IAsyncResult
+  overload: Reportman.Drawing.Forms.BeforeEnterTabEvent.BeginInvoke*
+  nameWithType.vb: BeforeEnterTabEvent.BeginInvoke(Boolean, AsyncCallback, Object)
+  fullName.vb: Reportman.Drawing.Forms.BeforeEnterTabEvent.BeginInvoke(Boolean, System.AsyncCallback, Object)
+  name.vb: BeginInvoke(Boolean, AsyncCallback, Object)
+- uid: Reportman.Drawing.Forms.BeforeEnterTabEvent.EndInvoke(System.Boolean@,System.IAsyncResult)
+  commentId: M:Reportman.Drawing.Forms.BeforeEnterTabEvent.EndInvoke(System.Boolean@,System.IAsyncResult)
+  id: EndInvoke(System.Boolean@,System.IAsyncResult)
+  parent: Reportman.Drawing.Forms.BeforeEnterTabEvent
+  langs:
+  - csharp
+  - vb
+  name: EndInvoke(ref bool, IAsyncResult)
+  nameWithType: BeforeEnterTabEvent.EndInvoke(ref bool, IAsyncResult)
+  fullName: Reportman.Drawing.Forms.BeforeEnterTabEvent.EndInvoke(ref bool, System.IAsyncResult)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual void EndInvoke(ref bool cancel, IAsyncResult result)
+    parameters:
+    - id: cancel
+      type: System.Boolean
+    - id: result
+      type: System.IAsyncResult
+    content.vb: Public Overridable Sub EndInvoke(cancel As Boolean, result As IAsyncResult)
+  overload: Reportman.Drawing.Forms.BeforeEnterTabEvent.EndInvoke*
+  nameWithType.vb: BeforeEnterTabEvent.EndInvoke(Boolean, IAsyncResult)
+  fullName.vb: Reportman.Drawing.Forms.BeforeEnterTabEvent.EndInvoke(Boolean, System.IAsyncResult)
+  name.vb: EndInvoke(Boolean, IAsyncResult)
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.Forms.BeforeEnterTabEvent.#ctor*
+  commentId: Overload:Reportman.Drawing.Forms.BeforeEnterTabEvent.#ctor
+  isExternal: true
+  href: Reportman.Drawing.Forms.BeforeEnterTabEvent.html#Reportman_Drawing_Forms_BeforeEnterTabEvent__ctor_System_Object_System_IntPtr_
+  name: BeforeEnterTabEvent
+  nameWithType: BeforeEnterTabEvent.BeforeEnterTabEvent
+  fullName: Reportman.Drawing.Forms.BeforeEnterTabEvent.BeforeEnterTabEvent
+  nameWithType.vb: BeforeEnterTabEvent.New
+  fullName.vb: Reportman.Drawing.Forms.BeforeEnterTabEvent.New
+  name.vb: New
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: Reportman.Drawing.Forms.BeforeEnterTabEvent.Invoke*
+  commentId: Overload:Reportman.Drawing.Forms.BeforeEnterTabEvent.Invoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.BeforeEnterTabEvent.html#Reportman_Drawing_Forms_BeforeEnterTabEvent_Invoke_System_Boolean__
+  name: Invoke
+  nameWithType: BeforeEnterTabEvent.Invoke
+  fullName: Reportman.Drawing.Forms.BeforeEnterTabEvent.Invoke
+- uid: Reportman.Drawing.Forms.BeforeEnterTabEvent.BeginInvoke*
+  commentId: Overload:Reportman.Drawing.Forms.BeforeEnterTabEvent.BeginInvoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.BeforeEnterTabEvent.html#Reportman_Drawing_Forms_BeforeEnterTabEvent_BeginInvoke_System_Boolean__System_AsyncCallback_System_Object_
+  name: BeginInvoke
+  nameWithType: BeforeEnterTabEvent.BeginInvoke
+  fullName: Reportman.Drawing.Forms.BeforeEnterTabEvent.BeginInvoke
+- uid: System.AsyncCallback
+  commentId: T:System.AsyncCallback
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.asynccallback
+  name: AsyncCallback
+  nameWithType: AsyncCallback
+  fullName: System.AsyncCallback
+- uid: System.IAsyncResult
+  commentId: T:System.IAsyncResult
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncresult
+  name: IAsyncResult
+  nameWithType: IAsyncResult
+  fullName: System.IAsyncResult
+- uid: Reportman.Drawing.Forms.BeforeEnterTabEvent.EndInvoke*
+  commentId: Overload:Reportman.Drawing.Forms.BeforeEnterTabEvent.EndInvoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.BeforeEnterTabEvent.html#Reportman_Drawing_Forms_BeforeEnterTabEvent_EndInvoke_System_Boolean__System_IAsyncResult_
+  name: EndInvoke
+  nameWithType: BeforeEnterTabEvent.EndInvoke
+  fullName: Reportman.Drawing.Forms.BeforeEnterTabEvent.EndInvoke

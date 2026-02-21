@@ -1,0 +1,229 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.PrintStepType
+  commentId: T:Reportman.Drawing.PrintStepType
+  id: PrintStepType
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.PrintStepType.BySize
+  - Reportman.Drawing.PrintStepType.cpi10
+  - Reportman.Drawing.PrintStepType.cpi12
+  - Reportman.Drawing.PrintStepType.cpi15
+  - Reportman.Drawing.PrintStepType.cpi17
+  - Reportman.Drawing.PrintStepType.cpi20
+  - Reportman.Drawing.PrintStepType.cpi5
+  - Reportman.Drawing.PrintStepType.cpi6
+  langs:
+  - csharp
+  - vb
+  name: PrintStepType
+  nameWithType: PrintStepType
+  fullName: Reportman.Drawing.PrintStepType
+  type: Enum
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    When printing to dot matrix devices, a fixed pitch font will be selected, the font to be selected can be specified
+
+    using the PrintStep
+  example: []
+  syntax:
+    content: public enum PrintStepType
+    content.vb: Public Enum PrintStepType
+- uid: Reportman.Drawing.PrintStepType.BySize
+  commentId: F:Reportman.Drawing.PrintStepType.BySize
+  id: BySize
+  parent: Reportman.Drawing.PrintStepType
+  langs:
+  - csharp
+  - vb
+  name: BySize
+  nameWithType: PrintStepType.BySize
+  fullName: Reportman.Drawing.PrintStepType.BySize
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: The font size will determine the step, smaller sizes will select cpi20
+  example: []
+  syntax:
+    content: BySize = 0
+    return:
+      type: Reportman.Drawing.PrintStepType
+- uid: Reportman.Drawing.PrintStepType.cpi20
+  commentId: F:Reportman.Drawing.PrintStepType.cpi20
+  id: cpi20
+  parent: Reportman.Drawing.PrintStepType
+  langs:
+  - csharp
+  - vb
+  name: cpi20
+  nameWithType: PrintStepType.cpi20
+  fullName: Reportman.Drawing.PrintStepType.cpi20
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: 20 character per inch font
+  example: []
+  syntax:
+    content: cpi20 = 1
+    return:
+      type: Reportman.Drawing.PrintStepType
+- uid: Reportman.Drawing.PrintStepType.cpi17
+  commentId: F:Reportman.Drawing.PrintStepType.cpi17
+  id: cpi17
+  parent: Reportman.Drawing.PrintStepType
+  langs:
+  - csharp
+  - vb
+  name: cpi17
+  nameWithType: PrintStepType.cpi17
+  fullName: Reportman.Drawing.PrintStepType.cpi17
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: 20 character per inch font
+  example: []
+  syntax:
+    content: cpi17 = 2
+    return:
+      type: Reportman.Drawing.PrintStepType
+- uid: Reportman.Drawing.PrintStepType.cpi15
+  commentId: F:Reportman.Drawing.PrintStepType.cpi15
+  id: cpi15
+  parent: Reportman.Drawing.PrintStepType
+  langs:
+  - csharp
+  - vb
+  name: cpi15
+  nameWithType: PrintStepType.cpi15
+  fullName: Reportman.Drawing.PrintStepType.cpi15
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: 17 character per inch font
+  example: []
+  syntax:
+    content: cpi15 = 3
+    return:
+      type: Reportman.Drawing.PrintStepType
+- uid: Reportman.Drawing.PrintStepType.cpi12
+  commentId: F:Reportman.Drawing.PrintStepType.cpi12
+  id: cpi12
+  parent: Reportman.Drawing.PrintStepType
+  langs:
+  - csharp
+  - vb
+  name: cpi12
+  nameWithType: PrintStepType.cpi12
+  fullName: Reportman.Drawing.PrintStepType.cpi12
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: 15 character per inch font
+  example: []
+  syntax:
+    content: cpi12 = 4
+    return:
+      type: Reportman.Drawing.PrintStepType
+- uid: Reportman.Drawing.PrintStepType.cpi10
+  commentId: F:Reportman.Drawing.PrintStepType.cpi10
+  id: cpi10
+  parent: Reportman.Drawing.PrintStepType
+  langs:
+  - csharp
+  - vb
+  name: cpi10
+  nameWithType: PrintStepType.cpi10
+  fullName: Reportman.Drawing.PrintStepType.cpi10
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: 10 character per inch font
+  example: []
+  syntax:
+    content: cpi10 = 5
+    return:
+      type: Reportman.Drawing.PrintStepType
+- uid: Reportman.Drawing.PrintStepType.cpi6
+  commentId: F:Reportman.Drawing.PrintStepType.cpi6
+  id: cpi6
+  parent: Reportman.Drawing.PrintStepType
+  langs:
+  - csharp
+  - vb
+  name: cpi6
+  nameWithType: PrintStepType.cpi6
+  fullName: Reportman.Drawing.PrintStepType.cpi6
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: 6 character per inch font
+  example: []
+  syntax:
+    content: cpi6 = 6
+    return:
+      type: Reportman.Drawing.PrintStepType
+- uid: Reportman.Drawing.PrintStepType.cpi5
+  commentId: F:Reportman.Drawing.PrintStepType.cpi5
+  id: cpi5
+  parent: Reportman.Drawing.PrintStepType
+  langs:
+  - csharp
+  - vb
+  name: cpi5
+  nameWithType: PrintStepType.cpi5
+  fullName: Reportman.Drawing.PrintStepType.cpi5
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: 5 character per inch font
+  example: []
+  syntax:
+    content: cpi5 = 7
+    return:
+      type: Reportman.Drawing.PrintStepType
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.PrintStepType
+  commentId: T:Reportman.Drawing.PrintStepType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PrintStepType.html
+  name: PrintStepType
+  nameWithType: PrintStepType
+  fullName: Reportman.Drawing.PrintStepType

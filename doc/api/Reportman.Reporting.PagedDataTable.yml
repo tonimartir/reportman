@@ -1,0 +1,3907 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.PagedDataTable
+  commentId: T:Reportman.Reporting.PagedDataTable
+  id: PagedDataTable
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.PagedDataTable.#ctor
+  - Reportman.Reporting.PagedDataTable.Active
+  - Reportman.Reporting.PagedDataTable.CurrentReader
+  - Reportman.Reporting.PagedDataTable.Eof
+  - Reportman.Reporting.PagedDataTable.Next
+  - Reportman.Reporting.PagedDataTable.OnDataChange
+  - Reportman.Reporting.PagedDataTable.PageSize
+  - Reportman.Reporting.PagedDataTable.UpdateColumns
+  langs:
+  - csharp
+  - vb
+  name: PagedDataTable
+  nameWithType: PagedDataTable
+  fullName: Reportman.Reporting.PagedDataTable
+  type: Class
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: 'public class PagedDataTable : DataTable, IComponent, IDisposable, IServiceProvider, IListSource, ISupportInitializeNotification, ISupportInitialize, ISerializable, IXmlSerializable'
+    content.vb: Public Class PagedDataTable Inherits DataTable Implements IComponent, IDisposable, IServiceProvider, IListSource, ISupportInitializeNotification, ISupportInitialize, ISerializable, IXmlSerializable
+  inheritance:
+  - System.Object
+  - System.ComponentModel.MarshalByValueComponent
+  - System.Data.DataTable
+  implements:
+  - System.ComponentModel.IComponent
+  - System.IDisposable
+  - System.IServiceProvider
+  - System.ComponentModel.IListSource
+  - System.ComponentModel.ISupportInitializeNotification
+  - System.ComponentModel.ISupportInitialize
+  - System.Runtime.Serialization.ISerializable
+  - System.Xml.Serialization.IXmlSerializable
+  inheritedMembers:
+  - System.Data.DataTable.fInitInProgress
+  - System.Data.DataTable.BeginInit
+  - System.Data.DataTable.EndInit
+  - System.Data.DataTable.AcceptChanges
+  - System.Data.DataTable.CreateInstance
+  - System.Data.DataTable.Clone
+  - System.Data.DataTable.Copy
+  - System.Data.DataTable.Clear
+  - System.Data.DataTable.Compute(System.String,System.String)
+  - System.Data.DataTable.GetChanges
+  - System.Data.DataTable.GetChanges(System.Data.DataRowState)
+  - System.Data.DataTable.GetErrors
+  - System.Data.DataTable.ImportRow(System.Data.DataRow)
+  - System.Data.DataTable.NewRow
+  - System.Data.DataTable.NewRowFromBuilder(System.Data.DataRowBuilder)
+  - System.Data.DataTable.GetRowType
+  - System.Data.DataTable.NewRowArray(System.Int32)
+  - System.Data.DataTable.OnColumnChanging(System.Data.DataColumnChangeEventArgs)
+  - System.Data.DataTable.OnColumnChanged(System.Data.DataColumnChangeEventArgs)
+  - System.Data.DataTable.OnPropertyChanging(System.ComponentModel.PropertyChangedEventArgs)
+  - System.Data.DataTable.OnRemoveColumn(System.Data.DataColumn)
+  - System.Data.DataTable.OnRowChanged(System.Data.DataRowChangeEventArgs)
+  - System.Data.DataTable.OnRowChanging(System.Data.DataRowChangeEventArgs)
+  - System.Data.DataTable.OnRowDeleting(System.Data.DataRowChangeEventArgs)
+  - System.Data.DataTable.OnRowDeleted(System.Data.DataRowChangeEventArgs)
+  - System.Data.DataTable.OnTableCleared(System.Data.DataTableClearEventArgs)
+  - System.Data.DataTable.OnTableClearing(System.Data.DataTableClearEventArgs)
+  - System.Data.DataTable.OnTableNewRow(System.Data.DataTableNewRowEventArgs)
+  - System.Data.DataTable.RejectChanges
+  - System.Data.DataTable.Reset
+  - System.Data.DataTable.Select
+  - System.Data.DataTable.Select(System.String)
+  - System.Data.DataTable.Select(System.String,System.String)
+  - System.Data.DataTable.Select(System.String,System.String,System.Data.DataViewRowState)
+  - System.Data.DataTable.ToString
+  - System.Data.DataTable.BeginLoadData
+  - System.Data.DataTable.EndLoadData
+  - System.Data.DataTable.LoadDataRow(System.Object[],System.Boolean)
+  - System.Data.DataTable.LoadDataRow(System.Object[],System.Data.LoadOption)
+  - System.Data.DataTable.Merge(System.Data.DataTable)
+  - System.Data.DataTable.Merge(System.Data.DataTable,System.Boolean)
+  - System.Data.DataTable.Merge(System.Data.DataTable,System.Boolean,System.Data.MissingSchemaAction)
+  - System.Data.DataTable.Load(System.Data.IDataReader)
+  - System.Data.DataTable.Load(System.Data.IDataReader,System.Data.LoadOption)
+  - System.Data.DataTable.Load(System.Data.IDataReader,System.Data.LoadOption,System.Data.FillErrorEventHandler)
+  - System.Data.DataTable.CreateDataReader
+  - System.Data.DataTable.WriteXml(System.IO.Stream)
+  - System.Data.DataTable.WriteXml(System.IO.Stream,System.Boolean)
+  - System.Data.DataTable.WriteXml(System.IO.TextWriter)
+  - System.Data.DataTable.WriteXml(System.IO.TextWriter,System.Boolean)
+  - System.Data.DataTable.WriteXml(System.Xml.XmlWriter)
+  - System.Data.DataTable.WriteXml(System.Xml.XmlWriter,System.Boolean)
+  - System.Data.DataTable.WriteXml(System.String)
+  - System.Data.DataTable.WriteXml(System.String,System.Boolean)
+  - System.Data.DataTable.WriteXml(System.IO.Stream,System.Data.XmlWriteMode)
+  - System.Data.DataTable.WriteXml(System.IO.Stream,System.Data.XmlWriteMode,System.Boolean)
+  - System.Data.DataTable.WriteXml(System.IO.TextWriter,System.Data.XmlWriteMode)
+  - System.Data.DataTable.WriteXml(System.IO.TextWriter,System.Data.XmlWriteMode,System.Boolean)
+  - System.Data.DataTable.WriteXml(System.Xml.XmlWriter,System.Data.XmlWriteMode)
+  - System.Data.DataTable.WriteXml(System.Xml.XmlWriter,System.Data.XmlWriteMode,System.Boolean)
+  - System.Data.DataTable.WriteXml(System.String,System.Data.XmlWriteMode)
+  - System.Data.DataTable.WriteXml(System.String,System.Data.XmlWriteMode,System.Boolean)
+  - System.Data.DataTable.WriteXmlSchema(System.IO.Stream)
+  - System.Data.DataTable.WriteXmlSchema(System.IO.Stream,System.Boolean)
+  - System.Data.DataTable.WriteXmlSchema(System.IO.TextWriter)
+  - System.Data.DataTable.WriteXmlSchema(System.IO.TextWriter,System.Boolean)
+  - System.Data.DataTable.WriteXmlSchema(System.Xml.XmlWriter)
+  - System.Data.DataTable.WriteXmlSchema(System.Xml.XmlWriter,System.Boolean)
+  - System.Data.DataTable.WriteXmlSchema(System.String)
+  - System.Data.DataTable.WriteXmlSchema(System.String,System.Boolean)
+  - System.Data.DataTable.ReadXml(System.IO.Stream)
+  - System.Data.DataTable.ReadXml(System.IO.TextReader)
+  - System.Data.DataTable.ReadXml(System.String)
+  - System.Data.DataTable.ReadXml(System.Xml.XmlReader)
+  - System.Data.DataTable.ReadXmlSchema(System.IO.Stream)
+  - System.Data.DataTable.ReadXmlSchema(System.IO.TextReader)
+  - System.Data.DataTable.ReadXmlSchema(System.String)
+  - System.Data.DataTable.ReadXmlSchema(System.Xml.XmlReader)
+  - System.Data.DataTable.GetDataTableSchema(System.Xml.Schema.XmlSchemaSet)
+  - System.Data.DataTable.GetSchema
+  - System.Data.DataTable.ReadXmlSerializable(System.Xml.XmlReader)
+  - System.Data.DataTable.CaseSensitive
+  - System.Data.DataTable.IsInitialized
+  - System.Data.DataTable.RemotingFormat
+  - System.Data.DataTable.ChildRelations
+  - System.Data.DataTable.Columns
+  - System.Data.DataTable.Constraints
+  - System.Data.DataTable.DataSet
+  - System.Data.DataTable.DefaultView
+  - System.Data.DataTable.DisplayExpression
+  - System.Data.DataTable.ExtendedProperties
+  - System.Data.DataTable.HasErrors
+  - System.Data.DataTable.Locale
+  - System.Data.DataTable.MinimumCapacity
+  - System.Data.DataTable.ParentRelations
+  - System.Data.DataTable.PrimaryKey
+  - System.Data.DataTable.Rows
+  - System.Data.DataTable.TableName
+  - System.Data.DataTable.Namespace
+  - System.Data.DataTable.Prefix
+  - System.Data.DataTable.Site
+  - System.Data.DataTable.ColumnChanging
+  - System.Data.DataTable.ColumnChanged
+  - System.Data.DataTable.Initialized
+  - System.Data.DataTable.RowChanged
+  - System.Data.DataTable.RowChanging
+  - System.Data.DataTable.RowDeleting
+  - System.Data.DataTable.RowDeleted
+  - System.Data.DataTable.TableClearing
+  - System.Data.DataTable.TableCleared
+  - System.Data.DataTable.TableNewRow
+  - System.ComponentModel.MarshalByValueComponent.Dispose
+  - System.ComponentModel.MarshalByValueComponent.Dispose(System.Boolean)
+  - System.ComponentModel.MarshalByValueComponent.GetService(System.Type)
+  - System.ComponentModel.MarshalByValueComponent.Events
+  - System.ComponentModel.MarshalByValueComponent.Container
+  - System.ComponentModel.MarshalByValueComponent.DesignMode
+  - System.ComponentModel.MarshalByValueComponent.Disposed
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Reporting.PagedDataTable.UpdateColumns
+  commentId: F:Reportman.Reporting.PagedDataTable.UpdateColumns
+  id: UpdateColumns
+  parent: Reportman.Reporting.PagedDataTable
+  langs:
+  - csharp
+  - vb
+  name: UpdateColumns
+  nameWithType: PagedDataTable.UpdateColumns
+  fullName: Reportman.Reporting.PagedDataTable.UpdateColumns
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public bool UpdateColumns
+    return:
+      type: System.Boolean
+    content.vb: Public UpdateColumns As Boolean
+- uid: Reportman.Reporting.PagedDataTable.PageSize
+  commentId: F:Reportman.Reporting.PagedDataTable.PageSize
+  id: PageSize
+  parent: Reportman.Reporting.PagedDataTable
+  langs:
+  - csharp
+  - vb
+  name: PageSize
+  nameWithType: PagedDataTable.PageSize
+  fullName: Reportman.Reporting.PagedDataTable.PageSize
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public int PageSize
+    return:
+      type: System.Int32
+    content.vb: Public PageSize As Integer
+- uid: Reportman.Reporting.PagedDataTable.#ctor
+  commentId: M:Reportman.Reporting.PagedDataTable.#ctor
+  id: '#ctor'
+  parent: Reportman.Reporting.PagedDataTable
+  langs:
+  - csharp
+  - vb
+  name: PagedDataTable()
+  nameWithType: PagedDataTable.PagedDataTable()
+  fullName: Reportman.Reporting.PagedDataTable.PagedDataTable()
+  type: Constructor
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public PagedDataTable()
+    content.vb: Public Sub New()
+  overload: Reportman.Reporting.PagedDataTable.#ctor*
+  nameWithType.vb: PagedDataTable.New()
+  fullName.vb: Reportman.Reporting.PagedDataTable.New()
+  name.vb: New()
+- uid: Reportman.Reporting.PagedDataTable.Next
+  commentId: M:Reportman.Reporting.PagedDataTable.Next
+  id: Next
+  parent: Reportman.Reporting.PagedDataTable
+  langs:
+  - csharp
+  - vb
+  name: Next()
+  nameWithType: PagedDataTable.Next()
+  fullName: Reportman.Reporting.PagedDataTable.Next()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public bool Next()
+    return:
+      type: System.Boolean
+    content.vb: Public Function [Next]() As Boolean
+  overload: Reportman.Reporting.PagedDataTable.Next*
+- uid: Reportman.Reporting.PagedDataTable.Active
+  commentId: P:Reportman.Reporting.PagedDataTable.Active
+  id: Active
+  parent: Reportman.Reporting.PagedDataTable
+  langs:
+  - csharp
+  - vb
+  name: Active
+  nameWithType: PagedDataTable.Active
+  fullName: Reportman.Reporting.PagedDataTable.Active
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public bool Active { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property Active As Boolean
+  overload: Reportman.Reporting.PagedDataTable.Active*
+- uid: Reportman.Reporting.PagedDataTable.CurrentReader
+  commentId: P:Reportman.Reporting.PagedDataTable.CurrentReader
+  id: CurrentReader
+  parent: Reportman.Reporting.PagedDataTable
+  langs:
+  - csharp
+  - vb
+  name: CurrentReader
+  nameWithType: PagedDataTable.CurrentReader
+  fullName: Reportman.Reporting.PagedDataTable.CurrentReader
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public IDataReader CurrentReader { get; set; }
+    parameters: []
+    return:
+      type: System.Data.IDataReader
+    content.vb: Public Property CurrentReader As IDataReader
+  overload: Reportman.Reporting.PagedDataTable.CurrentReader*
+- uid: Reportman.Reporting.PagedDataTable.Eof
+  commentId: P:Reportman.Reporting.PagedDataTable.Eof
+  id: Eof
+  parent: Reportman.Reporting.PagedDataTable
+  langs:
+  - csharp
+  - vb
+  name: Eof
+  nameWithType: PagedDataTable.Eof
+  fullName: Reportman.Reporting.PagedDataTable.Eof
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public bool Eof { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property Eof As Boolean
+  overload: Reportman.Reporting.PagedDataTable.Eof*
+- uid: Reportman.Reporting.PagedDataTable.OnDataChange
+  commentId: E:Reportman.Reporting.PagedDataTable.OnDataChange
+  id: OnDataChange
+  parent: Reportman.Reporting.PagedDataTable
+  langs:
+  - csharp
+  - vb
+  name: OnDataChange
+  nameWithType: PagedDataTable.OnDataChange
+  fullName: Reportman.Reporting.PagedDataTable.OnDataChange
+  type: Event
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public event PagedDataChange OnDataChange
+    return:
+      type: Reportman.Reporting.PagedDataChange
+    content.vb: Public Event OnDataChange As PagedDataChange
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.ComponentModel.MarshalByValueComponent
+  commentId: T:System.ComponentModel.MarshalByValueComponent
+  parent: System.ComponentModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.marshalbyvaluecomponent
+  name: MarshalByValueComponent
+  nameWithType: MarshalByValueComponent
+  fullName: System.ComponentModel.MarshalByValueComponent
+- uid: System.Data.DataTable
+  commentId: T:System.Data.DataTable
+  parent: System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable
+  name: DataTable
+  nameWithType: DataTable
+  fullName: System.Data.DataTable
+- uid: System.ComponentModel.IComponent
+  commentId: T:System.ComponentModel.IComponent
+  parent: System.ComponentModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.icomponent
+  name: IComponent
+  nameWithType: IComponent
+  fullName: System.ComponentModel.IComponent
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System.IServiceProvider
+  commentId: T:System.IServiceProvider
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iserviceprovider
+  name: IServiceProvider
+  nameWithType: IServiceProvider
+  fullName: System.IServiceProvider
+- uid: System.ComponentModel.IListSource
+  commentId: T:System.ComponentModel.IListSource
+  parent: System.ComponentModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.ilistsource
+  name: IListSource
+  nameWithType: IListSource
+  fullName: System.ComponentModel.IListSource
+- uid: System.ComponentModel.ISupportInitializeNotification
+  commentId: T:System.ComponentModel.ISupportInitializeNotification
+  parent: System.ComponentModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.isupportinitializenotification
+  name: ISupportInitializeNotification
+  nameWithType: ISupportInitializeNotification
+  fullName: System.ComponentModel.ISupportInitializeNotification
+- uid: System.ComponentModel.ISupportInitialize
+  commentId: T:System.ComponentModel.ISupportInitialize
+  parent: System.ComponentModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.isupportinitialize
+  name: ISupportInitialize
+  nameWithType: ISupportInitialize
+  fullName: System.ComponentModel.ISupportInitialize
+- uid: System.Runtime.Serialization.ISerializable
+  commentId: T:System.Runtime.Serialization.ISerializable
+  parent: System.Runtime.Serialization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.runtime.serialization.iserializable
+  name: ISerializable
+  nameWithType: ISerializable
+  fullName: System.Runtime.Serialization.ISerializable
+- uid: System.Xml.Serialization.IXmlSerializable
+  commentId: T:System.Xml.Serialization.IXmlSerializable
+  parent: System.Xml.Serialization
+  isExternal: true
+  name: IXmlSerializable
+  nameWithType: IXmlSerializable
+  fullName: System.Xml.Serialization.IXmlSerializable
+- uid: System.Data.DataTable.fInitInProgress
+  commentId: F:System.Data.DataTable.fInitInProgress
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.finitinprogress
+  name: fInitInProgress
+  nameWithType: DataTable.fInitInProgress
+  fullName: System.Data.DataTable.fInitInProgress
+- uid: System.Data.DataTable.BeginInit
+  commentId: M:System.Data.DataTable.BeginInit
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.begininit
+  name: BeginInit()
+  nameWithType: DataTable.BeginInit()
+  fullName: System.Data.DataTable.BeginInit()
+  spec.csharp:
+  - uid: System.Data.DataTable.BeginInit
+    name: BeginInit
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.begininit
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.BeginInit
+    name: BeginInit
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.begininit
+  - name: (
+  - name: )
+- uid: System.Data.DataTable.EndInit
+  commentId: M:System.Data.DataTable.EndInit
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.endinit
+  name: EndInit()
+  nameWithType: DataTable.EndInit()
+  fullName: System.Data.DataTable.EndInit()
+  spec.csharp:
+  - uid: System.Data.DataTable.EndInit
+    name: EndInit
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.endinit
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.EndInit
+    name: EndInit
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.endinit
+  - name: (
+  - name: )
+- uid: System.Data.DataTable.AcceptChanges
+  commentId: M:System.Data.DataTable.AcceptChanges
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.acceptchanges
+  name: AcceptChanges()
+  nameWithType: DataTable.AcceptChanges()
+  fullName: System.Data.DataTable.AcceptChanges()
+  spec.csharp:
+  - uid: System.Data.DataTable.AcceptChanges
+    name: AcceptChanges
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.acceptchanges
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.AcceptChanges
+    name: AcceptChanges
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.acceptchanges
+  - name: (
+  - name: )
+- uid: System.Data.DataTable.CreateInstance
+  commentId: M:System.Data.DataTable.CreateInstance
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.createinstance
+  name: CreateInstance()
+  nameWithType: DataTable.CreateInstance()
+  fullName: System.Data.DataTable.CreateInstance()
+  spec.csharp:
+  - uid: System.Data.DataTable.CreateInstance
+    name: CreateInstance
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.createinstance
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.CreateInstance
+    name: CreateInstance
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.createinstance
+  - name: (
+  - name: )
+- uid: System.Data.DataTable.Clone
+  commentId: M:System.Data.DataTable.Clone
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.clone
+  name: Clone()
+  nameWithType: DataTable.Clone()
+  fullName: System.Data.DataTable.Clone()
+  spec.csharp:
+  - uid: System.Data.DataTable.Clone
+    name: Clone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.clone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.Clone
+    name: Clone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.clone
+  - name: (
+  - name: )
+- uid: System.Data.DataTable.Copy
+  commentId: M:System.Data.DataTable.Copy
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.copy
+  name: Copy()
+  nameWithType: DataTable.Copy()
+  fullName: System.Data.DataTable.Copy()
+  spec.csharp:
+  - uid: System.Data.DataTable.Copy
+    name: Copy
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.copy
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.Copy
+    name: Copy
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.copy
+  - name: (
+  - name: )
+- uid: System.Data.DataTable.Clear
+  commentId: M:System.Data.DataTable.Clear
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.clear
+  name: Clear()
+  nameWithType: DataTable.Clear()
+  fullName: System.Data.DataTable.Clear()
+  spec.csharp:
+  - uid: System.Data.DataTable.Clear
+    name: Clear
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.clear
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.Clear
+    name: Clear
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.clear
+  - name: (
+  - name: )
+- uid: System.Data.DataTable.Compute(System.String,System.String)
+  commentId: M:System.Data.DataTable.Compute(System.String,System.String)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.compute
+  name: Compute(string, string)
+  nameWithType: DataTable.Compute(string, string)
+  fullName: System.Data.DataTable.Compute(string, string)
+  nameWithType.vb: DataTable.Compute(String, String)
+  fullName.vb: System.Data.DataTable.Compute(String, String)
+  name.vb: Compute(String, String)
+  spec.csharp:
+  - uid: System.Data.DataTable.Compute(System.String,System.String)
+    name: Compute
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.compute
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.Compute(System.String,System.String)
+    name: Compute
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.compute
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Data.DataTable.GetChanges
+  commentId: M:System.Data.DataTable.GetChanges
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.getchanges#system-data-datatable-getchanges
+  name: GetChanges()
+  nameWithType: DataTable.GetChanges()
+  fullName: System.Data.DataTable.GetChanges()
+  spec.csharp:
+  - uid: System.Data.DataTable.GetChanges
+    name: GetChanges
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.getchanges#system-data-datatable-getchanges
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.GetChanges
+    name: GetChanges
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.getchanges#system-data-datatable-getchanges
+  - name: (
+  - name: )
+- uid: System.Data.DataTable.GetChanges(System.Data.DataRowState)
+  commentId: M:System.Data.DataTable.GetChanges(System.Data.DataRowState)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.getchanges#system-data-datatable-getchanges(system-data-datarowstate)
+  name: GetChanges(DataRowState)
+  nameWithType: DataTable.GetChanges(DataRowState)
+  fullName: System.Data.DataTable.GetChanges(System.Data.DataRowState)
+  spec.csharp:
+  - uid: System.Data.DataTable.GetChanges(System.Data.DataRowState)
+    name: GetChanges
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.getchanges#system-data-datatable-getchanges(system-data-datarowstate)
+  - name: (
+  - uid: System.Data.DataRowState
+    name: DataRowState
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datarowstate
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.GetChanges(System.Data.DataRowState)
+    name: GetChanges
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.getchanges#system-data-datatable-getchanges(system-data-datarowstate)
+  - name: (
+  - uid: System.Data.DataRowState
+    name: DataRowState
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datarowstate
+  - name: )
+- uid: System.Data.DataTable.GetErrors
+  commentId: M:System.Data.DataTable.GetErrors
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.geterrors
+  name: GetErrors()
+  nameWithType: DataTable.GetErrors()
+  fullName: System.Data.DataTable.GetErrors()
+  spec.csharp:
+  - uid: System.Data.DataTable.GetErrors
+    name: GetErrors
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.geterrors
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.GetErrors
+    name: GetErrors
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.geterrors
+  - name: (
+  - name: )
+- uid: System.Data.DataTable.ImportRow(System.Data.DataRow)
+  commentId: M:System.Data.DataTable.ImportRow(System.Data.DataRow)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.importrow
+  name: ImportRow(DataRow)
+  nameWithType: DataTable.ImportRow(DataRow)
+  fullName: System.Data.DataTable.ImportRow(System.Data.DataRow)
+  spec.csharp:
+  - uid: System.Data.DataTable.ImportRow(System.Data.DataRow)
+    name: ImportRow
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.importrow
+  - name: (
+  - uid: System.Data.DataRow
+    name: DataRow
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datarow
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.ImportRow(System.Data.DataRow)
+    name: ImportRow
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.importrow
+  - name: (
+  - uid: System.Data.DataRow
+    name: DataRow
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datarow
+  - name: )
+- uid: System.Data.DataTable.NewRow
+  commentId: M:System.Data.DataTable.NewRow
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.newrow
+  name: NewRow()
+  nameWithType: DataTable.NewRow()
+  fullName: System.Data.DataTable.NewRow()
+  spec.csharp:
+  - uid: System.Data.DataTable.NewRow
+    name: NewRow
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.newrow
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.NewRow
+    name: NewRow
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.newrow
+  - name: (
+  - name: )
+- uid: System.Data.DataTable.NewRowFromBuilder(System.Data.DataRowBuilder)
+  commentId: M:System.Data.DataTable.NewRowFromBuilder(System.Data.DataRowBuilder)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.newrowfrombuilder
+  name: NewRowFromBuilder(DataRowBuilder)
+  nameWithType: DataTable.NewRowFromBuilder(DataRowBuilder)
+  fullName: System.Data.DataTable.NewRowFromBuilder(System.Data.DataRowBuilder)
+  spec.csharp:
+  - uid: System.Data.DataTable.NewRowFromBuilder(System.Data.DataRowBuilder)
+    name: NewRowFromBuilder
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.newrowfrombuilder
+  - name: (
+  - uid: System.Data.DataRowBuilder
+    name: DataRowBuilder
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datarowbuilder
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.NewRowFromBuilder(System.Data.DataRowBuilder)
+    name: NewRowFromBuilder
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.newrowfrombuilder
+  - name: (
+  - uid: System.Data.DataRowBuilder
+    name: DataRowBuilder
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datarowbuilder
+  - name: )
+- uid: System.Data.DataTable.GetRowType
+  commentId: M:System.Data.DataTable.GetRowType
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.getrowtype
+  name: GetRowType()
+  nameWithType: DataTable.GetRowType()
+  fullName: System.Data.DataTable.GetRowType()
+  spec.csharp:
+  - uid: System.Data.DataTable.GetRowType
+    name: GetRowType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.getrowtype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.GetRowType
+    name: GetRowType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.getrowtype
+  - name: (
+  - name: )
+- uid: System.Data.DataTable.NewRowArray(System.Int32)
+  commentId: M:System.Data.DataTable.NewRowArray(System.Int32)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.newrowarray
+  name: NewRowArray(int)
+  nameWithType: DataTable.NewRowArray(int)
+  fullName: System.Data.DataTable.NewRowArray(int)
+  nameWithType.vb: DataTable.NewRowArray(Integer)
+  fullName.vb: System.Data.DataTable.NewRowArray(Integer)
+  name.vb: NewRowArray(Integer)
+  spec.csharp:
+  - uid: System.Data.DataTable.NewRowArray(System.Int32)
+    name: NewRowArray
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.newrowarray
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.NewRowArray(System.Int32)
+    name: NewRowArray
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.newrowarray
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Data.DataTable.OnColumnChanging(System.Data.DataColumnChangeEventArgs)
+  commentId: M:System.Data.DataTable.OnColumnChanging(System.Data.DataColumnChangeEventArgs)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.oncolumnchanging
+  name: OnColumnChanging(DataColumnChangeEventArgs)
+  nameWithType: DataTable.OnColumnChanging(DataColumnChangeEventArgs)
+  fullName: System.Data.DataTable.OnColumnChanging(System.Data.DataColumnChangeEventArgs)
+  spec.csharp:
+  - uid: System.Data.DataTable.OnColumnChanging(System.Data.DataColumnChangeEventArgs)
+    name: OnColumnChanging
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.oncolumnchanging
+  - name: (
+  - uid: System.Data.DataColumnChangeEventArgs
+    name: DataColumnChangeEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datacolumnchangeeventargs
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.OnColumnChanging(System.Data.DataColumnChangeEventArgs)
+    name: OnColumnChanging
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.oncolumnchanging
+  - name: (
+  - uid: System.Data.DataColumnChangeEventArgs
+    name: DataColumnChangeEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datacolumnchangeeventargs
+  - name: )
+- uid: System.Data.DataTable.OnColumnChanged(System.Data.DataColumnChangeEventArgs)
+  commentId: M:System.Data.DataTable.OnColumnChanged(System.Data.DataColumnChangeEventArgs)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.oncolumnchanged
+  name: OnColumnChanged(DataColumnChangeEventArgs)
+  nameWithType: DataTable.OnColumnChanged(DataColumnChangeEventArgs)
+  fullName: System.Data.DataTable.OnColumnChanged(System.Data.DataColumnChangeEventArgs)
+  spec.csharp:
+  - uid: System.Data.DataTable.OnColumnChanged(System.Data.DataColumnChangeEventArgs)
+    name: OnColumnChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.oncolumnchanged
+  - name: (
+  - uid: System.Data.DataColumnChangeEventArgs
+    name: DataColumnChangeEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datacolumnchangeeventargs
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.OnColumnChanged(System.Data.DataColumnChangeEventArgs)
+    name: OnColumnChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.oncolumnchanged
+  - name: (
+  - uid: System.Data.DataColumnChangeEventArgs
+    name: DataColumnChangeEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datacolumnchangeeventargs
+  - name: )
+- uid: System.Data.DataTable.OnPropertyChanging(System.ComponentModel.PropertyChangedEventArgs)
+  commentId: M:System.Data.DataTable.OnPropertyChanging(System.ComponentModel.PropertyChangedEventArgs)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.onpropertychanging
+  name: OnPropertyChanging(PropertyChangedEventArgs)
+  nameWithType: DataTable.OnPropertyChanging(PropertyChangedEventArgs)
+  fullName: System.Data.DataTable.OnPropertyChanging(System.ComponentModel.PropertyChangedEventArgs)
+  spec.csharp:
+  - uid: System.Data.DataTable.OnPropertyChanging(System.ComponentModel.PropertyChangedEventArgs)
+    name: OnPropertyChanging
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.onpropertychanging
+  - name: (
+  - uid: System.ComponentModel.PropertyChangedEventArgs
+    name: PropertyChangedEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.propertychangedeventargs
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.OnPropertyChanging(System.ComponentModel.PropertyChangedEventArgs)
+    name: OnPropertyChanging
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.onpropertychanging
+  - name: (
+  - uid: System.ComponentModel.PropertyChangedEventArgs
+    name: PropertyChangedEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.propertychangedeventargs
+  - name: )
+- uid: System.Data.DataTable.OnRemoveColumn(System.Data.DataColumn)
+  commentId: M:System.Data.DataTable.OnRemoveColumn(System.Data.DataColumn)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.onremovecolumn
+  name: OnRemoveColumn(DataColumn)
+  nameWithType: DataTable.OnRemoveColumn(DataColumn)
+  fullName: System.Data.DataTable.OnRemoveColumn(System.Data.DataColumn)
+  spec.csharp:
+  - uid: System.Data.DataTable.OnRemoveColumn(System.Data.DataColumn)
+    name: OnRemoveColumn
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.onremovecolumn
+  - name: (
+  - uid: System.Data.DataColumn
+    name: DataColumn
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datacolumn
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.OnRemoveColumn(System.Data.DataColumn)
+    name: OnRemoveColumn
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.onremovecolumn
+  - name: (
+  - uid: System.Data.DataColumn
+    name: DataColumn
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datacolumn
+  - name: )
+- uid: System.Data.DataTable.OnRowChanged(System.Data.DataRowChangeEventArgs)
+  commentId: M:System.Data.DataTable.OnRowChanged(System.Data.DataRowChangeEventArgs)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.onrowchanged
+  name: OnRowChanged(DataRowChangeEventArgs)
+  nameWithType: DataTable.OnRowChanged(DataRowChangeEventArgs)
+  fullName: System.Data.DataTable.OnRowChanged(System.Data.DataRowChangeEventArgs)
+  spec.csharp:
+  - uid: System.Data.DataTable.OnRowChanged(System.Data.DataRowChangeEventArgs)
+    name: OnRowChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.onrowchanged
+  - name: (
+  - uid: System.Data.DataRowChangeEventArgs
+    name: DataRowChangeEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datarowchangeeventargs
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.OnRowChanged(System.Data.DataRowChangeEventArgs)
+    name: OnRowChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.onrowchanged
+  - name: (
+  - uid: System.Data.DataRowChangeEventArgs
+    name: DataRowChangeEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datarowchangeeventargs
+  - name: )
+- uid: System.Data.DataTable.OnRowChanging(System.Data.DataRowChangeEventArgs)
+  commentId: M:System.Data.DataTable.OnRowChanging(System.Data.DataRowChangeEventArgs)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.onrowchanging
+  name: OnRowChanging(DataRowChangeEventArgs)
+  nameWithType: DataTable.OnRowChanging(DataRowChangeEventArgs)
+  fullName: System.Data.DataTable.OnRowChanging(System.Data.DataRowChangeEventArgs)
+  spec.csharp:
+  - uid: System.Data.DataTable.OnRowChanging(System.Data.DataRowChangeEventArgs)
+    name: OnRowChanging
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.onrowchanging
+  - name: (
+  - uid: System.Data.DataRowChangeEventArgs
+    name: DataRowChangeEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datarowchangeeventargs
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.OnRowChanging(System.Data.DataRowChangeEventArgs)
+    name: OnRowChanging
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.onrowchanging
+  - name: (
+  - uid: System.Data.DataRowChangeEventArgs
+    name: DataRowChangeEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datarowchangeeventargs
+  - name: )
+- uid: System.Data.DataTable.OnRowDeleting(System.Data.DataRowChangeEventArgs)
+  commentId: M:System.Data.DataTable.OnRowDeleting(System.Data.DataRowChangeEventArgs)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.onrowdeleting
+  name: OnRowDeleting(DataRowChangeEventArgs)
+  nameWithType: DataTable.OnRowDeleting(DataRowChangeEventArgs)
+  fullName: System.Data.DataTable.OnRowDeleting(System.Data.DataRowChangeEventArgs)
+  spec.csharp:
+  - uid: System.Data.DataTable.OnRowDeleting(System.Data.DataRowChangeEventArgs)
+    name: OnRowDeleting
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.onrowdeleting
+  - name: (
+  - uid: System.Data.DataRowChangeEventArgs
+    name: DataRowChangeEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datarowchangeeventargs
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.OnRowDeleting(System.Data.DataRowChangeEventArgs)
+    name: OnRowDeleting
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.onrowdeleting
+  - name: (
+  - uid: System.Data.DataRowChangeEventArgs
+    name: DataRowChangeEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datarowchangeeventargs
+  - name: )
+- uid: System.Data.DataTable.OnRowDeleted(System.Data.DataRowChangeEventArgs)
+  commentId: M:System.Data.DataTable.OnRowDeleted(System.Data.DataRowChangeEventArgs)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.onrowdeleted
+  name: OnRowDeleted(DataRowChangeEventArgs)
+  nameWithType: DataTable.OnRowDeleted(DataRowChangeEventArgs)
+  fullName: System.Data.DataTable.OnRowDeleted(System.Data.DataRowChangeEventArgs)
+  spec.csharp:
+  - uid: System.Data.DataTable.OnRowDeleted(System.Data.DataRowChangeEventArgs)
+    name: OnRowDeleted
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.onrowdeleted
+  - name: (
+  - uid: System.Data.DataRowChangeEventArgs
+    name: DataRowChangeEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datarowchangeeventargs
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.OnRowDeleted(System.Data.DataRowChangeEventArgs)
+    name: OnRowDeleted
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.onrowdeleted
+  - name: (
+  - uid: System.Data.DataRowChangeEventArgs
+    name: DataRowChangeEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datarowchangeeventargs
+  - name: )
+- uid: System.Data.DataTable.OnTableCleared(System.Data.DataTableClearEventArgs)
+  commentId: M:System.Data.DataTable.OnTableCleared(System.Data.DataTableClearEventArgs)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.ontablecleared
+  name: OnTableCleared(DataTableClearEventArgs)
+  nameWithType: DataTable.OnTableCleared(DataTableClearEventArgs)
+  fullName: System.Data.DataTable.OnTableCleared(System.Data.DataTableClearEventArgs)
+  spec.csharp:
+  - uid: System.Data.DataTable.OnTableCleared(System.Data.DataTableClearEventArgs)
+    name: OnTableCleared
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.ontablecleared
+  - name: (
+  - uid: System.Data.DataTableClearEventArgs
+    name: DataTableClearEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatablecleareventargs
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.OnTableCleared(System.Data.DataTableClearEventArgs)
+    name: OnTableCleared
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.ontablecleared
+  - name: (
+  - uid: System.Data.DataTableClearEventArgs
+    name: DataTableClearEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatablecleareventargs
+  - name: )
+- uid: System.Data.DataTable.OnTableClearing(System.Data.DataTableClearEventArgs)
+  commentId: M:System.Data.DataTable.OnTableClearing(System.Data.DataTableClearEventArgs)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.ontableclearing
+  name: OnTableClearing(DataTableClearEventArgs)
+  nameWithType: DataTable.OnTableClearing(DataTableClearEventArgs)
+  fullName: System.Data.DataTable.OnTableClearing(System.Data.DataTableClearEventArgs)
+  spec.csharp:
+  - uid: System.Data.DataTable.OnTableClearing(System.Data.DataTableClearEventArgs)
+    name: OnTableClearing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.ontableclearing
+  - name: (
+  - uid: System.Data.DataTableClearEventArgs
+    name: DataTableClearEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatablecleareventargs
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.OnTableClearing(System.Data.DataTableClearEventArgs)
+    name: OnTableClearing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.ontableclearing
+  - name: (
+  - uid: System.Data.DataTableClearEventArgs
+    name: DataTableClearEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatablecleareventargs
+  - name: )
+- uid: System.Data.DataTable.OnTableNewRow(System.Data.DataTableNewRowEventArgs)
+  commentId: M:System.Data.DataTable.OnTableNewRow(System.Data.DataTableNewRowEventArgs)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.ontablenewrow
+  name: OnTableNewRow(DataTableNewRowEventArgs)
+  nameWithType: DataTable.OnTableNewRow(DataTableNewRowEventArgs)
+  fullName: System.Data.DataTable.OnTableNewRow(System.Data.DataTableNewRowEventArgs)
+  spec.csharp:
+  - uid: System.Data.DataTable.OnTableNewRow(System.Data.DataTableNewRowEventArgs)
+    name: OnTableNewRow
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.ontablenewrow
+  - name: (
+  - uid: System.Data.DataTableNewRowEventArgs
+    name: DataTableNewRowEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatablenewroweventargs
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.OnTableNewRow(System.Data.DataTableNewRowEventArgs)
+    name: OnTableNewRow
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.ontablenewrow
+  - name: (
+  - uid: System.Data.DataTableNewRowEventArgs
+    name: DataTableNewRowEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatablenewroweventargs
+  - name: )
+- uid: System.Data.DataTable.RejectChanges
+  commentId: M:System.Data.DataTable.RejectChanges
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.rejectchanges
+  name: RejectChanges()
+  nameWithType: DataTable.RejectChanges()
+  fullName: System.Data.DataTable.RejectChanges()
+  spec.csharp:
+  - uid: System.Data.DataTable.RejectChanges
+    name: RejectChanges
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.rejectchanges
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.RejectChanges
+    name: RejectChanges
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.rejectchanges
+  - name: (
+  - name: )
+- uid: System.Data.DataTable.Reset
+  commentId: M:System.Data.DataTable.Reset
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.reset
+  name: Reset()
+  nameWithType: DataTable.Reset()
+  fullName: System.Data.DataTable.Reset()
+  spec.csharp:
+  - uid: System.Data.DataTable.Reset
+    name: Reset
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.reset
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.Reset
+    name: Reset
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.reset
+  - name: (
+  - name: )
+- uid: System.Data.DataTable.Select
+  commentId: M:System.Data.DataTable.Select
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.select#system-data-datatable-select
+  name: Select()
+  nameWithType: DataTable.Select()
+  fullName: System.Data.DataTable.Select()
+  spec.csharp:
+  - uid: System.Data.DataTable.Select
+    name: Select
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.select#system-data-datatable-select
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.Select
+    name: Select
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.select#system-data-datatable-select
+  - name: (
+  - name: )
+- uid: System.Data.DataTable.Select(System.String)
+  commentId: M:System.Data.DataTable.Select(System.String)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.select#system-data-datatable-select(system-string)
+  name: Select(string)
+  nameWithType: DataTable.Select(string)
+  fullName: System.Data.DataTable.Select(string)
+  nameWithType.vb: DataTable.Select(String)
+  fullName.vb: System.Data.DataTable.Select(String)
+  name.vb: Select(String)
+  spec.csharp:
+  - uid: System.Data.DataTable.Select(System.String)
+    name: Select
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.select#system-data-datatable-select(system-string)
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.Select(System.String)
+    name: Select
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.select#system-data-datatable-select(system-string)
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Data.DataTable.Select(System.String,System.String)
+  commentId: M:System.Data.DataTable.Select(System.String,System.String)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.select#system-data-datatable-select(system-string-system-string)
+  name: Select(string, string)
+  nameWithType: DataTable.Select(string, string)
+  fullName: System.Data.DataTable.Select(string, string)
+  nameWithType.vb: DataTable.Select(String, String)
+  fullName.vb: System.Data.DataTable.Select(String, String)
+  name.vb: Select(String, String)
+  spec.csharp:
+  - uid: System.Data.DataTable.Select(System.String,System.String)
+    name: Select
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.select#system-data-datatable-select(system-string-system-string)
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.Select(System.String,System.String)
+    name: Select
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.select#system-data-datatable-select(system-string-system-string)
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Data.DataTable.Select(System.String,System.String,System.Data.DataViewRowState)
+  commentId: M:System.Data.DataTable.Select(System.String,System.String,System.Data.DataViewRowState)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.select#system-data-datatable-select(system-string-system-string-system-data-dataviewrowstate)
+  name: Select(string, string, DataViewRowState)
+  nameWithType: DataTable.Select(string, string, DataViewRowState)
+  fullName: System.Data.DataTable.Select(string, string, System.Data.DataViewRowState)
+  nameWithType.vb: DataTable.Select(String, String, DataViewRowState)
+  fullName.vb: System.Data.DataTable.Select(String, String, System.Data.DataViewRowState)
+  name.vb: Select(String, String, DataViewRowState)
+  spec.csharp:
+  - uid: System.Data.DataTable.Select(System.String,System.String,System.Data.DataViewRowState)
+    name: Select
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.select#system-data-datatable-select(system-string-system-string-system-data-dataviewrowstate)
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Data.DataViewRowState
+    name: DataViewRowState
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.dataviewrowstate
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.Select(System.String,System.String,System.Data.DataViewRowState)
+    name: Select
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.select#system-data-datatable-select(system-string-system-string-system-data-dataviewrowstate)
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Data.DataViewRowState
+    name: DataViewRowState
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.dataviewrowstate
+  - name: )
+- uid: System.Data.DataTable.ToString
+  commentId: M:System.Data.DataTable.ToString
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.tostring
+  name: ToString()
+  nameWithType: DataTable.ToString()
+  fullName: System.Data.DataTable.ToString()
+  spec.csharp:
+  - uid: System.Data.DataTable.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.tostring
+  - name: (
+  - name: )
+- uid: System.Data.DataTable.BeginLoadData
+  commentId: M:System.Data.DataTable.BeginLoadData
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.beginloaddata
+  name: BeginLoadData()
+  nameWithType: DataTable.BeginLoadData()
+  fullName: System.Data.DataTable.BeginLoadData()
+  spec.csharp:
+  - uid: System.Data.DataTable.BeginLoadData
+    name: BeginLoadData
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.beginloaddata
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.BeginLoadData
+    name: BeginLoadData
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.beginloaddata
+  - name: (
+  - name: )
+- uid: System.Data.DataTable.EndLoadData
+  commentId: M:System.Data.DataTable.EndLoadData
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.endloaddata
+  name: EndLoadData()
+  nameWithType: DataTable.EndLoadData()
+  fullName: System.Data.DataTable.EndLoadData()
+  spec.csharp:
+  - uid: System.Data.DataTable.EndLoadData
+    name: EndLoadData
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.endloaddata
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.EndLoadData
+    name: EndLoadData
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.endloaddata
+  - name: (
+  - name: )
+- uid: System.Data.DataTable.LoadDataRow(System.Object[],System.Boolean)
+  commentId: M:System.Data.DataTable.LoadDataRow(System.Object[],System.Boolean)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.loaddatarow#system-data-datatable-loaddatarow(system-object()-system-boolean)
+  name: LoadDataRow(object[], bool)
+  nameWithType: DataTable.LoadDataRow(object[], bool)
+  fullName: System.Data.DataTable.LoadDataRow(object[], bool)
+  nameWithType.vb: DataTable.LoadDataRow(Object(), Boolean)
+  fullName.vb: System.Data.DataTable.LoadDataRow(Object(), Boolean)
+  name.vb: LoadDataRow(Object(), Boolean)
+  spec.csharp:
+  - uid: System.Data.DataTable.LoadDataRow(System.Object[],System.Boolean)
+    name: LoadDataRow
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.loaddatarow#system-data-datatable-loaddatarow(system-object()-system-boolean)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '['
+  - name: ']'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.LoadDataRow(System.Object[],System.Boolean)
+    name: LoadDataRow
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.loaddatarow#system-data-datatable-loaddatarow(system-object()-system-boolean)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: (
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Data.DataTable.LoadDataRow(System.Object[],System.Data.LoadOption)
+  commentId: M:System.Data.DataTable.LoadDataRow(System.Object[],System.Data.LoadOption)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.loaddatarow#system-data-datatable-loaddatarow(system-object()-system-data-loadoption)
+  name: LoadDataRow(object[], LoadOption)
+  nameWithType: DataTable.LoadDataRow(object[], LoadOption)
+  fullName: System.Data.DataTable.LoadDataRow(object[], System.Data.LoadOption)
+  nameWithType.vb: DataTable.LoadDataRow(Object(), LoadOption)
+  fullName.vb: System.Data.DataTable.LoadDataRow(Object(), System.Data.LoadOption)
+  name.vb: LoadDataRow(Object(), LoadOption)
+  spec.csharp:
+  - uid: System.Data.DataTable.LoadDataRow(System.Object[],System.Data.LoadOption)
+    name: LoadDataRow
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.loaddatarow#system-data-datatable-loaddatarow(system-object()-system-data-loadoption)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '['
+  - name: ']'
+  - name: ','
+  - name: " "
+  - uid: System.Data.LoadOption
+    name: LoadOption
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.loadoption
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.LoadDataRow(System.Object[],System.Data.LoadOption)
+    name: LoadDataRow
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.loaddatarow#system-data-datatable-loaddatarow(system-object()-system-data-loadoption)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: (
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Data.LoadOption
+    name: LoadOption
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.loadoption
+  - name: )
+- uid: System.Data.DataTable.Merge(System.Data.DataTable)
+  commentId: M:System.Data.DataTable.Merge(System.Data.DataTable)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.merge#system-data-datatable-merge(system-data-datatable)
+  name: Merge(DataTable)
+  nameWithType: DataTable.Merge(DataTable)
+  fullName: System.Data.DataTable.Merge(System.Data.DataTable)
+  spec.csharp:
+  - uid: System.Data.DataTable.Merge(System.Data.DataTable)
+    name: Merge
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.merge#system-data-datatable-merge(system-data-datatable)
+  - name: (
+  - uid: System.Data.DataTable
+    name: DataTable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.Merge(System.Data.DataTable)
+    name: Merge
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.merge#system-data-datatable-merge(system-data-datatable)
+  - name: (
+  - uid: System.Data.DataTable
+    name: DataTable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable
+  - name: )
+- uid: System.Data.DataTable.Merge(System.Data.DataTable,System.Boolean)
+  commentId: M:System.Data.DataTable.Merge(System.Data.DataTable,System.Boolean)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.merge#system-data-datatable-merge(system-data-datatable-system-boolean)
+  name: Merge(DataTable, bool)
+  nameWithType: DataTable.Merge(DataTable, bool)
+  fullName: System.Data.DataTable.Merge(System.Data.DataTable, bool)
+  nameWithType.vb: DataTable.Merge(DataTable, Boolean)
+  fullName.vb: System.Data.DataTable.Merge(System.Data.DataTable, Boolean)
+  name.vb: Merge(DataTable, Boolean)
+  spec.csharp:
+  - uid: System.Data.DataTable.Merge(System.Data.DataTable,System.Boolean)
+    name: Merge
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.merge#system-data-datatable-merge(system-data-datatable-system-boolean)
+  - name: (
+  - uid: System.Data.DataTable
+    name: DataTable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.Merge(System.Data.DataTable,System.Boolean)
+    name: Merge
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.merge#system-data-datatable-merge(system-data-datatable-system-boolean)
+  - name: (
+  - uid: System.Data.DataTable
+    name: DataTable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Data.DataTable.Merge(System.Data.DataTable,System.Boolean,System.Data.MissingSchemaAction)
+  commentId: M:System.Data.DataTable.Merge(System.Data.DataTable,System.Boolean,System.Data.MissingSchemaAction)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.merge#system-data-datatable-merge(system-data-datatable-system-boolean-system-data-missingschemaaction)
+  name: Merge(DataTable, bool, MissingSchemaAction)
+  nameWithType: DataTable.Merge(DataTable, bool, MissingSchemaAction)
+  fullName: System.Data.DataTable.Merge(System.Data.DataTable, bool, System.Data.MissingSchemaAction)
+  nameWithType.vb: DataTable.Merge(DataTable, Boolean, MissingSchemaAction)
+  fullName.vb: System.Data.DataTable.Merge(System.Data.DataTable, Boolean, System.Data.MissingSchemaAction)
+  name.vb: Merge(DataTable, Boolean, MissingSchemaAction)
+  spec.csharp:
+  - uid: System.Data.DataTable.Merge(System.Data.DataTable,System.Boolean,System.Data.MissingSchemaAction)
+    name: Merge
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.merge#system-data-datatable-merge(system-data-datatable-system-boolean-system-data-missingschemaaction)
+  - name: (
+  - uid: System.Data.DataTable
+    name: DataTable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Data.MissingSchemaAction
+    name: MissingSchemaAction
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.missingschemaaction
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.Merge(System.Data.DataTable,System.Boolean,System.Data.MissingSchemaAction)
+    name: Merge
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.merge#system-data-datatable-merge(system-data-datatable-system-boolean-system-data-missingschemaaction)
+  - name: (
+  - uid: System.Data.DataTable
+    name: DataTable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Data.MissingSchemaAction
+    name: MissingSchemaAction
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.missingschemaaction
+  - name: )
+- uid: System.Data.DataTable.Load(System.Data.IDataReader)
+  commentId: M:System.Data.DataTable.Load(System.Data.IDataReader)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.load#system-data-datatable-load(system-data-idatareader)
+  name: Load(IDataReader)
+  nameWithType: DataTable.Load(IDataReader)
+  fullName: System.Data.DataTable.Load(System.Data.IDataReader)
+  spec.csharp:
+  - uid: System.Data.DataTable.Load(System.Data.IDataReader)
+    name: Load
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.load#system-data-datatable-load(system-data-idatareader)
+  - name: (
+  - uid: System.Data.IDataReader
+    name: IDataReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.idatareader
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.Load(System.Data.IDataReader)
+    name: Load
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.load#system-data-datatable-load(system-data-idatareader)
+  - name: (
+  - uid: System.Data.IDataReader
+    name: IDataReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.idatareader
+  - name: )
+- uid: System.Data.DataTable.Load(System.Data.IDataReader,System.Data.LoadOption)
+  commentId: M:System.Data.DataTable.Load(System.Data.IDataReader,System.Data.LoadOption)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.load#system-data-datatable-load(system-data-idatareader-system-data-loadoption)
+  name: Load(IDataReader, LoadOption)
+  nameWithType: DataTable.Load(IDataReader, LoadOption)
+  fullName: System.Data.DataTable.Load(System.Data.IDataReader, System.Data.LoadOption)
+  spec.csharp:
+  - uid: System.Data.DataTable.Load(System.Data.IDataReader,System.Data.LoadOption)
+    name: Load
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.load#system-data-datatable-load(system-data-idatareader-system-data-loadoption)
+  - name: (
+  - uid: System.Data.IDataReader
+    name: IDataReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.idatareader
+  - name: ','
+  - name: " "
+  - uid: System.Data.LoadOption
+    name: LoadOption
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.loadoption
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.Load(System.Data.IDataReader,System.Data.LoadOption)
+    name: Load
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.load#system-data-datatable-load(system-data-idatareader-system-data-loadoption)
+  - name: (
+  - uid: System.Data.IDataReader
+    name: IDataReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.idatareader
+  - name: ','
+  - name: " "
+  - uid: System.Data.LoadOption
+    name: LoadOption
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.loadoption
+  - name: )
+- uid: System.Data.DataTable.Load(System.Data.IDataReader,System.Data.LoadOption,System.Data.FillErrorEventHandler)
+  commentId: M:System.Data.DataTable.Load(System.Data.IDataReader,System.Data.LoadOption,System.Data.FillErrorEventHandler)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.load#system-data-datatable-load(system-data-idatareader-system-data-loadoption-system-data-fillerroreventhandler)
+  name: Load(IDataReader, LoadOption, FillErrorEventHandler)
+  nameWithType: DataTable.Load(IDataReader, LoadOption, FillErrorEventHandler)
+  fullName: System.Data.DataTable.Load(System.Data.IDataReader, System.Data.LoadOption, System.Data.FillErrorEventHandler)
+  spec.csharp:
+  - uid: System.Data.DataTable.Load(System.Data.IDataReader,System.Data.LoadOption,System.Data.FillErrorEventHandler)
+    name: Load
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.load#system-data-datatable-load(system-data-idatareader-system-data-loadoption-system-data-fillerroreventhandler)
+  - name: (
+  - uid: System.Data.IDataReader
+    name: IDataReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.idatareader
+  - name: ','
+  - name: " "
+  - uid: System.Data.LoadOption
+    name: LoadOption
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.loadoption
+  - name: ','
+  - name: " "
+  - uid: System.Data.FillErrorEventHandler
+    name: FillErrorEventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.fillerroreventhandler
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.Load(System.Data.IDataReader,System.Data.LoadOption,System.Data.FillErrorEventHandler)
+    name: Load
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.load#system-data-datatable-load(system-data-idatareader-system-data-loadoption-system-data-fillerroreventhandler)
+  - name: (
+  - uid: System.Data.IDataReader
+    name: IDataReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.idatareader
+  - name: ','
+  - name: " "
+  - uid: System.Data.LoadOption
+    name: LoadOption
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.loadoption
+  - name: ','
+  - name: " "
+  - uid: System.Data.FillErrorEventHandler
+    name: FillErrorEventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.fillerroreventhandler
+  - name: )
+- uid: System.Data.DataTable.CreateDataReader
+  commentId: M:System.Data.DataTable.CreateDataReader
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.createdatareader
+  name: CreateDataReader()
+  nameWithType: DataTable.CreateDataReader()
+  fullName: System.Data.DataTable.CreateDataReader()
+  spec.csharp:
+  - uid: System.Data.DataTable.CreateDataReader
+    name: CreateDataReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.createdatareader
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.CreateDataReader
+    name: CreateDataReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.createdatareader
+  - name: (
+  - name: )
+- uid: System.Data.DataTable.WriteXml(System.IO.Stream)
+  commentId: M:System.Data.DataTable.WriteXml(System.IO.Stream)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-io-stream)
+  name: WriteXml(Stream)
+  nameWithType: DataTable.WriteXml(Stream)
+  fullName: System.Data.DataTable.WriteXml(System.IO.Stream)
+  spec.csharp:
+  - uid: System.Data.DataTable.WriteXml(System.IO.Stream)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-io-stream)
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.WriteXml(System.IO.Stream)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-io-stream)
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+- uid: System.Data.DataTable.WriteXml(System.IO.Stream,System.Boolean)
+  commentId: M:System.Data.DataTable.WriteXml(System.IO.Stream,System.Boolean)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-io-stream-system-boolean)
+  name: WriteXml(Stream, bool)
+  nameWithType: DataTable.WriteXml(Stream, bool)
+  fullName: System.Data.DataTable.WriteXml(System.IO.Stream, bool)
+  nameWithType.vb: DataTable.WriteXml(Stream, Boolean)
+  fullName.vb: System.Data.DataTable.WriteXml(System.IO.Stream, Boolean)
+  name.vb: WriteXml(Stream, Boolean)
+  spec.csharp:
+  - uid: System.Data.DataTable.WriteXml(System.IO.Stream,System.Boolean)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-io-stream-system-boolean)
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.WriteXml(System.IO.Stream,System.Boolean)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-io-stream-system-boolean)
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Data.DataTable.WriteXml(System.IO.TextWriter)
+  commentId: M:System.Data.DataTable.WriteXml(System.IO.TextWriter)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-io-textwriter)
+  name: WriteXml(TextWriter)
+  nameWithType: DataTable.WriteXml(TextWriter)
+  fullName: System.Data.DataTable.WriteXml(System.IO.TextWriter)
+  spec.csharp:
+  - uid: System.Data.DataTable.WriteXml(System.IO.TextWriter)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-io-textwriter)
+  - name: (
+  - uid: System.IO.TextWriter
+    name: TextWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.textwriter
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.WriteXml(System.IO.TextWriter)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-io-textwriter)
+  - name: (
+  - uid: System.IO.TextWriter
+    name: TextWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.textwriter
+  - name: )
+- uid: System.Data.DataTable.WriteXml(System.IO.TextWriter,System.Boolean)
+  commentId: M:System.Data.DataTable.WriteXml(System.IO.TextWriter,System.Boolean)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-io-textwriter-system-boolean)
+  name: WriteXml(TextWriter, bool)
+  nameWithType: DataTable.WriteXml(TextWriter, bool)
+  fullName: System.Data.DataTable.WriteXml(System.IO.TextWriter, bool)
+  nameWithType.vb: DataTable.WriteXml(TextWriter, Boolean)
+  fullName.vb: System.Data.DataTable.WriteXml(System.IO.TextWriter, Boolean)
+  name.vb: WriteXml(TextWriter, Boolean)
+  spec.csharp:
+  - uid: System.Data.DataTable.WriteXml(System.IO.TextWriter,System.Boolean)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-io-textwriter-system-boolean)
+  - name: (
+  - uid: System.IO.TextWriter
+    name: TextWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.textwriter
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.WriteXml(System.IO.TextWriter,System.Boolean)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-io-textwriter-system-boolean)
+  - name: (
+  - uid: System.IO.TextWriter
+    name: TextWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.textwriter
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Data.DataTable.WriteXml(System.Xml.XmlWriter)
+  commentId: M:System.Data.DataTable.WriteXml(System.Xml.XmlWriter)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-xml-xmlwriter)
+  name: WriteXml(XmlWriter)
+  nameWithType: DataTable.WriteXml(XmlWriter)
+  fullName: System.Data.DataTable.WriteXml(System.Xml.XmlWriter)
+  spec.csharp:
+  - uid: System.Data.DataTable.WriteXml(System.Xml.XmlWriter)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-xml-xmlwriter)
+  - name: (
+  - uid: System.Xml.XmlWriter
+    name: XmlWriter
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.WriteXml(System.Xml.XmlWriter)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-xml-xmlwriter)
+  - name: (
+  - uid: System.Xml.XmlWriter
+    name: XmlWriter
+    isExternal: true
+  - name: )
+- uid: System.Data.DataTable.WriteXml(System.Xml.XmlWriter,System.Boolean)
+  commentId: M:System.Data.DataTable.WriteXml(System.Xml.XmlWriter,System.Boolean)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-xml-xmlwriter-system-boolean)
+  name: WriteXml(XmlWriter, bool)
+  nameWithType: DataTable.WriteXml(XmlWriter, bool)
+  fullName: System.Data.DataTable.WriteXml(System.Xml.XmlWriter, bool)
+  nameWithType.vb: DataTable.WriteXml(XmlWriter, Boolean)
+  fullName.vb: System.Data.DataTable.WriteXml(System.Xml.XmlWriter, Boolean)
+  name.vb: WriteXml(XmlWriter, Boolean)
+  spec.csharp:
+  - uid: System.Data.DataTable.WriteXml(System.Xml.XmlWriter,System.Boolean)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-xml-xmlwriter-system-boolean)
+  - name: (
+  - uid: System.Xml.XmlWriter
+    name: XmlWriter
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.WriteXml(System.Xml.XmlWriter,System.Boolean)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-xml-xmlwriter-system-boolean)
+  - name: (
+  - uid: System.Xml.XmlWriter
+    name: XmlWriter
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Data.DataTable.WriteXml(System.String)
+  commentId: M:System.Data.DataTable.WriteXml(System.String)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-string)
+  name: WriteXml(string)
+  nameWithType: DataTable.WriteXml(string)
+  fullName: System.Data.DataTable.WriteXml(string)
+  nameWithType.vb: DataTable.WriteXml(String)
+  fullName.vb: System.Data.DataTable.WriteXml(String)
+  name.vb: WriteXml(String)
+  spec.csharp:
+  - uid: System.Data.DataTable.WriteXml(System.String)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-string)
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.WriteXml(System.String)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-string)
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Data.DataTable.WriteXml(System.String,System.Boolean)
+  commentId: M:System.Data.DataTable.WriteXml(System.String,System.Boolean)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-string-system-boolean)
+  name: WriteXml(string, bool)
+  nameWithType: DataTable.WriteXml(string, bool)
+  fullName: System.Data.DataTable.WriteXml(string, bool)
+  nameWithType.vb: DataTable.WriteXml(String, Boolean)
+  fullName.vb: System.Data.DataTable.WriteXml(String, Boolean)
+  name.vb: WriteXml(String, Boolean)
+  spec.csharp:
+  - uid: System.Data.DataTable.WriteXml(System.String,System.Boolean)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-string-system-boolean)
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.WriteXml(System.String,System.Boolean)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-string-system-boolean)
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Data.DataTable.WriteXml(System.IO.Stream,System.Data.XmlWriteMode)
+  commentId: M:System.Data.DataTable.WriteXml(System.IO.Stream,System.Data.XmlWriteMode)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-io-stream-system-data-xmlwritemode)
+  name: WriteXml(Stream, XmlWriteMode)
+  nameWithType: DataTable.WriteXml(Stream, XmlWriteMode)
+  fullName: System.Data.DataTable.WriteXml(System.IO.Stream, System.Data.XmlWriteMode)
+  spec.csharp:
+  - uid: System.Data.DataTable.WriteXml(System.IO.Stream,System.Data.XmlWriteMode)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-io-stream-system-data-xmlwritemode)
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Data.XmlWriteMode
+    name: XmlWriteMode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.xmlwritemode
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.WriteXml(System.IO.Stream,System.Data.XmlWriteMode)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-io-stream-system-data-xmlwritemode)
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Data.XmlWriteMode
+    name: XmlWriteMode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.xmlwritemode
+  - name: )
+- uid: System.Data.DataTable.WriteXml(System.IO.Stream,System.Data.XmlWriteMode,System.Boolean)
+  commentId: M:System.Data.DataTable.WriteXml(System.IO.Stream,System.Data.XmlWriteMode,System.Boolean)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-io-stream-system-data-xmlwritemode-system-boolean)
+  name: WriteXml(Stream, XmlWriteMode, bool)
+  nameWithType: DataTable.WriteXml(Stream, XmlWriteMode, bool)
+  fullName: System.Data.DataTable.WriteXml(System.IO.Stream, System.Data.XmlWriteMode, bool)
+  nameWithType.vb: DataTable.WriteXml(Stream, XmlWriteMode, Boolean)
+  fullName.vb: System.Data.DataTable.WriteXml(System.IO.Stream, System.Data.XmlWriteMode, Boolean)
+  name.vb: WriteXml(Stream, XmlWriteMode, Boolean)
+  spec.csharp:
+  - uid: System.Data.DataTable.WriteXml(System.IO.Stream,System.Data.XmlWriteMode,System.Boolean)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-io-stream-system-data-xmlwritemode-system-boolean)
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Data.XmlWriteMode
+    name: XmlWriteMode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.xmlwritemode
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.WriteXml(System.IO.Stream,System.Data.XmlWriteMode,System.Boolean)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-io-stream-system-data-xmlwritemode-system-boolean)
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Data.XmlWriteMode
+    name: XmlWriteMode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.xmlwritemode
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Data.DataTable.WriteXml(System.IO.TextWriter,System.Data.XmlWriteMode)
+  commentId: M:System.Data.DataTable.WriteXml(System.IO.TextWriter,System.Data.XmlWriteMode)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-io-textwriter-system-data-xmlwritemode)
+  name: WriteXml(TextWriter, XmlWriteMode)
+  nameWithType: DataTable.WriteXml(TextWriter, XmlWriteMode)
+  fullName: System.Data.DataTable.WriteXml(System.IO.TextWriter, System.Data.XmlWriteMode)
+  spec.csharp:
+  - uid: System.Data.DataTable.WriteXml(System.IO.TextWriter,System.Data.XmlWriteMode)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-io-textwriter-system-data-xmlwritemode)
+  - name: (
+  - uid: System.IO.TextWriter
+    name: TextWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.textwriter
+  - name: ','
+  - name: " "
+  - uid: System.Data.XmlWriteMode
+    name: XmlWriteMode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.xmlwritemode
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.WriteXml(System.IO.TextWriter,System.Data.XmlWriteMode)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-io-textwriter-system-data-xmlwritemode)
+  - name: (
+  - uid: System.IO.TextWriter
+    name: TextWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.textwriter
+  - name: ','
+  - name: " "
+  - uid: System.Data.XmlWriteMode
+    name: XmlWriteMode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.xmlwritemode
+  - name: )
+- uid: System.Data.DataTable.WriteXml(System.IO.TextWriter,System.Data.XmlWriteMode,System.Boolean)
+  commentId: M:System.Data.DataTable.WriteXml(System.IO.TextWriter,System.Data.XmlWriteMode,System.Boolean)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-io-textwriter-system-data-xmlwritemode-system-boolean)
+  name: WriteXml(TextWriter, XmlWriteMode, bool)
+  nameWithType: DataTable.WriteXml(TextWriter, XmlWriteMode, bool)
+  fullName: System.Data.DataTable.WriteXml(System.IO.TextWriter, System.Data.XmlWriteMode, bool)
+  nameWithType.vb: DataTable.WriteXml(TextWriter, XmlWriteMode, Boolean)
+  fullName.vb: System.Data.DataTable.WriteXml(System.IO.TextWriter, System.Data.XmlWriteMode, Boolean)
+  name.vb: WriteXml(TextWriter, XmlWriteMode, Boolean)
+  spec.csharp:
+  - uid: System.Data.DataTable.WriteXml(System.IO.TextWriter,System.Data.XmlWriteMode,System.Boolean)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-io-textwriter-system-data-xmlwritemode-system-boolean)
+  - name: (
+  - uid: System.IO.TextWriter
+    name: TextWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.textwriter
+  - name: ','
+  - name: " "
+  - uid: System.Data.XmlWriteMode
+    name: XmlWriteMode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.xmlwritemode
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.WriteXml(System.IO.TextWriter,System.Data.XmlWriteMode,System.Boolean)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-io-textwriter-system-data-xmlwritemode-system-boolean)
+  - name: (
+  - uid: System.IO.TextWriter
+    name: TextWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.textwriter
+  - name: ','
+  - name: " "
+  - uid: System.Data.XmlWriteMode
+    name: XmlWriteMode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.xmlwritemode
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Data.DataTable.WriteXml(System.Xml.XmlWriter,System.Data.XmlWriteMode)
+  commentId: M:System.Data.DataTable.WriteXml(System.Xml.XmlWriter,System.Data.XmlWriteMode)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-xml-xmlwriter-system-data-xmlwritemode)
+  name: WriteXml(XmlWriter, XmlWriteMode)
+  nameWithType: DataTable.WriteXml(XmlWriter, XmlWriteMode)
+  fullName: System.Data.DataTable.WriteXml(System.Xml.XmlWriter, System.Data.XmlWriteMode)
+  spec.csharp:
+  - uid: System.Data.DataTable.WriteXml(System.Xml.XmlWriter,System.Data.XmlWriteMode)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-xml-xmlwriter-system-data-xmlwritemode)
+  - name: (
+  - uid: System.Xml.XmlWriter
+    name: XmlWriter
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Data.XmlWriteMode
+    name: XmlWriteMode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.xmlwritemode
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.WriteXml(System.Xml.XmlWriter,System.Data.XmlWriteMode)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-xml-xmlwriter-system-data-xmlwritemode)
+  - name: (
+  - uid: System.Xml.XmlWriter
+    name: XmlWriter
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Data.XmlWriteMode
+    name: XmlWriteMode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.xmlwritemode
+  - name: )
+- uid: System.Data.DataTable.WriteXml(System.Xml.XmlWriter,System.Data.XmlWriteMode,System.Boolean)
+  commentId: M:System.Data.DataTable.WriteXml(System.Xml.XmlWriter,System.Data.XmlWriteMode,System.Boolean)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-xml-xmlwriter-system-data-xmlwritemode-system-boolean)
+  name: WriteXml(XmlWriter, XmlWriteMode, bool)
+  nameWithType: DataTable.WriteXml(XmlWriter, XmlWriteMode, bool)
+  fullName: System.Data.DataTable.WriteXml(System.Xml.XmlWriter, System.Data.XmlWriteMode, bool)
+  nameWithType.vb: DataTable.WriteXml(XmlWriter, XmlWriteMode, Boolean)
+  fullName.vb: System.Data.DataTable.WriteXml(System.Xml.XmlWriter, System.Data.XmlWriteMode, Boolean)
+  name.vb: WriteXml(XmlWriter, XmlWriteMode, Boolean)
+  spec.csharp:
+  - uid: System.Data.DataTable.WriteXml(System.Xml.XmlWriter,System.Data.XmlWriteMode,System.Boolean)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-xml-xmlwriter-system-data-xmlwritemode-system-boolean)
+  - name: (
+  - uid: System.Xml.XmlWriter
+    name: XmlWriter
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Data.XmlWriteMode
+    name: XmlWriteMode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.xmlwritemode
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.WriteXml(System.Xml.XmlWriter,System.Data.XmlWriteMode,System.Boolean)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-xml-xmlwriter-system-data-xmlwritemode-system-boolean)
+  - name: (
+  - uid: System.Xml.XmlWriter
+    name: XmlWriter
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Data.XmlWriteMode
+    name: XmlWriteMode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.xmlwritemode
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Data.DataTable.WriteXml(System.String,System.Data.XmlWriteMode)
+  commentId: M:System.Data.DataTable.WriteXml(System.String,System.Data.XmlWriteMode)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-string-system-data-xmlwritemode)
+  name: WriteXml(string, XmlWriteMode)
+  nameWithType: DataTable.WriteXml(string, XmlWriteMode)
+  fullName: System.Data.DataTable.WriteXml(string, System.Data.XmlWriteMode)
+  nameWithType.vb: DataTable.WriteXml(String, XmlWriteMode)
+  fullName.vb: System.Data.DataTable.WriteXml(String, System.Data.XmlWriteMode)
+  name.vb: WriteXml(String, XmlWriteMode)
+  spec.csharp:
+  - uid: System.Data.DataTable.WriteXml(System.String,System.Data.XmlWriteMode)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-string-system-data-xmlwritemode)
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Data.XmlWriteMode
+    name: XmlWriteMode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.xmlwritemode
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.WriteXml(System.String,System.Data.XmlWriteMode)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-string-system-data-xmlwritemode)
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Data.XmlWriteMode
+    name: XmlWriteMode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.xmlwritemode
+  - name: )
+- uid: System.Data.DataTable.WriteXml(System.String,System.Data.XmlWriteMode,System.Boolean)
+  commentId: M:System.Data.DataTable.WriteXml(System.String,System.Data.XmlWriteMode,System.Boolean)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-string-system-data-xmlwritemode-system-boolean)
+  name: WriteXml(string, XmlWriteMode, bool)
+  nameWithType: DataTable.WriteXml(string, XmlWriteMode, bool)
+  fullName: System.Data.DataTable.WriteXml(string, System.Data.XmlWriteMode, bool)
+  nameWithType.vb: DataTable.WriteXml(String, XmlWriteMode, Boolean)
+  fullName.vb: System.Data.DataTable.WriteXml(String, System.Data.XmlWriteMode, Boolean)
+  name.vb: WriteXml(String, XmlWriteMode, Boolean)
+  spec.csharp:
+  - uid: System.Data.DataTable.WriteXml(System.String,System.Data.XmlWriteMode,System.Boolean)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-string-system-data-xmlwritemode-system-boolean)
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Data.XmlWriteMode
+    name: XmlWriteMode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.xmlwritemode
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.WriteXml(System.String,System.Data.XmlWriteMode,System.Boolean)
+    name: WriteXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexml#system-data-datatable-writexml(system-string-system-data-xmlwritemode-system-boolean)
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Data.XmlWriteMode
+    name: XmlWriteMode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.xmlwritemode
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Data.DataTable.WriteXmlSchema(System.IO.Stream)
+  commentId: M:System.Data.DataTable.WriteXmlSchema(System.IO.Stream)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexmlschema#system-data-datatable-writexmlschema(system-io-stream)
+  name: WriteXmlSchema(Stream)
+  nameWithType: DataTable.WriteXmlSchema(Stream)
+  fullName: System.Data.DataTable.WriteXmlSchema(System.IO.Stream)
+  spec.csharp:
+  - uid: System.Data.DataTable.WriteXmlSchema(System.IO.Stream)
+    name: WriteXmlSchema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexmlschema#system-data-datatable-writexmlschema(system-io-stream)
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.WriteXmlSchema(System.IO.Stream)
+    name: WriteXmlSchema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexmlschema#system-data-datatable-writexmlschema(system-io-stream)
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+- uid: System.Data.DataTable.WriteXmlSchema(System.IO.Stream,System.Boolean)
+  commentId: M:System.Data.DataTable.WriteXmlSchema(System.IO.Stream,System.Boolean)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexmlschema#system-data-datatable-writexmlschema(system-io-stream-system-boolean)
+  name: WriteXmlSchema(Stream, bool)
+  nameWithType: DataTable.WriteXmlSchema(Stream, bool)
+  fullName: System.Data.DataTable.WriteXmlSchema(System.IO.Stream, bool)
+  nameWithType.vb: DataTable.WriteXmlSchema(Stream, Boolean)
+  fullName.vb: System.Data.DataTable.WriteXmlSchema(System.IO.Stream, Boolean)
+  name.vb: WriteXmlSchema(Stream, Boolean)
+  spec.csharp:
+  - uid: System.Data.DataTable.WriteXmlSchema(System.IO.Stream,System.Boolean)
+    name: WriteXmlSchema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexmlschema#system-data-datatable-writexmlschema(system-io-stream-system-boolean)
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.WriteXmlSchema(System.IO.Stream,System.Boolean)
+    name: WriteXmlSchema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexmlschema#system-data-datatable-writexmlschema(system-io-stream-system-boolean)
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Data.DataTable.WriteXmlSchema(System.IO.TextWriter)
+  commentId: M:System.Data.DataTable.WriteXmlSchema(System.IO.TextWriter)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexmlschema#system-data-datatable-writexmlschema(system-io-textwriter)
+  name: WriteXmlSchema(TextWriter)
+  nameWithType: DataTable.WriteXmlSchema(TextWriter)
+  fullName: System.Data.DataTable.WriteXmlSchema(System.IO.TextWriter)
+  spec.csharp:
+  - uid: System.Data.DataTable.WriteXmlSchema(System.IO.TextWriter)
+    name: WriteXmlSchema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexmlschema#system-data-datatable-writexmlschema(system-io-textwriter)
+  - name: (
+  - uid: System.IO.TextWriter
+    name: TextWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.textwriter
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.WriteXmlSchema(System.IO.TextWriter)
+    name: WriteXmlSchema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexmlschema#system-data-datatable-writexmlschema(system-io-textwriter)
+  - name: (
+  - uid: System.IO.TextWriter
+    name: TextWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.textwriter
+  - name: )
+- uid: System.Data.DataTable.WriteXmlSchema(System.IO.TextWriter,System.Boolean)
+  commentId: M:System.Data.DataTable.WriteXmlSchema(System.IO.TextWriter,System.Boolean)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexmlschema#system-data-datatable-writexmlschema(system-io-textwriter-system-boolean)
+  name: WriteXmlSchema(TextWriter, bool)
+  nameWithType: DataTable.WriteXmlSchema(TextWriter, bool)
+  fullName: System.Data.DataTable.WriteXmlSchema(System.IO.TextWriter, bool)
+  nameWithType.vb: DataTable.WriteXmlSchema(TextWriter, Boolean)
+  fullName.vb: System.Data.DataTable.WriteXmlSchema(System.IO.TextWriter, Boolean)
+  name.vb: WriteXmlSchema(TextWriter, Boolean)
+  spec.csharp:
+  - uid: System.Data.DataTable.WriteXmlSchema(System.IO.TextWriter,System.Boolean)
+    name: WriteXmlSchema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexmlschema#system-data-datatable-writexmlschema(system-io-textwriter-system-boolean)
+  - name: (
+  - uid: System.IO.TextWriter
+    name: TextWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.textwriter
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.WriteXmlSchema(System.IO.TextWriter,System.Boolean)
+    name: WriteXmlSchema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexmlschema#system-data-datatable-writexmlschema(system-io-textwriter-system-boolean)
+  - name: (
+  - uid: System.IO.TextWriter
+    name: TextWriter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.textwriter
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Data.DataTable.WriteXmlSchema(System.Xml.XmlWriter)
+  commentId: M:System.Data.DataTable.WriteXmlSchema(System.Xml.XmlWriter)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexmlschema#system-data-datatable-writexmlschema(system-xml-xmlwriter)
+  name: WriteXmlSchema(XmlWriter)
+  nameWithType: DataTable.WriteXmlSchema(XmlWriter)
+  fullName: System.Data.DataTable.WriteXmlSchema(System.Xml.XmlWriter)
+  spec.csharp:
+  - uid: System.Data.DataTable.WriteXmlSchema(System.Xml.XmlWriter)
+    name: WriteXmlSchema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexmlschema#system-data-datatable-writexmlschema(system-xml-xmlwriter)
+  - name: (
+  - uid: System.Xml.XmlWriter
+    name: XmlWriter
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.WriteXmlSchema(System.Xml.XmlWriter)
+    name: WriteXmlSchema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexmlschema#system-data-datatable-writexmlschema(system-xml-xmlwriter)
+  - name: (
+  - uid: System.Xml.XmlWriter
+    name: XmlWriter
+    isExternal: true
+  - name: )
+- uid: System.Data.DataTable.WriteXmlSchema(System.Xml.XmlWriter,System.Boolean)
+  commentId: M:System.Data.DataTable.WriteXmlSchema(System.Xml.XmlWriter,System.Boolean)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexmlschema#system-data-datatable-writexmlschema(system-xml-xmlwriter-system-boolean)
+  name: WriteXmlSchema(XmlWriter, bool)
+  nameWithType: DataTable.WriteXmlSchema(XmlWriter, bool)
+  fullName: System.Data.DataTable.WriteXmlSchema(System.Xml.XmlWriter, bool)
+  nameWithType.vb: DataTable.WriteXmlSchema(XmlWriter, Boolean)
+  fullName.vb: System.Data.DataTable.WriteXmlSchema(System.Xml.XmlWriter, Boolean)
+  name.vb: WriteXmlSchema(XmlWriter, Boolean)
+  spec.csharp:
+  - uid: System.Data.DataTable.WriteXmlSchema(System.Xml.XmlWriter,System.Boolean)
+    name: WriteXmlSchema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexmlschema#system-data-datatable-writexmlschema(system-xml-xmlwriter-system-boolean)
+  - name: (
+  - uid: System.Xml.XmlWriter
+    name: XmlWriter
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.WriteXmlSchema(System.Xml.XmlWriter,System.Boolean)
+    name: WriteXmlSchema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexmlschema#system-data-datatable-writexmlschema(system-xml-xmlwriter-system-boolean)
+  - name: (
+  - uid: System.Xml.XmlWriter
+    name: XmlWriter
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Data.DataTable.WriteXmlSchema(System.String)
+  commentId: M:System.Data.DataTable.WriteXmlSchema(System.String)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexmlschema#system-data-datatable-writexmlschema(system-string)
+  name: WriteXmlSchema(string)
+  nameWithType: DataTable.WriteXmlSchema(string)
+  fullName: System.Data.DataTable.WriteXmlSchema(string)
+  nameWithType.vb: DataTable.WriteXmlSchema(String)
+  fullName.vb: System.Data.DataTable.WriteXmlSchema(String)
+  name.vb: WriteXmlSchema(String)
+  spec.csharp:
+  - uid: System.Data.DataTable.WriteXmlSchema(System.String)
+    name: WriteXmlSchema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexmlschema#system-data-datatable-writexmlschema(system-string)
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.WriteXmlSchema(System.String)
+    name: WriteXmlSchema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexmlschema#system-data-datatable-writexmlschema(system-string)
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Data.DataTable.WriteXmlSchema(System.String,System.Boolean)
+  commentId: M:System.Data.DataTable.WriteXmlSchema(System.String,System.Boolean)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexmlschema#system-data-datatable-writexmlschema(system-string-system-boolean)
+  name: WriteXmlSchema(string, bool)
+  nameWithType: DataTable.WriteXmlSchema(string, bool)
+  fullName: System.Data.DataTable.WriteXmlSchema(string, bool)
+  nameWithType.vb: DataTable.WriteXmlSchema(String, Boolean)
+  fullName.vb: System.Data.DataTable.WriteXmlSchema(String, Boolean)
+  name.vb: WriteXmlSchema(String, Boolean)
+  spec.csharp:
+  - uid: System.Data.DataTable.WriteXmlSchema(System.String,System.Boolean)
+    name: WriteXmlSchema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexmlschema#system-data-datatable-writexmlschema(system-string-system-boolean)
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.WriteXmlSchema(System.String,System.Boolean)
+    name: WriteXmlSchema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.writexmlschema#system-data-datatable-writexmlschema(system-string-system-boolean)
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Data.DataTable.ReadXml(System.IO.Stream)
+  commentId: M:System.Data.DataTable.ReadXml(System.IO.Stream)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.readxml#system-data-datatable-readxml(system-io-stream)
+  name: ReadXml(Stream)
+  nameWithType: DataTable.ReadXml(Stream)
+  fullName: System.Data.DataTable.ReadXml(System.IO.Stream)
+  spec.csharp:
+  - uid: System.Data.DataTable.ReadXml(System.IO.Stream)
+    name: ReadXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.readxml#system-data-datatable-readxml(system-io-stream)
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.ReadXml(System.IO.Stream)
+    name: ReadXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.readxml#system-data-datatable-readxml(system-io-stream)
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+- uid: System.Data.DataTable.ReadXml(System.IO.TextReader)
+  commentId: M:System.Data.DataTable.ReadXml(System.IO.TextReader)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.readxml#system-data-datatable-readxml(system-io-textreader)
+  name: ReadXml(TextReader)
+  nameWithType: DataTable.ReadXml(TextReader)
+  fullName: System.Data.DataTable.ReadXml(System.IO.TextReader)
+  spec.csharp:
+  - uid: System.Data.DataTable.ReadXml(System.IO.TextReader)
+    name: ReadXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.readxml#system-data-datatable-readxml(system-io-textreader)
+  - name: (
+  - uid: System.IO.TextReader
+    name: TextReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.textreader
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.ReadXml(System.IO.TextReader)
+    name: ReadXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.readxml#system-data-datatable-readxml(system-io-textreader)
+  - name: (
+  - uid: System.IO.TextReader
+    name: TextReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.textreader
+  - name: )
+- uid: System.Data.DataTable.ReadXml(System.String)
+  commentId: M:System.Data.DataTable.ReadXml(System.String)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.readxml#system-data-datatable-readxml(system-string)
+  name: ReadXml(string)
+  nameWithType: DataTable.ReadXml(string)
+  fullName: System.Data.DataTable.ReadXml(string)
+  nameWithType.vb: DataTable.ReadXml(String)
+  fullName.vb: System.Data.DataTable.ReadXml(String)
+  name.vb: ReadXml(String)
+  spec.csharp:
+  - uid: System.Data.DataTable.ReadXml(System.String)
+    name: ReadXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.readxml#system-data-datatable-readxml(system-string)
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.ReadXml(System.String)
+    name: ReadXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.readxml#system-data-datatable-readxml(system-string)
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Data.DataTable.ReadXml(System.Xml.XmlReader)
+  commentId: M:System.Data.DataTable.ReadXml(System.Xml.XmlReader)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.readxml#system-data-datatable-readxml(system-xml-xmlreader)
+  name: ReadXml(XmlReader)
+  nameWithType: DataTable.ReadXml(XmlReader)
+  fullName: System.Data.DataTable.ReadXml(System.Xml.XmlReader)
+  spec.csharp:
+  - uid: System.Data.DataTable.ReadXml(System.Xml.XmlReader)
+    name: ReadXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.readxml#system-data-datatable-readxml(system-xml-xmlreader)
+  - name: (
+  - uid: System.Xml.XmlReader
+    name: XmlReader
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.ReadXml(System.Xml.XmlReader)
+    name: ReadXml
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.readxml#system-data-datatable-readxml(system-xml-xmlreader)
+  - name: (
+  - uid: System.Xml.XmlReader
+    name: XmlReader
+    isExternal: true
+  - name: )
+- uid: System.Data.DataTable.ReadXmlSchema(System.IO.Stream)
+  commentId: M:System.Data.DataTable.ReadXmlSchema(System.IO.Stream)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.readxmlschema#system-data-datatable-readxmlschema(system-io-stream)
+  name: ReadXmlSchema(Stream)
+  nameWithType: DataTable.ReadXmlSchema(Stream)
+  fullName: System.Data.DataTable.ReadXmlSchema(System.IO.Stream)
+  spec.csharp:
+  - uid: System.Data.DataTable.ReadXmlSchema(System.IO.Stream)
+    name: ReadXmlSchema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.readxmlschema#system-data-datatable-readxmlschema(system-io-stream)
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.ReadXmlSchema(System.IO.Stream)
+    name: ReadXmlSchema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.readxmlschema#system-data-datatable-readxmlschema(system-io-stream)
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+- uid: System.Data.DataTable.ReadXmlSchema(System.IO.TextReader)
+  commentId: M:System.Data.DataTable.ReadXmlSchema(System.IO.TextReader)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.readxmlschema#system-data-datatable-readxmlschema(system-io-textreader)
+  name: ReadXmlSchema(TextReader)
+  nameWithType: DataTable.ReadXmlSchema(TextReader)
+  fullName: System.Data.DataTable.ReadXmlSchema(System.IO.TextReader)
+  spec.csharp:
+  - uid: System.Data.DataTable.ReadXmlSchema(System.IO.TextReader)
+    name: ReadXmlSchema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.readxmlschema#system-data-datatable-readxmlschema(system-io-textreader)
+  - name: (
+  - uid: System.IO.TextReader
+    name: TextReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.textreader
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.ReadXmlSchema(System.IO.TextReader)
+    name: ReadXmlSchema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.readxmlschema#system-data-datatable-readxmlschema(system-io-textreader)
+  - name: (
+  - uid: System.IO.TextReader
+    name: TextReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.textreader
+  - name: )
+- uid: System.Data.DataTable.ReadXmlSchema(System.String)
+  commentId: M:System.Data.DataTable.ReadXmlSchema(System.String)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.readxmlschema#system-data-datatable-readxmlschema(system-string)
+  name: ReadXmlSchema(string)
+  nameWithType: DataTable.ReadXmlSchema(string)
+  fullName: System.Data.DataTable.ReadXmlSchema(string)
+  nameWithType.vb: DataTable.ReadXmlSchema(String)
+  fullName.vb: System.Data.DataTable.ReadXmlSchema(String)
+  name.vb: ReadXmlSchema(String)
+  spec.csharp:
+  - uid: System.Data.DataTable.ReadXmlSchema(System.String)
+    name: ReadXmlSchema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.readxmlschema#system-data-datatable-readxmlschema(system-string)
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.ReadXmlSchema(System.String)
+    name: ReadXmlSchema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.readxmlschema#system-data-datatable-readxmlschema(system-string)
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Data.DataTable.ReadXmlSchema(System.Xml.XmlReader)
+  commentId: M:System.Data.DataTable.ReadXmlSchema(System.Xml.XmlReader)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.readxmlschema#system-data-datatable-readxmlschema(system-xml-xmlreader)
+  name: ReadXmlSchema(XmlReader)
+  nameWithType: DataTable.ReadXmlSchema(XmlReader)
+  fullName: System.Data.DataTable.ReadXmlSchema(System.Xml.XmlReader)
+  spec.csharp:
+  - uid: System.Data.DataTable.ReadXmlSchema(System.Xml.XmlReader)
+    name: ReadXmlSchema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.readxmlschema#system-data-datatable-readxmlschema(system-xml-xmlreader)
+  - name: (
+  - uid: System.Xml.XmlReader
+    name: XmlReader
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.ReadXmlSchema(System.Xml.XmlReader)
+    name: ReadXmlSchema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.readxmlschema#system-data-datatable-readxmlschema(system-xml-xmlreader)
+  - name: (
+  - uid: System.Xml.XmlReader
+    name: XmlReader
+    isExternal: true
+  - name: )
+- uid: System.Data.DataTable.GetDataTableSchema(System.Xml.Schema.XmlSchemaSet)
+  commentId: M:System.Data.DataTable.GetDataTableSchema(System.Xml.Schema.XmlSchemaSet)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.getdatatableschema
+  name: GetDataTableSchema(XmlSchemaSet)
+  nameWithType: DataTable.GetDataTableSchema(XmlSchemaSet)
+  fullName: System.Data.DataTable.GetDataTableSchema(System.Xml.Schema.XmlSchemaSet)
+  spec.csharp:
+  - uid: System.Data.DataTable.GetDataTableSchema(System.Xml.Schema.XmlSchemaSet)
+    name: GetDataTableSchema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.getdatatableschema
+  - name: (
+  - uid: System.Xml.Schema.XmlSchemaSet
+    name: XmlSchemaSet
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.GetDataTableSchema(System.Xml.Schema.XmlSchemaSet)
+    name: GetDataTableSchema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.getdatatableschema
+  - name: (
+  - uid: System.Xml.Schema.XmlSchemaSet
+    name: XmlSchemaSet
+    isExternal: true
+  - name: )
+- uid: System.Data.DataTable.GetSchema
+  commentId: M:System.Data.DataTable.GetSchema
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.getschema
+  name: GetSchema()
+  nameWithType: DataTable.GetSchema()
+  fullName: System.Data.DataTable.GetSchema()
+  spec.csharp:
+  - uid: System.Data.DataTable.GetSchema
+    name: GetSchema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.getschema
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.GetSchema
+    name: GetSchema
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.getschema
+  - name: (
+  - name: )
+- uid: System.Data.DataTable.ReadXmlSerializable(System.Xml.XmlReader)
+  commentId: M:System.Data.DataTable.ReadXmlSerializable(System.Xml.XmlReader)
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.readxmlserializable
+  name: ReadXmlSerializable(XmlReader)
+  nameWithType: DataTable.ReadXmlSerializable(XmlReader)
+  fullName: System.Data.DataTable.ReadXmlSerializable(System.Xml.XmlReader)
+  spec.csharp:
+  - uid: System.Data.DataTable.ReadXmlSerializable(System.Xml.XmlReader)
+    name: ReadXmlSerializable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.readxmlserializable
+  - name: (
+  - uid: System.Xml.XmlReader
+    name: XmlReader
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: System.Data.DataTable.ReadXmlSerializable(System.Xml.XmlReader)
+    name: ReadXmlSerializable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable.readxmlserializable
+  - name: (
+  - uid: System.Xml.XmlReader
+    name: XmlReader
+    isExternal: true
+  - name: )
+- uid: System.Data.DataTable.CaseSensitive
+  commentId: P:System.Data.DataTable.CaseSensitive
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.casesensitive
+  name: CaseSensitive
+  nameWithType: DataTable.CaseSensitive
+  fullName: System.Data.DataTable.CaseSensitive
+- uid: System.Data.DataTable.IsInitialized
+  commentId: P:System.Data.DataTable.IsInitialized
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.isinitialized
+  name: IsInitialized
+  nameWithType: DataTable.IsInitialized
+  fullName: System.Data.DataTable.IsInitialized
+- uid: System.Data.DataTable.RemotingFormat
+  commentId: P:System.Data.DataTable.RemotingFormat
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.remotingformat
+  name: RemotingFormat
+  nameWithType: DataTable.RemotingFormat
+  fullName: System.Data.DataTable.RemotingFormat
+- uid: System.Data.DataTable.ChildRelations
+  commentId: P:System.Data.DataTable.ChildRelations
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.childrelations
+  name: ChildRelations
+  nameWithType: DataTable.ChildRelations
+  fullName: System.Data.DataTable.ChildRelations
+- uid: System.Data.DataTable.Columns
+  commentId: P:System.Data.DataTable.Columns
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.columns
+  name: Columns
+  nameWithType: DataTable.Columns
+  fullName: System.Data.DataTable.Columns
+- uid: System.Data.DataTable.Constraints
+  commentId: P:System.Data.DataTable.Constraints
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.constraints
+  name: Constraints
+  nameWithType: DataTable.Constraints
+  fullName: System.Data.DataTable.Constraints
+- uid: System.Data.DataTable.DataSet
+  commentId: P:System.Data.DataTable.DataSet
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.dataset
+  name: DataSet
+  nameWithType: DataTable.DataSet
+  fullName: System.Data.DataTable.DataSet
+- uid: System.Data.DataTable.DefaultView
+  commentId: P:System.Data.DataTable.DefaultView
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.defaultview
+  name: DefaultView
+  nameWithType: DataTable.DefaultView
+  fullName: System.Data.DataTable.DefaultView
+- uid: System.Data.DataTable.DisplayExpression
+  commentId: P:System.Data.DataTable.DisplayExpression
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.displayexpression
+  name: DisplayExpression
+  nameWithType: DataTable.DisplayExpression
+  fullName: System.Data.DataTable.DisplayExpression
+- uid: System.Data.DataTable.ExtendedProperties
+  commentId: P:System.Data.DataTable.ExtendedProperties
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.extendedproperties
+  name: ExtendedProperties
+  nameWithType: DataTable.ExtendedProperties
+  fullName: System.Data.DataTable.ExtendedProperties
+- uid: System.Data.DataTable.HasErrors
+  commentId: P:System.Data.DataTable.HasErrors
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.haserrors
+  name: HasErrors
+  nameWithType: DataTable.HasErrors
+  fullName: System.Data.DataTable.HasErrors
+- uid: System.Data.DataTable.Locale
+  commentId: P:System.Data.DataTable.Locale
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.locale
+  name: Locale
+  nameWithType: DataTable.Locale
+  fullName: System.Data.DataTable.Locale
+- uid: System.Data.DataTable.MinimumCapacity
+  commentId: P:System.Data.DataTable.MinimumCapacity
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.minimumcapacity
+  name: MinimumCapacity
+  nameWithType: DataTable.MinimumCapacity
+  fullName: System.Data.DataTable.MinimumCapacity
+- uid: System.Data.DataTable.ParentRelations
+  commentId: P:System.Data.DataTable.ParentRelations
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.parentrelations
+  name: ParentRelations
+  nameWithType: DataTable.ParentRelations
+  fullName: System.Data.DataTable.ParentRelations
+- uid: System.Data.DataTable.PrimaryKey
+  commentId: P:System.Data.DataTable.PrimaryKey
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.primarykey
+  name: PrimaryKey
+  nameWithType: DataTable.PrimaryKey
+  fullName: System.Data.DataTable.PrimaryKey
+- uid: System.Data.DataTable.Rows
+  commentId: P:System.Data.DataTable.Rows
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.rows
+  name: Rows
+  nameWithType: DataTable.Rows
+  fullName: System.Data.DataTable.Rows
+- uid: System.Data.DataTable.TableName
+  commentId: P:System.Data.DataTable.TableName
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.tablename
+  name: TableName
+  nameWithType: DataTable.TableName
+  fullName: System.Data.DataTable.TableName
+- uid: System.Data.DataTable.Namespace
+  commentId: P:System.Data.DataTable.Namespace
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.namespace
+  name: Namespace
+  nameWithType: DataTable.Namespace
+  fullName: System.Data.DataTable.Namespace
+- uid: System.Data.DataTable.Prefix
+  commentId: P:System.Data.DataTable.Prefix
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.prefix
+  name: Prefix
+  nameWithType: DataTable.Prefix
+  fullName: System.Data.DataTable.Prefix
+- uid: System.Data.DataTable.Site
+  commentId: P:System.Data.DataTable.Site
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.site
+  name: Site
+  nameWithType: DataTable.Site
+  fullName: System.Data.DataTable.Site
+- uid: System.Data.DataTable.ColumnChanging
+  commentId: E:System.Data.DataTable.ColumnChanging
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.columnchanging
+  name: ColumnChanging
+  nameWithType: DataTable.ColumnChanging
+  fullName: System.Data.DataTable.ColumnChanging
+- uid: System.Data.DataTable.ColumnChanged
+  commentId: E:System.Data.DataTable.ColumnChanged
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.columnchanged
+  name: ColumnChanged
+  nameWithType: DataTable.ColumnChanged
+  fullName: System.Data.DataTable.ColumnChanged
+- uid: System.Data.DataTable.Initialized
+  commentId: E:System.Data.DataTable.Initialized
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.initialized
+  name: Initialized
+  nameWithType: DataTable.Initialized
+  fullName: System.Data.DataTable.Initialized
+- uid: System.Data.DataTable.RowChanged
+  commentId: E:System.Data.DataTable.RowChanged
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.rowchanged
+  name: RowChanged
+  nameWithType: DataTable.RowChanged
+  fullName: System.Data.DataTable.RowChanged
+- uid: System.Data.DataTable.RowChanging
+  commentId: E:System.Data.DataTable.RowChanging
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.rowchanging
+  name: RowChanging
+  nameWithType: DataTable.RowChanging
+  fullName: System.Data.DataTable.RowChanging
+- uid: System.Data.DataTable.RowDeleting
+  commentId: E:System.Data.DataTable.RowDeleting
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.rowdeleting
+  name: RowDeleting
+  nameWithType: DataTable.RowDeleting
+  fullName: System.Data.DataTable.RowDeleting
+- uid: System.Data.DataTable.RowDeleted
+  commentId: E:System.Data.DataTable.RowDeleted
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.rowdeleted
+  name: RowDeleted
+  nameWithType: DataTable.RowDeleted
+  fullName: System.Data.DataTable.RowDeleted
+- uid: System.Data.DataTable.TableClearing
+  commentId: E:System.Data.DataTable.TableClearing
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.tableclearing
+  name: TableClearing
+  nameWithType: DataTable.TableClearing
+  fullName: System.Data.DataTable.TableClearing
+- uid: System.Data.DataTable.TableCleared
+  commentId: E:System.Data.DataTable.TableCleared
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.tablecleared
+  name: TableCleared
+  nameWithType: DataTable.TableCleared
+  fullName: System.Data.DataTable.TableCleared
+- uid: System.Data.DataTable.TableNewRow
+  commentId: E:System.Data.DataTable.TableNewRow
+  parent: System.Data.DataTable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable.tablenewrow
+  name: TableNewRow
+  nameWithType: DataTable.TableNewRow
+  fullName: System.Data.DataTable.TableNewRow
+- uid: System.ComponentModel.MarshalByValueComponent.Dispose
+  commentId: M:System.ComponentModel.MarshalByValueComponent.Dispose
+  parent: System.ComponentModel.MarshalByValueComponent
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.marshalbyvaluecomponent.dispose#system-componentmodel-marshalbyvaluecomponent-dispose
+  name: Dispose()
+  nameWithType: MarshalByValueComponent.Dispose()
+  fullName: System.ComponentModel.MarshalByValueComponent.Dispose()
+  spec.csharp:
+  - uid: System.ComponentModel.MarshalByValueComponent.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.marshalbyvaluecomponent.dispose#system-componentmodel-marshalbyvaluecomponent-dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.MarshalByValueComponent.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.marshalbyvaluecomponent.dispose#system-componentmodel-marshalbyvaluecomponent-dispose
+  - name: (
+  - name: )
+- uid: System.ComponentModel.MarshalByValueComponent.Dispose(System.Boolean)
+  commentId: M:System.ComponentModel.MarshalByValueComponent.Dispose(System.Boolean)
+  parent: System.ComponentModel.MarshalByValueComponent
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.marshalbyvaluecomponent.dispose#system-componentmodel-marshalbyvaluecomponent-dispose(system-boolean)
+  name: Dispose(bool)
+  nameWithType: MarshalByValueComponent.Dispose(bool)
+  fullName: System.ComponentModel.MarshalByValueComponent.Dispose(bool)
+  nameWithType.vb: MarshalByValueComponent.Dispose(Boolean)
+  fullName.vb: System.ComponentModel.MarshalByValueComponent.Dispose(Boolean)
+  name.vb: Dispose(Boolean)
+  spec.csharp:
+  - uid: System.ComponentModel.MarshalByValueComponent.Dispose(System.Boolean)
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.marshalbyvaluecomponent.dispose#system-componentmodel-marshalbyvaluecomponent-dispose(system-boolean)
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.MarshalByValueComponent.Dispose(System.Boolean)
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.marshalbyvaluecomponent.dispose#system-componentmodel-marshalbyvaluecomponent-dispose(system-boolean)
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.ComponentModel.MarshalByValueComponent.GetService(System.Type)
+  commentId: M:System.ComponentModel.MarshalByValueComponent.GetService(System.Type)
+  parent: System.ComponentModel.MarshalByValueComponent
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.marshalbyvaluecomponent.getservice
+  name: GetService(Type)
+  nameWithType: MarshalByValueComponent.GetService(Type)
+  fullName: System.ComponentModel.MarshalByValueComponent.GetService(System.Type)
+  spec.csharp:
+  - uid: System.ComponentModel.MarshalByValueComponent.GetService(System.Type)
+    name: GetService
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.marshalbyvaluecomponent.getservice
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.MarshalByValueComponent.GetService(System.Type)
+    name: GetService
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.marshalbyvaluecomponent.getservice
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+- uid: System.ComponentModel.MarshalByValueComponent.Events
+  commentId: P:System.ComponentModel.MarshalByValueComponent.Events
+  parent: System.ComponentModel.MarshalByValueComponent
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.marshalbyvaluecomponent.events
+  name: Events
+  nameWithType: MarshalByValueComponent.Events
+  fullName: System.ComponentModel.MarshalByValueComponent.Events
+- uid: System.ComponentModel.MarshalByValueComponent.Container
+  commentId: P:System.ComponentModel.MarshalByValueComponent.Container
+  parent: System.ComponentModel.MarshalByValueComponent
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.marshalbyvaluecomponent.container
+  name: Container
+  nameWithType: MarshalByValueComponent.Container
+  fullName: System.ComponentModel.MarshalByValueComponent.Container
+- uid: System.ComponentModel.MarshalByValueComponent.DesignMode
+  commentId: P:System.ComponentModel.MarshalByValueComponent.DesignMode
+  parent: System.ComponentModel.MarshalByValueComponent
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.marshalbyvaluecomponent.designmode
+  name: DesignMode
+  nameWithType: MarshalByValueComponent.DesignMode
+  fullName: System.ComponentModel.MarshalByValueComponent.DesignMode
+- uid: System.ComponentModel.MarshalByValueComponent.Disposed
+  commentId: E:System.ComponentModel.MarshalByValueComponent.Disposed
+  parent: System.ComponentModel.MarshalByValueComponent
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.marshalbyvaluecomponent.disposed
+  name: Disposed
+  nameWithType: MarshalByValueComponent.Disposed
+  fullName: System.ComponentModel.MarshalByValueComponent.Disposed
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ComponentModel
+  commentId: N:System.ComponentModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.ComponentModel
+  nameWithType: System.ComponentModel
+  fullName: System.ComponentModel
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.ComponentModel
+    name: ComponentModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.ComponentModel
+    name: ComponentModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel
+- uid: System.Data
+  commentId: N:System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Data
+  nameWithType: System.Data
+  fullName: System.Data
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+- uid: System.Runtime.Serialization
+  commentId: N:System.Runtime.Serialization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Runtime.Serialization
+  nameWithType: System.Runtime.Serialization
+  fullName: System.Runtime.Serialization
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Runtime
+    name: Runtime
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.runtime
+  - name: .
+  - uid: System.Runtime.Serialization
+    name: Serialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.runtime.serialization
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Runtime
+    name: Runtime
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.runtime
+  - name: .
+  - uid: System.Runtime.Serialization
+    name: Serialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.runtime.serialization
+- uid: System.Xml.Serialization
+  commentId: N:System.Xml.Serialization
+  isExternal: true
+  name: System.Xml.Serialization
+  nameWithType: System.Xml.Serialization
+  fullName: System.Xml.Serialization
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+  - name: .
+  - uid: System.Xml.Serialization
+    name: Serialization
+    isExternal: true
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+  - name: .
+  - uid: System.Xml
+    name: Xml
+    isExternal: true
+  - name: .
+  - uid: System.Xml.Serialization
+    name: Serialization
+    isExternal: true
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Reportman.Reporting.PagedDataTable.#ctor*
+  commentId: Overload:Reportman.Reporting.PagedDataTable.#ctor
+  isExternal: true
+  href: Reportman.Reporting.PagedDataTable.html#Reportman_Reporting_PagedDataTable__ctor
+  name: PagedDataTable
+  nameWithType: PagedDataTable.PagedDataTable
+  fullName: Reportman.Reporting.PagedDataTable.PagedDataTable
+  nameWithType.vb: PagedDataTable.New
+  fullName.vb: Reportman.Reporting.PagedDataTable.New
+  name.vb: New
+- uid: Reportman.Reporting.PagedDataTable.Next*
+  commentId: Overload:Reportman.Reporting.PagedDataTable.Next
+  isExternal: true
+  href: Reportman.Reporting.PagedDataTable.html#Reportman_Reporting_PagedDataTable_Next
+  name: Next
+  nameWithType: PagedDataTable.Next
+  fullName: Reportman.Reporting.PagedDataTable.Next
+- uid: Reportman.Reporting.PagedDataTable.Active*
+  commentId: Overload:Reportman.Reporting.PagedDataTable.Active
+  isExternal: true
+  href: Reportman.Reporting.PagedDataTable.html#Reportman_Reporting_PagedDataTable_Active
+  name: Active
+  nameWithType: PagedDataTable.Active
+  fullName: Reportman.Reporting.PagedDataTable.Active
+- uid: Reportman.Reporting.PagedDataTable.CurrentReader*
+  commentId: Overload:Reportman.Reporting.PagedDataTable.CurrentReader
+  isExternal: true
+  href: Reportman.Reporting.PagedDataTable.html#Reportman_Reporting_PagedDataTable_CurrentReader
+  name: CurrentReader
+  nameWithType: PagedDataTable.CurrentReader
+  fullName: Reportman.Reporting.PagedDataTable.CurrentReader
+- uid: System.Data.IDataReader
+  commentId: T:System.Data.IDataReader
+  parent: System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.idatareader
+  name: IDataReader
+  nameWithType: IDataReader
+  fullName: System.Data.IDataReader
+- uid: Reportman.Reporting.PagedDataTable.Eof*
+  commentId: Overload:Reportman.Reporting.PagedDataTable.Eof
+  isExternal: true
+  href: Reportman.Reporting.PagedDataTable.html#Reportman_Reporting_PagedDataTable_Eof
+  name: Eof
+  nameWithType: PagedDataTable.Eof
+  fullName: Reportman.Reporting.PagedDataTable.Eof
+- uid: Reportman.Reporting.PagedDataChange
+  commentId: T:Reportman.Reporting.PagedDataChange
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.PagedDataChange.html
+  name: PagedDataChange
+  nameWithType: PagedDataChange
+  fullName: Reportman.Reporting.PagedDataChange

@@ -1,0 +1,222 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.PrintItemAlign
+  commentId: T:Reportman.Reporting.PrintItemAlign
+  id: PrintItemAlign
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.PrintItemAlign.AllClient
+  - Reportman.Reporting.PrintItemAlign.Bottom
+  - Reportman.Reporting.PrintItemAlign.BottomRight
+  - Reportman.Reporting.PrintItemAlign.LeftRight
+  - Reportman.Reporting.PrintItemAlign.None
+  - Reportman.Reporting.PrintItemAlign.Right
+  - Reportman.Reporting.PrintItemAlign.TopBottom
+  langs:
+  - csharp
+  - vb
+  name: PrintItemAlign
+  nameWithType: PrintItemAlign
+  fullName: Reportman.Reporting.PrintItemAlign
+  type: Enum
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    Enumeration indicating the alignment of a Report Item related to his parent. This is useful when the 
+
+    parent Section have properties like AutoExpand or AutoContract set, you can place a Rectangle 
+
+    and set Align to AllClient, the rectangle will be adapted at run time to fill the section. You can also
+
+    align to bottom or expand lines from top to bottom.
+
+    <xref href="Reportman.Reporting.Variant?text=PrintPosItem" data-throw-if-not-resolved="false"></xref><xref href="Reportman.Reporting.Variant?text=Section" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public enum PrintItemAlign
+    content.vb: Public Enum PrintItemAlign
+- uid: Reportman.Reporting.PrintItemAlign.None
+  commentId: F:Reportman.Reporting.PrintItemAlign.None
+  id: None
+  parent: Reportman.Reporting.PrintItemAlign
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: PrintItemAlign.None
+  fullName: Reportman.Reporting.PrintItemAlign.None
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: No alignment, default will be used
+  example: []
+  syntax:
+    content: None = 0
+    return:
+      type: Reportman.Reporting.PrintItemAlign
+- uid: Reportman.Reporting.PrintItemAlign.Bottom
+  commentId: F:Reportman.Reporting.PrintItemAlign.Bottom
+  id: Bottom
+  parent: Reportman.Reporting.PrintItemAlign
+  langs:
+  - csharp
+  - vb
+  name: Bottom
+  nameWithType: PrintItemAlign.Bottom
+  fullName: Reportman.Reporting.PrintItemAlign.Bottom
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Align to bottom of the parent
+  example: []
+  syntax:
+    content: Bottom = 1
+    return:
+      type: Reportman.Reporting.PrintItemAlign
+- uid: Reportman.Reporting.PrintItemAlign.Right
+  commentId: F:Reportman.Reporting.PrintItemAlign.Right
+  id: Right
+  parent: Reportman.Reporting.PrintItemAlign
+  langs:
+  - csharp
+  - vb
+  name: Right
+  nameWithType: PrintItemAlign.Right
+  fullName: Reportman.Reporting.PrintItemAlign.Right
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Align to the right of the parent
+  example: []
+  syntax:
+    content: Right = 2
+    return:
+      type: Reportman.Reporting.PrintItemAlign
+- uid: Reportman.Reporting.PrintItemAlign.BottomRight
+  commentId: F:Reportman.Reporting.PrintItemAlign.BottomRight
+  id: BottomRight
+  parent: Reportman.Reporting.PrintItemAlign
+  langs:
+  - csharp
+  - vb
+  name: BottomRight
+  nameWithType: PrintItemAlign.BottomRight
+  fullName: Reportman.Reporting.PrintItemAlign.BottomRight
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Align to the right and bottom of the parent
+  example: []
+  syntax:
+    content: BottomRight = 3
+    return:
+      type: Reportman.Reporting.PrintItemAlign
+- uid: Reportman.Reporting.PrintItemAlign.LeftRight
+  commentId: F:Reportman.Reporting.PrintItemAlign.LeftRight
+  id: LeftRight
+  parent: Reportman.Reporting.PrintItemAlign
+  langs:
+  - csharp
+  - vb
+  name: LeftRight
+  nameWithType: PrintItemAlign.LeftRight
+  fullName: Reportman.Reporting.PrintItemAlign.LeftRight
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Expand from left to right of the parent
+  example: []
+  syntax:
+    content: LeftRight = 4
+    return:
+      type: Reportman.Reporting.PrintItemAlign
+- uid: Reportman.Reporting.PrintItemAlign.TopBottom
+  commentId: F:Reportman.Reporting.PrintItemAlign.TopBottom
+  id: TopBottom
+  parent: Reportman.Reporting.PrintItemAlign
+  langs:
+  - csharp
+  - vb
+  name: TopBottom
+  nameWithType: PrintItemAlign.TopBottom
+  fullName: Reportman.Reporting.PrintItemAlign.TopBottom
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Expand from top to bottom of the parent
+  example: []
+  syntax:
+    content: TopBottom = 5
+    return:
+      type: Reportman.Reporting.PrintItemAlign
+- uid: Reportman.Reporting.PrintItemAlign.AllClient
+  commentId: F:Reportman.Reporting.PrintItemAlign.AllClient
+  id: AllClient
+  parent: Reportman.Reporting.PrintItemAlign
+  langs:
+  - csharp
+  - vb
+  name: AllClient
+  nameWithType: PrintItemAlign.AllClient
+  fullName: Reportman.Reporting.PrintItemAlign.AllClient
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Expand to all area of the parent
+  example: []
+  syntax:
+    content: AllClient = 6
+    return:
+      type: Reportman.Reporting.PrintItemAlign
+references:
+- uid: Reportman.Reporting.Variant
+  commentId: T:Reportman.Reporting.Variant
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.Variant.html
+  name: Variant
+  nameWithType: Variant
+  fullName: Reportman.Reporting.Variant
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: Reportman.Reporting.PrintItemAlign
+  commentId: T:Reportman.Reporting.PrintItemAlign
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.PrintItemAlign.html
+  name: PrintItemAlign
+  nameWithType: PrintItemAlign
+  fullName: Reportman.Reporting.PrintItemAlign

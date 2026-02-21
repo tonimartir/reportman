@@ -1,0 +1,1356 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.TabPageCollection
+  commentId: T:Reportman.Drawing.Forms.TabPageCollection
+  id: TabPageCollection
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.TabPageCollection.#ctor
+  - Reportman.Drawing.Forms.TabPageCollection.Add(Reportman.Drawing.Forms.TabPageAdvanced)
+  - Reportman.Drawing.Forms.TabPageCollection.AddRange(Reportman.Drawing.Forms.TabPageAdvanced[])
+  - Reportman.Drawing.Forms.TabPageCollection.Contains(Reportman.Drawing.Forms.TabPageAdvanced)
+  - Reportman.Drawing.Forms.TabPageCollection.IndexOf(Reportman.Drawing.Forms.TabPageAdvanced)
+  - Reportman.Drawing.Forms.TabPageCollection.Insert(System.Int32,Reportman.Drawing.Forms.TabPageAdvanced)
+  - Reportman.Drawing.Forms.TabPageCollection.Item(System.Int32)
+  - Reportman.Drawing.Forms.TabPageCollection.Item(System.String)
+  - Reportman.Drawing.Forms.TabPageCollection.Remove(Reportman.Drawing.Forms.TabPageAdvanced)
+  langs:
+  - csharp
+  - vb
+  name: TabPageCollection
+  nameWithType: TabPageCollection
+  fullName: Reportman.Drawing.Forms.TabPageCollection
+  type: Class
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: 'public class TabPageCollection : CollectionWithEvents, IList, ICollection, IEnumerable'
+    content.vb: Public Class TabPageCollection Inherits CollectionWithEvents Implements IList, ICollection, IEnumerable
+  inheritance:
+  - System.Object
+  - System.Collections.CollectionBase
+  - Reportman.Drawing.Forms.CollectionWithEvents
+  implements:
+  - System.Collections.IList
+  - System.Collections.ICollection
+  - System.Collections.IEnumerable
+  inheritedMembers:
+  - Reportman.Drawing.Forms.CollectionWithEvents.OnClear
+  - Reportman.Drawing.Forms.CollectionWithEvents.Switch(System.Int32,System.Int32)
+  - Reportman.Drawing.Forms.CollectionWithEvents.OnClearComplete
+  - Reportman.Drawing.Forms.CollectionWithEvents.OnInsert(System.Int32,System.Object)
+  - Reportman.Drawing.Forms.CollectionWithEvents.OnInsertComplete(System.Int32,System.Object)
+  - Reportman.Drawing.Forms.CollectionWithEvents.OnRemove(System.Int32,System.Object)
+  - Reportman.Drawing.Forms.CollectionWithEvents.OnRemoveComplete(System.Int32,System.Object)
+  - Reportman.Drawing.Forms.CollectionWithEvents.IndexOf(System.Object)
+  - Reportman.Drawing.Forms.CollectionWithEvents.Clearing
+  - Reportman.Drawing.Forms.CollectionWithEvents.Cleared
+  - Reportman.Drawing.Forms.CollectionWithEvents.Inserting
+  - Reportman.Drawing.Forms.CollectionWithEvents.Inserted
+  - Reportman.Drawing.Forms.CollectionWithEvents.Removing
+  - Reportman.Drawing.Forms.CollectionWithEvents.Removed
+  - System.Collections.CollectionBase.Clear
+  - System.Collections.CollectionBase.RemoveAt(System.Int32)
+  - System.Collections.CollectionBase.GetEnumerator
+  - System.Collections.CollectionBase.OnSet(System.Int32,System.Object,System.Object)
+  - System.Collections.CollectionBase.OnValidate(System.Object)
+  - System.Collections.CollectionBase.OnSetComplete(System.Int32,System.Object,System.Object)
+  - System.Collections.CollectionBase.InnerList
+  - System.Collections.CollectionBase.List
+  - System.Collections.CollectionBase.Capacity
+  - System.Collections.CollectionBase.Count
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.Forms.TabPageCollection.Add(Reportman.Drawing.Forms.TabPageAdvanced)
+  commentId: M:Reportman.Drawing.Forms.TabPageCollection.Add(Reportman.Drawing.Forms.TabPageAdvanced)
+  id: Add(Reportman.Drawing.Forms.TabPageAdvanced)
+  parent: Reportman.Drawing.Forms.TabPageCollection
+  langs:
+  - csharp
+  - vb
+  name: Add(TabPageAdvanced)
+  nameWithType: TabPageCollection.Add(TabPageAdvanced)
+  fullName: Reportman.Drawing.Forms.TabPageCollection.Add(Reportman.Drawing.Forms.TabPageAdvanced)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public TabPageAdvanced Add(TabPageAdvanced value)
+    parameters:
+    - id: value
+      type: Reportman.Drawing.Forms.TabPageAdvanced
+    return:
+      type: Reportman.Drawing.Forms.TabPageAdvanced
+    content.vb: Public Function Add(value As TabPageAdvanced) As TabPageAdvanced
+  overload: Reportman.Drawing.Forms.TabPageCollection.Add*
+- uid: Reportman.Drawing.Forms.TabPageCollection.AddRange(Reportman.Drawing.Forms.TabPageAdvanced[])
+  commentId: M:Reportman.Drawing.Forms.TabPageCollection.AddRange(Reportman.Drawing.Forms.TabPageAdvanced[])
+  id: AddRange(Reportman.Drawing.Forms.TabPageAdvanced[])
+  parent: Reportman.Drawing.Forms.TabPageCollection
+  langs:
+  - csharp
+  - vb
+  name: AddRange(TabPageAdvanced[])
+  nameWithType: TabPageCollection.AddRange(TabPageAdvanced[])
+  fullName: Reportman.Drawing.Forms.TabPageCollection.AddRange(Reportman.Drawing.Forms.TabPageAdvanced[])
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public void AddRange(TabPageAdvanced[] values)
+    parameters:
+    - id: values
+      type: Reportman.Drawing.Forms.TabPageAdvanced[]
+    content.vb: Public Sub AddRange(values As TabPageAdvanced())
+  overload: Reportman.Drawing.Forms.TabPageCollection.AddRange*
+  nameWithType.vb: TabPageCollection.AddRange(TabPageAdvanced())
+  fullName.vb: Reportman.Drawing.Forms.TabPageCollection.AddRange(Reportman.Drawing.Forms.TabPageAdvanced())
+  name.vb: AddRange(TabPageAdvanced())
+- uid: Reportman.Drawing.Forms.TabPageCollection.Remove(Reportman.Drawing.Forms.TabPageAdvanced)
+  commentId: M:Reportman.Drawing.Forms.TabPageCollection.Remove(Reportman.Drawing.Forms.TabPageAdvanced)
+  id: Remove(Reportman.Drawing.Forms.TabPageAdvanced)
+  parent: Reportman.Drawing.Forms.TabPageCollection
+  langs:
+  - csharp
+  - vb
+  name: Remove(TabPageAdvanced)
+  nameWithType: TabPageCollection.Remove(TabPageAdvanced)
+  fullName: Reportman.Drawing.Forms.TabPageCollection.Remove(Reportman.Drawing.Forms.TabPageAdvanced)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public void Remove(TabPageAdvanced value)
+    parameters:
+    - id: value
+      type: Reportman.Drawing.Forms.TabPageAdvanced
+    content.vb: Public Sub Remove(value As TabPageAdvanced)
+  overload: Reportman.Drawing.Forms.TabPageCollection.Remove*
+- uid: Reportman.Drawing.Forms.TabPageCollection.Insert(System.Int32,Reportman.Drawing.Forms.TabPageAdvanced)
+  commentId: M:Reportman.Drawing.Forms.TabPageCollection.Insert(System.Int32,Reportman.Drawing.Forms.TabPageAdvanced)
+  id: Insert(System.Int32,Reportman.Drawing.Forms.TabPageAdvanced)
+  parent: Reportman.Drawing.Forms.TabPageCollection
+  langs:
+  - csharp
+  - vb
+  name: Insert(int, TabPageAdvanced)
+  nameWithType: TabPageCollection.Insert(int, TabPageAdvanced)
+  fullName: Reportman.Drawing.Forms.TabPageCollection.Insert(int, Reportman.Drawing.Forms.TabPageAdvanced)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public void Insert(int index, TabPageAdvanced value)
+    parameters:
+    - id: index
+      type: System.Int32
+    - id: value
+      type: Reportman.Drawing.Forms.TabPageAdvanced
+    content.vb: Public Sub Insert(index As Integer, value As TabPageAdvanced)
+  overload: Reportman.Drawing.Forms.TabPageCollection.Insert*
+  nameWithType.vb: TabPageCollection.Insert(Integer, TabPageAdvanced)
+  fullName.vb: Reportman.Drawing.Forms.TabPageCollection.Insert(Integer, Reportman.Drawing.Forms.TabPageAdvanced)
+  name.vb: Insert(Integer, TabPageAdvanced)
+- uid: Reportman.Drawing.Forms.TabPageCollection.Contains(Reportman.Drawing.Forms.TabPageAdvanced)
+  commentId: M:Reportman.Drawing.Forms.TabPageCollection.Contains(Reportman.Drawing.Forms.TabPageAdvanced)
+  id: Contains(Reportman.Drawing.Forms.TabPageAdvanced)
+  parent: Reportman.Drawing.Forms.TabPageCollection
+  langs:
+  - csharp
+  - vb
+  name: Contains(TabPageAdvanced)
+  nameWithType: TabPageCollection.Contains(TabPageAdvanced)
+  fullName: Reportman.Drawing.Forms.TabPageCollection.Contains(Reportman.Drawing.Forms.TabPageAdvanced)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public bool Contains(TabPageAdvanced value)
+    parameters:
+    - id: value
+      type: Reportman.Drawing.Forms.TabPageAdvanced
+    return:
+      type: System.Boolean
+    content.vb: Public Function Contains(value As TabPageAdvanced) As Boolean
+  overload: Reportman.Drawing.Forms.TabPageCollection.Contains*
+- uid: Reportman.Drawing.Forms.TabPageCollection.IndexOf(Reportman.Drawing.Forms.TabPageAdvanced)
+  commentId: M:Reportman.Drawing.Forms.TabPageCollection.IndexOf(Reportman.Drawing.Forms.TabPageAdvanced)
+  id: IndexOf(Reportman.Drawing.Forms.TabPageAdvanced)
+  parent: Reportman.Drawing.Forms.TabPageCollection
+  langs:
+  - csharp
+  - vb
+  name: IndexOf(TabPageAdvanced)
+  nameWithType: TabPageCollection.IndexOf(TabPageAdvanced)
+  fullName: Reportman.Drawing.Forms.TabPageCollection.IndexOf(Reportman.Drawing.Forms.TabPageAdvanced)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public int IndexOf(TabPageAdvanced value)
+    parameters:
+    - id: value
+      type: Reportman.Drawing.Forms.TabPageAdvanced
+    return:
+      type: System.Int32
+    content.vb: Public Function IndexOf(value As TabPageAdvanced) As Integer
+  overload: Reportman.Drawing.Forms.TabPageCollection.IndexOf*
+- uid: Reportman.Drawing.Forms.TabPageCollection.#ctor
+  commentId: M:Reportman.Drawing.Forms.TabPageCollection.#ctor
+  id: '#ctor'
+  parent: Reportman.Drawing.Forms.TabPageCollection
+  langs:
+  - csharp
+  - vb
+  name: TabPageCollection()
+  nameWithType: TabPageCollection.TabPageCollection()
+  fullName: Reportman.Drawing.Forms.TabPageCollection.TabPageCollection()
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public TabPageCollection()
+    content.vb: Public Sub New()
+  overload: Reportman.Drawing.Forms.TabPageCollection.#ctor*
+  nameWithType.vb: TabPageCollection.New()
+  fullName.vb: Reportman.Drawing.Forms.TabPageCollection.New()
+  name.vb: New()
+- uid: Reportman.Drawing.Forms.TabPageCollection.Item(System.Int32)
+  commentId: P:Reportman.Drawing.Forms.TabPageCollection.Item(System.Int32)
+  id: Item(System.Int32)
+  parent: Reportman.Drawing.Forms.TabPageCollection
+  langs:
+  - csharp
+  - vb
+  name: this[int]
+  nameWithType: TabPageCollection.this[int]
+  fullName: Reportman.Drawing.Forms.TabPageCollection.this[int]
+  type: Property
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public TabPageAdvanced this[int index] { get; }
+    parameters:
+    - id: index
+      type: System.Int32
+    return:
+      type: Reportman.Drawing.Forms.TabPageAdvanced
+    content.vb: Public ReadOnly Default Property this[](index As Integer) As TabPageAdvanced
+  overload: Reportman.Drawing.Forms.TabPageCollection.Item*
+  nameWithType.vb: TabPageCollection.this[](Integer)
+  fullName.vb: Reportman.Drawing.Forms.TabPageCollection.this[](Integer)
+  name.vb: this[](Integer)
+- uid: Reportman.Drawing.Forms.TabPageCollection.Item(System.String)
+  commentId: P:Reportman.Drawing.Forms.TabPageCollection.Item(System.String)
+  id: Item(System.String)
+  parent: Reportman.Drawing.Forms.TabPageCollection
+  langs:
+  - csharp
+  - vb
+  name: this[string]
+  nameWithType: TabPageCollection.this[string]
+  fullName: Reportman.Drawing.Forms.TabPageCollection.this[string]
+  type: Property
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public TabPageAdvanced this[string title] { get; }
+    parameters:
+    - id: title
+      type: System.String
+    return:
+      type: Reportman.Drawing.Forms.TabPageAdvanced
+    content.vb: Public ReadOnly Default Property this[](title As String) As TabPageAdvanced
+  overload: Reportman.Drawing.Forms.TabPageCollection.Item*
+  nameWithType.vb: TabPageCollection.this[](String)
+  fullName.vb: Reportman.Drawing.Forms.TabPageCollection.this[](String)
+  name.vb: this[](String)
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Collections.CollectionBase
+  commentId: T:System.Collections.CollectionBase
+  parent: System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase
+  name: CollectionBase
+  nameWithType: CollectionBase
+  fullName: System.Collections.CollectionBase
+- uid: Reportman.Drawing.Forms.CollectionWithEvents
+  commentId: T:Reportman.Drawing.Forms.CollectionWithEvents
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.CollectionWithEvents.html
+  name: CollectionWithEvents
+  nameWithType: CollectionWithEvents
+  fullName: Reportman.Drawing.Forms.CollectionWithEvents
+- uid: System.Collections.IList
+  commentId: T:System.Collections.IList
+  parent: System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ilist
+  name: IList
+  nameWithType: IList
+  fullName: System.Collections.IList
+- uid: System.Collections.ICollection
+  commentId: T:System.Collections.ICollection
+  parent: System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.icollection
+  name: ICollection
+  nameWithType: ICollection
+  fullName: System.Collections.ICollection
+- uid: System.Collections.IEnumerable
+  commentId: T:System.Collections.IEnumerable
+  parent: System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ienumerable
+  name: IEnumerable
+  nameWithType: IEnumerable
+  fullName: System.Collections.IEnumerable
+- uid: Reportman.Drawing.Forms.CollectionWithEvents.OnClear
+  commentId: M:Reportman.Drawing.Forms.CollectionWithEvents.OnClear
+  parent: Reportman.Drawing.Forms.CollectionWithEvents
+  isExternal: true
+  href: Reportman.Drawing.Forms.CollectionWithEvents.html#Reportman_Drawing_Forms_CollectionWithEvents_OnClear
+  name: OnClear()
+  nameWithType: CollectionWithEvents.OnClear()
+  fullName: Reportman.Drawing.Forms.CollectionWithEvents.OnClear()
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.CollectionWithEvents.OnClear
+    name: OnClear
+    isExternal: true
+    href: Reportman.Drawing.Forms.CollectionWithEvents.html#Reportman_Drawing_Forms_CollectionWithEvents_OnClear
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.CollectionWithEvents.OnClear
+    name: OnClear
+    isExternal: true
+    href: Reportman.Drawing.Forms.CollectionWithEvents.html#Reportman_Drawing_Forms_CollectionWithEvents_OnClear
+  - name: (
+  - name: )
+- uid: Reportman.Drawing.Forms.CollectionWithEvents.Switch(System.Int32,System.Int32)
+  commentId: M:Reportman.Drawing.Forms.CollectionWithEvents.Switch(System.Int32,System.Int32)
+  parent: Reportman.Drawing.Forms.CollectionWithEvents
+  isExternal: true
+  href: Reportman.Drawing.Forms.CollectionWithEvents.html#Reportman_Drawing_Forms_CollectionWithEvents_Switch_System_Int32_System_Int32_
+  name: Switch(int, int)
+  nameWithType: CollectionWithEvents.Switch(int, int)
+  fullName: Reportman.Drawing.Forms.CollectionWithEvents.Switch(int, int)
+  nameWithType.vb: CollectionWithEvents.Switch(Integer, Integer)
+  fullName.vb: Reportman.Drawing.Forms.CollectionWithEvents.Switch(Integer, Integer)
+  name.vb: Switch(Integer, Integer)
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.CollectionWithEvents.Switch(System.Int32,System.Int32)
+    name: Switch
+    isExternal: true
+    href: Reportman.Drawing.Forms.CollectionWithEvents.html#Reportman_Drawing_Forms_CollectionWithEvents_Switch_System_Int32_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.CollectionWithEvents.Switch(System.Int32,System.Int32)
+    name: Switch
+    isExternal: true
+    href: Reportman.Drawing.Forms.CollectionWithEvents.html#Reportman_Drawing_Forms_CollectionWithEvents_Switch_System_Int32_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Reportman.Drawing.Forms.CollectionWithEvents.OnClearComplete
+  commentId: M:Reportman.Drawing.Forms.CollectionWithEvents.OnClearComplete
+  parent: Reportman.Drawing.Forms.CollectionWithEvents
+  isExternal: true
+  href: Reportman.Drawing.Forms.CollectionWithEvents.html#Reportman_Drawing_Forms_CollectionWithEvents_OnClearComplete
+  name: OnClearComplete()
+  nameWithType: CollectionWithEvents.OnClearComplete()
+  fullName: Reportman.Drawing.Forms.CollectionWithEvents.OnClearComplete()
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.CollectionWithEvents.OnClearComplete
+    name: OnClearComplete
+    isExternal: true
+    href: Reportman.Drawing.Forms.CollectionWithEvents.html#Reportman_Drawing_Forms_CollectionWithEvents_OnClearComplete
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.CollectionWithEvents.OnClearComplete
+    name: OnClearComplete
+    isExternal: true
+    href: Reportman.Drawing.Forms.CollectionWithEvents.html#Reportman_Drawing_Forms_CollectionWithEvents_OnClearComplete
+  - name: (
+  - name: )
+- uid: Reportman.Drawing.Forms.CollectionWithEvents.OnInsert(System.Int32,System.Object)
+  commentId: M:Reportman.Drawing.Forms.CollectionWithEvents.OnInsert(System.Int32,System.Object)
+  parent: Reportman.Drawing.Forms.CollectionWithEvents
+  isExternal: true
+  href: Reportman.Drawing.Forms.CollectionWithEvents.html#Reportman_Drawing_Forms_CollectionWithEvents_OnInsert_System_Int32_System_Object_
+  name: OnInsert(int, object)
+  nameWithType: CollectionWithEvents.OnInsert(int, object)
+  fullName: Reportman.Drawing.Forms.CollectionWithEvents.OnInsert(int, object)
+  nameWithType.vb: CollectionWithEvents.OnInsert(Integer, Object)
+  fullName.vb: Reportman.Drawing.Forms.CollectionWithEvents.OnInsert(Integer, Object)
+  name.vb: OnInsert(Integer, Object)
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.CollectionWithEvents.OnInsert(System.Int32,System.Object)
+    name: OnInsert
+    isExternal: true
+    href: Reportman.Drawing.Forms.CollectionWithEvents.html#Reportman_Drawing_Forms_CollectionWithEvents_OnInsert_System_Int32_System_Object_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.CollectionWithEvents.OnInsert(System.Int32,System.Object)
+    name: OnInsert
+    isExternal: true
+    href: Reportman.Drawing.Forms.CollectionWithEvents.html#Reportman_Drawing_Forms_CollectionWithEvents_OnInsert_System_Int32_System_Object_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Reportman.Drawing.Forms.CollectionWithEvents.OnInsertComplete(System.Int32,System.Object)
+  commentId: M:Reportman.Drawing.Forms.CollectionWithEvents.OnInsertComplete(System.Int32,System.Object)
+  parent: Reportman.Drawing.Forms.CollectionWithEvents
+  isExternal: true
+  href: Reportman.Drawing.Forms.CollectionWithEvents.html#Reportman_Drawing_Forms_CollectionWithEvents_OnInsertComplete_System_Int32_System_Object_
+  name: OnInsertComplete(int, object)
+  nameWithType: CollectionWithEvents.OnInsertComplete(int, object)
+  fullName: Reportman.Drawing.Forms.CollectionWithEvents.OnInsertComplete(int, object)
+  nameWithType.vb: CollectionWithEvents.OnInsertComplete(Integer, Object)
+  fullName.vb: Reportman.Drawing.Forms.CollectionWithEvents.OnInsertComplete(Integer, Object)
+  name.vb: OnInsertComplete(Integer, Object)
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.CollectionWithEvents.OnInsertComplete(System.Int32,System.Object)
+    name: OnInsertComplete
+    isExternal: true
+    href: Reportman.Drawing.Forms.CollectionWithEvents.html#Reportman_Drawing_Forms_CollectionWithEvents_OnInsertComplete_System_Int32_System_Object_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.CollectionWithEvents.OnInsertComplete(System.Int32,System.Object)
+    name: OnInsertComplete
+    isExternal: true
+    href: Reportman.Drawing.Forms.CollectionWithEvents.html#Reportman_Drawing_Forms_CollectionWithEvents_OnInsertComplete_System_Int32_System_Object_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Reportman.Drawing.Forms.CollectionWithEvents.OnRemove(System.Int32,System.Object)
+  commentId: M:Reportman.Drawing.Forms.CollectionWithEvents.OnRemove(System.Int32,System.Object)
+  parent: Reportman.Drawing.Forms.CollectionWithEvents
+  isExternal: true
+  href: Reportman.Drawing.Forms.CollectionWithEvents.html#Reportman_Drawing_Forms_CollectionWithEvents_OnRemove_System_Int32_System_Object_
+  name: OnRemove(int, object)
+  nameWithType: CollectionWithEvents.OnRemove(int, object)
+  fullName: Reportman.Drawing.Forms.CollectionWithEvents.OnRemove(int, object)
+  nameWithType.vb: CollectionWithEvents.OnRemove(Integer, Object)
+  fullName.vb: Reportman.Drawing.Forms.CollectionWithEvents.OnRemove(Integer, Object)
+  name.vb: OnRemove(Integer, Object)
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.CollectionWithEvents.OnRemove(System.Int32,System.Object)
+    name: OnRemove
+    isExternal: true
+    href: Reportman.Drawing.Forms.CollectionWithEvents.html#Reportman_Drawing_Forms_CollectionWithEvents_OnRemove_System_Int32_System_Object_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.CollectionWithEvents.OnRemove(System.Int32,System.Object)
+    name: OnRemove
+    isExternal: true
+    href: Reportman.Drawing.Forms.CollectionWithEvents.html#Reportman_Drawing_Forms_CollectionWithEvents_OnRemove_System_Int32_System_Object_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Reportman.Drawing.Forms.CollectionWithEvents.OnRemoveComplete(System.Int32,System.Object)
+  commentId: M:Reportman.Drawing.Forms.CollectionWithEvents.OnRemoveComplete(System.Int32,System.Object)
+  parent: Reportman.Drawing.Forms.CollectionWithEvents
+  isExternal: true
+  href: Reportman.Drawing.Forms.CollectionWithEvents.html#Reportman_Drawing_Forms_CollectionWithEvents_OnRemoveComplete_System_Int32_System_Object_
+  name: OnRemoveComplete(int, object)
+  nameWithType: CollectionWithEvents.OnRemoveComplete(int, object)
+  fullName: Reportman.Drawing.Forms.CollectionWithEvents.OnRemoveComplete(int, object)
+  nameWithType.vb: CollectionWithEvents.OnRemoveComplete(Integer, Object)
+  fullName.vb: Reportman.Drawing.Forms.CollectionWithEvents.OnRemoveComplete(Integer, Object)
+  name.vb: OnRemoveComplete(Integer, Object)
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.CollectionWithEvents.OnRemoveComplete(System.Int32,System.Object)
+    name: OnRemoveComplete
+    isExternal: true
+    href: Reportman.Drawing.Forms.CollectionWithEvents.html#Reportman_Drawing_Forms_CollectionWithEvents_OnRemoveComplete_System_Int32_System_Object_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.CollectionWithEvents.OnRemoveComplete(System.Int32,System.Object)
+    name: OnRemoveComplete
+    isExternal: true
+    href: Reportman.Drawing.Forms.CollectionWithEvents.html#Reportman_Drawing_Forms_CollectionWithEvents_OnRemoveComplete_System_Int32_System_Object_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Reportman.Drawing.Forms.CollectionWithEvents.IndexOf(System.Object)
+  commentId: M:Reportman.Drawing.Forms.CollectionWithEvents.IndexOf(System.Object)
+  parent: Reportman.Drawing.Forms.CollectionWithEvents
+  isExternal: true
+  href: Reportman.Drawing.Forms.CollectionWithEvents.html#Reportman_Drawing_Forms_CollectionWithEvents_IndexOf_System_Object_
+  name: IndexOf(object)
+  nameWithType: CollectionWithEvents.IndexOf(object)
+  fullName: Reportman.Drawing.Forms.CollectionWithEvents.IndexOf(object)
+  nameWithType.vb: CollectionWithEvents.IndexOf(Object)
+  fullName.vb: Reportman.Drawing.Forms.CollectionWithEvents.IndexOf(Object)
+  name.vb: IndexOf(Object)
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.CollectionWithEvents.IndexOf(System.Object)
+    name: IndexOf
+    isExternal: true
+    href: Reportman.Drawing.Forms.CollectionWithEvents.html#Reportman_Drawing_Forms_CollectionWithEvents_IndexOf_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.CollectionWithEvents.IndexOf(System.Object)
+    name: IndexOf
+    isExternal: true
+    href: Reportman.Drawing.Forms.CollectionWithEvents.html#Reportman_Drawing_Forms_CollectionWithEvents_IndexOf_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Reportman.Drawing.Forms.CollectionWithEvents.Clearing
+  commentId: E:Reportman.Drawing.Forms.CollectionWithEvents.Clearing
+  parent: Reportman.Drawing.Forms.CollectionWithEvents
+  isExternal: true
+  href: Reportman.Drawing.Forms.CollectionWithEvents.html#Reportman_Drawing_Forms_CollectionWithEvents_Clearing
+  name: Clearing
+  nameWithType: CollectionWithEvents.Clearing
+  fullName: Reportman.Drawing.Forms.CollectionWithEvents.Clearing
+- uid: Reportman.Drawing.Forms.CollectionWithEvents.Cleared
+  commentId: E:Reportman.Drawing.Forms.CollectionWithEvents.Cleared
+  parent: Reportman.Drawing.Forms.CollectionWithEvents
+  isExternal: true
+  href: Reportman.Drawing.Forms.CollectionWithEvents.html#Reportman_Drawing_Forms_CollectionWithEvents_Cleared
+  name: Cleared
+  nameWithType: CollectionWithEvents.Cleared
+  fullName: Reportman.Drawing.Forms.CollectionWithEvents.Cleared
+- uid: Reportman.Drawing.Forms.CollectionWithEvents.Inserting
+  commentId: E:Reportman.Drawing.Forms.CollectionWithEvents.Inserting
+  parent: Reportman.Drawing.Forms.CollectionWithEvents
+  isExternal: true
+  href: Reportman.Drawing.Forms.CollectionWithEvents.html#Reportman_Drawing_Forms_CollectionWithEvents_Inserting
+  name: Inserting
+  nameWithType: CollectionWithEvents.Inserting
+  fullName: Reportman.Drawing.Forms.CollectionWithEvents.Inserting
+- uid: Reportman.Drawing.Forms.CollectionWithEvents.Inserted
+  commentId: E:Reportman.Drawing.Forms.CollectionWithEvents.Inserted
+  parent: Reportman.Drawing.Forms.CollectionWithEvents
+  isExternal: true
+  href: Reportman.Drawing.Forms.CollectionWithEvents.html#Reportman_Drawing_Forms_CollectionWithEvents_Inserted
+  name: Inserted
+  nameWithType: CollectionWithEvents.Inserted
+  fullName: Reportman.Drawing.Forms.CollectionWithEvents.Inserted
+- uid: Reportman.Drawing.Forms.CollectionWithEvents.Removing
+  commentId: E:Reportman.Drawing.Forms.CollectionWithEvents.Removing
+  parent: Reportman.Drawing.Forms.CollectionWithEvents
+  isExternal: true
+  href: Reportman.Drawing.Forms.CollectionWithEvents.html#Reportman_Drawing_Forms_CollectionWithEvents_Removing
+  name: Removing
+  nameWithType: CollectionWithEvents.Removing
+  fullName: Reportman.Drawing.Forms.CollectionWithEvents.Removing
+- uid: Reportman.Drawing.Forms.CollectionWithEvents.Removed
+  commentId: E:Reportman.Drawing.Forms.CollectionWithEvents.Removed
+  parent: Reportman.Drawing.Forms.CollectionWithEvents
+  isExternal: true
+  href: Reportman.Drawing.Forms.CollectionWithEvents.html#Reportman_Drawing_Forms_CollectionWithEvents_Removed
+  name: Removed
+  nameWithType: CollectionWithEvents.Removed
+  fullName: Reportman.Drawing.Forms.CollectionWithEvents.Removed
+- uid: System.Collections.CollectionBase.Clear
+  commentId: M:System.Collections.CollectionBase.Clear
+  parent: System.Collections.CollectionBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.clear
+  name: Clear()
+  nameWithType: CollectionBase.Clear()
+  fullName: System.Collections.CollectionBase.Clear()
+  spec.csharp:
+  - uid: System.Collections.CollectionBase.Clear
+    name: Clear
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.clear
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.CollectionBase.Clear
+    name: Clear
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.clear
+  - name: (
+  - name: )
+- uid: System.Collections.CollectionBase.RemoveAt(System.Int32)
+  commentId: M:System.Collections.CollectionBase.RemoveAt(System.Int32)
+  parent: System.Collections.CollectionBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.removeat
+  name: RemoveAt(int)
+  nameWithType: CollectionBase.RemoveAt(int)
+  fullName: System.Collections.CollectionBase.RemoveAt(int)
+  nameWithType.vb: CollectionBase.RemoveAt(Integer)
+  fullName.vb: System.Collections.CollectionBase.RemoveAt(Integer)
+  name.vb: RemoveAt(Integer)
+  spec.csharp:
+  - uid: System.Collections.CollectionBase.RemoveAt(System.Int32)
+    name: RemoveAt
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.removeat
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Collections.CollectionBase.RemoveAt(System.Int32)
+    name: RemoveAt
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.removeat
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Collections.CollectionBase.GetEnumerator
+  commentId: M:System.Collections.CollectionBase.GetEnumerator
+  parent: System.Collections.CollectionBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.getenumerator
+  name: GetEnumerator()
+  nameWithType: CollectionBase.GetEnumerator()
+  fullName: System.Collections.CollectionBase.GetEnumerator()
+  spec.csharp:
+  - uid: System.Collections.CollectionBase.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.getenumerator
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.CollectionBase.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.getenumerator
+  - name: (
+  - name: )
+- uid: System.Collections.CollectionBase.OnSet(System.Int32,System.Object,System.Object)
+  commentId: M:System.Collections.CollectionBase.OnSet(System.Int32,System.Object,System.Object)
+  parent: System.Collections.CollectionBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.onset
+  name: OnSet(int, object, object)
+  nameWithType: CollectionBase.OnSet(int, object, object)
+  fullName: System.Collections.CollectionBase.OnSet(int, object, object)
+  nameWithType.vb: CollectionBase.OnSet(Integer, Object, Object)
+  fullName.vb: System.Collections.CollectionBase.OnSet(Integer, Object, Object)
+  name.vb: OnSet(Integer, Object, Object)
+  spec.csharp:
+  - uid: System.Collections.CollectionBase.OnSet(System.Int32,System.Object,System.Object)
+    name: OnSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.onset
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Collections.CollectionBase.OnSet(System.Int32,System.Object,System.Object)
+    name: OnSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.onset
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Collections.CollectionBase.OnValidate(System.Object)
+  commentId: M:System.Collections.CollectionBase.OnValidate(System.Object)
+  parent: System.Collections.CollectionBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.onvalidate
+  name: OnValidate(object)
+  nameWithType: CollectionBase.OnValidate(object)
+  fullName: System.Collections.CollectionBase.OnValidate(object)
+  nameWithType.vb: CollectionBase.OnValidate(Object)
+  fullName.vb: System.Collections.CollectionBase.OnValidate(Object)
+  name.vb: OnValidate(Object)
+  spec.csharp:
+  - uid: System.Collections.CollectionBase.OnValidate(System.Object)
+    name: OnValidate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.onvalidate
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Collections.CollectionBase.OnValidate(System.Object)
+    name: OnValidate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.onvalidate
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Collections.CollectionBase.OnSetComplete(System.Int32,System.Object,System.Object)
+  commentId: M:System.Collections.CollectionBase.OnSetComplete(System.Int32,System.Object,System.Object)
+  parent: System.Collections.CollectionBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.onsetcomplete
+  name: OnSetComplete(int, object, object)
+  nameWithType: CollectionBase.OnSetComplete(int, object, object)
+  fullName: System.Collections.CollectionBase.OnSetComplete(int, object, object)
+  nameWithType.vb: CollectionBase.OnSetComplete(Integer, Object, Object)
+  fullName.vb: System.Collections.CollectionBase.OnSetComplete(Integer, Object, Object)
+  name.vb: OnSetComplete(Integer, Object, Object)
+  spec.csharp:
+  - uid: System.Collections.CollectionBase.OnSetComplete(System.Int32,System.Object,System.Object)
+    name: OnSetComplete
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.onsetcomplete
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Collections.CollectionBase.OnSetComplete(System.Int32,System.Object,System.Object)
+    name: OnSetComplete
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.onsetcomplete
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Collections.CollectionBase.InnerList
+  commentId: P:System.Collections.CollectionBase.InnerList
+  parent: System.Collections.CollectionBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.innerlist
+  name: InnerList
+  nameWithType: CollectionBase.InnerList
+  fullName: System.Collections.CollectionBase.InnerList
+- uid: System.Collections.CollectionBase.List
+  commentId: P:System.Collections.CollectionBase.List
+  parent: System.Collections.CollectionBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.list
+  name: List
+  nameWithType: CollectionBase.List
+  fullName: System.Collections.CollectionBase.List
+- uid: System.Collections.CollectionBase.Capacity
+  commentId: P:System.Collections.CollectionBase.Capacity
+  parent: System.Collections.CollectionBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.capacity
+  name: Capacity
+  nameWithType: CollectionBase.Capacity
+  fullName: System.Collections.CollectionBase.Capacity
+- uid: System.Collections.CollectionBase.Count
+  commentId: P:System.Collections.CollectionBase.Count
+  parent: System.Collections.CollectionBase
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.collectionbase.count
+  name: Count
+  nameWithType: CollectionBase.Count
+  fullName: System.Collections.CollectionBase.Count
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Collections
+  commentId: N:System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections
+  nameWithType: System.Collections
+  fullName: System.Collections
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+- uid: Reportman.Drawing.Forms.TabPageCollection.Add*
+  commentId: Overload:Reportman.Drawing.Forms.TabPageCollection.Add
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabPageCollection.html#Reportman_Drawing_Forms_TabPageCollection_Add_Reportman_Drawing_Forms_TabPageAdvanced_
+  name: Add
+  nameWithType: TabPageCollection.Add
+  fullName: Reportman.Drawing.Forms.TabPageCollection.Add
+- uid: Reportman.Drawing.Forms.TabPageAdvanced
+  commentId: T:Reportman.Drawing.Forms.TabPageAdvanced
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabPageAdvanced.html
+  name: TabPageAdvanced
+  nameWithType: TabPageAdvanced
+  fullName: Reportman.Drawing.Forms.TabPageAdvanced
+- uid: Reportman.Drawing.Forms.TabPageCollection.AddRange*
+  commentId: Overload:Reportman.Drawing.Forms.TabPageCollection.AddRange
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabPageCollection.html#Reportman_Drawing_Forms_TabPageCollection_AddRange_Reportman_Drawing_Forms_TabPageAdvanced___
+  name: AddRange
+  nameWithType: TabPageCollection.AddRange
+  fullName: Reportman.Drawing.Forms.TabPageCollection.AddRange
+- uid: Reportman.Drawing.Forms.TabPageAdvanced[]
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabPageAdvanced.html
+  name: TabPageAdvanced[]
+  nameWithType: TabPageAdvanced[]
+  fullName: Reportman.Drawing.Forms.TabPageAdvanced[]
+  nameWithType.vb: TabPageAdvanced()
+  fullName.vb: Reportman.Drawing.Forms.TabPageAdvanced()
+  name.vb: TabPageAdvanced()
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.TabPageAdvanced
+    name: TabPageAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabPageAdvanced.html
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.TabPageAdvanced
+    name: TabPageAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabPageAdvanced.html
+  - name: (
+  - name: )
+- uid: Reportman.Drawing.Forms.TabPageCollection.Remove*
+  commentId: Overload:Reportman.Drawing.Forms.TabPageCollection.Remove
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabPageCollection.html#Reportman_Drawing_Forms_TabPageCollection_Remove_Reportman_Drawing_Forms_TabPageAdvanced_
+  name: Remove
+  nameWithType: TabPageCollection.Remove
+  fullName: Reportman.Drawing.Forms.TabPageCollection.Remove
+- uid: Reportman.Drawing.Forms.TabPageCollection.Insert*
+  commentId: Overload:Reportman.Drawing.Forms.TabPageCollection.Insert
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabPageCollection.html#Reportman_Drawing_Forms_TabPageCollection_Insert_System_Int32_Reportman_Drawing_Forms_TabPageAdvanced_
+  name: Insert
+  nameWithType: TabPageCollection.Insert
+  fullName: Reportman.Drawing.Forms.TabPageCollection.Insert
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Reportman.Drawing.Forms.TabPageCollection.Contains*
+  commentId: Overload:Reportman.Drawing.Forms.TabPageCollection.Contains
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabPageCollection.html#Reportman_Drawing_Forms_TabPageCollection_Contains_Reportman_Drawing_Forms_TabPageAdvanced_
+  name: Contains
+  nameWithType: TabPageCollection.Contains
+  fullName: Reportman.Drawing.Forms.TabPageCollection.Contains
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Reportman.Drawing.Forms.TabPageCollection.IndexOf*
+  commentId: Overload:Reportman.Drawing.Forms.TabPageCollection.IndexOf
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabPageCollection.html#Reportman_Drawing_Forms_TabPageCollection_IndexOf_Reportman_Drawing_Forms_TabPageAdvanced_
+  name: IndexOf
+  nameWithType: TabPageCollection.IndexOf
+  fullName: Reportman.Drawing.Forms.TabPageCollection.IndexOf
+- uid: Reportman.Drawing.Forms.TabPageCollection.#ctor*
+  commentId: Overload:Reportman.Drawing.Forms.TabPageCollection.#ctor
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabPageCollection.html#Reportman_Drawing_Forms_TabPageCollection__ctor
+  name: TabPageCollection
+  nameWithType: TabPageCollection.TabPageCollection
+  fullName: Reportman.Drawing.Forms.TabPageCollection.TabPageCollection
+  nameWithType.vb: TabPageCollection.New
+  fullName.vb: Reportman.Drawing.Forms.TabPageCollection.New
+  name.vb: New
+- uid: Reportman.Drawing.Forms.TabPageCollection.Item*
+  commentId: Overload:Reportman.Drawing.Forms.TabPageCollection.Item
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabPageCollection.html#Reportman_Drawing_Forms_TabPageCollection_Item_System_Int32_
+  name: this
+  nameWithType: TabPageCollection.this
+  fullName: Reportman.Drawing.Forms.TabPageCollection.this
+  nameWithType.vb: TabPageCollection.this[]
+  fullName.vb: Reportman.Drawing.Forms.TabPageCollection.this[]
+  name.vb: this[]
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String

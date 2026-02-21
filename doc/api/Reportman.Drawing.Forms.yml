@@ -1,0 +1,1514 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  id: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.AdvancedEditingControl
+  - Reportman.Drawing.Forms.AlterReportEvent
+  - Reportman.Drawing.Forms.AutoCompleteInfo
+  - Reportman.Drawing.Forms.BeforeEnterTabEvent
+  - Reportman.Drawing.Forms.ButtonCalc
+  - Reportman.Drawing.Forms.CalcReportProgress
+  - Reportman.Drawing.Forms.Calculator
+  - Reportman.Drawing.Forms.CancelArgs
+  - Reportman.Drawing.Forms.CancelEvent
+  - Reportman.Drawing.Forms.CheckBoxAdvanced
+  - Reportman.Drawing.Forms.CollectionChange
+  - Reportman.Drawing.Forms.CollectionClear
+  - Reportman.Drawing.Forms.CollectionWithEvents
+  - Reportman.Drawing.Forms.ColorHelper
+  - Reportman.Drawing.Forms.ColumnDataType
+  - Reportman.Drawing.Forms.ComboBoxAdvanced
+  - Reportman.Drawing.Forms.ComboBoxAdvancedItem
+  - Reportman.Drawing.Forms.ComboListMatcher
+  - Reportman.Drawing.Forms.ControlHelper
+  - Reportman.Drawing.Forms.CueHelper
+  - Reportman.Drawing.Forms.CustomPaintControl
+  - Reportman.Drawing.Forms.DataColumnButtonClickEvent
+  - Reportman.Drawing.Forms.DataGridViewAdvanced
+  - Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent
+  - Reportman.Drawing.Forms.DataGridViewCellAdvanced
+  - Reportman.Drawing.Forms.DataGridViewColumnAdvanced
+  - Reportman.Drawing.Forms.DataGridViewNumericUpDownCell
+  - Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn
+  - Reportman.Drawing.Forms.DateDropButton
+  - Reportman.Drawing.Forms.DateTimePickerAdvanced
+  - Reportman.Drawing.Forms.DateTimePickerAdvanced.ValueChangedEventHandler
+  - Reportman.Drawing.Forms.DateTimePickerNullable
+  - Reportman.Drawing.Forms.Direction
+  - Reportman.Drawing.Forms.DoubleClickControlEvent
+  - Reportman.Drawing.Forms.DrawHelper
+  - Reportman.Drawing.Forms.DrawHelper.CommandState
+  - Reportman.Drawing.Forms.Edge
+  - Reportman.Drawing.Forms.EditCalc
+  - Reportman.Drawing.Forms.EventPrinterNamesArgs
+  - Reportman.Drawing.Forms.EventPrinterNamesHandler
+  - Reportman.Drawing.Forms.FormUtils
+  - Reportman.Drawing.Forms.GroupBoxAdvanced
+  - Reportman.Drawing.Forms.IDisplayDisable
+  - Reportman.Drawing.Forms.ISearchWindow
+  - Reportman.Drawing.Forms.InertButton
+  - Reportman.Drawing.Forms.InputBox
+  - Reportman.Drawing.Forms.IsDateValidResult
+  - Reportman.Drawing.Forms.ListBoxNonSelectable
+  - Reportman.Drawing.Forms.MessageBoxError
+  - Reportman.Drawing.Forms.NextColumnFocusEvent
+  - Reportman.Drawing.Forms.NoTitleForm
+  - Reportman.Drawing.Forms.Number
+  - Reportman.Drawing.Forms.PageDrawnEvent
+  - Reportman.Drawing.Forms.PanelAdvanced
+  - Reportman.Drawing.Forms.PopupWindow
+  - Reportman.Drawing.Forms.PreviewMetaFile
+  - Reportman.Drawing.Forms.PreviewWinFormsControl
+  - Reportman.Drawing.Forms.PreviewWindowMode
+  - Reportman.Drawing.Forms.PrintOutWinForms
+  - Reportman.Drawing.Forms.PrintersConfiguration
+  - Reportman.Drawing.Forms.ProgresEvent
+  - Reportman.Drawing.Forms.ProgressBarAdvanced
+  - Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler
+  - Reportman.Drawing.Forms.ProgressBarAdvanced.MinChangedHandler
+  - Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler
+  - Reportman.Drawing.Forms.ProgressForm
+  - Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow
+  - Reportman.Drawing.Forms.ProgressForm.SetProgressCallback
+  - Reportman.Drawing.Forms.RadioGroup
+  - Reportman.Drawing.Forms.RawPrinterHelper
+  - Reportman.Drawing.Forms.ReportProgressForm
+  - Reportman.Drawing.Forms.Ruler
+  - Reportman.Drawing.Forms.RulerBorder
+  - Reportman.Drawing.Forms.RulerStyle
+  - Reportman.Drawing.Forms.ScreenKeyboard
+  - Reportman.Drawing.Forms.ScreenKeyboard.Command
+  - Reportman.Drawing.Forms.ScrollTextPanel
+  - Reportman.Drawing.Forms.SearchWindowKeyOperation
+  - Reportman.Drawing.Forms.SendMailEvent
+  - Reportman.Drawing.Forms.SendMailEventArgs
+  - Reportman.Drawing.Forms.ShowSearchWindowArgs
+  - Reportman.Drawing.Forms.ShowSearchWindowEvent
+  - Reportman.Drawing.Forms.SignatureControl
+  - Reportman.Drawing.Forms.SignatureControl.SignatureStyle
+  - Reportman.Drawing.Forms.StandardEvent
+  - Reportman.Drawing.Forms.StringEvent
+  - Reportman.Drawing.Forms.TabControlAdvanced
+  - Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler
+  - Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes
+  - Reportman.Drawing.Forms.TabControlAdvanced.HostPanel
+  - Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip
+  - Reportman.Drawing.Forms.TabControlAdvanced.MultiRect
+  - Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+  - Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance
+  - Reportman.Drawing.Forms.TabPageAdvanced
+  - Reportman.Drawing.Forms.TabPageAdvanced.PropChangeHandler
+  - Reportman.Drawing.Forms.TabPageAdvanced.Property
+  - Reportman.Drawing.Forms.TabPageCollection
+  - Reportman.Drawing.Forms.TableLayoutPanelAdvanced
+  - Reportman.Drawing.Forms.TextBoxAdvanced
+  - Reportman.Drawing.Forms.TextBoxDataType
+  - Reportman.Drawing.Forms.TokenCalc
+  - Reportman.Drawing.Forms.TokenCalc.TokenType
+  - Reportman.Drawing.Forms.ToolStripAdvanced
+  - Reportman.Drawing.Forms.ToolStripButtonAllowDisable
+  - Reportman.Drawing.Forms.ToolStripComboBoxAdvanced
+  - Reportman.Drawing.Forms.ToolStripDropDownButtonAllowDisable
+  - Reportman.Drawing.Forms.ToolStripTextBoxAdvanced
+  - Reportman.Drawing.Forms.ToolStripTextBoxFilter
+  - Reportman.Drawing.Forms.ToolTipAdvanced
+  - Reportman.Drawing.Forms.TransformImageForm
+  - Reportman.Drawing.Forms.TransparentPanel
+  - Reportman.Drawing.Forms.TreeGridAdvanced
+  - Reportman.Drawing.Forms.TreeGridAdvancedCell
+  - Reportman.Drawing.Forms.TreeGridAdvancedColumn
+  - Reportman.Drawing.Forms.TreeGridAdvancedNode
+  - Reportman.Drawing.Forms.TreeGridRow
+  - Reportman.Drawing.Forms.UnSelectableButton
+  - Reportman.Drawing.Forms.UpdateForm
+  - Reportman.Drawing.Forms.VisualStyle
+  - Reportman.Drawing.Forms.WinFormsGraphics
+  - Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness
+  langs:
+  - csharp
+  - vb
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  type: Namespace
+  assemblies:
+  - Reportman.Drawing.Forms
+references:
+- uid: Reportman.Drawing.Forms.StringEvent
+  commentId: T:Reportman.Drawing.Forms.StringEvent
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.StringEvent.html
+  name: StringEvent
+  nameWithType: StringEvent
+  fullName: Reportman.Drawing.Forms.StringEvent
+- uid: Reportman.Drawing.Forms.ComboBoxAdvanced
+  commentId: T:Reportman.Drawing.Forms.ComboBoxAdvanced
+  isExternal: true
+  href: Reportman.Drawing.Forms.ComboBoxAdvanced.html
+  name: ComboBoxAdvanced
+  nameWithType: ComboBoxAdvanced
+  fullName: Reportman.Drawing.Forms.ComboBoxAdvanced
+- uid: Reportman.Drawing.Forms.CheckBoxAdvanced
+  commentId: T:Reportman.Drawing.Forms.CheckBoxAdvanced
+  isExternal: true
+  href: Reportman.Drawing.Forms.CheckBoxAdvanced.html
+  name: CheckBoxAdvanced
+  nameWithType: CheckBoxAdvanced
+  fullName: Reportman.Drawing.Forms.CheckBoxAdvanced
+- uid: Reportman.Drawing.Forms.ToolStripComboBoxAdvanced
+  commentId: T:Reportman.Drawing.Forms.ToolStripComboBoxAdvanced
+  isExternal: true
+  href: Reportman.Drawing.Forms.ToolStripComboBoxAdvanced.html
+  name: ToolStripComboBoxAdvanced
+  nameWithType: ToolStripComboBoxAdvanced
+  fullName: Reportman.Drawing.Forms.ToolStripComboBoxAdvanced
+- uid: Reportman.Drawing.Forms.ToolStripTextBoxAdvanced
+  commentId: T:Reportman.Drawing.Forms.ToolStripTextBoxAdvanced
+  isExternal: true
+  href: Reportman.Drawing.Forms.ToolStripTextBoxAdvanced.html
+  name: ToolStripTextBoxAdvanced
+  nameWithType: ToolStripTextBoxAdvanced
+  fullName: Reportman.Drawing.Forms.ToolStripTextBoxAdvanced
+- uid: Reportman.Drawing.Forms.ComboListMatcher
+  commentId: T:Reportman.Drawing.Forms.ComboListMatcher
+  isExternal: true
+  href: Reportman.Drawing.Forms.ComboListMatcher.html
+  name: ComboListMatcher
+  nameWithType: ComboListMatcher
+  fullName: Reportman.Drawing.Forms.ComboListMatcher
+- uid: Reportman.Drawing.Forms.ComboBoxAdvancedItem
+  commentId: T:Reportman.Drawing.Forms.ComboBoxAdvancedItem
+  isExternal: true
+  href: Reportman.Drawing.Forms.ComboBoxAdvancedItem.html
+  name: ComboBoxAdvancedItem
+  nameWithType: ComboBoxAdvancedItem
+  fullName: Reportman.Drawing.Forms.ComboBoxAdvancedItem
+- uid: Reportman.Drawing.Forms.FormUtils
+  commentId: T:Reportman.Drawing.Forms.FormUtils
+  isExternal: true
+  href: Reportman.Drawing.Forms.FormUtils.html
+  name: FormUtils
+  nameWithType: FormUtils
+  fullName: Reportman.Drawing.Forms.FormUtils
+- uid: Reportman.Drawing.Forms.CustomPaintControl
+  commentId: T:Reportman.Drawing.Forms.CustomPaintControl
+  isExternal: true
+  href: Reportman.Drawing.Forms.CustomPaintControl.html
+  name: CustomPaintControl
+  nameWithType: CustomPaintControl
+  fullName: Reportman.Drawing.Forms.CustomPaintControl
+- uid: Reportman.Drawing.Forms.UnSelectableButton
+  commentId: T:Reportman.Drawing.Forms.UnSelectableButton
+  isExternal: true
+  href: Reportman.Drawing.Forms.UnSelectableButton.html
+  name: UnSelectableButton
+  nameWithType: UnSelectableButton
+  fullName: Reportman.Drawing.Forms.UnSelectableButton
+- uid: Reportman.Drawing.Forms.ToolStripAdvanced
+  commentId: T:Reportman.Drawing.Forms.ToolStripAdvanced
+  isExternal: true
+  href: Reportman.Drawing.Forms.ToolStripAdvanced.html
+  name: ToolStripAdvanced
+  nameWithType: ToolStripAdvanced
+  fullName: Reportman.Drawing.Forms.ToolStripAdvanced
+- uid: Reportman.Drawing.Forms.ListBoxNonSelectable
+  commentId: T:Reportman.Drawing.Forms.ListBoxNonSelectable
+  isExternal: true
+  href: Reportman.Drawing.Forms.ListBoxNonSelectable.html
+  name: ListBoxNonSelectable
+  nameWithType: ListBoxNonSelectable
+  fullName: Reportman.Drawing.Forms.ListBoxNonSelectable
+- uid: Reportman.Drawing.Forms.AutoCompleteInfo
+  commentId: T:Reportman.Drawing.Forms.AutoCompleteInfo
+  isExternal: true
+  href: Reportman.Drawing.Forms.AutoCompleteInfo.html
+  name: AutoCompleteInfo
+  nameWithType: AutoCompleteInfo
+  fullName: Reportman.Drawing.Forms.AutoCompleteInfo
+- uid: Reportman.Drawing.Forms.CueHelper
+  commentId: T:Reportman.Drawing.Forms.CueHelper
+  isExternal: true
+  href: Reportman.Drawing.Forms.CueHelper.html
+  name: CueHelper
+  nameWithType: CueHelper
+  fullName: Reportman.Drawing.Forms.CueHelper
+- uid: Reportman.Drawing.Forms.NextColumnFocusEvent
+  commentId: T:Reportman.Drawing.Forms.NextColumnFocusEvent
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.NextColumnFocusEvent.html
+  name: NextColumnFocusEvent
+  nameWithType: NextColumnFocusEvent
+  fullName: Reportman.Drawing.Forms.NextColumnFocusEvent
+- uid: Reportman.Drawing.Forms.DoubleClickControlEvent
+  commentId: T:Reportman.Drawing.Forms.DoubleClickControlEvent
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.DoubleClickControlEvent.html
+  name: DoubleClickControlEvent
+  nameWithType: DoubleClickControlEvent
+  fullName: Reportman.Drawing.Forms.DoubleClickControlEvent
+- uid: Reportman.Drawing.Forms.DataGridViewAdvanced
+  commentId: T:Reportman.Drawing.Forms.DataGridViewAdvanced
+  isExternal: true
+  href: Reportman.Drawing.Forms.DataGridViewAdvanced.html
+  name: DataGridViewAdvanced
+  nameWithType: DataGridViewAdvanced
+  fullName: Reportman.Drawing.Forms.DataGridViewAdvanced
+- uid: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent
+  commentId: T:Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.DataGridViewAdvanced.html
+  name: DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent
+  nameWithType: DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent
+  fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.DataGridViewAdvanced
+    name: DataGridViewAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.DataGridViewAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent
+    name: SelectNextRowAfterEnterKeyEvent
+    isExternal: true
+    href: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.DataGridViewAdvanced
+    name: DataGridViewAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.DataGridViewAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent
+    name: SelectNextRowAfterEnterKeyEvent
+    isExternal: true
+    href: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.html
+- uid: Reportman.Drawing.Forms.ScrollTextPanel
+  commentId: T:Reportman.Drawing.Forms.ScrollTextPanel
+  isExternal: true
+  href: Reportman.Drawing.Forms.ScrollTextPanel.html
+  name: ScrollTextPanel
+  nameWithType: ScrollTextPanel
+  fullName: Reportman.Drawing.Forms.ScrollTextPanel
+- uid: Reportman.Drawing.Forms.TransparentPanel
+  commentId: T:Reportman.Drawing.Forms.TransparentPanel
+  isExternal: true
+  href: Reportman.Drawing.Forms.TransparentPanel.html
+  name: TransparentPanel
+  nameWithType: TransparentPanel
+  fullName: Reportman.Drawing.Forms.TransparentPanel
+- uid: Reportman.Drawing.Forms.PanelAdvanced
+  commentId: T:Reportman.Drawing.Forms.PanelAdvanced
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.PanelAdvanced.html
+  name: PanelAdvanced
+  nameWithType: PanelAdvanced
+  fullName: Reportman.Drawing.Forms.PanelAdvanced
+- uid: Reportman.Drawing.Forms.BeforeEnterTabEvent
+  commentId: T:Reportman.Drawing.Forms.BeforeEnterTabEvent
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.BeforeEnterTabEvent.html
+  name: BeforeEnterTabEvent
+  nameWithType: BeforeEnterTabEvent
+  fullName: Reportman.Drawing.Forms.BeforeEnterTabEvent
+- uid: Reportman.Drawing.Forms.ColumnDataType
+  commentId: T:Reportman.Drawing.Forms.ColumnDataType
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.ColumnDataType.html
+  name: ColumnDataType
+  nameWithType: ColumnDataType
+  fullName: Reportman.Drawing.Forms.ColumnDataType
+- uid: Reportman.Drawing.Forms.DataColumnButtonClickEvent
+  commentId: T:Reportman.Drawing.Forms.DataColumnButtonClickEvent
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.DataColumnButtonClickEvent.html
+  name: DataColumnButtonClickEvent
+  nameWithType: DataColumnButtonClickEvent
+  fullName: Reportman.Drawing.Forms.DataColumnButtonClickEvent
+- uid: Reportman.Drawing.Forms.DataGridViewColumnAdvanced
+  commentId: T:Reportman.Drawing.Forms.DataGridViewColumnAdvanced
+  isExternal: true
+  href: Reportman.Drawing.Forms.DataGridViewColumnAdvanced.html
+  name: DataGridViewColumnAdvanced
+  nameWithType: DataGridViewColumnAdvanced
+  fullName: Reportman.Drawing.Forms.DataGridViewColumnAdvanced
+- uid: Reportman.Drawing.Forms.DataGridViewCellAdvanced
+  commentId: T:Reportman.Drawing.Forms.DataGridViewCellAdvanced
+  isExternal: true
+  href: Reportman.Drawing.Forms.DataGridViewCellAdvanced.html
+  name: DataGridViewCellAdvanced
+  nameWithType: DataGridViewCellAdvanced
+  fullName: Reportman.Drawing.Forms.DataGridViewCellAdvanced
+- uid: Reportman.Drawing.Forms.AdvancedEditingControl
+  commentId: T:Reportman.Drawing.Forms.AdvancedEditingControl
+  isExternal: true
+  href: Reportman.Drawing.Forms.AdvancedEditingControl.html
+  name: AdvancedEditingControl
+  nameWithType: AdvancedEditingControl
+  fullName: Reportman.Drawing.Forms.AdvancedEditingControl
+- uid: Reportman.Drawing.Forms.SearchWindowKeyOperation
+  commentId: T:Reportman.Drawing.Forms.SearchWindowKeyOperation
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.SearchWindowKeyOperation.html
+  name: SearchWindowKeyOperation
+  nameWithType: SearchWindowKeyOperation
+  fullName: Reportman.Drawing.Forms.SearchWindowKeyOperation
+- uid: Reportman.Drawing.Forms.ShowSearchWindowEvent
+  commentId: T:Reportman.Drawing.Forms.ShowSearchWindowEvent
+  isExternal: true
+  href: Reportman.Drawing.Forms.ShowSearchWindowEvent.html
+  name: ShowSearchWindowEvent
+  nameWithType: ShowSearchWindowEvent
+  fullName: Reportman.Drawing.Forms.ShowSearchWindowEvent
+- uid: Reportman.Drawing.Forms.ShowSearchWindowArgs
+  commentId: T:Reportman.Drawing.Forms.ShowSearchWindowArgs
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.ShowSearchWindowArgs.html
+  name: ShowSearchWindowArgs
+  nameWithType: ShowSearchWindowArgs
+  fullName: Reportman.Drawing.Forms.ShowSearchWindowArgs
+- uid: Reportman.Drawing.Forms.ISearchWindow
+  commentId: T:Reportman.Drawing.Forms.ISearchWindow
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.ISearchWindow.html
+  name: ISearchWindow
+  nameWithType: ISearchWindow
+  fullName: Reportman.Drawing.Forms.ISearchWindow
+- uid: Reportman.Drawing.Forms.DataGridViewNumericUpDownCell
+  commentId: T:Reportman.Drawing.Forms.DataGridViewNumericUpDownCell
+  isExternal: true
+  href: Reportman.Drawing.Forms.DataGridViewNumericUpDownCell.html
+  name: DataGridViewNumericUpDownCell
+  nameWithType: DataGridViewNumericUpDownCell
+  fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownCell
+- uid: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn
+  commentId: T:Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn
+  isExternal: true
+  href: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.html
+  name: DataGridViewNumericUpDownColumn
+  nameWithType: DataGridViewNumericUpDownColumn
+  fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn
+- uid: Reportman.Drawing.Forms.DateTimePickerAdvanced
+  commentId: T:Reportman.Drawing.Forms.DateTimePickerAdvanced
+  isExternal: true
+  href: Reportman.Drawing.Forms.DateTimePickerAdvanced.html
+  name: DateTimePickerAdvanced
+  nameWithType: DateTimePickerAdvanced
+  fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced
+- uid: Reportman.Drawing.Forms.DateTimePickerAdvanced.ValueChangedEventHandler
+  commentId: T:Reportman.Drawing.Forms.DateTimePickerAdvanced.ValueChangedEventHandler
+  isExternal: true
+  href: Reportman.Drawing.Forms.DateTimePickerAdvanced.html
+  name: DateTimePickerAdvanced.ValueChangedEventHandler
+  nameWithType: DateTimePickerAdvanced.ValueChangedEventHandler
+  fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.ValueChangedEventHandler
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.DateTimePickerAdvanced
+    name: DateTimePickerAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.DateTimePickerAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.DateTimePickerAdvanced.ValueChangedEventHandler
+    name: ValueChangedEventHandler
+    isExternal: true
+    href: Reportman.Drawing.Forms.DateTimePickerAdvanced.ValueChangedEventHandler.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.DateTimePickerAdvanced
+    name: DateTimePickerAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.DateTimePickerAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.DateTimePickerAdvanced.ValueChangedEventHandler
+    name: ValueChangedEventHandler
+    isExternal: true
+    href: Reportman.Drawing.Forms.DateTimePickerAdvanced.ValueChangedEventHandler.html
+- uid: Reportman.Drawing.Forms.IsDateValidResult
+  commentId: T:Reportman.Drawing.Forms.IsDateValidResult
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.IsDateValidResult.html
+  name: IsDateValidResult
+  nameWithType: IsDateValidResult
+  fullName: Reportman.Drawing.Forms.IsDateValidResult
+- uid: Reportman.Drawing.Forms.DateDropButton
+  commentId: T:Reportman.Drawing.Forms.DateDropButton
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.DateDropButton.html
+  name: DateDropButton
+  nameWithType: DateDropButton
+  fullName: Reportman.Drawing.Forms.DateDropButton
+- uid: Reportman.Drawing.Forms.PopupWindow
+  commentId: T:Reportman.Drawing.Forms.PopupWindow
+  isExternal: true
+  href: Reportman.Drawing.Forms.PopupWindow.html
+  name: PopupWindow
+  nameWithType: PopupWindow
+  fullName: Reportman.Drawing.Forms.PopupWindow
+- uid: Reportman.Drawing.Forms.DateTimePickerNullable
+  commentId: T:Reportman.Drawing.Forms.DateTimePickerNullable
+  isExternal: true
+  href: Reportman.Drawing.Forms.DateTimePickerNullable.html
+  name: DateTimePickerNullable
+  nameWithType: DateTimePickerNullable
+  fullName: Reportman.Drawing.Forms.DateTimePickerNullable
+- uid: Reportman.Drawing.Forms.GroupBoxAdvanced
+  commentId: T:Reportman.Drawing.Forms.GroupBoxAdvanced
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.GroupBoxAdvanced.html
+  name: GroupBoxAdvanced
+  nameWithType: GroupBoxAdvanced
+  fullName: Reportman.Drawing.Forms.GroupBoxAdvanced
+- uid: Reportman.Drawing.Forms.InputBox
+  commentId: T:Reportman.Drawing.Forms.InputBox
+  isExternal: true
+  href: Reportman.Drawing.Forms.InputBox.html
+  name: InputBox
+  nameWithType: InputBox
+  fullName: Reportman.Drawing.Forms.InputBox
+- uid: Reportman.Drawing.Forms.MessageBoxError
+  commentId: T:Reportman.Drawing.Forms.MessageBoxError
+  isExternal: true
+  href: Reportman.Drawing.Forms.MessageBoxError.html
+  name: MessageBoxError
+  nameWithType: MessageBoxError
+  fullName: Reportman.Drawing.Forms.MessageBoxError
+- uid: Reportman.Drawing.Forms.NoTitleForm
+  commentId: T:Reportman.Drawing.Forms.NoTitleForm
+  isExternal: true
+  href: Reportman.Drawing.Forms.NoTitleForm.html
+  name: NoTitleForm
+  nameWithType: NoTitleForm
+  fullName: Reportman.Drawing.Forms.NoTitleForm
+- uid: Reportman.Drawing.Forms.IDisplayDisable
+  commentId: T:Reportman.Drawing.Forms.IDisplayDisable
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.IDisplayDisable.html
+  name: IDisplayDisable
+  nameWithType: IDisplayDisable
+  fullName: Reportman.Drawing.Forms.IDisplayDisable
+- uid: Reportman.Drawing.Forms.ToolStripButtonAllowDisable
+  commentId: T:Reportman.Drawing.Forms.ToolStripButtonAllowDisable
+  isExternal: true
+  href: Reportman.Drawing.Forms.ToolStripButtonAllowDisable.html
+  name: ToolStripButtonAllowDisable
+  nameWithType: ToolStripButtonAllowDisable
+  fullName: Reportman.Drawing.Forms.ToolStripButtonAllowDisable
+- uid: Reportman.Drawing.Forms.ToolStripDropDownButtonAllowDisable
+  commentId: T:Reportman.Drawing.Forms.ToolStripDropDownButtonAllowDisable
+  isExternal: true
+  href: Reportman.Drawing.Forms.ToolStripDropDownButtonAllowDisable.html
+  name: ToolStripDropDownButtonAllowDisable
+  nameWithType: ToolStripDropDownButtonAllowDisable
+  fullName: Reportman.Drawing.Forms.ToolStripDropDownButtonAllowDisable
+- uid: Reportman.Drawing.Forms.PageDrawnEvent
+  commentId: T:Reportman.Drawing.Forms.PageDrawnEvent
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.PageDrawnEvent.html
+  name: PageDrawnEvent
+  nameWithType: PageDrawnEvent
+  fullName: Reportman.Drawing.Forms.PageDrawnEvent
+- uid: Reportman.Drawing.Forms.AlterReportEvent
+  commentId: T:Reportman.Drawing.Forms.AlterReportEvent
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.AlterReportEvent.html
+  name: AlterReportEvent
+  nameWithType: AlterReportEvent
+  fullName: Reportman.Drawing.Forms.AlterReportEvent
+- uid: Reportman.Drawing.Forms.SendMailEvent
+  commentId: T:Reportman.Drawing.Forms.SendMailEvent
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.SendMailEvent.html
+  name: SendMailEvent
+  nameWithType: SendMailEvent
+  fullName: Reportman.Drawing.Forms.SendMailEvent
+- uid: Reportman.Drawing.Forms.PreviewMetaFile
+  commentId: T:Reportman.Drawing.Forms.PreviewMetaFile
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.PreviewMetaFile.html
+  name: PreviewMetaFile
+  nameWithType: PreviewMetaFile
+  fullName: Reportman.Drawing.Forms.PreviewMetaFile
+- uid: Reportman.Drawing.Forms.SendMailEventArgs
+  commentId: T:Reportman.Drawing.Forms.SendMailEventArgs
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.SendMailEventArgs.html
+  name: SendMailEventArgs
+  nameWithType: SendMailEventArgs
+  fullName: Reportman.Drawing.Forms.SendMailEventArgs
+- uid: Reportman.Drawing.Forms.PreviewWindowMode
+  commentId: T:Reportman.Drawing.Forms.PreviewWindowMode
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.PreviewWindowMode.html
+  name: PreviewWindowMode
+  nameWithType: PreviewWindowMode
+  fullName: Reportman.Drawing.Forms.PreviewWindowMode
+- uid: Reportman.Drawing.Forms.PreviewWinFormsControl
+  commentId: T:Reportman.Drawing.Forms.PreviewWinFormsControl
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.PreviewWinFormsControl.html
+  name: PreviewWinFormsControl
+  nameWithType: PreviewWinFormsControl
+  fullName: Reportman.Drawing.Forms.PreviewWinFormsControl
+- uid: Reportman.Drawing.Forms.EventPrinterNamesHandler
+  commentId: T:Reportman.Drawing.Forms.EventPrinterNamesHandler
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.EventPrinterNamesHandler.html
+  name: EventPrinterNamesHandler
+  nameWithType: EventPrinterNamesHandler
+  fullName: Reportman.Drawing.Forms.EventPrinterNamesHandler
+- uid: Reportman.Drawing.Forms.PrintersConfiguration
+  commentId: T:Reportman.Drawing.Forms.PrintersConfiguration
+  isExternal: true
+  href: Reportman.Drawing.Forms.PrintersConfiguration.html
+  name: PrintersConfiguration
+  nameWithType: PrintersConfiguration
+  fullName: Reportman.Drawing.Forms.PrintersConfiguration
+- uid: Reportman.Drawing.Forms.EventPrinterNamesArgs
+  commentId: T:Reportman.Drawing.Forms.EventPrinterNamesArgs
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.EventPrinterNamesArgs.html
+  name: EventPrinterNamesArgs
+  nameWithType: EventPrinterNamesArgs
+  fullName: Reportman.Drawing.Forms.EventPrinterNamesArgs
+- uid: Reportman.Drawing.Forms.PrintOutWinForms
+  commentId: T:Reportman.Drawing.Forms.PrintOutWinForms
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.PrintOutWinForms.html
+  name: PrintOutWinForms
+  nameWithType: PrintOutWinForms
+  fullName: Reportman.Drawing.Forms.PrintOutWinForms
+- uid: Reportman.Drawing.Forms.ProgressBarAdvanced
+  commentId: T:Reportman.Drawing.Forms.ProgressBarAdvanced
+  isExternal: true
+  href: Reportman.Drawing.Forms.ProgressBarAdvanced.html
+  name: ProgressBarAdvanced
+  nameWithType: ProgressBarAdvanced
+  fullName: Reportman.Drawing.Forms.ProgressBarAdvanced
+- uid: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler
+  commentId: T:Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.ProgressBarAdvanced.html
+  name: ProgressBarAdvanced.ValueChangedHandler
+  nameWithType: ProgressBarAdvanced.ValueChangedHandler
+  fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.ProgressBarAdvanced
+    name: ProgressBarAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.ProgressBarAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler
+    name: ValueChangedHandler
+    isExternal: true
+    href: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.ProgressBarAdvanced
+    name: ProgressBarAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.ProgressBarAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler
+    name: ValueChangedHandler
+    isExternal: true
+    href: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChangedHandler.html
+- uid: Reportman.Drawing.Forms.ProgressBarAdvanced.MinChangedHandler
+  commentId: T:Reportman.Drawing.Forms.ProgressBarAdvanced.MinChangedHandler
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.ProgressBarAdvanced.html
+  name: ProgressBarAdvanced.MinChangedHandler
+  nameWithType: ProgressBarAdvanced.MinChangedHandler
+  fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.MinChangedHandler
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.ProgressBarAdvanced
+    name: ProgressBarAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.ProgressBarAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.ProgressBarAdvanced.MinChangedHandler
+    name: MinChangedHandler
+    isExternal: true
+    href: Reportman.Drawing.Forms.ProgressBarAdvanced.MinChangedHandler.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.ProgressBarAdvanced
+    name: ProgressBarAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.ProgressBarAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.ProgressBarAdvanced.MinChangedHandler
+    name: MinChangedHandler
+    isExternal: true
+    href: Reportman.Drawing.Forms.ProgressBarAdvanced.MinChangedHandler.html
+- uid: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler
+  commentId: T:Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.ProgressBarAdvanced.html
+  name: ProgressBarAdvanced.MaxChangedHandler
+  nameWithType: ProgressBarAdvanced.MaxChangedHandler
+  fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.ProgressBarAdvanced
+    name: ProgressBarAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.ProgressBarAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler
+    name: MaxChangedHandler
+    isExternal: true
+    href: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.ProgressBarAdvanced
+    name: ProgressBarAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.ProgressBarAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler
+    name: MaxChangedHandler
+    isExternal: true
+    href: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChangedHandler.html
+- uid: Reportman.Drawing.Forms.ProgressForm
+  commentId: T:Reportman.Drawing.Forms.ProgressForm
+  isExternal: true
+  href: Reportman.Drawing.Forms.ProgressForm.html
+  name: ProgressForm
+  nameWithType: ProgressForm
+  fullName: Reportman.Drawing.Forms.ProgressForm
+- uid: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback
+  commentId: T:Reportman.Drawing.Forms.ProgressForm.SetProgressCallback
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.ProgressForm.html
+  name: ProgressForm.SetProgressCallback
+  nameWithType: ProgressForm.SetProgressCallback
+  fullName: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.ProgressForm
+    name: ProgressForm
+    isExternal: true
+    href: Reportman.Drawing.Forms.ProgressForm.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback
+    name: SetProgressCallback
+    isExternal: true
+    href: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.ProgressForm
+    name: ProgressForm
+    isExternal: true
+    href: Reportman.Drawing.Forms.ProgressForm.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback
+    name: SetProgressCallback
+    isExternal: true
+    href: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.html
+- uid: Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow
+  commentId: T:Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.ProgressForm.html
+  name: ProgressForm.ITaskProgressShow
+  nameWithType: ProgressForm.ITaskProgressShow
+  fullName: Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.ProgressForm
+    name: ProgressForm
+    isExternal: true
+    href: Reportman.Drawing.Forms.ProgressForm.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow
+    name: ITaskProgressShow
+    isExternal: true
+    href: Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.ProgressForm
+    name: ProgressForm
+    isExternal: true
+    href: Reportman.Drawing.Forms.ProgressForm.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow
+    name: ITaskProgressShow
+    isExternal: true
+    href: Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow.html
+- uid: Reportman.Drawing.Forms.StandardEvent
+  commentId: T:Reportman.Drawing.Forms.StandardEvent
+  isExternal: true
+  href: Reportman.Drawing.Forms.StandardEvent.html
+  name: StandardEvent
+  nameWithType: StandardEvent
+  fullName: Reportman.Drawing.Forms.StandardEvent
+- uid: Reportman.Drawing.Forms.RadioGroup
+  commentId: T:Reportman.Drawing.Forms.RadioGroup
+  isExternal: true
+  href: Reportman.Drawing.Forms.RadioGroup.html
+  name: RadioGroup
+  nameWithType: RadioGroup
+  fullName: Reportman.Drawing.Forms.RadioGroup
+- uid: Reportman.Drawing.Forms.RawPrinterHelper
+  commentId: T:Reportman.Drawing.Forms.RawPrinterHelper
+  isExternal: true
+  href: Reportman.Drawing.Forms.RawPrinterHelper.html
+  name: RawPrinterHelper
+  nameWithType: RawPrinterHelper
+  fullName: Reportman.Drawing.Forms.RawPrinterHelper
+- uid: Reportman.Drawing.Forms.ReportProgressForm
+  commentId: T:Reportman.Drawing.Forms.ReportProgressForm
+  isExternal: true
+  href: Reportman.Drawing.Forms.ReportProgressForm.html
+  name: ReportProgressForm
+  nameWithType: ReportProgressForm
+  fullName: Reportman.Drawing.Forms.ReportProgressForm
+- uid: Reportman.Drawing.Forms.CalcReportProgress
+  commentId: T:Reportman.Drawing.Forms.CalcReportProgress
+  isExternal: true
+  href: Reportman.Drawing.Forms.CalcReportProgress.html
+  name: CalcReportProgress
+  nameWithType: CalcReportProgress
+  fullName: Reportman.Drawing.Forms.CalcReportProgress
+- uid: Reportman.Drawing.Forms.RulerStyle
+  commentId: T:Reportman.Drawing.Forms.RulerStyle
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.RulerStyle.html
+  name: RulerStyle
+  nameWithType: RulerStyle
+  fullName: Reportman.Drawing.Forms.RulerStyle
+- uid: Reportman.Drawing.Forms.RulerBorder
+  commentId: T:Reportman.Drawing.Forms.RulerBorder
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.RulerBorder.html
+  name: RulerBorder
+  nameWithType: RulerBorder
+  fullName: Reportman.Drawing.Forms.RulerBorder
+- uid: Reportman.Drawing.Forms.Ruler
+  commentId: T:Reportman.Drawing.Forms.Ruler
+  isExternal: true
+  href: Reportman.Drawing.Forms.Ruler.html
+  name: Ruler
+  nameWithType: Ruler
+  fullName: Reportman.Drawing.Forms.Ruler
+- uid: Reportman.Drawing.Forms.ScreenKeyboard
+  commentId: T:Reportman.Drawing.Forms.ScreenKeyboard
+  isExternal: true
+  href: Reportman.Drawing.Forms.ScreenKeyboard.html
+  name: ScreenKeyboard
+  nameWithType: ScreenKeyboard
+  fullName: Reportman.Drawing.Forms.ScreenKeyboard
+- uid: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  commentId: T:Reportman.Drawing.Forms.ScreenKeyboard.Command
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.ScreenKeyboard.html
+  name: ScreenKeyboard.Command
+  nameWithType: ScreenKeyboard.Command
+  fullName: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.ScreenKeyboard
+    name: ScreenKeyboard
+    isExternal: true
+    href: Reportman.Drawing.Forms.ScreenKeyboard.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.ScreenKeyboard.Command
+    name: Command
+    isExternal: true
+    href: Reportman.Drawing.Forms.ScreenKeyboard.Command.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.ScreenKeyboard
+    name: ScreenKeyboard
+    isExternal: true
+    href: Reportman.Drawing.Forms.ScreenKeyboard.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.ScreenKeyboard.Command
+    name: Command
+    isExternal: true
+    href: Reportman.Drawing.Forms.ScreenKeyboard.Command.html
+- uid: Reportman.Drawing.Forms.Number
+  commentId: T:Reportman.Drawing.Forms.Number
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.Number.html
+  name: Number
+  nameWithType: Number
+  fullName: Reportman.Drawing.Forms.Number
+- uid: Reportman.Drawing.Forms.ButtonCalc
+  commentId: T:Reportman.Drawing.Forms.ButtonCalc
+  isExternal: true
+  href: Reportman.Drawing.Forms.ButtonCalc.html
+  name: ButtonCalc
+  nameWithType: ButtonCalc
+  fullName: Reportman.Drawing.Forms.ButtonCalc
+- uid: Reportman.Drawing.Forms.EditCalc
+  commentId: T:Reportman.Drawing.Forms.EditCalc
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.EditCalc.html
+  name: EditCalc
+  nameWithType: EditCalc
+  fullName: Reportman.Drawing.Forms.EditCalc
+- uid: Reportman.Drawing.Forms.TokenCalc
+  commentId: T:Reportman.Drawing.Forms.TokenCalc
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TokenCalc.html
+  name: TokenCalc
+  nameWithType: TokenCalc
+  fullName: Reportman.Drawing.Forms.TokenCalc
+- uid: Reportman.Drawing.Forms.TokenCalc.TokenType
+  commentId: T:Reportman.Drawing.Forms.TokenCalc.TokenType
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TokenCalc.html
+  name: TokenCalc.TokenType
+  nameWithType: TokenCalc.TokenType
+  fullName: Reportman.Drawing.Forms.TokenCalc.TokenType
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.TokenCalc
+    name: TokenCalc
+    isExternal: true
+    href: Reportman.Drawing.Forms.TokenCalc.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TokenCalc.TokenType
+    name: TokenType
+    isExternal: true
+    href: Reportman.Drawing.Forms.TokenCalc.TokenType.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.TokenCalc
+    name: TokenCalc
+    isExternal: true
+    href: Reportman.Drawing.Forms.TokenCalc.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TokenCalc.TokenType
+    name: TokenType
+    isExternal: true
+    href: Reportman.Drawing.Forms.TokenCalc.TokenType.html
+- uid: Reportman.Drawing.Forms.Calculator
+  commentId: T:Reportman.Drawing.Forms.Calculator
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.Calculator.html
+  name: Calculator
+  nameWithType: Calculator
+  fullName: Reportman.Drawing.Forms.Calculator
+- uid: Reportman.Drawing.Forms.SignatureControl
+  commentId: T:Reportman.Drawing.Forms.SignatureControl
+  isExternal: true
+  href: Reportman.Drawing.Forms.SignatureControl.html
+  name: SignatureControl
+  nameWithType: SignatureControl
+  fullName: Reportman.Drawing.Forms.SignatureControl
+- uid: Reportman.Drawing.Forms.SignatureControl.SignatureStyle
+  commentId: T:Reportman.Drawing.Forms.SignatureControl.SignatureStyle
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.SignatureControl.html
+  name: SignatureControl.SignatureStyle
+  nameWithType: SignatureControl.SignatureStyle
+  fullName: Reportman.Drawing.Forms.SignatureControl.SignatureStyle
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.SignatureControl
+    name: SignatureControl
+    isExternal: true
+    href: Reportman.Drawing.Forms.SignatureControl.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.SignatureControl.SignatureStyle
+    name: SignatureStyle
+    isExternal: true
+    href: Reportman.Drawing.Forms.SignatureControl.SignatureStyle.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.SignatureControl
+    name: SignatureControl
+    isExternal: true
+    href: Reportman.Drawing.Forms.SignatureControl.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.SignatureControl.SignatureStyle
+    name: SignatureStyle
+    isExternal: true
+    href: Reportman.Drawing.Forms.SignatureControl.SignatureStyle.html
+- uid: Reportman.Drawing.Forms.CancelArgs
+  commentId: T:Reportman.Drawing.Forms.CancelArgs
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.CancelArgs.html
+  name: CancelArgs
+  nameWithType: CancelArgs
+  fullName: Reportman.Drawing.Forms.CancelArgs
+- uid: Reportman.Drawing.Forms.CancelEvent
+  commentId: T:Reportman.Drawing.Forms.CancelEvent
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.CancelEvent.html
+  name: CancelEvent
+  nameWithType: CancelEvent
+  fullName: Reportman.Drawing.Forms.CancelEvent
+- uid: Reportman.Drawing.Forms.VisualStyle
+  commentId: T:Reportman.Drawing.Forms.VisualStyle
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.VisualStyle.html
+  name: VisualStyle
+  nameWithType: VisualStyle
+  fullName: Reportman.Drawing.Forms.VisualStyle
+- uid: Reportman.Drawing.Forms.Direction
+  commentId: T:Reportman.Drawing.Forms.Direction
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.Direction.html
+  name: Direction
+  nameWithType: Direction
+  fullName: Reportman.Drawing.Forms.Direction
+- uid: Reportman.Drawing.Forms.Edge
+  commentId: T:Reportman.Drawing.Forms.Edge
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.Edge.html
+  name: Edge
+  nameWithType: Edge
+  fullName: Reportman.Drawing.Forms.Edge
+- uid: Reportman.Drawing.Forms.TabControlAdvanced
+  commentId: T:Reportman.Drawing.Forms.TabControlAdvanced
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  name: TabControlAdvanced
+  nameWithType: TabControlAdvanced
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance
+  commentId: T:Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  name: TabControlAdvanced.VisualAppearance
+  nameWithType: TabControlAdvanced.VisualAppearance
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced
+    name: TabControlAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance
+    name: VisualAppearance
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced
+    name: TabControlAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance
+    name: VisualAppearance
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.VisualAppearance.html
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes
+  commentId: T:Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  name: TabControlAdvanced.HideTabsModes
+  nameWithType: TabControlAdvanced.HideTabsModes
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced
+    name: TabControlAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes
+    name: HideTabsModes
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced
+    name: TabControlAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes
+    name: HideTabsModes
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes.html
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip
+  commentId: T:Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  name: TabControlAdvanced.ImageStrip
+  nameWithType: TabControlAdvanced.ImageStrip
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced
+    name: TabControlAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip
+    name: ImageStrip
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced
+    name: TabControlAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip
+    name: ImageStrip
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.html
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+  commentId: T:Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  name: TabControlAdvanced.PositionIndex
+  nameWithType: TabControlAdvanced.PositionIndex
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced
+    name: TabControlAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+    name: PositionIndex
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced
+    name: TabControlAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+    name: PositionIndex
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.html
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.MultiRect
+  commentId: T:Reportman.Drawing.Forms.TabControlAdvanced.MultiRect
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  name: TabControlAdvanced.MultiRect
+  nameWithType: TabControlAdvanced.MultiRect
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.MultiRect
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced
+    name: TabControlAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced.MultiRect
+    name: MultiRect
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.MultiRect.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced
+    name: TabControlAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced.MultiRect
+    name: MultiRect
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.MultiRect.html
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.HostPanel
+  commentId: T:Reportman.Drawing.Forms.TabControlAdvanced.HostPanel
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  name: TabControlAdvanced.HostPanel
+  nameWithType: TabControlAdvanced.HostPanel
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.HostPanel
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced
+    name: TabControlAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced.HostPanel
+    name: HostPanel
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.HostPanel.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced
+    name: TabControlAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced.HostPanel
+    name: HostPanel
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.HostPanel.html
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler
+  commentId: T:Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  name: TabControlAdvanced.DoubleClickTabHandler
+  nameWithType: TabControlAdvanced.DoubleClickTabHandler
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced
+    name: TabControlAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler
+    name: DoubleClickTabHandler
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced
+    name: TabControlAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler
+    name: DoubleClickTabHandler
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.html
+- uid: Reportman.Drawing.Forms.TabPageCollection
+  commentId: T:Reportman.Drawing.Forms.TabPageCollection
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabPageCollection.html
+  name: TabPageCollection
+  nameWithType: TabPageCollection
+  fullName: Reportman.Drawing.Forms.TabPageCollection
+- uid: Reportman.Drawing.Forms.InertButton
+  commentId: T:Reportman.Drawing.Forms.InertButton
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.InertButton.html
+  name: InertButton
+  nameWithType: InertButton
+  fullName: Reportman.Drawing.Forms.InertButton
+- uid: Reportman.Drawing.Forms.CollectionClear
+  commentId: T:Reportman.Drawing.Forms.CollectionClear
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.CollectionClear.html
+  name: CollectionClear
+  nameWithType: CollectionClear
+  fullName: Reportman.Drawing.Forms.CollectionClear
+- uid: Reportman.Drawing.Forms.CollectionChange
+  commentId: T:Reportman.Drawing.Forms.CollectionChange
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.CollectionChange.html
+  name: CollectionChange
+  nameWithType: CollectionChange
+  fullName: Reportman.Drawing.Forms.CollectionChange
+- uid: Reportman.Drawing.Forms.CollectionWithEvents
+  commentId: T:Reportman.Drawing.Forms.CollectionWithEvents
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.CollectionWithEvents.html
+  name: CollectionWithEvents
+  nameWithType: CollectionWithEvents
+  fullName: Reportman.Drawing.Forms.CollectionWithEvents
+- uid: Reportman.Drawing.Forms.DrawHelper
+  commentId: T:Reportman.Drawing.Forms.DrawHelper
+  isExternal: true
+  href: Reportman.Drawing.Forms.DrawHelper.html
+  name: DrawHelper
+  nameWithType: DrawHelper
+  fullName: Reportman.Drawing.Forms.DrawHelper
+- uid: Reportman.Drawing.Forms.DrawHelper.CommandState
+  commentId: T:Reportman.Drawing.Forms.DrawHelper.CommandState
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.DrawHelper.html
+  name: DrawHelper.CommandState
+  nameWithType: DrawHelper.CommandState
+  fullName: Reportman.Drawing.Forms.DrawHelper.CommandState
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.DrawHelper
+    name: DrawHelper
+    isExternal: true
+    href: Reportman.Drawing.Forms.DrawHelper.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.DrawHelper.CommandState
+    name: CommandState
+    isExternal: true
+    href: Reportman.Drawing.Forms.DrawHelper.CommandState.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.DrawHelper
+    name: DrawHelper
+    isExternal: true
+    href: Reportman.Drawing.Forms.DrawHelper.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.DrawHelper.CommandState
+    name: CommandState
+    isExternal: true
+    href: Reportman.Drawing.Forms.DrawHelper.CommandState.html
+- uid: Reportman.Drawing.Forms.ControlHelper
+  commentId: T:Reportman.Drawing.Forms.ControlHelper
+  isExternal: true
+  href: Reportman.Drawing.Forms.ControlHelper.html
+  name: ControlHelper
+  nameWithType: ControlHelper
+  fullName: Reportman.Drawing.Forms.ControlHelper
+- uid: Reportman.Drawing.Forms.ColorHelper
+  commentId: T:Reportman.Drawing.Forms.ColorHelper
+  isExternal: true
+  href: Reportman.Drawing.Forms.ColorHelper.html
+  name: ColorHelper
+  nameWithType: ColorHelper
+  fullName: Reportman.Drawing.Forms.ColorHelper
+- uid: Reportman.Drawing.Forms.TableLayoutPanelAdvanced
+  commentId: T:Reportman.Drawing.Forms.TableLayoutPanelAdvanced
+  isExternal: true
+  href: Reportman.Drawing.Forms.TableLayoutPanelAdvanced.html
+  name: TableLayoutPanelAdvanced
+  nameWithType: TableLayoutPanelAdvanced
+  fullName: Reportman.Drawing.Forms.TableLayoutPanelAdvanced
+- uid: Reportman.Drawing.Forms.TabPageAdvanced
+  commentId: T:Reportman.Drawing.Forms.TabPageAdvanced
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabPageAdvanced.html
+  name: TabPageAdvanced
+  nameWithType: TabPageAdvanced
+  fullName: Reportman.Drawing.Forms.TabPageAdvanced
+- uid: Reportman.Drawing.Forms.TabPageAdvanced.Property
+  commentId: T:Reportman.Drawing.Forms.TabPageAdvanced.Property
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabPageAdvanced.html
+  name: TabPageAdvanced.Property
+  nameWithType: TabPageAdvanced.Property
+  fullName: Reportman.Drawing.Forms.TabPageAdvanced.Property
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.TabPageAdvanced
+    name: TabPageAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabPageAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TabPageAdvanced.Property
+    name: Property
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabPageAdvanced.Property.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.TabPageAdvanced
+    name: TabPageAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabPageAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TabPageAdvanced.Property
+    name: Property
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabPageAdvanced.Property.html
+- uid: Reportman.Drawing.Forms.TabPageAdvanced.PropChangeHandler
+  commentId: T:Reportman.Drawing.Forms.TabPageAdvanced.PropChangeHandler
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabPageAdvanced.html
+  name: TabPageAdvanced.PropChangeHandler
+  nameWithType: TabPageAdvanced.PropChangeHandler
+  fullName: Reportman.Drawing.Forms.TabPageAdvanced.PropChangeHandler
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.TabPageAdvanced
+    name: TabPageAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabPageAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TabPageAdvanced.PropChangeHandler
+    name: PropChangeHandler
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabPageAdvanced.PropChangeHandler.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.TabPageAdvanced
+    name: TabPageAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabPageAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TabPageAdvanced.PropChangeHandler
+    name: PropChangeHandler
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabPageAdvanced.PropChangeHandler.html
+- uid: Reportman.Drawing.Forms.TextBoxDataType
+  commentId: T:Reportman.Drawing.Forms.TextBoxDataType
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TextBoxDataType.html
+  name: TextBoxDataType
+  nameWithType: TextBoxDataType
+  fullName: Reportman.Drawing.Forms.TextBoxDataType
+- uid: Reportman.Drawing.Forms.TextBoxAdvanced
+  commentId: T:Reportman.Drawing.Forms.TextBoxAdvanced
+  isExternal: true
+  href: Reportman.Drawing.Forms.TextBoxAdvanced.html
+  name: TextBoxAdvanced
+  nameWithType: TextBoxAdvanced
+  fullName: Reportman.Drawing.Forms.TextBoxAdvanced
+- uid: Reportman.Drawing.Forms.ToolStripTextBoxFilter
+  commentId: T:Reportman.Drawing.Forms.ToolStripTextBoxFilter
+  isExternal: true
+  href: Reportman.Drawing.Forms.ToolStripTextBoxFilter.html
+  name: ToolStripTextBoxFilter
+  nameWithType: ToolStripTextBoxFilter
+  fullName: Reportman.Drawing.Forms.ToolStripTextBoxFilter
+- uid: Reportman.Drawing.Forms.ToolTipAdvanced
+  commentId: T:Reportman.Drawing.Forms.ToolTipAdvanced
+  isExternal: true
+  href: Reportman.Drawing.Forms.ToolTipAdvanced.html
+  name: ToolTipAdvanced
+  nameWithType: ToolTipAdvanced
+  fullName: Reportman.Drawing.Forms.ToolTipAdvanced
+- uid: Reportman.Drawing.Forms.TransformImageForm
+  commentId: T:Reportman.Drawing.Forms.TransformImageForm
+  isExternal: true
+  href: Reportman.Drawing.Forms.TransformImageForm.html
+  name: TransformImageForm
+  nameWithType: TransformImageForm
+  fullName: Reportman.Drawing.Forms.TransformImageForm
+- uid: Reportman.Drawing.Forms.ProgresEvent
+  commentId: T:Reportman.Drawing.Forms.ProgresEvent
+  isExternal: true
+  href: Reportman.Drawing.Forms.ProgresEvent.html
+  name: ProgresEvent
+  nameWithType: ProgresEvent
+  fullName: Reportman.Drawing.Forms.ProgresEvent
+- uid: Reportman.Drawing.Forms.TreeGridAdvanced
+  commentId: T:Reportman.Drawing.Forms.TreeGridAdvanced
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TreeGridAdvanced.html
+  name: TreeGridAdvanced
+  nameWithType: TreeGridAdvanced
+  fullName: Reportman.Drawing.Forms.TreeGridAdvanced
+- uid: Reportman.Drawing.Forms.TreeGridAdvancedNode
+  commentId: T:Reportman.Drawing.Forms.TreeGridAdvancedNode
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TreeGridAdvancedNode.html
+  name: TreeGridAdvancedNode
+  nameWithType: TreeGridAdvancedNode
+  fullName: Reportman.Drawing.Forms.TreeGridAdvancedNode
+- uid: Reportman.Drawing.Forms.TreeGridAdvancedColumn
+  commentId: T:Reportman.Drawing.Forms.TreeGridAdvancedColumn
+  isExternal: true
+  href: Reportman.Drawing.Forms.TreeGridAdvancedColumn.html
+  name: TreeGridAdvancedColumn
+  nameWithType: TreeGridAdvancedColumn
+  fullName: Reportman.Drawing.Forms.TreeGridAdvancedColumn
+- uid: Reportman.Drawing.Forms.TreeGridAdvancedCell
+  commentId: T:Reportman.Drawing.Forms.TreeGridAdvancedCell
+  isExternal: true
+  href: Reportman.Drawing.Forms.TreeGridAdvancedCell.html
+  name: TreeGridAdvancedCell
+  nameWithType: TreeGridAdvancedCell
+  fullName: Reportman.Drawing.Forms.TreeGridAdvancedCell
+- uid: Reportman.Drawing.Forms.TreeGridRow
+  commentId: T:Reportman.Drawing.Forms.TreeGridRow
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TreeGridRow.html
+  name: TreeGridRow
+  nameWithType: TreeGridRow
+  fullName: Reportman.Drawing.Forms.TreeGridRow
+- uid: Reportman.Drawing.Forms.UpdateForm
+  commentId: T:Reportman.Drawing.Forms.UpdateForm
+  isExternal: true
+  href: Reportman.Drawing.Forms.UpdateForm.html
+  name: UpdateForm
+  nameWithType: UpdateForm
+  fullName: Reportman.Drawing.Forms.UpdateForm
+- uid: Reportman.Drawing.Forms.WinFormsGraphics
+  commentId: T:Reportman.Drawing.Forms.WinFormsGraphics
+  isExternal: true
+  href: Reportman.Drawing.Forms.WinFormsGraphics.html
+  name: WinFormsGraphics
+  nameWithType: WinFormsGraphics
+  fullName: Reportman.Drawing.Forms.WinFormsGraphics
+- uid: Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness
+  commentId: T:Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.WinFormsGraphics.html
+  name: WinFormsGraphics.DpiAwareness
+  nameWithType: WinFormsGraphics.DpiAwareness
+  fullName: Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.WinFormsGraphics
+    name: WinFormsGraphics
+    isExternal: true
+    href: Reportman.Drawing.Forms.WinFormsGraphics.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness
+    name: DpiAwareness
+    isExternal: true
+    href: Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.WinFormsGraphics
+    name: WinFormsGraphics
+    isExternal: true
+    href: Reportman.Drawing.Forms.WinFormsGraphics.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness
+    name: DpiAwareness
+    isExternal: true
+    href: Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness.html
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html

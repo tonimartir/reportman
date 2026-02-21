@@ -3353,7 +3353,18 @@ end;
                     sec.SubReport = subrep;
                     if (sec.ChildSubReportName.Length > 0)
                     {
-                        sec.ChildSubReport = Components[sec.ChildSubReportName] as SubReport;
+                        if (!Components.ContainsKey(sec.ChildSubReportName))
+                        {
+                            foreach (string key in Components.Keys)
+                            {
+                                if (key.ToUpper() == sec.ChildSubReportName)
+                                {
+                                    sec.ChildSubReport = Components[key] as SubReport;
+                                }
+                            }
+                        }
+                        else
+                            sec.ChildSubReport = Components[sec.ChildSubReportName] as SubReport;
                     }
                 }
             }

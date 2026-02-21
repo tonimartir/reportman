@@ -1,0 +1,142 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.TextBoxDataType
+  commentId: T:Reportman.Drawing.Forms.TextBoxDataType
+  id: TextBoxDataType
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.TextBoxDataType.Double
+  - Reportman.Drawing.Forms.TextBoxDataType.Integer
+  - Reportman.Drawing.Forms.TextBoxDataType.Numeric
+  - Reportman.Drawing.Forms.TextBoxDataType.Text
+  langs:
+  - csharp
+  - vb
+  name: TextBoxDataType
+  nameWithType: TextBoxDataType
+  fullName: Reportman.Drawing.Forms.TextBoxDataType
+  type: Enum
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public enum TextBoxDataType
+    content.vb: Public Enum TextBoxDataType
+- uid: Reportman.Drawing.Forms.TextBoxDataType.Text
+  commentId: F:Reportman.Drawing.Forms.TextBoxDataType.Text
+  id: Text
+  parent: Reportman.Drawing.Forms.TextBoxDataType
+  langs:
+  - csharp
+  - vb
+  name: Text
+  nameWithType: TextBoxDataType.Text
+  fullName: Reportman.Drawing.Forms.TextBoxDataType.Text
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Text = 0
+    return:
+      type: Reportman.Drawing.Forms.TextBoxDataType
+- uid: Reportman.Drawing.Forms.TextBoxDataType.Integer
+  commentId: F:Reportman.Drawing.Forms.TextBoxDataType.Integer
+  id: Integer
+  parent: Reportman.Drawing.Forms.TextBoxDataType
+  langs:
+  - csharp
+  - vb
+  name: Integer
+  nameWithType: TextBoxDataType.Integer
+  fullName: Reportman.Drawing.Forms.TextBoxDataType.Integer
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Integer = 1
+    return:
+      type: Reportman.Drawing.Forms.TextBoxDataType
+- uid: Reportman.Drawing.Forms.TextBoxDataType.Numeric
+  commentId: F:Reportman.Drawing.Forms.TextBoxDataType.Numeric
+  id: Numeric
+  parent: Reportman.Drawing.Forms.TextBoxDataType
+  langs:
+  - csharp
+  - vb
+  name: Numeric
+  nameWithType: TextBoxDataType.Numeric
+  fullName: Reportman.Drawing.Forms.TextBoxDataType.Numeric
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Numeric = 2
+    return:
+      type: Reportman.Drawing.Forms.TextBoxDataType
+- uid: Reportman.Drawing.Forms.TextBoxDataType.Double
+  commentId: F:Reportman.Drawing.Forms.TextBoxDataType.Double
+  id: Double
+  parent: Reportman.Drawing.Forms.TextBoxDataType
+  langs:
+  - csharp
+  - vb
+  name: Double
+  nameWithType: TextBoxDataType.Double
+  fullName: Reportman.Drawing.Forms.TextBoxDataType.Double
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Double = 3
+    return:
+      type: Reportman.Drawing.Forms.TextBoxDataType
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: Reportman.Drawing.Forms.TextBoxDataType
+  commentId: T:Reportman.Drawing.Forms.TextBoxDataType
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TextBoxDataType.html
+  name: TextBoxDataType
+  nameWithType: TextBoxDataType
+  fullName: Reportman.Drawing.Forms.TextBoxDataType

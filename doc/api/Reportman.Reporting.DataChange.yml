@@ -1,0 +1,239 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.DataChange
+  commentId: T:Reportman.Reporting.DataChange
+  id: DataChange
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.DataChange.#ctor(System.Object,System.IntPtr)
+  - Reportman.Reporting.DataChange.BeginInvoke(Reportman.Reporting.ReportDataset,System.AsyncCallback,System.Object)
+  - Reportman.Reporting.DataChange.EndInvoke(System.IAsyncResult)
+  - Reportman.Reporting.DataChange.Invoke(Reportman.Reporting.ReportDataset)
+  langs:
+  - csharp
+  - vb
+  name: DataChange
+  nameWithType: DataChange
+  fullName: Reportman.Reporting.DataChange
+  type: Delegate
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Delegate used by ReportDataset to trigger an event when CurrentRow data changes
+  example: []
+  syntax:
+    content: public delegate void DataChange(ReportDataset Data)
+    parameters:
+    - id: Data
+      type: Reportman.Reporting.ReportDataset
+    content.vb: Public Delegate Sub DataChange(Data As ReportDataset)
+- uid: Reportman.Reporting.DataChange.#ctor(System.Object,System.IntPtr)
+  commentId: M:Reportman.Reporting.DataChange.#ctor(System.Object,System.IntPtr)
+  id: '#ctor(System.Object,System.IntPtr)'
+  parent: Reportman.Reporting.DataChange
+  langs:
+  - csharp
+  - vb
+  name: DataChange(object, nint)
+  nameWithType: DataChange.DataChange(object, nint)
+  fullName: Reportman.Reporting.DataChange.DataChange(object, nint)
+  type: Constructor
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public DataChange(object @object, nint method)
+    parameters:
+    - id: object
+      type: System.Object
+    - id: method
+      type: System.IntPtr
+    content.vb: Public Sub New([object] As Object, method As IntPtr)
+  overload: Reportman.Reporting.DataChange.#ctor*
+  nameWithType.vb: DataChange.New(Object, IntPtr)
+  fullName.vb: Reportman.Reporting.DataChange.New(Object, System.IntPtr)
+  name.vb: New(Object, IntPtr)
+- uid: Reportman.Reporting.DataChange.Invoke(Reportman.Reporting.ReportDataset)
+  commentId: M:Reportman.Reporting.DataChange.Invoke(Reportman.Reporting.ReportDataset)
+  id: Invoke(Reportman.Reporting.ReportDataset)
+  parent: Reportman.Reporting.DataChange
+  langs:
+  - csharp
+  - vb
+  name: Invoke(ReportDataset)
+  nameWithType: DataChange.Invoke(ReportDataset)
+  fullName: Reportman.Reporting.DataChange.Invoke(Reportman.Reporting.ReportDataset)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public virtual void Invoke(ReportDataset Data)
+    parameters:
+    - id: Data
+      type: Reportman.Reporting.ReportDataset
+    content.vb: Public Overridable Sub Invoke(Data As ReportDataset)
+  overload: Reportman.Reporting.DataChange.Invoke*
+- uid: Reportman.Reporting.DataChange.BeginInvoke(Reportman.Reporting.ReportDataset,System.AsyncCallback,System.Object)
+  commentId: M:Reportman.Reporting.DataChange.BeginInvoke(Reportman.Reporting.ReportDataset,System.AsyncCallback,System.Object)
+  id: BeginInvoke(Reportman.Reporting.ReportDataset,System.AsyncCallback,System.Object)
+  parent: Reportman.Reporting.DataChange
+  langs:
+  - csharp
+  - vb
+  name: BeginInvoke(ReportDataset, AsyncCallback, object)
+  nameWithType: DataChange.BeginInvoke(ReportDataset, AsyncCallback, object)
+  fullName: Reportman.Reporting.DataChange.BeginInvoke(Reportman.Reporting.ReportDataset, System.AsyncCallback, object)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public virtual IAsyncResult BeginInvoke(ReportDataset Data, AsyncCallback callback, object @object)
+    parameters:
+    - id: Data
+      type: Reportman.Reporting.ReportDataset
+    - id: callback
+      type: System.AsyncCallback
+    - id: object
+      type: System.Object
+    return:
+      type: System.IAsyncResult
+    content.vb: Public Overridable Function BeginInvoke(Data As ReportDataset, callback As AsyncCallback, [object] As Object) As IAsyncResult
+  overload: Reportman.Reporting.DataChange.BeginInvoke*
+  nameWithType.vb: DataChange.BeginInvoke(ReportDataset, AsyncCallback, Object)
+  fullName.vb: Reportman.Reporting.DataChange.BeginInvoke(Reportman.Reporting.ReportDataset, System.AsyncCallback, Object)
+  name.vb: BeginInvoke(ReportDataset, AsyncCallback, Object)
+- uid: Reportman.Reporting.DataChange.EndInvoke(System.IAsyncResult)
+  commentId: M:Reportman.Reporting.DataChange.EndInvoke(System.IAsyncResult)
+  id: EndInvoke(System.IAsyncResult)
+  parent: Reportman.Reporting.DataChange
+  langs:
+  - csharp
+  - vb
+  name: EndInvoke(IAsyncResult)
+  nameWithType: DataChange.EndInvoke(IAsyncResult)
+  fullName: Reportman.Reporting.DataChange.EndInvoke(System.IAsyncResult)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public virtual void EndInvoke(IAsyncResult result)
+    parameters:
+    - id: result
+      type: System.IAsyncResult
+    content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
+  overload: Reportman.Reporting.DataChange.EndInvoke*
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: Reportman.Reporting.ReportDataset
+  commentId: T:Reportman.Reporting.ReportDataset
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.ReportDataset.html
+  name: ReportDataset
+  nameWithType: ReportDataset
+  fullName: Reportman.Reporting.ReportDataset
+- uid: Reportman.Reporting.DataChange.#ctor*
+  commentId: Overload:Reportman.Reporting.DataChange.#ctor
+  isExternal: true
+  href: Reportman.Reporting.DataChange.html#Reportman_Reporting_DataChange__ctor_System_Object_System_IntPtr_
+  name: DataChange
+  nameWithType: DataChange.DataChange
+  fullName: Reportman.Reporting.DataChange.DataChange
+  nameWithType.vb: DataChange.New
+  fullName.vb: Reportman.Reporting.DataChange.New
+  name.vb: New
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Reporting.DataChange.Invoke*
+  commentId: Overload:Reportman.Reporting.DataChange.Invoke
+  isExternal: true
+  href: Reportman.Reporting.DataChange.html#Reportman_Reporting_DataChange_Invoke_Reportman_Reporting_ReportDataset_
+  name: Invoke
+  nameWithType: DataChange.Invoke
+  fullName: Reportman.Reporting.DataChange.Invoke
+- uid: Reportman.Reporting.DataChange.BeginInvoke*
+  commentId: Overload:Reportman.Reporting.DataChange.BeginInvoke
+  isExternal: true
+  href: Reportman.Reporting.DataChange.html#Reportman_Reporting_DataChange_BeginInvoke_Reportman_Reporting_ReportDataset_System_AsyncCallback_System_Object_
+  name: BeginInvoke
+  nameWithType: DataChange.BeginInvoke
+  fullName: Reportman.Reporting.DataChange.BeginInvoke
+- uid: System.AsyncCallback
+  commentId: T:System.AsyncCallback
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.asynccallback
+  name: AsyncCallback
+  nameWithType: AsyncCallback
+  fullName: System.AsyncCallback
+- uid: System.IAsyncResult
+  commentId: T:System.IAsyncResult
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncresult
+  name: IAsyncResult
+  nameWithType: IAsyncResult
+  fullName: System.IAsyncResult
+- uid: Reportman.Reporting.DataChange.EndInvoke*
+  commentId: Overload:Reportman.Reporting.DataChange.EndInvoke
+  isExternal: true
+  href: Reportman.Reporting.DataChange.html#Reportman_Reporting_DataChange_EndInvoke_System_IAsyncResult_
+  name: EndInvoke
+  nameWithType: DataChange.EndInvoke
+  fullName: Reportman.Reporting.DataChange.EndInvoke

@@ -1,0 +1,275 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.ColumnDataType
+  commentId: T:Reportman.Drawing.Forms.ColumnDataType
+  id: ColumnDataType
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.ColumnDataType.Boolean
+  - Reportman.Drawing.Forms.ColumnDataType.ComboBox
+  - Reportman.Drawing.Forms.ColumnDataType.ComboBoxList
+  - Reportman.Drawing.Forms.ColumnDataType.Date
+  - Reportman.Drawing.Forms.ColumnDataType.DateTime
+  - Reportman.Drawing.Forms.ColumnDataType.Double
+  - Reportman.Drawing.Forms.ColumnDataType.Integer
+  - Reportman.Drawing.Forms.ColumnDataType.Numeric
+  - Reportman.Drawing.Forms.ColumnDataType.Password
+  - Reportman.Drawing.Forms.ColumnDataType.Text
+  - Reportman.Drawing.Forms.ColumnDataType.Time
+  langs:
+  - csharp
+  - vb
+  name: ColumnDataType
+  nameWithType: ColumnDataType
+  fullName: Reportman.Drawing.Forms.ColumnDataType
+  type: Enum
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public enum ColumnDataType
+    content.vb: Public Enum ColumnDataType
+- uid: Reportman.Drawing.Forms.ColumnDataType.Text
+  commentId: F:Reportman.Drawing.Forms.ColumnDataType.Text
+  id: Text
+  parent: Reportman.Drawing.Forms.ColumnDataType
+  langs:
+  - csharp
+  - vb
+  name: Text
+  nameWithType: ColumnDataType.Text
+  fullName: Reportman.Drawing.Forms.ColumnDataType.Text
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Text = 0
+    return:
+      type: Reportman.Drawing.Forms.ColumnDataType
+- uid: Reportman.Drawing.Forms.ColumnDataType.Integer
+  commentId: F:Reportman.Drawing.Forms.ColumnDataType.Integer
+  id: Integer
+  parent: Reportman.Drawing.Forms.ColumnDataType
+  langs:
+  - csharp
+  - vb
+  name: Integer
+  nameWithType: ColumnDataType.Integer
+  fullName: Reportman.Drawing.Forms.ColumnDataType.Integer
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Integer = 1
+    return:
+      type: Reportman.Drawing.Forms.ColumnDataType
+- uid: Reportman.Drawing.Forms.ColumnDataType.Numeric
+  commentId: F:Reportman.Drawing.Forms.ColumnDataType.Numeric
+  id: Numeric
+  parent: Reportman.Drawing.Forms.ColumnDataType
+  langs:
+  - csharp
+  - vb
+  name: Numeric
+  nameWithType: ColumnDataType.Numeric
+  fullName: Reportman.Drawing.Forms.ColumnDataType.Numeric
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Numeric = 2
+    return:
+      type: Reportman.Drawing.Forms.ColumnDataType
+- uid: Reportman.Drawing.Forms.ColumnDataType.Double
+  commentId: F:Reportman.Drawing.Forms.ColumnDataType.Double
+  id: Double
+  parent: Reportman.Drawing.Forms.ColumnDataType
+  langs:
+  - csharp
+  - vb
+  name: Double
+  nameWithType: ColumnDataType.Double
+  fullName: Reportman.Drawing.Forms.ColumnDataType.Double
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Double = 3
+    return:
+      type: Reportman.Drawing.Forms.ColumnDataType
+- uid: Reportman.Drawing.Forms.ColumnDataType.Date
+  commentId: F:Reportman.Drawing.Forms.ColumnDataType.Date
+  id: Date
+  parent: Reportman.Drawing.Forms.ColumnDataType
+  langs:
+  - csharp
+  - vb
+  name: Date
+  nameWithType: ColumnDataType.Date
+  fullName: Reportman.Drawing.Forms.ColumnDataType.Date
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Date = 4
+    return:
+      type: Reportman.Drawing.Forms.ColumnDataType
+- uid: Reportman.Drawing.Forms.ColumnDataType.DateTime
+  commentId: F:Reportman.Drawing.Forms.ColumnDataType.DateTime
+  id: DateTime
+  parent: Reportman.Drawing.Forms.ColumnDataType
+  langs:
+  - csharp
+  - vb
+  name: DateTime
+  nameWithType: ColumnDataType.DateTime
+  fullName: Reportman.Drawing.Forms.ColumnDataType.DateTime
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: DateTime = 5
+    return:
+      type: Reportman.Drawing.Forms.ColumnDataType
+- uid: Reportman.Drawing.Forms.ColumnDataType.Time
+  commentId: F:Reportman.Drawing.Forms.ColumnDataType.Time
+  id: Time
+  parent: Reportman.Drawing.Forms.ColumnDataType
+  langs:
+  - csharp
+  - vb
+  name: Time
+  nameWithType: ColumnDataType.Time
+  fullName: Reportman.Drawing.Forms.ColumnDataType.Time
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Time = 6
+    return:
+      type: Reportman.Drawing.Forms.ColumnDataType
+- uid: Reportman.Drawing.Forms.ColumnDataType.ComboBox
+  commentId: F:Reportman.Drawing.Forms.ColumnDataType.ComboBox
+  id: ComboBox
+  parent: Reportman.Drawing.Forms.ColumnDataType
+  langs:
+  - csharp
+  - vb
+  name: ComboBox
+  nameWithType: ColumnDataType.ComboBox
+  fullName: Reportman.Drawing.Forms.ColumnDataType.ComboBox
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: ComboBox = 7
+    return:
+      type: Reportman.Drawing.Forms.ColumnDataType
+- uid: Reportman.Drawing.Forms.ColumnDataType.ComboBoxList
+  commentId: F:Reportman.Drawing.Forms.ColumnDataType.ComboBoxList
+  id: ComboBoxList
+  parent: Reportman.Drawing.Forms.ColumnDataType
+  langs:
+  - csharp
+  - vb
+  name: ComboBoxList
+  nameWithType: ColumnDataType.ComboBoxList
+  fullName: Reportman.Drawing.Forms.ColumnDataType.ComboBoxList
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: ComboBoxList = 8
+    return:
+      type: Reportman.Drawing.Forms.ColumnDataType
+- uid: Reportman.Drawing.Forms.ColumnDataType.Boolean
+  commentId: F:Reportman.Drawing.Forms.ColumnDataType.Boolean
+  id: Boolean
+  parent: Reportman.Drawing.Forms.ColumnDataType
+  langs:
+  - csharp
+  - vb
+  name: Boolean
+  nameWithType: ColumnDataType.Boolean
+  fullName: Reportman.Drawing.Forms.ColumnDataType.Boolean
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Boolean = 9
+    return:
+      type: Reportman.Drawing.Forms.ColumnDataType
+- uid: Reportman.Drawing.Forms.ColumnDataType.Password
+  commentId: F:Reportman.Drawing.Forms.ColumnDataType.Password
+  id: Password
+  parent: Reportman.Drawing.Forms.ColumnDataType
+  langs:
+  - csharp
+  - vb
+  name: Password
+  nameWithType: ColumnDataType.Password
+  fullName: Reportman.Drawing.Forms.ColumnDataType.Password
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Password = 10
+    return:
+      type: Reportman.Drawing.Forms.ColumnDataType
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: Reportman.Drawing.Forms.ColumnDataType
+  commentId: T:Reportman.Drawing.Forms.ColumnDataType
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.ColumnDataType.html
+  name: ColumnDataType
+  nameWithType: ColumnDataType
+  fullName: Reportman.Drawing.Forms.ColumnDataType

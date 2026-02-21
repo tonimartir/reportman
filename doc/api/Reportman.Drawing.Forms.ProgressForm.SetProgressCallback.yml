@@ -1,0 +1,267 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback
+  commentId: T:Reportman.Drawing.Forms.ProgressForm.SetProgressCallback
+  id: ProgressForm.SetProgressCallback
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.#ctor(System.Object,System.IntPtr)
+  - Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.BeginInvoke(Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow,System.AsyncCallback,System.Object)
+  - Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.EndInvoke(System.IAsyncResult)
+  - Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.Invoke(Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow)
+  langs:
+  - csharp
+  - vb
+  name: ProgressForm.SetProgressCallback
+  nameWithType: ProgressForm.SetProgressCallback
+  fullName: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback
+  type: Delegate
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public delegate void ProgressForm.SetProgressCallback(ProgressForm.ITaskProgressShow taskProgressObject)
+    parameters:
+    - id: taskProgressObject
+      type: Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow
+    content.vb: Public Delegate Sub ProgressForm.SetProgressCallback(taskProgressObject As ProgressForm.ITaskProgressShow)
+- uid: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.#ctor(System.Object,System.IntPtr)
+  commentId: M:Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.#ctor(System.Object,System.IntPtr)
+  id: '#ctor(System.Object,System.IntPtr)'
+  parent: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback
+  langs:
+  - csharp
+  - vb
+  name: SetProgressCallback(object, nint)
+  nameWithType: ProgressForm.SetProgressCallback.SetProgressCallback(object, nint)
+  fullName: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.SetProgressCallback(object, nint)
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public SetProgressCallback(object @object, nint method)
+    parameters:
+    - id: object
+      type: System.Object
+    - id: method
+      type: System.IntPtr
+    content.vb: Public Sub New([object] As Object, method As IntPtr)
+  overload: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.#ctor*
+  nameWithType.vb: ProgressForm.SetProgressCallback.New(Object, IntPtr)
+  fullName.vb: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.New(Object, System.IntPtr)
+  name.vb: New(Object, IntPtr)
+- uid: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.Invoke(Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow)
+  commentId: M:Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.Invoke(Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow)
+  id: Invoke(Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow)
+  parent: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback
+  langs:
+  - csharp
+  - vb
+  name: Invoke(ITaskProgressShow)
+  nameWithType: ProgressForm.SetProgressCallback.Invoke(ProgressForm.ITaskProgressShow)
+  fullName: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.Invoke(Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual void Invoke(ProgressForm.ITaskProgressShow taskProgressObject)
+    parameters:
+    - id: taskProgressObject
+      type: Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow
+    content.vb: Public Overridable Sub Invoke(taskProgressObject As ProgressForm.ITaskProgressShow)
+  overload: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.Invoke*
+- uid: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.BeginInvoke(Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow,System.AsyncCallback,System.Object)
+  commentId: M:Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.BeginInvoke(Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow,System.AsyncCallback,System.Object)
+  id: BeginInvoke(Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow,System.AsyncCallback,System.Object)
+  parent: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback
+  langs:
+  - csharp
+  - vb
+  name: BeginInvoke(ITaskProgressShow, AsyncCallback, object)
+  nameWithType: ProgressForm.SetProgressCallback.BeginInvoke(ProgressForm.ITaskProgressShow, AsyncCallback, object)
+  fullName: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.BeginInvoke(Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow, System.AsyncCallback, object)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual IAsyncResult BeginInvoke(ProgressForm.ITaskProgressShow taskProgressObject, AsyncCallback callback, object @object)
+    parameters:
+    - id: taskProgressObject
+      type: Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow
+    - id: callback
+      type: System.AsyncCallback
+    - id: object
+      type: System.Object
+    return:
+      type: System.IAsyncResult
+    content.vb: Public Overridable Function BeginInvoke(taskProgressObject As ProgressForm.ITaskProgressShow, callback As AsyncCallback, [object] As Object) As IAsyncResult
+  overload: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.BeginInvoke*
+  nameWithType.vb: ProgressForm.SetProgressCallback.BeginInvoke(ProgressForm.ITaskProgressShow, AsyncCallback, Object)
+  fullName.vb: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.BeginInvoke(Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow, System.AsyncCallback, Object)
+  name.vb: BeginInvoke(ITaskProgressShow, AsyncCallback, Object)
+- uid: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.EndInvoke(System.IAsyncResult)
+  commentId: M:Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.EndInvoke(System.IAsyncResult)
+  id: EndInvoke(System.IAsyncResult)
+  parent: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback
+  langs:
+  - csharp
+  - vb
+  name: EndInvoke(IAsyncResult)
+  nameWithType: ProgressForm.SetProgressCallback.EndInvoke(IAsyncResult)
+  fullName: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.EndInvoke(System.IAsyncResult)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual void EndInvoke(IAsyncResult result)
+    parameters:
+    - id: result
+      type: System.IAsyncResult
+    content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
+  overload: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.EndInvoke*
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow
+  commentId: T:Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.ProgressForm.html
+  name: ProgressForm.ITaskProgressShow
+  nameWithType: ProgressForm.ITaskProgressShow
+  fullName: Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.ProgressForm
+    name: ProgressForm
+    isExternal: true
+    href: Reportman.Drawing.Forms.ProgressForm.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow
+    name: ITaskProgressShow
+    isExternal: true
+    href: Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.ProgressForm
+    name: ProgressForm
+    isExternal: true
+    href: Reportman.Drawing.Forms.ProgressForm.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow
+    name: ITaskProgressShow
+    isExternal: true
+    href: Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow.html
+- uid: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.#ctor*
+  commentId: Overload:Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.#ctor
+  isExternal: true
+  href: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.html#Reportman_Drawing_Forms_ProgressForm_SetProgressCallback__ctor_System_Object_System_IntPtr_
+  name: SetProgressCallback
+  nameWithType: ProgressForm.SetProgressCallback.SetProgressCallback
+  fullName: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.SetProgressCallback
+  nameWithType.vb: ProgressForm.SetProgressCallback.New
+  fullName.vb: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.New
+  name.vb: New
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.Invoke*
+  commentId: Overload:Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.Invoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.html#Reportman_Drawing_Forms_ProgressForm_SetProgressCallback_Invoke_Reportman_Drawing_Forms_ProgressForm_ITaskProgressShow_
+  name: Invoke
+  nameWithType: ProgressForm.SetProgressCallback.Invoke
+  fullName: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.Invoke
+- uid: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.BeginInvoke*
+  commentId: Overload:Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.BeginInvoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.html#Reportman_Drawing_Forms_ProgressForm_SetProgressCallback_BeginInvoke_Reportman_Drawing_Forms_ProgressForm_ITaskProgressShow_System_AsyncCallback_System_Object_
+  name: BeginInvoke
+  nameWithType: ProgressForm.SetProgressCallback.BeginInvoke
+  fullName: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.BeginInvoke
+- uid: System.AsyncCallback
+  commentId: T:System.AsyncCallback
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.asynccallback
+  name: AsyncCallback
+  nameWithType: AsyncCallback
+  fullName: System.AsyncCallback
+- uid: System.IAsyncResult
+  commentId: T:System.IAsyncResult
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncresult
+  name: IAsyncResult
+  nameWithType: IAsyncResult
+  fullName: System.IAsyncResult
+- uid: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.EndInvoke*
+  commentId: Overload:Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.EndInvoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.html#Reportman_Drawing_Forms_ProgressForm_SetProgressCallback_EndInvoke_System_IAsyncResult_
+  name: EndInvoke
+  nameWithType: ProgressForm.SetProgressCallback.EndInvoke
+  fullName: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.EndInvoke

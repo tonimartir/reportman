@@ -1,0 +1,147 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.TextAlignType
+  commentId: T:Reportman.Drawing.TextAlignType
+  id: TextAlignType
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.TextAlignType.Center
+  - Reportman.Drawing.TextAlignType.Justify
+  - Reportman.Drawing.TextAlignType.Left
+  - Reportman.Drawing.TextAlignType.Right
+  langs:
+  - csharp
+  - vb
+  name: TextAlignType
+  nameWithType: TextAlignType
+  fullName: Reportman.Drawing.TextAlignType
+  type: Enum
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    Enumeration indicating the text alignment, that is how the text is drawn inside the defined box
+
+    Variant
+  example: []
+  syntax:
+    content: public enum TextAlignType
+    content.vb: Public Enum TextAlignType
+- uid: Reportman.Drawing.TextAlignType.Left
+  commentId: F:Reportman.Drawing.TextAlignType.Left
+  id: Left
+  parent: Reportman.Drawing.TextAlignType
+  langs:
+  - csharp
+  - vb
+  name: Left
+  nameWithType: TextAlignType.Left
+  fullName: Reportman.Drawing.TextAlignType.Left
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Align the text to the left of the bounding box
+  example: []
+  syntax:
+    content: Left = 0
+    return:
+      type: Reportman.Drawing.TextAlignType
+- uid: Reportman.Drawing.TextAlignType.Right
+  commentId: F:Reportman.Drawing.TextAlignType.Right
+  id: Right
+  parent: Reportman.Drawing.TextAlignType
+  langs:
+  - csharp
+  - vb
+  name: Right
+  nameWithType: TextAlignType.Right
+  fullName: Reportman.Drawing.TextAlignType.Right
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Align the text to the right of the bounding box
+  example: []
+  syntax:
+    content: Right = 1
+    return:
+      type: Reportman.Drawing.TextAlignType
+- uid: Reportman.Drawing.TextAlignType.Center
+  commentId: F:Reportman.Drawing.TextAlignType.Center
+  id: Center
+  parent: Reportman.Drawing.TextAlignType
+  langs:
+  - csharp
+  - vb
+  name: Center
+  nameWithType: TextAlignType.Center
+  fullName: Reportman.Drawing.TextAlignType.Center
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Align the text to the center of the bounding box
+  example: []
+  syntax:
+    content: Center = 2
+    return:
+      type: Reportman.Drawing.TextAlignType
+- uid: Reportman.Drawing.TextAlignType.Justify
+  commentId: F:Reportman.Drawing.TextAlignType.Justify
+  id: Justify
+  parent: Reportman.Drawing.TextAlignType
+  langs:
+  - csharp
+  - vb
+  name: Justify
+  nameWithType: TextAlignType.Justify
+  fullName: Reportman.Drawing.TextAlignType.Justify
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    Align the text to the left and the right of the bounding box, inserting spaces
+                to align on both sides
+  example: []
+  syntax:
+    content: Justify = 3
+    return:
+      type: Reportman.Drawing.TextAlignType
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.TextAlignType
+  commentId: T:Reportman.Drawing.TextAlignType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.TextAlignType.html
+  name: TextAlignType
+  nameWithType: TextAlignType
+  fullName: Reportman.Drawing.TextAlignType

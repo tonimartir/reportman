@@ -1,0 +1,258 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.SendMailEvent
+  commentId: T:Reportman.Drawing.Forms.SendMailEvent
+  id: SendMailEvent
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.SendMailEvent.#ctor(System.Object,System.IntPtr)
+  - Reportman.Drawing.Forms.SendMailEvent.BeginInvoke(System.Object,Reportman.Drawing.Forms.SendMailEventArgs,System.AsyncCallback,System.Object)
+  - Reportman.Drawing.Forms.SendMailEvent.EndInvoke(System.IAsyncResult)
+  - Reportman.Drawing.Forms.SendMailEvent.Invoke(System.Object,Reportman.Drawing.Forms.SendMailEventArgs)
+  langs:
+  - csharp
+  - vb
+  name: SendMailEvent
+  nameWithType: SendMailEvent
+  fullName: Reportman.Drawing.Forms.SendMailEvent
+  type: Delegate
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  summary: Event launched to alter mail options before send to mail in preview is done
+  example: []
+  syntax:
+    content: public delegate void SendMailEvent(object sender, SendMailEventArgs args)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: Reportman.Drawing.Forms.SendMailEventArgs
+    content.vb: Public Delegate Sub SendMailEvent(sender As Object, args As SendMailEventArgs)
+- uid: Reportman.Drawing.Forms.SendMailEvent.#ctor(System.Object,System.IntPtr)
+  commentId: M:Reportman.Drawing.Forms.SendMailEvent.#ctor(System.Object,System.IntPtr)
+  id: '#ctor(System.Object,System.IntPtr)'
+  parent: Reportman.Drawing.Forms.SendMailEvent
+  langs:
+  - csharp
+  - vb
+  name: SendMailEvent(object, nint)
+  nameWithType: SendMailEvent.SendMailEvent(object, nint)
+  fullName: Reportman.Drawing.Forms.SendMailEvent.SendMailEvent(object, nint)
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public SendMailEvent(object @object, nint method)
+    parameters:
+    - id: object
+      type: System.Object
+    - id: method
+      type: System.IntPtr
+    content.vb: Public Sub New([object] As Object, method As IntPtr)
+  overload: Reportman.Drawing.Forms.SendMailEvent.#ctor*
+  nameWithType.vb: SendMailEvent.New(Object, IntPtr)
+  fullName.vb: Reportman.Drawing.Forms.SendMailEvent.New(Object, System.IntPtr)
+  name.vb: New(Object, IntPtr)
+- uid: Reportman.Drawing.Forms.SendMailEvent.Invoke(System.Object,Reportman.Drawing.Forms.SendMailEventArgs)
+  commentId: M:Reportman.Drawing.Forms.SendMailEvent.Invoke(System.Object,Reportman.Drawing.Forms.SendMailEventArgs)
+  id: Invoke(System.Object,Reportman.Drawing.Forms.SendMailEventArgs)
+  parent: Reportman.Drawing.Forms.SendMailEvent
+  langs:
+  - csharp
+  - vb
+  name: Invoke(object, SendMailEventArgs)
+  nameWithType: SendMailEvent.Invoke(object, SendMailEventArgs)
+  fullName: Reportman.Drawing.Forms.SendMailEvent.Invoke(object, Reportman.Drawing.Forms.SendMailEventArgs)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual void Invoke(object sender, SendMailEventArgs args)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: Reportman.Drawing.Forms.SendMailEventArgs
+    content.vb: Public Overridable Sub Invoke(sender As Object, args As SendMailEventArgs)
+  overload: Reportman.Drawing.Forms.SendMailEvent.Invoke*
+  nameWithType.vb: SendMailEvent.Invoke(Object, SendMailEventArgs)
+  fullName.vb: Reportman.Drawing.Forms.SendMailEvent.Invoke(Object, Reportman.Drawing.Forms.SendMailEventArgs)
+  name.vb: Invoke(Object, SendMailEventArgs)
+- uid: Reportman.Drawing.Forms.SendMailEvent.BeginInvoke(System.Object,Reportman.Drawing.Forms.SendMailEventArgs,System.AsyncCallback,System.Object)
+  commentId: M:Reportman.Drawing.Forms.SendMailEvent.BeginInvoke(System.Object,Reportman.Drawing.Forms.SendMailEventArgs,System.AsyncCallback,System.Object)
+  id: BeginInvoke(System.Object,Reportman.Drawing.Forms.SendMailEventArgs,System.AsyncCallback,System.Object)
+  parent: Reportman.Drawing.Forms.SendMailEvent
+  langs:
+  - csharp
+  - vb
+  name: BeginInvoke(object, SendMailEventArgs, AsyncCallback, object)
+  nameWithType: SendMailEvent.BeginInvoke(object, SendMailEventArgs, AsyncCallback, object)
+  fullName: Reportman.Drawing.Forms.SendMailEvent.BeginInvoke(object, Reportman.Drawing.Forms.SendMailEventArgs, System.AsyncCallback, object)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual IAsyncResult BeginInvoke(object sender, SendMailEventArgs args, AsyncCallback callback, object @object)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: Reportman.Drawing.Forms.SendMailEventArgs
+    - id: callback
+      type: System.AsyncCallback
+    - id: object
+      type: System.Object
+    return:
+      type: System.IAsyncResult
+    content.vb: Public Overridable Function BeginInvoke(sender As Object, args As SendMailEventArgs, callback As AsyncCallback, [object] As Object) As IAsyncResult
+  overload: Reportman.Drawing.Forms.SendMailEvent.BeginInvoke*
+  nameWithType.vb: SendMailEvent.BeginInvoke(Object, SendMailEventArgs, AsyncCallback, Object)
+  fullName.vb: Reportman.Drawing.Forms.SendMailEvent.BeginInvoke(Object, Reportman.Drawing.Forms.SendMailEventArgs, System.AsyncCallback, Object)
+  name.vb: BeginInvoke(Object, SendMailEventArgs, AsyncCallback, Object)
+- uid: Reportman.Drawing.Forms.SendMailEvent.EndInvoke(System.IAsyncResult)
+  commentId: M:Reportman.Drawing.Forms.SendMailEvent.EndInvoke(System.IAsyncResult)
+  id: EndInvoke(System.IAsyncResult)
+  parent: Reportman.Drawing.Forms.SendMailEvent
+  langs:
+  - csharp
+  - vb
+  name: EndInvoke(IAsyncResult)
+  nameWithType: SendMailEvent.EndInvoke(IAsyncResult)
+  fullName: Reportman.Drawing.Forms.SendMailEvent.EndInvoke(System.IAsyncResult)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual void EndInvoke(IAsyncResult result)
+    parameters:
+    - id: result
+      type: System.IAsyncResult
+    content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
+  overload: Reportman.Drawing.Forms.SendMailEvent.EndInvoke*
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Reportman.Drawing.Forms.SendMailEventArgs
+  commentId: T:Reportman.Drawing.Forms.SendMailEventArgs
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.SendMailEventArgs.html
+  name: SendMailEventArgs
+  nameWithType: SendMailEventArgs
+  fullName: Reportman.Drawing.Forms.SendMailEventArgs
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.Forms.SendMailEvent.#ctor*
+  commentId: Overload:Reportman.Drawing.Forms.SendMailEvent.#ctor
+  isExternal: true
+  href: Reportman.Drawing.Forms.SendMailEvent.html#Reportman_Drawing_Forms_SendMailEvent__ctor_System_Object_System_IntPtr_
+  name: SendMailEvent
+  nameWithType: SendMailEvent.SendMailEvent
+  fullName: Reportman.Drawing.Forms.SendMailEvent.SendMailEvent
+  nameWithType.vb: SendMailEvent.New
+  fullName.vb: Reportman.Drawing.Forms.SendMailEvent.New
+  name.vb: New
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: Reportman.Drawing.Forms.SendMailEvent.Invoke*
+  commentId: Overload:Reportman.Drawing.Forms.SendMailEvent.Invoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.SendMailEvent.html#Reportman_Drawing_Forms_SendMailEvent_Invoke_System_Object_Reportman_Drawing_Forms_SendMailEventArgs_
+  name: Invoke
+  nameWithType: SendMailEvent.Invoke
+  fullName: Reportman.Drawing.Forms.SendMailEvent.Invoke
+- uid: Reportman.Drawing.Forms.SendMailEvent.BeginInvoke*
+  commentId: Overload:Reportman.Drawing.Forms.SendMailEvent.BeginInvoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.SendMailEvent.html#Reportman_Drawing_Forms_SendMailEvent_BeginInvoke_System_Object_Reportman_Drawing_Forms_SendMailEventArgs_System_AsyncCallback_System_Object_
+  name: BeginInvoke
+  nameWithType: SendMailEvent.BeginInvoke
+  fullName: Reportman.Drawing.Forms.SendMailEvent.BeginInvoke
+- uid: System.AsyncCallback
+  commentId: T:System.AsyncCallback
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.asynccallback
+  name: AsyncCallback
+  nameWithType: AsyncCallback
+  fullName: System.AsyncCallback
+- uid: System.IAsyncResult
+  commentId: T:System.IAsyncResult
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncresult
+  name: IAsyncResult
+  nameWithType: IAsyncResult
+  fullName: System.IAsyncResult
+- uid: Reportman.Drawing.Forms.SendMailEvent.EndInvoke*
+  commentId: Overload:Reportman.Drawing.Forms.SendMailEvent.EndInvoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.SendMailEvent.html#Reportman_Drawing_Forms_SendMailEvent_EndInvoke_System_IAsyncResult_
+  name: EndInvoke
+  nameWithType: SendMailEvent.EndInvoke
+  fullName: Reportman.Drawing.Forms.SendMailEvent.EndInvoke

@@ -1,0 +1,161 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.IBitmapInfoProvider
+  commentId: T:Reportman.Drawing.IBitmapInfoProvider
+  id: IBitmapInfoProvider
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.IBitmapInfoProvider.EncodeImageStreamAsBitmapStream(System.IO.MemoryStream)
+  - Reportman.Drawing.IBitmapInfoProvider.GetBitmapInfo(System.IO.Stream)
+  langs:
+  - csharp
+  - vb
+  name: IBitmapInfoProvider
+  nameWithType: IBitmapInfoProvider
+  fullName: Reportman.Drawing.IBitmapInfoProvider
+  type: Interface
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public interface IBitmapInfoProvider
+    content.vb: Public Interface IBitmapInfoProvider
+- uid: Reportman.Drawing.IBitmapInfoProvider.GetBitmapInfo(System.IO.Stream)
+  commentId: M:Reportman.Drawing.IBitmapInfoProvider.GetBitmapInfo(System.IO.Stream)
+  id: GetBitmapInfo(System.IO.Stream)
+  parent: Reportman.Drawing.IBitmapInfoProvider
+  langs:
+  - csharp
+  - vb
+  name: GetBitmapInfo(Stream)
+  nameWithType: IBitmapInfoProvider.GetBitmapInfo(Stream)
+  fullName: Reportman.Drawing.IBitmapInfoProvider.GetBitmapInfo(System.IO.Stream)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: BitmapInfo GetBitmapInfo(Stream stream)
+    parameters:
+    - id: stream
+      type: System.IO.Stream
+    return:
+      type: Reportman.Drawing.BitmapInfo
+    content.vb: Function GetBitmapInfo(stream As Stream) As BitmapInfo
+  overload: Reportman.Drawing.IBitmapInfoProvider.GetBitmapInfo*
+- uid: Reportman.Drawing.IBitmapInfoProvider.EncodeImageStreamAsBitmapStream(System.IO.MemoryStream)
+  commentId: M:Reportman.Drawing.IBitmapInfoProvider.EncodeImageStreamAsBitmapStream(System.IO.MemoryStream)
+  id: EncodeImageStreamAsBitmapStream(System.IO.MemoryStream)
+  parent: Reportman.Drawing.IBitmapInfoProvider
+  langs:
+  - csharp
+  - vb
+  name: EncodeImageStreamAsBitmapStream(MemoryStream)
+  nameWithType: IBitmapInfoProvider.EncodeImageStreamAsBitmapStream(MemoryStream)
+  fullName: Reportman.Drawing.IBitmapInfoProvider.EncodeImageStreamAsBitmapStream(System.IO.MemoryStream)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: MemoryStream EncodeImageStreamAsBitmapStream(MemoryStream stream)
+    parameters:
+    - id: stream
+      type: System.IO.MemoryStream
+    return:
+      type: System.IO.MemoryStream
+    content.vb: Function EncodeImageStreamAsBitmapStream(stream As MemoryStream) As MemoryStream
+  overload: Reportman.Drawing.IBitmapInfoProvider.EncodeImageStreamAsBitmapStream*
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.IBitmapInfoProvider.GetBitmapInfo*
+  commentId: Overload:Reportman.Drawing.IBitmapInfoProvider.GetBitmapInfo
+  isExternal: true
+  href: Reportman.Drawing.IBitmapInfoProvider.html#Reportman_Drawing_IBitmapInfoProvider_GetBitmapInfo_System_IO_Stream_
+  name: GetBitmapInfo
+  nameWithType: IBitmapInfoProvider.GetBitmapInfo
+  fullName: Reportman.Drawing.IBitmapInfoProvider.GetBitmapInfo
+- uid: System.IO.Stream
+  commentId: T:System.IO.Stream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  name: Stream
+  nameWithType: Stream
+  fullName: System.IO.Stream
+- uid: Reportman.Drawing.BitmapInfo
+  commentId: T:Reportman.Drawing.BitmapInfo
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.BitmapInfo.html
+  name: BitmapInfo
+  nameWithType: BitmapInfo
+  fullName: Reportman.Drawing.BitmapInfo
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+- uid: Reportman.Drawing.IBitmapInfoProvider.EncodeImageStreamAsBitmapStream*
+  commentId: Overload:Reportman.Drawing.IBitmapInfoProvider.EncodeImageStreamAsBitmapStream
+  isExternal: true
+  href: Reportman.Drawing.IBitmapInfoProvider.html#Reportman_Drawing_IBitmapInfoProvider_EncodeImageStreamAsBitmapStream_System_IO_MemoryStream_
+  name: EncodeImageStreamAsBitmapStream
+  nameWithType: IBitmapInfoProvider.EncodeImageStreamAsBitmapStream
+  fullName: Reportman.Drawing.IBitmapInfoProvider.EncodeImageStreamAsBitmapStream
+- uid: System.IO.MemoryStream
+  commentId: T:System.IO.MemoryStream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.memorystream
+  name: MemoryStream
+  nameWithType: MemoryStream
+  fullName: System.IO.MemoryStream

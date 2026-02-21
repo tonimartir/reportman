@@ -1,0 +1,148 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.PrinterFontsType
+  commentId: T:Reportman.Drawing.PrinterFontsType
+  id: PrinterFontsType
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.PrinterFontsType.Always
+  - Reportman.Drawing.PrinterFontsType.Default
+  - Reportman.Drawing.PrinterFontsType.Never
+  - Reportman.Drawing.PrinterFontsType.Recalculate
+  langs:
+  - csharp
+  - vb
+  name: PrinterFontsType
+  nameWithType: PrinterFontsType
+  fullName: Reportman.Drawing.PrinterFontsType
+  type: Enum
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    When the Report is sent to a printer, there is an option to use the printer fonts, if the printer fonts
+
+    are used, in some cases the print is faster (dot matrix printers)
+  example: []
+  syntax:
+    content: public enum PrinterFontsType
+    content.vb: Public Enum PrinterFontsType
+- uid: Reportman.Drawing.PrinterFontsType.Default
+  commentId: F:Reportman.Drawing.PrinterFontsType.Default
+  id: Default
+  parent: Reportman.Drawing.PrinterFontsType
+  langs:
+  - csharp
+  - vb
+  name: Default
+  nameWithType: PrinterFontsType.Default
+  fullName: Reportman.Drawing.PrinterFontsType.Default
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: The printer fonts are not used, or used only if the print driver forces it
+  example: []
+  syntax:
+    content: Default = 0
+    return:
+      type: Reportman.Drawing.PrinterFontsType
+- uid: Reportman.Drawing.PrinterFontsType.Always
+  commentId: F:Reportman.Drawing.PrinterFontsType.Always
+  id: Always
+  parent: Reportman.Drawing.PrinterFontsType
+  langs:
+  - csharp
+  - vb
+  name: Always
+  nameWithType: PrinterFontsType.Always
+  fullName: Reportman.Drawing.PrinterFontsType.Always
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: The printer fonts are allways used, some print drivers does not have this option available
+  example: []
+  syntax:
+    content: Always = 1
+    return:
+      type: Reportman.Drawing.PrinterFontsType
+- uid: Reportman.Drawing.PrinterFontsType.Never
+  commentId: F:Reportman.Drawing.PrinterFontsType.Never
+  id: Never
+  parent: Reportman.Drawing.PrinterFontsType
+  langs:
+  - csharp
+  - vb
+  name: Never
+  nameWithType: PrinterFontsType.Never
+  fullName: Reportman.Drawing.PrinterFontsType.Never
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Do not use printer fonts
+  example: []
+  syntax:
+    content: Never = 2
+    return:
+      type: Reportman.Drawing.PrinterFontsType
+- uid: Reportman.Drawing.PrinterFontsType.Recalculate
+  commentId: F:Reportman.Drawing.PrinterFontsType.Recalculate
+  id: Recalculate
+  parent: Reportman.Drawing.PrinterFontsType
+  langs:
+  - csharp
+  - vb
+  name: Recalculate
+  nameWithType: PrinterFontsType.Recalculate
+  fullName: Reportman.Drawing.PrinterFontsType.Recalculate
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    Use printer fonts, but if necessary recalculate the report to accomodate printer fonts,
+                this is the recommended option when working with dot matrix printers, but number of pages in preview and 
+                number of printed can differ
+  example: []
+  syntax:
+    content: Recalculate = 3
+    return:
+      type: Reportman.Drawing.PrinterFontsType
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.PrinterFontsType
+  commentId: T:Reportman.Drawing.PrinterFontsType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PrinterFontsType.html
+  name: PrinterFontsType
+  nameWithType: PrinterFontsType
+  fullName: Reportman.Drawing.PrinterFontsType

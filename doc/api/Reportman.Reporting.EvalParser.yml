@@ -1,0 +1,679 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.EvalParser
+  commentId: T:Reportman.Reporting.EvalParser
+  id: EvalParser
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.EvalParser.#ctor
+  - Reportman.Reporting.EvalParser.AsDecimal
+  - Reportman.Reporting.EvalParser.AsDouble
+  - Reportman.Reporting.EvalParser.AsInteger
+  - Reportman.Reporting.EvalParser.Expression
+  - Reportman.Reporting.EvalParser.IsAssignment
+  - Reportman.Reporting.EvalParser.NextToken
+  - Reportman.Reporting.EvalParser.SourceLine
+  - Reportman.Reporting.EvalParser.SourcePos
+  - Reportman.Reporting.EvalParser.Token
+  - Reportman.Reporting.EvalParser.TokenString
+  langs:
+  - csharp
+  - vb
+  name: EvalParser
+  nameWithType: EvalParser
+  fullName: Reportman.Reporting.EvalParser
+  type: Class
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Class used by Evaluator to divide a expression into tokens
+  example: []
+  syntax:
+    content: public class EvalParser
+    content.vb: Public Class EvalParser
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Reporting.EvalParser.TokenString
+  commentId: M:Reportman.Reporting.EvalParser.TokenString
+  id: TokenString
+  parent: Reportman.Reporting.EvalParser
+  langs:
+  - csharp
+  - vb
+  name: TokenString()
+  nameWithType: EvalParser.TokenString()
+  fullName: Reportman.Reporting.EvalParser.TokenString()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public string TokenString()
+    return:
+      type: System.String
+    content.vb: Public Function TokenString() As String
+  overload: Reportman.Reporting.EvalParser.TokenString*
+- uid: Reportman.Reporting.EvalParser.#ctor
+  commentId: M:Reportman.Reporting.EvalParser.#ctor
+  id: '#ctor'
+  parent: Reportman.Reporting.EvalParser
+  langs:
+  - csharp
+  - vb
+  name: EvalParser()
+  nameWithType: EvalParser.EvalParser()
+  fullName: Reportman.Reporting.EvalParser.EvalParser()
+  type: Constructor
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public EvalParser()
+    content.vb: Public Sub New()
+  overload: Reportman.Reporting.EvalParser.#ctor*
+  nameWithType.vb: EvalParser.New()
+  fullName.vb: Reportman.Reporting.EvalParser.New()
+  name.vb: New()
+- uid: Reportman.Reporting.EvalParser.NextToken
+  commentId: M:Reportman.Reporting.EvalParser.NextToken
+  id: NextToken
+  parent: Reportman.Reporting.EvalParser
+  langs:
+  - csharp
+  - vb
+  name: NextToken()
+  nameWithType: EvalParser.NextToken()
+  fullName: Reportman.Reporting.EvalParser.NextToken()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public TokenType NextToken()
+    return:
+      type: Reportman.Reporting.TokenType
+    content.vb: Public Function NextToken() As TokenType
+  overload: Reportman.Reporting.EvalParser.NextToken*
+- uid: Reportman.Reporting.EvalParser.IsAssignment
+  commentId: M:Reportman.Reporting.EvalParser.IsAssignment
+  id: IsAssignment
+  parent: Reportman.Reporting.EvalParser
+  langs:
+  - csharp
+  - vb
+  name: IsAssignment()
+  nameWithType: EvalParser.IsAssignment()
+  fullName: Reportman.Reporting.EvalParser.IsAssignment()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public bool IsAssignment()
+    return:
+      type: System.Boolean
+    content.vb: Public Function IsAssignment() As Boolean
+  overload: Reportman.Reporting.EvalParser.IsAssignment*
+- uid: Reportman.Reporting.EvalParser.Token
+  commentId: P:Reportman.Reporting.EvalParser.Token
+  id: Token
+  parent: Reportman.Reporting.EvalParser
+  langs:
+  - csharp
+  - vb
+  name: Token
+  nameWithType: EvalParser.Token
+  fullName: Reportman.Reporting.EvalParser.Token
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public TokenType Token { get; }
+    parameters: []
+    return:
+      type: Reportman.Reporting.TokenType
+    content.vb: Public ReadOnly Property Token As TokenType
+  overload: Reportman.Reporting.EvalParser.Token*
+- uid: Reportman.Reporting.EvalParser.SourceLine
+  commentId: P:Reportman.Reporting.EvalParser.SourceLine
+  id: SourceLine
+  parent: Reportman.Reporting.EvalParser
+  langs:
+  - csharp
+  - vb
+  name: SourceLine
+  nameWithType: EvalParser.SourceLine
+  fullName: Reportman.Reporting.EvalParser.SourceLine
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public int SourceLine { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property SourceLine As Integer
+  overload: Reportman.Reporting.EvalParser.SourceLine*
+- uid: Reportman.Reporting.EvalParser.SourcePos
+  commentId: P:Reportman.Reporting.EvalParser.SourcePos
+  id: SourcePos
+  parent: Reportman.Reporting.EvalParser
+  langs:
+  - csharp
+  - vb
+  name: SourcePos
+  nameWithType: EvalParser.SourcePos
+  fullName: Reportman.Reporting.EvalParser.SourcePos
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public int SourcePos { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property SourcePos As Integer
+  overload: Reportman.Reporting.EvalParser.SourcePos*
+- uid: Reportman.Reporting.EvalParser.Expression
+  commentId: P:Reportman.Reporting.EvalParser.Expression
+  id: Expression
+  parent: Reportman.Reporting.EvalParser
+  langs:
+  - csharp
+  - vb
+  name: Expression
+  nameWithType: EvalParser.Expression
+  fullName: Reportman.Reporting.EvalParser.Expression
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public string Expression { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Expression As String
+  overload: Reportman.Reporting.EvalParser.Expression*
+- uid: Reportman.Reporting.EvalParser.AsInteger
+  commentId: P:Reportman.Reporting.EvalParser.AsInteger
+  id: AsInteger
+  parent: Reportman.Reporting.EvalParser
+  langs:
+  - csharp
+  - vb
+  name: AsInteger
+  nameWithType: EvalParser.AsInteger
+  fullName: Reportman.Reporting.EvalParser.AsInteger
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public int AsInteger { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property AsInteger As Integer
+  overload: Reportman.Reporting.EvalParser.AsInteger*
+- uid: Reportman.Reporting.EvalParser.AsDouble
+  commentId: P:Reportman.Reporting.EvalParser.AsDouble
+  id: AsDouble
+  parent: Reportman.Reporting.EvalParser
+  langs:
+  - csharp
+  - vb
+  name: AsDouble
+  nameWithType: EvalParser.AsDouble
+  fullName: Reportman.Reporting.EvalParser.AsDouble
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public double AsDouble { get; }
+    parameters: []
+    return:
+      type: System.Double
+    content.vb: Public ReadOnly Property AsDouble As Double
+  overload: Reportman.Reporting.EvalParser.AsDouble*
+- uid: Reportman.Reporting.EvalParser.AsDecimal
+  commentId: P:Reportman.Reporting.EvalParser.AsDecimal
+  id: AsDecimal
+  parent: Reportman.Reporting.EvalParser
+  langs:
+  - csharp
+  - vb
+  name: AsDecimal
+  nameWithType: EvalParser.AsDecimal
+  fullName: Reportman.Reporting.EvalParser.AsDecimal
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public decimal AsDecimal { get; }
+    parameters: []
+    return:
+      type: System.Decimal
+    content.vb: Public ReadOnly Property AsDecimal As Decimal
+  overload: Reportman.Reporting.EvalParser.AsDecimal*
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Reporting.EvalParser.TokenString*
+  commentId: Overload:Reportman.Reporting.EvalParser.TokenString
+  isExternal: true
+  href: Reportman.Reporting.EvalParser.html#Reportman_Reporting_EvalParser_TokenString
+  name: TokenString
+  nameWithType: EvalParser.TokenString
+  fullName: Reportman.Reporting.EvalParser.TokenString
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Reportman.Reporting.EvalParser.#ctor*
+  commentId: Overload:Reportman.Reporting.EvalParser.#ctor
+  isExternal: true
+  href: Reportman.Reporting.EvalParser.html#Reportman_Reporting_EvalParser__ctor
+  name: EvalParser
+  nameWithType: EvalParser.EvalParser
+  fullName: Reportman.Reporting.EvalParser.EvalParser
+  nameWithType.vb: EvalParser.New
+  fullName.vb: Reportman.Reporting.EvalParser.New
+  name.vb: New
+- uid: Reportman.Reporting.EvalParser.NextToken*
+  commentId: Overload:Reportman.Reporting.EvalParser.NextToken
+  isExternal: true
+  href: Reportman.Reporting.EvalParser.html#Reportman_Reporting_EvalParser_NextToken
+  name: NextToken
+  nameWithType: EvalParser.NextToken
+  fullName: Reportman.Reporting.EvalParser.NextToken
+- uid: Reportman.Reporting.TokenType
+  commentId: T:Reportman.Reporting.TokenType
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.TokenType.html
+  name: TokenType
+  nameWithType: TokenType
+  fullName: Reportman.Reporting.TokenType
+- uid: Reportman.Reporting.EvalParser.IsAssignment*
+  commentId: Overload:Reportman.Reporting.EvalParser.IsAssignment
+  isExternal: true
+  href: Reportman.Reporting.EvalParser.html#Reportman_Reporting_EvalParser_IsAssignment
+  name: IsAssignment
+  nameWithType: EvalParser.IsAssignment
+  fullName: Reportman.Reporting.EvalParser.IsAssignment
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Reportman.Reporting.EvalParser.Token*
+  commentId: Overload:Reportman.Reporting.EvalParser.Token
+  isExternal: true
+  href: Reportman.Reporting.EvalParser.html#Reportman_Reporting_EvalParser_Token
+  name: Token
+  nameWithType: EvalParser.Token
+  fullName: Reportman.Reporting.EvalParser.Token
+- uid: Reportman.Reporting.EvalParser.SourceLine*
+  commentId: Overload:Reportman.Reporting.EvalParser.SourceLine
+  isExternal: true
+  href: Reportman.Reporting.EvalParser.html#Reportman_Reporting_EvalParser_SourceLine
+  name: SourceLine
+  nameWithType: EvalParser.SourceLine
+  fullName: Reportman.Reporting.EvalParser.SourceLine
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Reportman.Reporting.EvalParser.SourcePos*
+  commentId: Overload:Reportman.Reporting.EvalParser.SourcePos
+  isExternal: true
+  href: Reportman.Reporting.EvalParser.html#Reportman_Reporting_EvalParser_SourcePos
+  name: SourcePos
+  nameWithType: EvalParser.SourcePos
+  fullName: Reportman.Reporting.EvalParser.SourcePos
+- uid: Reportman.Reporting.EvalParser.Expression*
+  commentId: Overload:Reportman.Reporting.EvalParser.Expression
+  isExternal: true
+  href: Reportman.Reporting.EvalParser.html#Reportman_Reporting_EvalParser_Expression
+  name: Expression
+  nameWithType: EvalParser.Expression
+  fullName: Reportman.Reporting.EvalParser.Expression
+- uid: Reportman.Reporting.EvalParser.AsInteger*
+  commentId: Overload:Reportman.Reporting.EvalParser.AsInteger
+  isExternal: true
+  href: Reportman.Reporting.EvalParser.html#Reportman_Reporting_EvalParser_AsInteger
+  name: AsInteger
+  nameWithType: EvalParser.AsInteger
+  fullName: Reportman.Reporting.EvalParser.AsInteger
+- uid: Reportman.Reporting.EvalParser.AsDouble*
+  commentId: Overload:Reportman.Reporting.EvalParser.AsDouble
+  isExternal: true
+  href: Reportman.Reporting.EvalParser.html#Reportman_Reporting_EvalParser_AsDouble
+  name: AsDouble
+  nameWithType: EvalParser.AsDouble
+  fullName: Reportman.Reporting.EvalParser.AsDouble
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.double
+  name: double
+  nameWithType: double
+  fullName: double
+  nameWithType.vb: Double
+  fullName.vb: Double
+  name.vb: Double
+- uid: Reportman.Reporting.EvalParser.AsDecimal*
+  commentId: Overload:Reportman.Reporting.EvalParser.AsDecimal
+  isExternal: true
+  href: Reportman.Reporting.EvalParser.html#Reportman_Reporting_EvalParser_AsDecimal
+  name: AsDecimal
+  nameWithType: EvalParser.AsDecimal
+  fullName: Reportman.Reporting.EvalParser.AsDecimal
+- uid: System.Decimal
+  commentId: T:System.Decimal
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.decimal
+  name: decimal
+  nameWithType: decimal
+  fullName: decimal
+  nameWithType.vb: Decimal
+  fullName.vb: Decimal
+  name.vb: Decimal

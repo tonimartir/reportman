@@ -1,0 +1,143 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.PrintOutCSV.TextFormat.AlignmentType
+  commentId: T:Reportman.Drawing.PrintOutCSV.TextFormat.AlignmentType
+  id: PrintOutCSV.TextFormat.AlignmentType
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.PrintOutCSV.TextFormat.AlignmentType.Center
+  - Reportman.Drawing.PrintOutCSV.TextFormat.AlignmentType.Left
+  - Reportman.Drawing.PrintOutCSV.TextFormat.AlignmentType.Right
+  langs:
+  - csharp
+  - vb
+  name: PrintOutCSV.TextFormat.AlignmentType
+  nameWithType: PrintOutCSV.TextFormat.AlignmentType
+  fullName: Reportman.Drawing.PrintOutCSV.TextFormat.AlignmentType
+  type: Enum
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public enum PrintOutCSV.TextFormat.AlignmentType
+    content.vb: Public Enum PrintOutCSV.TextFormat.AlignmentType
+- uid: Reportman.Drawing.PrintOutCSV.TextFormat.AlignmentType.Left
+  commentId: F:Reportman.Drawing.PrintOutCSV.TextFormat.AlignmentType.Left
+  id: Left
+  parent: Reportman.Drawing.PrintOutCSV.TextFormat.AlignmentType
+  langs:
+  - csharp
+  - vb
+  name: Left
+  nameWithType: PrintOutCSV.TextFormat.AlignmentType.Left
+  fullName: Reportman.Drawing.PrintOutCSV.TextFormat.AlignmentType.Left
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Left = 0
+    return:
+      type: Reportman.Drawing.PrintOutCSV.TextFormat.AlignmentType
+- uid: Reportman.Drawing.PrintOutCSV.TextFormat.AlignmentType.Right
+  commentId: F:Reportman.Drawing.PrintOutCSV.TextFormat.AlignmentType.Right
+  id: Right
+  parent: Reportman.Drawing.PrintOutCSV.TextFormat.AlignmentType
+  langs:
+  - csharp
+  - vb
+  name: Right
+  nameWithType: PrintOutCSV.TextFormat.AlignmentType.Right
+  fullName: Reportman.Drawing.PrintOutCSV.TextFormat.AlignmentType.Right
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Right = 1
+    return:
+      type: Reportman.Drawing.PrintOutCSV.TextFormat.AlignmentType
+- uid: Reportman.Drawing.PrintOutCSV.TextFormat.AlignmentType.Center
+  commentId: F:Reportman.Drawing.PrintOutCSV.TextFormat.AlignmentType.Center
+  id: Center
+  parent: Reportman.Drawing.PrintOutCSV.TextFormat.AlignmentType
+  langs:
+  - csharp
+  - vb
+  name: Center
+  nameWithType: PrintOutCSV.TextFormat.AlignmentType.Center
+  fullName: Reportman.Drawing.PrintOutCSV.TextFormat.AlignmentType.Center
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Center = 2
+    return:
+      type: Reportman.Drawing.PrintOutCSV.TextFormat.AlignmentType
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.PrintOutCSV.TextFormat.AlignmentType
+  commentId: T:Reportman.Drawing.PrintOutCSV.TextFormat.AlignmentType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PrintOutCSV.html
+  name: PrintOutCSV.TextFormat.AlignmentType
+  nameWithType: PrintOutCSV.TextFormat.AlignmentType
+  fullName: Reportman.Drawing.PrintOutCSV.TextFormat.AlignmentType
+  spec.csharp:
+  - uid: Reportman.Drawing.PrintOutCSV
+    name: PrintOutCSV
+    isExternal: true
+    href: Reportman.Drawing.PrintOutCSV.html
+  - name: .
+  - uid: Reportman.Drawing.PrintOutCSV.TextFormat
+    name: TextFormat
+    isExternal: true
+    href: Reportman.Drawing.PrintOutCSV.TextFormat.html
+  - name: .
+  - uid: Reportman.Drawing.PrintOutCSV.TextFormat.AlignmentType
+    name: AlignmentType
+    isExternal: true
+    href: Reportman.Drawing.PrintOutCSV.TextFormat.AlignmentType.html
+  spec.vb:
+  - uid: Reportman.Drawing.PrintOutCSV
+    name: PrintOutCSV
+    isExternal: true
+    href: Reportman.Drawing.PrintOutCSV.html
+  - name: .
+  - uid: Reportman.Drawing.PrintOutCSV.TextFormat
+    name: TextFormat
+    isExternal: true
+    href: Reportman.Drawing.PrintOutCSV.TextFormat.html
+  - name: .
+  - uid: Reportman.Drawing.PrintOutCSV.TextFormat.AlignmentType
+    name: AlignmentType
+    isExternal: true
+    href: Reportman.Drawing.PrintOutCSV.TextFormat.AlignmentType.html

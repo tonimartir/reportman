@@ -1,0 +1,314 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+  commentId: T:Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+  id: TabControlAdvanced.PositionIndex
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.BorderBottom
+  - Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.BorderLeft
+  - Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.BorderRight
+  - Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.BorderTop
+  - Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.ButtonOffset
+  - Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.ImageGapBottom
+  - Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.ImageGapLeft
+  - Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.ImageGapRight
+  - Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.ImageGapTop
+  - Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.TabsBottomGap
+  - Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.TextGapLeft
+  - Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.TextOffset
+  langs:
+  - csharp
+  - vb
+  name: TabControlAdvanced.PositionIndex
+  nameWithType: TabControlAdvanced.PositionIndex
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+  type: Enum
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: protected enum TabControlAdvanced.PositionIndex
+    content.vb: Protected Enum TabControlAdvanced.PositionIndex
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.BorderTop
+  commentId: F:Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.BorderTop
+  id: BorderTop
+  parent: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+  langs:
+  - csharp
+  - vb
+  name: BorderTop
+  nameWithType: TabControlAdvanced.PositionIndex.BorderTop
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.BorderTop
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: BorderTop = 0
+    return:
+      type: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.BorderLeft
+  commentId: F:Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.BorderLeft
+  id: BorderLeft
+  parent: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+  langs:
+  - csharp
+  - vb
+  name: BorderLeft
+  nameWithType: TabControlAdvanced.PositionIndex.BorderLeft
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.BorderLeft
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: BorderLeft = 1
+    return:
+      type: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.BorderBottom
+  commentId: F:Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.BorderBottom
+  id: BorderBottom
+  parent: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+  langs:
+  - csharp
+  - vb
+  name: BorderBottom
+  nameWithType: TabControlAdvanced.PositionIndex.BorderBottom
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.BorderBottom
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: BorderBottom = 2
+    return:
+      type: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.BorderRight
+  commentId: F:Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.BorderRight
+  id: BorderRight
+  parent: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+  langs:
+  - csharp
+  - vb
+  name: BorderRight
+  nameWithType: TabControlAdvanced.PositionIndex.BorderRight
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.BorderRight
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: BorderRight = 3
+    return:
+      type: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.ImageGapTop
+  commentId: F:Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.ImageGapTop
+  id: ImageGapTop
+  parent: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+  langs:
+  - csharp
+  - vb
+  name: ImageGapTop
+  nameWithType: TabControlAdvanced.PositionIndex.ImageGapTop
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.ImageGapTop
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: ImageGapTop = 4
+    return:
+      type: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.ImageGapLeft
+  commentId: F:Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.ImageGapLeft
+  id: ImageGapLeft
+  parent: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+  langs:
+  - csharp
+  - vb
+  name: ImageGapLeft
+  nameWithType: TabControlAdvanced.PositionIndex.ImageGapLeft
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.ImageGapLeft
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: ImageGapLeft = 5
+    return:
+      type: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.ImageGapBottom
+  commentId: F:Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.ImageGapBottom
+  id: ImageGapBottom
+  parent: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+  langs:
+  - csharp
+  - vb
+  name: ImageGapBottom
+  nameWithType: TabControlAdvanced.PositionIndex.ImageGapBottom
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.ImageGapBottom
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: ImageGapBottom = 6
+    return:
+      type: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.ImageGapRight
+  commentId: F:Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.ImageGapRight
+  id: ImageGapRight
+  parent: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+  langs:
+  - csharp
+  - vb
+  name: ImageGapRight
+  nameWithType: TabControlAdvanced.PositionIndex.ImageGapRight
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.ImageGapRight
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: ImageGapRight = 7
+    return:
+      type: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.TextOffset
+  commentId: F:Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.TextOffset
+  id: TextOffset
+  parent: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+  langs:
+  - csharp
+  - vb
+  name: TextOffset
+  nameWithType: TabControlAdvanced.PositionIndex.TextOffset
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.TextOffset
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: TextOffset = 8
+    return:
+      type: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.TextGapLeft
+  commentId: F:Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.TextGapLeft
+  id: TextGapLeft
+  parent: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+  langs:
+  - csharp
+  - vb
+  name: TextGapLeft
+  nameWithType: TabControlAdvanced.PositionIndex.TextGapLeft
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.TextGapLeft
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: TextGapLeft = 9
+    return:
+      type: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.TabsBottomGap
+  commentId: F:Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.TabsBottomGap
+  id: TabsBottomGap
+  parent: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+  langs:
+  - csharp
+  - vb
+  name: TabsBottomGap
+  nameWithType: TabControlAdvanced.PositionIndex.TabsBottomGap
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.TabsBottomGap
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: TabsBottomGap = 10
+    return:
+      type: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.ButtonOffset
+  commentId: F:Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.ButtonOffset
+  id: ButtonOffset
+  parent: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+  langs:
+  - csharp
+  - vb
+  name: ButtonOffset
+  nameWithType: TabControlAdvanced.PositionIndex.ButtonOffset
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.ButtonOffset
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: ButtonOffset = 11
+    return:
+      type: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+  commentId: T:Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  name: TabControlAdvanced.PositionIndex
+  nameWithType: TabControlAdvanced.PositionIndex
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced
+    name: TabControlAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+    name: PositionIndex
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced
+    name: TabControlAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
+    name: PositionIndex
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.html

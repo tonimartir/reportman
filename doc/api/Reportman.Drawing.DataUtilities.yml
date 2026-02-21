@@ -1,0 +1,957 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.DataUtilities
+  commentId: T:Reportman.Drawing.DataUtilities
+  id: DataUtilities
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.DataUtilities.Copy(System.Data.DataTable)
+  - Reportman.Drawing.DataUtilities.DividirLista``1(System.Collections.Generic.List{``0},System.Int32)
+  - Reportman.Drawing.DataUtilities.FillAsync(System.Data.Common.DbCommand,System.String,System.Int32,System.Int32)
+  - Reportman.Drawing.DataUtilities.GetCreationSql(System.Data.DataTable,System.String)
+  - Reportman.Drawing.DataUtilities.GroupBy(System.Collections.Generic.List{System.Data.DataTable},System.String,System.String)
+  - Reportman.Drawing.DataUtilities.IndexOfDataRow(System.Data.DataView,System.Data.DataRow)
+  - Reportman.Drawing.DataUtilities.TypeToDbType(System.Type)
+  langs:
+  - csharp
+  - vb
+  name: DataUtilities
+  nameWithType: DataUtilities
+  fullName: Reportman.Drawing.DataUtilities
+  type: Class
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: DataTable and DataSet utilities
+  example: []
+  syntax:
+    content: public static class DataUtilities
+    content.vb: Public Module DataUtilities
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.DataUtilities.Copy(System.Data.DataTable)
+  commentId: M:Reportman.Drawing.DataUtilities.Copy(System.Data.DataTable)
+  id: Copy(System.Data.DataTable)
+  parent: Reportman.Drawing.DataUtilities
+  langs:
+  - csharp
+  - vb
+  name: Copy(DataTable)
+  nameWithType: DataUtilities.Copy(DataTable)
+  fullName: Reportman.Drawing.DataUtilities.Copy(System.Data.DataTable)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Copy a DataTable, the standard Copy() command does not work for byte[] columns
+  example: []
+  syntax:
+    content: public static DataTable Copy(DataTable ntable)
+    parameters:
+    - id: ntable
+      type: System.Data.DataTable
+      description: ''
+    return:
+      type: System.Data.DataTable
+      description: ''
+    content.vb: Public Shared Function Copy(ntable As DataTable) As DataTable
+  overload: Reportman.Drawing.DataUtilities.Copy*
+- uid: Reportman.Drawing.DataUtilities.FillAsync(System.Data.Common.DbCommand,System.String,System.Int32,System.Int32)
+  commentId: M:Reportman.Drawing.DataUtilities.FillAsync(System.Data.Common.DbCommand,System.String,System.Int32,System.Int32)
+  id: FillAsync(System.Data.Common.DbCommand,System.String,System.Int32,System.Int32)
+  parent: Reportman.Drawing.DataUtilities
+  langs:
+  - csharp
+  - vb
+  name: FillAsync(DbCommand, string, int, int)
+  nameWithType: DataUtilities.FillAsync(DbCommand, string, int, int)
+  fullName: Reportman.Drawing.DataUtilities.FillAsync(System.Data.Common.DbCommand, string, int, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Lee de forma asincrona desde un dbcommand
+  example: []
+  syntax:
+    content: public static Task<DataTable> FillAsync(DbCommand ncommand, string tableName, int from, int to)
+    parameters:
+    - id: ncommand
+      type: System.Data.Common.DbCommand
+    - id: tableName
+      type: System.String
+    - id: from
+      type: System.Int32
+    - id: to
+      type: System.Int32
+    return:
+      type: System.Threading.Tasks.Task{System.Data.DataTable}
+    content.vb: Public Shared Function FillAsync(ncommand As DbCommand, tableName As String, from As Integer, [to] As Integer) As Task(Of DataTable)
+  overload: Reportman.Drawing.DataUtilities.FillAsync*
+  nameWithType.vb: DataUtilities.FillAsync(DbCommand, String, Integer, Integer)
+  fullName.vb: Reportman.Drawing.DataUtilities.FillAsync(System.Data.Common.DbCommand, String, Integer, Integer)
+  name.vb: FillAsync(DbCommand, String, Integer, Integer)
+- uid: Reportman.Drawing.DataUtilities.TypeToDbType(System.Type)
+  commentId: M:Reportman.Drawing.DataUtilities.TypeToDbType(System.Type)
+  id: TypeToDbType(System.Type)
+  parent: Reportman.Drawing.DataUtilities
+  langs:
+  - csharp
+  - vb
+  name: TypeToDbType(Type)
+  nameWithType: DataUtilities.TypeToDbType(Type)
+  fullName: Reportman.Drawing.DataUtilities.TypeToDbType(System.Type)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static DbType TypeToDbType(Type ntype)
+    parameters:
+    - id: ntype
+      type: System.Type
+    return:
+      type: System.Data.DbType
+    content.vb: Public Shared Function TypeToDbType(ntype As Type) As DbType
+  overload: Reportman.Drawing.DataUtilities.TypeToDbType*
+- uid: Reportman.Drawing.DataUtilities.GroupBy(System.Collections.Generic.List{System.Data.DataTable},System.String,System.String)
+  commentId: M:Reportman.Drawing.DataUtilities.GroupBy(System.Collections.Generic.List{System.Data.DataTable},System.String,System.String)
+  id: GroupBy(System.Collections.Generic.List{System.Data.DataTable},System.String,System.String)
+  parent: Reportman.Drawing.DataUtilities
+  langs:
+  - csharp
+  - vb
+  name: GroupBy(List<DataTable>, string, string)
+  nameWithType: DataUtilities.GroupBy(List<DataTable>, string, string)
+  fullName: Reportman.Drawing.DataUtilities.GroupBy(System.Collections.Generic.List<System.Data.DataTable>, string, string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static DataTable GroupBy(List<DataTable> sources, string groupCols, string sumCols)
+    parameters:
+    - id: sources
+      type: System.Collections.Generic.List{System.Data.DataTable}
+    - id: groupCols
+      type: System.String
+    - id: sumCols
+      type: System.String
+    return:
+      type: System.Data.DataTable
+    content.vb: Public Shared Function GroupBy(sources As List(Of DataTable), groupCols As String, sumCols As String) As DataTable
+  overload: Reportman.Drawing.DataUtilities.GroupBy*
+  nameWithType.vb: DataUtilities.GroupBy(List(Of DataTable), String, String)
+  fullName.vb: Reportman.Drawing.DataUtilities.GroupBy(System.Collections.Generic.List(Of System.Data.DataTable), String, String)
+  name.vb: GroupBy(List(Of DataTable), String, String)
+- uid: Reportman.Drawing.DataUtilities.DividirLista``1(System.Collections.Generic.List{``0},System.Int32)
+  commentId: M:Reportman.Drawing.DataUtilities.DividirLista``1(System.Collections.Generic.List{``0},System.Int32)
+  id: DividirLista``1(System.Collections.Generic.List{``0},System.Int32)
+  parent: Reportman.Drawing.DataUtilities
+  langs:
+  - csharp
+  - vb
+  name: DividirLista<T>(List<T>, int)
+  nameWithType: DataUtilities.DividirLista<T>(List<T>, int)
+  fullName: Reportman.Drawing.DataUtilities.DividirLista<T>(System.Collections.Generic.List<T>, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static List<List<T>> DividirLista<T>(List<T> lista, int tamañoMaximo)
+    parameters:
+    - id: lista
+      type: System.Collections.Generic.List{{T}}
+    - id: tamañoMaximo
+      type: System.Int32
+    typeParameters:
+    - id: T
+    return:
+      type: System.Collections.Generic.List{System.Collections.Generic.List{{T}}}
+    content.vb: Public Shared Function DividirLista(Of T)(lista As List(Of T), tamañoMaximo As Integer) As List(Of List(Of T))
+  overload: Reportman.Drawing.DataUtilities.DividirLista*
+  nameWithType.vb: DataUtilities.DividirLista(Of T)(List(Of T), Integer)
+  fullName.vb: Reportman.Drawing.DataUtilities.DividirLista(Of T)(System.Collections.Generic.List(Of T), Integer)
+  name.vb: DividirLista(Of T)(List(Of T), Integer)
+- uid: Reportman.Drawing.DataUtilities.IndexOfDataRow(System.Data.DataView,System.Data.DataRow)
+  commentId: M:Reportman.Drawing.DataUtilities.IndexOfDataRow(System.Data.DataView,System.Data.DataRow)
+  id: IndexOfDataRow(System.Data.DataView,System.Data.DataRow)
+  isExtensionMethod: true
+  parent: Reportman.Drawing.DataUtilities
+  langs:
+  - csharp
+  - vb
+  name: IndexOfDataRow(DataView, DataRow)
+  nameWithType: DataUtilities.IndexOfDataRow(DataView, DataRow)
+  fullName: Reportman.Drawing.DataUtilities.IndexOfDataRow(System.Data.DataView, System.Data.DataRow)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static int IndexOfDataRow(this DataView dv, DataRow xrow)
+    parameters:
+    - id: dv
+      type: System.Data.DataView
+    - id: xrow
+      type: System.Data.DataRow
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function IndexOfDataRow(dv As DataView, xrow As DataRow) As Integer
+  overload: Reportman.Drawing.DataUtilities.IndexOfDataRow*
+- uid: Reportman.Drawing.DataUtilities.GetCreationSql(System.Data.DataTable,System.String)
+  commentId: M:Reportman.Drawing.DataUtilities.GetCreationSql(System.Data.DataTable,System.String)
+  id: GetCreationSql(System.Data.DataTable,System.String)
+  parent: Reportman.Drawing.DataUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetCreationSql(DataTable, string)
+  nameWithType: DataUtilities.GetCreationSql(DataTable, string)
+  fullName: Reportman.Drawing.DataUtilities.GetCreationSql(System.Data.DataTable, string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string GetCreationSql(DataTable ntable, string primkey)
+    parameters:
+    - id: ntable
+      type: System.Data.DataTable
+    - id: primkey
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function GetCreationSql(ntable As DataTable, primkey As String) As String
+  overload: Reportman.Drawing.DataUtilities.GetCreationSql*
+  nameWithType.vb: DataUtilities.GetCreationSql(DataTable, String)
+  fullName.vb: Reportman.Drawing.DataUtilities.GetCreationSql(System.Data.DataTable, String)
+  name.vb: GetCreationSql(DataTable, String)
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.DataUtilities.Copy*
+  commentId: Overload:Reportman.Drawing.DataUtilities.Copy
+  isExternal: true
+  href: Reportman.Drawing.DataUtilities.html#Reportman_Drawing_DataUtilities_Copy_System_Data_DataTable_
+  name: Copy
+  nameWithType: DataUtilities.Copy
+  fullName: Reportman.Drawing.DataUtilities.Copy
+- uid: System.Data.DataTable
+  commentId: T:System.Data.DataTable
+  parent: System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable
+  name: DataTable
+  nameWithType: DataTable
+  fullName: System.Data.DataTable
+- uid: System.Data
+  commentId: N:System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Data
+  nameWithType: System.Data
+  fullName: System.Data
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+- uid: Reportman.Drawing.DataUtilities.FillAsync*
+  commentId: Overload:Reportman.Drawing.DataUtilities.FillAsync
+  isExternal: true
+  href: Reportman.Drawing.DataUtilities.html#Reportman_Drawing_DataUtilities_FillAsync_System_Data_Common_DbCommand_System_String_System_Int32_System_Int32_
+  name: FillAsync
+  nameWithType: DataUtilities.FillAsync
+  fullName: Reportman.Drawing.DataUtilities.FillAsync
+- uid: System.Data.Common.DbCommand
+  commentId: T:System.Data.Common.DbCommand
+  parent: System.Data.Common
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand
+  name: DbCommand
+  nameWithType: DbCommand
+  fullName: System.Data.Common.DbCommand
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Threading.Tasks.Task{System.Data.DataTable}
+  commentId: T:System.Threading.Tasks.Task{System.Data.DataTable}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<DataTable>
+  nameWithType: Task<DataTable>
+  fullName: System.Threading.Tasks.Task<System.Data.DataTable>
+  nameWithType.vb: Task(Of DataTable)
+  fullName.vb: System.Threading.Tasks.Task(Of System.Data.DataTable)
+  name.vb: Task(Of DataTable)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Data.DataTable
+    name: DataTable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Data.DataTable
+    name: DataTable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable
+  - name: )
+- uid: System.Data.Common
+  commentId: N:System.Data.Common
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Data.Common
+  nameWithType: System.Data.Common
+  fullName: System.Data.Common
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+  - name: .
+  - uid: System.Data.Common
+    name: Common
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.common
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+  - name: .
+  - uid: System.Data.Common
+    name: Common
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.common
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: Reportman.Drawing.DataUtilities.TypeToDbType*
+  commentId: Overload:Reportman.Drawing.DataUtilities.TypeToDbType
+  isExternal: true
+  href: Reportman.Drawing.DataUtilities.html#Reportman_Drawing_DataUtilities_TypeToDbType_System_Type_
+  name: TypeToDbType
+  nameWithType: DataUtilities.TypeToDbType
+  fullName: Reportman.Drawing.DataUtilities.TypeToDbType
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.type
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: System.Data.DbType
+  commentId: T:System.Data.DbType
+  parent: System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.dbtype
+  name: DbType
+  nameWithType: DbType
+  fullName: System.Data.DbType
+- uid: Reportman.Drawing.DataUtilities.GroupBy*
+  commentId: Overload:Reportman.Drawing.DataUtilities.GroupBy
+  isExternal: true
+  href: Reportman.Drawing.DataUtilities.html#Reportman_Drawing_DataUtilities_GroupBy_System_Collections_Generic_List_System_Data_DataTable__System_String_System_String_
+  name: GroupBy
+  nameWithType: DataUtilities.GroupBy
+  fullName: Reportman.Drawing.DataUtilities.GroupBy
+- uid: System.Collections.Generic.List{System.Data.DataTable}
+  commentId: T:System.Collections.Generic.List{System.Data.DataTable}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<DataTable>
+  nameWithType: List<DataTable>
+  fullName: System.Collections.Generic.List<System.Data.DataTable>
+  nameWithType.vb: List(Of DataTable)
+  fullName.vb: System.Collections.Generic.List(Of System.Data.DataTable)
+  name.vb: List(Of DataTable)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: System.Data.DataTable
+    name: DataTable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Data.DataTable
+    name: DataTable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.datatable
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Reportman.Drawing.DataUtilities.DividirLista*
+  commentId: Overload:Reportman.Drawing.DataUtilities.DividirLista
+  isExternal: true
+  href: Reportman.Drawing.DataUtilities.html#Reportman_Drawing_DataUtilities_DividirLista__1_System_Collections_Generic_List___0__System_Int32_
+  name: DividirLista
+  nameWithType: DataUtilities.DividirLista
+  fullName: Reportman.Drawing.DataUtilities.DividirLista
+- uid: System.Collections.Generic.List{{T}}
+  commentId: T:System.Collections.Generic.List{``0}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic.List{System.Collections.Generic.List{{T}}}
+  commentId: T:System.Collections.Generic.List{System.Collections.Generic.List{``0}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<List<T>>
+  nameWithType: List<List<T>>
+  fullName: System.Collections.Generic.List<System.Collections.Generic.List<T>>
+  nameWithType.vb: List(Of List(Of T))
+  fullName.vb: System.Collections.Generic.List(Of System.Collections.Generic.List(Of T))
+  name.vb: List(Of List(Of T))
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+- uid: Reportman.Drawing.DataUtilities.IndexOfDataRow*
+  commentId: Overload:Reportman.Drawing.DataUtilities.IndexOfDataRow
+  isExternal: true
+  href: Reportman.Drawing.DataUtilities.html#Reportman_Drawing_DataUtilities_IndexOfDataRow_System_Data_DataView_System_Data_DataRow_
+  name: IndexOfDataRow
+  nameWithType: DataUtilities.IndexOfDataRow
+  fullName: Reportman.Drawing.DataUtilities.IndexOfDataRow
+- uid: System.Data.DataView
+  commentId: T:System.Data.DataView
+  parent: System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.dataview
+  name: DataView
+  nameWithType: DataView
+  fullName: System.Data.DataView
+- uid: System.Data.DataRow
+  commentId: T:System.Data.DataRow
+  parent: System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datarow
+  name: DataRow
+  nameWithType: DataRow
+  fullName: System.Data.DataRow
+- uid: Reportman.Drawing.DataUtilities.GetCreationSql*
+  commentId: Overload:Reportman.Drawing.DataUtilities.GetCreationSql
+  isExternal: true
+  href: Reportman.Drawing.DataUtilities.html#Reportman_Drawing_DataUtilities_GetCreationSql_System_Data_DataTable_System_String_
+  name: GetCreationSql
+  nameWithType: DataUtilities.GetCreationSql
+  fullName: Reportman.Drawing.DataUtilities.GetCreationSql

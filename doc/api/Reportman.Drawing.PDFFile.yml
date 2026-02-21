@@ -1,0 +1,1713 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.PDFFile
+  commentId: T:Reportman.Drawing.PDFFile
+  id: PDFFile
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.PDFFile.#ctor(Reportman.Drawing.FontInfoProvider,Reportman.Drawing.IBitmapInfoProvider)
+  - Reportman.Drawing.PDFFile.BeginDoc
+  - Reportman.Drawing.PDFFile.BitmapStreams
+  - Reportman.Drawing.PDFFile.CONS_PDFRES
+  - Reportman.Drawing.PDFFile.CONS_STRIKEOUTPOS
+  - Reportman.Drawing.PDFFile.CONS_UNDERLINEPOS
+  - Reportman.Drawing.PDFFile.CONS_UNDERLINEWIDTH
+  - Reportman.Drawing.PDFFile.CalculateOnly
+  - Reportman.Drawing.PDFFile.Canvas
+  - Reportman.Drawing.PDFFile.CheckPrinting
+  - Reportman.Drawing.PDFFile.Compressed
+  - Reportman.Drawing.PDFFile.CompressionTasks
+  - Reportman.Drawing.PDFFile.Dispose
+  - Reportman.Drawing.PDFFile.DocAuthor
+  - Reportman.Drawing.PDFFile.DocCreationDate
+  - Reportman.Drawing.PDFFile.DocCreator
+  - Reportman.Drawing.PDFFile.DocKeywords
+  - Reportman.Drawing.PDFFile.DocModificationDate
+  - Reportman.Drawing.PDFFile.DocProducer
+  - Reportman.Drawing.PDFFile.DocSubject
+  - Reportman.Drawing.PDFFile.DocTitle
+  - Reportman.Drawing.PDFFile.DocXMPContent
+  - Reportman.Drawing.PDFFile.EmbeddedFiles
+  - Reportman.Drawing.PDFFile.EncodePDFText(System.String)
+  - Reportman.Drawing.PDFFile.EndDoc
+  - Reportman.Drawing.PDFFile.FObjectOffset
+  - Reportman.Drawing.PDFFile.FileName
+  - Reportman.Drawing.PDFFile.ImageCount
+  - Reportman.Drawing.PDFFile.ImageIndexes
+  - Reportman.Drawing.PDFFile.MainPDF
+  - Reportman.Drawing.PDFFile.Masks
+  - Reportman.Drawing.PDFFile.NewAnnotation(System.Int32,System.Int32,System.Int32,System.Int32,System.String)
+  - Reportman.Drawing.PDFFile.NewPage(System.Int32,System.Int32)
+  - Reportman.Drawing.PDFFile.OptimizeSize
+  - Reportman.Drawing.PDFFile.Optimized
+  - Reportman.Drawing.PDFFile.PDFConformance
+  - Reportman.Drawing.PDFFile.POINTS_PER_INCH
+  - Reportman.Drawing.PDFFile.PageHeight
+  - Reportman.Drawing.PDFFile.PageWidth
+  - Reportman.Drawing.PDFFile.Printing
+  - Reportman.Drawing.PDFFile.Resolution
+  - Reportman.Drawing.PDFFile.STempStream
+  langs:
+  - csharp
+  - vb
+  name: PDFFile
+  nameWithType: PDFFile
+  fullName: Reportman.Drawing.PDFFile
+  type: Class
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: 'public class PDFFile : IDisposable'
+    content.vb: Public Class PDFFile Implements IDisposable
+  inheritance:
+  - System.Object
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.PDFFile.FileName
+  commentId: F:Reportman.Drawing.PDFFile.FileName
+  id: FileName
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: FileName
+  nameWithType: PDFFile.FileName
+  fullName: Reportman.Drawing.PDFFile.FileName
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string FileName
+    return:
+      type: System.String
+    content.vb: Public FileName As String
+- uid: Reportman.Drawing.PDFFile.ImageIndexes
+  commentId: F:Reportman.Drawing.PDFFile.ImageIndexes
+  id: ImageIndexes
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: ImageIndexes
+  nameWithType: PDFFile.ImageIndexes
+  fullName: Reportman.Drawing.PDFFile.ImageIndexes
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public SortedList ImageIndexes
+    return:
+      type: System.Collections.SortedList
+    content.vb: Public ImageIndexes As SortedList
+- uid: Reportman.Drawing.PDFFile.FObjectOffset
+  commentId: F:Reportman.Drawing.PDFFile.FObjectOffset
+  id: FObjectOffset
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: FObjectOffset
+  nameWithType: PDFFile.FObjectOffset
+  fullName: Reportman.Drawing.PDFFile.FObjectOffset
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public long FObjectOffset
+    return:
+      type: System.Int64
+    content.vb: Public FObjectOffset As Long
+- uid: Reportman.Drawing.PDFFile.Optimized
+  commentId: F:Reportman.Drawing.PDFFile.Optimized
+  id: Optimized
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: Optimized
+  nameWithType: PDFFile.Optimized
+  fullName: Reportman.Drawing.PDFFile.Optimized
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public bool Optimized
+    return:
+      type: System.Boolean
+    content.vb: Public Optimized As Boolean
+- uid: Reportman.Drawing.PDFFile.CompressionTasks
+  commentId: F:Reportman.Drawing.PDFFile.CompressionTasks
+  id: CompressionTasks
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: CompressionTasks
+  nameWithType: PDFFile.CompressionTasks
+  fullName: Reportman.Drawing.PDFFile.CompressionTasks
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public List<CompressionTask> CompressionTasks
+    return:
+      type: System.Collections.Generic.List{Reportman.Drawing.CompressionTask}
+    content.vb: Public CompressionTasks As List(Of CompressionTask)
+- uid: Reportman.Drawing.PDFFile.POINTS_PER_INCH
+  commentId: F:Reportman.Drawing.PDFFile.POINTS_PER_INCH
+  id: POINTS_PER_INCH
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: POINTS_PER_INCH
+  nameWithType: PDFFile.POINTS_PER_INCH
+  fullName: Reportman.Drawing.PDFFile.POINTS_PER_INCH
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public const int POINTS_PER_INCH = 72
+    return:
+      type: System.Int32
+    content.vb: Public Const POINTS_PER_INCH As Integer = 72
+- uid: Reportman.Drawing.PDFFile.Compressed
+  commentId: F:Reportman.Drawing.PDFFile.Compressed
+  id: Compressed
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: Compressed
+  nameWithType: PDFFile.Compressed
+  fullName: Reportman.Drawing.PDFFile.Compressed
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public bool Compressed
+    return:
+      type: System.Boolean
+    content.vb: Public Compressed As Boolean
+- uid: Reportman.Drawing.PDFFile.OptimizeSize
+  commentId: F:Reportman.Drawing.PDFFile.OptimizeSize
+  id: OptimizeSize
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: OptimizeSize
+  nameWithType: PDFFile.OptimizeSize
+  fullName: Reportman.Drawing.PDFFile.OptimizeSize
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public bool OptimizeSize
+    return:
+      type: System.Boolean
+    content.vb: Public OptimizeSize As Boolean
+- uid: Reportman.Drawing.PDFFile.ImageCount
+  commentId: F:Reportman.Drawing.PDFFile.ImageCount
+  id: ImageCount
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: ImageCount
+  nameWithType: PDFFile.ImageCount
+  fullName: Reportman.Drawing.PDFFile.ImageCount
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int ImageCount
+    return:
+      type: System.Int32
+    content.vb: Public ImageCount As Integer
+- uid: Reportman.Drawing.PDFFile.CONS_PDFRES
+  commentId: F:Reportman.Drawing.PDFFile.CONS_PDFRES
+  id: CONS_PDFRES
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: CONS_PDFRES
+  nameWithType: PDFFile.CONS_PDFRES
+  fullName: Reportman.Drawing.PDFFile.CONS_PDFRES
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public const int CONS_PDFRES = 72
+    return:
+      type: System.Int32
+    content.vb: Public Const CONS_PDFRES As Integer = 72
+- uid: Reportman.Drawing.PDFFile.CONS_UNDERLINEPOS
+  commentId: F:Reportman.Drawing.PDFFile.CONS_UNDERLINEPOS
+  id: CONS_UNDERLINEPOS
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: CONS_UNDERLINEPOS
+  nameWithType: PDFFile.CONS_UNDERLINEPOS
+  fullName: Reportman.Drawing.PDFFile.CONS_UNDERLINEPOS
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public const double CONS_UNDERLINEPOS = 1.1
+    return:
+      type: System.Double
+    content.vb: Public Const CONS_UNDERLINEPOS As Double = 1.1
+- uid: Reportman.Drawing.PDFFile.CONS_STRIKEOUTPOS
+  commentId: F:Reportman.Drawing.PDFFile.CONS_STRIKEOUTPOS
+  id: CONS_STRIKEOUTPOS
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: CONS_STRIKEOUTPOS
+  nameWithType: PDFFile.CONS_STRIKEOUTPOS
+  fullName: Reportman.Drawing.PDFFile.CONS_STRIKEOUTPOS
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public const double CONS_STRIKEOUTPOS = 0.7
+    return:
+      type: System.Double
+    content.vb: Public Const CONS_STRIKEOUTPOS As Double = 0.7
+- uid: Reportman.Drawing.PDFFile.CONS_UNDERLINEWIDTH
+  commentId: F:Reportman.Drawing.PDFFile.CONS_UNDERLINEWIDTH
+  id: CONS_UNDERLINEWIDTH
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: CONS_UNDERLINEWIDTH
+  nameWithType: PDFFile.CONS_UNDERLINEWIDTH
+  fullName: Reportman.Drawing.PDFFile.CONS_UNDERLINEWIDTH
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public const double CONS_UNDERLINEWIDTH = 0.1
+    return:
+      type: System.Double
+    content.vb: Public Const CONS_UNDERLINEWIDTH As Double = 0.1
+- uid: Reportman.Drawing.PDFFile.PageHeight
+  commentId: F:Reportman.Drawing.PDFFile.PageHeight
+  id: PageHeight
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: PageHeight
+  nameWithType: PDFFile.PageHeight
+  fullName: Reportman.Drawing.PDFFile.PageHeight
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int PageHeight
+    return:
+      type: System.Int32
+    content.vb: Public PageHeight As Integer
+- uid: Reportman.Drawing.PDFFile.PageWidth
+  commentId: F:Reportman.Drawing.PDFFile.PageWidth
+  id: PageWidth
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: PageWidth
+  nameWithType: PDFFile.PageWidth
+  fullName: Reportman.Drawing.PDFFile.PageWidth
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int PageWidth
+    return:
+      type: System.Int32
+    content.vb: Public PageWidth As Integer
+- uid: Reportman.Drawing.PDFFile.DocTitle
+  commentId: F:Reportman.Drawing.PDFFile.DocTitle
+  id: DocTitle
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: DocTitle
+  nameWithType: PDFFile.DocTitle
+  fullName: Reportman.Drawing.PDFFile.DocTitle
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string DocTitle
+    return:
+      type: System.String
+    content.vb: Public DocTitle As String
+- uid: Reportman.Drawing.PDFFile.DocAuthor
+  commentId: F:Reportman.Drawing.PDFFile.DocAuthor
+  id: DocAuthor
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: DocAuthor
+  nameWithType: PDFFile.DocAuthor
+  fullName: Reportman.Drawing.PDFFile.DocAuthor
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string DocAuthor
+    return:
+      type: System.String
+    content.vb: Public DocAuthor As String
+- uid: Reportman.Drawing.PDFFile.DocCreator
+  commentId: F:Reportman.Drawing.PDFFile.DocCreator
+  id: DocCreator
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: DocCreator
+  nameWithType: PDFFile.DocCreator
+  fullName: Reportman.Drawing.PDFFile.DocCreator
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string DocCreator
+    return:
+      type: System.String
+    content.vb: Public DocCreator As String
+- uid: Reportman.Drawing.PDFFile.DocKeywords
+  commentId: F:Reportman.Drawing.PDFFile.DocKeywords
+  id: DocKeywords
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: DocKeywords
+  nameWithType: PDFFile.DocKeywords
+  fullName: Reportman.Drawing.PDFFile.DocKeywords
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string DocKeywords
+    return:
+      type: System.String
+    content.vb: Public DocKeywords As String
+- uid: Reportman.Drawing.PDFFile.DocSubject
+  commentId: F:Reportman.Drawing.PDFFile.DocSubject
+  id: DocSubject
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: DocSubject
+  nameWithType: PDFFile.DocSubject
+  fullName: Reportman.Drawing.PDFFile.DocSubject
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string DocSubject
+    return:
+      type: System.String
+    content.vb: Public DocSubject As String
+- uid: Reportman.Drawing.PDFFile.DocProducer
+  commentId: F:Reportman.Drawing.PDFFile.DocProducer
+  id: DocProducer
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: DocProducer
+  nameWithType: PDFFile.DocProducer
+  fullName: Reportman.Drawing.PDFFile.DocProducer
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string DocProducer
+    return:
+      type: System.String
+    content.vb: Public DocProducer As String
+- uid: Reportman.Drawing.PDFFile.DocXMPContent
+  commentId: F:Reportman.Drawing.PDFFile.DocXMPContent
+  id: DocXMPContent
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: DocXMPContent
+  nameWithType: PDFFile.DocXMPContent
+  fullName: Reportman.Drawing.PDFFile.DocXMPContent
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string DocXMPContent
+    return:
+      type: System.String
+    content.vb: Public DocXMPContent As String
+- uid: Reportman.Drawing.PDFFile.DocCreationDate
+  commentId: F:Reportman.Drawing.PDFFile.DocCreationDate
+  id: DocCreationDate
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: DocCreationDate
+  nameWithType: PDFFile.DocCreationDate
+  fullName: Reportman.Drawing.PDFFile.DocCreationDate
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string DocCreationDate
+    return:
+      type: System.String
+    content.vb: Public DocCreationDate As String
+- uid: Reportman.Drawing.PDFFile.DocModificationDate
+  commentId: F:Reportman.Drawing.PDFFile.DocModificationDate
+  id: DocModificationDate
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: DocModificationDate
+  nameWithType: PDFFile.DocModificationDate
+  fullName: Reportman.Drawing.PDFFile.DocModificationDate
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string DocModificationDate
+    return:
+      type: System.String
+    content.vb: Public DocModificationDate As String
+- uid: Reportman.Drawing.PDFFile.CalculateOnly
+  commentId: F:Reportman.Drawing.PDFFile.CalculateOnly
+  id: CalculateOnly
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: CalculateOnly
+  nameWithType: PDFFile.CalculateOnly
+  fullName: Reportman.Drawing.PDFFile.CalculateOnly
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: The pdf is not generated but all size calculations are done
+  example: []
+  syntax:
+    content: public bool CalculateOnly
+    return:
+      type: System.Boolean
+    content.vb: Public CalculateOnly As Boolean
+- uid: Reportman.Drawing.PDFFile.Masks
+  commentId: F:Reportman.Drawing.PDFFile.Masks
+  id: Masks
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: Masks
+  nameWithType: PDFFile.Masks
+  fullName: Reportman.Drawing.PDFFile.Masks
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public SortedList<int, StreamPosition> Masks
+    return:
+      type: System.Collections.Generic.SortedList{System.Int32,Reportman.Drawing.StreamPosition}
+    content.vb: Public Masks As SortedList(Of Integer, StreamPosition)
+- uid: Reportman.Drawing.PDFFile.EmbeddedFiles
+  commentId: F:Reportman.Drawing.PDFFile.EmbeddedFiles
+  id: EmbeddedFiles
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: EmbeddedFiles
+  nameWithType: PDFFile.EmbeddedFiles
+  fullName: Reportman.Drawing.PDFFile.EmbeddedFiles
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public List<EmbeddedFile> EmbeddedFiles
+    return:
+      type: System.Collections.Generic.List{Reportman.Drawing.EmbeddedFile}
+    content.vb: Public EmbeddedFiles As List(Of EmbeddedFile)
+- uid: Reportman.Drawing.PDFFile.Dispose
+  commentId: M:Reportman.Drawing.PDFFile.Dispose
+  id: Dispose
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: PDFFile.Dispose()
+  fullName: Reportman.Drawing.PDFFile.Dispose()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  example: []
+  syntax:
+    content: public virtual void Dispose()
+    content.vb: Public Overridable Sub Dispose()
+  overload: Reportman.Drawing.PDFFile.Dispose*
+  implements:
+  - System.IDisposable.Dispose
+- uid: Reportman.Drawing.PDFFile.#ctor(Reportman.Drawing.FontInfoProvider,Reportman.Drawing.IBitmapInfoProvider)
+  commentId: M:Reportman.Drawing.PDFFile.#ctor(Reportman.Drawing.FontInfoProvider,Reportman.Drawing.IBitmapInfoProvider)
+  id: '#ctor(Reportman.Drawing.FontInfoProvider,Reportman.Drawing.IBitmapInfoProvider)'
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: PDFFile(FontInfoProvider, IBitmapInfoProvider)
+  nameWithType: PDFFile.PDFFile(FontInfoProvider, IBitmapInfoProvider)
+  fullName: Reportman.Drawing.PDFFile.PDFFile(Reportman.Drawing.FontInfoProvider, Reportman.Drawing.IBitmapInfoProvider)
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public PDFFile(FontInfoProvider infoProvider, IBitmapInfoProvider bitmapInfoProvider)
+    parameters:
+    - id: infoProvider
+      type: Reportman.Drawing.FontInfoProvider
+    - id: bitmapInfoProvider
+      type: Reportman.Drawing.IBitmapInfoProvider
+    content.vb: Public Sub New(infoProvider As FontInfoProvider, bitmapInfoProvider As IBitmapInfoProvider)
+  overload: Reportman.Drawing.PDFFile.#ctor*
+  nameWithType.vb: PDFFile.New(FontInfoProvider, IBitmapInfoProvider)
+  fullName.vb: Reportman.Drawing.PDFFile.New(Reportman.Drawing.FontInfoProvider, Reportman.Drawing.IBitmapInfoProvider)
+  name.vb: New(FontInfoProvider, IBitmapInfoProvider)
+- uid: Reportman.Drawing.PDFFile.NewAnnotation(System.Int32,System.Int32,System.Int32,System.Int32,System.String)
+  commentId: M:Reportman.Drawing.PDFFile.NewAnnotation(System.Int32,System.Int32,System.Int32,System.Int32,System.String)
+  id: NewAnnotation(System.Int32,System.Int32,System.Int32,System.Int32,System.String)
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: NewAnnotation(int, int, int, int, string)
+  nameWithType: PDFFile.NewAnnotation(int, int, int, int, string)
+  fullName: Reportman.Drawing.PDFFile.NewAnnotation(int, int, int, int, string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public void NewAnnotation(int posx, int posy, int width, int height, string annotation)
+    parameters:
+    - id: posx
+      type: System.Int32
+    - id: posy
+      type: System.Int32
+    - id: width
+      type: System.Int32
+    - id: height
+      type: System.Int32
+    - id: annotation
+      type: System.String
+    content.vb: Public Sub NewAnnotation(posx As Integer, posy As Integer, width As Integer, height As Integer, annotation As String)
+  overload: Reportman.Drawing.PDFFile.NewAnnotation*
+  nameWithType.vb: PDFFile.NewAnnotation(Integer, Integer, Integer, Integer, String)
+  fullName.vb: Reportman.Drawing.PDFFile.NewAnnotation(Integer, Integer, Integer, Integer, String)
+  name.vb: NewAnnotation(Integer, Integer, Integer, Integer, String)
+- uid: Reportman.Drawing.PDFFile.CheckPrinting
+  commentId: M:Reportman.Drawing.PDFFile.CheckPrinting
+  id: CheckPrinting
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: CheckPrinting()
+  nameWithType: PDFFile.CheckPrinting()
+  fullName: Reportman.Drawing.PDFFile.CheckPrinting()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public void CheckPrinting()
+    content.vb: Public Sub CheckPrinting()
+  overload: Reportman.Drawing.PDFFile.CheckPrinting*
+- uid: Reportman.Drawing.PDFFile.EncodePDFText(System.String)
+  commentId: M:Reportman.Drawing.PDFFile.EncodePDFText(System.String)
+  id: EncodePDFText(System.String)
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: EncodePDFText(string)
+  nameWithType: PDFFile.EncodePDFText(string)
+  fullName: Reportman.Drawing.PDFFile.EncodePDFText(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string EncodePDFText(string text)
+    parameters:
+    - id: text
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function EncodePDFText(text As String) As String
+  overload: Reportman.Drawing.PDFFile.EncodePDFText*
+  nameWithType.vb: PDFFile.EncodePDFText(String)
+  fullName.vb: Reportman.Drawing.PDFFile.EncodePDFText(String)
+  name.vb: EncodePDFText(String)
+- uid: Reportman.Drawing.PDFFile.BeginDoc
+  commentId: M:Reportman.Drawing.PDFFile.BeginDoc
+  id: BeginDoc
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: BeginDoc()
+  nameWithType: PDFFile.BeginDoc()
+  fullName: Reportman.Drawing.PDFFile.BeginDoc()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public void BeginDoc()
+    content.vb: Public Sub BeginDoc()
+  overload: Reportman.Drawing.PDFFile.BeginDoc*
+- uid: Reportman.Drawing.PDFFile.NewPage(System.Int32,System.Int32)
+  commentId: M:Reportman.Drawing.PDFFile.NewPage(System.Int32,System.Int32)
+  id: NewPage(System.Int32,System.Int32)
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: NewPage(int, int)
+  nameWithType: PDFFile.NewPage(int, int)
+  fullName: Reportman.Drawing.PDFFile.NewPage(int, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public void NewPage(int NPageWidth, int NPageHeight)
+    parameters:
+    - id: NPageWidth
+      type: System.Int32
+    - id: NPageHeight
+      type: System.Int32
+    content.vb: Public Sub NewPage(NPageWidth As Integer, NPageHeight As Integer)
+  overload: Reportman.Drawing.PDFFile.NewPage*
+  nameWithType.vb: PDFFile.NewPage(Integer, Integer)
+  fullName.vb: Reportman.Drawing.PDFFile.NewPage(Integer, Integer)
+  name.vb: NewPage(Integer, Integer)
+- uid: Reportman.Drawing.PDFFile.EndDoc
+  commentId: M:Reportman.Drawing.PDFFile.EndDoc
+  id: EndDoc
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: EndDoc()
+  nameWithType: PDFFile.EndDoc()
+  fullName: Reportman.Drawing.PDFFile.EndDoc()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public void EndDoc()
+    content.vb: Public Sub EndDoc()
+  overload: Reportman.Drawing.PDFFile.EndDoc*
+- uid: Reportman.Drawing.PDFFile.MainPDF
+  commentId: P:Reportman.Drawing.PDFFile.MainPDF
+  id: MainPDF
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: MainPDF
+  nameWithType: PDFFile.MainPDF
+  fullName: Reportman.Drawing.PDFFile.MainPDF
+  type: Property
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public Stream MainPDF { get; }
+    parameters: []
+    return:
+      type: System.IO.Stream
+    content.vb: Public ReadOnly Property MainPDF As Stream
+  overload: Reportman.Drawing.PDFFile.MainPDF*
+- uid: Reportman.Drawing.PDFFile.BitmapStreams
+  commentId: P:Reportman.Drawing.PDFFile.BitmapStreams
+  id: BitmapStreams
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: BitmapStreams
+  nameWithType: PDFFile.BitmapStreams
+  fullName: Reportman.Drawing.PDFFile.BitmapStreams
+  type: Property
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public MemStreams BitmapStreams { get; }
+    parameters: []
+    return:
+      type: Reportman.Drawing.MemStreams
+    content.vb: Public ReadOnly Property BitmapStreams As MemStreams
+  overload: Reportman.Drawing.PDFFile.BitmapStreams*
+- uid: Reportman.Drawing.PDFFile.PDFConformance
+  commentId: P:Reportman.Drawing.PDFFile.PDFConformance
+  id: PDFConformance
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: PDFConformance
+  nameWithType: PDFFile.PDFConformance
+  fullName: Reportman.Drawing.PDFFile.PDFConformance
+  type: Property
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public PDFConformanceType PDFConformance { get; set; }
+    parameters: []
+    return:
+      type: Reportman.Drawing.PDFConformanceType
+    content.vb: Public Property PDFConformance As PDFConformanceType
+  overload: Reportman.Drawing.PDFFile.PDFConformance*
+- uid: Reportman.Drawing.PDFFile.Resolution
+  commentId: P:Reportman.Drawing.PDFFile.Resolution
+  id: Resolution
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: Resolution
+  nameWithType: PDFFile.Resolution
+  fullName: Reportman.Drawing.PDFFile.Resolution
+  type: Property
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int Resolution { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Resolution As Integer
+  overload: Reportman.Drawing.PDFFile.Resolution*
+- uid: Reportman.Drawing.PDFFile.Printing
+  commentId: P:Reportman.Drawing.PDFFile.Printing
+  id: Printing
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: Printing
+  nameWithType: PDFFile.Printing
+  fullName: Reportman.Drawing.PDFFile.Printing
+  type: Property
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public bool Printing { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property Printing As Boolean
+  overload: Reportman.Drawing.PDFFile.Printing*
+- uid: Reportman.Drawing.PDFFile.STempStream
+  commentId: P:Reportman.Drawing.PDFFile.STempStream
+  id: STempStream
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: STempStream
+  nameWithType: PDFFile.STempStream
+  fullName: Reportman.Drawing.PDFFile.STempStream
+  type: Property
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public MemoryStream STempStream { get; }
+    parameters: []
+    return:
+      type: System.IO.MemoryStream
+    content.vb: Public ReadOnly Property STempStream As MemoryStream
+  overload: Reportman.Drawing.PDFFile.STempStream*
+- uid: Reportman.Drawing.PDFFile.Canvas
+  commentId: P:Reportman.Drawing.PDFFile.Canvas
+  id: Canvas
+  parent: Reportman.Drawing.PDFFile
+  langs:
+  - csharp
+  - vb
+  name: Canvas
+  nameWithType: PDFFile.Canvas
+  fullName: Reportman.Drawing.PDFFile.Canvas
+  type: Property
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public PDFCanvas Canvas { get; }
+    parameters: []
+    return:
+      type: Reportman.Drawing.PDFCanvas
+    content.vb: Public ReadOnly Property Canvas As PDFCanvas
+  overload: Reportman.Drawing.PDFFile.Canvas*
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Collections.SortedList
+  commentId: T:System.Collections.SortedList
+  parent: System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.sortedlist
+  name: SortedList
+  nameWithType: SortedList
+  fullName: System.Collections.SortedList
+- uid: System.Collections
+  commentId: N:System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections
+  nameWithType: System.Collections
+  fullName: System.Collections
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Collections.Generic.List{Reportman.Drawing.CompressionTask}
+  commentId: T:System.Collections.Generic.List{Reportman.Drawing.CompressionTask}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<CompressionTask>
+  nameWithType: List<CompressionTask>
+  fullName: System.Collections.Generic.List<Reportman.Drawing.CompressionTask>
+  nameWithType.vb: List(Of CompressionTask)
+  fullName.vb: System.Collections.Generic.List(Of Reportman.Drawing.CompressionTask)
+  name.vb: List(Of CompressionTask)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Reportman.Drawing.CompressionTask
+    name: CompressionTask
+    isExternal: true
+    href: Reportman.Drawing.CompressionTask.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Reportman.Drawing.CompressionTask
+    name: CompressionTask
+    isExternal: true
+    href: Reportman.Drawing.CompressionTask.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.double
+  name: double
+  nameWithType: double
+  fullName: double
+  nameWithType.vb: Double
+  fullName.vb: Double
+  name.vb: Double
+- uid: System.Collections.Generic.SortedList{System.Int32,Reportman.Drawing.StreamPosition}
+  commentId: T:System.Collections.Generic.SortedList{System.Int32,Reportman.Drawing.StreamPosition}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.SortedList`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  name: SortedList<int, StreamPosition>
+  nameWithType: SortedList<int, StreamPosition>
+  fullName: System.Collections.Generic.SortedList<int, Reportman.Drawing.StreamPosition>
+  nameWithType.vb: SortedList(Of Integer, StreamPosition)
+  fullName.vb: System.Collections.Generic.SortedList(Of Integer, Reportman.Drawing.StreamPosition)
+  name.vb: SortedList(Of Integer, StreamPosition)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: <
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.StreamPosition
+    name: StreamPosition
+    isExternal: true
+    href: Reportman.Drawing.StreamPosition.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.StreamPosition
+    name: StreamPosition
+    isExternal: true
+    href: Reportman.Drawing.StreamPosition.html
+  - name: )
+- uid: System.Collections.Generic.SortedList`2
+  commentId: T:System.Collections.Generic.SortedList`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  name: SortedList<TKey, TValue>
+  nameWithType: SortedList<TKey, TValue>
+  fullName: System.Collections.Generic.SortedList<TKey, TValue>
+  nameWithType.vb: SortedList(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.SortedList(Of TKey, TValue)
+  name.vb: SortedList(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic.List{Reportman.Drawing.EmbeddedFile}
+  commentId: T:System.Collections.Generic.List{Reportman.Drawing.EmbeddedFile}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<EmbeddedFile>
+  nameWithType: List<EmbeddedFile>
+  fullName: System.Collections.Generic.List<Reportman.Drawing.EmbeddedFile>
+  nameWithType.vb: List(Of EmbeddedFile)
+  fullName.vb: System.Collections.Generic.List(Of Reportman.Drawing.EmbeddedFile)
+  name.vb: List(Of EmbeddedFile)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Reportman.Drawing.EmbeddedFile
+    name: EmbeddedFile
+    isExternal: true
+    href: Reportman.Drawing.EmbeddedFile.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Reportman.Drawing.EmbeddedFile
+    name: EmbeddedFile
+    isExternal: true
+    href: Reportman.Drawing.EmbeddedFile.html
+  - name: )
+- uid: Reportman.Drawing.PDFFile.Dispose*
+  commentId: Overload:Reportman.Drawing.PDFFile.Dispose
+  isExternal: true
+  href: Reportman.Drawing.PDFFile.html#Reportman_Drawing_PDFFile_Dispose
+  name: Dispose
+  nameWithType: PDFFile.Dispose
+  fullName: Reportman.Drawing.PDFFile.Dispose
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
+  spec.csharp:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )
+- uid: Reportman.Drawing.PDFFile.#ctor*
+  commentId: Overload:Reportman.Drawing.PDFFile.#ctor
+  isExternal: true
+  href: Reportman.Drawing.PDFFile.html#Reportman_Drawing_PDFFile__ctor_Reportman_Drawing_FontInfoProvider_Reportman_Drawing_IBitmapInfoProvider_
+  name: PDFFile
+  nameWithType: PDFFile.PDFFile
+  fullName: Reportman.Drawing.PDFFile.PDFFile
+  nameWithType.vb: PDFFile.New
+  fullName.vb: Reportman.Drawing.PDFFile.New
+  name.vb: New
+- uid: Reportman.Drawing.FontInfoProvider
+  commentId: T:Reportman.Drawing.FontInfoProvider
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.FontInfoProvider.html
+  name: FontInfoProvider
+  nameWithType: FontInfoProvider
+  fullName: Reportman.Drawing.FontInfoProvider
+- uid: Reportman.Drawing.IBitmapInfoProvider
+  commentId: T:Reportman.Drawing.IBitmapInfoProvider
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.IBitmapInfoProvider.html
+  name: IBitmapInfoProvider
+  nameWithType: IBitmapInfoProvider
+  fullName: Reportman.Drawing.IBitmapInfoProvider
+- uid: Reportman.Drawing.PDFFile.NewAnnotation*
+  commentId: Overload:Reportman.Drawing.PDFFile.NewAnnotation
+  isExternal: true
+  href: Reportman.Drawing.PDFFile.html#Reportman_Drawing_PDFFile_NewAnnotation_System_Int32_System_Int32_System_Int32_System_Int32_System_String_
+  name: NewAnnotation
+  nameWithType: PDFFile.NewAnnotation
+  fullName: Reportman.Drawing.PDFFile.NewAnnotation
+- uid: Reportman.Drawing.PDFFile.CheckPrinting*
+  commentId: Overload:Reportman.Drawing.PDFFile.CheckPrinting
+  isExternal: true
+  href: Reportman.Drawing.PDFFile.html#Reportman_Drawing_PDFFile_CheckPrinting
+  name: CheckPrinting
+  nameWithType: PDFFile.CheckPrinting
+  fullName: Reportman.Drawing.PDFFile.CheckPrinting
+- uid: Reportman.Drawing.PDFFile.EncodePDFText*
+  commentId: Overload:Reportman.Drawing.PDFFile.EncodePDFText
+  isExternal: true
+  href: Reportman.Drawing.PDFFile.html#Reportman_Drawing_PDFFile_EncodePDFText_System_String_
+  name: EncodePDFText
+  nameWithType: PDFFile.EncodePDFText
+  fullName: Reportman.Drawing.PDFFile.EncodePDFText
+- uid: Reportman.Drawing.PDFFile.BeginDoc*
+  commentId: Overload:Reportman.Drawing.PDFFile.BeginDoc
+  isExternal: true
+  href: Reportman.Drawing.PDFFile.html#Reportman_Drawing_PDFFile_BeginDoc
+  name: BeginDoc
+  nameWithType: PDFFile.BeginDoc
+  fullName: Reportman.Drawing.PDFFile.BeginDoc
+- uid: Reportman.Drawing.PDFFile.NewPage*
+  commentId: Overload:Reportman.Drawing.PDFFile.NewPage
+  isExternal: true
+  href: Reportman.Drawing.PDFFile.html#Reportman_Drawing_PDFFile_NewPage_System_Int32_System_Int32_
+  name: NewPage
+  nameWithType: PDFFile.NewPage
+  fullName: Reportman.Drawing.PDFFile.NewPage
+- uid: Reportman.Drawing.PDFFile.EndDoc*
+  commentId: Overload:Reportman.Drawing.PDFFile.EndDoc
+  isExternal: true
+  href: Reportman.Drawing.PDFFile.html#Reportman_Drawing_PDFFile_EndDoc
+  name: EndDoc
+  nameWithType: PDFFile.EndDoc
+  fullName: Reportman.Drawing.PDFFile.EndDoc
+- uid: Reportman.Drawing.PDFFile.MainPDF*
+  commentId: Overload:Reportman.Drawing.PDFFile.MainPDF
+  isExternal: true
+  href: Reportman.Drawing.PDFFile.html#Reportman_Drawing_PDFFile_MainPDF
+  name: MainPDF
+  nameWithType: PDFFile.MainPDF
+  fullName: Reportman.Drawing.PDFFile.MainPDF
+- uid: System.IO.Stream
+  commentId: T:System.IO.Stream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  name: Stream
+  nameWithType: Stream
+  fullName: System.IO.Stream
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+- uid: Reportman.Drawing.PDFFile.BitmapStreams*
+  commentId: Overload:Reportman.Drawing.PDFFile.BitmapStreams
+  isExternal: true
+  href: Reportman.Drawing.PDFFile.html#Reportman_Drawing_PDFFile_BitmapStreams
+  name: BitmapStreams
+  nameWithType: PDFFile.BitmapStreams
+  fullName: Reportman.Drawing.PDFFile.BitmapStreams
+- uid: Reportman.Drawing.MemStreams
+  commentId: T:Reportman.Drawing.MemStreams
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.MemStreams.html
+  name: MemStreams
+  nameWithType: MemStreams
+  fullName: Reportman.Drawing.MemStreams
+- uid: Reportman.Drawing.PDFFile.PDFConformance*
+  commentId: Overload:Reportman.Drawing.PDFFile.PDFConformance
+  isExternal: true
+  href: Reportman.Drawing.PDFFile.html#Reportman_Drawing_PDFFile_PDFConformance
+  name: PDFConformance
+  nameWithType: PDFFile.PDFConformance
+  fullName: Reportman.Drawing.PDFFile.PDFConformance
+- uid: Reportman.Drawing.PDFConformanceType
+  commentId: T:Reportman.Drawing.PDFConformanceType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PDFConformanceType.html
+  name: PDFConformanceType
+  nameWithType: PDFConformanceType
+  fullName: Reportman.Drawing.PDFConformanceType
+- uid: Reportman.Drawing.PDFFile.Resolution*
+  commentId: Overload:Reportman.Drawing.PDFFile.Resolution
+  isExternal: true
+  href: Reportman.Drawing.PDFFile.html#Reportman_Drawing_PDFFile_Resolution
+  name: Resolution
+  nameWithType: PDFFile.Resolution
+  fullName: Reportman.Drawing.PDFFile.Resolution
+- uid: Reportman.Drawing.PDFFile.Printing*
+  commentId: Overload:Reportman.Drawing.PDFFile.Printing
+  isExternal: true
+  href: Reportman.Drawing.PDFFile.html#Reportman_Drawing_PDFFile_Printing
+  name: Printing
+  nameWithType: PDFFile.Printing
+  fullName: Reportman.Drawing.PDFFile.Printing
+- uid: Reportman.Drawing.PDFFile.STempStream*
+  commentId: Overload:Reportman.Drawing.PDFFile.STempStream
+  isExternal: true
+  href: Reportman.Drawing.PDFFile.html#Reportman_Drawing_PDFFile_STempStream
+  name: STempStream
+  nameWithType: PDFFile.STempStream
+  fullName: Reportman.Drawing.PDFFile.STempStream
+- uid: System.IO.MemoryStream
+  commentId: T:System.IO.MemoryStream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.memorystream
+  name: MemoryStream
+  nameWithType: MemoryStream
+  fullName: System.IO.MemoryStream
+- uid: Reportman.Drawing.PDFFile.Canvas*
+  commentId: Overload:Reportman.Drawing.PDFFile.Canvas
+  isExternal: true
+  href: Reportman.Drawing.PDFFile.html#Reportman_Drawing_PDFFile_Canvas
+  name: Canvas
+  nameWithType: PDFFile.Canvas
+  fullName: Reportman.Drawing.PDFFile.Canvas
+- uid: Reportman.Drawing.PDFCanvas
+  commentId: T:Reportman.Drawing.PDFCanvas
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html
+  name: PDFCanvas
+  nameWithType: PDFCanvas
+  fullName: Reportman.Drawing.PDFCanvas

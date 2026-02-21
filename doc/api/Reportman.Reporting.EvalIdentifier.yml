@@ -1,0 +1,622 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.EvalIdentifier
+  commentId: T:Reportman.Reporting.EvalIdentifier
+  id: EvalIdentifier
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.EvalIdentifier.#ctor(Reportman.Reporting.Evaluator)
+  - Reportman.Reporting.EvalIdentifier.EvalObject
+  - Reportman.Reporting.EvalIdentifier.FHelp
+  - Reportman.Reporting.EvalIdentifier.FModel
+  - Reportman.Reporting.EvalIdentifier.GetValue
+  - Reportman.Reporting.EvalIdentifier.Help
+  - Reportman.Reporting.EvalIdentifier.Model
+  - Reportman.Reporting.EvalIdentifier.Name
+  - Reportman.Reporting.EvalIdentifier.SetValue(Reportman.Reporting.Variant)
+  - Reportman.Reporting.EvalIdentifier.Value
+  langs:
+  - csharp
+  - vb
+  name: EvalIdentifier
+  nameWithType: EvalIdentifier
+  fullName: Reportman.Reporting.EvalIdentifier
+  type: Class
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    EvalIdentifier is the base class for all objects capable of integration
+
+    with Evaluator,this includes variables, functions, constants...
+  example: []
+  syntax:
+    content: public abstract class EvalIdentifier
+    content.vb: Public MustInherit Class EvalIdentifier
+  inheritance:
+  - System.Object
+  derivedClasses:
+  - Reportman.Reporting.IdenConstant
+  - Reportman.Reporting.IdenFunction
+  - Reportman.Reporting.IdenVariable
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Reporting.EvalIdentifier.Name
+  commentId: F:Reportman.Reporting.EvalIdentifier.Name
+  id: Name
+  parent: Reportman.Reporting.EvalIdentifier
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: EvalIdentifier.Name
+  fullName: Reportman.Reporting.EvalIdentifier.Name
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Name of the identifier
+  example: []
+  syntax:
+    content: public string Name
+    return:
+      type: System.String
+    content.vb: Public Name As String
+- uid: Reportman.Reporting.EvalIdentifier.FModel
+  commentId: F:Reportman.Reporting.EvalIdentifier.FModel
+  id: FModel
+  parent: Reportman.Reporting.EvalIdentifier
+  langs:
+  - csharp
+  - vb
+  name: FModel
+  nameWithType: EvalIdentifier.FModel
+  fullName: Reportman.Reporting.EvalIdentifier.FModel
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Model, used usually for functions, string representing function model
+  example: []
+  syntax:
+    content: protected string FModel
+    return:
+      type: System.String
+    content.vb: Protected FModel As String
+- uid: Reportman.Reporting.EvalIdentifier.FHelp
+  commentId: F:Reportman.Reporting.EvalIdentifier.FHelp
+  id: FHelp
+  parent: Reportman.Reporting.EvalIdentifier
+  langs:
+  - csharp
+  - vb
+  name: FHelp
+  nameWithType: EvalIdentifier.FHelp
+  fullName: Reportman.Reporting.EvalIdentifier.FHelp
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Help string used by the expression builder wizard
+  example: []
+  syntax:
+    content: protected string FHelp
+    return:
+      type: System.String
+    content.vb: Protected FHelp As String
+- uid: Reportman.Reporting.EvalIdentifier.EvalObject
+  commentId: F:Reportman.Reporting.EvalIdentifier.EvalObject
+  id: EvalObject
+  parent: Reportman.Reporting.EvalIdentifier
+  langs:
+  - csharp
+  - vb
+  name: EvalObject
+  nameWithType: EvalIdentifier.EvalObject
+  fullName: Reportman.Reporting.EvalIdentifier.EvalObject
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Evaluator that owns the ident
+  example: []
+  syntax:
+    content: public Evaluator EvalObject
+    return:
+      type: Reportman.Reporting.Evaluator
+    content.vb: Public EvalObject As Evaluator
+- uid: Reportman.Reporting.EvalIdentifier.#ctor(Reportman.Reporting.Evaluator)
+  commentId: M:Reportman.Reporting.EvalIdentifier.#ctor(Reportman.Reporting.Evaluator)
+  id: '#ctor(Reportman.Reporting.Evaluator)'
+  parent: Reportman.Reporting.EvalIdentifier
+  langs:
+  - csharp
+  - vb
+  name: EvalIdentifier(Evaluator)
+  nameWithType: EvalIdentifier.EvalIdentifier(Evaluator)
+  fullName: Reportman.Reporting.EvalIdentifier.EvalIdentifier(Reportman.Reporting.Evaluator)
+  type: Constructor
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Main constructor for identifiers
+  example: []
+  syntax:
+    content: protected EvalIdentifier(Evaluator eval)
+    parameters:
+    - id: eval
+      type: Reportman.Reporting.Evaluator
+      description: ''
+    content.vb: Protected Sub New(eval As Evaluator)
+  overload: Reportman.Reporting.EvalIdentifier.#ctor*
+  nameWithType.vb: EvalIdentifier.New(Evaluator)
+  fullName.vb: Reportman.Reporting.EvalIdentifier.New(Reportman.Reporting.Evaluator)
+  name.vb: New(Evaluator)
+- uid: Reportman.Reporting.EvalIdentifier.GetValue
+  commentId: M:Reportman.Reporting.EvalIdentifier.GetValue
+  id: GetValue
+  parent: Reportman.Reporting.EvalIdentifier
+  langs:
+  - csharp
+  - vb
+  name: GetValue()
+  nameWithType: EvalIdentifier.GetValue()
+  fullName: Reportman.Reporting.EvalIdentifier.GetValue()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Override the function to allow the returning of values by the identifier (functions)
+  example: []
+  syntax:
+    content: protected abstract Variant GetValue()
+    return:
+      type: Reportman.Reporting.Variant
+      description: ''
+    content.vb: Protected MustOverride Function GetValue() As [Variant]
+  overload: Reportman.Reporting.EvalIdentifier.GetValue*
+- uid: Reportman.Reporting.EvalIdentifier.SetValue(Reportman.Reporting.Variant)
+  commentId: M:Reportman.Reporting.EvalIdentifier.SetValue(Reportman.Reporting.Variant)
+  id: SetValue(Reportman.Reporting.Variant)
+  parent: Reportman.Reporting.EvalIdentifier
+  langs:
+  - csharp
+  - vb
+  name: SetValue(Variant)
+  nameWithType: EvalIdentifier.SetValue(Variant)
+  fullName: Reportman.Reporting.EvalIdentifier.SetValue(Reportman.Reporting.Variant)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Override the function to allow the assignment of values to the identifier (variables)
+  example: []
+  syntax:
+    content: protected abstract void SetValue(Variant avalue)
+    parameters:
+    - id: avalue
+      type: Reportman.Reporting.Variant
+      description: ''
+    content.vb: Protected MustOverride Sub SetValue(avalue As [Variant])
+  overload: Reportman.Reporting.EvalIdentifier.SetValue*
+- uid: Reportman.Reporting.EvalIdentifier.Model
+  commentId: P:Reportman.Reporting.EvalIdentifier.Model
+  id: Model
+  parent: Reportman.Reporting.EvalIdentifier
+  langs:
+  - csharp
+  - vb
+  name: Model
+  nameWithType: EvalIdentifier.Model
+  fullName: Reportman.Reporting.EvalIdentifier.Model
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    Gets the model of the identifier, usually used in functions to define
+
+    the name, input parameters and output
+  example: []
+  syntax:
+    content: public string Model { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property Model As String
+  overload: Reportman.Reporting.EvalIdentifier.Model*
+- uid: Reportman.Reporting.EvalIdentifier.Help
+  commentId: P:Reportman.Reporting.EvalIdentifier.Help
+  id: Help
+  parent: Reportman.Reporting.EvalIdentifier
+  langs:
+  - csharp
+  - vb
+  name: Help
+  nameWithType: EvalIdentifier.Help
+  fullName: Reportman.Reporting.EvalIdentifier.Help
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    Defines the purpose of the identifier, usually used by functions and constants to
+
+    explain how to use the function
+  example: []
+  syntax:
+    content: public string Help { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property Help As String
+  overload: Reportman.Reporting.EvalIdentifier.Help*
+- uid: Reportman.Reporting.EvalIdentifier.Value
+  commentId: P:Reportman.Reporting.EvalIdentifier.Value
+  id: Value
+  parent: Reportman.Reporting.EvalIdentifier
+  langs:
+  - csharp
+  - vb
+  name: Value
+  nameWithType: EvalIdentifier.Value
+  fullName: Reportman.Reporting.EvalIdentifier.Value
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    Gets or sets the value of the identifier, internally calls the protected methods, 
+
+    GetValue and SetValue
+  example: []
+  syntax:
+    content: public Variant Value { get; set; }
+    parameters: []
+    return:
+      type: Reportman.Reporting.Variant
+    content.vb: Public Property Value As [Variant]
+  overload: Reportman.Reporting.EvalIdentifier.Value*
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Reportman.Reporting.Evaluator
+  commentId: T:Reportman.Reporting.Evaluator
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.Evaluator.html
+  name: Evaluator
+  nameWithType: Evaluator
+  fullName: Reportman.Reporting.Evaluator
+- uid: Reportman.Reporting.EvalIdentifier.#ctor*
+  commentId: Overload:Reportman.Reporting.EvalIdentifier.#ctor
+  isExternal: true
+  href: Reportman.Reporting.EvalIdentifier.html#Reportman_Reporting_EvalIdentifier__ctor_Reportman_Reporting_Evaluator_
+  name: EvalIdentifier
+  nameWithType: EvalIdentifier.EvalIdentifier
+  fullName: Reportman.Reporting.EvalIdentifier.EvalIdentifier
+  nameWithType.vb: EvalIdentifier.New
+  fullName.vb: Reportman.Reporting.EvalIdentifier.New
+  name.vb: New
+- uid: Reportman.Reporting.EvalIdentifier.GetValue*
+  commentId: Overload:Reportman.Reporting.EvalIdentifier.GetValue
+  isExternal: true
+  href: Reportman.Reporting.EvalIdentifier.html#Reportman_Reporting_EvalIdentifier_GetValue
+  name: GetValue
+  nameWithType: EvalIdentifier.GetValue
+  fullName: Reportman.Reporting.EvalIdentifier.GetValue
+- uid: Reportman.Reporting.Variant
+  commentId: T:Reportman.Reporting.Variant
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.Variant.html
+  name: Variant
+  nameWithType: Variant
+  fullName: Reportman.Reporting.Variant
+- uid: Reportman.Reporting.EvalIdentifier.SetValue*
+  commentId: Overload:Reportman.Reporting.EvalIdentifier.SetValue
+  isExternal: true
+  href: Reportman.Reporting.EvalIdentifier.html#Reportman_Reporting_EvalIdentifier_SetValue_Reportman_Reporting_Variant_
+  name: SetValue
+  nameWithType: EvalIdentifier.SetValue
+  fullName: Reportman.Reporting.EvalIdentifier.SetValue
+- uid: Reportman.Reporting.EvalIdentifier.Model*
+  commentId: Overload:Reportman.Reporting.EvalIdentifier.Model
+  isExternal: true
+  href: Reportman.Reporting.EvalIdentifier.html#Reportman_Reporting_EvalIdentifier_Model
+  name: Model
+  nameWithType: EvalIdentifier.Model
+  fullName: Reportman.Reporting.EvalIdentifier.Model
+- uid: Reportman.Reporting.EvalIdentifier.Help*
+  commentId: Overload:Reportman.Reporting.EvalIdentifier.Help
+  isExternal: true
+  href: Reportman.Reporting.EvalIdentifier.html#Reportman_Reporting_EvalIdentifier_Help
+  name: Help
+  nameWithType: EvalIdentifier.Help
+  fullName: Reportman.Reporting.EvalIdentifier.Help
+- uid: Reportman.Reporting.EvalIdentifier.Value*
+  commentId: Overload:Reportman.Reporting.EvalIdentifier.Value
+  isExternal: true
+  href: Reportman.Reporting.EvalIdentifier.html#Reportman_Reporting_EvalIdentifier_Value
+  name: Value
+  nameWithType: EvalIdentifier.Value
+  fullName: Reportman.Reporting.EvalIdentifier.Value

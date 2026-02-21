@@ -1,0 +1,2071 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.ReportItems
+  commentId: T:Reportman.Reporting.ReportItems
+  id: ReportItems
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.ReportItems.#ctor
+  - Reportman.Reporting.ReportItems.GetEnumerator
+  - Reportman.Reporting.ReportItems.Item(System.Int32)
+  langs:
+  - csharp
+  - vb
+  name: ReportItems
+  nameWithType: ReportItems
+  fullName: Reportman.Reporting.ReportItems
+  type: Class
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Collections of ReportItems
+  example: []
+  syntax:
+    content: 'public class ReportItems : SortedList<string, ReportItem>, IDictionary<string, ReportItem>, ICollection<KeyValuePair<string, ReportItem>>, IDictionary, ICollection, IReadOnlyDictionary<string, ReportItem>, IReadOnlyCollection<KeyValuePair<string, ReportItem>>, IEnumerable<KeyValuePair<string, ReportItem>>, IEnumerable'
+    content.vb: Public Class ReportItems Inherits SortedList(Of String, ReportItem) Implements IDictionary(Of String, ReportItem), ICollection(Of KeyValuePair(Of String, ReportItem)), IDictionary, ICollection, IReadOnlyDictionary(Of String, ReportItem), IReadOnlyCollection(Of KeyValuePair(Of String, ReportItem)), IEnumerable(Of KeyValuePair(Of String, ReportItem)), IEnumerable
+  inheritance:
+  - System.Object
+  - System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}
+  implements:
+  - System.Collections.Generic.IDictionary{System.String,Reportman.Reporting.ReportItem}
+  - System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,Reportman.Reporting.ReportItem}}
+  - System.Collections.IDictionary
+  - System.Collections.ICollection
+  - System.Collections.Generic.IReadOnlyDictionary{System.String,Reportman.Reporting.ReportItem}
+  - System.Collections.Generic.IReadOnlyCollection{System.Collections.Generic.KeyValuePair{System.String,Reportman.Reporting.ReportItem}}
+  - System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,Reportman.Reporting.ReportItem}}
+  - System.Collections.IEnumerable
+  inheritedMembers:
+  - System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Add(System.String,Reportman.Reporting.ReportItem)
+  - System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Clear
+  - System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.ContainsKey(System.String)
+  - System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.ContainsValue(Reportman.Reporting.ReportItem)
+  - System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.GetValueAtIndex(System.Int32)
+  - System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.SetValueAtIndex(System.Int32,Reportman.Reporting.ReportItem)
+  - System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.GetEnumerator
+  - System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.GetKeyAtIndex(System.Int32)
+  - System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.IndexOfKey(System.String)
+  - System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.IndexOfValue(Reportman.Reporting.ReportItem)
+  - System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.TryGetValue(System.String,Reportman.Reporting.ReportItem@)
+  - System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.RemoveAt(System.Int32)
+  - System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Remove(System.String)
+  - System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.TrimExcess
+  - System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Capacity
+  - System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Comparer
+  - System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Count
+  - System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Keys
+  - System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Values
+  - System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Item(System.String)
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Reporting.ReportItems.GetEnumerator
+  commentId: M:Reportman.Reporting.ReportItems.GetEnumerator
+  id: GetEnumerator
+  parent: Reportman.Reporting.ReportItems
+  langs:
+  - csharp
+  - vb
+  name: GetEnumerator()
+  nameWithType: ReportItems.GetEnumerator()
+  fullName: Reportman.Reporting.ReportItems.GetEnumerator()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    IEnumerable Interface Implementation:
+      Declaration of the GetEnumerator() method 
+      required by IEnumerable
+  example: []
+  syntax:
+    content: public IEnumerator GetEnumerator()
+    return:
+      type: System.Collections.IEnumerator
+      description: ''
+    content.vb: Public Function GetEnumerator() As IEnumerator
+  overload: Reportman.Reporting.ReportItems.GetEnumerator*
+- uid: Reportman.Reporting.ReportItems.#ctor
+  commentId: M:Reportman.Reporting.ReportItems.#ctor
+  id: '#ctor'
+  parent: Reportman.Reporting.ReportItems
+  langs:
+  - csharp
+  - vb
+  name: ReportItems()
+  nameWithType: ReportItems.ReportItems()
+  fullName: Reportman.Reporting.ReportItems.ReportItems()
+  type: Constructor
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public ReportItems()
+    content.vb: Public Sub New()
+  overload: Reportman.Reporting.ReportItems.#ctor*
+  nameWithType.vb: ReportItems.New()
+  fullName.vb: Reportman.Reporting.ReportItems.New()
+  name.vb: New()
+- uid: Reportman.Reporting.ReportItems.Item(System.Int32)
+  commentId: P:Reportman.Reporting.ReportItems.Item(System.Int32)
+  id: Item(System.Int32)
+  parent: Reportman.Reporting.ReportItems
+  langs:
+  - csharp
+  - vb
+  name: this[int]
+  nameWithType: ReportItems.this[int]
+  fullName: Reportman.Reporting.ReportItems.this[int]
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Returns the report component by index
+  example: []
+  syntax:
+    content: public ReportItem this[int index] { get; set; }
+    parameters:
+    - id: index
+      type: System.Int32
+      description: ''
+    return:
+      type: Reportman.Reporting.ReportItem
+      description: ''
+    content.vb: Public Default Property this[](index As Integer) As ReportItem
+  overload: Reportman.Reporting.ReportItems.Item*
+  nameWithType.vb: ReportItems.this[](Integer)
+  fullName.vb: Reportman.Reporting.ReportItems.this[](Integer)
+  name.vb: this[](Integer)
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}
+  commentId: T:System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.SortedList`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  name: SortedList<string, ReportItem>
+  nameWithType: SortedList<string, ReportItem>
+  fullName: System.Collections.Generic.SortedList<string, Reportman.Reporting.ReportItem>
+  nameWithType.vb: SortedList(Of String, ReportItem)
+  fullName.vb: System.Collections.Generic.SortedList(Of String, Reportman.Reporting.ReportItem)
+  name.vb: SortedList(Of String, ReportItem)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: )
+- uid: System.Collections.Generic.IDictionary{System.String,Reportman.Reporting.ReportItem}
+  commentId: T:System.Collections.Generic.IDictionary{System.String,Reportman.Reporting.ReportItem}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IDictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  name: IDictionary<string, ReportItem>
+  nameWithType: IDictionary<string, ReportItem>
+  fullName: System.Collections.Generic.IDictionary<string, Reportman.Reporting.ReportItem>
+  nameWithType.vb: IDictionary(Of String, ReportItem)
+  fullName.vb: System.Collections.Generic.IDictionary(Of String, Reportman.Reporting.ReportItem)
+  name.vb: IDictionary(Of String, ReportItem)
+  spec.csharp:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: )
+- uid: System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,Reportman.Reporting.ReportItem}}
+  commentId: T:System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,Reportman.Reporting.ReportItem}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.ICollection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  name: ICollection<KeyValuePair<string, ReportItem>>
+  nameWithType: ICollection<KeyValuePair<string, ReportItem>>
+  fullName: System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<string, Reportman.Reporting.ReportItem>>
+  nameWithType.vb: ICollection(Of KeyValuePair(Of String, ReportItem))
+  fullName.vb: System.Collections.Generic.ICollection(Of System.Collections.Generic.KeyValuePair(Of String, Reportman.Reporting.ReportItem))
+  name.vb: ICollection(Of KeyValuePair(Of String, ReportItem))
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: )
+  - name: )
+- uid: System.Collections.IDictionary
+  commentId: T:System.Collections.IDictionary
+  parent: System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.idictionary
+  name: IDictionary
+  nameWithType: IDictionary
+  fullName: System.Collections.IDictionary
+- uid: System.Collections.ICollection
+  commentId: T:System.Collections.ICollection
+  parent: System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.icollection
+  name: ICollection
+  nameWithType: ICollection
+  fullName: System.Collections.ICollection
+- uid: System.Collections.Generic.IReadOnlyDictionary{System.String,Reportman.Reporting.ReportItem}
+  commentId: T:System.Collections.Generic.IReadOnlyDictionary{System.String,Reportman.Reporting.ReportItem}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyDictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  name: IReadOnlyDictionary<string, ReportItem>
+  nameWithType: IReadOnlyDictionary<string, ReportItem>
+  fullName: System.Collections.Generic.IReadOnlyDictionary<string, Reportman.Reporting.ReportItem>
+  nameWithType.vb: IReadOnlyDictionary(Of String, ReportItem)
+  fullName.vb: System.Collections.Generic.IReadOnlyDictionary(Of String, Reportman.Reporting.ReportItem)
+  name.vb: IReadOnlyDictionary(Of String, ReportItem)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyCollection{System.Collections.Generic.KeyValuePair{System.String,Reportman.Reporting.ReportItem}}
+  commentId: T:System.Collections.Generic.IReadOnlyCollection{System.Collections.Generic.KeyValuePair{System.String,Reportman.Reporting.ReportItem}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyCollection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1
+  name: IReadOnlyCollection<KeyValuePair<string, ReportItem>>
+  nameWithType: IReadOnlyCollection<KeyValuePair<string, ReportItem>>
+  fullName: System.Collections.Generic.IReadOnlyCollection<System.Collections.Generic.KeyValuePair<string, Reportman.Reporting.ReportItem>>
+  nameWithType.vb: IReadOnlyCollection(Of KeyValuePair(Of String, ReportItem))
+  fullName.vb: System.Collections.Generic.IReadOnlyCollection(Of System.Collections.Generic.KeyValuePair(Of String, Reportman.Reporting.ReportItem))
+  name.vb: IReadOnlyCollection(Of KeyValuePair(Of String, ReportItem))
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyCollection`1
+    name: IReadOnlyCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1
+  - name: <
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyCollection`1
+    name: IReadOnlyCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,Reportman.Reporting.ReportItem}}
+  commentId: T:System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,Reportman.Reporting.ReportItem}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<KeyValuePair<string, ReportItem>>
+  nameWithType: IEnumerable<KeyValuePair<string, ReportItem>>
+  fullName: System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string, Reportman.Reporting.ReportItem>>
+  nameWithType.vb: IEnumerable(Of KeyValuePair(Of String, ReportItem))
+  fullName.vb: System.Collections.Generic.IEnumerable(Of System.Collections.Generic.KeyValuePair(Of String, Reportman.Reporting.ReportItem))
+  name.vb: IEnumerable(Of KeyValuePair(Of String, ReportItem))
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: )
+  - name: )
+- uid: System.Collections.IEnumerable
+  commentId: T:System.Collections.IEnumerable
+  parent: System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ienumerable
+  name: IEnumerable
+  nameWithType: IEnumerable
+  fullName: System.Collections.IEnumerable
+- uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Add(System.String,Reportman.Reporting.ReportItem)
+  commentId: M:System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Add(System.String,Reportman.Reporting.ReportItem)
+  parent: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}
+  definition: System.Collections.Generic.SortedList`2.Add(`0,`1)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.add
+  name: Add(string, ReportItem)
+  nameWithType: SortedList<string, ReportItem>.Add(string, ReportItem)
+  fullName: System.Collections.Generic.SortedList<string, Reportman.Reporting.ReportItem>.Add(string, Reportman.Reporting.ReportItem)
+  nameWithType.vb: SortedList(Of String, ReportItem).Add(String, ReportItem)
+  fullName.vb: System.Collections.Generic.SortedList(Of String, Reportman.Reporting.ReportItem).Add(String, Reportman.Reporting.ReportItem)
+  name.vb: Add(String, ReportItem)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Add(System.String,Reportman.Reporting.ReportItem)
+    name: Add
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.add
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Add(System.String,Reportman.Reporting.ReportItem)
+    name: Add
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.add
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: )
+- uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Clear
+  commentId: M:System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Clear
+  parent: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}
+  definition: System.Collections.Generic.SortedList`2.Clear
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.clear
+  name: Clear()
+  nameWithType: SortedList<string, ReportItem>.Clear()
+  fullName: System.Collections.Generic.SortedList<string, Reportman.Reporting.ReportItem>.Clear()
+  nameWithType.vb: SortedList(Of String, ReportItem).Clear()
+  fullName.vb: System.Collections.Generic.SortedList(Of String, Reportman.Reporting.ReportItem).Clear()
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Clear
+    name: Clear
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.clear
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Clear
+    name: Clear
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.clear
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.ContainsKey(System.String)
+  commentId: M:System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.ContainsKey(System.String)
+  parent: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}
+  definition: System.Collections.Generic.SortedList`2.ContainsKey(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.containskey
+  name: ContainsKey(string)
+  nameWithType: SortedList<string, ReportItem>.ContainsKey(string)
+  fullName: System.Collections.Generic.SortedList<string, Reportman.Reporting.ReportItem>.ContainsKey(string)
+  nameWithType.vb: SortedList(Of String, ReportItem).ContainsKey(String)
+  fullName.vb: System.Collections.Generic.SortedList(Of String, Reportman.Reporting.ReportItem).ContainsKey(String)
+  name.vb: ContainsKey(String)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.ContainsKey(System.String)
+    name: ContainsKey
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.containskey
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.ContainsKey(System.String)
+    name: ContainsKey
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.containskey
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.ContainsValue(Reportman.Reporting.ReportItem)
+  commentId: M:System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.ContainsValue(Reportman.Reporting.ReportItem)
+  parent: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}
+  definition: System.Collections.Generic.SortedList`2.ContainsValue(`1)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.containsvalue
+  name: ContainsValue(ReportItem)
+  nameWithType: SortedList<string, ReportItem>.ContainsValue(ReportItem)
+  fullName: System.Collections.Generic.SortedList<string, Reportman.Reporting.ReportItem>.ContainsValue(Reportman.Reporting.ReportItem)
+  nameWithType.vb: SortedList(Of String, ReportItem).ContainsValue(ReportItem)
+  fullName.vb: System.Collections.Generic.SortedList(Of String, Reportman.Reporting.ReportItem).ContainsValue(Reportman.Reporting.ReportItem)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.ContainsValue(Reportman.Reporting.ReportItem)
+    name: ContainsValue
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.containsvalue
+  - name: (
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.ContainsValue(Reportman.Reporting.ReportItem)
+    name: ContainsValue
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.containsvalue
+  - name: (
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: )
+- uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.GetValueAtIndex(System.Int32)
+  commentId: M:System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.GetValueAtIndex(System.Int32)
+  parent: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}
+  definition: System.Collections.Generic.SortedList`2.GetValueAtIndex(System.Int32)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.getvalueatindex
+  name: GetValueAtIndex(int)
+  nameWithType: SortedList<string, ReportItem>.GetValueAtIndex(int)
+  fullName: System.Collections.Generic.SortedList<string, Reportman.Reporting.ReportItem>.GetValueAtIndex(int)
+  nameWithType.vb: SortedList(Of String, ReportItem).GetValueAtIndex(Integer)
+  fullName.vb: System.Collections.Generic.SortedList(Of String, Reportman.Reporting.ReportItem).GetValueAtIndex(Integer)
+  name.vb: GetValueAtIndex(Integer)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.GetValueAtIndex(System.Int32)
+    name: GetValueAtIndex
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.getvalueatindex
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.GetValueAtIndex(System.Int32)
+    name: GetValueAtIndex
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.getvalueatindex
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.SetValueAtIndex(System.Int32,Reportman.Reporting.ReportItem)
+  commentId: M:System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.SetValueAtIndex(System.Int32,Reportman.Reporting.ReportItem)
+  parent: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}
+  definition: System.Collections.Generic.SortedList`2.SetValueAtIndex(System.Int32,`1)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.setvalueatindex
+  name: SetValueAtIndex(int, ReportItem)
+  nameWithType: SortedList<string, ReportItem>.SetValueAtIndex(int, ReportItem)
+  fullName: System.Collections.Generic.SortedList<string, Reportman.Reporting.ReportItem>.SetValueAtIndex(int, Reportman.Reporting.ReportItem)
+  nameWithType.vb: SortedList(Of String, ReportItem).SetValueAtIndex(Integer, ReportItem)
+  fullName.vb: System.Collections.Generic.SortedList(Of String, Reportman.Reporting.ReportItem).SetValueAtIndex(Integer, Reportman.Reporting.ReportItem)
+  name.vb: SetValueAtIndex(Integer, ReportItem)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.SetValueAtIndex(System.Int32,Reportman.Reporting.ReportItem)
+    name: SetValueAtIndex
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.setvalueatindex
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.SetValueAtIndex(System.Int32,Reportman.Reporting.ReportItem)
+    name: SetValueAtIndex
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.setvalueatindex
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: )
+- uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.GetEnumerator
+  commentId: M:System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.GetEnumerator
+  parent: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}
+  definition: System.Collections.Generic.SortedList`2.GetEnumerator
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.getenumerator
+  name: GetEnumerator()
+  nameWithType: SortedList<string, ReportItem>.GetEnumerator()
+  fullName: System.Collections.Generic.SortedList<string, Reportman.Reporting.ReportItem>.GetEnumerator()
+  nameWithType.vb: SortedList(Of String, ReportItem).GetEnumerator()
+  fullName.vb: System.Collections.Generic.SortedList(Of String, Reportman.Reporting.ReportItem).GetEnumerator()
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.getenumerator
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.getenumerator
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.GetKeyAtIndex(System.Int32)
+  commentId: M:System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.GetKeyAtIndex(System.Int32)
+  parent: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}
+  definition: System.Collections.Generic.SortedList`2.GetKeyAtIndex(System.Int32)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.getkeyatindex
+  name: GetKeyAtIndex(int)
+  nameWithType: SortedList<string, ReportItem>.GetKeyAtIndex(int)
+  fullName: System.Collections.Generic.SortedList<string, Reportman.Reporting.ReportItem>.GetKeyAtIndex(int)
+  nameWithType.vb: SortedList(Of String, ReportItem).GetKeyAtIndex(Integer)
+  fullName.vb: System.Collections.Generic.SortedList(Of String, Reportman.Reporting.ReportItem).GetKeyAtIndex(Integer)
+  name.vb: GetKeyAtIndex(Integer)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.GetKeyAtIndex(System.Int32)
+    name: GetKeyAtIndex
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.getkeyatindex
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.GetKeyAtIndex(System.Int32)
+    name: GetKeyAtIndex
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.getkeyatindex
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.IndexOfKey(System.String)
+  commentId: M:System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.IndexOfKey(System.String)
+  parent: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}
+  definition: System.Collections.Generic.SortedList`2.IndexOfKey(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.indexofkey
+  name: IndexOfKey(string)
+  nameWithType: SortedList<string, ReportItem>.IndexOfKey(string)
+  fullName: System.Collections.Generic.SortedList<string, Reportman.Reporting.ReportItem>.IndexOfKey(string)
+  nameWithType.vb: SortedList(Of String, ReportItem).IndexOfKey(String)
+  fullName.vb: System.Collections.Generic.SortedList(Of String, Reportman.Reporting.ReportItem).IndexOfKey(String)
+  name.vb: IndexOfKey(String)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.IndexOfKey(System.String)
+    name: IndexOfKey
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.indexofkey
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.IndexOfKey(System.String)
+    name: IndexOfKey
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.indexofkey
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.IndexOfValue(Reportman.Reporting.ReportItem)
+  commentId: M:System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.IndexOfValue(Reportman.Reporting.ReportItem)
+  parent: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}
+  definition: System.Collections.Generic.SortedList`2.IndexOfValue(`1)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.indexofvalue
+  name: IndexOfValue(ReportItem)
+  nameWithType: SortedList<string, ReportItem>.IndexOfValue(ReportItem)
+  fullName: System.Collections.Generic.SortedList<string, Reportman.Reporting.ReportItem>.IndexOfValue(Reportman.Reporting.ReportItem)
+  nameWithType.vb: SortedList(Of String, ReportItem).IndexOfValue(ReportItem)
+  fullName.vb: System.Collections.Generic.SortedList(Of String, Reportman.Reporting.ReportItem).IndexOfValue(Reportman.Reporting.ReportItem)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.IndexOfValue(Reportman.Reporting.ReportItem)
+    name: IndexOfValue
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.indexofvalue
+  - name: (
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.IndexOfValue(Reportman.Reporting.ReportItem)
+    name: IndexOfValue
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.indexofvalue
+  - name: (
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: )
+- uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.TryGetValue(System.String,Reportman.Reporting.ReportItem@)
+  commentId: M:System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.TryGetValue(System.String,Reportman.Reporting.ReportItem@)
+  parent: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}
+  definition: System.Collections.Generic.SortedList`2.TryGetValue(`0,`1@)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.trygetvalue
+  name: TryGetValue(string, out ReportItem)
+  nameWithType: SortedList<string, ReportItem>.TryGetValue(string, out ReportItem)
+  fullName: System.Collections.Generic.SortedList<string, Reportman.Reporting.ReportItem>.TryGetValue(string, out Reportman.Reporting.ReportItem)
+  nameWithType.vb: SortedList(Of String, ReportItem).TryGetValue(String, ReportItem)
+  fullName.vb: System.Collections.Generic.SortedList(Of String, Reportman.Reporting.ReportItem).TryGetValue(String, Reportman.Reporting.ReportItem)
+  name.vb: TryGetValue(String, ReportItem)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.TryGetValue(System.String,Reportman.Reporting.ReportItem@)
+    name: TryGetValue
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.trygetvalue
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: out
+  - name: " "
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.TryGetValue(System.String,Reportman.Reporting.ReportItem@)
+    name: TryGetValue
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.trygetvalue
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: )
+- uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.RemoveAt(System.Int32)
+  commentId: M:System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.RemoveAt(System.Int32)
+  parent: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}
+  definition: System.Collections.Generic.SortedList`2.RemoveAt(System.Int32)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.removeat
+  name: RemoveAt(int)
+  nameWithType: SortedList<string, ReportItem>.RemoveAt(int)
+  fullName: System.Collections.Generic.SortedList<string, Reportman.Reporting.ReportItem>.RemoveAt(int)
+  nameWithType.vb: SortedList(Of String, ReportItem).RemoveAt(Integer)
+  fullName.vb: System.Collections.Generic.SortedList(Of String, Reportman.Reporting.ReportItem).RemoveAt(Integer)
+  name.vb: RemoveAt(Integer)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.RemoveAt(System.Int32)
+    name: RemoveAt
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.removeat
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.RemoveAt(System.Int32)
+    name: RemoveAt
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.removeat
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Remove(System.String)
+  commentId: M:System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Remove(System.String)
+  parent: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}
+  definition: System.Collections.Generic.SortedList`2.Remove(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.remove
+  name: Remove(string)
+  nameWithType: SortedList<string, ReportItem>.Remove(string)
+  fullName: System.Collections.Generic.SortedList<string, Reportman.Reporting.ReportItem>.Remove(string)
+  nameWithType.vb: SortedList(Of String, ReportItem).Remove(String)
+  fullName.vb: System.Collections.Generic.SortedList(Of String, Reportman.Reporting.ReportItem).Remove(String)
+  name.vb: Remove(String)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Remove(System.String)
+    name: Remove
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.remove
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Remove(System.String)
+    name: Remove
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.remove
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.TrimExcess
+  commentId: M:System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.TrimExcess
+  parent: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}
+  definition: System.Collections.Generic.SortedList`2.TrimExcess
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.trimexcess
+  name: TrimExcess()
+  nameWithType: SortedList<string, ReportItem>.TrimExcess()
+  fullName: System.Collections.Generic.SortedList<string, Reportman.Reporting.ReportItem>.TrimExcess()
+  nameWithType.vb: SortedList(Of String, ReportItem).TrimExcess()
+  fullName.vb: System.Collections.Generic.SortedList(Of String, Reportman.Reporting.ReportItem).TrimExcess()
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.TrimExcess
+    name: TrimExcess
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.trimexcess
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.TrimExcess
+    name: TrimExcess
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.trimexcess
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Capacity
+  commentId: P:System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Capacity
+  parent: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}
+  definition: System.Collections.Generic.SortedList`2.Capacity
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.capacity
+  name: Capacity
+  nameWithType: SortedList<string, ReportItem>.Capacity
+  fullName: System.Collections.Generic.SortedList<string, Reportman.Reporting.ReportItem>.Capacity
+  nameWithType.vb: SortedList(Of String, ReportItem).Capacity
+  fullName.vb: System.Collections.Generic.SortedList(Of String, Reportman.Reporting.ReportItem).Capacity
+- uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Comparer
+  commentId: P:System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Comparer
+  parent: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}
+  definition: System.Collections.Generic.SortedList`2.Comparer
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.comparer
+  name: Comparer
+  nameWithType: SortedList<string, ReportItem>.Comparer
+  fullName: System.Collections.Generic.SortedList<string, Reportman.Reporting.ReportItem>.Comparer
+  nameWithType.vb: SortedList(Of String, ReportItem).Comparer
+  fullName.vb: System.Collections.Generic.SortedList(Of String, Reportman.Reporting.ReportItem).Comparer
+- uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Count
+  commentId: P:System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Count
+  parent: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}
+  definition: System.Collections.Generic.SortedList`2.Count
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.count
+  name: Count
+  nameWithType: SortedList<string, ReportItem>.Count
+  fullName: System.Collections.Generic.SortedList<string, Reportman.Reporting.ReportItem>.Count
+  nameWithType.vb: SortedList(Of String, ReportItem).Count
+  fullName.vb: System.Collections.Generic.SortedList(Of String, Reportman.Reporting.ReportItem).Count
+- uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Keys
+  commentId: P:System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Keys
+  parent: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}
+  definition: System.Collections.Generic.SortedList`2.Keys
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.keys
+  name: Keys
+  nameWithType: SortedList<string, ReportItem>.Keys
+  fullName: System.Collections.Generic.SortedList<string, Reportman.Reporting.ReportItem>.Keys
+  nameWithType.vb: SortedList(Of String, ReportItem).Keys
+  fullName.vb: System.Collections.Generic.SortedList(Of String, Reportman.Reporting.ReportItem).Keys
+- uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Values
+  commentId: P:System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Values
+  parent: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}
+  definition: System.Collections.Generic.SortedList`2.Values
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.values
+  name: Values
+  nameWithType: SortedList<string, ReportItem>.Values
+  fullName: System.Collections.Generic.SortedList<string, Reportman.Reporting.ReportItem>.Values
+  nameWithType.vb: SortedList(Of String, ReportItem).Values
+  fullName.vb: System.Collections.Generic.SortedList(Of String, Reportman.Reporting.ReportItem).Values
+- uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Item(System.String)
+  commentId: P:System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Item(System.String)
+  parent: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}
+  definition: System.Collections.Generic.SortedList`2.Item(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: this[string]
+  nameWithType: SortedList<string, ReportItem>.this[string]
+  fullName: System.Collections.Generic.SortedList<string, Reportman.Reporting.ReportItem>.this[string]
+  nameWithType.vb: SortedList(Of String, ReportItem).this[](String)
+  fullName.vb: System.Collections.Generic.SortedList(Of String, Reportman.Reporting.ReportItem).this[](String)
+  name.vb: this[](String)
+  spec.csharp:
+  - name: this
+  - name: '['
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ']'
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList{System.String,Reportman.Reporting.ReportItem}.Item(System.String)
+    name: this[]
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.item
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Collections.Generic.SortedList`2
+  commentId: T:System.Collections.Generic.SortedList`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  name: SortedList<TKey, TValue>
+  nameWithType: SortedList<TKey, TValue>
+  fullName: System.Collections.Generic.SortedList<TKey, TValue>
+  nameWithType.vb: SortedList(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.SortedList(Of TKey, TValue)
+  name.vb: SortedList(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.Collections.Generic.IDictionary`2
+  commentId: T:System.Collections.Generic.IDictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  name: IDictionary<TKey, TValue>
+  nameWithType: IDictionary<TKey, TValue>
+  fullName: System.Collections.Generic.IDictionary<TKey, TValue>
+  nameWithType.vb: IDictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.IDictionary(Of TKey, TValue)
+  name.vb: IDictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic.ICollection`1
+  commentId: T:System.Collections.Generic.ICollection`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  name: ICollection<T>
+  nameWithType: ICollection<T>
+  fullName: System.Collections.Generic.ICollection<T>
+  nameWithType.vb: ICollection(Of T)
+  fullName.vb: System.Collections.Generic.ICollection(Of T)
+  name.vb: ICollection(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections
+  commentId: N:System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections
+  nameWithType: System.Collections
+  fullName: System.Collections
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+- uid: System.Collections.Generic.IReadOnlyDictionary`2
+  commentId: T:System.Collections.Generic.IReadOnlyDictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  name: IReadOnlyDictionary<TKey, TValue>
+  nameWithType: IReadOnlyDictionary<TKey, TValue>
+  fullName: System.Collections.Generic.IReadOnlyDictionary<TKey, TValue>
+  nameWithType.vb: IReadOnlyDictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.IReadOnlyDictionary(Of TKey, TValue)
+  name.vb: IReadOnlyDictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyDictionary`2
+    name: IReadOnlyDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyCollection`1
+  commentId: T:System.Collections.Generic.IReadOnlyCollection`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1
+  name: IReadOnlyCollection<T>
+  nameWithType: IReadOnlyCollection<T>
+  fullName: System.Collections.Generic.IReadOnlyCollection<T>
+  nameWithType.vb: IReadOnlyCollection(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyCollection(Of T)
+  name.vb: IReadOnlyCollection(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyCollection`1
+    name: IReadOnlyCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyCollection`1
+    name: IReadOnlyCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic.SortedList`2.Add(`0,`1)
+  commentId: M:System.Collections.Generic.SortedList`2.Add(`0,`1)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.add
+  name: Add(TKey, TValue)
+  nameWithType: SortedList<TKey, TValue>.Add(TKey, TValue)
+  fullName: System.Collections.Generic.SortedList<TKey, TValue>.Add(TKey, TValue)
+  nameWithType.vb: SortedList(Of TKey, TValue).Add(TKey, TValue)
+  fullName.vb: System.Collections.Generic.SortedList(Of TKey, TValue).Add(TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList`2.Add(`0,`1)
+    name: Add
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.add
+  - name: (
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList`2.Add(`0,`1)
+    name: Add
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.add
+  - name: (
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic.SortedList`2.Clear
+  commentId: M:System.Collections.Generic.SortedList`2.Clear
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.clear
+  name: Clear()
+  nameWithType: SortedList<TKey, TValue>.Clear()
+  fullName: System.Collections.Generic.SortedList<TKey, TValue>.Clear()
+  nameWithType.vb: SortedList(Of TKey, TValue).Clear()
+  fullName.vb: System.Collections.Generic.SortedList(Of TKey, TValue).Clear()
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList`2.Clear
+    name: Clear
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.clear
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList`2.Clear
+    name: Clear
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.clear
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.SortedList`2.ContainsKey(`0)
+  commentId: M:System.Collections.Generic.SortedList`2.ContainsKey(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.containskey
+  name: ContainsKey(TKey)
+  nameWithType: SortedList<TKey, TValue>.ContainsKey(TKey)
+  fullName: System.Collections.Generic.SortedList<TKey, TValue>.ContainsKey(TKey)
+  nameWithType.vb: SortedList(Of TKey, TValue).ContainsKey(TKey)
+  fullName.vb: System.Collections.Generic.SortedList(Of TKey, TValue).ContainsKey(TKey)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList`2.ContainsKey(`0)
+    name: ContainsKey
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.containskey
+  - name: (
+  - name: TKey
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList`2.ContainsKey(`0)
+    name: ContainsKey
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.containskey
+  - name: (
+  - name: TKey
+  - name: )
+- uid: System.Collections.Generic.SortedList`2.ContainsValue(`1)
+  commentId: M:System.Collections.Generic.SortedList`2.ContainsValue(`1)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.containsvalue
+  name: ContainsValue(TValue)
+  nameWithType: SortedList<TKey, TValue>.ContainsValue(TValue)
+  fullName: System.Collections.Generic.SortedList<TKey, TValue>.ContainsValue(TValue)
+  nameWithType.vb: SortedList(Of TKey, TValue).ContainsValue(TValue)
+  fullName.vb: System.Collections.Generic.SortedList(Of TKey, TValue).ContainsValue(TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList`2.ContainsValue(`1)
+    name: ContainsValue
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.containsvalue
+  - name: (
+  - name: TValue
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList`2.ContainsValue(`1)
+    name: ContainsValue
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.containsvalue
+  - name: (
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic.SortedList`2.GetValueAtIndex(System.Int32)
+  commentId: M:System.Collections.Generic.SortedList`2.GetValueAtIndex(System.Int32)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.getvalueatindex
+  name: GetValueAtIndex(int)
+  nameWithType: SortedList<TKey, TValue>.GetValueAtIndex(int)
+  fullName: System.Collections.Generic.SortedList<TKey, TValue>.GetValueAtIndex(int)
+  nameWithType.vb: SortedList(Of TKey, TValue).GetValueAtIndex(Integer)
+  fullName.vb: System.Collections.Generic.SortedList(Of TKey, TValue).GetValueAtIndex(Integer)
+  name.vb: GetValueAtIndex(Integer)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList`2.GetValueAtIndex(System.Int32)
+    name: GetValueAtIndex
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.getvalueatindex
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList`2.GetValueAtIndex(System.Int32)
+    name: GetValueAtIndex
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.getvalueatindex
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Collections.Generic.SortedList`2.SetValueAtIndex(System.Int32,`1)
+  commentId: M:System.Collections.Generic.SortedList`2.SetValueAtIndex(System.Int32,`1)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.setvalueatindex
+  name: SetValueAtIndex(int, TValue)
+  nameWithType: SortedList<TKey, TValue>.SetValueAtIndex(int, TValue)
+  fullName: System.Collections.Generic.SortedList<TKey, TValue>.SetValueAtIndex(int, TValue)
+  nameWithType.vb: SortedList(Of TKey, TValue).SetValueAtIndex(Integer, TValue)
+  fullName.vb: System.Collections.Generic.SortedList(Of TKey, TValue).SetValueAtIndex(Integer, TValue)
+  name.vb: SetValueAtIndex(Integer, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList`2.SetValueAtIndex(System.Int32,`1)
+    name: SetValueAtIndex
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.setvalueatindex
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList`2.SetValueAtIndex(System.Int32,`1)
+    name: SetValueAtIndex
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.setvalueatindex
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic.SortedList`2.GetEnumerator
+  commentId: M:System.Collections.Generic.SortedList`2.GetEnumerator
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.getenumerator
+  name: GetEnumerator()
+  nameWithType: SortedList<TKey, TValue>.GetEnumerator()
+  fullName: System.Collections.Generic.SortedList<TKey, TValue>.GetEnumerator()
+  nameWithType.vb: SortedList(Of TKey, TValue).GetEnumerator()
+  fullName.vb: System.Collections.Generic.SortedList(Of TKey, TValue).GetEnumerator()
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList`2.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.getenumerator
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList`2.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.getenumerator
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.SortedList`2.GetKeyAtIndex(System.Int32)
+  commentId: M:System.Collections.Generic.SortedList`2.GetKeyAtIndex(System.Int32)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.getkeyatindex
+  name: GetKeyAtIndex(int)
+  nameWithType: SortedList<TKey, TValue>.GetKeyAtIndex(int)
+  fullName: System.Collections.Generic.SortedList<TKey, TValue>.GetKeyAtIndex(int)
+  nameWithType.vb: SortedList(Of TKey, TValue).GetKeyAtIndex(Integer)
+  fullName.vb: System.Collections.Generic.SortedList(Of TKey, TValue).GetKeyAtIndex(Integer)
+  name.vb: GetKeyAtIndex(Integer)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList`2.GetKeyAtIndex(System.Int32)
+    name: GetKeyAtIndex
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.getkeyatindex
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList`2.GetKeyAtIndex(System.Int32)
+    name: GetKeyAtIndex
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.getkeyatindex
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Collections.Generic.SortedList`2.IndexOfKey(`0)
+  commentId: M:System.Collections.Generic.SortedList`2.IndexOfKey(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.indexofkey
+  name: IndexOfKey(TKey)
+  nameWithType: SortedList<TKey, TValue>.IndexOfKey(TKey)
+  fullName: System.Collections.Generic.SortedList<TKey, TValue>.IndexOfKey(TKey)
+  nameWithType.vb: SortedList(Of TKey, TValue).IndexOfKey(TKey)
+  fullName.vb: System.Collections.Generic.SortedList(Of TKey, TValue).IndexOfKey(TKey)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList`2.IndexOfKey(`0)
+    name: IndexOfKey
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.indexofkey
+  - name: (
+  - name: TKey
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList`2.IndexOfKey(`0)
+    name: IndexOfKey
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.indexofkey
+  - name: (
+  - name: TKey
+  - name: )
+- uid: System.Collections.Generic.SortedList`2.IndexOfValue(`1)
+  commentId: M:System.Collections.Generic.SortedList`2.IndexOfValue(`1)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.indexofvalue
+  name: IndexOfValue(TValue)
+  nameWithType: SortedList<TKey, TValue>.IndexOfValue(TValue)
+  fullName: System.Collections.Generic.SortedList<TKey, TValue>.IndexOfValue(TValue)
+  nameWithType.vb: SortedList(Of TKey, TValue).IndexOfValue(TValue)
+  fullName.vb: System.Collections.Generic.SortedList(Of TKey, TValue).IndexOfValue(TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList`2.IndexOfValue(`1)
+    name: IndexOfValue
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.indexofvalue
+  - name: (
+  - name: TValue
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList`2.IndexOfValue(`1)
+    name: IndexOfValue
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.indexofvalue
+  - name: (
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic.SortedList`2.TryGetValue(`0,`1@)
+  commentId: M:System.Collections.Generic.SortedList`2.TryGetValue(`0,`1@)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.trygetvalue
+  name: TryGetValue(TKey, out TValue)
+  nameWithType: SortedList<TKey, TValue>.TryGetValue(TKey, out TValue)
+  fullName: System.Collections.Generic.SortedList<TKey, TValue>.TryGetValue(TKey, out TValue)
+  nameWithType.vb: SortedList(Of TKey, TValue).TryGetValue(TKey, TValue)
+  fullName.vb: System.Collections.Generic.SortedList(Of TKey, TValue).TryGetValue(TKey, TValue)
+  name.vb: TryGetValue(TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList`2.TryGetValue(`0,`1@)
+    name: TryGetValue
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.trygetvalue
+  - name: (
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: out
+  - name: " "
+  - name: TValue
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList`2.TryGetValue(`0,`1@)
+    name: TryGetValue
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.trygetvalue
+  - name: (
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic.SortedList`2.RemoveAt(System.Int32)
+  commentId: M:System.Collections.Generic.SortedList`2.RemoveAt(System.Int32)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.removeat
+  name: RemoveAt(int)
+  nameWithType: SortedList<TKey, TValue>.RemoveAt(int)
+  fullName: System.Collections.Generic.SortedList<TKey, TValue>.RemoveAt(int)
+  nameWithType.vb: SortedList(Of TKey, TValue).RemoveAt(Integer)
+  fullName.vb: System.Collections.Generic.SortedList(Of TKey, TValue).RemoveAt(Integer)
+  name.vb: RemoveAt(Integer)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList`2.RemoveAt(System.Int32)
+    name: RemoveAt
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.removeat
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList`2.RemoveAt(System.Int32)
+    name: RemoveAt
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.removeat
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Collections.Generic.SortedList`2.Remove(`0)
+  commentId: M:System.Collections.Generic.SortedList`2.Remove(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.remove
+  name: Remove(TKey)
+  nameWithType: SortedList<TKey, TValue>.Remove(TKey)
+  fullName: System.Collections.Generic.SortedList<TKey, TValue>.Remove(TKey)
+  nameWithType.vb: SortedList(Of TKey, TValue).Remove(TKey)
+  fullName.vb: System.Collections.Generic.SortedList(Of TKey, TValue).Remove(TKey)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList`2.Remove(`0)
+    name: Remove
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.remove
+  - name: (
+  - name: TKey
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList`2.Remove(`0)
+    name: Remove
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.remove
+  - name: (
+  - name: TKey
+  - name: )
+- uid: System.Collections.Generic.SortedList`2.TrimExcess
+  commentId: M:System.Collections.Generic.SortedList`2.TrimExcess
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.trimexcess
+  name: TrimExcess()
+  nameWithType: SortedList<TKey, TValue>.TrimExcess()
+  fullName: System.Collections.Generic.SortedList<TKey, TValue>.TrimExcess()
+  nameWithType.vb: SortedList(Of TKey, TValue).TrimExcess()
+  fullName.vb: System.Collections.Generic.SortedList(Of TKey, TValue).TrimExcess()
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList`2.TrimExcess
+    name: TrimExcess
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.trimexcess
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList`2.TrimExcess
+    name: TrimExcess
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.trimexcess
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.SortedList`2.Capacity
+  commentId: P:System.Collections.Generic.SortedList`2.Capacity
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.capacity
+  name: Capacity
+  nameWithType: SortedList<TKey, TValue>.Capacity
+  fullName: System.Collections.Generic.SortedList<TKey, TValue>.Capacity
+  nameWithType.vb: SortedList(Of TKey, TValue).Capacity
+  fullName.vb: System.Collections.Generic.SortedList(Of TKey, TValue).Capacity
+- uid: System.Collections.Generic.SortedList`2.Comparer
+  commentId: P:System.Collections.Generic.SortedList`2.Comparer
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.comparer
+  name: Comparer
+  nameWithType: SortedList<TKey, TValue>.Comparer
+  fullName: System.Collections.Generic.SortedList<TKey, TValue>.Comparer
+  nameWithType.vb: SortedList(Of TKey, TValue).Comparer
+  fullName.vb: System.Collections.Generic.SortedList(Of TKey, TValue).Comparer
+- uid: System.Collections.Generic.SortedList`2.Count
+  commentId: P:System.Collections.Generic.SortedList`2.Count
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.count
+  name: Count
+  nameWithType: SortedList<TKey, TValue>.Count
+  fullName: System.Collections.Generic.SortedList<TKey, TValue>.Count
+  nameWithType.vb: SortedList(Of TKey, TValue).Count
+  fullName.vb: System.Collections.Generic.SortedList(Of TKey, TValue).Count
+- uid: System.Collections.Generic.SortedList`2.Keys
+  commentId: P:System.Collections.Generic.SortedList`2.Keys
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.keys
+  name: Keys
+  nameWithType: SortedList<TKey, TValue>.Keys
+  fullName: System.Collections.Generic.SortedList<TKey, TValue>.Keys
+  nameWithType.vb: SortedList(Of TKey, TValue).Keys
+  fullName.vb: System.Collections.Generic.SortedList(Of TKey, TValue).Keys
+- uid: System.Collections.Generic.SortedList`2.Values
+  commentId: P:System.Collections.Generic.SortedList`2.Values
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.values
+  name: Values
+  nameWithType: SortedList<TKey, TValue>.Values
+  fullName: System.Collections.Generic.SortedList<TKey, TValue>.Values
+  nameWithType.vb: SortedList(Of TKey, TValue).Values
+  fullName.vb: System.Collections.Generic.SortedList(Of TKey, TValue).Values
+- uid: System.Collections.Generic.SortedList`2.Item(`0)
+  commentId: P:System.Collections.Generic.SortedList`2.Item(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.item
+  name: this[TKey]
+  nameWithType: SortedList<TKey, TValue>.this[TKey]
+  fullName: System.Collections.Generic.SortedList<TKey, TValue>.this[TKey]
+  nameWithType.vb: SortedList(Of TKey, TValue).this[](TKey)
+  fullName.vb: System.Collections.Generic.SortedList(Of TKey, TValue).this[](TKey)
+  name.vb: this[](TKey)
+  spec.csharp:
+  - name: this
+  - name: '['
+  - name: TKey
+  - name: ']'
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList`2.Item(`0)
+    name: this[]
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2.item
+  - name: (
+  - name: TKey
+  - name: )
+- uid: Reportman.Reporting.ReportItems.GetEnumerator*
+  commentId: Overload:Reportman.Reporting.ReportItems.GetEnumerator
+  isExternal: true
+  href: Reportman.Reporting.ReportItems.html#Reportman_Reporting_ReportItems_GetEnumerator
+  name: GetEnumerator
+  nameWithType: ReportItems.GetEnumerator
+  fullName: Reportman.Reporting.ReportItems.GetEnumerator
+- uid: System.Collections.IEnumerator
+  commentId: T:System.Collections.IEnumerator
+  parent: System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ienumerator
+  name: IEnumerator
+  nameWithType: IEnumerator
+  fullName: System.Collections.IEnumerator
+- uid: Reportman.Reporting.ReportItems.#ctor*
+  commentId: Overload:Reportman.Reporting.ReportItems.#ctor
+  isExternal: true
+  href: Reportman.Reporting.ReportItems.html#Reportman_Reporting_ReportItems__ctor
+  name: ReportItems
+  nameWithType: ReportItems.ReportItems
+  fullName: Reportman.Reporting.ReportItems.ReportItems
+  nameWithType.vb: ReportItems.New
+  fullName.vb: Reportman.Reporting.ReportItems.New
+  name.vb: New
+- uid: Reportman.Reporting.ReportItems.Item*
+  commentId: Overload:Reportman.Reporting.ReportItems.Item
+  isExternal: true
+  href: Reportman.Reporting.ReportItems.html#Reportman_Reporting_ReportItems_Item_System_Int32_
+  name: this
+  nameWithType: ReportItems.this
+  fullName: Reportman.Reporting.ReportItems.this
+  nameWithType.vb: ReportItems.this[]
+  fullName.vb: Reportman.Reporting.ReportItems.this[]
+  name.vb: this[]
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Reportman.Reporting.ReportItem
+  commentId: T:Reportman.Reporting.ReportItem
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html
+  name: ReportItem
+  nameWithType: ReportItem
+  fullName: Reportman.Reporting.ReportItem

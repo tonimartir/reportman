@@ -1,0 +1,649 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.TokenCalc
+  commentId: T:Reportman.Drawing.Forms.TokenCalc
+  id: TokenCalc
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.TokenCalc.#ctor(Reportman.Drawing.Forms.TokenCalc.TokenType)
+  - Reportman.Drawing.Forms.TokenCalc.DecimalFactor
+  - Reportman.Drawing.Forms.TokenCalc.IsLessThanOrEqualTo(Reportman.Drawing.Forms.TokenCalc)
+  - Reportman.Drawing.Forms.TokenCalc.IsNumber
+  - Reportman.Drawing.Forms.TokenCalc.IsOperator
+  - Reportman.Drawing.Forms.TokenCalc.IsSealed
+  - Reportman.Drawing.Forms.TokenCalc.ToString
+  - Reportman.Drawing.Forms.TokenCalc.TokenNumber
+  - Reportman.Drawing.Forms.TokenCalc.Type
+  langs:
+  - csharp
+  - vb
+  name: TokenCalc
+  nameWithType: TokenCalc
+  fullName: Reportman.Drawing.Forms.TokenCalc
+  type: Class
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public class TokenCalc
+    content.vb: Public Class TokenCalc
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.Forms.TokenCalc.#ctor(Reportman.Drawing.Forms.TokenCalc.TokenType)
+  commentId: M:Reportman.Drawing.Forms.TokenCalc.#ctor(Reportman.Drawing.Forms.TokenCalc.TokenType)
+  id: '#ctor(Reportman.Drawing.Forms.TokenCalc.TokenType)'
+  parent: Reportman.Drawing.Forms.TokenCalc
+  langs:
+  - csharp
+  - vb
+  name: TokenCalc(TokenType)
+  nameWithType: TokenCalc.TokenCalc(TokenCalc.TokenType)
+  fullName: Reportman.Drawing.Forms.TokenCalc.TokenCalc(Reportman.Drawing.Forms.TokenCalc.TokenType)
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public TokenCalc(TokenCalc.TokenType type)
+    parameters:
+    - id: type
+      type: Reportman.Drawing.Forms.TokenCalc.TokenType
+    content.vb: Public Sub New(type As TokenCalc.TokenType)
+  overload: Reportman.Drawing.Forms.TokenCalc.#ctor*
+  nameWithType.vb: TokenCalc.New(TokenCalc.TokenType)
+  fullName.vb: Reportman.Drawing.Forms.TokenCalc.New(Reportman.Drawing.Forms.TokenCalc.TokenType)
+  name.vb: New(TokenType)
+- uid: Reportman.Drawing.Forms.TokenCalc.IsOperator
+  commentId: M:Reportman.Drawing.Forms.TokenCalc.IsOperator
+  id: IsOperator
+  parent: Reportman.Drawing.Forms.TokenCalc
+  langs:
+  - csharp
+  - vb
+  name: IsOperator()
+  nameWithType: TokenCalc.IsOperator()
+  fullName: Reportman.Drawing.Forms.TokenCalc.IsOperator()
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public bool IsOperator()
+    return:
+      type: System.Boolean
+    content.vb: Public Function IsOperator() As Boolean
+  overload: Reportman.Drawing.Forms.TokenCalc.IsOperator*
+- uid: Reportman.Drawing.Forms.TokenCalc.IsNumber
+  commentId: M:Reportman.Drawing.Forms.TokenCalc.IsNumber
+  id: IsNumber
+  parent: Reportman.Drawing.Forms.TokenCalc
+  langs:
+  - csharp
+  - vb
+  name: IsNumber()
+  nameWithType: TokenCalc.IsNumber()
+  fullName: Reportman.Drawing.Forms.TokenCalc.IsNumber()
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public bool IsNumber()
+    return:
+      type: System.Boolean
+    content.vb: Public Function IsNumber() As Boolean
+  overload: Reportman.Drawing.Forms.TokenCalc.IsNumber*
+- uid: Reportman.Drawing.Forms.TokenCalc.IsLessThanOrEqualTo(Reportman.Drawing.Forms.TokenCalc)
+  commentId: M:Reportman.Drawing.Forms.TokenCalc.IsLessThanOrEqualTo(Reportman.Drawing.Forms.TokenCalc)
+  id: IsLessThanOrEqualTo(Reportman.Drawing.Forms.TokenCalc)
+  parent: Reportman.Drawing.Forms.TokenCalc
+  langs:
+  - csharp
+  - vb
+  name: IsLessThanOrEqualTo(TokenCalc)
+  nameWithType: TokenCalc.IsLessThanOrEqualTo(TokenCalc)
+  fullName: Reportman.Drawing.Forms.TokenCalc.IsLessThanOrEqualTo(Reportman.Drawing.Forms.TokenCalc)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public bool IsLessThanOrEqualTo(TokenCalc tokenCompare)
+    parameters:
+    - id: tokenCompare
+      type: Reportman.Drawing.Forms.TokenCalc
+    return:
+      type: System.Boolean
+    content.vb: Public Function IsLessThanOrEqualTo(tokenCompare As TokenCalc) As Boolean
+  overload: Reportman.Drawing.Forms.TokenCalc.IsLessThanOrEqualTo*
+- uid: Reportman.Drawing.Forms.TokenCalc.ToString
+  commentId: M:Reportman.Drawing.Forms.TokenCalc.ToString
+  id: ToString
+  parent: Reportman.Drawing.Forms.TokenCalc
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: TokenCalc.ToString()
+  fullName: Reportman.Drawing.Forms.TokenCalc.ToString()
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.Object.ToString
+  overload: Reportman.Drawing.Forms.TokenCalc.ToString*
+- uid: Reportman.Drawing.Forms.TokenCalc.Type
+  commentId: P:Reportman.Drawing.Forms.TokenCalc.Type
+  id: Type
+  parent: Reportman.Drawing.Forms.TokenCalc
+  langs:
+  - csharp
+  - vb
+  name: Type
+  nameWithType: TokenCalc.Type
+  fullName: Reportman.Drawing.Forms.TokenCalc.Type
+  type: Property
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public TokenCalc.TokenType Type { get; set; }
+    parameters: []
+    return:
+      type: Reportman.Drawing.Forms.TokenCalc.TokenType
+    content.vb: Public Property Type As TokenCalc.TokenType
+  overload: Reportman.Drawing.Forms.TokenCalc.Type*
+- uid: Reportman.Drawing.Forms.TokenCalc.TokenNumber
+  commentId: P:Reportman.Drawing.Forms.TokenCalc.TokenNumber
+  id: TokenNumber
+  parent: Reportman.Drawing.Forms.TokenCalc
+  langs:
+  - csharp
+  - vb
+  name: TokenNumber
+  nameWithType: TokenCalc.TokenNumber
+  fullName: Reportman.Drawing.Forms.TokenCalc.TokenNumber
+  type: Property
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public Number TokenNumber { get; set; }
+    parameters: []
+    return:
+      type: Reportman.Drawing.Forms.Number
+    content.vb: Public Property TokenNumber As Number
+  overload: Reportman.Drawing.Forms.TokenCalc.TokenNumber*
+- uid: Reportman.Drawing.Forms.TokenCalc.DecimalFactor
+  commentId: P:Reportman.Drawing.Forms.TokenCalc.DecimalFactor
+  id: DecimalFactor
+  parent: Reportman.Drawing.Forms.TokenCalc
+  langs:
+  - csharp
+  - vb
+  name: DecimalFactor
+  nameWithType: TokenCalc.DecimalFactor
+  fullName: Reportman.Drawing.Forms.TokenCalc.DecimalFactor
+  type: Property
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public int DecimalFactor { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property DecimalFactor As Integer
+  overload: Reportman.Drawing.Forms.TokenCalc.DecimalFactor*
+- uid: Reportman.Drawing.Forms.TokenCalc.IsSealed
+  commentId: P:Reportman.Drawing.Forms.TokenCalc.IsSealed
+  id: IsSealed
+  parent: Reportman.Drawing.Forms.TokenCalc
+  langs:
+  - csharp
+  - vb
+  name: IsSealed
+  nameWithType: TokenCalc.IsSealed
+  fullName: Reportman.Drawing.Forms.TokenCalc.IsSealed
+  type: Property
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public bool IsSealed { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsSealed As Boolean
+  overload: Reportman.Drawing.Forms.TokenCalc.IsSealed*
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.Forms.TokenCalc.#ctor*
+  commentId: Overload:Reportman.Drawing.Forms.TokenCalc.#ctor
+  isExternal: true
+  href: Reportman.Drawing.Forms.TokenCalc.html#Reportman_Drawing_Forms_TokenCalc__ctor_Reportman_Drawing_Forms_TokenCalc_TokenType_
+  name: TokenCalc
+  nameWithType: TokenCalc.TokenCalc
+  fullName: Reportman.Drawing.Forms.TokenCalc.TokenCalc
+  nameWithType.vb: TokenCalc.New
+  fullName.vb: Reportman.Drawing.Forms.TokenCalc.New
+  name.vb: New
+- uid: Reportman.Drawing.Forms.TokenCalc.TokenType
+  commentId: T:Reportman.Drawing.Forms.TokenCalc.TokenType
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TokenCalc.html
+  name: TokenCalc.TokenType
+  nameWithType: TokenCalc.TokenType
+  fullName: Reportman.Drawing.Forms.TokenCalc.TokenType
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.TokenCalc
+    name: TokenCalc
+    isExternal: true
+    href: Reportman.Drawing.Forms.TokenCalc.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TokenCalc.TokenType
+    name: TokenType
+    isExternal: true
+    href: Reportman.Drawing.Forms.TokenCalc.TokenType.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.TokenCalc
+    name: TokenCalc
+    isExternal: true
+    href: Reportman.Drawing.Forms.TokenCalc.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TokenCalc.TokenType
+    name: TokenType
+    isExternal: true
+    href: Reportman.Drawing.Forms.TokenCalc.TokenType.html
+- uid: Reportman.Drawing.Forms.TokenCalc.IsOperator*
+  commentId: Overload:Reportman.Drawing.Forms.TokenCalc.IsOperator
+  isExternal: true
+  href: Reportman.Drawing.Forms.TokenCalc.html#Reportman_Drawing_Forms_TokenCalc_IsOperator
+  name: IsOperator
+  nameWithType: TokenCalc.IsOperator
+  fullName: Reportman.Drawing.Forms.TokenCalc.IsOperator
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Reportman.Drawing.Forms.TokenCalc.IsNumber*
+  commentId: Overload:Reportman.Drawing.Forms.TokenCalc.IsNumber
+  isExternal: true
+  href: Reportman.Drawing.Forms.TokenCalc.html#Reportman_Drawing_Forms_TokenCalc_IsNumber
+  name: IsNumber
+  nameWithType: TokenCalc.IsNumber
+  fullName: Reportman.Drawing.Forms.TokenCalc.IsNumber
+- uid: Reportman.Drawing.Forms.TokenCalc.IsLessThanOrEqualTo*
+  commentId: Overload:Reportman.Drawing.Forms.TokenCalc.IsLessThanOrEqualTo
+  isExternal: true
+  href: Reportman.Drawing.Forms.TokenCalc.html#Reportman_Drawing_Forms_TokenCalc_IsLessThanOrEqualTo_Reportman_Drawing_Forms_TokenCalc_
+  name: IsLessThanOrEqualTo
+  nameWithType: TokenCalc.IsLessThanOrEqualTo
+  fullName: Reportman.Drawing.Forms.TokenCalc.IsLessThanOrEqualTo
+- uid: Reportman.Drawing.Forms.TokenCalc
+  commentId: T:Reportman.Drawing.Forms.TokenCalc
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TokenCalc.html
+  name: TokenCalc
+  nameWithType: TokenCalc
+  fullName: Reportman.Drawing.Forms.TokenCalc
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: Reportman.Drawing.Forms.TokenCalc.ToString*
+  commentId: Overload:Reportman.Drawing.Forms.TokenCalc.ToString
+  isExternal: true
+  href: Reportman.Drawing.Forms.TokenCalc.html#Reportman_Drawing_Forms_TokenCalc_ToString
+  name: ToString
+  nameWithType: TokenCalc.ToString
+  fullName: Reportman.Drawing.Forms.TokenCalc.ToString
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Reportman.Drawing.Forms.TokenCalc.Type*
+  commentId: Overload:Reportman.Drawing.Forms.TokenCalc.Type
+  isExternal: true
+  href: Reportman.Drawing.Forms.TokenCalc.html#Reportman_Drawing_Forms_TokenCalc_Type
+  name: Type
+  nameWithType: TokenCalc.Type
+  fullName: Reportman.Drawing.Forms.TokenCalc.Type
+- uid: Reportman.Drawing.Forms.TokenCalc.TokenNumber*
+  commentId: Overload:Reportman.Drawing.Forms.TokenCalc.TokenNumber
+  isExternal: true
+  href: Reportman.Drawing.Forms.TokenCalc.html#Reportman_Drawing_Forms_TokenCalc_TokenNumber
+  name: TokenNumber
+  nameWithType: TokenCalc.TokenNumber
+  fullName: Reportman.Drawing.Forms.TokenCalc.TokenNumber
+- uid: Reportman.Drawing.Forms.Number
+  commentId: T:Reportman.Drawing.Forms.Number
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.Number.html
+  name: Number
+  nameWithType: Number
+  fullName: Reportman.Drawing.Forms.Number
+- uid: Reportman.Drawing.Forms.TokenCalc.DecimalFactor*
+  commentId: Overload:Reportman.Drawing.Forms.TokenCalc.DecimalFactor
+  isExternal: true
+  href: Reportman.Drawing.Forms.TokenCalc.html#Reportman_Drawing_Forms_TokenCalc_DecimalFactor
+  name: DecimalFactor
+  nameWithType: TokenCalc.DecimalFactor
+  fullName: Reportman.Drawing.Forms.TokenCalc.DecimalFactor
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Reportman.Drawing.Forms.TokenCalc.IsSealed*
+  commentId: Overload:Reportman.Drawing.Forms.TokenCalc.IsSealed
+  isExternal: true
+  href: Reportman.Drawing.Forms.TokenCalc.html#Reportman_Drawing_Forms_TokenCalc_IsSealed
+  name: IsSealed
+  nameWithType: TokenCalc.IsSealed
+  fullName: Reportman.Drawing.Forms.TokenCalc.IsSealed

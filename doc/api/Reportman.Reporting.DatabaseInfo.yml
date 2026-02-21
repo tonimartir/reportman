@@ -1,0 +1,1585 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.DatabaseInfo
+  commentId: T:Reportman.Reporting.DatabaseInfo
+  id: DatabaseInfo
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.DatabaseInfo.#ctor
+  - Reportman.Reporting.DatabaseInfo.Alias
+  - Reportman.Reporting.DatabaseInfo.Clone
+  - Reportman.Reporting.DatabaseInfo.Clone(Reportman.Reporting.Report)
+  - Reportman.Reporting.DatabaseInfo.Connect
+  - Reportman.Reporting.DatabaseInfo.Connection
+  - Reportman.Reporting.DatabaseInfo.ConnectionString
+  - Reportman.Reporting.DatabaseInfo.CurrentTransaction
+  - Reportman.Reporting.DatabaseInfo.CustomProviderFactories
+  - Reportman.Reporting.DatabaseInfo.DisConnect
+  - Reportman.Reporting.DatabaseInfo.DotNetDriver
+  - Reportman.Reporting.DatabaseInfo.Driver
+  - Reportman.Reporting.DatabaseInfo.FIREBIRD_PROVIDER2
+  - Reportman.Reporting.DatabaseInfo.GetClassName
+  - Reportman.Reporting.DatabaseInfo.GetDataReaderFromSQL(System.String,System.String,Reportman.Reporting.Params,System.Boolean)
+  - Reportman.Reporting.DatabaseInfo.GetDriverDescriptions
+  - Reportman.Reporting.DatabaseInfo.MYSQL_PROVIDER
+  - Reportman.Reporting.DatabaseInfo.ProviderFactory
+  - Reportman.Reporting.DatabaseInfo.ReportField
+  - Reportman.Reporting.DatabaseInfo.ReportGroupsTable
+  - Reportman.Reporting.DatabaseInfo.ReportSearchField
+  - Reportman.Reporting.DatabaseInfo.ReportTable
+  - Reportman.Reporting.DatabaseInfo.SQLITE_PROVIDER
+  - Reportman.Reporting.DatabaseInfo.SqlExecuter
+  - Reportman.Reporting.DatabaseInfo.TransIsolation
+  - Reportman.Reporting.DatabaseInfo.Transaction
+  langs:
+  - csharp
+  - vb
+  name: DatabaseInfo
+  nameWithType: DatabaseInfo
+  fullName: Reportman.Reporting.DatabaseInfo
+  type: Class
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    DatabaseInfo stores information about database connectivity, a Report have a collection
+
+    of connection definitions. Each connection can use diferent connectivity technology 
+
+    (database providers). <xref href="Reportman.Reporting.Variant?text=Report" data-throw-if-not-resolved="false"></xref><xref href="Reportman.Reporting.Variant?text=DatabaseInfos" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: 'public class DatabaseInfo : ReportItem, IDisposable, ICloneable'
+    content.vb: Public Class DatabaseInfo Inherits ReportItem Implements IDisposable, ICloneable
+  inheritance:
+  - System.Object
+  - Reportman.Reporting.ReportItem
+  implements:
+  - System.IDisposable
+  - System.ICloneable
+  inheritedMembers:
+  - Reportman.Reporting.ReportItem.SetReport(Reportman.Reporting.BaseReport)
+  - Reportman.Reporting.ReportItem.Dispose
+  - Reportman.Reporting.ReportItem.Name
+  - Reportman.Reporting.ReportItem.Report
+  - Reportman.Reporting.ReportItem.ClassName
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Reporting.DatabaseInfo.FIREBIRD_PROVIDER2
+  commentId: F:Reportman.Reporting.DatabaseInfo.FIREBIRD_PROVIDER2
+  id: FIREBIRD_PROVIDER2
+  parent: Reportman.Reporting.DatabaseInfo
+  langs:
+  - csharp
+  - vb
+  name: FIREBIRD_PROVIDER2
+  nameWithType: DatabaseInfo.FIREBIRD_PROVIDER2
+  fullName: Reportman.Reporting.DatabaseInfo.FIREBIRD_PROVIDER2
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public static string FIREBIRD_PROVIDER2
+    return:
+      type: System.String
+    content.vb: Public Shared FIREBIRD_PROVIDER2 As String
+- uid: Reportman.Reporting.DatabaseInfo.MYSQL_PROVIDER
+  commentId: F:Reportman.Reporting.DatabaseInfo.MYSQL_PROVIDER
+  id: MYSQL_PROVIDER
+  parent: Reportman.Reporting.DatabaseInfo
+  langs:
+  - csharp
+  - vb
+  name: MYSQL_PROVIDER
+  nameWithType: DatabaseInfo.MYSQL_PROVIDER
+  fullName: Reportman.Reporting.DatabaseInfo.MYSQL_PROVIDER
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public static string MYSQL_PROVIDER
+    return:
+      type: System.String
+    content.vb: Public Shared MYSQL_PROVIDER As String
+- uid: Reportman.Reporting.DatabaseInfo.SQLITE_PROVIDER
+  commentId: F:Reportman.Reporting.DatabaseInfo.SQLITE_PROVIDER
+  id: SQLITE_PROVIDER
+  parent: Reportman.Reporting.DatabaseInfo
+  langs:
+  - csharp
+  - vb
+  name: SQLITE_PROVIDER
+  nameWithType: DatabaseInfo.SQLITE_PROVIDER
+  fullName: Reportman.Reporting.DatabaseInfo.SQLITE_PROVIDER
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public static string SQLITE_PROVIDER
+    return:
+      type: System.String
+    content.vb: Public Shared SQLITE_PROVIDER As String
+- uid: Reportman.Reporting.DatabaseInfo.Transaction
+  commentId: F:Reportman.Reporting.DatabaseInfo.Transaction
+  id: Transaction
+  parent: Reportman.Reporting.DatabaseInfo
+  langs:
+  - csharp
+  - vb
+  name: Transaction
+  nameWithType: DatabaseInfo.Transaction
+  fullName: Reportman.Reporting.DatabaseInfo.Transaction
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: You can assign a transaction, so this transaction will be used instead a default created one
+  example: []
+  syntax:
+    content: public IDbTransaction Transaction
+    return:
+      type: System.Data.IDbTransaction
+    content.vb: Public Transaction As IDbTransaction
+- uid: Reportman.Reporting.DatabaseInfo.SqlExecuter
+  commentId: F:Reportman.Reporting.DatabaseInfo.SqlExecuter
+  id: SqlExecuter
+  parent: Reportman.Reporting.DatabaseInfo
+  langs:
+  - csharp
+  - vb
+  name: SqlExecuter
+  nameWithType: DatabaseInfo.SqlExecuter
+  fullName: Reportman.Reporting.DatabaseInfo.SqlExecuter
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public IDbCommandExecuter SqlExecuter
+    return:
+      type: Reportman.Drawing.IDbCommandExecuter
+    content.vb: Public SqlExecuter As IDbCommandExecuter
+- uid: Reportman.Reporting.DatabaseInfo.TransIsolation
+  commentId: F:Reportman.Reporting.DatabaseInfo.TransIsolation
+  id: TransIsolation
+  parent: Reportman.Reporting.DatabaseInfo
+  langs:
+  - csharp
+  - vb
+  name: TransIsolation
+  nameWithType: DatabaseInfo.TransIsolation
+  fullName: Reportman.Reporting.DatabaseInfo.TransIsolation
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    Default isolation level if a transaction have not assigned, all the querys related
+
+    to this connection will run inside the same transaction
+  example: []
+  syntax:
+    content: public IsolationLevel TransIsolation
+    return:
+      type: System.Data.IsolationLevel
+    content.vb: Public TransIsolation As IsolationLevel
+- uid: Reportman.Reporting.DatabaseInfo.CustomProviderFactories
+  commentId: F:Reportman.Reporting.DatabaseInfo.CustomProviderFactories
+  id: CustomProviderFactories
+  parent: Reportman.Reporting.DatabaseInfo
+  langs:
+  - csharp
+  - vb
+  name: CustomProviderFactories
+  nameWithType: DatabaseInfo.CustomProviderFactories
+  fullName: Reportman.Reporting.DatabaseInfo.CustomProviderFactories
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public static SortedList<string, DbProviderFactory> CustomProviderFactories
+    return:
+      type: System.Collections.Generic.SortedList{System.String,System.Data.Common.DbProviderFactory}
+    content.vb: Public Shared CustomProviderFactories As SortedList(Of String, DbProviderFactory)
+- uid: Reportman.Reporting.DatabaseInfo.GetDriverDescriptions
+  commentId: M:Reportman.Reporting.DatabaseInfo.GetDriverDescriptions
+  id: GetDriverDescriptions
+  parent: Reportman.Reporting.DatabaseInfo
+  langs:
+  - csharp
+  - vb
+  name: GetDriverDescriptions()
+  nameWithType: DatabaseInfo.GetDriverDescriptions()
+  fullName: Reportman.Reporting.DatabaseInfo.GetDriverDescriptions()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public static List<string> GetDriverDescriptions()
+    return:
+      type: System.Collections.Generic.List{System.String}
+    content.vb: Public Shared Function GetDriverDescriptions() As List(Of String)
+  overload: Reportman.Reporting.DatabaseInfo.GetDriverDescriptions*
+- uid: Reportman.Reporting.DatabaseInfo.GetClassName
+  commentId: M:Reportman.Reporting.DatabaseInfo.GetClassName
+  id: GetClassName
+  parent: Reportman.Reporting.DatabaseInfo
+  langs:
+  - csharp
+  - vb
+  name: GetClassName()
+  nameWithType: DatabaseInfo.GetClassName()
+  fullName: Reportman.Reporting.DatabaseInfo.GetClassName()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Internal function to determine the object type name
+  example: []
+  syntax:
+    content: protected override string GetClassName()
+    return:
+      type: System.String
+      description: Object type name
+    content.vb: Protected Overrides Function GetClassName() As String
+  overridden: Reportman.Reporting.ReportItem.GetClassName
+  overload: Reportman.Reporting.DatabaseInfo.GetClassName*
+- uid: Reportman.Reporting.DatabaseInfo.Clone
+  commentId: M:Reportman.Reporting.DatabaseInfo.Clone
+  id: Clone
+  parent: Reportman.Reporting.DatabaseInfo
+  langs:
+  - csharp
+  - vb
+  name: Clone()
+  nameWithType: DatabaseInfo.Clone()
+  fullName: Reportman.Reporting.DatabaseInfo.Clone()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Clone the DatabaseInfo item
+  example: []
+  syntax:
+    content: public object Clone()
+    return:
+      type: System.Object
+      description: A new DatabaseInfo item with same data as the original
+    content.vb: Public Function Clone() As Object
+  overload: Reportman.Reporting.DatabaseInfo.Clone*
+  implements:
+  - System.ICloneable.Clone
+- uid: Reportman.Reporting.DatabaseInfo.Clone(Reportman.Reporting.Report)
+  commentId: M:Reportman.Reporting.DatabaseInfo.Clone(Reportman.Reporting.Report)
+  id: Clone(Reportman.Reporting.Report)
+  parent: Reportman.Reporting.DatabaseInfo
+  langs:
+  - csharp
+  - vb
+  name: Clone(Report)
+  nameWithType: DatabaseInfo.Clone(Report)
+  fullName: Reportman.Reporting.DatabaseInfo.Clone(Reportman.Reporting.Report)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Clone the DatabaseInfo item
+  example: []
+  syntax:
+    content: public DatabaseInfo Clone(Report areport)
+    parameters:
+    - id: areport
+      type: Reportman.Reporting.Report
+      description: Report to assign to the item
+    return:
+      type: Reportman.Reporting.DatabaseInfo
+      description: A new DatabaseInfo item with same data as the original
+    content.vb: Public Function Clone(areport As Report) As DatabaseInfo
+  overload: Reportman.Reporting.DatabaseInfo.Clone*
+- uid: Reportman.Reporting.DatabaseInfo.#ctor
+  commentId: M:Reportman.Reporting.DatabaseInfo.#ctor
+  id: '#ctor'
+  parent: Reportman.Reporting.DatabaseInfo
+  langs:
+  - csharp
+  - vb
+  name: DatabaseInfo()
+  nameWithType: DatabaseInfo.DatabaseInfo()
+  fullName: Reportman.Reporting.DatabaseInfo.DatabaseInfo()
+  type: Constructor
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Constructor
+  example: []
+  syntax:
+    content: public DatabaseInfo()
+    content.vb: Public Sub New()
+  overload: Reportman.Reporting.DatabaseInfo.#ctor*
+  nameWithType.vb: DatabaseInfo.New()
+  fullName.vb: Reportman.Reporting.DatabaseInfo.New()
+  name.vb: New()
+- uid: Reportman.Reporting.DatabaseInfo.DisConnect
+  commentId: M:Reportman.Reporting.DatabaseInfo.DisConnect
+  id: DisConnect
+  parent: Reportman.Reporting.DatabaseInfo
+  langs:
+  - csharp
+  - vb
+  name: DisConnect()
+  nameWithType: DatabaseInfo.DisConnect()
+  fullName: Reportman.Reporting.DatabaseInfo.DisConnect()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Disconnect from database, also dispose any transaction
+  example: []
+  syntax:
+    content: public void DisConnect()
+    content.vb: Public Sub DisConnect()
+  overload: Reportman.Reporting.DatabaseInfo.DisConnect*
+- uid: Reportman.Reporting.DatabaseInfo.Connect
+  commentId: M:Reportman.Reporting.DatabaseInfo.Connect
+  id: Connect
+  parent: Reportman.Reporting.DatabaseInfo
+  langs:
+  - csharp
+  - vb
+  name: Connect()
+  nameWithType: DatabaseInfo.Connect()
+  fullName: Reportman.Reporting.DatabaseInfo.Connect()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Connect to the database
+  example: []
+  syntax:
+    content: public void Connect()
+    content.vb: Public Sub Connect()
+  overload: Reportman.Reporting.DatabaseInfo.Connect*
+- uid: Reportman.Reporting.DatabaseInfo.GetDataReaderFromSQL(System.String,System.String,Reportman.Reporting.Params,System.Boolean)
+  commentId: M:Reportman.Reporting.DatabaseInfo.GetDataReaderFromSQL(System.String,System.String,Reportman.Reporting.Params,System.Boolean)
+  id: GetDataReaderFromSQL(System.String,System.String,Reportman.Reporting.Params,System.Boolean)
+  parent: Reportman.Reporting.DatabaseInfo
+  langs:
+  - csharp
+  - vb
+  name: GetDataReaderFromSQL(string, string, Params, bool)
+  nameWithType: DatabaseInfo.GetDataReaderFromSQL(string, string, Params, bool)
+  fullName: Reportman.Reporting.DatabaseInfo.GetDataReaderFromSQL(string, string, Reportman.Reporting.Params, bool)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Obrains a IDataReader from a sql sentence
+  example: []
+  syntax:
+    content: public IDataReader GetDataReaderFromSQL(string sqlsentence, string dataalias, Params aparams, bool onlyexec)
+    parameters:
+    - id: sqlsentence
+      type: System.String
+      description: A valid sql sentence
+    - id: dataalias
+      type: System.String
+      description: Parameters related to this alias will be used
+    - id: aparams
+      type: Reportman.Reporting.Params
+      description: Report parameters
+    - id: onlyexec
+      type: System.Boolean
+      description: Execute only, not open the query
+    return:
+      type: System.Data.IDataReader
+      description: A valid IDataReader
+    content.vb: Public Function GetDataReaderFromSQL(sqlsentence As String, dataalias As String, aparams As Params, onlyexec As Boolean) As IDataReader
+  overload: Reportman.Reporting.DatabaseInfo.GetDataReaderFromSQL*
+  nameWithType.vb: DatabaseInfo.GetDataReaderFromSQL(String, String, Params, Boolean)
+  fullName.vb: Reportman.Reporting.DatabaseInfo.GetDataReaderFromSQL(String, String, Reportman.Reporting.Params, Boolean)
+  name.vb: GetDataReaderFromSQL(String, String, Params, Boolean)
+- uid: Reportman.Reporting.DatabaseInfo.CurrentTransaction
+  commentId: P:Reportman.Reporting.DatabaseInfo.CurrentTransaction
+  id: CurrentTransaction
+  parent: Reportman.Reporting.DatabaseInfo
+  langs:
+  - csharp
+  - vb
+  name: CurrentTransaction
+  nameWithType: DatabaseInfo.CurrentTransaction
+  fullName: Reportman.Reporting.DatabaseInfo.CurrentTransaction
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Obtain current active transaction to execute querys
+  example: []
+  syntax:
+    content: >-
+      [JsonIgnore]
+
+      [JsonIgnore]
+
+      public IDbTransaction CurrentTransaction { get; }
+    parameters: []
+    return:
+      type: System.Data.IDbTransaction
+    content.vb: >-
+      <JsonIgnore>
+
+      <JsonIgnore>
+
+      Public ReadOnly Property CurrentTransaction As IDbTransaction
+  overload: Reportman.Reporting.DatabaseInfo.CurrentTransaction*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonIgnoreAttribute
+    ctor: System.Text.Json.Serialization.JsonIgnoreAttribute.#ctor
+    arguments: []
+  - type: Newtonsoft.Json.JsonIgnoreAttribute
+    ctor: Newtonsoft.Json.JsonIgnoreAttribute.#ctor
+    arguments: []
+- uid: Reportman.Reporting.DatabaseInfo.Connection
+  commentId: P:Reportman.Reporting.DatabaseInfo.Connection
+  id: Connection
+  parent: Reportman.Reporting.DatabaseInfo
+  langs:
+  - csharp
+  - vb
+  name: Connection
+  nameWithType: DatabaseInfo.Connection
+  fullName: Reportman.Reporting.DatabaseInfo.Connection
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    You can assign a Connection, so this connection will be used, if you provide a connection, 
+
+    all the settings inside DatabaseInfo related to perform connection will be ignored and all
+
+    querys will be executed against the provided connection
+  example: []
+  syntax:
+    content: >-
+      [JsonIgnore]
+
+      [JsonIgnore]
+
+      public IDbConnection Connection { get; set; }
+    parameters: []
+    return:
+      type: System.Data.IDbConnection
+    content.vb: >-
+      <JsonIgnore>
+
+      <JsonIgnore>
+
+      Public Property Connection As IDbConnection
+  overload: Reportman.Reporting.DatabaseInfo.Connection*
+  attributes:
+  - type: System.Text.Json.Serialization.JsonIgnoreAttribute
+    ctor: System.Text.Json.Serialization.JsonIgnoreAttribute.#ctor
+    arguments: []
+  - type: Newtonsoft.Json.JsonIgnoreAttribute
+    ctor: Newtonsoft.Json.JsonIgnoreAttribute.#ctor
+    arguments: []
+- uid: Reportman.Reporting.DatabaseInfo.Alias
+  commentId: P:Reportman.Reporting.DatabaseInfo.Alias
+  id: Alias
+  parent: Reportman.Reporting.DatabaseInfo
+  langs:
+  - csharp
+  - vb
+  name: Alias
+  nameWithType: DatabaseInfo.Alias
+  fullName: Reportman.Reporting.DatabaseInfo.Alias
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: DatabaseInfo item name
+  example: []
+  syntax:
+    content: public string Alias { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property [Alias] As String
+  overload: Reportman.Reporting.DatabaseInfo.Alias*
+- uid: Reportman.Reporting.DatabaseInfo.Driver
+  commentId: P:Reportman.Reporting.DatabaseInfo.Driver
+  id: Driver
+  parent: Reportman.Reporting.DatabaseInfo
+  langs:
+  - csharp
+  - vb
+  name: Driver
+  nameWithType: DatabaseInfo.Driver
+  fullName: Reportman.Reporting.DatabaseInfo.Driver
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: DatabaseInfo driver type
+  example: []
+  syntax:
+    content: public DriverType Driver { get; set; }
+    parameters: []
+    return:
+      type: Reportman.Reporting.DriverType
+    content.vb: Public Property Driver As DriverType
+  overload: Reportman.Reporting.DatabaseInfo.Driver*
+- uid: Reportman.Reporting.DatabaseInfo.ProviderFactory
+  commentId: P:Reportman.Reporting.DatabaseInfo.ProviderFactory
+  id: ProviderFactory
+  parent: Reportman.Reporting.DatabaseInfo
+  langs:
+  - csharp
+  - vb
+  name: ProviderFactory
+  nameWithType: DatabaseInfo.ProviderFactory
+  fullName: Reportman.Reporting.DatabaseInfo.ProviderFactory
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Provider factory, only for .Net 2.x driver
+  example: []
+  syntax:
+    content: public string ProviderFactory { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ProviderFactory As String
+  overload: Reportman.Reporting.DatabaseInfo.ProviderFactory*
+- uid: Reportman.Reporting.DatabaseInfo.ReportTable
+  commentId: P:Reportman.Reporting.DatabaseInfo.ReportTable
+  id: ReportTable
+  parent: Reportman.Reporting.DatabaseInfo
+  langs:
+  - csharp
+  - vb
+  name: ReportTable
+  nameWithType: DatabaseInfo.ReportTable
+  fullName: Reportman.Reporting.DatabaseInfo.ReportTable
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Report table name when loading report items from a connection
+  example: []
+  syntax:
+    content: public string ReportTable { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ReportTable As String
+  overload: Reportman.Reporting.DatabaseInfo.ReportTable*
+- uid: Reportman.Reporting.DatabaseInfo.ReportSearchField
+  commentId: P:Reportman.Reporting.DatabaseInfo.ReportSearchField
+  id: ReportSearchField
+  parent: Reportman.Reporting.DatabaseInfo
+  langs:
+  - csharp
+  - vb
+  name: ReportSearchField
+  nameWithType: DatabaseInfo.ReportSearchField
+  fullName: Reportman.Reporting.DatabaseInfo.ReportSearchField
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Report search field when loading report items from a connection
+  example: []
+  syntax:
+    content: public string ReportSearchField { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ReportSearchField As String
+  overload: Reportman.Reporting.DatabaseInfo.ReportSearchField*
+- uid: Reportman.Reporting.DatabaseInfo.ReportField
+  commentId: P:Reportman.Reporting.DatabaseInfo.ReportField
+  id: ReportField
+  parent: Reportman.Reporting.DatabaseInfo
+  langs:
+  - csharp
+  - vb
+  name: ReportField
+  nameWithType: DatabaseInfo.ReportField
+  fullName: Reportman.Reporting.DatabaseInfo.ReportField
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Report field when loading report items from a connection
+  example: []
+  syntax:
+    content: public string ReportField { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ReportField As String
+  overload: Reportman.Reporting.DatabaseInfo.ReportField*
+- uid: Reportman.Reporting.DatabaseInfo.ReportGroupsTable
+  commentId: P:Reportman.Reporting.DatabaseInfo.ReportGroupsTable
+  id: ReportGroupsTable
+  parent: Reportman.Reporting.DatabaseInfo
+  langs:
+  - csharp
+  - vb
+  name: ReportGroupsTable
+  nameWithType: DatabaseInfo.ReportGroupsTable
+  fullName: Reportman.Reporting.DatabaseInfo.ReportGroupsTable
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Report groups table when loading report items from a connection
+  example: []
+  syntax:
+    content: public string ReportGroupsTable { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ReportGroupsTable As String
+  overload: Reportman.Reporting.DatabaseInfo.ReportGroupsTable*
+- uid: Reportman.Reporting.DatabaseInfo.ConnectionString
+  commentId: P:Reportman.Reporting.DatabaseInfo.ConnectionString
+  id: ConnectionString
+  parent: Reportman.Reporting.DatabaseInfo
+  langs:
+  - csharp
+  - vb
+  name: ConnectionString
+  nameWithType: DatabaseInfo.ConnectionString
+  fullName: Reportman.Reporting.DatabaseInfo.ConnectionString
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Connection string, for ADO and .Net drivers
+  example: []
+  syntax:
+    content: public string ConnectionString { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ConnectionString As String
+  overload: Reportman.Reporting.DatabaseInfo.ConnectionString*
+- uid: Reportman.Reporting.DatabaseInfo.DotNetDriver
+  commentId: P:Reportman.Reporting.DatabaseInfo.DotNetDriver
+  id: DotNetDriver
+  parent: Reportman.Reporting.DatabaseInfo
+  langs:
+  - csharp
+  - vb
+  name: DotNetDriver
+  nameWithType: DatabaseInfo.DotNetDriver
+  fullName: Reportman.Reporting.DatabaseInfo.DotNetDriver
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: DotNet driver type
+  example: []
+  syntax:
+    content: public DotNetDriverType DotNetDriver { get; set; }
+    parameters: []
+    return:
+      type: Reportman.Reporting.DotNetDriverType
+    content.vb: Public Property DotNetDriver As DotNetDriverType
+  overload: Reportman.Reporting.DatabaseInfo.DotNetDriver*
+references:
+- uid: Reportman.Reporting.Variant
+  commentId: T:Reportman.Reporting.Variant
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.Variant.html
+  name: Variant
+  nameWithType: Variant
+  fullName: Reportman.Reporting.Variant
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Reportman.Reporting.ReportItem
+  commentId: T:Reportman.Reporting.ReportItem
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html
+  name: ReportItem
+  nameWithType: ReportItem
+  fullName: Reportman.Reporting.ReportItem
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System.ICloneable
+  commentId: T:System.ICloneable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.icloneable
+  name: ICloneable
+  nameWithType: ICloneable
+  fullName: System.ICloneable
+- uid: Reportman.Reporting.ReportItem.SetReport(Reportman.Reporting.BaseReport)
+  commentId: M:Reportman.Reporting.ReportItem.SetReport(Reportman.Reporting.BaseReport)
+  parent: Reportman.Reporting.ReportItem
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_SetReport_Reportman_Reporting_BaseReport_
+  name: SetReport(BaseReport)
+  nameWithType: ReportItem.SetReport(BaseReport)
+  fullName: Reportman.Reporting.ReportItem.SetReport(Reportman.Reporting.BaseReport)
+  spec.csharp:
+  - uid: Reportman.Reporting.ReportItem.SetReport(Reportman.Reporting.BaseReport)
+    name: SetReport
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_SetReport_Reportman_Reporting_BaseReport_
+  - name: (
+  - uid: Reportman.Reporting.BaseReport
+    name: BaseReport
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.ReportItem.SetReport(Reportman.Reporting.BaseReport)
+    name: SetReport
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_SetReport_Reportman_Reporting_BaseReport_
+  - name: (
+  - uid: Reportman.Reporting.BaseReport
+    name: BaseReport
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html
+  - name: )
+- uid: Reportman.Reporting.ReportItem.Dispose
+  commentId: M:Reportman.Reporting.ReportItem.Dispose
+  parent: Reportman.Reporting.ReportItem
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_Dispose
+  name: Dispose()
+  nameWithType: ReportItem.Dispose()
+  fullName: Reportman.Reporting.ReportItem.Dispose()
+  spec.csharp:
+  - uid: Reportman.Reporting.ReportItem.Dispose
+    name: Dispose
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_Dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.ReportItem.Dispose
+    name: Dispose
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_Dispose
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.ReportItem.Name
+  commentId: P:Reportman.Reporting.ReportItem.Name
+  parent: Reportman.Reporting.ReportItem
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_Name
+  name: Name
+  nameWithType: ReportItem.Name
+  fullName: Reportman.Reporting.ReportItem.Name
+- uid: Reportman.Reporting.ReportItem.Report
+  commentId: P:Reportman.Reporting.ReportItem.Report
+  parent: Reportman.Reporting.ReportItem
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_Report
+  name: Report
+  nameWithType: ReportItem.Report
+  fullName: Reportman.Reporting.ReportItem.Report
+- uid: Reportman.Reporting.ReportItem.ClassName
+  commentId: P:Reportman.Reporting.ReportItem.ClassName
+  parent: Reportman.Reporting.ReportItem
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_ClassName
+  name: ClassName
+  nameWithType: ReportItem.ClassName
+  fullName: Reportman.Reporting.ReportItem.ClassName
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Data.IDbTransaction
+  commentId: T:System.Data.IDbTransaction
+  parent: System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.idbtransaction
+  name: IDbTransaction
+  nameWithType: IDbTransaction
+  fullName: System.Data.IDbTransaction
+- uid: System.Data
+  commentId: N:System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Data
+  nameWithType: System.Data
+  fullName: System.Data
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+- uid: Reportman.Drawing.IDbCommandExecuter
+  commentId: T:Reportman.Drawing.IDbCommandExecuter
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.IDbCommandExecuter.html
+  name: IDbCommandExecuter
+  nameWithType: IDbCommandExecuter
+  fullName: Reportman.Drawing.IDbCommandExecuter
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.Data.IsolationLevel
+  commentId: T:System.Data.IsolationLevel
+  parent: System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.isolationlevel
+  name: IsolationLevel
+  nameWithType: IsolationLevel
+  fullName: System.Data.IsolationLevel
+- uid: System.Collections.Generic.SortedList{System.String,System.Data.Common.DbProviderFactory}
+  commentId: T:System.Collections.Generic.SortedList{System.String,System.Data.Common.DbProviderFactory}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.SortedList`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  name: SortedList<string, DbProviderFactory>
+  nameWithType: SortedList<string, DbProviderFactory>
+  fullName: System.Collections.Generic.SortedList<string, System.Data.Common.DbProviderFactory>
+  nameWithType.vb: SortedList(Of String, DbProviderFactory)
+  fullName.vb: System.Collections.Generic.SortedList(Of String, System.Data.Common.DbProviderFactory)
+  name.vb: SortedList(Of String, DbProviderFactory)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Data.Common.DbProviderFactory
+    name: DbProviderFactory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.common.dbproviderfactory
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Data.Common.DbProviderFactory
+    name: DbProviderFactory
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.common.dbproviderfactory
+  - name: )
+- uid: System.Collections.Generic.SortedList`2
+  commentId: T:System.Collections.Generic.SortedList`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  name: SortedList<TKey, TValue>
+  nameWithType: SortedList<TKey, TValue>
+  fullName: System.Collections.Generic.SortedList<TKey, TValue>
+  nameWithType.vb: SortedList(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.SortedList(Of TKey, TValue)
+  name.vb: SortedList(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Reportman.Reporting.DatabaseInfo.GetDriverDescriptions*
+  commentId: Overload:Reportman.Reporting.DatabaseInfo.GetDriverDescriptions
+  isExternal: true
+  href: Reportman.Reporting.DatabaseInfo.html#Reportman_Reporting_DatabaseInfo_GetDriverDescriptions
+  name: GetDriverDescriptions
+  nameWithType: DatabaseInfo.GetDriverDescriptions
+  fullName: Reportman.Reporting.DatabaseInfo.GetDriverDescriptions
+- uid: System.Collections.Generic.List{System.String}
+  commentId: T:System.Collections.Generic.List{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<string>
+  nameWithType: List<string>
+  fullName: System.Collections.Generic.List<string>
+  nameWithType.vb: List(Of String)
+  fullName.vb: System.Collections.Generic.List(Of String)
+  name.vb: List(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Reportman.Reporting.ReportItem.GetClassName
+  commentId: M:Reportman.Reporting.ReportItem.GetClassName
+  parent: Reportman.Reporting.ReportItem
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_GetClassName
+  name: GetClassName()
+  nameWithType: ReportItem.GetClassName()
+  fullName: Reportman.Reporting.ReportItem.GetClassName()
+  spec.csharp:
+  - uid: Reportman.Reporting.ReportItem.GetClassName
+    name: GetClassName
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_GetClassName
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.ReportItem.GetClassName
+    name: GetClassName
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_GetClassName
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.DatabaseInfo.GetClassName*
+  commentId: Overload:Reportman.Reporting.DatabaseInfo.GetClassName
+  isExternal: true
+  href: Reportman.Reporting.DatabaseInfo.html#Reportman_Reporting_DatabaseInfo_GetClassName
+  name: GetClassName
+  nameWithType: DatabaseInfo.GetClassName
+  fullName: Reportman.Reporting.DatabaseInfo.GetClassName
+- uid: Reportman.Reporting.DatabaseInfo.Clone*
+  commentId: Overload:Reportman.Reporting.DatabaseInfo.Clone
+  isExternal: true
+  href: Reportman.Reporting.DatabaseInfo.html#Reportman_Reporting_DatabaseInfo_Clone
+  name: Clone
+  nameWithType: DatabaseInfo.Clone
+  fullName: Reportman.Reporting.DatabaseInfo.Clone
+- uid: System.ICloneable.Clone
+  commentId: M:System.ICloneable.Clone
+  parent: System.ICloneable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.icloneable.clone
+  name: Clone()
+  nameWithType: ICloneable.Clone()
+  fullName: System.ICloneable.Clone()
+  spec.csharp:
+  - uid: System.ICloneable.Clone
+    name: Clone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icloneable.clone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ICloneable.Clone
+    name: Clone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icloneable.clone
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.Report
+  commentId: T:Reportman.Reporting.Report
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.Report.html
+  name: Report
+  nameWithType: Report
+  fullName: Reportman.Reporting.Report
+- uid: Reportman.Reporting.DatabaseInfo
+  commentId: T:Reportman.Reporting.DatabaseInfo
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.DatabaseInfo.html
+  name: DatabaseInfo
+  nameWithType: DatabaseInfo
+  fullName: Reportman.Reporting.DatabaseInfo
+- uid: Reportman.Reporting.DatabaseInfo.#ctor*
+  commentId: Overload:Reportman.Reporting.DatabaseInfo.#ctor
+  isExternal: true
+  href: Reportman.Reporting.DatabaseInfo.html#Reportman_Reporting_DatabaseInfo__ctor
+  name: DatabaseInfo
+  nameWithType: DatabaseInfo.DatabaseInfo
+  fullName: Reportman.Reporting.DatabaseInfo.DatabaseInfo
+  nameWithType.vb: DatabaseInfo.New
+  fullName.vb: Reportman.Reporting.DatabaseInfo.New
+  name.vb: New
+- uid: Reportman.Reporting.DatabaseInfo.DisConnect*
+  commentId: Overload:Reportman.Reporting.DatabaseInfo.DisConnect
+  isExternal: true
+  href: Reportman.Reporting.DatabaseInfo.html#Reportman_Reporting_DatabaseInfo_DisConnect
+  name: DisConnect
+  nameWithType: DatabaseInfo.DisConnect
+  fullName: Reportman.Reporting.DatabaseInfo.DisConnect
+- uid: Reportman.Reporting.DatabaseInfo.Connect*
+  commentId: Overload:Reportman.Reporting.DatabaseInfo.Connect
+  isExternal: true
+  href: Reportman.Reporting.DatabaseInfo.html#Reportman_Reporting_DatabaseInfo_Connect
+  name: Connect
+  nameWithType: DatabaseInfo.Connect
+  fullName: Reportman.Reporting.DatabaseInfo.Connect
+- uid: Reportman.Reporting.DatabaseInfo.GetDataReaderFromSQL*
+  commentId: Overload:Reportman.Reporting.DatabaseInfo.GetDataReaderFromSQL
+  isExternal: true
+  href: Reportman.Reporting.DatabaseInfo.html#Reportman_Reporting_DatabaseInfo_GetDataReaderFromSQL_System_String_System_String_Reportman_Reporting_Params_System_Boolean_
+  name: GetDataReaderFromSQL
+  nameWithType: DatabaseInfo.GetDataReaderFromSQL
+  fullName: Reportman.Reporting.DatabaseInfo.GetDataReaderFromSQL
+- uid: Reportman.Reporting.Params
+  commentId: T:Reportman.Reporting.Params
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.Params.html
+  name: Params
+  nameWithType: Params
+  fullName: Reportman.Reporting.Params
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Data.IDataReader
+  commentId: T:System.Data.IDataReader
+  parent: System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.idatareader
+  name: IDataReader
+  nameWithType: IDataReader
+  fullName: System.Data.IDataReader
+- uid: Reportman.Reporting.DatabaseInfo.CurrentTransaction*
+  commentId: Overload:Reportman.Reporting.DatabaseInfo.CurrentTransaction
+  isExternal: true
+  href: Reportman.Reporting.DatabaseInfo.html#Reportman_Reporting_DatabaseInfo_CurrentTransaction
+  name: CurrentTransaction
+  nameWithType: DatabaseInfo.CurrentTransaction
+  fullName: Reportman.Reporting.DatabaseInfo.CurrentTransaction
+- uid: Reportman.Reporting.DatabaseInfo.Connection*
+  commentId: Overload:Reportman.Reporting.DatabaseInfo.Connection
+  isExternal: true
+  href: Reportman.Reporting.DatabaseInfo.html#Reportman_Reporting_DatabaseInfo_Connection
+  name: Connection
+  nameWithType: DatabaseInfo.Connection
+  fullName: Reportman.Reporting.DatabaseInfo.Connection
+- uid: System.Data.IDbConnection
+  commentId: T:System.Data.IDbConnection
+  parent: System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.idbconnection
+  name: IDbConnection
+  nameWithType: IDbConnection
+  fullName: System.Data.IDbConnection
+- uid: Reportman.Reporting.DatabaseInfo.Alias*
+  commentId: Overload:Reportman.Reporting.DatabaseInfo.Alias
+  isExternal: true
+  href: Reportman.Reporting.DatabaseInfo.html#Reportman_Reporting_DatabaseInfo_Alias
+  name: Alias
+  nameWithType: DatabaseInfo.Alias
+  fullName: Reportman.Reporting.DatabaseInfo.Alias
+- uid: Reportman.Reporting.DatabaseInfo.Driver*
+  commentId: Overload:Reportman.Reporting.DatabaseInfo.Driver
+  isExternal: true
+  href: Reportman.Reporting.DatabaseInfo.html#Reportman_Reporting_DatabaseInfo_Driver
+  name: Driver
+  nameWithType: DatabaseInfo.Driver
+  fullName: Reportman.Reporting.DatabaseInfo.Driver
+- uid: Reportman.Reporting.DriverType
+  commentId: T:Reportman.Reporting.DriverType
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.DriverType.html
+  name: DriverType
+  nameWithType: DriverType
+  fullName: Reportman.Reporting.DriverType
+- uid: Reportman.Reporting.DatabaseInfo.ProviderFactory*
+  commentId: Overload:Reportman.Reporting.DatabaseInfo.ProviderFactory
+  isExternal: true
+  href: Reportman.Reporting.DatabaseInfo.html#Reportman_Reporting_DatabaseInfo_ProviderFactory
+  name: ProviderFactory
+  nameWithType: DatabaseInfo.ProviderFactory
+  fullName: Reportman.Reporting.DatabaseInfo.ProviderFactory
+- uid: Reportman.Reporting.DatabaseInfo.ReportTable*
+  commentId: Overload:Reportman.Reporting.DatabaseInfo.ReportTable
+  isExternal: true
+  href: Reportman.Reporting.DatabaseInfo.html#Reportman_Reporting_DatabaseInfo_ReportTable
+  name: ReportTable
+  nameWithType: DatabaseInfo.ReportTable
+  fullName: Reportman.Reporting.DatabaseInfo.ReportTable
+- uid: Reportman.Reporting.DatabaseInfo.ReportSearchField*
+  commentId: Overload:Reportman.Reporting.DatabaseInfo.ReportSearchField
+  isExternal: true
+  href: Reportman.Reporting.DatabaseInfo.html#Reportman_Reporting_DatabaseInfo_ReportSearchField
+  name: ReportSearchField
+  nameWithType: DatabaseInfo.ReportSearchField
+  fullName: Reportman.Reporting.DatabaseInfo.ReportSearchField
+- uid: Reportman.Reporting.DatabaseInfo.ReportField*
+  commentId: Overload:Reportman.Reporting.DatabaseInfo.ReportField
+  isExternal: true
+  href: Reportman.Reporting.DatabaseInfo.html#Reportman_Reporting_DatabaseInfo_ReportField
+  name: ReportField
+  nameWithType: DatabaseInfo.ReportField
+  fullName: Reportman.Reporting.DatabaseInfo.ReportField
+- uid: Reportman.Reporting.DatabaseInfo.ReportGroupsTable*
+  commentId: Overload:Reportman.Reporting.DatabaseInfo.ReportGroupsTable
+  isExternal: true
+  href: Reportman.Reporting.DatabaseInfo.html#Reportman_Reporting_DatabaseInfo_ReportGroupsTable
+  name: ReportGroupsTable
+  nameWithType: DatabaseInfo.ReportGroupsTable
+  fullName: Reportman.Reporting.DatabaseInfo.ReportGroupsTable
+- uid: Reportman.Reporting.DatabaseInfo.ConnectionString*
+  commentId: Overload:Reportman.Reporting.DatabaseInfo.ConnectionString
+  isExternal: true
+  href: Reportman.Reporting.DatabaseInfo.html#Reportman_Reporting_DatabaseInfo_ConnectionString
+  name: ConnectionString
+  nameWithType: DatabaseInfo.ConnectionString
+  fullName: Reportman.Reporting.DatabaseInfo.ConnectionString
+- uid: Reportman.Reporting.DatabaseInfo.DotNetDriver*
+  commentId: Overload:Reportman.Reporting.DatabaseInfo.DotNetDriver
+  isExternal: true
+  href: Reportman.Reporting.DatabaseInfo.html#Reportman_Reporting_DatabaseInfo_DotNetDriver
+  name: DotNetDriver
+  nameWithType: DatabaseInfo.DotNetDriver
+  fullName: Reportman.Reporting.DatabaseInfo.DotNetDriver
+- uid: Reportman.Reporting.DotNetDriverType
+  commentId: T:Reportman.Reporting.DotNetDriverType
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.DotNetDriverType.html
+  name: DotNetDriverType
+  nameWithType: DotNetDriverType
+  fullName: Reportman.Reporting.DotNetDriverType

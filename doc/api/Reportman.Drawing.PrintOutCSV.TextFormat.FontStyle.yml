@@ -1,0 +1,172 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle
+  commentId: T:Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle
+  id: PrintOutCSV.TextFormat.FontStyle
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle.Bold
+  - Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle.Italic
+  - Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle.Strikethrough
+  - Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle.Underline
+  langs:
+  - csharp
+  - vb
+  name: PrintOutCSV.TextFormat.FontStyle
+  nameWithType: PrintOutCSV.TextFormat.FontStyle
+  fullName: Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle
+  type: Enum
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: >-
+      [Flags]
+
+      public enum PrintOutCSV.TextFormat.FontStyle
+    content.vb: >-
+      <Flags>
+
+      Public Enum PrintOutCSV.TextFormat.FontStyle
+  attributes:
+  - type: System.FlagsAttribute
+    ctor: System.FlagsAttribute.#ctor
+    arguments: []
+- uid: Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle.Bold
+  commentId: F:Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle.Bold
+  id: Bold
+  parent: Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle
+  langs:
+  - csharp
+  - vb
+  name: Bold
+  nameWithType: PrintOutCSV.TextFormat.FontStyle.Bold
+  fullName: Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle.Bold
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Bold = 1
+    return:
+      type: Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle
+- uid: Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle.Underline
+  commentId: F:Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle.Underline
+  id: Underline
+  parent: Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle
+  langs:
+  - csharp
+  - vb
+  name: Underline
+  nameWithType: PrintOutCSV.TextFormat.FontStyle.Underline
+  fullName: Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle.Underline
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Underline = 2
+    return:
+      type: Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle
+- uid: Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle.Italic
+  commentId: F:Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle.Italic
+  id: Italic
+  parent: Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle
+  langs:
+  - csharp
+  - vb
+  name: Italic
+  nameWithType: PrintOutCSV.TextFormat.FontStyle.Italic
+  fullName: Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle.Italic
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Italic = 4
+    return:
+      type: Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle
+- uid: Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle.Strikethrough
+  commentId: F:Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle.Strikethrough
+  id: Strikethrough
+  parent: Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle
+  langs:
+  - csharp
+  - vb
+  name: Strikethrough
+  nameWithType: PrintOutCSV.TextFormat.FontStyle.Strikethrough
+  fullName: Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle.Strikethrough
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Strikethrough = 8
+    return:
+      type: Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle
+  commentId: T:Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PrintOutCSV.html
+  name: PrintOutCSV.TextFormat.FontStyle
+  nameWithType: PrintOutCSV.TextFormat.FontStyle
+  fullName: Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle
+  spec.csharp:
+  - uid: Reportman.Drawing.PrintOutCSV
+    name: PrintOutCSV
+    isExternal: true
+    href: Reportman.Drawing.PrintOutCSV.html
+  - name: .
+  - uid: Reportman.Drawing.PrintOutCSV.TextFormat
+    name: TextFormat
+    isExternal: true
+    href: Reportman.Drawing.PrintOutCSV.TextFormat.html
+  - name: .
+  - uid: Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle
+    name: FontStyle
+    isExternal: true
+    href: Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle.html
+  spec.vb:
+  - uid: Reportman.Drawing.PrintOutCSV
+    name: PrintOutCSV
+    isExternal: true
+    href: Reportman.Drawing.PrintOutCSV.html
+  - name: .
+  - uid: Reportman.Drawing.PrintOutCSV.TextFormat
+    name: TextFormat
+    isExternal: true
+    href: Reportman.Drawing.PrintOutCSV.TextFormat.html
+  - name: .
+  - uid: Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle
+    name: FontStyle
+    isExternal: true
+    href: Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle.html

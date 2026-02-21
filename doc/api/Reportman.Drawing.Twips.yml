@@ -1,0 +1,926 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Twips
+  commentId: T:Reportman.Drawing.Twips
+  id: Twips
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.Twips.#ctor
+  - Reportman.Drawing.Twips.AlignToGridTwips(System.Drawing.Point,System.Int32,System.Int32)
+  - Reportman.Drawing.Twips.AlignToGridTwips(System.Int32,System.Int32,System.Int32)
+  - Reportman.Drawing.Twips.CMS_PER_INCH
+  - Reportman.Drawing.Twips.CmsToTwips(System.Decimal)
+  - Reportman.Drawing.Twips.DefaultUnit
+  - Reportman.Drawing.Twips.DefaultUnitString
+  - Reportman.Drawing.Twips.InchToTwips(System.Decimal)
+  - Reportman.Drawing.Twips.TWIPS_PER_CM
+  - Reportman.Drawing.Twips.TWIPS_PER_INCH
+  - Reportman.Drawing.Twips.TextFromTwips(System.Int32)
+  - Reportman.Drawing.Twips.TranslateUnit(Reportman.Drawing.Units)
+  - Reportman.Drawing.Twips.TwipsFromText(System.String)
+  - Reportman.Drawing.Twips.TwipsFromUnits(System.Decimal)
+  - Reportman.Drawing.Twips.TwipsToCms(System.Decimal)
+  - Reportman.Drawing.Twips.TwipsToInch(System.Decimal)
+  - Reportman.Drawing.Twips.UnitsFromTwips(System.Decimal)
+  langs:
+  - csharp
+  - vb
+  name: Twips
+  nameWithType: Twips
+  fullName: Reportman.Drawing.Twips
+  type: Class
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    Provide utitilies and constants related to Twips measurement unit.
+
+    One inch contains 1440 twips
+  example: []
+  syntax:
+    content: public class Twips
+    content.vb: Public Class Twips
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.Twips.TWIPS_PER_INCH
+  commentId: F:Reportman.Drawing.Twips.TWIPS_PER_INCH
+  id: TWIPS_PER_INCH
+  parent: Reportman.Drawing.Twips
+  langs:
+  - csharp
+  - vb
+  name: TWIPS_PER_INCH
+  nameWithType: Twips.TWIPS_PER_INCH
+  fullName: Reportman.Drawing.Twips.TWIPS_PER_INCH
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: One inch measures 1440 twips
+  example: []
+  syntax:
+    content: public const int TWIPS_PER_INCH = 1440
+    return:
+      type: System.Int32
+    content.vb: Public Const TWIPS_PER_INCH As Integer = 1440
+- uid: Reportman.Drawing.Twips.CMS_PER_INCH
+  commentId: F:Reportman.Drawing.Twips.CMS_PER_INCH
+  id: CMS_PER_INCH
+  parent: Reportman.Drawing.Twips
+  langs:
+  - csharp
+  - vb
+  name: CMS_PER_INCH
+  nameWithType: Twips.CMS_PER_INCH
+  fullName: Reportman.Drawing.Twips.CMS_PER_INCH
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: One inch measures 2.54 centimeters
+  example: []
+  syntax:
+    content: public const readonly decimal CMS_PER_INCH = 2.54
+    return:
+      type: System.Decimal
+    content.vb: Public Const ReadOnly CMS_PER_INCH As Decimal = 2.54
+- uid: Reportman.Drawing.Twips.TWIPS_PER_CM
+  commentId: F:Reportman.Drawing.Twips.TWIPS_PER_CM
+  id: TWIPS_PER_CM
+  parent: Reportman.Drawing.Twips
+  langs:
+  - csharp
+  - vb
+  name: TWIPS_PER_CM
+  nameWithType: Twips.TWIPS_PER_CM
+  fullName: Reportman.Drawing.Twips.TWIPS_PER_CM
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: One centimeter measures 1440/2.54 twips
+  example: []
+  syntax:
+    content: public const readonly decimal TWIPS_PER_CM = 566.92913385826771653543307087
+    return:
+      type: System.Decimal
+    content.vb: Public Const ReadOnly TWIPS_PER_CM As Decimal = 566.92913385826771653543307087
+- uid: Reportman.Drawing.Twips.AlignToGridTwips(System.Int32,System.Int32,System.Int32)
+  commentId: M:Reportman.Drawing.Twips.AlignToGridTwips(System.Int32,System.Int32,System.Int32)
+  id: AlignToGridTwips(System.Int32,System.Int32,System.Int32)
+  parent: Reportman.Drawing.Twips
+  langs:
+  - csharp
+  - vb
+  name: AlignToGridTwips(int, int, int)
+  nameWithType: Twips.AlignToGridTwips(int, int, int)
+  fullName: Reportman.Drawing.Twips.AlignToGridTwips(int, int, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static int AlignToGridTwips(int nx, int gridx, int gridy)
+    parameters:
+    - id: nx
+      type: System.Int32
+    - id: gridx
+      type: System.Int32
+    - id: gridy
+      type: System.Int32
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function AlignToGridTwips(nx As Integer, gridx As Integer, gridy As Integer) As Integer
+  overload: Reportman.Drawing.Twips.AlignToGridTwips*
+  nameWithType.vb: Twips.AlignToGridTwips(Integer, Integer, Integer)
+  fullName.vb: Reportman.Drawing.Twips.AlignToGridTwips(Integer, Integer, Integer)
+  name.vb: AlignToGridTwips(Integer, Integer, Integer)
+- uid: Reportman.Drawing.Twips.AlignToGridTwips(System.Drawing.Point,System.Int32,System.Int32)
+  commentId: M:Reportman.Drawing.Twips.AlignToGridTwips(System.Drawing.Point,System.Int32,System.Int32)
+  id: AlignToGridTwips(System.Drawing.Point,System.Int32,System.Int32)
+  parent: Reportman.Drawing.Twips
+  langs:
+  - csharp
+  - vb
+  name: AlignToGridTwips(Point, int, int)
+  nameWithType: Twips.AlignToGridTwips(Point, int, int)
+  fullName: Reportman.Drawing.Twips.AlignToGridTwips(System.Drawing.Point, int, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static Point AlignToGridTwips(Point npoint, int gridx, int gridy)
+    parameters:
+    - id: npoint
+      type: System.Drawing.Point
+    - id: gridx
+      type: System.Int32
+    - id: gridy
+      type: System.Int32
+    return:
+      type: System.Drawing.Point
+    content.vb: Public Shared Function AlignToGridTwips(npoint As Point, gridx As Integer, gridy As Integer) As Point
+  overload: Reportman.Drawing.Twips.AlignToGridTwips*
+  nameWithType.vb: Twips.AlignToGridTwips(Point, Integer, Integer)
+  fullName.vb: Reportman.Drawing.Twips.AlignToGridTwips(System.Drawing.Point, Integer, Integer)
+  name.vb: AlignToGridTwips(Point, Integer, Integer)
+- uid: Reportman.Drawing.Twips.TwipsToCms(System.Decimal)
+  commentId: M:Reportman.Drawing.Twips.TwipsToCms(System.Decimal)
+  id: TwipsToCms(System.Decimal)
+  parent: Reportman.Drawing.Twips
+  langs:
+  - csharp
+  - vb
+  name: TwipsToCms(decimal)
+  nameWithType: Twips.TwipsToCms(decimal)
+  fullName: Reportman.Drawing.Twips.TwipsToCms(decimal)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Helper to convert Twips to centimeters
+  example: []
+  syntax:
+    content: public static decimal TwipsToCms(decimal atwips)
+    parameters:
+    - id: atwips
+      type: System.Decimal
+    return:
+      type: System.Decimal
+    content.vb: Public Shared Function TwipsToCms(atwips As Decimal) As Decimal
+  overload: Reportman.Drawing.Twips.TwipsToCms*
+  nameWithType.vb: Twips.TwipsToCms(Decimal)
+  fullName.vb: Reportman.Drawing.Twips.TwipsToCms(Decimal)
+  name.vb: TwipsToCms(Decimal)
+- uid: Reportman.Drawing.Twips.TwipsToInch(System.Decimal)
+  commentId: M:Reportman.Drawing.Twips.TwipsToInch(System.Decimal)
+  id: TwipsToInch(System.Decimal)
+  parent: Reportman.Drawing.Twips
+  langs:
+  - csharp
+  - vb
+  name: TwipsToInch(decimal)
+  nameWithType: Twips.TwipsToInch(decimal)
+  fullName: Reportman.Drawing.Twips.TwipsToInch(decimal)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Helper to convert Twips to inch
+  example: []
+  syntax:
+    content: public static decimal TwipsToInch(decimal atwips)
+    parameters:
+    - id: atwips
+      type: System.Decimal
+    return:
+      type: System.Decimal
+    content.vb: Public Shared Function TwipsToInch(atwips As Decimal) As Decimal
+  overload: Reportman.Drawing.Twips.TwipsToInch*
+  nameWithType.vb: Twips.TwipsToInch(Decimal)
+  fullName.vb: Reportman.Drawing.Twips.TwipsToInch(Decimal)
+  name.vb: TwipsToInch(Decimal)
+- uid: Reportman.Drawing.Twips.CmsToTwips(System.Decimal)
+  commentId: M:Reportman.Drawing.Twips.CmsToTwips(System.Decimal)
+  id: CmsToTwips(System.Decimal)
+  parent: Reportman.Drawing.Twips
+  langs:
+  - csharp
+  - vb
+  name: CmsToTwips(decimal)
+  nameWithType: Twips.CmsToTwips(decimal)
+  fullName: Reportman.Drawing.Twips.CmsToTwips(decimal)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Helper to convert centimeters to Twips
+  example: []
+  syntax:
+    content: public static int CmsToTwips(decimal acms)
+    parameters:
+    - id: acms
+      type: System.Decimal
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function CmsToTwips(acms As Decimal) As Integer
+  overload: Reportman.Drawing.Twips.CmsToTwips*
+  nameWithType.vb: Twips.CmsToTwips(Decimal)
+  fullName.vb: Reportman.Drawing.Twips.CmsToTwips(Decimal)
+  name.vb: CmsToTwips(Decimal)
+- uid: Reportman.Drawing.Twips.InchToTwips(System.Decimal)
+  commentId: M:Reportman.Drawing.Twips.InchToTwips(System.Decimal)
+  id: InchToTwips(System.Decimal)
+  parent: Reportman.Drawing.Twips
+  langs:
+  - csharp
+  - vb
+  name: InchToTwips(decimal)
+  nameWithType: Twips.InchToTwips(decimal)
+  fullName: Reportman.Drawing.Twips.InchToTwips(decimal)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Helper to convert inch to Twips
+  example: []
+  syntax:
+    content: public static int InchToTwips(decimal ainch)
+    parameters:
+    - id: ainch
+      type: System.Decimal
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function InchToTwips(ainch As Decimal) As Integer
+  overload: Reportman.Drawing.Twips.InchToTwips*
+  nameWithType.vb: Twips.InchToTwips(Decimal)
+  fullName.vb: Reportman.Drawing.Twips.InchToTwips(Decimal)
+  name.vb: InchToTwips(Decimal)
+- uid: Reportman.Drawing.Twips.TranslateUnit(Reportman.Drawing.Units)
+  commentId: M:Reportman.Drawing.Twips.TranslateUnit(Reportman.Drawing.Units)
+  id: TranslateUnit(Reportman.Drawing.Units)
+  parent: Reportman.Drawing.Twips
+  langs:
+  - csharp
+  - vb
+  name: TranslateUnit(Units)
+  nameWithType: Twips.TranslateUnit(Units)
+  fullName: Reportman.Drawing.Twips.TranslateUnit(Reportman.Drawing.Units)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Returns the abreviated description for a measurement unit
+  example: []
+  syntax:
+    content: public static string TranslateUnit(Units unit)
+    parameters:
+    - id: unit
+      type: Reportman.Drawing.Units
+      description: The unit type
+    return:
+      type: System.String
+      description: A string
+    content.vb: Public Shared Function TranslateUnit(unit As Units) As String
+  overload: Reportman.Drawing.Twips.TranslateUnit*
+- uid: Reportman.Drawing.Twips.DefaultUnitString
+  commentId: M:Reportman.Drawing.Twips.DefaultUnitString
+  id: DefaultUnitString
+  parent: Reportman.Drawing.Twips
+  langs:
+  - csharp
+  - vb
+  name: DefaultUnitString()
+  nameWithType: Twips.DefaultUnitString()
+  fullName: Reportman.Drawing.Twips.DefaultUnitString()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Returns the default measurement unit form current region as string
+  example: []
+  syntax:
+    content: public static string DefaultUnitString()
+    return:
+      type: System.String
+    content.vb: Public Shared Function DefaultUnitString() As String
+  overload: Reportman.Drawing.Twips.DefaultUnitString*
+- uid: Reportman.Drawing.Twips.DefaultUnit
+  commentId: M:Reportman.Drawing.Twips.DefaultUnit
+  id: DefaultUnit
+  parent: Reportman.Drawing.Twips
+  langs:
+  - csharp
+  - vb
+  name: DefaultUnit()
+  nameWithType: Twips.DefaultUnit()
+  fullName: Reportman.Drawing.Twips.DefaultUnit()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Returns the default measurement unit form current region
+  example: []
+  syntax:
+    content: public static Units DefaultUnit()
+    return:
+      type: Reportman.Drawing.Units
+    content.vb: Public Shared Function DefaultUnit() As Units
+  overload: Reportman.Drawing.Twips.DefaultUnit*
+- uid: Reportman.Drawing.Twips.TextFromTwips(System.Int32)
+  commentId: M:Reportman.Drawing.Twips.TextFromTwips(System.Int32)
+  id: TextFromTwips(System.Int32)
+  parent: Reportman.Drawing.Twips
+  langs:
+  - csharp
+  - vb
+  name: TextFromTwips(int)
+  nameWithType: Twips.TextFromTwips(int)
+  fullName: Reportman.Drawing.Twips.TextFromTwips(int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Returns a string in default measurement, converting twips to that unit
+  example: []
+  syntax:
+    content: public static string TextFromTwips(int twips)
+    parameters:
+    - id: twips
+      type: System.Int32
+    return:
+      type: System.String
+    content.vb: Public Shared Function TextFromTwips(twips As Integer) As String
+  overload: Reportman.Drawing.Twips.TextFromTwips*
+  nameWithType.vb: Twips.TextFromTwips(Integer)
+  fullName.vb: Reportman.Drawing.Twips.TextFromTwips(Integer)
+  name.vb: TextFromTwips(Integer)
+- uid: Reportman.Drawing.Twips.TwipsFromText(System.String)
+  commentId: M:Reportman.Drawing.Twips.TwipsFromText(System.String)
+  id: TwipsFromText(System.String)
+  parent: Reportman.Drawing.Twips
+  langs:
+  - csharp
+  - vb
+  name: TwipsFromText(string)
+  nameWithType: Twips.TwipsFromText(string)
+  fullName: Reportman.Drawing.Twips.TwipsFromText(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Returns a twips value from a text, it uses the default measurement unit
+  example: []
+  syntax:
+    content: public static int TwipsFromText(string text)
+    parameters:
+    - id: text
+      type: System.String
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function TwipsFromText(text As String) As Integer
+  overload: Reportman.Drawing.Twips.TwipsFromText*
+  nameWithType.vb: Twips.TwipsFromText(String)
+  fullName.vb: Reportman.Drawing.Twips.TwipsFromText(String)
+  name.vb: TwipsFromText(String)
+- uid: Reportman.Drawing.Twips.UnitsFromTwips(System.Decimal)
+  commentId: M:Reportman.Drawing.Twips.UnitsFromTwips(System.Decimal)
+  id: UnitsFromTwips(System.Decimal)
+  parent: Reportman.Drawing.Twips
+  langs:
+  - csharp
+  - vb
+  name: UnitsFromTwips(decimal)
+  nameWithType: Twips.UnitsFromTwips(decimal)
+  fullName: Reportman.Drawing.Twips.UnitsFromTwips(decimal)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Returns a double value, converting twips to default unit
+  example: []
+  syntax:
+    content: public static decimal UnitsFromTwips(decimal twips)
+    parameters:
+    - id: twips
+      type: System.Decimal
+    return:
+      type: System.Decimal
+    content.vb: Public Shared Function UnitsFromTwips(twips As Decimal) As Decimal
+  overload: Reportman.Drawing.Twips.UnitsFromTwips*
+  nameWithType.vb: Twips.UnitsFromTwips(Decimal)
+  fullName.vb: Reportman.Drawing.Twips.UnitsFromTwips(Decimal)
+  name.vb: UnitsFromTwips(Decimal)
+- uid: Reportman.Drawing.Twips.TwipsFromUnits(System.Decimal)
+  commentId: M:Reportman.Drawing.Twips.TwipsFromUnits(System.Decimal)
+  id: TwipsFromUnits(System.Decimal)
+  parent: Reportman.Drawing.Twips
+  langs:
+  - csharp
+  - vb
+  name: TwipsFromUnits(decimal)
+  nameWithType: Twips.TwipsFromUnits(decimal)
+  fullName: Reportman.Drawing.Twips.TwipsFromUnits(decimal)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Returns a double value, converting the default unit to twips
+  example: []
+  syntax:
+    content: public static int TwipsFromUnits(decimal measure)
+    parameters:
+    - id: measure
+      type: System.Decimal
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function TwipsFromUnits(measure As Decimal) As Integer
+  overload: Reportman.Drawing.Twips.TwipsFromUnits*
+  nameWithType.vb: Twips.TwipsFromUnits(Decimal)
+  fullName.vb: Reportman.Drawing.Twips.TwipsFromUnits(Decimal)
+  name.vb: TwipsFromUnits(Decimal)
+- uid: Reportman.Drawing.Twips.#ctor
+  commentId: M:Reportman.Drawing.Twips.#ctor
+  id: '#ctor'
+  parent: Reportman.Drawing.Twips
+  langs:
+  - csharp
+  - vb
+  name: Twips()
+  nameWithType: Twips.Twips()
+  fullName: Reportman.Drawing.Twips.Twips()
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public Twips()
+    content.vb: Public Sub New()
+  overload: Reportman.Drawing.Twips.#ctor*
+  nameWithType.vb: Twips.New()
+  fullName.vb: Reportman.Drawing.Twips.New()
+  name.vb: New()
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Decimal
+  commentId: T:System.Decimal
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.decimal
+  name: decimal
+  nameWithType: decimal
+  fullName: decimal
+  nameWithType.vb: Decimal
+  fullName.vb: Decimal
+  name.vb: Decimal
+- uid: Reportman.Drawing.Twips.AlignToGridTwips*
+  commentId: Overload:Reportman.Drawing.Twips.AlignToGridTwips
+  isExternal: true
+  href: Reportman.Drawing.Twips.html#Reportman_Drawing_Twips_AlignToGridTwips_System_Int32_System_Int32_System_Int32_
+  name: AlignToGridTwips
+  nameWithType: Twips.AlignToGridTwips
+  fullName: Reportman.Drawing.Twips.AlignToGridTwips
+- uid: System.Drawing.Point
+  commentId: T:System.Drawing.Point
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.point
+  name: Point
+  nameWithType: Point
+  fullName: System.Drawing.Point
+- uid: System.Drawing
+  commentId: N:System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Drawing
+  nameWithType: System.Drawing
+  fullName: System.Drawing
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+- uid: Reportman.Drawing.Twips.TwipsToCms*
+  commentId: Overload:Reportman.Drawing.Twips.TwipsToCms
+  isExternal: true
+  href: Reportman.Drawing.Twips.html#Reportman_Drawing_Twips_TwipsToCms_System_Decimal_
+  name: TwipsToCms
+  nameWithType: Twips.TwipsToCms
+  fullName: Reportman.Drawing.Twips.TwipsToCms
+- uid: Reportman.Drawing.Twips.TwipsToInch*
+  commentId: Overload:Reportman.Drawing.Twips.TwipsToInch
+  isExternal: true
+  href: Reportman.Drawing.Twips.html#Reportman_Drawing_Twips_TwipsToInch_System_Decimal_
+  name: TwipsToInch
+  nameWithType: Twips.TwipsToInch
+  fullName: Reportman.Drawing.Twips.TwipsToInch
+- uid: Reportman.Drawing.Twips.CmsToTwips*
+  commentId: Overload:Reportman.Drawing.Twips.CmsToTwips
+  isExternal: true
+  href: Reportman.Drawing.Twips.html#Reportman_Drawing_Twips_CmsToTwips_System_Decimal_
+  name: CmsToTwips
+  nameWithType: Twips.CmsToTwips
+  fullName: Reportman.Drawing.Twips.CmsToTwips
+- uid: Reportman.Drawing.Twips.InchToTwips*
+  commentId: Overload:Reportman.Drawing.Twips.InchToTwips
+  isExternal: true
+  href: Reportman.Drawing.Twips.html#Reportman_Drawing_Twips_InchToTwips_System_Decimal_
+  name: InchToTwips
+  nameWithType: Twips.InchToTwips
+  fullName: Reportman.Drawing.Twips.InchToTwips
+- uid: Reportman.Drawing.Twips.TranslateUnit*
+  commentId: Overload:Reportman.Drawing.Twips.TranslateUnit
+  isExternal: true
+  href: Reportman.Drawing.Twips.html#Reportman_Drawing_Twips_TranslateUnit_Reportman_Drawing_Units_
+  name: TranslateUnit
+  nameWithType: Twips.TranslateUnit
+  fullName: Reportman.Drawing.Twips.TranslateUnit
+- uid: Reportman.Drawing.Units
+  commentId: T:Reportman.Drawing.Units
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.Units.html
+  name: Units
+  nameWithType: Units
+  fullName: Reportman.Drawing.Units
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Reportman.Drawing.Twips.DefaultUnitString*
+  commentId: Overload:Reportman.Drawing.Twips.DefaultUnitString
+  isExternal: true
+  href: Reportman.Drawing.Twips.html#Reportman_Drawing_Twips_DefaultUnitString
+  name: DefaultUnitString
+  nameWithType: Twips.DefaultUnitString
+  fullName: Reportman.Drawing.Twips.DefaultUnitString
+- uid: Reportman.Drawing.Twips.DefaultUnit*
+  commentId: Overload:Reportman.Drawing.Twips.DefaultUnit
+  isExternal: true
+  href: Reportman.Drawing.Twips.html#Reportman_Drawing_Twips_DefaultUnit
+  name: DefaultUnit
+  nameWithType: Twips.DefaultUnit
+  fullName: Reportman.Drawing.Twips.DefaultUnit
+- uid: Reportman.Drawing.Twips.TextFromTwips*
+  commentId: Overload:Reportman.Drawing.Twips.TextFromTwips
+  isExternal: true
+  href: Reportman.Drawing.Twips.html#Reportman_Drawing_Twips_TextFromTwips_System_Int32_
+  name: TextFromTwips
+  nameWithType: Twips.TextFromTwips
+  fullName: Reportman.Drawing.Twips.TextFromTwips
+- uid: Reportman.Drawing.Twips.TwipsFromText*
+  commentId: Overload:Reportman.Drawing.Twips.TwipsFromText
+  isExternal: true
+  href: Reportman.Drawing.Twips.html#Reportman_Drawing_Twips_TwipsFromText_System_String_
+  name: TwipsFromText
+  nameWithType: Twips.TwipsFromText
+  fullName: Reportman.Drawing.Twips.TwipsFromText
+- uid: Reportman.Drawing.Twips.UnitsFromTwips*
+  commentId: Overload:Reportman.Drawing.Twips.UnitsFromTwips
+  isExternal: true
+  href: Reportman.Drawing.Twips.html#Reportman_Drawing_Twips_UnitsFromTwips_System_Decimal_
+  name: UnitsFromTwips
+  nameWithType: Twips.UnitsFromTwips
+  fullName: Reportman.Drawing.Twips.UnitsFromTwips
+- uid: Reportman.Drawing.Twips.TwipsFromUnits*
+  commentId: Overload:Reportman.Drawing.Twips.TwipsFromUnits
+  isExternal: true
+  href: Reportman.Drawing.Twips.html#Reportman_Drawing_Twips_TwipsFromUnits_System_Decimal_
+  name: TwipsFromUnits
+  nameWithType: Twips.TwipsFromUnits
+  fullName: Reportman.Drawing.Twips.TwipsFromUnits
+- uid: Reportman.Drawing.Twips.#ctor*
+  commentId: Overload:Reportman.Drawing.Twips.#ctor
+  isExternal: true
+  href: Reportman.Drawing.Twips.html#Reportman_Drawing_Twips__ctor
+  name: Twips
+  nameWithType: Twips.Twips
+  fullName: Reportman.Drawing.Twips.Twips
+  nameWithType.vb: Twips.New
+  fullName.vb: Reportman.Drawing.Twips.New
+  name.vb: New

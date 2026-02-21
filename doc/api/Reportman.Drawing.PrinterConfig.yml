@@ -1,0 +1,811 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.PrinterConfig
+  commentId: T:Reportman.Drawing.PrinterConfig
+  id: PrinterConfig
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.PrinterConfig.#ctor
+  - Reportman.Drawing.PrinterConfig.ConfigFile
+  - Reportman.Drawing.PrinterConfig.DecodeEscapeString(System.String)
+  - Reportman.Drawing.PrinterConfig.ForceSystemConfig
+  - Reportman.Drawing.PrinterConfig.GetConfigurablePrinters
+  - Reportman.Drawing.PrinterConfig.GetCutPaperOperation(Reportman.Drawing.PrinterSelectType)
+  - Reportman.Drawing.PrinterConfig.GetCutPaperOption(Reportman.Drawing.PrinterSelectType)
+  - Reportman.Drawing.PrinterConfig.GetDriverName(Reportman.Drawing.PrinterSelectType)
+  - Reportman.Drawing.PrinterConfig.GetOEMConvert(Reportman.Drawing.PrinterSelectType)
+  - Reportman.Drawing.PrinterConfig.GetOpenDrawerOperation(Reportman.Drawing.PrinterSelectType)
+  - Reportman.Drawing.PrinterConfig.GetOpenDrawerOption(Reportman.Drawing.PrinterSelectType)
+  - Reportman.Drawing.PrinterConfig.GetPrinterName(Reportman.Drawing.PrinterSelectType)
+  - Reportman.Drawing.PrinterConfig.GetTextOnlyPrintDrivers
+  - Reportman.Drawing.PrinterConfig.PersistentConfiguration
+  - Reportman.Drawing.PrinterConfig.ReloadParameters
+  - Reportman.Drawing.PrinterConfig.flag
+  langs:
+  - csharp
+  - vb
+  name: PrinterConfig
+  nameWithType: PrinterConfig
+  fullName: Reportman.Drawing.PrinterConfig
+  type: Class
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Printer configuration class to obtain default printer settigns
+  example: []
+  syntax:
+    content: public class PrinterConfig
+    content.vb: Public Class PrinterConfig
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.PrinterConfig.PersistentConfiguration
+  commentId: F:Reportman.Drawing.PrinterConfig.PersistentConfiguration
+  id: PersistentConfiguration
+  parent: Reportman.Drawing.PrinterConfig
+  langs:
+  - csharp
+  - vb
+  name: PersistentConfiguration
+  nameWithType: PrinterConfig.PersistentConfiguration
+  fullName: Reportman.Drawing.PrinterConfig.PersistentConfiguration
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static bool PersistentConfiguration
+    return:
+      type: System.Boolean
+    content.vb: Public Shared PersistentConfiguration As Boolean
+- uid: Reportman.Drawing.PrinterConfig.flag
+  commentId: F:Reportman.Drawing.PrinterConfig.flag
+  id: flag
+  parent: Reportman.Drawing.PrinterConfig
+  langs:
+  - csharp
+  - vb
+  name: flag
+  nameWithType: PrinterConfig.flag
+  fullName: Reportman.Drawing.PrinterConfig.flag
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static object flag
+    return:
+      type: System.Object
+    content.vb: Public Shared flag As Object
+- uid: Reportman.Drawing.PrinterConfig.ForceSystemConfig
+  commentId: F:Reportman.Drawing.PrinterConfig.ForceSystemConfig
+  id: ForceSystemConfig
+  parent: Reportman.Drawing.PrinterConfig
+  langs:
+  - csharp
+  - vb
+  name: ForceSystemConfig
+  nameWithType: PrinterConfig.ForceSystemConfig
+  fullName: Reportman.Drawing.PrinterConfig.ForceSystemConfig
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static bool ForceSystemConfig
+    return:
+      type: System.Boolean
+    content.vb: Public Shared ForceSystemConfig As Boolean
+- uid: Reportman.Drawing.PrinterConfig.ConfigFile
+  commentId: M:Reportman.Drawing.PrinterConfig.ConfigFile
+  id: ConfigFile
+  parent: Reportman.Drawing.PrinterConfig
+  langs:
+  - csharp
+  - vb
+  name: ConfigFile()
+  nameWithType: PrinterConfig.ConfigFile()
+  fullName: Reportman.Drawing.PrinterConfig.ConfigFile()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string ConfigFile()
+    return:
+      type: System.String
+    content.vb: Public Shared Function ConfigFile() As String
+  overload: Reportman.Drawing.PrinterConfig.ConfigFile*
+- uid: Reportman.Drawing.PrinterConfig.ReloadParameters
+  commentId: M:Reportman.Drawing.PrinterConfig.ReloadParameters
+  id: ReloadParameters
+  parent: Reportman.Drawing.PrinterConfig
+  langs:
+  - csharp
+  - vb
+  name: ReloadParameters()
+  nameWithType: PrinterConfig.ReloadParameters()
+  fullName: Reportman.Drawing.PrinterConfig.ReloadParameters()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static void ReloadParameters()
+    content.vb: Public Shared Sub ReloadParameters()
+  overload: Reportman.Drawing.PrinterConfig.ReloadParameters*
+- uid: Reportman.Drawing.PrinterConfig.GetDriverName(Reportman.Drawing.PrinterSelectType)
+  commentId: M:Reportman.Drawing.PrinterConfig.GetDriverName(Reportman.Drawing.PrinterSelectType)
+  id: GetDriverName(Reportman.Drawing.PrinterSelectType)
+  parent: Reportman.Drawing.PrinterConfig
+  langs:
+  - csharp
+  - vb
+  name: GetDriverName(PrinterSelectType)
+  nameWithType: PrinterConfig.GetDriverName(PrinterSelectType)
+  fullName: Reportman.Drawing.PrinterConfig.GetDriverName(Reportman.Drawing.PrinterSelectType)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string GetDriverName(PrinterSelectType printselect)
+    parameters:
+    - id: printselect
+      type: Reportman.Drawing.PrinterSelectType
+    return:
+      type: System.String
+    content.vb: Public Shared Function GetDriverName(printselect As PrinterSelectType) As String
+  overload: Reportman.Drawing.PrinterConfig.GetDriverName*
+- uid: Reportman.Drawing.PrinterConfig.GetPrinterName(Reportman.Drawing.PrinterSelectType)
+  commentId: M:Reportman.Drawing.PrinterConfig.GetPrinterName(Reportman.Drawing.PrinterSelectType)
+  id: GetPrinterName(Reportman.Drawing.PrinterSelectType)
+  parent: Reportman.Drawing.PrinterConfig
+  langs:
+  - csharp
+  - vb
+  name: GetPrinterName(PrinterSelectType)
+  nameWithType: PrinterConfig.GetPrinterName(PrinterSelectType)
+  fullName: Reportman.Drawing.PrinterConfig.GetPrinterName(Reportman.Drawing.PrinterSelectType)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string GetPrinterName(PrinterSelectType printselect)
+    parameters:
+    - id: printselect
+      type: Reportman.Drawing.PrinterSelectType
+    return:
+      type: System.String
+    content.vb: Public Shared Function GetPrinterName(printselect As PrinterSelectType) As String
+  overload: Reportman.Drawing.PrinterConfig.GetPrinterName*
+- uid: Reportman.Drawing.PrinterConfig.DecodeEscapeString(System.String)
+  commentId: M:Reportman.Drawing.PrinterConfig.DecodeEscapeString(System.String)
+  id: DecodeEscapeString(System.String)
+  parent: Reportman.Drawing.PrinterConfig
+  langs:
+  - csharp
+  - vb
+  name: DecodeEscapeString(string)
+  nameWithType: PrinterConfig.DecodeEscapeString(string)
+  fullName: Reportman.Drawing.PrinterConfig.DecodeEscapeString(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string DecodeEscapeString(string source)
+    parameters:
+    - id: source
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function DecodeEscapeString(source As String) As String
+  overload: Reportman.Drawing.PrinterConfig.DecodeEscapeString*
+  nameWithType.vb: PrinterConfig.DecodeEscapeString(String)
+  fullName.vb: Reportman.Drawing.PrinterConfig.DecodeEscapeString(String)
+  name.vb: DecodeEscapeString(String)
+- uid: Reportman.Drawing.PrinterConfig.GetCutPaperOperation(Reportman.Drawing.PrinterSelectType)
+  commentId: M:Reportman.Drawing.PrinterConfig.GetCutPaperOperation(Reportman.Drawing.PrinterSelectType)
+  id: GetCutPaperOperation(Reportman.Drawing.PrinterSelectType)
+  parent: Reportman.Drawing.PrinterConfig
+  langs:
+  - csharp
+  - vb
+  name: GetCutPaperOperation(PrinterSelectType)
+  nameWithType: PrinterConfig.GetCutPaperOperation(PrinterSelectType)
+  fullName: Reportman.Drawing.PrinterConfig.GetCutPaperOperation(Reportman.Drawing.PrinterSelectType)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static byte[] GetCutPaperOperation(PrinterSelectType printselect)
+    parameters:
+    - id: printselect
+      type: Reportman.Drawing.PrinterSelectType
+    return:
+      type: System.Byte[]
+    content.vb: Public Shared Function GetCutPaperOperation(printselect As PrinterSelectType) As Byte()
+  overload: Reportman.Drawing.PrinterConfig.GetCutPaperOperation*
+- uid: Reportman.Drawing.PrinterConfig.GetOpenDrawerOption(Reportman.Drawing.PrinterSelectType)
+  commentId: M:Reportman.Drawing.PrinterConfig.GetOpenDrawerOption(Reportman.Drawing.PrinterSelectType)
+  id: GetOpenDrawerOption(Reportman.Drawing.PrinterSelectType)
+  parent: Reportman.Drawing.PrinterConfig
+  langs:
+  - csharp
+  - vb
+  name: GetOpenDrawerOption(PrinterSelectType)
+  nameWithType: PrinterConfig.GetOpenDrawerOption(PrinterSelectType)
+  fullName: Reportman.Drawing.PrinterConfig.GetOpenDrawerOption(Reportman.Drawing.PrinterSelectType)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static bool GetOpenDrawerOption(PrinterSelectType printselect)
+    parameters:
+    - id: printselect
+      type: Reportman.Drawing.PrinterSelectType
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function GetOpenDrawerOption(printselect As PrinterSelectType) As Boolean
+  overload: Reportman.Drawing.PrinterConfig.GetOpenDrawerOption*
+- uid: Reportman.Drawing.PrinterConfig.GetCutPaperOption(Reportman.Drawing.PrinterSelectType)
+  commentId: M:Reportman.Drawing.PrinterConfig.GetCutPaperOption(Reportman.Drawing.PrinterSelectType)
+  id: GetCutPaperOption(Reportman.Drawing.PrinterSelectType)
+  parent: Reportman.Drawing.PrinterConfig
+  langs:
+  - csharp
+  - vb
+  name: GetCutPaperOption(PrinterSelectType)
+  nameWithType: PrinterConfig.GetCutPaperOption(PrinterSelectType)
+  fullName: Reportman.Drawing.PrinterConfig.GetCutPaperOption(Reportman.Drawing.PrinterSelectType)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static bool GetCutPaperOption(PrinterSelectType printselect)
+    parameters:
+    - id: printselect
+      type: Reportman.Drawing.PrinterSelectType
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function GetCutPaperOption(printselect As PrinterSelectType) As Boolean
+  overload: Reportman.Drawing.PrinterConfig.GetCutPaperOption*
+- uid: Reportman.Drawing.PrinterConfig.GetOpenDrawerOperation(Reportman.Drawing.PrinterSelectType)
+  commentId: M:Reportman.Drawing.PrinterConfig.GetOpenDrawerOperation(Reportman.Drawing.PrinterSelectType)
+  id: GetOpenDrawerOperation(Reportman.Drawing.PrinterSelectType)
+  parent: Reportman.Drawing.PrinterConfig
+  langs:
+  - csharp
+  - vb
+  name: GetOpenDrawerOperation(PrinterSelectType)
+  nameWithType: PrinterConfig.GetOpenDrawerOperation(PrinterSelectType)
+  fullName: Reportman.Drawing.PrinterConfig.GetOpenDrawerOperation(Reportman.Drawing.PrinterSelectType)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static byte[] GetOpenDrawerOperation(PrinterSelectType printselect)
+    parameters:
+    - id: printselect
+      type: Reportman.Drawing.PrinterSelectType
+    return:
+      type: System.Byte[]
+    content.vb: Public Shared Function GetOpenDrawerOperation(printselect As PrinterSelectType) As Byte()
+  overload: Reportman.Drawing.PrinterConfig.GetOpenDrawerOperation*
+- uid: Reportman.Drawing.PrinterConfig.GetOEMConvert(Reportman.Drawing.PrinterSelectType)
+  commentId: M:Reportman.Drawing.PrinterConfig.GetOEMConvert(Reportman.Drawing.PrinterSelectType)
+  id: GetOEMConvert(Reportman.Drawing.PrinterSelectType)
+  parent: Reportman.Drawing.PrinterConfig
+  langs:
+  - csharp
+  - vb
+  name: GetOEMConvert(PrinterSelectType)
+  nameWithType: PrinterConfig.GetOEMConvert(PrinterSelectType)
+  fullName: Reportman.Drawing.PrinterConfig.GetOEMConvert(Reportman.Drawing.PrinterSelectType)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static bool GetOEMConvert(PrinterSelectType printselect)
+    parameters:
+    - id: printselect
+      type: Reportman.Drawing.PrinterSelectType
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function GetOEMConvert(printselect As PrinterSelectType) As Boolean
+  overload: Reportman.Drawing.PrinterConfig.GetOEMConvert*
+- uid: Reportman.Drawing.PrinterConfig.GetTextOnlyPrintDrivers
+  commentId: M:Reportman.Drawing.PrinterConfig.GetTextOnlyPrintDrivers
+  id: GetTextOnlyPrintDrivers
+  parent: Reportman.Drawing.PrinterConfig
+  langs:
+  - csharp
+  - vb
+  name: GetTextOnlyPrintDrivers()
+  nameWithType: PrinterConfig.GetTextOnlyPrintDrivers()
+  fullName: Reportman.Drawing.PrinterConfig.GetTextOnlyPrintDrivers()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static Strings GetTextOnlyPrintDrivers()
+    return:
+      type: Reportman.Drawing.Strings
+    content.vb: Public Shared Function GetTextOnlyPrintDrivers() As Strings
+  overload: Reportman.Drawing.PrinterConfig.GetTextOnlyPrintDrivers*
+- uid: Reportman.Drawing.PrinterConfig.GetConfigurablePrinters
+  commentId: M:Reportman.Drawing.PrinterConfig.GetConfigurablePrinters
+  id: GetConfigurablePrinters
+  parent: Reportman.Drawing.PrinterConfig
+  langs:
+  - csharp
+  - vb
+  name: GetConfigurablePrinters()
+  nameWithType: PrinterConfig.GetConfigurablePrinters()
+  fullName: Reportman.Drawing.PrinterConfig.GetConfigurablePrinters()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static Strings GetConfigurablePrinters()
+    return:
+      type: Reportman.Drawing.Strings
+    content.vb: Public Shared Function GetConfigurablePrinters() As Strings
+  overload: Reportman.Drawing.PrinterConfig.GetConfigurablePrinters*
+- uid: Reportman.Drawing.PrinterConfig.#ctor
+  commentId: M:Reportman.Drawing.PrinterConfig.#ctor
+  id: '#ctor'
+  parent: Reportman.Drawing.PrinterConfig
+  langs:
+  - csharp
+  - vb
+  name: PrinterConfig()
+  nameWithType: PrinterConfig.PrinterConfig()
+  fullName: Reportman.Drawing.PrinterConfig.PrinterConfig()
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public PrinterConfig()
+    content.vb: Public Sub New()
+  overload: Reportman.Drawing.PrinterConfig.#ctor*
+  nameWithType.vb: PrinterConfig.New()
+  fullName.vb: Reportman.Drawing.PrinterConfig.New()
+  name.vb: New()
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Reportman.Drawing.PrinterConfig.ConfigFile*
+  commentId: Overload:Reportman.Drawing.PrinterConfig.ConfigFile
+  isExternal: true
+  href: Reportman.Drawing.PrinterConfig.html#Reportman_Drawing_PrinterConfig_ConfigFile
+  name: ConfigFile
+  nameWithType: PrinterConfig.ConfigFile
+  fullName: Reportman.Drawing.PrinterConfig.ConfigFile
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Reportman.Drawing.PrinterConfig.ReloadParameters*
+  commentId: Overload:Reportman.Drawing.PrinterConfig.ReloadParameters
+  isExternal: true
+  href: Reportman.Drawing.PrinterConfig.html#Reportman_Drawing_PrinterConfig_ReloadParameters
+  name: ReloadParameters
+  nameWithType: PrinterConfig.ReloadParameters
+  fullName: Reportman.Drawing.PrinterConfig.ReloadParameters
+- uid: Reportman.Drawing.PrinterConfig.GetDriverName*
+  commentId: Overload:Reportman.Drawing.PrinterConfig.GetDriverName
+  isExternal: true
+  href: Reportman.Drawing.PrinterConfig.html#Reportman_Drawing_PrinterConfig_GetDriverName_Reportman_Drawing_PrinterSelectType_
+  name: GetDriverName
+  nameWithType: PrinterConfig.GetDriverName
+  fullName: Reportman.Drawing.PrinterConfig.GetDriverName
+- uid: Reportman.Drawing.PrinterSelectType
+  commentId: T:Reportman.Drawing.PrinterSelectType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PrinterSelectType.html
+  name: PrinterSelectType
+  nameWithType: PrinterSelectType
+  fullName: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.PrinterConfig.GetPrinterName*
+  commentId: Overload:Reportman.Drawing.PrinterConfig.GetPrinterName
+  isExternal: true
+  href: Reportman.Drawing.PrinterConfig.html#Reportman_Drawing_PrinterConfig_GetPrinterName_Reportman_Drawing_PrinterSelectType_
+  name: GetPrinterName
+  nameWithType: PrinterConfig.GetPrinterName
+  fullName: Reportman.Drawing.PrinterConfig.GetPrinterName
+- uid: Reportman.Drawing.PrinterConfig.DecodeEscapeString*
+  commentId: Overload:Reportman.Drawing.PrinterConfig.DecodeEscapeString
+  isExternal: true
+  href: Reportman.Drawing.PrinterConfig.html#Reportman_Drawing_PrinterConfig_DecodeEscapeString_System_String_
+  name: DecodeEscapeString
+  nameWithType: PrinterConfig.DecodeEscapeString
+  fullName: Reportman.Drawing.PrinterConfig.DecodeEscapeString
+- uid: Reportman.Drawing.PrinterConfig.GetCutPaperOperation*
+  commentId: Overload:Reportman.Drawing.PrinterConfig.GetCutPaperOperation
+  isExternal: true
+  href: Reportman.Drawing.PrinterConfig.html#Reportman_Drawing_PrinterConfig_GetCutPaperOperation_Reportman_Drawing_PrinterSelectType_
+  name: GetCutPaperOperation
+  nameWithType: PrinterConfig.GetCutPaperOperation
+  fullName: Reportman.Drawing.PrinterConfig.GetCutPaperOperation
+- uid: System.Byte[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte[]
+  nameWithType: byte[]
+  fullName: byte[]
+  nameWithType.vb: Byte()
+  fullName.vb: Byte()
+  name.vb: Byte()
+  spec.csharp:
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: (
+  - name: )
+- uid: Reportman.Drawing.PrinterConfig.GetOpenDrawerOption*
+  commentId: Overload:Reportman.Drawing.PrinterConfig.GetOpenDrawerOption
+  isExternal: true
+  href: Reportman.Drawing.PrinterConfig.html#Reportman_Drawing_PrinterConfig_GetOpenDrawerOption_Reportman_Drawing_PrinterSelectType_
+  name: GetOpenDrawerOption
+  nameWithType: PrinterConfig.GetOpenDrawerOption
+  fullName: Reportman.Drawing.PrinterConfig.GetOpenDrawerOption
+- uid: Reportman.Drawing.PrinterConfig.GetCutPaperOption*
+  commentId: Overload:Reportman.Drawing.PrinterConfig.GetCutPaperOption
+  isExternal: true
+  href: Reportman.Drawing.PrinterConfig.html#Reportman_Drawing_PrinterConfig_GetCutPaperOption_Reportman_Drawing_PrinterSelectType_
+  name: GetCutPaperOption
+  nameWithType: PrinterConfig.GetCutPaperOption
+  fullName: Reportman.Drawing.PrinterConfig.GetCutPaperOption
+- uid: Reportman.Drawing.PrinterConfig.GetOpenDrawerOperation*
+  commentId: Overload:Reportman.Drawing.PrinterConfig.GetOpenDrawerOperation
+  isExternal: true
+  href: Reportman.Drawing.PrinterConfig.html#Reportman_Drawing_PrinterConfig_GetOpenDrawerOperation_Reportman_Drawing_PrinterSelectType_
+  name: GetOpenDrawerOperation
+  nameWithType: PrinterConfig.GetOpenDrawerOperation
+  fullName: Reportman.Drawing.PrinterConfig.GetOpenDrawerOperation
+- uid: Reportman.Drawing.PrinterConfig.GetOEMConvert*
+  commentId: Overload:Reportman.Drawing.PrinterConfig.GetOEMConvert
+  isExternal: true
+  href: Reportman.Drawing.PrinterConfig.html#Reportman_Drawing_PrinterConfig_GetOEMConvert_Reportman_Drawing_PrinterSelectType_
+  name: GetOEMConvert
+  nameWithType: PrinterConfig.GetOEMConvert
+  fullName: Reportman.Drawing.PrinterConfig.GetOEMConvert
+- uid: Reportman.Drawing.PrinterConfig.GetTextOnlyPrintDrivers*
+  commentId: Overload:Reportman.Drawing.PrinterConfig.GetTextOnlyPrintDrivers
+  isExternal: true
+  href: Reportman.Drawing.PrinterConfig.html#Reportman_Drawing_PrinterConfig_GetTextOnlyPrintDrivers
+  name: GetTextOnlyPrintDrivers
+  nameWithType: PrinterConfig.GetTextOnlyPrintDrivers
+  fullName: Reportman.Drawing.PrinterConfig.GetTextOnlyPrintDrivers
+- uid: Reportman.Drawing.Strings
+  commentId: T:Reportman.Drawing.Strings
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.Strings.html
+  name: Strings
+  nameWithType: Strings
+  fullName: Reportman.Drawing.Strings
+- uid: Reportman.Drawing.PrinterConfig.GetConfigurablePrinters*
+  commentId: Overload:Reportman.Drawing.PrinterConfig.GetConfigurablePrinters
+  isExternal: true
+  href: Reportman.Drawing.PrinterConfig.html#Reportman_Drawing_PrinterConfig_GetConfigurablePrinters
+  name: GetConfigurablePrinters
+  nameWithType: PrinterConfig.GetConfigurablePrinters
+  fullName: Reportman.Drawing.PrinterConfig.GetConfigurablePrinters
+- uid: Reportman.Drawing.PrinterConfig.#ctor*
+  commentId: Overload:Reportman.Drawing.PrinterConfig.#ctor
+  isExternal: true
+  href: Reportman.Drawing.PrinterConfig.html#Reportman_Drawing_PrinterConfig__ctor
+  name: PrinterConfig
+  nameWithType: PrinterConfig.PrinterConfig
+  fullName: Reportman.Drawing.PrinterConfig.PrinterConfig
+  nameWithType.vb: PrinterConfig.New
+  fullName.vb: Reportman.Drawing.PrinterConfig.New
+  name.vb: New

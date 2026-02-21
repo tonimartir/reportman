@@ -1,0 +1,152 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION
+  commentId: T:Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION
+  id: QRCodeEncoder.ERROR_CORRECTION
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION.H
+  - Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION.L
+  - Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION.M
+  - Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION.Q
+  langs:
+  - csharp
+  - vb
+  name: QRCodeEncoder.ERROR_CORRECTION
+  nameWithType: QRCodeEncoder.ERROR_CORRECTION
+  fullName: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION
+  type: Enum
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Drawing
+  syntax:
+    content: public enum QRCodeEncoder.ERROR_CORRECTION
+    content.vb: Public Enum QRCodeEncoder.ERROR_CORRECTION
+- uid: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION.L
+  commentId: F:Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION.L
+  id: L
+  parent: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION
+  langs:
+  - csharp
+  - vb
+  name: L
+  nameWithType: QRCodeEncoder.ERROR_CORRECTION.L
+  fullName: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION.L
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Drawing
+  syntax:
+    content: L = 0
+    return:
+      type: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION
+- uid: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION.M
+  commentId: F:Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION.M
+  id: M
+  parent: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION
+  langs:
+  - csharp
+  - vb
+  name: M
+  nameWithType: QRCodeEncoder.ERROR_CORRECTION.M
+  fullName: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION.M
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Drawing
+  syntax:
+    content: M = 1
+    return:
+      type: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION
+- uid: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION.Q
+  commentId: F:Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION.Q
+  id: Q
+  parent: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION
+  langs:
+  - csharp
+  - vb
+  name: Q
+  nameWithType: QRCodeEncoder.ERROR_CORRECTION.Q
+  fullName: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION.Q
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Drawing
+  syntax:
+    content: Q = 2
+    return:
+      type: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION
+- uid: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION.H
+  commentId: F:Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION.H
+  id: H
+  parent: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION
+  langs:
+  - csharp
+  - vb
+  name: H
+  nameWithType: QRCodeEncoder.ERROR_CORRECTION.H
+  fullName: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION.H
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Drawing
+  syntax:
+    content: H = 3
+    return:
+      type: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION
+  commentId: T:Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.QRCodeEncoder.html
+  name: QRCodeEncoder.ERROR_CORRECTION
+  nameWithType: QRCodeEncoder.ERROR_CORRECTION
+  fullName: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION
+  spec.csharp:
+  - uid: Reportman.Drawing.QRCodeEncoder
+    name: QRCodeEncoder
+    isExternal: true
+    href: Reportman.Drawing.QRCodeEncoder.html
+  - name: .
+  - uid: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION
+    name: ERROR_CORRECTION
+    isExternal: true
+    href: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION.html
+  spec.vb:
+  - uid: Reportman.Drawing.QRCodeEncoder
+    name: QRCodeEncoder
+    isExternal: true
+    href: Reportman.Drawing.QRCodeEncoder.html
+  - name: .
+  - uid: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION
+    name: ERROR_CORRECTION
+    isExternal: true
+    href: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION.html

@@ -1,0 +1,373 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.BrushType
+  commentId: T:Reportman.Drawing.BrushType
+  id: BrushType
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.BrushType.ACross
+  - Reportman.Drawing.BrushType.ADiagonal
+  - Reportman.Drawing.BrushType.BCross
+  - Reportman.Drawing.BrushType.BDiagonal
+  - Reportman.Drawing.BrushType.Clear
+  - Reportman.Drawing.BrushType.Dense1
+  - Reportman.Drawing.BrushType.Dense2
+  - Reportman.Drawing.BrushType.Dense3
+  - Reportman.Drawing.BrushType.Dense4
+  - Reportman.Drawing.BrushType.Dense5
+  - Reportman.Drawing.BrushType.Dense6
+  - Reportman.Drawing.BrushType.Dense7
+  - Reportman.Drawing.BrushType.Horizontal
+  - Reportman.Drawing.BrushType.Solid
+  - Reportman.Drawing.BrushType.Vertical
+  langs:
+  - csharp
+  - vb
+  name: BrushType
+  nameWithType: BrushType
+  fullName: Reportman.Drawing.BrushType
+  type: Enum
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Brush types, when drawing shapes, the filling area can be stablished to a specified pattern
+  example: []
+  syntax:
+    content: public enum BrushType
+    content.vb: Public Enum BrushType
+- uid: Reportman.Drawing.BrushType.Solid
+  commentId: F:Reportman.Drawing.BrushType.Solid
+  id: Solid
+  parent: Reportman.Drawing.BrushType
+  langs:
+  - csharp
+  - vb
+  name: Solid
+  nameWithType: BrushType.Solid
+  fullName: Reportman.Drawing.BrushType.Solid
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Solid, default pattern. HatchStyle.SolidDiamond
+  example: []
+  syntax:
+    content: Solid = 0
+    return:
+      type: Reportman.Drawing.BrushType
+- uid: Reportman.Drawing.BrushType.Clear
+  commentId: F:Reportman.Drawing.BrushType.Clear
+  id: Clear
+  parent: Reportman.Drawing.BrushType
+  langs:
+  - csharp
+  - vb
+  name: Clear
+  nameWithType: BrushType.Clear
+  fullName: Reportman.Drawing.BrushType.Clear
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: No pattern is used, that is like a transparent color
+  example: []
+  syntax:
+    content: Clear = 1
+    return:
+      type: Reportman.Drawing.BrushType
+- uid: Reportman.Drawing.BrushType.Horizontal
+  commentId: F:Reportman.Drawing.BrushType.Horizontal
+  id: Horizontal
+  parent: Reportman.Drawing.BrushType
+  langs:
+  - csharp
+  - vb
+  name: Horizontal
+  nameWithType: BrushType.Horizontal
+  fullName: Reportman.Drawing.BrushType.Horizontal
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Pattern of horizontal lines. HatchStyle.Horizontal
+  example: []
+  syntax:
+    content: Horizontal = 2
+    return:
+      type: Reportman.Drawing.BrushType
+- uid: Reportman.Drawing.BrushType.Vertical
+  commentId: F:Reportman.Drawing.BrushType.Vertical
+  id: Vertical
+  parent: Reportman.Drawing.BrushType
+  langs:
+  - csharp
+  - vb
+  name: Vertical
+  nameWithType: BrushType.Vertical
+  fullName: Reportman.Drawing.BrushType.Vertical
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Pattern of vertical lines. HatchStyle.Vertical
+  example: []
+  syntax:
+    content: Vertical = 3
+    return:
+      type: Reportman.Drawing.BrushType
+- uid: Reportman.Drawing.BrushType.ADiagonal
+  commentId: F:Reportman.Drawing.BrushType.ADiagonal
+  id: ADiagonal
+  parent: Reportman.Drawing.BrushType
+  langs:
+  - csharp
+  - vb
+  name: ADiagonal
+  nameWithType: BrushType.ADiagonal
+  fullName: Reportman.Drawing.BrushType.ADiagonal
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Pattern of diagonal lines. HatchStyle.LightUpwardDiagonal
+  example: []
+  syntax:
+    content: ADiagonal = 4
+    return:
+      type: Reportman.Drawing.BrushType
+- uid: Reportman.Drawing.BrushType.BDiagonal
+  commentId: F:Reportman.Drawing.BrushType.BDiagonal
+  id: BDiagonal
+  parent: Reportman.Drawing.BrushType
+  langs:
+  - csharp
+  - vb
+  name: BDiagonal
+  nameWithType: BrushType.BDiagonal
+  fullName: Reportman.Drawing.BrushType.BDiagonal
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Pattern of reverse diagonal lines. HatchStyle.LightDownwardDiagonal
+  example: []
+  syntax:
+    content: BDiagonal = 5
+    return:
+      type: Reportman.Drawing.BrushType
+- uid: Reportman.Drawing.BrushType.ACross
+  commentId: F:Reportman.Drawing.BrushType.ACross
+  id: ACross
+  parent: Reportman.Drawing.BrushType
+  langs:
+  - csharp
+  - vb
+  name: ACross
+  nameWithType: BrushType.ACross
+  fullName: Reportman.Drawing.BrushType.ACross
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Pattern of crossed lines. HatchStyle.Cross
+  example: []
+  syntax:
+    content: ACross = 6
+    return:
+      type: Reportman.Drawing.BrushType
+- uid: Reportman.Drawing.BrushType.BCross
+  commentId: F:Reportman.Drawing.BrushType.BCross
+  id: BCross
+  parent: Reportman.Drawing.BrushType
+  langs:
+  - csharp
+  - vb
+  name: BCross
+  nameWithType: BrushType.BCross
+  fullName: Reportman.Drawing.BrushType.BCross
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Pattern of diagonal crossed lines. HatchStyle.DiagonalCross
+  example: []
+  syntax:
+    content: BCross = 7
+    return:
+      type: Reportman.Drawing.BrushType
+- uid: Reportman.Drawing.BrushType.Dense1
+  commentId: F:Reportman.Drawing.BrushType.Dense1
+  id: Dense1
+  parent: Reportman.Drawing.BrushType
+  langs:
+  - csharp
+  - vb
+  name: Dense1
+  nameWithType: BrushType.Dense1
+  fullName: Reportman.Drawing.BrushType.Dense1
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Pattern of dense points type 1. HatchStyle.Percent10
+  example: []
+  syntax:
+    content: Dense1 = 8
+    return:
+      type: Reportman.Drawing.BrushType
+- uid: Reportman.Drawing.BrushType.Dense2
+  commentId: F:Reportman.Drawing.BrushType.Dense2
+  id: Dense2
+  parent: Reportman.Drawing.BrushType
+  langs:
+  - csharp
+  - vb
+  name: Dense2
+  nameWithType: BrushType.Dense2
+  fullName: Reportman.Drawing.BrushType.Dense2
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Pattern of dense points type 2. HatchStyle.Percent20
+  example: []
+  syntax:
+    content: Dense2 = 9
+    return:
+      type: Reportman.Drawing.BrushType
+- uid: Reportman.Drawing.BrushType.Dense3
+  commentId: F:Reportman.Drawing.BrushType.Dense3
+  id: Dense3
+  parent: Reportman.Drawing.BrushType
+  langs:
+  - csharp
+  - vb
+  name: Dense3
+  nameWithType: BrushType.Dense3
+  fullName: Reportman.Drawing.BrushType.Dense3
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Pattern of dense points type 3. HatchStyle.Percent30
+  example: []
+  syntax:
+    content: Dense3 = 10
+    return:
+      type: Reportman.Drawing.BrushType
+- uid: Reportman.Drawing.BrushType.Dense4
+  commentId: F:Reportman.Drawing.BrushType.Dense4
+  id: Dense4
+  parent: Reportman.Drawing.BrushType
+  langs:
+  - csharp
+  - vb
+  name: Dense4
+  nameWithType: BrushType.Dense4
+  fullName: Reportman.Drawing.BrushType.Dense4
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Pattern of dense points type 4. HatchStyle.Percent40
+  example: []
+  syntax:
+    content: Dense4 = 11
+    return:
+      type: Reportman.Drawing.BrushType
+- uid: Reportman.Drawing.BrushType.Dense5
+  commentId: F:Reportman.Drawing.BrushType.Dense5
+  id: Dense5
+  parent: Reportman.Drawing.BrushType
+  langs:
+  - csharp
+  - vb
+  name: Dense5
+  nameWithType: BrushType.Dense5
+  fullName: Reportman.Drawing.BrushType.Dense5
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Pattern of dense points type 5. HatchStyle.Percent50
+  example: []
+  syntax:
+    content: Dense5 = 12
+    return:
+      type: Reportman.Drawing.BrushType
+- uid: Reportman.Drawing.BrushType.Dense6
+  commentId: F:Reportman.Drawing.BrushType.Dense6
+  id: Dense6
+  parent: Reportman.Drawing.BrushType
+  langs:
+  - csharp
+  - vb
+  name: Dense6
+  nameWithType: BrushType.Dense6
+  fullName: Reportman.Drawing.BrushType.Dense6
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Pattern of dense points type 6. HatchStyle.Percent60
+  example: []
+  syntax:
+    content: Dense6 = 13
+    return:
+      type: Reportman.Drawing.BrushType
+- uid: Reportman.Drawing.BrushType.Dense7
+  commentId: F:Reportman.Drawing.BrushType.Dense7
+  id: Dense7
+  parent: Reportman.Drawing.BrushType
+  langs:
+  - csharp
+  - vb
+  name: Dense7
+  nameWithType: BrushType.Dense7
+  fullName: Reportman.Drawing.BrushType.Dense7
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Pattern of dense points type 7. HatchStyle.Percent70
+  example: []
+  syntax:
+    content: Dense7 = 14
+    return:
+      type: Reportman.Drawing.BrushType
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.BrushType
+  commentId: T:Reportman.Drawing.BrushType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.BrushType.html
+  name: BrushType
+  nameWithType: BrushType
+  fullName: Reportman.Drawing.BrushType

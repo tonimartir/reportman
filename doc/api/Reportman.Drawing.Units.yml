@@ -1,0 +1,100 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Units
+  commentId: T:Reportman.Drawing.Units
+  id: Units
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.Units.Cms
+  - Reportman.Drawing.Units.Inch
+  langs:
+  - csharp
+  - vb
+  name: Units
+  nameWithType: Units
+  fullName: Reportman.Drawing.Units
+  type: Enum
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Measurement units
+  example: []
+  syntax:
+    content: public enum Units
+    content.vb: Public Enum Units
+- uid: Reportman.Drawing.Units.Inch
+  commentId: F:Reportman.Drawing.Units.Inch
+  id: Inch
+  parent: Reportman.Drawing.Units
+  langs:
+  - csharp
+  - vb
+  name: Inch
+  nameWithType: Units.Inch
+  fullName: Reportman.Drawing.Units.Inch
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Inch measurement
+  example: []
+  syntax:
+    content: Inch = 0
+    return:
+      type: Reportman.Drawing.Units
+- uid: Reportman.Drawing.Units.Cms
+  commentId: F:Reportman.Drawing.Units.Cms
+  id: Cms
+  parent: Reportman.Drawing.Units
+  langs:
+  - csharp
+  - vb
+  name: Cms
+  nameWithType: Units.Cms
+  fullName: Reportman.Drawing.Units.Cms
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Centimeters measurement
+  example: []
+  syntax:
+    content: Cms = 1
+    return:
+      type: Reportman.Drawing.Units
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.Units
+  commentId: T:Reportman.Drawing.Units
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.Units.html
+  name: Units
+  nameWithType: Units
+  fullName: Reportman.Drawing.Units

@@ -1,0 +1,539 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.ReportItems.ReportItemEnumerator
+  commentId: T:Reportman.Reporting.ReportItems.ReportItemEnumerator
+  id: ReportItems.ReportItemEnumerator
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.ReportItems.ReportItemEnumerator.#ctor(Reportman.Reporting.ReportItems)
+  - Reportman.Reporting.ReportItems.ReportItemEnumerator.Current
+  - Reportman.Reporting.ReportItems.ReportItemEnumerator.MoveNext
+  - Reportman.Reporting.ReportItems.ReportItemEnumerator.Reset
+  langs:
+  - csharp
+  - vb
+  name: ReportItems.ReportItemEnumerator
+  nameWithType: ReportItems.ReportItemEnumerator
+  fullName: Reportman.Reporting.ReportItems.ReportItemEnumerator
+  type: Class
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: 'Inner class implements IEnumerator interface:'
+  example: []
+  syntax:
+    content: 'public class ReportItems.ReportItemEnumerator : IEnumerator'
+    content.vb: Public Class ReportItems.ReportItemEnumerator Implements IEnumerator
+  inheritance:
+  - System.Object
+  implements:
+  - System.Collections.IEnumerator
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Reporting.ReportItems.ReportItemEnumerator.#ctor(Reportman.Reporting.ReportItems)
+  commentId: M:Reportman.Reporting.ReportItems.ReportItemEnumerator.#ctor(Reportman.Reporting.ReportItems)
+  id: '#ctor(Reportman.Reporting.ReportItems)'
+  parent: Reportman.Reporting.ReportItems.ReportItemEnumerator
+  langs:
+  - csharp
+  - vb
+  name: ReportItemEnumerator(ReportItems)
+  nameWithType: ReportItems.ReportItemEnumerator.ReportItemEnumerator(ReportItems)
+  fullName: Reportman.Reporting.ReportItems.ReportItemEnumerator.ReportItemEnumerator(Reportman.Reporting.ReportItems)
+  type: Constructor
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Constructor for a enumerator of report items
+  example: []
+  syntax:
+    content: public ReportItemEnumerator(ReportItems t)
+    parameters:
+    - id: t
+      type: Reportman.Reporting.ReportItems
+      description: ''
+    content.vb: Public Sub New(t As ReportItems)
+  overload: Reportman.Reporting.ReportItems.ReportItemEnumerator.#ctor*
+  nameWithType.vb: ReportItems.ReportItemEnumerator.New(ReportItems)
+  fullName.vb: Reportman.Reporting.ReportItems.ReportItemEnumerator.New(Reportman.Reporting.ReportItems)
+  name.vb: New(ReportItems)
+- uid: Reportman.Reporting.ReportItems.ReportItemEnumerator.MoveNext
+  commentId: M:Reportman.Reporting.ReportItems.ReportItemEnumerator.MoveNext
+  id: MoveNext
+  parent: Reportman.Reporting.ReportItems.ReportItemEnumerator
+  langs:
+  - csharp
+  - vb
+  name: MoveNext()
+  nameWithType: ReportItems.ReportItemEnumerator.MoveNext()
+  fullName: Reportman.Reporting.ReportItems.ReportItemEnumerator.MoveNext()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Go to next element in the lis
+  example: []
+  syntax:
+    content: public bool MoveNext()
+    return:
+      type: System.Boolean
+      description: ''
+    content.vb: Public Function MoveNext() As Boolean
+  overload: Reportman.Reporting.ReportItems.ReportItemEnumerator.MoveNext*
+  implements:
+  - System.Collections.IEnumerator.MoveNext
+- uid: Reportman.Reporting.ReportItems.ReportItemEnumerator.Reset
+  commentId: M:Reportman.Reporting.ReportItems.ReportItemEnumerator.Reset
+  id: Reset
+  parent: Reportman.Reporting.ReportItems.ReportItemEnumerator
+  langs:
+  - csharp
+  - vb
+  name: Reset()
+  nameWithType: ReportItems.ReportItemEnumerator.Reset()
+  fullName: Reportman.Reporting.ReportItems.ReportItemEnumerator.Reset()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Declare the Reset method required by IEnumerator
+  example: []
+  syntax:
+    content: public void Reset()
+    content.vb: Public Sub Reset()
+  overload: Reportman.Reporting.ReportItems.ReportItemEnumerator.Reset*
+  implements:
+  - System.Collections.IEnumerator.Reset
+- uid: Reportman.Reporting.ReportItems.ReportItemEnumerator.Current
+  commentId: P:Reportman.Reporting.ReportItems.ReportItemEnumerator.Current
+  id: Current
+  parent: Reportman.Reporting.ReportItems.ReportItemEnumerator
+  langs:
+  - csharp
+  - vb
+  name: Current
+  nameWithType: ReportItems.ReportItemEnumerator.Current
+  fullName: Reportman.Reporting.ReportItems.ReportItemEnumerator.Current
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Declare the Current property required by IEnumerator
+  example: []
+  syntax:
+    content: public object Current { get; }
+    parameters: []
+    return:
+      type: System.Object
+    content.vb: Public ReadOnly Property Current As Object
+  overload: Reportman.Reporting.ReportItems.ReportItemEnumerator.Current*
+  implements:
+  - System.Collections.IEnumerator.Current
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Collections.IEnumerator
+  commentId: T:System.Collections.IEnumerator
+  parent: System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ienumerator
+  name: IEnumerator
+  nameWithType: IEnumerator
+  fullName: System.Collections.IEnumerator
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Collections
+  commentId: N:System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections
+  nameWithType: System.Collections
+  fullName: System.Collections
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+- uid: Reportman.Reporting.ReportItems.ReportItemEnumerator.#ctor*
+  commentId: Overload:Reportman.Reporting.ReportItems.ReportItemEnumerator.#ctor
+  isExternal: true
+  href: Reportman.Reporting.ReportItems.ReportItemEnumerator.html#Reportman_Reporting_ReportItems_ReportItemEnumerator__ctor_Reportman_Reporting_ReportItems_
+  name: ReportItemEnumerator
+  nameWithType: ReportItems.ReportItemEnumerator.ReportItemEnumerator
+  fullName: Reportman.Reporting.ReportItems.ReportItemEnumerator.ReportItemEnumerator
+  nameWithType.vb: ReportItems.ReportItemEnumerator.New
+  fullName.vb: Reportman.Reporting.ReportItems.ReportItemEnumerator.New
+  name.vb: New
+- uid: Reportman.Reporting.ReportItems
+  commentId: T:Reportman.Reporting.ReportItems
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.ReportItems.html
+  name: ReportItems
+  nameWithType: ReportItems
+  fullName: Reportman.Reporting.ReportItems
+- uid: Reportman.Reporting.ReportItems.ReportItemEnumerator.MoveNext*
+  commentId: Overload:Reportman.Reporting.ReportItems.ReportItemEnumerator.MoveNext
+  isExternal: true
+  href: Reportman.Reporting.ReportItems.ReportItemEnumerator.html#Reportman_Reporting_ReportItems_ReportItemEnumerator_MoveNext
+  name: MoveNext
+  nameWithType: ReportItems.ReportItemEnumerator.MoveNext
+  fullName: Reportman.Reporting.ReportItems.ReportItemEnumerator.MoveNext
+- uid: System.Collections.IEnumerator.MoveNext
+  commentId: M:System.Collections.IEnumerator.MoveNext
+  parent: System.Collections.IEnumerator
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ienumerator.movenext
+  name: MoveNext()
+  nameWithType: IEnumerator.MoveNext()
+  fullName: System.Collections.IEnumerator.MoveNext()
+  spec.csharp:
+  - uid: System.Collections.IEnumerator.MoveNext
+    name: MoveNext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.ienumerator.movenext
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.IEnumerator.MoveNext
+    name: MoveNext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.ienumerator.movenext
+  - name: (
+  - name: )
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Reportman.Reporting.ReportItems.ReportItemEnumerator.Reset*
+  commentId: Overload:Reportman.Reporting.ReportItems.ReportItemEnumerator.Reset
+  isExternal: true
+  href: Reportman.Reporting.ReportItems.ReportItemEnumerator.html#Reportman_Reporting_ReportItems_ReportItemEnumerator_Reset
+  name: Reset
+  nameWithType: ReportItems.ReportItemEnumerator.Reset
+  fullName: Reportman.Reporting.ReportItems.ReportItemEnumerator.Reset
+- uid: System.Collections.IEnumerator.Reset
+  commentId: M:System.Collections.IEnumerator.Reset
+  parent: System.Collections.IEnumerator
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ienumerator.reset
+  name: Reset()
+  nameWithType: IEnumerator.Reset()
+  fullName: System.Collections.IEnumerator.Reset()
+  spec.csharp:
+  - uid: System.Collections.IEnumerator.Reset
+    name: Reset
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.ienumerator.reset
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.IEnumerator.Reset
+    name: Reset
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.ienumerator.reset
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.ReportItems.ReportItemEnumerator.Current*
+  commentId: Overload:Reportman.Reporting.ReportItems.ReportItemEnumerator.Current
+  isExternal: true
+  href: Reportman.Reporting.ReportItems.ReportItemEnumerator.html#Reportman_Reporting_ReportItems_ReportItemEnumerator_Current
+  name: Current
+  nameWithType: ReportItems.ReportItemEnumerator.Current
+  fullName: Reportman.Reporting.ReportItems.ReportItemEnumerator.Current
+- uid: System.Collections.IEnumerator.Current
+  commentId: P:System.Collections.IEnumerator.Current
+  parent: System.Collections.IEnumerator
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ienumerator.current
+  name: Current
+  nameWithType: IEnumerator.Current
+  fullName: System.Collections.IEnumerator.Current

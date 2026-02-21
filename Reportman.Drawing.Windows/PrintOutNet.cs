@@ -753,10 +753,10 @@ namespace Reportman.Drawing
                                 break;
                             case ImageDrawStyleType.Full:
                                 destrec = new Rectangle(arec.Left, arec.Top, (int)Math.Round((float)abit.Width / dpires * dpix * Scale), (int)Math.Round((float)abit.Height / dpires * dpiy * Scale));
-                                if (destrec.Width < arec.Width)
+                                if (destrec.Width < arec.Width && !obji.PreviewOnly)
                                     destrec = new Rectangle(destrec.Left + (arec.Width - destrec.Width) / 2, destrec.Top,
                                         destrec.Width, destrec.Height);
-                                if (destrec.Height < arec.Height)
+                                if (destrec.Height < arec.Height && !obji.PreviewOnly)
                                     destrec = new Rectangle(destrec.Left, destrec.Top + (arec.Height - destrec.Height) / 2,
                                         destrec.Width, destrec.Height);
                                 graph.DrawImage(abit, destrec, srcrec, GraphicsUnit.Pixel);

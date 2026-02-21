@@ -1,0 +1,249 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.ISqlExecuterProgressEvent
+  commentId: T:Reportman.Drawing.ISqlExecuterProgressEvent
+  id: ISqlExecuterProgressEvent
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.ISqlExecuterProgressEvent.#ctor(System.Object,System.IntPtr)
+  - Reportman.Drawing.ISqlExecuterProgressEvent.BeginInvoke(System.Int32,System.Int32,System.AsyncCallback,System.Object)
+  - Reportman.Drawing.ISqlExecuterProgressEvent.EndInvoke(System.IAsyncResult)
+  - Reportman.Drawing.ISqlExecuterProgressEvent.Invoke(System.Int32,System.Int32)
+  langs:
+  - csharp
+  - vb
+  name: ISqlExecuterProgressEvent
+  nameWithType: ISqlExecuterProgressEvent
+  fullName: Reportman.Drawing.ISqlExecuterProgressEvent
+  type: Delegate
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public delegate void ISqlExecuterProgressEvent(int current, int total)
+    parameters:
+    - id: current
+      type: System.Int32
+    - id: total
+      type: System.Int32
+    content.vb: Public Delegate Sub ISqlExecuterProgressEvent(current As Integer, total As Integer)
+- uid: Reportman.Drawing.ISqlExecuterProgressEvent.#ctor(System.Object,System.IntPtr)
+  commentId: M:Reportman.Drawing.ISqlExecuterProgressEvent.#ctor(System.Object,System.IntPtr)
+  id: '#ctor(System.Object,System.IntPtr)'
+  parent: Reportman.Drawing.ISqlExecuterProgressEvent
+  langs:
+  - csharp
+  - vb
+  name: ISqlExecuterProgressEvent(object, nint)
+  nameWithType: ISqlExecuterProgressEvent.ISqlExecuterProgressEvent(object, nint)
+  fullName: Reportman.Drawing.ISqlExecuterProgressEvent.ISqlExecuterProgressEvent(object, nint)
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public ISqlExecuterProgressEvent(object @object, nint method)
+    parameters:
+    - id: object
+      type: System.Object
+    - id: method
+      type: System.IntPtr
+    content.vb: Public Sub New([object] As Object, method As IntPtr)
+  overload: Reportman.Drawing.ISqlExecuterProgressEvent.#ctor*
+  nameWithType.vb: ISqlExecuterProgressEvent.New(Object, IntPtr)
+  fullName.vb: Reportman.Drawing.ISqlExecuterProgressEvent.New(Object, System.IntPtr)
+  name.vb: New(Object, IntPtr)
+- uid: Reportman.Drawing.ISqlExecuterProgressEvent.Invoke(System.Int32,System.Int32)
+  commentId: M:Reportman.Drawing.ISqlExecuterProgressEvent.Invoke(System.Int32,System.Int32)
+  id: Invoke(System.Int32,System.Int32)
+  parent: Reportman.Drawing.ISqlExecuterProgressEvent
+  langs:
+  - csharp
+  - vb
+  name: Invoke(int, int)
+  nameWithType: ISqlExecuterProgressEvent.Invoke(int, int)
+  fullName: Reportman.Drawing.ISqlExecuterProgressEvent.Invoke(int, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public virtual void Invoke(int current, int total)
+    parameters:
+    - id: current
+      type: System.Int32
+    - id: total
+      type: System.Int32
+    content.vb: Public Overridable Sub Invoke(current As Integer, total As Integer)
+  overload: Reportman.Drawing.ISqlExecuterProgressEvent.Invoke*
+  nameWithType.vb: ISqlExecuterProgressEvent.Invoke(Integer, Integer)
+  fullName.vb: Reportman.Drawing.ISqlExecuterProgressEvent.Invoke(Integer, Integer)
+  name.vb: Invoke(Integer, Integer)
+- uid: Reportman.Drawing.ISqlExecuterProgressEvent.BeginInvoke(System.Int32,System.Int32,System.AsyncCallback,System.Object)
+  commentId: M:Reportman.Drawing.ISqlExecuterProgressEvent.BeginInvoke(System.Int32,System.Int32,System.AsyncCallback,System.Object)
+  id: BeginInvoke(System.Int32,System.Int32,System.AsyncCallback,System.Object)
+  parent: Reportman.Drawing.ISqlExecuterProgressEvent
+  langs:
+  - csharp
+  - vb
+  name: BeginInvoke(int, int, AsyncCallback, object)
+  nameWithType: ISqlExecuterProgressEvent.BeginInvoke(int, int, AsyncCallback, object)
+  fullName: Reportman.Drawing.ISqlExecuterProgressEvent.BeginInvoke(int, int, System.AsyncCallback, object)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public virtual IAsyncResult BeginInvoke(int current, int total, AsyncCallback callback, object @object)
+    parameters:
+    - id: current
+      type: System.Int32
+    - id: total
+      type: System.Int32
+    - id: callback
+      type: System.AsyncCallback
+    - id: object
+      type: System.Object
+    return:
+      type: System.IAsyncResult
+    content.vb: Public Overridable Function BeginInvoke(current As Integer, total As Integer, callback As AsyncCallback, [object] As Object) As IAsyncResult
+  overload: Reportman.Drawing.ISqlExecuterProgressEvent.BeginInvoke*
+  nameWithType.vb: ISqlExecuterProgressEvent.BeginInvoke(Integer, Integer, AsyncCallback, Object)
+  fullName.vb: Reportman.Drawing.ISqlExecuterProgressEvent.BeginInvoke(Integer, Integer, System.AsyncCallback, Object)
+  name.vb: BeginInvoke(Integer, Integer, AsyncCallback, Object)
+- uid: Reportman.Drawing.ISqlExecuterProgressEvent.EndInvoke(System.IAsyncResult)
+  commentId: M:Reportman.Drawing.ISqlExecuterProgressEvent.EndInvoke(System.IAsyncResult)
+  id: EndInvoke(System.IAsyncResult)
+  parent: Reportman.Drawing.ISqlExecuterProgressEvent
+  langs:
+  - csharp
+  - vb
+  name: EndInvoke(IAsyncResult)
+  nameWithType: ISqlExecuterProgressEvent.EndInvoke(IAsyncResult)
+  fullName: Reportman.Drawing.ISqlExecuterProgressEvent.EndInvoke(System.IAsyncResult)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public virtual void EndInvoke(IAsyncResult result)
+    parameters:
+    - id: result
+      type: System.IAsyncResult
+    content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
+  overload: Reportman.Drawing.ISqlExecuterProgressEvent.EndInvoke*
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.ISqlExecuterProgressEvent.#ctor*
+  commentId: Overload:Reportman.Drawing.ISqlExecuterProgressEvent.#ctor
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuterProgressEvent.html#Reportman_Drawing_ISqlExecuterProgressEvent__ctor_System_Object_System_IntPtr_
+  name: ISqlExecuterProgressEvent
+  nameWithType: ISqlExecuterProgressEvent.ISqlExecuterProgressEvent
+  fullName: Reportman.Drawing.ISqlExecuterProgressEvent.ISqlExecuterProgressEvent
+  nameWithType.vb: ISqlExecuterProgressEvent.New
+  fullName.vb: Reportman.Drawing.ISqlExecuterProgressEvent.New
+  name.vb: New
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: Reportman.Drawing.ISqlExecuterProgressEvent.Invoke*
+  commentId: Overload:Reportman.Drawing.ISqlExecuterProgressEvent.Invoke
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuterProgressEvent.html#Reportman_Drawing_ISqlExecuterProgressEvent_Invoke_System_Int32_System_Int32_
+  name: Invoke
+  nameWithType: ISqlExecuterProgressEvent.Invoke
+  fullName: Reportman.Drawing.ISqlExecuterProgressEvent.Invoke
+- uid: Reportman.Drawing.ISqlExecuterProgressEvent.BeginInvoke*
+  commentId: Overload:Reportman.Drawing.ISqlExecuterProgressEvent.BeginInvoke
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuterProgressEvent.html#Reportman_Drawing_ISqlExecuterProgressEvent_BeginInvoke_System_Int32_System_Int32_System_AsyncCallback_System_Object_
+  name: BeginInvoke
+  nameWithType: ISqlExecuterProgressEvent.BeginInvoke
+  fullName: Reportman.Drawing.ISqlExecuterProgressEvent.BeginInvoke
+- uid: System.AsyncCallback
+  commentId: T:System.AsyncCallback
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.asynccallback
+  name: AsyncCallback
+  nameWithType: AsyncCallback
+  fullName: System.AsyncCallback
+- uid: System.IAsyncResult
+  commentId: T:System.IAsyncResult
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncresult
+  name: IAsyncResult
+  nameWithType: IAsyncResult
+  fullName: System.IAsyncResult
+- uid: Reportman.Drawing.ISqlExecuterProgressEvent.EndInvoke*
+  commentId: Overload:Reportman.Drawing.ISqlExecuterProgressEvent.EndInvoke
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuterProgressEvent.html#Reportman_Drawing_ISqlExecuterProgressEvent_EndInvoke_System_IAsyncResult_
+  name: EndInvoke
+  nameWithType: ISqlExecuterProgressEvent.EndInvoke
+  fullName: Reportman.Drawing.ISqlExecuterProgressEvent.EndInvoke

@@ -1,0 +1,162 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes
+  commentId: T:Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes
+  id: TabControlAdvanced.HideTabsModes
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes.HideAlways
+  - Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes.HideUsingLogic
+  - Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes.HideWithoutMouse
+  - Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes.ShowAlways
+  langs:
+  - csharp
+  - vb
+  name: TabControlAdvanced.HideTabsModes
+  nameWithType: TabControlAdvanced.HideTabsModes
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes
+  type: Enum
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public enum TabControlAdvanced.HideTabsModes
+    content.vb: Public Enum TabControlAdvanced.HideTabsModes
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes.ShowAlways
+  commentId: F:Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes.ShowAlways
+  id: ShowAlways
+  parent: Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes
+  langs:
+  - csharp
+  - vb
+  name: ShowAlways
+  nameWithType: TabControlAdvanced.HideTabsModes.ShowAlways
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes.ShowAlways
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: ShowAlways = 0
+    return:
+      type: Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes.HideAlways
+  commentId: F:Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes.HideAlways
+  id: HideAlways
+  parent: Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes
+  langs:
+  - csharp
+  - vb
+  name: HideAlways
+  nameWithType: TabControlAdvanced.HideTabsModes.HideAlways
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes.HideAlways
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: HideAlways = 1
+    return:
+      type: Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes.HideUsingLogic
+  commentId: F:Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes.HideUsingLogic
+  id: HideUsingLogic
+  parent: Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes
+  langs:
+  - csharp
+  - vb
+  name: HideUsingLogic
+  nameWithType: TabControlAdvanced.HideTabsModes.HideUsingLogic
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes.HideUsingLogic
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: HideUsingLogic = 2
+    return:
+      type: Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes.HideWithoutMouse
+  commentId: F:Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes.HideWithoutMouse
+  id: HideWithoutMouse
+  parent: Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes
+  langs:
+  - csharp
+  - vb
+  name: HideWithoutMouse
+  nameWithType: TabControlAdvanced.HideTabsModes.HideWithoutMouse
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes.HideWithoutMouse
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: HideWithoutMouse = 3
+    return:
+      type: Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes
+  commentId: T:Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  name: TabControlAdvanced.HideTabsModes
+  nameWithType: TabControlAdvanced.HideTabsModes
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced
+    name: TabControlAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes
+    name: HideTabsModes
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced
+    name: TabControlAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes
+    name: HideTabsModes
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabControlAdvanced.HideTabsModes.html

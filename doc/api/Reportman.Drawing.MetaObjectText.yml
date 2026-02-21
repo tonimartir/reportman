@@ -1,0 +1,1340 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.MetaObjectText
+  commentId: T:Reportman.Drawing.MetaObjectText
+  id: MetaObjectText
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.MetaObjectText.#ctor
+  - Reportman.Drawing.MetaObjectText.Alignment
+  - Reportman.Drawing.MetaObjectText.BackColor
+  - Reportman.Drawing.MetaObjectText.CutText
+  - Reportman.Drawing.MetaObjectText.FillFromBuf(System.Byte[],System.Int32,System.Int32)
+  - Reportman.Drawing.MetaObjectText.FontColor
+  - Reportman.Drawing.MetaObjectText.FontRotation
+  - Reportman.Drawing.MetaObjectText.FontSize
+  - Reportman.Drawing.MetaObjectText.FontStyle
+  - Reportman.Drawing.MetaObjectText.LFontNameP
+  - Reportman.Drawing.MetaObjectText.LFontNameS
+  - Reportman.Drawing.MetaObjectText.PrintStep
+  - Reportman.Drawing.MetaObjectText.RightToLeft
+  - Reportman.Drawing.MetaObjectText.SaveToStream(System.IO.Stream,System.Int32)
+  - Reportman.Drawing.MetaObjectText.TextP
+  - Reportman.Drawing.MetaObjectText.TextS
+  - Reportman.Drawing.MetaObjectText.Transparent
+  - Reportman.Drawing.MetaObjectText.Type1Font
+  - Reportman.Drawing.MetaObjectText.WFontNameP
+  - Reportman.Drawing.MetaObjectText.WFontNameS
+  - Reportman.Drawing.MetaObjectText.WordWrap
+  langs:
+  - csharp
+  - vb
+  name: MetaObjectText
+  nameWithType: MetaObjectText
+  fullName: Reportman.Drawing.MetaObjectText
+  type: Class
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    Text object stored in a a MetaFile, it's a fixed length record, so
+
+    references to strings or streams are done throught position and sizes in page stream
+
+    or MetaFile stream
+  example: []
+  syntax:
+    content: 'public class MetaObjectText : MetaObject'
+    content.vb: Public Class MetaObjectText Inherits MetaObject
+  inheritance:
+  - System.Object
+  - Reportman.Drawing.MetaObject
+  inheritedMembers:
+  - Reportman.Drawing.MetaObject.Id
+  - Reportman.Drawing.MetaObject.RECORD_SIZE_4
+  - Reportman.Drawing.MetaObject.RECORD_SIZE_3
+  - Reportman.Drawing.MetaObject.RECORD_OFFSET_3
+  - Reportman.Drawing.MetaObject.RECORD_OFFSET_4
+  - Reportman.Drawing.MetaObject.emptybuf
+  - Reportman.Drawing.MetaObject.Top
+  - Reportman.Drawing.MetaObject.Left
+  - Reportman.Drawing.MetaObject.Width
+  - Reportman.Drawing.MetaObject.Height
+  - Reportman.Drawing.MetaObject.AnnotationP
+  - Reportman.Drawing.MetaObject.AnnotationS
+  - Reportman.Drawing.MetaObject.MetaType
+  - Reportman.Drawing.MetaObject.CreateFromBuf(System.Byte[],System.Int32,System.Int32)
+  - Reportman.Drawing.MetaObject.GetRECORD_OFFSET(System.Int32)
+  - Reportman.Drawing.MetaObject.GetRECORD_SIZE(System.Int32)
+  - Reportman.Drawing.MetaObject.GetIntHorizAlignment(Reportman.Drawing.TextAlignType)
+  - Reportman.Drawing.MetaObject.GetIntVertAlignment(Reportman.Drawing.TextAlignVerticalType)
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.MetaObjectText.TextP
+  commentId: F:Reportman.Drawing.MetaObjectText.TextP
+  id: TextP
+  parent: Reportman.Drawing.MetaObjectText
+  langs:
+  - csharp
+  - vb
+  name: TextP
+  nameWithType: MetaObjectText.TextP
+  fullName: Reportman.Drawing.MetaObjectText.TextP
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Text position in MetaPage strings pool
+  example: []
+  syntax:
+    content: public int TextP
+    return:
+      type: System.Int32
+    content.vb: Public TextP As Integer
+- uid: Reportman.Drawing.MetaObjectText.TextS
+  commentId: F:Reportman.Drawing.MetaObjectText.TextS
+  id: TextS
+  parent: Reportman.Drawing.MetaObjectText
+  langs:
+  - csharp
+  - vb
+  name: TextS
+  nameWithType: MetaObjectText.TextS
+  fullName: Reportman.Drawing.MetaObjectText.TextS
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Text length
+  example: []
+  syntax:
+    content: public int TextS
+    return:
+      type: System.Int32
+    content.vb: Public TextS As Integer
+- uid: Reportman.Drawing.MetaObjectText.LFontNameP
+  commentId: F:Reportman.Drawing.MetaObjectText.LFontNameP
+  id: LFontNameP
+  parent: Reportman.Drawing.MetaObjectText
+  langs:
+  - csharp
+  - vb
+  name: LFontNameP
+  nameWithType: MetaObjectText.LFontNameP
+  fullName: Reportman.Drawing.MetaObjectText.LFontNameP
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Linux Font Name position in MetaPage strings pool
+  example: []
+  syntax:
+    content: public int LFontNameP
+    return:
+      type: System.Int32
+    content.vb: Public LFontNameP As Integer
+- uid: Reportman.Drawing.MetaObjectText.LFontNameS
+  commentId: F:Reportman.Drawing.MetaObjectText.LFontNameS
+  id: LFontNameS
+  parent: Reportman.Drawing.MetaObjectText
+  langs:
+  - csharp
+  - vb
+  name: LFontNameS
+  nameWithType: MetaObjectText.LFontNameS
+  fullName: Reportman.Drawing.MetaObjectText.LFontNameS
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Linux Font Name length
+  example: []
+  syntax:
+    content: public int LFontNameS
+    return:
+      type: System.Int32
+    content.vb: Public LFontNameS As Integer
+- uid: Reportman.Drawing.MetaObjectText.WFontNameP
+  commentId: F:Reportman.Drawing.MetaObjectText.WFontNameP
+  id: WFontNameP
+  parent: Reportman.Drawing.MetaObjectText
+  langs:
+  - csharp
+  - vb
+  name: WFontNameP
+  nameWithType: MetaObjectText.WFontNameP
+  fullName: Reportman.Drawing.MetaObjectText.WFontNameP
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Windows Font Name position in MetaPage strings pool
+  example: []
+  syntax:
+    content: public int WFontNameP
+    return:
+      type: System.Int32
+    content.vb: Public WFontNameP As Integer
+- uid: Reportman.Drawing.MetaObjectText.WFontNameS
+  commentId: F:Reportman.Drawing.MetaObjectText.WFontNameS
+  id: WFontNameS
+  parent: Reportman.Drawing.MetaObjectText
+  langs:
+  - csharp
+  - vb
+  name: WFontNameS
+  nameWithType: MetaObjectText.WFontNameS
+  fullName: Reportman.Drawing.MetaObjectText.WFontNameS
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Linux Font Name length
+  example: []
+  syntax:
+    content: public int WFontNameS
+    return:
+      type: System.Int32
+    content.vb: Public WFontNameS As Integer
+- uid: Reportman.Drawing.MetaObjectText.FontSize
+  commentId: F:Reportman.Drawing.MetaObjectText.FontSize
+  id: FontSize
+  parent: Reportman.Drawing.MetaObjectText
+  langs:
+  - csharp
+  - vb
+  name: FontSize
+  nameWithType: MetaObjectText.FontSize
+  fullName: Reportman.Drawing.MetaObjectText.FontSize
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Font size in points
+  example: []
+  syntax:
+    content: public short FontSize
+    return:
+      type: System.Int16
+    content.vb: Public FontSize As Short
+- uid: Reportman.Drawing.MetaObjectText.FontRotation
+  commentId: F:Reportman.Drawing.MetaObjectText.FontRotation
+  id: FontRotation
+  parent: Reportman.Drawing.MetaObjectText
+  langs:
+  - csharp
+  - vb
+  name: FontRotation
+  nameWithType: MetaObjectText.FontRotation
+  fullName: Reportman.Drawing.MetaObjectText.FontRotation
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Font rotation in degrees
+  example: []
+  syntax:
+    content: public short FontRotation
+    return:
+      type: System.Int16
+    content.vb: Public FontRotation As Short
+- uid: Reportman.Drawing.MetaObjectText.FontStyle
+  commentId: F:Reportman.Drawing.MetaObjectText.FontStyle
+  id: FontStyle
+  parent: Reportman.Drawing.MetaObjectText
+  langs:
+  - csharp
+  - vb
+  name: FontStyle
+  nameWithType: MetaObjectText.FontStyle
+  fullName: Reportman.Drawing.MetaObjectText.FontStyle
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Integer representing the font style
+  example: []
+  syntax:
+    content: public short FontStyle
+    return:
+      type: System.Int16
+    content.vb: Public FontStyle As Short
+- uid: Reportman.Drawing.MetaObjectText.Type1Font
+  commentId: F:Reportman.Drawing.MetaObjectText.Type1Font
+  id: Type1Font
+  parent: Reportman.Drawing.MetaObjectText
+  langs:
+  - csharp
+  - vb
+  name: Type1Font
+  nameWithType: MetaObjectText.Type1Font
+  fullName: Reportman.Drawing.MetaObjectText.Type1Font
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Type1Font, the type of font when exporting to Adobe PDF
+  example: []
+  syntax:
+    content: public PDFFontType Type1Font
+    return:
+      type: Reportman.Drawing.PDFFontType
+    content.vb: Public Type1Font As PDFFontType
+- uid: Reportman.Drawing.MetaObjectText.FontColor
+  commentId: F:Reportman.Drawing.MetaObjectText.FontColor
+  id: FontColor
+  parent: Reportman.Drawing.MetaObjectText
+  langs:
+  - csharp
+  - vb
+  name: FontColor
+  nameWithType: MetaObjectText.FontColor
+  fullName: Reportman.Drawing.MetaObjectText.FontColor
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Font color as integer
+  example: []
+  syntax:
+    content: public int FontColor
+    return:
+      type: System.Int32
+    content.vb: Public FontColor As Integer
+- uid: Reportman.Drawing.MetaObjectText.BackColor
+  commentId: F:Reportman.Drawing.MetaObjectText.BackColor
+  id: BackColor
+  parent: Reportman.Drawing.MetaObjectText
+  langs:
+  - csharp
+  - vb
+  name: BackColor
+  nameWithType: MetaObjectText.BackColor
+  fullName: Reportman.Drawing.MetaObjectText.BackColor
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Text background color as integer
+  example: []
+  syntax:
+    content: public int BackColor
+    return:
+      type: System.Int32
+    content.vb: Public BackColor As Integer
+- uid: Reportman.Drawing.MetaObjectText.Transparent
+  commentId: F:Reportman.Drawing.MetaObjectText.Transparent
+  id: Transparent
+  parent: Reportman.Drawing.MetaObjectText
+  langs:
+  - csharp
+  - vb
+  name: Transparent
+  nameWithType: MetaObjectText.Transparent
+  fullName: Reportman.Drawing.MetaObjectText.Transparent
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: True if background of the text must be transparent
+  example: []
+  syntax:
+    content: public bool Transparent
+    return:
+      type: System.Boolean
+    content.vb: Public Transparent As Boolean
+- uid: Reportman.Drawing.MetaObjectText.CutText
+  commentId: F:Reportman.Drawing.MetaObjectText.CutText
+  id: CutText
+  parent: Reportman.Drawing.MetaObjectText
+  langs:
+  - csharp
+  - vb
+  name: CutText
+  nameWithType: MetaObjectText.CutText
+  fullName: Reportman.Drawing.MetaObjectText.CutText
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: True if text must be clipped to the bounding box
+  example: []
+  syntax:
+    content: public bool CutText
+    return:
+      type: System.Boolean
+    content.vb: Public CutText As Boolean
+- uid: Reportman.Drawing.MetaObjectText.Alignment
+  commentId: F:Reportman.Drawing.MetaObjectText.Alignment
+  id: Alignment
+  parent: Reportman.Drawing.MetaObjectText
+  langs:
+  - csharp
+  - vb
+  name: Alignment
+  nameWithType: MetaObjectText.Alignment
+  fullName: Reportman.Drawing.MetaObjectText.Alignment
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Integer representation of text alignment, contains vertical and horizontal alignemnt
+  example: []
+  syntax:
+    content: public int Alignment
+    return:
+      type: System.Int32
+    content.vb: Public Alignment As Integer
+- uid: Reportman.Drawing.MetaObjectText.WordWrap
+  commentId: F:Reportman.Drawing.MetaObjectText.WordWrap
+  id: WordWrap
+  parent: Reportman.Drawing.MetaObjectText
+  langs:
+  - csharp
+  - vb
+  name: WordWrap
+  nameWithType: MetaObjectText.WordWrap
+  fullName: Reportman.Drawing.MetaObjectText.WordWrap
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: True if words must wrap multiple lines if the text does not fit in the bounding box width
+  example: []
+  syntax:
+    content: public bool WordWrap
+    return:
+      type: System.Boolean
+    content.vb: Public WordWrap As Boolean
+- uid: Reportman.Drawing.MetaObjectText.RightToLeft
+  commentId: F:Reportman.Drawing.MetaObjectText.RightToLeft
+  id: RightToLeft
+  parent: Reportman.Drawing.MetaObjectText
+  langs:
+  - csharp
+  - vb
+  name: RightToLeft
+  nameWithType: MetaObjectText.RightToLeft
+  fullName: Reportman.Drawing.MetaObjectText.RightToLeft
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: True if words must be drawn from right to left (Arabic languages)
+  example: []
+  syntax:
+    content: public bool RightToLeft
+    return:
+      type: System.Boolean
+    content.vb: Public RightToLeft As Boolean
+- uid: Reportman.Drawing.MetaObjectText.PrintStep
+  commentId: F:Reportman.Drawing.MetaObjectText.PrintStep
+  id: PrintStep
+  parent: Reportman.Drawing.MetaObjectText
+  langs:
+  - csharp
+  - vb
+  name: PrintStep
+  nameWithType: MetaObjectText.PrintStep
+  fullName: Reportman.Drawing.MetaObjectText.PrintStep
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Print step
+  example: []
+  syntax:
+    content: public PrintStepType PrintStep
+    return:
+      type: Reportman.Drawing.PrintStepType
+    content.vb: Public PrintStep As PrintStepType
+- uid: Reportman.Drawing.MetaObjectText.FillFromBuf(System.Byte[],System.Int32,System.Int32)
+  commentId: M:Reportman.Drawing.MetaObjectText.FillFromBuf(System.Byte[],System.Int32,System.Int32)
+  id: FillFromBuf(System.Byte[],System.Int32,System.Int32)
+  parent: Reportman.Drawing.MetaObjectText
+  langs:
+  - csharp
+  - vb
+  name: FillFromBuf(byte[], int, int)
+  nameWithType: MetaObjectText.FillFromBuf(byte[], int, int)
+  fullName: Reportman.Drawing.MetaObjectText.FillFromBuf(byte[], int, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Fill the values of a MetaObjectText, loading it from a binary buffer
+  example: []
+  syntax:
+    content: public override void FillFromBuf(byte[] buf, int index, int ver)
+    parameters:
+    - id: buf
+      type: System.Byte[]
+      description: Buffer containing information in binary format
+    - id: index
+      type: System.Int32
+      description: Index to begin read in the buffer
+    - id: ver
+      type: System.Int32
+    content.vb: Public Overrides Sub FillFromBuf(buf As Byte(), index As Integer, ver As Integer)
+  overridden: Reportman.Drawing.MetaObject.FillFromBuf(System.Byte[],System.Int32,System.Int32)
+  overload: Reportman.Drawing.MetaObjectText.FillFromBuf*
+  nameWithType.vb: MetaObjectText.FillFromBuf(Byte(), Integer, Integer)
+  fullName.vb: Reportman.Drawing.MetaObjectText.FillFromBuf(Byte(), Integer, Integer)
+  name.vb: FillFromBuf(Byte(), Integer, Integer)
+- uid: Reportman.Drawing.MetaObjectText.SaveToStream(System.IO.Stream,System.Int32)
+  commentId: M:Reportman.Drawing.MetaObjectText.SaveToStream(System.IO.Stream,System.Int32)
+  id: SaveToStream(System.IO.Stream,System.Int32)
+  parent: Reportman.Drawing.MetaObjectText
+  langs:
+  - csharp
+  - vb
+  name: SaveToStream(Stream, int)
+  nameWithType: MetaObjectText.SaveToStream(Stream, int)
+  fullName: Reportman.Drawing.MetaObjectText.SaveToStream(System.IO.Stream, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Save the information of the object into a stream
+  example: []
+  syntax:
+    content: public override void SaveToStream(Stream astream, int ver)
+    parameters:
+    - id: astream
+      type: System.IO.Stream
+      description: Destination stream
+    - id: ver
+      type: System.Int32
+    content.vb: Public Overrides Sub SaveToStream(astream As Stream, ver As Integer)
+  overridden: Reportman.Drawing.MetaObject.SaveToStream(System.IO.Stream,System.Int32)
+  overload: Reportman.Drawing.MetaObjectText.SaveToStream*
+  nameWithType.vb: MetaObjectText.SaveToStream(Stream, Integer)
+  fullName.vb: Reportman.Drawing.MetaObjectText.SaveToStream(System.IO.Stream, Integer)
+  name.vb: SaveToStream(Stream, Integer)
+- uid: Reportman.Drawing.MetaObjectText.#ctor
+  commentId: M:Reportman.Drawing.MetaObjectText.#ctor
+  id: '#ctor'
+  parent: Reportman.Drawing.MetaObjectText
+  langs:
+  - csharp
+  - vb
+  name: MetaObjectText()
+  nameWithType: MetaObjectText.MetaObjectText()
+  fullName: Reportman.Drawing.MetaObjectText.MetaObjectText()
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public MetaObjectText()
+    content.vb: Public Sub New()
+  overload: Reportman.Drawing.MetaObjectText.#ctor*
+  nameWithType.vb: MetaObjectText.New()
+  fullName.vb: Reportman.Drawing.MetaObjectText.New()
+  name.vb: New()
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Reportman.Drawing.MetaObject
+  commentId: T:Reportman.Drawing.MetaObject
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.MetaObject.html
+  name: MetaObject
+  nameWithType: MetaObject
+  fullName: Reportman.Drawing.MetaObject
+- uid: Reportman.Drawing.MetaObject.Id
+  commentId: F:Reportman.Drawing.MetaObject.Id
+  parent: Reportman.Drawing.MetaObject
+  isExternal: true
+  href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_Id
+  name: Id
+  nameWithType: MetaObject.Id
+  fullName: Reportman.Drawing.MetaObject.Id
+- uid: Reportman.Drawing.MetaObject.RECORD_SIZE_4
+  commentId: F:Reportman.Drawing.MetaObject.RECORD_SIZE_4
+  parent: Reportman.Drawing.MetaObject
+  isExternal: true
+  href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_RECORD_SIZE_4
+  name: RECORD_SIZE_4
+  nameWithType: MetaObject.RECORD_SIZE_4
+  fullName: Reportman.Drawing.MetaObject.RECORD_SIZE_4
+- uid: Reportman.Drawing.MetaObject.RECORD_SIZE_3
+  commentId: F:Reportman.Drawing.MetaObject.RECORD_SIZE_3
+  parent: Reportman.Drawing.MetaObject
+  isExternal: true
+  href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_RECORD_SIZE_3
+  name: RECORD_SIZE_3
+  nameWithType: MetaObject.RECORD_SIZE_3
+  fullName: Reportman.Drawing.MetaObject.RECORD_SIZE_3
+- uid: Reportman.Drawing.MetaObject.RECORD_OFFSET_3
+  commentId: F:Reportman.Drawing.MetaObject.RECORD_OFFSET_3
+  parent: Reportman.Drawing.MetaObject
+  isExternal: true
+  href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_RECORD_OFFSET_3
+  name: RECORD_OFFSET_3
+  nameWithType: MetaObject.RECORD_OFFSET_3
+  fullName: Reportman.Drawing.MetaObject.RECORD_OFFSET_3
+- uid: Reportman.Drawing.MetaObject.RECORD_OFFSET_4
+  commentId: F:Reportman.Drawing.MetaObject.RECORD_OFFSET_4
+  parent: Reportman.Drawing.MetaObject
+  isExternal: true
+  href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_RECORD_OFFSET_4
+  name: RECORD_OFFSET_4
+  nameWithType: MetaObject.RECORD_OFFSET_4
+  fullName: Reportman.Drawing.MetaObject.RECORD_OFFSET_4
+- uid: Reportman.Drawing.MetaObject.emptybuf
+  commentId: F:Reportman.Drawing.MetaObject.emptybuf
+  parent: Reportman.Drawing.MetaObject
+  isExternal: true
+  href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_emptybuf
+  name: emptybuf
+  nameWithType: MetaObject.emptybuf
+  fullName: Reportman.Drawing.MetaObject.emptybuf
+- uid: Reportman.Drawing.MetaObject.Top
+  commentId: F:Reportman.Drawing.MetaObject.Top
+  parent: Reportman.Drawing.MetaObject
+  isExternal: true
+  href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_Top
+  name: Top
+  nameWithType: MetaObject.Top
+  fullName: Reportman.Drawing.MetaObject.Top
+- uid: Reportman.Drawing.MetaObject.Left
+  commentId: F:Reportman.Drawing.MetaObject.Left
+  parent: Reportman.Drawing.MetaObject
+  isExternal: true
+  href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_Left
+  name: Left
+  nameWithType: MetaObject.Left
+  fullName: Reportman.Drawing.MetaObject.Left
+- uid: Reportman.Drawing.MetaObject.Width
+  commentId: F:Reportman.Drawing.MetaObject.Width
+  parent: Reportman.Drawing.MetaObject
+  isExternal: true
+  href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_Width
+  name: Width
+  nameWithType: MetaObject.Width
+  fullName: Reportman.Drawing.MetaObject.Width
+- uid: Reportman.Drawing.MetaObject.Height
+  commentId: F:Reportman.Drawing.MetaObject.Height
+  parent: Reportman.Drawing.MetaObject
+  isExternal: true
+  href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_Height
+  name: Height
+  nameWithType: MetaObject.Height
+  fullName: Reportman.Drawing.MetaObject.Height
+- uid: Reportman.Drawing.MetaObject.AnnotationP
+  commentId: F:Reportman.Drawing.MetaObject.AnnotationP
+  parent: Reportman.Drawing.MetaObject
+  isExternal: true
+  href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_AnnotationP
+  name: AnnotationP
+  nameWithType: MetaObject.AnnotationP
+  fullName: Reportman.Drawing.MetaObject.AnnotationP
+- uid: Reportman.Drawing.MetaObject.AnnotationS
+  commentId: F:Reportman.Drawing.MetaObject.AnnotationS
+  parent: Reportman.Drawing.MetaObject
+  isExternal: true
+  href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_AnnotationS
+  name: AnnotationS
+  nameWithType: MetaObject.AnnotationS
+  fullName: Reportman.Drawing.MetaObject.AnnotationS
+- uid: Reportman.Drawing.MetaObject.MetaType
+  commentId: F:Reportman.Drawing.MetaObject.MetaType
+  parent: Reportman.Drawing.MetaObject
+  isExternal: true
+  href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_MetaType
+  name: MetaType
+  nameWithType: MetaObject.MetaType
+  fullName: Reportman.Drawing.MetaObject.MetaType
+- uid: Reportman.Drawing.MetaObject.CreateFromBuf(System.Byte[],System.Int32,System.Int32)
+  commentId: M:Reportman.Drawing.MetaObject.CreateFromBuf(System.Byte[],System.Int32,System.Int32)
+  parent: Reportman.Drawing.MetaObject
+  isExternal: true
+  href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_CreateFromBuf_System_Byte___System_Int32_System_Int32_
+  name: CreateFromBuf(byte[], int, int)
+  nameWithType: MetaObject.CreateFromBuf(byte[], int, int)
+  fullName: Reportman.Drawing.MetaObject.CreateFromBuf(byte[], int, int)
+  nameWithType.vb: MetaObject.CreateFromBuf(Byte(), Integer, Integer)
+  fullName.vb: Reportman.Drawing.MetaObject.CreateFromBuf(Byte(), Integer, Integer)
+  name.vb: CreateFromBuf(Byte(), Integer, Integer)
+  spec.csharp:
+  - uid: Reportman.Drawing.MetaObject.CreateFromBuf(System.Byte[],System.Int32,System.Int32)
+    name: CreateFromBuf
+    isExternal: true
+    href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_CreateFromBuf_System_Byte___System_Int32_System_Int32_
+  - name: (
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '['
+  - name: ']'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.MetaObject.CreateFromBuf(System.Byte[],System.Int32,System.Int32)
+    name: CreateFromBuf
+    isExternal: true
+    href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_CreateFromBuf_System_Byte___System_Int32_System_Int32_
+  - name: (
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: (
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Reportman.Drawing.MetaObject.GetRECORD_OFFSET(System.Int32)
+  commentId: M:Reportman.Drawing.MetaObject.GetRECORD_OFFSET(System.Int32)
+  parent: Reportman.Drawing.MetaObject
+  isExternal: true
+  href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_GetRECORD_OFFSET_System_Int32_
+  name: GetRECORD_OFFSET(int)
+  nameWithType: MetaObject.GetRECORD_OFFSET(int)
+  fullName: Reportman.Drawing.MetaObject.GetRECORD_OFFSET(int)
+  nameWithType.vb: MetaObject.GetRECORD_OFFSET(Integer)
+  fullName.vb: Reportman.Drawing.MetaObject.GetRECORD_OFFSET(Integer)
+  name.vb: GetRECORD_OFFSET(Integer)
+  spec.csharp:
+  - uid: Reportman.Drawing.MetaObject.GetRECORD_OFFSET(System.Int32)
+    name: GetRECORD_OFFSET
+    isExternal: true
+    href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_GetRECORD_OFFSET_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.MetaObject.GetRECORD_OFFSET(System.Int32)
+    name: GetRECORD_OFFSET
+    isExternal: true
+    href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_GetRECORD_OFFSET_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Reportman.Drawing.MetaObject.GetRECORD_SIZE(System.Int32)
+  commentId: M:Reportman.Drawing.MetaObject.GetRECORD_SIZE(System.Int32)
+  parent: Reportman.Drawing.MetaObject
+  isExternal: true
+  href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_GetRECORD_SIZE_System_Int32_
+  name: GetRECORD_SIZE(int)
+  nameWithType: MetaObject.GetRECORD_SIZE(int)
+  fullName: Reportman.Drawing.MetaObject.GetRECORD_SIZE(int)
+  nameWithType.vb: MetaObject.GetRECORD_SIZE(Integer)
+  fullName.vb: Reportman.Drawing.MetaObject.GetRECORD_SIZE(Integer)
+  name.vb: GetRECORD_SIZE(Integer)
+  spec.csharp:
+  - uid: Reportman.Drawing.MetaObject.GetRECORD_SIZE(System.Int32)
+    name: GetRECORD_SIZE
+    isExternal: true
+    href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_GetRECORD_SIZE_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.MetaObject.GetRECORD_SIZE(System.Int32)
+    name: GetRECORD_SIZE
+    isExternal: true
+    href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_GetRECORD_SIZE_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Reportman.Drawing.MetaObject.GetIntHorizAlignment(Reportman.Drawing.TextAlignType)
+  commentId: M:Reportman.Drawing.MetaObject.GetIntHorizAlignment(Reportman.Drawing.TextAlignType)
+  parent: Reportman.Drawing.MetaObject
+  isExternal: true
+  href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_GetIntHorizAlignment_Reportman_Drawing_TextAlignType_
+  name: GetIntHorizAlignment(TextAlignType)
+  nameWithType: MetaObject.GetIntHorizAlignment(TextAlignType)
+  fullName: Reportman.Drawing.MetaObject.GetIntHorizAlignment(Reportman.Drawing.TextAlignType)
+  spec.csharp:
+  - uid: Reportman.Drawing.MetaObject.GetIntHorizAlignment(Reportman.Drawing.TextAlignType)
+    name: GetIntHorizAlignment
+    isExternal: true
+    href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_GetIntHorizAlignment_Reportman_Drawing_TextAlignType_
+  - name: (
+  - uid: Reportman.Drawing.TextAlignType
+    name: TextAlignType
+    isExternal: true
+    href: Reportman.Drawing.TextAlignType.html
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.MetaObject.GetIntHorizAlignment(Reportman.Drawing.TextAlignType)
+    name: GetIntHorizAlignment
+    isExternal: true
+    href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_GetIntHorizAlignment_Reportman_Drawing_TextAlignType_
+  - name: (
+  - uid: Reportman.Drawing.TextAlignType
+    name: TextAlignType
+    isExternal: true
+    href: Reportman.Drawing.TextAlignType.html
+  - name: )
+- uid: Reportman.Drawing.MetaObject.GetIntVertAlignment(Reportman.Drawing.TextAlignVerticalType)
+  commentId: M:Reportman.Drawing.MetaObject.GetIntVertAlignment(Reportman.Drawing.TextAlignVerticalType)
+  parent: Reportman.Drawing.MetaObject
+  isExternal: true
+  href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_GetIntVertAlignment_Reportman_Drawing_TextAlignVerticalType_
+  name: GetIntVertAlignment(TextAlignVerticalType)
+  nameWithType: MetaObject.GetIntVertAlignment(TextAlignVerticalType)
+  fullName: Reportman.Drawing.MetaObject.GetIntVertAlignment(Reportman.Drawing.TextAlignVerticalType)
+  spec.csharp:
+  - uid: Reportman.Drawing.MetaObject.GetIntVertAlignment(Reportman.Drawing.TextAlignVerticalType)
+    name: GetIntVertAlignment
+    isExternal: true
+    href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_GetIntVertAlignment_Reportman_Drawing_TextAlignVerticalType_
+  - name: (
+  - uid: Reportman.Drawing.TextAlignVerticalType
+    name: TextAlignVerticalType
+    isExternal: true
+    href: Reportman.Drawing.TextAlignVerticalType.html
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.MetaObject.GetIntVertAlignment(Reportman.Drawing.TextAlignVerticalType)
+    name: GetIntVertAlignment
+    isExternal: true
+    href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_GetIntVertAlignment_Reportman_Drawing_TextAlignVerticalType_
+  - name: (
+  - uid: Reportman.Drawing.TextAlignVerticalType
+    name: TextAlignVerticalType
+    isExternal: true
+    href: Reportman.Drawing.TextAlignVerticalType.html
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Int16
+  commentId: T:System.Int16
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int16
+  name: short
+  nameWithType: short
+  fullName: short
+  nameWithType.vb: Short
+  fullName.vb: Short
+  name.vb: Short
+- uid: Reportman.Drawing.PDFFontType
+  commentId: T:Reportman.Drawing.PDFFontType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PDFFontType.html
+  name: PDFFontType
+  nameWithType: PDFFontType
+  fullName: Reportman.Drawing.PDFFontType
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Reportman.Drawing.PrintStepType
+  commentId: T:Reportman.Drawing.PrintStepType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PrintStepType.html
+  name: PrintStepType
+  nameWithType: PrintStepType
+  fullName: Reportman.Drawing.PrintStepType
+- uid: Reportman.Drawing.MetaObject.FillFromBuf(System.Byte[],System.Int32,System.Int32)
+  commentId: M:Reportman.Drawing.MetaObject.FillFromBuf(System.Byte[],System.Int32,System.Int32)
+  parent: Reportman.Drawing.MetaObject
+  isExternal: true
+  href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_FillFromBuf_System_Byte___System_Int32_System_Int32_
+  name: FillFromBuf(byte[], int, int)
+  nameWithType: MetaObject.FillFromBuf(byte[], int, int)
+  fullName: Reportman.Drawing.MetaObject.FillFromBuf(byte[], int, int)
+  nameWithType.vb: MetaObject.FillFromBuf(Byte(), Integer, Integer)
+  fullName.vb: Reportman.Drawing.MetaObject.FillFromBuf(Byte(), Integer, Integer)
+  name.vb: FillFromBuf(Byte(), Integer, Integer)
+  spec.csharp:
+  - uid: Reportman.Drawing.MetaObject.FillFromBuf(System.Byte[],System.Int32,System.Int32)
+    name: FillFromBuf
+    isExternal: true
+    href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_FillFromBuf_System_Byte___System_Int32_System_Int32_
+  - name: (
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '['
+  - name: ']'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.MetaObject.FillFromBuf(System.Byte[],System.Int32,System.Int32)
+    name: FillFromBuf
+    isExternal: true
+    href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_FillFromBuf_System_Byte___System_Int32_System_Int32_
+  - name: (
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: (
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Reportman.Drawing.MetaObjectText.FillFromBuf*
+  commentId: Overload:Reportman.Drawing.MetaObjectText.FillFromBuf
+  isExternal: true
+  href: Reportman.Drawing.MetaObjectText.html#Reportman_Drawing_MetaObjectText_FillFromBuf_System_Byte___System_Int32_System_Int32_
+  name: FillFromBuf
+  nameWithType: MetaObjectText.FillFromBuf
+  fullName: Reportman.Drawing.MetaObjectText.FillFromBuf
+- uid: System.Byte[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte[]
+  nameWithType: byte[]
+  fullName: byte[]
+  nameWithType.vb: Byte()
+  fullName.vb: Byte()
+  name.vb: Byte()
+  spec.csharp:
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: (
+  - name: )
+- uid: Reportman.Drawing.MetaObject.SaveToStream(System.IO.Stream,System.Int32)
+  commentId: M:Reportman.Drawing.MetaObject.SaveToStream(System.IO.Stream,System.Int32)
+  parent: Reportman.Drawing.MetaObject
+  isExternal: true
+  href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_SaveToStream_System_IO_Stream_System_Int32_
+  name: SaveToStream(Stream, int)
+  nameWithType: MetaObject.SaveToStream(Stream, int)
+  fullName: Reportman.Drawing.MetaObject.SaveToStream(System.IO.Stream, int)
+  nameWithType.vb: MetaObject.SaveToStream(Stream, Integer)
+  fullName.vb: Reportman.Drawing.MetaObject.SaveToStream(System.IO.Stream, Integer)
+  name.vb: SaveToStream(Stream, Integer)
+  spec.csharp:
+  - uid: Reportman.Drawing.MetaObject.SaveToStream(System.IO.Stream,System.Int32)
+    name: SaveToStream
+    isExternal: true
+    href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_SaveToStream_System_IO_Stream_System_Int32_
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.MetaObject.SaveToStream(System.IO.Stream,System.Int32)
+    name: SaveToStream
+    isExternal: true
+    href: Reportman.Drawing.MetaObject.html#Reportman_Drawing_MetaObject_SaveToStream_System_IO_Stream_System_Int32_
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Reportman.Drawing.MetaObjectText.SaveToStream*
+  commentId: Overload:Reportman.Drawing.MetaObjectText.SaveToStream
+  isExternal: true
+  href: Reportman.Drawing.MetaObjectText.html#Reportman_Drawing_MetaObjectText_SaveToStream_System_IO_Stream_System_Int32_
+  name: SaveToStream
+  nameWithType: MetaObjectText.SaveToStream
+  fullName: Reportman.Drawing.MetaObjectText.SaveToStream
+- uid: System.IO.Stream
+  commentId: T:System.IO.Stream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  name: Stream
+  nameWithType: Stream
+  fullName: System.IO.Stream
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+- uid: Reportman.Drawing.MetaObjectText.#ctor*
+  commentId: Overload:Reportman.Drawing.MetaObjectText.#ctor
+  isExternal: true
+  href: Reportman.Drawing.MetaObjectText.html#Reportman_Drawing_MetaObjectText__ctor
+  name: MetaObjectText
+  nameWithType: MetaObjectText.MetaObjectText
+  fullName: Reportman.Drawing.MetaObjectText.MetaObjectText
+  nameWithType.vb: MetaObjectText.New
+  fullName.vb: Reportman.Drawing.MetaObjectText.New
+  name.vb: New

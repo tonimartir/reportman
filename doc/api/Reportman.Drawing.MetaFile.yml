@@ -1,0 +1,3015 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.MetaFile
+  commentId: T:Reportman.Drawing.MetaFile
+  id: MetaFile
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.MetaFile.#ctor
+  - Reportman.Drawing.MetaFile.AddMetaFiles(System.Collections.Generic.List{Reportman.Drawing.MetaFile})
+  - Reportman.Drawing.MetaFile.AlignmentFlags_AlignBottom
+  - Reportman.Drawing.MetaFile.AlignmentFlags_AlignHCenter
+  - Reportman.Drawing.MetaFile.AlignmentFlags_AlignHJustify
+  - Reportman.Drawing.MetaFile.AlignmentFlags_AlignLeft
+  - Reportman.Drawing.MetaFile.AlignmentFlags_AlignRight
+  - Reportman.Drawing.MetaFile.AlignmentFlags_AlignVCenter
+  - Reportman.Drawing.MetaFile.AlignmentFlags_SingleLine
+  - Reportman.Drawing.MetaFile.AsyncReading
+  - Reportman.Drawing.MetaFile.AutoScale
+  - Reportman.Drawing.MetaFile.BackColor
+  - Reportman.Drawing.MetaFile.BeginPrint(Reportman.Drawing.PrintOut)
+  - Reportman.Drawing.MetaFile.CalcTextExtent(Reportman.Drawing.PrintOut,System.Drawing.Point,Reportman.Drawing.TextObjectStruct)
+  - Reportman.Drawing.MetaFile.Clear
+  - Reportman.Drawing.MetaFile.Clone
+  - Reportman.Drawing.MetaFile.CollateCopies
+  - Reportman.Drawing.MetaFile.Copies
+  - Reportman.Drawing.MetaFile.CurrentPage
+  - Reportman.Drawing.MetaFile.CustomX
+  - Reportman.Drawing.MetaFile.CustomY
+  - Reportman.Drawing.MetaFile.Dispose
+  - Reportman.Drawing.MetaFile.DoSearch(System.String)
+  - Reportman.Drawing.MetaFile.DocAuthor
+  - Reportman.Drawing.MetaFile.DocCreationDate
+  - Reportman.Drawing.MetaFile.DocCreator
+  - Reportman.Drawing.MetaFile.DocKeywords
+  - Reportman.Drawing.MetaFile.DocModificationDate
+  - Reportman.Drawing.MetaFile.DocProducer
+  - Reportman.Drawing.MetaFile.DocSubject
+  - Reportman.Drawing.MetaFile.DocTitle
+  - Reportman.Drawing.MetaFile.DocXMPContent
+  - Reportman.Drawing.MetaFile.Duplex
+  - Reportman.Drawing.MetaFile.EmbeddedFiles
+  - Reportman.Drawing.MetaFile.Empty
+  - Reportman.Drawing.MetaFile.Finish
+  - Reportman.Drawing.MetaFile.Finished
+  - Reportman.Drawing.MetaFile.ForwardOnly
+  - Reportman.Drawing.MetaFile.LinesPerInch
+  - Reportman.Drawing.MetaFile.LoadFromFile(System.String)
+  - Reportman.Drawing.MetaFile.LoadFromStream(System.IO.Stream,System.Boolean)
+  - Reportman.Drawing.MetaFile.MAX_NUMBER_PAGES
+  - Reportman.Drawing.MetaFile.NewEmbeddedFile(System.String,System.String,Reportman.Drawing.PDFAFRelationShip,System.String,System.String,System.String,System.IO.MemoryStream)
+  - Reportman.Drawing.MetaFile.NextPageFound(System.Int32)
+  - Reportman.Drawing.MetaFile.ObjectFound(Reportman.Drawing.MetaObject)
+  - Reportman.Drawing.MetaFile.OnBeginPrint
+  - Reportman.Drawing.MetaFile.OnLoadError
+  - Reportman.Drawing.MetaFile.OnLoadProgress
+  - Reportman.Drawing.MetaFile.OnRelease
+  - Reportman.Drawing.MetaFile.OnRequestPage
+  - Reportman.Drawing.MetaFile.OnSaveWorkProgress
+  - Reportman.Drawing.MetaFile.OnStopWork
+  - Reportman.Drawing.MetaFile.OnWorkAsyncError
+  - Reportman.Drawing.MetaFile.OnWorkProgress
+  - Reportman.Drawing.MetaFile.OpenDrawerAfter
+  - Reportman.Drawing.MetaFile.OpenDrawerBefore
+  - Reportman.Drawing.MetaFile.Orientation
+  - Reportman.Drawing.MetaFile.PDFCompressed
+  - Reportman.Drawing.MetaFile.PDFConformance
+  - Reportman.Drawing.MetaFile.PageSizeArray
+  - Reportman.Drawing.MetaFile.PageSizeIndex
+  - Reportman.Drawing.MetaFile.Pages
+  - Reportman.Drawing.MetaFile.PaperSource
+  - Reportman.Drawing.MetaFile.PreviewAbout
+  - Reportman.Drawing.MetaFile.PreviewMargins
+  - Reportman.Drawing.MetaFile.PreviewWindow
+  - Reportman.Drawing.MetaFile.PrinterFonts
+  - Reportman.Drawing.MetaFile.PrinterSelect
+  - Reportman.Drawing.MetaFile.ReadStringFromStream(System.IO.Stream)
+  - Reportman.Drawing.MetaFile.Reading
+  - Reportman.Drawing.MetaFile.Release
+  - Reportman.Drawing.MetaFile.RequestPage(System.Int32)
+  - Reportman.Drawing.MetaFile.SaveToFile(System.String,System.Boolean)
+  - Reportman.Drawing.MetaFile.SaveToStream(System.IO.Stream,System.Boolean)
+  - Reportman.Drawing.MetaFile.SharedStream
+  - Reportman.Drawing.MetaFile.StopWork
+  - Reportman.Drawing.MetaFile.UnFinish
+  - Reportman.Drawing.MetaFile.UpdateTotalPages(Reportman.Drawing.TotalPages)
+  - Reportman.Drawing.MetaFile.UpdateTotalPagesPCount(Reportman.Drawing.TotalPages,System.Int32)
+  - Reportman.Drawing.MetaFile.Version
+  - Reportman.Drawing.MetaFile.WorkAsyncError(System.String)
+  - Reportman.Drawing.MetaFile.WorkProgress(System.Int32,System.Int32,System.Boolean@)
+  - Reportman.Drawing.MetaFile.WriteStringToStream(System.String,System.IO.Stream)
+  langs:
+  - csharp
+  - vb
+  name: MetaFile
+  nameWithType: MetaFile
+  fullName: Reportman.Drawing.MetaFile
+  type: Class
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Class used engine to read/write metafiles.
+  example: []
+  syntax:
+    content: 'public class MetaFile : IDisposable, ICloneable'
+    content.vb: Public Class MetaFile Implements IDisposable, ICloneable
+  inheritance:
+  - System.Object
+  implements:
+  - System.IDisposable
+  - System.ICloneable
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.MetaFile.Empty
+  commentId: F:Reportman.Drawing.MetaFile.Empty
+  id: Empty
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: Empty
+  nameWithType: MetaFile.Empty
+  fullName: Reportman.Drawing.MetaFile.Empty
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Flag available for information of metafile status, default false, empty.
+  example: []
+  syntax:
+    content: public bool Empty
+    return:
+      type: System.Boolean
+    content.vb: Public Empty As Boolean
+- uid: Reportman.Drawing.MetaFile.PageSizeArray
+  commentId: F:Reportman.Drawing.MetaFile.PageSizeArray
+  id: PageSizeArray
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: PageSizeArray
+  nameWithType: MetaFile.PageSizeArray
+  fullName: Reportman.Drawing.MetaFile.PageSizeArray
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Array of page sizes
+  example: []
+  syntax:
+    content: public static int[,] PageSizeArray
+    return:
+      type: System.Int32[,]
+    content.vb: Public Shared PageSizeArray As Integer(,)
+- uid: Reportman.Drawing.MetaFile.AlignmentFlags_AlignLeft
+  commentId: F:Reportman.Drawing.MetaFile.AlignmentFlags_AlignLeft
+  id: AlignmentFlags_AlignLeft
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: AlignmentFlags_AlignLeft
+  nameWithType: MetaFile.AlignmentFlags_AlignLeft
+  fullName: Reportman.Drawing.MetaFile.AlignmentFlags_AlignLeft
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Constant used for storing all alignment information into a single integer value
+  example: []
+  syntax:
+    content: public const int AlignmentFlags_AlignLeft = 1
+    return:
+      type: System.Int32
+    content.vb: Public Const AlignmentFlags_AlignLeft As Integer = 1
+- uid: Reportman.Drawing.MetaFile.AlignmentFlags_AlignRight
+  commentId: F:Reportman.Drawing.MetaFile.AlignmentFlags_AlignRight
+  id: AlignmentFlags_AlignRight
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: AlignmentFlags_AlignRight
+  nameWithType: MetaFile.AlignmentFlags_AlignRight
+  fullName: Reportman.Drawing.MetaFile.AlignmentFlags_AlignRight
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Constant used for storing all alignment information into a single integer value
+  example: []
+  syntax:
+    content: public const int AlignmentFlags_AlignRight = 2
+    return:
+      type: System.Int32
+    content.vb: Public Const AlignmentFlags_AlignRight As Integer = 2
+- uid: Reportman.Drawing.MetaFile.AlignmentFlags_AlignHJustify
+  commentId: F:Reportman.Drawing.MetaFile.AlignmentFlags_AlignHJustify
+  id: AlignmentFlags_AlignHJustify
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: AlignmentFlags_AlignHJustify
+  nameWithType: MetaFile.AlignmentFlags_AlignHJustify
+  fullName: Reportman.Drawing.MetaFile.AlignmentFlags_AlignHJustify
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Constant used for storing all alignment information into a single integer value
+  example: []
+  syntax:
+    content: public const int AlignmentFlags_AlignHJustify = 1024
+    return:
+      type: System.Int32
+    content.vb: Public Const AlignmentFlags_AlignHJustify As Integer = 1024
+- uid: Reportman.Drawing.MetaFile.AlignmentFlags_AlignHCenter
+  commentId: F:Reportman.Drawing.MetaFile.AlignmentFlags_AlignHCenter
+  id: AlignmentFlags_AlignHCenter
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: AlignmentFlags_AlignHCenter
+  nameWithType: MetaFile.AlignmentFlags_AlignHCenter
+  fullName: Reportman.Drawing.MetaFile.AlignmentFlags_AlignHCenter
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Constant used for storing all alignment information into a single integer value
+  example: []
+  syntax:
+    content: public const int AlignmentFlags_AlignHCenter = 4
+    return:
+      type: System.Int32
+    content.vb: Public Const AlignmentFlags_AlignHCenter As Integer = 4
+- uid: Reportman.Drawing.MetaFile.AlignmentFlags_AlignVCenter
+  commentId: F:Reportman.Drawing.MetaFile.AlignmentFlags_AlignVCenter
+  id: AlignmentFlags_AlignVCenter
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: AlignmentFlags_AlignVCenter
+  nameWithType: MetaFile.AlignmentFlags_AlignVCenter
+  fullName: Reportman.Drawing.MetaFile.AlignmentFlags_AlignVCenter
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Constant used for storing all alignment information into a single integer value
+  example: []
+  syntax:
+    content: public const int AlignmentFlags_AlignVCenter = 32
+    return:
+      type: System.Int32
+    content.vb: Public Const AlignmentFlags_AlignVCenter As Integer = 32
+- uid: Reportman.Drawing.MetaFile.AlignmentFlags_AlignBottom
+  commentId: F:Reportman.Drawing.MetaFile.AlignmentFlags_AlignBottom
+  id: AlignmentFlags_AlignBottom
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: AlignmentFlags_AlignBottom
+  nameWithType: MetaFile.AlignmentFlags_AlignBottom
+  fullName: Reportman.Drawing.MetaFile.AlignmentFlags_AlignBottom
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Constant used for storing all alignment information into a single integer value
+  example: []
+  syntax:
+    content: public const int AlignmentFlags_AlignBottom = 16
+    return:
+      type: System.Int32
+    content.vb: Public Const AlignmentFlags_AlignBottom As Integer = 16
+- uid: Reportman.Drawing.MetaFile.AlignmentFlags_SingleLine
+  commentId: F:Reportman.Drawing.MetaFile.AlignmentFlags_SingleLine
+  id: AlignmentFlags_SingleLine
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: AlignmentFlags_SingleLine
+  nameWithType: MetaFile.AlignmentFlags_SingleLine
+  fullName: Reportman.Drawing.MetaFile.AlignmentFlags_SingleLine
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Constant used for storing all alignment information into a single integer value
+  example: []
+  syntax:
+    content: public const int AlignmentFlags_SingleLine = 64
+    return:
+      type: System.Int32
+    content.vb: Public Const AlignmentFlags_SingleLine As Integer = 64
+- uid: Reportman.Drawing.MetaFile.MAX_NUMBER_PAGES
+  commentId: F:Reportman.Drawing.MetaFile.MAX_NUMBER_PAGES
+  id: MAX_NUMBER_PAGES
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: MAX_NUMBER_PAGES
+  nameWithType: MetaFile.MAX_NUMBER_PAGES
+  fullName: Reportman.Drawing.MetaFile.MAX_NUMBER_PAGES
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Maximum number of pages that can contain a MetaFile (32000)
+  example: []
+  syntax:
+    content: public const int MAX_NUMBER_PAGES = 32000
+    return:
+      type: System.Int32
+    content.vb: Public Const MAX_NUMBER_PAGES As Integer = 32000
+- uid: Reportman.Drawing.MetaFile.ForwardOnly
+  commentId: F:Reportman.Drawing.MetaFile.ForwardOnly
+  id: ForwardOnly
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: ForwardOnly
+  nameWithType: MetaFile.ForwardOnly
+  fullName: Reportman.Drawing.MetaFile.ForwardOnly
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    ForwardOnly is set to true when there is no need to store processed pages in memory
+                that is usable for long reports with lot of pages that are printet directly to printer so
+                the memory consumption is minimized
+  example: []
+  syntax:
+    content: public bool ForwardOnly
+    return:
+      type: System.Boolean
+    content.vb: Public ForwardOnly As Boolean
+- uid: Reportman.Drawing.MetaFile.PageSizeIndex
+  commentId: F:Reportman.Drawing.MetaFile.PageSizeIndex
+  id: PageSizeIndex
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: PageSizeIndex
+  nameWithType: MetaFile.PageSizeIndex
+  fullName: Reportman.Drawing.MetaFile.PageSizeIndex
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Default page size index in PageSizeArray
+  example: []
+  syntax:
+    content: public int PageSizeIndex
+    return:
+      type: System.Int32
+    content.vb: Public PageSizeIndex As Integer
+- uid: Reportman.Drawing.MetaFile.CustomX
+  commentId: F:Reportman.Drawing.MetaFile.CustomX
+  id: CustomX
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: CustomX
+  nameWithType: MetaFile.CustomX
+  fullName: Reportman.Drawing.MetaFile.CustomX
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Width in twips of the page
+  example: []
+  syntax:
+    content: public int CustomX
+    return:
+      type: System.Int32
+    content.vb: Public CustomX As Integer
+- uid: Reportman.Drawing.MetaFile.CustomY
+  commentId: F:Reportman.Drawing.MetaFile.CustomY
+  id: CustomY
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: CustomY
+  nameWithType: MetaFile.CustomY
+  fullName: Reportman.Drawing.MetaFile.CustomY
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Height in twips of the page
+  example: []
+  syntax:
+    content: public int CustomY
+    return:
+      type: System.Int32
+    content.vb: Public CustomY As Integer
+- uid: Reportman.Drawing.MetaFile.OpenDrawerBefore
+  commentId: F:Reportman.Drawing.MetaFile.OpenDrawerBefore
+  id: OpenDrawerBefore
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: OpenDrawerBefore
+  nameWithType: MetaFile.OpenDrawerBefore
+  fullName: Reportman.Drawing.MetaFile.OpenDrawerBefore
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: True if the program should open the Pos drawer before printing
+  example: []
+  syntax:
+    content: public bool OpenDrawerBefore
+    return:
+      type: System.Boolean
+    content.vb: Public OpenDrawerBefore As Boolean
+- uid: Reportman.Drawing.MetaFile.OpenDrawerAfter
+  commentId: F:Reportman.Drawing.MetaFile.OpenDrawerAfter
+  id: OpenDrawerAfter
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: OpenDrawerAfter
+  nameWithType: MetaFile.OpenDrawerAfter
+  fullName: Reportman.Drawing.MetaFile.OpenDrawerAfter
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: True if the program should open the Pos drawer after printing
+  example: []
+  syntax:
+    content: public bool OpenDrawerAfter
+    return:
+      type: System.Boolean
+    content.vb: Public OpenDrawerAfter As Boolean
+- uid: Reportman.Drawing.MetaFile.Orientation
+  commentId: F:Reportman.Drawing.MetaFile.Orientation
+  id: Orientation
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: Orientation
+  nameWithType: MetaFile.Orientation
+  fullName: Reportman.Drawing.MetaFile.Orientation
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Page orientation
+  example: []
+  syntax:
+    content: public OrientationType Orientation
+    return:
+      type: Reportman.Drawing.OrientationType
+    content.vb: Public Orientation As OrientationType
+- uid: Reportman.Drawing.MetaFile.BackColor
+  commentId: F:Reportman.Drawing.MetaFile.BackColor
+  id: BackColor
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: BackColor
+  nameWithType: MetaFile.BackColor
+  fullName: Reportman.Drawing.MetaFile.BackColor
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Default page back color
+  example: []
+  syntax:
+    content: public int BackColor
+    return:
+      type: System.Int32
+    content.vb: Public BackColor As Integer
+- uid: Reportman.Drawing.MetaFile.PaperSource
+  commentId: F:Reportman.Drawing.MetaFile.PaperSource
+  id: PaperSource
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: PaperSource
+  nameWithType: MetaFile.PaperSource
+  fullName: Reportman.Drawing.MetaFile.PaperSource
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Default paper source, this integer value is understandable by the print driver
+  example: []
+  syntax:
+    content: public int PaperSource
+    return:
+      type: System.Int32
+    content.vb: Public PaperSource As Integer
+- uid: Reportman.Drawing.MetaFile.Copies
+  commentId: F:Reportman.Drawing.MetaFile.Copies
+  id: Copies
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: Copies
+  nameWithType: MetaFile.Copies
+  fullName: Reportman.Drawing.MetaFile.Copies
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Default number of copies to print
+  example: []
+  syntax:
+    content: public int Copies
+    return:
+      type: System.Int32
+    content.vb: Public Copies As Integer
+- uid: Reportman.Drawing.MetaFile.LinesPerInch
+  commentId: F:Reportman.Drawing.MetaFile.LinesPerInch
+  id: LinesPerInch
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: LinesPerInch
+  nameWithType: MetaFile.LinesPerInch
+  fullName: Reportman.Drawing.MetaFile.LinesPerInch
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Default lines per inch in the page, have sense only when printing to Pos devices
+  example: []
+  syntax:
+    content: public short LinesPerInch
+    return:
+      type: System.Int16
+    content.vb: Public LinesPerInch As Short
+- uid: Reportman.Drawing.MetaFile.CollateCopies
+  commentId: F:Reportman.Drawing.MetaFile.CollateCopies
+  id: CollateCopies
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: CollateCopies
+  nameWithType: MetaFile.CollateCopies
+  fullName: Reportman.Drawing.MetaFile.CollateCopies
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Default collate copies setting
+  example: []
+  syntax:
+    content: public bool CollateCopies
+    return:
+      type: System.Boolean
+    content.vb: Public CollateCopies As Boolean
+- uid: Reportman.Drawing.MetaFile.Duplex
+  commentId: F:Reportman.Drawing.MetaFile.Duplex
+  id: Duplex
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: Duplex
+  nameWithType: MetaFile.Duplex
+  fullName: Reportman.Drawing.MetaFile.Duplex
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Default duplex setting
+  example: []
+  syntax:
+    content: public byte Duplex
+    return:
+      type: System.Byte
+    content.vb: Public Duplex As Byte
+- uid: Reportman.Drawing.MetaFile.PrinterSelect
+  commentId: F:Reportman.Drawing.MetaFile.PrinterSelect
+  id: PrinterSelect
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: PrinterSelect
+  nameWithType: MetaFile.PrinterSelect
+  fullName: Reportman.Drawing.MetaFile.PrinterSelect
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Printer to select when printing the MetaFile
+  example: []
+  syntax:
+    content: public PrinterSelectType PrinterSelect
+    return:
+      type: Reportman.Drawing.PrinterSelectType
+    content.vb: Public PrinterSelect As PrinterSelectType
+- uid: Reportman.Drawing.MetaFile.AutoScale
+  commentId: F:Reportman.Drawing.MetaFile.AutoScale
+  id: AutoScale
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: AutoScale
+  nameWithType: MetaFile.AutoScale
+  fullName: Reportman.Drawing.MetaFile.AutoScale
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Default scale type when previewing the MetaFile
+  example: []
+  syntax:
+    content: public AutoScaleType AutoScale
+    return:
+      type: Reportman.Drawing.AutoScaleType
+    content.vb: Public AutoScale As AutoScaleType
+- uid: Reportman.Drawing.MetaFile.PreviewWindow
+  commentId: F:Reportman.Drawing.MetaFile.PreviewWindow
+  id: PreviewWindow
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: PreviewWindow
+  nameWithType: MetaFile.PreviewWindow
+  fullName: Reportman.Drawing.MetaFile.PreviewWindow
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Default window size when previewing the MetaFile
+  example: []
+  syntax:
+    content: public PreviewWindowStyleType PreviewWindow
+    return:
+      type: Reportman.Drawing.PreviewWindowStyleType
+    content.vb: Public PreviewWindow As PreviewWindowStyleType
+- uid: Reportman.Drawing.MetaFile.PreviewAbout
+  commentId: F:Reportman.Drawing.MetaFile.PreviewAbout
+  id: PreviewAbout
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: PreviewAbout
+  nameWithType: MetaFile.PreviewAbout
+  fullName: Reportman.Drawing.MetaFile.PreviewAbout
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: True if the about box in preview window should be visible
+  example: []
+  syntax:
+    content: public bool PreviewAbout
+    return:
+      type: System.Boolean
+    content.vb: Public PreviewAbout As Boolean
+- uid: Reportman.Drawing.MetaFile.PreviewMargins
+  commentId: F:Reportman.Drawing.MetaFile.PreviewMargins
+  id: PreviewMargins
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: PreviewMargins
+  nameWithType: MetaFile.PreviewMargins
+  fullName: Reportman.Drawing.MetaFile.PreviewMargins
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: True if the hard margins should be visible in preview
+  example: []
+  syntax:
+    content: public bool PreviewMargins
+    return:
+      type: System.Boolean
+    content.vb: Public PreviewMargins As Boolean
+- uid: Reportman.Drawing.MetaFile.PDFCompressed
+  commentId: F:Reportman.Drawing.MetaFile.PDFCompressed
+  id: PDFCompressed
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: PDFCompressed
+  nameWithType: MetaFile.PDFCompressed
+  fullName: Reportman.Drawing.MetaFile.PDFCompressed
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public bool PDFCompressed
+    return:
+      type: System.Boolean
+    content.vb: Public PDFCompressed As Boolean
+- uid: Reportman.Drawing.MetaFile.EmbeddedFiles
+  commentId: F:Reportman.Drawing.MetaFile.EmbeddedFiles
+  id: EmbeddedFiles
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: EmbeddedFiles
+  nameWithType: MetaFile.EmbeddedFiles
+  fullName: Reportman.Drawing.MetaFile.EmbeddedFiles
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public List<EmbeddedFile> EmbeddedFiles
+    return:
+      type: System.Collections.Generic.List{Reportman.Drawing.EmbeddedFile}
+    content.vb: Public EmbeddedFiles As List(Of EmbeddedFile)
+- uid: Reportman.Drawing.MetaFile.DocAuthor
+  commentId: F:Reportman.Drawing.MetaFile.DocAuthor
+  id: DocAuthor
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: DocAuthor
+  nameWithType: MetaFile.DocAuthor
+  fullName: Reportman.Drawing.MetaFile.DocAuthor
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string DocAuthor
+    return:
+      type: System.String
+    content.vb: Public DocAuthor As String
+- uid: Reportman.Drawing.MetaFile.DocTitle
+  commentId: F:Reportman.Drawing.MetaFile.DocTitle
+  id: DocTitle
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: DocTitle
+  nameWithType: MetaFile.DocTitle
+  fullName: Reportman.Drawing.MetaFile.DocTitle
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string DocTitle
+    return:
+      type: System.String
+    content.vb: Public DocTitle As String
+- uid: Reportman.Drawing.MetaFile.DocSubject
+  commentId: F:Reportman.Drawing.MetaFile.DocSubject
+  id: DocSubject
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: DocSubject
+  nameWithType: MetaFile.DocSubject
+  fullName: Reportman.Drawing.MetaFile.DocSubject
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string DocSubject
+    return:
+      type: System.String
+    content.vb: Public DocSubject As String
+- uid: Reportman.Drawing.MetaFile.DocProducer
+  commentId: F:Reportman.Drawing.MetaFile.DocProducer
+  id: DocProducer
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: DocProducer
+  nameWithType: MetaFile.DocProducer
+  fullName: Reportman.Drawing.MetaFile.DocProducer
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string DocProducer
+    return:
+      type: System.String
+    content.vb: Public DocProducer As String
+- uid: Reportman.Drawing.MetaFile.DocCreator
+  commentId: F:Reportman.Drawing.MetaFile.DocCreator
+  id: DocCreator
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: DocCreator
+  nameWithType: MetaFile.DocCreator
+  fullName: Reportman.Drawing.MetaFile.DocCreator
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string DocCreator
+    return:
+      type: System.String
+    content.vb: Public DocCreator As String
+- uid: Reportman.Drawing.MetaFile.DocKeywords
+  commentId: F:Reportman.Drawing.MetaFile.DocKeywords
+  id: DocKeywords
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: DocKeywords
+  nameWithType: MetaFile.DocKeywords
+  fullName: Reportman.Drawing.MetaFile.DocKeywords
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string DocKeywords
+    return:
+      type: System.String
+    content.vb: Public DocKeywords As String
+- uid: Reportman.Drawing.MetaFile.DocXMPContent
+  commentId: F:Reportman.Drawing.MetaFile.DocXMPContent
+  id: DocXMPContent
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: DocXMPContent
+  nameWithType: MetaFile.DocXMPContent
+  fullName: Reportman.Drawing.MetaFile.DocXMPContent
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string DocXMPContent
+    return:
+      type: System.String
+    content.vb: Public DocXMPContent As String
+- uid: Reportman.Drawing.MetaFile.DocCreationDate
+  commentId: F:Reportman.Drawing.MetaFile.DocCreationDate
+  id: DocCreationDate
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: DocCreationDate
+  nameWithType: MetaFile.DocCreationDate
+  fullName: Reportman.Drawing.MetaFile.DocCreationDate
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string DocCreationDate
+    return:
+      type: System.String
+    content.vb: Public DocCreationDate As String
+- uid: Reportman.Drawing.MetaFile.DocModificationDate
+  commentId: F:Reportman.Drawing.MetaFile.DocModificationDate
+  id: DocModificationDate
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: DocModificationDate
+  nameWithType: MetaFile.DocModificationDate
+  fullName: Reportman.Drawing.MetaFile.DocModificationDate
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string DocModificationDate
+    return:
+      type: System.String
+    content.vb: Public DocModificationDate As String
+- uid: Reportman.Drawing.MetaFile.Pages
+  commentId: F:Reportman.Drawing.MetaFile.Pages
+  id: Pages
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: Pages
+  nameWithType: MetaFile.Pages
+  fullName: Reportman.Drawing.MetaFile.Pages
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Collection of pages
+  example: []
+  syntax:
+    content: public MetaPages Pages
+    return:
+      type: Reportman.Drawing.MetaPages
+    content.vb: Public Pages As MetaPages
+- uid: Reportman.Drawing.MetaFile.CurrentPage
+  commentId: F:Reportman.Drawing.MetaFile.CurrentPage
+  id: CurrentPage
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: CurrentPage
+  nameWithType: MetaFile.CurrentPage
+  fullName: Reportman.Drawing.MetaFile.CurrentPage
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Current page index, page being processed actually, the report can be processed asynchronously
+  example: []
+  syntax:
+    content: public int CurrentPage
+    return:
+      type: System.Int32
+    content.vb: Public CurrentPage As Integer
+- uid: Reportman.Drawing.MetaFile.AsyncReading
+  commentId: F:Reportman.Drawing.MetaFile.AsyncReading
+  id: AsyncReading
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: AsyncReading
+  nameWithType: MetaFile.AsyncReading
+  fullName: Reportman.Drawing.MetaFile.AsyncReading
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: If set to true, the MetaFile will be read asynchronously
+  example: []
+  syntax:
+    content: public bool AsyncReading
+    return:
+      type: System.Boolean
+    content.vb: Public AsyncReading As Boolean
+- uid: Reportman.Drawing.MetaFile.PrinterFonts
+  commentId: F:Reportman.Drawing.MetaFile.PrinterFonts
+  id: PrinterFonts
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: PrinterFonts
+  nameWithType: MetaFile.PrinterFonts
+  fullName: Reportman.Drawing.MetaFile.PrinterFonts
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Default printer fonts selection
+  example: []
+  syntax:
+    content: public PrinterFontsType PrinterFonts
+    return:
+      type: Reportman.Drawing.PrinterFontsType
+    content.vb: Public PrinterFonts As PrinterFontsType
+- uid: Reportman.Drawing.MetaFile.Clone
+  commentId: M:Reportman.Drawing.MetaFile.Clone
+  id: Clone
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: Clone()
+  nameWithType: MetaFile.Clone()
+  fullName: Reportman.Drawing.MetaFile.Clone()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  example: []
+  syntax:
+    content: public object Clone()
+    return:
+      type: System.Object
+    content.vb: Public Function Clone() As Object
+  overload: Reportman.Drawing.MetaFile.Clone*
+  implements:
+  - System.ICloneable.Clone
+- uid: Reportman.Drawing.MetaFile.Dispose
+  commentId: M:Reportman.Drawing.MetaFile.Dispose
+  id: Dispose
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: MetaFile.Dispose()
+  fullName: Reportman.Drawing.MetaFile.Dispose()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Free resources
+  example: []
+  syntax:
+    content: public virtual void Dispose()
+    content.vb: Public Overridable Sub Dispose()
+  overload: Reportman.Drawing.MetaFile.Dispose*
+  implements:
+  - System.IDisposable.Dispose
+- uid: Reportman.Drawing.MetaFile.#ctor
+  commentId: M:Reportman.Drawing.MetaFile.#ctor
+  id: '#ctor'
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: MetaFile()
+  nameWithType: MetaFile.MetaFile()
+  fullName: Reportman.Drawing.MetaFile.MetaFile()
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Constructor
+  example: []
+  syntax:
+    content: public MetaFile()
+    content.vb: Public Sub New()
+  overload: Reportman.Drawing.MetaFile.#ctor*
+  nameWithType.vb: MetaFile.New()
+  fullName.vb: Reportman.Drawing.MetaFile.New()
+  name.vb: New()
+- uid: Reportman.Drawing.MetaFile.NewEmbeddedFile(System.String,System.String,Reportman.Drawing.PDFAFRelationShip,System.String,System.String,System.String,System.IO.MemoryStream)
+  commentId: M:Reportman.Drawing.MetaFile.NewEmbeddedFile(System.String,System.String,Reportman.Drawing.PDFAFRelationShip,System.String,System.String,System.String,System.IO.MemoryStream)
+  id: NewEmbeddedFile(System.String,System.String,Reportman.Drawing.PDFAFRelationShip,System.String,System.String,System.String,System.IO.MemoryStream)
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: NewEmbeddedFile(string, string, PDFAFRelationShip, string, string, string, MemoryStream)
+  nameWithType: MetaFile.NewEmbeddedFile(string, string, PDFAFRelationShip, string, string, string, MemoryStream)
+  fullName: Reportman.Drawing.MetaFile.NewEmbeddedFile(string, string, Reportman.Drawing.PDFAFRelationShip, string, string, string, System.IO.MemoryStream)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public void NewEmbeddedFile(string fileName, string mimeType, PDFAFRelationShip AFRelationShip, string description, string creationDate, string modificationDate, MemoryStream stream)
+    parameters:
+    - id: fileName
+      type: System.String
+    - id: mimeType
+      type: System.String
+    - id: AFRelationShip
+      type: Reportman.Drawing.PDFAFRelationShip
+    - id: description
+      type: System.String
+    - id: creationDate
+      type: System.String
+    - id: modificationDate
+      type: System.String
+    - id: stream
+      type: System.IO.MemoryStream
+    content.vb: Public Sub NewEmbeddedFile(fileName As String, mimeType As String, AFRelationShip As PDFAFRelationShip, description As String, creationDate As String, modificationDate As String, stream As MemoryStream)
+  overload: Reportman.Drawing.MetaFile.NewEmbeddedFile*
+  nameWithType.vb: MetaFile.NewEmbeddedFile(String, String, PDFAFRelationShip, String, String, String, MemoryStream)
+  fullName.vb: Reportman.Drawing.MetaFile.NewEmbeddedFile(String, String, Reportman.Drawing.PDFAFRelationShip, String, String, String, System.IO.MemoryStream)
+  name.vb: NewEmbeddedFile(String, String, PDFAFRelationShip, String, String, String, MemoryStream)
+- uid: Reportman.Drawing.MetaFile.Release
+  commentId: M:Reportman.Drawing.MetaFile.Release
+  id: Release
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: Release()
+  nameWithType: MetaFile.Release()
+  fullName: Reportman.Drawing.MetaFile.Release()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Release resources
+  example: []
+  syntax:
+    content: public void Release()
+    content.vb: Public Sub Release()
+  overload: Reportman.Drawing.MetaFile.Release*
+- uid: Reportman.Drawing.MetaFile.Clear
+  commentId: M:Reportman.Drawing.MetaFile.Clear
+  id: Clear
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: Clear()
+  nameWithType: MetaFile.Clear()
+  fullName: Reportman.Drawing.MetaFile.Clear()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Clear MetaFile, that is clear all pages and objects
+  example: []
+  syntax:
+    content: public void Clear()
+    content.vb: Public Sub Clear()
+  overload: Reportman.Drawing.MetaFile.Clear*
+- uid: Reportman.Drawing.MetaFile.StopWork
+  commentId: M:Reportman.Drawing.MetaFile.StopWork
+  id: StopWork
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: StopWork()
+  nameWithType: MetaFile.StopWork()
+  fullName: Reportman.Drawing.MetaFile.StopWork()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Forces stop of the asynchronous reading of MetaFile
+  example: []
+  syntax:
+    content: public void StopWork()
+    content.vb: Public Sub StopWork()
+  overload: Reportman.Drawing.MetaFile.StopWork*
+- uid: Reportman.Drawing.MetaFile.WorkProgress(System.Int32,System.Int32,System.Boolean@)
+  commentId: M:Reportman.Drawing.MetaFile.WorkProgress(System.Int32,System.Int32,System.Boolean@)
+  id: WorkProgress(System.Int32,System.Int32,System.Boolean@)
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: WorkProgress(int, int, ref bool)
+  nameWithType: MetaFile.WorkProgress(int, int, ref bool)
+  fullName: Reportman.Drawing.MetaFile.WorkProgress(int, int, ref bool)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Fires the event OnWorkProgress
+  example: []
+  syntax:
+    content: public void WorkProgress(int records, int pagecount, ref bool docancel)
+    parameters:
+    - id: records
+      type: System.Int32
+      description: Number of records processed
+    - id: pagecount
+      type: System.Int32
+      description: Current page count
+    - id: docancel
+      type: System.Boolean
+      description: Set this reference variable to true to cancel report processing
+    content.vb: Public Sub WorkProgress(records As Integer, pagecount As Integer, docancel As Boolean)
+  overload: Reportman.Drawing.MetaFile.WorkProgress*
+  nameWithType.vb: MetaFile.WorkProgress(Integer, Integer, Boolean)
+  fullName.vb: Reportman.Drawing.MetaFile.WorkProgress(Integer, Integer, Boolean)
+  name.vb: WorkProgress(Integer, Integer, Boolean)
+- uid: Reportman.Drawing.MetaFile.WorkAsyncError(System.String)
+  commentId: M:Reportman.Drawing.MetaFile.WorkAsyncError(System.String)
+  id: WorkAsyncError(System.String)
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: WorkAsyncError(string)
+  nameWithType: MetaFile.WorkAsyncError(string)
+  fullName: Reportman.Drawing.MetaFile.WorkAsyncError(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Fires a OnWorkAsyncError
+  example: []
+  syntax:
+    content: public void WorkAsyncError(string message)
+    parameters:
+    - id: message
+      type: System.String
+      description: Error message
+    content.vb: Public Sub WorkAsyncError(message As String)
+  overload: Reportman.Drawing.MetaFile.WorkAsyncError*
+  nameWithType.vb: MetaFile.WorkAsyncError(String)
+  fullName.vb: Reportman.Drawing.MetaFile.WorkAsyncError(String)
+  name.vb: WorkAsyncError(String)
+- uid: Reportman.Drawing.MetaFile.LoadFromStream(System.IO.Stream,System.Boolean)
+  commentId: M:Reportman.Drawing.MetaFile.LoadFromStream(System.IO.Stream,System.Boolean)
+  id: LoadFromStream(System.IO.Stream,System.Boolean)
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: LoadFromStream(Stream, bool)
+  nameWithType: MetaFile.LoadFromStream(Stream, bool)
+  fullName: Reportman.Drawing.MetaFile.LoadFromStream(System.IO.Stream, bool)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Load a MetaFile from a stream
+  example: []
+  syntax:
+    content: public void LoadFromStream(Stream astream, bool ClearFirst)
+    parameters:
+    - id: astream
+      type: System.IO.Stream
+      description: Source stream
+    - id: ClearFirst
+      type: System.Boolean
+      description: Set it to true to clear the MetaFile before reading
+    content.vb: Public Sub LoadFromStream(astream As Stream, ClearFirst As Boolean)
+  overload: Reportman.Drawing.MetaFile.LoadFromStream*
+  nameWithType.vb: MetaFile.LoadFromStream(Stream, Boolean)
+  fullName.vb: Reportman.Drawing.MetaFile.LoadFromStream(System.IO.Stream, Boolean)
+  name.vb: LoadFromStream(Stream, Boolean)
+- uid: Reportman.Drawing.MetaFile.SaveToFile(System.String,System.Boolean)
+  commentId: M:Reportman.Drawing.MetaFile.SaveToFile(System.String,System.Boolean)
+  id: SaveToFile(System.String,System.Boolean)
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: SaveToFile(string, bool)
+  nameWithType: MetaFile.SaveToFile(string, bool)
+  fullName: Reportman.Drawing.MetaFile.SaveToFile(string, bool)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Save the MetaFile to a file
+  example: []
+  syntax:
+    content: public void SaveToFile(string filename, bool compressed)
+    parameters:
+    - id: filename
+      type: System.String
+      description: File name
+    - id: compressed
+      type: System.Boolean
+      description: Set to true to compress the MetaFile
+    content.vb: Public Sub SaveToFile(filename As String, compressed As Boolean)
+  overload: Reportman.Drawing.MetaFile.SaveToFile*
+  nameWithType.vb: MetaFile.SaveToFile(String, Boolean)
+  fullName.vb: Reportman.Drawing.MetaFile.SaveToFile(String, Boolean)
+  name.vb: SaveToFile(String, Boolean)
+- uid: Reportman.Drawing.MetaFile.WriteStringToStream(System.String,System.IO.Stream)
+  commentId: M:Reportman.Drawing.MetaFile.WriteStringToStream(System.String,System.IO.Stream)
+  id: WriteStringToStream(System.String,System.IO.Stream)
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: WriteStringToStream(string, Stream)
+  nameWithType: MetaFile.WriteStringToStream(string, Stream)
+  fullName: Reportman.Drawing.MetaFile.WriteStringToStream(string, System.IO.Stream)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public void WriteStringToStream(string astring, Stream deststream)
+    parameters:
+    - id: astring
+      type: System.String
+    - id: deststream
+      type: System.IO.Stream
+    content.vb: Public Sub WriteStringToStream(astring As String, deststream As Stream)
+  overload: Reportman.Drawing.MetaFile.WriteStringToStream*
+  nameWithType.vb: MetaFile.WriteStringToStream(String, Stream)
+  fullName.vb: Reportman.Drawing.MetaFile.WriteStringToStream(String, System.IO.Stream)
+  name.vb: WriteStringToStream(String, Stream)
+- uid: Reportman.Drawing.MetaFile.ReadStringFromStream(System.IO.Stream)
+  commentId: M:Reportman.Drawing.MetaFile.ReadStringFromStream(System.IO.Stream)
+  id: ReadStringFromStream(System.IO.Stream)
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: ReadStringFromStream(Stream)
+  nameWithType: MetaFile.ReadStringFromStream(Stream)
+  fullName: Reportman.Drawing.MetaFile.ReadStringFromStream(System.IO.Stream)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string ReadStringFromStream(Stream stream)
+    parameters:
+    - id: stream
+      type: System.IO.Stream
+    return:
+      type: System.String
+    content.vb: Public Function ReadStringFromStream(stream As Stream) As String
+  overload: Reportman.Drawing.MetaFile.ReadStringFromStream*
+- uid: Reportman.Drawing.MetaFile.SaveToStream(System.IO.Stream,System.Boolean)
+  commentId: M:Reportman.Drawing.MetaFile.SaveToStream(System.IO.Stream,System.Boolean)
+  id: SaveToStream(System.IO.Stream,System.Boolean)
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: SaveToStream(Stream, bool)
+  nameWithType: MetaFile.SaveToStream(Stream, bool)
+  fullName: Reportman.Drawing.MetaFile.SaveToStream(System.IO.Stream, bool)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Save the MetaFile to a stream
+  example: []
+  syntax:
+    content: public void SaveToStream(Stream astream, bool compressed)
+    parameters:
+    - id: astream
+      type: System.IO.Stream
+      description: Destination stream
+    - id: compressed
+      type: System.Boolean
+      description: Set it to true to compress the stream
+    content.vb: Public Sub SaveToStream(astream As Stream, compressed As Boolean)
+  overload: Reportman.Drawing.MetaFile.SaveToStream*
+  nameWithType.vb: MetaFile.SaveToStream(Stream, Boolean)
+  fullName.vb: Reportman.Drawing.MetaFile.SaveToStream(System.IO.Stream, Boolean)
+  name.vb: SaveToStream(Stream, Boolean)
+- uid: Reportman.Drawing.MetaFile.LoadFromFile(System.String)
+  commentId: M:Reportman.Drawing.MetaFile.LoadFromFile(System.String)
+  id: LoadFromFile(System.String)
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: LoadFromFile(string)
+  nameWithType: MetaFile.LoadFromFile(string)
+  fullName: Reportman.Drawing.MetaFile.LoadFromFile(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Load the stream from a file
+  example: []
+  syntax:
+    content: public void LoadFromFile(string filename)
+    parameters:
+    - id: filename
+      type: System.String
+      description: File name to load
+    content.vb: Public Sub LoadFromFile(filename As String)
+  overload: Reportman.Drawing.MetaFile.LoadFromFile*
+  nameWithType.vb: MetaFile.LoadFromFile(String)
+  fullName.vb: Reportman.Drawing.MetaFile.LoadFromFile(String)
+  name.vb: LoadFromFile(String)
+- uid: Reportman.Drawing.MetaFile.UpdateTotalPages(Reportman.Drawing.TotalPages)
+  commentId: M:Reportman.Drawing.MetaFile.UpdateTotalPages(Reportman.Drawing.TotalPages)
+  id: UpdateTotalPages(Reportman.Drawing.TotalPages)
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: UpdateTotalPages(TotalPages)
+  nameWithType: MetaFile.UpdateTotalPages(TotalPages)
+  fullName: Reportman.Drawing.MetaFile.UpdateTotalPages(Reportman.Drawing.TotalPages)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    Updates all references to total pages to the total page count. This is useful to
+
+    update the page count when concatenating MetaFiles
+  example: []
+  syntax:
+    content: public void UpdateTotalPages(TotalPages alist)
+    parameters:
+    - id: alist
+      type: Reportman.Drawing.TotalPages
+      description: Total pages list
+    content.vb: Public Sub UpdateTotalPages(alist As TotalPages)
+  overload: Reportman.Drawing.MetaFile.UpdateTotalPages*
+- uid: Reportman.Drawing.MetaFile.UpdateTotalPagesPCount(Reportman.Drawing.TotalPages,System.Int32)
+  commentId: M:Reportman.Drawing.MetaFile.UpdateTotalPagesPCount(Reportman.Drawing.TotalPages,System.Int32)
+  id: UpdateTotalPagesPCount(Reportman.Drawing.TotalPages,System.Int32)
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: UpdateTotalPagesPCount(TotalPages, int)
+  nameWithType: MetaFile.UpdateTotalPagesPCount(TotalPages, int)
+  fullName: Reportman.Drawing.MetaFile.UpdateTotalPagesPCount(Reportman.Drawing.TotalPages, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    Updates all references to total pages to the total page count. This is useful to
+
+    update the page count when concatenating MetaFiles
+  example: []
+  syntax:
+    content: public void UpdateTotalPagesPCount(TotalPages alist, int pcount)
+    parameters:
+    - id: alist
+      type: Reportman.Drawing.TotalPages
+      description: Total pages list
+    - id: pcount
+      type: System.Int32
+      description: Page count
+    content.vb: Public Sub UpdateTotalPagesPCount(alist As TotalPages, pcount As Integer)
+  overload: Reportman.Drawing.MetaFile.UpdateTotalPagesPCount*
+  nameWithType.vb: MetaFile.UpdateTotalPagesPCount(TotalPages, Integer)
+  fullName.vb: Reportman.Drawing.MetaFile.UpdateTotalPagesPCount(Reportman.Drawing.TotalPages, Integer)
+  name.vb: UpdateTotalPagesPCount(TotalPages, Integer)
+- uid: Reportman.Drawing.MetaFile.CalcTextExtent(Reportman.Drawing.PrintOut,System.Drawing.Point,Reportman.Drawing.TextObjectStruct)
+  commentId: M:Reportman.Drawing.MetaFile.CalcTextExtent(Reportman.Drawing.PrintOut,System.Drawing.Point,Reportman.Drawing.TextObjectStruct)
+  id: CalcTextExtent(Reportman.Drawing.PrintOut,System.Drawing.Point,Reportman.Drawing.TextObjectStruct)
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: CalcTextExtent(PrintOut, Point, TextObjectStruct)
+  nameWithType: MetaFile.CalcTextExtent(PrintOut, Point, TextObjectStruct)
+  fullName: Reportman.Drawing.MetaFile.CalcTextExtent(Reportman.Drawing.PrintOut, System.Drawing.Point, Reportman.Drawing.TextObjectStruct)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Calculates the extent of a text, given a output driver
+  example: []
+  syntax:
+    content: public static int CalcTextExtent(PrintOut adriver, Point maxextent, TextObjectStruct objt)
+    parameters:
+    - id: adriver
+      type: Reportman.Drawing.PrintOut
+      description: Report processing driver
+    - id: maxextent
+      type: System.Drawing.Point
+      description: Maximum extent
+    - id: objt
+      type: Reportman.Drawing.TextObjectStruct
+      description: Text content and options like font, alignment
+    return:
+      type: System.Int32
+      description: Returns the current text position if the text does not fit in the bounding box
+    content.vb: Public Shared Function CalcTextExtent(adriver As PrintOut, maxextent As Point, objt As TextObjectStruct) As Integer
+  overload: Reportman.Drawing.MetaFile.CalcTextExtent*
+- uid: Reportman.Drawing.MetaFile.Finish
+  commentId: M:Reportman.Drawing.MetaFile.Finish
+  id: Finish
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: Finish()
+  nameWithType: MetaFile.Finish()
+  fullName: Reportman.Drawing.MetaFile.Finish()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Finish the report processing
+  example: []
+  syntax:
+    content: public void Finish()
+    content.vb: Public Sub Finish()
+  overload: Reportman.Drawing.MetaFile.Finish*
+- uid: Reportman.Drawing.MetaFile.UnFinish
+  commentId: M:Reportman.Drawing.MetaFile.UnFinish
+  id: UnFinish
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: UnFinish()
+  nameWithType: MetaFile.UnFinish()
+  fullName: Reportman.Drawing.MetaFile.UnFinish()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Finish the report processing
+  example: []
+  syntax:
+    content: public void UnFinish()
+    content.vb: Public Sub UnFinish()
+  overload: Reportman.Drawing.MetaFile.UnFinish*
+- uid: Reportman.Drawing.MetaFile.RequestPage(System.Int32)
+  commentId: M:Reportman.Drawing.MetaFile.RequestPage(System.Int32)
+  id: RequestPage(System.Int32)
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: RequestPage(int)
+  nameWithType: MetaFile.RequestPage(int)
+  fullName: Reportman.Drawing.MetaFile.RequestPage(int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Wait until the page requested is already calculated
+  example: []
+  syntax:
+    content: public bool RequestPage(int pageindex)
+    parameters:
+    - id: pageindex
+      type: System.Int32
+      description: Page index to wait for
+    return:
+      type: System.Boolean
+      description: Returns true if the page exists
+    content.vb: Public Function RequestPage(pageindex As Integer) As Boolean
+  overload: Reportman.Drawing.MetaFile.RequestPage*
+  nameWithType.vb: MetaFile.RequestPage(Integer)
+  fullName.vb: Reportman.Drawing.MetaFile.RequestPage(Integer)
+  name.vb: RequestPage(Integer)
+- uid: Reportman.Drawing.MetaFile.BeginPrint(Reportman.Drawing.PrintOut)
+  commentId: M:Reportman.Drawing.MetaFile.BeginPrint(Reportman.Drawing.PrintOut)
+  id: BeginPrint(Reportman.Drawing.PrintOut)
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: BeginPrint(PrintOut)
+  nameWithType: MetaFile.BeginPrint(PrintOut)
+  fullName: Reportman.Drawing.MetaFile.BeginPrint(Reportman.Drawing.PrintOut)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Starts printing
+  example: []
+  syntax:
+    content: public void BeginPrint(PrintOut driver)
+    parameters:
+    - id: driver
+      type: Reportman.Drawing.PrintOut
+      description: Report preocessing driver
+    content.vb: Public Sub BeginPrint(driver As PrintOut)
+  overload: Reportman.Drawing.MetaFile.BeginPrint*
+- uid: Reportman.Drawing.MetaFile.ObjectFound(Reportman.Drawing.MetaObject)
+  commentId: M:Reportman.Drawing.MetaFile.ObjectFound(Reportman.Drawing.MetaObject)
+  id: ObjectFound(Reportman.Drawing.MetaObject)
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: ObjectFound(MetaObject)
+  nameWithType: MetaFile.ObjectFound(MetaObject)
+  fullName: Reportman.Drawing.MetaFile.ObjectFound(Reportman.Drawing.MetaObject)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Returns true if the object was found in the previous search
+  example: []
+  syntax:
+    content: public bool ObjectFound(MetaObject aobject)
+    parameters:
+    - id: aobject
+      type: Reportman.Drawing.MetaObject
+      description: MetaObject to search
+    return:
+      type: System.Boolean
+    content.vb: Public Function ObjectFound(aobject As MetaObject) As Boolean
+  overload: Reportman.Drawing.MetaFile.ObjectFound*
+- uid: Reportman.Drawing.MetaFile.NextPageFound(System.Int32)
+  commentId: M:Reportman.Drawing.MetaFile.NextPageFound(System.Int32)
+  id: NextPageFound(System.Int32)
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: NextPageFound(int)
+  nameWithType: MetaFile.NextPageFound(int)
+  fullName: Reportman.Drawing.MetaFile.NextPageFound(int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Returns the next page index where the last search occur
+  example: []
+  syntax:
+    content: public int NextPageFound(int currpage)
+    parameters:
+    - id: currpage
+      type: System.Int32
+    return:
+      type: System.Int32
+    content.vb: Public Function NextPageFound(currpage As Integer) As Integer
+  overload: Reportman.Drawing.MetaFile.NextPageFound*
+  nameWithType.vb: MetaFile.NextPageFound(Integer)
+  fullName.vb: Reportman.Drawing.MetaFile.NextPageFound(Integer)
+  name.vb: NextPageFound(Integer)
+- uid: Reportman.Drawing.MetaFile.DoSearch(System.String)
+  commentId: M:Reportman.Drawing.MetaFile.DoSearch(System.String)
+  id: DoSearch(System.String)
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: DoSearch(string)
+  nameWithType: MetaFile.DoSearch(string)
+  fullName: Reportman.Drawing.MetaFile.DoSearch(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Executes a word search in the metafile, a list of coincidences will be updated
+  example: []
+  syntax:
+    content: public void DoSearch(string svalue)
+    parameters:
+    - id: svalue
+      type: System.String
+      description: String value to search in the entire MetaFile
+    content.vb: Public Sub DoSearch(svalue As String)
+  overload: Reportman.Drawing.MetaFile.DoSearch*
+  nameWithType.vb: MetaFile.DoSearch(String)
+  fullName.vb: Reportman.Drawing.MetaFile.DoSearch(String)
+  name.vb: DoSearch(String)
+- uid: Reportman.Drawing.MetaFile.AddMetaFiles(System.Collections.Generic.List{Reportman.Drawing.MetaFile})
+  commentId: M:Reportman.Drawing.MetaFile.AddMetaFiles(System.Collections.Generic.List{Reportman.Drawing.MetaFile})
+  id: AddMetaFiles(System.Collections.Generic.List{Reportman.Drawing.MetaFile})
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: AddMetaFiles(List<MetaFile>)
+  nameWithType: MetaFile.AddMetaFiles(List<MetaFile>)
+  fullName: Reportman.Drawing.MetaFile.AddMetaFiles(System.Collections.Generic.List<Reportman.Drawing.MetaFile>)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public void AddMetaFiles(List<MetaFile> nlist)
+    parameters:
+    - id: nlist
+      type: System.Collections.Generic.List{Reportman.Drawing.MetaFile}
+    content.vb: Public Sub AddMetaFiles(nlist As List(Of MetaFile))
+  overload: Reportman.Drawing.MetaFile.AddMetaFiles*
+  nameWithType.vb: MetaFile.AddMetaFiles(List(Of MetaFile))
+  fullName.vb: Reportman.Drawing.MetaFile.AddMetaFiles(System.Collections.Generic.List(Of Reportman.Drawing.MetaFile))
+  name.vb: AddMetaFiles(List(Of MetaFile))
+- uid: Reportman.Drawing.MetaFile.SharedStream
+  commentId: P:Reportman.Drawing.MetaFile.SharedStream
+  id: SharedStream
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: SharedStream
+  nameWithType: MetaFile.SharedStream
+  fullName: Reportman.Drawing.MetaFile.SharedStream
+  type: Property
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Stream used to save image streams shared between multiple pages
+  example: []
+  syntax:
+    content: public MemoryStream SharedStream { get; }
+    parameters: []
+    return:
+      type: System.IO.MemoryStream
+    content.vb: Public ReadOnly Property SharedStream As MemoryStream
+  overload: Reportman.Drawing.MetaFile.SharedStream*
+- uid: Reportman.Drawing.MetaFile.Version
+  commentId: P:Reportman.Drawing.MetaFile.Version
+  id: Version
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: Version
+  nameWithType: MetaFile.Version
+  fullName: Reportman.Drawing.MetaFile.Version
+  type: Property
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public MetaFile.MetaFileVersion Version { get; set; }
+    parameters: []
+    return:
+      type: Reportman.Drawing.MetaFile.MetaFileVersion
+    content.vb: Public Property Version As MetaFile.MetaFileVersion
+  overload: Reportman.Drawing.MetaFile.Version*
+- uid: Reportman.Drawing.MetaFile.Finished
+  commentId: P:Reportman.Drawing.MetaFile.Finished
+  id: Finished
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: Finished
+  nameWithType: MetaFile.Finished
+  fullName: Reportman.Drawing.MetaFile.Finished
+  type: Property
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    Indicates if the MetaFile processing have been finished, the report processing can
+                be done asynchronously
+  example: []
+  syntax:
+    content: public bool Finished { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property Finished As Boolean
+  overload: Reportman.Drawing.MetaFile.Finished*
+- uid: Reportman.Drawing.MetaFile.Reading
+  commentId: P:Reportman.Drawing.MetaFile.Reading
+  id: Reading
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: Reading
+  nameWithType: MetaFile.Reading
+  fullName: Reportman.Drawing.MetaFile.Reading
+  type: Property
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    Indicates if the MetaFile is still reading from original stream, the report reading can
+                be done asynchronously, so you can show the first page while receiving the other pages using a
+                low bandwidth connection
+  example: []
+  syntax:
+    content: public bool Reading { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property Reading As Boolean
+  overload: Reportman.Drawing.MetaFile.Reading*
+- uid: Reportman.Drawing.MetaFile.PDFConformance
+  commentId: P:Reportman.Drawing.MetaFile.PDFConformance
+  id: PDFConformance
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: PDFConformance
+  nameWithType: MetaFile.PDFConformance
+  fullName: Reportman.Drawing.MetaFile.PDFConformance
+  type: Property
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public PDFConformanceType PDFConformance { get; set; }
+    parameters: []
+    return:
+      type: Reportman.Drawing.PDFConformanceType
+    content.vb: Public Property PDFConformance As PDFConformanceType
+  overload: Reportman.Drawing.MetaFile.PDFConformance*
+- uid: Reportman.Drawing.MetaFile.OnLoadProgress
+  commentId: E:Reportman.Drawing.MetaFile.OnLoadProgress
+  id: OnLoadProgress
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: OnLoadProgress
+  nameWithType: MetaFile.OnLoadProgress
+  fullName: Reportman.Drawing.MetaFile.OnLoadProgress
+  type: Event
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Event to monitor loading of MetaFile
+  example: []
+  syntax:
+    content: public event MetaFileLoadProgress OnLoadProgress
+    return:
+      type: Reportman.Drawing.MetaFileLoadProgress
+    content.vb: Public Event OnLoadProgress As MetaFileLoadProgress
+- uid: Reportman.Drawing.MetaFile.OnWorkProgress
+  commentId: E:Reportman.Drawing.MetaFile.OnWorkProgress
+  id: OnWorkProgress
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: OnWorkProgress
+  nameWithType: MetaFile.OnWorkProgress
+  fullName: Reportman.Drawing.MetaFile.OnWorkProgress
+  type: Event
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Event to monitor report processing
+  example: []
+  syntax:
+    content: public event MetaFileWorkProgress OnWorkProgress
+    return:
+      type: Reportman.Drawing.MetaFileWorkProgress
+    content.vb: Public Event OnWorkProgress As MetaFileWorkProgress
+- uid: Reportman.Drawing.MetaFile.OnRelease
+  commentId: E:Reportman.Drawing.MetaFile.OnRelease
+  id: OnRelease
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: OnRelease
+  nameWithType: MetaFile.OnRelease
+  fullName: Reportman.Drawing.MetaFile.OnRelease
+  type: Event
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Release resources (database connections if Report Active
+  example: []
+  syntax:
+    content: public event MetaStopWork OnRelease
+    return:
+      type: Reportman.Drawing.MetaStopWork
+    content.vb: Public Event OnRelease As MetaStopWork
+- uid: Reportman.Drawing.MetaFile.OnSaveWorkProgress
+  commentId: E:Reportman.Drawing.MetaFile.OnSaveWorkProgress
+  id: OnSaveWorkProgress
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: OnSaveWorkProgress
+  nameWithType: MetaFile.OnSaveWorkProgress
+  fullName: Reportman.Drawing.MetaFile.OnSaveWorkProgress
+  type: Event
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Event to monitor saving of MetaFile
+  example: []
+  syntax:
+    content: public event MetaFileSaveWorkProgress OnSaveWorkProgress
+    return:
+      type: Reportman.Drawing.MetaFileSaveWorkProgress
+    content.vb: Public Event OnSaveWorkProgress As MetaFileSaveWorkProgress
+- uid: Reportman.Drawing.MetaFile.OnStopWork
+  commentId: E:Reportman.Drawing.MetaFile.OnStopWork
+  id: OnStopWork
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: OnStopWork
+  nameWithType: MetaFile.OnStopWork
+  fullName: Reportman.Drawing.MetaFile.OnStopWork
+  type: Event
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Event to monitor user cancels the work
+  example: []
+  syntax:
+    content: public event MetaStopWork OnStopWork
+    return:
+      type: Reportman.Drawing.MetaStopWork
+    content.vb: Public Event OnStopWork As MetaStopWork
+- uid: Reportman.Drawing.MetaFile.OnWorkAsyncError
+  commentId: E:Reportman.Drawing.MetaFile.OnWorkAsyncError
+  id: OnWorkAsyncError
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: OnWorkAsyncError
+  nameWithType: MetaFile.OnWorkAsyncError
+  fullName: Reportman.Drawing.MetaFile.OnWorkAsyncError
+  type: Event
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Event to monitor error while processing the report
+  example: []
+  syntax:
+    content: public event MetaFileWorkAsyncError OnWorkAsyncError
+    return:
+      type: Reportman.Drawing.MetaFileWorkAsyncError
+    content.vb: Public Event OnWorkAsyncError As MetaFileWorkAsyncError
+- uid: Reportman.Drawing.MetaFile.OnRequestPage
+  commentId: E:Reportman.Drawing.MetaFile.OnRequestPage
+  id: OnRequestPage
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: OnRequestPage
+  nameWithType: MetaFile.OnRequestPage
+  fullName: Reportman.Drawing.MetaFile.OnRequestPage
+  type: Event
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Event to monitor when a page have been requested
+  example: []
+  syntax:
+    content: public event RequestPageEvent OnRequestPage
+    return:
+      type: Reportman.Drawing.RequestPageEvent
+    content.vb: Public Event OnRequestPage As RequestPageEvent
+- uid: Reportman.Drawing.MetaFile.OnBeginPrint
+  commentId: E:Reportman.Drawing.MetaFile.OnBeginPrint
+  id: OnBeginPrint
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: OnBeginPrint
+  nameWithType: MetaFile.OnBeginPrint
+  fullName: Reportman.Drawing.MetaFile.OnBeginPrint
+  type: Event
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Event to monitor when the printing starts
+  example: []
+  syntax:
+    content: public event BeginPrintOut OnBeginPrint
+    return:
+      type: Reportman.Drawing.BeginPrintOut
+    content.vb: Public Event OnBeginPrint As BeginPrintOut
+- uid: Reportman.Drawing.MetaFile.OnLoadError
+  commentId: E:Reportman.Drawing.MetaFile.OnLoadError
+  id: OnLoadError
+  parent: Reportman.Drawing.MetaFile
+  langs:
+  - csharp
+  - vb
+  name: OnLoadError
+  nameWithType: MetaFile.OnLoadError
+  fullName: Reportman.Drawing.MetaFile.OnLoadError
+  type: Event
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Event to monitor error while loading a report
+  example: []
+  syntax:
+    content: public event MetaFileLoadError OnLoadError
+    return:
+      type: Reportman.Drawing.MetaFileLoadError
+    content.vb: Public Event OnLoadError As MetaFileLoadError
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System.ICloneable
+  commentId: T:System.ICloneable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.icloneable
+  name: ICloneable
+  nameWithType: ICloneable
+  fullName: System.ICloneable
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Int32[,]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int[,]
+  nameWithType: int[,]
+  fullName: int[,]
+  nameWithType.vb: Integer(,)
+  fullName.vb: Integer(,)
+  name.vb: Integer(,)
+  spec.csharp:
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '['
+  - name: ','
+  - name: ']'
+  spec.vb:
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: (
+  - name: ','
+  - name: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Reportman.Drawing.OrientationType
+  commentId: T:Reportman.Drawing.OrientationType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.OrientationType.html
+  name: OrientationType
+  nameWithType: OrientationType
+  fullName: Reportman.Drawing.OrientationType
+- uid: System.Int16
+  commentId: T:System.Int16
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int16
+  name: short
+  nameWithType: short
+  fullName: short
+  nameWithType.vb: Short
+  fullName.vb: Short
+  name.vb: Short
+- uid: System.Byte
+  commentId: T:System.Byte
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte
+  nameWithType: byte
+  fullName: byte
+  nameWithType.vb: Byte
+  fullName.vb: Byte
+  name.vb: Byte
+- uid: Reportman.Drawing.PrinterSelectType
+  commentId: T:Reportman.Drawing.PrinterSelectType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PrinterSelectType.html
+  name: PrinterSelectType
+  nameWithType: PrinterSelectType
+  fullName: Reportman.Drawing.PrinterSelectType
+- uid: Reportman.Drawing.AutoScaleType
+  commentId: T:Reportman.Drawing.AutoScaleType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.AutoScaleType.html
+  name: AutoScaleType
+  nameWithType: AutoScaleType
+  fullName: Reportman.Drawing.AutoScaleType
+- uid: Reportman.Drawing.PreviewWindowStyleType
+  commentId: T:Reportman.Drawing.PreviewWindowStyleType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PreviewWindowStyleType.html
+  name: PreviewWindowStyleType
+  nameWithType: PreviewWindowStyleType
+  fullName: Reportman.Drawing.PreviewWindowStyleType
+- uid: System.Collections.Generic.List{Reportman.Drawing.EmbeddedFile}
+  commentId: T:System.Collections.Generic.List{Reportman.Drawing.EmbeddedFile}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<EmbeddedFile>
+  nameWithType: List<EmbeddedFile>
+  fullName: System.Collections.Generic.List<Reportman.Drawing.EmbeddedFile>
+  nameWithType.vb: List(Of EmbeddedFile)
+  fullName.vb: System.Collections.Generic.List(Of Reportman.Drawing.EmbeddedFile)
+  name.vb: List(Of EmbeddedFile)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Reportman.Drawing.EmbeddedFile
+    name: EmbeddedFile
+    isExternal: true
+    href: Reportman.Drawing.EmbeddedFile.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Reportman.Drawing.EmbeddedFile
+    name: EmbeddedFile
+    isExternal: true
+    href: Reportman.Drawing.EmbeddedFile.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Reportman.Drawing.MetaPages
+  commentId: T:Reportman.Drawing.MetaPages
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.MetaPages.html
+  name: MetaPages
+  nameWithType: MetaPages
+  fullName: Reportman.Drawing.MetaPages
+- uid: Reportman.Drawing.PrinterFontsType
+  commentId: T:Reportman.Drawing.PrinterFontsType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PrinterFontsType.html
+  name: PrinterFontsType
+  nameWithType: PrinterFontsType
+  fullName: Reportman.Drawing.PrinterFontsType
+- uid: Reportman.Drawing.MetaFile.Clone*
+  commentId: Overload:Reportman.Drawing.MetaFile.Clone
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html#Reportman_Drawing_MetaFile_Clone
+  name: Clone
+  nameWithType: MetaFile.Clone
+  fullName: Reportman.Drawing.MetaFile.Clone
+- uid: System.ICloneable.Clone
+  commentId: M:System.ICloneable.Clone
+  parent: System.ICloneable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.icloneable.clone
+  name: Clone()
+  nameWithType: ICloneable.Clone()
+  fullName: System.ICloneable.Clone()
+  spec.csharp:
+  - uid: System.ICloneable.Clone
+    name: Clone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icloneable.clone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ICloneable.Clone
+    name: Clone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icloneable.clone
+  - name: (
+  - name: )
+- uid: Reportman.Drawing.MetaFile.Dispose*
+  commentId: Overload:Reportman.Drawing.MetaFile.Dispose
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html#Reportman_Drawing_MetaFile_Dispose
+  name: Dispose
+  nameWithType: MetaFile.Dispose
+  fullName: Reportman.Drawing.MetaFile.Dispose
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
+  spec.csharp:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )
+- uid: Reportman.Drawing.MetaFile.#ctor*
+  commentId: Overload:Reportman.Drawing.MetaFile.#ctor
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html#Reportman_Drawing_MetaFile__ctor
+  name: MetaFile
+  nameWithType: MetaFile.MetaFile
+  fullName: Reportman.Drawing.MetaFile.MetaFile
+  nameWithType.vb: MetaFile.New
+  fullName.vb: Reportman.Drawing.MetaFile.New
+  name.vb: New
+- uid: Reportman.Drawing.MetaFile.NewEmbeddedFile*
+  commentId: Overload:Reportman.Drawing.MetaFile.NewEmbeddedFile
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html#Reportman_Drawing_MetaFile_NewEmbeddedFile_System_String_System_String_Reportman_Drawing_PDFAFRelationShip_System_String_System_String_System_String_System_IO_MemoryStream_
+  name: NewEmbeddedFile
+  nameWithType: MetaFile.NewEmbeddedFile
+  fullName: Reportman.Drawing.MetaFile.NewEmbeddedFile
+- uid: Reportman.Drawing.PDFAFRelationShip
+  commentId: T:Reportman.Drawing.PDFAFRelationShip
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PDFAFRelationShip.html
+  name: PDFAFRelationShip
+  nameWithType: PDFAFRelationShip
+  fullName: Reportman.Drawing.PDFAFRelationShip
+- uid: System.IO.MemoryStream
+  commentId: T:System.IO.MemoryStream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.memorystream
+  name: MemoryStream
+  nameWithType: MemoryStream
+  fullName: System.IO.MemoryStream
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+- uid: Reportman.Drawing.MetaFile.Release*
+  commentId: Overload:Reportman.Drawing.MetaFile.Release
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html#Reportman_Drawing_MetaFile_Release
+  name: Release
+  nameWithType: MetaFile.Release
+  fullName: Reportman.Drawing.MetaFile.Release
+- uid: Reportman.Drawing.MetaFile.Clear*
+  commentId: Overload:Reportman.Drawing.MetaFile.Clear
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html#Reportman_Drawing_MetaFile_Clear
+  name: Clear
+  nameWithType: MetaFile.Clear
+  fullName: Reportman.Drawing.MetaFile.Clear
+- uid: Reportman.Drawing.MetaFile.StopWork*
+  commentId: Overload:Reportman.Drawing.MetaFile.StopWork
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html#Reportman_Drawing_MetaFile_StopWork
+  name: StopWork
+  nameWithType: MetaFile.StopWork
+  fullName: Reportman.Drawing.MetaFile.StopWork
+- uid: Reportman.Drawing.MetaFile.WorkProgress*
+  commentId: Overload:Reportman.Drawing.MetaFile.WorkProgress
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html#Reportman_Drawing_MetaFile_WorkProgress_System_Int32_System_Int32_System_Boolean__
+  name: WorkProgress
+  nameWithType: MetaFile.WorkProgress
+  fullName: Reportman.Drawing.MetaFile.WorkProgress
+- uid: Reportman.Drawing.MetaFile.WorkAsyncError*
+  commentId: Overload:Reportman.Drawing.MetaFile.WorkAsyncError
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html#Reportman_Drawing_MetaFile_WorkAsyncError_System_String_
+  name: WorkAsyncError
+  nameWithType: MetaFile.WorkAsyncError
+  fullName: Reportman.Drawing.MetaFile.WorkAsyncError
+- uid: Reportman.Drawing.MetaFile.LoadFromStream*
+  commentId: Overload:Reportman.Drawing.MetaFile.LoadFromStream
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html#Reportman_Drawing_MetaFile_LoadFromStream_System_IO_Stream_System_Boolean_
+  name: LoadFromStream
+  nameWithType: MetaFile.LoadFromStream
+  fullName: Reportman.Drawing.MetaFile.LoadFromStream
+- uid: System.IO.Stream
+  commentId: T:System.IO.Stream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  name: Stream
+  nameWithType: Stream
+  fullName: System.IO.Stream
+- uid: Reportman.Drawing.MetaFile.SaveToFile*
+  commentId: Overload:Reportman.Drawing.MetaFile.SaveToFile
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html#Reportman_Drawing_MetaFile_SaveToFile_System_String_System_Boolean_
+  name: SaveToFile
+  nameWithType: MetaFile.SaveToFile
+  fullName: Reportman.Drawing.MetaFile.SaveToFile
+- uid: Reportman.Drawing.MetaFile.WriteStringToStream*
+  commentId: Overload:Reportman.Drawing.MetaFile.WriteStringToStream
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html#Reportman_Drawing_MetaFile_WriteStringToStream_System_String_System_IO_Stream_
+  name: WriteStringToStream
+  nameWithType: MetaFile.WriteStringToStream
+  fullName: Reportman.Drawing.MetaFile.WriteStringToStream
+- uid: Reportman.Drawing.MetaFile.ReadStringFromStream*
+  commentId: Overload:Reportman.Drawing.MetaFile.ReadStringFromStream
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html#Reportman_Drawing_MetaFile_ReadStringFromStream_System_IO_Stream_
+  name: ReadStringFromStream
+  nameWithType: MetaFile.ReadStringFromStream
+  fullName: Reportman.Drawing.MetaFile.ReadStringFromStream
+- uid: Reportman.Drawing.MetaFile.SaveToStream*
+  commentId: Overload:Reportman.Drawing.MetaFile.SaveToStream
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html#Reportman_Drawing_MetaFile_SaveToStream_System_IO_Stream_System_Boolean_
+  name: SaveToStream
+  nameWithType: MetaFile.SaveToStream
+  fullName: Reportman.Drawing.MetaFile.SaveToStream
+- uid: Reportman.Drawing.MetaFile.LoadFromFile*
+  commentId: Overload:Reportman.Drawing.MetaFile.LoadFromFile
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html#Reportman_Drawing_MetaFile_LoadFromFile_System_String_
+  name: LoadFromFile
+  nameWithType: MetaFile.LoadFromFile
+  fullName: Reportman.Drawing.MetaFile.LoadFromFile
+- uid: Reportman.Drawing.MetaFile.UpdateTotalPages*
+  commentId: Overload:Reportman.Drawing.MetaFile.UpdateTotalPages
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html#Reportman_Drawing_MetaFile_UpdateTotalPages_Reportman_Drawing_TotalPages_
+  name: UpdateTotalPages
+  nameWithType: MetaFile.UpdateTotalPages
+  fullName: Reportman.Drawing.MetaFile.UpdateTotalPages
+- uid: Reportman.Drawing.TotalPages
+  commentId: T:Reportman.Drawing.TotalPages
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.TotalPages.html
+  name: TotalPages
+  nameWithType: TotalPages
+  fullName: Reportman.Drawing.TotalPages
+- uid: Reportman.Drawing.MetaFile.UpdateTotalPagesPCount*
+  commentId: Overload:Reportman.Drawing.MetaFile.UpdateTotalPagesPCount
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html#Reportman_Drawing_MetaFile_UpdateTotalPagesPCount_Reportman_Drawing_TotalPages_System_Int32_
+  name: UpdateTotalPagesPCount
+  nameWithType: MetaFile.UpdateTotalPagesPCount
+  fullName: Reportman.Drawing.MetaFile.UpdateTotalPagesPCount
+- uid: Reportman.Drawing.MetaFile.CalcTextExtent*
+  commentId: Overload:Reportman.Drawing.MetaFile.CalcTextExtent
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html#Reportman_Drawing_MetaFile_CalcTextExtent_Reportman_Drawing_PrintOut_System_Drawing_Point_Reportman_Drawing_TextObjectStruct_
+  name: CalcTextExtent
+  nameWithType: MetaFile.CalcTextExtent
+  fullName: Reportman.Drawing.MetaFile.CalcTextExtent
+- uid: Reportman.Drawing.PrintOut
+  commentId: T:Reportman.Drawing.PrintOut
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PrintOut.html
+  name: PrintOut
+  nameWithType: PrintOut
+  fullName: Reportman.Drawing.PrintOut
+- uid: System.Drawing.Point
+  commentId: T:System.Drawing.Point
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.point
+  name: Point
+  nameWithType: Point
+  fullName: System.Drawing.Point
+- uid: Reportman.Drawing.TextObjectStruct
+  commentId: T:Reportman.Drawing.TextObjectStruct
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.TextObjectStruct.html
+  name: TextObjectStruct
+  nameWithType: TextObjectStruct
+  fullName: Reportman.Drawing.TextObjectStruct
+- uid: System.Drawing
+  commentId: N:System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Drawing
+  nameWithType: System.Drawing
+  fullName: System.Drawing
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+- uid: Reportman.Drawing.MetaFile.Finish*
+  commentId: Overload:Reportman.Drawing.MetaFile.Finish
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html#Reportman_Drawing_MetaFile_Finish
+  name: Finish
+  nameWithType: MetaFile.Finish
+  fullName: Reportman.Drawing.MetaFile.Finish
+- uid: Reportman.Drawing.MetaFile.UnFinish*
+  commentId: Overload:Reportman.Drawing.MetaFile.UnFinish
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html#Reportman_Drawing_MetaFile_UnFinish
+  name: UnFinish
+  nameWithType: MetaFile.UnFinish
+  fullName: Reportman.Drawing.MetaFile.UnFinish
+- uid: Reportman.Drawing.MetaFile.RequestPage*
+  commentId: Overload:Reportman.Drawing.MetaFile.RequestPage
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html#Reportman_Drawing_MetaFile_RequestPage_System_Int32_
+  name: RequestPage
+  nameWithType: MetaFile.RequestPage
+  fullName: Reportman.Drawing.MetaFile.RequestPage
+- uid: Reportman.Drawing.MetaFile.BeginPrint*
+  commentId: Overload:Reportman.Drawing.MetaFile.BeginPrint
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html#Reportman_Drawing_MetaFile_BeginPrint_Reportman_Drawing_PrintOut_
+  name: BeginPrint
+  nameWithType: MetaFile.BeginPrint
+  fullName: Reportman.Drawing.MetaFile.BeginPrint
+- uid: Reportman.Drawing.MetaFile.ObjectFound*
+  commentId: Overload:Reportman.Drawing.MetaFile.ObjectFound
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html#Reportman_Drawing_MetaFile_ObjectFound_Reportman_Drawing_MetaObject_
+  name: ObjectFound
+  nameWithType: MetaFile.ObjectFound
+  fullName: Reportman.Drawing.MetaFile.ObjectFound
+- uid: Reportman.Drawing.MetaObject
+  commentId: T:Reportman.Drawing.MetaObject
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.MetaObject.html
+  name: MetaObject
+  nameWithType: MetaObject
+  fullName: Reportman.Drawing.MetaObject
+- uid: Reportman.Drawing.MetaFile.NextPageFound*
+  commentId: Overload:Reportman.Drawing.MetaFile.NextPageFound
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html#Reportman_Drawing_MetaFile_NextPageFound_System_Int32_
+  name: NextPageFound
+  nameWithType: MetaFile.NextPageFound
+  fullName: Reportman.Drawing.MetaFile.NextPageFound
+- uid: Reportman.Drawing.MetaFile.DoSearch*
+  commentId: Overload:Reportman.Drawing.MetaFile.DoSearch
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html#Reportman_Drawing_MetaFile_DoSearch_System_String_
+  name: DoSearch
+  nameWithType: MetaFile.DoSearch
+  fullName: Reportman.Drawing.MetaFile.DoSearch
+- uid: Reportman.Drawing.MetaFile.AddMetaFiles*
+  commentId: Overload:Reportman.Drawing.MetaFile.AddMetaFiles
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html#Reportman_Drawing_MetaFile_AddMetaFiles_System_Collections_Generic_List_Reportman_Drawing_MetaFile__
+  name: AddMetaFiles
+  nameWithType: MetaFile.AddMetaFiles
+  fullName: Reportman.Drawing.MetaFile.AddMetaFiles
+- uid: System.Collections.Generic.List{Reportman.Drawing.MetaFile}
+  commentId: T:System.Collections.Generic.List{Reportman.Drawing.MetaFile}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<MetaFile>
+  nameWithType: List<MetaFile>
+  fullName: System.Collections.Generic.List<Reportman.Drawing.MetaFile>
+  nameWithType.vb: List(Of MetaFile)
+  fullName.vb: System.Collections.Generic.List(Of Reportman.Drawing.MetaFile)
+  name.vb: List(Of MetaFile)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Reportman.Drawing.MetaFile
+    name: MetaFile
+    isExternal: true
+    href: Reportman.Drawing.MetaFile.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Reportman.Drawing.MetaFile
+    name: MetaFile
+    isExternal: true
+    href: Reportman.Drawing.MetaFile.html
+  - name: )
+- uid: Reportman.Drawing.MetaFile.SharedStream*
+  commentId: Overload:Reportman.Drawing.MetaFile.SharedStream
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html#Reportman_Drawing_MetaFile_SharedStream
+  name: SharedStream
+  nameWithType: MetaFile.SharedStream
+  fullName: Reportman.Drawing.MetaFile.SharedStream
+- uid: Reportman.Drawing.MetaFile.Version*
+  commentId: Overload:Reportman.Drawing.MetaFile.Version
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html#Reportman_Drawing_MetaFile_Version
+  name: Version
+  nameWithType: MetaFile.Version
+  fullName: Reportman.Drawing.MetaFile.Version
+- uid: Reportman.Drawing.MetaFile.MetaFileVersion
+  commentId: T:Reportman.Drawing.MetaFile.MetaFileVersion
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html
+  name: MetaFile.MetaFileVersion
+  nameWithType: MetaFile.MetaFileVersion
+  fullName: Reportman.Drawing.MetaFile.MetaFileVersion
+  spec.csharp:
+  - uid: Reportman.Drawing.MetaFile
+    name: MetaFile
+    isExternal: true
+    href: Reportman.Drawing.MetaFile.html
+  - name: .
+  - uid: Reportman.Drawing.MetaFile.MetaFileVersion
+    name: MetaFileVersion
+    isExternal: true
+    href: Reportman.Drawing.MetaFile.MetaFileVersion.html
+  spec.vb:
+  - uid: Reportman.Drawing.MetaFile
+    name: MetaFile
+    isExternal: true
+    href: Reportman.Drawing.MetaFile.html
+  - name: .
+  - uid: Reportman.Drawing.MetaFile.MetaFileVersion
+    name: MetaFileVersion
+    isExternal: true
+    href: Reportman.Drawing.MetaFile.MetaFileVersion.html
+- uid: Reportman.Drawing.MetaFile.Finished*
+  commentId: Overload:Reportman.Drawing.MetaFile.Finished
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html#Reportman_Drawing_MetaFile_Finished
+  name: Finished
+  nameWithType: MetaFile.Finished
+  fullName: Reportman.Drawing.MetaFile.Finished
+- uid: Reportman.Drawing.MetaFile.Reading*
+  commentId: Overload:Reportman.Drawing.MetaFile.Reading
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html#Reportman_Drawing_MetaFile_Reading
+  name: Reading
+  nameWithType: MetaFile.Reading
+  fullName: Reportman.Drawing.MetaFile.Reading
+- uid: Reportman.Drawing.MetaFile.PDFConformance*
+  commentId: Overload:Reportman.Drawing.MetaFile.PDFConformance
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html#Reportman_Drawing_MetaFile_PDFConformance
+  name: PDFConformance
+  nameWithType: MetaFile.PDFConformance
+  fullName: Reportman.Drawing.MetaFile.PDFConformance
+- uid: Reportman.Drawing.PDFConformanceType
+  commentId: T:Reportman.Drawing.PDFConformanceType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PDFConformanceType.html
+  name: PDFConformanceType
+  nameWithType: PDFConformanceType
+  fullName: Reportman.Drawing.PDFConformanceType
+- uid: Reportman.Drawing.MetaFileLoadProgress
+  commentId: T:Reportman.Drawing.MetaFileLoadProgress
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.MetaFileLoadProgress.html
+  name: MetaFileLoadProgress
+  nameWithType: MetaFileLoadProgress
+  fullName: Reportman.Drawing.MetaFileLoadProgress
+- uid: Reportman.Drawing.MetaFileWorkProgress
+  commentId: T:Reportman.Drawing.MetaFileWorkProgress
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.MetaFileWorkProgress.html
+  name: MetaFileWorkProgress
+  nameWithType: MetaFileWorkProgress
+  fullName: Reportman.Drawing.MetaFileWorkProgress
+- uid: Reportman.Drawing.MetaStopWork
+  commentId: T:Reportman.Drawing.MetaStopWork
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.MetaStopWork.html
+  name: MetaStopWork
+  nameWithType: MetaStopWork
+  fullName: Reportman.Drawing.MetaStopWork
+- uid: Reportman.Drawing.MetaFileSaveWorkProgress
+  commentId: T:Reportman.Drawing.MetaFileSaveWorkProgress
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.MetaFileSaveWorkProgress.html
+  name: MetaFileSaveWorkProgress
+  nameWithType: MetaFileSaveWorkProgress
+  fullName: Reportman.Drawing.MetaFileSaveWorkProgress
+- uid: Reportman.Drawing.MetaFileWorkAsyncError
+  commentId: T:Reportman.Drawing.MetaFileWorkAsyncError
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.MetaFileWorkAsyncError.html
+  name: MetaFileWorkAsyncError
+  nameWithType: MetaFileWorkAsyncError
+  fullName: Reportman.Drawing.MetaFileWorkAsyncError
+- uid: Reportman.Drawing.RequestPageEvent
+  commentId: T:Reportman.Drawing.RequestPageEvent
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.RequestPageEvent.html
+  name: RequestPageEvent
+  nameWithType: RequestPageEvent
+  fullName: Reportman.Drawing.RequestPageEvent
+- uid: Reportman.Drawing.BeginPrintOut
+  commentId: T:Reportman.Drawing.BeginPrintOut
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.BeginPrintOut.html
+  name: BeginPrintOut
+  nameWithType: BeginPrintOut
+  fullName: Reportman.Drawing.BeginPrintOut
+- uid: Reportman.Drawing.MetaFileLoadError
+  commentId: T:Reportman.Drawing.MetaFileLoadError
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.MetaFileLoadError.html
+  name: MetaFileLoadError
+  nameWithType: MetaFileLoadError
+  fullName: Reportman.Drawing.MetaFileLoadError

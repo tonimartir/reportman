@@ -1,0 +1,607 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.PrinterRawOperation
+  commentId: T:Reportman.Drawing.PrinterRawOperation
+  id: PrinterRawOperation
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.PrinterRawOperation.BlackFont
+  - Reportman.Drawing.PrinterRawOperation.Bold
+  - Reportman.Drawing.PrinterRawOperation.CR
+  - Reportman.Drawing.PrinterRawOperation.CutPaper
+  - Reportman.Drawing.PrinterRawOperation.EndPrint
+  - Reportman.Drawing.PrinterRawOperation.FF
+  - Reportman.Drawing.PrinterRawOperation.InitPrinter
+  - Reportman.Drawing.PrinterRawOperation.Italic
+  - Reportman.Drawing.PrinterRawOperation.LineFeed
+  - Reportman.Drawing.PrinterRawOperation.LineSpace6
+  - Reportman.Drawing.PrinterRawOperation.LineSpace7_72
+  - Reportman.Drawing.PrinterRawOperation.LineSpace8
+  - Reportman.Drawing.PrinterRawOperation.LineSpacen_180
+  - Reportman.Drawing.PrinterRawOperation.LineSpacen_216
+  - Reportman.Drawing.PrinterRawOperation.Linespacen_60
+  - Reportman.Drawing.PrinterRawOperation.Normal
+  - Reportman.Drawing.PrinterRawOperation.OpenDrawer
+  - Reportman.Drawing.PrinterRawOperation.Pulse
+  - Reportman.Drawing.PrinterRawOperation.RedFont
+  - Reportman.Drawing.PrinterRawOperation.StrikeOut
+  - Reportman.Drawing.PrinterRawOperation.TearOff
+  - Reportman.Drawing.PrinterRawOperation.Underline
+  - Reportman.Drawing.PrinterRawOperation.cpi10
+  - Reportman.Drawing.PrinterRawOperation.cpi12
+  - Reportman.Drawing.PrinterRawOperation.cpi15
+  - Reportman.Drawing.PrinterRawOperation.cpi17
+  - Reportman.Drawing.PrinterRawOperation.cpi20
+  - Reportman.Drawing.PrinterRawOperation.cpi5
+  - Reportman.Drawing.PrinterRawOperation.cpi6
+  langs:
+  - csharp
+  - vb
+  name: PrinterRawOperation
+  nameWithType: PrinterRawOperation
+  fullName: Reportman.Drawing.PrinterRawOperation
+  type: Enum
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public enum PrinterRawOperation
+    content.vb: Public Enum PrinterRawOperation
+- uid: Reportman.Drawing.PrinterRawOperation.CutPaper
+  commentId: F:Reportman.Drawing.PrinterRawOperation.CutPaper
+  id: CutPaper
+  parent: Reportman.Drawing.PrinterRawOperation
+  langs:
+  - csharp
+  - vb
+  name: CutPaper
+  nameWithType: PrinterRawOperation.CutPaper
+  fullName: Reportman.Drawing.PrinterRawOperation.CutPaper
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: CutPaper = 0
+    return:
+      type: Reportman.Drawing.PrinterRawOperation
+- uid: Reportman.Drawing.PrinterRawOperation.OpenDrawer
+  commentId: F:Reportman.Drawing.PrinterRawOperation.OpenDrawer
+  id: OpenDrawer
+  parent: Reportman.Drawing.PrinterRawOperation
+  langs:
+  - csharp
+  - vb
+  name: OpenDrawer
+  nameWithType: PrinterRawOperation.OpenDrawer
+  fullName: Reportman.Drawing.PrinterRawOperation.OpenDrawer
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: OpenDrawer = 1
+    return:
+      type: Reportman.Drawing.PrinterRawOperation
+- uid: Reportman.Drawing.PrinterRawOperation.LineFeed
+  commentId: F:Reportman.Drawing.PrinterRawOperation.LineFeed
+  id: LineFeed
+  parent: Reportman.Drawing.PrinterRawOperation
+  langs:
+  - csharp
+  - vb
+  name: LineFeed
+  nameWithType: PrinterRawOperation.LineFeed
+  fullName: Reportman.Drawing.PrinterRawOperation.LineFeed
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: LineFeed = 2
+    return:
+      type: Reportman.Drawing.PrinterRawOperation
+- uid: Reportman.Drawing.PrinterRawOperation.CR
+  commentId: F:Reportman.Drawing.PrinterRawOperation.CR
+  id: CR
+  parent: Reportman.Drawing.PrinterRawOperation
+  langs:
+  - csharp
+  - vb
+  name: CR
+  nameWithType: PrinterRawOperation.CR
+  fullName: Reportman.Drawing.PrinterRawOperation.CR
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: CR = 3
+    return:
+      type: Reportman.Drawing.PrinterRawOperation
+- uid: Reportman.Drawing.PrinterRawOperation.FF
+  commentId: F:Reportman.Drawing.PrinterRawOperation.FF
+  id: FF
+  parent: Reportman.Drawing.PrinterRawOperation
+  langs:
+  - csharp
+  - vb
+  name: FF
+  nameWithType: PrinterRawOperation.FF
+  fullName: Reportman.Drawing.PrinterRawOperation.FF
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: FF = 4
+    return:
+      type: Reportman.Drawing.PrinterRawOperation
+- uid: Reportman.Drawing.PrinterRawOperation.TearOff
+  commentId: F:Reportman.Drawing.PrinterRawOperation.TearOff
+  id: TearOff
+  parent: Reportman.Drawing.PrinterRawOperation
+  langs:
+  - csharp
+  - vb
+  name: TearOff
+  nameWithType: PrinterRawOperation.TearOff
+  fullName: Reportman.Drawing.PrinterRawOperation.TearOff
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: TearOff = 5
+    return:
+      type: Reportman.Drawing.PrinterRawOperation
+- uid: Reportman.Drawing.PrinterRawOperation.InitPrinter
+  commentId: F:Reportman.Drawing.PrinterRawOperation.InitPrinter
+  id: InitPrinter
+  parent: Reportman.Drawing.PrinterRawOperation
+  langs:
+  - csharp
+  - vb
+  name: InitPrinter
+  nameWithType: PrinterRawOperation.InitPrinter
+  fullName: Reportman.Drawing.PrinterRawOperation.InitPrinter
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: InitPrinter = 6
+    return:
+      type: Reportman.Drawing.PrinterRawOperation
+- uid: Reportman.Drawing.PrinterRawOperation.Pulse
+  commentId: F:Reportman.Drawing.PrinterRawOperation.Pulse
+  id: Pulse
+  parent: Reportman.Drawing.PrinterRawOperation
+  langs:
+  - csharp
+  - vb
+  name: Pulse
+  nameWithType: PrinterRawOperation.Pulse
+  fullName: Reportman.Drawing.PrinterRawOperation.Pulse
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Pulse = 7
+    return:
+      type: Reportman.Drawing.PrinterRawOperation
+- uid: Reportman.Drawing.PrinterRawOperation.EndPrint
+  commentId: F:Reportman.Drawing.PrinterRawOperation.EndPrint
+  id: EndPrint
+  parent: Reportman.Drawing.PrinterRawOperation
+  langs:
+  - csharp
+  - vb
+  name: EndPrint
+  nameWithType: PrinterRawOperation.EndPrint
+  fullName: Reportman.Drawing.PrinterRawOperation.EndPrint
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: EndPrint = 8
+    return:
+      type: Reportman.Drawing.PrinterRawOperation
+- uid: Reportman.Drawing.PrinterRawOperation.RedFont
+  commentId: F:Reportman.Drawing.PrinterRawOperation.RedFont
+  id: RedFont
+  parent: Reportman.Drawing.PrinterRawOperation
+  langs:
+  - csharp
+  - vb
+  name: RedFont
+  nameWithType: PrinterRawOperation.RedFont
+  fullName: Reportman.Drawing.PrinterRawOperation.RedFont
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: RedFont = 9
+    return:
+      type: Reportman.Drawing.PrinterRawOperation
+- uid: Reportman.Drawing.PrinterRawOperation.BlackFont
+  commentId: F:Reportman.Drawing.PrinterRawOperation.BlackFont
+  id: BlackFont
+  parent: Reportman.Drawing.PrinterRawOperation
+  langs:
+  - csharp
+  - vb
+  name: BlackFont
+  nameWithType: PrinterRawOperation.BlackFont
+  fullName: Reportman.Drawing.PrinterRawOperation.BlackFont
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: BlackFont = 10
+    return:
+      type: Reportman.Drawing.PrinterRawOperation
+- uid: Reportman.Drawing.PrinterRawOperation.Normal
+  commentId: F:Reportman.Drawing.PrinterRawOperation.Normal
+  id: Normal
+  parent: Reportman.Drawing.PrinterRawOperation
+  langs:
+  - csharp
+  - vb
+  name: Normal
+  nameWithType: PrinterRawOperation.Normal
+  fullName: Reportman.Drawing.PrinterRawOperation.Normal
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Normal = 11
+    return:
+      type: Reportman.Drawing.PrinterRawOperation
+- uid: Reportman.Drawing.PrinterRawOperation.Bold
+  commentId: F:Reportman.Drawing.PrinterRawOperation.Bold
+  id: Bold
+  parent: Reportman.Drawing.PrinterRawOperation
+  langs:
+  - csharp
+  - vb
+  name: Bold
+  nameWithType: PrinterRawOperation.Bold
+  fullName: Reportman.Drawing.PrinterRawOperation.Bold
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Bold = 12
+    return:
+      type: Reportman.Drawing.PrinterRawOperation
+- uid: Reportman.Drawing.PrinterRawOperation.Underline
+  commentId: F:Reportman.Drawing.PrinterRawOperation.Underline
+  id: Underline
+  parent: Reportman.Drawing.PrinterRawOperation
+  langs:
+  - csharp
+  - vb
+  name: Underline
+  nameWithType: PrinterRawOperation.Underline
+  fullName: Reportman.Drawing.PrinterRawOperation.Underline
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Underline = 13
+    return:
+      type: Reportman.Drawing.PrinterRawOperation
+- uid: Reportman.Drawing.PrinterRawOperation.Italic
+  commentId: F:Reportman.Drawing.PrinterRawOperation.Italic
+  id: Italic
+  parent: Reportman.Drawing.PrinterRawOperation
+  langs:
+  - csharp
+  - vb
+  name: Italic
+  nameWithType: PrinterRawOperation.Italic
+  fullName: Reportman.Drawing.PrinterRawOperation.Italic
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Italic = 14
+    return:
+      type: Reportman.Drawing.PrinterRawOperation
+- uid: Reportman.Drawing.PrinterRawOperation.StrikeOut
+  commentId: F:Reportman.Drawing.PrinterRawOperation.StrikeOut
+  id: StrikeOut
+  parent: Reportman.Drawing.PrinterRawOperation
+  langs:
+  - csharp
+  - vb
+  name: StrikeOut
+  nameWithType: PrinterRawOperation.StrikeOut
+  fullName: Reportman.Drawing.PrinterRawOperation.StrikeOut
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: StrikeOut = 15
+    return:
+      type: Reportman.Drawing.PrinterRawOperation
+- uid: Reportman.Drawing.PrinterRawOperation.LineSpace6
+  commentId: F:Reportman.Drawing.PrinterRawOperation.LineSpace6
+  id: LineSpace6
+  parent: Reportman.Drawing.PrinterRawOperation
+  langs:
+  - csharp
+  - vb
+  name: LineSpace6
+  nameWithType: PrinterRawOperation.LineSpace6
+  fullName: Reportman.Drawing.PrinterRawOperation.LineSpace6
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: LineSpace6 = 16
+    return:
+      type: Reportman.Drawing.PrinterRawOperation
+- uid: Reportman.Drawing.PrinterRawOperation.LineSpace8
+  commentId: F:Reportman.Drawing.PrinterRawOperation.LineSpace8
+  id: LineSpace8
+  parent: Reportman.Drawing.PrinterRawOperation
+  langs:
+  - csharp
+  - vb
+  name: LineSpace8
+  nameWithType: PrinterRawOperation.LineSpace8
+  fullName: Reportman.Drawing.PrinterRawOperation.LineSpace8
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: LineSpace8 = 17
+    return:
+      type: Reportman.Drawing.PrinterRawOperation
+- uid: Reportman.Drawing.PrinterRawOperation.LineSpace7_72
+  commentId: F:Reportman.Drawing.PrinterRawOperation.LineSpace7_72
+  id: LineSpace7_72
+  parent: Reportman.Drawing.PrinterRawOperation
+  langs:
+  - csharp
+  - vb
+  name: LineSpace7_72
+  nameWithType: PrinterRawOperation.LineSpace7_72
+  fullName: Reportman.Drawing.PrinterRawOperation.LineSpace7_72
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: LineSpace7_72 = 18
+    return:
+      type: Reportman.Drawing.PrinterRawOperation
+- uid: Reportman.Drawing.PrinterRawOperation.LineSpacen_216
+  commentId: F:Reportman.Drawing.PrinterRawOperation.LineSpacen_216
+  id: LineSpacen_216
+  parent: Reportman.Drawing.PrinterRawOperation
+  langs:
+  - csharp
+  - vb
+  name: LineSpacen_216
+  nameWithType: PrinterRawOperation.LineSpacen_216
+  fullName: Reportman.Drawing.PrinterRawOperation.LineSpacen_216
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: LineSpacen_216 = 19
+    return:
+      type: Reportman.Drawing.PrinterRawOperation
+- uid: Reportman.Drawing.PrinterRawOperation.LineSpacen_180
+  commentId: F:Reportman.Drawing.PrinterRawOperation.LineSpacen_180
+  id: LineSpacen_180
+  parent: Reportman.Drawing.PrinterRawOperation
+  langs:
+  - csharp
+  - vb
+  name: LineSpacen_180
+  nameWithType: PrinterRawOperation.LineSpacen_180
+  fullName: Reportman.Drawing.PrinterRawOperation.LineSpacen_180
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: LineSpacen_180 = 20
+    return:
+      type: Reportman.Drawing.PrinterRawOperation
+- uid: Reportman.Drawing.PrinterRawOperation.Linespacen_60
+  commentId: F:Reportman.Drawing.PrinterRawOperation.Linespacen_60
+  id: Linespacen_60
+  parent: Reportman.Drawing.PrinterRawOperation
+  langs:
+  - csharp
+  - vb
+  name: Linespacen_60
+  nameWithType: PrinterRawOperation.Linespacen_60
+  fullName: Reportman.Drawing.PrinterRawOperation.Linespacen_60
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: Linespacen_60 = 21
+    return:
+      type: Reportman.Drawing.PrinterRawOperation
+- uid: Reportman.Drawing.PrinterRawOperation.cpi20
+  commentId: F:Reportman.Drawing.PrinterRawOperation.cpi20
+  id: cpi20
+  parent: Reportman.Drawing.PrinterRawOperation
+  langs:
+  - csharp
+  - vb
+  name: cpi20
+  nameWithType: PrinterRawOperation.cpi20
+  fullName: Reportman.Drawing.PrinterRawOperation.cpi20
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: cpi20 = 22
+    return:
+      type: Reportman.Drawing.PrinterRawOperation
+- uid: Reportman.Drawing.PrinterRawOperation.cpi17
+  commentId: F:Reportman.Drawing.PrinterRawOperation.cpi17
+  id: cpi17
+  parent: Reportman.Drawing.PrinterRawOperation
+  langs:
+  - csharp
+  - vb
+  name: cpi17
+  nameWithType: PrinterRawOperation.cpi17
+  fullName: Reportman.Drawing.PrinterRawOperation.cpi17
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: cpi17 = 23
+    return:
+      type: Reportman.Drawing.PrinterRawOperation
+- uid: Reportman.Drawing.PrinterRawOperation.cpi15
+  commentId: F:Reportman.Drawing.PrinterRawOperation.cpi15
+  id: cpi15
+  parent: Reportman.Drawing.PrinterRawOperation
+  langs:
+  - csharp
+  - vb
+  name: cpi15
+  nameWithType: PrinterRawOperation.cpi15
+  fullName: Reportman.Drawing.PrinterRawOperation.cpi15
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: cpi15 = 24
+    return:
+      type: Reportman.Drawing.PrinterRawOperation
+- uid: Reportman.Drawing.PrinterRawOperation.cpi12
+  commentId: F:Reportman.Drawing.PrinterRawOperation.cpi12
+  id: cpi12
+  parent: Reportman.Drawing.PrinterRawOperation
+  langs:
+  - csharp
+  - vb
+  name: cpi12
+  nameWithType: PrinterRawOperation.cpi12
+  fullName: Reportman.Drawing.PrinterRawOperation.cpi12
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: cpi12 = 25
+    return:
+      type: Reportman.Drawing.PrinterRawOperation
+- uid: Reportman.Drawing.PrinterRawOperation.cpi10
+  commentId: F:Reportman.Drawing.PrinterRawOperation.cpi10
+  id: cpi10
+  parent: Reportman.Drawing.PrinterRawOperation
+  langs:
+  - csharp
+  - vb
+  name: cpi10
+  nameWithType: PrinterRawOperation.cpi10
+  fullName: Reportman.Drawing.PrinterRawOperation.cpi10
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: cpi10 = 26
+    return:
+      type: Reportman.Drawing.PrinterRawOperation
+- uid: Reportman.Drawing.PrinterRawOperation.cpi6
+  commentId: F:Reportman.Drawing.PrinterRawOperation.cpi6
+  id: cpi6
+  parent: Reportman.Drawing.PrinterRawOperation
+  langs:
+  - csharp
+  - vb
+  name: cpi6
+  nameWithType: PrinterRawOperation.cpi6
+  fullName: Reportman.Drawing.PrinterRawOperation.cpi6
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: cpi6 = 27
+    return:
+      type: Reportman.Drawing.PrinterRawOperation
+- uid: Reportman.Drawing.PrinterRawOperation.cpi5
+  commentId: F:Reportman.Drawing.PrinterRawOperation.cpi5
+  id: cpi5
+  parent: Reportman.Drawing.PrinterRawOperation
+  langs:
+  - csharp
+  - vb
+  name: cpi5
+  nameWithType: PrinterRawOperation.cpi5
+  fullName: Reportman.Drawing.PrinterRawOperation.cpi5
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: cpi5 = 28
+    return:
+      type: Reportman.Drawing.PrinterRawOperation
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.PrinterRawOperation
+  commentId: T:Reportman.Drawing.PrinterRawOperation
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PrinterRawOperation.html
+  name: PrinterRawOperation
+  nameWithType: PrinterRawOperation
+  fullName: Reportman.Drawing.PrinterRawOperation

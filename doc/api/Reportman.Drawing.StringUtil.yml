@@ -1,0 +1,1985 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.StringUtil
+  commentId: T:Reportman.Drawing.StringUtil
+  id: StringUtil
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.StringUtil.ByteToHex(System.Byte)
+  - Reportman.Drawing.StringUtil.CheckBankAccount20(System.String)
+  - Reportman.Drawing.StringUtil.ComprobarMail(System.String)
+  - Reportman.Drawing.StringUtil.ComprovarNif(System.String)
+  - Reportman.Drawing.StringUtil.ComputeHash(System.String,System.String,System.Byte[])
+  - Reportman.Drawing.StringUtil.ContainsAllWords(System.String,System.Collections.Generic.IEnumerable{System.String})
+  - Reportman.Drawing.StringUtil.ConvertLineBreaks(System.String)
+  - Reportman.Drawing.StringUtil.ConvertToHtml(System.String)
+  - Reportman.Drawing.StringUtil.CountOfChar(System.Char,System.String)
+  - Reportman.Drawing.StringUtil.CustomQuoteStr(System.String,System.Char)
+  - Reportman.Drawing.StringUtil.Decode(System.String,System.Int32)
+  - Reportman.Drawing.StringUtil.DoubleQuoteStr(System.String)
+  - Reportman.Drawing.StringUtil.DoubleQuoteStrJson(System.String)
+  - Reportman.Drawing.StringUtil.EAN13CalculateCheckDigit(System.String)
+  - Reportman.Drawing.StringUtil.Encode(System.String,System.Int32)
+  - Reportman.Drawing.StringUtil.EscapeXML(System.String)
+  - Reportman.Drawing.StringUtil.GetSizeAsSmallString(System.Int64)
+  - Reportman.Drawing.StringUtil.GetSizeAsString(System.Int64)
+  - Reportman.Drawing.StringUtil.HexToBytes(System.String,System.Byte[])
+  - Reportman.Drawing.StringUtil.IsAllDigits(System.String)
+  - Reportman.Drawing.StringUtil.IsAlpha(System.Char)
+  - Reportman.Drawing.StringUtil.IsDigit(System.Char)
+  - Reportman.Drawing.StringUtil.NormalizeLineBreaks(System.String)
+  - Reportman.Drawing.StringUtil.NormalizeToNFC(System.String)
+  - Reportman.Drawing.StringUtil.PadDecimalLeftN(System.Decimal,System.Int32,System.Int32)
+  - Reportman.Drawing.StringUtil.PadDecimalLeftS(System.Decimal,System.Int32,System.Int32)
+  - Reportman.Drawing.StringUtil.PadStringLeftN(System.String,System.Int32)
+  - Reportman.Drawing.StringUtil.PadStringRightN(System.String,System.Int32)
+  - Reportman.Drawing.StringUtil.QuoteStr(System.String)
+  - Reportman.Drawing.StringUtil.RemoveDiacritics(System.String)
+  - Reportman.Drawing.StringUtil.RepeatChar(System.Char,System.Int32)
+  - Reportman.Drawing.StringUtil.SafeSubstring(System.String,System.Int32,System.Int32)
+  - Reportman.Drawing.StringUtil.SanitizeSubject(System.String)
+  - Reportman.Drawing.StringUtil.SendBytesToHost(System.String,System.Byte[],System.Int32)
+  - Reportman.Drawing.StringUtil.SendStringToHost(System.String,System.String,System.Text.Encoding,System.Int32)
+  - Reportman.Drawing.StringUtil.StripHTML(System.String)
+  - Reportman.Drawing.StringUtil.UpperCaseSpecial(System.String)
+  - Reportman.Drawing.StringUtil.ValidaCuentaBancaria(System.String)
+  - Reportman.Drawing.StringUtil.ValidateStringRegularExpresion(System.String,System.String)
+  - Reportman.Drawing.StringUtil.VerifyHash(System.String,System.String,System.String)
+  langs:
+  - csharp
+  - vb
+  name: StringUtil
+  nameWithType: StringUtil
+  fullName: Reportman.Drawing.StringUtil
+  type: Class
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Provide utitilies about handling string values
+  example: []
+  syntax:
+    content: public static class StringUtil
+    content.vb: Public Module StringUtil
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.StringUtil.SendStringToHost(System.String,System.String,System.Text.Encoding,System.Int32)
+  commentId: M:Reportman.Drawing.StringUtil.SendStringToHost(System.String,System.String,System.Text.Encoding,System.Int32)
+  id: SendStringToHost(System.String,System.String,System.Text.Encoding,System.Int32)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: SendStringToHost(string, string, Encoding, int)
+  nameWithType: StringUtil.SendStringToHost(string, string, Encoding, int)
+  fullName: Reportman.Drawing.StringUtil.SendStringToHost(string, string, System.Text.Encoding, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static void SendStringToHost(string hostname, string stringToSend, Encoding encoding = null, int port = 9100)
+    parameters:
+    - id: hostname
+      type: System.String
+    - id: stringToSend
+      type: System.String
+    - id: encoding
+      type: System.Text.Encoding
+    - id: port
+      type: System.Int32
+    content.vb: Public Shared Sub SendStringToHost(hostname As String, stringToSend As String, encoding As Encoding = Nothing, port As Integer = 9100)
+  overload: Reportman.Drawing.StringUtil.SendStringToHost*
+  nameWithType.vb: StringUtil.SendStringToHost(String, String, Encoding, Integer)
+  fullName.vb: Reportman.Drawing.StringUtil.SendStringToHost(String, String, System.Text.Encoding, Integer)
+  name.vb: SendStringToHost(String, String, Encoding, Integer)
+- uid: Reportman.Drawing.StringUtil.EscapeXML(System.String)
+  commentId: M:Reportman.Drawing.StringUtil.EscapeXML(System.String)
+  id: EscapeXML(System.String)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: EscapeXML(string)
+  nameWithType: StringUtil.EscapeXML(string)
+  fullName: Reportman.Drawing.StringUtil.EscapeXML(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string EscapeXML(string input)
+    parameters:
+    - id: input
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function EscapeXML(input As String) As String
+  overload: Reportman.Drawing.StringUtil.EscapeXML*
+  nameWithType.vb: StringUtil.EscapeXML(String)
+  fullName.vb: Reportman.Drawing.StringUtil.EscapeXML(String)
+  name.vb: EscapeXML(String)
+- uid: Reportman.Drawing.StringUtil.SendBytesToHost(System.String,System.Byte[],System.Int32)
+  commentId: M:Reportman.Drawing.StringUtil.SendBytesToHost(System.String,System.Byte[],System.Int32)
+  id: SendBytesToHost(System.String,System.Byte[],System.Int32)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: SendBytesToHost(string, byte[], int)
+  nameWithType: StringUtil.SendBytesToHost(string, byte[], int)
+  fullName: Reportman.Drawing.StringUtil.SendBytesToHost(string, byte[], int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static void SendBytesToHost(string hostname, byte[] bytes, int port = 9100)
+    parameters:
+    - id: hostname
+      type: System.String
+    - id: bytes
+      type: System.Byte[]
+    - id: port
+      type: System.Int32
+    content.vb: Public Shared Sub SendBytesToHost(hostname As String, bytes As Byte(), port As Integer = 9100)
+  overload: Reportman.Drawing.StringUtil.SendBytesToHost*
+  nameWithType.vb: StringUtil.SendBytesToHost(String, Byte(), Integer)
+  fullName.vb: Reportman.Drawing.StringUtil.SendBytesToHost(String, Byte(), Integer)
+  name.vb: SendBytesToHost(String, Byte(), Integer)
+- uid: Reportman.Drawing.StringUtil.SanitizeSubject(System.String)
+  commentId: M:Reportman.Drawing.StringUtil.SanitizeSubject(System.String)
+  id: SanitizeSubject(System.String)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: SanitizeSubject(string)
+  nameWithType: StringUtil.SanitizeSubject(string)
+  fullName: Reportman.Drawing.StringUtil.SanitizeSubject(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string SanitizeSubject(string subject)
+    parameters:
+    - id: subject
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function SanitizeSubject(subject As String) As String
+  overload: Reportman.Drawing.StringUtil.SanitizeSubject*
+  nameWithType.vb: StringUtil.SanitizeSubject(String)
+  fullName.vb: Reportman.Drawing.StringUtil.SanitizeSubject(String)
+  name.vb: SanitizeSubject(String)
+- uid: Reportman.Drawing.StringUtil.SafeSubstring(System.String,System.Int32,System.Int32)
+  commentId: M:Reportman.Drawing.StringUtil.SafeSubstring(System.String,System.Int32,System.Int32)
+  id: SafeSubstring(System.String,System.Int32,System.Int32)
+  isExtensionMethod: true
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: SafeSubstring(string, int, int)
+  nameWithType: StringUtil.SafeSubstring(string, int, int)
+  fullName: Reportman.Drawing.StringUtil.SafeSubstring(string, int, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string SafeSubstring(this string value, int startIndex, int length)
+    parameters:
+    - id: value
+      type: System.String
+    - id: startIndex
+      type: System.Int32
+    - id: length
+      type: System.Int32
+    return:
+      type: System.String
+    content.vb: Public Shared Function SafeSubstring(value As String, startIndex As Integer, length As Integer) As String
+  overload: Reportman.Drawing.StringUtil.SafeSubstring*
+  nameWithType.vb: StringUtil.SafeSubstring(String, Integer, Integer)
+  fullName.vb: Reportman.Drawing.StringUtil.SafeSubstring(String, Integer, Integer)
+  name.vb: SafeSubstring(String, Integer, Integer)
+- uid: Reportman.Drawing.StringUtil.CheckBankAccount20(System.String)
+  commentId: M:Reportman.Drawing.StringUtil.CheckBankAccount20(System.String)
+  id: CheckBankAccount20(System.String)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: CheckBankAccount20(string)
+  nameWithType: StringUtil.CheckBankAccount20(string)
+  fullName: Reportman.Drawing.StringUtil.CheckBankAccount20(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string CheckBankAccount20(string cadena)
+    parameters:
+    - id: cadena
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function CheckBankAccount20(cadena As String) As String
+  overload: Reportman.Drawing.StringUtil.CheckBankAccount20*
+  nameWithType.vb: StringUtil.CheckBankAccount20(String)
+  fullName.vb: Reportman.Drawing.StringUtil.CheckBankAccount20(String)
+  name.vb: CheckBankAccount20(String)
+- uid: Reportman.Drawing.StringUtil.ConvertLineBreaks(System.String)
+  commentId: M:Reportman.Drawing.StringUtil.ConvertLineBreaks(System.String)
+  id: ConvertLineBreaks(System.String)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: ConvertLineBreaks(string)
+  nameWithType: StringUtil.ConvertLineBreaks(string)
+  fullName: Reportman.Drawing.StringUtil.ConvertLineBreaks(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string ConvertLineBreaks(string nstring)
+    parameters:
+    - id: nstring
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function ConvertLineBreaks(nstring As String) As String
+  overload: Reportman.Drawing.StringUtil.ConvertLineBreaks*
+  nameWithType.vb: StringUtil.ConvertLineBreaks(String)
+  fullName.vb: Reportman.Drawing.StringUtil.ConvertLineBreaks(String)
+  name.vb: ConvertLineBreaks(String)
+- uid: Reportman.Drawing.StringUtil.ConvertToHtml(System.String)
+  commentId: M:Reportman.Drawing.StringUtil.ConvertToHtml(System.String)
+  id: ConvertToHtml(System.String)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: ConvertToHtml(string)
+  nameWithType: StringUtil.ConvertToHtml(string)
+  fullName: Reportman.Drawing.StringUtil.ConvertToHtml(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string ConvertToHtml(string plaintext)
+    parameters:
+    - id: plaintext
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function ConvertToHtml(plaintext As String) As String
+  overload: Reportman.Drawing.StringUtil.ConvertToHtml*
+  nameWithType.vb: StringUtil.ConvertToHtml(String)
+  fullName.vb: Reportman.Drawing.StringUtil.ConvertToHtml(String)
+  name.vb: ConvertToHtml(String)
+- uid: Reportman.Drawing.StringUtil.UpperCaseSpecial(System.String)
+  commentId: M:Reportman.Drawing.StringUtil.UpperCaseSpecial(System.String)
+  id: UpperCaseSpecial(System.String)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: UpperCaseSpecial(string)
+  nameWithType: StringUtil.UpperCaseSpecial(string)
+  fullName: Reportman.Drawing.StringUtil.UpperCaseSpecial(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string UpperCaseSpecial(string source)
+    parameters:
+    - id: source
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function UpperCaseSpecial(source As String) As String
+  overload: Reportman.Drawing.StringUtil.UpperCaseSpecial*
+  nameWithType.vb: StringUtil.UpperCaseSpecial(String)
+  fullName.vb: Reportman.Drawing.StringUtil.UpperCaseSpecial(String)
+  name.vb: UpperCaseSpecial(String)
+- uid: Reportman.Drawing.StringUtil.PadStringRightN(System.String,System.Int32)
+  commentId: M:Reportman.Drawing.StringUtil.PadStringRightN(System.String,System.Int32)
+  id: PadStringRightN(System.String,System.Int32)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: PadStringRightN(string, int)
+  nameWithType: StringUtil.PadStringRightN(string, int)
+  fullName: Reportman.Drawing.StringUtil.PadStringRightN(string, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string PadStringRightN(string source, int total)
+    parameters:
+    - id: source
+      type: System.String
+    - id: total
+      type: System.Int32
+    return:
+      type: System.String
+    content.vb: Public Shared Function PadStringRightN(source As String, total As Integer) As String
+  overload: Reportman.Drawing.StringUtil.PadStringRightN*
+  nameWithType.vb: StringUtil.PadStringRightN(String, Integer)
+  fullName.vb: Reportman.Drawing.StringUtil.PadStringRightN(String, Integer)
+  name.vb: PadStringRightN(String, Integer)
+- uid: Reportman.Drawing.StringUtil.PadStringLeftN(System.String,System.Int32)
+  commentId: M:Reportman.Drawing.StringUtil.PadStringLeftN(System.String,System.Int32)
+  id: PadStringLeftN(System.String,System.Int32)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: PadStringLeftN(string, int)
+  nameWithType: StringUtil.PadStringLeftN(string, int)
+  fullName: Reportman.Drawing.StringUtil.PadStringLeftN(string, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string PadStringLeftN(string source, int total)
+    parameters:
+    - id: source
+      type: System.String
+    - id: total
+      type: System.Int32
+    return:
+      type: System.String
+    content.vb: Public Shared Function PadStringLeftN(source As String, total As Integer) As String
+  overload: Reportman.Drawing.StringUtil.PadStringLeftN*
+  nameWithType.vb: StringUtil.PadStringLeftN(String, Integer)
+  fullName.vb: Reportman.Drawing.StringUtil.PadStringLeftN(String, Integer)
+  name.vb: PadStringLeftN(String, Integer)
+- uid: Reportman.Drawing.StringUtil.VerifyHash(System.String,System.String,System.String)
+  commentId: M:Reportman.Drawing.StringUtil.VerifyHash(System.String,System.String,System.String)
+  id: VerifyHash(System.String,System.String,System.String)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: VerifyHash(string, string, string)
+  nameWithType: StringUtil.VerifyHash(string, string, string)
+  fullName: Reportman.Drawing.StringUtil.VerifyHash(string, string, string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static bool VerifyHash(string plainText, string hashAlgorithm, string hashString)
+    parameters:
+    - id: plainText
+      type: System.String
+    - id: hashAlgorithm
+      type: System.String
+    - id: hashString
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function VerifyHash(plainText As String, hashAlgorithm As String, hashString As String) As Boolean
+  overload: Reportman.Drawing.StringUtil.VerifyHash*
+  nameWithType.vb: StringUtil.VerifyHash(String, String, String)
+  fullName.vb: Reportman.Drawing.StringUtil.VerifyHash(String, String, String)
+  name.vb: VerifyHash(String, String, String)
+- uid: Reportman.Drawing.StringUtil.ComputeHash(System.String,System.String,System.Byte[])
+  commentId: M:Reportman.Drawing.StringUtil.ComputeHash(System.String,System.String,System.Byte[])
+  id: ComputeHash(System.String,System.String,System.Byte[])
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: ComputeHash(string, string, byte[])
+  nameWithType: StringUtil.ComputeHash(string, string, byte[])
+  fullName: Reportman.Drawing.StringUtil.ComputeHash(string, string, byte[])
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string ComputeHash(string plainText, string hashAlgorithm, byte[] saltBytes)
+    parameters:
+    - id: plainText
+      type: System.String
+    - id: hashAlgorithm
+      type: System.String
+    - id: saltBytes
+      type: System.Byte[]
+    return:
+      type: System.String
+    content.vb: Public Shared Function ComputeHash(plainText As String, hashAlgorithm As String, saltBytes As Byte()) As String
+  overload: Reportman.Drawing.StringUtil.ComputeHash*
+  nameWithType.vb: StringUtil.ComputeHash(String, String, Byte())
+  fullName.vb: Reportman.Drawing.StringUtil.ComputeHash(String, String, Byte())
+  name.vb: ComputeHash(String, String, Byte())
+- uid: Reportman.Drawing.StringUtil.PadDecimalLeftN(System.Decimal,System.Int32,System.Int32)
+  commentId: M:Reportman.Drawing.StringUtil.PadDecimalLeftN(System.Decimal,System.Int32,System.Int32)
+  id: PadDecimalLeftN(System.Decimal,System.Int32,System.Int32)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: PadDecimalLeftN(decimal, int, int)
+  nameWithType: StringUtil.PadDecimalLeftN(decimal, int, int)
+  fullName: Reportman.Drawing.StringUtil.PadDecimalLeftN(decimal, int, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string PadDecimalLeftN(decimal source, int totallength, int decimals)
+    parameters:
+    - id: source
+      type: System.Decimal
+    - id: totallength
+      type: System.Int32
+    - id: decimals
+      type: System.Int32
+    return:
+      type: System.String
+    content.vb: Public Shared Function PadDecimalLeftN(source As Decimal, totallength As Integer, decimals As Integer) As String
+  overload: Reportman.Drawing.StringUtil.PadDecimalLeftN*
+  nameWithType.vb: StringUtil.PadDecimalLeftN(Decimal, Integer, Integer)
+  fullName.vb: Reportman.Drawing.StringUtil.PadDecimalLeftN(Decimal, Integer, Integer)
+  name.vb: PadDecimalLeftN(Decimal, Integer, Integer)
+- uid: Reportman.Drawing.StringUtil.PadDecimalLeftS(System.Decimal,System.Int32,System.Int32)
+  commentId: M:Reportman.Drawing.StringUtil.PadDecimalLeftS(System.Decimal,System.Int32,System.Int32)
+  id: PadDecimalLeftS(System.Decimal,System.Int32,System.Int32)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: PadDecimalLeftS(decimal, int, int)
+  nameWithType: StringUtil.PadDecimalLeftS(decimal, int, int)
+  fullName: Reportman.Drawing.StringUtil.PadDecimalLeftS(decimal, int, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string PadDecimalLeftS(decimal source, int totallength, int decimals)
+    parameters:
+    - id: source
+      type: System.Decimal
+    - id: totallength
+      type: System.Int32
+    - id: decimals
+      type: System.Int32
+    return:
+      type: System.String
+    content.vb: Public Shared Function PadDecimalLeftS(source As Decimal, totallength As Integer, decimals As Integer) As String
+  overload: Reportman.Drawing.StringUtil.PadDecimalLeftS*
+  nameWithType.vb: StringUtil.PadDecimalLeftS(Decimal, Integer, Integer)
+  fullName.vb: Reportman.Drawing.StringUtil.PadDecimalLeftS(Decimal, Integer, Integer)
+  name.vb: PadDecimalLeftS(Decimal, Integer, Integer)
+- uid: Reportman.Drawing.StringUtil.StripHTML(System.String)
+  commentId: M:Reportman.Drawing.StringUtil.StripHTML(System.String)
+  id: StripHTML(System.String)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: StripHTML(string)
+  nameWithType: StringUtil.StripHTML(string)
+  fullName: Reportman.Drawing.StringUtil.StripHTML(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string StripHTML(string source)
+    parameters:
+    - id: source
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function StripHTML(source As String) As String
+  overload: Reportman.Drawing.StringUtil.StripHTML*
+  nameWithType.vb: StringUtil.StripHTML(String)
+  fullName.vb: Reportman.Drawing.StringUtil.StripHTML(String)
+  name.vb: StripHTML(String)
+- uid: Reportman.Drawing.StringUtil.GetSizeAsString(System.Int64)
+  commentId: M:Reportman.Drawing.StringUtil.GetSizeAsString(System.Int64)
+  id: GetSizeAsString(System.Int64)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: GetSizeAsString(long)
+  nameWithType: StringUtil.GetSizeAsString(long)
+  fullName: Reportman.Drawing.StringUtil.GetSizeAsString(long)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Return a string representing the size of a stream in bytes, kbytes, megabytes
+  example: []
+  syntax:
+    content: public static string GetSizeAsString(long sizeinbytes)
+    parameters:
+    - id: sizeinbytes
+      type: System.Int64
+      description: ''
+    return:
+      type: System.String
+      description: ''
+    content.vb: Public Shared Function GetSizeAsString(sizeinbytes As Long) As String
+  overload: Reportman.Drawing.StringUtil.GetSizeAsString*
+  nameWithType.vb: StringUtil.GetSizeAsString(Long)
+  fullName.vb: Reportman.Drawing.StringUtil.GetSizeAsString(Long)
+  name.vb: GetSizeAsString(Long)
+- uid: Reportman.Drawing.StringUtil.GetSizeAsSmallString(System.Int64)
+  commentId: M:Reportman.Drawing.StringUtil.GetSizeAsSmallString(System.Int64)
+  id: GetSizeAsSmallString(System.Int64)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: GetSizeAsSmallString(long)
+  nameWithType: StringUtil.GetSizeAsSmallString(long)
+  fullName: Reportman.Drawing.StringUtil.GetSizeAsSmallString(long)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Return a string representing the size of a stream in bytes, kbytes, megabytes
+  example: []
+  syntax:
+    content: public static string GetSizeAsSmallString(long sizeinbytes)
+    parameters:
+    - id: sizeinbytes
+      type: System.Int64
+      description: ''
+    return:
+      type: System.String
+      description: ''
+    content.vb: Public Shared Function GetSizeAsSmallString(sizeinbytes As Long) As String
+  overload: Reportman.Drawing.StringUtil.GetSizeAsSmallString*
+  nameWithType.vb: StringUtil.GetSizeAsSmallString(Long)
+  fullName.vb: Reportman.Drawing.StringUtil.GetSizeAsSmallString(Long)
+  name.vb: GetSizeAsSmallString(Long)
+- uid: Reportman.Drawing.StringUtil.CountOfChar(System.Char,System.String)
+  commentId: M:Reportman.Drawing.StringUtil.CountOfChar(System.Char,System.String)
+  id: CountOfChar(System.Char,System.String)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: CountOfChar(char, string)
+  nameWithType: StringUtil.CountOfChar(char, string)
+  fullName: Reportman.Drawing.StringUtil.CountOfChar(char, string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Number of occurrences of a char inside string
+  example: []
+  syntax:
+    content: public static int CountOfChar(char achar, string nstring)
+    parameters:
+    - id: achar
+      type: System.Char
+      description: ''
+    - id: nstring
+      type: System.String
+      description: ''
+    return:
+      type: System.Int32
+      description: ''
+    content.vb: Public Shared Function CountOfChar(achar As Char, nstring As String) As Integer
+  overload: Reportman.Drawing.StringUtil.CountOfChar*
+  nameWithType.vb: StringUtil.CountOfChar(Char, String)
+  fullName.vb: Reportman.Drawing.StringUtil.CountOfChar(Char, String)
+  name.vb: CountOfChar(Char, String)
+- uid: Reportman.Drawing.StringUtil.QuoteStr(System.String)
+  commentId: M:Reportman.Drawing.StringUtil.QuoteStr(System.String)
+  id: QuoteStr(System.String)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: QuoteStr(string)
+  nameWithType: StringUtil.QuoteStr(string)
+  fullName: Reportman.Drawing.StringUtil.QuoteStr(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    Returns a string quoted with single quotes, if
+
+    a single quote is contained, doubles de quote
+  example: []
+  syntax:
+    content: public static string QuoteStr(string ident)
+    parameters:
+    - id: ident
+      type: System.String
+      description: ''
+    return:
+      type: System.String
+      description: ''
+    content.vb: Public Shared Function QuoteStr(ident As String) As String
+  overload: Reportman.Drawing.StringUtil.QuoteStr*
+  nameWithType.vb: StringUtil.QuoteStr(String)
+  fullName.vb: Reportman.Drawing.StringUtil.QuoteStr(String)
+  name.vb: QuoteStr(String)
+- uid: Reportman.Drawing.StringUtil.DoubleQuoteStr(System.String)
+  commentId: M:Reportman.Drawing.StringUtil.DoubleQuoteStr(System.String)
+  id: DoubleQuoteStr(System.String)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: DoubleQuoteStr(string)
+  nameWithType: StringUtil.DoubleQuoteStr(string)
+  fullName: Reportman.Drawing.StringUtil.DoubleQuoteStr(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    Returns a string quoted with double quotes, if
+
+    a double quote is contained, doubles de double quote
+  example: []
+  syntax:
+    content: public static string DoubleQuoteStr(string ident)
+    parameters:
+    - id: ident
+      type: System.String
+      description: ''
+    return:
+      type: System.String
+      description: ''
+    content.vb: Public Shared Function DoubleQuoteStr(ident As String) As String
+  overload: Reportman.Drawing.StringUtil.DoubleQuoteStr*
+  nameWithType.vb: StringUtil.DoubleQuoteStr(String)
+  fullName.vb: Reportman.Drawing.StringUtil.DoubleQuoteStr(String)
+  name.vb: DoubleQuoteStr(String)
+- uid: Reportman.Drawing.StringUtil.DoubleQuoteStrJson(System.String)
+  commentId: M:Reportman.Drawing.StringUtil.DoubleQuoteStrJson(System.String)
+  id: DoubleQuoteStrJson(System.String)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: DoubleQuoteStrJson(string)
+  nameWithType: StringUtil.DoubleQuoteStrJson(string)
+  fullName: Reportman.Drawing.StringUtil.DoubleQuoteStrJson(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string DoubleQuoteStrJson(string ident)
+    parameters:
+    - id: ident
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function DoubleQuoteStrJson(ident As String) As String
+  overload: Reportman.Drawing.StringUtil.DoubleQuoteStrJson*
+  nameWithType.vb: StringUtil.DoubleQuoteStrJson(String)
+  fullName.vb: Reportman.Drawing.StringUtil.DoubleQuoteStrJson(String)
+  name.vb: DoubleQuoteStrJson(String)
+- uid: Reportman.Drawing.StringUtil.CustomQuoteStr(System.String,System.Char)
+  commentId: M:Reportman.Drawing.StringUtil.CustomQuoteStr(System.String,System.Char)
+  id: CustomQuoteStr(System.String,System.Char)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: CustomQuoteStr(string, char)
+  nameWithType: StringUtil.CustomQuoteStr(string, char)
+  fullName: Reportman.Drawing.StringUtil.CustomQuoteStr(string, char)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    Returns a string quoted with custom 'quote' separator, if
+
+    quote separator is contained, doubles de double quote
+  example: []
+  syntax:
+    content: public static string CustomQuoteStr(string ident, char quote)
+    parameters:
+    - id: ident
+      type: System.String
+      description: ''
+    - id: quote
+      type: System.Char
+    return:
+      type: System.String
+      description: ''
+    content.vb: Public Shared Function CustomQuoteStr(ident As String, quote As Char) As String
+  overload: Reportman.Drawing.StringUtil.CustomQuoteStr*
+  nameWithType.vb: StringUtil.CustomQuoteStr(String, Char)
+  fullName.vb: Reportman.Drawing.StringUtil.CustomQuoteStr(String, Char)
+  name.vb: CustomQuoteStr(String, Char)
+- uid: Reportman.Drawing.StringUtil.RepeatChar(System.Char,System.Int32)
+  commentId: M:Reportman.Drawing.StringUtil.RepeatChar(System.Char,System.Int32)
+  id: RepeatChar(System.Char,System.Int32)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: RepeatChar(char, int)
+  nameWithType: StringUtil.RepeatChar(char, int)
+  fullName: Reportman.Drawing.StringUtil.RepeatChar(char, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Returns a string repeating a character n times
+  example: []
+  syntax:
+    content: public static string RepeatChar(char c, int count)
+    parameters:
+    - id: c
+      type: System.Char
+    - id: count
+      type: System.Int32
+    return:
+      type: System.String
+    content.vb: Public Shared Function RepeatChar(c As Char, count As Integer) As String
+  overload: Reportman.Drawing.StringUtil.RepeatChar*
+  nameWithType.vb: StringUtil.RepeatChar(Char, Integer)
+  fullName.vb: Reportman.Drawing.StringUtil.RepeatChar(Char, Integer)
+  name.vb: RepeatChar(Char, Integer)
+- uid: Reportman.Drawing.StringUtil.ByteToHex(System.Byte)
+  commentId: M:Reportman.Drawing.StringUtil.ByteToHex(System.Byte)
+  id: ByteToHex(System.Byte)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: ByteToHex(byte)
+  nameWithType: StringUtil.ByteToHex(byte)
+  fullName: Reportman.Drawing.StringUtil.ByteToHex(byte)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Transform a byte to his hexadecimal representation
+  example: []
+  syntax:
+    content: public static string ByteToHex(byte avalue)
+    parameters:
+    - id: avalue
+      type: System.Byte
+    return:
+      type: System.String
+    content.vb: Public Shared Function ByteToHex(avalue As Byte) As String
+  overload: Reportman.Drawing.StringUtil.ByteToHex*
+  nameWithType.vb: StringUtil.ByteToHex(Byte)
+  fullName.vb: Reportman.Drawing.StringUtil.ByteToHex(Byte)
+  name.vb: ByteToHex(Byte)
+- uid: Reportman.Drawing.StringUtil.IsAlpha(System.Char)
+  commentId: M:Reportman.Drawing.StringUtil.IsAlpha(System.Char)
+  id: IsAlpha(System.Char)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: IsAlpha(char)
+  nameWithType: StringUtil.IsAlpha(char)
+  fullName: Reportman.Drawing.StringUtil.IsAlpha(char)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: "Returns true if the char is inside the set: ['0'..'9','a'..'z','A'..'Z','(',')','.',' ',';',':','_','=']"
+  example: []
+  syntax:
+    content: public static bool IsAlpha(char achar)
+    parameters:
+    - id: achar
+      type: System.Char
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function IsAlpha(achar As Char) As Boolean
+  overload: Reportman.Drawing.StringUtil.IsAlpha*
+  nameWithType.vb: StringUtil.IsAlpha(Char)
+  fullName.vb: Reportman.Drawing.StringUtil.IsAlpha(Char)
+  name.vb: IsAlpha(Char)
+- uid: Reportman.Drawing.StringUtil.IsDigit(System.Char)
+  commentId: M:Reportman.Drawing.StringUtil.IsDigit(System.Char)
+  id: IsDigit(System.Char)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: IsDigit(char)
+  nameWithType: StringUtil.IsDigit(char)
+  fullName: Reportman.Drawing.StringUtil.IsDigit(char)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: "Returns true if the char is inside the set: ['0'..'9']"
+  example: []
+  syntax:
+    content: public static bool IsDigit(char achar)
+    parameters:
+    - id: achar
+      type: System.Char
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function IsDigit(achar As Char) As Boolean
+  overload: Reportman.Drawing.StringUtil.IsDigit*
+  nameWithType.vb: StringUtil.IsDigit(Char)
+  fullName.vb: Reportman.Drawing.StringUtil.IsDigit(Char)
+  name.vb: IsDigit(Char)
+- uid: Reportman.Drawing.StringUtil.IsAllDigits(System.String)
+  commentId: M:Reportman.Drawing.StringUtil.IsAllDigits(System.String)
+  id: IsAllDigits(System.String)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: IsAllDigits(string)
+  nameWithType: StringUtil.IsAllDigits(string)
+  fullName: Reportman.Drawing.StringUtil.IsAllDigits(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: "Returns true if the string contains only digits: ['0'..'9']"
+  example: []
+  syntax:
+    content: public static bool IsAllDigits(string nstring)
+    parameters:
+    - id: nstring
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function IsAllDigits(nstring As String) As Boolean
+  overload: Reportman.Drawing.StringUtil.IsAllDigits*
+  nameWithType.vb: StringUtil.IsAllDigits(String)
+  fullName.vb: Reportman.Drawing.StringUtil.IsAllDigits(String)
+  name.vb: IsAllDigits(String)
+- uid: Reportman.Drawing.StringUtil.ContainsAllWords(System.String,System.Collections.Generic.IEnumerable{System.String})
+  commentId: M:Reportman.Drawing.StringUtil.ContainsAllWords(System.String,System.Collections.Generic.IEnumerable{System.String})
+  id: ContainsAllWords(System.String,System.Collections.Generic.IEnumerable{System.String})
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: ContainsAllWords(string, IEnumerable<string>)
+  nameWithType: StringUtil.ContainsAllWords(string, IEnumerable<string>)
+  fullName: Reportman.Drawing.StringUtil.ContainsAllWords(string, System.Collections.Generic.IEnumerable<string>)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static bool ContainsAllWords(string input, IEnumerable<string> words)
+    parameters:
+    - id: input
+      type: System.String
+    - id: words
+      type: System.Collections.Generic.IEnumerable{System.String}
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function ContainsAllWords(input As String, words As IEnumerable(Of String)) As Boolean
+  overload: Reportman.Drawing.StringUtil.ContainsAllWords*
+  nameWithType.vb: StringUtil.ContainsAllWords(String, IEnumerable(Of String))
+  fullName.vb: Reportman.Drawing.StringUtil.ContainsAllWords(String, System.Collections.Generic.IEnumerable(Of String))
+  name.vb: ContainsAllWords(String, IEnumerable(Of String))
+- uid: Reportman.Drawing.StringUtil.HexToBytes(System.String,System.Byte[])
+  commentId: M:Reportman.Drawing.StringUtil.HexToBytes(System.String,System.Byte[])
+  id: HexToBytes(System.String,System.Byte[])
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: HexToBytes(string, byte[])
+  nameWithType: StringUtil.HexToBytes(string, byte[])
+  fullName: Reportman.Drawing.StringUtil.HexToBytes(string, byte[])
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Transform a hexadecimal representation to an array of byte, return number of bytes writed into the buffer
+  example: []
+  syntax:
+    content: public static int HexToBytes(string hex, byte[] buf)
+    parameters:
+    - id: hex
+      type: System.String
+    - id: buf
+      type: System.Byte[]
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function HexToBytes(hex As String, buf As Byte()) As Integer
+  overload: Reportman.Drawing.StringUtil.HexToBytes*
+  nameWithType.vb: StringUtil.HexToBytes(String, Byte())
+  fullName.vb: Reportman.Drawing.StringUtil.HexToBytes(String, Byte())
+  name.vb: HexToBytes(String, Byte())
+- uid: Reportman.Drawing.StringUtil.Decode(System.String,System.Int32)
+  commentId: M:Reportman.Drawing.StringUtil.Decode(System.String,System.Int32)
+  id: Decode(System.String,System.Int32)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: Decode(string, int)
+  nameWithType: StringUtil.Decode(string, int)
+  fullName: Reportman.Drawing.StringUtil.Decode(string, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string Decode(string value, int codepage)
+    parameters:
+    - id: value
+      type: System.String
+    - id: codepage
+      type: System.Int32
+    return:
+      type: System.String
+    content.vb: Public Shared Function Decode(value As String, codepage As Integer) As String
+  overload: Reportman.Drawing.StringUtil.Decode*
+  nameWithType.vb: StringUtil.Decode(String, Integer)
+  fullName.vb: Reportman.Drawing.StringUtil.Decode(String, Integer)
+  name.vb: Decode(String, Integer)
+- uid: Reportman.Drawing.StringUtil.Encode(System.String,System.Int32)
+  commentId: M:Reportman.Drawing.StringUtil.Encode(System.String,System.Int32)
+  id: Encode(System.String,System.Int32)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: Encode(string, int)
+  nameWithType: StringUtil.Encode(string, int)
+  fullName: Reportman.Drawing.StringUtil.Encode(string, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string Encode(string value, int codepage)
+    parameters:
+    - id: value
+      type: System.String
+    - id: codepage
+      type: System.Int32
+    return:
+      type: System.String
+    content.vb: Public Shared Function Encode(value As String, codepage As Integer) As String
+  overload: Reportman.Drawing.StringUtil.Encode*
+  nameWithType.vb: StringUtil.Encode(String, Integer)
+  fullName.vb: Reportman.Drawing.StringUtil.Encode(String, Integer)
+  name.vb: Encode(String, Integer)
+- uid: Reportman.Drawing.StringUtil.ComprovarNif(System.String)
+  commentId: M:Reportman.Drawing.StringUtil.ComprovarNif(System.String)
+  id: ComprovarNif(System.String)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: ComprovarNif(string)
+  nameWithType: StringUtil.ComprovarNif(string)
+  fullName: Reportman.Drawing.StringUtil.ComprovarNif(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static bool ComprovarNif(string nif)
+    parameters:
+    - id: nif
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function ComprovarNif(nif As String) As Boolean
+  overload: Reportman.Drawing.StringUtil.ComprovarNif*
+  nameWithType.vb: StringUtil.ComprovarNif(String)
+  fullName.vb: Reportman.Drawing.StringUtil.ComprovarNif(String)
+  name.vb: ComprovarNif(String)
+- uid: Reportman.Drawing.StringUtil.ValidaCuentaBancaria(System.String)
+  commentId: M:Reportman.Drawing.StringUtil.ValidaCuentaBancaria(System.String)
+  id: ValidaCuentaBancaria(System.String)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: ValidaCuentaBancaria(string)
+  nameWithType: StringUtil.ValidaCuentaBancaria(string)
+  fullName: Reportman.Drawing.StringUtil.ValidaCuentaBancaria(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static bool ValidaCuentaBancaria(string cuentaCompleta)
+    parameters:
+    - id: cuentaCompleta
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function ValidaCuentaBancaria(cuentaCompleta As String) As Boolean
+  overload: Reportman.Drawing.StringUtil.ValidaCuentaBancaria*
+  nameWithType.vb: StringUtil.ValidaCuentaBancaria(String)
+  fullName.vb: Reportman.Drawing.StringUtil.ValidaCuentaBancaria(String)
+  name.vb: ValidaCuentaBancaria(String)
+- uid: Reportman.Drawing.StringUtil.ComprobarMail(System.String)
+  commentId: M:Reportman.Drawing.StringUtil.ComprobarMail(System.String)
+  id: ComprobarMail(System.String)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: ComprobarMail(string)
+  nameWithType: StringUtil.ComprobarMail(string)
+  fullName: Reportman.Drawing.StringUtil.ComprobarMail(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static bool ComprobarMail(string email)
+    parameters:
+    - id: email
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function ComprobarMail(email As String) As Boolean
+  overload: Reportman.Drawing.StringUtil.ComprobarMail*
+  nameWithType.vb: StringUtil.ComprobarMail(String)
+  fullName.vb: Reportman.Drawing.StringUtil.ComprobarMail(String)
+  name.vb: ComprobarMail(String)
+- uid: Reportman.Drawing.StringUtil.RemoveDiacritics(System.String)
+  commentId: M:Reportman.Drawing.StringUtil.RemoveDiacritics(System.String)
+  id: RemoveDiacritics(System.String)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: RemoveDiacritics(string)
+  nameWithType: StringUtil.RemoveDiacritics(string)
+  fullName: Reportman.Drawing.StringUtil.RemoveDiacritics(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string RemoveDiacritics(string stIn)
+    parameters:
+    - id: stIn
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function RemoveDiacritics(stIn As String) As String
+  overload: Reportman.Drawing.StringUtil.RemoveDiacritics*
+  nameWithType.vb: StringUtil.RemoveDiacritics(String)
+  fullName.vb: Reportman.Drawing.StringUtil.RemoveDiacritics(String)
+  name.vb: RemoveDiacritics(String)
+- uid: Reportman.Drawing.StringUtil.NormalizeToNFC(System.String)
+  commentId: M:Reportman.Drawing.StringUtil.NormalizeToNFC(System.String)
+  id: NormalizeToNFC(System.String)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: NormalizeToNFC(string)
+  nameWithType: StringUtil.NormalizeToNFC(string)
+  fullName: Reportman.Drawing.StringUtil.NormalizeToNFC(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string NormalizeToNFC(string s)
+    parameters:
+    - id: s
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function NormalizeToNFC(s As String) As String
+  overload: Reportman.Drawing.StringUtil.NormalizeToNFC*
+  nameWithType.vb: StringUtil.NormalizeToNFC(String)
+  fullName.vb: Reportman.Drawing.StringUtil.NormalizeToNFC(String)
+  name.vb: NormalizeToNFC(String)
+- uid: Reportman.Drawing.StringUtil.NormalizeLineBreaks(System.String)
+  commentId: M:Reportman.Drawing.StringUtil.NormalizeLineBreaks(System.String)
+  id: NormalizeLineBreaks(System.String)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: NormalizeLineBreaks(string)
+  nameWithType: StringUtil.NormalizeLineBreaks(string)
+  fullName: Reportman.Drawing.StringUtil.NormalizeLineBreaks(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string NormalizeLineBreaks(string input)
+    parameters:
+    - id: input
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function NormalizeLineBreaks(input As String) As String
+  overload: Reportman.Drawing.StringUtil.NormalizeLineBreaks*
+  nameWithType.vb: StringUtil.NormalizeLineBreaks(String)
+  fullName.vb: Reportman.Drawing.StringUtil.NormalizeLineBreaks(String)
+  name.vb: NormalizeLineBreaks(String)
+- uid: Reportman.Drawing.StringUtil.ValidateStringRegularExpresion(System.String,System.String)
+  commentId: M:Reportman.Drawing.StringUtil.ValidateStringRegularExpresion(System.String,System.String)
+  id: ValidateStringRegularExpresion(System.String,System.String)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: ValidateStringRegularExpresion(string, string)
+  nameWithType: StringUtil.ValidateStringRegularExpresion(string, string)
+  fullName: Reportman.Drawing.StringUtil.ValidateStringRegularExpresion(string, string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static bool ValidateStringRegularExpresion(string input, string regular)
+    parameters:
+    - id: input
+      type: System.String
+    - id: regular
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function ValidateStringRegularExpresion(input As String, regular As String) As Boolean
+  overload: Reportman.Drawing.StringUtil.ValidateStringRegularExpresion*
+  nameWithType.vb: StringUtil.ValidateStringRegularExpresion(String, String)
+  fullName.vb: Reportman.Drawing.StringUtil.ValidateStringRegularExpresion(String, String)
+  name.vb: ValidateStringRegularExpresion(String, String)
+- uid: Reportman.Drawing.StringUtil.EAN13CalculateCheckDigit(System.String)
+  commentId: M:Reportman.Drawing.StringUtil.EAN13CalculateCheckDigit(System.String)
+  id: EAN13CalculateCheckDigit(System.String)
+  parent: Reportman.Drawing.StringUtil
+  langs:
+  - csharp
+  - vb
+  name: EAN13CalculateCheckDigit(string)
+  nameWithType: StringUtil.EAN13CalculateCheckDigit(string)
+  fullName: Reportman.Drawing.StringUtil.EAN13CalculateCheckDigit(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static int EAN13CalculateCheckDigit(string codigo)
+    parameters:
+    - id: codigo
+      type: System.String
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function EAN13CalculateCheckDigit(codigo As String) As Integer
+  overload: Reportman.Drawing.StringUtil.EAN13CalculateCheckDigit*
+  nameWithType.vb: StringUtil.EAN13CalculateCheckDigit(String)
+  fullName.vb: Reportman.Drawing.StringUtil.EAN13CalculateCheckDigit(String)
+  name.vb: EAN13CalculateCheckDigit(String)
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.StringUtil.SendStringToHost*
+  commentId: Overload:Reportman.Drawing.StringUtil.SendStringToHost
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_SendStringToHost_System_String_System_String_System_Text_Encoding_System_Int32_
+  name: SendStringToHost
+  nameWithType: StringUtil.SendStringToHost
+  fullName: Reportman.Drawing.StringUtil.SendStringToHost
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Text.Encoding
+  commentId: T:System.Text.Encoding
+  parent: System.Text
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.text.encoding
+  name: Encoding
+  nameWithType: Encoding
+  fullName: System.Text.Encoding
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Text
+  commentId: N:System.Text
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Text
+  nameWithType: System.Text
+  fullName: System.Text
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+- uid: Reportman.Drawing.StringUtil.EscapeXML*
+  commentId: Overload:Reportman.Drawing.StringUtil.EscapeXML
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_EscapeXML_System_String_
+  name: EscapeXML
+  nameWithType: StringUtil.EscapeXML
+  fullName: Reportman.Drawing.StringUtil.EscapeXML
+- uid: Reportman.Drawing.StringUtil.SendBytesToHost*
+  commentId: Overload:Reportman.Drawing.StringUtil.SendBytesToHost
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_SendBytesToHost_System_String_System_Byte___System_Int32_
+  name: SendBytesToHost
+  nameWithType: StringUtil.SendBytesToHost
+  fullName: Reportman.Drawing.StringUtil.SendBytesToHost
+- uid: System.Byte[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte[]
+  nameWithType: byte[]
+  fullName: byte[]
+  nameWithType.vb: Byte()
+  fullName.vb: Byte()
+  name.vb: Byte()
+  spec.csharp:
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: (
+  - name: )
+- uid: Reportman.Drawing.StringUtil.SanitizeSubject*
+  commentId: Overload:Reportman.Drawing.StringUtil.SanitizeSubject
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_SanitizeSubject_System_String_
+  name: SanitizeSubject
+  nameWithType: StringUtil.SanitizeSubject
+  fullName: Reportman.Drawing.StringUtil.SanitizeSubject
+- uid: Reportman.Drawing.StringUtil.SafeSubstring*
+  commentId: Overload:Reportman.Drawing.StringUtil.SafeSubstring
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_SafeSubstring_System_String_System_Int32_System_Int32_
+  name: SafeSubstring
+  nameWithType: StringUtil.SafeSubstring
+  fullName: Reportman.Drawing.StringUtil.SafeSubstring
+- uid: Reportman.Drawing.StringUtil.CheckBankAccount20*
+  commentId: Overload:Reportman.Drawing.StringUtil.CheckBankAccount20
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_CheckBankAccount20_System_String_
+  name: CheckBankAccount20
+  nameWithType: StringUtil.CheckBankAccount20
+  fullName: Reportman.Drawing.StringUtil.CheckBankAccount20
+- uid: Reportman.Drawing.StringUtil.ConvertLineBreaks*
+  commentId: Overload:Reportman.Drawing.StringUtil.ConvertLineBreaks
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_ConvertLineBreaks_System_String_
+  name: ConvertLineBreaks
+  nameWithType: StringUtil.ConvertLineBreaks
+  fullName: Reportman.Drawing.StringUtil.ConvertLineBreaks
+- uid: Reportman.Drawing.StringUtil.ConvertToHtml*
+  commentId: Overload:Reportman.Drawing.StringUtil.ConvertToHtml
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_ConvertToHtml_System_String_
+  name: ConvertToHtml
+  nameWithType: StringUtil.ConvertToHtml
+  fullName: Reportman.Drawing.StringUtil.ConvertToHtml
+- uid: Reportman.Drawing.StringUtil.UpperCaseSpecial*
+  commentId: Overload:Reportman.Drawing.StringUtil.UpperCaseSpecial
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_UpperCaseSpecial_System_String_
+  name: UpperCaseSpecial
+  nameWithType: StringUtil.UpperCaseSpecial
+  fullName: Reportman.Drawing.StringUtil.UpperCaseSpecial
+- uid: Reportman.Drawing.StringUtil.PadStringRightN*
+  commentId: Overload:Reportman.Drawing.StringUtil.PadStringRightN
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_PadStringRightN_System_String_System_Int32_
+  name: PadStringRightN
+  nameWithType: StringUtil.PadStringRightN
+  fullName: Reportman.Drawing.StringUtil.PadStringRightN
+- uid: Reportman.Drawing.StringUtil.PadStringLeftN*
+  commentId: Overload:Reportman.Drawing.StringUtil.PadStringLeftN
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_PadStringLeftN_System_String_System_Int32_
+  name: PadStringLeftN
+  nameWithType: StringUtil.PadStringLeftN
+  fullName: Reportman.Drawing.StringUtil.PadStringLeftN
+- uid: Reportman.Drawing.StringUtil.VerifyHash*
+  commentId: Overload:Reportman.Drawing.StringUtil.VerifyHash
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_VerifyHash_System_String_System_String_System_String_
+  name: VerifyHash
+  nameWithType: StringUtil.VerifyHash
+  fullName: Reportman.Drawing.StringUtil.VerifyHash
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Reportman.Drawing.StringUtil.ComputeHash*
+  commentId: Overload:Reportman.Drawing.StringUtil.ComputeHash
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_ComputeHash_System_String_System_String_System_Byte___
+  name: ComputeHash
+  nameWithType: StringUtil.ComputeHash
+  fullName: Reportman.Drawing.StringUtil.ComputeHash
+- uid: Reportman.Drawing.StringUtil.PadDecimalLeftN*
+  commentId: Overload:Reportman.Drawing.StringUtil.PadDecimalLeftN
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_PadDecimalLeftN_System_Decimal_System_Int32_System_Int32_
+  name: PadDecimalLeftN
+  nameWithType: StringUtil.PadDecimalLeftN
+  fullName: Reportman.Drawing.StringUtil.PadDecimalLeftN
+- uid: System.Decimal
+  commentId: T:System.Decimal
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.decimal
+  name: decimal
+  nameWithType: decimal
+  fullName: decimal
+  nameWithType.vb: Decimal
+  fullName.vb: Decimal
+  name.vb: Decimal
+- uid: Reportman.Drawing.StringUtil.PadDecimalLeftS*
+  commentId: Overload:Reportman.Drawing.StringUtil.PadDecimalLeftS
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_PadDecimalLeftS_System_Decimal_System_Int32_System_Int32_
+  name: PadDecimalLeftS
+  nameWithType: StringUtil.PadDecimalLeftS
+  fullName: Reportman.Drawing.StringUtil.PadDecimalLeftS
+- uid: Reportman.Drawing.StringUtil.StripHTML*
+  commentId: Overload:Reportman.Drawing.StringUtil.StripHTML
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_StripHTML_System_String_
+  name: StripHTML
+  nameWithType: StringUtil.StripHTML
+  fullName: Reportman.Drawing.StringUtil.StripHTML
+- uid: Reportman.Drawing.StringUtil.GetSizeAsString*
+  commentId: Overload:Reportman.Drawing.StringUtil.GetSizeAsString
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_GetSizeAsString_System_Int64_
+  name: GetSizeAsString
+  nameWithType: StringUtil.GetSizeAsString
+  fullName: Reportman.Drawing.StringUtil.GetSizeAsString
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: Reportman.Drawing.StringUtil.GetSizeAsSmallString*
+  commentId: Overload:Reportman.Drawing.StringUtil.GetSizeAsSmallString
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_GetSizeAsSmallString_System_Int64_
+  name: GetSizeAsSmallString
+  nameWithType: StringUtil.GetSizeAsSmallString
+  fullName: Reportman.Drawing.StringUtil.GetSizeAsSmallString
+- uid: Reportman.Drawing.StringUtil.CountOfChar*
+  commentId: Overload:Reportman.Drawing.StringUtil.CountOfChar
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_CountOfChar_System_Char_System_String_
+  name: CountOfChar
+  nameWithType: StringUtil.CountOfChar
+  fullName: Reportman.Drawing.StringUtil.CountOfChar
+- uid: System.Char
+  commentId: T:System.Char
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.char
+  name: char
+  nameWithType: char
+  fullName: char
+  nameWithType.vb: Char
+  fullName.vb: Char
+  name.vb: Char
+- uid: Reportman.Drawing.StringUtil.QuoteStr*
+  commentId: Overload:Reportman.Drawing.StringUtil.QuoteStr
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_QuoteStr_System_String_
+  name: QuoteStr
+  nameWithType: StringUtil.QuoteStr
+  fullName: Reportman.Drawing.StringUtil.QuoteStr
+- uid: Reportman.Drawing.StringUtil.DoubleQuoteStr*
+  commentId: Overload:Reportman.Drawing.StringUtil.DoubleQuoteStr
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_DoubleQuoteStr_System_String_
+  name: DoubleQuoteStr
+  nameWithType: StringUtil.DoubleQuoteStr
+  fullName: Reportman.Drawing.StringUtil.DoubleQuoteStr
+- uid: Reportman.Drawing.StringUtil.DoubleQuoteStrJson*
+  commentId: Overload:Reportman.Drawing.StringUtil.DoubleQuoteStrJson
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_DoubleQuoteStrJson_System_String_
+  name: DoubleQuoteStrJson
+  nameWithType: StringUtil.DoubleQuoteStrJson
+  fullName: Reportman.Drawing.StringUtil.DoubleQuoteStrJson
+- uid: Reportman.Drawing.StringUtil.CustomQuoteStr*
+  commentId: Overload:Reportman.Drawing.StringUtil.CustomQuoteStr
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_CustomQuoteStr_System_String_System_Char_
+  name: CustomQuoteStr
+  nameWithType: StringUtil.CustomQuoteStr
+  fullName: Reportman.Drawing.StringUtil.CustomQuoteStr
+- uid: Reportman.Drawing.StringUtil.RepeatChar*
+  commentId: Overload:Reportman.Drawing.StringUtil.RepeatChar
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_RepeatChar_System_Char_System_Int32_
+  name: RepeatChar
+  nameWithType: StringUtil.RepeatChar
+  fullName: Reportman.Drawing.StringUtil.RepeatChar
+- uid: Reportman.Drawing.StringUtil.ByteToHex*
+  commentId: Overload:Reportman.Drawing.StringUtil.ByteToHex
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_ByteToHex_System_Byte_
+  name: ByteToHex
+  nameWithType: StringUtil.ByteToHex
+  fullName: Reportman.Drawing.StringUtil.ByteToHex
+- uid: System.Byte
+  commentId: T:System.Byte
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte
+  nameWithType: byte
+  fullName: byte
+  nameWithType.vb: Byte
+  fullName.vb: Byte
+  name.vb: Byte
+- uid: Reportman.Drawing.StringUtil.IsAlpha*
+  commentId: Overload:Reportman.Drawing.StringUtil.IsAlpha
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_IsAlpha_System_Char_
+  name: IsAlpha
+  nameWithType: StringUtil.IsAlpha
+  fullName: Reportman.Drawing.StringUtil.IsAlpha
+- uid: Reportman.Drawing.StringUtil.IsDigit*
+  commentId: Overload:Reportman.Drawing.StringUtil.IsDigit
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_IsDigit_System_Char_
+  name: IsDigit
+  nameWithType: StringUtil.IsDigit
+  fullName: Reportman.Drawing.StringUtil.IsDigit
+- uid: Reportman.Drawing.StringUtil.IsAllDigits*
+  commentId: Overload:Reportman.Drawing.StringUtil.IsAllDigits
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_IsAllDigits_System_String_
+  name: IsAllDigits
+  nameWithType: StringUtil.IsAllDigits
+  fullName: Reportman.Drawing.StringUtil.IsAllDigits
+- uid: Reportman.Drawing.StringUtil.ContainsAllWords*
+  commentId: Overload:Reportman.Drawing.StringUtil.ContainsAllWords
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_ContainsAllWords_System_String_System_Collections_Generic_IEnumerable_System_String__
+  name: ContainsAllWords
+  nameWithType: StringUtil.ContainsAllWords
+  fullName: Reportman.Drawing.StringUtil.ContainsAllWords
+- uid: System.Collections.Generic.IEnumerable{System.String}
+  commentId: T:System.Collections.Generic.IEnumerable{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<string>
+  nameWithType: IEnumerable<string>
+  fullName: System.Collections.Generic.IEnumerable<string>
+  nameWithType.vb: IEnumerable(Of String)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of String)
+  name.vb: IEnumerable(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Reportman.Drawing.StringUtil.HexToBytes*
+  commentId: Overload:Reportman.Drawing.StringUtil.HexToBytes
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_HexToBytes_System_String_System_Byte___
+  name: HexToBytes
+  nameWithType: StringUtil.HexToBytes
+  fullName: Reportman.Drawing.StringUtil.HexToBytes
+- uid: Reportman.Drawing.StringUtil.Decode*
+  commentId: Overload:Reportman.Drawing.StringUtil.Decode
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_Decode_System_String_System_Int32_
+  name: Decode
+  nameWithType: StringUtil.Decode
+  fullName: Reportman.Drawing.StringUtil.Decode
+- uid: Reportman.Drawing.StringUtil.Encode*
+  commentId: Overload:Reportman.Drawing.StringUtil.Encode
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_Encode_System_String_System_Int32_
+  name: Encode
+  nameWithType: StringUtil.Encode
+  fullName: Reportman.Drawing.StringUtil.Encode
+- uid: Reportman.Drawing.StringUtil.ComprovarNif*
+  commentId: Overload:Reportman.Drawing.StringUtil.ComprovarNif
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_ComprovarNif_System_String_
+  name: ComprovarNif
+  nameWithType: StringUtil.ComprovarNif
+  fullName: Reportman.Drawing.StringUtil.ComprovarNif
+- uid: Reportman.Drawing.StringUtil.ValidaCuentaBancaria*
+  commentId: Overload:Reportman.Drawing.StringUtil.ValidaCuentaBancaria
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_ValidaCuentaBancaria_System_String_
+  name: ValidaCuentaBancaria
+  nameWithType: StringUtil.ValidaCuentaBancaria
+  fullName: Reportman.Drawing.StringUtil.ValidaCuentaBancaria
+- uid: Reportman.Drawing.StringUtil.ComprobarMail*
+  commentId: Overload:Reportman.Drawing.StringUtil.ComprobarMail
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_ComprobarMail_System_String_
+  name: ComprobarMail
+  nameWithType: StringUtil.ComprobarMail
+  fullName: Reportman.Drawing.StringUtil.ComprobarMail
+- uid: Reportman.Drawing.StringUtil.RemoveDiacritics*
+  commentId: Overload:Reportman.Drawing.StringUtil.RemoveDiacritics
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_RemoveDiacritics_System_String_
+  name: RemoveDiacritics
+  nameWithType: StringUtil.RemoveDiacritics
+  fullName: Reportman.Drawing.StringUtil.RemoveDiacritics
+- uid: Reportman.Drawing.StringUtil.NormalizeToNFC*
+  commentId: Overload:Reportman.Drawing.StringUtil.NormalizeToNFC
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_NormalizeToNFC_System_String_
+  name: NormalizeToNFC
+  nameWithType: StringUtil.NormalizeToNFC
+  fullName: Reportman.Drawing.StringUtil.NormalizeToNFC
+- uid: Reportman.Drawing.StringUtil.NormalizeLineBreaks*
+  commentId: Overload:Reportman.Drawing.StringUtil.NormalizeLineBreaks
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_NormalizeLineBreaks_System_String_
+  name: NormalizeLineBreaks
+  nameWithType: StringUtil.NormalizeLineBreaks
+  fullName: Reportman.Drawing.StringUtil.NormalizeLineBreaks
+- uid: Reportman.Drawing.StringUtil.ValidateStringRegularExpresion*
+  commentId: Overload:Reportman.Drawing.StringUtil.ValidateStringRegularExpresion
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_ValidateStringRegularExpresion_System_String_System_String_
+  name: ValidateStringRegularExpresion
+  nameWithType: StringUtil.ValidateStringRegularExpresion
+  fullName: Reportman.Drawing.StringUtil.ValidateStringRegularExpresion
+- uid: Reportman.Drawing.StringUtil.EAN13CalculateCheckDigit*
+  commentId: Overload:Reportman.Drawing.StringUtil.EAN13CalculateCheckDigit
+  isExternal: true
+  href: Reportman.Drawing.StringUtil.html#Reportman_Drawing_StringUtil_EAN13CalculateCheckDigit_System_String_
+  name: EAN13CalculateCheckDigit
+  nameWithType: StringUtil.EAN13CalculateCheckDigit
+  fullName: Reportman.Drawing.StringUtil.EAN13CalculateCheckDigit

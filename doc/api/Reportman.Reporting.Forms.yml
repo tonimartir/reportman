@@ -1,0 +1,152 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.Forms
+  commentId: N:Reportman.Reporting.Forms
+  id: Reportman.Reporting.Forms
+  children:
+  - Reportman.Reporting.Forms.DataGridViewPrint
+  - Reportman.Reporting.Forms.DataGridViewPrintOptions
+  - Reportman.Reporting.Forms.DataProgress
+  - Reportman.Reporting.Forms.DataProgressEventHandler
+  - Reportman.Reporting.Forms.DataShow
+  - Reportman.Reporting.Forms.EmbeddedFileForm
+  - Reportman.Reporting.Forms.GridExport
+  - Reportman.Reporting.Forms.PageSetup
+  - Reportman.Reporting.Forms.ParamsControl
+  - Reportman.Reporting.Forms.ParamsForm
+  - Reportman.Reporting.Forms.PrintOutReportWinForms
+  - Reportman.Reporting.Forms.SearchForm
+  langs:
+  - csharp
+  - vb
+  name: Reportman.Reporting.Forms
+  nameWithType: Reportman.Reporting.Forms
+  fullName: Reportman.Reporting.Forms
+  type: Namespace
+  assemblies:
+  - Reportman.Drawing.Forms
+references:
+- uid: Reportman.Reporting.Forms.DataProgressEventHandler
+  commentId: T:Reportman.Reporting.Forms.DataProgressEventHandler
+  parent: Reportman.Reporting.Forms
+  isExternal: true
+  href: Reportman.Reporting.Forms.DataProgressEventHandler.html
+  name: DataProgressEventHandler
+  nameWithType: DataProgressEventHandler
+  fullName: Reportman.Reporting.Forms.DataProgressEventHandler
+- uid: Reportman.Reporting.Forms.DataProgress
+  commentId: T:Reportman.Reporting.Forms.DataProgress
+  parent: Reportman.Reporting.Forms
+  isExternal: true
+  href: Reportman.Reporting.Forms.DataProgress.html
+  name: DataProgress
+  nameWithType: DataProgress
+  fullName: Reportman.Reporting.Forms.DataProgress
+- uid: Reportman.Reporting.Forms.DataShow
+  commentId: T:Reportman.Reporting.Forms.DataShow
+  isExternal: true
+  href: Reportman.Reporting.Forms.DataShow.html
+  name: DataShow
+  nameWithType: DataShow
+  fullName: Reportman.Reporting.Forms.DataShow
+- uid: Reportman.Reporting.Forms.EmbeddedFileForm
+  commentId: T:Reportman.Reporting.Forms.EmbeddedFileForm
+  isExternal: true
+  href: Reportman.Reporting.Forms.EmbeddedFileForm.html
+  name: EmbeddedFileForm
+  nameWithType: EmbeddedFileForm
+  fullName: Reportman.Reporting.Forms.EmbeddedFileForm
+- uid: Reportman.Reporting.Forms.GridExport
+  commentId: T:Reportman.Reporting.Forms.GridExport
+  isExternal: true
+  href: Reportman.Reporting.Forms.GridExport.html
+  name: GridExport
+  nameWithType: GridExport
+  fullName: Reportman.Reporting.Forms.GridExport
+- uid: Reportman.Reporting.Forms.PageSetup
+  commentId: T:Reportman.Reporting.Forms.PageSetup
+  isExternal: true
+  href: Reportman.Reporting.Forms.PageSetup.html
+  name: PageSetup
+  nameWithType: PageSetup
+  fullName: Reportman.Reporting.Forms.PageSetup
+- uid: Reportman.Reporting.Forms.ParamsControl
+  commentId: T:Reportman.Reporting.Forms.ParamsControl
+  isExternal: true
+  href: Reportman.Reporting.Forms.ParamsControl.html
+  name: ParamsControl
+  nameWithType: ParamsControl
+  fullName: Reportman.Reporting.Forms.ParamsControl
+- uid: Reportman.Reporting.Forms.ParamsForm
+  commentId: T:Reportman.Reporting.Forms.ParamsForm
+  isExternal: true
+  href: Reportman.Reporting.Forms.ParamsForm.html
+  name: ParamsForm
+  nameWithType: ParamsForm
+  fullName: Reportman.Reporting.Forms.ParamsForm
+- uid: Reportman.Reporting.Forms.PrintOutReportWinForms
+  commentId: T:Reportman.Reporting.Forms.PrintOutReportWinForms
+  isExternal: true
+  href: Reportman.Reporting.Forms.PrintOutReportWinForms.html
+  name: PrintOutReportWinForms
+  nameWithType: PrintOutReportWinForms
+  fullName: Reportman.Reporting.Forms.PrintOutReportWinForms
+- uid: Reportman.Reporting.Forms.DataGridViewPrint
+  commentId: T:Reportman.Reporting.Forms.DataGridViewPrint
+  isExternal: true
+  href: Reportman.Reporting.Forms.DataGridViewPrint.html
+  name: DataGridViewPrint
+  nameWithType: DataGridViewPrint
+  fullName: Reportman.Reporting.Forms.DataGridViewPrint
+- uid: Reportman.Reporting.Forms.DataGridViewPrintOptions
+  commentId: T:Reportman.Reporting.Forms.DataGridViewPrintOptions
+  parent: Reportman.Reporting.Forms
+  isExternal: true
+  href: Reportman.Reporting.Forms.DataGridViewPrintOptions.html
+  name: DataGridViewPrintOptions
+  nameWithType: DataGridViewPrintOptions
+  fullName: Reportman.Reporting.Forms.DataGridViewPrintOptions
+- uid: Reportman.Reporting.Forms.SearchForm
+  commentId: T:Reportman.Reporting.Forms.SearchForm
+  isExternal: true
+  href: Reportman.Reporting.Forms.SearchForm.html
+  name: SearchForm
+  nameWithType: SearchForm
+  fullName: Reportman.Reporting.Forms.SearchForm
+- uid: Reportman.Reporting.Forms
+  commentId: N:Reportman.Reporting.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting.Forms
+  nameWithType: Reportman.Reporting.Forms
+  fullName: Reportman.Reporting.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  - name: .
+  - uid: Reportman.Reporting.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Reporting.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  - name: .
+  - uid: Reportman.Reporting.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Reporting.Forms.html

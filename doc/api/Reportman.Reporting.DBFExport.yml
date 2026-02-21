@@ -1,0 +1,688 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.DBFExport
+  commentId: T:Reportman.Reporting.DBFExport
+  id: DBFExport
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.DBFExport.#ctor
+  - Reportman.Reporting.DBFExport.CreateConnection(System.String)
+  - Reportman.Reporting.DBFExport.SaveToFile(System.Data.DataTable,System.String,Reportman.Reporting.DataProgressEvent)
+  - Reportman.Reporting.DBFExport.SaveToFile(System.Data.DataTable,System.String,System.Data.Common.DbConnection)
+  - Reportman.Reporting.DBFExport.SaveToFile(System.Data.DataTable,System.String,System.Data.Common.DbConnection,System.Int32)
+  - Reportman.Reporting.DBFExport.SaveToFile(System.Data.DataTable,System.String,System.Data.Common.DbConnection,System.Int32,Reportman.Reporting.DataProgressEvent)
+  - Reportman.Reporting.DBFExport.TypeToDBFDbType(System.Type,System.Int32)
+  - Reportman.Reporting.DBFExport.TypeToDBFSqlType(System.Type,System.Int32)
+  langs:
+  - csharp
+  - vb
+  name: DBFExport
+  nameWithType: DBFExport
+  fullName: Reportman.Reporting.DBFExport
+  type: Class
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Reporting
+  syntax:
+    content: public class DBFExport
+    content.vb: Public Class DBFExport
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Reporting.DBFExport.CreateConnection(System.String)
+  commentId: M:Reportman.Reporting.DBFExport.CreateConnection(System.String)
+  id: CreateConnection(System.String)
+  parent: Reportman.Reporting.DBFExport
+  langs:
+  - csharp
+  - vb
+  name: CreateConnection(string)
+  nameWithType: DBFExport.CreateConnection(string)
+  fullName: Reportman.Reporting.DBFExport.CreateConnection(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Reporting
+  syntax:
+    content: public static DbConnection CreateConnection(string folder)
+    parameters:
+    - id: folder
+      type: System.String
+    return:
+      type: System.Data.Common.DbConnection
+    content.vb: Public Shared Function CreateConnection(folder As String) As DbConnection
+  overload: Reportman.Reporting.DBFExport.CreateConnection*
+  nameWithType.vb: DBFExport.CreateConnection(String)
+  fullName.vb: Reportman.Reporting.DBFExport.CreateConnection(String)
+  name.vb: CreateConnection(String)
+- uid: Reportman.Reporting.DBFExport.TypeToDBFDbType(System.Type,System.Int32)
+  commentId: M:Reportman.Reporting.DBFExport.TypeToDBFDbType(System.Type,System.Int32)
+  id: TypeToDBFDbType(System.Type,System.Int32)
+  parent: Reportman.Reporting.DBFExport
+  langs:
+  - csharp
+  - vb
+  name: TypeToDBFDbType(Type, int)
+  nameWithType: DBFExport.TypeToDBFDbType(Type, int)
+  fullName: Reportman.Reporting.DBFExport.TypeToDBFDbType(System.Type, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Reporting
+  syntax:
+    content: public static DbType TypeToDBFDbType(Type valor, int level)
+    parameters:
+    - id: valor
+      type: System.Type
+    - id: level
+      type: System.Int32
+    return:
+      type: System.Data.DbType
+    content.vb: Public Shared Function TypeToDBFDbType(valor As Type, level As Integer) As DbType
+  overload: Reportman.Reporting.DBFExport.TypeToDBFDbType*
+  nameWithType.vb: DBFExport.TypeToDBFDbType(Type, Integer)
+  fullName.vb: Reportman.Reporting.DBFExport.TypeToDBFDbType(System.Type, Integer)
+  name.vb: TypeToDBFDbType(Type, Integer)
+- uid: Reportman.Reporting.DBFExport.SaveToFile(System.Data.DataTable,System.String,System.Data.Common.DbConnection)
+  commentId: M:Reportman.Reporting.DBFExport.SaveToFile(System.Data.DataTable,System.String,System.Data.Common.DbConnection)
+  id: SaveToFile(System.Data.DataTable,System.String,System.Data.Common.DbConnection)
+  parent: Reportman.Reporting.DBFExport
+  langs:
+  - csharp
+  - vb
+  name: SaveToFile(DataTable, string, DbConnection)
+  nameWithType: DBFExport.SaveToFile(DataTable, string, DbConnection)
+  fullName: Reportman.Reporting.DBFExport.SaveToFile(System.Data.DataTable, string, System.Data.Common.DbConnection)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Reporting
+  syntax:
+    content: public static void SaveToFile(DataTable ntable, string filename, DbConnection connection)
+    parameters:
+    - id: ntable
+      type: System.Data.DataTable
+    - id: filename
+      type: System.String
+    - id: connection
+      type: System.Data.Common.DbConnection
+    content.vb: Public Shared Sub SaveToFile(ntable As DataTable, filename As String, connection As DbConnection)
+  overload: Reportman.Reporting.DBFExport.SaveToFile*
+  nameWithType.vb: DBFExport.SaveToFile(DataTable, String, DbConnection)
+  fullName.vb: Reportman.Reporting.DBFExport.SaveToFile(System.Data.DataTable, String, System.Data.Common.DbConnection)
+  name.vb: SaveToFile(DataTable, String, DbConnection)
+- uid: Reportman.Reporting.DBFExport.SaveToFile(System.Data.DataTable,System.String,System.Data.Common.DbConnection,System.Int32)
+  commentId: M:Reportman.Reporting.DBFExport.SaveToFile(System.Data.DataTable,System.String,System.Data.Common.DbConnection,System.Int32)
+  id: SaveToFile(System.Data.DataTable,System.String,System.Data.Common.DbConnection,System.Int32)
+  parent: Reportman.Reporting.DBFExport
+  langs:
+  - csharp
+  - vb
+  name: SaveToFile(DataTable, string, DbConnection, int)
+  nameWithType: DBFExport.SaveToFile(DataTable, string, DbConnection, int)
+  fullName: Reportman.Reporting.DBFExport.SaveToFile(System.Data.DataTable, string, System.Data.Common.DbConnection, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Reporting
+  syntax:
+    content: public static void SaveToFile(DataTable ntable, string filename, DbConnection connection, int level)
+    parameters:
+    - id: ntable
+      type: System.Data.DataTable
+    - id: filename
+      type: System.String
+    - id: connection
+      type: System.Data.Common.DbConnection
+    - id: level
+      type: System.Int32
+    content.vb: Public Shared Sub SaveToFile(ntable As DataTable, filename As String, connection As DbConnection, level As Integer)
+  overload: Reportman.Reporting.DBFExport.SaveToFile*
+  nameWithType.vb: DBFExport.SaveToFile(DataTable, String, DbConnection, Integer)
+  fullName.vb: Reportman.Reporting.DBFExport.SaveToFile(System.Data.DataTable, String, System.Data.Common.DbConnection, Integer)
+  name.vb: SaveToFile(DataTable, String, DbConnection, Integer)
+- uid: Reportman.Reporting.DBFExport.SaveToFile(System.Data.DataTable,System.String,System.Data.Common.DbConnection,System.Int32,Reportman.Reporting.DataProgressEvent)
+  commentId: M:Reportman.Reporting.DBFExport.SaveToFile(System.Data.DataTable,System.String,System.Data.Common.DbConnection,System.Int32,Reportman.Reporting.DataProgressEvent)
+  id: SaveToFile(System.Data.DataTable,System.String,System.Data.Common.DbConnection,System.Int32,Reportman.Reporting.DataProgressEvent)
+  parent: Reportman.Reporting.DBFExport
+  langs:
+  - csharp
+  - vb
+  name: SaveToFile(DataTable, string, DbConnection, int, DataProgressEvent)
+  nameWithType: DBFExport.SaveToFile(DataTable, string, DbConnection, int, DataProgressEvent)
+  fullName: Reportman.Reporting.DBFExport.SaveToFile(System.Data.DataTable, string, System.Data.Common.DbConnection, int, Reportman.Reporting.DataProgressEvent)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Reporting
+  syntax:
+    content: public static void SaveToFile(DataTable ntable, string filename, DbConnection connection, int level, DataProgressEvent eventprogress)
+    parameters:
+    - id: ntable
+      type: System.Data.DataTable
+    - id: filename
+      type: System.String
+    - id: connection
+      type: System.Data.Common.DbConnection
+    - id: level
+      type: System.Int32
+    - id: eventprogress
+      type: Reportman.Reporting.DataProgressEvent
+    content.vb: Public Shared Sub SaveToFile(ntable As DataTable, filename As String, connection As DbConnection, level As Integer, eventprogress As DataProgressEvent)
+  overload: Reportman.Reporting.DBFExport.SaveToFile*
+  nameWithType.vb: DBFExport.SaveToFile(DataTable, String, DbConnection, Integer, DataProgressEvent)
+  fullName.vb: Reportman.Reporting.DBFExport.SaveToFile(System.Data.DataTable, String, System.Data.Common.DbConnection, Integer, Reportman.Reporting.DataProgressEvent)
+  name.vb: SaveToFile(DataTable, String, DbConnection, Integer, DataProgressEvent)
+- uid: Reportman.Reporting.DBFExport.TypeToDBFSqlType(System.Type,System.Int32)
+  commentId: M:Reportman.Reporting.DBFExport.TypeToDBFSqlType(System.Type,System.Int32)
+  id: TypeToDBFSqlType(System.Type,System.Int32)
+  parent: Reportman.Reporting.DBFExport
+  langs:
+  - csharp
+  - vb
+  name: TypeToDBFSqlType(Type, int)
+  nameWithType: DBFExport.TypeToDBFSqlType(Type, int)
+  fullName: Reportman.Reporting.DBFExport.TypeToDBFSqlType(System.Type, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Reporting
+  syntax:
+    content: public static string TypeToDBFSqlType(Type ntype, int length)
+    parameters:
+    - id: ntype
+      type: System.Type
+    - id: length
+      type: System.Int32
+    return:
+      type: System.String
+    content.vb: Public Shared Function TypeToDBFSqlType(ntype As Type, length As Integer) As String
+  overload: Reportman.Reporting.DBFExport.TypeToDBFSqlType*
+  nameWithType.vb: DBFExport.TypeToDBFSqlType(Type, Integer)
+  fullName.vb: Reportman.Reporting.DBFExport.TypeToDBFSqlType(System.Type, Integer)
+  name.vb: TypeToDBFSqlType(Type, Integer)
+- uid: Reportman.Reporting.DBFExport.SaveToFile(System.Data.DataTable,System.String,Reportman.Reporting.DataProgressEvent)
+  commentId: M:Reportman.Reporting.DBFExport.SaveToFile(System.Data.DataTable,System.String,Reportman.Reporting.DataProgressEvent)
+  id: SaveToFile(System.Data.DataTable,System.String,Reportman.Reporting.DataProgressEvent)
+  parent: Reportman.Reporting.DBFExport
+  langs:
+  - csharp
+  - vb
+  name: SaveToFile(DataTable, string, DataProgressEvent)
+  nameWithType: DBFExport.SaveToFile(DataTable, string, DataProgressEvent)
+  fullName: Reportman.Reporting.DBFExport.SaveToFile(System.Data.DataTable, string, Reportman.Reporting.DataProgressEvent)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Reporting
+  syntax:
+    content: public static void SaveToFile(DataTable ntable, string filename, DataProgressEvent eventprogress)
+    parameters:
+    - id: ntable
+      type: System.Data.DataTable
+    - id: filename
+      type: System.String
+    - id: eventprogress
+      type: Reportman.Reporting.DataProgressEvent
+    content.vb: Public Shared Sub SaveToFile(ntable As DataTable, filename As String, eventprogress As DataProgressEvent)
+  overload: Reportman.Reporting.DBFExport.SaveToFile*
+  nameWithType.vb: DBFExport.SaveToFile(DataTable, String, DataProgressEvent)
+  fullName.vb: Reportman.Reporting.DBFExport.SaveToFile(System.Data.DataTable, String, Reportman.Reporting.DataProgressEvent)
+  name.vb: SaveToFile(DataTable, String, DataProgressEvent)
+- uid: Reportman.Reporting.DBFExport.#ctor
+  commentId: M:Reportman.Reporting.DBFExport.#ctor
+  id: '#ctor'
+  parent: Reportman.Reporting.DBFExport
+  langs:
+  - csharp
+  - vb
+  name: DBFExport()
+  nameWithType: DBFExport.DBFExport()
+  fullName: Reportman.Reporting.DBFExport.DBFExport()
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Reporting
+  syntax:
+    content: public DBFExport()
+    content.vb: Public Sub New()
+  overload: Reportman.Reporting.DBFExport.#ctor*
+  nameWithType.vb: DBFExport.New()
+  fullName.vb: Reportman.Reporting.DBFExport.New()
+  name.vb: New()
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Reporting.DBFExport.CreateConnection*
+  commentId: Overload:Reportman.Reporting.DBFExport.CreateConnection
+  isExternal: true
+  href: Reportman.Reporting.DBFExport.html#Reportman_Reporting_DBFExport_CreateConnection_System_String_
+  name: CreateConnection
+  nameWithType: DBFExport.CreateConnection
+  fullName: Reportman.Reporting.DBFExport.CreateConnection
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Data.Common.DbConnection
+  commentId: T:System.Data.Common.DbConnection
+  parent: System.Data.Common
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.common.dbconnection
+  name: DbConnection
+  nameWithType: DbConnection
+  fullName: System.Data.Common.DbConnection
+- uid: System.Data.Common
+  commentId: N:System.Data.Common
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Data.Common
+  nameWithType: System.Data.Common
+  fullName: System.Data.Common
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+  - name: .
+  - uid: System.Data.Common
+    name: Common
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.common
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+  - name: .
+  - uid: System.Data.Common
+    name: Common
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.common
+- uid: Reportman.Reporting.DBFExport.TypeToDBFDbType*
+  commentId: Overload:Reportman.Reporting.DBFExport.TypeToDBFDbType
+  isExternal: true
+  href: Reportman.Reporting.DBFExport.html#Reportman_Reporting_DBFExport_TypeToDBFDbType_System_Type_System_Int32_
+  name: TypeToDBFDbType
+  nameWithType: DBFExport.TypeToDBFDbType
+  fullName: Reportman.Reporting.DBFExport.TypeToDBFDbType
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.type
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Data.DbType
+  commentId: T:System.Data.DbType
+  parent: System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.dbtype
+  name: DbType
+  nameWithType: DbType
+  fullName: System.Data.DbType
+- uid: System.Data
+  commentId: N:System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Data
+  nameWithType: System.Data
+  fullName: System.Data
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+- uid: Reportman.Reporting.DBFExport.SaveToFile*
+  commentId: Overload:Reportman.Reporting.DBFExport.SaveToFile
+  isExternal: true
+  href: Reportman.Reporting.DBFExport.html#Reportman_Reporting_DBFExport_SaveToFile_System_Data_DataTable_System_String_System_Data_Common_DbConnection_
+  name: SaveToFile
+  nameWithType: DBFExport.SaveToFile
+  fullName: Reportman.Reporting.DBFExport.SaveToFile
+- uid: System.Data.DataTable
+  commentId: T:System.Data.DataTable
+  parent: System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable
+  name: DataTable
+  nameWithType: DataTable
+  fullName: System.Data.DataTable
+- uid: Reportman.Reporting.DataProgressEvent
+  commentId: T:Reportman.Reporting.DataProgressEvent
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.DataProgressEvent.html
+  name: DataProgressEvent
+  nameWithType: DataProgressEvent
+  fullName: Reportman.Reporting.DataProgressEvent
+- uid: Reportman.Reporting.DBFExport.TypeToDBFSqlType*
+  commentId: Overload:Reportman.Reporting.DBFExport.TypeToDBFSqlType
+  isExternal: true
+  href: Reportman.Reporting.DBFExport.html#Reportman_Reporting_DBFExport_TypeToDBFSqlType_System_Type_System_Int32_
+  name: TypeToDBFSqlType
+  nameWithType: DBFExport.TypeToDBFSqlType
+  fullName: Reportman.Reporting.DBFExport.TypeToDBFSqlType
+- uid: Reportman.Reporting.DBFExport.#ctor*
+  commentId: Overload:Reportman.Reporting.DBFExport.#ctor
+  isExternal: true
+  href: Reportman.Reporting.DBFExport.html#Reportman_Reporting_DBFExport__ctor
+  name: DBFExport
+  nameWithType: DBFExport.DBFExport
+  fullName: Reportman.Reporting.DBFExport.DBFExport
+  nameWithType.vb: DBFExport.New
+  fullName.vb: Reportman.Reporting.DBFExport.New
+  name.vb: New

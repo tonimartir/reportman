@@ -1,0 +1,350 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.ISearchWindow
+  commentId: T:Reportman.Drawing.Forms.ISearchWindow
+  id: ISearchWindow
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.ISearchWindow.ChangeSearchString(System.String)
+  - Reportman.Drawing.Forms.ISearchWindow.Click(System.Drawing.Point)
+  - Reportman.Drawing.Forms.ISearchWindow.CreateWindow
+  - Reportman.Drawing.Forms.ISearchWindow.Deactivate
+  - Reportman.Drawing.Forms.ISearchWindow.Enabled
+  - Reportman.Drawing.Forms.ISearchWindow.KeyOperation(Reportman.Drawing.Forms.SearchWindowKeyOperation)
+  langs:
+  - csharp
+  - vb
+  name: ISearchWindow
+  nameWithType: ISearchWindow
+  fullName: Reportman.Drawing.Forms.ISearchWindow
+  type: Interface
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public interface ISearchWindow
+    content.vb: Public Interface ISearchWindow
+- uid: Reportman.Drawing.Forms.ISearchWindow.ChangeSearchString(System.String)
+  commentId: M:Reportman.Drawing.Forms.ISearchWindow.ChangeSearchString(System.String)
+  id: ChangeSearchString(System.String)
+  parent: Reportman.Drawing.Forms.ISearchWindow
+  langs:
+  - csharp
+  - vb
+  name: ChangeSearchString(string)
+  nameWithType: ISearchWindow.ChangeSearchString(string)
+  fullName: Reportman.Drawing.Forms.ISearchWindow.ChangeSearchString(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: void ChangeSearchString(string newvalue)
+    parameters:
+    - id: newvalue
+      type: System.String
+    content.vb: Sub ChangeSearchString(newvalue As String)
+  overload: Reportman.Drawing.Forms.ISearchWindow.ChangeSearchString*
+  nameWithType.vb: ISearchWindow.ChangeSearchString(String)
+  fullName.vb: Reportman.Drawing.Forms.ISearchWindow.ChangeSearchString(String)
+  name.vb: ChangeSearchString(String)
+- uid: Reportman.Drawing.Forms.ISearchWindow.Deactivate
+  commentId: M:Reportman.Drawing.Forms.ISearchWindow.Deactivate
+  id: Deactivate
+  parent: Reportman.Drawing.Forms.ISearchWindow
+  langs:
+  - csharp
+  - vb
+  name: Deactivate()
+  nameWithType: ISearchWindow.Deactivate()
+  fullName: Reportman.Drawing.Forms.ISearchWindow.Deactivate()
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: void Deactivate()
+    content.vb: Sub Deactivate()
+  overload: Reportman.Drawing.Forms.ISearchWindow.Deactivate*
+- uid: Reportman.Drawing.Forms.ISearchWindow.KeyOperation(Reportman.Drawing.Forms.SearchWindowKeyOperation)
+  commentId: M:Reportman.Drawing.Forms.ISearchWindow.KeyOperation(Reportman.Drawing.Forms.SearchWindowKeyOperation)
+  id: KeyOperation(Reportman.Drawing.Forms.SearchWindowKeyOperation)
+  parent: Reportman.Drawing.Forms.ISearchWindow
+  langs:
+  - csharp
+  - vb
+  name: KeyOperation(SearchWindowKeyOperation)
+  nameWithType: ISearchWindow.KeyOperation(SearchWindowKeyOperation)
+  fullName: Reportman.Drawing.Forms.ISearchWindow.KeyOperation(Reportman.Drawing.Forms.SearchWindowKeyOperation)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: void KeyOperation(SearchWindowKeyOperation key_operation)
+    parameters:
+    - id: key_operation
+      type: Reportman.Drawing.Forms.SearchWindowKeyOperation
+    content.vb: Sub KeyOperation(key_operation As SearchWindowKeyOperation)
+  overload: Reportman.Drawing.Forms.ISearchWindow.KeyOperation*
+- uid: Reportman.Drawing.Forms.ISearchWindow.CreateWindow
+  commentId: M:Reportman.Drawing.Forms.ISearchWindow.CreateWindow
+  id: CreateWindow
+  parent: Reportman.Drawing.Forms.ISearchWindow
+  langs:
+  - csharp
+  - vb
+  name: CreateWindow()
+  nameWithType: ISearchWindow.CreateWindow()
+  fullName: Reportman.Drawing.Forms.ISearchWindow.CreateWindow()
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Control CreateWindow()
+    return:
+      type: System.Windows.Forms.Control
+    content.vb: Function CreateWindow() As Control
+  overload: Reportman.Drawing.Forms.ISearchWindow.CreateWindow*
+- uid: Reportman.Drawing.Forms.ISearchWindow.Click(System.Drawing.Point)
+  commentId: M:Reportman.Drawing.Forms.ISearchWindow.Click(System.Drawing.Point)
+  id: Click(System.Drawing.Point)
+  parent: Reportman.Drawing.Forms.ISearchWindow
+  langs:
+  - csharp
+  - vb
+  name: Click(Point)
+  nameWithType: ISearchWindow.Click(Point)
+  fullName: Reportman.Drawing.Forms.ISearchWindow.Click(System.Drawing.Point)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: bool Click(Point clientpoint)
+    parameters:
+    - id: clientpoint
+      type: System.Drawing.Point
+    return:
+      type: System.Boolean
+    content.vb: Function Click(clientpoint As Point) As Boolean
+  overload: Reportman.Drawing.Forms.ISearchWindow.Click*
+- uid: Reportman.Drawing.Forms.ISearchWindow.Enabled
+  commentId: P:Reportman.Drawing.Forms.ISearchWindow.Enabled
+  id: Enabled
+  parent: Reportman.Drawing.Forms.ISearchWindow
+  langs:
+  - csharp
+  - vb
+  name: Enabled
+  nameWithType: ISearchWindow.Enabled
+  fullName: Reportman.Drawing.Forms.ISearchWindow.Enabled
+  type: Property
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: bool Enabled { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Property Enabled As Boolean
+  overload: Reportman.Drawing.Forms.ISearchWindow.Enabled*
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: Reportman.Drawing.Forms.ISearchWindow.ChangeSearchString*
+  commentId: Overload:Reportman.Drawing.Forms.ISearchWindow.ChangeSearchString
+  isExternal: true
+  href: Reportman.Drawing.Forms.ISearchWindow.html#Reportman_Drawing_Forms_ISearchWindow_ChangeSearchString_System_String_
+  name: ChangeSearchString
+  nameWithType: ISearchWindow.ChangeSearchString
+  fullName: Reportman.Drawing.Forms.ISearchWindow.ChangeSearchString
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.Forms.ISearchWindow.Deactivate*
+  commentId: Overload:Reportman.Drawing.Forms.ISearchWindow.Deactivate
+  isExternal: true
+  href: Reportman.Drawing.Forms.ISearchWindow.html#Reportman_Drawing_Forms_ISearchWindow_Deactivate
+  name: Deactivate
+  nameWithType: ISearchWindow.Deactivate
+  fullName: Reportman.Drawing.Forms.ISearchWindow.Deactivate
+- uid: Reportman.Drawing.Forms.ISearchWindow.KeyOperation*
+  commentId: Overload:Reportman.Drawing.Forms.ISearchWindow.KeyOperation
+  isExternal: true
+  href: Reportman.Drawing.Forms.ISearchWindow.html#Reportman_Drawing_Forms_ISearchWindow_KeyOperation_Reportman_Drawing_Forms_SearchWindowKeyOperation_
+  name: KeyOperation
+  nameWithType: ISearchWindow.KeyOperation
+  fullName: Reportman.Drawing.Forms.ISearchWindow.KeyOperation
+- uid: Reportman.Drawing.Forms.SearchWindowKeyOperation
+  commentId: T:Reportman.Drawing.Forms.SearchWindowKeyOperation
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.SearchWindowKeyOperation.html
+  name: SearchWindowKeyOperation
+  nameWithType: SearchWindowKeyOperation
+  fullName: Reportman.Drawing.Forms.SearchWindowKeyOperation
+- uid: Reportman.Drawing.Forms.ISearchWindow.CreateWindow*
+  commentId: Overload:Reportman.Drawing.Forms.ISearchWindow.CreateWindow
+  isExternal: true
+  href: Reportman.Drawing.Forms.ISearchWindow.html#Reportman_Drawing_Forms_ISearchWindow_CreateWindow
+  name: CreateWindow
+  nameWithType: ISearchWindow.CreateWindow
+  fullName: Reportman.Drawing.Forms.ISearchWindow.CreateWindow
+- uid: System.Windows.Forms.Control
+  commentId: T:System.Windows.Forms.Control
+  parent: System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.control
+  name: Control
+  nameWithType: Control
+  fullName: System.Windows.Forms.Control
+- uid: System.Windows.Forms
+  commentId: N:System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Windows.Forms
+  nameWithType: System.Windows.Forms
+  fullName: System.Windows.Forms
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Windows
+    name: Windows
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows
+  - name: .
+  - uid: System.Windows.Forms
+    name: Forms
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Windows
+    name: Windows
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows
+  - name: .
+  - uid: System.Windows.Forms
+    name: Forms
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms
+- uid: Reportman.Drawing.Forms.ISearchWindow.Click*
+  commentId: Overload:Reportman.Drawing.Forms.ISearchWindow.Click
+  isExternal: true
+  href: Reportman.Drawing.Forms.ISearchWindow.html#Reportman_Drawing_Forms_ISearchWindow_Click_System_Drawing_Point_
+  name: Click
+  nameWithType: ISearchWindow.Click
+  fullName: Reportman.Drawing.Forms.ISearchWindow.Click
+- uid: System.Drawing.Point
+  commentId: T:System.Drawing.Point
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.point
+  name: Point
+  nameWithType: Point
+  fullName: System.Drawing.Point
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Drawing
+  commentId: N:System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Drawing
+  nameWithType: System.Drawing
+  fullName: System.Drawing
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+- uid: Reportman.Drawing.Forms.ISearchWindow.Enabled*
+  commentId: Overload:Reportman.Drawing.Forms.ISearchWindow.Enabled
+  isExternal: true
+  href: Reportman.Drawing.Forms.ISearchWindow.html#Reportman_Drawing_Forms_ISearchWindow_Enabled
+  name: Enabled
+  nameWithType: ISearchWindow.Enabled
+  fullName: Reportman.Drawing.Forms.ISearchWindow.Enabled

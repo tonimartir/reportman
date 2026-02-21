@@ -1,0 +1,124 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.SignatureControl.SignatureStyle
+  commentId: T:Reportman.Drawing.Forms.SignatureControl.SignatureStyle
+  id: SignatureControl.SignatureStyle
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.SignatureControl.SignatureStyle.Curve
+  - Reportman.Drawing.Forms.SignatureControl.SignatureStyle.Line
+  langs:
+  - csharp
+  - vb
+  name: SignatureControl.SignatureStyle
+  nameWithType: SignatureControl.SignatureStyle
+  fullName: Reportman.Drawing.Forms.SignatureControl.SignatureStyle
+  type: Enum
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public enum SignatureControl.SignatureStyle
+    content.vb: Public Enum SignatureControl.SignatureStyle
+- uid: Reportman.Drawing.Forms.SignatureControl.SignatureStyle.Curve
+  commentId: F:Reportman.Drawing.Forms.SignatureControl.SignatureStyle.Curve
+  id: Curve
+  parent: Reportman.Drawing.Forms.SignatureControl.SignatureStyle
+  langs:
+  - csharp
+  - vb
+  name: Curve
+  nameWithType: SignatureControl.SignatureStyle.Curve
+  fullName: Reportman.Drawing.Forms.SignatureControl.SignatureStyle.Curve
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Curve = 0
+    return:
+      type: Reportman.Drawing.Forms.SignatureControl.SignatureStyle
+- uid: Reportman.Drawing.Forms.SignatureControl.SignatureStyle.Line
+  commentId: F:Reportman.Drawing.Forms.SignatureControl.SignatureStyle.Line
+  id: Line
+  parent: Reportman.Drawing.Forms.SignatureControl.SignatureStyle
+  langs:
+  - csharp
+  - vb
+  name: Line
+  nameWithType: SignatureControl.SignatureStyle.Line
+  fullName: Reportman.Drawing.Forms.SignatureControl.SignatureStyle.Line
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Line = 1
+    return:
+      type: Reportman.Drawing.Forms.SignatureControl.SignatureStyle
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: Reportman.Drawing.Forms.SignatureControl.SignatureStyle
+  commentId: T:Reportman.Drawing.Forms.SignatureControl.SignatureStyle
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.SignatureControl.html
+  name: SignatureControl.SignatureStyle
+  nameWithType: SignatureControl.SignatureStyle
+  fullName: Reportman.Drawing.Forms.SignatureControl.SignatureStyle
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.SignatureControl
+    name: SignatureControl
+    isExternal: true
+    href: Reportman.Drawing.Forms.SignatureControl.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.SignatureControl.SignatureStyle
+    name: SignatureStyle
+    isExternal: true
+    href: Reportman.Drawing.Forms.SignatureControl.SignatureStyle.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.SignatureControl
+    name: SignatureControl
+    isExternal: true
+    href: Reportman.Drawing.Forms.SignatureControl.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.SignatureControl.SignatureStyle
+    name: SignatureStyle
+    isExternal: true
+    href: Reportman.Drawing.Forms.SignatureControl.SignatureStyle.html

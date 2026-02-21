@@ -1,0 +1,626 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.LineInfo
+  commentId: T:Reportman.Drawing.LineInfo
+  id: LineInfo
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.LineInfo.Glyphs
+  - Reportman.Drawing.LineInfo.Height
+  - Reportman.Drawing.LineInfo.LastLine
+  - Reportman.Drawing.LineInfo.LineHeight
+  - Reportman.Drawing.LineInfo.Position
+  - Reportman.Drawing.LineInfo.Size
+  - Reportman.Drawing.LineInfo.Step
+  - Reportman.Drawing.LineInfo.Text
+  - Reportman.Drawing.LineInfo.TopPos
+  - Reportman.Drawing.LineInfo.Width
+  langs:
+  - csharp
+  - vb
+  name: LineInfo
+  nameWithType: LineInfo
+  fullName: Reportman.Drawing.LineInfo
+  type: Struct
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Line information when measuring pdf texts
+  example: []
+  syntax:
+    content: public struct LineInfo
+    content.vb: Public Structure LineInfo
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.ValueType.ToString
+  - System.Object.GetType
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: Reportman.Drawing.LineInfo.Position
+  commentId: F:Reportman.Drawing.LineInfo.Position
+  id: Position
+  parent: Reportman.Drawing.LineInfo
+  langs:
+  - csharp
+  - vb
+  name: Position
+  nameWithType: LineInfo.Position
+  fullName: Reportman.Drawing.LineInfo.Position
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int Position
+    return:
+      type: System.Int32
+    content.vb: Public Position As Integer
+- uid: Reportman.Drawing.LineInfo.Size
+  commentId: F:Reportman.Drawing.LineInfo.Size
+  id: Size
+  parent: Reportman.Drawing.LineInfo
+  langs:
+  - csharp
+  - vb
+  name: Size
+  nameWithType: LineInfo.Size
+  fullName: Reportman.Drawing.LineInfo.Size
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int Size
+    return:
+      type: System.Int32
+    content.vb: Public Size As Integer
+- uid: Reportman.Drawing.LineInfo.Width
+  commentId: F:Reportman.Drawing.LineInfo.Width
+  id: Width
+  parent: Reportman.Drawing.LineInfo
+  langs:
+  - csharp
+  - vb
+  name: Width
+  nameWithType: LineInfo.Width
+  fullName: Reportman.Drawing.LineInfo.Width
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int Width
+    return:
+      type: System.Int32
+    content.vb: Public Width As Integer
+- uid: Reportman.Drawing.LineInfo.Height
+  commentId: F:Reportman.Drawing.LineInfo.Height
+  id: Height
+  parent: Reportman.Drawing.LineInfo
+  langs:
+  - csharp
+  - vb
+  name: Height
+  nameWithType: LineInfo.Height
+  fullName: Reportman.Drawing.LineInfo.Height
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int Height
+    return:
+      type: System.Int32
+    content.vb: Public Height As Integer
+- uid: Reportman.Drawing.LineInfo.TopPos
+  commentId: F:Reportman.Drawing.LineInfo.TopPos
+  id: TopPos
+  parent: Reportman.Drawing.LineInfo
+  langs:
+  - csharp
+  - vb
+  name: TopPos
+  nameWithType: LineInfo.TopPos
+  fullName: Reportman.Drawing.LineInfo.TopPos
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int TopPos
+    return:
+      type: System.Int32
+    content.vb: Public TopPos As Integer
+- uid: Reportman.Drawing.LineInfo.Step
+  commentId: F:Reportman.Drawing.LineInfo.Step
+  id: Step
+  parent: Reportman.Drawing.LineInfo
+  langs:
+  - csharp
+  - vb
+  name: Step
+  nameWithType: LineInfo.Step
+  fullName: Reportman.Drawing.LineInfo.Step
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public PrintStepType Step
+    return:
+      type: Reportman.Drawing.PrintStepType
+    content.vb: Public [Step] As PrintStepType
+- uid: Reportman.Drawing.LineInfo.LastLine
+  commentId: F:Reportman.Drawing.LineInfo.LastLine
+  id: LastLine
+  parent: Reportman.Drawing.LineInfo
+  langs:
+  - csharp
+  - vb
+  name: LastLine
+  nameWithType: LineInfo.LastLine
+  fullName: Reportman.Drawing.LineInfo.LastLine
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public bool LastLine
+    return:
+      type: System.Boolean
+    content.vb: Public LastLine As Boolean
+- uid: Reportman.Drawing.LineInfo.LineHeight
+  commentId: F:Reportman.Drawing.LineInfo.LineHeight
+  id: LineHeight
+  parent: Reportman.Drawing.LineInfo
+  langs:
+  - csharp
+  - vb
+  name: LineHeight
+  nameWithType: LineInfo.LineHeight
+  fullName: Reportman.Drawing.LineInfo.LineHeight
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public double LineHeight
+    return:
+      type: System.Double
+    content.vb: Public LineHeight As Double
+- uid: Reportman.Drawing.LineInfo.Glyphs
+  commentId: F:Reportman.Drawing.LineInfo.Glyphs
+  id: Glyphs
+  parent: Reportman.Drawing.LineInfo
+  langs:
+  - csharp
+  - vb
+  name: Glyphs
+  nameWithType: LineInfo.Glyphs
+  fullName: Reportman.Drawing.LineInfo.Glyphs
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public List<TGlyphPos> Glyphs
+    return:
+      type: System.Collections.Generic.List{Reportman.Drawing.TGlyphPos}
+    content.vb: Public Glyphs As List(Of TGlyphPos)
+- uid: Reportman.Drawing.LineInfo.Text
+  commentId: F:Reportman.Drawing.LineInfo.Text
+  id: Text
+  parent: Reportman.Drawing.LineInfo
+  langs:
+  - csharp
+  - vb
+  name: Text
+  nameWithType: LineInfo.Text
+  fullName: Reportman.Drawing.LineInfo.Text
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string Text
+    return:
+      type: System.String
+    content.vb: Public Text As String
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Reportman.Drawing.PrintStepType
+  commentId: T:Reportman.Drawing.PrintStepType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PrintStepType.html
+  name: PrintStepType
+  nameWithType: PrintStepType
+  fullName: Reportman.Drawing.PrintStepType
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.double
+  name: double
+  nameWithType: double
+  fullName: double
+  nameWithType.vb: Double
+  fullName.vb: Double
+  name.vb: Double
+- uid: System.Collections.Generic.List{Reportman.Drawing.TGlyphPos}
+  commentId: T:System.Collections.Generic.List{Reportman.Drawing.TGlyphPos}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<TGlyphPos>
+  nameWithType: List<TGlyphPos>
+  fullName: System.Collections.Generic.List<Reportman.Drawing.TGlyphPos>
+  nameWithType.vb: List(Of TGlyphPos)
+  fullName.vb: System.Collections.Generic.List(Of Reportman.Drawing.TGlyphPos)
+  name.vb: List(Of TGlyphPos)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Reportman.Drawing.TGlyphPos
+    name: TGlyphPos
+    isExternal: true
+    href: Reportman.Drawing.TGlyphPos.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Reportman.Drawing.TGlyphPos
+    name: TGlyphPos
+    isExternal: true
+    href: Reportman.Drawing.TGlyphPos.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String

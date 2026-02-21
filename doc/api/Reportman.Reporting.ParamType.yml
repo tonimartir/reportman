@@ -1,0 +1,386 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.ParamType
+  commentId: T:Reportman.Reporting.ParamType
+  id: ParamType
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.ParamType.Bool
+  - Reportman.Reporting.ParamType.Currency
+  - Reportman.Reporting.ParamType.Date
+  - Reportman.Reporting.ParamType.DateTime
+  - Reportman.Reporting.ParamType.Double
+  - Reportman.Reporting.ParamType.ExpreA
+  - Reportman.Reporting.ParamType.ExpreB
+  - Reportman.Reporting.ParamType.InitialValue
+  - Reportman.Reporting.ParamType.Integer
+  - Reportman.Reporting.ParamType.List
+  - Reportman.Reporting.ParamType.Multiple
+  - Reportman.Reporting.ParamType.String
+  - Reportman.Reporting.ParamType.SubsExpreList
+  - Reportman.Reporting.ParamType.Subst
+  - Reportman.Reporting.ParamType.SubstExpre
+  - Reportman.Reporting.ParamType.Time
+  - Reportman.Reporting.ParamType.Unknown
+  langs:
+  - csharp
+  - vb
+  name: ParamType
+  nameWithType: ParamType
+  fullName: Reportman.Reporting.ParamType
+  type: Enum
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    Type used in report parameters, for each parameter type, a diferent action will be performed
+
+    to assign the value before executing the report, a parameter can be assigned to
+
+    any number of database querys
+  example: []
+  syntax:
+    content: public enum ParamType
+    content.vb: Public Enum ParamType
+- uid: Reportman.Reporting.ParamType.String
+  commentId: F:Reportman.Reporting.ParamType.String
+  id: String
+  parent: Reportman.Reporting.ParamType
+  langs:
+  - csharp
+  - vb
+  name: String
+  nameWithType: ParamType.String
+  fullName: Reportman.Reporting.ParamType.String
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: String = 0
+    return:
+      type: Reportman.Reporting.ParamType
+- uid: Reportman.Reporting.ParamType.Integer
+  commentId: F:Reportman.Reporting.ParamType.Integer
+  id: Integer
+  parent: Reportman.Reporting.ParamType
+  langs:
+  - csharp
+  - vb
+  name: Integer
+  nameWithType: ParamType.Integer
+  fullName: Reportman.Reporting.ParamType.Integer
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Integer = 1
+    return:
+      type: Reportman.Reporting.ParamType
+- uid: Reportman.Reporting.ParamType.Double
+  commentId: F:Reportman.Reporting.ParamType.Double
+  id: Double
+  parent: Reportman.Reporting.ParamType
+  langs:
+  - csharp
+  - vb
+  name: Double
+  nameWithType: ParamType.Double
+  fullName: Reportman.Reporting.ParamType.Double
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Double = 2
+    return:
+      type: Reportman.Reporting.ParamType
+- uid: Reportman.Reporting.ParamType.Date
+  commentId: F:Reportman.Reporting.ParamType.Date
+  id: Date
+  parent: Reportman.Reporting.ParamType
+  langs:
+  - csharp
+  - vb
+  name: Date
+  nameWithType: ParamType.Date
+  fullName: Reportman.Reporting.ParamType.Date
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Date = 3
+    return:
+      type: Reportman.Reporting.ParamType
+- uid: Reportman.Reporting.ParamType.Time
+  commentId: F:Reportman.Reporting.ParamType.Time
+  id: Time
+  parent: Reportman.Reporting.ParamType
+  langs:
+  - csharp
+  - vb
+  name: Time
+  nameWithType: ParamType.Time
+  fullName: Reportman.Reporting.ParamType.Time
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Time = 4
+    return:
+      type: Reportman.Reporting.ParamType
+- uid: Reportman.Reporting.ParamType.DateTime
+  commentId: F:Reportman.Reporting.ParamType.DateTime
+  id: DateTime
+  parent: Reportman.Reporting.ParamType
+  langs:
+  - csharp
+  - vb
+  name: DateTime
+  nameWithType: ParamType.DateTime
+  fullName: Reportman.Reporting.ParamType.DateTime
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: DateTime = 5
+    return:
+      type: Reportman.Reporting.ParamType
+- uid: Reportman.Reporting.ParamType.Currency
+  commentId: F:Reportman.Reporting.ParamType.Currency
+  id: Currency
+  parent: Reportman.Reporting.ParamType
+  langs:
+  - csharp
+  - vb
+  name: Currency
+  nameWithType: ParamType.Currency
+  fullName: Reportman.Reporting.ParamType.Currency
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Currency = 6
+    return:
+      type: Reportman.Reporting.ParamType
+- uid: Reportman.Reporting.ParamType.Bool
+  commentId: F:Reportman.Reporting.ParamType.Bool
+  id: Bool
+  parent: Reportman.Reporting.ParamType
+  langs:
+  - csharp
+  - vb
+  name: Bool
+  nameWithType: ParamType.Bool
+  fullName: Reportman.Reporting.ParamType.Bool
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Bool = 7
+    return:
+      type: Reportman.Reporting.ParamType
+- uid: Reportman.Reporting.ParamType.ExpreB
+  commentId: F:Reportman.Reporting.ParamType.ExpreB
+  id: ExpreB
+  parent: Reportman.Reporting.ParamType
+  langs:
+  - csharp
+  - vb
+  name: ExpreB
+  nameWithType: ParamType.ExpreB
+  fullName: Reportman.Reporting.ParamType.ExpreB
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: ExpreB = 8
+    return:
+      type: Reportman.Reporting.ParamType
+- uid: Reportman.Reporting.ParamType.ExpreA
+  commentId: F:Reportman.Reporting.ParamType.ExpreA
+  id: ExpreA
+  parent: Reportman.Reporting.ParamType
+  langs:
+  - csharp
+  - vb
+  name: ExpreA
+  nameWithType: ParamType.ExpreA
+  fullName: Reportman.Reporting.ParamType.ExpreA
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: ExpreA = 9
+    return:
+      type: Reportman.Reporting.ParamType
+- uid: Reportman.Reporting.ParamType.Subst
+  commentId: F:Reportman.Reporting.ParamType.Subst
+  id: Subst
+  parent: Reportman.Reporting.ParamType
+  langs:
+  - csharp
+  - vb
+  name: Subst
+  nameWithType: ParamType.Subst
+  fullName: Reportman.Reporting.ParamType.Subst
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Subst = 10
+    return:
+      type: Reportman.Reporting.ParamType
+- uid: Reportman.Reporting.ParamType.List
+  commentId: F:Reportman.Reporting.ParamType.List
+  id: List
+  parent: Reportman.Reporting.ParamType
+  langs:
+  - csharp
+  - vb
+  name: List
+  nameWithType: ParamType.List
+  fullName: Reportman.Reporting.ParamType.List
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: List = 11
+    return:
+      type: Reportman.Reporting.ParamType
+- uid: Reportman.Reporting.ParamType.Multiple
+  commentId: F:Reportman.Reporting.ParamType.Multiple
+  id: Multiple
+  parent: Reportman.Reporting.ParamType
+  langs:
+  - csharp
+  - vb
+  name: Multiple
+  nameWithType: ParamType.Multiple
+  fullName: Reportman.Reporting.ParamType.Multiple
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Multiple = 12
+    return:
+      type: Reportman.Reporting.ParamType
+- uid: Reportman.Reporting.ParamType.SubstExpre
+  commentId: F:Reportman.Reporting.ParamType.SubstExpre
+  id: SubstExpre
+  parent: Reportman.Reporting.ParamType
+  langs:
+  - csharp
+  - vb
+  name: SubstExpre
+  nameWithType: ParamType.SubstExpre
+  fullName: Reportman.Reporting.ParamType.SubstExpre
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: SubstExpre = 13
+    return:
+      type: Reportman.Reporting.ParamType
+- uid: Reportman.Reporting.ParamType.SubsExpreList
+  commentId: F:Reportman.Reporting.ParamType.SubsExpreList
+  id: SubsExpreList
+  parent: Reportman.Reporting.ParamType
+  langs:
+  - csharp
+  - vb
+  name: SubsExpreList
+  nameWithType: ParamType.SubsExpreList
+  fullName: Reportman.Reporting.ParamType.SubsExpreList
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: SubsExpreList = 14
+    return:
+      type: Reportman.Reporting.ParamType
+- uid: Reportman.Reporting.ParamType.InitialValue
+  commentId: F:Reportman.Reporting.ParamType.InitialValue
+  id: InitialValue
+  parent: Reportman.Reporting.ParamType
+  langs:
+  - csharp
+  - vb
+  name: InitialValue
+  nameWithType: ParamType.InitialValue
+  fullName: Reportman.Reporting.ParamType.InitialValue
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: InitialValue = 15
+    return:
+      type: Reportman.Reporting.ParamType
+- uid: Reportman.Reporting.ParamType.Unknown
+  commentId: F:Reportman.Reporting.ParamType.Unknown
+  id: Unknown
+  parent: Reportman.Reporting.ParamType
+  langs:
+  - csharp
+  - vb
+  name: Unknown
+  nameWithType: ParamType.Unknown
+  fullName: Reportman.Reporting.ParamType.Unknown
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Unknown = 16
+    return:
+      type: Reportman.Reporting.ParamType
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: Reportman.Reporting.ParamType
+  commentId: T:Reportman.Reporting.ParamType
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.ParamType.html
+  name: ParamType
+  nameWithType: ParamType
+  fullName: Reportman.Reporting.ParamType

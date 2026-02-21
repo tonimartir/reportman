@@ -1,0 +1,2978 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.StreamUtil
+  commentId: T:Reportman.Drawing.StreamUtil
+  id: StreamUtil
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.StreamUtil.#ctor
+  - Reportman.Drawing.StreamUtil.BoolToByteArray(System.Boolean)
+  - Reportman.Drawing.StreamUtil.ByteArrayToInt(System.Byte[],System.Int32)
+  - Reportman.Drawing.StreamUtil.ByteArrayToInt(System.Byte[],System.Int32,System.Int32)
+  - Reportman.Drawing.StreamUtil.ByteArrayToInt64(System.Byte[],System.Int32,System.Int32)
+  - Reportman.Drawing.StreamUtil.ByteArrayToLong(System.Byte[],System.Int32)
+  - Reportman.Drawing.StreamUtil.ByteArrayToLong(System.Byte[],System.Int32,System.Int32)
+  - Reportman.Drawing.StreamUtil.ByteArrayToShort(System.Byte[],System.Int32)
+  - Reportman.Drawing.StreamUtil.ByteArrayToShort(System.Byte[],System.Int32,System.Int32)
+  - Reportman.Drawing.StreamUtil.ByteArrayToStream(System.Byte[])
+  - Reportman.Drawing.StreamUtil.ByteArrayToString(System.Byte[],System.Int32)
+  - Reportman.Drawing.StreamUtil.ByteArrayToString(System.Byte[],System.Int32,System.Boolean)
+  - Reportman.Drawing.StreamUtil.ByteArrayToString(System.Byte[],System.Int32,System.Int32)
+  - Reportman.Drawing.StreamUtil.ByteArrayToUInt(System.Byte[],System.Int32,System.Int32)
+  - Reportman.Drawing.StreamUtil.ByteArrayToUShort(System.Byte[],System.Int32,System.Int32)
+  - Reportman.Drawing.StreamUtil.ByteToByteArray(System.Byte)
+  - Reportman.Drawing.StreamUtil.CRLFarray
+  - Reportman.Drawing.StreamUtil.CompareArrayContent(System.Byte[],System.Byte[])
+  - Reportman.Drawing.StreamUtil.CompressFile(System.String,System.String)
+  - Reportman.Drawing.StreamUtil.CompressStream(System.IO.MemoryStream,System.IO.MemoryStream,System.Boolean)
+  - Reportman.Drawing.StreamUtil.CompressStream(System.IO.Stream,System.IO.MemoryStream)
+  - Reportman.Drawing.StreamUtil.CompressStreamAsync(System.IO.MemoryStream,System.IO.MemoryStream)
+  - Reportman.Drawing.StreamUtil.CompressStreamAsync(System.IO.MemoryStream,System.IO.MemoryStream,System.Boolean,System.Boolean,System.Threading.CancellationTokenSource)
+  - Reportman.Drawing.StreamUtil.CompressStreamGZip(System.IO.MemoryStream,System.IO.MemoryStream)
+  - Reportman.Drawing.StreamUtil.CompressStreamGZipAsync(System.IO.MemoryStream,System.IO.MemoryStream)
+  - Reportman.Drawing.StreamUtil.CompressStreamTask(System.IO.MemoryStream,System.IO.MemoryStream,System.Boolean,System.Boolean,System.Threading.CancellationTokenSource)
+  - Reportman.Drawing.StreamUtil.DEFAULT_BUFFER_SIZE
+  - Reportman.Drawing.StreamUtil.DeCompressBuffer(System.Byte[],System.Int32,System.IO.Stream)
+  - Reportman.Drawing.StreamUtil.DeCompressBuffer(System.Byte[],System.Int32,System.IO.Stream,Reportman.Drawing.ProgressEvent)
+  - Reportman.Drawing.StreamUtil.DeCompressBufferAsync(System.Byte[],System.Int32,System.IO.Stream)
+  - Reportman.Drawing.StreamUtil.DeCompressBufferAsync(System.Byte[],System.Int32,System.IO.Stream,Reportman.Drawing.ProgressEvent)
+  - Reportman.Drawing.StreamUtil.DeCompressBufferGZip(System.Byte[],System.Int32,System.Int32,System.IO.Stream)
+  - Reportman.Drawing.StreamUtil.DeCompressBufferGZipAsync(System.Byte[],System.Int32,System.Int32,System.IO.Stream)
+  - Reportman.Drawing.StreamUtil.DeCompressFile(System.String,System.String)
+  - Reportman.Drawing.StreamUtil.DeCompressStream(System.IO.MemoryStream,System.IO.MemoryStream)
+  - Reportman.Drawing.StreamUtil.DecompressStreamGZip(System.IO.Stream,System.IO.Stream)
+  - Reportman.Drawing.StreamUtil.DecompressStreamGZipAsync(System.IO.Stream,System.IO.Stream)
+  - Reportman.Drawing.StreamUtil.FileInUse(System.String)
+  - Reportman.Drawing.StreamUtil.FileToMemoryStream(System.String)
+  - Reportman.Drawing.StreamUtil.FileToMemoryStreamAsync(System.String)
+  - Reportman.Drawing.StreamUtil.GetFiles(System.String,System.String,System.IO.SearchOption)
+  - Reportman.Drawing.StreamUtil.Int64ToByteArray(System.Int64)
+  - Reportman.Drawing.StreamUtil.IntToByteArray(System.Int32)
+  - Reportman.Drawing.StreamUtil.IsCompressed(System.Byte[])
+  - Reportman.Drawing.StreamUtil.IsCompressed(System.IO.MemoryStream)
+  - Reportman.Drawing.StreamUtil.LFarray
+  - Reportman.Drawing.StreamUtil.LongToByteArray(System.Int64)
+  - Reportman.Drawing.StreamUtil.MemoryStreamToFile(System.IO.MemoryStream,System.String)
+  - Reportman.Drawing.StreamUtil.SWriteLine(System.IO.Stream,System.String,System.Boolean)
+  - Reportman.Drawing.StreamUtil.ShortToByteArray(System.Int32)
+  - Reportman.Drawing.StreamUtil.StreamToFile(System.IO.Stream,System.String,System.Boolean)
+  - Reportman.Drawing.StreamUtil.StreamToFileAsync(System.IO.Stream,System.String,System.Boolean)
+  - Reportman.Drawing.StreamUtil.StreamToHex(System.IO.Stream)
+  - Reportman.Drawing.StreamUtil.StreamToMemoryStream(System.IO.Stream)
+  - Reportman.Drawing.StreamUtil.StreamToMemoryStream(System.IO.Stream,System.Int32)
+  - Reportman.Drawing.StreamUtil.StreamToMemoryStreamAsync(System.IO.Stream,System.Int32)
+  - Reportman.Drawing.StreamUtil.StringToByteArray(System.String,System.Int32)
+  - Reportman.Drawing.StreamUtil.StringToByteArray(System.String,System.Int32,System.Boolean)
+  - Reportman.Drawing.StreamUtil.StringToByteArray(System.String,System.Int32,System.Int32)
+  - Reportman.Drawing.StreamUtil.WriteCharArrayToStream(System.Char[],System.Int32,System.IO.Stream)
+  - Reportman.Drawing.StreamUtil.WriteStringToStream(System.String,System.IO.Stream,System.Text.Encoding)
+  - Reportman.Drawing.StreamUtil.WriteStringToUTF8Stream(System.String,System.IO.Stream)
+  - Reportman.Drawing.StreamUtil.WriteTo(System.IO.Stream,System.IO.Stream,System.Int32)
+  langs:
+  - csharp
+  - vb
+  name: StreamUtil
+  nameWithType: StreamUtil
+  fullName: Reportman.Drawing.StreamUtil
+  type: Class
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public class StreamUtil
+    content.vb: Public Class StreamUtil
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.StreamUtil.LFarray
+  commentId: F:Reportman.Drawing.StreamUtil.LFarray
+  id: LFarray
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: LFarray
+  nameWithType: StreamUtil.LFarray
+  fullName: Reportman.Drawing.StreamUtil.LFarray
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static byte[] LFarray
+    return:
+      type: System.Byte[]
+    content.vb: Public Shared LFarray As Byte()
+- uid: Reportman.Drawing.StreamUtil.CRLFarray
+  commentId: F:Reportman.Drawing.StreamUtil.CRLFarray
+  id: CRLFarray
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: CRLFarray
+  nameWithType: StreamUtil.CRLFarray
+  fullName: Reportman.Drawing.StreamUtil.CRLFarray
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static byte[] CRLFarray
+    return:
+      type: System.Byte[]
+    content.vb: Public Shared CRLFarray As Byte()
+- uid: Reportman.Drawing.StreamUtil.DEFAULT_BUFFER_SIZE
+  commentId: F:Reportman.Drawing.StreamUtil.DEFAULT_BUFFER_SIZE
+  id: DEFAULT_BUFFER_SIZE
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: DEFAULT_BUFFER_SIZE
+  nameWithType: StreamUtil.DEFAULT_BUFFER_SIZE
+  fullName: Reportman.Drawing.StreamUtil.DEFAULT_BUFFER_SIZE
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Default buffer size for buffered applications
+  example: []
+  syntax:
+    content: public const int DEFAULT_BUFFER_SIZE = 65535
+    return:
+      type: System.Int32
+    content.vb: Public Const DEFAULT_BUFFER_SIZE As Integer = 65535
+- uid: Reportman.Drawing.StreamUtil.GetFiles(System.String,System.String,System.IO.SearchOption)
+  commentId: M:Reportman.Drawing.StreamUtil.GetFiles(System.String,System.String,System.IO.SearchOption)
+  id: GetFiles(System.String,System.String,System.IO.SearchOption)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: GetFiles(string, string, SearchOption)
+  nameWithType: StreamUtil.GetFiles(string, string, SearchOption)
+  fullName: Reportman.Drawing.StreamUtil.GetFiles(string, string, System.IO.SearchOption)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string[] GetFiles(string path, string searchPattern, SearchOption searchOption)
+    parameters:
+    - id: path
+      type: System.String
+    - id: searchPattern
+      type: System.String
+    - id: searchOption
+      type: System.IO.SearchOption
+    return:
+      type: System.String[]
+    content.vb: Public Shared Function GetFiles(path As String, searchPattern As String, searchOption As SearchOption) As String()
+  overload: Reportman.Drawing.StreamUtil.GetFiles*
+  nameWithType.vb: StreamUtil.GetFiles(String, String, SearchOption)
+  fullName.vb: Reportman.Drawing.StreamUtil.GetFiles(String, String, System.IO.SearchOption)
+  name.vb: GetFiles(String, String, SearchOption)
+- uid: Reportman.Drawing.StreamUtil.FileInUse(System.String)
+  commentId: M:Reportman.Drawing.StreamUtil.FileInUse(System.String)
+  id: FileInUse(System.String)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: FileInUse(string)
+  nameWithType: StreamUtil.FileInUse(string)
+  fullName: Reportman.Drawing.StreamUtil.FileInUse(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    Check for a file if in use
+
+    return true
+  example: []
+  syntax:
+    content: public static bool FileInUse(string path)
+    parameters:
+    - id: path
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function FileInUse(path As String) As Boolean
+  overload: Reportman.Drawing.StreamUtil.FileInUse*
+  nameWithType.vb: StreamUtil.FileInUse(String)
+  fullName.vb: Reportman.Drawing.StreamUtil.FileInUse(String)
+  name.vb: FileInUse(String)
+- uid: Reportman.Drawing.StreamUtil.SWriteLine(System.IO.Stream,System.String,System.Boolean)
+  commentId: M:Reportman.Drawing.StreamUtil.SWriteLine(System.IO.Stream,System.String,System.Boolean)
+  id: SWriteLine(System.IO.Stream,System.String,System.Boolean)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: SWriteLine(Stream, string, bool)
+  nameWithType: StreamUtil.SWriteLine(Stream, string, bool)
+  fullName: Reportman.Drawing.StreamUtil.SWriteLine(System.IO.Stream, string, bool)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    Write a string to a stream, the string should contain only
+
+    single byte characters
+  example: []
+  syntax:
+    content: public static void SWriteLine(Stream astream, string astring, bool includeCR = false)
+    parameters:
+    - id: astream
+      type: System.IO.Stream
+    - id: astring
+      type: System.String
+    - id: includeCR
+      type: System.Boolean
+    content.vb: Public Shared Sub SWriteLine(astream As Stream, astring As String, includeCR As Boolean = False)
+  overload: Reportman.Drawing.StreamUtil.SWriteLine*
+  nameWithType.vb: StreamUtil.SWriteLine(Stream, String, Boolean)
+  fullName.vb: Reportman.Drawing.StreamUtil.SWriteLine(System.IO.Stream, String, Boolean)
+  name.vb: SWriteLine(Stream, String, Boolean)
+- uid: Reportman.Drawing.StreamUtil.StreamToMemoryStream(System.IO.Stream,System.Int32)
+  commentId: M:Reportman.Drawing.StreamUtil.StreamToMemoryStream(System.IO.Stream,System.Int32)
+  id: StreamToMemoryStream(System.IO.Stream,System.Int32)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: StreamToMemoryStream(Stream, int)
+  nameWithType: StreamUtil.StreamToMemoryStream(Stream, int)
+  fullName: Reportman.Drawing.StreamUtil.StreamToMemoryStream(System.IO.Stream, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Generates a MemoryStream from any Stream input
+  example: []
+  syntax:
+    content: public static MemoryStream StreamToMemoryStream(Stream astream, int bufsize)
+    parameters:
+    - id: astream
+      type: System.IO.Stream
+      description: Source stream
+    - id: bufsize
+      type: System.Int32
+      description: >-
+        Buffer size can be specified size for performance enhacement
+
+        when handling long streams.
+
+        You can specify 0 value, so the DEFAULT_BUFFER_SIZE (65535) will
+
+        be used.
+
+        Note that standard input does not allow reading long segments
+
+        so keep the default value if you don't know the source stream
+
+        procedence
+    return:
+      type: System.IO.MemoryStream
+      description: The resulting memory stream
+    content.vb: Public Shared Function StreamToMemoryStream(astream As Stream, bufsize As Integer) As MemoryStream
+  overload: Reportman.Drawing.StreamUtil.StreamToMemoryStream*
+  nameWithType.vb: StreamUtil.StreamToMemoryStream(Stream, Integer)
+  fullName.vb: Reportman.Drawing.StreamUtil.StreamToMemoryStream(System.IO.Stream, Integer)
+  name.vb: StreamToMemoryStream(Stream, Integer)
+- uid: Reportman.Drawing.StreamUtil.StreamToMemoryStreamAsync(System.IO.Stream,System.Int32)
+  commentId: M:Reportman.Drawing.StreamUtil.StreamToMemoryStreamAsync(System.IO.Stream,System.Int32)
+  id: StreamToMemoryStreamAsync(System.IO.Stream,System.Int32)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: StreamToMemoryStreamAsync(Stream, int)
+  nameWithType: StreamUtil.StreamToMemoryStreamAsync(Stream, int)
+  fullName: Reportman.Drawing.StreamUtil.StreamToMemoryStreamAsync(System.IO.Stream, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Generates a MemoryStream from any Stream input
+  example: []
+  syntax:
+    content: public static Task<MemoryStream> StreamToMemoryStreamAsync(Stream astream, int bufsize)
+    parameters:
+    - id: astream
+      type: System.IO.Stream
+      description: Source stream
+    - id: bufsize
+      type: System.Int32
+      description: >-
+        Buffer size can be specified size for performance enhacement
+
+        when handling long streams.
+
+        You can specify 0 value, so the DEFAULT_BUFFER_SIZE (65535) will
+
+        be used.
+
+        Note that standard input does not allow reading long segments
+
+        so keep the default value if you don't know the source stream
+
+        procedence
+    return:
+      type: System.Threading.Tasks.Task{System.IO.MemoryStream}
+      description: The resulting memory stream
+    content.vb: Public Shared Function StreamToMemoryStreamAsync(astream As Stream, bufsize As Integer) As Task(Of MemoryStream)
+  overload: Reportman.Drawing.StreamUtil.StreamToMemoryStreamAsync*
+  nameWithType.vb: StreamUtil.StreamToMemoryStreamAsync(Stream, Integer)
+  fullName.vb: Reportman.Drawing.StreamUtil.StreamToMemoryStreamAsync(System.IO.Stream, Integer)
+  name.vb: StreamToMemoryStreamAsync(Stream, Integer)
+- uid: Reportman.Drawing.StreamUtil.StreamToMemoryStream(System.IO.Stream)
+  commentId: M:Reportman.Drawing.StreamUtil.StreamToMemoryStream(System.IO.Stream)
+  id: StreamToMemoryStream(System.IO.Stream)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: StreamToMemoryStream(Stream)
+  nameWithType: StreamUtil.StreamToMemoryStream(Stream)
+  fullName: Reportman.Drawing.StreamUtil.StreamToMemoryStream(System.IO.Stream)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Generates a MemoryStream from any Stream input
+  example: []
+  syntax:
+    content: public static MemoryStream StreamToMemoryStream(Stream astream)
+    parameters:
+    - id: astream
+      type: System.IO.Stream
+    return:
+      type: System.IO.MemoryStream
+    content.vb: Public Shared Function StreamToMemoryStream(astream As Stream) As MemoryStream
+  overload: Reportman.Drawing.StreamUtil.StreamToMemoryStream*
+- uid: Reportman.Drawing.StreamUtil.FileToMemoryStream(System.String)
+  commentId: M:Reportman.Drawing.StreamUtil.FileToMemoryStream(System.String)
+  id: FileToMemoryStream(System.String)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: FileToMemoryStream(string)
+  nameWithType: StreamUtil.FileToMemoryStream(string)
+  fullName: Reportman.Drawing.StreamUtil.FileToMemoryStream(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Generates a MemoryStream from a file
+  example: []
+  syntax:
+    content: public static MemoryStream FileToMemoryStream(string filename)
+    parameters:
+    - id: filename
+      type: System.String
+    return:
+      type: System.IO.MemoryStream
+    content.vb: Public Shared Function FileToMemoryStream(filename As String) As MemoryStream
+  overload: Reportman.Drawing.StreamUtil.FileToMemoryStream*
+  nameWithType.vb: StreamUtil.FileToMemoryStream(String)
+  fullName.vb: Reportman.Drawing.StreamUtil.FileToMemoryStream(String)
+  name.vb: FileToMemoryStream(String)
+- uid: Reportman.Drawing.StreamUtil.FileToMemoryStreamAsync(System.String)
+  commentId: M:Reportman.Drawing.StreamUtil.FileToMemoryStreamAsync(System.String)
+  id: FileToMemoryStreamAsync(System.String)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: FileToMemoryStreamAsync(string)
+  nameWithType: StreamUtil.FileToMemoryStreamAsync(string)
+  fullName: Reportman.Drawing.StreamUtil.FileToMemoryStreamAsync(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Generates a MemoryStream from a file
+  example: []
+  syntax:
+    content: public static Task<MemoryStream> FileToMemoryStreamAsync(string filename)
+    parameters:
+    - id: filename
+      type: System.String
+    return:
+      type: System.Threading.Tasks.Task{System.IO.MemoryStream}
+    content.vb: Public Shared Function FileToMemoryStreamAsync(filename As String) As Task(Of MemoryStream)
+  overload: Reportman.Drawing.StreamUtil.FileToMemoryStreamAsync*
+  nameWithType.vb: StreamUtil.FileToMemoryStreamAsync(String)
+  fullName.vb: Reportman.Drawing.StreamUtil.FileToMemoryStreamAsync(String)
+  name.vb: FileToMemoryStreamAsync(String)
+- uid: Reportman.Drawing.StreamUtil.WriteTo(System.IO.Stream,System.IO.Stream,System.Int32)
+  commentId: M:Reportman.Drawing.StreamUtil.WriteTo(System.IO.Stream,System.IO.Stream,System.Int32)
+  id: WriteTo(System.IO.Stream,System.IO.Stream,System.Int32)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: WriteTo(Stream, Stream, int)
+  nameWithType: StreamUtil.WriteTo(Stream, Stream, int)
+  fullName: Reportman.Drawing.StreamUtil.WriteTo(System.IO.Stream, System.IO.Stream, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static void WriteTo(Stream from, Stream to, int bufSize = 32000)
+    parameters:
+    - id: from
+      type: System.IO.Stream
+    - id: to
+      type: System.IO.Stream
+    - id: bufSize
+      type: System.Int32
+    content.vb: Public Shared Sub WriteTo(from As Stream, [to] As Stream, bufSize As Integer = 32000)
+  overload: Reportman.Drawing.StreamUtil.WriteTo*
+  nameWithType.vb: StreamUtil.WriteTo(Stream, Stream, Integer)
+  fullName.vb: Reportman.Drawing.StreamUtil.WriteTo(System.IO.Stream, System.IO.Stream, Integer)
+  name.vb: WriteTo(Stream, Stream, Integer)
+- uid: Reportman.Drawing.StreamUtil.MemoryStreamToFile(System.IO.MemoryStream,System.String)
+  commentId: M:Reportman.Drawing.StreamUtil.MemoryStreamToFile(System.IO.MemoryStream,System.String)
+  id: MemoryStreamToFile(System.IO.MemoryStream,System.String)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: MemoryStreamToFile(MemoryStream, string)
+  nameWithType: StreamUtil.MemoryStreamToFile(MemoryStream, string)
+  fullName: Reportman.Drawing.StreamUtil.MemoryStreamToFile(System.IO.MemoryStream, string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Generate a file from a memory stream
+  example: []
+  syntax:
+    content: public static void MemoryStreamToFile(MemoryStream memstream, string filename)
+    parameters:
+    - id: memstream
+      type: System.IO.MemoryStream
+    - id: filename
+      type: System.String
+    content.vb: Public Shared Sub MemoryStreamToFile(memstream As MemoryStream, filename As String)
+  overload: Reportman.Drawing.StreamUtil.MemoryStreamToFile*
+  nameWithType.vb: StreamUtil.MemoryStreamToFile(MemoryStream, String)
+  fullName.vb: Reportman.Drawing.StreamUtil.MemoryStreamToFile(System.IO.MemoryStream, String)
+  name.vb: MemoryStreamToFile(MemoryStream, String)
+- uid: Reportman.Drawing.StreamUtil.StreamToFile(System.IO.Stream,System.String,System.Boolean)
+  commentId: M:Reportman.Drawing.StreamUtil.StreamToFile(System.IO.Stream,System.String,System.Boolean)
+  id: StreamToFile(System.IO.Stream,System.String,System.Boolean)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: StreamToFile(Stream, string, bool)
+  nameWithType: StreamUtil.StreamToFile(Stream, string, bool)
+  fullName: Reportman.Drawing.StreamUtil.StreamToFile(System.IO.Stream, string, bool)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Generate a file from a stream
+  example: []
+  syntax:
+    content: public static void StreamToFile(Stream memstream, string filename, bool overwrite)
+    parameters:
+    - id: memstream
+      type: System.IO.Stream
+    - id: filename
+      type: System.String
+    - id: overwrite
+      type: System.Boolean
+    content.vb: Public Shared Sub StreamToFile(memstream As Stream, filename As String, overwrite As Boolean)
+  overload: Reportman.Drawing.StreamUtil.StreamToFile*
+  nameWithType.vb: StreamUtil.StreamToFile(Stream, String, Boolean)
+  fullName.vb: Reportman.Drawing.StreamUtil.StreamToFile(System.IO.Stream, String, Boolean)
+  name.vb: StreamToFile(Stream, String, Boolean)
+- uid: Reportman.Drawing.StreamUtil.StreamToFileAsync(System.IO.Stream,System.String,System.Boolean)
+  commentId: M:Reportman.Drawing.StreamUtil.StreamToFileAsync(System.IO.Stream,System.String,System.Boolean)
+  id: StreamToFileAsync(System.IO.Stream,System.String,System.Boolean)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: StreamToFileAsync(Stream, string, bool)
+  nameWithType: StreamUtil.StreamToFileAsync(Stream, string, bool)
+  fullName: Reportman.Drawing.StreamUtil.StreamToFileAsync(System.IO.Stream, string, bool)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Generate a file from a stream
+  example: []
+  syntax:
+    content: public static void StreamToFileAsync(Stream memstream, string filename, bool overwrite)
+    parameters:
+    - id: memstream
+      type: System.IO.Stream
+    - id: filename
+      type: System.String
+    - id: overwrite
+      type: System.Boolean
+    content.vb: Public Shared Sub StreamToFileAsync(memstream As Stream, filename As String, overwrite As Boolean)
+  overload: Reportman.Drawing.StreamUtil.StreamToFileAsync*
+  nameWithType.vb: StreamUtil.StreamToFileAsync(Stream, String, Boolean)
+  fullName.vb: Reportman.Drawing.StreamUtil.StreamToFileAsync(System.IO.Stream, String, Boolean)
+  name.vb: StreamToFileAsync(Stream, String, Boolean)
+- uid: Reportman.Drawing.StreamUtil.WriteStringToUTF8Stream(System.String,System.IO.Stream)
+  commentId: M:Reportman.Drawing.StreamUtil.WriteStringToUTF8Stream(System.String,System.IO.Stream)
+  id: WriteStringToUTF8Stream(System.String,System.IO.Stream)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: WriteStringToUTF8Stream(string, Stream)
+  nameWithType: StreamUtil.WriteStringToUTF8Stream(string, Stream)
+  fullName: Reportman.Drawing.StreamUtil.WriteStringToUTF8Stream(string, System.IO.Stream)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Writes a string to a stream formatted as multibyte UFT8 encondig
+  example: []
+  syntax:
+    content: public static int WriteStringToUTF8Stream(string astring, Stream astream)
+    parameters:
+    - id: astring
+      type: System.String
+    - id: astream
+      type: System.IO.Stream
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function WriteStringToUTF8Stream(astring As String, astream As Stream) As Integer
+  overload: Reportman.Drawing.StreamUtil.WriteStringToUTF8Stream*
+  nameWithType.vb: StreamUtil.WriteStringToUTF8Stream(String, Stream)
+  fullName.vb: Reportman.Drawing.StreamUtil.WriteStringToUTF8Stream(String, System.IO.Stream)
+  name.vb: WriteStringToUTF8Stream(String, Stream)
+- uid: Reportman.Drawing.StreamUtil.WriteStringToStream(System.String,System.IO.Stream,System.Text.Encoding)
+  commentId: M:Reportman.Drawing.StreamUtil.WriteStringToStream(System.String,System.IO.Stream,System.Text.Encoding)
+  id: WriteStringToStream(System.String,System.IO.Stream,System.Text.Encoding)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: WriteStringToStream(string, Stream, Encoding)
+  nameWithType: StreamUtil.WriteStringToStream(string, Stream, Encoding)
+  fullName: Reportman.Drawing.StreamUtil.WriteStringToStream(string, System.IO.Stream, System.Text.Encoding)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Writes a string to a stream formatted as multibyte UFT8 encondig
+  example: []
+  syntax:
+    content: public static int WriteStringToStream(string astring, Stream astream, Encoding nencoding)
+    parameters:
+    - id: astring
+      type: System.String
+    - id: astream
+      type: System.IO.Stream
+    - id: nencoding
+      type: System.Text.Encoding
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function WriteStringToStream(astring As String, astream As Stream, nencoding As Encoding) As Integer
+  overload: Reportman.Drawing.StreamUtil.WriteStringToStream*
+  nameWithType.vb: StreamUtil.WriteStringToStream(String, Stream, Encoding)
+  fullName.vb: Reportman.Drawing.StreamUtil.WriteStringToStream(String, System.IO.Stream, System.Text.Encoding)
+  name.vb: WriteStringToStream(String, Stream, Encoding)
+- uid: Reportman.Drawing.StreamUtil.WriteCharArrayToStream(System.Char[],System.Int32,System.IO.Stream)
+  commentId: M:Reportman.Drawing.StreamUtil.WriteCharArrayToStream(System.Char[],System.Int32,System.IO.Stream)
+  id: WriteCharArrayToStream(System.Char[],System.Int32,System.IO.Stream)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: WriteCharArrayToStream(char[], int, Stream)
+  nameWithType: StreamUtil.WriteCharArrayToStream(char[], int, Stream)
+  fullName: Reportman.Drawing.StreamUtil.WriteCharArrayToStream(char[], int, System.IO.Stream)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Writes a string to a stream formatted as multibyte UFT8 encondig
+  example: []
+  syntax:
+    content: public static int WriteCharArrayToStream(char[] chars, int len, Stream astream)
+    parameters:
+    - id: chars
+      type: System.Char[]
+    - id: len
+      type: System.Int32
+    - id: astream
+      type: System.IO.Stream
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function WriteCharArrayToStream(chars As Char(), len As Integer, astream As Stream) As Integer
+  overload: Reportman.Drawing.StreamUtil.WriteCharArrayToStream*
+  nameWithType.vb: StreamUtil.WriteCharArrayToStream(Char(), Integer, Stream)
+  fullName.vb: Reportman.Drawing.StreamUtil.WriteCharArrayToStream(Char(), Integer, System.IO.Stream)
+  name.vb: WriteCharArrayToStream(Char(), Integer, Stream)
+- uid: Reportman.Drawing.StreamUtil.StreamToHex(System.IO.Stream)
+  commentId: M:Reportman.Drawing.StreamUtil.StreamToHex(System.IO.Stream)
+  id: StreamToHex(System.IO.Stream)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: StreamToHex(Stream)
+  nameWithType: StreamUtil.StreamToHex(Stream)
+  fullName: Reportman.Drawing.StreamUtil.StreamToHex(System.IO.Stream)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Transforms stream content to string representation as hexadecimal bytes
+  example: []
+  syntax:
+    content: public static string StreamToHex(Stream astream)
+    parameters:
+    - id: astream
+      type: System.IO.Stream
+    return:
+      type: System.String
+    content.vb: Public Shared Function StreamToHex(astream As Stream) As String
+  overload: Reportman.Drawing.StreamUtil.StreamToHex*
+- uid: Reportman.Drawing.StreamUtil.IntToByteArray(System.Int32)
+  commentId: M:Reportman.Drawing.StreamUtil.IntToByteArray(System.Int32)
+  id: IntToByteArray(System.Int32)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: IntToByteArray(int)
+  nameWithType: StreamUtil.IntToByteArray(int)
+  fullName: Reportman.Drawing.StreamUtil.IntToByteArray(int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Converts an int to a byte array
+  example: []
+  syntax:
+    content: public static byte[] IntToByteArray(int avalue)
+    parameters:
+    - id: avalue
+      type: System.Int32
+    return:
+      type: System.Byte[]
+    content.vb: Public Shared Function IntToByteArray(avalue As Integer) As Byte()
+  overload: Reportman.Drawing.StreamUtil.IntToByteArray*
+  nameWithType.vb: StreamUtil.IntToByteArray(Integer)
+  fullName.vb: Reportman.Drawing.StreamUtil.IntToByteArray(Integer)
+  name.vb: IntToByteArray(Integer)
+- uid: Reportman.Drawing.StreamUtil.Int64ToByteArray(System.Int64)
+  commentId: M:Reportman.Drawing.StreamUtil.Int64ToByteArray(System.Int64)
+  id: Int64ToByteArray(System.Int64)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: Int64ToByteArray(long)
+  nameWithType: StreamUtil.Int64ToByteArray(long)
+  fullName: Reportman.Drawing.StreamUtil.Int64ToByteArray(long)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Converts an int to a byte array
+  example: []
+  syntax:
+    content: public static byte[] Int64ToByteArray(long avalue)
+    parameters:
+    - id: avalue
+      type: System.Int64
+    return:
+      type: System.Byte[]
+    content.vb: Public Shared Function Int64ToByteArray(avalue As Long) As Byte()
+  overload: Reportman.Drawing.StreamUtil.Int64ToByteArray*
+  nameWithType.vb: StreamUtil.Int64ToByteArray(Long)
+  fullName.vb: Reportman.Drawing.StreamUtil.Int64ToByteArray(Long)
+  name.vb: Int64ToByteArray(Long)
+- uid: Reportman.Drawing.StreamUtil.ShortToByteArray(System.Int32)
+  commentId: M:Reportman.Drawing.StreamUtil.ShortToByteArray(System.Int32)
+  id: ShortToByteArray(System.Int32)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: ShortToByteArray(int)
+  nameWithType: StreamUtil.ShortToByteArray(int)
+  fullName: Reportman.Drawing.StreamUtil.ShortToByteArray(int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Converts a short to a byte array
+  example: []
+  syntax:
+    content: public static byte[] ShortToByteArray(int avalue)
+    parameters:
+    - id: avalue
+      type: System.Int32
+    return:
+      type: System.Byte[]
+    content.vb: Public Shared Function ShortToByteArray(avalue As Integer) As Byte()
+  overload: Reportman.Drawing.StreamUtil.ShortToByteArray*
+  nameWithType.vb: StreamUtil.ShortToByteArray(Integer)
+  fullName.vb: Reportman.Drawing.StreamUtil.ShortToByteArray(Integer)
+  name.vb: ShortToByteArray(Integer)
+- uid: Reportman.Drawing.StreamUtil.BoolToByteArray(System.Boolean)
+  commentId: M:Reportman.Drawing.StreamUtil.BoolToByteArray(System.Boolean)
+  id: BoolToByteArray(System.Boolean)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: BoolToByteArray(bool)
+  nameWithType: StreamUtil.BoolToByteArray(bool)
+  fullName: Reportman.Drawing.StreamUtil.BoolToByteArray(bool)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Converts a bool to a byte array
+  example: []
+  syntax:
+    content: public static byte[] BoolToByteArray(bool avalue)
+    parameters:
+    - id: avalue
+      type: System.Boolean
+    return:
+      type: System.Byte[]
+    content.vb: Public Shared Function BoolToByteArray(avalue As Boolean) As Byte()
+  overload: Reportman.Drawing.StreamUtil.BoolToByteArray*
+  nameWithType.vb: StreamUtil.BoolToByteArray(Boolean)
+  fullName.vb: Reportman.Drawing.StreamUtil.BoolToByteArray(Boolean)
+  name.vb: BoolToByteArray(Boolean)
+- uid: Reportman.Drawing.StreamUtil.StringToByteArray(System.String,System.Int32)
+  commentId: M:Reportman.Drawing.StreamUtil.StringToByteArray(System.String,System.Int32)
+  id: StringToByteArray(System.String,System.Int32)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: StringToByteArray(string, int)
+  nameWithType: StreamUtil.StringToByteArray(string, int)
+  fullName: Reportman.Drawing.StreamUtil.StringToByteArray(string, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    Converts a string (not unicode) to a byte array
+
+    the array is created with the first byte of the char value
+
+    only ANSI alowed
+  example: []
+  syntax:
+    content: public static byte[] StringToByteArray(string avalue, int length)
+    parameters:
+    - id: avalue
+      type: System.String
+    - id: length
+      type: System.Int32
+    return:
+      type: System.Byte[]
+    content.vb: Public Shared Function StringToByteArray(avalue As String, length As Integer) As Byte()
+  overload: Reportman.Drawing.StreamUtil.StringToByteArray*
+  nameWithType.vb: StreamUtil.StringToByteArray(String, Integer)
+  fullName.vb: Reportman.Drawing.StreamUtil.StringToByteArray(String, Integer)
+  name.vb: StringToByteArray(String, Integer)
+- uid: Reportman.Drawing.StreamUtil.StringToByteArray(System.String,System.Int32,System.Int32)
+  commentId: M:Reportman.Drawing.StreamUtil.StringToByteArray(System.String,System.Int32,System.Int32)
+  id: StringToByteArray(System.String,System.Int32,System.Int32)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: StringToByteArray(string, int, int)
+  nameWithType: StreamUtil.StringToByteArray(string, int, int)
+  fullName: Reportman.Drawing.StreamUtil.StringToByteArray(string, int, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Converts a string (not unicode) to a byte array
+  example: []
+  syntax:
+    content: public static byte[] StringToByteArray(string avalue, int length, int codepage)
+    parameters:
+    - id: avalue
+      type: System.String
+    - id: length
+      type: System.Int32
+    - id: codepage
+      type: System.Int32
+    return:
+      type: System.Byte[]
+    content.vb: Public Shared Function StringToByteArray(avalue As String, length As Integer, codepage As Integer) As Byte()
+  overload: Reportman.Drawing.StreamUtil.StringToByteArray*
+  nameWithType.vb: StreamUtil.StringToByteArray(String, Integer, Integer)
+  fullName.vb: Reportman.Drawing.StreamUtil.StringToByteArray(String, Integer, Integer)
+  name.vb: StringToByteArray(String, Integer, Integer)
+- uid: Reportman.Drawing.StreamUtil.StringToByteArray(System.String,System.Int32,System.Boolean)
+  commentId: M:Reportman.Drawing.StreamUtil.StringToByteArray(System.String,System.Int32,System.Boolean)
+  id: StringToByteArray(System.String,System.Int32,System.Boolean)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: StringToByteArray(string, int, bool)
+  nameWithType: StreamUtil.StringToByteArray(string, int, bool)
+  fullName: Reportman.Drawing.StreamUtil.StringToByteArray(string, int, bool)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Converts a string to a byte array, choosing unicode or not
+  example: []
+  syntax:
+    content: public static byte[] StringToByteArray(string avalue, int length, bool unicode)
+    parameters:
+    - id: avalue
+      type: System.String
+    - id: length
+      type: System.Int32
+    - id: unicode
+      type: System.Boolean
+    return:
+      type: System.Byte[]
+    content.vb: Public Shared Function StringToByteArray(avalue As String, length As Integer, unicode As Boolean) As Byte()
+  overload: Reportman.Drawing.StreamUtil.StringToByteArray*
+  nameWithType.vb: StreamUtil.StringToByteArray(String, Integer, Boolean)
+  fullName.vb: Reportman.Drawing.StreamUtil.StringToByteArray(String, Integer, Boolean)
+  name.vb: StringToByteArray(String, Integer, Boolean)
+- uid: Reportman.Drawing.StreamUtil.ByteToByteArray(System.Byte)
+  commentId: M:Reportman.Drawing.StreamUtil.ByteToByteArray(System.Byte)
+  id: ByteToByteArray(System.Byte)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: ByteToByteArray(byte)
+  nameWithType: StreamUtil.ByteToByteArray(byte)
+  fullName: Reportman.Drawing.StreamUtil.ByteToByteArray(byte)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Converts a byte to a byte array
+  example: []
+  syntax:
+    content: public static byte[] ByteToByteArray(byte avalue)
+    parameters:
+    - id: avalue
+      type: System.Byte
+    return:
+      type: System.Byte[]
+    content.vb: Public Shared Function ByteToByteArray(avalue As Byte) As Byte()
+  overload: Reportman.Drawing.StreamUtil.ByteToByteArray*
+  nameWithType.vb: StreamUtil.ByteToByteArray(Byte)
+  fullName.vb: Reportman.Drawing.StreamUtil.ByteToByteArray(Byte)
+  name.vb: ByteToByteArray(Byte)
+- uid: Reportman.Drawing.StreamUtil.ByteArrayToInt(System.Byte[],System.Int32,System.Int32)
+  commentId: M:Reportman.Drawing.StreamUtil.ByteArrayToInt(System.Byte[],System.Int32,System.Int32)
+  id: ByteArrayToInt(System.Byte[],System.Int32,System.Int32)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: ByteArrayToInt(byte[], int, int)
+  nameWithType: StreamUtil.ByteArrayToInt(byte[], int, int)
+  fullName: Reportman.Drawing.StreamUtil.ByteArrayToInt(byte[], int, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Converts a byte array to an int value
+  example: []
+  syntax:
+    content: public static int ByteArrayToInt(byte[] b1, int index, int alen)
+    parameters:
+    - id: b1
+      type: System.Byte[]
+    - id: index
+      type: System.Int32
+    - id: alen
+      type: System.Int32
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function ByteArrayToInt(b1 As Byte(), index As Integer, alen As Integer) As Integer
+  overload: Reportman.Drawing.StreamUtil.ByteArrayToInt*
+  nameWithType.vb: StreamUtil.ByteArrayToInt(Byte(), Integer, Integer)
+  fullName.vb: Reportman.Drawing.StreamUtil.ByteArrayToInt(Byte(), Integer, Integer)
+  name.vb: ByteArrayToInt(Byte(), Integer, Integer)
+- uid: Reportman.Drawing.StreamUtil.ByteArrayToInt64(System.Byte[],System.Int32,System.Int32)
+  commentId: M:Reportman.Drawing.StreamUtil.ByteArrayToInt64(System.Byte[],System.Int32,System.Int32)
+  id: ByteArrayToInt64(System.Byte[],System.Int32,System.Int32)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: ByteArrayToInt64(byte[], int, int)
+  nameWithType: StreamUtil.ByteArrayToInt64(byte[], int, int)
+  fullName: Reportman.Drawing.StreamUtil.ByteArrayToInt64(byte[], int, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Converts a byte array to an int64  value
+  example: []
+  syntax:
+    content: public static long ByteArrayToInt64(byte[] b1, int index, int alen)
+    parameters:
+    - id: b1
+      type: System.Byte[]
+    - id: index
+      type: System.Int32
+    - id: alen
+      type: System.Int32
+    return:
+      type: System.Int64
+    content.vb: Public Shared Function ByteArrayToInt64(b1 As Byte(), index As Integer, alen As Integer) As Long
+  overload: Reportman.Drawing.StreamUtil.ByteArrayToInt64*
+  nameWithType.vb: StreamUtil.ByteArrayToInt64(Byte(), Integer, Integer)
+  fullName.vb: Reportman.Drawing.StreamUtil.ByteArrayToInt64(Byte(), Integer, Integer)
+  name.vb: ByteArrayToInt64(Byte(), Integer, Integer)
+- uid: Reportman.Drawing.StreamUtil.ByteArrayToUInt(System.Byte[],System.Int32,System.Int32)
+  commentId: M:Reportman.Drawing.StreamUtil.ByteArrayToUInt(System.Byte[],System.Int32,System.Int32)
+  id: ByteArrayToUInt(System.Byte[],System.Int32,System.Int32)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: ByteArrayToUInt(byte[], int, int)
+  nameWithType: StreamUtil.ByteArrayToUInt(byte[], int, int)
+  fullName: Reportman.Drawing.StreamUtil.ByteArrayToUInt(byte[], int, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Converts a byte array to an uint value
+  example: []
+  syntax:
+    content: public static uint ByteArrayToUInt(byte[] b1, int index, int alen)
+    parameters:
+    - id: b1
+      type: System.Byte[]
+    - id: index
+      type: System.Int32
+    - id: alen
+      type: System.Int32
+    return:
+      type: System.UInt32
+    content.vb: Public Shared Function ByteArrayToUInt(b1 As Byte(), index As Integer, alen As Integer) As UInteger
+  overload: Reportman.Drawing.StreamUtil.ByteArrayToUInt*
+  nameWithType.vb: StreamUtil.ByteArrayToUInt(Byte(), Integer, Integer)
+  fullName.vb: Reportman.Drawing.StreamUtil.ByteArrayToUInt(Byte(), Integer, Integer)
+  name.vb: ByteArrayToUInt(Byte(), Integer, Integer)
+- uid: Reportman.Drawing.StreamUtil.ByteArrayToUShort(System.Byte[],System.Int32,System.Int32)
+  commentId: M:Reportman.Drawing.StreamUtil.ByteArrayToUShort(System.Byte[],System.Int32,System.Int32)
+  id: ByteArrayToUShort(System.Byte[],System.Int32,System.Int32)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: ByteArrayToUShort(byte[], int, int)
+  nameWithType: StreamUtil.ByteArrayToUShort(byte[], int, int)
+  fullName: Reportman.Drawing.StreamUtil.ByteArrayToUShort(byte[], int, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Converts a byte array to an ushort value
+  example: []
+  syntax:
+    content: public static ushort ByteArrayToUShort(byte[] b1, int index, int alen)
+    parameters:
+    - id: b1
+      type: System.Byte[]
+    - id: index
+      type: System.Int32
+    - id: alen
+      type: System.Int32
+    return:
+      type: System.UInt16
+    content.vb: Public Shared Function ByteArrayToUShort(b1 As Byte(), index As Integer, alen As Integer) As UShort
+  overload: Reportman.Drawing.StreamUtil.ByteArrayToUShort*
+  nameWithType.vb: StreamUtil.ByteArrayToUShort(Byte(), Integer, Integer)
+  fullName.vb: Reportman.Drawing.StreamUtil.ByteArrayToUShort(Byte(), Integer, Integer)
+  name.vb: ByteArrayToUShort(Byte(), Integer, Integer)
+- uid: Reportman.Drawing.StreamUtil.ByteArrayToInt(System.Byte[],System.Int32)
+  commentId: M:Reportman.Drawing.StreamUtil.ByteArrayToInt(System.Byte[],System.Int32)
+  id: ByteArrayToInt(System.Byte[],System.Int32)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: ByteArrayToInt(byte[], int)
+  nameWithType: StreamUtil.ByteArrayToInt(byte[], int)
+  fullName: Reportman.Drawing.StreamUtil.ByteArrayToInt(byte[], int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Converts a byte array to an int value
+  example: []
+  syntax:
+    content: public static int ByteArrayToInt(byte[] b1, int alen)
+    parameters:
+    - id: b1
+      type: System.Byte[]
+    - id: alen
+      type: System.Int32
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function ByteArrayToInt(b1 As Byte(), alen As Integer) As Integer
+  overload: Reportman.Drawing.StreamUtil.ByteArrayToInt*
+  nameWithType.vb: StreamUtil.ByteArrayToInt(Byte(), Integer)
+  fullName.vb: Reportman.Drawing.StreamUtil.ByteArrayToInt(Byte(), Integer)
+  name.vb: ByteArrayToInt(Byte(), Integer)
+- uid: Reportman.Drawing.StreamUtil.ByteArrayToShort(System.Byte[],System.Int32)
+  commentId: M:Reportman.Drawing.StreamUtil.ByteArrayToShort(System.Byte[],System.Int32)
+  id: ByteArrayToShort(System.Byte[],System.Int32)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: ByteArrayToShort(byte[], int)
+  nameWithType: StreamUtil.ByteArrayToShort(byte[], int)
+  fullName: Reportman.Drawing.StreamUtil.ByteArrayToShort(byte[], int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Converts a byte array to a short value
+  example: []
+  syntax:
+    content: public static short ByteArrayToShort(byte[] b1, int alen)
+    parameters:
+    - id: b1
+      type: System.Byte[]
+    - id: alen
+      type: System.Int32
+    return:
+      type: System.Int16
+    content.vb: Public Shared Function ByteArrayToShort(b1 As Byte(), alen As Integer) As Short
+  overload: Reportman.Drawing.StreamUtil.ByteArrayToShort*
+  nameWithType.vb: StreamUtil.ByteArrayToShort(Byte(), Integer)
+  fullName.vb: Reportman.Drawing.StreamUtil.ByteArrayToShort(Byte(), Integer)
+  name.vb: ByteArrayToShort(Byte(), Integer)
+- uid: Reportman.Drawing.StreamUtil.ByteArrayToShort(System.Byte[],System.Int32,System.Int32)
+  commentId: M:Reportman.Drawing.StreamUtil.ByteArrayToShort(System.Byte[],System.Int32,System.Int32)
+  id: ByteArrayToShort(System.Byte[],System.Int32,System.Int32)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: ByteArrayToShort(byte[], int, int)
+  nameWithType: StreamUtil.ByteArrayToShort(byte[], int, int)
+  fullName: Reportman.Drawing.StreamUtil.ByteArrayToShort(byte[], int, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Converts a byte array to a short value
+  example: []
+  syntax:
+    content: public static short ByteArrayToShort(byte[] b1, int index, int alen)
+    parameters:
+    - id: b1
+      type: System.Byte[]
+    - id: index
+      type: System.Int32
+    - id: alen
+      type: System.Int32
+    return:
+      type: System.Int16
+    content.vb: Public Shared Function ByteArrayToShort(b1 As Byte(), index As Integer, alen As Integer) As Short
+  overload: Reportman.Drawing.StreamUtil.ByteArrayToShort*
+  nameWithType.vb: StreamUtil.ByteArrayToShort(Byte(), Integer, Integer)
+  fullName.vb: Reportman.Drawing.StreamUtil.ByteArrayToShort(Byte(), Integer, Integer)
+  name.vb: ByteArrayToShort(Byte(), Integer, Integer)
+- uid: Reportman.Drawing.StreamUtil.ByteArrayToLong(System.Byte[],System.Int32)
+  commentId: M:Reportman.Drawing.StreamUtil.ByteArrayToLong(System.Byte[],System.Int32)
+  id: ByteArrayToLong(System.Byte[],System.Int32)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: ByteArrayToLong(byte[], int)
+  nameWithType: StreamUtil.ByteArrayToLong(byte[], int)
+  fullName: Reportman.Drawing.StreamUtil.ByteArrayToLong(byte[], int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Converts a byte array to a long value
+  example: []
+  syntax:
+    content: public static long ByteArrayToLong(byte[] b1, int alen)
+    parameters:
+    - id: b1
+      type: System.Byte[]
+    - id: alen
+      type: System.Int32
+    return:
+      type: System.Int64
+    content.vb: Public Shared Function ByteArrayToLong(b1 As Byte(), alen As Integer) As Long
+  overload: Reportman.Drawing.StreamUtil.ByteArrayToLong*
+  nameWithType.vb: StreamUtil.ByteArrayToLong(Byte(), Integer)
+  fullName.vb: Reportman.Drawing.StreamUtil.ByteArrayToLong(Byte(), Integer)
+  name.vb: ByteArrayToLong(Byte(), Integer)
+- uid: Reportman.Drawing.StreamUtil.CompareArrayContent(System.Byte[],System.Byte[])
+  commentId: M:Reportman.Drawing.StreamUtil.CompareArrayContent(System.Byte[],System.Byte[])
+  id: CompareArrayContent(System.Byte[],System.Byte[])
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: CompareArrayContent(byte[], byte[])
+  nameWithType: StreamUtil.CompareArrayContent(byte[], byte[])
+  fullName: Reportman.Drawing.StreamUtil.CompareArrayContent(byte[], byte[])
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Compare the content of two byte arrays, returns true if the content is the same
+  example: []
+  syntax:
+    content: public static bool CompareArrayContent(byte[] b1, byte[] b2)
+    parameters:
+    - id: b1
+      type: System.Byte[]
+    - id: b2
+      type: System.Byte[]
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function CompareArrayContent(b1 As Byte(), b2 As Byte()) As Boolean
+  overload: Reportman.Drawing.StreamUtil.CompareArrayContent*
+  nameWithType.vb: StreamUtil.CompareArrayContent(Byte(), Byte())
+  fullName.vb: Reportman.Drawing.StreamUtil.CompareArrayContent(Byte(), Byte())
+  name.vb: CompareArrayContent(Byte(), Byte())
+- uid: Reportman.Drawing.StreamUtil.LongToByteArray(System.Int64)
+  commentId: M:Reportman.Drawing.StreamUtil.LongToByteArray(System.Int64)
+  id: LongToByteArray(System.Int64)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: LongToByteArray(long)
+  nameWithType: StreamUtil.LongToByteArray(long)
+  fullName: Reportman.Drawing.StreamUtil.LongToByteArray(long)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Converts a long value to a byte array to a long value
+  example: []
+  syntax:
+    content: public static byte[] LongToByteArray(long avalue)
+    parameters:
+    - id: avalue
+      type: System.Int64
+    return:
+      type: System.Byte[]
+    content.vb: Public Shared Function LongToByteArray(avalue As Long) As Byte()
+  overload: Reportman.Drawing.StreamUtil.LongToByteArray*
+  nameWithType.vb: StreamUtil.LongToByteArray(Long)
+  fullName.vb: Reportman.Drawing.StreamUtil.LongToByteArray(Long)
+  name.vb: LongToByteArray(Long)
+- uid: Reportman.Drawing.StreamUtil.ByteArrayToLong(System.Byte[],System.Int32,System.Int32)
+  commentId: M:Reportman.Drawing.StreamUtil.ByteArrayToLong(System.Byte[],System.Int32,System.Int32)
+  id: ByteArrayToLong(System.Byte[],System.Int32,System.Int32)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: ByteArrayToLong(byte[], int, int)
+  nameWithType: StreamUtil.ByteArrayToLong(byte[], int, int)
+  fullName: Reportman.Drawing.StreamUtil.ByteArrayToLong(byte[], int, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Converts a byte array to a long value
+  example: []
+  syntax:
+    content: public static long ByteArrayToLong(byte[] b1, int index, int alen)
+    parameters:
+    - id: b1
+      type: System.Byte[]
+    - id: index
+      type: System.Int32
+    - id: alen
+      type: System.Int32
+    return:
+      type: System.Int64
+    content.vb: Public Shared Function ByteArrayToLong(b1 As Byte(), index As Integer, alen As Integer) As Long
+  overload: Reportman.Drawing.StreamUtil.ByteArrayToLong*
+  nameWithType.vb: StreamUtil.ByteArrayToLong(Byte(), Integer, Integer)
+  fullName.vb: Reportman.Drawing.StreamUtil.ByteArrayToLong(Byte(), Integer, Integer)
+  name.vb: ByteArrayToLong(Byte(), Integer, Integer)
+- uid: Reportman.Drawing.StreamUtil.ByteArrayToString(System.Byte[],System.Int32)
+  commentId: M:Reportman.Drawing.StreamUtil.ByteArrayToString(System.Byte[],System.Int32)
+  id: ByteArrayToString(System.Byte[],System.Int32)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: ByteArrayToString(byte[], int)
+  nameWithType: StreamUtil.ByteArrayToString(byte[], int)
+  fullName: Reportman.Drawing.StreamUtil.ByteArrayToString(byte[], int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Converts a byte array to a string (not unicode)
+  example: []
+  syntax:
+    content: public static string ByteArrayToString(byte[] b1, int alen)
+    parameters:
+    - id: b1
+      type: System.Byte[]
+    - id: alen
+      type: System.Int32
+    return:
+      type: System.String
+    content.vb: Public Shared Function ByteArrayToString(b1 As Byte(), alen As Integer) As String
+  overload: Reportman.Drawing.StreamUtil.ByteArrayToString*
+  nameWithType.vb: StreamUtil.ByteArrayToString(Byte(), Integer)
+  fullName.vb: Reportman.Drawing.StreamUtil.ByteArrayToString(Byte(), Integer)
+  name.vb: ByteArrayToString(Byte(), Integer)
+- uid: Reportman.Drawing.StreamUtil.ByteArrayToString(System.Byte[],System.Int32,System.Int32)
+  commentId: M:Reportman.Drawing.StreamUtil.ByteArrayToString(System.Byte[],System.Int32,System.Int32)
+  id: ByteArrayToString(System.Byte[],System.Int32,System.Int32)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: ByteArrayToString(byte[], int, int)
+  nameWithType: StreamUtil.ByteArrayToString(byte[], int, int)
+  fullName: Reportman.Drawing.StreamUtil.ByteArrayToString(byte[], int, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Converts a byte array to a string (not unicode)
+  example: []
+  syntax:
+    content: public static string ByteArrayToString(byte[] b1, int nindex, int alen)
+    parameters:
+    - id: b1
+      type: System.Byte[]
+    - id: nindex
+      type: System.Int32
+    - id: alen
+      type: System.Int32
+    return:
+      type: System.String
+    content.vb: Public Shared Function ByteArrayToString(b1 As Byte(), nindex As Integer, alen As Integer) As String
+  overload: Reportman.Drawing.StreamUtil.ByteArrayToString*
+  nameWithType.vb: StreamUtil.ByteArrayToString(Byte(), Integer, Integer)
+  fullName.vb: Reportman.Drawing.StreamUtil.ByteArrayToString(Byte(), Integer, Integer)
+  name.vb: ByteArrayToString(Byte(), Integer, Integer)
+- uid: Reportman.Drawing.StreamUtil.ByteArrayToString(System.Byte[],System.Int32,System.Boolean)
+  commentId: M:Reportman.Drawing.StreamUtil.ByteArrayToString(System.Byte[],System.Int32,System.Boolean)
+  id: ByteArrayToString(System.Byte[],System.Int32,System.Boolean)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: ByteArrayToString(byte[], int, bool)
+  nameWithType: StreamUtil.ByteArrayToString(byte[], int, bool)
+  fullName: Reportman.Drawing.StreamUtil.ByteArrayToString(byte[], int, bool)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Converts a byte array to a string, choosing unicode
+  example: []
+  syntax:
+    content: public static string ByteArrayToString(byte[] b1, int alen, bool unicode)
+    parameters:
+    - id: b1
+      type: System.Byte[]
+    - id: alen
+      type: System.Int32
+    - id: unicode
+      type: System.Boolean
+    return:
+      type: System.String
+    content.vb: Public Shared Function ByteArrayToString(b1 As Byte(), alen As Integer, unicode As Boolean) As String
+  overload: Reportman.Drawing.StreamUtil.ByteArrayToString*
+  nameWithType.vb: StreamUtil.ByteArrayToString(Byte(), Integer, Boolean)
+  fullName.vb: Reportman.Drawing.StreamUtil.ByteArrayToString(Byte(), Integer, Boolean)
+  name.vb: ByteArrayToString(Byte(), Integer, Boolean)
+- uid: Reportman.Drawing.StreamUtil.ByteArrayToStream(System.Byte[])
+  commentId: M:Reportman.Drawing.StreamUtil.ByteArrayToStream(System.Byte[])
+  id: ByteArrayToStream(System.Byte[])
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: ByteArrayToStream(byte[])
+  nameWithType: StreamUtil.ByteArrayToStream(byte[])
+  fullName: Reportman.Drawing.StreamUtil.ByteArrayToStream(byte[])
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Converts a byte array to a MemoryStream
+  example: []
+  syntax:
+    content: public static MemoryStream ByteArrayToStream(byte[] b1)
+    parameters:
+    - id: b1
+      type: System.Byte[]
+    return:
+      type: System.IO.MemoryStream
+    content.vb: Public Shared Function ByteArrayToStream(b1 As Byte()) As MemoryStream
+  overload: Reportman.Drawing.StreamUtil.ByteArrayToStream*
+  nameWithType.vb: StreamUtil.ByteArrayToStream(Byte())
+  fullName.vb: Reportman.Drawing.StreamUtil.ByteArrayToStream(Byte())
+  name.vb: ByteArrayToStream(Byte())
+- uid: Reportman.Drawing.StreamUtil.IsCompressed(System.IO.MemoryStream)
+  commentId: M:Reportman.Drawing.StreamUtil.IsCompressed(System.IO.MemoryStream)
+  id: IsCompressed(System.IO.MemoryStream)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: IsCompressed(MemoryStream)
+  nameWithType: StreamUtil.IsCompressed(MemoryStream)
+  fullName: Reportman.Drawing.StreamUtil.IsCompressed(System.IO.MemoryStream)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Check if the stream is a compressed stream
+  example: []
+  syntax:
+    content: public static bool IsCompressed(MemoryStream mems)
+    parameters:
+    - id: mems
+      type: System.IO.MemoryStream
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function IsCompressed(mems As MemoryStream) As Boolean
+  overload: Reportman.Drawing.StreamUtil.IsCompressed*
+- uid: Reportman.Drawing.StreamUtil.IsCompressed(System.Byte[])
+  commentId: M:Reportman.Drawing.StreamUtil.IsCompressed(System.Byte[])
+  id: IsCompressed(System.Byte[])
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: IsCompressed(byte[])
+  nameWithType: StreamUtil.IsCompressed(byte[])
+  fullName: Reportman.Drawing.StreamUtil.IsCompressed(byte[])
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Check if the stream is a compressed stream
+  example: []
+  syntax:
+    content: public static bool IsCompressed(byte[] buf)
+    parameters:
+    - id: buf
+      type: System.Byte[]
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function IsCompressed(buf As Byte()) As Boolean
+  overload: Reportman.Drawing.StreamUtil.IsCompressed*
+  nameWithType.vb: StreamUtil.IsCompressed(Byte())
+  fullName.vb: Reportman.Drawing.StreamUtil.IsCompressed(Byte())
+  name.vb: IsCompressed(Byte())
+- uid: Reportman.Drawing.StreamUtil.DeCompressStream(System.IO.MemoryStream,System.IO.MemoryStream)
+  commentId: M:Reportman.Drawing.StreamUtil.DeCompressStream(System.IO.MemoryStream,System.IO.MemoryStream)
+  id: DeCompressStream(System.IO.MemoryStream,System.IO.MemoryStream)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: DeCompressStream(MemoryStream, MemoryStream)
+  nameWithType: StreamUtil.DeCompressStream(MemoryStream, MemoryStream)
+  fullName: Reportman.Drawing.StreamUtil.DeCompressStream(System.IO.MemoryStream, System.IO.MemoryStream)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Dercompress the first memory stream into the second memory stream
+  example: []
+  syntax:
+    content: public static void DeCompressStream(MemoryStream memstream, MemoryStream dest)
+    parameters:
+    - id: memstream
+      type: System.IO.MemoryStream
+    - id: dest
+      type: System.IO.MemoryStream
+    content.vb: Public Shared Sub DeCompressStream(memstream As MemoryStream, dest As MemoryStream)
+  overload: Reportman.Drawing.StreamUtil.DeCompressStream*
+- uid: Reportman.Drawing.StreamUtil.DecompressStreamGZipAsync(System.IO.Stream,System.IO.Stream)
+  commentId: M:Reportman.Drawing.StreamUtil.DecompressStreamGZipAsync(System.IO.Stream,System.IO.Stream)
+  id: DecompressStreamGZipAsync(System.IO.Stream,System.IO.Stream)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: DecompressStreamGZipAsync(Stream, Stream)
+  nameWithType: StreamUtil.DecompressStreamGZipAsync(Stream, Stream)
+  fullName: Reportman.Drawing.StreamUtil.DecompressStreamGZipAsync(System.IO.Stream, System.IO.Stream)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static Task DecompressStreamGZipAsync(Stream origin, Stream dest)
+    parameters:
+    - id: origin
+      type: System.IO.Stream
+    - id: dest
+      type: System.IO.Stream
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Shared Function DecompressStreamGZipAsync(origin As Stream, dest As Stream) As Task
+  overload: Reportman.Drawing.StreamUtil.DecompressStreamGZipAsync*
+- uid: Reportman.Drawing.StreamUtil.DeCompressBufferGZipAsync(System.Byte[],System.Int32,System.Int32,System.IO.Stream)
+  commentId: M:Reportman.Drawing.StreamUtil.DeCompressBufferGZipAsync(System.Byte[],System.Int32,System.Int32,System.IO.Stream)
+  id: DeCompressBufferGZipAsync(System.Byte[],System.Int32,System.Int32,System.IO.Stream)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: DeCompressBufferGZipAsync(byte[], int, int, Stream)
+  nameWithType: StreamUtil.DeCompressBufferGZipAsync(byte[], int, int, Stream)
+  fullName: Reportman.Drawing.StreamUtil.DeCompressBufferGZipAsync(byte[], int, int, System.IO.Stream)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Dercompress the first memory stream into the second memory stream
+  example: []
+  syntax:
+    content: public static Task DeCompressBufferGZipAsync(byte[] buffer, int offset, int count, Stream dest)
+    parameters:
+    - id: buffer
+      type: System.Byte[]
+    - id: offset
+      type: System.Int32
+    - id: count
+      type: System.Int32
+    - id: dest
+      type: System.IO.Stream
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Shared Function DeCompressBufferGZipAsync(buffer As Byte(), offset As Integer, count As Integer, dest As Stream) As Task
+  overload: Reportman.Drawing.StreamUtil.DeCompressBufferGZipAsync*
+  nameWithType.vb: StreamUtil.DeCompressBufferGZipAsync(Byte(), Integer, Integer, Stream)
+  fullName.vb: Reportman.Drawing.StreamUtil.DeCompressBufferGZipAsync(Byte(), Integer, Integer, System.IO.Stream)
+  name.vb: DeCompressBufferGZipAsync(Byte(), Integer, Integer, Stream)
+- uid: Reportman.Drawing.StreamUtil.DeCompressBuffer(System.Byte[],System.Int32,System.IO.Stream,Reportman.Drawing.ProgressEvent)
+  commentId: M:Reportman.Drawing.StreamUtil.DeCompressBuffer(System.Byte[],System.Int32,System.IO.Stream,Reportman.Drawing.ProgressEvent)
+  id: DeCompressBuffer(System.Byte[],System.Int32,System.IO.Stream,Reportman.Drawing.ProgressEvent)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: DeCompressBuffer(byte[], int, Stream, ProgressEvent)
+  nameWithType: StreamUtil.DeCompressBuffer(byte[], int, Stream, ProgressEvent)
+  fullName: Reportman.Drawing.StreamUtil.DeCompressBuffer(byte[], int, System.IO.Stream, Reportman.Drawing.ProgressEvent)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Dercompress the first memory stream into the second memory stream
+  example: []
+  syntax:
+    content: public static void DeCompressBuffer(byte[] buffer, int count, Stream dest, ProgressEvent progevent)
+    parameters:
+    - id: buffer
+      type: System.Byte[]
+    - id: count
+      type: System.Int32
+    - id: dest
+      type: System.IO.Stream
+    - id: progevent
+      type: Reportman.Drawing.ProgressEvent
+    content.vb: Public Shared Sub DeCompressBuffer(buffer As Byte(), count As Integer, dest As Stream, progevent As ProgressEvent)
+  overload: Reportman.Drawing.StreamUtil.DeCompressBuffer*
+  nameWithType.vb: StreamUtil.DeCompressBuffer(Byte(), Integer, Stream, ProgressEvent)
+  fullName.vb: Reportman.Drawing.StreamUtil.DeCompressBuffer(Byte(), Integer, System.IO.Stream, Reportman.Drawing.ProgressEvent)
+  name.vb: DeCompressBuffer(Byte(), Integer, Stream, ProgressEvent)
+- uid: Reportman.Drawing.StreamUtil.DeCompressBuffer(System.Byte[],System.Int32,System.IO.Stream)
+  commentId: M:Reportman.Drawing.StreamUtil.DeCompressBuffer(System.Byte[],System.Int32,System.IO.Stream)
+  id: DeCompressBuffer(System.Byte[],System.Int32,System.IO.Stream)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: DeCompressBuffer(byte[], int, Stream)
+  nameWithType: StreamUtil.DeCompressBuffer(byte[], int, Stream)
+  fullName: Reportman.Drawing.StreamUtil.DeCompressBuffer(byte[], int, System.IO.Stream)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Dercompress the first memory stream into the second memory stream
+  example: []
+  syntax:
+    content: public static void DeCompressBuffer(byte[] buffer, int count, Stream dest)
+    parameters:
+    - id: buffer
+      type: System.Byte[]
+    - id: count
+      type: System.Int32
+    - id: dest
+      type: System.IO.Stream
+    content.vb: Public Shared Sub DeCompressBuffer(buffer As Byte(), count As Integer, dest As Stream)
+  overload: Reportman.Drawing.StreamUtil.DeCompressBuffer*
+  nameWithType.vb: StreamUtil.DeCompressBuffer(Byte(), Integer, Stream)
+  fullName.vb: Reportman.Drawing.StreamUtil.DeCompressBuffer(Byte(), Integer, System.IO.Stream)
+  name.vb: DeCompressBuffer(Byte(), Integer, Stream)
+- uid: Reportman.Drawing.StreamUtil.DeCompressBufferAsync(System.Byte[],System.Int32,System.IO.Stream)
+  commentId: M:Reportman.Drawing.StreamUtil.DeCompressBufferAsync(System.Byte[],System.Int32,System.IO.Stream)
+  id: DeCompressBufferAsync(System.Byte[],System.Int32,System.IO.Stream)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: DeCompressBufferAsync(byte[], int, Stream)
+  nameWithType: StreamUtil.DeCompressBufferAsync(byte[], int, Stream)
+  fullName: Reportman.Drawing.StreamUtil.DeCompressBufferAsync(byte[], int, System.IO.Stream)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Dercompress the first memory stream into the second memory stream
+  example: []
+  syntax:
+    content: public static Task DeCompressBufferAsync(byte[] buffer, int count, Stream dest)
+    parameters:
+    - id: buffer
+      type: System.Byte[]
+    - id: count
+      type: System.Int32
+    - id: dest
+      type: System.IO.Stream
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Shared Function DeCompressBufferAsync(buffer As Byte(), count As Integer, dest As Stream) As Task
+  overload: Reportman.Drawing.StreamUtil.DeCompressBufferAsync*
+  nameWithType.vb: StreamUtil.DeCompressBufferAsync(Byte(), Integer, Stream)
+  fullName.vb: Reportman.Drawing.StreamUtil.DeCompressBufferAsync(Byte(), Integer, System.IO.Stream)
+  name.vb: DeCompressBufferAsync(Byte(), Integer, Stream)
+- uid: Reportman.Drawing.StreamUtil.DeCompressBufferAsync(System.Byte[],System.Int32,System.IO.Stream,Reportman.Drawing.ProgressEvent)
+  commentId: M:Reportman.Drawing.StreamUtil.DeCompressBufferAsync(System.Byte[],System.Int32,System.IO.Stream,Reportman.Drawing.ProgressEvent)
+  id: DeCompressBufferAsync(System.Byte[],System.Int32,System.IO.Stream,Reportman.Drawing.ProgressEvent)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: DeCompressBufferAsync(byte[], int, Stream, ProgressEvent)
+  nameWithType: StreamUtil.DeCompressBufferAsync(byte[], int, Stream, ProgressEvent)
+  fullName: Reportman.Drawing.StreamUtil.DeCompressBufferAsync(byte[], int, System.IO.Stream, Reportman.Drawing.ProgressEvent)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    net
+                Dercompress the first memory stream into the second memory stream
+  example: []
+  syntax:
+    content: public static Task DeCompressBufferAsync(byte[] buffer, int count, Stream dest, ProgressEvent progevent)
+    parameters:
+    - id: buffer
+      type: System.Byte[]
+    - id: count
+      type: System.Int32
+    - id: dest
+      type: System.IO.Stream
+    - id: progevent
+      type: Reportman.Drawing.ProgressEvent
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Shared Function DeCompressBufferAsync(buffer As Byte(), count As Integer, dest As Stream, progevent As ProgressEvent) As Task
+  overload: Reportman.Drawing.StreamUtil.DeCompressBufferAsync*
+  nameWithType.vb: StreamUtil.DeCompressBufferAsync(Byte(), Integer, Stream, ProgressEvent)
+  fullName.vb: Reportman.Drawing.StreamUtil.DeCompressBufferAsync(Byte(), Integer, System.IO.Stream, Reportman.Drawing.ProgressEvent)
+  name.vb: DeCompressBufferAsync(Byte(), Integer, Stream, ProgressEvent)
+- uid: Reportman.Drawing.StreamUtil.CompressStream(System.IO.Stream,System.IO.MemoryStream)
+  commentId: M:Reportman.Drawing.StreamUtil.CompressStream(System.IO.Stream,System.IO.MemoryStream)
+  id: CompressStream(System.IO.Stream,System.IO.MemoryStream)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: CompressStream(Stream, MemoryStream)
+  nameWithType: StreamUtil.CompressStream(Stream, MemoryStream)
+  fullName: Reportman.Drawing.StreamUtil.CompressStream(System.IO.Stream, System.IO.MemoryStream)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Compress the first memory stream into the second memory stream
+  example: []
+  syntax:
+    content: public static void CompressStream(Stream memstream, MemoryStream dest)
+    parameters:
+    - id: memstream
+      type: System.IO.Stream
+    - id: dest
+      type: System.IO.MemoryStream
+    content.vb: Public Shared Sub CompressStream(memstream As Stream, dest As MemoryStream)
+  overload: Reportman.Drawing.StreamUtil.CompressStream*
+- uid: Reportman.Drawing.StreamUtil.CompressStreamAsync(System.IO.MemoryStream,System.IO.MemoryStream)
+  commentId: M:Reportman.Drawing.StreamUtil.CompressStreamAsync(System.IO.MemoryStream,System.IO.MemoryStream)
+  id: CompressStreamAsync(System.IO.MemoryStream,System.IO.MemoryStream)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: CompressStreamAsync(MemoryStream, MemoryStream)
+  nameWithType: StreamUtil.CompressStreamAsync(MemoryStream, MemoryStream)
+  fullName: Reportman.Drawing.StreamUtil.CompressStreamAsync(System.IO.MemoryStream, System.IO.MemoryStream)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Compress the first memory stream into the second memory stream
+  example: []
+  syntax:
+    content: public static Task CompressStreamAsync(MemoryStream memstream, MemoryStream dest)
+    parameters:
+    - id: memstream
+      type: System.IO.MemoryStream
+    - id: dest
+      type: System.IO.MemoryStream
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Shared Function CompressStreamAsync(memstream As MemoryStream, dest As MemoryStream) As Task
+  overload: Reportman.Drawing.StreamUtil.CompressStreamAsync*
+- uid: Reportman.Drawing.StreamUtil.CompressStreamGZip(System.IO.MemoryStream,System.IO.MemoryStream)
+  commentId: M:Reportman.Drawing.StreamUtil.CompressStreamGZip(System.IO.MemoryStream,System.IO.MemoryStream)
+  id: CompressStreamGZip(System.IO.MemoryStream,System.IO.MemoryStream)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: CompressStreamGZip(MemoryStream, MemoryStream)
+  nameWithType: StreamUtil.CompressStreamGZip(MemoryStream, MemoryStream)
+  fullName: Reportman.Drawing.StreamUtil.CompressStreamGZip(System.IO.MemoryStream, System.IO.MemoryStream)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Compress the first memory stream into the second memory stream using Gzip
+  example: []
+  syntax:
+    content: public static void CompressStreamGZip(MemoryStream memstream, MemoryStream dest)
+    parameters:
+    - id: memstream
+      type: System.IO.MemoryStream
+    - id: dest
+      type: System.IO.MemoryStream
+    content.vb: Public Shared Sub CompressStreamGZip(memstream As MemoryStream, dest As MemoryStream)
+  overload: Reportman.Drawing.StreamUtil.CompressStreamGZip*
+- uid: Reportman.Drawing.StreamUtil.CompressStreamGZipAsync(System.IO.MemoryStream,System.IO.MemoryStream)
+  commentId: M:Reportman.Drawing.StreamUtil.CompressStreamGZipAsync(System.IO.MemoryStream,System.IO.MemoryStream)
+  id: CompressStreamGZipAsync(System.IO.MemoryStream,System.IO.MemoryStream)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: CompressStreamGZipAsync(MemoryStream, MemoryStream)
+  nameWithType: StreamUtil.CompressStreamGZipAsync(MemoryStream, MemoryStream)
+  fullName: Reportman.Drawing.StreamUtil.CompressStreamGZipAsync(System.IO.MemoryStream, System.IO.MemoryStream)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Compress the first memory stream into the second memory stream using Gzip
+  example: []
+  syntax:
+    content: public static Task CompressStreamGZipAsync(MemoryStream memstream, MemoryStream dest)
+    parameters:
+    - id: memstream
+      type: System.IO.MemoryStream
+    - id: dest
+      type: System.IO.MemoryStream
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Shared Function CompressStreamGZipAsync(memstream As MemoryStream, dest As MemoryStream) As Task
+  overload: Reportman.Drawing.StreamUtil.CompressStreamGZipAsync*
+- uid: Reportman.Drawing.StreamUtil.CompressStream(System.IO.MemoryStream,System.IO.MemoryStream,System.Boolean)
+  commentId: M:Reportman.Drawing.StreamUtil.CompressStream(System.IO.MemoryStream,System.IO.MemoryStream,System.Boolean)
+  id: CompressStream(System.IO.MemoryStream,System.IO.MemoryStream,System.Boolean)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: CompressStream(MemoryStream, MemoryStream, bool)
+  nameWithType: StreamUtil.CompressStream(MemoryStream, MemoryStream, bool)
+  fullName: Reportman.Drawing.StreamUtil.CompressStream(System.IO.MemoryStream, System.IO.MemoryStream, bool)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Compress the first memory stream into the second memory stream, option for optimize size
+  example: []
+  syntax:
+    content: public static void CompressStream(MemoryStream memstream, MemoryStream dest, bool optimizesize)
+    parameters:
+    - id: memstream
+      type: System.IO.MemoryStream
+    - id: dest
+      type: System.IO.MemoryStream
+    - id: optimizesize
+      type: System.Boolean
+    content.vb: Public Shared Sub CompressStream(memstream As MemoryStream, dest As MemoryStream, optimizesize As Boolean)
+  overload: Reportman.Drawing.StreamUtil.CompressStream*
+  nameWithType.vb: StreamUtil.CompressStream(MemoryStream, MemoryStream, Boolean)
+  fullName.vb: Reportman.Drawing.StreamUtil.CompressStream(System.IO.MemoryStream, System.IO.MemoryStream, Boolean)
+  name.vb: CompressStream(MemoryStream, MemoryStream, Boolean)
+- uid: Reportman.Drawing.StreamUtil.CompressFile(System.String,System.String)
+  commentId: M:Reportman.Drawing.StreamUtil.CompressFile(System.String,System.String)
+  id: CompressFile(System.String,System.String)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: CompressFile(string, string)
+  nameWithType: StreamUtil.CompressFile(string, string)
+  fullName: Reportman.Drawing.StreamUtil.CompressFile(string, string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static void CompressFile(string source, string destination)
+    parameters:
+    - id: source
+      type: System.String
+    - id: destination
+      type: System.String
+    content.vb: Public Shared Sub CompressFile(source As String, destination As String)
+  overload: Reportman.Drawing.StreamUtil.CompressFile*
+  nameWithType.vb: StreamUtil.CompressFile(String, String)
+  fullName.vb: Reportman.Drawing.StreamUtil.CompressFile(String, String)
+  name.vb: CompressFile(String, String)
+- uid: Reportman.Drawing.StreamUtil.DeCompressFile(System.String,System.String)
+  commentId: M:Reportman.Drawing.StreamUtil.DeCompressFile(System.String,System.String)
+  id: DeCompressFile(System.String,System.String)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: DeCompressFile(string, string)
+  nameWithType: StreamUtil.DeCompressFile(string, string)
+  fullName: Reportman.Drawing.StreamUtil.DeCompressFile(string, string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static void DeCompressFile(string source, string destination)
+    parameters:
+    - id: source
+      type: System.String
+    - id: destination
+      type: System.String
+    content.vb: Public Shared Sub DeCompressFile(source As String, destination As String)
+  overload: Reportman.Drawing.StreamUtil.DeCompressFile*
+  nameWithType.vb: StreamUtil.DeCompressFile(String, String)
+  fullName.vb: Reportman.Drawing.StreamUtil.DeCompressFile(String, String)
+  name.vb: DeCompressFile(String, String)
+- uid: Reportman.Drawing.StreamUtil.CompressStreamAsync(System.IO.MemoryStream,System.IO.MemoryStream,System.Boolean,System.Boolean,System.Threading.CancellationTokenSource)
+  commentId: M:Reportman.Drawing.StreamUtil.CompressStreamAsync(System.IO.MemoryStream,System.IO.MemoryStream,System.Boolean,System.Boolean,System.Threading.CancellationTokenSource)
+  id: CompressStreamAsync(System.IO.MemoryStream,System.IO.MemoryStream,System.Boolean,System.Boolean,System.Threading.CancellationTokenSource)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: CompressStreamAsync(MemoryStream, MemoryStream, bool, bool, CancellationTokenSource)
+  nameWithType: StreamUtil.CompressStreamAsync(MemoryStream, MemoryStream, bool, bool, CancellationTokenSource)
+  fullName: Reportman.Drawing.StreamUtil.CompressStreamAsync(System.IO.MemoryStream, System.IO.MemoryStream, bool, bool, System.Threading.CancellationTokenSource)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static Task<TaskCompressResult> CompressStreamAsync(MemoryStream memstream, MemoryStream dest, bool optimizesize, bool disposeSource, CancellationTokenSource cancelSource)
+    parameters:
+    - id: memstream
+      type: System.IO.MemoryStream
+    - id: dest
+      type: System.IO.MemoryStream
+    - id: optimizesize
+      type: System.Boolean
+    - id: disposeSource
+      type: System.Boolean
+    - id: cancelSource
+      type: System.Threading.CancellationTokenSource
+    return:
+      type: System.Threading.Tasks.Task{Reportman.Drawing.TaskCompressResult}
+    content.vb: Public Shared Function CompressStreamAsync(memstream As MemoryStream, dest As MemoryStream, optimizesize As Boolean, disposeSource As Boolean, cancelSource As CancellationTokenSource) As Task(Of TaskCompressResult)
+  overload: Reportman.Drawing.StreamUtil.CompressStreamAsync*
+  nameWithType.vb: StreamUtil.CompressStreamAsync(MemoryStream, MemoryStream, Boolean, Boolean, CancellationTokenSource)
+  fullName.vb: Reportman.Drawing.StreamUtil.CompressStreamAsync(System.IO.MemoryStream, System.IO.MemoryStream, Boolean, Boolean, System.Threading.CancellationTokenSource)
+  name.vb: CompressStreamAsync(MemoryStream, MemoryStream, Boolean, Boolean, CancellationTokenSource)
+- uid: Reportman.Drawing.StreamUtil.DeCompressBufferGZip(System.Byte[],System.Int32,System.Int32,System.IO.Stream)
+  commentId: M:Reportman.Drawing.StreamUtil.DeCompressBufferGZip(System.Byte[],System.Int32,System.Int32,System.IO.Stream)
+  id: DeCompressBufferGZip(System.Byte[],System.Int32,System.Int32,System.IO.Stream)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: DeCompressBufferGZip(byte[], int, int, Stream)
+  nameWithType: StreamUtil.DeCompressBufferGZip(byte[], int, int, Stream)
+  fullName: Reportman.Drawing.StreamUtil.DeCompressBufferGZip(byte[], int, int, System.IO.Stream)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Dercompress the first memory stream into the second memory stream
+  example: []
+  syntax:
+    content: public static void DeCompressBufferGZip(byte[] buffer, int offset, int count, Stream dest)
+    parameters:
+    - id: buffer
+      type: System.Byte[]
+    - id: offset
+      type: System.Int32
+    - id: count
+      type: System.Int32
+    - id: dest
+      type: System.IO.Stream
+    content.vb: Public Shared Sub DeCompressBufferGZip(buffer As Byte(), offset As Integer, count As Integer, dest As Stream)
+  overload: Reportman.Drawing.StreamUtil.DeCompressBufferGZip*
+  nameWithType.vb: StreamUtil.DeCompressBufferGZip(Byte(), Integer, Integer, Stream)
+  fullName.vb: Reportman.Drawing.StreamUtil.DeCompressBufferGZip(Byte(), Integer, Integer, System.IO.Stream)
+  name.vb: DeCompressBufferGZip(Byte(), Integer, Integer, Stream)
+- uid: Reportman.Drawing.StreamUtil.DecompressStreamGZip(System.IO.Stream,System.IO.Stream)
+  commentId: M:Reportman.Drawing.StreamUtil.DecompressStreamGZip(System.IO.Stream,System.IO.Stream)
+  id: DecompressStreamGZip(System.IO.Stream,System.IO.Stream)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: DecompressStreamGZip(Stream, Stream)
+  nameWithType: StreamUtil.DecompressStreamGZip(Stream, Stream)
+  fullName: Reportman.Drawing.StreamUtil.DecompressStreamGZip(System.IO.Stream, System.IO.Stream)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static void DecompressStreamGZip(Stream origin, Stream dest)
+    parameters:
+    - id: origin
+      type: System.IO.Stream
+    - id: dest
+      type: System.IO.Stream
+    content.vb: Public Shared Sub DecompressStreamGZip(origin As Stream, dest As Stream)
+  overload: Reportman.Drawing.StreamUtil.DecompressStreamGZip*
+- uid: Reportman.Drawing.StreamUtil.CompressStreamTask(System.IO.MemoryStream,System.IO.MemoryStream,System.Boolean,System.Boolean,System.Threading.CancellationTokenSource)
+  commentId: M:Reportman.Drawing.StreamUtil.CompressStreamTask(System.IO.MemoryStream,System.IO.MemoryStream,System.Boolean,System.Boolean,System.Threading.CancellationTokenSource)
+  id: CompressStreamTask(System.IO.MemoryStream,System.IO.MemoryStream,System.Boolean,System.Boolean,System.Threading.CancellationTokenSource)
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: CompressStreamTask(MemoryStream, MemoryStream, bool, bool, CancellationTokenSource)
+  nameWithType: StreamUtil.CompressStreamTask(MemoryStream, MemoryStream, bool, bool, CancellationTokenSource)
+  fullName: Reportman.Drawing.StreamUtil.CompressStreamTask(System.IO.MemoryStream, System.IO.MemoryStream, bool, bool, System.Threading.CancellationTokenSource)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static Task<TaskCompressResult> CompressStreamTask(MemoryStream memstream, MemoryStream dest, bool optimizesize, bool disposeSource, CancellationTokenSource cancelSource)
+    parameters:
+    - id: memstream
+      type: System.IO.MemoryStream
+    - id: dest
+      type: System.IO.MemoryStream
+    - id: optimizesize
+      type: System.Boolean
+    - id: disposeSource
+      type: System.Boolean
+    - id: cancelSource
+      type: System.Threading.CancellationTokenSource
+    return:
+      type: System.Threading.Tasks.Task{Reportman.Drawing.TaskCompressResult}
+    content.vb: Public Shared Function CompressStreamTask(memstream As MemoryStream, dest As MemoryStream, optimizesize As Boolean, disposeSource As Boolean, cancelSource As CancellationTokenSource) As Task(Of TaskCompressResult)
+  overload: Reportman.Drawing.StreamUtil.CompressStreamTask*
+  nameWithType.vb: StreamUtil.CompressStreamTask(MemoryStream, MemoryStream, Boolean, Boolean, CancellationTokenSource)
+  fullName.vb: Reportman.Drawing.StreamUtil.CompressStreamTask(System.IO.MemoryStream, System.IO.MemoryStream, Boolean, Boolean, System.Threading.CancellationTokenSource)
+  name.vb: CompressStreamTask(MemoryStream, MemoryStream, Boolean, Boolean, CancellationTokenSource)
+- uid: Reportman.Drawing.StreamUtil.#ctor
+  commentId: M:Reportman.Drawing.StreamUtil.#ctor
+  id: '#ctor'
+  parent: Reportman.Drawing.StreamUtil
+  langs:
+  - csharp
+  - vb
+  name: StreamUtil()
+  nameWithType: StreamUtil.StreamUtil()
+  fullName: Reportman.Drawing.StreamUtil.StreamUtil()
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public StreamUtil()
+    content.vb: Public Sub New()
+  overload: Reportman.Drawing.StreamUtil.#ctor*
+  nameWithType.vb: StreamUtil.New()
+  fullName.vb: Reportman.Drawing.StreamUtil.New()
+  name.vb: New()
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Byte[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte[]
+  nameWithType: byte[]
+  fullName: byte[]
+  nameWithType.vb: Byte()
+  fullName.vb: Byte()
+  name.vb: Byte()
+  spec.csharp:
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: (
+  - name: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Reportman.Drawing.StreamUtil.GetFiles*
+  commentId: Overload:Reportman.Drawing.StreamUtil.GetFiles
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_GetFiles_System_String_System_String_System_IO_SearchOption_
+  name: GetFiles
+  nameWithType: StreamUtil.GetFiles
+  fullName: Reportman.Drawing.StreamUtil.GetFiles
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.IO.SearchOption
+  commentId: T:System.IO.SearchOption
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.searchoption
+  name: SearchOption
+  nameWithType: SearchOption
+  fullName: System.IO.SearchOption
+- uid: System.String[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string[]
+  nameWithType: string[]
+  fullName: string[]
+  nameWithType.vb: String()
+  fullName.vb: String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: (
+  - name: )
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+- uid: Reportman.Drawing.StreamUtil.FileInUse*
+  commentId: Overload:Reportman.Drawing.StreamUtil.FileInUse
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_FileInUse_System_String_
+  name: FileInUse
+  nameWithType: StreamUtil.FileInUse
+  fullName: Reportman.Drawing.StreamUtil.FileInUse
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Reportman.Drawing.StreamUtil.SWriteLine*
+  commentId: Overload:Reportman.Drawing.StreamUtil.SWriteLine
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_SWriteLine_System_IO_Stream_System_String_System_Boolean_
+  name: SWriteLine
+  nameWithType: StreamUtil.SWriteLine
+  fullName: Reportman.Drawing.StreamUtil.SWriteLine
+- uid: System.IO.Stream
+  commentId: T:System.IO.Stream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  name: Stream
+  nameWithType: Stream
+  fullName: System.IO.Stream
+- uid: Reportman.Drawing.StreamUtil.StreamToMemoryStream*
+  commentId: Overload:Reportman.Drawing.StreamUtil.StreamToMemoryStream
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_StreamToMemoryStream_System_IO_Stream_System_Int32_
+  name: StreamToMemoryStream
+  nameWithType: StreamUtil.StreamToMemoryStream
+  fullName: Reportman.Drawing.StreamUtil.StreamToMemoryStream
+- uid: System.IO.MemoryStream
+  commentId: T:System.IO.MemoryStream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.memorystream
+  name: MemoryStream
+  nameWithType: MemoryStream
+  fullName: System.IO.MemoryStream
+- uid: Reportman.Drawing.StreamUtil.StreamToMemoryStreamAsync*
+  commentId: Overload:Reportman.Drawing.StreamUtil.StreamToMemoryStreamAsync
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_StreamToMemoryStreamAsync_System_IO_Stream_System_Int32_
+  name: StreamToMemoryStreamAsync
+  nameWithType: StreamUtil.StreamToMemoryStreamAsync
+  fullName: Reportman.Drawing.StreamUtil.StreamToMemoryStreamAsync
+- uid: System.Threading.Tasks.Task{System.IO.MemoryStream}
+  commentId: T:System.Threading.Tasks.Task{System.IO.MemoryStream}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<MemoryStream>
+  nameWithType: Task<MemoryStream>
+  fullName: System.Threading.Tasks.Task<System.IO.MemoryStream>
+  nameWithType.vb: Task(Of MemoryStream)
+  fullName.vb: System.Threading.Tasks.Task(Of System.IO.MemoryStream)
+  name.vb: Task(Of MemoryStream)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.IO.MemoryStream
+    name: MemoryStream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.memorystream
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.IO.MemoryStream
+    name: MemoryStream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.memorystream
+  - name: )
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: Reportman.Drawing.StreamUtil.FileToMemoryStream*
+  commentId: Overload:Reportman.Drawing.StreamUtil.FileToMemoryStream
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_FileToMemoryStream_System_String_
+  name: FileToMemoryStream
+  nameWithType: StreamUtil.FileToMemoryStream
+  fullName: Reportman.Drawing.StreamUtil.FileToMemoryStream
+- uid: Reportman.Drawing.StreamUtil.FileToMemoryStreamAsync*
+  commentId: Overload:Reportman.Drawing.StreamUtil.FileToMemoryStreamAsync
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_FileToMemoryStreamAsync_System_String_
+  name: FileToMemoryStreamAsync
+  nameWithType: StreamUtil.FileToMemoryStreamAsync
+  fullName: Reportman.Drawing.StreamUtil.FileToMemoryStreamAsync
+- uid: Reportman.Drawing.StreamUtil.WriteTo*
+  commentId: Overload:Reportman.Drawing.StreamUtil.WriteTo
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_WriteTo_System_IO_Stream_System_IO_Stream_System_Int32_
+  name: WriteTo
+  nameWithType: StreamUtil.WriteTo
+  fullName: Reportman.Drawing.StreamUtil.WriteTo
+- uid: Reportman.Drawing.StreamUtil.MemoryStreamToFile*
+  commentId: Overload:Reportman.Drawing.StreamUtil.MemoryStreamToFile
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_MemoryStreamToFile_System_IO_MemoryStream_System_String_
+  name: MemoryStreamToFile
+  nameWithType: StreamUtil.MemoryStreamToFile
+  fullName: Reportman.Drawing.StreamUtil.MemoryStreamToFile
+- uid: Reportman.Drawing.StreamUtil.StreamToFile*
+  commentId: Overload:Reportman.Drawing.StreamUtil.StreamToFile
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_StreamToFile_System_IO_Stream_System_String_System_Boolean_
+  name: StreamToFile
+  nameWithType: StreamUtil.StreamToFile
+  fullName: Reportman.Drawing.StreamUtil.StreamToFile
+- uid: Reportman.Drawing.StreamUtil.StreamToFileAsync*
+  commentId: Overload:Reportman.Drawing.StreamUtil.StreamToFileAsync
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_StreamToFileAsync_System_IO_Stream_System_String_System_Boolean_
+  name: StreamToFileAsync
+  nameWithType: StreamUtil.StreamToFileAsync
+  fullName: Reportman.Drawing.StreamUtil.StreamToFileAsync
+- uid: Reportman.Drawing.StreamUtil.WriteStringToUTF8Stream*
+  commentId: Overload:Reportman.Drawing.StreamUtil.WriteStringToUTF8Stream
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_WriteStringToUTF8Stream_System_String_System_IO_Stream_
+  name: WriteStringToUTF8Stream
+  nameWithType: StreamUtil.WriteStringToUTF8Stream
+  fullName: Reportman.Drawing.StreamUtil.WriteStringToUTF8Stream
+- uid: Reportman.Drawing.StreamUtil.WriteStringToStream*
+  commentId: Overload:Reportman.Drawing.StreamUtil.WriteStringToStream
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_WriteStringToStream_System_String_System_IO_Stream_System_Text_Encoding_
+  name: WriteStringToStream
+  nameWithType: StreamUtil.WriteStringToStream
+  fullName: Reportman.Drawing.StreamUtil.WriteStringToStream
+- uid: System.Text.Encoding
+  commentId: T:System.Text.Encoding
+  parent: System.Text
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.text.encoding
+  name: Encoding
+  nameWithType: Encoding
+  fullName: System.Text.Encoding
+- uid: System.Text
+  commentId: N:System.Text
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Text
+  nameWithType: System.Text
+  fullName: System.Text
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+- uid: Reportman.Drawing.StreamUtil.WriteCharArrayToStream*
+  commentId: Overload:Reportman.Drawing.StreamUtil.WriteCharArrayToStream
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_WriteCharArrayToStream_System_Char___System_Int32_System_IO_Stream_
+  name: WriteCharArrayToStream
+  nameWithType: StreamUtil.WriteCharArrayToStream
+  fullName: Reportman.Drawing.StreamUtil.WriteCharArrayToStream
+- uid: System.Char[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.char
+  name: char[]
+  nameWithType: char[]
+  fullName: char[]
+  nameWithType.vb: Char()
+  fullName.vb: Char()
+  name.vb: Char()
+  spec.csharp:
+  - uid: System.Char
+    name: char
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.char
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Char
+    name: Char
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.char
+  - name: (
+  - name: )
+- uid: Reportman.Drawing.StreamUtil.StreamToHex*
+  commentId: Overload:Reportman.Drawing.StreamUtil.StreamToHex
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_StreamToHex_System_IO_Stream_
+  name: StreamToHex
+  nameWithType: StreamUtil.StreamToHex
+  fullName: Reportman.Drawing.StreamUtil.StreamToHex
+- uid: Reportman.Drawing.StreamUtil.IntToByteArray*
+  commentId: Overload:Reportman.Drawing.StreamUtil.IntToByteArray
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_IntToByteArray_System_Int32_
+  name: IntToByteArray
+  nameWithType: StreamUtil.IntToByteArray
+  fullName: Reportman.Drawing.StreamUtil.IntToByteArray
+- uid: Reportman.Drawing.StreamUtil.Int64ToByteArray*
+  commentId: Overload:Reportman.Drawing.StreamUtil.Int64ToByteArray
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_Int64ToByteArray_System_Int64_
+  name: Int64ToByteArray
+  nameWithType: StreamUtil.Int64ToByteArray
+  fullName: Reportman.Drawing.StreamUtil.Int64ToByteArray
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: Reportman.Drawing.StreamUtil.ShortToByteArray*
+  commentId: Overload:Reportman.Drawing.StreamUtil.ShortToByteArray
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_ShortToByteArray_System_Int32_
+  name: ShortToByteArray
+  nameWithType: StreamUtil.ShortToByteArray
+  fullName: Reportman.Drawing.StreamUtil.ShortToByteArray
+- uid: Reportman.Drawing.StreamUtil.BoolToByteArray*
+  commentId: Overload:Reportman.Drawing.StreamUtil.BoolToByteArray
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_BoolToByteArray_System_Boolean_
+  name: BoolToByteArray
+  nameWithType: StreamUtil.BoolToByteArray
+  fullName: Reportman.Drawing.StreamUtil.BoolToByteArray
+- uid: Reportman.Drawing.StreamUtil.StringToByteArray*
+  commentId: Overload:Reportman.Drawing.StreamUtil.StringToByteArray
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_StringToByteArray_System_String_System_Int32_
+  name: StringToByteArray
+  nameWithType: StreamUtil.StringToByteArray
+  fullName: Reportman.Drawing.StreamUtil.StringToByteArray
+- uid: Reportman.Drawing.StreamUtil.ByteToByteArray*
+  commentId: Overload:Reportman.Drawing.StreamUtil.ByteToByteArray
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_ByteToByteArray_System_Byte_
+  name: ByteToByteArray
+  nameWithType: StreamUtil.ByteToByteArray
+  fullName: Reportman.Drawing.StreamUtil.ByteToByteArray
+- uid: System.Byte
+  commentId: T:System.Byte
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte
+  nameWithType: byte
+  fullName: byte
+  nameWithType.vb: Byte
+  fullName.vb: Byte
+  name.vb: Byte
+- uid: Reportman.Drawing.StreamUtil.ByteArrayToInt*
+  commentId: Overload:Reportman.Drawing.StreamUtil.ByteArrayToInt
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_ByteArrayToInt_System_Byte___System_Int32_System_Int32_
+  name: ByteArrayToInt
+  nameWithType: StreamUtil.ByteArrayToInt
+  fullName: Reportman.Drawing.StreamUtil.ByteArrayToInt
+- uid: Reportman.Drawing.StreamUtil.ByteArrayToInt64*
+  commentId: Overload:Reportman.Drawing.StreamUtil.ByteArrayToInt64
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_ByteArrayToInt64_System_Byte___System_Int32_System_Int32_
+  name: ByteArrayToInt64
+  nameWithType: StreamUtil.ByteArrayToInt64
+  fullName: Reportman.Drawing.StreamUtil.ByteArrayToInt64
+- uid: Reportman.Drawing.StreamUtil.ByteArrayToUInt*
+  commentId: Overload:Reportman.Drawing.StreamUtil.ByteArrayToUInt
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_ByteArrayToUInt_System_Byte___System_Int32_System_Int32_
+  name: ByteArrayToUInt
+  nameWithType: StreamUtil.ByteArrayToUInt
+  fullName: Reportman.Drawing.StreamUtil.ByteArrayToUInt
+- uid: System.UInt32
+  commentId: T:System.UInt32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint32
+  name: uint
+  nameWithType: uint
+  fullName: uint
+  nameWithType.vb: UInteger
+  fullName.vb: UInteger
+  name.vb: UInteger
+- uid: Reportman.Drawing.StreamUtil.ByteArrayToUShort*
+  commentId: Overload:Reportman.Drawing.StreamUtil.ByteArrayToUShort
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_ByteArrayToUShort_System_Byte___System_Int32_System_Int32_
+  name: ByteArrayToUShort
+  nameWithType: StreamUtil.ByteArrayToUShort
+  fullName: Reportman.Drawing.StreamUtil.ByteArrayToUShort
+- uid: System.UInt16
+  commentId: T:System.UInt16
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint16
+  name: ushort
+  nameWithType: ushort
+  fullName: ushort
+  nameWithType.vb: UShort
+  fullName.vb: UShort
+  name.vb: UShort
+- uid: Reportman.Drawing.StreamUtil.ByteArrayToShort*
+  commentId: Overload:Reportman.Drawing.StreamUtil.ByteArrayToShort
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_ByteArrayToShort_System_Byte___System_Int32_
+  name: ByteArrayToShort
+  nameWithType: StreamUtil.ByteArrayToShort
+  fullName: Reportman.Drawing.StreamUtil.ByteArrayToShort
+- uid: System.Int16
+  commentId: T:System.Int16
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int16
+  name: short
+  nameWithType: short
+  fullName: short
+  nameWithType.vb: Short
+  fullName.vb: Short
+  name.vb: Short
+- uid: Reportman.Drawing.StreamUtil.ByteArrayToLong*
+  commentId: Overload:Reportman.Drawing.StreamUtil.ByteArrayToLong
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_ByteArrayToLong_System_Byte___System_Int32_
+  name: ByteArrayToLong
+  nameWithType: StreamUtil.ByteArrayToLong
+  fullName: Reportman.Drawing.StreamUtil.ByteArrayToLong
+- uid: Reportman.Drawing.StreamUtil.CompareArrayContent*
+  commentId: Overload:Reportman.Drawing.StreamUtil.CompareArrayContent
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_CompareArrayContent_System_Byte___System_Byte___
+  name: CompareArrayContent
+  nameWithType: StreamUtil.CompareArrayContent
+  fullName: Reportman.Drawing.StreamUtil.CompareArrayContent
+- uid: Reportman.Drawing.StreamUtil.LongToByteArray*
+  commentId: Overload:Reportman.Drawing.StreamUtil.LongToByteArray
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_LongToByteArray_System_Int64_
+  name: LongToByteArray
+  nameWithType: StreamUtil.LongToByteArray
+  fullName: Reportman.Drawing.StreamUtil.LongToByteArray
+- uid: Reportman.Drawing.StreamUtil.ByteArrayToString*
+  commentId: Overload:Reportman.Drawing.StreamUtil.ByteArrayToString
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_ByteArrayToString_System_Byte___System_Int32_
+  name: ByteArrayToString
+  nameWithType: StreamUtil.ByteArrayToString
+  fullName: Reportman.Drawing.StreamUtil.ByteArrayToString
+- uid: Reportman.Drawing.StreamUtil.ByteArrayToStream*
+  commentId: Overload:Reportman.Drawing.StreamUtil.ByteArrayToStream
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_ByteArrayToStream_System_Byte___
+  name: ByteArrayToStream
+  nameWithType: StreamUtil.ByteArrayToStream
+  fullName: Reportman.Drawing.StreamUtil.ByteArrayToStream
+- uid: Reportman.Drawing.StreamUtil.IsCompressed*
+  commentId: Overload:Reportman.Drawing.StreamUtil.IsCompressed
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_IsCompressed_System_IO_MemoryStream_
+  name: IsCompressed
+  nameWithType: StreamUtil.IsCompressed
+  fullName: Reportman.Drawing.StreamUtil.IsCompressed
+- uid: Reportman.Drawing.StreamUtil.DeCompressStream*
+  commentId: Overload:Reportman.Drawing.StreamUtil.DeCompressStream
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_DeCompressStream_System_IO_MemoryStream_System_IO_MemoryStream_
+  name: DeCompressStream
+  nameWithType: StreamUtil.DeCompressStream
+  fullName: Reportman.Drawing.StreamUtil.DeCompressStream
+- uid: Reportman.Drawing.StreamUtil.DecompressStreamGZipAsync*
+  commentId: Overload:Reportman.Drawing.StreamUtil.DecompressStreamGZipAsync
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_DecompressStreamGZipAsync_System_IO_Stream_System_IO_Stream_
+  name: DecompressStreamGZipAsync
+  nameWithType: StreamUtil.DecompressStreamGZipAsync
+  fullName: Reportman.Drawing.StreamUtil.DecompressStreamGZipAsync
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: Reportman.Drawing.StreamUtil.DeCompressBufferGZipAsync*
+  commentId: Overload:Reportman.Drawing.StreamUtil.DeCompressBufferGZipAsync
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_DeCompressBufferGZipAsync_System_Byte___System_Int32_System_Int32_System_IO_Stream_
+  name: DeCompressBufferGZipAsync
+  nameWithType: StreamUtil.DeCompressBufferGZipAsync
+  fullName: Reportman.Drawing.StreamUtil.DeCompressBufferGZipAsync
+- uid: Reportman.Drawing.StreamUtil.DeCompressBuffer*
+  commentId: Overload:Reportman.Drawing.StreamUtil.DeCompressBuffer
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_DeCompressBuffer_System_Byte___System_Int32_System_IO_Stream_Reportman_Drawing_ProgressEvent_
+  name: DeCompressBuffer
+  nameWithType: StreamUtil.DeCompressBuffer
+  fullName: Reportman.Drawing.StreamUtil.DeCompressBuffer
+- uid: Reportman.Drawing.ProgressEvent
+  commentId: T:Reportman.Drawing.ProgressEvent
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.ProgressEvent.html
+  name: ProgressEvent
+  nameWithType: ProgressEvent
+  fullName: Reportman.Drawing.ProgressEvent
+- uid: Reportman.Drawing.StreamUtil.DeCompressBufferAsync*
+  commentId: Overload:Reportman.Drawing.StreamUtil.DeCompressBufferAsync
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_DeCompressBufferAsync_System_Byte___System_Int32_System_IO_Stream_
+  name: DeCompressBufferAsync
+  nameWithType: StreamUtil.DeCompressBufferAsync
+  fullName: Reportman.Drawing.StreamUtil.DeCompressBufferAsync
+- uid: Reportman.Drawing.StreamUtil.CompressStream*
+  commentId: Overload:Reportman.Drawing.StreamUtil.CompressStream
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_CompressStream_System_IO_Stream_System_IO_MemoryStream_
+  name: CompressStream
+  nameWithType: StreamUtil.CompressStream
+  fullName: Reportman.Drawing.StreamUtil.CompressStream
+- uid: Reportman.Drawing.StreamUtil.CompressStreamAsync*
+  commentId: Overload:Reportman.Drawing.StreamUtil.CompressStreamAsync
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_CompressStreamAsync_System_IO_MemoryStream_System_IO_MemoryStream_
+  name: CompressStreamAsync
+  nameWithType: StreamUtil.CompressStreamAsync
+  fullName: Reportman.Drawing.StreamUtil.CompressStreamAsync
+- uid: Reportman.Drawing.StreamUtil.CompressStreamGZip*
+  commentId: Overload:Reportman.Drawing.StreamUtil.CompressStreamGZip
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_CompressStreamGZip_System_IO_MemoryStream_System_IO_MemoryStream_
+  name: CompressStreamGZip
+  nameWithType: StreamUtil.CompressStreamGZip
+  fullName: Reportman.Drawing.StreamUtil.CompressStreamGZip
+- uid: Reportman.Drawing.StreamUtil.CompressStreamGZipAsync*
+  commentId: Overload:Reportman.Drawing.StreamUtil.CompressStreamGZipAsync
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_CompressStreamGZipAsync_System_IO_MemoryStream_System_IO_MemoryStream_
+  name: CompressStreamGZipAsync
+  nameWithType: StreamUtil.CompressStreamGZipAsync
+  fullName: Reportman.Drawing.StreamUtil.CompressStreamGZipAsync
+- uid: Reportman.Drawing.StreamUtil.CompressFile*
+  commentId: Overload:Reportman.Drawing.StreamUtil.CompressFile
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_CompressFile_System_String_System_String_
+  name: CompressFile
+  nameWithType: StreamUtil.CompressFile
+  fullName: Reportman.Drawing.StreamUtil.CompressFile
+- uid: Reportman.Drawing.StreamUtil.DeCompressFile*
+  commentId: Overload:Reportman.Drawing.StreamUtil.DeCompressFile
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_DeCompressFile_System_String_System_String_
+  name: DeCompressFile
+  nameWithType: StreamUtil.DeCompressFile
+  fullName: Reportman.Drawing.StreamUtil.DeCompressFile
+- uid: System.Threading.CancellationTokenSource
+  commentId: T:System.Threading.CancellationTokenSource
+  parent: System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtokensource
+  name: CancellationTokenSource
+  nameWithType: CancellationTokenSource
+  fullName: System.Threading.CancellationTokenSource
+- uid: System.Threading.Tasks.Task{Reportman.Drawing.TaskCompressResult}
+  commentId: T:System.Threading.Tasks.Task{Reportman.Drawing.TaskCompressResult}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TaskCompressResult>
+  nameWithType: Task<TaskCompressResult>
+  fullName: System.Threading.Tasks.Task<Reportman.Drawing.TaskCompressResult>
+  nameWithType.vb: Task(Of TaskCompressResult)
+  fullName.vb: System.Threading.Tasks.Task(Of Reportman.Drawing.TaskCompressResult)
+  name.vb: Task(Of TaskCompressResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: Reportman.Drawing.TaskCompressResult
+    name: TaskCompressResult
+    isExternal: true
+    href: Reportman.Drawing.TaskCompressResult.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Reportman.Drawing.TaskCompressResult
+    name: TaskCompressResult
+    isExternal: true
+    href: Reportman.Drawing.TaskCompressResult.html
+  - name: )
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+- uid: Reportman.Drawing.StreamUtil.DeCompressBufferGZip*
+  commentId: Overload:Reportman.Drawing.StreamUtil.DeCompressBufferGZip
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_DeCompressBufferGZip_System_Byte___System_Int32_System_Int32_System_IO_Stream_
+  name: DeCompressBufferGZip
+  nameWithType: StreamUtil.DeCompressBufferGZip
+  fullName: Reportman.Drawing.StreamUtil.DeCompressBufferGZip
+- uid: Reportman.Drawing.StreamUtil.DecompressStreamGZip*
+  commentId: Overload:Reportman.Drawing.StreamUtil.DecompressStreamGZip
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_DecompressStreamGZip_System_IO_Stream_System_IO_Stream_
+  name: DecompressStreamGZip
+  nameWithType: StreamUtil.DecompressStreamGZip
+  fullName: Reportman.Drawing.StreamUtil.DecompressStreamGZip
+- uid: Reportman.Drawing.StreamUtil.CompressStreamTask*
+  commentId: Overload:Reportman.Drawing.StreamUtil.CompressStreamTask
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil_CompressStreamTask_System_IO_MemoryStream_System_IO_MemoryStream_System_Boolean_System_Boolean_System_Threading_CancellationTokenSource_
+  name: CompressStreamTask
+  nameWithType: StreamUtil.CompressStreamTask
+  fullName: Reportman.Drawing.StreamUtil.CompressStreamTask
+- uid: Reportman.Drawing.StreamUtil.#ctor*
+  commentId: Overload:Reportman.Drawing.StreamUtil.#ctor
+  isExternal: true
+  href: Reportman.Drawing.StreamUtil.html#Reportman_Drawing_StreamUtil__ctor
+  name: StreamUtil
+  nameWithType: StreamUtil.StreamUtil
+  fullName: Reportman.Drawing.StreamUtil.StreamUtil
+  nameWithType.vb: StreamUtil.New
+  fullName.vb: Reportman.Drawing.StreamUtil.New
+  name.vb: New

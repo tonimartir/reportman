@@ -1,0 +1,1157 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.PrintItem
+  commentId: T:Reportman.Reporting.PrintItem
+  id: PrintItem
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.PrintItem.#ctor
+  - Reportman.Reporting.PrintItem.DoAfterPrint
+  - Reportman.Reporting.PrintItem.DoBeforePrint
+  - Reportman.Reporting.PrintItem.DoPrint(Reportman.Drawing.PrintOut,System.Int32,System.Int32,System.Int32,System.Int32,Reportman.Drawing.MetaFile,System.Drawing.Point,System.Boolean@)
+  - Reportman.Reporting.PrintItem.EvaluatePrintCondition
+  - Reportman.Reporting.PrintItem.ExecuteAfterPrint
+  - Reportman.Reporting.PrintItem.ExecuteBeforePrint
+  - Reportman.Reporting.PrintItem.GetExtension(Reportman.Drawing.PrintOut,System.Drawing.Point,System.Boolean)
+  - Reportman.Reporting.PrintItem.Height
+  - Reportman.Reporting.PrintItem.LastExtent
+  - Reportman.Reporting.PrintItem.Print(Reportman.Drawing.PrintOut,System.Int32,System.Int32,System.Int32,System.Int32,Reportman.Drawing.MetaFile,System.Drawing.Point,System.Boolean@)
+  - Reportman.Reporting.PrintItem.PrintCondition
+  - Reportman.Reporting.PrintItem.PrintHeight
+  - Reportman.Reporting.PrintItem.PrintWidth
+  - Reportman.Reporting.PrintItem.SelectionIndex
+  - Reportman.Reporting.PrintItem.SelectionRectangle
+  - Reportman.Reporting.PrintItem.SubReportChanged(Reportman.Reporting.SubReportEvent,System.String)
+  - Reportman.Reporting.PrintItem.Visible
+  - Reportman.Reporting.PrintItem.Width
+  langs:
+  - csharp
+  - vb
+  name: PrintItem
+  nameWithType: PrintItem
+  fullName: Reportman.Reporting.PrintItem
+  type: Class
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Basic class providing more basic functionality this item provides printing capability and some events
+  example: []
+  syntax:
+    content: 'public class PrintItem : ReportItem, IDisposable'
+    content.vb: Public Class PrintItem Inherits ReportItem Implements IDisposable
+  inheritance:
+  - System.Object
+  - Reportman.Reporting.ReportItem
+  derivedClasses:
+  - Reportman.Reporting.PrintPosItem
+  - Reportman.Reporting.Section
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - Reportman.Reporting.ReportItem.SetReport(Reportman.Reporting.BaseReport)
+  - Reportman.Reporting.ReportItem.GetClassName
+  - Reportman.Reporting.ReportItem.Dispose
+  - Reportman.Reporting.ReportItem.Name
+  - Reportman.Reporting.ReportItem.Report
+  - Reportman.Reporting.ReportItem.ClassName
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Reporting.PrintItem.PrintWidth
+  commentId: F:Reportman.Reporting.PrintItem.PrintWidth
+  id: PrintWidth
+  parent: Reportman.Reporting.PrintItem
+  langs:
+  - csharp
+  - vb
+  name: PrintWidth
+  nameWithType: PrintItem.PrintWidth
+  fullName: Reportman.Reporting.PrintItem.PrintWidth
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Width in twips of the printable item, variable at runtime
+  example: []
+  syntax:
+    content: public int PrintWidth
+    return:
+      type: System.Int32
+    content.vb: Public PrintWidth As Integer
+- uid: Reportman.Reporting.PrintItem.PrintHeight
+  commentId: F:Reportman.Reporting.PrintItem.PrintHeight
+  id: PrintHeight
+  parent: Reportman.Reporting.PrintItem
+  langs:
+  - csharp
+  - vb
+  name: PrintHeight
+  nameWithType: PrintItem.PrintHeight
+  fullName: Reportman.Reporting.PrintItem.PrintHeight
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Height in twips of the printable item, variable at runtime
+  example: []
+  syntax:
+    content: public int PrintHeight
+    return:
+      type: System.Int32
+    content.vb: Public PrintHeight As Integer
+- uid: Reportman.Reporting.PrintItem.Visible
+  commentId: F:Reportman.Reporting.PrintItem.Visible
+  id: Visible
+  parent: Reportman.Reporting.PrintItem
+  langs:
+  - csharp
+  - vb
+  name: Visible
+  nameWithType: PrintItem.Visible
+  fullName: Reportman.Reporting.PrintItem.Visible
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Visible will determine if the item must be shown at design time
+  example: []
+  syntax:
+    content: public bool Visible
+    return:
+      type: System.Boolean
+    content.vb: Public Visible As Boolean
+- uid: Reportman.Reporting.PrintItem.LastExtent
+  commentId: F:Reportman.Reporting.PrintItem.LastExtent
+  id: LastExtent
+  parent: Reportman.Reporting.PrintItem
+  langs:
+  - csharp
+  - vb
+  name: LastExtent
+  nameWithType: PrintItem.LastExtent
+  fullName: Reportman.Reporting.PrintItem.LastExtent
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Last calculated extent at runtime, while processing the report
+  example: []
+  syntax:
+    content: public Point LastExtent
+    return:
+      type: System.Drawing.Point
+    content.vb: Public LastExtent As Point
+- uid: Reportman.Reporting.PrintItem.SelectionIndex
+  commentId: F:Reportman.Reporting.PrintItem.SelectionIndex
+  id: SelectionIndex
+  parent: Reportman.Reporting.PrintItem
+  langs:
+  - csharp
+  - vb
+  name: SelectionIndex
+  nameWithType: PrintItem.SelectionIndex
+  fullName: Reportman.Reporting.PrintItem.SelectionIndex
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Selecction index
+  example: []
+  syntax:
+    content: public int SelectionIndex
+    return:
+      type: System.Int32
+    content.vb: Public SelectionIndex As Integer
+- uid: Reportman.Reporting.PrintItem.SelectionRectangle
+  commentId: F:Reportman.Reporting.PrintItem.SelectionRectangle
+  id: SelectionRectangle
+  parent: Reportman.Reporting.PrintItem
+  langs:
+  - csharp
+  - vb
+  name: SelectionRectangle
+  nameWithType: PrintItem.SelectionRectangle
+  fullName: Reportman.Reporting.PrintItem.SelectionRectangle
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public Rectangle SelectionRectangle
+    return:
+      type: System.Drawing.Rectangle
+    content.vb: Public SelectionRectangle As Rectangle
+- uid: Reportman.Reporting.PrintItem.#ctor
+  commentId: M:Reportman.Reporting.PrintItem.#ctor
+  id: '#ctor'
+  parent: Reportman.Reporting.PrintItem
+  langs:
+  - csharp
+  - vb
+  name: PrintItem()
+  nameWithType: PrintItem.PrintItem()
+  fullName: Reportman.Reporting.PrintItem.PrintItem()
+  type: Constructor
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Constructor
+  example: []
+  syntax:
+    content: public PrintItem()
+    content.vb: Public Sub New()
+  overload: Reportman.Reporting.PrintItem.#ctor*
+  nameWithType.vb: PrintItem.New()
+  fullName.vb: Reportman.Reporting.PrintItem.New()
+  name.vb: New()
+- uid: Reportman.Reporting.PrintItem.EvaluatePrintCondition
+  commentId: M:Reportman.Reporting.PrintItem.EvaluatePrintCondition
+  id: EvaluatePrintCondition
+  parent: Reportman.Reporting.PrintItem
+  langs:
+  - csharp
+  - vb
+  name: EvaluatePrintCondition()
+  nameWithType: PrintItem.EvaluatePrintCondition()
+  fullName: Reportman.Reporting.PrintItem.EvaluatePrintCondition()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Print
+  example: []
+  syntax:
+    content: public bool EvaluatePrintCondition()
+    return:
+      type: System.Boolean
+      description: Returns true if the print condition is empty or evaluated to true
+    content.vb: Public Function EvaluatePrintCondition() As Boolean
+  overload: Reportman.Reporting.PrintItem.EvaluatePrintCondition*
+- uid: Reportman.Reporting.PrintItem.SubReportChanged(Reportman.Reporting.SubReportEvent,System.String)
+  commentId: M:Reportman.Reporting.PrintItem.SubReportChanged(Reportman.Reporting.SubReportEvent,System.String)
+  id: SubReportChanged(Reportman.Reporting.SubReportEvent,System.String)
+  parent: Reportman.Reporting.PrintItem
+  langs:
+  - csharp
+  - vb
+  name: SubReportChanged(SubReportEvent, string)
+  nameWithType: PrintItem.SubReportChanged(SubReportEvent, string)
+  fullName: Reportman.Reporting.PrintItem.SubReportChanged(Reportman.Reporting.SubReportEvent, string)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: This event is generated while report is processing to allow the report items to update contents
+  example: []
+  syntax:
+    content: public virtual void SubReportChanged(SubReportEvent newstate, string newgroup)
+    parameters:
+    - id: newstate
+      type: Reportman.Reporting.SubReportEvent
+      description: New state for the subreport
+    - id: newgroup
+      type: System.String
+      description: New group if apply
+    content.vb: Public Overridable Sub SubReportChanged(newstate As SubReportEvent, newgroup As String)
+  overload: Reportman.Reporting.PrintItem.SubReportChanged*
+  nameWithType.vb: PrintItem.SubReportChanged(SubReportEvent, String)
+  fullName.vb: Reportman.Reporting.PrintItem.SubReportChanged(Reportman.Reporting.SubReportEvent, String)
+  name.vb: SubReportChanged(SubReportEvent, String)
+- uid: Reportman.Reporting.PrintItem.GetExtension(Reportman.Drawing.PrintOut,System.Drawing.Point,System.Boolean)
+  commentId: M:Reportman.Reporting.PrintItem.GetExtension(Reportman.Drawing.PrintOut,System.Drawing.Point,System.Boolean)
+  id: GetExtension(Reportman.Drawing.PrintOut,System.Drawing.Point,System.Boolean)
+  parent: Reportman.Reporting.PrintItem
+  langs:
+  - csharp
+  - vb
+  name: GetExtension(PrintOut, Point, bool)
+  nameWithType: PrintItem.GetExtension(PrintOut, Point, bool)
+  fullName: Reportman.Reporting.PrintItem.GetExtension(Reportman.Drawing.PrintOut, System.Drawing.Point, bool)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: This procedure will return the current size of the printed item
+  example: []
+  syntax:
+    content: public virtual Point GetExtension(PrintOut adriver, Point MaxExtent, bool ForcePartial)
+    parameters:
+    - id: adriver
+      type: Reportman.Drawing.PrintOut
+      description: Report processing driver
+    - id: MaxExtent
+      type: System.Drawing.Point
+      description: Maximum extension
+    - id: ForcePartial
+      type: System.Boolean
+    return:
+      type: System.Drawing.Point
+      description: ''
+    content.vb: Public Overridable Function GetExtension(adriver As PrintOut, MaxExtent As Point, ForcePartial As Boolean) As Point
+  overload: Reportman.Reporting.PrintItem.GetExtension*
+  nameWithType.vb: PrintItem.GetExtension(PrintOut, Point, Boolean)
+  fullName.vb: Reportman.Reporting.PrintItem.GetExtension(Reportman.Drawing.PrintOut, System.Drawing.Point, Boolean)
+  name.vb: GetExtension(PrintOut, Point, Boolean)
+- uid: Reportman.Reporting.PrintItem.DoPrint(Reportman.Drawing.PrintOut,System.Int32,System.Int32,System.Int32,System.Int32,Reportman.Drawing.MetaFile,System.Drawing.Point,System.Boolean@)
+  commentId: M:Reportman.Reporting.PrintItem.DoPrint(Reportman.Drawing.PrintOut,System.Int32,System.Int32,System.Int32,System.Int32,Reportman.Drawing.MetaFile,System.Drawing.Point,System.Boolean@)
+  id: DoPrint(Reportman.Drawing.PrintOut,System.Int32,System.Int32,System.Int32,System.Int32,Reportman.Drawing.MetaFile,System.Drawing.Point,System.Boolean@)
+  parent: Reportman.Reporting.PrintItem
+  langs:
+  - csharp
+  - vb
+  name: DoPrint(PrintOut, int, int, int, int, MetaFile, Point, ref bool)
+  nameWithType: PrintItem.DoPrint(PrintOut, int, int, int, int, MetaFile, Point, ref bool)
+  fullName: Reportman.Reporting.PrintItem.DoPrint(Reportman.Drawing.PrintOut, int, int, int, int, Reportman.Drawing.MetaFile, System.Drawing.Point, ref bool)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: This procedure will print the item into the MetaFile, internal implementation
+  example: []
+  syntax:
+    content: protected virtual void DoPrint(PrintOut adriver, int aposx, int aposy, int newwidth, int newheight, MetaFile metafile, Point MaxExtent, ref bool PartialPrint)
+    parameters:
+    - id: adriver
+      type: Reportman.Drawing.PrintOut
+      description: Report processing driver
+    - id: aposx
+      type: System.Int32
+      description: Horizontal position in twips
+    - id: aposy
+      type: System.Int32
+      description: Vertical position in twips
+    - id: newwidth
+      type: System.Int32
+      description: Width of the bounding box in twips
+    - id: newheight
+      type: System.Int32
+      description: Height of the bounding box in twips
+    - id: metafile
+      type: Reportman.Drawing.MetaFile
+      description: Destination MetaFile
+    - id: MaxExtent
+      type: System.Drawing.Point
+      description: Maximum extension
+    - id: PartialPrint
+      type: System.Boolean
+      description: Returns true if some text will expand multiple pages
+    content.vb: Protected Overridable Sub DoPrint(adriver As PrintOut, aposx As Integer, aposy As Integer, newwidth As Integer, newheight As Integer, metafile As MetaFile, MaxExtent As Point, PartialPrint As Boolean)
+  overload: Reportman.Reporting.PrintItem.DoPrint*
+  nameWithType.vb: PrintItem.DoPrint(PrintOut, Integer, Integer, Integer, Integer, MetaFile, Point, Boolean)
+  fullName.vb: Reportman.Reporting.PrintItem.DoPrint(Reportman.Drawing.PrintOut, Integer, Integer, Integer, Integer, Reportman.Drawing.MetaFile, System.Drawing.Point, Boolean)
+  name.vb: DoPrint(PrintOut, Integer, Integer, Integer, Integer, MetaFile, Point, Boolean)
+- uid: Reportman.Reporting.PrintItem.Print(Reportman.Drawing.PrintOut,System.Int32,System.Int32,System.Int32,System.Int32,Reportman.Drawing.MetaFile,System.Drawing.Point,System.Boolean@)
+  commentId: M:Reportman.Reporting.PrintItem.Print(Reportman.Drawing.PrintOut,System.Int32,System.Int32,System.Int32,System.Int32,Reportman.Drawing.MetaFile,System.Drawing.Point,System.Boolean@)
+  id: Print(Reportman.Drawing.PrintOut,System.Int32,System.Int32,System.Int32,System.Int32,Reportman.Drawing.MetaFile,System.Drawing.Point,System.Boolean@)
+  parent: Reportman.Reporting.PrintItem
+  langs:
+  - csharp
+  - vb
+  name: Print(PrintOut, int, int, int, int, MetaFile, Point, ref bool)
+  nameWithType: PrintItem.Print(PrintOut, int, int, int, int, MetaFile, Point, ref bool)
+  fullName: Reportman.Reporting.PrintItem.Print(Reportman.Drawing.PrintOut, int, int, int, int, Reportman.Drawing.MetaFile, System.Drawing.Point, ref bool)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: This procedure will print the item into the MetaFile
+  example: []
+  syntax:
+    content: public void Print(PrintOut adriver, int aposx, int aposy, int newwidth, int newheight, MetaFile metafile, Point MaxExtent, ref bool PartialPrint)
+    parameters:
+    - id: adriver
+      type: Reportman.Drawing.PrintOut
+      description: Report processing driver
+    - id: aposx
+      type: System.Int32
+      description: Horizontal position in twips
+    - id: aposy
+      type: System.Int32
+      description: Vertical position in twips
+    - id: newwidth
+      type: System.Int32
+      description: Width of the bounding box in twips
+    - id: newheight
+      type: System.Int32
+      description: Height of the bounding box in twips
+    - id: metafile
+      type: Reportman.Drawing.MetaFile
+      description: Destination MetaFile
+    - id: MaxExtent
+      type: System.Drawing.Point
+      description: Maximum extension
+    - id: PartialPrint
+      type: System.Boolean
+      description: Returns true if some text will expand multiple pages
+    content.vb: Public Sub Print(adriver As PrintOut, aposx As Integer, aposy As Integer, newwidth As Integer, newheight As Integer, metafile As MetaFile, MaxExtent As Point, PartialPrint As Boolean)
+  overload: Reportman.Reporting.PrintItem.Print*
+  nameWithType.vb: PrintItem.Print(PrintOut, Integer, Integer, Integer, Integer, MetaFile, Point, Boolean)
+  fullName.vb: Reportman.Reporting.PrintItem.Print(Reportman.Drawing.PrintOut, Integer, Integer, Integer, Integer, Reportman.Drawing.MetaFile, System.Drawing.Point, Boolean)
+  name.vb: Print(PrintOut, Integer, Integer, Integer, Integer, MetaFile, Point, Boolean)
+- uid: Reportman.Reporting.PrintItem.ExecuteBeforePrint
+  commentId: M:Reportman.Reporting.PrintItem.ExecuteBeforePrint
+  id: ExecuteBeforePrint
+  parent: Reportman.Reporting.PrintItem
+  langs:
+  - csharp
+  - vb
+  name: ExecuteBeforePrint()
+  nameWithType: PrintItem.ExecuteBeforePrint()
+  fullName: Reportman.Reporting.PrintItem.ExecuteBeforePrint()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    Internal implementation for actions to do before printing the item, in this base class
+
+    the DoBeforePrint expression will be evaluated
+  example: []
+  syntax:
+    content: protected void ExecuteBeforePrint()
+    content.vb: Protected Sub ExecuteBeforePrint()
+  overload: Reportman.Reporting.PrintItem.ExecuteBeforePrint*
+- uid: Reportman.Reporting.PrintItem.ExecuteAfterPrint
+  commentId: M:Reportman.Reporting.PrintItem.ExecuteAfterPrint
+  id: ExecuteAfterPrint
+  parent: Reportman.Reporting.PrintItem
+  langs:
+  - csharp
+  - vb
+  name: ExecuteAfterPrint()
+  nameWithType: PrintItem.ExecuteAfterPrint()
+  fullName: Reportman.Reporting.PrintItem.ExecuteAfterPrint()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    Internal implementation for actions to do after printing the item, in this base class
+
+    the DoAfterPrint expression will be evaluated
+  example: []
+  syntax:
+    content: protected void ExecuteAfterPrint()
+    content.vb: Protected Sub ExecuteAfterPrint()
+  overload: Reportman.Reporting.PrintItem.ExecuteAfterPrint*
+- uid: Reportman.Reporting.PrintItem.Width
+  commentId: P:Reportman.Reporting.PrintItem.Width
+  id: Width
+  parent: Reportman.Reporting.PrintItem
+  langs:
+  - csharp
+  - vb
+  name: Width
+  nameWithType: PrintItem.Width
+  fullName: Reportman.Reporting.PrintItem.Width
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Width in twips of the printable item
+  example: []
+  syntax:
+    content: public int Width { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Width As Integer
+  overload: Reportman.Reporting.PrintItem.Width*
+- uid: Reportman.Reporting.PrintItem.Height
+  commentId: P:Reportman.Reporting.PrintItem.Height
+  id: Height
+  parent: Reportman.Reporting.PrintItem
+  langs:
+  - csharp
+  - vb
+  name: Height
+  nameWithType: PrintItem.Height
+  fullName: Reportman.Reporting.PrintItem.Height
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Height in twips of the printable item
+  example: []
+  syntax:
+    content: public int Height { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Height As Integer
+  overload: Reportman.Reporting.PrintItem.Height*
+- uid: Reportman.Reporting.PrintItem.DoBeforePrint
+  commentId: P:Reportman.Reporting.PrintItem.DoBeforePrint
+  id: DoBeforePrint
+  parent: Reportman.Reporting.PrintItem
+  langs:
+  - csharp
+  - vb
+  name: DoBeforePrint
+  nameWithType: PrintItem.DoBeforePrint
+  fullName: Reportman.Reporting.PrintItem.DoBeforePrint
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Expression evaluated before printing the item
+  example: []
+  syntax:
+    content: public string DoBeforePrint { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property DoBeforePrint As String
+  overload: Reportman.Reporting.PrintItem.DoBeforePrint*
+- uid: Reportman.Reporting.PrintItem.DoAfterPrint
+  commentId: P:Reportman.Reporting.PrintItem.DoAfterPrint
+  id: DoAfterPrint
+  parent: Reportman.Reporting.PrintItem
+  langs:
+  - csharp
+  - vb
+  name: DoAfterPrint
+  nameWithType: PrintItem.DoAfterPrint
+  fullName: Reportman.Reporting.PrintItem.DoAfterPrint
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Expression evaluated after printing the item
+  example: []
+  syntax:
+    content: public string DoAfterPrint { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property DoAfterPrint As String
+  overload: Reportman.Reporting.PrintItem.DoAfterPrint*
+- uid: Reportman.Reporting.PrintItem.PrintCondition
+  commentId: P:Reportman.Reporting.PrintItem.PrintCondition
+  id: PrintCondition
+  parent: Reportman.Reporting.PrintItem
+  langs:
+  - csharp
+  - vb
+  name: PrintCondition
+  nameWithType: PrintItem.PrintCondition
+  fullName: Reportman.Reporting.PrintItem.PrintCondition
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    When this property is not empty, it will be evaluated by the reporting engine,
+                if the result is false, the item will not print
+  example: []
+  syntax:
+    content: public string PrintCondition { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property PrintCondition As String
+  overload: Reportman.Reporting.PrintItem.PrintCondition*
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Reportman.Reporting.ReportItem
+  commentId: T:Reportman.Reporting.ReportItem
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html
+  name: ReportItem
+  nameWithType: ReportItem
+  fullName: Reportman.Reporting.ReportItem
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: Reportman.Reporting.ReportItem.SetReport(Reportman.Reporting.BaseReport)
+  commentId: M:Reportman.Reporting.ReportItem.SetReport(Reportman.Reporting.BaseReport)
+  parent: Reportman.Reporting.ReportItem
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_SetReport_Reportman_Reporting_BaseReport_
+  name: SetReport(BaseReport)
+  nameWithType: ReportItem.SetReport(BaseReport)
+  fullName: Reportman.Reporting.ReportItem.SetReport(Reportman.Reporting.BaseReport)
+  spec.csharp:
+  - uid: Reportman.Reporting.ReportItem.SetReport(Reportman.Reporting.BaseReport)
+    name: SetReport
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_SetReport_Reportman_Reporting_BaseReport_
+  - name: (
+  - uid: Reportman.Reporting.BaseReport
+    name: BaseReport
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.ReportItem.SetReport(Reportman.Reporting.BaseReport)
+    name: SetReport
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_SetReport_Reportman_Reporting_BaseReport_
+  - name: (
+  - uid: Reportman.Reporting.BaseReport
+    name: BaseReport
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html
+  - name: )
+- uid: Reportman.Reporting.ReportItem.GetClassName
+  commentId: M:Reportman.Reporting.ReportItem.GetClassName
+  parent: Reportman.Reporting.ReportItem
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_GetClassName
+  name: GetClassName()
+  nameWithType: ReportItem.GetClassName()
+  fullName: Reportman.Reporting.ReportItem.GetClassName()
+  spec.csharp:
+  - uid: Reportman.Reporting.ReportItem.GetClassName
+    name: GetClassName
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_GetClassName
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.ReportItem.GetClassName
+    name: GetClassName
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_GetClassName
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.ReportItem.Dispose
+  commentId: M:Reportman.Reporting.ReportItem.Dispose
+  parent: Reportman.Reporting.ReportItem
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_Dispose
+  name: Dispose()
+  nameWithType: ReportItem.Dispose()
+  fullName: Reportman.Reporting.ReportItem.Dispose()
+  spec.csharp:
+  - uid: Reportman.Reporting.ReportItem.Dispose
+    name: Dispose
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_Dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.ReportItem.Dispose
+    name: Dispose
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_Dispose
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.ReportItem.Name
+  commentId: P:Reportman.Reporting.ReportItem.Name
+  parent: Reportman.Reporting.ReportItem
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_Name
+  name: Name
+  nameWithType: ReportItem.Name
+  fullName: Reportman.Reporting.ReportItem.Name
+- uid: Reportman.Reporting.ReportItem.Report
+  commentId: P:Reportman.Reporting.ReportItem.Report
+  parent: Reportman.Reporting.ReportItem
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_Report
+  name: Report
+  nameWithType: ReportItem.Report
+  fullName: Reportman.Reporting.ReportItem.Report
+- uid: Reportman.Reporting.ReportItem.ClassName
+  commentId: P:Reportman.Reporting.ReportItem.ClassName
+  parent: Reportman.Reporting.ReportItem
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_ClassName
+  name: ClassName
+  nameWithType: ReportItem.ClassName
+  fullName: Reportman.Reporting.ReportItem.ClassName
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Drawing.Point
+  commentId: T:System.Drawing.Point
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.point
+  name: Point
+  nameWithType: Point
+  fullName: System.Drawing.Point
+- uid: System.Drawing
+  commentId: N:System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Drawing
+  nameWithType: System.Drawing
+  fullName: System.Drawing
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+- uid: System.Drawing.Rectangle
+  commentId: T:System.Drawing.Rectangle
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.rectangle
+  name: Rectangle
+  nameWithType: Rectangle
+  fullName: System.Drawing.Rectangle
+- uid: Reportman.Reporting.PrintItem.#ctor*
+  commentId: Overload:Reportman.Reporting.PrintItem.#ctor
+  isExternal: true
+  href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem__ctor
+  name: PrintItem
+  nameWithType: PrintItem.PrintItem
+  fullName: Reportman.Reporting.PrintItem.PrintItem
+  nameWithType.vb: PrintItem.New
+  fullName.vb: Reportman.Reporting.PrintItem.New
+  name.vb: New
+- uid: Reportman.Reporting.PrintItem.EvaluatePrintCondition*
+  commentId: Overload:Reportman.Reporting.PrintItem.EvaluatePrintCondition
+  isExternal: true
+  href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_EvaluatePrintCondition
+  name: EvaluatePrintCondition
+  nameWithType: PrintItem.EvaluatePrintCondition
+  fullName: Reportman.Reporting.PrintItem.EvaluatePrintCondition
+- uid: Reportman.Reporting.PrintItem.SubReportChanged*
+  commentId: Overload:Reportman.Reporting.PrintItem.SubReportChanged
+  isExternal: true
+  href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_SubReportChanged_Reportman_Reporting_SubReportEvent_System_String_
+  name: SubReportChanged
+  nameWithType: PrintItem.SubReportChanged
+  fullName: Reportman.Reporting.PrintItem.SubReportChanged
+- uid: Reportman.Reporting.SubReportEvent
+  commentId: T:Reportman.Reporting.SubReportEvent
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.SubReportEvent.html
+  name: SubReportEvent
+  nameWithType: SubReportEvent
+  fullName: Reportman.Reporting.SubReportEvent
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Reportman.Reporting.PrintItem.GetExtension*
+  commentId: Overload:Reportman.Reporting.PrintItem.GetExtension
+  isExternal: true
+  href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_GetExtension_Reportman_Drawing_PrintOut_System_Drawing_Point_System_Boolean_
+  name: GetExtension
+  nameWithType: PrintItem.GetExtension
+  fullName: Reportman.Reporting.PrintItem.GetExtension
+- uid: Reportman.Drawing.PrintOut
+  commentId: T:Reportman.Drawing.PrintOut
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PrintOut.html
+  name: PrintOut
+  nameWithType: PrintOut
+  fullName: Reportman.Drawing.PrintOut
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Reporting.PrintItem.DoPrint*
+  commentId: Overload:Reportman.Reporting.PrintItem.DoPrint
+  isExternal: true
+  href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_DoPrint_Reportman_Drawing_PrintOut_System_Int32_System_Int32_System_Int32_System_Int32_Reportman_Drawing_MetaFile_System_Drawing_Point_System_Boolean__
+  name: DoPrint
+  nameWithType: PrintItem.DoPrint
+  fullName: Reportman.Reporting.PrintItem.DoPrint
+- uid: Reportman.Drawing.MetaFile
+  commentId: T:Reportman.Drawing.MetaFile
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html
+  name: MetaFile
+  nameWithType: MetaFile
+  fullName: Reportman.Drawing.MetaFile
+- uid: Reportman.Reporting.PrintItem.Print*
+  commentId: Overload:Reportman.Reporting.PrintItem.Print
+  isExternal: true
+  href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_Print_Reportman_Drawing_PrintOut_System_Int32_System_Int32_System_Int32_System_Int32_Reportman_Drawing_MetaFile_System_Drawing_Point_System_Boolean__
+  name: Print
+  nameWithType: PrintItem.Print
+  fullName: Reportman.Reporting.PrintItem.Print
+- uid: Reportman.Reporting.PrintItem.ExecuteBeforePrint*
+  commentId: Overload:Reportman.Reporting.PrintItem.ExecuteBeforePrint
+  isExternal: true
+  href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_ExecuteBeforePrint
+  name: ExecuteBeforePrint
+  nameWithType: PrintItem.ExecuteBeforePrint
+  fullName: Reportman.Reporting.PrintItem.ExecuteBeforePrint
+- uid: Reportman.Reporting.PrintItem.ExecuteAfterPrint*
+  commentId: Overload:Reportman.Reporting.PrintItem.ExecuteAfterPrint
+  isExternal: true
+  href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_ExecuteAfterPrint
+  name: ExecuteAfterPrint
+  nameWithType: PrintItem.ExecuteAfterPrint
+  fullName: Reportman.Reporting.PrintItem.ExecuteAfterPrint
+- uid: Reportman.Reporting.PrintItem.Width*
+  commentId: Overload:Reportman.Reporting.PrintItem.Width
+  isExternal: true
+  href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_Width
+  name: Width
+  nameWithType: PrintItem.Width
+  fullName: Reportman.Reporting.PrintItem.Width
+- uid: Reportman.Reporting.PrintItem.Height*
+  commentId: Overload:Reportman.Reporting.PrintItem.Height
+  isExternal: true
+  href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_Height
+  name: Height
+  nameWithType: PrintItem.Height
+  fullName: Reportman.Reporting.PrintItem.Height
+- uid: Reportman.Reporting.PrintItem.DoBeforePrint*
+  commentId: Overload:Reportman.Reporting.PrintItem.DoBeforePrint
+  isExternal: true
+  href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_DoBeforePrint
+  name: DoBeforePrint
+  nameWithType: PrintItem.DoBeforePrint
+  fullName: Reportman.Reporting.PrintItem.DoBeforePrint
+- uid: Reportman.Reporting.PrintItem.DoAfterPrint*
+  commentId: Overload:Reportman.Reporting.PrintItem.DoAfterPrint
+  isExternal: true
+  href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_DoAfterPrint
+  name: DoAfterPrint
+  nameWithType: PrintItem.DoAfterPrint
+  fullName: Reportman.Reporting.PrintItem.DoAfterPrint
+- uid: Reportman.Reporting.PrintItem.PrintCondition*
+  commentId: Overload:Reportman.Reporting.PrintItem.PrintCondition
+  isExternal: true
+  href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_PrintCondition
+  name: PrintCondition
+  nameWithType: PrintItem.PrintCondition
+  fullName: Reportman.Reporting.PrintItem.PrintCondition

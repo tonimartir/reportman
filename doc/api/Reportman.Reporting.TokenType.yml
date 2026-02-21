@@ -1,0 +1,226 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.TokenType
+  commentId: T:Reportman.Reporting.TokenType
+  id: TokenType
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.TokenType.Comment
+  - Reportman.Reporting.TokenType.Decimal
+  - Reportman.Reporting.TokenType.Double
+  - Reportman.Reporting.TokenType.Eof
+  - Reportman.Reporting.TokenType.Integer
+  - Reportman.Reporting.TokenType.Operator
+  - Reportman.Reporting.TokenType.String
+  - Reportman.Reporting.TokenType.Symbol
+  langs:
+  - csharp
+  - vb
+  name: TokenType
+  nameWithType: TokenType
+  fullName: Reportman.Reporting.TokenType
+  type: Enum
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: " This enumeration is used in string parsing functions, a string is divided in tokens,\r\neach token can represent operators, symbols..."
+  example: []
+  syntax:
+    content: public enum TokenType
+    content.vb: Public Enum TokenType
+- uid: Reportman.Reporting.TokenType.Eof
+  commentId: F:Reportman.Reporting.TokenType.Eof
+  id: Eof
+  parent: Reportman.Reporting.TokenType
+  langs:
+  - csharp
+  - vb
+  name: Eof
+  nameWithType: TokenType.Eof
+  fullName: Reportman.Reporting.TokenType.Eof
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: There is no more tokens to parse so current token is End of File
+  example: []
+  syntax:
+    content: Eof = 0
+    return:
+      type: Reportman.Reporting.TokenType
+- uid: Reportman.Reporting.TokenType.Symbol
+  commentId: F:Reportman.Reporting.TokenType.Symbol
+  id: Symbol
+  parent: Reportman.Reporting.TokenType
+  langs:
+  - csharp
+  - vb
+  name: Symbol
+  nameWithType: TokenType.Symbol
+  fullName: Reportman.Reporting.TokenType.Symbol
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: The token is an identifier, usually a variable or function name
+  example: []
+  syntax:
+    content: Symbol = 1
+    return:
+      type: Reportman.Reporting.TokenType
+- uid: Reportman.Reporting.TokenType.String
+  commentId: F:Reportman.Reporting.TokenType.String
+  id: String
+  parent: Reportman.Reporting.TokenType
+  langs:
+  - csharp
+  - vb
+  name: String
+  nameWithType: TokenType.String
+  fullName: Reportman.Reporting.TokenType.String
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: The token is a string
+  example: []
+  syntax:
+    content: String = 2
+    return:
+      type: Reportman.Reporting.TokenType
+- uid: Reportman.Reporting.TokenType.Integer
+  commentId: F:Reportman.Reporting.TokenType.Integer
+  id: Integer
+  parent: Reportman.Reporting.TokenType
+  langs:
+  - csharp
+  - vb
+  name: Integer
+  nameWithType: TokenType.Integer
+  fullName: Reportman.Reporting.TokenType.Integer
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: The token is an integer
+  example: []
+  syntax:
+    content: Integer = 3
+    return:
+      type: Reportman.Reporting.TokenType
+- uid: Reportman.Reporting.TokenType.Double
+  commentId: F:Reportman.Reporting.TokenType.Double
+  id: Double
+  parent: Reportman.Reporting.TokenType
+  langs:
+  - csharp
+  - vb
+  name: Double
+  nameWithType: TokenType.Double
+  fullName: Reportman.Reporting.TokenType.Double
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: The token is a dobule value
+  example: []
+  syntax:
+    content: Double = 4
+    return:
+      type: Reportman.Reporting.TokenType
+- uid: Reportman.Reporting.TokenType.Decimal
+  commentId: F:Reportman.Reporting.TokenType.Decimal
+  id: Decimal
+  parent: Reportman.Reporting.TokenType
+  langs:
+  - csharp
+  - vb
+  name: Decimal
+  nameWithType: TokenType.Decimal
+  fullName: Reportman.Reporting.TokenType.Decimal
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: The token is a decimal value
+  example: []
+  syntax:
+    content: Decimal = 5
+    return:
+      type: Reportman.Reporting.TokenType
+- uid: Reportman.Reporting.TokenType.Operator
+  commentId: F:Reportman.Reporting.TokenType.Operator
+  id: Operator
+  parent: Reportman.Reporting.TokenType
+  langs:
+  - csharp
+  - vb
+  name: Operator
+  nameWithType: TokenType.Operator
+  fullName: Reportman.Reporting.TokenType.Operator
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: The token is an operator (sum,multiply...)
+  example: []
+  syntax:
+    content: Operator = 6
+    return:
+      type: Reportman.Reporting.TokenType
+- uid: Reportman.Reporting.TokenType.Comment
+  commentId: F:Reportman.Reporting.TokenType.Comment
+  id: Comment
+  parent: Reportman.Reporting.TokenType
+  langs:
+  - csharp
+  - vb
+  name: Comment
+  nameWithType: TokenType.Comment
+  fullName: Reportman.Reporting.TokenType.Comment
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: The token is a code commnet
+  example: []
+  syntax:
+    content: Comment = 7
+    return:
+      type: Reportman.Reporting.TokenType
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: Reportman.Reporting.TokenType
+  commentId: T:Reportman.Reporting.TokenType
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.TokenType.html
+  name: TokenType
+  nameWithType: TokenType
+  fullName: Reportman.Reporting.TokenType

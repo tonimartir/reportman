@@ -1,0 +1,301 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.DriverType
+  commentId: T:Reportman.Reporting.DriverType
+  id: DriverType
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.DriverType.ADO
+  - Reportman.Reporting.DriverType.BDE
+  - Reportman.Reporting.DriverType.DBExpress
+  - Reportman.Reporting.DriverType.DotNet
+  - Reportman.Reporting.DriverType.DotNet2
+  - Reportman.Reporting.DriverType.Firedac
+  - Reportman.Reporting.DriverType.IBO
+  - Reportman.Reporting.DriverType.IBX
+  - Reportman.Reporting.DriverType.Mybase
+  - Reportman.Reporting.DriverType.ZEOS
+  langs:
+  - csharp
+  - vb
+  name: DriverType
+  nameWithType: DriverType
+  fullName: Reportman.Reporting.DriverType
+  type: Enum
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    The DriverType is part of a report database information definition, indicating the technology to be used
+
+    to connect to the database, in .Net version you can choose DotNet or DotNet2 depending on the version you 
+
+    are using. <xref href="Reportman.Reporting.Variant?text=DatabaseInfo" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public enum DriverType
+    content.vb: Public Enum DriverType
+- uid: Reportman.Reporting.DriverType.DBExpress
+  commentId: F:Reportman.Reporting.DriverType.DBExpress
+  id: DBExpress
+  parent: Reportman.Reporting.DriverType
+  langs:
+  - csharp
+  - vb
+  name: DBExpress
+  nameWithType: DriverType.DBExpress
+  fullName: Reportman.Reporting.DriverType.DBExpress
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Borland database driver optimized for using disconnected DataSets. Not available in .Net
+  example: []
+  syntax:
+    content: DBExpress = 0
+    return:
+      type: Reportman.Reporting.DriverType
+- uid: Reportman.Reporting.DriverType.Mybase
+  commentId: F:Reportman.Reporting.DriverType.Mybase
+  id: Mybase
+  parent: Reportman.Reporting.DriverType
+  langs:
+  - csharp
+  - vb
+  name: Mybase
+  nameWithType: DriverType.Mybase
+  fullName: Reportman.Reporting.DriverType.Mybase
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: In memory database driver, it can be used to read DataSets into memory for further processing
+  remarks: When used in .Net it's capable of reading DataSets
+  example: []
+  syntax:
+    content: Mybase = 1
+    return:
+      type: Reportman.Reporting.DriverType
+- uid: Reportman.Reporting.DriverType.IBX
+  commentId: F:Reportman.Reporting.DriverType.IBX
+  id: IBX
+  parent: Reportman.Reporting.DriverType
+  langs:
+  - csharp
+  - vb
+  name: IBX
+  nameWithType: DriverType.IBX
+  fullName: Reportman.Reporting.DriverType.IBX
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    Borland Interbase Express database driver, can access also Firebird databases.
+                Not available in .Net
+  example: []
+  syntax:
+    content: IBX = 2
+    return:
+      type: Reportman.Reporting.DriverType
+- uid: Reportman.Reporting.DriverType.BDE
+  commentId: F:Reportman.Reporting.DriverType.BDE
+  id: BDE
+  parent: Reportman.Reporting.DriverType
+  langs:
+  - csharp
+  - vb
+  name: BDE
+  nameWithType: DriverType.BDE
+  fullName: Reportman.Reporting.DriverType.BDE
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    Borland Database Engine database driver, can access Paradox,Dbase, and some SQL Databases in native mode.
+                Not available in .Net
+  example: []
+  syntax:
+    content: BDE = 3
+    return:
+      type: Reportman.Reporting.DriverType
+- uid: Reportman.Reporting.DriverType.ADO
+  commentId: F:Reportman.Reporting.DriverType.ADO
+  id: ADO
+  parent: Reportman.Reporting.DriverType
+  langs:
+  - csharp
+  - vb
+  name: ADO
+  nameWithType: DriverType.ADO
+  fullName: Reportman.Reporting.DriverType.ADO
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    Borland Interface to Microsoft DAO, can access any OleDB (including Microsoft Jet) or ODBC databases.
+                Not available in .Net
+  example: []
+  syntax:
+    content: ADO = 4
+    return:
+      type: Reportman.Reporting.DriverType
+- uid: Reportman.Reporting.DriverType.IBO
+  commentId: F:Reportman.Reporting.DriverType.IBO
+  id: IBO
+  parent: Reportman.Reporting.DriverType
+  langs:
+  - csharp
+  - vb
+  name: IBO
+  nameWithType: DriverType.IBO
+  fullName: Reportman.Reporting.DriverType.IBO
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    Database access objects to access Interbase or 4rd databases known as Interbase Objects.
+                Not available in .Net
+  example: []
+  syntax:
+    content: IBO = 5
+    return:
+      type: Reportman.Reporting.DriverType
+- uid: Reportman.Reporting.DriverType.ZEOS
+  commentId: F:Reportman.Reporting.DriverType.ZEOS
+  id: ZEOS
+  parent: Reportman.Reporting.DriverType
+  langs:
+  - csharp
+  - vb
+  name: ZEOS
+  nameWithType: DriverType.ZEOS
+  fullName: Reportman.Reporting.DriverType.ZEOS
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    Opensource Database Objects to access multiple sql database technologies (zeoslib).
+                Not available in .Net
+  example: []
+  syntax:
+    content: ZEOS = 6
+    return:
+      type: Reportman.Reporting.DriverType
+- uid: Reportman.Reporting.DriverType.DotNet
+  commentId: F:Reportman.Reporting.DriverType.DotNet
+  id: DotNet
+  parent: Reportman.Reporting.DriverType
+  langs:
+  - csharp
+  - vb
+  name: DotNet
+  nameWithType: DriverType.DotNet
+  fullName: Reportman.Reporting.DriverType.DotNet
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    Driver used to connect to databases in .Net 1.x, because no abstraction is provided in .Net 1.x, 
+                you must select alse the driver (object instances) to be used. <xref href="Reportman.Reporting.Variant?text=DotNetDriverType" data-throw-if-not-resolved="false"></xref>
+                Available only in .Net 1.x, deprecated
+  example: []
+  syntax:
+    content: DotNet = 7
+    return:
+      type: Reportman.Reporting.DriverType
+- uid: Reportman.Reporting.DriverType.DotNet2
+  commentId: F:Reportman.Reporting.DriverType.DotNet2
+  id: DotNet2
+  parent: Reportman.Reporting.DriverType
+  langs:
+  - csharp
+  - vb
+  name: DotNet2
+  nameWithType: DriverType.DotNet2
+  fullName: Reportman.Reporting.DriverType.DotNet2
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    Driver used to connect to databases in .Net 2.x, it's used with ProviderFactory property inside
+                DatabaseInfo to perform the connection<xref href="Reportman.Reporting.Variant?text=DatabaseInfo" data-throw-if-not-resolved="false"></xref>
+                Available only in .Net
+  example: []
+  syntax:
+    content: DotNet2 = 8
+    return:
+      type: Reportman.Reporting.DriverType
+- uid: Reportman.Reporting.DriverType.Firedac
+  commentId: F:Reportman.Reporting.DriverType.Firedac
+  id: Firedac
+  parent: Reportman.Reporting.DriverType
+  langs:
+  - csharp
+  - vb
+  name: Firedac
+  nameWithType: DriverType.Firedac
+  fullName: Reportman.Reporting.DriverType.Firedac
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    Driver used to connect to databases using Firedac Delphi/C++Buider drivers
+                DatabaseInfo to perform the connection<xref href="Reportman.Reporting.Variant?text=DatabaseInfo" data-throw-if-not-resolved="false"></xref>
+                Not Available only in .Net
+  example: []
+  syntax:
+    content: Firedac = 9
+    return:
+      type: Reportman.Reporting.DriverType
+references:
+- uid: Reportman.Reporting.Variant
+  commentId: T:Reportman.Reporting.Variant
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.Variant.html
+  name: Variant
+  nameWithType: Variant
+  fullName: Reportman.Reporting.Variant
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: Reportman.Reporting.DriverType
+  commentId: T:Reportman.Reporting.DriverType
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.DriverType.html
+  name: DriverType
+  nameWithType: DriverType
+  fullName: Reportman.Reporting.DriverType

@@ -1,0 +1,1618 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.TTFontData
+  commentId: T:Reportman.Drawing.TTFontData
+  id: TTFontData
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.TTFontData.#ctor
+  - Reportman.Drawing.TTFontData.Ascent
+  - Reportman.Drawing.TTFontData.AvgWidth
+  - Reportman.Drawing.TTFontData.CacheWidths
+  - Reportman.Drawing.TTFontData.CapHeight
+  - Reportman.Drawing.TTFontData.Descent
+  - Reportman.Drawing.TTFontData.DescriptorIndex
+  - Reportman.Drawing.TTFontData.EmHeight
+  - Reportman.Drawing.TTFontData.Embedded
+  - Reportman.Drawing.TTFontData.Encoding
+  - Reportman.Drawing.TTFontData.FaceName
+  - Reportman.Drawing.TTFontData.FirstLoaded
+  - Reportman.Drawing.TTFontData.Flags
+  - Reportman.Drawing.TTFontData.FontBBox
+  - Reportman.Drawing.TTFontData.FontData
+  - Reportman.Drawing.TTFontData.FontDatas
+  - Reportman.Drawing.TTFontData.FontFamily
+  - Reportman.Drawing.TTFontData.FontStretch
+  - Reportman.Drawing.TTFontData.FontWeight
+  - Reportman.Drawing.TTFontData.Glyphs
+  - Reportman.Drawing.TTFontData.HaveKerning
+  - Reportman.Drawing.TTFontData.Height
+  - Reportman.Drawing.TTFontData.IsBold
+  - Reportman.Drawing.TTFontData.IsItalic
+  - Reportman.Drawing.TTFontData.IsUnicode
+  - Reportman.Drawing.TTFontData.ItalicAngle
+  - Reportman.Drawing.TTFontData.Kernings
+  - Reportman.Drawing.TTFontData.LastLoaded
+  - Reportman.Drawing.TTFontData.Leading
+  - Reportman.Drawing.TTFontData.LineSpacing
+  - Reportman.Drawing.TTFontData.LogFont
+  - Reportman.Drawing.TTFontData.MaxWidth
+  - Reportman.Drawing.TTFontData.ObjectIndex
+  - Reportman.Drawing.TTFontData.ObjectIndexParent
+  - Reportman.Drawing.TTFontData.ObjectName
+  - Reportman.Drawing.TTFontData.PostcriptName
+  - Reportman.Drawing.TTFontData.StemV
+  - Reportman.Drawing.TTFontData.StyleName
+  - Reportman.Drawing.TTFontData.ToUnicodeIndex
+  - Reportman.Drawing.TTFontData.Type1
+  - Reportman.Drawing.TTFontData.UnitsPerEM
+  - Reportman.Drawing.TTFontData.Widths
+  - Reportman.Drawing.TTFontData.glyphsInfo
+  langs:
+  - csharp
+  - vb
+  name: TTFontData
+  nameWithType: TTFontData
+  fullName: Reportman.Drawing.TTFontData
+  type: Class
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public class TTFontData
+    content.vb: Public Class TTFontData
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.TTFontData.LogFont
+  commentId: F:Reportman.Drawing.TTFontData.LogFont
+  id: LogFont
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: LogFont
+  nameWithType: TTFontData.LogFont
+  fullName: Reportman.Drawing.TTFontData.LogFont
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public object LogFont
+    return:
+      type: System.Object
+    content.vb: Public LogFont As Object
+- uid: Reportman.Drawing.TTFontData.Embedded
+  commentId: F:Reportman.Drawing.TTFontData.Embedded
+  id: Embedded
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: Embedded
+  nameWithType: TTFontData.Embedded
+  fullName: Reportman.Drawing.TTFontData.Embedded
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public bool Embedded
+    return:
+      type: System.Boolean
+    content.vb: Public Embedded As Boolean
+- uid: Reportman.Drawing.TTFontData.FontData
+  commentId: F:Reportman.Drawing.TTFontData.FontData
+  id: FontData
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: FontData
+  nameWithType: TTFontData.FontData
+  fullName: Reportman.Drawing.TTFontData.FontData
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public AdvFontData FontData
+    return:
+      type: Reportman.Drawing.AdvFontData
+    content.vb: Public FontData As AdvFontData
+- uid: Reportman.Drawing.TTFontData.PostcriptName
+  commentId: F:Reportman.Drawing.TTFontData.PostcriptName
+  id: PostcriptName
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: PostcriptName
+  nameWithType: TTFontData.PostcriptName
+  fullName: Reportman.Drawing.TTFontData.PostcriptName
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string PostcriptName
+    return:
+      type: System.String
+    content.vb: Public PostcriptName As String
+- uid: Reportman.Drawing.TTFontData.Encoding
+  commentId: F:Reportman.Drawing.TTFontData.Encoding
+  id: Encoding
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: Encoding
+  nameWithType: TTFontData.Encoding
+  fullName: Reportman.Drawing.TTFontData.Encoding
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string Encoding
+    return:
+      type: System.String
+    content.vb: Public Encoding As String
+- uid: Reportman.Drawing.TTFontData.Ascent
+  commentId: F:Reportman.Drawing.TTFontData.Ascent
+  id: Ascent
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: Ascent
+  nameWithType: TTFontData.Ascent
+  fullName: Reportman.Drawing.TTFontData.Ascent
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int Ascent
+    return:
+      type: System.Int32
+    content.vb: Public Ascent As Integer
+- uid: Reportman.Drawing.TTFontData.Descent
+  commentId: F:Reportman.Drawing.TTFontData.Descent
+  id: Descent
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: Descent
+  nameWithType: TTFontData.Descent
+  fullName: Reportman.Drawing.TTFontData.Descent
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int Descent
+    return:
+      type: System.Int32
+    content.vb: Public Descent As Integer
+- uid: Reportman.Drawing.TTFontData.Leading
+  commentId: F:Reportman.Drawing.TTFontData.Leading
+  id: Leading
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: Leading
+  nameWithType: TTFontData.Leading
+  fullName: Reportman.Drawing.TTFontData.Leading
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int Leading
+    return:
+      type: System.Int32
+    content.vb: Public Leading As Integer
+- uid: Reportman.Drawing.TTFontData.CapHeight
+  commentId: F:Reportman.Drawing.TTFontData.CapHeight
+  id: CapHeight
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: CapHeight
+  nameWithType: TTFontData.CapHeight
+  fullName: Reportman.Drawing.TTFontData.CapHeight
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int CapHeight
+    return:
+      type: System.Int32
+    content.vb: Public CapHeight As Integer
+- uid: Reportman.Drawing.TTFontData.Flags
+  commentId: F:Reportman.Drawing.TTFontData.Flags
+  id: Flags
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: Flags
+  nameWithType: TTFontData.Flags
+  fullName: Reportman.Drawing.TTFontData.Flags
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int Flags
+    return:
+      type: System.Int32
+    content.vb: Public Flags As Integer
+- uid: Reportman.Drawing.TTFontData.FontWeight
+  commentId: F:Reportman.Drawing.TTFontData.FontWeight
+  id: FontWeight
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: FontWeight
+  nameWithType: TTFontData.FontWeight
+  fullName: Reportman.Drawing.TTFontData.FontWeight
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int FontWeight
+    return:
+      type: System.Int32
+    content.vb: Public FontWeight As Integer
+- uid: Reportman.Drawing.TTFontData.Height
+  commentId: F:Reportman.Drawing.TTFontData.Height
+  id: Height
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: Height
+  nameWithType: TTFontData.Height
+  fullName: Reportman.Drawing.TTFontData.Height
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int Height
+    return:
+      type: System.Int32
+    content.vb: Public Height As Integer
+- uid: Reportman.Drawing.TTFontData.LineSpacing
+  commentId: F:Reportman.Drawing.TTFontData.LineSpacing
+  id: LineSpacing
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: LineSpacing
+  nameWithType: TTFontData.LineSpacing
+  fullName: Reportman.Drawing.TTFontData.LineSpacing
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int LineSpacing
+    return:
+      type: System.Int32
+    content.vb: Public LineSpacing As Integer
+- uid: Reportman.Drawing.TTFontData.EmHeight
+  commentId: F:Reportman.Drawing.TTFontData.EmHeight
+  id: EmHeight
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: EmHeight
+  nameWithType: TTFontData.EmHeight
+  fullName: Reportman.Drawing.TTFontData.EmHeight
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int EmHeight
+    return:
+      type: System.Int32
+    content.vb: Public EmHeight As Integer
+- uid: Reportman.Drawing.TTFontData.MaxWidth
+  commentId: F:Reportman.Drawing.TTFontData.MaxWidth
+  id: MaxWidth
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: MaxWidth
+  nameWithType: TTFontData.MaxWidth
+  fullName: Reportman.Drawing.TTFontData.MaxWidth
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int MaxWidth
+    return:
+      type: System.Int32
+    content.vb: Public MaxWidth As Integer
+- uid: Reportman.Drawing.TTFontData.AvgWidth
+  commentId: F:Reportman.Drawing.TTFontData.AvgWidth
+  id: AvgWidth
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: AvgWidth
+  nameWithType: TTFontData.AvgWidth
+  fullName: Reportman.Drawing.TTFontData.AvgWidth
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int AvgWidth
+    return:
+      type: System.Int32
+    content.vb: Public AvgWidth As Integer
+- uid: Reportman.Drawing.TTFontData.StemV
+  commentId: F:Reportman.Drawing.TTFontData.StemV
+  id: StemV
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: StemV
+  nameWithType: TTFontData.StemV
+  fullName: Reportman.Drawing.TTFontData.StemV
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public double StemV
+    return:
+      type: System.Double
+    content.vb: Public StemV As Double
+- uid: Reportman.Drawing.TTFontData.FontFamily
+  commentId: F:Reportman.Drawing.TTFontData.FontFamily
+  id: FontFamily
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: FontFamily
+  nameWithType: TTFontData.FontFamily
+  fullName: Reportman.Drawing.TTFontData.FontFamily
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string FontFamily
+    return:
+      type: System.String
+    content.vb: Public FontFamily As String
+- uid: Reportman.Drawing.TTFontData.FontStretch
+  commentId: F:Reportman.Drawing.TTFontData.FontStretch
+  id: FontStretch
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: FontStretch
+  nameWithType: TTFontData.FontStretch
+  fullName: Reportman.Drawing.TTFontData.FontStretch
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string FontStretch
+    return:
+      type: System.String
+    content.vb: Public FontStretch As String
+- uid: Reportman.Drawing.TTFontData.ItalicAngle
+  commentId: F:Reportman.Drawing.TTFontData.ItalicAngle
+  id: ItalicAngle
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: ItalicAngle
+  nameWithType: TTFontData.ItalicAngle
+  fullName: Reportman.Drawing.TTFontData.ItalicAngle
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public double ItalicAngle
+    return:
+      type: System.Double
+    content.vb: Public ItalicAngle As Double
+- uid: Reportman.Drawing.TTFontData.FontBBox
+  commentId: F:Reportman.Drawing.TTFontData.FontBBox
+  id: FontBBox
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: FontBBox
+  nameWithType: TTFontData.FontBBox
+  fullName: Reportman.Drawing.TTFontData.FontBBox
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public Rectangle FontBBox
+    return:
+      type: System.Drawing.Rectangle
+    content.vb: Public FontBBox As Rectangle
+- uid: Reportman.Drawing.TTFontData.FaceName
+  commentId: F:Reportman.Drawing.TTFontData.FaceName
+  id: FaceName
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: FaceName
+  nameWithType: TTFontData.FaceName
+  fullName: Reportman.Drawing.TTFontData.FaceName
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string FaceName
+    return:
+      type: System.String
+    content.vb: Public FaceName As String
+- uid: Reportman.Drawing.TTFontData.StyleName
+  commentId: F:Reportman.Drawing.TTFontData.StyleName
+  id: StyleName
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: StyleName
+  nameWithType: TTFontData.StyleName
+  fullName: Reportman.Drawing.TTFontData.StyleName
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string StyleName
+    return:
+      type: System.String
+    content.vb: Public StyleName As String
+- uid: Reportman.Drawing.TTFontData.Type1
+  commentId: F:Reportman.Drawing.TTFontData.Type1
+  id: Type1
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: Type1
+  nameWithType: TTFontData.Type1
+  fullName: Reportman.Drawing.TTFontData.Type1
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public bool Type1
+    return:
+      type: System.Boolean
+    content.vb: Public Type1 As Boolean
+- uid: Reportman.Drawing.TTFontData.HaveKerning
+  commentId: F:Reportman.Drawing.TTFontData.HaveKerning
+  id: HaveKerning
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: HaveKerning
+  nameWithType: TTFontData.HaveKerning
+  fullName: Reportman.Drawing.TTFontData.HaveKerning
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public bool HaveKerning
+    return:
+      type: System.Boolean
+    content.vb: Public HaveKerning As Boolean
+- uid: Reportman.Drawing.TTFontData.ObjectName
+  commentId: F:Reportman.Drawing.TTFontData.ObjectName
+  id: ObjectName
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: ObjectName
+  nameWithType: TTFontData.ObjectName
+  fullName: Reportman.Drawing.TTFontData.ObjectName
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string ObjectName
+    return:
+      type: System.String
+    content.vb: Public ObjectName As String
+- uid: Reportman.Drawing.TTFontData.ObjectIndex
+  commentId: F:Reportman.Drawing.TTFontData.ObjectIndex
+  id: ObjectIndex
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: ObjectIndex
+  nameWithType: TTFontData.ObjectIndex
+  fullName: Reportman.Drawing.TTFontData.ObjectIndex
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public long ObjectIndex
+    return:
+      type: System.Int64
+    content.vb: Public ObjectIndex As Long
+- uid: Reportman.Drawing.TTFontData.ObjectIndexParent
+  commentId: F:Reportman.Drawing.TTFontData.ObjectIndexParent
+  id: ObjectIndexParent
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: ObjectIndexParent
+  nameWithType: TTFontData.ObjectIndexParent
+  fullName: Reportman.Drawing.TTFontData.ObjectIndexParent
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public long ObjectIndexParent
+    return:
+      type: System.Int64
+    content.vb: Public ObjectIndexParent As Long
+- uid: Reportman.Drawing.TTFontData.DescriptorIndex
+  commentId: F:Reportman.Drawing.TTFontData.DescriptorIndex
+  id: DescriptorIndex
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: DescriptorIndex
+  nameWithType: TTFontData.DescriptorIndex
+  fullName: Reportman.Drawing.TTFontData.DescriptorIndex
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public long DescriptorIndex
+    return:
+      type: System.Int64
+    content.vb: Public DescriptorIndex As Long
+- uid: Reportman.Drawing.TTFontData.ToUnicodeIndex
+  commentId: F:Reportman.Drawing.TTFontData.ToUnicodeIndex
+  id: ToUnicodeIndex
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: ToUnicodeIndex
+  nameWithType: TTFontData.ToUnicodeIndex
+  fullName: Reportman.Drawing.TTFontData.ToUnicodeIndex
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public long ToUnicodeIndex
+    return:
+      type: System.Int64
+    content.vb: Public ToUnicodeIndex As Long
+- uid: Reportman.Drawing.TTFontData.UnitsPerEM
+  commentId: F:Reportman.Drawing.TTFontData.UnitsPerEM
+  id: UnitsPerEM
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: UnitsPerEM
+  nameWithType: TTFontData.UnitsPerEM
+  fullName: Reportman.Drawing.TTFontData.UnitsPerEM
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public double UnitsPerEM
+    return:
+      type: System.Double
+    content.vb: Public UnitsPerEM As Double
+- uid: Reportman.Drawing.TTFontData.FirstLoaded
+  commentId: F:Reportman.Drawing.TTFontData.FirstLoaded
+  id: FirstLoaded
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: FirstLoaded
+  nameWithType: TTFontData.FirstLoaded
+  fullName: Reportman.Drawing.TTFontData.FirstLoaded
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int FirstLoaded
+    return:
+      type: System.Int32
+    content.vb: Public FirstLoaded As Integer
+- uid: Reportman.Drawing.TTFontData.LastLoaded
+  commentId: F:Reportman.Drawing.TTFontData.LastLoaded
+  id: LastLoaded
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: LastLoaded
+  nameWithType: TTFontData.LastLoaded
+  fullName: Reportman.Drawing.TTFontData.LastLoaded
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int LastLoaded
+    return:
+      type: System.Int32
+    content.vb: Public LastLoaded As Integer
+- uid: Reportman.Drawing.TTFontData.IsUnicode
+  commentId: F:Reportman.Drawing.TTFontData.IsUnicode
+  id: IsUnicode
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: IsUnicode
+  nameWithType: TTFontData.IsUnicode
+  fullName: Reportman.Drawing.TTFontData.IsUnicode
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public bool IsUnicode
+    return:
+      type: System.Boolean
+    content.vb: Public IsUnicode As Boolean
+- uid: Reportman.Drawing.TTFontData.Glyphs
+  commentId: F:Reportman.Drawing.TTFontData.Glyphs
+  id: Glyphs
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: Glyphs
+  nameWithType: TTFontData.Glyphs
+  fullName: Reportman.Drawing.TTFontData.Glyphs
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public SortedList<char, int> Glyphs
+    return:
+      type: System.Collections.Generic.SortedList{System.Char,System.Int32}
+    content.vb: Public Glyphs As SortedList(Of Char, Integer)
+- uid: Reportman.Drawing.TTFontData.Widths
+  commentId: F:Reportman.Drawing.TTFontData.Widths
+  id: Widths
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: Widths
+  nameWithType: TTFontData.Widths
+  fullName: Reportman.Drawing.TTFontData.Widths
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public SortedList<char, double> Widths
+    return:
+      type: System.Collections.Generic.SortedList{System.Char,System.Double}
+    content.vb: Public Widths As SortedList(Of Char, Double)
+- uid: Reportman.Drawing.TTFontData.Kernings
+  commentId: F:Reportman.Drawing.TTFontData.Kernings
+  id: Kernings
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: Kernings
+  nameWithType: TTFontData.Kernings
+  fullName: Reportman.Drawing.TTFontData.Kernings
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public SortedList<ulong, int> Kernings
+    return:
+      type: System.Collections.Generic.SortedList{System.UInt64,System.Int32}
+    content.vb: Public Kernings As SortedList(Of ULong, Integer)
+- uid: Reportman.Drawing.TTFontData.FontDatas
+  commentId: F:Reportman.Drawing.TTFontData.FontDatas
+  id: FontDatas
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: FontDatas
+  nameWithType: TTFontData.FontDatas
+  fullName: Reportman.Drawing.TTFontData.FontDatas
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static SortedList<string, AdvFontData> FontDatas
+    return:
+      type: System.Collections.Generic.SortedList{System.String,Reportman.Drawing.AdvFontData}
+    content.vb: Public Shared FontDatas As SortedList(Of String, AdvFontData)
+- uid: Reportman.Drawing.TTFontData.CacheWidths
+  commentId: F:Reportman.Drawing.TTFontData.CacheWidths
+  id: CacheWidths
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: CacheWidths
+  nameWithType: TTFontData.CacheWidths
+  fullName: Reportman.Drawing.TTFontData.CacheWidths
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public SortedList<char, GlyphInfo> CacheWidths
+    return:
+      type: System.Collections.Generic.SortedList{System.Char,Reportman.Drawing.GlyphInfo}
+    content.vb: Public CacheWidths As SortedList(Of Char, GlyphInfo)
+- uid: Reportman.Drawing.TTFontData.IsBold
+  commentId: F:Reportman.Drawing.TTFontData.IsBold
+  id: IsBold
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: IsBold
+  nameWithType: TTFontData.IsBold
+  fullName: Reportman.Drawing.TTFontData.IsBold
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public bool IsBold
+    return:
+      type: System.Boolean
+    content.vb: Public IsBold As Boolean
+- uid: Reportman.Drawing.TTFontData.IsItalic
+  commentId: F:Reportman.Drawing.TTFontData.IsItalic
+  id: IsItalic
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: IsItalic
+  nameWithType: TTFontData.IsItalic
+  fullName: Reportman.Drawing.TTFontData.IsItalic
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public bool IsItalic
+    return:
+      type: System.Boolean
+    content.vb: Public IsItalic As Boolean
+- uid: Reportman.Drawing.TTFontData.glyphsInfo
+  commentId: F:Reportman.Drawing.TTFontData.glyphsInfo
+  id: glyphsInfo
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: glyphsInfo
+  nameWithType: TTFontData.glyphsInfo
+  fullName: Reportman.Drawing.TTFontData.glyphsInfo
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public SortedList<int, GlyphInfo> glyphsInfo
+    return:
+      type: System.Collections.Generic.SortedList{System.Int32,Reportman.Drawing.GlyphInfo}
+    content.vb: Public glyphsInfo As SortedList(Of Integer, GlyphInfo)
+- uid: Reportman.Drawing.TTFontData.#ctor
+  commentId: M:Reportman.Drawing.TTFontData.#ctor
+  id: '#ctor'
+  parent: Reportman.Drawing.TTFontData
+  langs:
+  - csharp
+  - vb
+  name: TTFontData()
+  nameWithType: TTFontData.TTFontData()
+  fullName: Reportman.Drawing.TTFontData.TTFontData()
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public TTFontData()
+    content.vb: Public Sub New()
+  overload: Reportman.Drawing.TTFontData.#ctor*
+  nameWithType.vb: TTFontData.New()
+  fullName.vb: Reportman.Drawing.TTFontData.New()
+  name.vb: New()
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Reportman.Drawing.AdvFontData
+  commentId: T:Reportman.Drawing.AdvFontData
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.AdvFontData.html
+  name: AdvFontData
+  nameWithType: AdvFontData
+  fullName: Reportman.Drawing.AdvFontData
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.double
+  name: double
+  nameWithType: double
+  fullName: double
+  nameWithType.vb: Double
+  fullName.vb: Double
+  name.vb: Double
+- uid: System.Drawing.Rectangle
+  commentId: T:System.Drawing.Rectangle
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.rectangle
+  name: Rectangle
+  nameWithType: Rectangle
+  fullName: System.Drawing.Rectangle
+- uid: System.Drawing
+  commentId: N:System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Drawing
+  nameWithType: System.Drawing
+  fullName: System.Drawing
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: System.Collections.Generic.SortedList{System.Char,System.Int32}
+  commentId: T:System.Collections.Generic.SortedList{System.Char,System.Int32}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.SortedList`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  name: SortedList<char, int>
+  nameWithType: SortedList<char, int>
+  fullName: System.Collections.Generic.SortedList<char, int>
+  nameWithType.vb: SortedList(Of Char, Integer)
+  fullName.vb: System.Collections.Generic.SortedList(Of Char, Integer)
+  name.vb: SortedList(Of Char, Integer)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: <
+  - uid: System.Char
+    name: char
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.char
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Char
+    name: Char
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.char
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Collections.Generic.SortedList`2
+  commentId: T:System.Collections.Generic.SortedList`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  name: SortedList<TKey, TValue>
+  nameWithType: SortedList<TKey, TValue>
+  fullName: System.Collections.Generic.SortedList<TKey, TValue>
+  nameWithType.vb: SortedList(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.SortedList(Of TKey, TValue)
+  name.vb: SortedList(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.Collections.Generic.SortedList{System.Char,System.Double}
+  commentId: T:System.Collections.Generic.SortedList{System.Char,System.Double}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.SortedList`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  name: SortedList<char, double>
+  nameWithType: SortedList<char, double>
+  fullName: System.Collections.Generic.SortedList<char, double>
+  nameWithType.vb: SortedList(Of Char, Double)
+  fullName.vb: System.Collections.Generic.SortedList(Of Char, Double)
+  name.vb: SortedList(Of Char, Double)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: <
+  - uid: System.Char
+    name: char
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.char
+  - name: ','
+  - name: " "
+  - uid: System.Double
+    name: double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Char
+    name: Char
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.char
+  - name: ','
+  - name: " "
+  - uid: System.Double
+    name: Double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: )
+- uid: System.Collections.Generic.SortedList{System.UInt64,System.Int32}
+  commentId: T:System.Collections.Generic.SortedList{System.UInt64,System.Int32}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.SortedList`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  name: SortedList<ulong, int>
+  nameWithType: SortedList<ulong, int>
+  fullName: System.Collections.Generic.SortedList<ulong, int>
+  nameWithType.vb: SortedList(Of ULong, Integer)
+  fullName.vb: System.Collections.Generic.SortedList(Of ULong, Integer)
+  name.vb: SortedList(Of ULong, Integer)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: <
+  - uid: System.UInt64
+    name: ulong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.UInt64
+    name: ULong
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.uint64
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Collections.Generic.SortedList{System.String,Reportman.Drawing.AdvFontData}
+  commentId: T:System.Collections.Generic.SortedList{System.String,Reportman.Drawing.AdvFontData}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.SortedList`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  name: SortedList<string, AdvFontData>
+  nameWithType: SortedList<string, AdvFontData>
+  fullName: System.Collections.Generic.SortedList<string, Reportman.Drawing.AdvFontData>
+  nameWithType.vb: SortedList(Of String, AdvFontData)
+  fullName.vb: System.Collections.Generic.SortedList(Of String, Reportman.Drawing.AdvFontData)
+  name.vb: SortedList(Of String, AdvFontData)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.AdvFontData
+    name: AdvFontData
+    isExternal: true
+    href: Reportman.Drawing.AdvFontData.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.AdvFontData
+    name: AdvFontData
+    isExternal: true
+    href: Reportman.Drawing.AdvFontData.html
+  - name: )
+- uid: System.Collections.Generic.SortedList{System.Char,Reportman.Drawing.GlyphInfo}
+  commentId: T:System.Collections.Generic.SortedList{System.Char,Reportman.Drawing.GlyphInfo}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.SortedList`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  name: SortedList<char, GlyphInfo>
+  nameWithType: SortedList<char, GlyphInfo>
+  fullName: System.Collections.Generic.SortedList<char, Reportman.Drawing.GlyphInfo>
+  nameWithType.vb: SortedList(Of Char, GlyphInfo)
+  fullName.vb: System.Collections.Generic.SortedList(Of Char, Reportman.Drawing.GlyphInfo)
+  name.vb: SortedList(Of Char, GlyphInfo)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: <
+  - uid: System.Char
+    name: char
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.char
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.GlyphInfo
+    name: GlyphInfo
+    isExternal: true
+    href: Reportman.Drawing.GlyphInfo.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Char
+    name: Char
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.char
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.GlyphInfo
+    name: GlyphInfo
+    isExternal: true
+    href: Reportman.Drawing.GlyphInfo.html
+  - name: )
+- uid: System.Collections.Generic.SortedList{System.Int32,Reportman.Drawing.GlyphInfo}
+  commentId: T:System.Collections.Generic.SortedList{System.Int32,Reportman.Drawing.GlyphInfo}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.SortedList`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  name: SortedList<int, GlyphInfo>
+  nameWithType: SortedList<int, GlyphInfo>
+  fullName: System.Collections.Generic.SortedList<int, Reportman.Drawing.GlyphInfo>
+  nameWithType.vb: SortedList(Of Integer, GlyphInfo)
+  fullName.vb: System.Collections.Generic.SortedList(Of Integer, Reportman.Drawing.GlyphInfo)
+  name.vb: SortedList(Of Integer, GlyphInfo)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: <
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.GlyphInfo
+    name: GlyphInfo
+    isExternal: true
+    href: Reportman.Drawing.GlyphInfo.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.GlyphInfo
+    name: GlyphInfo
+    isExternal: true
+    href: Reportman.Drawing.GlyphInfo.html
+  - name: )
+- uid: Reportman.Drawing.TTFontData.#ctor*
+  commentId: Overload:Reportman.Drawing.TTFontData.#ctor
+  isExternal: true
+  href: Reportman.Drawing.TTFontData.html#Reportman_Drawing_TTFontData__ctor
+  name: TTFontData
+  nameWithType: TTFontData.TTFontData
+  fullName: Reportman.Drawing.TTFontData.TTFontData
+  nameWithType.vb: TTFontData.New
+  fullName.vb: Reportman.Drawing.TTFontData.New
+  name.vb: New

@@ -1,0 +1,37 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "src": "../designer/bin/Debug/net9.0-windows",
+          "files": [
+            "Reportman.Drawing.dll",
+            "Reportman.Reporting.dll",
+            "Reportman.Drawing.Windows.dll",
+            "Reportman.Drawing.Forms.dll",
+            "Reportman.Reporting.Forms.dll",
+            "Reportman.WPF.dll",
+            "Reportman.CrossPlatform.dll"
+          ],
+          "exclude": ["*Test*.dll"]
+        }
+      ],
+      "dest": "api"
+    }
+  ],
+    "build": {
+    "content": [
+      {
+        "files": [
+          "api/**.yml",
+          "*.md"
+        ]
+      }
+    ],
+    "dest": "_site",
+    "globalMetadata": {
+      "_appTitle": "Reportman .Net Documentation",
+      "_enableSearch": true
+    }
+  }
+}

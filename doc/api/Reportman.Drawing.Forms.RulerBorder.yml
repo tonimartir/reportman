@@ -1,0 +1,104 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.RulerBorder
+  commentId: T:Reportman.Drawing.Forms.RulerBorder
+  id: RulerBorder
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.RulerBorder.None
+  - Reportman.Drawing.Forms.RulerBorder.Single
+  langs:
+  - csharp
+  - vb
+  name: RulerBorder
+  nameWithType: RulerBorder
+  fullName: Reportman.Drawing.Forms.RulerBorder
+  type: Enum
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public enum RulerBorder
+    content.vb: Public Enum RulerBorder
+- uid: Reportman.Drawing.Forms.RulerBorder.Single
+  commentId: F:Reportman.Drawing.Forms.RulerBorder.Single
+  id: Single
+  parent: Reportman.Drawing.Forms.RulerBorder
+  langs:
+  - csharp
+  - vb
+  name: Single
+  nameWithType: RulerBorder.Single
+  fullName: Reportman.Drawing.Forms.RulerBorder.Single
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Single = 0
+    return:
+      type: Reportman.Drawing.Forms.RulerBorder
+- uid: Reportman.Drawing.Forms.RulerBorder.None
+  commentId: F:Reportman.Drawing.Forms.RulerBorder.None
+  id: None
+  parent: Reportman.Drawing.Forms.RulerBorder
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: RulerBorder.None
+  fullName: Reportman.Drawing.Forms.RulerBorder.None
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: None = 1
+    return:
+      type: Reportman.Drawing.Forms.RulerBorder
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: Reportman.Drawing.Forms.RulerBorder
+  commentId: T:Reportman.Drawing.Forms.RulerBorder
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.RulerBorder.html
+  name: RulerBorder
+  nameWithType: RulerBorder
+  fullName: Reportman.Drawing.Forms.RulerBorder

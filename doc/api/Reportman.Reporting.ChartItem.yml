@@ -1,0 +1,3088 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.ChartItem
+  commentId: T:Reportman.Reporting.ChartItem
+  id: ChartItem
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.ChartItem.#ctor
+  - Reportman.Reporting.ChartItem.AutoRange
+  - Reportman.Reporting.ChartItem.AxisYFinal
+  - Reportman.Reporting.ChartItem.AxisYInitial
+  - Reportman.Reporting.ChartItem.CaptionExpression
+  - Reportman.Reporting.ChartItem.ChangeSerieBool
+  - Reportman.Reporting.ChartItem.ChangeSerieExpression
+  - Reportman.Reporting.ChartItem.ChartStyle
+  - Reportman.Reporting.ChartItem.CheckValueCondition
+  - Reportman.Reporting.ChartItem.Clear
+  - Reportman.Reporting.ChartItem.ClearExpression
+  - Reportman.Reporting.ChartItem.ClearExpressionBool
+  - Reportman.Reporting.ChartItem.ColorExpression
+  - Reportman.Reporting.ChartItem.DoPrint(Reportman.Drawing.PrintOut,System.Int32,System.Int32,System.Int32,System.Int32,Reportman.Drawing.MetaFile,System.Drawing.Point,System.Boolean@)
+  - Reportman.Reporting.ChartItem.DrawHelper
+  - Reportman.Reporting.ChartItem.Driver
+  - Reportman.Reporting.ChartItem.Elevation
+  - Reportman.Reporting.ChartItem.EvaluateChangeSerieExpression
+  - Reportman.Reporting.ChartItem.EvaluateClearExpression
+  - Reportman.Reporting.ChartItem.EvaluateSerieCaption
+  - Reportman.Reporting.ChartItem.GetClassName
+  - Reportman.Reporting.ChartItem.GetValueCondition
+  - Reportman.Reporting.ChartItem.GraphicBounds(System.Boolean,System.Boolean,System.Double,System.Double,System.Boolean,System.Double,System.Boolean)
+  - Reportman.Reporting.ChartItem.GraphicColor(System.Int32)
+  - Reportman.Reporting.ChartItem.GraphicSerieColor(System.Int32)
+  - Reportman.Reporting.ChartItem.HorzFontRotation
+  - Reportman.Reporting.ChartItem.HorzFontSize
+  - Reportman.Reporting.ChartItem.HorzOffset
+  - Reportman.Reporting.ChartItem.Identifier
+  - Reportman.Reporting.ChartItem.MarkStyle
+  - Reportman.Reporting.ChartItem.MultiBar
+  - Reportman.Reporting.ChartItem.NewFunction(System.String,System.String,System.String)
+  - Reportman.Reporting.ChartItem.NewValue(System.Double,System.Boolean,System.String,System.String)
+  - Reportman.Reporting.ChartItem.NewValueXY(System.Object,System.Double,System.Boolean,System.String,System.String)
+  - Reportman.Reporting.ChartItem.Orthogonal
+  - Reportman.Reporting.ChartItem.Perspective
+  - Reportman.Reporting.ChartItem.Resolution
+  - Reportman.Reporting.ChartItem.Rotation
+  - Reportman.Reporting.ChartItem.SerieCaption
+  - Reportman.Reporting.ChartItem.SerieColorExpression
+  - Reportman.Reporting.ChartItem.SeriesColors
+  - Reportman.Reporting.ChartItem.SetReport(Reportman.Reporting.BaseReport)
+  - Reportman.Reporting.ChartItem.ShowHint
+  - Reportman.Reporting.ChartItem.ShowLegend
+  - Reportman.Reporting.ChartItem.SubReportChanged(Reportman.Reporting.SubReportEvent,System.String)
+  - Reportman.Reporting.ChartItem.Tilt
+  - Reportman.Reporting.ChartItem.ValueExpression
+  - Reportman.Reporting.ChartItem.ValueXExpression
+  - Reportman.Reporting.ChartItem.VertFontRotation
+  - Reportman.Reporting.ChartItem.VertFontSize
+  - Reportman.Reporting.ChartItem.VertOffset
+  - Reportman.Reporting.ChartItem.View3d
+  - Reportman.Reporting.ChartItem.View3dWalls
+  - Reportman.Reporting.ChartItem.Zoom
+  langs:
+  - csharp
+  - vb
+  name: ChartItem
+  nameWithType: ChartItem
+  fullName: Reportman.Reporting.ChartItem
+  type: Class
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: 'public class ChartItem : PrintItemText, IDisposable'
+    content.vb: Public Class ChartItem Inherits PrintItemText Implements IDisposable
+  inheritance:
+  - System.Object
+  - Reportman.Reporting.ReportItem
+  - Reportman.Reporting.PrintItem
+  - Reportman.Reporting.PrintPosItem
+  - Reportman.Reporting.PrintItemText
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - Reportman.Reporting.PrintItemText.WFontName
+  - Reportman.Reporting.PrintItemText.LFontName
+  - Reportman.Reporting.PrintItemText.FontSize
+  - Reportman.Reporting.PrintItemText.FontRotation
+  - Reportman.Reporting.PrintItemText.FontStyle
+  - Reportman.Reporting.PrintItemText.FontColor
+  - Reportman.Reporting.PrintItemText.BackColor
+  - Reportman.Reporting.PrintItemText.Transparent
+  - Reportman.Reporting.PrintItemText.CutText
+  - Reportman.Reporting.PrintItemText.WordWrap
+  - Reportman.Reporting.PrintItemText.WordBreak
+  - Reportman.Reporting.PrintItemText.InterLine
+  - Reportman.Reporting.PrintItemText.Alignment
+  - Reportman.Reporting.PrintItemText.VAlignment
+  - Reportman.Reporting.PrintItemText.SingleLine
+  - Reportman.Reporting.PrintItemText.Type1Font
+  - Reportman.Reporting.PrintItemText.MultiPage
+  - Reportman.Reporting.PrintItemText.PrintStep
+  - Reportman.Reporting.PrintItemText.RightToLeft
+  - Reportman.Reporting.PrintItemText.PrintAlignment
+  - Reportman.Reporting.PrintItemText.VPrintAlignment
+  - Reportman.Reporting.PrintPosItem.Section
+  - Reportman.Reporting.PrintPosItem.AnnotationExpression
+  - Reportman.Reporting.PrintPosItem.GetExtension(Reportman.Drawing.PrintOut,System.Drawing.Point,System.Boolean)
+  - Reportman.Reporting.PrintPosItem.FillAnnotation(Reportman.Drawing.MetaObject,Reportman.Drawing.MetaPage)
+  - Reportman.Reporting.PrintPosItem.Hidden
+  - Reportman.Reporting.PrintPosItem.PosX
+  - Reportman.Reporting.PrintPosItem.PosY
+  - Reportman.Reporting.PrintPosItem.Align
+  - Reportman.Reporting.PrintPosItem.PartialFlag
+  - Reportman.Reporting.PrintItem.PrintWidth
+  - Reportman.Reporting.PrintItem.PrintHeight
+  - Reportman.Reporting.PrintItem.Visible
+  - Reportman.Reporting.PrintItem.LastExtent
+  - Reportman.Reporting.PrintItem.SelectionIndex
+  - Reportman.Reporting.PrintItem.SelectionRectangle
+  - Reportman.Reporting.PrintItem.EvaluatePrintCondition
+  - Reportman.Reporting.PrintItem.Print(Reportman.Drawing.PrintOut,System.Int32,System.Int32,System.Int32,System.Int32,Reportman.Drawing.MetaFile,System.Drawing.Point,System.Boolean@)
+  - Reportman.Reporting.PrintItem.ExecuteBeforePrint
+  - Reportman.Reporting.PrintItem.ExecuteAfterPrint
+  - Reportman.Reporting.PrintItem.Width
+  - Reportman.Reporting.PrintItem.Height
+  - Reportman.Reporting.PrintItem.DoBeforePrint
+  - Reportman.Reporting.PrintItem.DoAfterPrint
+  - Reportman.Reporting.PrintItem.PrintCondition
+  - Reportman.Reporting.ReportItem.Dispose
+  - Reportman.Reporting.ReportItem.Name
+  - Reportman.Reporting.ReportItem.Report
+  - Reportman.Reporting.ReportItem.ClassName
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Reporting.ChartItem.SeriesColors
+  commentId: F:Reportman.Reporting.ChartItem.SeriesColors
+  id: SeriesColors
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: SeriesColors
+  nameWithType: ChartItem.SeriesColors
+  fullName: Reportman.Reporting.ChartItem.SeriesColors
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public int[] SeriesColors
+    return:
+      type: System.Int32[]
+    content.vb: Public SeriesColors As Integer()
+- uid: Reportman.Reporting.ChartItem.DrawHelper
+  commentId: F:Reportman.Reporting.ChartItem.DrawHelper
+  id: DrawHelper
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: DrawHelper
+  nameWithType: ChartItem.DrawHelper
+  fullName: Reportman.Reporting.ChartItem.DrawHelper
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public object DrawHelper
+    return:
+      type: System.Object
+    content.vb: Public DrawHelper As Object
+- uid: Reportman.Reporting.ChartItem.SetReport(Reportman.Reporting.BaseReport)
+  commentId: M:Reportman.Reporting.ChartItem.SetReport(Reportman.Reporting.BaseReport)
+  id: SetReport(Reportman.Reporting.BaseReport)
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: SetReport(BaseReport)
+  nameWithType: ChartItem.SetReport(BaseReport)
+  fullName: Reportman.Reporting.ChartItem.SetReport(Reportman.Reporting.BaseReport)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  example: []
+  syntax:
+    content: public override void SetReport(BaseReport rp)
+    parameters:
+    - id: rp
+      type: Reportman.Reporting.BaseReport
+    content.vb: Public Overrides Sub SetReport(rp As BaseReport)
+  overridden: Reportman.Reporting.ReportItem.SetReport(Reportman.Reporting.BaseReport)
+  overload: Reportman.Reporting.ChartItem.SetReport*
+- uid: Reportman.Reporting.ChartItem.#ctor
+  commentId: M:Reportman.Reporting.ChartItem.#ctor
+  id: '#ctor'
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: ChartItem()
+  nameWithType: ChartItem.ChartItem()
+  fullName: Reportman.Reporting.ChartItem.ChartItem()
+  type: Constructor
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public ChartItem()
+    content.vb: Public Sub New()
+  overload: Reportman.Reporting.ChartItem.#ctor*
+  nameWithType.vb: ChartItem.New()
+  fullName.vb: Reportman.Reporting.ChartItem.New()
+  name.vb: New()
+- uid: Reportman.Reporting.ChartItem.GetClassName
+  commentId: M:Reportman.Reporting.ChartItem.GetClassName
+  id: GetClassName
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: GetClassName()
+  nameWithType: ChartItem.GetClassName()
+  fullName: Reportman.Reporting.ChartItem.GetClassName()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Internal function to determine the object type name
+  example: []
+  syntax:
+    content: protected override string GetClassName()
+    return:
+      type: System.String
+      description: Object type name
+    content.vb: Protected Overrides Function GetClassName() As String
+  overridden: Reportman.Reporting.ReportItem.GetClassName
+  overload: Reportman.Reporting.ChartItem.GetClassName*
+- uid: Reportman.Reporting.ChartItem.Clear
+  commentId: M:Reportman.Reporting.ChartItem.Clear
+  id: Clear
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: Clear()
+  nameWithType: ChartItem.Clear()
+  fullName: Reportman.Reporting.ChartItem.Clear()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public void Clear()
+    content.vb: Public Sub Clear()
+  overload: Reportman.Reporting.ChartItem.Clear*
+- uid: Reportman.Reporting.ChartItem.SubReportChanged(Reportman.Reporting.SubReportEvent,System.String)
+  commentId: M:Reportman.Reporting.ChartItem.SubReportChanged(Reportman.Reporting.SubReportEvent,System.String)
+  id: SubReportChanged(Reportman.Reporting.SubReportEvent,System.String)
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: SubReportChanged(SubReportEvent, string)
+  nameWithType: ChartItem.SubReportChanged(SubReportEvent, string)
+  fullName: Reportman.Reporting.ChartItem.SubReportChanged(Reportman.Reporting.SubReportEvent, string)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: This event is generated while report is processing to allow the report items to update contents
+  example: []
+  syntax:
+    content: public override void SubReportChanged(SubReportEvent newstate, string newgroup)
+    parameters:
+    - id: newstate
+      type: Reportman.Reporting.SubReportEvent
+      description: New state for the subreport
+    - id: newgroup
+      type: System.String
+      description: New group if apply
+    content.vb: Public Overrides Sub SubReportChanged(newstate As SubReportEvent, newgroup As String)
+  overridden: Reportman.Reporting.PrintItem.SubReportChanged(Reportman.Reporting.SubReportEvent,System.String)
+  overload: Reportman.Reporting.ChartItem.SubReportChanged*
+  nameWithType.vb: ChartItem.SubReportChanged(SubReportEvent, String)
+  fullName.vb: Reportman.Reporting.ChartItem.SubReportChanged(Reportman.Reporting.SubReportEvent, String)
+  name.vb: SubReportChanged(SubReportEvent, String)
+- uid: Reportman.Reporting.ChartItem.EvaluateClearExpression
+  commentId: M:Reportman.Reporting.ChartItem.EvaluateClearExpression
+  id: EvaluateClearExpression
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: EvaluateClearExpression()
+  nameWithType: ChartItem.EvaluateClearExpression()
+  fullName: Reportman.Reporting.ChartItem.EvaluateClearExpression()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public void EvaluateClearExpression()
+    content.vb: Public Sub EvaluateClearExpression()
+  overload: Reportman.Reporting.ChartItem.EvaluateClearExpression*
+- uid: Reportman.Reporting.ChartItem.EvaluateChangeSerieExpression
+  commentId: M:Reportman.Reporting.ChartItem.EvaluateChangeSerieExpression
+  id: EvaluateChangeSerieExpression
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: EvaluateChangeSerieExpression()
+  nameWithType: ChartItem.EvaluateChangeSerieExpression()
+  fullName: Reportman.Reporting.ChartItem.EvaluateChangeSerieExpression()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public bool EvaluateChangeSerieExpression()
+    return:
+      type: System.Boolean
+    content.vb: Public Function EvaluateChangeSerieExpression() As Boolean
+  overload: Reportman.Reporting.ChartItem.EvaluateChangeSerieExpression*
+- uid: Reportman.Reporting.ChartItem.EvaluateSerieCaption
+  commentId: M:Reportman.Reporting.ChartItem.EvaluateSerieCaption
+  id: EvaluateSerieCaption
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: EvaluateSerieCaption()
+  nameWithType: ChartItem.EvaluateSerieCaption()
+  fullName: Reportman.Reporting.ChartItem.EvaluateSerieCaption()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public Variant EvaluateSerieCaption()
+    return:
+      type: Reportman.Reporting.Variant
+    content.vb: Public Function EvaluateSerieCaption() As [Variant]
+  overload: Reportman.Reporting.ChartItem.EvaluateSerieCaption*
+- uid: Reportman.Reporting.ChartItem.CheckValueCondition
+  commentId: M:Reportman.Reporting.ChartItem.CheckValueCondition
+  id: CheckValueCondition
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: CheckValueCondition()
+  nameWithType: ChartItem.CheckValueCondition()
+  fullName: Reportman.Reporting.ChartItem.CheckValueCondition()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public bool CheckValueCondition()
+    return:
+      type: System.Boolean
+    content.vb: Public Function CheckValueCondition() As Boolean
+  overload: Reportman.Reporting.ChartItem.CheckValueCondition*
+- uid: Reportman.Reporting.ChartItem.NewValue(System.Double,System.Boolean,System.String,System.String)
+  commentId: M:Reportman.Reporting.ChartItem.NewValue(System.Double,System.Boolean,System.String,System.String)
+  id: NewValue(System.Double,System.Boolean,System.String,System.String)
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: NewValue(double, bool, string, string)
+  nameWithType: ChartItem.NewValue(double, bool, string, string)
+  fullName: Reportman.Reporting.ChartItem.NewValue(double, bool, string, string)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public void NewValue(double newvalue, bool seriechange, string valuecaption, string seriecaption)
+    parameters:
+    - id: newvalue
+      type: System.Double
+    - id: seriechange
+      type: System.Boolean
+    - id: valuecaption
+      type: System.String
+    - id: seriecaption
+      type: System.String
+    content.vb: Public Sub NewValue(newvalue As Double, seriechange As Boolean, valuecaption As String, seriecaption As String)
+  overload: Reportman.Reporting.ChartItem.NewValue*
+  nameWithType.vb: ChartItem.NewValue(Double, Boolean, String, String)
+  fullName.vb: Reportman.Reporting.ChartItem.NewValue(Double, Boolean, String, String)
+  name.vb: NewValue(Double, Boolean, String, String)
+- uid: Reportman.Reporting.ChartItem.GraphicBounds(System.Boolean,System.Boolean,System.Double,System.Double,System.Boolean,System.Double,System.Boolean)
+  commentId: M:Reportman.Reporting.ChartItem.GraphicBounds(System.Boolean,System.Boolean,System.Double,System.Double,System.Boolean,System.Double,System.Boolean)
+  id: GraphicBounds(System.Boolean,System.Boolean,System.Double,System.Double,System.Boolean,System.Double,System.Boolean)
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: GraphicBounds(bool, bool, double, double, bool, double, bool)
+  nameWithType: ChartItem.GraphicBounds(bool, bool, double, double, bool, double, bool)
+  fullName: Reportman.Reporting.ChartItem.GraphicBounds(bool, bool, double, double, bool, double, bool)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public void GraphicBounds(bool autol, bool autoh, double lvalue, double hvalue, bool logaritmic, double logBase, bool inverted)
+    parameters:
+    - id: autol
+      type: System.Boolean
+    - id: autoh
+      type: System.Boolean
+    - id: lvalue
+      type: System.Double
+    - id: hvalue
+      type: System.Double
+    - id: logaritmic
+      type: System.Boolean
+    - id: logBase
+      type: System.Double
+    - id: inverted
+      type: System.Boolean
+    content.vb: Public Sub GraphicBounds(autol As Boolean, autoh As Boolean, lvalue As Double, hvalue As Double, logaritmic As Boolean, logBase As Double, inverted As Boolean)
+  overload: Reportman.Reporting.ChartItem.GraphicBounds*
+  nameWithType.vb: ChartItem.GraphicBounds(Boolean, Boolean, Double, Double, Boolean, Double, Boolean)
+  fullName.vb: Reportman.Reporting.ChartItem.GraphicBounds(Boolean, Boolean, Double, Double, Boolean, Double, Boolean)
+  name.vb: GraphicBounds(Boolean, Boolean, Double, Double, Boolean, Double, Boolean)
+- uid: Reportman.Reporting.ChartItem.NewFunction(System.String,System.String,System.String)
+  commentId: M:Reportman.Reporting.ChartItem.NewFunction(System.String,System.String,System.String)
+  id: NewFunction(System.String,System.String,System.String)
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: NewFunction(string, string, string)
+  nameWithType: ChartItem.NewFunction(string, string, string)
+  fullName: Reportman.Reporting.ChartItem.NewFunction(string, string, string)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public void NewFunction(string functionName, string functionParams, string serieCaption)
+    parameters:
+    - id: functionName
+      type: System.String
+    - id: functionParams
+      type: System.String
+    - id: serieCaption
+      type: System.String
+    content.vb: Public Sub NewFunction(functionName As String, functionParams As String, serieCaption As String)
+  overload: Reportman.Reporting.ChartItem.NewFunction*
+  nameWithType.vb: ChartItem.NewFunction(String, String, String)
+  fullName.vb: Reportman.Reporting.ChartItem.NewFunction(String, String, String)
+  name.vb: NewFunction(String, String, String)
+- uid: Reportman.Reporting.ChartItem.NewValueXY(System.Object,System.Double,System.Boolean,System.String,System.String)
+  commentId: M:Reportman.Reporting.ChartItem.NewValueXY(System.Object,System.Double,System.Boolean,System.String,System.String)
+  id: NewValueXY(System.Object,System.Double,System.Boolean,System.String,System.String)
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: NewValueXY(object, double, bool, string, string)
+  nameWithType: ChartItem.NewValueXY(object, double, bool, string, string)
+  fullName: Reportman.Reporting.ChartItem.NewValueXY(object, double, bool, string, string)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public void NewValueXY(object newvalueX, double newvalue, bool seriechange, string valuecaption, string seriecaption)
+    parameters:
+    - id: newvalueX
+      type: System.Object
+    - id: newvalue
+      type: System.Double
+    - id: seriechange
+      type: System.Boolean
+    - id: valuecaption
+      type: System.String
+    - id: seriecaption
+      type: System.String
+    content.vb: Public Sub NewValueXY(newvalueX As Object, newvalue As Double, seriechange As Boolean, valuecaption As String, seriecaption As String)
+  overload: Reportman.Reporting.ChartItem.NewValueXY*
+  nameWithType.vb: ChartItem.NewValueXY(Object, Double, Boolean, String, String)
+  fullName.vb: Reportman.Reporting.ChartItem.NewValueXY(Object, Double, Boolean, String, String)
+  name.vb: NewValueXY(Object, Double, Boolean, String, String)
+- uid: Reportman.Reporting.ChartItem.GraphicColor(System.Int32)
+  commentId: M:Reportman.Reporting.ChartItem.GraphicColor(System.Int32)
+  id: GraphicColor(System.Int32)
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: GraphicColor(int)
+  nameWithType: ChartItem.GraphicColor(int)
+  fullName: Reportman.Reporting.ChartItem.GraphicColor(int)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public void GraphicColor(int newcolor)
+    parameters:
+    - id: newcolor
+      type: System.Int32
+    content.vb: Public Sub GraphicColor(newcolor As Integer)
+  overload: Reportman.Reporting.ChartItem.GraphicColor*
+  nameWithType.vb: ChartItem.GraphicColor(Integer)
+  fullName.vb: Reportman.Reporting.ChartItem.GraphicColor(Integer)
+  name.vb: GraphicColor(Integer)
+- uid: Reportman.Reporting.ChartItem.GraphicSerieColor(System.Int32)
+  commentId: M:Reportman.Reporting.ChartItem.GraphicSerieColor(System.Int32)
+  id: GraphicSerieColor(System.Int32)
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: GraphicSerieColor(int)
+  nameWithType: ChartItem.GraphicSerieColor(int)
+  fullName: Reportman.Reporting.ChartItem.GraphicSerieColor(int)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public void GraphicSerieColor(int newcolor)
+    parameters:
+    - id: newcolor
+      type: System.Int32
+    content.vb: Public Sub GraphicSerieColor(newcolor As Integer)
+  overload: Reportman.Reporting.ChartItem.GraphicSerieColor*
+  nameWithType.vb: ChartItem.GraphicSerieColor(Integer)
+  fullName.vb: Reportman.Reporting.ChartItem.GraphicSerieColor(Integer)
+  name.vb: GraphicSerieColor(Integer)
+- uid: Reportman.Reporting.ChartItem.DoPrint(Reportman.Drawing.PrintOut,System.Int32,System.Int32,System.Int32,System.Int32,Reportman.Drawing.MetaFile,System.Drawing.Point,System.Boolean@)
+  commentId: M:Reportman.Reporting.ChartItem.DoPrint(Reportman.Drawing.PrintOut,System.Int32,System.Int32,System.Int32,System.Int32,Reportman.Drawing.MetaFile,System.Drawing.Point,System.Boolean@)
+  id: DoPrint(Reportman.Drawing.PrintOut,System.Int32,System.Int32,System.Int32,System.Int32,Reportman.Drawing.MetaFile,System.Drawing.Point,System.Boolean@)
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: DoPrint(PrintOut, int, int, int, int, MetaFile, Point, ref bool)
+  nameWithType: ChartItem.DoPrint(PrintOut, int, int, int, int, MetaFile, Point, ref bool)
+  fullName: Reportman.Reporting.ChartItem.DoPrint(Reportman.Drawing.PrintOut, int, int, int, int, Reportman.Drawing.MetaFile, System.Drawing.Point, ref bool)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: This procedure will print the item into the MetaFile, internal implementation
+  example: []
+  syntax:
+    content: protected override void DoPrint(PrintOut adriver, int aposx, int aposy, int newwidth, int newheight, MetaFile metafile, Point MaxExtent, ref bool PartialPrint)
+    parameters:
+    - id: adriver
+      type: Reportman.Drawing.PrintOut
+      description: Report processing driver
+    - id: aposx
+      type: System.Int32
+      description: Horizontal position in twips
+    - id: aposy
+      type: System.Int32
+      description: Vertical position in twips
+    - id: newwidth
+      type: System.Int32
+      description: Width of the bounding box in twips
+    - id: newheight
+      type: System.Int32
+      description: Height of the bounding box in twips
+    - id: metafile
+      type: Reportman.Drawing.MetaFile
+      description: Destination MetaFile
+    - id: MaxExtent
+      type: System.Drawing.Point
+      description: Maximum extension
+    - id: PartialPrint
+      type: System.Boolean
+      description: Returns true if some text will expand multiple pages
+    content.vb: Protected Overrides Sub DoPrint(adriver As PrintOut, aposx As Integer, aposy As Integer, newwidth As Integer, newheight As Integer, metafile As MetaFile, MaxExtent As Point, PartialPrint As Boolean)
+  overridden: Reportman.Reporting.PrintItem.DoPrint(Reportman.Drawing.PrintOut,System.Int32,System.Int32,System.Int32,System.Int32,Reportman.Drawing.MetaFile,System.Drawing.Point,System.Boolean@)
+  overload: Reportman.Reporting.ChartItem.DoPrint*
+  nameWithType.vb: ChartItem.DoPrint(PrintOut, Integer, Integer, Integer, Integer, MetaFile, Point, Boolean)
+  fullName.vb: Reportman.Reporting.ChartItem.DoPrint(Reportman.Drawing.PrintOut, Integer, Integer, Integer, Integer, Reportman.Drawing.MetaFile, System.Drawing.Point, Boolean)
+  name.vb: DoPrint(PrintOut, Integer, Integer, Integer, Integer, MetaFile, Point, Boolean)
+- uid: Reportman.Reporting.ChartItem.ChangeSerieExpression
+  commentId: P:Reportman.Reporting.ChartItem.ChangeSerieExpression
+  id: ChangeSerieExpression
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: ChangeSerieExpression
+  nameWithType: ChartItem.ChangeSerieExpression
+  fullName: Reportman.Reporting.ChartItem.ChangeSerieExpression
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public string ChangeSerieExpression { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ChangeSerieExpression As String
+  overload: Reportman.Reporting.ChartItem.ChangeSerieExpression*
+- uid: Reportman.Reporting.ChartItem.ClearExpression
+  commentId: P:Reportman.Reporting.ChartItem.ClearExpression
+  id: ClearExpression
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: ClearExpression
+  nameWithType: ChartItem.ClearExpression
+  fullName: Reportman.Reporting.ChartItem.ClearExpression
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public string ClearExpression { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ClearExpression As String
+  overload: Reportman.Reporting.ChartItem.ClearExpression*
+- uid: Reportman.Reporting.ChartItem.GetValueCondition
+  commentId: P:Reportman.Reporting.ChartItem.GetValueCondition
+  id: GetValueCondition
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: GetValueCondition
+  nameWithType: ChartItem.GetValueCondition
+  fullName: Reportman.Reporting.ChartItem.GetValueCondition
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public string GetValueCondition { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property GetValueCondition As String
+  overload: Reportman.Reporting.ChartItem.GetValueCondition*
+- uid: Reportman.Reporting.ChartItem.ValueExpression
+  commentId: P:Reportman.Reporting.ChartItem.ValueExpression
+  id: ValueExpression
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: ValueExpression
+  nameWithType: ChartItem.ValueExpression
+  fullName: Reportman.Reporting.ChartItem.ValueExpression
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public string ValueExpression { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ValueExpression As String
+  overload: Reportman.Reporting.ChartItem.ValueExpression*
+- uid: Reportman.Reporting.ChartItem.ValueXExpression
+  commentId: P:Reportman.Reporting.ChartItem.ValueXExpression
+  id: ValueXExpression
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: ValueXExpression
+  nameWithType: ChartItem.ValueXExpression
+  fullName: Reportman.Reporting.ChartItem.ValueXExpression
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public string ValueXExpression { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ValueXExpression As String
+  overload: Reportman.Reporting.ChartItem.ValueXExpression*
+- uid: Reportman.Reporting.ChartItem.CaptionExpression
+  commentId: P:Reportman.Reporting.ChartItem.CaptionExpression
+  id: CaptionExpression
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: CaptionExpression
+  nameWithType: ChartItem.CaptionExpression
+  fullName: Reportman.Reporting.ChartItem.CaptionExpression
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public string CaptionExpression { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property CaptionExpression As String
+  overload: Reportman.Reporting.ChartItem.CaptionExpression*
+- uid: Reportman.Reporting.ChartItem.SerieCaption
+  commentId: P:Reportman.Reporting.ChartItem.SerieCaption
+  id: SerieCaption
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: SerieCaption
+  nameWithType: ChartItem.SerieCaption
+  fullName: Reportman.Reporting.ChartItem.SerieCaption
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public string SerieCaption { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property SerieCaption As String
+  overload: Reportman.Reporting.ChartItem.SerieCaption*
+- uid: Reportman.Reporting.ChartItem.ColorExpression
+  commentId: P:Reportman.Reporting.ChartItem.ColorExpression
+  id: ColorExpression
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: ColorExpression
+  nameWithType: ChartItem.ColorExpression
+  fullName: Reportman.Reporting.ChartItem.ColorExpression
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public string ColorExpression { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ColorExpression As String
+  overload: Reportman.Reporting.ChartItem.ColorExpression*
+- uid: Reportman.Reporting.ChartItem.SerieColorExpression
+  commentId: P:Reportman.Reporting.ChartItem.SerieColorExpression
+  id: SerieColorExpression
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: SerieColorExpression
+  nameWithType: ChartItem.SerieColorExpression
+  fullName: Reportman.Reporting.ChartItem.SerieColorExpression
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public string SerieColorExpression { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property SerieColorExpression As String
+  overload: Reportman.Reporting.ChartItem.SerieColorExpression*
+- uid: Reportman.Reporting.ChartItem.ChangeSerieBool
+  commentId: P:Reportman.Reporting.ChartItem.ChangeSerieBool
+  id: ChangeSerieBool
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: ChangeSerieBool
+  nameWithType: ChartItem.ChangeSerieBool
+  fullName: Reportman.Reporting.ChartItem.ChangeSerieBool
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public bool ChangeSerieBool { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property ChangeSerieBool As Boolean
+  overload: Reportman.Reporting.ChartItem.ChangeSerieBool*
+- uid: Reportman.Reporting.ChartItem.ChartStyle
+  commentId: P:Reportman.Reporting.ChartItem.ChartStyle
+  id: ChartStyle
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: ChartStyle
+  nameWithType: ChartItem.ChartStyle
+  fullName: Reportman.Reporting.ChartItem.ChartStyle
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public ChartType ChartStyle { get; set; }
+    parameters: []
+    return:
+      type: Reportman.Drawing.ChartType
+    content.vb: Public Property ChartStyle As ChartType
+  overload: Reportman.Reporting.ChartItem.ChartStyle*
+- uid: Reportman.Reporting.ChartItem.Identifier
+  commentId: P:Reportman.Reporting.ChartItem.Identifier
+  id: Identifier
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: Identifier
+  nameWithType: ChartItem.Identifier
+  fullName: Reportman.Reporting.ChartItem.Identifier
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public string Identifier { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Identifier As String
+  overload: Reportman.Reporting.ChartItem.Identifier*
+- uid: Reportman.Reporting.ChartItem.ClearExpressionBool
+  commentId: P:Reportman.Reporting.ChartItem.ClearExpressionBool
+  id: ClearExpressionBool
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: ClearExpressionBool
+  nameWithType: ChartItem.ClearExpressionBool
+  fullName: Reportman.Reporting.ChartItem.ClearExpressionBool
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public bool ClearExpressionBool { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property ClearExpressionBool As Boolean
+  overload: Reportman.Reporting.ChartItem.ClearExpressionBool*
+- uid: Reportman.Reporting.ChartItem.Driver
+  commentId: P:Reportman.Reporting.ChartItem.Driver
+  id: Driver
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: Driver
+  nameWithType: ChartItem.Driver
+  fullName: Reportman.Reporting.ChartItem.Driver
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public ChartDriver Driver { get; set; }
+    parameters: []
+    return:
+      type: Reportman.Drawing.ChartDriver
+    content.vb: Public Property Driver As ChartDriver
+  overload: Reportman.Reporting.ChartItem.Driver*
+- uid: Reportman.Reporting.ChartItem.View3d
+  commentId: P:Reportman.Reporting.ChartItem.View3d
+  id: View3d
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: View3d
+  nameWithType: ChartItem.View3d
+  fullName: Reportman.Reporting.ChartItem.View3d
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public bool View3d { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property View3d As Boolean
+  overload: Reportman.Reporting.ChartItem.View3d*
+- uid: Reportman.Reporting.ChartItem.View3dWalls
+  commentId: P:Reportman.Reporting.ChartItem.View3dWalls
+  id: View3dWalls
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: View3dWalls
+  nameWithType: ChartItem.View3dWalls
+  fullName: Reportman.Reporting.ChartItem.View3dWalls
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public bool View3dWalls { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property View3dWalls As Boolean
+  overload: Reportman.Reporting.ChartItem.View3dWalls*
+- uid: Reportman.Reporting.ChartItem.Perspective
+  commentId: P:Reportman.Reporting.ChartItem.Perspective
+  id: Perspective
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: Perspective
+  nameWithType: ChartItem.Perspective
+  fullName: Reportman.Reporting.ChartItem.Perspective
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public int Perspective { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Perspective As Integer
+  overload: Reportman.Reporting.ChartItem.Perspective*
+- uid: Reportman.Reporting.ChartItem.Elevation
+  commentId: P:Reportman.Reporting.ChartItem.Elevation
+  id: Elevation
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: Elevation
+  nameWithType: ChartItem.Elevation
+  fullName: Reportman.Reporting.ChartItem.Elevation
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public int Elevation { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Elevation As Integer
+  overload: Reportman.Reporting.ChartItem.Elevation*
+- uid: Reportman.Reporting.ChartItem.Rotation
+  commentId: P:Reportman.Reporting.ChartItem.Rotation
+  id: Rotation
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: Rotation
+  nameWithType: ChartItem.Rotation
+  fullName: Reportman.Reporting.ChartItem.Rotation
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public int Rotation { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Rotation As Integer
+  overload: Reportman.Reporting.ChartItem.Rotation*
+- uid: Reportman.Reporting.ChartItem.Zoom
+  commentId: P:Reportman.Reporting.ChartItem.Zoom
+  id: Zoom
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: Zoom
+  nameWithType: ChartItem.Zoom
+  fullName: Reportman.Reporting.ChartItem.Zoom
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public int Zoom { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Zoom As Integer
+  overload: Reportman.Reporting.ChartItem.Zoom*
+- uid: Reportman.Reporting.ChartItem.HorzOffset
+  commentId: P:Reportman.Reporting.ChartItem.HorzOffset
+  id: HorzOffset
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: HorzOffset
+  nameWithType: ChartItem.HorzOffset
+  fullName: Reportman.Reporting.ChartItem.HorzOffset
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public int HorzOffset { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property HorzOffset As Integer
+  overload: Reportman.Reporting.ChartItem.HorzOffset*
+- uid: Reportman.Reporting.ChartItem.VertOffset
+  commentId: P:Reportman.Reporting.ChartItem.VertOffset
+  id: VertOffset
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: VertOffset
+  nameWithType: ChartItem.VertOffset
+  fullName: Reportman.Reporting.ChartItem.VertOffset
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public int VertOffset { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property VertOffset As Integer
+  overload: Reportman.Reporting.ChartItem.VertOffset*
+- uid: Reportman.Reporting.ChartItem.Tilt
+  commentId: P:Reportman.Reporting.ChartItem.Tilt
+  id: Tilt
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: Tilt
+  nameWithType: ChartItem.Tilt
+  fullName: Reportman.Reporting.ChartItem.Tilt
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public int Tilt { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Tilt As Integer
+  overload: Reportman.Reporting.ChartItem.Tilt*
+- uid: Reportman.Reporting.ChartItem.Orthogonal
+  commentId: P:Reportman.Reporting.ChartItem.Orthogonal
+  id: Orthogonal
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: Orthogonal
+  nameWithType: ChartItem.Orthogonal
+  fullName: Reportman.Reporting.ChartItem.Orthogonal
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public bool Orthogonal { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property Orthogonal As Boolean
+  overload: Reportman.Reporting.ChartItem.Orthogonal*
+- uid: Reportman.Reporting.ChartItem.MultiBar
+  commentId: P:Reportman.Reporting.ChartItem.MultiBar
+  id: MultiBar
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: MultiBar
+  nameWithType: ChartItem.MultiBar
+  fullName: Reportman.Reporting.ChartItem.MultiBar
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public BarType MultiBar { get; set; }
+    parameters: []
+    return:
+      type: Reportman.Drawing.BarType
+    content.vb: Public Property MultiBar As BarType
+  overload: Reportman.Reporting.ChartItem.MultiBar*
+- uid: Reportman.Reporting.ChartItem.Resolution
+  commentId: P:Reportman.Reporting.ChartItem.Resolution
+  id: Resolution
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: Resolution
+  nameWithType: ChartItem.Resolution
+  fullName: Reportman.Reporting.ChartItem.Resolution
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public int Resolution { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Resolution As Integer
+  overload: Reportman.Reporting.ChartItem.Resolution*
+- uid: Reportman.Reporting.ChartItem.ShowLegend
+  commentId: P:Reportman.Reporting.ChartItem.ShowLegend
+  id: ShowLegend
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: ShowLegend
+  nameWithType: ChartItem.ShowLegend
+  fullName: Reportman.Reporting.ChartItem.ShowLegend
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public bool ShowLegend { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property ShowLegend As Boolean
+  overload: Reportman.Reporting.ChartItem.ShowLegend*
+- uid: Reportman.Reporting.ChartItem.ShowHint
+  commentId: P:Reportman.Reporting.ChartItem.ShowHint
+  id: ShowHint
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: ShowHint
+  nameWithType: ChartItem.ShowHint
+  fullName: Reportman.Reporting.ChartItem.ShowHint
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public bool ShowHint { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property ShowHint As Boolean
+  overload: Reportman.Reporting.ChartItem.ShowHint*
+- uid: Reportman.Reporting.ChartItem.MarkStyle
+  commentId: P:Reportman.Reporting.ChartItem.MarkStyle
+  id: MarkStyle
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: MarkStyle
+  nameWithType: ChartItem.MarkStyle
+  fullName: Reportman.Reporting.ChartItem.MarkStyle
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public int MarkStyle { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property MarkStyle As Integer
+  overload: Reportman.Reporting.ChartItem.MarkStyle*
+- uid: Reportman.Reporting.ChartItem.HorzFontSize
+  commentId: P:Reportman.Reporting.ChartItem.HorzFontSize
+  id: HorzFontSize
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: HorzFontSize
+  nameWithType: ChartItem.HorzFontSize
+  fullName: Reportman.Reporting.ChartItem.HorzFontSize
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public int HorzFontSize { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property HorzFontSize As Integer
+  overload: Reportman.Reporting.ChartItem.HorzFontSize*
+- uid: Reportman.Reporting.ChartItem.VertFontSize
+  commentId: P:Reportman.Reporting.ChartItem.VertFontSize
+  id: VertFontSize
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: VertFontSize
+  nameWithType: ChartItem.VertFontSize
+  fullName: Reportman.Reporting.ChartItem.VertFontSize
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public int VertFontSize { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property VertFontSize As Integer
+  overload: Reportman.Reporting.ChartItem.VertFontSize*
+- uid: Reportman.Reporting.ChartItem.HorzFontRotation
+  commentId: P:Reportman.Reporting.ChartItem.HorzFontRotation
+  id: HorzFontRotation
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: HorzFontRotation
+  nameWithType: ChartItem.HorzFontRotation
+  fullName: Reportman.Reporting.ChartItem.HorzFontRotation
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public int HorzFontRotation { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property HorzFontRotation As Integer
+  overload: Reportman.Reporting.ChartItem.HorzFontRotation*
+- uid: Reportman.Reporting.ChartItem.VertFontRotation
+  commentId: P:Reportman.Reporting.ChartItem.VertFontRotation
+  id: VertFontRotation
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: VertFontRotation
+  nameWithType: ChartItem.VertFontRotation
+  fullName: Reportman.Reporting.ChartItem.VertFontRotation
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public int VertFontRotation { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property VertFontRotation As Integer
+  overload: Reportman.Reporting.ChartItem.VertFontRotation*
+- uid: Reportman.Reporting.ChartItem.AutoRange
+  commentId: P:Reportman.Reporting.ChartItem.AutoRange
+  id: AutoRange
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: AutoRange
+  nameWithType: ChartItem.AutoRange
+  fullName: Reportman.Reporting.ChartItem.AutoRange
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public Series.AutoRangeAxis AutoRange { get; set; }
+    parameters: []
+    return:
+      type: Reportman.Drawing.Series.AutoRangeAxis
+    content.vb: Public Property AutoRange As Series.AutoRangeAxis
+  overload: Reportman.Reporting.ChartItem.AutoRange*
+- uid: Reportman.Reporting.ChartItem.AxisYInitial
+  commentId: P:Reportman.Reporting.ChartItem.AxisYInitial
+  id: AxisYInitial
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: AxisYInitial
+  nameWithType: ChartItem.AxisYInitial
+  fullName: Reportman.Reporting.ChartItem.AxisYInitial
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public double AxisYInitial { get; set; }
+    parameters: []
+    return:
+      type: System.Double
+    content.vb: Public Property AxisYInitial As Double
+  overload: Reportman.Reporting.ChartItem.AxisYInitial*
+- uid: Reportman.Reporting.ChartItem.AxisYFinal
+  commentId: P:Reportman.Reporting.ChartItem.AxisYFinal
+  id: AxisYFinal
+  parent: Reportman.Reporting.ChartItem
+  langs:
+  - csharp
+  - vb
+  name: AxisYFinal
+  nameWithType: ChartItem.AxisYFinal
+  fullName: Reportman.Reporting.ChartItem.AxisYFinal
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public double AxisYFinal { get; set; }
+    parameters: []
+    return:
+      type: System.Double
+    content.vb: Public Property AxisYFinal As Double
+  overload: Reportman.Reporting.ChartItem.AxisYFinal*
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Reportman.Reporting.ReportItem
+  commentId: T:Reportman.Reporting.ReportItem
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html
+  name: ReportItem
+  nameWithType: ReportItem
+  fullName: Reportman.Reporting.ReportItem
+- uid: Reportman.Reporting.PrintItem
+  commentId: T:Reportman.Reporting.PrintItem
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.PrintItem.html
+  name: PrintItem
+  nameWithType: PrintItem
+  fullName: Reportman.Reporting.PrintItem
+- uid: Reportman.Reporting.PrintPosItem
+  commentId: T:Reportman.Reporting.PrintPosItem
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.PrintPosItem.html
+  name: PrintPosItem
+  nameWithType: PrintPosItem
+  fullName: Reportman.Reporting.PrintPosItem
+- uid: Reportman.Reporting.PrintItemText
+  commentId: T:Reportman.Reporting.PrintItemText
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.PrintItemText.html
+  name: PrintItemText
+  nameWithType: PrintItemText
+  fullName: Reportman.Reporting.PrintItemText
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: Reportman.Reporting.PrintItemText.WFontName
+  commentId: P:Reportman.Reporting.PrintItemText.WFontName
+  parent: Reportman.Reporting.PrintItemText
+  isExternal: true
+  href: Reportman.Reporting.PrintItemText.html#Reportman_Reporting_PrintItemText_WFontName
+  name: WFontName
+  nameWithType: PrintItemText.WFontName
+  fullName: Reportman.Reporting.PrintItemText.WFontName
+- uid: Reportman.Reporting.PrintItemText.LFontName
+  commentId: P:Reportman.Reporting.PrintItemText.LFontName
+  parent: Reportman.Reporting.PrintItemText
+  isExternal: true
+  href: Reportman.Reporting.PrintItemText.html#Reportman_Reporting_PrintItemText_LFontName
+  name: LFontName
+  nameWithType: PrintItemText.LFontName
+  fullName: Reportman.Reporting.PrintItemText.LFontName
+- uid: Reportman.Reporting.PrintItemText.FontSize
+  commentId: P:Reportman.Reporting.PrintItemText.FontSize
+  parent: Reportman.Reporting.PrintItemText
+  isExternal: true
+  href: Reportman.Reporting.PrintItemText.html#Reportman_Reporting_PrintItemText_FontSize
+  name: FontSize
+  nameWithType: PrintItemText.FontSize
+  fullName: Reportman.Reporting.PrintItemText.FontSize
+- uid: Reportman.Reporting.PrintItemText.FontRotation
+  commentId: P:Reportman.Reporting.PrintItemText.FontRotation
+  parent: Reportman.Reporting.PrintItemText
+  isExternal: true
+  href: Reportman.Reporting.PrintItemText.html#Reportman_Reporting_PrintItemText_FontRotation
+  name: FontRotation
+  nameWithType: PrintItemText.FontRotation
+  fullName: Reportman.Reporting.PrintItemText.FontRotation
+- uid: Reportman.Reporting.PrintItemText.FontStyle
+  commentId: P:Reportman.Reporting.PrintItemText.FontStyle
+  parent: Reportman.Reporting.PrintItemText
+  isExternal: true
+  href: Reportman.Reporting.PrintItemText.html#Reportman_Reporting_PrintItemText_FontStyle
+  name: FontStyle
+  nameWithType: PrintItemText.FontStyle
+  fullName: Reportman.Reporting.PrintItemText.FontStyle
+- uid: Reportman.Reporting.PrintItemText.FontColor
+  commentId: P:Reportman.Reporting.PrintItemText.FontColor
+  parent: Reportman.Reporting.PrintItemText
+  isExternal: true
+  href: Reportman.Reporting.PrintItemText.html#Reportman_Reporting_PrintItemText_FontColor
+  name: FontColor
+  nameWithType: PrintItemText.FontColor
+  fullName: Reportman.Reporting.PrintItemText.FontColor
+- uid: Reportman.Reporting.PrintItemText.BackColor
+  commentId: P:Reportman.Reporting.PrintItemText.BackColor
+  parent: Reportman.Reporting.PrintItemText
+  isExternal: true
+  href: Reportman.Reporting.PrintItemText.html#Reportman_Reporting_PrintItemText_BackColor
+  name: BackColor
+  nameWithType: PrintItemText.BackColor
+  fullName: Reportman.Reporting.PrintItemText.BackColor
+- uid: Reportman.Reporting.PrintItemText.Transparent
+  commentId: P:Reportman.Reporting.PrintItemText.Transparent
+  parent: Reportman.Reporting.PrintItemText
+  isExternal: true
+  href: Reportman.Reporting.PrintItemText.html#Reportman_Reporting_PrintItemText_Transparent
+  name: Transparent
+  nameWithType: PrintItemText.Transparent
+  fullName: Reportman.Reporting.PrintItemText.Transparent
+- uid: Reportman.Reporting.PrintItemText.CutText
+  commentId: P:Reportman.Reporting.PrintItemText.CutText
+  parent: Reportman.Reporting.PrintItemText
+  isExternal: true
+  href: Reportman.Reporting.PrintItemText.html#Reportman_Reporting_PrintItemText_CutText
+  name: CutText
+  nameWithType: PrintItemText.CutText
+  fullName: Reportman.Reporting.PrintItemText.CutText
+- uid: Reportman.Reporting.PrintItemText.WordWrap
+  commentId: P:Reportman.Reporting.PrintItemText.WordWrap
+  parent: Reportman.Reporting.PrintItemText
+  isExternal: true
+  href: Reportman.Reporting.PrintItemText.html#Reportman_Reporting_PrintItemText_WordWrap
+  name: WordWrap
+  nameWithType: PrintItemText.WordWrap
+  fullName: Reportman.Reporting.PrintItemText.WordWrap
+- uid: Reportman.Reporting.PrintItemText.WordBreak
+  commentId: P:Reportman.Reporting.PrintItemText.WordBreak
+  parent: Reportman.Reporting.PrintItemText
+  isExternal: true
+  href: Reportman.Reporting.PrintItemText.html#Reportman_Reporting_PrintItemText_WordBreak
+  name: WordBreak
+  nameWithType: PrintItemText.WordBreak
+  fullName: Reportman.Reporting.PrintItemText.WordBreak
+- uid: Reportman.Reporting.PrintItemText.InterLine
+  commentId: P:Reportman.Reporting.PrintItemText.InterLine
+  parent: Reportman.Reporting.PrintItemText
+  isExternal: true
+  href: Reportman.Reporting.PrintItemText.html#Reportman_Reporting_PrintItemText_InterLine
+  name: InterLine
+  nameWithType: PrintItemText.InterLine
+  fullName: Reportman.Reporting.PrintItemText.InterLine
+- uid: Reportman.Reporting.PrintItemText.Alignment
+  commentId: P:Reportman.Reporting.PrintItemText.Alignment
+  parent: Reportman.Reporting.PrintItemText
+  isExternal: true
+  href: Reportman.Reporting.PrintItemText.html#Reportman_Reporting_PrintItemText_Alignment
+  name: Alignment
+  nameWithType: PrintItemText.Alignment
+  fullName: Reportman.Reporting.PrintItemText.Alignment
+- uid: Reportman.Reporting.PrintItemText.VAlignment
+  commentId: P:Reportman.Reporting.PrintItemText.VAlignment
+  parent: Reportman.Reporting.PrintItemText
+  isExternal: true
+  href: Reportman.Reporting.PrintItemText.html#Reportman_Reporting_PrintItemText_VAlignment
+  name: VAlignment
+  nameWithType: PrintItemText.VAlignment
+  fullName: Reportman.Reporting.PrintItemText.VAlignment
+- uid: Reportman.Reporting.PrintItemText.SingleLine
+  commentId: P:Reportman.Reporting.PrintItemText.SingleLine
+  parent: Reportman.Reporting.PrintItemText
+  isExternal: true
+  href: Reportman.Reporting.PrintItemText.html#Reportman_Reporting_PrintItemText_SingleLine
+  name: SingleLine
+  nameWithType: PrintItemText.SingleLine
+  fullName: Reportman.Reporting.PrintItemText.SingleLine
+- uid: Reportman.Reporting.PrintItemText.Type1Font
+  commentId: P:Reportman.Reporting.PrintItemText.Type1Font
+  parent: Reportman.Reporting.PrintItemText
+  isExternal: true
+  href: Reportman.Reporting.PrintItemText.html#Reportman_Reporting_PrintItemText_Type1Font
+  name: Type1Font
+  nameWithType: PrintItemText.Type1Font
+  fullName: Reportman.Reporting.PrintItemText.Type1Font
+- uid: Reportman.Reporting.PrintItemText.MultiPage
+  commentId: P:Reportman.Reporting.PrintItemText.MultiPage
+  parent: Reportman.Reporting.PrintItemText
+  isExternal: true
+  href: Reportman.Reporting.PrintItemText.html#Reportman_Reporting_PrintItemText_MultiPage
+  name: MultiPage
+  nameWithType: PrintItemText.MultiPage
+  fullName: Reportman.Reporting.PrintItemText.MultiPage
+- uid: Reportman.Reporting.PrintItemText.PrintStep
+  commentId: P:Reportman.Reporting.PrintItemText.PrintStep
+  parent: Reportman.Reporting.PrintItemText
+  isExternal: true
+  href: Reportman.Reporting.PrintItemText.html#Reportman_Reporting_PrintItemText_PrintStep
+  name: PrintStep
+  nameWithType: PrintItemText.PrintStep
+  fullName: Reportman.Reporting.PrintItemText.PrintStep
+- uid: Reportman.Reporting.PrintItemText.RightToLeft
+  commentId: P:Reportman.Reporting.PrintItemText.RightToLeft
+  parent: Reportman.Reporting.PrintItemText
+  isExternal: true
+  href: Reportman.Reporting.PrintItemText.html#Reportman_Reporting_PrintItemText_RightToLeft
+  name: RightToLeft
+  nameWithType: PrintItemText.RightToLeft
+  fullName: Reportman.Reporting.PrintItemText.RightToLeft
+- uid: Reportman.Reporting.PrintItemText.PrintAlignment
+  commentId: P:Reportman.Reporting.PrintItemText.PrintAlignment
+  parent: Reportman.Reporting.PrintItemText
+  isExternal: true
+  href: Reportman.Reporting.PrintItemText.html#Reportman_Reporting_PrintItemText_PrintAlignment
+  name: PrintAlignment
+  nameWithType: PrintItemText.PrintAlignment
+  fullName: Reportman.Reporting.PrintItemText.PrintAlignment
+- uid: Reportman.Reporting.PrintItemText.VPrintAlignment
+  commentId: P:Reportman.Reporting.PrintItemText.VPrintAlignment
+  parent: Reportman.Reporting.PrintItemText
+  isExternal: true
+  href: Reportman.Reporting.PrintItemText.html#Reportman_Reporting_PrintItemText_VPrintAlignment
+  name: VPrintAlignment
+  nameWithType: PrintItemText.VPrintAlignment
+  fullName: Reportman.Reporting.PrintItemText.VPrintAlignment
+- uid: Reportman.Reporting.PrintPosItem.Section
+  commentId: F:Reportman.Reporting.PrintPosItem.Section
+  parent: Reportman.Reporting.PrintPosItem
+  isExternal: true
+  href: Reportman.Reporting.PrintPosItem.html#Reportman_Reporting_PrintPosItem_Section
+  name: Section
+  nameWithType: PrintPosItem.Section
+  fullName: Reportman.Reporting.PrintPosItem.Section
+- uid: Reportman.Reporting.PrintPosItem.AnnotationExpression
+  commentId: F:Reportman.Reporting.PrintPosItem.AnnotationExpression
+  parent: Reportman.Reporting.PrintPosItem
+  isExternal: true
+  href: Reportman.Reporting.PrintPosItem.html#Reportman_Reporting_PrintPosItem_AnnotationExpression
+  name: AnnotationExpression
+  nameWithType: PrintPosItem.AnnotationExpression
+  fullName: Reportman.Reporting.PrintPosItem.AnnotationExpression
+- uid: Reportman.Reporting.PrintPosItem.GetExtension(Reportman.Drawing.PrintOut,System.Drawing.Point,System.Boolean)
+  commentId: M:Reportman.Reporting.PrintPosItem.GetExtension(Reportman.Drawing.PrintOut,System.Drawing.Point,System.Boolean)
+  parent: Reportman.Reporting.PrintPosItem
+  isExternal: true
+  href: Reportman.Reporting.PrintPosItem.html#Reportman_Reporting_PrintPosItem_GetExtension_Reportman_Drawing_PrintOut_System_Drawing_Point_System_Boolean_
+  name: GetExtension(PrintOut, Point, bool)
+  nameWithType: PrintPosItem.GetExtension(PrintOut, Point, bool)
+  fullName: Reportman.Reporting.PrintPosItem.GetExtension(Reportman.Drawing.PrintOut, System.Drawing.Point, bool)
+  nameWithType.vb: PrintPosItem.GetExtension(PrintOut, Point, Boolean)
+  fullName.vb: Reportman.Reporting.PrintPosItem.GetExtension(Reportman.Drawing.PrintOut, System.Drawing.Point, Boolean)
+  name.vb: GetExtension(PrintOut, Point, Boolean)
+  spec.csharp:
+  - uid: Reportman.Reporting.PrintPosItem.GetExtension(Reportman.Drawing.PrintOut,System.Drawing.Point,System.Boolean)
+    name: GetExtension
+    isExternal: true
+    href: Reportman.Reporting.PrintPosItem.html#Reportman_Reporting_PrintPosItem_GetExtension_Reportman_Drawing_PrintOut_System_Drawing_Point_System_Boolean_
+  - name: (
+  - uid: Reportman.Drawing.PrintOut
+    name: PrintOut
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.Point
+    name: Point
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.point
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.PrintPosItem.GetExtension(Reportman.Drawing.PrintOut,System.Drawing.Point,System.Boolean)
+    name: GetExtension
+    isExternal: true
+    href: Reportman.Reporting.PrintPosItem.html#Reportman_Reporting_PrintPosItem_GetExtension_Reportman_Drawing_PrintOut_System_Drawing_Point_System_Boolean_
+  - name: (
+  - uid: Reportman.Drawing.PrintOut
+    name: PrintOut
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.Point
+    name: Point
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.point
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Reportman.Reporting.PrintPosItem.FillAnnotation(Reportman.Drawing.MetaObject,Reportman.Drawing.MetaPage)
+  commentId: M:Reportman.Reporting.PrintPosItem.FillAnnotation(Reportman.Drawing.MetaObject,Reportman.Drawing.MetaPage)
+  parent: Reportman.Reporting.PrintPosItem
+  isExternal: true
+  href: Reportman.Reporting.PrintPosItem.html#Reportman_Reporting_PrintPosItem_FillAnnotation_Reportman_Drawing_MetaObject_Reportman_Drawing_MetaPage_
+  name: FillAnnotation(MetaObject, MetaPage)
+  nameWithType: PrintPosItem.FillAnnotation(MetaObject, MetaPage)
+  fullName: Reportman.Reporting.PrintPosItem.FillAnnotation(Reportman.Drawing.MetaObject, Reportman.Drawing.MetaPage)
+  spec.csharp:
+  - uid: Reportman.Reporting.PrintPosItem.FillAnnotation(Reportman.Drawing.MetaObject,Reportman.Drawing.MetaPage)
+    name: FillAnnotation
+    isExternal: true
+    href: Reportman.Reporting.PrintPosItem.html#Reportman_Reporting_PrintPosItem_FillAnnotation_Reportman_Drawing_MetaObject_Reportman_Drawing_MetaPage_
+  - name: (
+  - uid: Reportman.Drawing.MetaObject
+    name: MetaObject
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.MetaPage
+    name: MetaPage
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.PrintPosItem.FillAnnotation(Reportman.Drawing.MetaObject,Reportman.Drawing.MetaPage)
+    name: FillAnnotation
+    isExternal: true
+    href: Reportman.Reporting.PrintPosItem.html#Reportman_Reporting_PrintPosItem_FillAnnotation_Reportman_Drawing_MetaObject_Reportman_Drawing_MetaPage_
+  - name: (
+  - uid: Reportman.Drawing.MetaObject
+    name: MetaObject
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.MetaPage
+    name: MetaPage
+    isExternal: true
+  - name: )
+- uid: Reportman.Reporting.PrintPosItem.Hidden
+  commentId: P:Reportman.Reporting.PrintPosItem.Hidden
+  parent: Reportman.Reporting.PrintPosItem
+  isExternal: true
+  href: Reportman.Reporting.PrintPosItem.html#Reportman_Reporting_PrintPosItem_Hidden
+  name: Hidden
+  nameWithType: PrintPosItem.Hidden
+  fullName: Reportman.Reporting.PrintPosItem.Hidden
+- uid: Reportman.Reporting.PrintPosItem.PosX
+  commentId: P:Reportman.Reporting.PrintPosItem.PosX
+  parent: Reportman.Reporting.PrintPosItem
+  isExternal: true
+  href: Reportman.Reporting.PrintPosItem.html#Reportman_Reporting_PrintPosItem_PosX
+  name: PosX
+  nameWithType: PrintPosItem.PosX
+  fullName: Reportman.Reporting.PrintPosItem.PosX
+- uid: Reportman.Reporting.PrintPosItem.PosY
+  commentId: P:Reportman.Reporting.PrintPosItem.PosY
+  parent: Reportman.Reporting.PrintPosItem
+  isExternal: true
+  href: Reportman.Reporting.PrintPosItem.html#Reportman_Reporting_PrintPosItem_PosY
+  name: PosY
+  nameWithType: PrintPosItem.PosY
+  fullName: Reportman.Reporting.PrintPosItem.PosY
+- uid: Reportman.Reporting.PrintPosItem.Align
+  commentId: P:Reportman.Reporting.PrintPosItem.Align
+  parent: Reportman.Reporting.PrintPosItem
+  isExternal: true
+  href: Reportman.Reporting.PrintPosItem.html#Reportman_Reporting_PrintPosItem_Align
+  name: Align
+  nameWithType: PrintPosItem.Align
+  fullName: Reportman.Reporting.PrintPosItem.Align
+- uid: Reportman.Reporting.PrintPosItem.PartialFlag
+  commentId: P:Reportman.Reporting.PrintPosItem.PartialFlag
+  parent: Reportman.Reporting.PrintPosItem
+  isExternal: true
+  href: Reportman.Reporting.PrintPosItem.html#Reportman_Reporting_PrintPosItem_PartialFlag
+  name: PartialFlag
+  nameWithType: PrintPosItem.PartialFlag
+  fullName: Reportman.Reporting.PrintPosItem.PartialFlag
+- uid: Reportman.Reporting.PrintItem.PrintWidth
+  commentId: F:Reportman.Reporting.PrintItem.PrintWidth
+  parent: Reportman.Reporting.PrintItem
+  isExternal: true
+  href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_PrintWidth
+  name: PrintWidth
+  nameWithType: PrintItem.PrintWidth
+  fullName: Reportman.Reporting.PrintItem.PrintWidth
+- uid: Reportman.Reporting.PrintItem.PrintHeight
+  commentId: F:Reportman.Reporting.PrintItem.PrintHeight
+  parent: Reportman.Reporting.PrintItem
+  isExternal: true
+  href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_PrintHeight
+  name: PrintHeight
+  nameWithType: PrintItem.PrintHeight
+  fullName: Reportman.Reporting.PrintItem.PrintHeight
+- uid: Reportman.Reporting.PrintItem.Visible
+  commentId: F:Reportman.Reporting.PrintItem.Visible
+  parent: Reportman.Reporting.PrintItem
+  isExternal: true
+  href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_Visible
+  name: Visible
+  nameWithType: PrintItem.Visible
+  fullName: Reportman.Reporting.PrintItem.Visible
+- uid: Reportman.Reporting.PrintItem.LastExtent
+  commentId: F:Reportman.Reporting.PrintItem.LastExtent
+  parent: Reportman.Reporting.PrintItem
+  isExternal: true
+  href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_LastExtent
+  name: LastExtent
+  nameWithType: PrintItem.LastExtent
+  fullName: Reportman.Reporting.PrintItem.LastExtent
+- uid: Reportman.Reporting.PrintItem.SelectionIndex
+  commentId: F:Reportman.Reporting.PrintItem.SelectionIndex
+  parent: Reportman.Reporting.PrintItem
+  isExternal: true
+  href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_SelectionIndex
+  name: SelectionIndex
+  nameWithType: PrintItem.SelectionIndex
+  fullName: Reportman.Reporting.PrintItem.SelectionIndex
+- uid: Reportman.Reporting.PrintItem.SelectionRectangle
+  commentId: F:Reportman.Reporting.PrintItem.SelectionRectangle
+  parent: Reportman.Reporting.PrintItem
+  isExternal: true
+  href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_SelectionRectangle
+  name: SelectionRectangle
+  nameWithType: PrintItem.SelectionRectangle
+  fullName: Reportman.Reporting.PrintItem.SelectionRectangle
+- uid: Reportman.Reporting.PrintItem.EvaluatePrintCondition
+  commentId: M:Reportman.Reporting.PrintItem.EvaluatePrintCondition
+  parent: Reportman.Reporting.PrintItem
+  isExternal: true
+  href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_EvaluatePrintCondition
+  name: EvaluatePrintCondition()
+  nameWithType: PrintItem.EvaluatePrintCondition()
+  fullName: Reportman.Reporting.PrintItem.EvaluatePrintCondition()
+  spec.csharp:
+  - uid: Reportman.Reporting.PrintItem.EvaluatePrintCondition
+    name: EvaluatePrintCondition
+    isExternal: true
+    href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_EvaluatePrintCondition
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.PrintItem.EvaluatePrintCondition
+    name: EvaluatePrintCondition
+    isExternal: true
+    href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_EvaluatePrintCondition
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.PrintItem.Print(Reportman.Drawing.PrintOut,System.Int32,System.Int32,System.Int32,System.Int32,Reportman.Drawing.MetaFile,System.Drawing.Point,System.Boolean@)
+  commentId: M:Reportman.Reporting.PrintItem.Print(Reportman.Drawing.PrintOut,System.Int32,System.Int32,System.Int32,System.Int32,Reportman.Drawing.MetaFile,System.Drawing.Point,System.Boolean@)
+  parent: Reportman.Reporting.PrintItem
+  isExternal: true
+  href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_Print_Reportman_Drawing_PrintOut_System_Int32_System_Int32_System_Int32_System_Int32_Reportman_Drawing_MetaFile_System_Drawing_Point_System_Boolean__
+  name: Print(PrintOut, int, int, int, int, MetaFile, Point, ref bool)
+  nameWithType: PrintItem.Print(PrintOut, int, int, int, int, MetaFile, Point, ref bool)
+  fullName: Reportman.Reporting.PrintItem.Print(Reportman.Drawing.PrintOut, int, int, int, int, Reportman.Drawing.MetaFile, System.Drawing.Point, ref bool)
+  nameWithType.vb: PrintItem.Print(PrintOut, Integer, Integer, Integer, Integer, MetaFile, Point, Boolean)
+  fullName.vb: Reportman.Reporting.PrintItem.Print(Reportman.Drawing.PrintOut, Integer, Integer, Integer, Integer, Reportman.Drawing.MetaFile, System.Drawing.Point, Boolean)
+  name.vb: Print(PrintOut, Integer, Integer, Integer, Integer, MetaFile, Point, Boolean)
+  spec.csharp:
+  - uid: Reportman.Reporting.PrintItem.Print(Reportman.Drawing.PrintOut,System.Int32,System.Int32,System.Int32,System.Int32,Reportman.Drawing.MetaFile,System.Drawing.Point,System.Boolean@)
+    name: Print
+    isExternal: true
+    href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_Print_Reportman_Drawing_PrintOut_System_Int32_System_Int32_System_Int32_System_Int32_Reportman_Drawing_MetaFile_System_Drawing_Point_System_Boolean__
+  - name: (
+  - uid: Reportman.Drawing.PrintOut
+    name: PrintOut
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.MetaFile
+    name: MetaFile
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.Point
+    name: Point
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.point
+  - name: ','
+  - name: " "
+  - name: ref
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.PrintItem.Print(Reportman.Drawing.PrintOut,System.Int32,System.Int32,System.Int32,System.Int32,Reportman.Drawing.MetaFile,System.Drawing.Point,System.Boolean@)
+    name: Print
+    isExternal: true
+    href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_Print_Reportman_Drawing_PrintOut_System_Int32_System_Int32_System_Int32_System_Int32_Reportman_Drawing_MetaFile_System_Drawing_Point_System_Boolean__
+  - name: (
+  - uid: Reportman.Drawing.PrintOut
+    name: PrintOut
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.MetaFile
+    name: MetaFile
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.Point
+    name: Point
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.point
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Reportman.Reporting.PrintItem.ExecuteBeforePrint
+  commentId: M:Reportman.Reporting.PrintItem.ExecuteBeforePrint
+  parent: Reportman.Reporting.PrintItem
+  isExternal: true
+  href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_ExecuteBeforePrint
+  name: ExecuteBeforePrint()
+  nameWithType: PrintItem.ExecuteBeforePrint()
+  fullName: Reportman.Reporting.PrintItem.ExecuteBeforePrint()
+  spec.csharp:
+  - uid: Reportman.Reporting.PrintItem.ExecuteBeforePrint
+    name: ExecuteBeforePrint
+    isExternal: true
+    href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_ExecuteBeforePrint
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.PrintItem.ExecuteBeforePrint
+    name: ExecuteBeforePrint
+    isExternal: true
+    href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_ExecuteBeforePrint
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.PrintItem.ExecuteAfterPrint
+  commentId: M:Reportman.Reporting.PrintItem.ExecuteAfterPrint
+  parent: Reportman.Reporting.PrintItem
+  isExternal: true
+  href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_ExecuteAfterPrint
+  name: ExecuteAfterPrint()
+  nameWithType: PrintItem.ExecuteAfterPrint()
+  fullName: Reportman.Reporting.PrintItem.ExecuteAfterPrint()
+  spec.csharp:
+  - uid: Reportman.Reporting.PrintItem.ExecuteAfterPrint
+    name: ExecuteAfterPrint
+    isExternal: true
+    href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_ExecuteAfterPrint
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.PrintItem.ExecuteAfterPrint
+    name: ExecuteAfterPrint
+    isExternal: true
+    href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_ExecuteAfterPrint
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.PrintItem.Width
+  commentId: P:Reportman.Reporting.PrintItem.Width
+  parent: Reportman.Reporting.PrintItem
+  isExternal: true
+  href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_Width
+  name: Width
+  nameWithType: PrintItem.Width
+  fullName: Reportman.Reporting.PrintItem.Width
+- uid: Reportman.Reporting.PrintItem.Height
+  commentId: P:Reportman.Reporting.PrintItem.Height
+  parent: Reportman.Reporting.PrintItem
+  isExternal: true
+  href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_Height
+  name: Height
+  nameWithType: PrintItem.Height
+  fullName: Reportman.Reporting.PrintItem.Height
+- uid: Reportman.Reporting.PrintItem.DoBeforePrint
+  commentId: P:Reportman.Reporting.PrintItem.DoBeforePrint
+  parent: Reportman.Reporting.PrintItem
+  isExternal: true
+  href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_DoBeforePrint
+  name: DoBeforePrint
+  nameWithType: PrintItem.DoBeforePrint
+  fullName: Reportman.Reporting.PrintItem.DoBeforePrint
+- uid: Reportman.Reporting.PrintItem.DoAfterPrint
+  commentId: P:Reportman.Reporting.PrintItem.DoAfterPrint
+  parent: Reportman.Reporting.PrintItem
+  isExternal: true
+  href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_DoAfterPrint
+  name: DoAfterPrint
+  nameWithType: PrintItem.DoAfterPrint
+  fullName: Reportman.Reporting.PrintItem.DoAfterPrint
+- uid: Reportman.Reporting.PrintItem.PrintCondition
+  commentId: P:Reportman.Reporting.PrintItem.PrintCondition
+  parent: Reportman.Reporting.PrintItem
+  isExternal: true
+  href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_PrintCondition
+  name: PrintCondition
+  nameWithType: PrintItem.PrintCondition
+  fullName: Reportman.Reporting.PrintItem.PrintCondition
+- uid: Reportman.Reporting.ReportItem.Dispose
+  commentId: M:Reportman.Reporting.ReportItem.Dispose
+  parent: Reportman.Reporting.ReportItem
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_Dispose
+  name: Dispose()
+  nameWithType: ReportItem.Dispose()
+  fullName: Reportman.Reporting.ReportItem.Dispose()
+  spec.csharp:
+  - uid: Reportman.Reporting.ReportItem.Dispose
+    name: Dispose
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_Dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.ReportItem.Dispose
+    name: Dispose
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_Dispose
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.ReportItem.Name
+  commentId: P:Reportman.Reporting.ReportItem.Name
+  parent: Reportman.Reporting.ReportItem
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_Name
+  name: Name
+  nameWithType: ReportItem.Name
+  fullName: Reportman.Reporting.ReportItem.Name
+- uid: Reportman.Reporting.ReportItem.Report
+  commentId: P:Reportman.Reporting.ReportItem.Report
+  parent: Reportman.Reporting.ReportItem
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_Report
+  name: Report
+  nameWithType: ReportItem.Report
+  fullName: Reportman.Reporting.ReportItem.Report
+- uid: Reportman.Reporting.ReportItem.ClassName
+  commentId: P:Reportman.Reporting.ReportItem.ClassName
+  parent: Reportman.Reporting.ReportItem
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_ClassName
+  name: ClassName
+  nameWithType: ReportItem.ClassName
+  fullName: Reportman.Reporting.ReportItem.ClassName
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Int32[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int[]
+  nameWithType: int[]
+  fullName: int[]
+  nameWithType.vb: Integer()
+  fullName.vb: Integer()
+  name.vb: Integer()
+  spec.csharp:
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.ReportItem.SetReport(Reportman.Reporting.BaseReport)
+  commentId: M:Reportman.Reporting.ReportItem.SetReport(Reportman.Reporting.BaseReport)
+  parent: Reportman.Reporting.ReportItem
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_SetReport_Reportman_Reporting_BaseReport_
+  name: SetReport(BaseReport)
+  nameWithType: ReportItem.SetReport(BaseReport)
+  fullName: Reportman.Reporting.ReportItem.SetReport(Reportman.Reporting.BaseReport)
+  spec.csharp:
+  - uid: Reportman.Reporting.ReportItem.SetReport(Reportman.Reporting.BaseReport)
+    name: SetReport
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_SetReport_Reportman_Reporting_BaseReport_
+  - name: (
+  - uid: Reportman.Reporting.BaseReport
+    name: BaseReport
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.ReportItem.SetReport(Reportman.Reporting.BaseReport)
+    name: SetReport
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_SetReport_Reportman_Reporting_BaseReport_
+  - name: (
+  - uid: Reportman.Reporting.BaseReport
+    name: BaseReport
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html
+  - name: )
+- uid: Reportman.Reporting.ChartItem.SetReport*
+  commentId: Overload:Reportman.Reporting.ChartItem.SetReport
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_SetReport_Reportman_Reporting_BaseReport_
+  name: SetReport
+  nameWithType: ChartItem.SetReport
+  fullName: Reportman.Reporting.ChartItem.SetReport
+- uid: Reportman.Reporting.BaseReport
+  commentId: T:Reportman.Reporting.BaseReport
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html
+  name: BaseReport
+  nameWithType: BaseReport
+  fullName: Reportman.Reporting.BaseReport
+- uid: Reportman.Reporting.ChartItem.#ctor*
+  commentId: Overload:Reportman.Reporting.ChartItem.#ctor
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem__ctor
+  name: ChartItem
+  nameWithType: ChartItem.ChartItem
+  fullName: Reportman.Reporting.ChartItem.ChartItem
+  nameWithType.vb: ChartItem.New
+  fullName.vb: Reportman.Reporting.ChartItem.New
+  name.vb: New
+- uid: Reportman.Reporting.ReportItem.GetClassName
+  commentId: M:Reportman.Reporting.ReportItem.GetClassName
+  parent: Reportman.Reporting.ReportItem
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_GetClassName
+  name: GetClassName()
+  nameWithType: ReportItem.GetClassName()
+  fullName: Reportman.Reporting.ReportItem.GetClassName()
+  spec.csharp:
+  - uid: Reportman.Reporting.ReportItem.GetClassName
+    name: GetClassName
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_GetClassName
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.ReportItem.GetClassName
+    name: GetClassName
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_GetClassName
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.ChartItem.GetClassName*
+  commentId: Overload:Reportman.Reporting.ChartItem.GetClassName
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_GetClassName
+  name: GetClassName
+  nameWithType: ChartItem.GetClassName
+  fullName: Reportman.Reporting.ChartItem.GetClassName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Reportman.Reporting.ChartItem.Clear*
+  commentId: Overload:Reportman.Reporting.ChartItem.Clear
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_Clear
+  name: Clear
+  nameWithType: ChartItem.Clear
+  fullName: Reportman.Reporting.ChartItem.Clear
+- uid: Reportman.Reporting.PrintItem.SubReportChanged(Reportman.Reporting.SubReportEvent,System.String)
+  commentId: M:Reportman.Reporting.PrintItem.SubReportChanged(Reportman.Reporting.SubReportEvent,System.String)
+  parent: Reportman.Reporting.PrintItem
+  isExternal: true
+  href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_SubReportChanged_Reportman_Reporting_SubReportEvent_System_String_
+  name: SubReportChanged(SubReportEvent, string)
+  nameWithType: PrintItem.SubReportChanged(SubReportEvent, string)
+  fullName: Reportman.Reporting.PrintItem.SubReportChanged(Reportman.Reporting.SubReportEvent, string)
+  nameWithType.vb: PrintItem.SubReportChanged(SubReportEvent, String)
+  fullName.vb: Reportman.Reporting.PrintItem.SubReportChanged(Reportman.Reporting.SubReportEvent, String)
+  name.vb: SubReportChanged(SubReportEvent, String)
+  spec.csharp:
+  - uid: Reportman.Reporting.PrintItem.SubReportChanged(Reportman.Reporting.SubReportEvent,System.String)
+    name: SubReportChanged
+    isExternal: true
+    href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_SubReportChanged_Reportman_Reporting_SubReportEvent_System_String_
+  - name: (
+  - uid: Reportman.Reporting.SubReportEvent
+    name: SubReportEvent
+    isExternal: true
+    href: Reportman.Reporting.SubReportEvent.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.PrintItem.SubReportChanged(Reportman.Reporting.SubReportEvent,System.String)
+    name: SubReportChanged
+    isExternal: true
+    href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_SubReportChanged_Reportman_Reporting_SubReportEvent_System_String_
+  - name: (
+  - uid: Reportman.Reporting.SubReportEvent
+    name: SubReportEvent
+    isExternal: true
+    href: Reportman.Reporting.SubReportEvent.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Reportman.Reporting.ChartItem.SubReportChanged*
+  commentId: Overload:Reportman.Reporting.ChartItem.SubReportChanged
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_SubReportChanged_Reportman_Reporting_SubReportEvent_System_String_
+  name: SubReportChanged
+  nameWithType: ChartItem.SubReportChanged
+  fullName: Reportman.Reporting.ChartItem.SubReportChanged
+- uid: Reportman.Reporting.SubReportEvent
+  commentId: T:Reportman.Reporting.SubReportEvent
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.SubReportEvent.html
+  name: SubReportEvent
+  nameWithType: SubReportEvent
+  fullName: Reportman.Reporting.SubReportEvent
+- uid: Reportman.Reporting.ChartItem.EvaluateClearExpression*
+  commentId: Overload:Reportman.Reporting.ChartItem.EvaluateClearExpression
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_EvaluateClearExpression
+  name: EvaluateClearExpression
+  nameWithType: ChartItem.EvaluateClearExpression
+  fullName: Reportman.Reporting.ChartItem.EvaluateClearExpression
+- uid: Reportman.Reporting.ChartItem.EvaluateChangeSerieExpression*
+  commentId: Overload:Reportman.Reporting.ChartItem.EvaluateChangeSerieExpression
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_EvaluateChangeSerieExpression
+  name: EvaluateChangeSerieExpression
+  nameWithType: ChartItem.EvaluateChangeSerieExpression
+  fullName: Reportman.Reporting.ChartItem.EvaluateChangeSerieExpression
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Reportman.Reporting.ChartItem.EvaluateSerieCaption*
+  commentId: Overload:Reportman.Reporting.ChartItem.EvaluateSerieCaption
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_EvaluateSerieCaption
+  name: EvaluateSerieCaption
+  nameWithType: ChartItem.EvaluateSerieCaption
+  fullName: Reportman.Reporting.ChartItem.EvaluateSerieCaption
+- uid: Reportman.Reporting.Variant
+  commentId: T:Reportman.Reporting.Variant
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.Variant.html
+  name: Variant
+  nameWithType: Variant
+  fullName: Reportman.Reporting.Variant
+- uid: Reportman.Reporting.ChartItem.CheckValueCondition*
+  commentId: Overload:Reportman.Reporting.ChartItem.CheckValueCondition
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_CheckValueCondition
+  name: CheckValueCondition
+  nameWithType: ChartItem.CheckValueCondition
+  fullName: Reportman.Reporting.ChartItem.CheckValueCondition
+- uid: Reportman.Reporting.ChartItem.NewValue*
+  commentId: Overload:Reportman.Reporting.ChartItem.NewValue
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_NewValue_System_Double_System_Boolean_System_String_System_String_
+  name: NewValue
+  nameWithType: ChartItem.NewValue
+  fullName: Reportman.Reporting.ChartItem.NewValue
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.double
+  name: double
+  nameWithType: double
+  fullName: double
+  nameWithType.vb: Double
+  fullName.vb: Double
+  name.vb: Double
+- uid: Reportman.Reporting.ChartItem.GraphicBounds*
+  commentId: Overload:Reportman.Reporting.ChartItem.GraphicBounds
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_GraphicBounds_System_Boolean_System_Boolean_System_Double_System_Double_System_Boolean_System_Double_System_Boolean_
+  name: GraphicBounds
+  nameWithType: ChartItem.GraphicBounds
+  fullName: Reportman.Reporting.ChartItem.GraphicBounds
+- uid: Reportman.Reporting.ChartItem.NewFunction*
+  commentId: Overload:Reportman.Reporting.ChartItem.NewFunction
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_NewFunction_System_String_System_String_System_String_
+  name: NewFunction
+  nameWithType: ChartItem.NewFunction
+  fullName: Reportman.Reporting.ChartItem.NewFunction
+- uid: Reportman.Reporting.ChartItem.NewValueXY*
+  commentId: Overload:Reportman.Reporting.ChartItem.NewValueXY
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_NewValueXY_System_Object_System_Double_System_Boolean_System_String_System_String_
+  name: NewValueXY
+  nameWithType: ChartItem.NewValueXY
+  fullName: Reportman.Reporting.ChartItem.NewValueXY
+- uid: Reportman.Reporting.ChartItem.GraphicColor*
+  commentId: Overload:Reportman.Reporting.ChartItem.GraphicColor
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_GraphicColor_System_Int32_
+  name: GraphicColor
+  nameWithType: ChartItem.GraphicColor
+  fullName: Reportman.Reporting.ChartItem.GraphicColor
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Reportman.Reporting.ChartItem.GraphicSerieColor*
+  commentId: Overload:Reportman.Reporting.ChartItem.GraphicSerieColor
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_GraphicSerieColor_System_Int32_
+  name: GraphicSerieColor
+  nameWithType: ChartItem.GraphicSerieColor
+  fullName: Reportman.Reporting.ChartItem.GraphicSerieColor
+- uid: Reportman.Reporting.PrintItem.DoPrint(Reportman.Drawing.PrintOut,System.Int32,System.Int32,System.Int32,System.Int32,Reportman.Drawing.MetaFile,System.Drawing.Point,System.Boolean@)
+  commentId: M:Reportman.Reporting.PrintItem.DoPrint(Reportman.Drawing.PrintOut,System.Int32,System.Int32,System.Int32,System.Int32,Reportman.Drawing.MetaFile,System.Drawing.Point,System.Boolean@)
+  parent: Reportman.Reporting.PrintItem
+  isExternal: true
+  href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_DoPrint_Reportman_Drawing_PrintOut_System_Int32_System_Int32_System_Int32_System_Int32_Reportman_Drawing_MetaFile_System_Drawing_Point_System_Boolean__
+  name: DoPrint(PrintOut, int, int, int, int, MetaFile, Point, ref bool)
+  nameWithType: PrintItem.DoPrint(PrintOut, int, int, int, int, MetaFile, Point, ref bool)
+  fullName: Reportman.Reporting.PrintItem.DoPrint(Reportman.Drawing.PrintOut, int, int, int, int, Reportman.Drawing.MetaFile, System.Drawing.Point, ref bool)
+  nameWithType.vb: PrintItem.DoPrint(PrintOut, Integer, Integer, Integer, Integer, MetaFile, Point, Boolean)
+  fullName.vb: Reportman.Reporting.PrintItem.DoPrint(Reportman.Drawing.PrintOut, Integer, Integer, Integer, Integer, Reportman.Drawing.MetaFile, System.Drawing.Point, Boolean)
+  name.vb: DoPrint(PrintOut, Integer, Integer, Integer, Integer, MetaFile, Point, Boolean)
+  spec.csharp:
+  - uid: Reportman.Reporting.PrintItem.DoPrint(Reportman.Drawing.PrintOut,System.Int32,System.Int32,System.Int32,System.Int32,Reportman.Drawing.MetaFile,System.Drawing.Point,System.Boolean@)
+    name: DoPrint
+    isExternal: true
+    href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_DoPrint_Reportman_Drawing_PrintOut_System_Int32_System_Int32_System_Int32_System_Int32_Reportman_Drawing_MetaFile_System_Drawing_Point_System_Boolean__
+  - name: (
+  - uid: Reportman.Drawing.PrintOut
+    name: PrintOut
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.MetaFile
+    name: MetaFile
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.Point
+    name: Point
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.point
+  - name: ','
+  - name: " "
+  - name: ref
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.PrintItem.DoPrint(Reportman.Drawing.PrintOut,System.Int32,System.Int32,System.Int32,System.Int32,Reportman.Drawing.MetaFile,System.Drawing.Point,System.Boolean@)
+    name: DoPrint
+    isExternal: true
+    href: Reportman.Reporting.PrintItem.html#Reportman_Reporting_PrintItem_DoPrint_Reportman_Drawing_PrintOut_System_Int32_System_Int32_System_Int32_System_Int32_Reportman_Drawing_MetaFile_System_Drawing_Point_System_Boolean__
+  - name: (
+  - uid: Reportman.Drawing.PrintOut
+    name: PrintOut
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.MetaFile
+    name: MetaFile
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.Point
+    name: Point
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.point
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Reportman.Reporting.ChartItem.DoPrint*
+  commentId: Overload:Reportman.Reporting.ChartItem.DoPrint
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_DoPrint_Reportman_Drawing_PrintOut_System_Int32_System_Int32_System_Int32_System_Int32_Reportman_Drawing_MetaFile_System_Drawing_Point_System_Boolean__
+  name: DoPrint
+  nameWithType: ChartItem.DoPrint
+  fullName: Reportman.Reporting.ChartItem.DoPrint
+- uid: Reportman.Drawing.PrintOut
+  commentId: T:Reportman.Drawing.PrintOut
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PrintOut.html
+  name: PrintOut
+  nameWithType: PrintOut
+  fullName: Reportman.Drawing.PrintOut
+- uid: Reportman.Drawing.MetaFile
+  commentId: T:Reportman.Drawing.MetaFile
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html
+  name: MetaFile
+  nameWithType: MetaFile
+  fullName: Reportman.Drawing.MetaFile
+- uid: System.Drawing.Point
+  commentId: T:System.Drawing.Point
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.point
+  name: Point
+  nameWithType: Point
+  fullName: System.Drawing.Point
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.Drawing
+  commentId: N:System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Drawing
+  nameWithType: System.Drawing
+  fullName: System.Drawing
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+- uid: Reportman.Reporting.ChartItem.ChangeSerieExpression*
+  commentId: Overload:Reportman.Reporting.ChartItem.ChangeSerieExpression
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_ChangeSerieExpression
+  name: ChangeSerieExpression
+  nameWithType: ChartItem.ChangeSerieExpression
+  fullName: Reportman.Reporting.ChartItem.ChangeSerieExpression
+- uid: Reportman.Reporting.ChartItem.ClearExpression*
+  commentId: Overload:Reportman.Reporting.ChartItem.ClearExpression
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_ClearExpression
+  name: ClearExpression
+  nameWithType: ChartItem.ClearExpression
+  fullName: Reportman.Reporting.ChartItem.ClearExpression
+- uid: Reportman.Reporting.ChartItem.GetValueCondition*
+  commentId: Overload:Reportman.Reporting.ChartItem.GetValueCondition
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_GetValueCondition
+  name: GetValueCondition
+  nameWithType: ChartItem.GetValueCondition
+  fullName: Reportman.Reporting.ChartItem.GetValueCondition
+- uid: Reportman.Reporting.ChartItem.ValueExpression*
+  commentId: Overload:Reportman.Reporting.ChartItem.ValueExpression
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_ValueExpression
+  name: ValueExpression
+  nameWithType: ChartItem.ValueExpression
+  fullName: Reportman.Reporting.ChartItem.ValueExpression
+- uid: Reportman.Reporting.ChartItem.ValueXExpression*
+  commentId: Overload:Reportman.Reporting.ChartItem.ValueXExpression
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_ValueXExpression
+  name: ValueXExpression
+  nameWithType: ChartItem.ValueXExpression
+  fullName: Reportman.Reporting.ChartItem.ValueXExpression
+- uid: Reportman.Reporting.ChartItem.CaptionExpression*
+  commentId: Overload:Reportman.Reporting.ChartItem.CaptionExpression
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_CaptionExpression
+  name: CaptionExpression
+  nameWithType: ChartItem.CaptionExpression
+  fullName: Reportman.Reporting.ChartItem.CaptionExpression
+- uid: Reportman.Reporting.ChartItem.SerieCaption*
+  commentId: Overload:Reportman.Reporting.ChartItem.SerieCaption
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_SerieCaption
+  name: SerieCaption
+  nameWithType: ChartItem.SerieCaption
+  fullName: Reportman.Reporting.ChartItem.SerieCaption
+- uid: Reportman.Reporting.ChartItem.ColorExpression*
+  commentId: Overload:Reportman.Reporting.ChartItem.ColorExpression
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_ColorExpression
+  name: ColorExpression
+  nameWithType: ChartItem.ColorExpression
+  fullName: Reportman.Reporting.ChartItem.ColorExpression
+- uid: Reportman.Reporting.ChartItem.SerieColorExpression*
+  commentId: Overload:Reportman.Reporting.ChartItem.SerieColorExpression
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_SerieColorExpression
+  name: SerieColorExpression
+  nameWithType: ChartItem.SerieColorExpression
+  fullName: Reportman.Reporting.ChartItem.SerieColorExpression
+- uid: Reportman.Reporting.ChartItem.ChangeSerieBool*
+  commentId: Overload:Reportman.Reporting.ChartItem.ChangeSerieBool
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_ChangeSerieBool
+  name: ChangeSerieBool
+  nameWithType: ChartItem.ChangeSerieBool
+  fullName: Reportman.Reporting.ChartItem.ChangeSerieBool
+- uid: Reportman.Reporting.ChartItem.ChartStyle*
+  commentId: Overload:Reportman.Reporting.ChartItem.ChartStyle
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_ChartStyle
+  name: ChartStyle
+  nameWithType: ChartItem.ChartStyle
+  fullName: Reportman.Reporting.ChartItem.ChartStyle
+- uid: Reportman.Drawing.ChartType
+  commentId: T:Reportman.Drawing.ChartType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.ChartType.html
+  name: ChartType
+  nameWithType: ChartType
+  fullName: Reportman.Drawing.ChartType
+- uid: Reportman.Reporting.ChartItem.Identifier*
+  commentId: Overload:Reportman.Reporting.ChartItem.Identifier
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_Identifier
+  name: Identifier
+  nameWithType: ChartItem.Identifier
+  fullName: Reportman.Reporting.ChartItem.Identifier
+- uid: Reportman.Reporting.ChartItem.ClearExpressionBool*
+  commentId: Overload:Reportman.Reporting.ChartItem.ClearExpressionBool
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_ClearExpressionBool
+  name: ClearExpressionBool
+  nameWithType: ChartItem.ClearExpressionBool
+  fullName: Reportman.Reporting.ChartItem.ClearExpressionBool
+- uid: Reportman.Reporting.ChartItem.Driver*
+  commentId: Overload:Reportman.Reporting.ChartItem.Driver
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_Driver
+  name: Driver
+  nameWithType: ChartItem.Driver
+  fullName: Reportman.Reporting.ChartItem.Driver
+- uid: Reportman.Drawing.ChartDriver
+  commentId: T:Reportman.Drawing.ChartDriver
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.ChartDriver.html
+  name: ChartDriver
+  nameWithType: ChartDriver
+  fullName: Reportman.Drawing.ChartDriver
+- uid: Reportman.Reporting.ChartItem.View3d*
+  commentId: Overload:Reportman.Reporting.ChartItem.View3d
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_View3d
+  name: View3d
+  nameWithType: ChartItem.View3d
+  fullName: Reportman.Reporting.ChartItem.View3d
+- uid: Reportman.Reporting.ChartItem.View3dWalls*
+  commentId: Overload:Reportman.Reporting.ChartItem.View3dWalls
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_View3dWalls
+  name: View3dWalls
+  nameWithType: ChartItem.View3dWalls
+  fullName: Reportman.Reporting.ChartItem.View3dWalls
+- uid: Reportman.Reporting.ChartItem.Perspective*
+  commentId: Overload:Reportman.Reporting.ChartItem.Perspective
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_Perspective
+  name: Perspective
+  nameWithType: ChartItem.Perspective
+  fullName: Reportman.Reporting.ChartItem.Perspective
+- uid: Reportman.Reporting.ChartItem.Elevation*
+  commentId: Overload:Reportman.Reporting.ChartItem.Elevation
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_Elevation
+  name: Elevation
+  nameWithType: ChartItem.Elevation
+  fullName: Reportman.Reporting.ChartItem.Elevation
+- uid: Reportman.Reporting.ChartItem.Rotation*
+  commentId: Overload:Reportman.Reporting.ChartItem.Rotation
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_Rotation
+  name: Rotation
+  nameWithType: ChartItem.Rotation
+  fullName: Reportman.Reporting.ChartItem.Rotation
+- uid: Reportman.Reporting.ChartItem.Zoom*
+  commentId: Overload:Reportman.Reporting.ChartItem.Zoom
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_Zoom
+  name: Zoom
+  nameWithType: ChartItem.Zoom
+  fullName: Reportman.Reporting.ChartItem.Zoom
+- uid: Reportman.Reporting.ChartItem.HorzOffset*
+  commentId: Overload:Reportman.Reporting.ChartItem.HorzOffset
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_HorzOffset
+  name: HorzOffset
+  nameWithType: ChartItem.HorzOffset
+  fullName: Reportman.Reporting.ChartItem.HorzOffset
+- uid: Reportman.Reporting.ChartItem.VertOffset*
+  commentId: Overload:Reportman.Reporting.ChartItem.VertOffset
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_VertOffset
+  name: VertOffset
+  nameWithType: ChartItem.VertOffset
+  fullName: Reportman.Reporting.ChartItem.VertOffset
+- uid: Reportman.Reporting.ChartItem.Tilt*
+  commentId: Overload:Reportman.Reporting.ChartItem.Tilt
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_Tilt
+  name: Tilt
+  nameWithType: ChartItem.Tilt
+  fullName: Reportman.Reporting.ChartItem.Tilt
+- uid: Reportman.Reporting.ChartItem.Orthogonal*
+  commentId: Overload:Reportman.Reporting.ChartItem.Orthogonal
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_Orthogonal
+  name: Orthogonal
+  nameWithType: ChartItem.Orthogonal
+  fullName: Reportman.Reporting.ChartItem.Orthogonal
+- uid: Reportman.Reporting.ChartItem.MultiBar*
+  commentId: Overload:Reportman.Reporting.ChartItem.MultiBar
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_MultiBar
+  name: MultiBar
+  nameWithType: ChartItem.MultiBar
+  fullName: Reportman.Reporting.ChartItem.MultiBar
+- uid: Reportman.Drawing.BarType
+  commentId: T:Reportman.Drawing.BarType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.BarType.html
+  name: BarType
+  nameWithType: BarType
+  fullName: Reportman.Drawing.BarType
+- uid: Reportman.Reporting.ChartItem.Resolution*
+  commentId: Overload:Reportman.Reporting.ChartItem.Resolution
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_Resolution
+  name: Resolution
+  nameWithType: ChartItem.Resolution
+  fullName: Reportman.Reporting.ChartItem.Resolution
+- uid: Reportman.Reporting.ChartItem.ShowLegend*
+  commentId: Overload:Reportman.Reporting.ChartItem.ShowLegend
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_ShowLegend
+  name: ShowLegend
+  nameWithType: ChartItem.ShowLegend
+  fullName: Reportman.Reporting.ChartItem.ShowLegend
+- uid: Reportman.Reporting.ChartItem.ShowHint*
+  commentId: Overload:Reportman.Reporting.ChartItem.ShowHint
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_ShowHint
+  name: ShowHint
+  nameWithType: ChartItem.ShowHint
+  fullName: Reportman.Reporting.ChartItem.ShowHint
+- uid: Reportman.Reporting.ChartItem.MarkStyle*
+  commentId: Overload:Reportman.Reporting.ChartItem.MarkStyle
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_MarkStyle
+  name: MarkStyle
+  nameWithType: ChartItem.MarkStyle
+  fullName: Reportman.Reporting.ChartItem.MarkStyle
+- uid: Reportman.Reporting.ChartItem.HorzFontSize*
+  commentId: Overload:Reportman.Reporting.ChartItem.HorzFontSize
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_HorzFontSize
+  name: HorzFontSize
+  nameWithType: ChartItem.HorzFontSize
+  fullName: Reportman.Reporting.ChartItem.HorzFontSize
+- uid: Reportman.Reporting.ChartItem.VertFontSize*
+  commentId: Overload:Reportman.Reporting.ChartItem.VertFontSize
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_VertFontSize
+  name: VertFontSize
+  nameWithType: ChartItem.VertFontSize
+  fullName: Reportman.Reporting.ChartItem.VertFontSize
+- uid: Reportman.Reporting.ChartItem.HorzFontRotation*
+  commentId: Overload:Reportman.Reporting.ChartItem.HorzFontRotation
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_HorzFontRotation
+  name: HorzFontRotation
+  nameWithType: ChartItem.HorzFontRotation
+  fullName: Reportman.Reporting.ChartItem.HorzFontRotation
+- uid: Reportman.Reporting.ChartItem.VertFontRotation*
+  commentId: Overload:Reportman.Reporting.ChartItem.VertFontRotation
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_VertFontRotation
+  name: VertFontRotation
+  nameWithType: ChartItem.VertFontRotation
+  fullName: Reportman.Reporting.ChartItem.VertFontRotation
+- uid: Reportman.Reporting.ChartItem.AutoRange*
+  commentId: Overload:Reportman.Reporting.ChartItem.AutoRange
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_AutoRange
+  name: AutoRange
+  nameWithType: ChartItem.AutoRange
+  fullName: Reportman.Reporting.ChartItem.AutoRange
+- uid: Reportman.Drawing.Series.AutoRangeAxis
+  commentId: T:Reportman.Drawing.Series.AutoRangeAxis
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.Series.html
+  name: Series.AutoRangeAxis
+  nameWithType: Series.AutoRangeAxis
+  fullName: Reportman.Drawing.Series.AutoRangeAxis
+  spec.csharp:
+  - uid: Reportman.Drawing.Series
+    name: Series
+    isExternal: true
+    href: Reportman.Drawing.Series.html
+  - name: .
+  - uid: Reportman.Drawing.Series.AutoRangeAxis
+    name: AutoRangeAxis
+    isExternal: true
+    href: Reportman.Drawing.Series.AutoRangeAxis.html
+  spec.vb:
+  - uid: Reportman.Drawing.Series
+    name: Series
+    isExternal: true
+    href: Reportman.Drawing.Series.html
+  - name: .
+  - uid: Reportman.Drawing.Series.AutoRangeAxis
+    name: AutoRangeAxis
+    isExternal: true
+    href: Reportman.Drawing.Series.AutoRangeAxis.html
+- uid: Reportman.Reporting.ChartItem.AxisYInitial*
+  commentId: Overload:Reportman.Reporting.ChartItem.AxisYInitial
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_AxisYInitial
+  name: AxisYInitial
+  nameWithType: ChartItem.AxisYInitial
+  fullName: Reportman.Reporting.ChartItem.AxisYInitial
+- uid: Reportman.Reporting.ChartItem.AxisYFinal*
+  commentId: Overload:Reportman.Reporting.ChartItem.AxisYFinal
+  isExternal: true
+  href: Reportman.Reporting.ChartItem.html#Reportman_Reporting_ChartItem_AxisYFinal
+  name: AxisYFinal
+  nameWithType: ChartItem.AxisYFinal
+  fullName: Reportman.Reporting.ChartItem.AxisYFinal

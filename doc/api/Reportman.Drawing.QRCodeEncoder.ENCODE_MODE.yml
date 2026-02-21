@@ -1,0 +1,133 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.QRCodeEncoder.ENCODE_MODE
+  commentId: T:Reportman.Drawing.QRCodeEncoder.ENCODE_MODE
+  id: QRCodeEncoder.ENCODE_MODE
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.QRCodeEncoder.ENCODE_MODE.ALPHA_NUMERIC
+  - Reportman.Drawing.QRCodeEncoder.ENCODE_MODE.BYTE
+  - Reportman.Drawing.QRCodeEncoder.ENCODE_MODE.NUMERIC
+  langs:
+  - csharp
+  - vb
+  name: QRCodeEncoder.ENCODE_MODE
+  nameWithType: QRCodeEncoder.ENCODE_MODE
+  fullName: Reportman.Drawing.QRCodeEncoder.ENCODE_MODE
+  type: Enum
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Drawing
+  syntax:
+    content: public enum QRCodeEncoder.ENCODE_MODE
+    content.vb: Public Enum QRCodeEncoder.ENCODE_MODE
+- uid: Reportman.Drawing.QRCodeEncoder.ENCODE_MODE.ALPHA_NUMERIC
+  commentId: F:Reportman.Drawing.QRCodeEncoder.ENCODE_MODE.ALPHA_NUMERIC
+  id: ALPHA_NUMERIC
+  parent: Reportman.Drawing.QRCodeEncoder.ENCODE_MODE
+  langs:
+  - csharp
+  - vb
+  name: ALPHA_NUMERIC
+  nameWithType: QRCodeEncoder.ENCODE_MODE.ALPHA_NUMERIC
+  fullName: Reportman.Drawing.QRCodeEncoder.ENCODE_MODE.ALPHA_NUMERIC
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Drawing
+  syntax:
+    content: ALPHA_NUMERIC = 0
+    return:
+      type: Reportman.Drawing.QRCodeEncoder.ENCODE_MODE
+- uid: Reportman.Drawing.QRCodeEncoder.ENCODE_MODE.NUMERIC
+  commentId: F:Reportman.Drawing.QRCodeEncoder.ENCODE_MODE.NUMERIC
+  id: NUMERIC
+  parent: Reportman.Drawing.QRCodeEncoder.ENCODE_MODE
+  langs:
+  - csharp
+  - vb
+  name: NUMERIC
+  nameWithType: QRCodeEncoder.ENCODE_MODE.NUMERIC
+  fullName: Reportman.Drawing.QRCodeEncoder.ENCODE_MODE.NUMERIC
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Drawing
+  syntax:
+    content: NUMERIC = 1
+    return:
+      type: Reportman.Drawing.QRCodeEncoder.ENCODE_MODE
+- uid: Reportman.Drawing.QRCodeEncoder.ENCODE_MODE.BYTE
+  commentId: F:Reportman.Drawing.QRCodeEncoder.ENCODE_MODE.BYTE
+  id: BYTE
+  parent: Reportman.Drawing.QRCodeEncoder.ENCODE_MODE
+  langs:
+  - csharp
+  - vb
+  name: BYTE
+  nameWithType: QRCodeEncoder.ENCODE_MODE.BYTE
+  fullName: Reportman.Drawing.QRCodeEncoder.ENCODE_MODE.BYTE
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Drawing
+  syntax:
+    content: BYTE = 2
+    return:
+      type: Reportman.Drawing.QRCodeEncoder.ENCODE_MODE
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.QRCodeEncoder.ENCODE_MODE
+  commentId: T:Reportman.Drawing.QRCodeEncoder.ENCODE_MODE
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.QRCodeEncoder.html
+  name: QRCodeEncoder.ENCODE_MODE
+  nameWithType: QRCodeEncoder.ENCODE_MODE
+  fullName: Reportman.Drawing.QRCodeEncoder.ENCODE_MODE
+  spec.csharp:
+  - uid: Reportman.Drawing.QRCodeEncoder
+    name: QRCodeEncoder
+    isExternal: true
+    href: Reportman.Drawing.QRCodeEncoder.html
+  - name: .
+  - uid: Reportman.Drawing.QRCodeEncoder.ENCODE_MODE
+    name: ENCODE_MODE
+    isExternal: true
+    href: Reportman.Drawing.QRCodeEncoder.ENCODE_MODE.html
+  spec.vb:
+  - uid: Reportman.Drawing.QRCodeEncoder
+    name: QRCodeEncoder
+    isExternal: true
+    href: Reportman.Drawing.QRCodeEncoder.html
+  - name: .
+  - uid: Reportman.Drawing.QRCodeEncoder.ENCODE_MODE
+    name: ENCODE_MODE
+    isExternal: true
+    href: Reportman.Drawing.QRCodeEncoder.ENCODE_MODE.html

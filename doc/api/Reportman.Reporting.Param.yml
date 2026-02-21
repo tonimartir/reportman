@@ -1,0 +1,1350 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.Param
+  commentId: T:Reportman.Reporting.Param
+  id: Param
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.Param.#ctor
+  - Reportman.Reporting.Param.Alias
+  - Reportman.Reporting.Param.AllowNulls
+  - Reportman.Reporting.Param.Clone
+  - Reportman.Reporting.Param.Datasets
+  - Reportman.Reporting.Param.Description
+  - Reportman.Reporting.Param.Descriptions
+  - Reportman.Reporting.Param.ErrorMessage
+  - Reportman.Reporting.Param.ErrorMessages
+  - Reportman.Reporting.Param.GetClassName
+  - Reportman.Reporting.Param.GetDbType
+  - Reportman.Reporting.Param.GetMultiValue
+  - Reportman.Reporting.Param.GetSubExpreValue
+  - Reportman.Reporting.Param.Hint
+  - Reportman.Reporting.Param.Hints
+  - Reportman.Reporting.Param.IsReadOnly
+  - Reportman.Reporting.Param.Items
+  - Reportman.Reporting.Param.LastValue
+  - Reportman.Reporting.Param.ListValue
+  - Reportman.Reporting.Param.LookupDataset
+  - Reportman.Reporting.Param.NeverVisible
+  - Reportman.Reporting.Param.ParamType
+  - Reportman.Reporting.Param.Search
+  - Reportman.Reporting.Param.SearchDataset
+  - Reportman.Reporting.Param.SearchParam
+  - Reportman.Reporting.Param.SelectAllValues
+  - Reportman.Reporting.Param.Selected
+  - Reportman.Reporting.Param.UpdateLookupValues
+  - Reportman.Reporting.Param.UserVisible
+  - Reportman.Reporting.Param.Validation
+  - Reportman.Reporting.Param.Value
+  - Reportman.Reporting.Param.Values
+  - Reportman.Reporting.Param.Visible
+  langs:
+  - csharp
+  - vb
+  name: Param
+  nameWithType: Param
+  fullName: Reportman.Reporting.Param
+  type: Class
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: 'public class Param : ReportItem, IDisposable, ICloneable'
+    content.vb: Public Class Param Inherits ReportItem Implements IDisposable, ICloneable
+  inheritance:
+  - System.Object
+  - Reportman.Reporting.ReportItem
+  implements:
+  - System.IDisposable
+  - System.ICloneable
+  inheritedMembers:
+  - Reportman.Reporting.ReportItem.SetReport(Reportman.Reporting.BaseReport)
+  - Reportman.Reporting.ReportItem.Dispose
+  - Reportman.Reporting.ReportItem.Name
+  - Reportman.Reporting.ReportItem.Report
+  - Reportman.Reporting.ReportItem.ClassName
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Reporting.Param.ParamType
+  commentId: F:Reportman.Reporting.Param.ParamType
+  id: ParamType
+  parent: Reportman.Reporting.Param
+  langs:
+  - csharp
+  - vb
+  name: ParamType
+  nameWithType: Param.ParamType
+  fullName: Reportman.Reporting.Param.ParamType
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public ParamType ParamType
+    return:
+      type: Reportman.Reporting.ParamType
+    content.vb: Public ParamType As ParamType
+- uid: Reportman.Reporting.Param.Alias
+  commentId: F:Reportman.Reporting.Param.Alias
+  id: Alias
+  parent: Reportman.Reporting.Param
+  langs:
+  - csharp
+  - vb
+  name: Alias
+  nameWithType: Param.Alias
+  fullName: Reportman.Reporting.Param.Alias
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public string Alias
+    return:
+      type: System.String
+    content.vb: Public [Alias] As String
+- uid: Reportman.Reporting.Param.Descriptions
+  commentId: F:Reportman.Reporting.Param.Descriptions
+  id: Descriptions
+  parent: Reportman.Reporting.Param
+  langs:
+  - csharp
+  - vb
+  name: Descriptions
+  nameWithType: Param.Descriptions
+  fullName: Reportman.Reporting.Param.Descriptions
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public string Descriptions
+    return:
+      type: System.String
+    content.vb: Public Descriptions As String
+- uid: Reportman.Reporting.Param.Hints
+  commentId: F:Reportman.Reporting.Param.Hints
+  id: Hints
+  parent: Reportman.Reporting.Param
+  langs:
+  - csharp
+  - vb
+  name: Hints
+  nameWithType: Param.Hints
+  fullName: Reportman.Reporting.Param.Hints
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public string Hints
+    return:
+      type: System.String
+    content.vb: Public Hints As String
+- uid: Reportman.Reporting.Param.ErrorMessages
+  commentId: F:Reportman.Reporting.Param.ErrorMessages
+  id: ErrorMessages
+  parent: Reportman.Reporting.Param
+  langs:
+  - csharp
+  - vb
+  name: ErrorMessages
+  nameWithType: Param.ErrorMessages
+  fullName: Reportman.Reporting.Param.ErrorMessages
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public string ErrorMessages
+    return:
+      type: System.String
+    content.vb: Public ErrorMessages As String
+- uid: Reportman.Reporting.Param.Validation
+  commentId: F:Reportman.Reporting.Param.Validation
+  id: Validation
+  parent: Reportman.Reporting.Param
+  langs:
+  - csharp
+  - vb
+  name: Validation
+  nameWithType: Param.Validation
+  fullName: Reportman.Reporting.Param.Validation
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public string Validation
+    return:
+      type: System.String
+    content.vb: Public Validation As String
+- uid: Reportman.Reporting.Param.LookupDataset
+  commentId: F:Reportman.Reporting.Param.LookupDataset
+  id: LookupDataset
+  parent: Reportman.Reporting.Param
+  langs:
+  - csharp
+  - vb
+  name: LookupDataset
+  nameWithType: Param.LookupDataset
+  fullName: Reportman.Reporting.Param.LookupDataset
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public string LookupDataset
+    return:
+      type: System.String
+    content.vb: Public LookupDataset As String
+- uid: Reportman.Reporting.Param.SearchDataset
+  commentId: F:Reportman.Reporting.Param.SearchDataset
+  id: SearchDataset
+  parent: Reportman.Reporting.Param
+  langs:
+  - csharp
+  - vb
+  name: SearchDataset
+  nameWithType: Param.SearchDataset
+  fullName: Reportman.Reporting.Param.SearchDataset
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public string SearchDataset
+    return:
+      type: System.String
+    content.vb: Public SearchDataset As String
+- uid: Reportman.Reporting.Param.Search
+  commentId: F:Reportman.Reporting.Param.Search
+  id: Search
+  parent: Reportman.Reporting.Param
+  langs:
+  - csharp
+  - vb
+  name: Search
+  nameWithType: Param.Search
+  fullName: Reportman.Reporting.Param.Search
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public string Search
+    return:
+      type: System.String
+    content.vb: Public Search As String
+- uid: Reportman.Reporting.Param.SearchParam
+  commentId: F:Reportman.Reporting.Param.SearchParam
+  id: SearchParam
+  parent: Reportman.Reporting.Param
+  langs:
+  - csharp
+  - vb
+  name: SearchParam
+  nameWithType: Param.SearchParam
+  fullName: Reportman.Reporting.Param.SearchParam
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public string SearchParam
+    return:
+      type: System.String
+    content.vb: Public SearchParam As String
+- uid: Reportman.Reporting.Param.Items
+  commentId: F:Reportman.Reporting.Param.Items
+  id: Items
+  parent: Reportman.Reporting.Param
+  langs:
+  - csharp
+  - vb
+  name: Items
+  nameWithType: Param.Items
+  fullName: Reportman.Reporting.Param.Items
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public Strings Items
+    return:
+      type: Reportman.Drawing.Strings
+    content.vb: Public Items As Strings
+- uid: Reportman.Reporting.Param.Values
+  commentId: F:Reportman.Reporting.Param.Values
+  id: Values
+  parent: Reportman.Reporting.Param
+  langs:
+  - csharp
+  - vb
+  name: Values
+  nameWithType: Param.Values
+  fullName: Reportman.Reporting.Param.Values
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public Strings Values
+    return:
+      type: Reportman.Drawing.Strings
+    content.vb: Public Values As Strings
+- uid: Reportman.Reporting.Param.Selected
+  commentId: F:Reportman.Reporting.Param.Selected
+  id: Selected
+  parent: Reportman.Reporting.Param
+  langs:
+  - csharp
+  - vb
+  name: Selected
+  nameWithType: Param.Selected
+  fullName: Reportman.Reporting.Param.Selected
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public Strings Selected
+    return:
+      type: Reportman.Drawing.Strings
+    content.vb: Public Selected As Strings
+- uid: Reportman.Reporting.Param.Datasets
+  commentId: F:Reportman.Reporting.Param.Datasets
+  id: Datasets
+  parent: Reportman.Reporting.Param
+  langs:
+  - csharp
+  - vb
+  name: Datasets
+  nameWithType: Param.Datasets
+  fullName: Reportman.Reporting.Param.Datasets
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public Strings Datasets
+    return:
+      type: Reportman.Drawing.Strings
+    content.vb: Public Datasets As Strings
+- uid: Reportman.Reporting.Param.Visible
+  commentId: F:Reportman.Reporting.Param.Visible
+  id: Visible
+  parent: Reportman.Reporting.Param
+  langs:
+  - csharp
+  - vb
+  name: Visible
+  nameWithType: Param.Visible
+  fullName: Reportman.Reporting.Param.Visible
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public bool Visible
+    return:
+      type: System.Boolean
+    content.vb: Public Visible As Boolean
+- uid: Reportman.Reporting.Param.IsReadOnly
+  commentId: F:Reportman.Reporting.Param.IsReadOnly
+  id: IsReadOnly
+  parent: Reportman.Reporting.Param
+  langs:
+  - csharp
+  - vb
+  name: IsReadOnly
+  nameWithType: Param.IsReadOnly
+  fullName: Reportman.Reporting.Param.IsReadOnly
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public bool IsReadOnly
+    return:
+      type: System.Boolean
+    content.vb: Public IsReadOnly As Boolean
+- uid: Reportman.Reporting.Param.NeverVisible
+  commentId: F:Reportman.Reporting.Param.NeverVisible
+  id: NeverVisible
+  parent: Reportman.Reporting.Param
+  langs:
+  - csharp
+  - vb
+  name: NeverVisible
+  nameWithType: Param.NeverVisible
+  fullName: Reportman.Reporting.Param.NeverVisible
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public bool NeverVisible
+    return:
+      type: System.Boolean
+    content.vb: Public NeverVisible As Boolean
+- uid: Reportman.Reporting.Param.AllowNulls
+  commentId: F:Reportman.Reporting.Param.AllowNulls
+  id: AllowNulls
+  parent: Reportman.Reporting.Param
+  langs:
+  - csharp
+  - vb
+  name: AllowNulls
+  nameWithType: Param.AllowNulls
+  fullName: Reportman.Reporting.Param.AllowNulls
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public bool AllowNulls
+    return:
+      type: System.Boolean
+    content.vb: Public AllowNulls As Boolean
+- uid: Reportman.Reporting.Param.GetClassName
+  commentId: M:Reportman.Reporting.Param.GetClassName
+  id: GetClassName
+  parent: Reportman.Reporting.Param
+  langs:
+  - csharp
+  - vb
+  name: GetClassName()
+  nameWithType: Param.GetClassName()
+  fullName: Reportman.Reporting.Param.GetClassName()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Internal function to determine the object type name
+  example: []
+  syntax:
+    content: protected override string GetClassName()
+    return:
+      type: System.String
+      description: Object type name
+    content.vb: Protected Overrides Function GetClassName() As String
+  overridden: Reportman.Reporting.ReportItem.GetClassName
+  overload: Reportman.Reporting.Param.GetClassName*
+- uid: Reportman.Reporting.Param.#ctor
+  commentId: M:Reportman.Reporting.Param.#ctor
+  id: '#ctor'
+  parent: Reportman.Reporting.Param
+  langs:
+  - csharp
+  - vb
+  name: Param()
+  nameWithType: Param.Param()
+  fullName: Reportman.Reporting.Param.Param()
+  type: Constructor
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public Param()
+    content.vb: Public Sub New()
+  overload: Reportman.Reporting.Param.#ctor*
+  nameWithType.vb: Param.New()
+  fullName.vb: Reportman.Reporting.Param.New()
+  name.vb: New()
+- uid: Reportman.Reporting.Param.GetDbType
+  commentId: M:Reportman.Reporting.Param.GetDbType
+  id: GetDbType
+  parent: Reportman.Reporting.Param
+  langs:
+  - csharp
+  - vb
+  name: GetDbType()
+  nameWithType: Param.GetDbType()
+  fullName: Reportman.Reporting.Param.GetDbType()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public DbType GetDbType()
+    return:
+      type: System.Data.DbType
+    content.vb: Public Function GetDbType() As DbType
+  overload: Reportman.Reporting.Param.GetDbType*
+- uid: Reportman.Reporting.Param.GetSubExpreValue
+  commentId: M:Reportman.Reporting.Param.GetSubExpreValue
+  id: GetSubExpreValue
+  parent: Reportman.Reporting.Param
+  langs:
+  - csharp
+  - vb
+  name: GetSubExpreValue()
+  nameWithType: Param.GetSubExpreValue()
+  fullName: Reportman.Reporting.Param.GetSubExpreValue()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public string GetSubExpreValue()
+    return:
+      type: System.String
+    content.vb: Public Function GetSubExpreValue() As String
+  overload: Reportman.Reporting.Param.GetSubExpreValue*
+- uid: Reportman.Reporting.Param.GetMultiValue
+  commentId: M:Reportman.Reporting.Param.GetMultiValue
+  id: GetMultiValue
+  parent: Reportman.Reporting.Param
+  langs:
+  - csharp
+  - vb
+  name: GetMultiValue()
+  nameWithType: Param.GetMultiValue()
+  fullName: Reportman.Reporting.Param.GetMultiValue()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public string GetMultiValue()
+    return:
+      type: System.String
+    content.vb: Public Function GetMultiValue() As String
+  overload: Reportman.Reporting.Param.GetMultiValue*
+- uid: Reportman.Reporting.Param.Clone
+  commentId: M:Reportman.Reporting.Param.Clone
+  id: Clone
+  parent: Reportman.Reporting.Param
+  langs:
+  - csharp
+  - vb
+  name: Clone()
+  nameWithType: Param.Clone()
+  fullName: Reportman.Reporting.Param.Clone()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  example: []
+  syntax:
+    content: public object Clone()
+    return:
+      type: System.Object
+    content.vb: Public Function Clone() As Object
+  overload: Reportman.Reporting.Param.Clone*
+  implements:
+  - System.ICloneable.Clone
+- uid: Reportman.Reporting.Param.SelectAllValues
+  commentId: M:Reportman.Reporting.Param.SelectAllValues
+  id: SelectAllValues
+  parent: Reportman.Reporting.Param
+  langs:
+  - csharp
+  - vb
+  name: SelectAllValues()
+  nameWithType: Param.SelectAllValues()
+  fullName: Reportman.Reporting.Param.SelectAllValues()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public void SelectAllValues()
+    content.vb: Public Sub SelectAllValues()
+  overload: Reportman.Reporting.Param.SelectAllValues*
+- uid: Reportman.Reporting.Param.UpdateLookupValues
+  commentId: M:Reportman.Reporting.Param.UpdateLookupValues
+  id: UpdateLookupValues
+  parent: Reportman.Reporting.Param
+  langs:
+  - csharp
+  - vb
+  name: UpdateLookupValues()
+  nameWithType: Param.UpdateLookupValues()
+  fullName: Reportman.Reporting.Param.UpdateLookupValues()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public void UpdateLookupValues()
+    content.vb: Public Sub UpdateLookupValues()
+  overload: Reportman.Reporting.Param.UpdateLookupValues*
+- uid: Reportman.Reporting.Param.Value
+  commentId: P:Reportman.Reporting.Param.Value
+  id: Value
+  parent: Reportman.Reporting.Param
+  langs:
+  - csharp
+  - vb
+  name: Value
+  nameWithType: Param.Value
+  fullName: Reportman.Reporting.Param.Value
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public Variant Value { get; set; }
+    parameters: []
+    return:
+      type: Reportman.Reporting.Variant
+    content.vb: Public Property Value As [Variant]
+  overload: Reportman.Reporting.Param.Value*
+- uid: Reportman.Reporting.Param.Description
+  commentId: P:Reportman.Reporting.Param.Description
+  id: Description
+  parent: Reportman.Reporting.Param
+  langs:
+  - csharp
+  - vb
+  name: Description
+  nameWithType: Param.Description
+  fullName: Reportman.Reporting.Param.Description
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public string Description { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Description As String
+  overload: Reportman.Reporting.Param.Description*
+- uid: Reportman.Reporting.Param.UserVisible
+  commentId: P:Reportman.Reporting.Param.UserVisible
+  id: UserVisible
+  parent: Reportman.Reporting.Param
+  langs:
+  - csharp
+  - vb
+  name: UserVisible
+  nameWithType: Param.UserVisible
+  fullName: Reportman.Reporting.Param.UserVisible
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public bool UserVisible { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property UserVisible As Boolean
+  overload: Reportman.Reporting.Param.UserVisible*
+- uid: Reportman.Reporting.Param.Hint
+  commentId: P:Reportman.Reporting.Param.Hint
+  id: Hint
+  parent: Reportman.Reporting.Param
+  langs:
+  - csharp
+  - vb
+  name: Hint
+  nameWithType: Param.Hint
+  fullName: Reportman.Reporting.Param.Hint
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public string Hint { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Hint As String
+  overload: Reportman.Reporting.Param.Hint*
+- uid: Reportman.Reporting.Param.ErrorMessage
+  commentId: P:Reportman.Reporting.Param.ErrorMessage
+  id: ErrorMessage
+  parent: Reportman.Reporting.Param
+  langs:
+  - csharp
+  - vb
+  name: ErrorMessage
+  nameWithType: Param.ErrorMessage
+  fullName: Reportman.Reporting.Param.ErrorMessage
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public string ErrorMessage { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ErrorMessage As String
+  overload: Reportman.Reporting.Param.ErrorMessage*
+- uid: Reportman.Reporting.Param.LastValue
+  commentId: P:Reportman.Reporting.Param.LastValue
+  id: LastValue
+  parent: Reportman.Reporting.Param
+  langs:
+  - csharp
+  - vb
+  name: LastValue
+  nameWithType: Param.LastValue
+  fullName: Reportman.Reporting.Param.LastValue
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public Variant LastValue { get; set; }
+    parameters: []
+    return:
+      type: Reportman.Reporting.Variant
+    content.vb: Public Property LastValue As [Variant]
+  overload: Reportman.Reporting.Param.LastValue*
+- uid: Reportman.Reporting.Param.ListValue
+  commentId: P:Reportman.Reporting.Param.ListValue
+  id: ListValue
+  parent: Reportman.Reporting.Param
+  langs:
+  - csharp
+  - vb
+  name: ListValue
+  nameWithType: Param.ListValue
+  fullName: Reportman.Reporting.Param.ListValue
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public Variant ListValue { get; }
+    parameters: []
+    return:
+      type: Reportman.Reporting.Variant
+    content.vb: Public ReadOnly Property ListValue As [Variant]
+  overload: Reportman.Reporting.Param.ListValue*
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Reportman.Reporting.ReportItem
+  commentId: T:Reportman.Reporting.ReportItem
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html
+  name: ReportItem
+  nameWithType: ReportItem
+  fullName: Reportman.Reporting.ReportItem
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System.ICloneable
+  commentId: T:System.ICloneable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.icloneable
+  name: ICloneable
+  nameWithType: ICloneable
+  fullName: System.ICloneable
+- uid: Reportman.Reporting.ReportItem.SetReport(Reportman.Reporting.BaseReport)
+  commentId: M:Reportman.Reporting.ReportItem.SetReport(Reportman.Reporting.BaseReport)
+  parent: Reportman.Reporting.ReportItem
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_SetReport_Reportman_Reporting_BaseReport_
+  name: SetReport(BaseReport)
+  nameWithType: ReportItem.SetReport(BaseReport)
+  fullName: Reportman.Reporting.ReportItem.SetReport(Reportman.Reporting.BaseReport)
+  spec.csharp:
+  - uid: Reportman.Reporting.ReportItem.SetReport(Reportman.Reporting.BaseReport)
+    name: SetReport
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_SetReport_Reportman_Reporting_BaseReport_
+  - name: (
+  - uid: Reportman.Reporting.BaseReport
+    name: BaseReport
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.ReportItem.SetReport(Reportman.Reporting.BaseReport)
+    name: SetReport
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_SetReport_Reportman_Reporting_BaseReport_
+  - name: (
+  - uid: Reportman.Reporting.BaseReport
+    name: BaseReport
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html
+  - name: )
+- uid: Reportman.Reporting.ReportItem.Dispose
+  commentId: M:Reportman.Reporting.ReportItem.Dispose
+  parent: Reportman.Reporting.ReportItem
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_Dispose
+  name: Dispose()
+  nameWithType: ReportItem.Dispose()
+  fullName: Reportman.Reporting.ReportItem.Dispose()
+  spec.csharp:
+  - uid: Reportman.Reporting.ReportItem.Dispose
+    name: Dispose
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_Dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.ReportItem.Dispose
+    name: Dispose
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_Dispose
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.ReportItem.Name
+  commentId: P:Reportman.Reporting.ReportItem.Name
+  parent: Reportman.Reporting.ReportItem
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_Name
+  name: Name
+  nameWithType: ReportItem.Name
+  fullName: Reportman.Reporting.ReportItem.Name
+- uid: Reportman.Reporting.ReportItem.Report
+  commentId: P:Reportman.Reporting.ReportItem.Report
+  parent: Reportman.Reporting.ReportItem
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_Report
+  name: Report
+  nameWithType: ReportItem.Report
+  fullName: Reportman.Reporting.ReportItem.Report
+- uid: Reportman.Reporting.ReportItem.ClassName
+  commentId: P:Reportman.Reporting.ReportItem.ClassName
+  parent: Reportman.Reporting.ReportItem
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_ClassName
+  name: ClassName
+  nameWithType: ReportItem.ClassName
+  fullName: Reportman.Reporting.ReportItem.ClassName
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Reporting.ParamType
+  commentId: T:Reportman.Reporting.ParamType
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.ParamType.html
+  name: ParamType
+  nameWithType: ParamType
+  fullName: Reportman.Reporting.ParamType
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Reportman.Drawing.Strings
+  commentId: T:Reportman.Drawing.Strings
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.Strings.html
+  name: Strings
+  nameWithType: Strings
+  fullName: Reportman.Drawing.Strings
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Reportman.Reporting.ReportItem.GetClassName
+  commentId: M:Reportman.Reporting.ReportItem.GetClassName
+  parent: Reportman.Reporting.ReportItem
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_GetClassName
+  name: GetClassName()
+  nameWithType: ReportItem.GetClassName()
+  fullName: Reportman.Reporting.ReportItem.GetClassName()
+  spec.csharp:
+  - uid: Reportman.Reporting.ReportItem.GetClassName
+    name: GetClassName
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_GetClassName
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.ReportItem.GetClassName
+    name: GetClassName
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_GetClassName
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.Param.GetClassName*
+  commentId: Overload:Reportman.Reporting.Param.GetClassName
+  isExternal: true
+  href: Reportman.Reporting.Param.html#Reportman_Reporting_Param_GetClassName
+  name: GetClassName
+  nameWithType: Param.GetClassName
+  fullName: Reportman.Reporting.Param.GetClassName
+- uid: Reportman.Reporting.Param.#ctor*
+  commentId: Overload:Reportman.Reporting.Param.#ctor
+  isExternal: true
+  href: Reportman.Reporting.Param.html#Reportman_Reporting_Param__ctor
+  name: Param
+  nameWithType: Param.Param
+  fullName: Reportman.Reporting.Param.Param
+  nameWithType.vb: Param.New
+  fullName.vb: Reportman.Reporting.Param.New
+  name.vb: New
+- uid: Reportman.Reporting.Param.GetDbType*
+  commentId: Overload:Reportman.Reporting.Param.GetDbType
+  isExternal: true
+  href: Reportman.Reporting.Param.html#Reportman_Reporting_Param_GetDbType
+  name: GetDbType
+  nameWithType: Param.GetDbType
+  fullName: Reportman.Reporting.Param.GetDbType
+- uid: System.Data.DbType
+  commentId: T:System.Data.DbType
+  parent: System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.dbtype
+  name: DbType
+  nameWithType: DbType
+  fullName: System.Data.DbType
+- uid: System.Data
+  commentId: N:System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Data
+  nameWithType: System.Data
+  fullName: System.Data
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+- uid: Reportman.Reporting.Param.GetSubExpreValue*
+  commentId: Overload:Reportman.Reporting.Param.GetSubExpreValue
+  isExternal: true
+  href: Reportman.Reporting.Param.html#Reportman_Reporting_Param_GetSubExpreValue
+  name: GetSubExpreValue
+  nameWithType: Param.GetSubExpreValue
+  fullName: Reportman.Reporting.Param.GetSubExpreValue
+- uid: Reportman.Reporting.Param.GetMultiValue*
+  commentId: Overload:Reportman.Reporting.Param.GetMultiValue
+  isExternal: true
+  href: Reportman.Reporting.Param.html#Reportman_Reporting_Param_GetMultiValue
+  name: GetMultiValue
+  nameWithType: Param.GetMultiValue
+  fullName: Reportman.Reporting.Param.GetMultiValue
+- uid: Reportman.Reporting.Param.Clone*
+  commentId: Overload:Reportman.Reporting.Param.Clone
+  isExternal: true
+  href: Reportman.Reporting.Param.html#Reportman_Reporting_Param_Clone
+  name: Clone
+  nameWithType: Param.Clone
+  fullName: Reportman.Reporting.Param.Clone
+- uid: System.ICloneable.Clone
+  commentId: M:System.ICloneable.Clone
+  parent: System.ICloneable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.icloneable.clone
+  name: Clone()
+  nameWithType: ICloneable.Clone()
+  fullName: System.ICloneable.Clone()
+  spec.csharp:
+  - uid: System.ICloneable.Clone
+    name: Clone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icloneable.clone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ICloneable.Clone
+    name: Clone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icloneable.clone
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.Param.SelectAllValues*
+  commentId: Overload:Reportman.Reporting.Param.SelectAllValues
+  isExternal: true
+  href: Reportman.Reporting.Param.html#Reportman_Reporting_Param_SelectAllValues
+  name: SelectAllValues
+  nameWithType: Param.SelectAllValues
+  fullName: Reportman.Reporting.Param.SelectAllValues
+- uid: Reportman.Reporting.Param.UpdateLookupValues*
+  commentId: Overload:Reportman.Reporting.Param.UpdateLookupValues
+  isExternal: true
+  href: Reportman.Reporting.Param.html#Reportman_Reporting_Param_UpdateLookupValues
+  name: UpdateLookupValues
+  nameWithType: Param.UpdateLookupValues
+  fullName: Reportman.Reporting.Param.UpdateLookupValues
+- uid: Reportman.Reporting.Param.Value*
+  commentId: Overload:Reportman.Reporting.Param.Value
+  isExternal: true
+  href: Reportman.Reporting.Param.html#Reportman_Reporting_Param_Value
+  name: Value
+  nameWithType: Param.Value
+  fullName: Reportman.Reporting.Param.Value
+- uid: Reportman.Reporting.Variant
+  commentId: T:Reportman.Reporting.Variant
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.Variant.html
+  name: Variant
+  nameWithType: Variant
+  fullName: Reportman.Reporting.Variant
+- uid: Reportman.Reporting.Param.Description*
+  commentId: Overload:Reportman.Reporting.Param.Description
+  isExternal: true
+  href: Reportman.Reporting.Param.html#Reportman_Reporting_Param_Description
+  name: Description
+  nameWithType: Param.Description
+  fullName: Reportman.Reporting.Param.Description
+- uid: Reportman.Reporting.Param.UserVisible*
+  commentId: Overload:Reportman.Reporting.Param.UserVisible
+  isExternal: true
+  href: Reportman.Reporting.Param.html#Reportman_Reporting_Param_UserVisible
+  name: UserVisible
+  nameWithType: Param.UserVisible
+  fullName: Reportman.Reporting.Param.UserVisible
+- uid: Reportman.Reporting.Param.Hint*
+  commentId: Overload:Reportman.Reporting.Param.Hint
+  isExternal: true
+  href: Reportman.Reporting.Param.html#Reportman_Reporting_Param_Hint
+  name: Hint
+  nameWithType: Param.Hint
+  fullName: Reportman.Reporting.Param.Hint
+- uid: Reportman.Reporting.Param.ErrorMessage*
+  commentId: Overload:Reportman.Reporting.Param.ErrorMessage
+  isExternal: true
+  href: Reportman.Reporting.Param.html#Reportman_Reporting_Param_ErrorMessage
+  name: ErrorMessage
+  nameWithType: Param.ErrorMessage
+  fullName: Reportman.Reporting.Param.ErrorMessage
+- uid: Reportman.Reporting.Param.LastValue*
+  commentId: Overload:Reportman.Reporting.Param.LastValue
+  isExternal: true
+  href: Reportman.Reporting.Param.html#Reportman_Reporting_Param_LastValue
+  name: LastValue
+  nameWithType: Param.LastValue
+  fullName: Reportman.Reporting.Param.LastValue
+- uid: Reportman.Reporting.Param.ListValue*
+  commentId: Overload:Reportman.Reporting.Param.ListValue
+  isExternal: true
+  href: Reportman.Reporting.Param.html#Reportman_Reporting_Param_ListValue
+  name: ListValue
+  nameWithType: Param.ListValue
+  fullName: Reportman.Reporting.Param.ListValue

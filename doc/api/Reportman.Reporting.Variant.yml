@@ -1,0 +1,3864 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.Variant
+  commentId: T:Reportman.Reporting.Variant
+  id: Variant
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.Variant.Abs
+  - Reportman.Reporting.Variant.AsDateTime
+  - Reportman.Reporting.Variant.AsDecimal
+  - Reportman.Reporting.Variant.AsDouble
+  - Reportman.Reporting.Variant.AsInteger
+  - Reportman.Reporting.Variant.AsLong
+  - Reportman.Reporting.Variant.AsObject
+  - Reportman.Reporting.Variant.AsString
+  - Reportman.Reporting.Variant.AssignFromObject(System.Object)
+  - Reportman.Reporting.Variant.CompareTo(Reportman.Reporting.Variant)
+  - Reportman.Reporting.Variant.CompareTo(System.Object)
+  - Reportman.Reporting.Variant.Equals(System.Object)
+  - Reportman.Reporting.Variant.GetDbType
+  - Reportman.Reporting.Variant.GetHashCode
+  - Reportman.Reporting.Variant.GetStream
+  - Reportman.Reporting.Variant.GetTypeCode
+  - Reportman.Reporting.Variant.GetTypeString
+  - Reportman.Reporting.Variant.IsBoolean
+  - Reportman.Reporting.Variant.IsDateTime
+  - Reportman.Reporting.Variant.IsInteger
+  - Reportman.Reporting.Variant.IsNull
+  - Reportman.Reporting.Variant.IsNumber
+  - Reportman.Reporting.Variant.IsString
+  - Reportman.Reporting.Variant.SetStream(System.IO.MemoryStream)
+  - Reportman.Reporting.Variant.ToBoolean(System.IFormatProvider)
+  - Reportman.Reporting.Variant.ToByte(System.IFormatProvider)
+  - Reportman.Reporting.Variant.ToChar(System.IFormatProvider)
+  - Reportman.Reporting.Variant.ToDateTime(System.IFormatProvider)
+  - Reportman.Reporting.Variant.ToDecimal(System.IFormatProvider)
+  - Reportman.Reporting.Variant.ToDouble(System.IFormatProvider)
+  - Reportman.Reporting.Variant.ToInt16(System.IFormatProvider)
+  - Reportman.Reporting.Variant.ToInt32(System.IFormatProvider)
+  - Reportman.Reporting.Variant.ToInt64(System.IFormatProvider)
+  - Reportman.Reporting.Variant.ToSByte(System.IFormatProvider)
+  - Reportman.Reporting.Variant.ToSingle(System.IFormatProvider)
+  - Reportman.Reporting.Variant.ToString
+  - Reportman.Reporting.Variant.ToString(System.IFormatProvider)
+  - Reportman.Reporting.Variant.ToString(System.String,Reportman.Reporting.ParamType,System.Boolean)
+  - Reportman.Reporting.Variant.ToType(System.Type,System.IFormatProvider)
+  - Reportman.Reporting.Variant.ToUInt16(System.IFormatProvider)
+  - Reportman.Reporting.Variant.ToUInt32(System.IFormatProvider)
+  - Reportman.Reporting.Variant.ToUInt64(System.IFormatProvider)
+  - Reportman.Reporting.Variant.VarType
+  - Reportman.Reporting.Variant.VariantFromObject(System.Object)
+  - Reportman.Reporting.Variant.op_Addition(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  - Reportman.Reporting.Variant.op_BitwiseAnd(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  - Reportman.Reporting.Variant.op_BitwiseOr(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  - Reportman.Reporting.Variant.op_Division(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  - Reportman.Reporting.Variant.op_Equality(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  - Reportman.Reporting.Variant.op_GreaterThan(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  - Reportman.Reporting.Variant.op_GreaterThanOrEqual(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  - Reportman.Reporting.Variant.op_Implicit(Reportman.Reporting.Variant)~System.Boolean
+  - Reportman.Reporting.Variant.op_Implicit(Reportman.Reporting.Variant)~System.Byte
+  - Reportman.Reporting.Variant.op_Implicit(Reportman.Reporting.Variant)~System.Char
+  - Reportman.Reporting.Variant.op_Implicit(Reportman.Reporting.Variant)~System.DateTime
+  - Reportman.Reporting.Variant.op_Implicit(Reportman.Reporting.Variant)~System.Decimal
+  - Reportman.Reporting.Variant.op_Implicit(Reportman.Reporting.Variant)~System.Double
+  - Reportman.Reporting.Variant.op_Implicit(Reportman.Reporting.Variant)~System.Int16
+  - Reportman.Reporting.Variant.op_Implicit(Reportman.Reporting.Variant)~System.Int32
+  - Reportman.Reporting.Variant.op_Implicit(Reportman.Reporting.Variant)~System.Int64
+  - Reportman.Reporting.Variant.op_Implicit(Reportman.Reporting.Variant)~System.String
+  - Reportman.Reporting.Variant.op_Implicit(System.Boolean)~Reportman.Reporting.Variant
+  - Reportman.Reporting.Variant.op_Implicit(System.Byte)~Reportman.Reporting.Variant
+  - Reportman.Reporting.Variant.op_Implicit(System.Char)~Reportman.Reporting.Variant
+  - Reportman.Reporting.Variant.op_Implicit(System.DateTime)~Reportman.Reporting.Variant
+  - Reportman.Reporting.Variant.op_Implicit(System.Decimal)~Reportman.Reporting.Variant
+  - Reportman.Reporting.Variant.op_Implicit(System.Double)~Reportman.Reporting.Variant
+  - Reportman.Reporting.Variant.op_Implicit(System.Int32)~Reportman.Reporting.Variant
+  - Reportman.Reporting.Variant.op_Implicit(System.Int64)~Reportman.Reporting.Variant
+  - Reportman.Reporting.Variant.op_Implicit(System.String)~Reportman.Reporting.Variant
+  - Reportman.Reporting.Variant.op_Inequality(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  - Reportman.Reporting.Variant.op_LessThan(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  - Reportman.Reporting.Variant.op_LessThanOrEqual(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  - Reportman.Reporting.Variant.op_Multiply(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  - Reportman.Reporting.Variant.op_Subtraction(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  - Reportman.Reporting.Variant.op_UnaryNegation(Reportman.Reporting.Variant)
+  langs:
+  - csharp
+  - vb
+  name: Variant
+  nameWithType: Variant
+  fullName: Reportman.Reporting.Variant
+  type: Struct
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    Implementation of a Variant type with common arithmetic and 
+
+    logic operations.
+
+    Variant is a container, not a class reference, that is when you assign
+
+    a variant to another variant, you are copying content, just like you
+
+    work with base types like int, char, string.
+
+    The Variant type is a useful feature to implement an expression
+
+    <xref href="Reportman.Reporting.Evaluator?text=evaluator" data-throw-if-not-resolved="false"></xref>.
+  remarks: >-
+    C# is a strongly typed language, this feature minimize runtime 
+
+    errors common when using implicit variable declaration (Visual Basic),
+
+    or implicit type conversion (C or C++),
+
+    however, at runtime, the requirements of an application can require 
+
+    the feature of operating with unknown/variable data types, usually this data
+
+    comes from a database, and this data types can be unknown at compile time.
+
+    Expression evaluation involving variable database fields is an example.
+
+    Use only Variant type if your aplication requires this abstraction
+
+    else it's better to use singular types.
+  example:
+  - >-
+    <pre><code class="lang-csharp">Variant a=12;
+
+    Variant b=13;
+
+    Variant c=a+b;
+
+    Variant d="The result is:";
+
+    d=d+c.ToString();</code></pre>
+  syntax:
+    content: >-
+      [JsonConverter(typeof(VariantJsonConverter))]
+
+      [JsonConverter(typeof(VariantSystemTextJsonConverter))]
+
+      public struct Variant : IConvertible, IComparable
+    content.vb: >-
+      <JsonConverter(GetType(VariantJsonConverter))>
+
+      <JsonConverter(GetType(VariantSystemTextJsonConverter))>
+
+      Public Structure [Variant] Implements IConvertible, IComparable
+  implements:
+  - System.IConvertible
+  - System.IComparable
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  attributes:
+  - type: Newtonsoft.Json.JsonConverterAttribute
+    ctor: Newtonsoft.Json.JsonConverterAttribute.#ctor(System.Type)
+    arguments:
+    - type: System.Type
+      value: Reportman.Reporting.VariantJsonConverter
+  - type: System.Text.Json.Serialization.JsonConverterAttribute
+    ctor: System.Text.Json.Serialization.JsonConverterAttribute.#ctor(System.Type)
+    arguments:
+    - type: System.Type
+      value: Reportman.Reporting.VariantSystemTextJsonConverter
+- uid: Reportman.Reporting.Variant.IsInteger
+  commentId: M:Reportman.Reporting.Variant.IsInteger
+  id: IsInteger
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: IsInteger()
+  nameWithType: Variant.IsInteger()
+  fullName: Reportman.Reporting.Variant.IsInteger()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Function to check if the current value is an integer value.
+  example: []
+  syntax:
+    content: public bool IsInteger()
+    return:
+      type: System.Boolean
+      description: >-
+        Returns true if the current value is an ordinal, integer value.
+
+        That is currently a Byte, Integer or Long type values.
+    content.vb: Public Function IsInteger() As Boolean
+  overload: Reportman.Reporting.Variant.IsInteger*
+- uid: Reportman.Reporting.Variant.IsBoolean
+  commentId: M:Reportman.Reporting.Variant.IsBoolean
+  id: IsBoolean
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: IsBoolean()
+  nameWithType: Variant.IsBoolean()
+  fullName: Reportman.Reporting.Variant.IsBoolean()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Function to check if the current value is a boolean value.
+  example: []
+  syntax:
+    content: public bool IsBoolean()
+    return:
+      type: System.Boolean
+      description: Returns true if the current value is a boolean value.
+    content.vb: Public Function IsBoolean() As Boolean
+  overload: Reportman.Reporting.Variant.IsBoolean*
+- uid: Reportman.Reporting.Variant.IsDateTime
+  commentId: M:Reportman.Reporting.Variant.IsDateTime
+  id: IsDateTime
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: IsDateTime()
+  nameWithType: Variant.IsDateTime()
+  fullName: Reportman.Reporting.Variant.IsDateTime()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Function to check if the current value is a Datetime value.
+  example: []
+  syntax:
+    content: public bool IsDateTime()
+    return:
+      type: System.Boolean
+      description: Returns true if the current value is a Datetime value.
+    content.vb: Public Function IsDateTime() As Boolean
+  overload: Reportman.Reporting.Variant.IsDateTime*
+- uid: Reportman.Reporting.Variant.IsString
+  commentId: M:Reportman.Reporting.Variant.IsString
+  id: IsString
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: IsString()
+  nameWithType: Variant.IsString()
+  fullName: Reportman.Reporting.Variant.IsString()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Function to check if the current value is a string value.
+  example: []
+  syntax:
+    content: public bool IsString()
+    return:
+      type: System.Boolean
+      description: Returns true if the current value is a string value.
+    content.vb: Public Function IsString() As Boolean
+  overload: Reportman.Reporting.Variant.IsString*
+- uid: Reportman.Reporting.Variant.IsNumber
+  commentId: M:Reportman.Reporting.Variant.IsNumber
+  id: IsNumber
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: IsNumber()
+  nameWithType: Variant.IsNumber()
+  fullName: Reportman.Reporting.Variant.IsNumber()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Function to check if the current value is a number.
+  example: []
+  syntax:
+    content: public bool IsNumber()
+    return:
+      type: System.Boolean
+      description: >-
+        Returns true if the current value is number.
+
+        That is any integer, Double or Decimal value.
+    content.vb: Public Function IsNumber() As Boolean
+  overload: Reportman.Reporting.Variant.IsNumber*
+- uid: Reportman.Reporting.Variant.GetTypeString
+  commentId: M:Reportman.Reporting.Variant.GetTypeString
+  id: GetTypeString
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: GetTypeString()
+  nameWithType: Variant.GetTypeString()
+  fullName: Reportman.Reporting.Variant.GetTypeString()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Function to get the type of the value as a string.
+  example: []
+  syntax:
+    content: public string GetTypeString()
+    return:
+      type: System.String
+      description: >-
+        Returns the string representation from the type of the value.
+
+        Possible values are:
+
+        <ul>
+
+        <li>VariantType.Null</li>
+
+        <li>VariantType.Boolean</li>
+
+        <li>VariantType.Byte</li>
+
+        <li>VariantType.Char</li>
+
+        <li>VariantType.Integer</li>
+
+        <li>VariantType.Long</li>
+
+        <li>VariantType.Decimal</li>
+
+        <li>VariantType.Double</li>
+
+        <li>VariantType.DateTime</li>
+
+        <li>VariantType.Binary</li>
+
+        <li>VariantType.String</li>
+
+        </ul>
+    content.vb: Public Function GetTypeString() As String
+  overload: Reportman.Reporting.Variant.GetTypeString*
+- uid: Reportman.Reporting.Variant.op_Implicit(System.Boolean)~Reportman.Reporting.Variant
+  commentId: M:Reportman.Reporting.Variant.op_Implicit(System.Boolean)~Reportman.Reporting.Variant
+  id: op_Implicit(System.Boolean)~Reportman.Reporting.Variant
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: implicit operator Variant(bool)
+  nameWithType: Variant.implicit operator Variant(bool)
+  fullName: Reportman.Reporting.Variant.implicit operator Reportman.Reporting.Variant(bool)
+  type: Operator
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Assigns a bool value to a Variant
+  example: []
+  syntax:
+    content: public static implicit operator Variant(bool avalue)
+    parameters:
+    - id: avalue
+      type: System.Boolean
+    return:
+      type: Reportman.Reporting.Variant
+    content.vb: Public Shared Widening Operator CType(avalue As Boolean) As [Variant]
+  overload: Reportman.Reporting.Variant.op_Implicit*
+  nameWithType.vb: Variant.CType(Boolean)
+  fullName.vb: Reportman.Reporting.Variant.CType(Boolean)
+  name.vb: CType(Boolean)
+- uid: Reportman.Reporting.Variant.op_Implicit(System.Int32)~Reportman.Reporting.Variant
+  commentId: M:Reportman.Reporting.Variant.op_Implicit(System.Int32)~Reportman.Reporting.Variant
+  id: op_Implicit(System.Int32)~Reportman.Reporting.Variant
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: implicit operator Variant(int)
+  nameWithType: Variant.implicit operator Variant(int)
+  fullName: Reportman.Reporting.Variant.implicit operator Reportman.Reporting.Variant(int)
+  type: Operator
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Assigns an int value to a Variant
+  example: []
+  syntax:
+    content: public static implicit operator Variant(int avalue)
+    parameters:
+    - id: avalue
+      type: System.Int32
+    return:
+      type: Reportman.Reporting.Variant
+    content.vb: Public Shared Widening Operator CType(avalue As Integer) As [Variant]
+  overload: Reportman.Reporting.Variant.op_Implicit*
+  nameWithType.vb: Variant.CType(Integer)
+  fullName.vb: Reportman.Reporting.Variant.CType(Integer)
+  name.vb: CType(Integer)
+- uid: Reportman.Reporting.Variant.op_Implicit(System.Int64)~Reportman.Reporting.Variant
+  commentId: M:Reportman.Reporting.Variant.op_Implicit(System.Int64)~Reportman.Reporting.Variant
+  id: op_Implicit(System.Int64)~Reportman.Reporting.Variant
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: implicit operator Variant(long)
+  nameWithType: Variant.implicit operator Variant(long)
+  fullName: Reportman.Reporting.Variant.implicit operator Reportman.Reporting.Variant(long)
+  type: Operator
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Assigns a long value to a Variant
+  example: []
+  syntax:
+    content: public static implicit operator Variant(long avalue)
+    parameters:
+    - id: avalue
+      type: System.Int64
+    return:
+      type: Reportman.Reporting.Variant
+    content.vb: Public Shared Widening Operator CType(avalue As Long) As [Variant]
+  overload: Reportman.Reporting.Variant.op_Implicit*
+  nameWithType.vb: Variant.CType(Long)
+  fullName.vb: Reportman.Reporting.Variant.CType(Long)
+  name.vb: CType(Long)
+- uid: Reportman.Reporting.Variant.op_Implicit(System.Decimal)~Reportman.Reporting.Variant
+  commentId: M:Reportman.Reporting.Variant.op_Implicit(System.Decimal)~Reportman.Reporting.Variant
+  id: op_Implicit(System.Decimal)~Reportman.Reporting.Variant
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: implicit operator Variant(decimal)
+  nameWithType: Variant.implicit operator Variant(decimal)
+  fullName: Reportman.Reporting.Variant.implicit operator Reportman.Reporting.Variant(decimal)
+  type: Operator
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Assigns a decimal value to a Variant
+  example: []
+  syntax:
+    content: public static implicit operator Variant(decimal avalue)
+    parameters:
+    - id: avalue
+      type: System.Decimal
+    return:
+      type: Reportman.Reporting.Variant
+    content.vb: Public Shared Widening Operator CType(avalue As Decimal) As [Variant]
+  overload: Reportman.Reporting.Variant.op_Implicit*
+  nameWithType.vb: Variant.CType(Decimal)
+  fullName.vb: Reportman.Reporting.Variant.CType(Decimal)
+  name.vb: CType(Decimal)
+- uid: Reportman.Reporting.Variant.op_Implicit(System.Double)~Reportman.Reporting.Variant
+  commentId: M:Reportman.Reporting.Variant.op_Implicit(System.Double)~Reportman.Reporting.Variant
+  id: op_Implicit(System.Double)~Reportman.Reporting.Variant
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: implicit operator Variant(double)
+  nameWithType: Variant.implicit operator Variant(double)
+  fullName: Reportman.Reporting.Variant.implicit operator Reportman.Reporting.Variant(double)
+  type: Operator
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Assigns a double value to a Variant
+  example: []
+  syntax:
+    content: public static implicit operator Variant(double avalue)
+    parameters:
+    - id: avalue
+      type: System.Double
+    return:
+      type: Reportman.Reporting.Variant
+    content.vb: Public Shared Widening Operator CType(avalue As Double) As [Variant]
+  overload: Reportman.Reporting.Variant.op_Implicit*
+  nameWithType.vb: Variant.CType(Double)
+  fullName.vb: Reportman.Reporting.Variant.CType(Double)
+  name.vb: CType(Double)
+- uid: Reportman.Reporting.Variant.op_Implicit(System.String)~Reportman.Reporting.Variant
+  commentId: M:Reportman.Reporting.Variant.op_Implicit(System.String)~Reportman.Reporting.Variant
+  id: op_Implicit(System.String)~Reportman.Reporting.Variant
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: implicit operator Variant(string)
+  nameWithType: Variant.implicit operator Variant(string)
+  fullName: Reportman.Reporting.Variant.implicit operator Reportman.Reporting.Variant(string)
+  type: Operator
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Assigns a string value to a Variant
+  example: []
+  syntax:
+    content: public static implicit operator Variant(string avalue)
+    parameters:
+    - id: avalue
+      type: System.String
+    return:
+      type: Reportman.Reporting.Variant
+    content.vb: Public Shared Widening Operator CType(avalue As String) As [Variant]
+  overload: Reportman.Reporting.Variant.op_Implicit*
+  nameWithType.vb: Variant.CType(String)
+  fullName.vb: Reportman.Reporting.Variant.CType(String)
+  name.vb: CType(String)
+- uid: Reportman.Reporting.Variant.op_Implicit(System.DateTime)~Reportman.Reporting.Variant
+  commentId: M:Reportman.Reporting.Variant.op_Implicit(System.DateTime)~Reportman.Reporting.Variant
+  id: op_Implicit(System.DateTime)~Reportman.Reporting.Variant
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: implicit operator Variant(DateTime)
+  nameWithType: Variant.implicit operator Variant(DateTime)
+  fullName: Reportman.Reporting.Variant.implicit operator Reportman.Reporting.Variant(System.DateTime)
+  type: Operator
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Assigns a DateTime value to a Variant
+  example: []
+  syntax:
+    content: public static implicit operator Variant(DateTime avalue)
+    parameters:
+    - id: avalue
+      type: System.DateTime
+    return:
+      type: Reportman.Reporting.Variant
+    content.vb: Public Shared Widening Operator CType(avalue As Date) As [Variant]
+  overload: Reportman.Reporting.Variant.op_Implicit*
+  nameWithType.vb: Variant.CType(Date)
+  fullName.vb: Reportman.Reporting.Variant.CType(Date)
+  name.vb: CType(Date)
+- uid: Reportman.Reporting.Variant.SetStream(System.IO.MemoryStream)
+  commentId: M:Reportman.Reporting.Variant.SetStream(System.IO.MemoryStream)
+  id: SetStream(System.IO.MemoryStream)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: SetStream(MemoryStream)
+  nameWithType: Variant.SetStream(MemoryStream)
+  fullName: Reportman.Reporting.Variant.SetStream(System.IO.MemoryStream)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Assigns a memory stream to a Variant
+  example: []
+  syntax:
+    content: public void SetStream(MemoryStream memstream)
+    parameters:
+    - id: memstream
+      type: System.IO.MemoryStream
+    content.vb: Public Sub SetStream(memstream As MemoryStream)
+  overload: Reportman.Reporting.Variant.SetStream*
+- uid: Reportman.Reporting.Variant.GetStream
+  commentId: M:Reportman.Reporting.Variant.GetStream
+  id: GetStream
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: GetStream()
+  nameWithType: Variant.GetStream()
+  fullName: Reportman.Reporting.Variant.GetStream()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Gets the stream on a binary type Variant
+  example: []
+  syntax:
+    content: public MemoryStream GetStream()
+    return:
+      type: System.IO.MemoryStream
+    content.vb: Public Function GetStream() As MemoryStream
+  overload: Reportman.Reporting.Variant.GetStream*
+- uid: Reportman.Reporting.Variant.op_Implicit(System.Char)~Reportman.Reporting.Variant
+  commentId: M:Reportman.Reporting.Variant.op_Implicit(System.Char)~Reportman.Reporting.Variant
+  id: op_Implicit(System.Char)~Reportman.Reporting.Variant
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: implicit operator Variant(char)
+  nameWithType: Variant.implicit operator Variant(char)
+  fullName: Reportman.Reporting.Variant.implicit operator Reportman.Reporting.Variant(char)
+  type: Operator
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Assigns a char value to a Variant
+  example: []
+  syntax:
+    content: public static implicit operator Variant(char avalue)
+    parameters:
+    - id: avalue
+      type: System.Char
+    return:
+      type: Reportman.Reporting.Variant
+    content.vb: Public Shared Widening Operator CType(avalue As Char) As [Variant]
+  overload: Reportman.Reporting.Variant.op_Implicit*
+  nameWithType.vb: Variant.CType(Char)
+  fullName.vb: Reportman.Reporting.Variant.CType(Char)
+  name.vb: CType(Char)
+- uid: Reportman.Reporting.Variant.op_Implicit(System.Byte)~Reportman.Reporting.Variant
+  commentId: M:Reportman.Reporting.Variant.op_Implicit(System.Byte)~Reportman.Reporting.Variant
+  id: op_Implicit(System.Byte)~Reportman.Reporting.Variant
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: implicit operator Variant(byte)
+  nameWithType: Variant.implicit operator Variant(byte)
+  fullName: Reportman.Reporting.Variant.implicit operator Reportman.Reporting.Variant(byte)
+  type: Operator
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Assigns a byte value to a Variant
+  example: []
+  syntax:
+    content: public static implicit operator Variant(byte avalue)
+    parameters:
+    - id: avalue
+      type: System.Byte
+    return:
+      type: Reportman.Reporting.Variant
+    content.vb: Public Shared Widening Operator CType(avalue As Byte) As [Variant]
+  overload: Reportman.Reporting.Variant.op_Implicit*
+  nameWithType.vb: Variant.CType(Byte)
+  fullName.vb: Reportman.Reporting.Variant.CType(Byte)
+  name.vb: CType(Byte)
+- uid: Reportman.Reporting.Variant.op_Implicit(Reportman.Reporting.Variant)~System.Boolean
+  commentId: M:Reportman.Reporting.Variant.op_Implicit(Reportman.Reporting.Variant)~System.Boolean
+  id: op_Implicit(Reportman.Reporting.Variant)~System.Boolean
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: implicit operator bool(Variant)
+  nameWithType: Variant.implicit operator bool(Variant)
+  fullName: Reportman.Reporting.Variant.implicit operator bool(Reportman.Reporting.Variant)
+  type: Operator
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Implicit conversion from Variant to bool
+  example: []
+  syntax:
+    content: public static implicit operator bool(Variant avalue)
+    parameters:
+    - id: avalue
+      type: Reportman.Reporting.Variant
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Widening Operator CType(avalue As [Variant]) As Boolean
+  overload: Reportman.Reporting.Variant.op_Implicit*
+  nameWithType.vb: Variant.CType(Variant)
+  fullName.vb: Reportman.Reporting.Variant.CType(Reportman.Reporting.Variant)
+  name.vb: CType(Variant)
+- uid: Reportman.Reporting.Variant.op_Implicit(Reportman.Reporting.Variant)~System.Int32
+  commentId: M:Reportman.Reporting.Variant.op_Implicit(Reportman.Reporting.Variant)~System.Int32
+  id: op_Implicit(Reportman.Reporting.Variant)~System.Int32
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: implicit operator int(Variant)
+  nameWithType: Variant.implicit operator int(Variant)
+  fullName: Reportman.Reporting.Variant.implicit operator int(Reportman.Reporting.Variant)
+  type: Operator
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Implicit conversion from Variant to int
+  example: []
+  syntax:
+    content: public static implicit operator int(Variant avalue)
+    parameters:
+    - id: avalue
+      type: Reportman.Reporting.Variant
+    return:
+      type: System.Int32
+    content.vb: Public Shared Widening Operator CType(avalue As [Variant]) As Integer
+  overload: Reportman.Reporting.Variant.op_Implicit*
+  nameWithType.vb: Variant.CType(Variant)
+  fullName.vb: Reportman.Reporting.Variant.CType(Reportman.Reporting.Variant)
+  name.vb: CType(Variant)
+- uid: Reportman.Reporting.Variant.op_Implicit(Reportman.Reporting.Variant)~System.Int64
+  commentId: M:Reportman.Reporting.Variant.op_Implicit(Reportman.Reporting.Variant)~System.Int64
+  id: op_Implicit(Reportman.Reporting.Variant)~System.Int64
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: implicit operator long(Variant)
+  nameWithType: Variant.implicit operator long(Variant)
+  fullName: Reportman.Reporting.Variant.implicit operator long(Reportman.Reporting.Variant)
+  type: Operator
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Implicit conversion from Variant to long
+  example: []
+  syntax:
+    content: public static implicit operator long(Variant avalue)
+    parameters:
+    - id: avalue
+      type: Reportman.Reporting.Variant
+    return:
+      type: System.Int64
+    content.vb: Public Shared Widening Operator CType(avalue As [Variant]) As Long
+  overload: Reportman.Reporting.Variant.op_Implicit*
+  nameWithType.vb: Variant.CType(Variant)
+  fullName.vb: Reportman.Reporting.Variant.CType(Reportman.Reporting.Variant)
+  name.vb: CType(Variant)
+- uid: Reportman.Reporting.Variant.op_Implicit(Reportman.Reporting.Variant)~System.Byte
+  commentId: M:Reportman.Reporting.Variant.op_Implicit(Reportman.Reporting.Variant)~System.Byte
+  id: op_Implicit(Reportman.Reporting.Variant)~System.Byte
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: implicit operator byte(Variant)
+  nameWithType: Variant.implicit operator byte(Variant)
+  fullName: Reportman.Reporting.Variant.implicit operator byte(Reportman.Reporting.Variant)
+  type: Operator
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Implicit conversion from Variant to byte
+  example: []
+  syntax:
+    content: public static implicit operator byte(Variant avalue)
+    parameters:
+    - id: avalue
+      type: Reportman.Reporting.Variant
+    return:
+      type: System.Byte
+    content.vb: Public Shared Widening Operator CType(avalue As [Variant]) As Byte
+  overload: Reportman.Reporting.Variant.op_Implicit*
+  nameWithType.vb: Variant.CType(Variant)
+  fullName.vb: Reportman.Reporting.Variant.CType(Reportman.Reporting.Variant)
+  name.vb: CType(Variant)
+- uid: Reportman.Reporting.Variant.op_Implicit(Reportman.Reporting.Variant)~System.Char
+  commentId: M:Reportman.Reporting.Variant.op_Implicit(Reportman.Reporting.Variant)~System.Char
+  id: op_Implicit(Reportman.Reporting.Variant)~System.Char
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: implicit operator char(Variant)
+  nameWithType: Variant.implicit operator char(Variant)
+  fullName: Reportman.Reporting.Variant.implicit operator char(Reportman.Reporting.Variant)
+  type: Operator
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Implicit conversion from Variant to char
+  example: []
+  syntax:
+    content: public static implicit operator char(Variant avalue)
+    parameters:
+    - id: avalue
+      type: Reportman.Reporting.Variant
+    return:
+      type: System.Char
+    content.vb: Public Shared Widening Operator CType(avalue As [Variant]) As Char
+  overload: Reportman.Reporting.Variant.op_Implicit*
+  nameWithType.vb: Variant.CType(Variant)
+  fullName.vb: Reportman.Reporting.Variant.CType(Reportman.Reporting.Variant)
+  name.vb: CType(Variant)
+- uid: Reportman.Reporting.Variant.op_Implicit(Reportman.Reporting.Variant)~System.Int16
+  commentId: M:Reportman.Reporting.Variant.op_Implicit(Reportman.Reporting.Variant)~System.Int16
+  id: op_Implicit(Reportman.Reporting.Variant)~System.Int16
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: implicit operator short(Variant)
+  nameWithType: Variant.implicit operator short(Variant)
+  fullName: Reportman.Reporting.Variant.implicit operator short(Reportman.Reporting.Variant)
+  type: Operator
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Implicit conversion from Variant to short
+  example: []
+  syntax:
+    content: public static implicit operator short(Variant avalue)
+    parameters:
+    - id: avalue
+      type: Reportman.Reporting.Variant
+    return:
+      type: System.Int16
+    content.vb: Public Shared Widening Operator CType(avalue As [Variant]) As Short
+  overload: Reportman.Reporting.Variant.op_Implicit*
+  nameWithType.vb: Variant.CType(Variant)
+  fullName.vb: Reportman.Reporting.Variant.CType(Reportman.Reporting.Variant)
+  name.vb: CType(Variant)
+- uid: Reportman.Reporting.Variant.op_Implicit(Reportman.Reporting.Variant)~System.Decimal
+  commentId: M:Reportman.Reporting.Variant.op_Implicit(Reportman.Reporting.Variant)~System.Decimal
+  id: op_Implicit(Reportman.Reporting.Variant)~System.Decimal
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: implicit operator decimal(Variant)
+  nameWithType: Variant.implicit operator decimal(Variant)
+  fullName: Reportman.Reporting.Variant.implicit operator decimal(Reportman.Reporting.Variant)
+  type: Operator
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Implicit conversion from Variant to decimal
+  example: []
+  syntax:
+    content: public static implicit operator decimal(Variant avalue)
+    parameters:
+    - id: avalue
+      type: Reportman.Reporting.Variant
+    return:
+      type: System.Decimal
+    content.vb: Public Shared Widening Operator CType(avalue As [Variant]) As Decimal
+  overload: Reportman.Reporting.Variant.op_Implicit*
+  nameWithType.vb: Variant.CType(Variant)
+  fullName.vb: Reportman.Reporting.Variant.CType(Reportman.Reporting.Variant)
+  name.vb: CType(Variant)
+- uid: Reportman.Reporting.Variant.op_Implicit(Reportman.Reporting.Variant)~System.Double
+  commentId: M:Reportman.Reporting.Variant.op_Implicit(Reportman.Reporting.Variant)~System.Double
+  id: op_Implicit(Reportman.Reporting.Variant)~System.Double
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: implicit operator double(Variant)
+  nameWithType: Variant.implicit operator double(Variant)
+  fullName: Reportman.Reporting.Variant.implicit operator double(Reportman.Reporting.Variant)
+  type: Operator
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Implicit conversion from Variant to double
+  example: []
+  syntax:
+    content: public static implicit operator double(Variant avalue)
+    parameters:
+    - id: avalue
+      type: Reportman.Reporting.Variant
+    return:
+      type: System.Double
+    content.vb: Public Shared Widening Operator CType(avalue As [Variant]) As Double
+  overload: Reportman.Reporting.Variant.op_Implicit*
+  nameWithType.vb: Variant.CType(Variant)
+  fullName.vb: Reportman.Reporting.Variant.CType(Reportman.Reporting.Variant)
+  name.vb: CType(Variant)
+- uid: Reportman.Reporting.Variant.op_Implicit(Reportman.Reporting.Variant)~System.DateTime
+  commentId: M:Reportman.Reporting.Variant.op_Implicit(Reportman.Reporting.Variant)~System.DateTime
+  id: op_Implicit(Reportman.Reporting.Variant)~System.DateTime
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: implicit operator DateTime(Variant)
+  nameWithType: Variant.implicit operator DateTime(Variant)
+  fullName: Reportman.Reporting.Variant.implicit operator System.DateTime(Reportman.Reporting.Variant)
+  type: Operator
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Implicit conversion from Variant to DateTime
+  example: []
+  syntax:
+    content: public static implicit operator DateTime(Variant avalue)
+    parameters:
+    - id: avalue
+      type: Reportman.Reporting.Variant
+    return:
+      type: System.DateTime
+    content.vb: Public Shared Widening Operator CType(avalue As [Variant]) As Date
+  overload: Reportman.Reporting.Variant.op_Implicit*
+  nameWithType.vb: Variant.CType(Variant)
+  fullName.vb: Reportman.Reporting.Variant.CType(Reportman.Reporting.Variant)
+  name.vb: CType(Variant)
+- uid: Reportman.Reporting.Variant.op_Implicit(Reportman.Reporting.Variant)~System.String
+  commentId: M:Reportman.Reporting.Variant.op_Implicit(Reportman.Reporting.Variant)~System.String
+  id: op_Implicit(Reportman.Reporting.Variant)~System.String
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: implicit operator string(Variant)
+  nameWithType: Variant.implicit operator string(Variant)
+  fullName: Reportman.Reporting.Variant.implicit operator string(Reportman.Reporting.Variant)
+  type: Operator
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Implicit conversion from Variant to string
+  example: []
+  syntax:
+    content: public static implicit operator string(Variant avalue)
+    parameters:
+    - id: avalue
+      type: Reportman.Reporting.Variant
+    return:
+      type: System.String
+    content.vb: Public Shared Widening Operator CType(avalue As [Variant]) As String
+  overload: Reportman.Reporting.Variant.op_Implicit*
+  nameWithType.vb: Variant.CType(Variant)
+  fullName.vb: Reportman.Reporting.Variant.CType(Reportman.Reporting.Variant)
+  name.vb: CType(Variant)
+- uid: Reportman.Reporting.Variant.ToString
+  commentId: M:Reportman.Reporting.Variant.ToString
+  id: ToString
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: Variant.ToString()
+  fullName: Reportman.Reporting.Variant.ToString()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Returns the value of a Variant as a string
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.ValueType.ToString
+  overload: Reportman.Reporting.Variant.ToString*
+- uid: Reportman.Reporting.Variant.GetTypeCode
+  commentId: M:Reportman.Reporting.Variant.GetTypeCode
+  id: GetTypeCode
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: GetTypeCode()
+  nameWithType: Variant.GetTypeCode()
+  fullName: Reportman.Reporting.Variant.GetTypeCode()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Returns a TypeCode based on the Variant type
+  example: []
+  syntax:
+    content: public TypeCode GetTypeCode()
+    return:
+      type: System.TypeCode
+    content.vb: Public Function GetTypeCode() As TypeCode
+  overload: Reportman.Reporting.Variant.GetTypeCode*
+  implements:
+  - System.IConvertible.GetTypeCode
+- uid: Reportman.Reporting.Variant.GetDbType
+  commentId: M:Reportman.Reporting.Variant.GetDbType
+  id: GetDbType
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: GetDbType()
+  nameWithType: Variant.GetDbType()
+  fullName: Reportman.Reporting.Variant.GetDbType()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Returns a DbType based on the Variant type
+  example: []
+  syntax:
+    content: public DbType GetDbType()
+    return:
+      type: System.Data.DbType
+    content.vb: Public Function GetDbType() As DbType
+  overload: Reportman.Reporting.Variant.GetDbType*
+- uid: Reportman.Reporting.Variant.CompareTo(Reportman.Reporting.Variant)
+  commentId: M:Reportman.Reporting.Variant.CompareTo(Reportman.Reporting.Variant)
+  id: CompareTo(Reportman.Reporting.Variant)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: CompareTo(Variant)
+  nameWithType: Variant.CompareTo(Variant)
+  fullName: Reportman.Reporting.Variant.CompareTo(Reportman.Reporting.Variant)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Compare to other Variant
+  example: []
+  syntax:
+    content: public int CompareTo(Variant obj)
+    parameters:
+    - id: obj
+      type: Reportman.Reporting.Variant
+    return:
+      type: System.Int32
+    content.vb: Public Function CompareTo(obj As [Variant]) As Integer
+  overload: Reportman.Reporting.Variant.CompareTo*
+- uid: Reportman.Reporting.Variant.op_BitwiseOr(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  commentId: M:Reportman.Reporting.Variant.op_BitwiseOr(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  id: op_BitwiseOr(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: operator |(Variant, Variant)
+  nameWithType: Variant.operator |(Variant, Variant)
+  fullName: Reportman.Reporting.Variant.operator |(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
+  type: Operator
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Binary or logic operator
+  example: []
+  syntax:
+    content: public static bool operator |(Variant avalue1, Variant avalue2)
+    parameters:
+    - id: avalue1
+      type: Reportman.Reporting.Variant
+    - id: avalue2
+      type: Reportman.Reporting.Variant
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator Or(avalue1 As [Variant], avalue2 As [Variant]) As Boolean
+  overload: Reportman.Reporting.Variant.op_BitwiseOr*
+  nameWithType.vb: Variant.Or(Variant, Variant)
+  fullName.vb: Reportman.Reporting.Variant.Or(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
+  name.vb: Or(Variant, Variant)
+- uid: Reportman.Reporting.Variant.op_BitwiseAnd(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  commentId: M:Reportman.Reporting.Variant.op_BitwiseAnd(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  id: op_BitwiseAnd(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: operator &(Variant, Variant)
+  nameWithType: Variant.operator &(Variant, Variant)
+  fullName: Reportman.Reporting.Variant.operator &(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
+  type: Operator
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Binary and logic operator
+  example: []
+  syntax:
+    content: public static Variant operator &(Variant avalue1, Variant avalue2)
+    parameters:
+    - id: avalue1
+      type: Reportman.Reporting.Variant
+    - id: avalue2
+      type: Reportman.Reporting.Variant
+    return:
+      type: Reportman.Reporting.Variant
+    content.vb: Public Shared Operator And(avalue1 As [Variant], avalue2 As [Variant]) As [Variant]
+  overload: Reportman.Reporting.Variant.op_BitwiseAnd*
+  nameWithType.vb: Variant.And(Variant, Variant)
+  fullName.vb: Reportman.Reporting.Variant.And(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
+  name.vb: And(Variant, Variant)
+- uid: Reportman.Reporting.Variant.op_Addition(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  commentId: M:Reportman.Reporting.Variant.op_Addition(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  id: op_Addition(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: operator +(Variant, Variant)
+  nameWithType: Variant.operator +(Variant, Variant)
+  fullName: Reportman.Reporting.Variant.operator +(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
+  type: Operator
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Binary add arithmetic operator
+  example: []
+  syntax:
+    content: public static Variant operator +(Variant avalue1, Variant avalue2)
+    parameters:
+    - id: avalue1
+      type: Reportman.Reporting.Variant
+    - id: avalue2
+      type: Reportman.Reporting.Variant
+    return:
+      type: Reportman.Reporting.Variant
+    content.vb: Public Shared Operator +(avalue1 As [Variant], avalue2 As [Variant]) As [Variant]
+  overload: Reportman.Reporting.Variant.op_Addition*
+  nameWithType.vb: Variant.+(Variant, Variant)
+  fullName.vb: Reportman.Reporting.Variant.+(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
+  name.vb: +(Variant, Variant)
+- uid: Reportman.Reporting.Variant.op_Subtraction(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  commentId: M:Reportman.Reporting.Variant.op_Subtraction(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  id: op_Subtraction(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: operator -(Variant, Variant)
+  nameWithType: Variant.operator -(Variant, Variant)
+  fullName: Reportman.Reporting.Variant.operator -(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
+  type: Operator
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Binary substraction arithmetic operator
+  example: []
+  syntax:
+    content: public static Variant operator -(Variant avalue1, Variant avalue2)
+    parameters:
+    - id: avalue1
+      type: Reportman.Reporting.Variant
+    - id: avalue2
+      type: Reportman.Reporting.Variant
+    return:
+      type: Reportman.Reporting.Variant
+    content.vb: Public Shared Operator -(avalue1 As [Variant], avalue2 As [Variant]) As [Variant]
+  overload: Reportman.Reporting.Variant.op_Subtraction*
+  nameWithType.vb: Variant.-(Variant, Variant)
+  fullName.vb: Reportman.Reporting.Variant.-(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
+  name.vb: -(Variant, Variant)
+- uid: Reportman.Reporting.Variant.op_UnaryNegation(Reportman.Reporting.Variant)
+  commentId: M:Reportman.Reporting.Variant.op_UnaryNegation(Reportman.Reporting.Variant)
+  id: op_UnaryNegation(Reportman.Reporting.Variant)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: operator -(Variant)
+  nameWithType: Variant.operator -(Variant)
+  fullName: Reportman.Reporting.Variant.operator -(Reportman.Reporting.Variant)
+  type: Operator
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Unary sign arithmetic operator
+  example: []
+  syntax:
+    content: public static Variant operator -(Variant avalue1)
+    parameters:
+    - id: avalue1
+      type: Reportman.Reporting.Variant
+    return:
+      type: Reportman.Reporting.Variant
+    content.vb: Public Shared Operator -(avalue1 As [Variant]) As [Variant]
+  overload: Reportman.Reporting.Variant.op_UnaryNegation*
+  nameWithType.vb: Variant.-(Variant)
+  fullName.vb: Reportman.Reporting.Variant.-(Reportman.Reporting.Variant)
+  name.vb: -(Variant)
+- uid: Reportman.Reporting.Variant.op_Multiply(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  commentId: M:Reportman.Reporting.Variant.op_Multiply(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  id: op_Multiply(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: operator *(Variant, Variant)
+  nameWithType: Variant.operator *(Variant, Variant)
+  fullName: Reportman.Reporting.Variant.operator *(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
+  type: Operator
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Binary multiplier arithmetic operator
+  example: []
+  syntax:
+    content: public static Variant operator *(Variant avalue1, Variant avalue2)
+    parameters:
+    - id: avalue1
+      type: Reportman.Reporting.Variant
+    - id: avalue2
+      type: Reportman.Reporting.Variant
+    return:
+      type: Reportman.Reporting.Variant
+    content.vb: Public Shared Operator *(avalue1 As [Variant], avalue2 As [Variant]) As [Variant]
+  overload: Reportman.Reporting.Variant.op_Multiply*
+  nameWithType.vb: Variant.*(Variant, Variant)
+  fullName.vb: Reportman.Reporting.Variant.*(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
+  name.vb: '*(Variant, Variant)'
+- uid: Reportman.Reporting.Variant.op_Division(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  commentId: M:Reportman.Reporting.Variant.op_Division(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  id: op_Division(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: operator /(Variant, Variant)
+  nameWithType: Variant.operator /(Variant, Variant)
+  fullName: Reportman.Reporting.Variant.operator /(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
+  type: Operator
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Binary division arithmetic operator
+  example: []
+  syntax:
+    content: public static Variant operator /(Variant avalue1, Variant avalue2)
+    parameters:
+    - id: avalue1
+      type: Reportman.Reporting.Variant
+    - id: avalue2
+      type: Reportman.Reporting.Variant
+    return:
+      type: Reportman.Reporting.Variant
+    content.vb: Public Shared Operator /(avalue1 As [Variant], avalue2 As [Variant]) As [Variant]
+  overload: Reportman.Reporting.Variant.op_Division*
+  nameWithType.vb: Variant./(Variant, Variant)
+  fullName.vb: Reportman.Reporting.Variant./(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
+  name.vb: /(Variant, Variant)
+- uid: Reportman.Reporting.Variant.op_Equality(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  commentId: M:Reportman.Reporting.Variant.op_Equality(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  id: op_Equality(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: operator ==(Variant, Variant)
+  nameWithType: Variant.operator ==(Variant, Variant)
+  fullName: Reportman.Reporting.Variant.operator ==(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
+  type: Operator
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Compare two variants
+  remarks: Two Variants containing null value are not equal
+  example: []
+  syntax:
+    content: public static bool operator ==(Variant avalue1, Variant avalue2)
+    parameters:
+    - id: avalue1
+      type: Reportman.Reporting.Variant
+    - id: avalue2
+      type: Reportman.Reporting.Variant
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator =(avalue1 As [Variant], avalue2 As [Variant]) As Boolean
+  overload: Reportman.Reporting.Variant.op_Equality*
+  nameWithType.vb: Variant.=(Variant, Variant)
+  fullName.vb: Reportman.Reporting.Variant.=(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
+  name.vb: =(Variant, Variant)
+- uid: Reportman.Reporting.Variant.Equals(System.Object)
+  commentId: M:Reportman.Reporting.Variant.Equals(System.Object)
+  id: Equals(System.Object)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: Equals(object)
+  nameWithType: Variant.Equals(object)
+  fullName: Reportman.Reporting.Variant.Equals(object)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Compare a Variant with a object
+  example: []
+  syntax:
+    content: public override bool Equals(object obj)
+    parameters:
+    - id: obj
+      type: System.Object
+    return:
+      type: System.Boolean
+    content.vb: Public Overrides Function Equals(obj As Object) As Boolean
+  overridden: System.ValueType.Equals(System.Object)
+  overload: Reportman.Reporting.Variant.Equals*
+  nameWithType.vb: Variant.Equals(Object)
+  fullName.vb: Reportman.Reporting.Variant.Equals(Object)
+  name.vb: Equals(Object)
+- uid: Reportman.Reporting.Variant.GetHashCode
+  commentId: M:Reportman.Reporting.Variant.GetHashCode
+  id: GetHashCode
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode()
+  nameWithType: Variant.GetHashCode()
+  fullName: Reportman.Reporting.Variant.GetHashCode()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Necessary to override == operator
+  example: []
+  syntax:
+    content: public override int GetHashCode()
+    return:
+      type: System.Int32
+    content.vb: Public Overrides Function GetHashCode() As Integer
+  overridden: System.ValueType.GetHashCode
+  overload: Reportman.Reporting.Variant.GetHashCode*
+- uid: Reportman.Reporting.Variant.op_Inequality(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  commentId: M:Reportman.Reporting.Variant.op_Inequality(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  id: op_Inequality(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: operator !=(Variant, Variant)
+  nameWithType: Variant.operator !=(Variant, Variant)
+  fullName: Reportman.Reporting.Variant.operator !=(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
+  type: Operator
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Compare two Variants
+  example: []
+  syntax:
+    content: public static bool operator !=(Variant avalue1, Variant avalue2)
+    parameters:
+    - id: avalue1
+      type: Reportman.Reporting.Variant
+    - id: avalue2
+      type: Reportman.Reporting.Variant
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator <>(avalue1 As [Variant], avalue2 As [Variant]) As Boolean
+  overload: Reportman.Reporting.Variant.op_Inequality*
+  nameWithType.vb: Variant.<>(Variant, Variant)
+  fullName.vb: Reportman.Reporting.Variant.<>(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
+  name.vb: <>(Variant, Variant)
+- uid: Reportman.Reporting.Variant.op_LessThan(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  commentId: M:Reportman.Reporting.Variant.op_LessThan(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  id: op_LessThan(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: operator <(Variant, Variant)
+  nameWithType: Variant.operator <(Variant, Variant)
+  fullName: Reportman.Reporting.Variant.operator <(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
+  type: Operator
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Compare two Variants
+  example: []
+  syntax:
+    content: public static bool operator <(Variant avalue1, Variant avalue2)
+    parameters:
+    - id: avalue1
+      type: Reportman.Reporting.Variant
+    - id: avalue2
+      type: Reportman.Reporting.Variant
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator <(avalue1 As [Variant], avalue2 As [Variant]) As Boolean
+  overload: Reportman.Reporting.Variant.op_LessThan*
+  nameWithType.vb: Variant.<(Variant, Variant)
+  fullName.vb: Reportman.Reporting.Variant.<(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
+  name.vb: <(Variant, Variant)
+- uid: Reportman.Reporting.Variant.op_GreaterThan(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  commentId: M:Reportman.Reporting.Variant.op_GreaterThan(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  id: op_GreaterThan(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: operator >(Variant, Variant)
+  nameWithType: Variant.operator >(Variant, Variant)
+  fullName: Reportman.Reporting.Variant.operator >(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
+  type: Operator
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Compare two Variants
+  example: []
+  syntax:
+    content: public static bool operator >(Variant avalue1, Variant avalue2)
+    parameters:
+    - id: avalue1
+      type: Reportman.Reporting.Variant
+    - id: avalue2
+      type: Reportman.Reporting.Variant
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator >(avalue1 As [Variant], avalue2 As [Variant]) As Boolean
+  overload: Reportman.Reporting.Variant.op_GreaterThan*
+  nameWithType.vb: Variant.>(Variant, Variant)
+  fullName.vb: Reportman.Reporting.Variant.>(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
+  name.vb: '>(Variant, Variant)'
+- uid: Reportman.Reporting.Variant.op_LessThanOrEqual(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  commentId: M:Reportman.Reporting.Variant.op_LessThanOrEqual(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  id: op_LessThanOrEqual(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: operator <=(Variant, Variant)
+  nameWithType: Variant.operator <=(Variant, Variant)
+  fullName: Reportman.Reporting.Variant.operator <=(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
+  type: Operator
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Compare two Variants
+  example: []
+  syntax:
+    content: public static bool operator <=(Variant avalue1, Variant avalue2)
+    parameters:
+    - id: avalue1
+      type: Reportman.Reporting.Variant
+    - id: avalue2
+      type: Reportman.Reporting.Variant
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator <=(avalue1 As [Variant], avalue2 As [Variant]) As Boolean
+  overload: Reportman.Reporting.Variant.op_LessThanOrEqual*
+  nameWithType.vb: Variant.<=(Variant, Variant)
+  fullName.vb: Reportman.Reporting.Variant.<=(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
+  name.vb: <=(Variant, Variant)
+- uid: Reportman.Reporting.Variant.op_GreaterThanOrEqual(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  commentId: M:Reportman.Reporting.Variant.op_GreaterThanOrEqual(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  id: op_GreaterThanOrEqual(Reportman.Reporting.Variant,Reportman.Reporting.Variant)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: operator >=(Variant, Variant)
+  nameWithType: Variant.operator >=(Variant, Variant)
+  fullName: Reportman.Reporting.Variant.operator >=(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
+  type: Operator
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Compare two Variants
+  example: []
+  syntax:
+    content: public static bool operator >=(Variant avalue1, Variant avalue2)
+    parameters:
+    - id: avalue1
+      type: Reportman.Reporting.Variant
+    - id: avalue2
+      type: Reportman.Reporting.Variant
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator >=(avalue1 As [Variant], avalue2 As [Variant]) As Boolean
+  overload: Reportman.Reporting.Variant.op_GreaterThanOrEqual*
+  nameWithType.vb: Variant.>=(Variant, Variant)
+  fullName.vb: Reportman.Reporting.Variant.>=(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
+  name.vb: '>=(Variant, Variant)'
+- uid: Reportman.Reporting.Variant.AssignFromObject(System.Object)
+  commentId: M:Reportman.Reporting.Variant.AssignFromObject(System.Object)
+  id: AssignFromObject(System.Object)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: AssignFromObject(object)
+  nameWithType: Variant.AssignFromObject(object)
+  fullName: Reportman.Reporting.Variant.AssignFromObject(object)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Procedure to assign a Variant from any object type
+  remarks: >-
+    If the object is a null reference, the result will be a Variant
+
+    with type Null
+  example: []
+  syntax:
+    content: public void AssignFromObject(object obj)
+    parameters:
+    - id: obj
+      type: System.Object
+    content.vb: Public Sub AssignFromObject(obj As Object)
+  overload: Reportman.Reporting.Variant.AssignFromObject*
+  nameWithType.vb: Variant.AssignFromObject(Object)
+  fullName.vb: Reportman.Reporting.Variant.AssignFromObject(Object)
+  name.vb: AssignFromObject(Object)
+- uid: Reportman.Reporting.Variant.AsObject
+  commentId: M:Reportman.Reporting.Variant.AsObject
+  id: AsObject
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: AsObject()
+  nameWithType: Variant.AsObject()
+  fullName: Reportman.Reporting.Variant.AsObject()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Get the Variant as an object
+  remarks: >-
+    For Null value the result is DBNull.Value.
+
+    For binary data type, the result is a byte[] type
+  example: []
+  syntax:
+    content: public object AsObject()
+    return:
+      type: System.Object
+    content.vb: Public Function AsObject() As Object
+  overload: Reportman.Reporting.Variant.AsObject*
+- uid: Reportman.Reporting.Variant.VariantFromObject(System.Object)
+  commentId: M:Reportman.Reporting.Variant.VariantFromObject(System.Object)
+  id: VariantFromObject(System.Object)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: VariantFromObject(object)
+  nameWithType: Variant.VariantFromObject(object)
+  fullName: Reportman.Reporting.Variant.VariantFromObject(object)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: This function creates a Variant from a object
+  example: []
+  syntax:
+    content: public static Variant VariantFromObject(object obj)
+    parameters:
+    - id: obj
+      type: System.Object
+    return:
+      type: Reportman.Reporting.Variant
+    content.vb: Public Shared Function VariantFromObject(obj As Object) As [Variant]
+  overload: Reportman.Reporting.Variant.VariantFromObject*
+  nameWithType.vb: Variant.VariantFromObject(Object)
+  fullName.vb: Reportman.Reporting.Variant.VariantFromObject(Object)
+  name.vb: VariantFromObject(Object)
+- uid: Reportman.Reporting.Variant.ToString(System.String,Reportman.Reporting.ParamType,System.Boolean)
+  commentId: M:Reportman.Reporting.Variant.ToString(System.String,Reportman.Reporting.ParamType,System.Boolean)
+  id: ToString(System.String,Reportman.Reporting.ParamType,System.Boolean)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: ToString(string, ParamType, bool)
+  nameWithType: Variant.ToString(string, ParamType, bool)
+  fullName: Reportman.Reporting.Variant.ToString(string, Reportman.Reporting.ParamType, bool)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Formats a Variant, with a display format
+  example: []
+  syntax:
+    content: public string ToString(string displayformat, ParamType paramtype, bool printnulls)
+    parameters:
+    - id: displayformat
+      type: System.String
+      description: The formatting string, depending on current value
+    - id: paramtype
+      type: Reportman.Reporting.ParamType
+    - id: printnulls
+      type: System.Boolean
+    return:
+      type: System.String
+    content.vb: Public Function ToString(displayformat As String, paramtype As ParamType, printnulls As Boolean) As String
+  overload: Reportman.Reporting.Variant.ToString*
+  nameWithType.vb: Variant.ToString(String, ParamType, Boolean)
+  fullName.vb: Reportman.Reporting.Variant.ToString(String, Reportman.Reporting.ParamType, Boolean)
+  name.vb: ToString(String, ParamType, Boolean)
+- uid: Reportman.Reporting.Variant.ToBoolean(System.IFormatProvider)
+  commentId: M:Reportman.Reporting.Variant.ToBoolean(System.IFormatProvider)
+  id: ToBoolean(System.IFormatProvider)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: ToBoolean(IFormatProvider)
+  nameWithType: Variant.ToBoolean(IFormatProvider)
+  fullName: Reportman.Reporting.Variant.ToBoolean(System.IFormatProvider)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Type transformation using a IFormatProvider
+  example: []
+  syntax:
+    content: public bool ToBoolean(IFormatProvider provid)
+    parameters:
+    - id: provid
+      type: System.IFormatProvider
+    return:
+      type: System.Boolean
+    content.vb: Public Function ToBoolean(provid As IFormatProvider) As Boolean
+  overload: Reportman.Reporting.Variant.ToBoolean*
+  implements:
+  - System.IConvertible.ToBoolean(System.IFormatProvider)
+- uid: Reportman.Reporting.Variant.ToDouble(System.IFormatProvider)
+  commentId: M:Reportman.Reporting.Variant.ToDouble(System.IFormatProvider)
+  id: ToDouble(System.IFormatProvider)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: ToDouble(IFormatProvider)
+  nameWithType: Variant.ToDouble(IFormatProvider)
+  fullName: Reportman.Reporting.Variant.ToDouble(System.IFormatProvider)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Type transformation using a IFormatProvider
+  example: []
+  syntax:
+    content: public double ToDouble(IFormatProvider provid)
+    parameters:
+    - id: provid
+      type: System.IFormatProvider
+    return:
+      type: System.Double
+    content.vb: Public Function ToDouble(provid As IFormatProvider) As Double
+  overload: Reportman.Reporting.Variant.ToDouble*
+  implements:
+  - System.IConvertible.ToDouble(System.IFormatProvider)
+- uid: Reportman.Reporting.Variant.ToByte(System.IFormatProvider)
+  commentId: M:Reportman.Reporting.Variant.ToByte(System.IFormatProvider)
+  id: ToByte(System.IFormatProvider)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: ToByte(IFormatProvider)
+  nameWithType: Variant.ToByte(IFormatProvider)
+  fullName: Reportman.Reporting.Variant.ToByte(System.IFormatProvider)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Type transformation using a IFormatProvider
+  example: []
+  syntax:
+    content: public byte ToByte(IFormatProvider provid)
+    parameters:
+    - id: provid
+      type: System.IFormatProvider
+    return:
+      type: System.Byte
+    content.vb: Public Function ToByte(provid As IFormatProvider) As Byte
+  overload: Reportman.Reporting.Variant.ToByte*
+  implements:
+  - System.IConvertible.ToByte(System.IFormatProvider)
+- uid: Reportman.Reporting.Variant.ToSByte(System.IFormatProvider)
+  commentId: M:Reportman.Reporting.Variant.ToSByte(System.IFormatProvider)
+  id: ToSByte(System.IFormatProvider)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: ToSByte(IFormatProvider)
+  nameWithType: Variant.ToSByte(IFormatProvider)
+  fullName: Reportman.Reporting.Variant.ToSByte(System.IFormatProvider)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Type transformation using a IFormatProvider
+  example: []
+  syntax:
+    content: public sbyte ToSByte(IFormatProvider provid)
+    parameters:
+    - id: provid
+      type: System.IFormatProvider
+    return:
+      type: System.SByte
+    content.vb: Public Function ToSByte(provid As IFormatProvider) As SByte
+  overload: Reportman.Reporting.Variant.ToSByte*
+  implements:
+  - System.IConvertible.ToSByte(System.IFormatProvider)
+- uid: Reportman.Reporting.Variant.ToChar(System.IFormatProvider)
+  commentId: M:Reportman.Reporting.Variant.ToChar(System.IFormatProvider)
+  id: ToChar(System.IFormatProvider)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: ToChar(IFormatProvider)
+  nameWithType: Variant.ToChar(IFormatProvider)
+  fullName: Reportman.Reporting.Variant.ToChar(System.IFormatProvider)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Type transformation using a IFormatProvider
+  example: []
+  syntax:
+    content: public char ToChar(IFormatProvider provid)
+    parameters:
+    - id: provid
+      type: System.IFormatProvider
+    return:
+      type: System.Char
+    content.vb: Public Function ToChar(provid As IFormatProvider) As Char
+  overload: Reportman.Reporting.Variant.ToChar*
+  implements:
+  - System.IConvertible.ToChar(System.IFormatProvider)
+- uid: Reportman.Reporting.Variant.ToInt16(System.IFormatProvider)
+  commentId: M:Reportman.Reporting.Variant.ToInt16(System.IFormatProvider)
+  id: ToInt16(System.IFormatProvider)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: ToInt16(IFormatProvider)
+  nameWithType: Variant.ToInt16(IFormatProvider)
+  fullName: Reportman.Reporting.Variant.ToInt16(System.IFormatProvider)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Type transformation using a IFormatProvider
+  example: []
+  syntax:
+    content: public short ToInt16(IFormatProvider provid)
+    parameters:
+    - id: provid
+      type: System.IFormatProvider
+    return:
+      type: System.Int16
+    content.vb: Public Function ToInt16(provid As IFormatProvider) As Short
+  overload: Reportman.Reporting.Variant.ToInt16*
+  implements:
+  - System.IConvertible.ToInt16(System.IFormatProvider)
+- uid: Reportman.Reporting.Variant.ToUInt16(System.IFormatProvider)
+  commentId: M:Reportman.Reporting.Variant.ToUInt16(System.IFormatProvider)
+  id: ToUInt16(System.IFormatProvider)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: ToUInt16(IFormatProvider)
+  nameWithType: Variant.ToUInt16(IFormatProvider)
+  fullName: Reportman.Reporting.Variant.ToUInt16(System.IFormatProvider)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Type transformation using a IFormatProvider
+  example: []
+  syntax:
+    content: public ushort ToUInt16(IFormatProvider provid)
+    parameters:
+    - id: provid
+      type: System.IFormatProvider
+    return:
+      type: System.UInt16
+    content.vb: Public Function ToUInt16(provid As IFormatProvider) As UShort
+  overload: Reportman.Reporting.Variant.ToUInt16*
+  implements:
+  - System.IConvertible.ToUInt16(System.IFormatProvider)
+- uid: Reportman.Reporting.Variant.ToInt32(System.IFormatProvider)
+  commentId: M:Reportman.Reporting.Variant.ToInt32(System.IFormatProvider)
+  id: ToInt32(System.IFormatProvider)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: ToInt32(IFormatProvider)
+  nameWithType: Variant.ToInt32(IFormatProvider)
+  fullName: Reportman.Reporting.Variant.ToInt32(System.IFormatProvider)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Type transformation using a IFormatProvider
+  example: []
+  syntax:
+    content: public int ToInt32(IFormatProvider provid)
+    parameters:
+    - id: provid
+      type: System.IFormatProvider
+    return:
+      type: System.Int32
+    content.vb: Public Function ToInt32(provid As IFormatProvider) As Integer
+  overload: Reportman.Reporting.Variant.ToInt32*
+  implements:
+  - System.IConvertible.ToInt32(System.IFormatProvider)
+- uid: Reportman.Reporting.Variant.ToUInt32(System.IFormatProvider)
+  commentId: M:Reportman.Reporting.Variant.ToUInt32(System.IFormatProvider)
+  id: ToUInt32(System.IFormatProvider)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: ToUInt32(IFormatProvider)
+  nameWithType: Variant.ToUInt32(IFormatProvider)
+  fullName: Reportman.Reporting.Variant.ToUInt32(System.IFormatProvider)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Type transformation using a IFormatProvider
+  example: []
+  syntax:
+    content: public uint ToUInt32(IFormatProvider provid)
+    parameters:
+    - id: provid
+      type: System.IFormatProvider
+    return:
+      type: System.UInt32
+    content.vb: Public Function ToUInt32(provid As IFormatProvider) As UInteger
+  overload: Reportman.Reporting.Variant.ToUInt32*
+  implements:
+  - System.IConvertible.ToUInt32(System.IFormatProvider)
+- uid: Reportman.Reporting.Variant.ToInt64(System.IFormatProvider)
+  commentId: M:Reportman.Reporting.Variant.ToInt64(System.IFormatProvider)
+  id: ToInt64(System.IFormatProvider)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: ToInt64(IFormatProvider)
+  nameWithType: Variant.ToInt64(IFormatProvider)
+  fullName: Reportman.Reporting.Variant.ToInt64(System.IFormatProvider)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Type transformation using a IFormatProvider
+  example: []
+  syntax:
+    content: public long ToInt64(IFormatProvider provid)
+    parameters:
+    - id: provid
+      type: System.IFormatProvider
+    return:
+      type: System.Int64
+    content.vb: Public Function ToInt64(provid As IFormatProvider) As Long
+  overload: Reportman.Reporting.Variant.ToInt64*
+  implements:
+  - System.IConvertible.ToInt64(System.IFormatProvider)
+- uid: Reportman.Reporting.Variant.ToUInt64(System.IFormatProvider)
+  commentId: M:Reportman.Reporting.Variant.ToUInt64(System.IFormatProvider)
+  id: ToUInt64(System.IFormatProvider)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: ToUInt64(IFormatProvider)
+  nameWithType: Variant.ToUInt64(IFormatProvider)
+  fullName: Reportman.Reporting.Variant.ToUInt64(System.IFormatProvider)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Type transformation using a IFormatProvider
+  example: []
+  syntax:
+    content: public ulong ToUInt64(IFormatProvider provid)
+    parameters:
+    - id: provid
+      type: System.IFormatProvider
+    return:
+      type: System.UInt64
+    content.vb: Public Function ToUInt64(provid As IFormatProvider) As ULong
+  overload: Reportman.Reporting.Variant.ToUInt64*
+  implements:
+  - System.IConvertible.ToUInt64(System.IFormatProvider)
+- uid: Reportman.Reporting.Variant.ToSingle(System.IFormatProvider)
+  commentId: M:Reportman.Reporting.Variant.ToSingle(System.IFormatProvider)
+  id: ToSingle(System.IFormatProvider)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: ToSingle(IFormatProvider)
+  nameWithType: Variant.ToSingle(IFormatProvider)
+  fullName: Reportman.Reporting.Variant.ToSingle(System.IFormatProvider)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Type transformation using a IFormatProvider
+  example: []
+  syntax:
+    content: public float ToSingle(IFormatProvider provid)
+    parameters:
+    - id: provid
+      type: System.IFormatProvider
+    return:
+      type: System.Single
+    content.vb: Public Function ToSingle(provid As IFormatProvider) As Single
+  overload: Reportman.Reporting.Variant.ToSingle*
+  implements:
+  - System.IConvertible.ToSingle(System.IFormatProvider)
+- uid: Reportman.Reporting.Variant.ToString(System.IFormatProvider)
+  commentId: M:Reportman.Reporting.Variant.ToString(System.IFormatProvider)
+  id: ToString(System.IFormatProvider)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: ToString(IFormatProvider)
+  nameWithType: Variant.ToString(IFormatProvider)
+  fullName: Reportman.Reporting.Variant.ToString(System.IFormatProvider)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Type transformation using a IFormatProvider
+  example: []
+  syntax:
+    content: public string ToString(IFormatProvider provid)
+    parameters:
+    - id: provid
+      type: System.IFormatProvider
+    return:
+      type: System.String
+    content.vb: Public Function ToString(provid As IFormatProvider) As String
+  overload: Reportman.Reporting.Variant.ToString*
+  implements:
+  - System.IConvertible.ToString(System.IFormatProvider)
+- uid: Reportman.Reporting.Variant.ToDecimal(System.IFormatProvider)
+  commentId: M:Reportman.Reporting.Variant.ToDecimal(System.IFormatProvider)
+  id: ToDecimal(System.IFormatProvider)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: ToDecimal(IFormatProvider)
+  nameWithType: Variant.ToDecimal(IFormatProvider)
+  fullName: Reportman.Reporting.Variant.ToDecimal(System.IFormatProvider)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Type transformation using a IFormatProvider
+  example: []
+  syntax:
+    content: public decimal ToDecimal(IFormatProvider provid)
+    parameters:
+    - id: provid
+      type: System.IFormatProvider
+    return:
+      type: System.Decimal
+    content.vb: Public Function ToDecimal(provid As IFormatProvider) As Decimal
+  overload: Reportman.Reporting.Variant.ToDecimal*
+  implements:
+  - System.IConvertible.ToDecimal(System.IFormatProvider)
+- uid: Reportman.Reporting.Variant.ToDateTime(System.IFormatProvider)
+  commentId: M:Reportman.Reporting.Variant.ToDateTime(System.IFormatProvider)
+  id: ToDateTime(System.IFormatProvider)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: ToDateTime(IFormatProvider)
+  nameWithType: Variant.ToDateTime(IFormatProvider)
+  fullName: Reportman.Reporting.Variant.ToDateTime(System.IFormatProvider)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Type transformation using a IFormatProvider
+  example: []
+  syntax:
+    content: public DateTime ToDateTime(IFormatProvider provid)
+    parameters:
+    - id: provid
+      type: System.IFormatProvider
+    return:
+      type: System.DateTime
+    content.vb: Public Function ToDateTime(provid As IFormatProvider) As Date
+  overload: Reportman.Reporting.Variant.ToDateTime*
+  implements:
+  - System.IConvertible.ToDateTime(System.IFormatProvider)
+- uid: Reportman.Reporting.Variant.ToType(System.Type,System.IFormatProvider)
+  commentId: M:Reportman.Reporting.Variant.ToType(System.Type,System.IFormatProvider)
+  id: ToType(System.Type,System.IFormatProvider)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: ToType(Type, IFormatProvider)
+  nameWithType: Variant.ToType(Type, IFormatProvider)
+  fullName: Reportman.Reporting.Variant.ToType(System.Type, System.IFormatProvider)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Type transformation using a IFormatProvider
+  example: []
+  syntax:
+    content: public object ToType(Type conversionType, IFormatProvider provider)
+    parameters:
+    - id: conversionType
+      type: System.Type
+    - id: provider
+      type: System.IFormatProvider
+    return:
+      type: System.Object
+    content.vb: Public Function ToType(conversionType As Type, provider As IFormatProvider) As Object
+  overload: Reportman.Reporting.Variant.ToType*
+  implements:
+  - System.IConvertible.ToType(System.Type,System.IFormatProvider)
+- uid: Reportman.Reporting.Variant.CompareTo(System.Object)
+  commentId: M:Reportman.Reporting.Variant.CompareTo(System.Object)
+  id: CompareTo(System.Object)
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: CompareTo(object)
+  nameWithType: Variant.CompareTo(object)
+  fullName: Reportman.Reporting.Variant.CompareTo(object)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Compare a Variant to an object
+  remarks: Returns 0 if both are equal, 1 if current instance is greater than object, else returns -1
+  example: []
+  syntax:
+    content: public int CompareTo(object obj)
+    parameters:
+    - id: obj
+      type: System.Object
+    return:
+      type: System.Int32
+    content.vb: Public Function CompareTo(obj As Object) As Integer
+  overload: Reportman.Reporting.Variant.CompareTo*
+  implements:
+  - System.IComparable.CompareTo(System.Object)
+  nameWithType.vb: Variant.CompareTo(Object)
+  fullName.vb: Reportman.Reporting.Variant.CompareTo(Object)
+  name.vb: CompareTo(Object)
+- uid: Reportman.Reporting.Variant.Abs
+  commentId: M:Reportman.Reporting.Variant.Abs
+  id: Abs
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: Abs()
+  nameWithType: Variant.Abs()
+  fullName: Reportman.Reporting.Variant.Abs()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Returns the variant as a positive number, absolute value
+  example: []
+  syntax:
+    content: public Variant Abs()
+    return:
+      type: Reportman.Reporting.Variant
+    content.vb: Public Function Abs() As [Variant]
+  overload: Reportman.Reporting.Variant.Abs*
+- uid: Reportman.Reporting.Variant.IsNull
+  commentId: P:Reportman.Reporting.Variant.IsNull
+  id: IsNull
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: IsNull
+  nameWithType: Variant.IsNull
+  fullName: Reportman.Reporting.Variant.IsNull
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Function to check if the current value is null.
+  example: []
+  syntax:
+    content: public bool IsNull { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: Returns true if the value is null (VariantType.Null).
+    content.vb: Public ReadOnly Property IsNull As Boolean
+  overload: Reportman.Reporting.Variant.IsNull*
+- uid: Reportman.Reporting.Variant.VarType
+  commentId: P:Reportman.Reporting.Variant.VarType
+  id: VarType
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: VarType
+  nameWithType: Variant.VarType
+  fullName: Reportman.Reporting.Variant.VarType
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Function to check the variant type.
+  example: []
+  syntax:
+    content: public VariantType VarType { get; }
+    parameters: []
+    return:
+      type: Reportman.Reporting.VariantType
+      description: >-
+        Returns the VariantType for the current value.
+
+        <xref href="Reportman.Reporting.VariantType?text=VariantType" data-throw-if-not-resolved="false"></xref>
+    content.vb: Public ReadOnly Property VarType As VariantType
+  overload: Reportman.Reporting.Variant.VarType*
+- uid: Reportman.Reporting.Variant.AsString
+  commentId: P:Reportman.Reporting.Variant.AsString
+  id: AsString
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: AsString
+  nameWithType: Variant.AsString
+  fullName: Reportman.Reporting.Variant.AsString
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Property to get the variant value as a string
+  example: []
+  syntax:
+    content: public string AsString { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property AsString As String
+  overload: Reportman.Reporting.Variant.AsString*
+- uid: Reportman.Reporting.Variant.AsDouble
+  commentId: P:Reportman.Reporting.Variant.AsDouble
+  id: AsDouble
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: AsDouble
+  nameWithType: Variant.AsDouble
+  fullName: Reportman.Reporting.Variant.AsDouble
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Property to get the variant value as a double
+  example: []
+  syntax:
+    content: public double AsDouble { get; }
+    parameters: []
+    return:
+      type: System.Double
+    content.vb: Public ReadOnly Property AsDouble As Double
+  overload: Reportman.Reporting.Variant.AsDouble*
+- uid: Reportman.Reporting.Variant.AsDecimal
+  commentId: P:Reportman.Reporting.Variant.AsDecimal
+  id: AsDecimal
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: AsDecimal
+  nameWithType: Variant.AsDecimal
+  fullName: Reportman.Reporting.Variant.AsDecimal
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Property to get the variant value as a decimal
+  example: []
+  syntax:
+    content: public decimal AsDecimal { get; }
+    parameters: []
+    return:
+      type: System.Decimal
+    content.vb: Public ReadOnly Property AsDecimal As Decimal
+  overload: Reportman.Reporting.Variant.AsDecimal*
+- uid: Reportman.Reporting.Variant.AsInteger
+  commentId: P:Reportman.Reporting.Variant.AsInteger
+  id: AsInteger
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: AsInteger
+  nameWithType: Variant.AsInteger
+  fullName: Reportman.Reporting.Variant.AsInteger
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Property to get the variant value as an int
+  example: []
+  syntax:
+    content: public int AsInteger { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property AsInteger As Integer
+  overload: Reportman.Reporting.Variant.AsInteger*
+- uid: Reportman.Reporting.Variant.AsDateTime
+  commentId: P:Reportman.Reporting.Variant.AsDateTime
+  id: AsDateTime
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: AsDateTime
+  nameWithType: Variant.AsDateTime
+  fullName: Reportman.Reporting.Variant.AsDateTime
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Property to get the variant value as a Datetime
+  example: []
+  syntax:
+    content: public DateTime AsDateTime { get; }
+    parameters: []
+    return:
+      type: System.DateTime
+    content.vb: Public ReadOnly Property AsDateTime As Date
+  overload: Reportman.Reporting.Variant.AsDateTime*
+- uid: Reportman.Reporting.Variant.AsLong
+  commentId: P:Reportman.Reporting.Variant.AsLong
+  id: AsLong
+  parent: Reportman.Reporting.Variant
+  langs:
+  - csharp
+  - vb
+  name: AsLong
+  nameWithType: Variant.AsLong
+  fullName: Reportman.Reporting.Variant.AsLong
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Property to get the variant value as a long
+  example: []
+  syntax:
+    content: public long AsLong { get; }
+    parameters: []
+    return:
+      type: System.Int64
+    content.vb: Public ReadOnly Property AsLong As Long
+  overload: Reportman.Reporting.Variant.AsLong*
+references:
+- uid: Reportman.Reporting.Evaluator
+  commentId: T:Reportman.Reporting.Evaluator
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.Evaluator.html
+  name: Evaluator
+  nameWithType: Evaluator
+  fullName: Reportman.Reporting.Evaluator
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: System.IConvertible
+  commentId: T:System.IConvertible
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iconvertible
+  name: IConvertible
+  nameWithType: IConvertible
+  fullName: System.IConvertible
+- uid: System.IComparable
+  commentId: T:System.IComparable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.icomparable
+  name: IComparable
+  nameWithType: IComparable
+  fullName: System.IComparable
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Reportman.Reporting.Variant.IsInteger*
+  commentId: Overload:Reportman.Reporting.Variant.IsInteger
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_IsInteger
+  name: IsInteger
+  nameWithType: Variant.IsInteger
+  fullName: Reportman.Reporting.Variant.IsInteger
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Reportman.Reporting.Variant.IsBoolean*
+  commentId: Overload:Reportman.Reporting.Variant.IsBoolean
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_IsBoolean
+  name: IsBoolean
+  nameWithType: Variant.IsBoolean
+  fullName: Reportman.Reporting.Variant.IsBoolean
+- uid: Reportman.Reporting.Variant.IsDateTime*
+  commentId: Overload:Reportman.Reporting.Variant.IsDateTime
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_IsDateTime
+  name: IsDateTime
+  nameWithType: Variant.IsDateTime
+  fullName: Reportman.Reporting.Variant.IsDateTime
+- uid: Reportman.Reporting.Variant.IsString*
+  commentId: Overload:Reportman.Reporting.Variant.IsString
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_IsString
+  name: IsString
+  nameWithType: Variant.IsString
+  fullName: Reportman.Reporting.Variant.IsString
+- uid: Reportman.Reporting.Variant.IsNumber*
+  commentId: Overload:Reportman.Reporting.Variant.IsNumber
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_IsNumber
+  name: IsNumber
+  nameWithType: Variant.IsNumber
+  fullName: Reportman.Reporting.Variant.IsNumber
+- uid: Reportman.Reporting.Variant.GetTypeString*
+  commentId: Overload:Reportman.Reporting.Variant.GetTypeString
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_GetTypeString
+  name: GetTypeString
+  nameWithType: Variant.GetTypeString
+  fullName: Reportman.Reporting.Variant.GetTypeString
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Reportman.Reporting.Variant.op_Implicit*
+  commentId: Overload:Reportman.Reporting.Variant.op_Implicit
+  name: implicit operator
+  nameWithType: Variant.implicit operator
+  fullName: Reportman.Reporting.Variant.implicit operator
+  nameWithType.vb: Variant.CType
+  fullName.vb: Reportman.Reporting.Variant.CType
+  name.vb: CType
+  spec.csharp:
+  - name: implicit
+  - name: " "
+  - name: operator
+- uid: Reportman.Reporting.Variant
+  commentId: T:Reportman.Reporting.Variant
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.Variant.html
+  name: Variant
+  nameWithType: Variant
+  fullName: Reportman.Reporting.Variant
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: System.Decimal
+  commentId: T:System.Decimal
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.decimal
+  name: decimal
+  nameWithType: decimal
+  fullName: decimal
+  nameWithType.vb: Decimal
+  fullName.vb: Decimal
+  name.vb: Decimal
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.double
+  name: double
+  nameWithType: double
+  fullName: double
+  nameWithType.vb: Double
+  fullName.vb: Double
+  name.vb: Double
+- uid: System.DateTime
+  commentId: T:System.DateTime
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+  nameWithType.vb: Date
+  fullName.vb: Date
+  name.vb: Date
+- uid: Reportman.Reporting.Variant.SetStream*
+  commentId: Overload:Reportman.Reporting.Variant.SetStream
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_SetStream_System_IO_MemoryStream_
+  name: SetStream
+  nameWithType: Variant.SetStream
+  fullName: Reportman.Reporting.Variant.SetStream
+- uid: System.IO.MemoryStream
+  commentId: T:System.IO.MemoryStream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.memorystream
+  name: MemoryStream
+  nameWithType: MemoryStream
+  fullName: System.IO.MemoryStream
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+- uid: Reportman.Reporting.Variant.GetStream*
+  commentId: Overload:Reportman.Reporting.Variant.GetStream
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_GetStream
+  name: GetStream
+  nameWithType: Variant.GetStream
+  fullName: Reportman.Reporting.Variant.GetStream
+- uid: System.Char
+  commentId: T:System.Char
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.char
+  name: char
+  nameWithType: char
+  fullName: char
+  nameWithType.vb: Char
+  fullName.vb: Char
+  name.vb: Char
+- uid: System.Byte
+  commentId: T:System.Byte
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte
+  nameWithType: byte
+  fullName: byte
+  nameWithType.vb: Byte
+  fullName.vb: Byte
+  name.vb: Byte
+- uid: System.Int16
+  commentId: T:System.Int16
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int16
+  name: short
+  nameWithType: short
+  fullName: short
+  nameWithType.vb: Short
+  fullName.vb: Short
+  name.vb: Short
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.Variant.ToString*
+  commentId: Overload:Reportman.Reporting.Variant.ToString
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_ToString
+  name: ToString
+  nameWithType: Variant.ToString
+  fullName: Reportman.Reporting.Variant.ToString
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: Reportman.Reporting.Variant.GetTypeCode*
+  commentId: Overload:Reportman.Reporting.Variant.GetTypeCode
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_GetTypeCode
+  name: GetTypeCode
+  nameWithType: Variant.GetTypeCode
+  fullName: Reportman.Reporting.Variant.GetTypeCode
+- uid: System.IConvertible.GetTypeCode
+  commentId: M:System.IConvertible.GetTypeCode
+  parent: System.IConvertible
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iconvertible.gettypecode
+  name: GetTypeCode()
+  nameWithType: IConvertible.GetTypeCode()
+  fullName: System.IConvertible.GetTypeCode()
+  spec.csharp:
+  - uid: System.IConvertible.GetTypeCode
+    name: GetTypeCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.gettypecode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.IConvertible.GetTypeCode
+    name: GetTypeCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.gettypecode
+  - name: (
+  - name: )
+- uid: System.TypeCode
+  commentId: T:System.TypeCode
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.typecode
+  name: TypeCode
+  nameWithType: TypeCode
+  fullName: System.TypeCode
+- uid: Reportman.Reporting.Variant.GetDbType*
+  commentId: Overload:Reportman.Reporting.Variant.GetDbType
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_GetDbType
+  name: GetDbType
+  nameWithType: Variant.GetDbType
+  fullName: Reportman.Reporting.Variant.GetDbType
+- uid: System.Data.DbType
+  commentId: T:System.Data.DbType
+  parent: System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.dbtype
+  name: DbType
+  nameWithType: DbType
+  fullName: System.Data.DbType
+- uid: System.Data
+  commentId: N:System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Data
+  nameWithType: System.Data
+  fullName: System.Data
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+- uid: Reportman.Reporting.Variant.CompareTo*
+  commentId: Overload:Reportman.Reporting.Variant.CompareTo
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_CompareTo_Reportman_Reporting_Variant_
+  name: CompareTo
+  nameWithType: Variant.CompareTo
+  fullName: Reportman.Reporting.Variant.CompareTo
+- uid: Reportman.Reporting.Variant.op_BitwiseOr*
+  commentId: Overload:Reportman.Reporting.Variant.op_BitwiseOr
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_op_BitwiseOr_Reportman_Reporting_Variant_Reportman_Reporting_Variant_
+  name: operator |
+  nameWithType: Variant.operator |
+  fullName: Reportman.Reporting.Variant.operator |
+  nameWithType.vb: Variant.Or
+  fullName.vb: Reportman.Reporting.Variant.Or
+  name.vb: Or
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: Reportman.Reporting.Variant.op_BitwiseOr*
+    name: '|'
+    isExternal: true
+    href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_op_BitwiseOr_Reportman_Reporting_Variant_Reportman_Reporting_Variant_
+- uid: Reportman.Reporting.Variant.op_BitwiseAnd*
+  commentId: Overload:Reportman.Reporting.Variant.op_BitwiseAnd
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_op_BitwiseAnd_Reportman_Reporting_Variant_Reportman_Reporting_Variant_
+  name: operator &
+  nameWithType: Variant.operator &
+  fullName: Reportman.Reporting.Variant.operator &
+  nameWithType.vb: Variant.And
+  fullName.vb: Reportman.Reporting.Variant.And
+  name.vb: And
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: Reportman.Reporting.Variant.op_BitwiseAnd*
+    name: '&'
+    isExternal: true
+    href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_op_BitwiseAnd_Reportman_Reporting_Variant_Reportman_Reporting_Variant_
+- uid: Reportman.Reporting.Variant.op_Addition*
+  commentId: Overload:Reportman.Reporting.Variant.op_Addition
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_op_Addition_Reportman_Reporting_Variant_Reportman_Reporting_Variant_
+  name: operator +
+  nameWithType: Variant.operator +
+  fullName: Reportman.Reporting.Variant.operator +
+  nameWithType.vb: Variant.+
+  fullName.vb: Reportman.Reporting.Variant.+
+  name.vb: +
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: Reportman.Reporting.Variant.op_Addition*
+    name: +
+    isExternal: true
+    href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_op_Addition_Reportman_Reporting_Variant_Reportman_Reporting_Variant_
+- uid: Reportman.Reporting.Variant.op_Subtraction*
+  commentId: Overload:Reportman.Reporting.Variant.op_Subtraction
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_op_Subtraction_Reportman_Reporting_Variant_Reportman_Reporting_Variant_
+  name: operator -
+  nameWithType: Variant.operator -
+  fullName: Reportman.Reporting.Variant.operator -
+  nameWithType.vb: Variant.-
+  fullName.vb: Reportman.Reporting.Variant.-
+  name.vb: '-'
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: Reportman.Reporting.Variant.op_Subtraction*
+    name: '-'
+    isExternal: true
+    href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_op_Subtraction_Reportman_Reporting_Variant_Reportman_Reporting_Variant_
+- uid: Reportman.Reporting.Variant.op_UnaryNegation*
+  commentId: Overload:Reportman.Reporting.Variant.op_UnaryNegation
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_op_UnaryNegation_Reportman_Reporting_Variant_
+  name: operator -
+  nameWithType: Variant.operator -
+  fullName: Reportman.Reporting.Variant.operator -
+  nameWithType.vb: Variant.-
+  fullName.vb: Reportman.Reporting.Variant.-
+  name.vb: '-'
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: Reportman.Reporting.Variant.op_UnaryNegation*
+    name: '-'
+    isExternal: true
+    href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_op_UnaryNegation_Reportman_Reporting_Variant_
+- uid: Reportman.Reporting.Variant.op_Multiply*
+  commentId: Overload:Reportman.Reporting.Variant.op_Multiply
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_op_Multiply_Reportman_Reporting_Variant_Reportman_Reporting_Variant_
+  name: operator *
+  nameWithType: Variant.operator *
+  fullName: Reportman.Reporting.Variant.operator *
+  nameWithType.vb: Variant.*
+  fullName.vb: Reportman.Reporting.Variant.*
+  name.vb: '*'
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: Reportman.Reporting.Variant.op_Multiply*
+    name: '*'
+    isExternal: true
+    href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_op_Multiply_Reportman_Reporting_Variant_Reportman_Reporting_Variant_
+- uid: Reportman.Reporting.Variant.op_Division*
+  commentId: Overload:Reportman.Reporting.Variant.op_Division
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_op_Division_Reportman_Reporting_Variant_Reportman_Reporting_Variant_
+  name: operator /
+  nameWithType: Variant.operator /
+  fullName: Reportman.Reporting.Variant.operator /
+  nameWithType.vb: Variant./
+  fullName.vb: Reportman.Reporting.Variant./
+  name.vb: /
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: Reportman.Reporting.Variant.op_Division*
+    name: /
+    isExternal: true
+    href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_op_Division_Reportman_Reporting_Variant_Reportman_Reporting_Variant_
+- uid: Reportman.Reporting.Variant.op_Equality*
+  commentId: Overload:Reportman.Reporting.Variant.op_Equality
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_op_Equality_Reportman_Reporting_Variant_Reportman_Reporting_Variant_
+  name: operator ==
+  nameWithType: Variant.operator ==
+  fullName: Reportman.Reporting.Variant.operator ==
+  nameWithType.vb: Variant.=
+  fullName.vb: Reportman.Reporting.Variant.=
+  name.vb: =
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: Reportman.Reporting.Variant.op_Equality*
+    name: ==
+    isExternal: true
+    href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_op_Equality_Reportman_Reporting_Variant_Reportman_Reporting_Variant_
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Reportman.Reporting.Variant.Equals*
+  commentId: Overload:Reportman.Reporting.Variant.Equals
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_Equals_System_Object_
+  name: Equals
+  nameWithType: Variant.Equals
+  fullName: Reportman.Reporting.Variant.Equals
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.Variant.GetHashCode*
+  commentId: Overload:Reportman.Reporting.Variant.GetHashCode
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_GetHashCode
+  name: GetHashCode
+  nameWithType: Variant.GetHashCode
+  fullName: Reportman.Reporting.Variant.GetHashCode
+- uid: Reportman.Reporting.Variant.op_Inequality*
+  commentId: Overload:Reportman.Reporting.Variant.op_Inequality
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_op_Inequality_Reportman_Reporting_Variant_Reportman_Reporting_Variant_
+  name: operator !=
+  nameWithType: Variant.operator !=
+  fullName: Reportman.Reporting.Variant.operator !=
+  nameWithType.vb: Variant.<>
+  fullName.vb: Reportman.Reporting.Variant.<>
+  name.vb: <>
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: Reportman.Reporting.Variant.op_Inequality*
+    name: '!='
+    isExternal: true
+    href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_op_Inequality_Reportman_Reporting_Variant_Reportman_Reporting_Variant_
+- uid: Reportman.Reporting.Variant.op_LessThan*
+  commentId: Overload:Reportman.Reporting.Variant.op_LessThan
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_op_LessThan_Reportman_Reporting_Variant_Reportman_Reporting_Variant_
+  name: operator <
+  nameWithType: Variant.operator <
+  fullName: Reportman.Reporting.Variant.operator <
+  nameWithType.vb: Variant.<
+  fullName.vb: Reportman.Reporting.Variant.<
+  name.vb: <
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: Reportman.Reporting.Variant.op_LessThan*
+    name: <
+    isExternal: true
+    href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_op_LessThan_Reportman_Reporting_Variant_Reportman_Reporting_Variant_
+- uid: Reportman.Reporting.Variant.op_GreaterThan*
+  commentId: Overload:Reportman.Reporting.Variant.op_GreaterThan
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_op_GreaterThan_Reportman_Reporting_Variant_Reportman_Reporting_Variant_
+  name: operator >
+  nameWithType: Variant.operator >
+  fullName: Reportman.Reporting.Variant.operator >
+  nameWithType.vb: Variant.>
+  fullName.vb: Reportman.Reporting.Variant.>
+  name.vb: '>'
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: Reportman.Reporting.Variant.op_GreaterThan*
+    name: '>'
+    isExternal: true
+    href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_op_GreaterThan_Reportman_Reporting_Variant_Reportman_Reporting_Variant_
+- uid: Reportman.Reporting.Variant.op_LessThanOrEqual*
+  commentId: Overload:Reportman.Reporting.Variant.op_LessThanOrEqual
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_op_LessThanOrEqual_Reportman_Reporting_Variant_Reportman_Reporting_Variant_
+  name: operator <=
+  nameWithType: Variant.operator <=
+  fullName: Reportman.Reporting.Variant.operator <=
+  nameWithType.vb: Variant.<=
+  fullName.vb: Reportman.Reporting.Variant.<=
+  name.vb: <=
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: Reportman.Reporting.Variant.op_LessThanOrEqual*
+    name: <=
+    isExternal: true
+    href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_op_LessThanOrEqual_Reportman_Reporting_Variant_Reportman_Reporting_Variant_
+- uid: Reportman.Reporting.Variant.op_GreaterThanOrEqual*
+  commentId: Overload:Reportman.Reporting.Variant.op_GreaterThanOrEqual
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_op_GreaterThanOrEqual_Reportman_Reporting_Variant_Reportman_Reporting_Variant_
+  name: operator >=
+  nameWithType: Variant.operator >=
+  fullName: Reportman.Reporting.Variant.operator >=
+  nameWithType.vb: Variant.>=
+  fullName.vb: Reportman.Reporting.Variant.>=
+  name.vb: '>='
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: Reportman.Reporting.Variant.op_GreaterThanOrEqual*
+    name: '>='
+    isExternal: true
+    href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_op_GreaterThanOrEqual_Reportman_Reporting_Variant_Reportman_Reporting_Variant_
+- uid: Reportman.Reporting.Variant.AssignFromObject*
+  commentId: Overload:Reportman.Reporting.Variant.AssignFromObject
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_AssignFromObject_System_Object_
+  name: AssignFromObject
+  nameWithType: Variant.AssignFromObject
+  fullName: Reportman.Reporting.Variant.AssignFromObject
+- uid: Reportman.Reporting.Variant.AsObject*
+  commentId: Overload:Reportman.Reporting.Variant.AsObject
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_AsObject
+  name: AsObject
+  nameWithType: Variant.AsObject
+  fullName: Reportman.Reporting.Variant.AsObject
+- uid: Reportman.Reporting.Variant.VariantFromObject*
+  commentId: Overload:Reportman.Reporting.Variant.VariantFromObject
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_VariantFromObject_System_Object_
+  name: VariantFromObject
+  nameWithType: Variant.VariantFromObject
+  fullName: Reportman.Reporting.Variant.VariantFromObject
+- uid: Reportman.Reporting.ParamType
+  commentId: T:Reportman.Reporting.ParamType
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.ParamType.html
+  name: ParamType
+  nameWithType: ParamType
+  fullName: Reportman.Reporting.ParamType
+- uid: Reportman.Reporting.Variant.ToBoolean*
+  commentId: Overload:Reportman.Reporting.Variant.ToBoolean
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_ToBoolean_System_IFormatProvider_
+  name: ToBoolean
+  nameWithType: Variant.ToBoolean
+  fullName: Reportman.Reporting.Variant.ToBoolean
+- uid: System.IConvertible.ToBoolean(System.IFormatProvider)
+  commentId: M:System.IConvertible.ToBoolean(System.IFormatProvider)
+  parent: System.IConvertible
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iconvertible.toboolean
+  name: ToBoolean(IFormatProvider)
+  nameWithType: IConvertible.ToBoolean(IFormatProvider)
+  fullName: System.IConvertible.ToBoolean(System.IFormatProvider)
+  spec.csharp:
+  - uid: System.IConvertible.ToBoolean(System.IFormatProvider)
+    name: ToBoolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.toboolean
+  - name: (
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+  spec.vb:
+  - uid: System.IConvertible.ToBoolean(System.IFormatProvider)
+    name: ToBoolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.toboolean
+  - name: (
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+- uid: System.IFormatProvider
+  commentId: T:System.IFormatProvider
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  name: IFormatProvider
+  nameWithType: IFormatProvider
+  fullName: System.IFormatProvider
+- uid: Reportman.Reporting.Variant.ToDouble*
+  commentId: Overload:Reportman.Reporting.Variant.ToDouble
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_ToDouble_System_IFormatProvider_
+  name: ToDouble
+  nameWithType: Variant.ToDouble
+  fullName: Reportman.Reporting.Variant.ToDouble
+- uid: System.IConvertible.ToDouble(System.IFormatProvider)
+  commentId: M:System.IConvertible.ToDouble(System.IFormatProvider)
+  parent: System.IConvertible
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iconvertible.todouble
+  name: ToDouble(IFormatProvider)
+  nameWithType: IConvertible.ToDouble(IFormatProvider)
+  fullName: System.IConvertible.ToDouble(System.IFormatProvider)
+  spec.csharp:
+  - uid: System.IConvertible.ToDouble(System.IFormatProvider)
+    name: ToDouble
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.todouble
+  - name: (
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+  spec.vb:
+  - uid: System.IConvertible.ToDouble(System.IFormatProvider)
+    name: ToDouble
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.todouble
+  - name: (
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+- uid: Reportman.Reporting.Variant.ToByte*
+  commentId: Overload:Reportman.Reporting.Variant.ToByte
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_ToByte_System_IFormatProvider_
+  name: ToByte
+  nameWithType: Variant.ToByte
+  fullName: Reportman.Reporting.Variant.ToByte
+- uid: System.IConvertible.ToByte(System.IFormatProvider)
+  commentId: M:System.IConvertible.ToByte(System.IFormatProvider)
+  parent: System.IConvertible
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iconvertible.tobyte
+  name: ToByte(IFormatProvider)
+  nameWithType: IConvertible.ToByte(IFormatProvider)
+  fullName: System.IConvertible.ToByte(System.IFormatProvider)
+  spec.csharp:
+  - uid: System.IConvertible.ToByte(System.IFormatProvider)
+    name: ToByte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.tobyte
+  - name: (
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+  spec.vb:
+  - uid: System.IConvertible.ToByte(System.IFormatProvider)
+    name: ToByte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.tobyte
+  - name: (
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+- uid: Reportman.Reporting.Variant.ToSByte*
+  commentId: Overload:Reportman.Reporting.Variant.ToSByte
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_ToSByte_System_IFormatProvider_
+  name: ToSByte
+  nameWithType: Variant.ToSByte
+  fullName: Reportman.Reporting.Variant.ToSByte
+- uid: System.IConvertible.ToSByte(System.IFormatProvider)
+  commentId: M:System.IConvertible.ToSByte(System.IFormatProvider)
+  parent: System.IConvertible
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iconvertible.tosbyte
+  name: ToSByte(IFormatProvider)
+  nameWithType: IConvertible.ToSByte(IFormatProvider)
+  fullName: System.IConvertible.ToSByte(System.IFormatProvider)
+  spec.csharp:
+  - uid: System.IConvertible.ToSByte(System.IFormatProvider)
+    name: ToSByte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.tosbyte
+  - name: (
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+  spec.vb:
+  - uid: System.IConvertible.ToSByte(System.IFormatProvider)
+    name: ToSByte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.tosbyte
+  - name: (
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+- uid: System.SByte
+  commentId: T:System.SByte
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.sbyte
+  name: sbyte
+  nameWithType: sbyte
+  fullName: sbyte
+  nameWithType.vb: SByte
+  fullName.vb: SByte
+  name.vb: SByte
+- uid: Reportman.Reporting.Variant.ToChar*
+  commentId: Overload:Reportman.Reporting.Variant.ToChar
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_ToChar_System_IFormatProvider_
+  name: ToChar
+  nameWithType: Variant.ToChar
+  fullName: Reportman.Reporting.Variant.ToChar
+- uid: System.IConvertible.ToChar(System.IFormatProvider)
+  commentId: M:System.IConvertible.ToChar(System.IFormatProvider)
+  parent: System.IConvertible
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iconvertible.tochar
+  name: ToChar(IFormatProvider)
+  nameWithType: IConvertible.ToChar(IFormatProvider)
+  fullName: System.IConvertible.ToChar(System.IFormatProvider)
+  spec.csharp:
+  - uid: System.IConvertible.ToChar(System.IFormatProvider)
+    name: ToChar
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.tochar
+  - name: (
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+  spec.vb:
+  - uid: System.IConvertible.ToChar(System.IFormatProvider)
+    name: ToChar
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.tochar
+  - name: (
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+- uid: Reportman.Reporting.Variant.ToInt16*
+  commentId: Overload:Reportman.Reporting.Variant.ToInt16
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_ToInt16_System_IFormatProvider_
+  name: ToInt16
+  nameWithType: Variant.ToInt16
+  fullName: Reportman.Reporting.Variant.ToInt16
+- uid: System.IConvertible.ToInt16(System.IFormatProvider)
+  commentId: M:System.IConvertible.ToInt16(System.IFormatProvider)
+  parent: System.IConvertible
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iconvertible.toint16
+  name: ToInt16(IFormatProvider)
+  nameWithType: IConvertible.ToInt16(IFormatProvider)
+  fullName: System.IConvertible.ToInt16(System.IFormatProvider)
+  spec.csharp:
+  - uid: System.IConvertible.ToInt16(System.IFormatProvider)
+    name: ToInt16
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.toint16
+  - name: (
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+  spec.vb:
+  - uid: System.IConvertible.ToInt16(System.IFormatProvider)
+    name: ToInt16
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.toint16
+  - name: (
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+- uid: Reportman.Reporting.Variant.ToUInt16*
+  commentId: Overload:Reportman.Reporting.Variant.ToUInt16
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_ToUInt16_System_IFormatProvider_
+  name: ToUInt16
+  nameWithType: Variant.ToUInt16
+  fullName: Reportman.Reporting.Variant.ToUInt16
+- uid: System.IConvertible.ToUInt16(System.IFormatProvider)
+  commentId: M:System.IConvertible.ToUInt16(System.IFormatProvider)
+  parent: System.IConvertible
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iconvertible.touint16
+  name: ToUInt16(IFormatProvider)
+  nameWithType: IConvertible.ToUInt16(IFormatProvider)
+  fullName: System.IConvertible.ToUInt16(System.IFormatProvider)
+  spec.csharp:
+  - uid: System.IConvertible.ToUInt16(System.IFormatProvider)
+    name: ToUInt16
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.touint16
+  - name: (
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+  spec.vb:
+  - uid: System.IConvertible.ToUInt16(System.IFormatProvider)
+    name: ToUInt16
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.touint16
+  - name: (
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+- uid: System.UInt16
+  commentId: T:System.UInt16
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint16
+  name: ushort
+  nameWithType: ushort
+  fullName: ushort
+  nameWithType.vb: UShort
+  fullName.vb: UShort
+  name.vb: UShort
+- uid: Reportman.Reporting.Variant.ToInt32*
+  commentId: Overload:Reportman.Reporting.Variant.ToInt32
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_ToInt32_System_IFormatProvider_
+  name: ToInt32
+  nameWithType: Variant.ToInt32
+  fullName: Reportman.Reporting.Variant.ToInt32
+- uid: System.IConvertible.ToInt32(System.IFormatProvider)
+  commentId: M:System.IConvertible.ToInt32(System.IFormatProvider)
+  parent: System.IConvertible
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iconvertible.toint32
+  name: ToInt32(IFormatProvider)
+  nameWithType: IConvertible.ToInt32(IFormatProvider)
+  fullName: System.IConvertible.ToInt32(System.IFormatProvider)
+  spec.csharp:
+  - uid: System.IConvertible.ToInt32(System.IFormatProvider)
+    name: ToInt32
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.toint32
+  - name: (
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+  spec.vb:
+  - uid: System.IConvertible.ToInt32(System.IFormatProvider)
+    name: ToInt32
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.toint32
+  - name: (
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+- uid: Reportman.Reporting.Variant.ToUInt32*
+  commentId: Overload:Reportman.Reporting.Variant.ToUInt32
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_ToUInt32_System_IFormatProvider_
+  name: ToUInt32
+  nameWithType: Variant.ToUInt32
+  fullName: Reportman.Reporting.Variant.ToUInt32
+- uid: System.IConvertible.ToUInt32(System.IFormatProvider)
+  commentId: M:System.IConvertible.ToUInt32(System.IFormatProvider)
+  parent: System.IConvertible
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iconvertible.touint32
+  name: ToUInt32(IFormatProvider)
+  nameWithType: IConvertible.ToUInt32(IFormatProvider)
+  fullName: System.IConvertible.ToUInt32(System.IFormatProvider)
+  spec.csharp:
+  - uid: System.IConvertible.ToUInt32(System.IFormatProvider)
+    name: ToUInt32
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.touint32
+  - name: (
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+  spec.vb:
+  - uid: System.IConvertible.ToUInt32(System.IFormatProvider)
+    name: ToUInt32
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.touint32
+  - name: (
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+- uid: System.UInt32
+  commentId: T:System.UInt32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint32
+  name: uint
+  nameWithType: uint
+  fullName: uint
+  nameWithType.vb: UInteger
+  fullName.vb: UInteger
+  name.vb: UInteger
+- uid: Reportman.Reporting.Variant.ToInt64*
+  commentId: Overload:Reportman.Reporting.Variant.ToInt64
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_ToInt64_System_IFormatProvider_
+  name: ToInt64
+  nameWithType: Variant.ToInt64
+  fullName: Reportman.Reporting.Variant.ToInt64
+- uid: System.IConvertible.ToInt64(System.IFormatProvider)
+  commentId: M:System.IConvertible.ToInt64(System.IFormatProvider)
+  parent: System.IConvertible
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iconvertible.toint64
+  name: ToInt64(IFormatProvider)
+  nameWithType: IConvertible.ToInt64(IFormatProvider)
+  fullName: System.IConvertible.ToInt64(System.IFormatProvider)
+  spec.csharp:
+  - uid: System.IConvertible.ToInt64(System.IFormatProvider)
+    name: ToInt64
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.toint64
+  - name: (
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+  spec.vb:
+  - uid: System.IConvertible.ToInt64(System.IFormatProvider)
+    name: ToInt64
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.toint64
+  - name: (
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+- uid: Reportman.Reporting.Variant.ToUInt64*
+  commentId: Overload:Reportman.Reporting.Variant.ToUInt64
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_ToUInt64_System_IFormatProvider_
+  name: ToUInt64
+  nameWithType: Variant.ToUInt64
+  fullName: Reportman.Reporting.Variant.ToUInt64
+- uid: System.IConvertible.ToUInt64(System.IFormatProvider)
+  commentId: M:System.IConvertible.ToUInt64(System.IFormatProvider)
+  parent: System.IConvertible
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iconvertible.touint64
+  name: ToUInt64(IFormatProvider)
+  nameWithType: IConvertible.ToUInt64(IFormatProvider)
+  fullName: System.IConvertible.ToUInt64(System.IFormatProvider)
+  spec.csharp:
+  - uid: System.IConvertible.ToUInt64(System.IFormatProvider)
+    name: ToUInt64
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.touint64
+  - name: (
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+  spec.vb:
+  - uid: System.IConvertible.ToUInt64(System.IFormatProvider)
+    name: ToUInt64
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.touint64
+  - name: (
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+- uid: System.UInt64
+  commentId: T:System.UInt64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong
+  nameWithType: ulong
+  fullName: ulong
+  nameWithType.vb: ULong
+  fullName.vb: ULong
+  name.vb: ULong
+- uid: Reportman.Reporting.Variant.ToSingle*
+  commentId: Overload:Reportman.Reporting.Variant.ToSingle
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_ToSingle_System_IFormatProvider_
+  name: ToSingle
+  nameWithType: Variant.ToSingle
+  fullName: Reportman.Reporting.Variant.ToSingle
+- uid: System.IConvertible.ToSingle(System.IFormatProvider)
+  commentId: M:System.IConvertible.ToSingle(System.IFormatProvider)
+  parent: System.IConvertible
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iconvertible.tosingle
+  name: ToSingle(IFormatProvider)
+  nameWithType: IConvertible.ToSingle(IFormatProvider)
+  fullName: System.IConvertible.ToSingle(System.IFormatProvider)
+  spec.csharp:
+  - uid: System.IConvertible.ToSingle(System.IFormatProvider)
+    name: ToSingle
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.tosingle
+  - name: (
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+  spec.vb:
+  - uid: System.IConvertible.ToSingle(System.IFormatProvider)
+    name: ToSingle
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.tosingle
+  - name: (
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: System.IConvertible.ToString(System.IFormatProvider)
+  commentId: M:System.IConvertible.ToString(System.IFormatProvider)
+  parent: System.IConvertible
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iconvertible.tostring
+  name: ToString(IFormatProvider)
+  nameWithType: IConvertible.ToString(IFormatProvider)
+  fullName: System.IConvertible.ToString(System.IFormatProvider)
+  spec.csharp:
+  - uid: System.IConvertible.ToString(System.IFormatProvider)
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.tostring
+  - name: (
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+  spec.vb:
+  - uid: System.IConvertible.ToString(System.IFormatProvider)
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.tostring
+  - name: (
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+- uid: Reportman.Reporting.Variant.ToDecimal*
+  commentId: Overload:Reportman.Reporting.Variant.ToDecimal
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_ToDecimal_System_IFormatProvider_
+  name: ToDecimal
+  nameWithType: Variant.ToDecimal
+  fullName: Reportman.Reporting.Variant.ToDecimal
+- uid: System.IConvertible.ToDecimal(System.IFormatProvider)
+  commentId: M:System.IConvertible.ToDecimal(System.IFormatProvider)
+  parent: System.IConvertible
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iconvertible.todecimal
+  name: ToDecimal(IFormatProvider)
+  nameWithType: IConvertible.ToDecimal(IFormatProvider)
+  fullName: System.IConvertible.ToDecimal(System.IFormatProvider)
+  spec.csharp:
+  - uid: System.IConvertible.ToDecimal(System.IFormatProvider)
+    name: ToDecimal
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.todecimal
+  - name: (
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+  spec.vb:
+  - uid: System.IConvertible.ToDecimal(System.IFormatProvider)
+    name: ToDecimal
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.todecimal
+  - name: (
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+- uid: Reportman.Reporting.Variant.ToDateTime*
+  commentId: Overload:Reportman.Reporting.Variant.ToDateTime
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_ToDateTime_System_IFormatProvider_
+  name: ToDateTime
+  nameWithType: Variant.ToDateTime
+  fullName: Reportman.Reporting.Variant.ToDateTime
+- uid: System.IConvertible.ToDateTime(System.IFormatProvider)
+  commentId: M:System.IConvertible.ToDateTime(System.IFormatProvider)
+  parent: System.IConvertible
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iconvertible.todatetime
+  name: ToDateTime(IFormatProvider)
+  nameWithType: IConvertible.ToDateTime(IFormatProvider)
+  fullName: System.IConvertible.ToDateTime(System.IFormatProvider)
+  spec.csharp:
+  - uid: System.IConvertible.ToDateTime(System.IFormatProvider)
+    name: ToDateTime
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.todatetime
+  - name: (
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+  spec.vb:
+  - uid: System.IConvertible.ToDateTime(System.IFormatProvider)
+    name: ToDateTime
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.todatetime
+  - name: (
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+- uid: Reportman.Reporting.Variant.ToType*
+  commentId: Overload:Reportman.Reporting.Variant.ToType
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_ToType_System_Type_System_IFormatProvider_
+  name: ToType
+  nameWithType: Variant.ToType
+  fullName: Reportman.Reporting.Variant.ToType
+- uid: System.IConvertible.ToType(System.Type,System.IFormatProvider)
+  commentId: M:System.IConvertible.ToType(System.Type,System.IFormatProvider)
+  parent: System.IConvertible
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iconvertible.totype
+  name: ToType(Type, IFormatProvider)
+  nameWithType: IConvertible.ToType(Type, IFormatProvider)
+  fullName: System.IConvertible.ToType(System.Type, System.IFormatProvider)
+  spec.csharp:
+  - uid: System.IConvertible.ToType(System.Type,System.IFormatProvider)
+    name: ToType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.totype
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+  spec.vb:
+  - uid: System.IConvertible.ToType(System.Type,System.IFormatProvider)
+    name: ToType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iconvertible.totype
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.IFormatProvider
+    name: IFormatProvider
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iformatprovider
+  - name: )
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.type
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: System.IComparable.CompareTo(System.Object)
+  commentId: M:System.IComparable.CompareTo(System.Object)
+  parent: System.IComparable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.icomparable.compareto
+  name: CompareTo(object)
+  nameWithType: IComparable.CompareTo(object)
+  fullName: System.IComparable.CompareTo(object)
+  nameWithType.vb: IComparable.CompareTo(Object)
+  fullName.vb: System.IComparable.CompareTo(Object)
+  name.vb: CompareTo(Object)
+  spec.csharp:
+  - uid: System.IComparable.CompareTo(System.Object)
+    name: CompareTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icomparable.compareto
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.IComparable.CompareTo(System.Object)
+    name: CompareTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icomparable.compareto
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Reportman.Reporting.Variant.Abs*
+  commentId: Overload:Reportman.Reporting.Variant.Abs
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_Abs
+  name: Abs
+  nameWithType: Variant.Abs
+  fullName: Reportman.Reporting.Variant.Abs
+- uid: Reportman.Reporting.Variant.IsNull*
+  commentId: Overload:Reportman.Reporting.Variant.IsNull
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_IsNull
+  name: IsNull
+  nameWithType: Variant.IsNull
+  fullName: Reportman.Reporting.Variant.IsNull
+- uid: Reportman.Reporting.VariantType
+  commentId: T:Reportman.Reporting.VariantType
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.VariantType.html
+  name: VariantType
+  nameWithType: VariantType
+  fullName: Reportman.Reporting.VariantType
+- uid: Reportman.Reporting.Variant.VarType*
+  commentId: Overload:Reportman.Reporting.Variant.VarType
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_VarType
+  name: VarType
+  nameWithType: Variant.VarType
+  fullName: Reportman.Reporting.Variant.VarType
+- uid: Reportman.Reporting.Variant.AsString*
+  commentId: Overload:Reportman.Reporting.Variant.AsString
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_AsString
+  name: AsString
+  nameWithType: Variant.AsString
+  fullName: Reportman.Reporting.Variant.AsString
+- uid: Reportman.Reporting.Variant.AsDouble*
+  commentId: Overload:Reportman.Reporting.Variant.AsDouble
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_AsDouble
+  name: AsDouble
+  nameWithType: Variant.AsDouble
+  fullName: Reportman.Reporting.Variant.AsDouble
+- uid: Reportman.Reporting.Variant.AsDecimal*
+  commentId: Overload:Reportman.Reporting.Variant.AsDecimal
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_AsDecimal
+  name: AsDecimal
+  nameWithType: Variant.AsDecimal
+  fullName: Reportman.Reporting.Variant.AsDecimal
+- uid: Reportman.Reporting.Variant.AsInteger*
+  commentId: Overload:Reportman.Reporting.Variant.AsInteger
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_AsInteger
+  name: AsInteger
+  nameWithType: Variant.AsInteger
+  fullName: Reportman.Reporting.Variant.AsInteger
+- uid: Reportman.Reporting.Variant.AsDateTime*
+  commentId: Overload:Reportman.Reporting.Variant.AsDateTime
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_AsDateTime
+  name: AsDateTime
+  nameWithType: Variant.AsDateTime
+  fullName: Reportman.Reporting.Variant.AsDateTime
+- uid: Reportman.Reporting.Variant.AsLong*
+  commentId: Overload:Reportman.Reporting.Variant.AsLong
+  isExternal: true
+  href: Reportman.Reporting.Variant.html#Reportman_Reporting_Variant_AsLong
+  name: AsLong
+  nameWithType: Variant.AsLong
+  fullName: Reportman.Reporting.Variant.AsLong

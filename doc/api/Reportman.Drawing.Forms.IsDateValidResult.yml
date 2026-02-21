@@ -1,0 +1,142 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.IsDateValidResult
+  commentId: T:Reportman.Drawing.Forms.IsDateValidResult
+  id: IsDateValidResult
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.IsDateValidResult.GreaterThanMaxDate
+  - Reportman.Drawing.Forms.IsDateValidResult.Invalid
+  - Reportman.Drawing.Forms.IsDateValidResult.LessThanMinDate
+  - Reportman.Drawing.Forms.IsDateValidResult.Valid
+  langs:
+  - csharp
+  - vb
+  name: IsDateValidResult
+  nameWithType: IsDateValidResult
+  fullName: Reportman.Drawing.Forms.IsDateValidResult
+  type: Enum
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public enum IsDateValidResult
+    content.vb: Public Enum IsDateValidResult
+- uid: Reportman.Drawing.Forms.IsDateValidResult.Valid
+  commentId: F:Reportman.Drawing.Forms.IsDateValidResult.Valid
+  id: Valid
+  parent: Reportman.Drawing.Forms.IsDateValidResult
+  langs:
+  - csharp
+  - vb
+  name: Valid
+  nameWithType: IsDateValidResult.Valid
+  fullName: Reportman.Drawing.Forms.IsDateValidResult.Valid
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Valid = 0
+    return:
+      type: Reportman.Drawing.Forms.IsDateValidResult
+- uid: Reportman.Drawing.Forms.IsDateValidResult.Invalid
+  commentId: F:Reportman.Drawing.Forms.IsDateValidResult.Invalid
+  id: Invalid
+  parent: Reportman.Drawing.Forms.IsDateValidResult
+  langs:
+  - csharp
+  - vb
+  name: Invalid
+  nameWithType: IsDateValidResult.Invalid
+  fullName: Reportman.Drawing.Forms.IsDateValidResult.Invalid
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Invalid = 1
+    return:
+      type: Reportman.Drawing.Forms.IsDateValidResult
+- uid: Reportman.Drawing.Forms.IsDateValidResult.LessThanMinDate
+  commentId: F:Reportman.Drawing.Forms.IsDateValidResult.LessThanMinDate
+  id: LessThanMinDate
+  parent: Reportman.Drawing.Forms.IsDateValidResult
+  langs:
+  - csharp
+  - vb
+  name: LessThanMinDate
+  nameWithType: IsDateValidResult.LessThanMinDate
+  fullName: Reportman.Drawing.Forms.IsDateValidResult.LessThanMinDate
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: LessThanMinDate = 2
+    return:
+      type: Reportman.Drawing.Forms.IsDateValidResult
+- uid: Reportman.Drawing.Forms.IsDateValidResult.GreaterThanMaxDate
+  commentId: F:Reportman.Drawing.Forms.IsDateValidResult.GreaterThanMaxDate
+  id: GreaterThanMaxDate
+  parent: Reportman.Drawing.Forms.IsDateValidResult
+  langs:
+  - csharp
+  - vb
+  name: GreaterThanMaxDate
+  nameWithType: IsDateValidResult.GreaterThanMaxDate
+  fullName: Reportman.Drawing.Forms.IsDateValidResult.GreaterThanMaxDate
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: GreaterThanMaxDate = 3
+    return:
+      type: Reportman.Drawing.Forms.IsDateValidResult
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: Reportman.Drawing.Forms.IsDateValidResult
+  commentId: T:Reportman.Drawing.Forms.IsDateValidResult
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.IsDateValidResult.html
+  name: IsDateValidResult
+  nameWithType: IsDateValidResult
+  fullName: Reportman.Drawing.Forms.IsDateValidResult

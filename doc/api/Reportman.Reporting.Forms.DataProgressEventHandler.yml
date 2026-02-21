@@ -1,0 +1,256 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.Forms.DataProgressEventHandler
+  commentId: T:Reportman.Reporting.Forms.DataProgressEventHandler
+  id: DataProgressEventHandler
+  parent: Reportman.Reporting.Forms
+  children:
+  - Reportman.Reporting.Forms.DataProgressEventHandler.#ctor(System.Object,System.IntPtr)
+  - Reportman.Reporting.Forms.DataProgressEventHandler.BeginInvoke(System.Object,Reportman.Reporting.Forms.DataProgress,System.AsyncCallback,System.Object)
+  - Reportman.Reporting.Forms.DataProgressEventHandler.EndInvoke(System.IAsyncResult)
+  - Reportman.Reporting.Forms.DataProgressEventHandler.Invoke(System.Object,Reportman.Reporting.Forms.DataProgress)
+  langs:
+  - csharp
+  - vb
+  name: DataProgressEventHandler
+  nameWithType: DataProgressEventHandler
+  fullName: Reportman.Reporting.Forms.DataProgressEventHandler
+  type: Delegate
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Reporting.Forms
+  syntax:
+    content: public delegate void DataProgressEventHandler(object sender, DataProgress nform)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: nform
+      type: Reportman.Reporting.Forms.DataProgress
+    content.vb: Public Delegate Sub DataProgressEventHandler(sender As Object, nform As DataProgress)
+- uid: Reportman.Reporting.Forms.DataProgressEventHandler.#ctor(System.Object,System.IntPtr)
+  commentId: M:Reportman.Reporting.Forms.DataProgressEventHandler.#ctor(System.Object,System.IntPtr)
+  id: '#ctor(System.Object,System.IntPtr)'
+  parent: Reportman.Reporting.Forms.DataProgressEventHandler
+  langs:
+  - csharp
+  - vb
+  name: DataProgressEventHandler(object, nint)
+  nameWithType: DataProgressEventHandler.DataProgressEventHandler(object, nint)
+  fullName: Reportman.Reporting.Forms.DataProgressEventHandler.DataProgressEventHandler(object, nint)
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Reporting.Forms
+  syntax:
+    content: public DataProgressEventHandler(object @object, nint method)
+    parameters:
+    - id: object
+      type: System.Object
+    - id: method
+      type: System.IntPtr
+    content.vb: Public Sub New([object] As Object, method As IntPtr)
+  overload: Reportman.Reporting.Forms.DataProgressEventHandler.#ctor*
+  nameWithType.vb: DataProgressEventHandler.New(Object, IntPtr)
+  fullName.vb: Reportman.Reporting.Forms.DataProgressEventHandler.New(Object, System.IntPtr)
+  name.vb: New(Object, IntPtr)
+- uid: Reportman.Reporting.Forms.DataProgressEventHandler.Invoke(System.Object,Reportman.Reporting.Forms.DataProgress)
+  commentId: M:Reportman.Reporting.Forms.DataProgressEventHandler.Invoke(System.Object,Reportman.Reporting.Forms.DataProgress)
+  id: Invoke(System.Object,Reportman.Reporting.Forms.DataProgress)
+  parent: Reportman.Reporting.Forms.DataProgressEventHandler
+  langs:
+  - csharp
+  - vb
+  name: Invoke(object, DataProgress)
+  nameWithType: DataProgressEventHandler.Invoke(object, DataProgress)
+  fullName: Reportman.Reporting.Forms.DataProgressEventHandler.Invoke(object, Reportman.Reporting.Forms.DataProgress)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Reporting.Forms
+  syntax:
+    content: public virtual void Invoke(object sender, DataProgress nform)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: nform
+      type: Reportman.Reporting.Forms.DataProgress
+    content.vb: Public Overridable Sub Invoke(sender As Object, nform As DataProgress)
+  overload: Reportman.Reporting.Forms.DataProgressEventHandler.Invoke*
+  nameWithType.vb: DataProgressEventHandler.Invoke(Object, DataProgress)
+  fullName.vb: Reportman.Reporting.Forms.DataProgressEventHandler.Invoke(Object, Reportman.Reporting.Forms.DataProgress)
+  name.vb: Invoke(Object, DataProgress)
+- uid: Reportman.Reporting.Forms.DataProgressEventHandler.BeginInvoke(System.Object,Reportman.Reporting.Forms.DataProgress,System.AsyncCallback,System.Object)
+  commentId: M:Reportman.Reporting.Forms.DataProgressEventHandler.BeginInvoke(System.Object,Reportman.Reporting.Forms.DataProgress,System.AsyncCallback,System.Object)
+  id: BeginInvoke(System.Object,Reportman.Reporting.Forms.DataProgress,System.AsyncCallback,System.Object)
+  parent: Reportman.Reporting.Forms.DataProgressEventHandler
+  langs:
+  - csharp
+  - vb
+  name: BeginInvoke(object, DataProgress, AsyncCallback, object)
+  nameWithType: DataProgressEventHandler.BeginInvoke(object, DataProgress, AsyncCallback, object)
+  fullName: Reportman.Reporting.Forms.DataProgressEventHandler.BeginInvoke(object, Reportman.Reporting.Forms.DataProgress, System.AsyncCallback, object)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Reporting.Forms
+  syntax:
+    content: public virtual IAsyncResult BeginInvoke(object sender, DataProgress nform, AsyncCallback callback, object @object)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: nform
+      type: Reportman.Reporting.Forms.DataProgress
+    - id: callback
+      type: System.AsyncCallback
+    - id: object
+      type: System.Object
+    return:
+      type: System.IAsyncResult
+    content.vb: Public Overridable Function BeginInvoke(sender As Object, nform As DataProgress, callback As AsyncCallback, [object] As Object) As IAsyncResult
+  overload: Reportman.Reporting.Forms.DataProgressEventHandler.BeginInvoke*
+  nameWithType.vb: DataProgressEventHandler.BeginInvoke(Object, DataProgress, AsyncCallback, Object)
+  fullName.vb: Reportman.Reporting.Forms.DataProgressEventHandler.BeginInvoke(Object, Reportman.Reporting.Forms.DataProgress, System.AsyncCallback, Object)
+  name.vb: BeginInvoke(Object, DataProgress, AsyncCallback, Object)
+- uid: Reportman.Reporting.Forms.DataProgressEventHandler.EndInvoke(System.IAsyncResult)
+  commentId: M:Reportman.Reporting.Forms.DataProgressEventHandler.EndInvoke(System.IAsyncResult)
+  id: EndInvoke(System.IAsyncResult)
+  parent: Reportman.Reporting.Forms.DataProgressEventHandler
+  langs:
+  - csharp
+  - vb
+  name: EndInvoke(IAsyncResult)
+  nameWithType: DataProgressEventHandler.EndInvoke(IAsyncResult)
+  fullName: Reportman.Reporting.Forms.DataProgressEventHandler.EndInvoke(System.IAsyncResult)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Reporting.Forms
+  syntax:
+    content: public virtual void EndInvoke(IAsyncResult result)
+    parameters:
+    - id: result
+      type: System.IAsyncResult
+    content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
+  overload: Reportman.Reporting.Forms.DataProgressEventHandler.EndInvoke*
+references:
+- uid: Reportman.Reporting.Forms
+  commentId: N:Reportman.Reporting.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting.Forms
+  nameWithType: Reportman.Reporting.Forms
+  fullName: Reportman.Reporting.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  - name: .
+  - uid: Reportman.Reporting.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Reporting.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  - name: .
+  - uid: Reportman.Reporting.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Reporting.Forms.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Reportman.Reporting.Forms.DataProgress
+  commentId: T:Reportman.Reporting.Forms.DataProgress
+  parent: Reportman.Reporting.Forms
+  isExternal: true
+  href: Reportman.Reporting.Forms.DataProgress.html
+  name: DataProgress
+  nameWithType: DataProgress
+  fullName: Reportman.Reporting.Forms.DataProgress
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Reporting.Forms.DataProgressEventHandler.#ctor*
+  commentId: Overload:Reportman.Reporting.Forms.DataProgressEventHandler.#ctor
+  isExternal: true
+  href: Reportman.Reporting.Forms.DataProgressEventHandler.html#Reportman_Reporting_Forms_DataProgressEventHandler__ctor_System_Object_System_IntPtr_
+  name: DataProgressEventHandler
+  nameWithType: DataProgressEventHandler.DataProgressEventHandler
+  fullName: Reportman.Reporting.Forms.DataProgressEventHandler.DataProgressEventHandler
+  nameWithType.vb: DataProgressEventHandler.New
+  fullName.vb: Reportman.Reporting.Forms.DataProgressEventHandler.New
+  name.vb: New
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: Reportman.Reporting.Forms.DataProgressEventHandler.Invoke*
+  commentId: Overload:Reportman.Reporting.Forms.DataProgressEventHandler.Invoke
+  isExternal: true
+  href: Reportman.Reporting.Forms.DataProgressEventHandler.html#Reportman_Reporting_Forms_DataProgressEventHandler_Invoke_System_Object_Reportman_Reporting_Forms_DataProgress_
+  name: Invoke
+  nameWithType: DataProgressEventHandler.Invoke
+  fullName: Reportman.Reporting.Forms.DataProgressEventHandler.Invoke
+- uid: Reportman.Reporting.Forms.DataProgressEventHandler.BeginInvoke*
+  commentId: Overload:Reportman.Reporting.Forms.DataProgressEventHandler.BeginInvoke
+  isExternal: true
+  href: Reportman.Reporting.Forms.DataProgressEventHandler.html#Reportman_Reporting_Forms_DataProgressEventHandler_BeginInvoke_System_Object_Reportman_Reporting_Forms_DataProgress_System_AsyncCallback_System_Object_
+  name: BeginInvoke
+  nameWithType: DataProgressEventHandler.BeginInvoke
+  fullName: Reportman.Reporting.Forms.DataProgressEventHandler.BeginInvoke
+- uid: System.AsyncCallback
+  commentId: T:System.AsyncCallback
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.asynccallback
+  name: AsyncCallback
+  nameWithType: AsyncCallback
+  fullName: System.AsyncCallback
+- uid: System.IAsyncResult
+  commentId: T:System.IAsyncResult
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncresult
+  name: IAsyncResult
+  nameWithType: IAsyncResult
+  fullName: System.IAsyncResult
+- uid: Reportman.Reporting.Forms.DataProgressEventHandler.EndInvoke*
+  commentId: Overload:Reportman.Reporting.Forms.DataProgressEventHandler.EndInvoke
+  isExternal: true
+  href: Reportman.Reporting.Forms.DataProgressEventHandler.html#Reportman_Reporting_Forms_DataProgressEventHandler_EndInvoke_System_IAsyncResult_
+  name: EndInvoke
+  nameWithType: DataProgressEventHandler.EndInvoke
+  fullName: Reportman.Reporting.Forms.DataProgressEventHandler.EndInvoke

@@ -1,0 +1,166 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.MetaObjectType
+  commentId: T:Reportman.Drawing.MetaObjectType
+  id: MetaObjectType
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.MetaObjectType.Draw
+  - Reportman.Drawing.MetaObjectType.Export
+  - Reportman.Drawing.MetaObjectType.Image
+  - Reportman.Drawing.MetaObjectType.Polygon
+  - Reportman.Drawing.MetaObjectType.Text
+  langs:
+  - csharp
+  - vb
+  name: MetaObjectType
+  nameWithType: MetaObjectType
+  fullName: Reportman.Drawing.MetaObjectType
+  type: Enum
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    MetaFiles are composed by pages containing objects, each object can have a type that determines
+
+    the action when drawing (or printing)
+  example: []
+  syntax:
+    content: public enum MetaObjectType
+    content.vb: Public Enum MetaObjectType
+- uid: Reportman.Drawing.MetaObjectType.Text
+  commentId: F:Reportman.Drawing.MetaObjectType.Text
+  id: Text
+  parent: Reportman.Drawing.MetaObjectType
+  langs:
+  - csharp
+  - vb
+  name: Text
+  nameWithType: MetaObjectType.Text
+  fullName: Reportman.Drawing.MetaObjectType.Text
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Text object contain formatting and text information
+  example: []
+  syntax:
+    content: Text = 0
+    return:
+      type: Reportman.Drawing.MetaObjectType
+- uid: Reportman.Drawing.MetaObjectType.Draw
+  commentId: F:Reportman.Drawing.MetaObjectType.Draw
+  id: Draw
+  parent: Reportman.Drawing.MetaObjectType
+  langs:
+  - csharp
+  - vb
+  name: Draw
+  nameWithType: MetaObjectType.Draw
+  fullName: Reportman.Drawing.MetaObjectType.Draw
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Draw object contain basic poligon drawing (lines, rectangles...)
+  example: []
+  syntax:
+    content: Draw = 1
+    return:
+      type: Reportman.Drawing.MetaObjectType
+- uid: Reportman.Drawing.MetaObjectType.Image
+  commentId: F:Reportman.Drawing.MetaObjectType.Image
+  id: Image
+  parent: Reportman.Drawing.MetaObjectType
+  langs:
+  - csharp
+  - vb
+  name: Image
+  nameWithType: MetaObjectType.Image
+  fullName: Reportman.Drawing.MetaObjectType.Image
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Image object contain image and image formatting information
+  example: []
+  syntax:
+    content: Image = 2
+    return:
+      type: Reportman.Drawing.MetaObjectType
+- uid: Reportman.Drawing.MetaObjectType.Polygon
+  commentId: F:Reportman.Drawing.MetaObjectType.Polygon
+  id: Polygon
+  parent: Reportman.Drawing.MetaObjectType
+  langs:
+  - csharp
+  - vb
+  name: Polygon
+  nameWithType: MetaObjectType.Polygon
+  fullName: Reportman.Drawing.MetaObjectType.Polygon
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Poligon object contain a series of drawing actions, this is for future use
+  example: []
+  syntax:
+    content: Polygon = 3
+    return:
+      type: Reportman.Drawing.MetaObjectType
+- uid: Reportman.Drawing.MetaObjectType.Export
+  commentId: F:Reportman.Drawing.MetaObjectType.Export
+  id: Export
+  parent: Reportman.Drawing.MetaObjectType
+  langs:
+  - csharp
+  - vb
+  name: Export
+  nameWithType: MetaObjectType.Export
+  fullName: Reportman.Drawing.MetaObjectType.Export
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Export object contain information for exporting the metafile to custom formats
+  example: []
+  syntax:
+    content: Export = 4
+    return:
+      type: Reportman.Drawing.MetaObjectType
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.MetaObjectType
+  commentId: T:Reportman.Drawing.MetaObjectType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.MetaObjectType.html
+  name: MetaObjectType
+  nameWithType: MetaObjectType
+  fullName: Reportman.Drawing.MetaObjectType

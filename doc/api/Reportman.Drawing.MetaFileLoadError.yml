@@ -1,0 +1,246 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.MetaFileLoadError
+  commentId: T:Reportman.Drawing.MetaFileLoadError
+  id: MetaFileLoadError
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.MetaFileLoadError.#ctor(System.Object,System.IntPtr)
+  - Reportman.Drawing.MetaFileLoadError.BeginInvoke(System.String,System.AsyncCallback,System.Object)
+  - Reportman.Drawing.MetaFileLoadError.EndInvoke(System.IAsyncResult)
+  - Reportman.Drawing.MetaFileLoadError.Invoke(System.String)
+  langs:
+  - csharp
+  - vb
+  name: MetaFileLoadError
+  nameWithType: MetaFileLoadError
+  fullName: Reportman.Drawing.MetaFileLoadError
+  type: Delegate
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Event launched when the loading of a MetaFile causes an error
+  example: []
+  syntax:
+    content: public delegate void MetaFileLoadError(string errormessage)
+    parameters:
+    - id: errormessage
+      type: System.String
+      description: Error message containing error information
+    content.vb: Public Delegate Sub MetaFileLoadError(errormessage As String)
+- uid: Reportman.Drawing.MetaFileLoadError.#ctor(System.Object,System.IntPtr)
+  commentId: M:Reportman.Drawing.MetaFileLoadError.#ctor(System.Object,System.IntPtr)
+  id: '#ctor(System.Object,System.IntPtr)'
+  parent: Reportman.Drawing.MetaFileLoadError
+  langs:
+  - csharp
+  - vb
+  name: MetaFileLoadError(object, nint)
+  nameWithType: MetaFileLoadError.MetaFileLoadError(object, nint)
+  fullName: Reportman.Drawing.MetaFileLoadError.MetaFileLoadError(object, nint)
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public MetaFileLoadError(object @object, nint method)
+    parameters:
+    - id: object
+      type: System.Object
+    - id: method
+      type: System.IntPtr
+    content.vb: Public Sub New([object] As Object, method As IntPtr)
+  overload: Reportman.Drawing.MetaFileLoadError.#ctor*
+  nameWithType.vb: MetaFileLoadError.New(Object, IntPtr)
+  fullName.vb: Reportman.Drawing.MetaFileLoadError.New(Object, System.IntPtr)
+  name.vb: New(Object, IntPtr)
+- uid: Reportman.Drawing.MetaFileLoadError.Invoke(System.String)
+  commentId: M:Reportman.Drawing.MetaFileLoadError.Invoke(System.String)
+  id: Invoke(System.String)
+  parent: Reportman.Drawing.MetaFileLoadError
+  langs:
+  - csharp
+  - vb
+  name: Invoke(string)
+  nameWithType: MetaFileLoadError.Invoke(string)
+  fullName: Reportman.Drawing.MetaFileLoadError.Invoke(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public virtual void Invoke(string errormessage)
+    parameters:
+    - id: errormessage
+      type: System.String
+    content.vb: Public Overridable Sub Invoke(errormessage As String)
+  overload: Reportman.Drawing.MetaFileLoadError.Invoke*
+  nameWithType.vb: MetaFileLoadError.Invoke(String)
+  fullName.vb: Reportman.Drawing.MetaFileLoadError.Invoke(String)
+  name.vb: Invoke(String)
+- uid: Reportman.Drawing.MetaFileLoadError.BeginInvoke(System.String,System.AsyncCallback,System.Object)
+  commentId: M:Reportman.Drawing.MetaFileLoadError.BeginInvoke(System.String,System.AsyncCallback,System.Object)
+  id: BeginInvoke(System.String,System.AsyncCallback,System.Object)
+  parent: Reportman.Drawing.MetaFileLoadError
+  langs:
+  - csharp
+  - vb
+  name: BeginInvoke(string, AsyncCallback, object)
+  nameWithType: MetaFileLoadError.BeginInvoke(string, AsyncCallback, object)
+  fullName: Reportman.Drawing.MetaFileLoadError.BeginInvoke(string, System.AsyncCallback, object)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public virtual IAsyncResult BeginInvoke(string errormessage, AsyncCallback callback, object @object)
+    parameters:
+    - id: errormessage
+      type: System.String
+    - id: callback
+      type: System.AsyncCallback
+    - id: object
+      type: System.Object
+    return:
+      type: System.IAsyncResult
+    content.vb: Public Overridable Function BeginInvoke(errormessage As String, callback As AsyncCallback, [object] As Object) As IAsyncResult
+  overload: Reportman.Drawing.MetaFileLoadError.BeginInvoke*
+  nameWithType.vb: MetaFileLoadError.BeginInvoke(String, AsyncCallback, Object)
+  fullName.vb: Reportman.Drawing.MetaFileLoadError.BeginInvoke(String, System.AsyncCallback, Object)
+  name.vb: BeginInvoke(String, AsyncCallback, Object)
+- uid: Reportman.Drawing.MetaFileLoadError.EndInvoke(System.IAsyncResult)
+  commentId: M:Reportman.Drawing.MetaFileLoadError.EndInvoke(System.IAsyncResult)
+  id: EndInvoke(System.IAsyncResult)
+  parent: Reportman.Drawing.MetaFileLoadError
+  langs:
+  - csharp
+  - vb
+  name: EndInvoke(IAsyncResult)
+  nameWithType: MetaFileLoadError.EndInvoke(IAsyncResult)
+  fullName: Reportman.Drawing.MetaFileLoadError.EndInvoke(System.IAsyncResult)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public virtual void EndInvoke(IAsyncResult result)
+    parameters:
+    - id: result
+      type: System.IAsyncResult
+    content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
+  overload: Reportman.Drawing.MetaFileLoadError.EndInvoke*
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.MetaFileLoadError.#ctor*
+  commentId: Overload:Reportman.Drawing.MetaFileLoadError.#ctor
+  isExternal: true
+  href: Reportman.Drawing.MetaFileLoadError.html#Reportman_Drawing_MetaFileLoadError__ctor_System_Object_System_IntPtr_
+  name: MetaFileLoadError
+  nameWithType: MetaFileLoadError.MetaFileLoadError
+  fullName: Reportman.Drawing.MetaFileLoadError.MetaFileLoadError
+  nameWithType.vb: MetaFileLoadError.New
+  fullName.vb: Reportman.Drawing.MetaFileLoadError.New
+  name.vb: New
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: Reportman.Drawing.MetaFileLoadError.Invoke*
+  commentId: Overload:Reportman.Drawing.MetaFileLoadError.Invoke
+  isExternal: true
+  href: Reportman.Drawing.MetaFileLoadError.html#Reportman_Drawing_MetaFileLoadError_Invoke_System_String_
+  name: Invoke
+  nameWithType: MetaFileLoadError.Invoke
+  fullName: Reportman.Drawing.MetaFileLoadError.Invoke
+- uid: Reportman.Drawing.MetaFileLoadError.BeginInvoke*
+  commentId: Overload:Reportman.Drawing.MetaFileLoadError.BeginInvoke
+  isExternal: true
+  href: Reportman.Drawing.MetaFileLoadError.html#Reportman_Drawing_MetaFileLoadError_BeginInvoke_System_String_System_AsyncCallback_System_Object_
+  name: BeginInvoke
+  nameWithType: MetaFileLoadError.BeginInvoke
+  fullName: Reportman.Drawing.MetaFileLoadError.BeginInvoke
+- uid: System.AsyncCallback
+  commentId: T:System.AsyncCallback
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.asynccallback
+  name: AsyncCallback
+  nameWithType: AsyncCallback
+  fullName: System.AsyncCallback
+- uid: System.IAsyncResult
+  commentId: T:System.IAsyncResult
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncresult
+  name: IAsyncResult
+  nameWithType: IAsyncResult
+  fullName: System.IAsyncResult
+- uid: Reportman.Drawing.MetaFileLoadError.EndInvoke*
+  commentId: Overload:Reportman.Drawing.MetaFileLoadError.EndInvoke
+  isExternal: true
+  href: Reportman.Drawing.MetaFileLoadError.html#Reportman_Drawing_MetaFileLoadError_EndInvoke_System_IAsyncResult_
+  name: EndInvoke
+  nameWithType: MetaFileLoadError.EndInvoke
+  fullName: Reportman.Drawing.MetaFileLoadError.EndInvoke

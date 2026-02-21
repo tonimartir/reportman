@@ -1,0 +1,163 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.StreamFormatType
+  commentId: T:Reportman.Reporting.StreamFormatType
+  id: StreamFormatType
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.StreamFormatType.Binary
+  - Reportman.Reporting.StreamFormatType.Text
+  - Reportman.Reporting.StreamFormatType.XML
+  - Reportman.Reporting.StreamFormatType.XMLZlib
+  - Reportman.Reporting.StreamFormatType.Zlib
+  langs:
+  - csharp
+  - vb
+  name: StreamFormatType
+  nameWithType: StreamFormatType
+  fullName: Reportman.Reporting.StreamFormatType
+  type: Enum
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Report stream format
+  example: []
+  syntax:
+    content: public enum StreamFormatType
+    content.vb: Public Enum StreamFormatType
+- uid: Reportman.Reporting.StreamFormatType.Zlib
+  commentId: F:Reportman.Reporting.StreamFormatType.Zlib
+  id: Zlib
+  parent: Reportman.Reporting.StreamFormatType
+  langs:
+  - csharp
+  - vb
+  name: Zlib
+  nameWithType: StreamFormatType.Zlib
+  fullName: Reportman.Reporting.StreamFormatType.Zlib
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Zlib, binary and compressed, only usable in Win32 native reporting engine
+  example: []
+  syntax:
+    content: Zlib = 0
+    return:
+      type: Reportman.Reporting.StreamFormatType
+- uid: Reportman.Reporting.StreamFormatType.Text
+  commentId: F:Reportman.Reporting.StreamFormatType.Text
+  id: Text
+  parent: Reportman.Reporting.StreamFormatType
+  langs:
+  - csharp
+  - vb
+  name: Text
+  nameWithType: StreamFormatType.Text
+  fullName: Reportman.Reporting.StreamFormatType.Text
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Text, objext oriented, only usable in Win32 native reporting engine
+  example: []
+  syntax:
+    content: Text = 1
+    return:
+      type: Reportman.Reporting.StreamFormatType
+- uid: Reportman.Reporting.StreamFormatType.Binary
+  commentId: F:Reportman.Reporting.StreamFormatType.Binary
+  id: Binary
+  parent: Reportman.Reporting.StreamFormatType
+  langs:
+  - csharp
+  - vb
+  name: Binary
+  nameWithType: StreamFormatType.Binary
+  fullName: Reportman.Reporting.StreamFormatType.Binary
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Binary, only usable in Win32 native reporting engine
+  example: []
+  syntax:
+    content: Binary = 2
+    return:
+      type: Reportman.Reporting.StreamFormatType
+- uid: Reportman.Reporting.StreamFormatType.XML
+  commentId: F:Reportman.Reporting.StreamFormatType.XML
+  id: XML
+  parent: Reportman.Reporting.StreamFormatType
+  langs:
+  - csharp
+  - vb
+  name: XML
+  nameWithType: StreamFormatType.XML
+  fullName: Reportman.Reporting.StreamFormatType.XML
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: XML Text, usable in Win32 native reporting engine and .Net engine
+  example: []
+  syntax:
+    content: XML = 3
+    return:
+      type: Reportman.Reporting.StreamFormatType
+- uid: Reportman.Reporting.StreamFormatType.XMLZlib
+  commentId: F:Reportman.Reporting.StreamFormatType.XMLZlib
+  id: XMLZlib
+  parent: Reportman.Reporting.StreamFormatType
+  langs:
+  - csharp
+  - vb
+  name: XMLZlib
+  nameWithType: StreamFormatType.XMLZlib
+  fullName: Reportman.Reporting.StreamFormatType.XMLZlib
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: XML Text, zlib compressed, usable in Win32 native reporting engine and .Net engine
+  example: []
+  syntax:
+    content: XMLZlib = 4
+    return:
+      type: Reportman.Reporting.StreamFormatType
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: Reportman.Reporting.StreamFormatType
+  commentId: T:Reportman.Reporting.StreamFormatType
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.StreamFormatType.html
+  name: StreamFormatType
+  nameWithType: StreamFormatType
+  fullName: Reportman.Reporting.StreamFormatType

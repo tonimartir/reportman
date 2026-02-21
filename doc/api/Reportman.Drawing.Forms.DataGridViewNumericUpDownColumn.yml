@@ -1,0 +1,1397 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn
+  commentId: T:Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn
+  id: DataGridViewNumericUpDownColumn
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.#ctor
+  - Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.CellTemplate
+  - Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.DecimalPlaces
+  - Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.Increment
+  - Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.Maximum
+  - Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.Minimum
+  - Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.ThousandsSeparator
+  - Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.ToString
+  langs:
+  - csharp
+  - vb
+  name: DataGridViewNumericUpDownColumn
+  nameWithType: DataGridViewNumericUpDownColumn
+  fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn
+  type: Class
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  summary: Custom column type dedicated to the DataGridViewNumericUpDownCell cell type.
+  example: []
+  syntax:
+    content: 'public class DataGridViewNumericUpDownColumn : DataGridViewColumn, ICloneable, IComponent, IDisposable'
+    content.vb: Public Class DataGridViewNumericUpDownColumn Inherits DataGridViewColumn Implements ICloneable, IComponent, IDisposable
+  inheritance:
+  - System.Object
+  - System.Windows.Forms.DataGridViewElement
+  - System.Windows.Forms.DataGridViewBand
+  - System.Windows.Forms.DataGridViewColumn
+  implements:
+  - System.ICloneable
+  - System.ComponentModel.IComponent
+  - System.IDisposable
+  inheritedMembers:
+  - System.Windows.Forms.DataGridViewColumn.Clone
+  - System.Windows.Forms.DataGridViewColumn.Dispose(System.Boolean)
+  - System.Windows.Forms.DataGridViewColumn.GetPreferredWidth(System.Windows.Forms.DataGridViewAutoSizeColumnMode,System.Boolean)
+  - System.Windows.Forms.DataGridViewColumn.AutoSizeMode
+  - System.Windows.Forms.DataGridViewColumn.CellType
+  - System.Windows.Forms.DataGridViewColumn.ContextMenuStrip
+  - System.Windows.Forms.DataGridViewColumn.DataPropertyName
+  - System.Windows.Forms.DataGridViewColumn.DefaultCellStyle
+  - System.Windows.Forms.DataGridViewColumn.DisplayIndex
+  - System.Windows.Forms.DataGridViewColumn.DividerWidth
+  - System.Windows.Forms.DataGridViewColumn.FillWeight
+  - System.Windows.Forms.DataGridViewColumn.Frozen
+  - System.Windows.Forms.DataGridViewColumn.HeaderCell
+  - System.Windows.Forms.DataGridViewColumn.HeaderText
+  - System.Windows.Forms.DataGridViewColumn.InheritedAutoSizeMode
+  - System.Windows.Forms.DataGridViewColumn.InheritedStyle
+  - System.Windows.Forms.DataGridViewColumn.IsDataBound
+  - System.Windows.Forms.DataGridViewColumn.MinimumWidth
+  - System.Windows.Forms.DataGridViewColumn.Name
+  - System.Windows.Forms.DataGridViewColumn.ReadOnly
+  - System.Windows.Forms.DataGridViewColumn.Resizable
+  - System.Windows.Forms.DataGridViewColumn.Site
+  - System.Windows.Forms.DataGridViewColumn.SortMode
+  - System.Windows.Forms.DataGridViewColumn.ToolTipText
+  - System.Windows.Forms.DataGridViewColumn.ValueType
+  - System.Windows.Forms.DataGridViewColumn.Visible
+  - System.Windows.Forms.DataGridViewColumn.Width
+  - System.Windows.Forms.DataGridViewColumn.Disposed
+  - System.Windows.Forms.DataGridViewBand.Dispose
+  - System.Windows.Forms.DataGridViewBand.OnDataGridViewChanged
+  - System.Windows.Forms.DataGridViewBand.DefaultHeaderCellType
+  - System.Windows.Forms.DataGridViewBand.Displayed
+  - System.Windows.Forms.DataGridViewBand.HasDefaultCellStyle
+  - System.Windows.Forms.DataGridViewBand.HeaderCellCore
+  - System.Windows.Forms.DataGridViewBand.Index
+  - System.Windows.Forms.DataGridViewBand.IsRow
+  - System.Windows.Forms.DataGridViewBand.Selected
+  - System.Windows.Forms.DataGridViewBand.Tag
+  - System.Windows.Forms.DataGridViewElement.RaiseCellClick(System.Windows.Forms.DataGridViewCellEventArgs)
+  - System.Windows.Forms.DataGridViewElement.RaiseCellContentClick(System.Windows.Forms.DataGridViewCellEventArgs)
+  - System.Windows.Forms.DataGridViewElement.RaiseCellContentDoubleClick(System.Windows.Forms.DataGridViewCellEventArgs)
+  - System.Windows.Forms.DataGridViewElement.RaiseCellValueChanged(System.Windows.Forms.DataGridViewCellEventArgs)
+  - System.Windows.Forms.DataGridViewElement.RaiseDataError(System.Windows.Forms.DataGridViewDataErrorEventArgs)
+  - System.Windows.Forms.DataGridViewElement.RaiseMouseWheel(System.Windows.Forms.MouseEventArgs)
+  - System.Windows.Forms.DataGridViewElement.State
+  - System.Windows.Forms.DataGridViewElement.DataGridView
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.#ctor
+  commentId: M:Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.#ctor
+  id: '#ctor'
+  parent: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn
+  langs:
+  - csharp
+  - vb
+  name: DataGridViewNumericUpDownColumn()
+  nameWithType: DataGridViewNumericUpDownColumn.DataGridViewNumericUpDownColumn()
+  fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.DataGridViewNumericUpDownColumn()
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  summary: Constructor for the DataGridViewNumericUpDownColumn class.
+  example: []
+  syntax:
+    content: public DataGridViewNumericUpDownColumn()
+    content.vb: Public Sub New()
+  overload: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.#ctor*
+  nameWithType.vb: DataGridViewNumericUpDownColumn.New()
+  fullName.vb: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.New()
+  name.vb: New()
+- uid: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.ToString
+  commentId: M:Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.ToString
+  id: ToString
+  parent: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: DataGridViewNumericUpDownColumn.ToString()
+  fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.ToString()
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  summary: Returns a standard compact string representation of the column.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.Windows.Forms.DataGridViewColumn.ToString
+  overload: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.ToString*
+- uid: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.CellTemplate
+  commentId: P:Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.CellTemplate
+  id: CellTemplate
+  parent: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn
+  langs:
+  - csharp
+  - vb
+  name: CellTemplate
+  nameWithType: DataGridViewNumericUpDownColumn.CellTemplate
+  fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.CellTemplate
+  type: Property
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  summary: Represents the implicit cell that gets cloned when adding rows to the grid.
+  example: []
+  syntax:
+    content: >-
+      [Browsable(false)]
+
+      public override DataGridViewCell CellTemplate { get; set; }
+    parameters: []
+    return:
+      type: System.Windows.Forms.DataGridViewCell
+    content.vb: >-
+      <Browsable(False)>
+
+      Public Overrides Property CellTemplate As DataGridViewCell
+  overridden: System.Windows.Forms.DataGridViewColumn.CellTemplate
+  overload: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.CellTemplate*
+  attributes:
+  - type: System.ComponentModel.BrowsableAttribute
+    ctor: System.ComponentModel.BrowsableAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+- uid: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.DecimalPlaces
+  commentId: P:Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.DecimalPlaces
+  id: DecimalPlaces
+  parent: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn
+  langs:
+  - csharp
+  - vb
+  name: DecimalPlaces
+  nameWithType: DataGridViewNumericUpDownColumn.DecimalPlaces
+  fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.DecimalPlaces
+  type: Property
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  summary: Replicates the DecimalPlaces property of the DataGridViewNumericUpDownCell cell type.
+  example: []
+  syntax:
+    content: public int DecimalPlaces { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property DecimalPlaces As Integer
+  overload: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.DecimalPlaces*
+- uid: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.Increment
+  commentId: P:Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.Increment
+  id: Increment
+  parent: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn
+  langs:
+  - csharp
+  - vb
+  name: Increment
+  nameWithType: DataGridViewNumericUpDownColumn.Increment
+  fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.Increment
+  type: Property
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  summary: Replicates the Increment property of the DataGridViewNumericUpDownCell cell type.
+  example: []
+  syntax:
+    content: public decimal Increment { get; set; }
+    parameters: []
+    return:
+      type: System.Decimal
+    content.vb: Public Property Increment As Decimal
+  overload: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.Increment*
+- uid: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.Maximum
+  commentId: P:Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.Maximum
+  id: Maximum
+  parent: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn
+  langs:
+  - csharp
+  - vb
+  name: Maximum
+  nameWithType: DataGridViewNumericUpDownColumn.Maximum
+  fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.Maximum
+  type: Property
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  summary: Replicates the Maximum property of the DataGridViewNumericUpDownCell cell type.
+  example: []
+  syntax:
+    content: public decimal Maximum { get; set; }
+    parameters: []
+    return:
+      type: System.Decimal
+    content.vb: Public Property Maximum As Decimal
+  overload: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.Maximum*
+- uid: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.Minimum
+  commentId: P:Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.Minimum
+  id: Minimum
+  parent: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn
+  langs:
+  - csharp
+  - vb
+  name: Minimum
+  nameWithType: DataGridViewNumericUpDownColumn.Minimum
+  fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.Minimum
+  type: Property
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  summary: Replicates the Minimum property of the DataGridViewNumericUpDownCell cell type.
+  example: []
+  syntax:
+    content: public decimal Minimum { get; set; }
+    parameters: []
+    return:
+      type: System.Decimal
+    content.vb: Public Property Minimum As Decimal
+  overload: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.Minimum*
+- uid: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.ThousandsSeparator
+  commentId: P:Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.ThousandsSeparator
+  id: ThousandsSeparator
+  parent: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn
+  langs:
+  - csharp
+  - vb
+  name: ThousandsSeparator
+  nameWithType: DataGridViewNumericUpDownColumn.ThousandsSeparator
+  fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.ThousandsSeparator
+  type: Property
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  summary: Replicates the ThousandsSeparator property of the DataGridViewNumericUpDownCell cell type.
+  example: []
+  syntax:
+    content: public bool ThousandsSeparator { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property ThousandsSeparator As Boolean
+  overload: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.ThousandsSeparator*
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Windows.Forms.DataGridViewElement
+  commentId: T:System.Windows.Forms.DataGridViewElement
+  parent: System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewelement
+  name: DataGridViewElement
+  nameWithType: DataGridViewElement
+  fullName: System.Windows.Forms.DataGridViewElement
+- uid: System.Windows.Forms.DataGridViewBand
+  commentId: T:System.Windows.Forms.DataGridViewBand
+  parent: System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewband
+  name: DataGridViewBand
+  nameWithType: DataGridViewBand
+  fullName: System.Windows.Forms.DataGridViewBand
+- uid: System.Windows.Forms.DataGridViewColumn
+  commentId: T:System.Windows.Forms.DataGridViewColumn
+  parent: System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn
+  name: DataGridViewColumn
+  nameWithType: DataGridViewColumn
+  fullName: System.Windows.Forms.DataGridViewColumn
+- uid: System.ICloneable
+  commentId: T:System.ICloneable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.icloneable
+  name: ICloneable
+  nameWithType: ICloneable
+  fullName: System.ICloneable
+- uid: System.ComponentModel.IComponent
+  commentId: T:System.ComponentModel.IComponent
+  parent: System.ComponentModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.icomponent
+  name: IComponent
+  nameWithType: IComponent
+  fullName: System.ComponentModel.IComponent
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System.Windows.Forms.DataGridViewColumn.Clone
+  commentId: M:System.Windows.Forms.DataGridViewColumn.Clone
+  parent: System.Windows.Forms.DataGridViewColumn
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.clone
+  name: Clone()
+  nameWithType: DataGridViewColumn.Clone()
+  fullName: System.Windows.Forms.DataGridViewColumn.Clone()
+  spec.csharp:
+  - uid: System.Windows.Forms.DataGridViewColumn.Clone
+    name: Clone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.clone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.DataGridViewColumn.Clone
+    name: Clone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.clone
+  - name: (
+  - name: )
+- uid: System.Windows.Forms.DataGridViewColumn.Dispose(System.Boolean)
+  commentId: M:System.Windows.Forms.DataGridViewColumn.Dispose(System.Boolean)
+  parent: System.Windows.Forms.DataGridViewColumn
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.dispose
+  name: Dispose(bool)
+  nameWithType: DataGridViewColumn.Dispose(bool)
+  fullName: System.Windows.Forms.DataGridViewColumn.Dispose(bool)
+  nameWithType.vb: DataGridViewColumn.Dispose(Boolean)
+  fullName.vb: System.Windows.Forms.DataGridViewColumn.Dispose(Boolean)
+  name.vb: Dispose(Boolean)
+  spec.csharp:
+  - uid: System.Windows.Forms.DataGridViewColumn.Dispose(System.Boolean)
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.dispose
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.DataGridViewColumn.Dispose(System.Boolean)
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.dispose
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Windows.Forms.DataGridViewColumn.GetPreferredWidth(System.Windows.Forms.DataGridViewAutoSizeColumnMode,System.Boolean)
+  commentId: M:System.Windows.Forms.DataGridViewColumn.GetPreferredWidth(System.Windows.Forms.DataGridViewAutoSizeColumnMode,System.Boolean)
+  parent: System.Windows.Forms.DataGridViewColumn
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.getpreferredwidth
+  name: GetPreferredWidth(DataGridViewAutoSizeColumnMode, bool)
+  nameWithType: DataGridViewColumn.GetPreferredWidth(DataGridViewAutoSizeColumnMode, bool)
+  fullName: System.Windows.Forms.DataGridViewColumn.GetPreferredWidth(System.Windows.Forms.DataGridViewAutoSizeColumnMode, bool)
+  nameWithType.vb: DataGridViewColumn.GetPreferredWidth(DataGridViewAutoSizeColumnMode, Boolean)
+  fullName.vb: System.Windows.Forms.DataGridViewColumn.GetPreferredWidth(System.Windows.Forms.DataGridViewAutoSizeColumnMode, Boolean)
+  name.vb: GetPreferredWidth(DataGridViewAutoSizeColumnMode, Boolean)
+  spec.csharp:
+  - uid: System.Windows.Forms.DataGridViewColumn.GetPreferredWidth(System.Windows.Forms.DataGridViewAutoSizeColumnMode,System.Boolean)
+    name: GetPreferredWidth
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.getpreferredwidth
+  - name: (
+  - uid: System.Windows.Forms.DataGridViewAutoSizeColumnMode
+    name: DataGridViewAutoSizeColumnMode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewautosizecolumnmode
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.DataGridViewColumn.GetPreferredWidth(System.Windows.Forms.DataGridViewAutoSizeColumnMode,System.Boolean)
+    name: GetPreferredWidth
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.getpreferredwidth
+  - name: (
+  - uid: System.Windows.Forms.DataGridViewAutoSizeColumnMode
+    name: DataGridViewAutoSizeColumnMode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewautosizecolumnmode
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Windows.Forms.DataGridViewColumn.AutoSizeMode
+  commentId: P:System.Windows.Forms.DataGridViewColumn.AutoSizeMode
+  parent: System.Windows.Forms.DataGridViewColumn
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.autosizemode
+  name: AutoSizeMode
+  nameWithType: DataGridViewColumn.AutoSizeMode
+  fullName: System.Windows.Forms.DataGridViewColumn.AutoSizeMode
+- uid: System.Windows.Forms.DataGridViewColumn.CellType
+  commentId: P:System.Windows.Forms.DataGridViewColumn.CellType
+  parent: System.Windows.Forms.DataGridViewColumn
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.celltype
+  name: CellType
+  nameWithType: DataGridViewColumn.CellType
+  fullName: System.Windows.Forms.DataGridViewColumn.CellType
+- uid: System.Windows.Forms.DataGridViewColumn.ContextMenuStrip
+  commentId: P:System.Windows.Forms.DataGridViewColumn.ContextMenuStrip
+  parent: System.Windows.Forms.DataGridViewColumn
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.contextmenustrip
+  name: ContextMenuStrip
+  nameWithType: DataGridViewColumn.ContextMenuStrip
+  fullName: System.Windows.Forms.DataGridViewColumn.ContextMenuStrip
+- uid: System.Windows.Forms.DataGridViewColumn.DataPropertyName
+  commentId: P:System.Windows.Forms.DataGridViewColumn.DataPropertyName
+  parent: System.Windows.Forms.DataGridViewColumn
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.datapropertyname
+  name: DataPropertyName
+  nameWithType: DataGridViewColumn.DataPropertyName
+  fullName: System.Windows.Forms.DataGridViewColumn.DataPropertyName
+- uid: System.Windows.Forms.DataGridViewColumn.DefaultCellStyle
+  commentId: P:System.Windows.Forms.DataGridViewColumn.DefaultCellStyle
+  parent: System.Windows.Forms.DataGridViewColumn
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.defaultcellstyle
+  name: DefaultCellStyle
+  nameWithType: DataGridViewColumn.DefaultCellStyle
+  fullName: System.Windows.Forms.DataGridViewColumn.DefaultCellStyle
+- uid: System.Windows.Forms.DataGridViewColumn.DisplayIndex
+  commentId: P:System.Windows.Forms.DataGridViewColumn.DisplayIndex
+  parent: System.Windows.Forms.DataGridViewColumn
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.displayindex
+  name: DisplayIndex
+  nameWithType: DataGridViewColumn.DisplayIndex
+  fullName: System.Windows.Forms.DataGridViewColumn.DisplayIndex
+- uid: System.Windows.Forms.DataGridViewColumn.DividerWidth
+  commentId: P:System.Windows.Forms.DataGridViewColumn.DividerWidth
+  parent: System.Windows.Forms.DataGridViewColumn
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.dividerwidth
+  name: DividerWidth
+  nameWithType: DataGridViewColumn.DividerWidth
+  fullName: System.Windows.Forms.DataGridViewColumn.DividerWidth
+- uid: System.Windows.Forms.DataGridViewColumn.FillWeight
+  commentId: P:System.Windows.Forms.DataGridViewColumn.FillWeight
+  parent: System.Windows.Forms.DataGridViewColumn
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.fillweight
+  name: FillWeight
+  nameWithType: DataGridViewColumn.FillWeight
+  fullName: System.Windows.Forms.DataGridViewColumn.FillWeight
+- uid: System.Windows.Forms.DataGridViewColumn.Frozen
+  commentId: P:System.Windows.Forms.DataGridViewColumn.Frozen
+  parent: System.Windows.Forms.DataGridViewColumn
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.frozen
+  name: Frozen
+  nameWithType: DataGridViewColumn.Frozen
+  fullName: System.Windows.Forms.DataGridViewColumn.Frozen
+- uid: System.Windows.Forms.DataGridViewColumn.HeaderCell
+  commentId: P:System.Windows.Forms.DataGridViewColumn.HeaderCell
+  parent: System.Windows.Forms.DataGridViewColumn
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.headercell
+  name: HeaderCell
+  nameWithType: DataGridViewColumn.HeaderCell
+  fullName: System.Windows.Forms.DataGridViewColumn.HeaderCell
+- uid: System.Windows.Forms.DataGridViewColumn.HeaderText
+  commentId: P:System.Windows.Forms.DataGridViewColumn.HeaderText
+  parent: System.Windows.Forms.DataGridViewColumn
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.headertext
+  name: HeaderText
+  nameWithType: DataGridViewColumn.HeaderText
+  fullName: System.Windows.Forms.DataGridViewColumn.HeaderText
+- uid: System.Windows.Forms.DataGridViewColumn.InheritedAutoSizeMode
+  commentId: P:System.Windows.Forms.DataGridViewColumn.InheritedAutoSizeMode
+  parent: System.Windows.Forms.DataGridViewColumn
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.inheritedautosizemode
+  name: InheritedAutoSizeMode
+  nameWithType: DataGridViewColumn.InheritedAutoSizeMode
+  fullName: System.Windows.Forms.DataGridViewColumn.InheritedAutoSizeMode
+- uid: System.Windows.Forms.DataGridViewColumn.InheritedStyle
+  commentId: P:System.Windows.Forms.DataGridViewColumn.InheritedStyle
+  parent: System.Windows.Forms.DataGridViewColumn
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.inheritedstyle
+  name: InheritedStyle
+  nameWithType: DataGridViewColumn.InheritedStyle
+  fullName: System.Windows.Forms.DataGridViewColumn.InheritedStyle
+- uid: System.Windows.Forms.DataGridViewColumn.IsDataBound
+  commentId: P:System.Windows.Forms.DataGridViewColumn.IsDataBound
+  parent: System.Windows.Forms.DataGridViewColumn
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.isdatabound
+  name: IsDataBound
+  nameWithType: DataGridViewColumn.IsDataBound
+  fullName: System.Windows.Forms.DataGridViewColumn.IsDataBound
+- uid: System.Windows.Forms.DataGridViewColumn.MinimumWidth
+  commentId: P:System.Windows.Forms.DataGridViewColumn.MinimumWidth
+  parent: System.Windows.Forms.DataGridViewColumn
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.minimumwidth
+  name: MinimumWidth
+  nameWithType: DataGridViewColumn.MinimumWidth
+  fullName: System.Windows.Forms.DataGridViewColumn.MinimumWidth
+- uid: System.Windows.Forms.DataGridViewColumn.Name
+  commentId: P:System.Windows.Forms.DataGridViewColumn.Name
+  parent: System.Windows.Forms.DataGridViewColumn
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.name
+  name: Name
+  nameWithType: DataGridViewColumn.Name
+  fullName: System.Windows.Forms.DataGridViewColumn.Name
+- uid: System.Windows.Forms.DataGridViewColumn.ReadOnly
+  commentId: P:System.Windows.Forms.DataGridViewColumn.ReadOnly
+  parent: System.Windows.Forms.DataGridViewColumn
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.readonly
+  name: ReadOnly
+  nameWithType: DataGridViewColumn.ReadOnly
+  fullName: System.Windows.Forms.DataGridViewColumn.ReadOnly
+- uid: System.Windows.Forms.DataGridViewColumn.Resizable
+  commentId: P:System.Windows.Forms.DataGridViewColumn.Resizable
+  parent: System.Windows.Forms.DataGridViewColumn
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.resizable
+  name: Resizable
+  nameWithType: DataGridViewColumn.Resizable
+  fullName: System.Windows.Forms.DataGridViewColumn.Resizable
+- uid: System.Windows.Forms.DataGridViewColumn.Site
+  commentId: P:System.Windows.Forms.DataGridViewColumn.Site
+  parent: System.Windows.Forms.DataGridViewColumn
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.site
+  name: Site
+  nameWithType: DataGridViewColumn.Site
+  fullName: System.Windows.Forms.DataGridViewColumn.Site
+- uid: System.Windows.Forms.DataGridViewColumn.SortMode
+  commentId: P:System.Windows.Forms.DataGridViewColumn.SortMode
+  parent: System.Windows.Forms.DataGridViewColumn
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.sortmode
+  name: SortMode
+  nameWithType: DataGridViewColumn.SortMode
+  fullName: System.Windows.Forms.DataGridViewColumn.SortMode
+- uid: System.Windows.Forms.DataGridViewColumn.ToolTipText
+  commentId: P:System.Windows.Forms.DataGridViewColumn.ToolTipText
+  parent: System.Windows.Forms.DataGridViewColumn
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.tooltiptext
+  name: ToolTipText
+  nameWithType: DataGridViewColumn.ToolTipText
+  fullName: System.Windows.Forms.DataGridViewColumn.ToolTipText
+- uid: System.Windows.Forms.DataGridViewColumn.ValueType
+  commentId: P:System.Windows.Forms.DataGridViewColumn.ValueType
+  parent: System.Windows.Forms.DataGridViewColumn
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.valuetype
+  name: ValueType
+  nameWithType: DataGridViewColumn.ValueType
+  fullName: System.Windows.Forms.DataGridViewColumn.ValueType
+- uid: System.Windows.Forms.DataGridViewColumn.Visible
+  commentId: P:System.Windows.Forms.DataGridViewColumn.Visible
+  parent: System.Windows.Forms.DataGridViewColumn
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.visible
+  name: Visible
+  nameWithType: DataGridViewColumn.Visible
+  fullName: System.Windows.Forms.DataGridViewColumn.Visible
+- uid: System.Windows.Forms.DataGridViewColumn.Width
+  commentId: P:System.Windows.Forms.DataGridViewColumn.Width
+  parent: System.Windows.Forms.DataGridViewColumn
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.width
+  name: Width
+  nameWithType: DataGridViewColumn.Width
+  fullName: System.Windows.Forms.DataGridViewColumn.Width
+- uid: System.Windows.Forms.DataGridViewColumn.Disposed
+  commentId: E:System.Windows.Forms.DataGridViewColumn.Disposed
+  parent: System.Windows.Forms.DataGridViewColumn
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.disposed
+  name: Disposed
+  nameWithType: DataGridViewColumn.Disposed
+  fullName: System.Windows.Forms.DataGridViewColumn.Disposed
+- uid: System.Windows.Forms.DataGridViewBand.Dispose
+  commentId: M:System.Windows.Forms.DataGridViewBand.Dispose
+  parent: System.Windows.Forms.DataGridViewBand
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewband.dispose#system-windows-forms-datagridviewband-dispose
+  name: Dispose()
+  nameWithType: DataGridViewBand.Dispose()
+  fullName: System.Windows.Forms.DataGridViewBand.Dispose()
+  spec.csharp:
+  - uid: System.Windows.Forms.DataGridViewBand.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewband.dispose#system-windows-forms-datagridviewband-dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.DataGridViewBand.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewband.dispose#system-windows-forms-datagridviewband-dispose
+  - name: (
+  - name: )
+- uid: System.Windows.Forms.DataGridViewBand.OnDataGridViewChanged
+  commentId: M:System.Windows.Forms.DataGridViewBand.OnDataGridViewChanged
+  parent: System.Windows.Forms.DataGridViewBand
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewband.ondatagridviewchanged
+  name: OnDataGridViewChanged()
+  nameWithType: DataGridViewBand.OnDataGridViewChanged()
+  fullName: System.Windows.Forms.DataGridViewBand.OnDataGridViewChanged()
+  spec.csharp:
+  - uid: System.Windows.Forms.DataGridViewBand.OnDataGridViewChanged
+    name: OnDataGridViewChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewband.ondatagridviewchanged
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.DataGridViewBand.OnDataGridViewChanged
+    name: OnDataGridViewChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewband.ondatagridviewchanged
+  - name: (
+  - name: )
+- uid: System.Windows.Forms.DataGridViewBand.DefaultHeaderCellType
+  commentId: P:System.Windows.Forms.DataGridViewBand.DefaultHeaderCellType
+  parent: System.Windows.Forms.DataGridViewBand
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewband.defaultheadercelltype
+  name: DefaultHeaderCellType
+  nameWithType: DataGridViewBand.DefaultHeaderCellType
+  fullName: System.Windows.Forms.DataGridViewBand.DefaultHeaderCellType
+- uid: System.Windows.Forms.DataGridViewBand.Displayed
+  commentId: P:System.Windows.Forms.DataGridViewBand.Displayed
+  parent: System.Windows.Forms.DataGridViewBand
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewband.displayed
+  name: Displayed
+  nameWithType: DataGridViewBand.Displayed
+  fullName: System.Windows.Forms.DataGridViewBand.Displayed
+- uid: System.Windows.Forms.DataGridViewBand.HasDefaultCellStyle
+  commentId: P:System.Windows.Forms.DataGridViewBand.HasDefaultCellStyle
+  parent: System.Windows.Forms.DataGridViewBand
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewband.hasdefaultcellstyle
+  name: HasDefaultCellStyle
+  nameWithType: DataGridViewBand.HasDefaultCellStyle
+  fullName: System.Windows.Forms.DataGridViewBand.HasDefaultCellStyle
+- uid: System.Windows.Forms.DataGridViewBand.HeaderCellCore
+  commentId: P:System.Windows.Forms.DataGridViewBand.HeaderCellCore
+  parent: System.Windows.Forms.DataGridViewBand
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewband.headercellcore
+  name: HeaderCellCore
+  nameWithType: DataGridViewBand.HeaderCellCore
+  fullName: System.Windows.Forms.DataGridViewBand.HeaderCellCore
+- uid: System.Windows.Forms.DataGridViewBand.Index
+  commentId: P:System.Windows.Forms.DataGridViewBand.Index
+  parent: System.Windows.Forms.DataGridViewBand
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewband.index
+  name: Index
+  nameWithType: DataGridViewBand.Index
+  fullName: System.Windows.Forms.DataGridViewBand.Index
+- uid: System.Windows.Forms.DataGridViewBand.IsRow
+  commentId: P:System.Windows.Forms.DataGridViewBand.IsRow
+  parent: System.Windows.Forms.DataGridViewBand
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewband.isrow
+  name: IsRow
+  nameWithType: DataGridViewBand.IsRow
+  fullName: System.Windows.Forms.DataGridViewBand.IsRow
+- uid: System.Windows.Forms.DataGridViewBand.Selected
+  commentId: P:System.Windows.Forms.DataGridViewBand.Selected
+  parent: System.Windows.Forms.DataGridViewBand
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewband.selected
+  name: Selected
+  nameWithType: DataGridViewBand.Selected
+  fullName: System.Windows.Forms.DataGridViewBand.Selected
+- uid: System.Windows.Forms.DataGridViewBand.Tag
+  commentId: P:System.Windows.Forms.DataGridViewBand.Tag
+  parent: System.Windows.Forms.DataGridViewBand
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewband.tag
+  name: Tag
+  nameWithType: DataGridViewBand.Tag
+  fullName: System.Windows.Forms.DataGridViewBand.Tag
+- uid: System.Windows.Forms.DataGridViewElement.RaiseCellClick(System.Windows.Forms.DataGridViewCellEventArgs)
+  commentId: M:System.Windows.Forms.DataGridViewElement.RaiseCellClick(System.Windows.Forms.DataGridViewCellEventArgs)
+  parent: System.Windows.Forms.DataGridViewElement
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewelement.raisecellclick
+  name: RaiseCellClick(DataGridViewCellEventArgs)
+  nameWithType: DataGridViewElement.RaiseCellClick(DataGridViewCellEventArgs)
+  fullName: System.Windows.Forms.DataGridViewElement.RaiseCellClick(System.Windows.Forms.DataGridViewCellEventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.DataGridViewElement.RaiseCellClick(System.Windows.Forms.DataGridViewCellEventArgs)
+    name: RaiseCellClick
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewelement.raisecellclick
+  - name: (
+  - uid: System.Windows.Forms.DataGridViewCellEventArgs
+    name: DataGridViewCellEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcelleventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.DataGridViewElement.RaiseCellClick(System.Windows.Forms.DataGridViewCellEventArgs)
+    name: RaiseCellClick
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewelement.raisecellclick
+  - name: (
+  - uid: System.Windows.Forms.DataGridViewCellEventArgs
+    name: DataGridViewCellEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcelleventargs
+  - name: )
+- uid: System.Windows.Forms.DataGridViewElement.RaiseCellContentClick(System.Windows.Forms.DataGridViewCellEventArgs)
+  commentId: M:System.Windows.Forms.DataGridViewElement.RaiseCellContentClick(System.Windows.Forms.DataGridViewCellEventArgs)
+  parent: System.Windows.Forms.DataGridViewElement
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewelement.raisecellcontentclick
+  name: RaiseCellContentClick(DataGridViewCellEventArgs)
+  nameWithType: DataGridViewElement.RaiseCellContentClick(DataGridViewCellEventArgs)
+  fullName: System.Windows.Forms.DataGridViewElement.RaiseCellContentClick(System.Windows.Forms.DataGridViewCellEventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.DataGridViewElement.RaiseCellContentClick(System.Windows.Forms.DataGridViewCellEventArgs)
+    name: RaiseCellContentClick
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewelement.raisecellcontentclick
+  - name: (
+  - uid: System.Windows.Forms.DataGridViewCellEventArgs
+    name: DataGridViewCellEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcelleventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.DataGridViewElement.RaiseCellContentClick(System.Windows.Forms.DataGridViewCellEventArgs)
+    name: RaiseCellContentClick
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewelement.raisecellcontentclick
+  - name: (
+  - uid: System.Windows.Forms.DataGridViewCellEventArgs
+    name: DataGridViewCellEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcelleventargs
+  - name: )
+- uid: System.Windows.Forms.DataGridViewElement.RaiseCellContentDoubleClick(System.Windows.Forms.DataGridViewCellEventArgs)
+  commentId: M:System.Windows.Forms.DataGridViewElement.RaiseCellContentDoubleClick(System.Windows.Forms.DataGridViewCellEventArgs)
+  parent: System.Windows.Forms.DataGridViewElement
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewelement.raisecellcontentdoubleclick
+  name: RaiseCellContentDoubleClick(DataGridViewCellEventArgs)
+  nameWithType: DataGridViewElement.RaiseCellContentDoubleClick(DataGridViewCellEventArgs)
+  fullName: System.Windows.Forms.DataGridViewElement.RaiseCellContentDoubleClick(System.Windows.Forms.DataGridViewCellEventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.DataGridViewElement.RaiseCellContentDoubleClick(System.Windows.Forms.DataGridViewCellEventArgs)
+    name: RaiseCellContentDoubleClick
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewelement.raisecellcontentdoubleclick
+  - name: (
+  - uid: System.Windows.Forms.DataGridViewCellEventArgs
+    name: DataGridViewCellEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcelleventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.DataGridViewElement.RaiseCellContentDoubleClick(System.Windows.Forms.DataGridViewCellEventArgs)
+    name: RaiseCellContentDoubleClick
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewelement.raisecellcontentdoubleclick
+  - name: (
+  - uid: System.Windows.Forms.DataGridViewCellEventArgs
+    name: DataGridViewCellEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcelleventargs
+  - name: )
+- uid: System.Windows.Forms.DataGridViewElement.RaiseCellValueChanged(System.Windows.Forms.DataGridViewCellEventArgs)
+  commentId: M:System.Windows.Forms.DataGridViewElement.RaiseCellValueChanged(System.Windows.Forms.DataGridViewCellEventArgs)
+  parent: System.Windows.Forms.DataGridViewElement
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewelement.raisecellvaluechanged
+  name: RaiseCellValueChanged(DataGridViewCellEventArgs)
+  nameWithType: DataGridViewElement.RaiseCellValueChanged(DataGridViewCellEventArgs)
+  fullName: System.Windows.Forms.DataGridViewElement.RaiseCellValueChanged(System.Windows.Forms.DataGridViewCellEventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.DataGridViewElement.RaiseCellValueChanged(System.Windows.Forms.DataGridViewCellEventArgs)
+    name: RaiseCellValueChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewelement.raisecellvaluechanged
+  - name: (
+  - uid: System.Windows.Forms.DataGridViewCellEventArgs
+    name: DataGridViewCellEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcelleventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.DataGridViewElement.RaiseCellValueChanged(System.Windows.Forms.DataGridViewCellEventArgs)
+    name: RaiseCellValueChanged
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewelement.raisecellvaluechanged
+  - name: (
+  - uid: System.Windows.Forms.DataGridViewCellEventArgs
+    name: DataGridViewCellEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcelleventargs
+  - name: )
+- uid: System.Windows.Forms.DataGridViewElement.RaiseDataError(System.Windows.Forms.DataGridViewDataErrorEventArgs)
+  commentId: M:System.Windows.Forms.DataGridViewElement.RaiseDataError(System.Windows.Forms.DataGridViewDataErrorEventArgs)
+  parent: System.Windows.Forms.DataGridViewElement
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewelement.raisedataerror
+  name: RaiseDataError(DataGridViewDataErrorEventArgs)
+  nameWithType: DataGridViewElement.RaiseDataError(DataGridViewDataErrorEventArgs)
+  fullName: System.Windows.Forms.DataGridViewElement.RaiseDataError(System.Windows.Forms.DataGridViewDataErrorEventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.DataGridViewElement.RaiseDataError(System.Windows.Forms.DataGridViewDataErrorEventArgs)
+    name: RaiseDataError
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewelement.raisedataerror
+  - name: (
+  - uid: System.Windows.Forms.DataGridViewDataErrorEventArgs
+    name: DataGridViewDataErrorEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewdataerroreventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.DataGridViewElement.RaiseDataError(System.Windows.Forms.DataGridViewDataErrorEventArgs)
+    name: RaiseDataError
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewelement.raisedataerror
+  - name: (
+  - uid: System.Windows.Forms.DataGridViewDataErrorEventArgs
+    name: DataGridViewDataErrorEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewdataerroreventargs
+  - name: )
+- uid: System.Windows.Forms.DataGridViewElement.RaiseMouseWheel(System.Windows.Forms.MouseEventArgs)
+  commentId: M:System.Windows.Forms.DataGridViewElement.RaiseMouseWheel(System.Windows.Forms.MouseEventArgs)
+  parent: System.Windows.Forms.DataGridViewElement
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewelement.raisemousewheel
+  name: RaiseMouseWheel(MouseEventArgs)
+  nameWithType: DataGridViewElement.RaiseMouseWheel(MouseEventArgs)
+  fullName: System.Windows.Forms.DataGridViewElement.RaiseMouseWheel(System.Windows.Forms.MouseEventArgs)
+  spec.csharp:
+  - uid: System.Windows.Forms.DataGridViewElement.RaiseMouseWheel(System.Windows.Forms.MouseEventArgs)
+    name: RaiseMouseWheel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewelement.raisemousewheel
+  - name: (
+  - uid: System.Windows.Forms.MouseEventArgs
+    name: MouseEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.mouseeventargs
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.DataGridViewElement.RaiseMouseWheel(System.Windows.Forms.MouseEventArgs)
+    name: RaiseMouseWheel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewelement.raisemousewheel
+  - name: (
+  - uid: System.Windows.Forms.MouseEventArgs
+    name: MouseEventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.mouseeventargs
+  - name: )
+- uid: System.Windows.Forms.DataGridViewElement.State
+  commentId: P:System.Windows.Forms.DataGridViewElement.State
+  parent: System.Windows.Forms.DataGridViewElement
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewelement.state
+  name: State
+  nameWithType: DataGridViewElement.State
+  fullName: System.Windows.Forms.DataGridViewElement.State
+- uid: System.Windows.Forms.DataGridViewElement.DataGridView
+  commentId: P:System.Windows.Forms.DataGridViewElement.DataGridView
+  parent: System.Windows.Forms.DataGridViewElement
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewelement.datagridview
+  name: DataGridView
+  nameWithType: DataGridViewElement.DataGridView
+  fullName: System.Windows.Forms.DataGridViewElement.DataGridView
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Windows.Forms
+  commentId: N:System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Windows.Forms
+  nameWithType: System.Windows.Forms
+  fullName: System.Windows.Forms
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Windows
+    name: Windows
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows
+  - name: .
+  - uid: System.Windows.Forms
+    name: Forms
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Windows
+    name: Windows
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows
+  - name: .
+  - uid: System.Windows.Forms
+    name: Forms
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms
+- uid: System.ComponentModel
+  commentId: N:System.ComponentModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.ComponentModel
+  nameWithType: System.ComponentModel
+  fullName: System.ComponentModel
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.ComponentModel
+    name: ComponentModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.ComponentModel
+    name: ComponentModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel
+- uid: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.#ctor*
+  commentId: Overload:Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.#ctor
+  isExternal: true
+  href: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.html#Reportman_Drawing_Forms_DataGridViewNumericUpDownColumn__ctor
+  name: DataGridViewNumericUpDownColumn
+  nameWithType: DataGridViewNumericUpDownColumn.DataGridViewNumericUpDownColumn
+  fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.DataGridViewNumericUpDownColumn
+  nameWithType.vb: DataGridViewNumericUpDownColumn.New
+  fullName.vb: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.New
+  name.vb: New
+- uid: System.Windows.Forms.DataGridViewColumn.ToString
+  commentId: M:System.Windows.Forms.DataGridViewColumn.ToString
+  parent: System.Windows.Forms.DataGridViewColumn
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.tostring
+  name: ToString()
+  nameWithType: DataGridViewColumn.ToString()
+  fullName: System.Windows.Forms.DataGridViewColumn.ToString()
+  spec.csharp:
+  - uid: System.Windows.Forms.DataGridViewColumn.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Windows.Forms.DataGridViewColumn.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.tostring
+  - name: (
+  - name: )
+- uid: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.ToString*
+  commentId: Overload:Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.ToString
+  isExternal: true
+  href: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.html#Reportman_Drawing_Forms_DataGridViewNumericUpDownColumn_ToString
+  name: ToString
+  nameWithType: DataGridViewNumericUpDownColumn.ToString
+  fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.ToString
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Windows.Forms.DataGridViewColumn.CellTemplate
+  commentId: P:System.Windows.Forms.DataGridViewColumn.CellTemplate
+  parent: System.Windows.Forms.DataGridViewColumn
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcolumn.celltemplate
+  name: CellTemplate
+  nameWithType: DataGridViewColumn.CellTemplate
+  fullName: System.Windows.Forms.DataGridViewColumn.CellTemplate
+- uid: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.CellTemplate*
+  commentId: Overload:Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.CellTemplate
+  isExternal: true
+  href: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.html#Reportman_Drawing_Forms_DataGridViewNumericUpDownColumn_CellTemplate
+  name: CellTemplate
+  nameWithType: DataGridViewNumericUpDownColumn.CellTemplate
+  fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.CellTemplate
+- uid: System.Windows.Forms.DataGridViewCell
+  commentId: T:System.Windows.Forms.DataGridViewCell
+  parent: System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcell
+  name: DataGridViewCell
+  nameWithType: DataGridViewCell
+  fullName: System.Windows.Forms.DataGridViewCell
+- uid: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.DecimalPlaces*
+  commentId: Overload:Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.DecimalPlaces
+  isExternal: true
+  href: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.html#Reportman_Drawing_Forms_DataGridViewNumericUpDownColumn_DecimalPlaces
+  name: DecimalPlaces
+  nameWithType: DataGridViewNumericUpDownColumn.DecimalPlaces
+  fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.DecimalPlaces
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.Increment*
+  commentId: Overload:Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.Increment
+  isExternal: true
+  href: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.html#Reportman_Drawing_Forms_DataGridViewNumericUpDownColumn_Increment
+  name: Increment
+  nameWithType: DataGridViewNumericUpDownColumn.Increment
+  fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.Increment
+- uid: System.Decimal
+  commentId: T:System.Decimal
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.decimal
+  name: decimal
+  nameWithType: decimal
+  fullName: decimal
+  nameWithType.vb: Decimal
+  fullName.vb: Decimal
+  name.vb: Decimal
+- uid: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.Maximum*
+  commentId: Overload:Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.Maximum
+  isExternal: true
+  href: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.html#Reportman_Drawing_Forms_DataGridViewNumericUpDownColumn_Maximum
+  name: Maximum
+  nameWithType: DataGridViewNumericUpDownColumn.Maximum
+  fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.Maximum
+- uid: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.Minimum*
+  commentId: Overload:Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.Minimum
+  isExternal: true
+  href: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.html#Reportman_Drawing_Forms_DataGridViewNumericUpDownColumn_Minimum
+  name: Minimum
+  nameWithType: DataGridViewNumericUpDownColumn.Minimum
+  fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.Minimum
+- uid: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.ThousandsSeparator*
+  commentId: Overload:Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.ThousandsSeparator
+  isExternal: true
+  href: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.html#Reportman_Drawing_Forms_DataGridViewNumericUpDownColumn_ThousandsSeparator
+  name: ThousandsSeparator
+  nameWithType: DataGridViewNumericUpDownColumn.ThousandsSeparator
+  fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.ThousandsSeparator
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean

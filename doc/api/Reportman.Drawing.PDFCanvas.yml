@@ -1,0 +1,2118 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.PDFCanvas
+  commentId: T:Reportman.Drawing.PDFCanvas
+  id: PDFCanvas
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.PDFCanvas.#ctor(Reportman.Drawing.FontInfoProvider,Reportman.Drawing.IBitmapInfoProvider)
+  - Reportman.Drawing.PDFCanvas.BitmapInfoProvider
+  - Reportman.Drawing.PDFCanvas.BrushColor
+  - Reportman.Drawing.PDFCanvas.BrushStyle
+  - Reportman.Drawing.PDFCanvas.DoReverseString(System.String)
+  - Reportman.Drawing.PDFCanvas.DrawImage(System.Drawing.Rectangle,System.IO.MemoryStream,System.Int32,System.Boolean,System.Boolean,System.Int64)
+  - Reportman.Drawing.PDFCanvas.ENDSTREAM
+  - Reportman.Drawing.PDFCanvas.EOL
+  - Reportman.Drawing.PDFCanvas.Ellipse(System.Int32,System.Int32,System.Int32,System.Int32)
+  - Reportman.Drawing.PDFCanvas.FBitmapInfoProvider
+  - Reportman.Drawing.PDFCanvas.FInfoProvider
+  - Reportman.Drawing.PDFCanvas.File
+  - Reportman.Drawing.PDFCanvas.Font
+  - Reportman.Drawing.PDFCanvas.FontData
+  - Reportman.Drawing.PDFCanvas.GetTTFontData
+  - Reportman.Drawing.PDFCanvas.InfoProvider
+  - Reportman.Drawing.PDFCanvas.IntToHex(System.Int32)
+  - Reportman.Drawing.PDFCanvas.Line(System.Int32,System.Int32,System.Int32,System.Int32)
+  - Reportman.Drawing.PDFCanvas.LineInfo
+  - Reportman.Drawing.PDFCanvas.NumberToText(System.Double)
+  - Reportman.Drawing.PDFCanvas.OldBrushColor
+  - Reportman.Drawing.PDFCanvas.OldPenColor
+  - Reportman.Drawing.PDFCanvas.PDFCompatibleText(System.String,Reportman.Drawing.TTFontData,Reportman.Drawing.PDFFont)
+  - Reportman.Drawing.PDFCanvas.PDFCompatibleTextShaping(System.String,Reportman.Drawing.TTFontData,Reportman.Drawing.PDFFont,System.Boolean,System.Double,System.Double,System.Int32,Reportman.Drawing.LineInfo)
+  - Reportman.Drawing.PDFCanvas.PDFCompatibleTextWithKerning(System.String,Reportman.Drawing.TTFontData,Reportman.Drawing.PDFFont)
+  - Reportman.Drawing.PDFCanvas.PDFConformance
+  - Reportman.Drawing.PDFCanvas.PenColor
+  - Reportman.Drawing.PDFCanvas.PenStyle
+  - Reportman.Drawing.PDFCanvas.PenWidth
+  - Reportman.Drawing.PDFCanvas.Rectangle(System.Int32,System.Int32,System.Int32,System.Int32)
+  - Reportman.Drawing.PDFCanvas.Resolution
+  - Reportman.Drawing.PDFCanvas.RestoreGraph
+  - Reportman.Drawing.PDFCanvas.Rotate(System.Double)
+  - Reportman.Drawing.PDFCanvas.RoundedRectangle(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  - Reportman.Drawing.PDFCanvas.SaveGraph
+  - Reportman.Drawing.PDFCanvas.SavedBrushColor
+  - Reportman.Drawing.PDFCanvas.SavedPenColor
+  - Reportman.Drawing.PDFCanvas.TextExtent(System.String,System.Drawing.Rectangle@,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  - Reportman.Drawing.PDFCanvas.TextExtentSimple(System.String,System.Drawing.Rectangle@,System.Boolean,System.Boolean,System.Boolean)
+  - Reportman.Drawing.PDFCanvas.TextOut(System.Int32,System.Int32,System.String,System.Int32,System.Int32,System.Boolean,Reportman.Drawing.LineInfo)
+  - Reportman.Drawing.PDFCanvas.TextRect(System.Drawing.Rectangle,System.String,System.Int32,System.Boolean,System.Boolean,System.Int32,System.Boolean)
+  - Reportman.Drawing.PDFCanvas.Translate(System.Int32,System.Int32)
+  - Reportman.Drawing.PDFCanvas.Type1FontTopdfFontName(Reportman.Drawing.PDFFontType,System.Boolean,System.Boolean,System.String,System.Int32,Reportman.Drawing.PDFConformanceType)
+  - Reportman.Drawing.PDFCanvas.UnitsToTextX(System.Double)
+  - Reportman.Drawing.PDFCanvas.UnitsToTextY(System.Double)
+  - Reportman.Drawing.PDFCanvas.UpdateFonts
+  - Reportman.Drawing.PDFCanvas.WideCharToHex(System.Char)
+  - Reportman.Drawing.PDFCanvas.WriteBrushColor(System.Int32)
+  - Reportman.Drawing.PDFCanvas.WritePenColor(System.Int32)
+  langs:
+  - csharp
+  - vb
+  name: PDFCanvas
+  nameWithType: PDFCanvas
+  fullName: Reportman.Drawing.PDFCanvas
+  type: Class
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public class PDFCanvas
+    content.vb: Public Class PDFCanvas
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.PDFCanvas.ENDSTREAM
+  commentId: F:Reportman.Drawing.PDFCanvas.ENDSTREAM
+  id: ENDSTREAM
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: ENDSTREAM
+  nameWithType: PDFCanvas.ENDSTREAM
+  fullName: Reportman.Drawing.PDFCanvas.ENDSTREAM
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string ENDSTREAM
+    return:
+      type: System.String
+    content.vb: Public Shared ENDSTREAM As String
+- uid: Reportman.Drawing.PDFCanvas.FInfoProvider
+  commentId: F:Reportman.Drawing.PDFCanvas.FInfoProvider
+  id: FInfoProvider
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: FInfoProvider
+  nameWithType: PDFCanvas.FInfoProvider
+  fullName: Reportman.Drawing.PDFCanvas.FInfoProvider
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public FontInfoProvider FInfoProvider
+    return:
+      type: Reportman.Drawing.FontInfoProvider
+    content.vb: Public FInfoProvider As FontInfoProvider
+- uid: Reportman.Drawing.PDFCanvas.FBitmapInfoProvider
+  commentId: F:Reportman.Drawing.PDFCanvas.FBitmapInfoProvider
+  id: FBitmapInfoProvider
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: FBitmapInfoProvider
+  nameWithType: PDFCanvas.FBitmapInfoProvider
+  fullName: Reportman.Drawing.PDFCanvas.FBitmapInfoProvider
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public IBitmapInfoProvider FBitmapInfoProvider
+    return:
+      type: Reportman.Drawing.IBitmapInfoProvider
+    content.vb: Public FBitmapInfoProvider As IBitmapInfoProvider
+- uid: Reportman.Drawing.PDFCanvas.PDFConformance
+  commentId: F:Reportman.Drawing.PDFCanvas.PDFConformance
+  id: PDFConformance
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: PDFConformance
+  nameWithType: PDFCanvas.PDFConformance
+  fullName: Reportman.Drawing.PDFCanvas.PDFConformance
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public PDFConformanceType PDFConformance
+    return:
+      type: Reportman.Drawing.PDFConformanceType
+    content.vb: Public PDFConformance As PDFConformanceType
+- uid: Reportman.Drawing.PDFCanvas.File
+  commentId: F:Reportman.Drawing.PDFCanvas.File
+  id: File
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: File
+  nameWithType: PDFCanvas.File
+  fullName: Reportman.Drawing.PDFCanvas.File
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public PDFFile File
+    return:
+      type: Reportman.Drawing.PDFFile
+    content.vb: Public File As PDFFile
+- uid: Reportman.Drawing.PDFCanvas.Resolution
+  commentId: F:Reportman.Drawing.PDFCanvas.Resolution
+  id: Resolution
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: Resolution
+  nameWithType: PDFCanvas.Resolution
+  fullName: Reportman.Drawing.PDFCanvas.Resolution
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int Resolution
+    return:
+      type: System.Int32
+    content.vb: Public Resolution As Integer
+- uid: Reportman.Drawing.PDFCanvas.PenColor
+  commentId: F:Reportman.Drawing.PDFCanvas.PenColor
+  id: PenColor
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: PenColor
+  nameWithType: PDFCanvas.PenColor
+  fullName: Reportman.Drawing.PDFCanvas.PenColor
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int PenColor
+    return:
+      type: System.Int32
+    content.vb: Public PenColor As Integer
+- uid: Reportman.Drawing.PDFCanvas.PenStyle
+  commentId: F:Reportman.Drawing.PDFCanvas.PenStyle
+  id: PenStyle
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: PenStyle
+  nameWithType: PDFCanvas.PenStyle
+  fullName: Reportman.Drawing.PDFCanvas.PenStyle
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int PenStyle
+    return:
+      type: System.Int32
+    content.vb: Public PenStyle As Integer
+- uid: Reportman.Drawing.PDFCanvas.PenWidth
+  commentId: F:Reportman.Drawing.PDFCanvas.PenWidth
+  id: PenWidth
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: PenWidth
+  nameWithType: PDFCanvas.PenWidth
+  fullName: Reportman.Drawing.PDFCanvas.PenWidth
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int PenWidth
+    return:
+      type: System.Int32
+    content.vb: Public PenWidth As Integer
+- uid: Reportman.Drawing.PDFCanvas.BrushColor
+  commentId: F:Reportman.Drawing.PDFCanvas.BrushColor
+  id: BrushColor
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: BrushColor
+  nameWithType: PDFCanvas.BrushColor
+  fullName: Reportman.Drawing.PDFCanvas.BrushColor
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int BrushColor
+    return:
+      type: System.Int32
+    content.vb: Public BrushColor As Integer
+- uid: Reportman.Drawing.PDFCanvas.BrushStyle
+  commentId: F:Reportman.Drawing.PDFCanvas.BrushStyle
+  id: BrushStyle
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: BrushStyle
+  nameWithType: PDFCanvas.BrushStyle
+  fullName: Reportman.Drawing.PDFCanvas.BrushStyle
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int BrushStyle
+    return:
+      type: System.Int32
+    content.vb: Public BrushStyle As Integer
+- uid: Reportman.Drawing.PDFCanvas.OldBrushColor
+  commentId: F:Reportman.Drawing.PDFCanvas.OldBrushColor
+  id: OldBrushColor
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: OldBrushColor
+  nameWithType: PDFCanvas.OldBrushColor
+  fullName: Reportman.Drawing.PDFCanvas.OldBrushColor
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int OldBrushColor
+    return:
+      type: System.Int32
+    content.vb: Public OldBrushColor As Integer
+- uid: Reportman.Drawing.PDFCanvas.OldPenColor
+  commentId: F:Reportman.Drawing.PDFCanvas.OldPenColor
+  id: OldPenColor
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: OldPenColor
+  nameWithType: PDFCanvas.OldPenColor
+  fullName: Reportman.Drawing.PDFCanvas.OldPenColor
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int OldPenColor
+    return:
+      type: System.Int32
+    content.vb: Public OldPenColor As Integer
+- uid: Reportman.Drawing.PDFCanvas.SavedPenColor
+  commentId: F:Reportman.Drawing.PDFCanvas.SavedPenColor
+  id: SavedPenColor
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: SavedPenColor
+  nameWithType: PDFCanvas.SavedPenColor
+  fullName: Reportman.Drawing.PDFCanvas.SavedPenColor
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int SavedPenColor
+    return:
+      type: System.Int32
+    content.vb: Public SavedPenColor As Integer
+- uid: Reportman.Drawing.PDFCanvas.SavedBrushColor
+  commentId: F:Reportman.Drawing.PDFCanvas.SavedBrushColor
+  id: SavedBrushColor
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: SavedBrushColor
+  nameWithType: PDFCanvas.SavedBrushColor
+  fullName: Reportman.Drawing.PDFCanvas.SavedBrushColor
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int SavedBrushColor
+    return:
+      type: System.Int32
+    content.vb: Public SavedBrushColor As Integer
+- uid: Reportman.Drawing.PDFCanvas.#ctor(Reportman.Drawing.FontInfoProvider,Reportman.Drawing.IBitmapInfoProvider)
+  commentId: M:Reportman.Drawing.PDFCanvas.#ctor(Reportman.Drawing.FontInfoProvider,Reportman.Drawing.IBitmapInfoProvider)
+  id: '#ctor(Reportman.Drawing.FontInfoProvider,Reportman.Drawing.IBitmapInfoProvider)'
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: PDFCanvas(FontInfoProvider, IBitmapInfoProvider)
+  nameWithType: PDFCanvas.PDFCanvas(FontInfoProvider, IBitmapInfoProvider)
+  fullName: Reportman.Drawing.PDFCanvas.PDFCanvas(Reportman.Drawing.FontInfoProvider, Reportman.Drawing.IBitmapInfoProvider)
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public PDFCanvas(FontInfoProvider fontInfoProvider, IBitmapInfoProvider bitmapInfoProvider)
+    parameters:
+    - id: fontInfoProvider
+      type: Reportman.Drawing.FontInfoProvider
+    - id: bitmapInfoProvider
+      type: Reportman.Drawing.IBitmapInfoProvider
+    content.vb: Public Sub New(fontInfoProvider As FontInfoProvider, bitmapInfoProvider As IBitmapInfoProvider)
+  overload: Reportman.Drawing.PDFCanvas.#ctor*
+  nameWithType.vb: PDFCanvas.New(FontInfoProvider, IBitmapInfoProvider)
+  fullName.vb: Reportman.Drawing.PDFCanvas.New(Reportman.Drawing.FontInfoProvider, Reportman.Drawing.IBitmapInfoProvider)
+  name.vb: New(FontInfoProvider, IBitmapInfoProvider)
+- uid: Reportman.Drawing.PDFCanvas.UnitsToTextX(System.Double)
+  commentId: M:Reportman.Drawing.PDFCanvas.UnitsToTextX(System.Double)
+  id: UnitsToTextX(System.Double)
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: UnitsToTextX(double)
+  nameWithType: PDFCanvas.UnitsToTextX(double)
+  fullName: Reportman.Drawing.PDFCanvas.UnitsToTextX(double)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string UnitsToTextX(double Value)
+    parameters:
+    - id: Value
+      type: System.Double
+    return:
+      type: System.String
+    content.vb: Public Function UnitsToTextX(Value As Double) As String
+  overload: Reportman.Drawing.PDFCanvas.UnitsToTextX*
+  nameWithType.vb: PDFCanvas.UnitsToTextX(Double)
+  fullName.vb: Reportman.Drawing.PDFCanvas.UnitsToTextX(Double)
+  name.vb: UnitsToTextX(Double)
+- uid: Reportman.Drawing.PDFCanvas.UnitsToTextY(System.Double)
+  commentId: M:Reportman.Drawing.PDFCanvas.UnitsToTextY(System.Double)
+  id: UnitsToTextY(System.Double)
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: UnitsToTextY(double)
+  nameWithType: PDFCanvas.UnitsToTextY(double)
+  fullName: Reportman.Drawing.PDFCanvas.UnitsToTextY(double)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string UnitsToTextY(double Value)
+    parameters:
+    - id: Value
+      type: System.Double
+    return:
+      type: System.String
+    content.vb: Public Function UnitsToTextY(Value As Double) As String
+  overload: Reportman.Drawing.PDFCanvas.UnitsToTextY*
+  nameWithType.vb: PDFCanvas.UnitsToTextY(Double)
+  fullName.vb: Reportman.Drawing.PDFCanvas.UnitsToTextY(Double)
+  name.vb: UnitsToTextY(Double)
+- uid: Reportman.Drawing.PDFCanvas.NumberToText(System.Double)
+  commentId: M:Reportman.Drawing.PDFCanvas.NumberToText(System.Double)
+  id: NumberToText(System.Double)
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: NumberToText(double)
+  nameWithType: PDFCanvas.NumberToText(double)
+  fullName: Reportman.Drawing.PDFCanvas.NumberToText(double)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string NumberToText(double Value)
+    parameters:
+    - id: Value
+      type: System.Double
+    return:
+      type: System.String
+    content.vb: Public Shared Function NumberToText(Value As Double) As String
+  overload: Reportman.Drawing.PDFCanvas.NumberToText*
+  nameWithType.vb: PDFCanvas.NumberToText(Double)
+  fullName.vb: Reportman.Drawing.PDFCanvas.NumberToText(Double)
+  name.vb: NumberToText(Double)
+- uid: Reportman.Drawing.PDFCanvas.EOL
+  commentId: M:Reportman.Drawing.PDFCanvas.EOL
+  id: EOL
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: EOL()
+  nameWithType: PDFCanvas.EOL()
+  fullName: Reportman.Drawing.PDFCanvas.EOL()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string EOL()
+    return:
+      type: System.String
+    content.vb: Public Function EOL() As String
+  overload: Reportman.Drawing.PDFCanvas.EOL*
+- uid: Reportman.Drawing.PDFCanvas.Line(System.Int32,System.Int32,System.Int32,System.Int32)
+  commentId: M:Reportman.Drawing.PDFCanvas.Line(System.Int32,System.Int32,System.Int32,System.Int32)
+  id: Line(System.Int32,System.Int32,System.Int32,System.Int32)
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: Line(int, int, int, int)
+  nameWithType: PDFCanvas.Line(int, int, int, int)
+  fullName: Reportman.Drawing.PDFCanvas.Line(int, int, int, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public void Line(int x1, int y1, int x2, int y2)
+    parameters:
+    - id: x1
+      type: System.Int32
+    - id: y1
+      type: System.Int32
+    - id: x2
+      type: System.Int32
+    - id: y2
+      type: System.Int32
+    content.vb: Public Sub Line(x1 As Integer, y1 As Integer, x2 As Integer, y2 As Integer)
+  overload: Reportman.Drawing.PDFCanvas.Line*
+  nameWithType.vb: PDFCanvas.Line(Integer, Integer, Integer, Integer)
+  fullName.vb: Reportman.Drawing.PDFCanvas.Line(Integer, Integer, Integer, Integer)
+  name.vb: Line(Integer, Integer, Integer, Integer)
+- uid: Reportman.Drawing.PDFCanvas.WritePenColor(System.Int32)
+  commentId: M:Reportman.Drawing.PDFCanvas.WritePenColor(System.Int32)
+  id: WritePenColor(System.Int32)
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: WritePenColor(int)
+  nameWithType: PDFCanvas.WritePenColor(int)
+  fullName: Reportman.Drawing.PDFCanvas.WritePenColor(int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public void WritePenColor(int NewColor)
+    parameters:
+    - id: NewColor
+      type: System.Int32
+    content.vb: Public Sub WritePenColor(NewColor As Integer)
+  overload: Reportman.Drawing.PDFCanvas.WritePenColor*
+  nameWithType.vb: PDFCanvas.WritePenColor(Integer)
+  fullName.vb: Reportman.Drawing.PDFCanvas.WritePenColor(Integer)
+  name.vb: WritePenColor(Integer)
+- uid: Reportman.Drawing.PDFCanvas.WriteBrushColor(System.Int32)
+  commentId: M:Reportman.Drawing.PDFCanvas.WriteBrushColor(System.Int32)
+  id: WriteBrushColor(System.Int32)
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: WriteBrushColor(int)
+  nameWithType: PDFCanvas.WriteBrushColor(int)
+  fullName: Reportman.Drawing.PDFCanvas.WriteBrushColor(int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public void WriteBrushColor(int NewColor)
+    parameters:
+    - id: NewColor
+      type: System.Int32
+    content.vb: Public Sub WriteBrushColor(NewColor As Integer)
+  overload: Reportman.Drawing.PDFCanvas.WriteBrushColor*
+  nameWithType.vb: PDFCanvas.WriteBrushColor(Integer)
+  fullName.vb: Reportman.Drawing.PDFCanvas.WriteBrushColor(Integer)
+  name.vb: WriteBrushColor(Integer)
+- uid: Reportman.Drawing.PDFCanvas.GetTTFontData
+  commentId: M:Reportman.Drawing.PDFCanvas.GetTTFontData
+  id: GetTTFontData
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: GetTTFontData()
+  nameWithType: PDFCanvas.GetTTFontData()
+  fullName: Reportman.Drawing.PDFCanvas.GetTTFontData()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public TTFontData GetTTFontData()
+    return:
+      type: Reportman.Drawing.TTFontData
+    content.vb: Public Function GetTTFontData() As TTFontData
+  overload: Reportman.Drawing.PDFCanvas.GetTTFontData*
+- uid: Reportman.Drawing.PDFCanvas.UpdateFonts
+  commentId: M:Reportman.Drawing.PDFCanvas.UpdateFonts
+  id: UpdateFonts
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: UpdateFonts()
+  nameWithType: PDFCanvas.UpdateFonts()
+  fullName: Reportman.Drawing.PDFCanvas.UpdateFonts()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public TTFontData UpdateFonts()
+    return:
+      type: Reportman.Drawing.TTFontData
+    content.vb: Public Function UpdateFonts() As TTFontData
+  overload: Reportman.Drawing.PDFCanvas.UpdateFonts*
+- uid: Reportman.Drawing.PDFCanvas.Ellipse(System.Int32,System.Int32,System.Int32,System.Int32)
+  commentId: M:Reportman.Drawing.PDFCanvas.Ellipse(System.Int32,System.Int32,System.Int32,System.Int32)
+  id: Ellipse(System.Int32,System.Int32,System.Int32,System.Int32)
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: Ellipse(int, int, int, int)
+  nameWithType: PDFCanvas.Ellipse(int, int, int, int)
+  fullName: Reportman.Drawing.PDFCanvas.Ellipse(int, int, int, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public void Ellipse(int X1, int Y1, int X2, int Y2)
+    parameters:
+    - id: X1
+      type: System.Int32
+    - id: Y1
+      type: System.Int32
+    - id: X2
+      type: System.Int32
+    - id: Y2
+      type: System.Int32
+    content.vb: Public Sub Ellipse(X1 As Integer, Y1 As Integer, X2 As Integer, Y2 As Integer)
+  overload: Reportman.Drawing.PDFCanvas.Ellipse*
+  nameWithType.vb: PDFCanvas.Ellipse(Integer, Integer, Integer, Integer)
+  fullName.vb: Reportman.Drawing.PDFCanvas.Ellipse(Integer, Integer, Integer, Integer)
+  name.vb: Ellipse(Integer, Integer, Integer, Integer)
+- uid: Reportman.Drawing.PDFCanvas.RoundedRectangle(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  commentId: M:Reportman.Drawing.PDFCanvas.RoundedRectangle(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  id: RoundedRectangle(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: RoundedRectangle(int, int, int, int, int)
+  nameWithType: PDFCanvas.RoundedRectangle(int, int, int, int, int)
+  fullName: Reportman.Drawing.PDFCanvas.RoundedRectangle(int, int, int, int, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public void RoundedRectangle(int x1, int y1, int x2, int y2, int radius)
+    parameters:
+    - id: x1
+      type: System.Int32
+    - id: y1
+      type: System.Int32
+    - id: x2
+      type: System.Int32
+    - id: y2
+      type: System.Int32
+    - id: radius
+      type: System.Int32
+    content.vb: Public Sub RoundedRectangle(x1 As Integer, y1 As Integer, x2 As Integer, y2 As Integer, radius As Integer)
+  overload: Reportman.Drawing.PDFCanvas.RoundedRectangle*
+  nameWithType.vb: PDFCanvas.RoundedRectangle(Integer, Integer, Integer, Integer, Integer)
+  fullName.vb: Reportman.Drawing.PDFCanvas.RoundedRectangle(Integer, Integer, Integer, Integer, Integer)
+  name.vb: RoundedRectangle(Integer, Integer, Integer, Integer, Integer)
+- uid: Reportman.Drawing.PDFCanvas.Rectangle(System.Int32,System.Int32,System.Int32,System.Int32)
+  commentId: M:Reportman.Drawing.PDFCanvas.Rectangle(System.Int32,System.Int32,System.Int32,System.Int32)
+  id: Rectangle(System.Int32,System.Int32,System.Int32,System.Int32)
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: Rectangle(int, int, int, int)
+  nameWithType: PDFCanvas.Rectangle(int, int, int, int)
+  fullName: Reportman.Drawing.PDFCanvas.Rectangle(int, int, int, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public void Rectangle(int x1, int y1, int x2, int y2)
+    parameters:
+    - id: x1
+      type: System.Int32
+    - id: y1
+      type: System.Int32
+    - id: x2
+      type: System.Int32
+    - id: y2
+      type: System.Int32
+    content.vb: Public Sub Rectangle(x1 As Integer, y1 As Integer, x2 As Integer, y2 As Integer)
+  overload: Reportman.Drawing.PDFCanvas.Rectangle*
+  nameWithType.vb: PDFCanvas.Rectangle(Integer, Integer, Integer, Integer)
+  fullName.vb: Reportman.Drawing.PDFCanvas.Rectangle(Integer, Integer, Integer, Integer)
+  name.vb: Rectangle(Integer, Integer, Integer, Integer)
+- uid: Reportman.Drawing.PDFCanvas.SaveGraph
+  commentId: M:Reportman.Drawing.PDFCanvas.SaveGraph
+  id: SaveGraph
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: SaveGraph()
+  nameWithType: PDFCanvas.SaveGraph()
+  fullName: Reportman.Drawing.PDFCanvas.SaveGraph()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public void SaveGraph()
+    content.vb: Public Sub SaveGraph()
+  overload: Reportman.Drawing.PDFCanvas.SaveGraph*
+- uid: Reportman.Drawing.PDFCanvas.RestoreGraph
+  commentId: M:Reportman.Drawing.PDFCanvas.RestoreGraph
+  id: RestoreGraph
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: RestoreGraph()
+  nameWithType: PDFCanvas.RestoreGraph()
+  fullName: Reportman.Drawing.PDFCanvas.RestoreGraph()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public void RestoreGraph()
+    content.vb: Public Sub RestoreGraph()
+  overload: Reportman.Drawing.PDFCanvas.RestoreGraph*
+- uid: Reportman.Drawing.PDFCanvas.DoReverseString(System.String)
+  commentId: M:Reportman.Drawing.PDFCanvas.DoReverseString(System.String)
+  id: DoReverseString(System.String)
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: DoReverseString(string)
+  nameWithType: PDFCanvas.DoReverseString(string)
+  fullName: Reportman.Drawing.PDFCanvas.DoReverseString(string)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string DoReverseString(string astring)
+    parameters:
+    - id: astring
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function DoReverseString(astring As String) As String
+  overload: Reportman.Drawing.PDFCanvas.DoReverseString*
+  nameWithType.vb: PDFCanvas.DoReverseString(String)
+  fullName.vb: Reportman.Drawing.PDFCanvas.DoReverseString(String)
+  name.vb: DoReverseString(String)
+- uid: Reportman.Drawing.PDFCanvas.Type1FontTopdfFontName(Reportman.Drawing.PDFFontType,System.Boolean,System.Boolean,System.String,System.Int32,Reportman.Drawing.PDFConformanceType)
+  commentId: M:Reportman.Drawing.PDFCanvas.Type1FontTopdfFontName(Reportman.Drawing.PDFFontType,System.Boolean,System.Boolean,System.String,System.Int32,Reportman.Drawing.PDFConformanceType)
+  id: Type1FontTopdfFontName(Reportman.Drawing.PDFFontType,System.Boolean,System.Boolean,System.String,System.Int32,Reportman.Drawing.PDFConformanceType)
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: Type1FontTopdfFontName(PDFFontType, bool, bool, string, int, PDFConformanceType)
+  nameWithType: PDFCanvas.Type1FontTopdfFontName(PDFFontType, bool, bool, string, int, PDFConformanceType)
+  fullName: Reportman.Drawing.PDFCanvas.Type1FontTopdfFontName(Reportman.Drawing.PDFFontType, bool, bool, string, int, Reportman.Drawing.PDFConformanceType)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string Type1FontTopdfFontName(PDFFontType Type1Font, bool oblique, bool bold, string WFontName, int FontStyle, PDFConformanceType PDFConformance)
+    parameters:
+    - id: Type1Font
+      type: Reportman.Drawing.PDFFontType
+    - id: oblique
+      type: System.Boolean
+    - id: bold
+      type: System.Boolean
+    - id: WFontName
+      type: System.String
+    - id: FontStyle
+      type: System.Int32
+    - id: PDFConformance
+      type: Reportman.Drawing.PDFConformanceType
+    return:
+      type: System.String
+    content.vb: Public Shared Function Type1FontTopdfFontName(Type1Font As PDFFontType, oblique As Boolean, bold As Boolean, WFontName As String, FontStyle As Integer, PDFConformance As PDFConformanceType) As String
+  overload: Reportman.Drawing.PDFCanvas.Type1FontTopdfFontName*
+  nameWithType.vb: PDFCanvas.Type1FontTopdfFontName(PDFFontType, Boolean, Boolean, String, Integer, PDFConformanceType)
+  fullName.vb: Reportman.Drawing.PDFCanvas.Type1FontTopdfFontName(Reportman.Drawing.PDFFontType, Boolean, Boolean, String, Integer, Reportman.Drawing.PDFConformanceType)
+  name.vb: Type1FontTopdfFontName(PDFFontType, Boolean, Boolean, String, Integer, PDFConformanceType)
+- uid: Reportman.Drawing.PDFCanvas.TextOut(System.Int32,System.Int32,System.String,System.Int32,System.Int32,System.Boolean,Reportman.Drawing.LineInfo)
+  commentId: M:Reportman.Drawing.PDFCanvas.TextOut(System.Int32,System.Int32,System.String,System.Int32,System.Int32,System.Boolean,Reportman.Drawing.LineInfo)
+  id: TextOut(System.Int32,System.Int32,System.String,System.Int32,System.Int32,System.Boolean,Reportman.Drawing.LineInfo)
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: TextOut(int, int, string, int, int, bool, LineInfo)
+  nameWithType: PDFCanvas.TextOut(int, int, string, int, int, bool, LineInfo)
+  fullName: Reportman.Drawing.PDFCanvas.TextOut(int, int, string, int, int, bool, Reportman.Drawing.LineInfo)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public void TextOut(int X, int Y, string Text, int LineWidth, int Rotation, bool RightToLeft, LineInfo lInfo)
+    parameters:
+    - id: X
+      type: System.Int32
+    - id: Y
+      type: System.Int32
+    - id: Text
+      type: System.String
+    - id: LineWidth
+      type: System.Int32
+    - id: Rotation
+      type: System.Int32
+    - id: RightToLeft
+      type: System.Boolean
+    - id: lInfo
+      type: Reportman.Drawing.LineInfo
+    content.vb: Public Sub TextOut(X As Integer, Y As Integer, Text As String, LineWidth As Integer, Rotation As Integer, RightToLeft As Boolean, lInfo As LineInfo)
+  overload: Reportman.Drawing.PDFCanvas.TextOut*
+  nameWithType.vb: PDFCanvas.TextOut(Integer, Integer, String, Integer, Integer, Boolean, LineInfo)
+  fullName.vb: Reportman.Drawing.PDFCanvas.TextOut(Integer, Integer, String, Integer, Integer, Boolean, Reportman.Drawing.LineInfo)
+  name.vb: TextOut(Integer, Integer, String, Integer, Integer, Boolean, LineInfo)
+- uid: Reportman.Drawing.PDFCanvas.WideCharToHex(System.Char)
+  commentId: M:Reportman.Drawing.PDFCanvas.WideCharToHex(System.Char)
+  id: WideCharToHex(System.Char)
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: WideCharToHex(char)
+  nameWithType: PDFCanvas.WideCharToHex(char)
+  fullName: Reportman.Drawing.PDFCanvas.WideCharToHex(char)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string WideCharToHex(char achar)
+    parameters:
+    - id: achar
+      type: System.Char
+    return:
+      type: System.String
+    content.vb: Public Shared Function WideCharToHex(achar As Char) As String
+  overload: Reportman.Drawing.PDFCanvas.WideCharToHex*
+  nameWithType.vb: PDFCanvas.WideCharToHex(Char)
+  fullName.vb: Reportman.Drawing.PDFCanvas.WideCharToHex(Char)
+  name.vb: WideCharToHex(Char)
+- uid: Reportman.Drawing.PDFCanvas.IntToHex(System.Int32)
+  commentId: M:Reportman.Drawing.PDFCanvas.IntToHex(System.Int32)
+  id: IntToHex(System.Int32)
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: IntToHex(int)
+  nameWithType: PDFCanvas.IntToHex(int)
+  fullName: Reportman.Drawing.PDFCanvas.IntToHex(int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string IntToHex(int nvalue)
+    parameters:
+    - id: nvalue
+      type: System.Int32
+    return:
+      type: System.String
+    content.vb: Public Shared Function IntToHex(nvalue As Integer) As String
+  overload: Reportman.Drawing.PDFCanvas.IntToHex*
+  nameWithType.vb: PDFCanvas.IntToHex(Integer)
+  fullName.vb: Reportman.Drawing.PDFCanvas.IntToHex(Integer)
+  name.vb: IntToHex(Integer)
+- uid: Reportman.Drawing.PDFCanvas.PDFCompatibleTextWithKerning(System.String,Reportman.Drawing.TTFontData,Reportman.Drawing.PDFFont)
+  commentId: M:Reportman.Drawing.PDFCanvas.PDFCompatibleTextWithKerning(System.String,Reportman.Drawing.TTFontData,Reportman.Drawing.PDFFont)
+  id: PDFCompatibleTextWithKerning(System.String,Reportman.Drawing.TTFontData,Reportman.Drawing.PDFFont)
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: PDFCompatibleTextWithKerning(string, TTFontData, PDFFont)
+  nameWithType: PDFCanvas.PDFCompatibleTextWithKerning(string, TTFontData, PDFFont)
+  fullName: Reportman.Drawing.PDFCanvas.PDFCompatibleTextWithKerning(string, Reportman.Drawing.TTFontData, Reportman.Drawing.PDFFont)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string PDFCompatibleTextWithKerning(string astring, TTFontData adata, PDFFont pdffont)
+    parameters:
+    - id: astring
+      type: System.String
+    - id: adata
+      type: Reportman.Drawing.TTFontData
+    - id: pdffont
+      type: Reportman.Drawing.PDFFont
+    return:
+      type: System.String
+    content.vb: Public Function PDFCompatibleTextWithKerning(astring As String, adata As TTFontData, pdffont As PDFFont) As String
+  overload: Reportman.Drawing.PDFCanvas.PDFCompatibleTextWithKerning*
+  nameWithType.vb: PDFCanvas.PDFCompatibleTextWithKerning(String, TTFontData, PDFFont)
+  fullName.vb: Reportman.Drawing.PDFCanvas.PDFCompatibleTextWithKerning(String, Reportman.Drawing.TTFontData, Reportman.Drawing.PDFFont)
+  name.vb: PDFCompatibleTextWithKerning(String, TTFontData, PDFFont)
+- uid: Reportman.Drawing.PDFCanvas.PDFCompatibleTextShaping(System.String,Reportman.Drawing.TTFontData,Reportman.Drawing.PDFFont,System.Boolean,System.Double,System.Double,System.Int32,Reportman.Drawing.LineInfo)
+  commentId: M:Reportman.Drawing.PDFCanvas.PDFCompatibleTextShaping(System.String,Reportman.Drawing.TTFontData,Reportman.Drawing.PDFFont,System.Boolean,System.Double,System.Double,System.Int32,Reportman.Drawing.LineInfo)
+  id: PDFCompatibleTextShaping(System.String,Reportman.Drawing.TTFontData,Reportman.Drawing.PDFFont,System.Boolean,System.Double,System.Double,System.Int32,Reportman.Drawing.LineInfo)
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: PDFCompatibleTextShaping(string, TTFontData, PDFFont, bool, double, double, int, LineInfo)
+  nameWithType: PDFCanvas.PDFCompatibleTextShaping(string, TTFontData, PDFFont, bool, double, double, int, LineInfo)
+  fullName: Reportman.Drawing.PDFCanvas.PDFCompatibleTextShaping(string, Reportman.Drawing.TTFontData, Reportman.Drawing.PDFFont, bool, double, double, int, Reportman.Drawing.LineInfo)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string PDFCompatibleTextShaping(string astring, TTFontData adata, PDFFont pdffont, bool RightToLeft, double posX, double posY, int FontSize, LineInfo lInfo)
+    parameters:
+    - id: astring
+      type: System.String
+    - id: adata
+      type: Reportman.Drawing.TTFontData
+    - id: pdffont
+      type: Reportman.Drawing.PDFFont
+    - id: RightToLeft
+      type: System.Boolean
+    - id: posX
+      type: System.Double
+    - id: posY
+      type: System.Double
+    - id: FontSize
+      type: System.Int32
+    - id: lInfo
+      type: Reportman.Drawing.LineInfo
+    return:
+      type: System.String
+    content.vb: Public Function PDFCompatibleTextShaping(astring As String, adata As TTFontData, pdffont As PDFFont, RightToLeft As Boolean, posX As Double, posY As Double, FontSize As Integer, lInfo As LineInfo) As String
+  overload: Reportman.Drawing.PDFCanvas.PDFCompatibleTextShaping*
+  nameWithType.vb: PDFCanvas.PDFCompatibleTextShaping(String, TTFontData, PDFFont, Boolean, Double, Double, Integer, LineInfo)
+  fullName.vb: Reportman.Drawing.PDFCanvas.PDFCompatibleTextShaping(String, Reportman.Drawing.TTFontData, Reportman.Drawing.PDFFont, Boolean, Double, Double, Integer, Reportman.Drawing.LineInfo)
+  name.vb: PDFCompatibleTextShaping(String, TTFontData, PDFFont, Boolean, Double, Double, Integer, LineInfo)
+- uid: Reportman.Drawing.PDFCanvas.PDFCompatibleText(System.String,Reportman.Drawing.TTFontData,Reportman.Drawing.PDFFont)
+  commentId: M:Reportman.Drawing.PDFCanvas.PDFCompatibleText(System.String,Reportman.Drawing.TTFontData,Reportman.Drawing.PDFFont)
+  id: PDFCompatibleText(System.String,Reportman.Drawing.TTFontData,Reportman.Drawing.PDFFont)
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: PDFCompatibleText(string, TTFontData, PDFFont)
+  nameWithType: PDFCanvas.PDFCompatibleText(string, TTFontData, PDFFont)
+  fullName: Reportman.Drawing.PDFCanvas.PDFCompatibleText(string, Reportman.Drawing.TTFontData, Reportman.Drawing.PDFFont)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string PDFCompatibleText(string astring, TTFontData adata, PDFFont pdffont)
+    parameters:
+    - id: astring
+      type: System.String
+    - id: adata
+      type: Reportman.Drawing.TTFontData
+    - id: pdffont
+      type: Reportman.Drawing.PDFFont
+    return:
+      type: System.String
+    content.vb: Public Shared Function PDFCompatibleText(astring As String, adata As TTFontData, pdffont As PDFFont) As String
+  overload: Reportman.Drawing.PDFCanvas.PDFCompatibleText*
+  nameWithType.vb: PDFCanvas.PDFCompatibleText(String, TTFontData, PDFFont)
+  fullName.vb: Reportman.Drawing.PDFCanvas.PDFCompatibleText(String, Reportman.Drawing.TTFontData, Reportman.Drawing.PDFFont)
+  name.vb: PDFCompatibleText(String, TTFontData, PDFFont)
+- uid: Reportman.Drawing.PDFCanvas.Translate(System.Int32,System.Int32)
+  commentId: M:Reportman.Drawing.PDFCanvas.Translate(System.Int32,System.Int32)
+  id: Translate(System.Int32,System.Int32)
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: Translate(int, int)
+  nameWithType: PDFCanvas.Translate(int, int)
+  fullName: Reportman.Drawing.PDFCanvas.Translate(int, int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public void Translate(int X, int Y)
+    parameters:
+    - id: X
+      type: System.Int32
+    - id: Y
+      type: System.Int32
+    content.vb: Public Sub Translate(X As Integer, Y As Integer)
+  overload: Reportman.Drawing.PDFCanvas.Translate*
+  nameWithType.vb: PDFCanvas.Translate(Integer, Integer)
+  fullName.vb: Reportman.Drawing.PDFCanvas.Translate(Integer, Integer)
+  name.vb: Translate(Integer, Integer)
+- uid: Reportman.Drawing.PDFCanvas.Rotate(System.Double)
+  commentId: M:Reportman.Drawing.PDFCanvas.Rotate(System.Double)
+  id: Rotate(System.Double)
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: Rotate(double)
+  nameWithType: PDFCanvas.Rotate(double)
+  fullName: Reportman.Drawing.PDFCanvas.Rotate(double)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public void Rotate(double radiants)
+    parameters:
+    - id: radiants
+      type: System.Double
+    content.vb: Public Sub Rotate(radiants As Double)
+  overload: Reportman.Drawing.PDFCanvas.Rotate*
+  nameWithType.vb: PDFCanvas.Rotate(Double)
+  fullName.vb: Reportman.Drawing.PDFCanvas.Rotate(Double)
+  name.vb: Rotate(Double)
+- uid: Reportman.Drawing.PDFCanvas.TextRect(System.Drawing.Rectangle,System.String,System.Int32,System.Boolean,System.Boolean,System.Int32,System.Boolean)
+  commentId: M:Reportman.Drawing.PDFCanvas.TextRect(System.Drawing.Rectangle,System.String,System.Int32,System.Boolean,System.Boolean,System.Int32,System.Boolean)
+  id: TextRect(System.Drawing.Rectangle,System.String,System.Int32,System.Boolean,System.Boolean,System.Int32,System.Boolean)
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: TextRect(Rectangle, string, int, bool, bool, int, bool)
+  nameWithType: PDFCanvas.TextRect(Rectangle, string, int, bool, bool, int, bool)
+  fullName: Reportman.Drawing.PDFCanvas.TextRect(System.Drawing.Rectangle, string, int, bool, bool, int, bool)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public void TextRect(Rectangle arect, string Text, int Alignment, bool Clipping, bool wordbreak, int Rotation, bool RightToLeft)
+    parameters:
+    - id: arect
+      type: System.Drawing.Rectangle
+    - id: Text
+      type: System.String
+    - id: Alignment
+      type: System.Int32
+    - id: Clipping
+      type: System.Boolean
+    - id: wordbreak
+      type: System.Boolean
+    - id: Rotation
+      type: System.Int32
+    - id: RightToLeft
+      type: System.Boolean
+    content.vb: Public Sub TextRect(arect As Rectangle, Text As String, Alignment As Integer, Clipping As Boolean, wordbreak As Boolean, Rotation As Integer, RightToLeft As Boolean)
+  overload: Reportman.Drawing.PDFCanvas.TextRect*
+  nameWithType.vb: PDFCanvas.TextRect(Rectangle, String, Integer, Boolean, Boolean, Integer, Boolean)
+  fullName.vb: Reportman.Drawing.PDFCanvas.TextRect(System.Drawing.Rectangle, String, Integer, Boolean, Boolean, Integer, Boolean)
+  name.vb: TextRect(Rectangle, String, Integer, Boolean, Boolean, Integer, Boolean)
+- uid: Reportman.Drawing.PDFCanvas.DrawImage(System.Drawing.Rectangle,System.IO.MemoryStream,System.Int32,System.Boolean,System.Boolean,System.Int64)
+  commentId: M:Reportman.Drawing.PDFCanvas.DrawImage(System.Drawing.Rectangle,System.IO.MemoryStream,System.Int32,System.Boolean,System.Boolean,System.Int64)
+  id: DrawImage(System.Drawing.Rectangle,System.IO.MemoryStream,System.Int32,System.Boolean,System.Boolean,System.Int64)
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: DrawImage(Rectangle, MemoryStream, int, bool, bool, long)
+  nameWithType: PDFCanvas.DrawImage(Rectangle, MemoryStream, int, bool, bool, long)
+  fullName: Reportman.Drawing.PDFCanvas.DrawImage(System.Drawing.Rectangle, System.IO.MemoryStream, int, bool, bool, long)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public void DrawImage(Rectangle rec, MemoryStream abitmap, int dpires, bool tile, bool clip, long internal_imageindex)
+    parameters:
+    - id: rec
+      type: System.Drawing.Rectangle
+    - id: abitmap
+      type: System.IO.MemoryStream
+    - id: dpires
+      type: System.Int32
+    - id: tile
+      type: System.Boolean
+    - id: clip
+      type: System.Boolean
+    - id: internal_imageindex
+      type: System.Int64
+    content.vb: Public Sub DrawImage(rec As Rectangle, abitmap As MemoryStream, dpires As Integer, tile As Boolean, clip As Boolean, internal_imageindex As Long)
+  overload: Reportman.Drawing.PDFCanvas.DrawImage*
+  nameWithType.vb: PDFCanvas.DrawImage(Rectangle, MemoryStream, Integer, Boolean, Boolean, Long)
+  fullName.vb: Reportman.Drawing.PDFCanvas.DrawImage(System.Drawing.Rectangle, System.IO.MemoryStream, Integer, Boolean, Boolean, Long)
+  name.vb: DrawImage(Rectangle, MemoryStream, Integer, Boolean, Boolean, Long)
+- uid: Reportman.Drawing.PDFCanvas.TextExtent(System.String,System.Drawing.Rectangle@,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  commentId: M:Reportman.Drawing.PDFCanvas.TextExtent(System.String,System.Drawing.Rectangle@,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  id: TextExtent(System.String,System.Drawing.Rectangle@,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: TextExtent(string, ref Rectangle, bool, bool, bool, bool)
+  nameWithType: PDFCanvas.TextExtent(string, ref Rectangle, bool, bool, bool, bool)
+  fullName: Reportman.Drawing.PDFCanvas.TextExtent(string, ref System.Drawing.Rectangle, bool, bool, bool, bool)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public List<LineInfo> TextExtent(string Text, ref Rectangle rect, bool wordbreak, bool singleline, bool dolineinfo, bool RightToLeft)
+    parameters:
+    - id: Text
+      type: System.String
+    - id: rect
+      type: System.Drawing.Rectangle
+    - id: wordbreak
+      type: System.Boolean
+    - id: singleline
+      type: System.Boolean
+    - id: dolineinfo
+      type: System.Boolean
+    - id: RightToLeft
+      type: System.Boolean
+    return:
+      type: System.Collections.Generic.List{Reportman.Drawing.LineInfo}
+    content.vb: Public Function TextExtent(Text As String, rect As Rectangle, wordbreak As Boolean, singleline As Boolean, dolineinfo As Boolean, RightToLeft As Boolean) As List(Of LineInfo)
+  overload: Reportman.Drawing.PDFCanvas.TextExtent*
+  nameWithType.vb: PDFCanvas.TextExtent(String, Rectangle, Boolean, Boolean, Boolean, Boolean)
+  fullName.vb: Reportman.Drawing.PDFCanvas.TextExtent(String, System.Drawing.Rectangle, Boolean, Boolean, Boolean, Boolean)
+  name.vb: TextExtent(String, Rectangle, Boolean, Boolean, Boolean, Boolean)
+- uid: Reportman.Drawing.PDFCanvas.TextExtentSimple(System.String,System.Drawing.Rectangle@,System.Boolean,System.Boolean,System.Boolean)
+  commentId: M:Reportman.Drawing.PDFCanvas.TextExtentSimple(System.String,System.Drawing.Rectangle@,System.Boolean,System.Boolean,System.Boolean)
+  id: TextExtentSimple(System.String,System.Drawing.Rectangle@,System.Boolean,System.Boolean,System.Boolean)
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: TextExtentSimple(string, ref Rectangle, bool, bool, bool)
+  nameWithType: PDFCanvas.TextExtentSimple(string, ref Rectangle, bool, bool, bool)
+  fullName: Reportman.Drawing.PDFCanvas.TextExtentSimple(string, ref System.Drawing.Rectangle, bool, bool, bool)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public void TextExtentSimple(string Text, ref Rectangle rect, bool wordbreak, bool singleline, bool dolineinfo)
+    parameters:
+    - id: Text
+      type: System.String
+    - id: rect
+      type: System.Drawing.Rectangle
+    - id: wordbreak
+      type: System.Boolean
+    - id: singleline
+      type: System.Boolean
+    - id: dolineinfo
+      type: System.Boolean
+    content.vb: Public Sub TextExtentSimple(Text As String, rect As Rectangle, wordbreak As Boolean, singleline As Boolean, dolineinfo As Boolean)
+  overload: Reportman.Drawing.PDFCanvas.TextExtentSimple*
+  nameWithType.vb: PDFCanvas.TextExtentSimple(String, Rectangle, Boolean, Boolean, Boolean)
+  fullName.vb: Reportman.Drawing.PDFCanvas.TextExtentSimple(String, System.Drawing.Rectangle, Boolean, Boolean, Boolean)
+  name.vb: TextExtentSimple(String, Rectangle, Boolean, Boolean, Boolean)
+- uid: Reportman.Drawing.PDFCanvas.InfoProvider
+  commentId: P:Reportman.Drawing.PDFCanvas.InfoProvider
+  id: InfoProvider
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: InfoProvider
+  nameWithType: PDFCanvas.InfoProvider
+  fullName: Reportman.Drawing.PDFCanvas.InfoProvider
+  type: Property
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public FontInfoProvider InfoProvider { get; }
+    parameters: []
+    return:
+      type: Reportman.Drawing.FontInfoProvider
+    content.vb: Public ReadOnly Property InfoProvider As FontInfoProvider
+  overload: Reportman.Drawing.PDFCanvas.InfoProvider*
+- uid: Reportman.Drawing.PDFCanvas.BitmapInfoProvider
+  commentId: P:Reportman.Drawing.PDFCanvas.BitmapInfoProvider
+  id: BitmapInfoProvider
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: BitmapInfoProvider
+  nameWithType: PDFCanvas.BitmapInfoProvider
+  fullName: Reportman.Drawing.PDFCanvas.BitmapInfoProvider
+  type: Property
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public IBitmapInfoProvider BitmapInfoProvider { get; }
+    parameters: []
+    return:
+      type: Reportman.Drawing.IBitmapInfoProvider
+    content.vb: Public ReadOnly Property BitmapInfoProvider As IBitmapInfoProvider
+  overload: Reportman.Drawing.PDFCanvas.BitmapInfoProvider*
+- uid: Reportman.Drawing.PDFCanvas.LineInfo
+  commentId: P:Reportman.Drawing.PDFCanvas.LineInfo
+  id: LineInfo
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: LineInfo
+  nameWithType: PDFCanvas.LineInfo
+  fullName: Reportman.Drawing.PDFCanvas.LineInfo
+  type: Property
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public List<LineInfo> LineInfo { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{Reportman.Drawing.LineInfo}
+    content.vb: Public ReadOnly Property LineInfo As List(Of LineInfo)
+  overload: Reportman.Drawing.PDFCanvas.LineInfo*
+- uid: Reportman.Drawing.PDFCanvas.Font
+  commentId: P:Reportman.Drawing.PDFCanvas.Font
+  id: Font
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: Font
+  nameWithType: PDFCanvas.Font
+  fullName: Reportman.Drawing.PDFCanvas.Font
+  type: Property
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public PDFFont Font { get; }
+    parameters: []
+    return:
+      type: Reportman.Drawing.PDFFont
+    content.vb: Public ReadOnly Property Font As PDFFont
+  overload: Reportman.Drawing.PDFCanvas.Font*
+- uid: Reportman.Drawing.PDFCanvas.FontData
+  commentId: P:Reportman.Drawing.PDFCanvas.FontData
+  id: FontData
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: FontData
+  nameWithType: PDFCanvas.FontData
+  fullName: Reportman.Drawing.PDFCanvas.FontData
+  type: Property
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public SortedList FontData { get; }
+    parameters: []
+    return:
+      type: System.Collections.SortedList
+    content.vb: Public ReadOnly Property FontData As SortedList
+  overload: Reportman.Drawing.PDFCanvas.FontData*
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Reportman.Drawing.FontInfoProvider
+  commentId: T:Reportman.Drawing.FontInfoProvider
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.FontInfoProvider.html
+  name: FontInfoProvider
+  nameWithType: FontInfoProvider
+  fullName: Reportman.Drawing.FontInfoProvider
+- uid: Reportman.Drawing.IBitmapInfoProvider
+  commentId: T:Reportman.Drawing.IBitmapInfoProvider
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.IBitmapInfoProvider.html
+  name: IBitmapInfoProvider
+  nameWithType: IBitmapInfoProvider
+  fullName: Reportman.Drawing.IBitmapInfoProvider
+- uid: Reportman.Drawing.PDFConformanceType
+  commentId: T:Reportman.Drawing.PDFConformanceType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PDFConformanceType.html
+  name: PDFConformanceType
+  nameWithType: PDFConformanceType
+  fullName: Reportman.Drawing.PDFConformanceType
+- uid: Reportman.Drawing.PDFFile
+  commentId: T:Reportman.Drawing.PDFFile
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PDFFile.html
+  name: PDFFile
+  nameWithType: PDFFile
+  fullName: Reportman.Drawing.PDFFile
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Reportman.Drawing.PDFCanvas.#ctor*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.#ctor
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas__ctor_Reportman_Drawing_FontInfoProvider_Reportman_Drawing_IBitmapInfoProvider_
+  name: PDFCanvas
+  nameWithType: PDFCanvas.PDFCanvas
+  fullName: Reportman.Drawing.PDFCanvas.PDFCanvas
+  nameWithType.vb: PDFCanvas.New
+  fullName.vb: Reportman.Drawing.PDFCanvas.New
+  name.vb: New
+- uid: Reportman.Drawing.PDFCanvas.UnitsToTextX*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.UnitsToTextX
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_UnitsToTextX_System_Double_
+  name: UnitsToTextX
+  nameWithType: PDFCanvas.UnitsToTextX
+  fullName: Reportman.Drawing.PDFCanvas.UnitsToTextX
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.double
+  name: double
+  nameWithType: double
+  fullName: double
+  nameWithType.vb: Double
+  fullName.vb: Double
+  name.vb: Double
+- uid: Reportman.Drawing.PDFCanvas.UnitsToTextY*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.UnitsToTextY
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_UnitsToTextY_System_Double_
+  name: UnitsToTextY
+  nameWithType: PDFCanvas.UnitsToTextY
+  fullName: Reportman.Drawing.PDFCanvas.UnitsToTextY
+- uid: Reportman.Drawing.PDFCanvas.NumberToText*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.NumberToText
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_NumberToText_System_Double_
+  name: NumberToText
+  nameWithType: PDFCanvas.NumberToText
+  fullName: Reportman.Drawing.PDFCanvas.NumberToText
+- uid: Reportman.Drawing.PDFCanvas.EOL*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.EOL
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_EOL
+  name: EOL
+  nameWithType: PDFCanvas.EOL
+  fullName: Reportman.Drawing.PDFCanvas.EOL
+- uid: Reportman.Drawing.PDFCanvas.Line*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.Line
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_Line_System_Int32_System_Int32_System_Int32_System_Int32_
+  name: Line
+  nameWithType: PDFCanvas.Line
+  fullName: Reportman.Drawing.PDFCanvas.Line
+- uid: Reportman.Drawing.PDFCanvas.WritePenColor*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.WritePenColor
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_WritePenColor_System_Int32_
+  name: WritePenColor
+  nameWithType: PDFCanvas.WritePenColor
+  fullName: Reportman.Drawing.PDFCanvas.WritePenColor
+- uid: Reportman.Drawing.PDFCanvas.WriteBrushColor*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.WriteBrushColor
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_WriteBrushColor_System_Int32_
+  name: WriteBrushColor
+  nameWithType: PDFCanvas.WriteBrushColor
+  fullName: Reportman.Drawing.PDFCanvas.WriteBrushColor
+- uid: Reportman.Drawing.PDFCanvas.GetTTFontData*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.GetTTFontData
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_GetTTFontData
+  name: GetTTFontData
+  nameWithType: PDFCanvas.GetTTFontData
+  fullName: Reportman.Drawing.PDFCanvas.GetTTFontData
+- uid: Reportman.Drawing.TTFontData
+  commentId: T:Reportman.Drawing.TTFontData
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.TTFontData.html
+  name: TTFontData
+  nameWithType: TTFontData
+  fullName: Reportman.Drawing.TTFontData
+- uid: Reportman.Drawing.PDFCanvas.UpdateFonts*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.UpdateFonts
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_UpdateFonts
+  name: UpdateFonts
+  nameWithType: PDFCanvas.UpdateFonts
+  fullName: Reportman.Drawing.PDFCanvas.UpdateFonts
+- uid: Reportman.Drawing.PDFCanvas.Ellipse*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.Ellipse
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_Ellipse_System_Int32_System_Int32_System_Int32_System_Int32_
+  name: Ellipse
+  nameWithType: PDFCanvas.Ellipse
+  fullName: Reportman.Drawing.PDFCanvas.Ellipse
+- uid: Reportman.Drawing.PDFCanvas.RoundedRectangle*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.RoundedRectangle
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_RoundedRectangle_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_
+  name: RoundedRectangle
+  nameWithType: PDFCanvas.RoundedRectangle
+  fullName: Reportman.Drawing.PDFCanvas.RoundedRectangle
+- uid: Reportman.Drawing.PDFCanvas.Rectangle*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.Rectangle
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_Rectangle_System_Int32_System_Int32_System_Int32_System_Int32_
+  name: Rectangle
+  nameWithType: PDFCanvas.Rectangle
+  fullName: Reportman.Drawing.PDFCanvas.Rectangle
+- uid: Reportman.Drawing.PDFCanvas.SaveGraph*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.SaveGraph
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_SaveGraph
+  name: SaveGraph
+  nameWithType: PDFCanvas.SaveGraph
+  fullName: Reportman.Drawing.PDFCanvas.SaveGraph
+- uid: Reportman.Drawing.PDFCanvas.RestoreGraph*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.RestoreGraph
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_RestoreGraph
+  name: RestoreGraph
+  nameWithType: PDFCanvas.RestoreGraph
+  fullName: Reportman.Drawing.PDFCanvas.RestoreGraph
+- uid: Reportman.Drawing.PDFCanvas.DoReverseString*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.DoReverseString
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_DoReverseString_System_String_
+  name: DoReverseString
+  nameWithType: PDFCanvas.DoReverseString
+  fullName: Reportman.Drawing.PDFCanvas.DoReverseString
+- uid: Reportman.Drawing.PDFCanvas.Type1FontTopdfFontName*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.Type1FontTopdfFontName
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_Type1FontTopdfFontName_Reportman_Drawing_PDFFontType_System_Boolean_System_Boolean_System_String_System_Int32_Reportman_Drawing_PDFConformanceType_
+  name: Type1FontTopdfFontName
+  nameWithType: PDFCanvas.Type1FontTopdfFontName
+  fullName: Reportman.Drawing.PDFCanvas.Type1FontTopdfFontName
+- uid: Reportman.Drawing.PDFFontType
+  commentId: T:Reportman.Drawing.PDFFontType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PDFFontType.html
+  name: PDFFontType
+  nameWithType: PDFFontType
+  fullName: Reportman.Drawing.PDFFontType
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Reportman.Drawing.PDFCanvas.TextOut*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.TextOut
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_TextOut_System_Int32_System_Int32_System_String_System_Int32_System_Int32_System_Boolean_Reportman_Drawing_LineInfo_
+  name: TextOut
+  nameWithType: PDFCanvas.TextOut
+  fullName: Reportman.Drawing.PDFCanvas.TextOut
+- uid: Reportman.Drawing.LineInfo
+  commentId: T:Reportman.Drawing.LineInfo
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.LineInfo.html
+  name: LineInfo
+  nameWithType: LineInfo
+  fullName: Reportman.Drawing.LineInfo
+- uid: Reportman.Drawing.PDFCanvas.WideCharToHex*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.WideCharToHex
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_WideCharToHex_System_Char_
+  name: WideCharToHex
+  nameWithType: PDFCanvas.WideCharToHex
+  fullName: Reportman.Drawing.PDFCanvas.WideCharToHex
+- uid: System.Char
+  commentId: T:System.Char
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.char
+  name: char
+  nameWithType: char
+  fullName: char
+  nameWithType.vb: Char
+  fullName.vb: Char
+  name.vb: Char
+- uid: Reportman.Drawing.PDFCanvas.IntToHex*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.IntToHex
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_IntToHex_System_Int32_
+  name: IntToHex
+  nameWithType: PDFCanvas.IntToHex
+  fullName: Reportman.Drawing.PDFCanvas.IntToHex
+- uid: Reportman.Drawing.PDFCanvas.PDFCompatibleTextWithKerning*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.PDFCompatibleTextWithKerning
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_PDFCompatibleTextWithKerning_System_String_Reportman_Drawing_TTFontData_Reportman_Drawing_PDFFont_
+  name: PDFCompatibleTextWithKerning
+  nameWithType: PDFCanvas.PDFCompatibleTextWithKerning
+  fullName: Reportman.Drawing.PDFCanvas.PDFCompatibleTextWithKerning
+- uid: Reportman.Drawing.PDFFont
+  commentId: T:Reportman.Drawing.PDFFont
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PDFFont.html
+  name: PDFFont
+  nameWithType: PDFFont
+  fullName: Reportman.Drawing.PDFFont
+- uid: Reportman.Drawing.PDFCanvas.PDFCompatibleTextShaping*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.PDFCompatibleTextShaping
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_PDFCompatibleTextShaping_System_String_Reportman_Drawing_TTFontData_Reportman_Drawing_PDFFont_System_Boolean_System_Double_System_Double_System_Int32_Reportman_Drawing_LineInfo_
+  name: PDFCompatibleTextShaping
+  nameWithType: PDFCanvas.PDFCompatibleTextShaping
+  fullName: Reportman.Drawing.PDFCanvas.PDFCompatibleTextShaping
+- uid: Reportman.Drawing.PDFCanvas.PDFCompatibleText*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.PDFCompatibleText
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_PDFCompatibleText_System_String_Reportman_Drawing_TTFontData_Reportman_Drawing_PDFFont_
+  name: PDFCompatibleText
+  nameWithType: PDFCanvas.PDFCompatibleText
+  fullName: Reportman.Drawing.PDFCanvas.PDFCompatibleText
+- uid: Reportman.Drawing.PDFCanvas.Translate*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.Translate
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_Translate_System_Int32_System_Int32_
+  name: Translate
+  nameWithType: PDFCanvas.Translate
+  fullName: Reportman.Drawing.PDFCanvas.Translate
+- uid: Reportman.Drawing.PDFCanvas.Rotate*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.Rotate
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_Rotate_System_Double_
+  name: Rotate
+  nameWithType: PDFCanvas.Rotate
+  fullName: Reportman.Drawing.PDFCanvas.Rotate
+- uid: Reportman.Drawing.PDFCanvas.TextRect*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.TextRect
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_TextRect_System_Drawing_Rectangle_System_String_System_Int32_System_Boolean_System_Boolean_System_Int32_System_Boolean_
+  name: TextRect
+  nameWithType: PDFCanvas.TextRect
+  fullName: Reportman.Drawing.PDFCanvas.TextRect
+- uid: System.Drawing.Rectangle
+  commentId: T:System.Drawing.Rectangle
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.rectangle
+  name: Rectangle
+  nameWithType: Rectangle
+  fullName: System.Drawing.Rectangle
+- uid: System.Drawing
+  commentId: N:System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Drawing
+  nameWithType: System.Drawing
+  fullName: System.Drawing
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+- uid: Reportman.Drawing.PDFCanvas.DrawImage*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.DrawImage
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_DrawImage_System_Drawing_Rectangle_System_IO_MemoryStream_System_Int32_System_Boolean_System_Boolean_System_Int64_
+  name: DrawImage
+  nameWithType: PDFCanvas.DrawImage
+  fullName: Reportman.Drawing.PDFCanvas.DrawImage
+- uid: System.IO.MemoryStream
+  commentId: T:System.IO.MemoryStream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.memorystream
+  name: MemoryStream
+  nameWithType: MemoryStream
+  fullName: System.IO.MemoryStream
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+- uid: Reportman.Drawing.PDFCanvas.TextExtent*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.TextExtent
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_TextExtent_System_String_System_Drawing_Rectangle__System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  name: TextExtent
+  nameWithType: PDFCanvas.TextExtent
+  fullName: Reportman.Drawing.PDFCanvas.TextExtent
+- uid: System.Collections.Generic.List{Reportman.Drawing.LineInfo}
+  commentId: T:System.Collections.Generic.List{Reportman.Drawing.LineInfo}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<LineInfo>
+  nameWithType: List<LineInfo>
+  fullName: System.Collections.Generic.List<Reportman.Drawing.LineInfo>
+  nameWithType.vb: List(Of LineInfo)
+  fullName.vb: System.Collections.Generic.List(Of Reportman.Drawing.LineInfo)
+  name.vb: List(Of LineInfo)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Reportman.Drawing.LineInfo
+    name: LineInfo
+    isExternal: true
+    href: Reportman.Drawing.LineInfo.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Reportman.Drawing.LineInfo
+    name: LineInfo
+    isExternal: true
+    href: Reportman.Drawing.LineInfo.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Reportman.Drawing.PDFCanvas.TextExtentSimple*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.TextExtentSimple
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_TextExtentSimple_System_String_System_Drawing_Rectangle__System_Boolean_System_Boolean_System_Boolean_
+  name: TextExtentSimple
+  nameWithType: PDFCanvas.TextExtentSimple
+  fullName: Reportman.Drawing.PDFCanvas.TextExtentSimple
+- uid: Reportman.Drawing.PDFCanvas.InfoProvider*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.InfoProvider
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_InfoProvider
+  name: InfoProvider
+  nameWithType: PDFCanvas.InfoProvider
+  fullName: Reportman.Drawing.PDFCanvas.InfoProvider
+- uid: Reportman.Drawing.PDFCanvas.BitmapInfoProvider*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.BitmapInfoProvider
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_BitmapInfoProvider
+  name: BitmapInfoProvider
+  nameWithType: PDFCanvas.BitmapInfoProvider
+  fullName: Reportman.Drawing.PDFCanvas.BitmapInfoProvider
+- uid: Reportman.Drawing.PDFCanvas.LineInfo*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.LineInfo
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_LineInfo
+  name: LineInfo
+  nameWithType: PDFCanvas.LineInfo
+  fullName: Reportman.Drawing.PDFCanvas.LineInfo
+- uid: Reportman.Drawing.PDFCanvas.Font*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.Font
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_Font
+  name: Font
+  nameWithType: PDFCanvas.Font
+  fullName: Reportman.Drawing.PDFCanvas.Font
+- uid: Reportman.Drawing.PDFCanvas.FontData*
+  commentId: Overload:Reportman.Drawing.PDFCanvas.FontData
+  isExternal: true
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_FontData
+  name: FontData
+  nameWithType: PDFCanvas.FontData
+  fullName: Reportman.Drawing.PDFCanvas.FontData
+- uid: System.Collections.SortedList
+  commentId: T:System.Collections.SortedList
+  parent: System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.sortedlist
+  name: SortedList
+  nameWithType: SortedList
+  fullName: System.Collections.SortedList
+- uid: System.Collections
+  commentId: N:System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections
+  nameWithType: System.Collections
+  fullName: System.Collections
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections

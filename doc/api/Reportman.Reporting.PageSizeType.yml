@@ -1,0 +1,128 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.PageSizeType
+  commentId: T:Reportman.Reporting.PageSizeType
+  id: PageSizeType
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.PageSizeType.Custom
+  - Reportman.Reporting.PageSizeType.Default
+  - Reportman.Reporting.PageSizeType.User
+  langs:
+  - csharp
+  - vb
+  name: PageSizeType
+  nameWithType: PageSizeType
+  fullName: Reportman.Reporting.PageSizeType
+  type: Enum
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Page size configuration for report scheme
+  example: []
+  syntax:
+    content: public enum PageSizeType
+    content.vb: Public Enum PageSizeType
+- uid: Reportman.Reporting.PageSizeType.Default
+  commentId: F:Reportman.Reporting.PageSizeType.Default
+  id: Default
+  parent: Reportman.Reporting.PageSizeType
+  langs:
+  - csharp
+  - vb
+  name: Default
+  nameWithType: PageSizeType.Default
+  fullName: Reportman.Reporting.PageSizeType.Default
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: The printer configuration will be used to obtain the page size
+  example: []
+  syntax:
+    content: Default = 0
+    return:
+      type: Reportman.Reporting.PageSizeType
+- uid: Reportman.Reporting.PageSizeType.Custom
+  commentId: F:Reportman.Reporting.PageSizeType.Custom
+  id: Custom
+  parent: Reportman.Reporting.PageSizeType
+  langs:
+  - csharp
+  - vb
+  name: Custom
+  nameWithType: PageSizeType.Custom
+  fullName: Reportman.Reporting.PageSizeType.Custom
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: A page size will be selected from a list of available page sizes
+  example: []
+  syntax:
+    content: Custom = 1
+    return:
+      type: Reportman.Reporting.PageSizeType
+- uid: Reportman.Reporting.PageSizeType.User
+  commentId: F:Reportman.Reporting.PageSizeType.User
+  id: User
+  parent: Reportman.Reporting.PageSizeType
+  langs:
+  - csharp
+  - vb
+  name: User
+  nameWithType: PageSizeType.User
+  fullName: Reportman.Reporting.PageSizeType.User
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    The page size will be specified with fixed height and width. The user executing the
+
+    report must have administrator privileges over destination printer to use this setting,
+
+    at least the first time the report is executed, because a new form will be created in
+
+    the printer configuration
+  example: []
+  syntax:
+    content: User = 2
+    return:
+      type: Reportman.Reporting.PageSizeType
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: Reportman.Reporting.PageSizeType
+  commentId: T:Reportman.Reporting.PageSizeType
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.PageSizeType.html
+  name: PageSizeType
+  nameWithType: PageSizeType
+  fullName: Reportman.Reporting.PageSizeType

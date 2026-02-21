@@ -1,0 +1,574 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.Forms.DataGridViewPrint
+  commentId: T:Reportman.Reporting.Forms.DataGridViewPrint
+  id: DataGridViewPrint
+  parent: Reportman.Reporting.Forms
+  children:
+  - Reportman.Reporting.Forms.DataGridViewPrint.#ctor
+  - Reportman.Reporting.Forms.DataGridViewPrint.GetImageStreamFromObject(System.Object)
+  - Reportman.Reporting.Forms.DataGridViewPrint.PrepareReport(Reportman.Reporting.Report,System.Windows.Forms.DataGridView,Reportman.Reporting.Forms.DataGridViewPrintOptions)
+  - Reportman.Reporting.Forms.DataGridViewPrint.SetAlignFromCellFormat(System.Windows.Forms.DataGridViewContentAlignment,Reportman.Reporting.PrintItemText)
+  langs:
+  - csharp
+  - vb
+  name: DataGridViewPrint
+  nameWithType: DataGridViewPrint
+  fullName: Reportman.Reporting.Forms.DataGridViewPrint
+  type: Class
+  assemblies:
+  - Reportman.Reporting.Forms
+  namespace: Reportman.Reporting.Forms
+  syntax:
+    content: public class DataGridViewPrint
+    content.vb: Public Class DataGridViewPrint
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Reporting.Forms.DataGridViewPrint.SetAlignFromCellFormat(System.Windows.Forms.DataGridViewContentAlignment,Reportman.Reporting.PrintItemText)
+  commentId: M:Reportman.Reporting.Forms.DataGridViewPrint.SetAlignFromCellFormat(System.Windows.Forms.DataGridViewContentAlignment,Reportman.Reporting.PrintItemText)
+  id: SetAlignFromCellFormat(System.Windows.Forms.DataGridViewContentAlignment,Reportman.Reporting.PrintItemText)
+  parent: Reportman.Reporting.Forms.DataGridViewPrint
+  langs:
+  - csharp
+  - vb
+  name: SetAlignFromCellFormat(DataGridViewContentAlignment, PrintItemText)
+  nameWithType: DataGridViewPrint.SetAlignFromCellFormat(DataGridViewContentAlignment, PrintItemText)
+  fullName: Reportman.Reporting.Forms.DataGridViewPrint.SetAlignFromCellFormat(System.Windows.Forms.DataGridViewContentAlignment, Reportman.Reporting.PrintItemText)
+  type: Method
+  assemblies:
+  - Reportman.Reporting.Forms
+  namespace: Reportman.Reporting.Forms
+  syntax:
+    content: public static void SetAlignFromCellFormat(DataGridViewContentAlignment nalign, PrintItemText nitem)
+    parameters:
+    - id: nalign
+      type: System.Windows.Forms.DataGridViewContentAlignment
+    - id: nitem
+      type: Reportman.Reporting.PrintItemText
+    content.vb: Public Shared Sub SetAlignFromCellFormat(nalign As DataGridViewContentAlignment, nitem As PrintItemText)
+  overload: Reportman.Reporting.Forms.DataGridViewPrint.SetAlignFromCellFormat*
+- uid: Reportman.Reporting.Forms.DataGridViewPrint.PrepareReport(Reportman.Reporting.Report,System.Windows.Forms.DataGridView,Reportman.Reporting.Forms.DataGridViewPrintOptions)
+  commentId: M:Reportman.Reporting.Forms.DataGridViewPrint.PrepareReport(Reportman.Reporting.Report,System.Windows.Forms.DataGridView,Reportman.Reporting.Forms.DataGridViewPrintOptions)
+  id: PrepareReport(Reportman.Reporting.Report,System.Windows.Forms.DataGridView,Reportman.Reporting.Forms.DataGridViewPrintOptions)
+  parent: Reportman.Reporting.Forms.DataGridViewPrint
+  langs:
+  - csharp
+  - vb
+  name: PrepareReport(Report, DataGridView, DataGridViewPrintOptions)
+  nameWithType: DataGridViewPrint.PrepareReport(Report, DataGridView, DataGridViewPrintOptions)
+  fullName: Reportman.Reporting.Forms.DataGridViewPrint.PrepareReport(Reportman.Reporting.Report, System.Windows.Forms.DataGridView, Reportman.Reporting.Forms.DataGridViewPrintOptions)
+  type: Method
+  assemblies:
+  - Reportman.Reporting.Forms
+  namespace: Reportman.Reporting.Forms
+  syntax:
+    content: public static void PrepareReport(Report nreport, DataGridView ngrid, DataGridViewPrintOptions opts)
+    parameters:
+    - id: nreport
+      type: Reportman.Reporting.Report
+    - id: ngrid
+      type: System.Windows.Forms.DataGridView
+    - id: opts
+      type: Reportman.Reporting.Forms.DataGridViewPrintOptions
+    content.vb: Public Shared Sub PrepareReport(nreport As Report, ngrid As DataGridView, opts As DataGridViewPrintOptions)
+  overload: Reportman.Reporting.Forms.DataGridViewPrint.PrepareReport*
+- uid: Reportman.Reporting.Forms.DataGridViewPrint.GetImageStreamFromObject(System.Object)
+  commentId: M:Reportman.Reporting.Forms.DataGridViewPrint.GetImageStreamFromObject(System.Object)
+  id: GetImageStreamFromObject(System.Object)
+  parent: Reportman.Reporting.Forms.DataGridViewPrint
+  langs:
+  - csharp
+  - vb
+  name: GetImageStreamFromObject(object)
+  nameWithType: DataGridViewPrint.GetImageStreamFromObject(object)
+  fullName: Reportman.Reporting.Forms.DataGridViewPrint.GetImageStreamFromObject(object)
+  type: Method
+  assemblies:
+  - Reportman.Reporting.Forms
+  namespace: Reportman.Reporting.Forms
+  syntax:
+    content: public static MemoryStream GetImageStreamFromObject(object nobj)
+    parameters:
+    - id: nobj
+      type: System.Object
+    return:
+      type: System.IO.MemoryStream
+    content.vb: Public Shared Function GetImageStreamFromObject(nobj As Object) As MemoryStream
+  overload: Reportman.Reporting.Forms.DataGridViewPrint.GetImageStreamFromObject*
+  nameWithType.vb: DataGridViewPrint.GetImageStreamFromObject(Object)
+  fullName.vb: Reportman.Reporting.Forms.DataGridViewPrint.GetImageStreamFromObject(Object)
+  name.vb: GetImageStreamFromObject(Object)
+- uid: Reportman.Reporting.Forms.DataGridViewPrint.#ctor
+  commentId: M:Reportman.Reporting.Forms.DataGridViewPrint.#ctor
+  id: '#ctor'
+  parent: Reportman.Reporting.Forms.DataGridViewPrint
+  langs:
+  - csharp
+  - vb
+  name: DataGridViewPrint()
+  nameWithType: DataGridViewPrint.DataGridViewPrint()
+  fullName: Reportman.Reporting.Forms.DataGridViewPrint.DataGridViewPrint()
+  type: Constructor
+  assemblies:
+  - Reportman.Reporting.Forms
+  namespace: Reportman.Reporting.Forms
+  syntax:
+    content: public DataGridViewPrint()
+    content.vb: Public Sub New()
+  overload: Reportman.Reporting.Forms.DataGridViewPrint.#ctor*
+  nameWithType.vb: DataGridViewPrint.New()
+  fullName.vb: Reportman.Reporting.Forms.DataGridViewPrint.New()
+  name.vb: New()
+references:
+- uid: Reportman.Reporting.Forms
+  commentId: N:Reportman.Reporting.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting.Forms
+  nameWithType: Reportman.Reporting.Forms
+  fullName: Reportman.Reporting.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  - name: .
+  - uid: Reportman.Reporting.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Reporting.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  - name: .
+  - uid: Reportman.Reporting.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Reporting.Forms.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Reporting.Forms.DataGridViewPrint.SetAlignFromCellFormat*
+  commentId: Overload:Reportman.Reporting.Forms.DataGridViewPrint.SetAlignFromCellFormat
+  isExternal: true
+  href: Reportman.Reporting.Forms.DataGridViewPrint.html#Reportman_Reporting_Forms_DataGridViewPrint_SetAlignFromCellFormat_System_Windows_Forms_DataGridViewContentAlignment_Reportman_Reporting_PrintItemText_
+  name: SetAlignFromCellFormat
+  nameWithType: DataGridViewPrint.SetAlignFromCellFormat
+  fullName: Reportman.Reporting.Forms.DataGridViewPrint.SetAlignFromCellFormat
+- uid: System.Windows.Forms.DataGridViewContentAlignment
+  commentId: T:System.Windows.Forms.DataGridViewContentAlignment
+  parent: System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcontentalignment
+  name: DataGridViewContentAlignment
+  nameWithType: DataGridViewContentAlignment
+  fullName: System.Windows.Forms.DataGridViewContentAlignment
+- uid: Reportman.Reporting.PrintItemText
+  commentId: T:Reportman.Reporting.PrintItemText
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.PrintItemText.html
+  name: PrintItemText
+  nameWithType: PrintItemText
+  fullName: Reportman.Reporting.PrintItemText
+- uid: System.Windows.Forms
+  commentId: N:System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Windows.Forms
+  nameWithType: System.Windows.Forms
+  fullName: System.Windows.Forms
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Windows
+    name: Windows
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows
+  - name: .
+  - uid: System.Windows.Forms
+    name: Forms
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Windows
+    name: Windows
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows
+  - name: .
+  - uid: System.Windows.Forms
+    name: Forms
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: Reportman.Reporting.Forms.DataGridViewPrint.PrepareReport*
+  commentId: Overload:Reportman.Reporting.Forms.DataGridViewPrint.PrepareReport
+  isExternal: true
+  href: Reportman.Reporting.Forms.DataGridViewPrint.html#Reportman_Reporting_Forms_DataGridViewPrint_PrepareReport_Reportman_Reporting_Report_System_Windows_Forms_DataGridView_Reportman_Reporting_Forms_DataGridViewPrintOptions_
+  name: PrepareReport
+  nameWithType: DataGridViewPrint.PrepareReport
+  fullName: Reportman.Reporting.Forms.DataGridViewPrint.PrepareReport
+- uid: Reportman.Reporting.Report
+  commentId: T:Reportman.Reporting.Report
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.Report.html
+  name: Report
+  nameWithType: Report
+  fullName: Reportman.Reporting.Report
+- uid: System.Windows.Forms.DataGridView
+  commentId: T:System.Windows.Forms.DataGridView
+  parent: System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridview
+  name: DataGridView
+  nameWithType: DataGridView
+  fullName: System.Windows.Forms.DataGridView
+- uid: Reportman.Reporting.Forms.DataGridViewPrintOptions
+  commentId: T:Reportman.Reporting.Forms.DataGridViewPrintOptions
+  parent: Reportman.Reporting.Forms
+  isExternal: true
+  href: Reportman.Reporting.Forms.DataGridViewPrintOptions.html
+  name: DataGridViewPrintOptions
+  nameWithType: DataGridViewPrintOptions
+  fullName: Reportman.Reporting.Forms.DataGridViewPrintOptions
+- uid: Reportman.Reporting.Forms.DataGridViewPrint.GetImageStreamFromObject*
+  commentId: Overload:Reportman.Reporting.Forms.DataGridViewPrint.GetImageStreamFromObject
+  isExternal: true
+  href: Reportman.Reporting.Forms.DataGridViewPrint.html#Reportman_Reporting_Forms_DataGridViewPrint_GetImageStreamFromObject_System_Object_
+  name: GetImageStreamFromObject
+  nameWithType: DataGridViewPrint.GetImageStreamFromObject
+  fullName: Reportman.Reporting.Forms.DataGridViewPrint.GetImageStreamFromObject
+- uid: System.IO.MemoryStream
+  commentId: T:System.IO.MemoryStream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.memorystream
+  name: MemoryStream
+  nameWithType: MemoryStream
+  fullName: System.IO.MemoryStream
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+- uid: Reportman.Reporting.Forms.DataGridViewPrint.#ctor*
+  commentId: Overload:Reportman.Reporting.Forms.DataGridViewPrint.#ctor
+  isExternal: true
+  href: Reportman.Reporting.Forms.DataGridViewPrint.html#Reportman_Reporting_Forms_DataGridViewPrint__ctor
+  name: DataGridViewPrint
+  nameWithType: DataGridViewPrint.DataGridViewPrint
+  fullName: Reportman.Reporting.Forms.DataGridViewPrint.DataGridViewPrint
+  nameWithType.vb: DataGridViewPrint.New
+  fullName.vb: Reportman.Reporting.Forms.DataGridViewPrint.New
+  name.vb: New

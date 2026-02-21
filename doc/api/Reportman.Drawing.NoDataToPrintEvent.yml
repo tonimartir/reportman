@@ -1,0 +1,244 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.NoDataToPrintEvent
+  commentId: T:Reportman.Drawing.NoDataToPrintEvent
+  id: NoDataToPrintEvent
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.NoDataToPrintEvent.#ctor(System.Object,System.IntPtr)
+  - Reportman.Drawing.NoDataToPrintEvent.BeginInvoke(System.AsyncCallback,System.Object)
+  - Reportman.Drawing.NoDataToPrintEvent.EndInvoke(System.IAsyncResult)
+  - Reportman.Drawing.NoDataToPrintEvent.Invoke
+  langs:
+  - csharp
+  - vb
+  name: NoDataToPrintEvent
+  nameWithType: NoDataToPrintEvent
+  fullName: Reportman.Drawing.NoDataToPrintEvent
+  type: Delegate
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    Event launched when there is no data available to print. Should return
+
+    true if the action have been handled and no futher processing must happen
+  example: []
+  syntax:
+    content: public delegate bool NoDataToPrintEvent()
+    return:
+      type: System.Boolean
+      description: ''
+    content.vb: Public Delegate Function NoDataToPrintEvent() As Boolean
+- uid: Reportman.Drawing.NoDataToPrintEvent.#ctor(System.Object,System.IntPtr)
+  commentId: M:Reportman.Drawing.NoDataToPrintEvent.#ctor(System.Object,System.IntPtr)
+  id: '#ctor(System.Object,System.IntPtr)'
+  parent: Reportman.Drawing.NoDataToPrintEvent
+  langs:
+  - csharp
+  - vb
+  name: NoDataToPrintEvent(object, nint)
+  nameWithType: NoDataToPrintEvent.NoDataToPrintEvent(object, nint)
+  fullName: Reportman.Drawing.NoDataToPrintEvent.NoDataToPrintEvent(object, nint)
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public NoDataToPrintEvent(object @object, nint method)
+    parameters:
+    - id: object
+      type: System.Object
+    - id: method
+      type: System.IntPtr
+    content.vb: Public Sub New([object] As Object, method As IntPtr)
+  overload: Reportman.Drawing.NoDataToPrintEvent.#ctor*
+  nameWithType.vb: NoDataToPrintEvent.New(Object, IntPtr)
+  fullName.vb: Reportman.Drawing.NoDataToPrintEvent.New(Object, System.IntPtr)
+  name.vb: New(Object, IntPtr)
+- uid: Reportman.Drawing.NoDataToPrintEvent.Invoke
+  commentId: M:Reportman.Drawing.NoDataToPrintEvent.Invoke
+  id: Invoke
+  parent: Reportman.Drawing.NoDataToPrintEvent
+  langs:
+  - csharp
+  - vb
+  name: Invoke()
+  nameWithType: NoDataToPrintEvent.Invoke()
+  fullName: Reportman.Drawing.NoDataToPrintEvent.Invoke()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public virtual bool Invoke()
+    return:
+      type: System.Boolean
+    content.vb: Public Overridable Function Invoke() As Boolean
+  overload: Reportman.Drawing.NoDataToPrintEvent.Invoke*
+- uid: Reportman.Drawing.NoDataToPrintEvent.BeginInvoke(System.AsyncCallback,System.Object)
+  commentId: M:Reportman.Drawing.NoDataToPrintEvent.BeginInvoke(System.AsyncCallback,System.Object)
+  id: BeginInvoke(System.AsyncCallback,System.Object)
+  parent: Reportman.Drawing.NoDataToPrintEvent
+  langs:
+  - csharp
+  - vb
+  name: BeginInvoke(AsyncCallback, object)
+  nameWithType: NoDataToPrintEvent.BeginInvoke(AsyncCallback, object)
+  fullName: Reportman.Drawing.NoDataToPrintEvent.BeginInvoke(System.AsyncCallback, object)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public virtual IAsyncResult BeginInvoke(AsyncCallback callback, object @object)
+    parameters:
+    - id: callback
+      type: System.AsyncCallback
+    - id: object
+      type: System.Object
+    return:
+      type: System.IAsyncResult
+    content.vb: Public Overridable Function BeginInvoke(callback As AsyncCallback, [object] As Object) As IAsyncResult
+  overload: Reportman.Drawing.NoDataToPrintEvent.BeginInvoke*
+  nameWithType.vb: NoDataToPrintEvent.BeginInvoke(AsyncCallback, Object)
+  fullName.vb: Reportman.Drawing.NoDataToPrintEvent.BeginInvoke(System.AsyncCallback, Object)
+  name.vb: BeginInvoke(AsyncCallback, Object)
+- uid: Reportman.Drawing.NoDataToPrintEvent.EndInvoke(System.IAsyncResult)
+  commentId: M:Reportman.Drawing.NoDataToPrintEvent.EndInvoke(System.IAsyncResult)
+  id: EndInvoke(System.IAsyncResult)
+  parent: Reportman.Drawing.NoDataToPrintEvent
+  langs:
+  - csharp
+  - vb
+  name: EndInvoke(IAsyncResult)
+  nameWithType: NoDataToPrintEvent.EndInvoke(IAsyncResult)
+  fullName: Reportman.Drawing.NoDataToPrintEvent.EndInvoke(System.IAsyncResult)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public virtual bool EndInvoke(IAsyncResult result)
+    parameters:
+    - id: result
+      type: System.IAsyncResult
+    return:
+      type: System.Boolean
+    content.vb: Public Overridable Function EndInvoke(result As IAsyncResult) As Boolean
+  overload: Reportman.Drawing.NoDataToPrintEvent.EndInvoke*
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.NoDataToPrintEvent.#ctor*
+  commentId: Overload:Reportman.Drawing.NoDataToPrintEvent.#ctor
+  isExternal: true
+  href: Reportman.Drawing.NoDataToPrintEvent.html#Reportman_Drawing_NoDataToPrintEvent__ctor_System_Object_System_IntPtr_
+  name: NoDataToPrintEvent
+  nameWithType: NoDataToPrintEvent.NoDataToPrintEvent
+  fullName: Reportman.Drawing.NoDataToPrintEvent.NoDataToPrintEvent
+  nameWithType.vb: NoDataToPrintEvent.New
+  fullName.vb: Reportman.Drawing.NoDataToPrintEvent.New
+  name.vb: New
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: Reportman.Drawing.NoDataToPrintEvent.Invoke*
+  commentId: Overload:Reportman.Drawing.NoDataToPrintEvent.Invoke
+  isExternal: true
+  href: Reportman.Drawing.NoDataToPrintEvent.html#Reportman_Drawing_NoDataToPrintEvent_Invoke
+  name: Invoke
+  nameWithType: NoDataToPrintEvent.Invoke
+  fullName: Reportman.Drawing.NoDataToPrintEvent.Invoke
+- uid: Reportman.Drawing.NoDataToPrintEvent.BeginInvoke*
+  commentId: Overload:Reportman.Drawing.NoDataToPrintEvent.BeginInvoke
+  isExternal: true
+  href: Reportman.Drawing.NoDataToPrintEvent.html#Reportman_Drawing_NoDataToPrintEvent_BeginInvoke_System_AsyncCallback_System_Object_
+  name: BeginInvoke
+  nameWithType: NoDataToPrintEvent.BeginInvoke
+  fullName: Reportman.Drawing.NoDataToPrintEvent.BeginInvoke
+- uid: System.AsyncCallback
+  commentId: T:System.AsyncCallback
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.asynccallback
+  name: AsyncCallback
+  nameWithType: AsyncCallback
+  fullName: System.AsyncCallback
+- uid: System.IAsyncResult
+  commentId: T:System.IAsyncResult
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncresult
+  name: IAsyncResult
+  nameWithType: IAsyncResult
+  fullName: System.IAsyncResult
+- uid: Reportman.Drawing.NoDataToPrintEvent.EndInvoke*
+  commentId: Overload:Reportman.Drawing.NoDataToPrintEvent.EndInvoke
+  isExternal: true
+  href: Reportman.Drawing.NoDataToPrintEvent.html#Reportman_Drawing_NoDataToPrintEvent_EndInvoke_System_IAsyncResult_
+  name: EndInvoke
+  nameWithType: NoDataToPrintEvent.EndInvoke
+  fullName: Reportman.Drawing.NoDataToPrintEvent.EndInvoke

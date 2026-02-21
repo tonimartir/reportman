@@ -1,0 +1,256 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.CancelEvent
+  commentId: T:Reportman.Drawing.Forms.CancelEvent
+  id: CancelEvent
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.CancelEvent.#ctor(System.Object,System.IntPtr)
+  - Reportman.Drawing.Forms.CancelEvent.BeginInvoke(System.Object,Reportman.Drawing.Forms.CancelArgs,System.AsyncCallback,System.Object)
+  - Reportman.Drawing.Forms.CancelEvent.EndInvoke(System.IAsyncResult)
+  - Reportman.Drawing.Forms.CancelEvent.Invoke(System.Object,Reportman.Drawing.Forms.CancelArgs)
+  langs:
+  - csharp
+  - vb
+  name: CancelEvent
+  nameWithType: CancelEvent
+  fullName: Reportman.Drawing.Forms.CancelEvent
+  type: Delegate
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public delegate void CancelEvent(object sender, CancelArgs args)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: Reportman.Drawing.Forms.CancelArgs
+    content.vb: Public Delegate Sub CancelEvent(sender As Object, args As CancelArgs)
+- uid: Reportman.Drawing.Forms.CancelEvent.#ctor(System.Object,System.IntPtr)
+  commentId: M:Reportman.Drawing.Forms.CancelEvent.#ctor(System.Object,System.IntPtr)
+  id: '#ctor(System.Object,System.IntPtr)'
+  parent: Reportman.Drawing.Forms.CancelEvent
+  langs:
+  - csharp
+  - vb
+  name: CancelEvent(object, nint)
+  nameWithType: CancelEvent.CancelEvent(object, nint)
+  fullName: Reportman.Drawing.Forms.CancelEvent.CancelEvent(object, nint)
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public CancelEvent(object @object, nint method)
+    parameters:
+    - id: object
+      type: System.Object
+    - id: method
+      type: System.IntPtr
+    content.vb: Public Sub New([object] As Object, method As IntPtr)
+  overload: Reportman.Drawing.Forms.CancelEvent.#ctor*
+  nameWithType.vb: CancelEvent.New(Object, IntPtr)
+  fullName.vb: Reportman.Drawing.Forms.CancelEvent.New(Object, System.IntPtr)
+  name.vb: New(Object, IntPtr)
+- uid: Reportman.Drawing.Forms.CancelEvent.Invoke(System.Object,Reportman.Drawing.Forms.CancelArgs)
+  commentId: M:Reportman.Drawing.Forms.CancelEvent.Invoke(System.Object,Reportman.Drawing.Forms.CancelArgs)
+  id: Invoke(System.Object,Reportman.Drawing.Forms.CancelArgs)
+  parent: Reportman.Drawing.Forms.CancelEvent
+  langs:
+  - csharp
+  - vb
+  name: Invoke(object, CancelArgs)
+  nameWithType: CancelEvent.Invoke(object, CancelArgs)
+  fullName: Reportman.Drawing.Forms.CancelEvent.Invoke(object, Reportman.Drawing.Forms.CancelArgs)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual void Invoke(object sender, CancelArgs args)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: Reportman.Drawing.Forms.CancelArgs
+    content.vb: Public Overridable Sub Invoke(sender As Object, args As CancelArgs)
+  overload: Reportman.Drawing.Forms.CancelEvent.Invoke*
+  nameWithType.vb: CancelEvent.Invoke(Object, CancelArgs)
+  fullName.vb: Reportman.Drawing.Forms.CancelEvent.Invoke(Object, Reportman.Drawing.Forms.CancelArgs)
+  name.vb: Invoke(Object, CancelArgs)
+- uid: Reportman.Drawing.Forms.CancelEvent.BeginInvoke(System.Object,Reportman.Drawing.Forms.CancelArgs,System.AsyncCallback,System.Object)
+  commentId: M:Reportman.Drawing.Forms.CancelEvent.BeginInvoke(System.Object,Reportman.Drawing.Forms.CancelArgs,System.AsyncCallback,System.Object)
+  id: BeginInvoke(System.Object,Reportman.Drawing.Forms.CancelArgs,System.AsyncCallback,System.Object)
+  parent: Reportman.Drawing.Forms.CancelEvent
+  langs:
+  - csharp
+  - vb
+  name: BeginInvoke(object, CancelArgs, AsyncCallback, object)
+  nameWithType: CancelEvent.BeginInvoke(object, CancelArgs, AsyncCallback, object)
+  fullName: Reportman.Drawing.Forms.CancelEvent.BeginInvoke(object, Reportman.Drawing.Forms.CancelArgs, System.AsyncCallback, object)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual IAsyncResult BeginInvoke(object sender, CancelArgs args, AsyncCallback callback, object @object)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: Reportman.Drawing.Forms.CancelArgs
+    - id: callback
+      type: System.AsyncCallback
+    - id: object
+      type: System.Object
+    return:
+      type: System.IAsyncResult
+    content.vb: Public Overridable Function BeginInvoke(sender As Object, args As CancelArgs, callback As AsyncCallback, [object] As Object) As IAsyncResult
+  overload: Reportman.Drawing.Forms.CancelEvent.BeginInvoke*
+  nameWithType.vb: CancelEvent.BeginInvoke(Object, CancelArgs, AsyncCallback, Object)
+  fullName.vb: Reportman.Drawing.Forms.CancelEvent.BeginInvoke(Object, Reportman.Drawing.Forms.CancelArgs, System.AsyncCallback, Object)
+  name.vb: BeginInvoke(Object, CancelArgs, AsyncCallback, Object)
+- uid: Reportman.Drawing.Forms.CancelEvent.EndInvoke(System.IAsyncResult)
+  commentId: M:Reportman.Drawing.Forms.CancelEvent.EndInvoke(System.IAsyncResult)
+  id: EndInvoke(System.IAsyncResult)
+  parent: Reportman.Drawing.Forms.CancelEvent
+  langs:
+  - csharp
+  - vb
+  name: EndInvoke(IAsyncResult)
+  nameWithType: CancelEvent.EndInvoke(IAsyncResult)
+  fullName: Reportman.Drawing.Forms.CancelEvent.EndInvoke(System.IAsyncResult)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual void EndInvoke(IAsyncResult result)
+    parameters:
+    - id: result
+      type: System.IAsyncResult
+    content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
+  overload: Reportman.Drawing.Forms.CancelEvent.EndInvoke*
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Reportman.Drawing.Forms.CancelArgs
+  commentId: T:Reportman.Drawing.Forms.CancelArgs
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.CancelArgs.html
+  name: CancelArgs
+  nameWithType: CancelArgs
+  fullName: Reportman.Drawing.Forms.CancelArgs
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.Forms.CancelEvent.#ctor*
+  commentId: Overload:Reportman.Drawing.Forms.CancelEvent.#ctor
+  isExternal: true
+  href: Reportman.Drawing.Forms.CancelEvent.html#Reportman_Drawing_Forms_CancelEvent__ctor_System_Object_System_IntPtr_
+  name: CancelEvent
+  nameWithType: CancelEvent.CancelEvent
+  fullName: Reportman.Drawing.Forms.CancelEvent.CancelEvent
+  nameWithType.vb: CancelEvent.New
+  fullName.vb: Reportman.Drawing.Forms.CancelEvent.New
+  name.vb: New
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: Reportman.Drawing.Forms.CancelEvent.Invoke*
+  commentId: Overload:Reportman.Drawing.Forms.CancelEvent.Invoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.CancelEvent.html#Reportman_Drawing_Forms_CancelEvent_Invoke_System_Object_Reportman_Drawing_Forms_CancelArgs_
+  name: Invoke
+  nameWithType: CancelEvent.Invoke
+  fullName: Reportman.Drawing.Forms.CancelEvent.Invoke
+- uid: Reportman.Drawing.Forms.CancelEvent.BeginInvoke*
+  commentId: Overload:Reportman.Drawing.Forms.CancelEvent.BeginInvoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.CancelEvent.html#Reportman_Drawing_Forms_CancelEvent_BeginInvoke_System_Object_Reportman_Drawing_Forms_CancelArgs_System_AsyncCallback_System_Object_
+  name: BeginInvoke
+  nameWithType: CancelEvent.BeginInvoke
+  fullName: Reportman.Drawing.Forms.CancelEvent.BeginInvoke
+- uid: System.AsyncCallback
+  commentId: T:System.AsyncCallback
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.asynccallback
+  name: AsyncCallback
+  nameWithType: AsyncCallback
+  fullName: System.AsyncCallback
+- uid: System.IAsyncResult
+  commentId: T:System.IAsyncResult
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncresult
+  name: IAsyncResult
+  nameWithType: IAsyncResult
+  fullName: System.IAsyncResult
+- uid: Reportman.Drawing.Forms.CancelEvent.EndInvoke*
+  commentId: Overload:Reportman.Drawing.Forms.CancelEvent.EndInvoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.CancelEvent.html#Reportman_Drawing_Forms_CancelEvent_EndInvoke_System_IAsyncResult_
+  name: EndInvoke
+  nameWithType: CancelEvent.EndInvoke
+  fullName: Reportman.Drawing.Forms.CancelEvent.EndInvoke

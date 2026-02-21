@@ -1,0 +1,261 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler
+  commentId: T:Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler
+  id: TabControlAdvanced.DoubleClickTabHandler
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.#ctor(System.Object,System.IntPtr)
+  - Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.BeginInvoke(Reportman.Drawing.Forms.TabControlAdvanced,Reportman.Drawing.Forms.TabPageAdvanced,System.AsyncCallback,System.Object)
+  - Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.EndInvoke(System.IAsyncResult)
+  - Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.Invoke(Reportman.Drawing.Forms.TabControlAdvanced,Reportman.Drawing.Forms.TabPageAdvanced)
+  langs:
+  - csharp
+  - vb
+  name: TabControlAdvanced.DoubleClickTabHandler
+  nameWithType: TabControlAdvanced.DoubleClickTabHandler
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler
+  type: Delegate
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public delegate void TabControlAdvanced.DoubleClickTabHandler(TabControlAdvanced sender, TabPageAdvanced page)
+    parameters:
+    - id: sender
+      type: Reportman.Drawing.Forms.TabControlAdvanced
+    - id: page
+      type: Reportman.Drawing.Forms.TabPageAdvanced
+    content.vb: Public Delegate Sub TabControlAdvanced.DoubleClickTabHandler(sender As TabControlAdvanced, page As TabPageAdvanced)
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.#ctor(System.Object,System.IntPtr)
+  commentId: M:Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.#ctor(System.Object,System.IntPtr)
+  id: '#ctor(System.Object,System.IntPtr)'
+  parent: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler
+  langs:
+  - csharp
+  - vb
+  name: DoubleClickTabHandler(object, nint)
+  nameWithType: TabControlAdvanced.DoubleClickTabHandler.DoubleClickTabHandler(object, nint)
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.DoubleClickTabHandler(object, nint)
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public DoubleClickTabHandler(object @object, nint method)
+    parameters:
+    - id: object
+      type: System.Object
+    - id: method
+      type: System.IntPtr
+    content.vb: Public Sub New([object] As Object, method As IntPtr)
+  overload: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.#ctor*
+  nameWithType.vb: TabControlAdvanced.DoubleClickTabHandler.New(Object, IntPtr)
+  fullName.vb: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.New(Object, System.IntPtr)
+  name.vb: New(Object, IntPtr)
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.Invoke(Reportman.Drawing.Forms.TabControlAdvanced,Reportman.Drawing.Forms.TabPageAdvanced)
+  commentId: M:Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.Invoke(Reportman.Drawing.Forms.TabControlAdvanced,Reportman.Drawing.Forms.TabPageAdvanced)
+  id: Invoke(Reportman.Drawing.Forms.TabControlAdvanced,Reportman.Drawing.Forms.TabPageAdvanced)
+  parent: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler
+  langs:
+  - csharp
+  - vb
+  name: Invoke(TabControlAdvanced, TabPageAdvanced)
+  nameWithType: TabControlAdvanced.DoubleClickTabHandler.Invoke(TabControlAdvanced, TabPageAdvanced)
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.Invoke(Reportman.Drawing.Forms.TabControlAdvanced, Reportman.Drawing.Forms.TabPageAdvanced)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual void Invoke(TabControlAdvanced sender, TabPageAdvanced page)
+    parameters:
+    - id: sender
+      type: Reportman.Drawing.Forms.TabControlAdvanced
+    - id: page
+      type: Reportman.Drawing.Forms.TabPageAdvanced
+    content.vb: Public Overridable Sub Invoke(sender As TabControlAdvanced, page As TabPageAdvanced)
+  overload: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.Invoke*
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.BeginInvoke(Reportman.Drawing.Forms.TabControlAdvanced,Reportman.Drawing.Forms.TabPageAdvanced,System.AsyncCallback,System.Object)
+  commentId: M:Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.BeginInvoke(Reportman.Drawing.Forms.TabControlAdvanced,Reportman.Drawing.Forms.TabPageAdvanced,System.AsyncCallback,System.Object)
+  id: BeginInvoke(Reportman.Drawing.Forms.TabControlAdvanced,Reportman.Drawing.Forms.TabPageAdvanced,System.AsyncCallback,System.Object)
+  parent: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler
+  langs:
+  - csharp
+  - vb
+  name: BeginInvoke(TabControlAdvanced, TabPageAdvanced, AsyncCallback, object)
+  nameWithType: TabControlAdvanced.DoubleClickTabHandler.BeginInvoke(TabControlAdvanced, TabPageAdvanced, AsyncCallback, object)
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.BeginInvoke(Reportman.Drawing.Forms.TabControlAdvanced, Reportman.Drawing.Forms.TabPageAdvanced, System.AsyncCallback, object)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual IAsyncResult BeginInvoke(TabControlAdvanced sender, TabPageAdvanced page, AsyncCallback callback, object @object)
+    parameters:
+    - id: sender
+      type: Reportman.Drawing.Forms.TabControlAdvanced
+    - id: page
+      type: Reportman.Drawing.Forms.TabPageAdvanced
+    - id: callback
+      type: System.AsyncCallback
+    - id: object
+      type: System.Object
+    return:
+      type: System.IAsyncResult
+    content.vb: Public Overridable Function BeginInvoke(sender As TabControlAdvanced, page As TabPageAdvanced, callback As AsyncCallback, [object] As Object) As IAsyncResult
+  overload: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.BeginInvoke*
+  nameWithType.vb: TabControlAdvanced.DoubleClickTabHandler.BeginInvoke(TabControlAdvanced, TabPageAdvanced, AsyncCallback, Object)
+  fullName.vb: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.BeginInvoke(Reportman.Drawing.Forms.TabControlAdvanced, Reportman.Drawing.Forms.TabPageAdvanced, System.AsyncCallback, Object)
+  name.vb: BeginInvoke(TabControlAdvanced, TabPageAdvanced, AsyncCallback, Object)
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.EndInvoke(System.IAsyncResult)
+  commentId: M:Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.EndInvoke(System.IAsyncResult)
+  id: EndInvoke(System.IAsyncResult)
+  parent: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler
+  langs:
+  - csharp
+  - vb
+  name: EndInvoke(IAsyncResult)
+  nameWithType: TabControlAdvanced.DoubleClickTabHandler.EndInvoke(IAsyncResult)
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.EndInvoke(System.IAsyncResult)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual void EndInvoke(IAsyncResult result)
+    parameters:
+    - id: result
+      type: System.IAsyncResult
+    content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
+  overload: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.EndInvoke*
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: Reportman.Drawing.Forms.TabControlAdvanced
+  commentId: T:Reportman.Drawing.Forms.TabControlAdvanced
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  name: TabControlAdvanced
+  nameWithType: TabControlAdvanced
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced
+- uid: Reportman.Drawing.Forms.TabPageAdvanced
+  commentId: T:Reportman.Drawing.Forms.TabPageAdvanced
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabPageAdvanced.html
+  name: TabPageAdvanced
+  nameWithType: TabPageAdvanced
+  fullName: Reportman.Drawing.Forms.TabPageAdvanced
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.#ctor*
+  commentId: Overload:Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.#ctor
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.html#Reportman_Drawing_Forms_TabControlAdvanced_DoubleClickTabHandler__ctor_System_Object_System_IntPtr_
+  name: DoubleClickTabHandler
+  nameWithType: TabControlAdvanced.DoubleClickTabHandler.DoubleClickTabHandler
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.DoubleClickTabHandler
+  nameWithType.vb: TabControlAdvanced.DoubleClickTabHandler.New
+  fullName.vb: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.New
+  name.vb: New
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.Invoke*
+  commentId: Overload:Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.Invoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.html#Reportman_Drawing_Forms_TabControlAdvanced_DoubleClickTabHandler_Invoke_Reportman_Drawing_Forms_TabControlAdvanced_Reportman_Drawing_Forms_TabPageAdvanced_
+  name: Invoke
+  nameWithType: TabControlAdvanced.DoubleClickTabHandler.Invoke
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.Invoke
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.BeginInvoke*
+  commentId: Overload:Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.BeginInvoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.html#Reportman_Drawing_Forms_TabControlAdvanced_DoubleClickTabHandler_BeginInvoke_Reportman_Drawing_Forms_TabControlAdvanced_Reportman_Drawing_Forms_TabPageAdvanced_System_AsyncCallback_System_Object_
+  name: BeginInvoke
+  nameWithType: TabControlAdvanced.DoubleClickTabHandler.BeginInvoke
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.BeginInvoke
+- uid: System.AsyncCallback
+  commentId: T:System.AsyncCallback
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.asynccallback
+  name: AsyncCallback
+  nameWithType: AsyncCallback
+  fullName: System.AsyncCallback
+- uid: System.IAsyncResult
+  commentId: T:System.IAsyncResult
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncresult
+  name: IAsyncResult
+  nameWithType: IAsyncResult
+  fullName: System.IAsyncResult
+- uid: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.EndInvoke*
+  commentId: Overload:Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.EndInvoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.html#Reportman_Drawing_Forms_TabControlAdvanced_DoubleClickTabHandler_EndInvoke_System_IAsyncResult_
+  name: EndInvoke
+  nameWithType: TabControlAdvanced.DoubleClickTabHandler.EndInvoke
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.EndInvoke

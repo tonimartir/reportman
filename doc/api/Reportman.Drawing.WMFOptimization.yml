@@ -1,0 +1,163 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.WMFOptimization
+  commentId: T:Reportman.Drawing.WMFOptimization
+  id: WMFOptimization
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.WMFOptimization.Gdi
+  - Reportman.Drawing.WMFOptimization.Gdiplus
+  - Reportman.Drawing.WMFOptimization.Gdiplusonly
+  - Reportman.Drawing.WMFOptimization.None
+  langs:
+  - csharp
+  - vb
+  name: WMFOptimization
+  nameWithType: WMFOptimization
+  fullName: Reportman.Drawing.WMFOptimization
+  type: Enum
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing
+  summary: >-
+    This enumeration indicates diferent optimization implementations while drawing pages 
+
+    (preview, web presentation or print). Microsoft .Net have an optimized graphic object, 
+
+    called Windows Metafile, so when the same graphic operations must be done multiple times,
+
+    they can be stored in it and "played" multiple times. This is the case for example, 
+
+    when previewing a Report, you can go forward and backwards drawing again and again the
+
+    same pages. If the engine have the capability of drawing multiple pages in the screen,
+
+    like Report Manager Windows Forms preview does, the use of playing optimized windows
+
+    metafiles can enhace performance, specially if the pages are dense (lot of text items).
+
+    The drawbacks of playing metafiles is that they must be stored into memory, so when you
+
+    optimize performance you hit memory consumption.
+
+    Variant
+  example: []
+  syntax:
+    content: public enum WMFOptimization
+    content.vb: Public Enum WMFOptimization
+- uid: Reportman.Drawing.WMFOptimization.None
+  commentId: F:Reportman.Drawing.WMFOptimization.None
+  id: None
+  parent: Reportman.Drawing.WMFOptimization
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: WMFOptimization.None
+  fullName: Reportman.Drawing.WMFOptimization.None
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing
+  summary: No Windows Metafile caching will be done
+  example: []
+  syntax:
+    content: None = 0
+    return:
+      type: Reportman.Drawing.WMFOptimization
+- uid: Reportman.Drawing.WMFOptimization.Gdi
+  commentId: F:Reportman.Drawing.WMFOptimization.Gdi
+  id: Gdi
+  parent: Reportman.Drawing.WMFOptimization
+  langs:
+  - csharp
+  - vb
+  name: Gdi
+  nameWithType: WMFOptimization.Gdi
+  fullName: Reportman.Drawing.WMFOptimization.Gdi
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing
+  summary: Windows Metafile caching will be done, EmfType.EmfOnly Windows Metafile will be used
+  example: []
+  syntax:
+    content: Gdi = 1
+    return:
+      type: Reportman.Drawing.WMFOptimization
+- uid: Reportman.Drawing.WMFOptimization.Gdiplus
+  commentId: F:Reportman.Drawing.WMFOptimization.Gdiplus
+  id: Gdiplus
+  parent: Reportman.Drawing.WMFOptimization
+  langs:
+  - csharp
+  - vb
+  name: Gdiplus
+  nameWithType: WMFOptimization.Gdiplus
+  fullName: Reportman.Drawing.WMFOptimization.Gdiplus
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing
+  summary: Windows Metafile caching will be done, EmfType.EmfPlusDual Windows Metafile will be used
+  example: []
+  syntax:
+    content: Gdiplus = 2
+    return:
+      type: Reportman.Drawing.WMFOptimization
+- uid: Reportman.Drawing.WMFOptimization.Gdiplusonly
+  commentId: F:Reportman.Drawing.WMFOptimization.Gdiplusonly
+  id: Gdiplusonly
+  parent: Reportman.Drawing.WMFOptimization
+  langs:
+  - csharp
+  - vb
+  name: Gdiplusonly
+  nameWithType: WMFOptimization.Gdiplusonly
+  fullName: Reportman.Drawing.WMFOptimization.Gdiplusonly
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing
+  summary: Windows Metafile caching will be done, EmfType.EmfPlusOnly Windows Metafile will be used
+  example: []
+  syntax:
+    content: Gdiplusonly = 3
+    return:
+      type: Reportman.Drawing.WMFOptimization
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.WMFOptimization
+  commentId: T:Reportman.Drawing.WMFOptimization
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.WMFOptimization.html
+  name: WMFOptimization
+  nameWithType: WMFOptimization
+  fullName: Reportman.Drawing.WMFOptimization

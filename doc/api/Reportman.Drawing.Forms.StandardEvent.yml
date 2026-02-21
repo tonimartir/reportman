@@ -1,0 +1,256 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.StandardEvent
+  commentId: T:Reportman.Drawing.Forms.StandardEvent
+  id: StandardEvent
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.StandardEvent.#ctor(System.Object,System.IntPtr)
+  - Reportman.Drawing.Forms.StandardEvent.BeginInvoke(System.Object,System.EventArgs,System.AsyncCallback,System.Object)
+  - Reportman.Drawing.Forms.StandardEvent.EndInvoke(System.IAsyncResult)
+  - Reportman.Drawing.Forms.StandardEvent.Invoke(System.Object,System.EventArgs)
+  langs:
+  - csharp
+  - vb
+  name: StandardEvent
+  nameWithType: StandardEvent
+  fullName: Reportman.Drawing.Forms.StandardEvent
+  type: Delegate
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public delegate void StandardEvent(object sender, EventArgs args)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: System.EventArgs
+    content.vb: Public Delegate Sub StandardEvent(sender As Object, args As EventArgs)
+- uid: Reportman.Drawing.Forms.StandardEvent.#ctor(System.Object,System.IntPtr)
+  commentId: M:Reportman.Drawing.Forms.StandardEvent.#ctor(System.Object,System.IntPtr)
+  id: '#ctor(System.Object,System.IntPtr)'
+  parent: Reportman.Drawing.Forms.StandardEvent
+  langs:
+  - csharp
+  - vb
+  name: StandardEvent(object, nint)
+  nameWithType: StandardEvent.StandardEvent(object, nint)
+  fullName: Reportman.Drawing.Forms.StandardEvent.StandardEvent(object, nint)
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public StandardEvent(object @object, nint method)
+    parameters:
+    - id: object
+      type: System.Object
+    - id: method
+      type: System.IntPtr
+    content.vb: Public Sub New([object] As Object, method As IntPtr)
+  overload: Reportman.Drawing.Forms.StandardEvent.#ctor*
+  nameWithType.vb: StandardEvent.New(Object, IntPtr)
+  fullName.vb: Reportman.Drawing.Forms.StandardEvent.New(Object, System.IntPtr)
+  name.vb: New(Object, IntPtr)
+- uid: Reportman.Drawing.Forms.StandardEvent.Invoke(System.Object,System.EventArgs)
+  commentId: M:Reportman.Drawing.Forms.StandardEvent.Invoke(System.Object,System.EventArgs)
+  id: Invoke(System.Object,System.EventArgs)
+  parent: Reportman.Drawing.Forms.StandardEvent
+  langs:
+  - csharp
+  - vb
+  name: Invoke(object, EventArgs)
+  nameWithType: StandardEvent.Invoke(object, EventArgs)
+  fullName: Reportman.Drawing.Forms.StandardEvent.Invoke(object, System.EventArgs)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual void Invoke(object sender, EventArgs args)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: System.EventArgs
+    content.vb: Public Overridable Sub Invoke(sender As Object, args As EventArgs)
+  overload: Reportman.Drawing.Forms.StandardEvent.Invoke*
+  nameWithType.vb: StandardEvent.Invoke(Object, EventArgs)
+  fullName.vb: Reportman.Drawing.Forms.StandardEvent.Invoke(Object, System.EventArgs)
+  name.vb: Invoke(Object, EventArgs)
+- uid: Reportman.Drawing.Forms.StandardEvent.BeginInvoke(System.Object,System.EventArgs,System.AsyncCallback,System.Object)
+  commentId: M:Reportman.Drawing.Forms.StandardEvent.BeginInvoke(System.Object,System.EventArgs,System.AsyncCallback,System.Object)
+  id: BeginInvoke(System.Object,System.EventArgs,System.AsyncCallback,System.Object)
+  parent: Reportman.Drawing.Forms.StandardEvent
+  langs:
+  - csharp
+  - vb
+  name: BeginInvoke(object, EventArgs, AsyncCallback, object)
+  nameWithType: StandardEvent.BeginInvoke(object, EventArgs, AsyncCallback, object)
+  fullName: Reportman.Drawing.Forms.StandardEvent.BeginInvoke(object, System.EventArgs, System.AsyncCallback, object)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual IAsyncResult BeginInvoke(object sender, EventArgs args, AsyncCallback callback, object @object)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: System.EventArgs
+    - id: callback
+      type: System.AsyncCallback
+    - id: object
+      type: System.Object
+    return:
+      type: System.IAsyncResult
+    content.vb: Public Overridable Function BeginInvoke(sender As Object, args As EventArgs, callback As AsyncCallback, [object] As Object) As IAsyncResult
+  overload: Reportman.Drawing.Forms.StandardEvent.BeginInvoke*
+  nameWithType.vb: StandardEvent.BeginInvoke(Object, EventArgs, AsyncCallback, Object)
+  fullName.vb: Reportman.Drawing.Forms.StandardEvent.BeginInvoke(Object, System.EventArgs, System.AsyncCallback, Object)
+  name.vb: BeginInvoke(Object, EventArgs, AsyncCallback, Object)
+- uid: Reportman.Drawing.Forms.StandardEvent.EndInvoke(System.IAsyncResult)
+  commentId: M:Reportman.Drawing.Forms.StandardEvent.EndInvoke(System.IAsyncResult)
+  id: EndInvoke(System.IAsyncResult)
+  parent: Reportman.Drawing.Forms.StandardEvent
+  langs:
+  - csharp
+  - vb
+  name: EndInvoke(IAsyncResult)
+  nameWithType: StandardEvent.EndInvoke(IAsyncResult)
+  fullName: Reportman.Drawing.Forms.StandardEvent.EndInvoke(System.IAsyncResult)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual void EndInvoke(IAsyncResult result)
+    parameters:
+    - id: result
+      type: System.IAsyncResult
+    content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
+  overload: Reportman.Drawing.Forms.StandardEvent.EndInvoke*
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.EventArgs
+  commentId: T:System.EventArgs
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  name: EventArgs
+  nameWithType: EventArgs
+  fullName: System.EventArgs
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.Forms.StandardEvent.#ctor*
+  commentId: Overload:Reportman.Drawing.Forms.StandardEvent.#ctor
+  isExternal: true
+  href: Reportman.Drawing.Forms.StandardEvent.html#Reportman_Drawing_Forms_StandardEvent__ctor_System_Object_System_IntPtr_
+  name: StandardEvent
+  nameWithType: StandardEvent.StandardEvent
+  fullName: Reportman.Drawing.Forms.StandardEvent.StandardEvent
+  nameWithType.vb: StandardEvent.New
+  fullName.vb: Reportman.Drawing.Forms.StandardEvent.New
+  name.vb: New
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: Reportman.Drawing.Forms.StandardEvent.Invoke*
+  commentId: Overload:Reportman.Drawing.Forms.StandardEvent.Invoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.StandardEvent.html#Reportman_Drawing_Forms_StandardEvent_Invoke_System_Object_System_EventArgs_
+  name: Invoke
+  nameWithType: StandardEvent.Invoke
+  fullName: Reportman.Drawing.Forms.StandardEvent.Invoke
+- uid: Reportman.Drawing.Forms.StandardEvent.BeginInvoke*
+  commentId: Overload:Reportman.Drawing.Forms.StandardEvent.BeginInvoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.StandardEvent.html#Reportman_Drawing_Forms_StandardEvent_BeginInvoke_System_Object_System_EventArgs_System_AsyncCallback_System_Object_
+  name: BeginInvoke
+  nameWithType: StandardEvent.BeginInvoke
+  fullName: Reportman.Drawing.Forms.StandardEvent.BeginInvoke
+- uid: System.AsyncCallback
+  commentId: T:System.AsyncCallback
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.asynccallback
+  name: AsyncCallback
+  nameWithType: AsyncCallback
+  fullName: System.AsyncCallback
+- uid: System.IAsyncResult
+  commentId: T:System.IAsyncResult
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncresult
+  name: IAsyncResult
+  nameWithType: IAsyncResult
+  fullName: System.IAsyncResult
+- uid: Reportman.Drawing.Forms.StandardEvent.EndInvoke*
+  commentId: Overload:Reportman.Drawing.Forms.StandardEvent.EndInvoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.StandardEvent.html#Reportman_Drawing_Forms_StandardEvent_EndInvoke_System_IAsyncResult_
+  name: EndInvoke
+  nameWithType: StandardEvent.EndInvoke
+  fullName: Reportman.Drawing.Forms.StandardEvent.EndInvoke

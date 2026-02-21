@@ -1,0 +1,208 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.PropertyType
+  commentId: T:Reportman.Reporting.PropertyType
+  id: PropertyType
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.PropertyType.Binary
+  - Reportman.Reporting.PropertyType.Boolean
+  - Reportman.Reporting.PropertyType.Date
+  - Reportman.Reporting.PropertyType.Integer
+  - Reportman.Reporting.PropertyType.Number
+  - Reportman.Reporting.PropertyType.String
+  - Reportman.Reporting.PropertyType.StringArray
+  - Reportman.Reporting.PropertyType.Variant
+  langs:
+  - csharp
+  - vb
+  name: PropertyType
+  nameWithType: PropertyType
+  fullName: Reportman.Reporting.PropertyType
+  type: Enum
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public enum PropertyType
+    content.vb: Public Enum PropertyType
+- uid: Reportman.Reporting.PropertyType.Integer
+  commentId: F:Reportman.Reporting.PropertyType.Integer
+  id: Integer
+  parent: Reportman.Reporting.PropertyType
+  langs:
+  - csharp
+  - vb
+  name: Integer
+  nameWithType: PropertyType.Integer
+  fullName: Reportman.Reporting.PropertyType.Integer
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Integer = 1
+    return:
+      type: Reportman.Reporting.PropertyType
+- uid: Reportman.Reporting.PropertyType.Number
+  commentId: F:Reportman.Reporting.PropertyType.Number
+  id: Number
+  parent: Reportman.Reporting.PropertyType
+  langs:
+  - csharp
+  - vb
+  name: Number
+  nameWithType: PropertyType.Number
+  fullName: Reportman.Reporting.PropertyType.Number
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Number = 2
+    return:
+      type: Reportman.Reporting.PropertyType
+- uid: Reportman.Reporting.PropertyType.String
+  commentId: F:Reportman.Reporting.PropertyType.String
+  id: String
+  parent: Reportman.Reporting.PropertyType
+  langs:
+  - csharp
+  - vb
+  name: String
+  nameWithType: PropertyType.String
+  fullName: Reportman.Reporting.PropertyType.String
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: String = 3
+    return:
+      type: Reportman.Reporting.PropertyType
+- uid: Reportman.Reporting.PropertyType.Date
+  commentId: F:Reportman.Reporting.PropertyType.Date
+  id: Date
+  parent: Reportman.Reporting.PropertyType
+  langs:
+  - csharp
+  - vb
+  name: Date
+  nameWithType: PropertyType.Date
+  fullName: Reportman.Reporting.PropertyType.Date
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Date = 4
+    return:
+      type: Reportman.Reporting.PropertyType
+- uid: Reportman.Reporting.PropertyType.Binary
+  commentId: F:Reportman.Reporting.PropertyType.Binary
+  id: Binary
+  parent: Reportman.Reporting.PropertyType
+  langs:
+  - csharp
+  - vb
+  name: Binary
+  nameWithType: PropertyType.Binary
+  fullName: Reportman.Reporting.PropertyType.Binary
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Binary = 5
+    return:
+      type: Reportman.Reporting.PropertyType
+- uid: Reportman.Reporting.PropertyType.Boolean
+  commentId: F:Reportman.Reporting.PropertyType.Boolean
+  id: Boolean
+  parent: Reportman.Reporting.PropertyType
+  langs:
+  - csharp
+  - vb
+  name: Boolean
+  nameWithType: PropertyType.Boolean
+  fullName: Reportman.Reporting.PropertyType.Boolean
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Boolean = 6
+    return:
+      type: Reportman.Reporting.PropertyType
+- uid: Reportman.Reporting.PropertyType.Variant
+  commentId: F:Reportman.Reporting.PropertyType.Variant
+  id: Variant
+  parent: Reportman.Reporting.PropertyType
+  langs:
+  - csharp
+  - vb
+  name: Variant
+  nameWithType: PropertyType.Variant
+  fullName: Reportman.Reporting.PropertyType.Variant
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Variant = 7
+    return:
+      type: Reportman.Reporting.PropertyType
+- uid: Reportman.Reporting.PropertyType.StringArray
+  commentId: F:Reportman.Reporting.PropertyType.StringArray
+  id: StringArray
+  parent: Reportman.Reporting.PropertyType
+  langs:
+  - csharp
+  - vb
+  name: StringArray
+  nameWithType: PropertyType.StringArray
+  fullName: Reportman.Reporting.PropertyType.StringArray
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: StringArray = 8
+    return:
+      type: Reportman.Reporting.PropertyType
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: Reportman.Reporting.PropertyType
+  commentId: T:Reportman.Reporting.PropertyType
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.PropertyType.html
+  name: PropertyType
+  nameWithType: PropertyType
+  fullName: Reportman.Reporting.PropertyType

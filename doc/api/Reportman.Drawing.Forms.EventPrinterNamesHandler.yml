@@ -1,0 +1,256 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.EventPrinterNamesHandler
+  commentId: T:Reportman.Drawing.Forms.EventPrinterNamesHandler
+  id: EventPrinterNamesHandler
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.EventPrinterNamesHandler.#ctor(System.Object,System.IntPtr)
+  - Reportman.Drawing.Forms.EventPrinterNamesHandler.BeginInvoke(System.Object,Reportman.Drawing.Forms.EventPrinterNamesArgs,System.AsyncCallback,System.Object)
+  - Reportman.Drawing.Forms.EventPrinterNamesHandler.EndInvoke(System.IAsyncResult)
+  - Reportman.Drawing.Forms.EventPrinterNamesHandler.Invoke(System.Object,Reportman.Drawing.Forms.EventPrinterNamesArgs)
+  langs:
+  - csharp
+  - vb
+  name: EventPrinterNamesHandler
+  nameWithType: EventPrinterNamesHandler
+  fullName: Reportman.Drawing.Forms.EventPrinterNamesHandler
+  type: Delegate
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public delegate void EventPrinterNamesHandler(object sender, EventPrinterNamesArgs args)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: Reportman.Drawing.Forms.EventPrinterNamesArgs
+    content.vb: Public Delegate Sub EventPrinterNamesHandler(sender As Object, args As EventPrinterNamesArgs)
+- uid: Reportman.Drawing.Forms.EventPrinterNamesHandler.#ctor(System.Object,System.IntPtr)
+  commentId: M:Reportman.Drawing.Forms.EventPrinterNamesHandler.#ctor(System.Object,System.IntPtr)
+  id: '#ctor(System.Object,System.IntPtr)'
+  parent: Reportman.Drawing.Forms.EventPrinterNamesHandler
+  langs:
+  - csharp
+  - vb
+  name: EventPrinterNamesHandler(object, nint)
+  nameWithType: EventPrinterNamesHandler.EventPrinterNamesHandler(object, nint)
+  fullName: Reportman.Drawing.Forms.EventPrinterNamesHandler.EventPrinterNamesHandler(object, nint)
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public EventPrinterNamesHandler(object @object, nint method)
+    parameters:
+    - id: object
+      type: System.Object
+    - id: method
+      type: System.IntPtr
+    content.vb: Public Sub New([object] As Object, method As IntPtr)
+  overload: Reportman.Drawing.Forms.EventPrinterNamesHandler.#ctor*
+  nameWithType.vb: EventPrinterNamesHandler.New(Object, IntPtr)
+  fullName.vb: Reportman.Drawing.Forms.EventPrinterNamesHandler.New(Object, System.IntPtr)
+  name.vb: New(Object, IntPtr)
+- uid: Reportman.Drawing.Forms.EventPrinterNamesHandler.Invoke(System.Object,Reportman.Drawing.Forms.EventPrinterNamesArgs)
+  commentId: M:Reportman.Drawing.Forms.EventPrinterNamesHandler.Invoke(System.Object,Reportman.Drawing.Forms.EventPrinterNamesArgs)
+  id: Invoke(System.Object,Reportman.Drawing.Forms.EventPrinterNamesArgs)
+  parent: Reportman.Drawing.Forms.EventPrinterNamesHandler
+  langs:
+  - csharp
+  - vb
+  name: Invoke(object, EventPrinterNamesArgs)
+  nameWithType: EventPrinterNamesHandler.Invoke(object, EventPrinterNamesArgs)
+  fullName: Reportman.Drawing.Forms.EventPrinterNamesHandler.Invoke(object, Reportman.Drawing.Forms.EventPrinterNamesArgs)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual void Invoke(object sender, EventPrinterNamesArgs args)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: Reportman.Drawing.Forms.EventPrinterNamesArgs
+    content.vb: Public Overridable Sub Invoke(sender As Object, args As EventPrinterNamesArgs)
+  overload: Reportman.Drawing.Forms.EventPrinterNamesHandler.Invoke*
+  nameWithType.vb: EventPrinterNamesHandler.Invoke(Object, EventPrinterNamesArgs)
+  fullName.vb: Reportman.Drawing.Forms.EventPrinterNamesHandler.Invoke(Object, Reportman.Drawing.Forms.EventPrinterNamesArgs)
+  name.vb: Invoke(Object, EventPrinterNamesArgs)
+- uid: Reportman.Drawing.Forms.EventPrinterNamesHandler.BeginInvoke(System.Object,Reportman.Drawing.Forms.EventPrinterNamesArgs,System.AsyncCallback,System.Object)
+  commentId: M:Reportman.Drawing.Forms.EventPrinterNamesHandler.BeginInvoke(System.Object,Reportman.Drawing.Forms.EventPrinterNamesArgs,System.AsyncCallback,System.Object)
+  id: BeginInvoke(System.Object,Reportman.Drawing.Forms.EventPrinterNamesArgs,System.AsyncCallback,System.Object)
+  parent: Reportman.Drawing.Forms.EventPrinterNamesHandler
+  langs:
+  - csharp
+  - vb
+  name: BeginInvoke(object, EventPrinterNamesArgs, AsyncCallback, object)
+  nameWithType: EventPrinterNamesHandler.BeginInvoke(object, EventPrinterNamesArgs, AsyncCallback, object)
+  fullName: Reportman.Drawing.Forms.EventPrinterNamesHandler.BeginInvoke(object, Reportman.Drawing.Forms.EventPrinterNamesArgs, System.AsyncCallback, object)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual IAsyncResult BeginInvoke(object sender, EventPrinterNamesArgs args, AsyncCallback callback, object @object)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: Reportman.Drawing.Forms.EventPrinterNamesArgs
+    - id: callback
+      type: System.AsyncCallback
+    - id: object
+      type: System.Object
+    return:
+      type: System.IAsyncResult
+    content.vb: Public Overridable Function BeginInvoke(sender As Object, args As EventPrinterNamesArgs, callback As AsyncCallback, [object] As Object) As IAsyncResult
+  overload: Reportman.Drawing.Forms.EventPrinterNamesHandler.BeginInvoke*
+  nameWithType.vb: EventPrinterNamesHandler.BeginInvoke(Object, EventPrinterNamesArgs, AsyncCallback, Object)
+  fullName.vb: Reportman.Drawing.Forms.EventPrinterNamesHandler.BeginInvoke(Object, Reportman.Drawing.Forms.EventPrinterNamesArgs, System.AsyncCallback, Object)
+  name.vb: BeginInvoke(Object, EventPrinterNamesArgs, AsyncCallback, Object)
+- uid: Reportman.Drawing.Forms.EventPrinterNamesHandler.EndInvoke(System.IAsyncResult)
+  commentId: M:Reportman.Drawing.Forms.EventPrinterNamesHandler.EndInvoke(System.IAsyncResult)
+  id: EndInvoke(System.IAsyncResult)
+  parent: Reportman.Drawing.Forms.EventPrinterNamesHandler
+  langs:
+  - csharp
+  - vb
+  name: EndInvoke(IAsyncResult)
+  nameWithType: EventPrinterNamesHandler.EndInvoke(IAsyncResult)
+  fullName: Reportman.Drawing.Forms.EventPrinterNamesHandler.EndInvoke(System.IAsyncResult)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual void EndInvoke(IAsyncResult result)
+    parameters:
+    - id: result
+      type: System.IAsyncResult
+    content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
+  overload: Reportman.Drawing.Forms.EventPrinterNamesHandler.EndInvoke*
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Reportman.Drawing.Forms.EventPrinterNamesArgs
+  commentId: T:Reportman.Drawing.Forms.EventPrinterNamesArgs
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.EventPrinterNamesArgs.html
+  name: EventPrinterNamesArgs
+  nameWithType: EventPrinterNamesArgs
+  fullName: Reportman.Drawing.Forms.EventPrinterNamesArgs
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.Forms.EventPrinterNamesHandler.#ctor*
+  commentId: Overload:Reportman.Drawing.Forms.EventPrinterNamesHandler.#ctor
+  isExternal: true
+  href: Reportman.Drawing.Forms.EventPrinterNamesHandler.html#Reportman_Drawing_Forms_EventPrinterNamesHandler__ctor_System_Object_System_IntPtr_
+  name: EventPrinterNamesHandler
+  nameWithType: EventPrinterNamesHandler.EventPrinterNamesHandler
+  fullName: Reportman.Drawing.Forms.EventPrinterNamesHandler.EventPrinterNamesHandler
+  nameWithType.vb: EventPrinterNamesHandler.New
+  fullName.vb: Reportman.Drawing.Forms.EventPrinterNamesHandler.New
+  name.vb: New
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: Reportman.Drawing.Forms.EventPrinterNamesHandler.Invoke*
+  commentId: Overload:Reportman.Drawing.Forms.EventPrinterNamesHandler.Invoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.EventPrinterNamesHandler.html#Reportman_Drawing_Forms_EventPrinterNamesHandler_Invoke_System_Object_Reportman_Drawing_Forms_EventPrinterNamesArgs_
+  name: Invoke
+  nameWithType: EventPrinterNamesHandler.Invoke
+  fullName: Reportman.Drawing.Forms.EventPrinterNamesHandler.Invoke
+- uid: Reportman.Drawing.Forms.EventPrinterNamesHandler.BeginInvoke*
+  commentId: Overload:Reportman.Drawing.Forms.EventPrinterNamesHandler.BeginInvoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.EventPrinterNamesHandler.html#Reportman_Drawing_Forms_EventPrinterNamesHandler_BeginInvoke_System_Object_Reportman_Drawing_Forms_EventPrinterNamesArgs_System_AsyncCallback_System_Object_
+  name: BeginInvoke
+  nameWithType: EventPrinterNamesHandler.BeginInvoke
+  fullName: Reportman.Drawing.Forms.EventPrinterNamesHandler.BeginInvoke
+- uid: System.AsyncCallback
+  commentId: T:System.AsyncCallback
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.asynccallback
+  name: AsyncCallback
+  nameWithType: AsyncCallback
+  fullName: System.AsyncCallback
+- uid: System.IAsyncResult
+  commentId: T:System.IAsyncResult
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncresult
+  name: IAsyncResult
+  nameWithType: IAsyncResult
+  fullName: System.IAsyncResult
+- uid: Reportman.Drawing.Forms.EventPrinterNamesHandler.EndInvoke*
+  commentId: Overload:Reportman.Drawing.Forms.EventPrinterNamesHandler.EndInvoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.EventPrinterNamesHandler.html#Reportman_Drawing_Forms_EventPrinterNamesHandler_EndInvoke_System_IAsyncResult_
+  name: EndInvoke
+  nameWithType: EventPrinterNamesHandler.EndInvoke
+  fullName: Reportman.Drawing.Forms.EventPrinterNamesHandler.EndInvoke

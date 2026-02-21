@@ -1,0 +1,123 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.VisualStyle
+  commentId: T:Reportman.Drawing.Forms.VisualStyle
+  id: VisualStyle
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.VisualStyle.Chrome
+  - Reportman.Drawing.Forms.VisualStyle.IDE
+  - Reportman.Drawing.Forms.VisualStyle.Plain
+  langs:
+  - csharp
+  - vb
+  name: VisualStyle
+  nameWithType: VisualStyle
+  fullName: Reportman.Drawing.Forms.VisualStyle
+  type: Enum
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public enum VisualStyle
+    content.vb: Public Enum VisualStyle
+- uid: Reportman.Drawing.Forms.VisualStyle.IDE
+  commentId: F:Reportman.Drawing.Forms.VisualStyle.IDE
+  id: IDE
+  parent: Reportman.Drawing.Forms.VisualStyle
+  langs:
+  - csharp
+  - vb
+  name: IDE
+  nameWithType: VisualStyle.IDE
+  fullName: Reportman.Drawing.Forms.VisualStyle.IDE
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: IDE = 0
+    return:
+      type: Reportman.Drawing.Forms.VisualStyle
+- uid: Reportman.Drawing.Forms.VisualStyle.Plain
+  commentId: F:Reportman.Drawing.Forms.VisualStyle.Plain
+  id: Plain
+  parent: Reportman.Drawing.Forms.VisualStyle
+  langs:
+  - csharp
+  - vb
+  name: Plain
+  nameWithType: VisualStyle.Plain
+  fullName: Reportman.Drawing.Forms.VisualStyle.Plain
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Plain = 1
+    return:
+      type: Reportman.Drawing.Forms.VisualStyle
+- uid: Reportman.Drawing.Forms.VisualStyle.Chrome
+  commentId: F:Reportman.Drawing.Forms.VisualStyle.Chrome
+  id: Chrome
+  parent: Reportman.Drawing.Forms.VisualStyle
+  langs:
+  - csharp
+  - vb
+  name: Chrome
+  nameWithType: VisualStyle.Chrome
+  fullName: Reportman.Drawing.Forms.VisualStyle.Chrome
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Chrome = 2
+    return:
+      type: Reportman.Drawing.Forms.VisualStyle
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: Reportman.Drawing.Forms.VisualStyle
+  commentId: T:Reportman.Drawing.Forms.VisualStyle
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.VisualStyle.html
+  name: VisualStyle
+  nameWithType: VisualStyle
+  fullName: Reportman.Drawing.Forms.VisualStyle

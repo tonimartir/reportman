@@ -1,0 +1,223 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.MetaStopWork
+  commentId: T:Reportman.Drawing.MetaStopWork
+  id: MetaStopWork
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.MetaStopWork.#ctor(System.Object,System.IntPtr)
+  - Reportman.Drawing.MetaStopWork.BeginInvoke(System.AsyncCallback,System.Object)
+  - Reportman.Drawing.MetaStopWork.EndInvoke(System.IAsyncResult)
+  - Reportman.Drawing.MetaStopWork.Invoke
+  langs:
+  - csharp
+  - vb
+  name: MetaStopWork
+  nameWithType: MetaStopWork
+  fullName: Reportman.Drawing.MetaStopWork
+  type: Delegate
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Event launched when the report processing stops by user or is aborted
+  example: []
+  syntax:
+    content: public delegate void MetaStopWork()
+    content.vb: Public Delegate Sub MetaStopWork()
+- uid: Reportman.Drawing.MetaStopWork.#ctor(System.Object,System.IntPtr)
+  commentId: M:Reportman.Drawing.MetaStopWork.#ctor(System.Object,System.IntPtr)
+  id: '#ctor(System.Object,System.IntPtr)'
+  parent: Reportman.Drawing.MetaStopWork
+  langs:
+  - csharp
+  - vb
+  name: MetaStopWork(object, nint)
+  nameWithType: MetaStopWork.MetaStopWork(object, nint)
+  fullName: Reportman.Drawing.MetaStopWork.MetaStopWork(object, nint)
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public MetaStopWork(object @object, nint method)
+    parameters:
+    - id: object
+      type: System.Object
+    - id: method
+      type: System.IntPtr
+    content.vb: Public Sub New([object] As Object, method As IntPtr)
+  overload: Reportman.Drawing.MetaStopWork.#ctor*
+  nameWithType.vb: MetaStopWork.New(Object, IntPtr)
+  fullName.vb: Reportman.Drawing.MetaStopWork.New(Object, System.IntPtr)
+  name.vb: New(Object, IntPtr)
+- uid: Reportman.Drawing.MetaStopWork.Invoke
+  commentId: M:Reportman.Drawing.MetaStopWork.Invoke
+  id: Invoke
+  parent: Reportman.Drawing.MetaStopWork
+  langs:
+  - csharp
+  - vb
+  name: Invoke()
+  nameWithType: MetaStopWork.Invoke()
+  fullName: Reportman.Drawing.MetaStopWork.Invoke()
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public virtual void Invoke()
+    content.vb: Public Overridable Sub Invoke()
+  overload: Reportman.Drawing.MetaStopWork.Invoke*
+- uid: Reportman.Drawing.MetaStopWork.BeginInvoke(System.AsyncCallback,System.Object)
+  commentId: M:Reportman.Drawing.MetaStopWork.BeginInvoke(System.AsyncCallback,System.Object)
+  id: BeginInvoke(System.AsyncCallback,System.Object)
+  parent: Reportman.Drawing.MetaStopWork
+  langs:
+  - csharp
+  - vb
+  name: BeginInvoke(AsyncCallback, object)
+  nameWithType: MetaStopWork.BeginInvoke(AsyncCallback, object)
+  fullName: Reportman.Drawing.MetaStopWork.BeginInvoke(System.AsyncCallback, object)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public virtual IAsyncResult BeginInvoke(AsyncCallback callback, object @object)
+    parameters:
+    - id: callback
+      type: System.AsyncCallback
+    - id: object
+      type: System.Object
+    return:
+      type: System.IAsyncResult
+    content.vb: Public Overridable Function BeginInvoke(callback As AsyncCallback, [object] As Object) As IAsyncResult
+  overload: Reportman.Drawing.MetaStopWork.BeginInvoke*
+  nameWithType.vb: MetaStopWork.BeginInvoke(AsyncCallback, Object)
+  fullName.vb: Reportman.Drawing.MetaStopWork.BeginInvoke(System.AsyncCallback, Object)
+  name.vb: BeginInvoke(AsyncCallback, Object)
+- uid: Reportman.Drawing.MetaStopWork.EndInvoke(System.IAsyncResult)
+  commentId: M:Reportman.Drawing.MetaStopWork.EndInvoke(System.IAsyncResult)
+  id: EndInvoke(System.IAsyncResult)
+  parent: Reportman.Drawing.MetaStopWork
+  langs:
+  - csharp
+  - vb
+  name: EndInvoke(IAsyncResult)
+  nameWithType: MetaStopWork.EndInvoke(IAsyncResult)
+  fullName: Reportman.Drawing.MetaStopWork.EndInvoke(System.IAsyncResult)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public virtual void EndInvoke(IAsyncResult result)
+    parameters:
+    - id: result
+      type: System.IAsyncResult
+    content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
+  overload: Reportman.Drawing.MetaStopWork.EndInvoke*
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.MetaStopWork.#ctor*
+  commentId: Overload:Reportman.Drawing.MetaStopWork.#ctor
+  isExternal: true
+  href: Reportman.Drawing.MetaStopWork.html#Reportman_Drawing_MetaStopWork__ctor_System_Object_System_IntPtr_
+  name: MetaStopWork
+  nameWithType: MetaStopWork.MetaStopWork
+  fullName: Reportman.Drawing.MetaStopWork.MetaStopWork
+  nameWithType.vb: MetaStopWork.New
+  fullName.vb: Reportman.Drawing.MetaStopWork.New
+  name.vb: New
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.MetaStopWork.Invoke*
+  commentId: Overload:Reportman.Drawing.MetaStopWork.Invoke
+  isExternal: true
+  href: Reportman.Drawing.MetaStopWork.html#Reportman_Drawing_MetaStopWork_Invoke
+  name: Invoke
+  nameWithType: MetaStopWork.Invoke
+  fullName: Reportman.Drawing.MetaStopWork.Invoke
+- uid: Reportman.Drawing.MetaStopWork.BeginInvoke*
+  commentId: Overload:Reportman.Drawing.MetaStopWork.BeginInvoke
+  isExternal: true
+  href: Reportman.Drawing.MetaStopWork.html#Reportman_Drawing_MetaStopWork_BeginInvoke_System_AsyncCallback_System_Object_
+  name: BeginInvoke
+  nameWithType: MetaStopWork.BeginInvoke
+  fullName: Reportman.Drawing.MetaStopWork.BeginInvoke
+- uid: System.AsyncCallback
+  commentId: T:System.AsyncCallback
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.asynccallback
+  name: AsyncCallback
+  nameWithType: AsyncCallback
+  fullName: System.AsyncCallback
+- uid: System.IAsyncResult
+  commentId: T:System.IAsyncResult
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncresult
+  name: IAsyncResult
+  nameWithType: IAsyncResult
+  fullName: System.IAsyncResult
+- uid: Reportman.Drawing.MetaStopWork.EndInvoke*
+  commentId: Overload:Reportman.Drawing.MetaStopWork.EndInvoke
+  isExternal: true
+  href: Reportman.Drawing.MetaStopWork.html#Reportman_Drawing_MetaStopWork_EndInvoke_System_IAsyncResult_
+  name: EndInvoke
+  nameWithType: MetaStopWork.EndInvoke
+  fullName: Reportman.Drawing.MetaStopWork.EndInvoke

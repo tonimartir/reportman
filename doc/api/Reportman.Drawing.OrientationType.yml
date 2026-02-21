@@ -1,0 +1,121 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.OrientationType
+  commentId: T:Reportman.Drawing.OrientationType
+  id: OrientationType
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.OrientationType.Default
+  - Reportman.Drawing.OrientationType.Landscape
+  - Reportman.Drawing.OrientationType.Portrait
+  langs:
+  - csharp
+  - vb
+  name: OrientationType
+  nameWithType: OrientationType
+  fullName: Reportman.Drawing.OrientationType
+  type: Enum
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Page orientation
+  example: []
+  syntax:
+    content: public enum OrientationType
+    content.vb: Public Enum OrientationType
+- uid: Reportman.Drawing.OrientationType.Default
+  commentId: F:Reportman.Drawing.OrientationType.Default
+  id: Default
+  parent: Reportman.Drawing.OrientationType
+  langs:
+  - csharp
+  - vb
+  name: Default
+  nameWithType: OrientationType.Default
+  fullName: Reportman.Drawing.OrientationType.Default
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: The predefined orientation in selected printer will be used
+  example: []
+  syntax:
+    content: Default = 0
+    return:
+      type: Reportman.Drawing.OrientationType
+- uid: Reportman.Drawing.OrientationType.Portrait
+  commentId: F:Reportman.Drawing.OrientationType.Portrait
+  id: Portrait
+  parent: Reportman.Drawing.OrientationType
+  langs:
+  - csharp
+  - vb
+  name: Portrait
+  nameWithType: OrientationType.Portrait
+  fullName: Reportman.Drawing.OrientationType.Portrait
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Portrait orientaion will be used (Vertical)
+  example: []
+  syntax:
+    content: Portrait = 1
+    return:
+      type: Reportman.Drawing.OrientationType
+- uid: Reportman.Drawing.OrientationType.Landscape
+  commentId: F:Reportman.Drawing.OrientationType.Landscape
+  id: Landscape
+  parent: Reportman.Drawing.OrientationType
+  langs:
+  - csharp
+  - vb
+  name: Landscape
+  nameWithType: OrientationType.Landscape
+  fullName: Reportman.Drawing.OrientationType.Landscape
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Landscape orientaion will be used (Horizontal)
+  example: []
+  syntax:
+    content: Landscape = 2
+    return:
+      type: Reportman.Drawing.OrientationType
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.OrientationType
+  commentId: T:Reportman.Drawing.OrientationType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.OrientationType.html
+  name: OrientationType
+  nameWithType: OrientationType
+  fullName: Reportman.Drawing.OrientationType

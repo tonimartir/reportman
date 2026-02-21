@@ -1,0 +1,482 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.BitmapUtil
+  commentId: T:Reportman.Drawing.BitmapUtil
+  id: BitmapUtil
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.BitmapUtil.GetBitmapInfo(System.IO.Stream,System.Int32@,System.Int32@,System.Int32@,System.IO.MemoryStream,System.Boolean@,System.Int32@,System.Int32@,System.String@,System.Boolean@,System.String@,System.IO.MemoryStream)
+  - Reportman.Drawing.BitmapUtil.GetJPegInfo(System.IO.Stream,System.Int32@,System.Int32@)
+  langs:
+  - csharp
+  - vb
+  name: BitmapUtil
+  nameWithType: BitmapUtil
+  fullName: Reportman.Drawing.BitmapUtil
+  type: Class
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static class BitmapUtil
+    content.vb: Public Module BitmapUtil
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.BitmapUtil.GetJPegInfo(System.IO.Stream,System.Int32@,System.Int32@)
+  commentId: M:Reportman.Drawing.BitmapUtil.GetJPegInfo(System.IO.Stream,System.Int32@,System.Int32@)
+  id: GetJPegInfo(System.IO.Stream,System.Int32@,System.Int32@)
+  parent: Reportman.Drawing.BitmapUtil
+  langs:
+  - csharp
+  - vb
+  name: GetJPegInfo(Stream, out int, out int)
+  nameWithType: BitmapUtil.GetJPegInfo(Stream, out int, out int)
+  fullName: Reportman.Drawing.BitmapUtil.GetJPegInfo(System.IO.Stream, out int, out int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Obtain information about a jpeg stream
+  example: []
+  syntax:
+    content: public static bool GetJPegInfo(Stream astream, out int width, out int height)
+    parameters:
+    - id: astream
+      type: System.IO.Stream
+      description: Input stream
+    - id: width
+      type: System.Int32
+      description: Ouput parameter, width in pixels
+    - id: height
+      type: System.Int32
+      description: Ouput parameter, height in pixels
+    return:
+      type: System.Boolean
+      description: Returns false if it's not a jpeg
+    content.vb: Public Shared Function GetJPegInfo(astream As Stream, width As Integer, height As Integer) As Boolean
+  overload: Reportman.Drawing.BitmapUtil.GetJPegInfo*
+  nameWithType.vb: BitmapUtil.GetJPegInfo(Stream, Integer, Integer)
+  fullName.vb: Reportman.Drawing.BitmapUtil.GetJPegInfo(System.IO.Stream, Integer, Integer)
+  name.vb: GetJPegInfo(Stream, Integer, Integer)
+- uid: Reportman.Drawing.BitmapUtil.GetBitmapInfo(System.IO.Stream,System.Int32@,System.Int32@,System.Int32@,System.IO.MemoryStream,System.Boolean@,System.Int32@,System.Int32@,System.String@,System.Boolean@,System.String@,System.IO.MemoryStream)
+  commentId: M:Reportman.Drawing.BitmapUtil.GetBitmapInfo(System.IO.Stream,System.Int32@,System.Int32@,System.Int32@,System.IO.MemoryStream,System.Boolean@,System.Int32@,System.Int32@,System.String@,System.Boolean@,System.String@,System.IO.MemoryStream)
+  id: GetBitmapInfo(System.IO.Stream,System.Int32@,System.Int32@,System.Int32@,System.IO.MemoryStream,System.Boolean@,System.Int32@,System.Int32@,System.String@,System.Boolean@,System.String@,System.IO.MemoryStream)
+  parent: Reportman.Drawing.BitmapUtil
+  langs:
+  - csharp
+  - vb
+  name: GetBitmapInfo(Stream, out int, out int, out int, MemoryStream, out bool, out int, out int, out string, out bool, out string, MemoryStream)
+  nameWithType: BitmapUtil.GetBitmapInfo(Stream, out int, out int, out int, MemoryStream, out bool, out int, out int, out string, out bool, out string, MemoryStream)
+  fullName: Reportman.Drawing.BitmapUtil.GetBitmapInfo(System.IO.Stream, out int, out int, out int, System.IO.MemoryStream, out bool, out int, out int, out string, out bool, out string, System.IO.MemoryStream)
+  type: Method
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Obtain information about a bitmap stream
+  example: []
+  syntax:
+    content: public static bool GetBitmapInfo(Stream sourcestream, out int width, out int height, out int imagesize, MemoryStream MemBits, out bool indexed, out int bitsperpixel, out int usedcolors, out string palette, out bool isgif, out string mask, MemoryStream smask)
+    parameters:
+    - id: sourcestream
+      type: System.IO.Stream
+    - id: width
+      type: System.Int32
+      description: Output parameter, with of the bitmap in pixels
+    - id: height
+      type: System.Int32
+      description: Output parameter, height of the bitmap in pixels
+    - id: imagesize
+      type: System.Int32
+      description: Size in bytes of the image information part
+    - id: MemBits
+      type: System.IO.MemoryStream
+      description: Bits containing information converted to Adobe PDF compatible form
+    - id: indexed
+      type: System.Boolean
+      description: Output parameter, returns true if the image is paletized
+    - id: bitsperpixel
+      type: System.Int32
+      description: Output parameter, number of bits of information for each pixel
+    - id: usedcolors
+      type: System.Int32
+      description: Output parameter, valid for indexed bitmaps, number of colors used from the palette
+    - id: palette
+      type: System.String
+      description: Output parameter, palette in Adobe PDF compatible form, valid only in indexed bitmaps
+    - id: isgif
+      type: System.Boolean
+    - id: mask
+      type: System.String
+    - id: smask
+      type: System.IO.MemoryStream
+    return:
+      type: System.Boolean
+      description: Returns false if the stream is not abitmap
+    content.vb: Public Shared Function GetBitmapInfo(sourcestream As Stream, width As Integer, height As Integer, imagesize As Integer, MemBits As MemoryStream, indexed As Boolean, bitsperpixel As Integer, usedcolors As Integer, palette As String, isgif As Boolean, mask As String, smask As MemoryStream) As Boolean
+  overload: Reportman.Drawing.BitmapUtil.GetBitmapInfo*
+  nameWithType.vb: BitmapUtil.GetBitmapInfo(Stream, Integer, Integer, Integer, MemoryStream, Boolean, Integer, Integer, String, Boolean, String, MemoryStream)
+  fullName.vb: Reportman.Drawing.BitmapUtil.GetBitmapInfo(System.IO.Stream, Integer, Integer, Integer, System.IO.MemoryStream, Boolean, Integer, Integer, String, Boolean, String, System.IO.MemoryStream)
+  name.vb: GetBitmapInfo(Stream, Integer, Integer, Integer, MemoryStream, Boolean, Integer, Integer, String, Boolean, String, MemoryStream)
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.BitmapUtil.GetJPegInfo*
+  commentId: Overload:Reportman.Drawing.BitmapUtil.GetJPegInfo
+  isExternal: true
+  href: Reportman.Drawing.BitmapUtil.html#Reportman_Drawing_BitmapUtil_GetJPegInfo_System_IO_Stream_System_Int32__System_Int32__
+  name: GetJPegInfo
+  nameWithType: BitmapUtil.GetJPegInfo
+  fullName: Reportman.Drawing.BitmapUtil.GetJPegInfo
+- uid: System.IO.Stream
+  commentId: T:System.IO.Stream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  name: Stream
+  nameWithType: Stream
+  fullName: System.IO.Stream
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+- uid: Reportman.Drawing.BitmapUtil.GetBitmapInfo*
+  commentId: Overload:Reportman.Drawing.BitmapUtil.GetBitmapInfo
+  isExternal: true
+  href: Reportman.Drawing.BitmapUtil.html#Reportman_Drawing_BitmapUtil_GetBitmapInfo_System_IO_Stream_System_Int32__System_Int32__System_Int32__System_IO_MemoryStream_System_Boolean__System_Int32__System_Int32__System_String__System_Boolean__System_String__System_IO_MemoryStream_
+  name: GetBitmapInfo
+  nameWithType: BitmapUtil.GetBitmapInfo
+  fullName: Reportman.Drawing.BitmapUtil.GetBitmapInfo
+- uid: System.IO.MemoryStream
+  commentId: T:System.IO.MemoryStream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.memorystream
+  name: MemoryStream
+  nameWithType: MemoryStream
+  fullName: System.IO.MemoryStream
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String

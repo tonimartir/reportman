@@ -1,0 +1,228 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.PrintOutPDF.ImageDepth
+  commentId: T:Reportman.Drawing.PrintOutPDF.ImageDepth
+  id: PrintOutPDF.ImageDepth
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.PrintOutPDF.ImageDepth.BW
+  - Reportman.Drawing.PrintOutPDF.ImageDepth.BWImage
+  - Reportman.Drawing.PrintOutPDF.ImageDepth.Color
+  - Reportman.Drawing.PrintOutPDF.ImageDepth.Color4bit
+  - Reportman.Drawing.PrintOutPDF.ImageDepth.Color8bit
+  - Reportman.Drawing.PrintOutPDF.ImageDepth.GrayScale
+  - Reportman.Drawing.PrintOutPDF.ImageDepth.Text
+  - Reportman.Drawing.PrintOutPDF.ImageDepth.TextQuality
+  langs:
+  - csharp
+  - vb
+  name: PrintOutPDF.ImageDepth
+  nameWithType: PrintOutPDF.ImageDepth
+  fullName: Reportman.Drawing.PrintOutPDF.ImageDepth
+  type: Enum
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing
+  syntax:
+    content: public enum PrintOutPDF.ImageDepth
+    content.vb: Public Enum PrintOutPDF.ImageDepth
+- uid: Reportman.Drawing.PrintOutPDF.ImageDepth.Color
+  commentId: F:Reportman.Drawing.PrintOutPDF.ImageDepth.Color
+  id: Color
+  parent: Reportman.Drawing.PrintOutPDF.ImageDepth
+  langs:
+  - csharp
+  - vb
+  name: Color
+  nameWithType: PrintOutPDF.ImageDepth.Color
+  fullName: Reportman.Drawing.PrintOutPDF.ImageDepth.Color
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing
+  syntax:
+    content: Color = 0
+    return:
+      type: Reportman.Drawing.PrintOutPDF.ImageDepth
+- uid: Reportman.Drawing.PrintOutPDF.ImageDepth.GrayScale
+  commentId: F:Reportman.Drawing.PrintOutPDF.ImageDepth.GrayScale
+  id: GrayScale
+  parent: Reportman.Drawing.PrintOutPDF.ImageDepth
+  langs:
+  - csharp
+  - vb
+  name: GrayScale
+  nameWithType: PrintOutPDF.ImageDepth.GrayScale
+  fullName: Reportman.Drawing.PrintOutPDF.ImageDepth.GrayScale
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing
+  syntax:
+    content: GrayScale = 1
+    return:
+      type: Reportman.Drawing.PrintOutPDF.ImageDepth
+- uid: Reportman.Drawing.PrintOutPDF.ImageDepth.BW
+  commentId: F:Reportman.Drawing.PrintOutPDF.ImageDepth.BW
+  id: BW
+  parent: Reportman.Drawing.PrintOutPDF.ImageDepth
+  langs:
+  - csharp
+  - vb
+  name: BW
+  nameWithType: PrintOutPDF.ImageDepth.BW
+  fullName: Reportman.Drawing.PrintOutPDF.ImageDepth.BW
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing
+  syntax:
+    content: BW = 2
+    return:
+      type: Reportman.Drawing.PrintOutPDF.ImageDepth
+- uid: Reportman.Drawing.PrintOutPDF.ImageDepth.Text
+  commentId: F:Reportman.Drawing.PrintOutPDF.ImageDepth.Text
+  id: Text
+  parent: Reportman.Drawing.PrintOutPDF.ImageDepth
+  langs:
+  - csharp
+  - vb
+  name: Text
+  nameWithType: PrintOutPDF.ImageDepth.Text
+  fullName: Reportman.Drawing.PrintOutPDF.ImageDepth.Text
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing
+  syntax:
+    content: Text = 3
+    return:
+      type: Reportman.Drawing.PrintOutPDF.ImageDepth
+- uid: Reportman.Drawing.PrintOutPDF.ImageDepth.TextQuality
+  commentId: F:Reportman.Drawing.PrintOutPDF.ImageDepth.TextQuality
+  id: TextQuality
+  parent: Reportman.Drawing.PrintOutPDF.ImageDepth
+  langs:
+  - csharp
+  - vb
+  name: TextQuality
+  nameWithType: PrintOutPDF.ImageDepth.TextQuality
+  fullName: Reportman.Drawing.PrintOutPDF.ImageDepth.TextQuality
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing
+  syntax:
+    content: TextQuality = 4
+    return:
+      type: Reportman.Drawing.PrintOutPDF.ImageDepth
+- uid: Reportman.Drawing.PrintOutPDF.ImageDepth.BWImage
+  commentId: F:Reportman.Drawing.PrintOutPDF.ImageDepth.BWImage
+  id: BWImage
+  parent: Reportman.Drawing.PrintOutPDF.ImageDepth
+  langs:
+  - csharp
+  - vb
+  name: BWImage
+  nameWithType: PrintOutPDF.ImageDepth.BWImage
+  fullName: Reportman.Drawing.PrintOutPDF.ImageDepth.BWImage
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing
+  syntax:
+    content: BWImage = 5
+    return:
+      type: Reportman.Drawing.PrintOutPDF.ImageDepth
+- uid: Reportman.Drawing.PrintOutPDF.ImageDepth.Color8bit
+  commentId: F:Reportman.Drawing.PrintOutPDF.ImageDepth.Color8bit
+  id: Color8bit
+  parent: Reportman.Drawing.PrintOutPDF.ImageDepth
+  langs:
+  - csharp
+  - vb
+  name: Color8bit
+  nameWithType: PrintOutPDF.ImageDepth.Color8bit
+  fullName: Reportman.Drawing.PrintOutPDF.ImageDepth.Color8bit
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing
+  syntax:
+    content: Color8bit = 6
+    return:
+      type: Reportman.Drawing.PrintOutPDF.ImageDepth
+- uid: Reportman.Drawing.PrintOutPDF.ImageDepth.Color4bit
+  commentId: F:Reportman.Drawing.PrintOutPDF.ImageDepth.Color4bit
+  id: Color4bit
+  parent: Reportman.Drawing.PrintOutPDF.ImageDepth
+  langs:
+  - csharp
+  - vb
+  name: Color4bit
+  nameWithType: PrintOutPDF.ImageDepth.Color4bit
+  fullName: Reportman.Drawing.PrintOutPDF.ImageDepth.Color4bit
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Windows
+  namespace: Reportman.Drawing
+  syntax:
+    content: Color4bit = 7
+    return:
+      type: Reportman.Drawing.PrintOutPDF.ImageDepth
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.PrintOutPDF.ImageDepth
+  commentId: T:Reportman.Drawing.PrintOutPDF.ImageDepth
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PrintOutPDF.html
+  name: PrintOutPDF.ImageDepth
+  nameWithType: PrintOutPDF.ImageDepth
+  fullName: Reportman.Drawing.PrintOutPDF.ImageDepth
+  spec.csharp:
+  - uid: Reportman.Drawing.PrintOutPDF
+    name: PrintOutPDF
+    isExternal: true
+    href: Reportman.Drawing.PrintOutPDF.html
+  - name: .
+  - uid: Reportman.Drawing.PrintOutPDF.ImageDepth
+    name: ImageDepth
+    isExternal: true
+    href: Reportman.Drawing.PrintOutPDF.ImageDepth.html
+  spec.vb:
+  - uid: Reportman.Drawing.PrintOutPDF
+    name: PrintOutPDF
+    isExternal: true
+    href: Reportman.Drawing.PrintOutPDF.html
+  - name: .
+  - uid: Reportman.Drawing.PrintOutPDF.ImageDepth
+    name: ImageDepth
+    isExternal: true
+    href: Reportman.Drawing.PrintOutPDF.ImageDepth.html

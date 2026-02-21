@@ -1,0 +1,398 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.BarcodeType
+  commentId: T:Reportman.Reporting.BarcodeType
+  id: BarcodeType
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.BarcodeType.Code128
+  - Reportman.Reporting.BarcodeType.Code128A
+  - Reportman.Reporting.BarcodeType.Code128B
+  - Reportman.Reporting.BarcodeType.Code128C
+  - Reportman.Reporting.BarcodeType.Code39
+  - Reportman.Reporting.BarcodeType.Code39Extended
+  - Reportman.Reporting.BarcodeType.Code93
+  - Reportman.Reporting.BarcodeType.Code93Extended
+  - Reportman.Reporting.BarcodeType.CodeCodabar
+  - Reportman.Reporting.BarcodeType.CodeEAN13
+  - Reportman.Reporting.BarcodeType.CodeEAN8
+  - Reportman.Reporting.BarcodeType.CodeMSI
+  - Reportman.Reporting.BarcodeType.CodePDF417
+  - Reportman.Reporting.BarcodeType.CodePostNet
+  - Reportman.Reporting.BarcodeType.CodeQR
+  - Reportman.Reporting.BarcodeType.Code_2_5_industrial
+  - Reportman.Reporting.BarcodeType.Code_2_5_interleaved
+  - Reportman.Reporting.BarcodeType.Code_2_5_matrix
+  langs:
+  - csharp
+  - vb
+  name: BarcodeType
+  nameWithType: BarcodeType
+  fullName: Reportman.Reporting.BarcodeType
+  type: Enum
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public enum BarcodeType
+    content.vb: Public Enum BarcodeType
+- uid: Reportman.Reporting.BarcodeType.Code_2_5_interleaved
+  commentId: F:Reportman.Reporting.BarcodeType.Code_2_5_interleaved
+  id: Code_2_5_interleaved
+  parent: Reportman.Reporting.BarcodeType
+  langs:
+  - csharp
+  - vb
+  name: Code_2_5_interleaved
+  nameWithType: BarcodeType.Code_2_5_interleaved
+  fullName: Reportman.Reporting.BarcodeType.Code_2_5_interleaved
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Code_2_5_interleaved = 0
+    return:
+      type: Reportman.Reporting.BarcodeType
+- uid: Reportman.Reporting.BarcodeType.Code_2_5_industrial
+  commentId: F:Reportman.Reporting.BarcodeType.Code_2_5_industrial
+  id: Code_2_5_industrial
+  parent: Reportman.Reporting.BarcodeType
+  langs:
+  - csharp
+  - vb
+  name: Code_2_5_industrial
+  nameWithType: BarcodeType.Code_2_5_industrial
+  fullName: Reportman.Reporting.BarcodeType.Code_2_5_industrial
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Code_2_5_industrial = 1
+    return:
+      type: Reportman.Reporting.BarcodeType
+- uid: Reportman.Reporting.BarcodeType.Code_2_5_matrix
+  commentId: F:Reportman.Reporting.BarcodeType.Code_2_5_matrix
+  id: Code_2_5_matrix
+  parent: Reportman.Reporting.BarcodeType
+  langs:
+  - csharp
+  - vb
+  name: Code_2_5_matrix
+  nameWithType: BarcodeType.Code_2_5_matrix
+  fullName: Reportman.Reporting.BarcodeType.Code_2_5_matrix
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Code_2_5_matrix = 2
+    return:
+      type: Reportman.Reporting.BarcodeType
+- uid: Reportman.Reporting.BarcodeType.Code39
+  commentId: F:Reportman.Reporting.BarcodeType.Code39
+  id: Code39
+  parent: Reportman.Reporting.BarcodeType
+  langs:
+  - csharp
+  - vb
+  name: Code39
+  nameWithType: BarcodeType.Code39
+  fullName: Reportman.Reporting.BarcodeType.Code39
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Code39 = 3
+    return:
+      type: Reportman.Reporting.BarcodeType
+- uid: Reportman.Reporting.BarcodeType.Code39Extended
+  commentId: F:Reportman.Reporting.BarcodeType.Code39Extended
+  id: Code39Extended
+  parent: Reportman.Reporting.BarcodeType
+  langs:
+  - csharp
+  - vb
+  name: Code39Extended
+  nameWithType: BarcodeType.Code39Extended
+  fullName: Reportman.Reporting.BarcodeType.Code39Extended
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Code39Extended = 4
+    return:
+      type: Reportman.Reporting.BarcodeType
+- uid: Reportman.Reporting.BarcodeType.Code128A
+  commentId: F:Reportman.Reporting.BarcodeType.Code128A
+  id: Code128A
+  parent: Reportman.Reporting.BarcodeType
+  langs:
+  - csharp
+  - vb
+  name: Code128A
+  nameWithType: BarcodeType.Code128A
+  fullName: Reportman.Reporting.BarcodeType.Code128A
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Code128A = 5
+    return:
+      type: Reportman.Reporting.BarcodeType
+- uid: Reportman.Reporting.BarcodeType.Code128B
+  commentId: F:Reportman.Reporting.BarcodeType.Code128B
+  id: Code128B
+  parent: Reportman.Reporting.BarcodeType
+  langs:
+  - csharp
+  - vb
+  name: Code128B
+  nameWithType: BarcodeType.Code128B
+  fullName: Reportman.Reporting.BarcodeType.Code128B
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Code128B = 6
+    return:
+      type: Reportman.Reporting.BarcodeType
+- uid: Reportman.Reporting.BarcodeType.Code128C
+  commentId: F:Reportman.Reporting.BarcodeType.Code128C
+  id: Code128C
+  parent: Reportman.Reporting.BarcodeType
+  langs:
+  - csharp
+  - vb
+  name: Code128C
+  nameWithType: BarcodeType.Code128C
+  fullName: Reportman.Reporting.BarcodeType.Code128C
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Code128C = 7
+    return:
+      type: Reportman.Reporting.BarcodeType
+- uid: Reportman.Reporting.BarcodeType.Code128
+  commentId: F:Reportman.Reporting.BarcodeType.Code128
+  id: Code128
+  parent: Reportman.Reporting.BarcodeType
+  langs:
+  - csharp
+  - vb
+  name: Code128
+  nameWithType: BarcodeType.Code128
+  fullName: Reportman.Reporting.BarcodeType.Code128
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Code128 = 8
+    return:
+      type: Reportman.Reporting.BarcodeType
+- uid: Reportman.Reporting.BarcodeType.Code93
+  commentId: F:Reportman.Reporting.BarcodeType.Code93
+  id: Code93
+  parent: Reportman.Reporting.BarcodeType
+  langs:
+  - csharp
+  - vb
+  name: Code93
+  nameWithType: BarcodeType.Code93
+  fullName: Reportman.Reporting.BarcodeType.Code93
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Code93 = 9
+    return:
+      type: Reportman.Reporting.BarcodeType
+- uid: Reportman.Reporting.BarcodeType.Code93Extended
+  commentId: F:Reportman.Reporting.BarcodeType.Code93Extended
+  id: Code93Extended
+  parent: Reportman.Reporting.BarcodeType
+  langs:
+  - csharp
+  - vb
+  name: Code93Extended
+  nameWithType: BarcodeType.Code93Extended
+  fullName: Reportman.Reporting.BarcodeType.Code93Extended
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Code93Extended = 10
+    return:
+      type: Reportman.Reporting.BarcodeType
+- uid: Reportman.Reporting.BarcodeType.CodeMSI
+  commentId: F:Reportman.Reporting.BarcodeType.CodeMSI
+  id: CodeMSI
+  parent: Reportman.Reporting.BarcodeType
+  langs:
+  - csharp
+  - vb
+  name: CodeMSI
+  nameWithType: BarcodeType.CodeMSI
+  fullName: Reportman.Reporting.BarcodeType.CodeMSI
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: CodeMSI = 11
+    return:
+      type: Reportman.Reporting.BarcodeType
+- uid: Reportman.Reporting.BarcodeType.CodePostNet
+  commentId: F:Reportman.Reporting.BarcodeType.CodePostNet
+  id: CodePostNet
+  parent: Reportman.Reporting.BarcodeType
+  langs:
+  - csharp
+  - vb
+  name: CodePostNet
+  nameWithType: BarcodeType.CodePostNet
+  fullName: Reportman.Reporting.BarcodeType.CodePostNet
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: CodePostNet = 12
+    return:
+      type: Reportman.Reporting.BarcodeType
+- uid: Reportman.Reporting.BarcodeType.CodeCodabar
+  commentId: F:Reportman.Reporting.BarcodeType.CodeCodabar
+  id: CodeCodabar
+  parent: Reportman.Reporting.BarcodeType
+  langs:
+  - csharp
+  - vb
+  name: CodeCodabar
+  nameWithType: BarcodeType.CodeCodabar
+  fullName: Reportman.Reporting.BarcodeType.CodeCodabar
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: CodeCodabar = 13
+    return:
+      type: Reportman.Reporting.BarcodeType
+- uid: Reportman.Reporting.BarcodeType.CodeEAN8
+  commentId: F:Reportman.Reporting.BarcodeType.CodeEAN8
+  id: CodeEAN8
+  parent: Reportman.Reporting.BarcodeType
+  langs:
+  - csharp
+  - vb
+  name: CodeEAN8
+  nameWithType: BarcodeType.CodeEAN8
+  fullName: Reportman.Reporting.BarcodeType.CodeEAN8
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: CodeEAN8 = 14
+    return:
+      type: Reportman.Reporting.BarcodeType
+- uid: Reportman.Reporting.BarcodeType.CodeEAN13
+  commentId: F:Reportman.Reporting.BarcodeType.CodeEAN13
+  id: CodeEAN13
+  parent: Reportman.Reporting.BarcodeType
+  langs:
+  - csharp
+  - vb
+  name: CodeEAN13
+  nameWithType: BarcodeType.CodeEAN13
+  fullName: Reportman.Reporting.BarcodeType.CodeEAN13
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: CodeEAN13 = 15
+    return:
+      type: Reportman.Reporting.BarcodeType
+- uid: Reportman.Reporting.BarcodeType.CodePDF417
+  commentId: F:Reportman.Reporting.BarcodeType.CodePDF417
+  id: CodePDF417
+  parent: Reportman.Reporting.BarcodeType
+  langs:
+  - csharp
+  - vb
+  name: CodePDF417
+  nameWithType: BarcodeType.CodePDF417
+  fullName: Reportman.Reporting.BarcodeType.CodePDF417
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: CodePDF417 = 16
+    return:
+      type: Reportman.Reporting.BarcodeType
+- uid: Reportman.Reporting.BarcodeType.CodeQR
+  commentId: F:Reportman.Reporting.BarcodeType.CodeQR
+  id: CodeQR
+  parent: Reportman.Reporting.BarcodeType
+  langs:
+  - csharp
+  - vb
+  name: CodeQR
+  nameWithType: BarcodeType.CodeQR
+  fullName: Reportman.Reporting.BarcodeType.CodeQR
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: CodeQR = 17
+    return:
+      type: Reportman.Reporting.BarcodeType
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: Reportman.Reporting.BarcodeType
+  commentId: T:Reportman.Reporting.BarcodeType
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.BarcodeType.html
+  name: BarcodeType
+  nameWithType: BarcodeType
+  fullName: Reportman.Reporting.BarcodeType

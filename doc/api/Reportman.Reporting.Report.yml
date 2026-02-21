@@ -1,0 +1,3192 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.Report
+  commentId: T:Reportman.Reporting.Report
+  id: Report
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.Report.#ctor
+  - Reportman.Reporting.Report.BeginPrint(Reportman.Drawing.PrintOut)
+  - Reportman.Reporting.Report.PrintNextPage
+  langs:
+  - csharp
+  - vb
+  name: Report
+  nameWithType: Report
+  fullName: Reportman.Reporting.Report
+  type: Class
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: 'public class Report : BaseReport, IDisposable'
+    content.vb: Public Class Report Inherits BaseReport Implements IDisposable
+  inheritance:
+  - System.Object
+  - Reportman.Reporting.ReportItem
+  - Reportman.Reporting.BaseReport
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - Reportman.Reporting.BaseReport.UndoCue
+  - Reportman.Reporting.BaseReport.InitialPageDetail
+  - Reportman.Reporting.BaseReport.MAX_PAGENUM
+  - Reportman.Reporting.BaseReport.FDataAlias
+  - Reportman.Reporting.BaseReport.AbortingThread
+  - Reportman.Reporting.BaseReport.FDriver
+  - Reportman.Reporting.BaseReport.ChartingDriver
+  - Reportman.Reporting.BaseReport.ErrorProcessing
+  - Reportman.Reporting.BaseReport.LastErrorProcessing
+  - Reportman.Reporting.BaseReport.ExecuteSubReportIndexes
+  - Reportman.Reporting.BaseReport.PendingSections
+  - Reportman.Reporting.BaseReport.EvalIdens
+  - Reportman.Reporting.BaseReport.FGroupHeaders
+  - Reportman.Reporting.BaseReport.GHeaders
+  - Reportman.Reporting.BaseReport.GFooters
+  - Reportman.Reporting.BaseReport.mmlast
+  - Reportman.Reporting.BaseReport.mmfirst
+  - Reportman.Reporting.BaseReport.FCompose
+  - Reportman.Reporting.BaseReport.LastPage
+  - Reportman.Reporting.BaseReport.section
+  - Reportman.Reporting.BaseReport.subreport
+  - Reportman.Reporting.BaseReport.printing
+  - Reportman.Reporting.BaseReport.FRecordCount
+  - Reportman.Reporting.BaseReport.CurrentSubReportIndex
+  - Reportman.Reporting.BaseReport.CurrentSectionIndex
+  - Reportman.Reporting.BaseReport.oldprintedsectionext
+  - Reportman.Reporting.BaseReport.oldsubreport
+  - Reportman.Reporting.BaseReport.havepagefooters
+  - Reportman.Reporting.BaseReport.sectionextevaluated
+  - Reportman.Reporting.BaseReport.oldprintedsection
+  - Reportman.Reporting.BaseReport.pageposx
+  - Reportman.Reporting.BaseReport.pageposy
+  - Reportman.Reporting.BaseReport.pagespacex
+  - Reportman.Reporting.BaseReport.pagefooters
+  - Reportman.Reporting.BaseReport.asection
+  - Reportman.Reporting.BaseReport.pagefooterpos
+  - Reportman.Reporting.BaseReport.sectionext
+  - Reportman.Reporting.BaseReport.FExecuting
+  - Reportman.Reporting.BaseReport.AsyncExecution
+  - Reportman.Reporting.BaseReport.AsyncPriority
+  - Reportman.Reporting.BaseReport.PrintedSomething
+  - Reportman.Reporting.BaseReport.PageNum
+  - Reportman.Reporting.BaseReport.PageNumGroup
+  - Reportman.Reporting.BaseReport.InternalPageWidth
+  - Reportman.Reporting.BaseReport.InternalPageHeight
+  - Reportman.Reporting.BaseReport.FreeSpace
+  - Reportman.Reporting.BaseReport.Modified
+  - Reportman.Reporting.BaseReport.Components
+  - Reportman.Reporting.BaseReport.EmbeddedFiles
+  - Reportman.Reporting.BaseReport.PDFConformance
+  - Reportman.Reporting.BaseReport.PDFCompressed
+  - Reportman.Reporting.BaseReport.Evaluator
+  - Reportman.Reporting.BaseReport.CurrentOrientation
+  - Reportman.Reporting.BaseReport.UpdatePageSize
+  - Reportman.Reporting.BaseReport.UsedDataReaders
+  - Reportman.Reporting.BaseReport.CheckProgress(System.Boolean)
+  - Reportman.Reporting.BaseReport.AddComponent(Reportman.Reporting.ReportItem)
+  - Reportman.Reporting.BaseReport.AlignSectionsTo(System.Int32)
+  - Reportman.Reporting.BaseReport.RemoveComponent(Reportman.Reporting.ReportItem)
+  - Reportman.Reporting.BaseReport.LoadFromCommand(System.Data.IDbCommand)
+  - Reportman.Reporting.BaseReport.LoadFromDataReader(System.Data.IDataReader)
+  - Reportman.Reporting.BaseReport.LoadFromStream(System.IO.Stream)
+  - Reportman.Reporting.BaseReport.ConvertToDotNet
+  - Reportman.Reporting.BaseReport.LoadFromStream(System.IO.Stream,System.Int32)
+  - Reportman.Reporting.BaseReport.LoadFromFile(System.String)
+  - Reportman.Reporting.BaseReport.SaveToStream(System.IO.Stream,Reportman.Reporting.StreamVersion)
+  - Reportman.Reporting.BaseReport.SaveToFile(System.String,Reportman.Reporting.StreamVersion)
+  - Reportman.Reporting.BaseReport.AddTotalPagesItem(System.Int32,System.Int32,System.String)
+  - Reportman.Reporting.BaseReport.RequestPage(System.Int32)
+  - Reportman.Reporting.BaseReport.FillGlobalHeaders
+  - Reportman.Reporting.BaseReport.EndPrint
+  - Reportman.Reporting.BaseReport.InitEvaluator
+  - Reportman.Reporting.BaseReport.InitializeParams
+  - Reportman.Reporting.BaseReport.PrintAll(Reportman.Drawing.PrintOut)
+  - Reportman.Reporting.BaseReport.UpdateParamsBeforeOpen(System.Int32,System.Boolean)
+  - Reportman.Reporting.BaseReport.UpdateParamsAfterOpen(System.Int32,System.Boolean)
+  - Reportman.Reporting.BaseReport.PrepareParamsBeforeOpen
+  - Reportman.Reporting.BaseReport.PrepareParamsAfterOpen
+  - Reportman.Reporting.BaseReport.CheckIfDataAvailable
+  - Reportman.Reporting.BaseReport.DeActivateDatasets
+  - Reportman.Reporting.BaseReport.SubreportMustBeExecuted(Reportman.Reporting.SubReport)
+  - Reportman.Reporting.BaseReport.ActivateDatasets
+  - Reportman.Reporting.BaseReport.CreateNew
+  - Reportman.Reporting.BaseReport.AddSubReport
+  - Reportman.Reporting.BaseReport.DeleteSubReport(Reportman.Reporting.SubReport)
+  - Reportman.Reporting.BaseReport.DoUpdatePageSize(Reportman.Drawing.MetaPage,Reportman.Drawing.PageSizeDetail)
+  - Reportman.Reporting.BaseReport.AddReportItemsToEvaluator(Reportman.Reporting.Evaluator)
+  - Reportman.Reporting.BaseReport.CheckParameters
+  - Reportman.Reporting.BaseReport.GenerateNewName(Reportman.Reporting.ReportItem)
+  - Reportman.Reporting.BaseReport.FindNewName(Reportman.Reporting.ReportItem)
+  - Reportman.Reporting.BaseReport.GetReportVariables
+  - Reportman.Reporting.BaseReport.Dispose
+  - Reportman.Reporting.BaseReport.NewComponentByClassName(System.String)
+  - Reportman.Reporting.BaseReport.DeleteItem(Reportman.Reporting.ReportItem,System.Int32)
+  - Reportman.Reporting.BaseReport.GetParentSection(Reportman.Reporting.PrintPosItem)
+  - Reportman.Reporting.BaseReport.GetParentSubReport(Reportman.Reporting.Section)
+  - Reportman.Reporting.BaseReport.DeleteComponentPrintPosItem(Reportman.Reporting.Section,Reportman.Reporting.PrintPosItem,System.Int32,System.Int32)
+  - Reportman.Reporting.BaseReport.DeleteComponents(Reportman.Reporting.Section,System.Int32)
+  - Reportman.Reporting.BaseReport.DeleteComponent(Reportman.Reporting.ReportItem)
+  - Reportman.Reporting.BaseReport.UpdateReferences
+  - Reportman.Reporting.BaseReport.MetaFile
+  - Reportman.Reporting.BaseReport.Compose
+  - Reportman.Reporting.BaseReport.RecordCount
+  - Reportman.Reporting.BaseReport.Driver
+  - Reportman.Reporting.BaseReport.Language
+  - Reportman.Reporting.BaseReport.WFontName
+  - Reportman.Reporting.BaseReport.LFontName
+  - Reportman.Reporting.BaseReport.GridVisible
+  - Reportman.Reporting.BaseReport.GridLines
+  - Reportman.Reporting.BaseReport.GridEnabled
+  - Reportman.Reporting.BaseReport.GridColor
+  - Reportman.Reporting.BaseReport.GridWidth
+  - Reportman.Reporting.BaseReport.GridHeight
+  - Reportman.Reporting.BaseReport.PageOrientation
+  - Reportman.Reporting.BaseReport.PageSize
+  - Reportman.Reporting.BaseReport.PageSizeIndex
+  - Reportman.Reporting.BaseReport.PageHeight
+  - Reportman.Reporting.BaseReport.PageWidth
+  - Reportman.Reporting.BaseReport.CustomPageHeight
+  - Reportman.Reporting.BaseReport.CustomPageWidth
+  - Reportman.Reporting.BaseReport.PageBackColor
+  - Reportman.Reporting.BaseReport.AutoScale
+  - Reportman.Reporting.BaseReport.PreviewWindow
+  - Reportman.Reporting.BaseReport.LeftMargin
+  - Reportman.Reporting.BaseReport.TopMargin
+  - Reportman.Reporting.BaseReport.RightMargin
+  - Reportman.Reporting.BaseReport.BottomMargin
+  - Reportman.Reporting.BaseReport.PrinterSelect
+  - Reportman.Reporting.BaseReport.SubReports
+  - Reportman.Reporting.BaseReport.Params
+  - Reportman.Reporting.BaseReport.DataInfo
+  - Reportman.Reporting.BaseReport.DatabaseInfo
+  - Reportman.Reporting.BaseReport.Copies
+  - Reportman.Reporting.BaseReport.CollateCopies
+  - Reportman.Reporting.BaseReport.TwoPass
+  - Reportman.Reporting.BaseReport.PrinterFonts
+  - Reportman.Reporting.BaseReport.PrintOnlyIfDataAvailable
+  - Reportman.Reporting.BaseReport.StreamFormat
+  - Reportman.Reporting.BaseReport.ActionBefore
+  - Reportman.Reporting.BaseReport.ActionAfter
+  - Reportman.Reporting.BaseReport.PreviewAbout
+  - Reportman.Reporting.BaseReport.Type1Font
+  - Reportman.Reporting.BaseReport.FontSize
+  - Reportman.Reporting.BaseReport.FontRotation
+  - Reportman.Reporting.BaseReport.FontStyle
+  - Reportman.Reporting.BaseReport.FontColor
+  - Reportman.Reporting.BaseReport.BackColor
+  - Reportman.Reporting.BaseReport.Transparent
+  - Reportman.Reporting.BaseReport.CutText
+  - Reportman.Reporting.BaseReport.Alignment
+  - Reportman.Reporting.BaseReport.VAlignment
+  - Reportman.Reporting.BaseReport.WordWrap
+  - Reportman.Reporting.BaseReport.SingleLine
+  - Reportman.Reporting.BaseReport.MultiPage
+  - Reportman.Reporting.BaseReport.PrintStep
+  - Reportman.Reporting.BaseReport.PaperSource
+  - Reportman.Reporting.BaseReport.Duplex
+  - Reportman.Reporting.BaseReport.ForcePaperName
+  - Reportman.Reporting.BaseReport.LinesPerInch
+  - Reportman.Reporting.BaseReport.DocAuthor
+  - Reportman.Reporting.BaseReport.DocTitle
+  - Reportman.Reporting.BaseReport.DocSubject
+  - Reportman.Reporting.BaseReport.DocProducer
+  - Reportman.Reporting.BaseReport.DocCreator
+  - Reportman.Reporting.BaseReport.DocCreationDate
+  - Reportman.Reporting.BaseReport.DocModificationDate
+  - Reportman.Reporting.BaseReport.DocKeywords
+  - Reportman.Reporting.BaseReport.DocXMPContent
+  - Reportman.Reporting.BaseReport.PreviewMargins
+  - Reportman.Reporting.BaseReport.OnProgress
+  - Reportman.Reporting.BaseReport.OnWorkProgress
+  - Reportman.Reporting.BaseReport.OnWorkAsyncError
+  - Reportman.Reporting.ReportItem.SetReport(Reportman.Reporting.BaseReport)
+  - Reportman.Reporting.ReportItem.GetClassName
+  - Reportman.Reporting.ReportItem.Name
+  - Reportman.Reporting.ReportItem.Report
+  - Reportman.Reporting.ReportItem.ClassName
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Reporting.Report.#ctor
+  commentId: M:Reportman.Reporting.Report.#ctor
+  id: '#ctor'
+  parent: Reportman.Reporting.Report
+  langs:
+  - csharp
+  - vb
+  name: Report()
+  nameWithType: Report.Report()
+  fullName: Reportman.Reporting.Report.Report()
+  type: Constructor
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public Report()
+    content.vb: Public Sub New()
+  overload: Reportman.Reporting.Report.#ctor*
+  nameWithType.vb: Report.New()
+  fullName.vb: Reportman.Reporting.Report.New()
+  name.vb: New()
+- uid: Reportman.Reporting.Report.BeginPrint(Reportman.Drawing.PrintOut)
+  commentId: M:Reportman.Reporting.Report.BeginPrint(Reportman.Drawing.PrintOut)
+  id: BeginPrint(Reportman.Drawing.PrintOut)
+  parent: Reportman.Reporting.Report
+  langs:
+  - csharp
+  - vb
+  name: BeginPrint(PrintOut)
+  nameWithType: Report.BeginPrint(PrintOut)
+  fullName: Reportman.Reporting.Report.BeginPrint(Reportman.Drawing.PrintOut)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  example: []
+  syntax:
+    content: public override void BeginPrint(PrintOut driver)
+    parameters:
+    - id: driver
+      type: Reportman.Drawing.PrintOut
+    content.vb: Public Overrides Sub BeginPrint(driver As PrintOut)
+  overridden: Reportman.Reporting.BaseReport.BeginPrint(Reportman.Drawing.PrintOut)
+  overload: Reportman.Reporting.Report.BeginPrint*
+- uid: Reportman.Reporting.Report.PrintNextPage
+  commentId: M:Reportman.Reporting.Report.PrintNextPage
+  id: PrintNextPage
+  parent: Reportman.Reporting.Report
+  langs:
+  - csharp
+  - vb
+  name: PrintNextPage()
+  nameWithType: Report.PrintNextPage()
+  fullName: Reportman.Reporting.Report.PrintNextPage()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  example: []
+  syntax:
+    content: public override bool PrintNextPage()
+    return:
+      type: System.Boolean
+    content.vb: Public Overrides Function PrintNextPage() As Boolean
+  overridden: Reportman.Reporting.BaseReport.PrintNextPage
+  overload: Reportman.Reporting.Report.PrintNextPage*
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Reportman.Reporting.ReportItem
+  commentId: T:Reportman.Reporting.ReportItem
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html
+  name: ReportItem
+  nameWithType: ReportItem
+  fullName: Reportman.Reporting.ReportItem
+- uid: Reportman.Reporting.BaseReport
+  commentId: T:Reportman.Reporting.BaseReport
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html
+  name: BaseReport
+  nameWithType: BaseReport
+  fullName: Reportman.Reporting.BaseReport
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: Reportman.Reporting.BaseReport.UndoCue
+  commentId: F:Reportman.Reporting.BaseReport.UndoCue
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_UndoCue
+  name: UndoCue
+  nameWithType: BaseReport.UndoCue
+  fullName: Reportman.Reporting.BaseReport.UndoCue
+- uid: Reportman.Reporting.BaseReport.InitialPageDetail
+  commentId: F:Reportman.Reporting.BaseReport.InitialPageDetail
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_InitialPageDetail
+  name: InitialPageDetail
+  nameWithType: BaseReport.InitialPageDetail
+  fullName: Reportman.Reporting.BaseReport.InitialPageDetail
+- uid: Reportman.Reporting.BaseReport.MAX_PAGENUM
+  commentId: F:Reportman.Reporting.BaseReport.MAX_PAGENUM
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_MAX_PAGENUM
+  name: MAX_PAGENUM
+  nameWithType: BaseReport.MAX_PAGENUM
+  fullName: Reportman.Reporting.BaseReport.MAX_PAGENUM
+- uid: Reportman.Reporting.BaseReport.FDataAlias
+  commentId: F:Reportman.Reporting.BaseReport.FDataAlias
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_FDataAlias
+  name: FDataAlias
+  nameWithType: BaseReport.FDataAlias
+  fullName: Reportman.Reporting.BaseReport.FDataAlias
+- uid: Reportman.Reporting.BaseReport.AbortingThread
+  commentId: F:Reportman.Reporting.BaseReport.AbortingThread
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_AbortingThread
+  name: AbortingThread
+  nameWithType: BaseReport.AbortingThread
+  fullName: Reportman.Reporting.BaseReport.AbortingThread
+- uid: Reportman.Reporting.BaseReport.FDriver
+  commentId: F:Reportman.Reporting.BaseReport.FDriver
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_FDriver
+  name: FDriver
+  nameWithType: BaseReport.FDriver
+  fullName: Reportman.Reporting.BaseReport.FDriver
+- uid: Reportman.Reporting.BaseReport.ChartingDriver
+  commentId: F:Reportman.Reporting.BaseReport.ChartingDriver
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_ChartingDriver
+  name: ChartingDriver
+  nameWithType: BaseReport.ChartingDriver
+  fullName: Reportman.Reporting.BaseReport.ChartingDriver
+- uid: Reportman.Reporting.BaseReport.ErrorProcessing
+  commentId: F:Reportman.Reporting.BaseReport.ErrorProcessing
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_ErrorProcessing
+  name: ErrorProcessing
+  nameWithType: BaseReport.ErrorProcessing
+  fullName: Reportman.Reporting.BaseReport.ErrorProcessing
+- uid: Reportman.Reporting.BaseReport.LastErrorProcessing
+  commentId: F:Reportman.Reporting.BaseReport.LastErrorProcessing
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_LastErrorProcessing
+  name: LastErrorProcessing
+  nameWithType: BaseReport.LastErrorProcessing
+  fullName: Reportman.Reporting.BaseReport.LastErrorProcessing
+- uid: Reportman.Reporting.BaseReport.ExecuteSubReportIndexes
+  commentId: F:Reportman.Reporting.BaseReport.ExecuteSubReportIndexes
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_ExecuteSubReportIndexes
+  name: ExecuteSubReportIndexes
+  nameWithType: BaseReport.ExecuteSubReportIndexes
+  fullName: Reportman.Reporting.BaseReport.ExecuteSubReportIndexes
+- uid: Reportman.Reporting.BaseReport.PendingSections
+  commentId: F:Reportman.Reporting.BaseReport.PendingSections
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_PendingSections
+  name: PendingSections
+  nameWithType: BaseReport.PendingSections
+  fullName: Reportman.Reporting.BaseReport.PendingSections
+- uid: Reportman.Reporting.BaseReport.EvalIdens
+  commentId: F:Reportman.Reporting.BaseReport.EvalIdens
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_EvalIdens
+  name: EvalIdens
+  nameWithType: BaseReport.EvalIdens
+  fullName: Reportman.Reporting.BaseReport.EvalIdens
+- uid: Reportman.Reporting.BaseReport.FGroupHeaders
+  commentId: F:Reportman.Reporting.BaseReport.FGroupHeaders
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_FGroupHeaders
+  name: FGroupHeaders
+  nameWithType: BaseReport.FGroupHeaders
+  fullName: Reportman.Reporting.BaseReport.FGroupHeaders
+- uid: Reportman.Reporting.BaseReport.GHeaders
+  commentId: F:Reportman.Reporting.BaseReport.GHeaders
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_GHeaders
+  name: GHeaders
+  nameWithType: BaseReport.GHeaders
+  fullName: Reportman.Reporting.BaseReport.GHeaders
+- uid: Reportman.Reporting.BaseReport.GFooters
+  commentId: F:Reportman.Reporting.BaseReport.GFooters
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_GFooters
+  name: GFooters
+  nameWithType: BaseReport.GFooters
+  fullName: Reportman.Reporting.BaseReport.GFooters
+- uid: Reportman.Reporting.BaseReport.mmlast
+  commentId: F:Reportman.Reporting.BaseReport.mmlast
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_mmlast
+  name: mmlast
+  nameWithType: BaseReport.mmlast
+  fullName: Reportman.Reporting.BaseReport.mmlast
+- uid: Reportman.Reporting.BaseReport.mmfirst
+  commentId: F:Reportman.Reporting.BaseReport.mmfirst
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_mmfirst
+  name: mmfirst
+  nameWithType: BaseReport.mmfirst
+  fullName: Reportman.Reporting.BaseReport.mmfirst
+- uid: Reportman.Reporting.BaseReport.FCompose
+  commentId: F:Reportman.Reporting.BaseReport.FCompose
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_FCompose
+  name: FCompose
+  nameWithType: BaseReport.FCompose
+  fullName: Reportman.Reporting.BaseReport.FCompose
+- uid: Reportman.Reporting.BaseReport.LastPage
+  commentId: F:Reportman.Reporting.BaseReport.LastPage
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_LastPage
+  name: LastPage
+  nameWithType: BaseReport.LastPage
+  fullName: Reportman.Reporting.BaseReport.LastPage
+- uid: Reportman.Reporting.BaseReport.section
+  commentId: F:Reportman.Reporting.BaseReport.section
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_section
+  name: section
+  nameWithType: BaseReport.section
+  fullName: Reportman.Reporting.BaseReport.section
+- uid: Reportman.Reporting.BaseReport.subreport
+  commentId: F:Reportman.Reporting.BaseReport.subreport
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_subreport
+  name: subreport
+  nameWithType: BaseReport.subreport
+  fullName: Reportman.Reporting.BaseReport.subreport
+- uid: Reportman.Reporting.BaseReport.printing
+  commentId: F:Reportman.Reporting.BaseReport.printing
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_printing
+  name: printing
+  nameWithType: BaseReport.printing
+  fullName: Reportman.Reporting.BaseReport.printing
+- uid: Reportman.Reporting.BaseReport.FRecordCount
+  commentId: F:Reportman.Reporting.BaseReport.FRecordCount
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_FRecordCount
+  name: FRecordCount
+  nameWithType: BaseReport.FRecordCount
+  fullName: Reportman.Reporting.BaseReport.FRecordCount
+- uid: Reportman.Reporting.BaseReport.CurrentSubReportIndex
+  commentId: F:Reportman.Reporting.BaseReport.CurrentSubReportIndex
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_CurrentSubReportIndex
+  name: CurrentSubReportIndex
+  nameWithType: BaseReport.CurrentSubReportIndex
+  fullName: Reportman.Reporting.BaseReport.CurrentSubReportIndex
+- uid: Reportman.Reporting.BaseReport.CurrentSectionIndex
+  commentId: F:Reportman.Reporting.BaseReport.CurrentSectionIndex
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_CurrentSectionIndex
+  name: CurrentSectionIndex
+  nameWithType: BaseReport.CurrentSectionIndex
+  fullName: Reportman.Reporting.BaseReport.CurrentSectionIndex
+- uid: Reportman.Reporting.BaseReport.oldprintedsectionext
+  commentId: F:Reportman.Reporting.BaseReport.oldprintedsectionext
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_oldprintedsectionext
+  name: oldprintedsectionext
+  nameWithType: BaseReport.oldprintedsectionext
+  fullName: Reportman.Reporting.BaseReport.oldprintedsectionext
+- uid: Reportman.Reporting.BaseReport.oldsubreport
+  commentId: F:Reportman.Reporting.BaseReport.oldsubreport
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_oldsubreport
+  name: oldsubreport
+  nameWithType: BaseReport.oldsubreport
+  fullName: Reportman.Reporting.BaseReport.oldsubreport
+- uid: Reportman.Reporting.BaseReport.havepagefooters
+  commentId: F:Reportman.Reporting.BaseReport.havepagefooters
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_havepagefooters
+  name: havepagefooters
+  nameWithType: BaseReport.havepagefooters
+  fullName: Reportman.Reporting.BaseReport.havepagefooters
+- uid: Reportman.Reporting.BaseReport.sectionextevaluated
+  commentId: F:Reportman.Reporting.BaseReport.sectionextevaluated
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_sectionextevaluated
+  name: sectionextevaluated
+  nameWithType: BaseReport.sectionextevaluated
+  fullName: Reportman.Reporting.BaseReport.sectionextevaluated
+- uid: Reportman.Reporting.BaseReport.oldprintedsection
+  commentId: F:Reportman.Reporting.BaseReport.oldprintedsection
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_oldprintedsection
+  name: oldprintedsection
+  nameWithType: BaseReport.oldprintedsection
+  fullName: Reportman.Reporting.BaseReport.oldprintedsection
+- uid: Reportman.Reporting.BaseReport.pageposx
+  commentId: F:Reportman.Reporting.BaseReport.pageposx
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_pageposx
+  name: pageposx
+  nameWithType: BaseReport.pageposx
+  fullName: Reportman.Reporting.BaseReport.pageposx
+- uid: Reportman.Reporting.BaseReport.pageposy
+  commentId: F:Reportman.Reporting.BaseReport.pageposy
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_pageposy
+  name: pageposy
+  nameWithType: BaseReport.pageposy
+  fullName: Reportman.Reporting.BaseReport.pageposy
+- uid: Reportman.Reporting.BaseReport.pagespacex
+  commentId: F:Reportman.Reporting.BaseReport.pagespacex
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_pagespacex
+  name: pagespacex
+  nameWithType: BaseReport.pagespacex
+  fullName: Reportman.Reporting.BaseReport.pagespacex
+- uid: Reportman.Reporting.BaseReport.pagefooters
+  commentId: F:Reportman.Reporting.BaseReport.pagefooters
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_pagefooters
+  name: pagefooters
+  nameWithType: BaseReport.pagefooters
+  fullName: Reportman.Reporting.BaseReport.pagefooters
+- uid: Reportman.Reporting.BaseReport.asection
+  commentId: F:Reportman.Reporting.BaseReport.asection
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_asection
+  name: asection
+  nameWithType: BaseReport.asection
+  fullName: Reportman.Reporting.BaseReport.asection
+- uid: Reportman.Reporting.BaseReport.pagefooterpos
+  commentId: F:Reportman.Reporting.BaseReport.pagefooterpos
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_pagefooterpos
+  name: pagefooterpos
+  nameWithType: BaseReport.pagefooterpos
+  fullName: Reportman.Reporting.BaseReport.pagefooterpos
+- uid: Reportman.Reporting.BaseReport.sectionext
+  commentId: F:Reportman.Reporting.BaseReport.sectionext
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_sectionext
+  name: sectionext
+  nameWithType: BaseReport.sectionext
+  fullName: Reportman.Reporting.BaseReport.sectionext
+- uid: Reportman.Reporting.BaseReport.FExecuting
+  commentId: F:Reportman.Reporting.BaseReport.FExecuting
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_FExecuting
+  name: FExecuting
+  nameWithType: BaseReport.FExecuting
+  fullName: Reportman.Reporting.BaseReport.FExecuting
+- uid: Reportman.Reporting.BaseReport.AsyncExecution
+  commentId: F:Reportman.Reporting.BaseReport.AsyncExecution
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_AsyncExecution
+  name: AsyncExecution
+  nameWithType: BaseReport.AsyncExecution
+  fullName: Reportman.Reporting.BaseReport.AsyncExecution
+- uid: Reportman.Reporting.BaseReport.AsyncPriority
+  commentId: F:Reportman.Reporting.BaseReport.AsyncPriority
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_AsyncPriority
+  name: AsyncPriority
+  nameWithType: BaseReport.AsyncPriority
+  fullName: Reportman.Reporting.BaseReport.AsyncPriority
+- uid: Reportman.Reporting.BaseReport.PrintedSomething
+  commentId: F:Reportman.Reporting.BaseReport.PrintedSomething
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_PrintedSomething
+  name: PrintedSomething
+  nameWithType: BaseReport.PrintedSomething
+  fullName: Reportman.Reporting.BaseReport.PrintedSomething
+- uid: Reportman.Reporting.BaseReport.PageNum
+  commentId: F:Reportman.Reporting.BaseReport.PageNum
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_PageNum
+  name: PageNum
+  nameWithType: BaseReport.PageNum
+  fullName: Reportman.Reporting.BaseReport.PageNum
+- uid: Reportman.Reporting.BaseReport.PageNumGroup
+  commentId: F:Reportman.Reporting.BaseReport.PageNumGroup
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_PageNumGroup
+  name: PageNumGroup
+  nameWithType: BaseReport.PageNumGroup
+  fullName: Reportman.Reporting.BaseReport.PageNumGroup
+- uid: Reportman.Reporting.BaseReport.InternalPageWidth
+  commentId: F:Reportman.Reporting.BaseReport.InternalPageWidth
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_InternalPageWidth
+  name: InternalPageWidth
+  nameWithType: BaseReport.InternalPageWidth
+  fullName: Reportman.Reporting.BaseReport.InternalPageWidth
+- uid: Reportman.Reporting.BaseReport.InternalPageHeight
+  commentId: F:Reportman.Reporting.BaseReport.InternalPageHeight
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_InternalPageHeight
+  name: InternalPageHeight
+  nameWithType: BaseReport.InternalPageHeight
+  fullName: Reportman.Reporting.BaseReport.InternalPageHeight
+- uid: Reportman.Reporting.BaseReport.FreeSpace
+  commentId: F:Reportman.Reporting.BaseReport.FreeSpace
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_FreeSpace
+  name: FreeSpace
+  nameWithType: BaseReport.FreeSpace
+  fullName: Reportman.Reporting.BaseReport.FreeSpace
+- uid: Reportman.Reporting.BaseReport.Modified
+  commentId: F:Reportman.Reporting.BaseReport.Modified
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_Modified
+  name: Modified
+  nameWithType: BaseReport.Modified
+  fullName: Reportman.Reporting.BaseReport.Modified
+- uid: Reportman.Reporting.BaseReport.Components
+  commentId: F:Reportman.Reporting.BaseReport.Components
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_Components
+  name: Components
+  nameWithType: BaseReport.Components
+  fullName: Reportman.Reporting.BaseReport.Components
+- uid: Reportman.Reporting.BaseReport.EmbeddedFiles
+  commentId: F:Reportman.Reporting.BaseReport.EmbeddedFiles
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_EmbeddedFiles
+  name: EmbeddedFiles
+  nameWithType: BaseReport.EmbeddedFiles
+  fullName: Reportman.Reporting.BaseReport.EmbeddedFiles
+- uid: Reportman.Reporting.BaseReport.PDFConformance
+  commentId: F:Reportman.Reporting.BaseReport.PDFConformance
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_PDFConformance
+  name: PDFConformance
+  nameWithType: BaseReport.PDFConformance
+  fullName: Reportman.Reporting.BaseReport.PDFConformance
+- uid: Reportman.Reporting.BaseReport.PDFCompressed
+  commentId: F:Reportman.Reporting.BaseReport.PDFCompressed
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_PDFCompressed
+  name: PDFCompressed
+  nameWithType: BaseReport.PDFCompressed
+  fullName: Reportman.Reporting.BaseReport.PDFCompressed
+- uid: Reportman.Reporting.BaseReport.Evaluator
+  commentId: F:Reportman.Reporting.BaseReport.Evaluator
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_Evaluator
+  name: Evaluator
+  nameWithType: BaseReport.Evaluator
+  fullName: Reportman.Reporting.BaseReport.Evaluator
+- uid: Reportman.Reporting.BaseReport.CurrentOrientation
+  commentId: F:Reportman.Reporting.BaseReport.CurrentOrientation
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_CurrentOrientation
+  name: CurrentOrientation
+  nameWithType: BaseReport.CurrentOrientation
+  fullName: Reportman.Reporting.BaseReport.CurrentOrientation
+- uid: Reportman.Reporting.BaseReport.UpdatePageSize
+  commentId: F:Reportman.Reporting.BaseReport.UpdatePageSize
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_UpdatePageSize
+  name: UpdatePageSize
+  nameWithType: BaseReport.UpdatePageSize
+  fullName: Reportman.Reporting.BaseReport.UpdatePageSize
+- uid: Reportman.Reporting.BaseReport.UsedDataReaders
+  commentId: F:Reportman.Reporting.BaseReport.UsedDataReaders
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_UsedDataReaders
+  name: UsedDataReaders
+  nameWithType: BaseReport.UsedDataReaders
+  fullName: Reportman.Reporting.BaseReport.UsedDataReaders
+- uid: Reportman.Reporting.BaseReport.CheckProgress(System.Boolean)
+  commentId: M:Reportman.Reporting.BaseReport.CheckProgress(System.Boolean)
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_CheckProgress_System_Boolean_
+  name: CheckProgress(bool)
+  nameWithType: BaseReport.CheckProgress(bool)
+  fullName: Reportman.Reporting.BaseReport.CheckProgress(bool)
+  nameWithType.vb: BaseReport.CheckProgress(Boolean)
+  fullName.vb: Reportman.Reporting.BaseReport.CheckProgress(Boolean)
+  name.vb: CheckProgress(Boolean)
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.CheckProgress(System.Boolean)
+    name: CheckProgress
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_CheckProgress_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.CheckProgress(System.Boolean)
+    name: CheckProgress
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_CheckProgress_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Reportman.Reporting.BaseReport.AddComponent(Reportman.Reporting.ReportItem)
+  commentId: M:Reportman.Reporting.BaseReport.AddComponent(Reportman.Reporting.ReportItem)
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_AddComponent_Reportman_Reporting_ReportItem_
+  name: AddComponent(ReportItem)
+  nameWithType: BaseReport.AddComponent(ReportItem)
+  fullName: Reportman.Reporting.BaseReport.AddComponent(Reportman.Reporting.ReportItem)
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.AddComponent(Reportman.Reporting.ReportItem)
+    name: AddComponent
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_AddComponent_Reportman_Reporting_ReportItem_
+  - name: (
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.AddComponent(Reportman.Reporting.ReportItem)
+    name: AddComponent
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_AddComponent_Reportman_Reporting_ReportItem_
+  - name: (
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: )
+- uid: Reportman.Reporting.BaseReport.AlignSectionsTo(System.Int32)
+  commentId: M:Reportman.Reporting.BaseReport.AlignSectionsTo(System.Int32)
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_AlignSectionsTo_System_Int32_
+  name: AlignSectionsTo(int)
+  nameWithType: BaseReport.AlignSectionsTo(int)
+  fullName: Reportman.Reporting.BaseReport.AlignSectionsTo(int)
+  nameWithType.vb: BaseReport.AlignSectionsTo(Integer)
+  fullName.vb: Reportman.Reporting.BaseReport.AlignSectionsTo(Integer)
+  name.vb: AlignSectionsTo(Integer)
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.AlignSectionsTo(System.Int32)
+    name: AlignSectionsTo
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_AlignSectionsTo_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.AlignSectionsTo(System.Int32)
+    name: AlignSectionsTo
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_AlignSectionsTo_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Reportman.Reporting.BaseReport.RemoveComponent(Reportman.Reporting.ReportItem)
+  commentId: M:Reportman.Reporting.BaseReport.RemoveComponent(Reportman.Reporting.ReportItem)
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_RemoveComponent_Reportman_Reporting_ReportItem_
+  name: RemoveComponent(ReportItem)
+  nameWithType: BaseReport.RemoveComponent(ReportItem)
+  fullName: Reportman.Reporting.BaseReport.RemoveComponent(Reportman.Reporting.ReportItem)
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.RemoveComponent(Reportman.Reporting.ReportItem)
+    name: RemoveComponent
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_RemoveComponent_Reportman_Reporting_ReportItem_
+  - name: (
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.RemoveComponent(Reportman.Reporting.ReportItem)
+    name: RemoveComponent
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_RemoveComponent_Reportman_Reporting_ReportItem_
+  - name: (
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: )
+- uid: Reportman.Reporting.BaseReport.LoadFromCommand(System.Data.IDbCommand)
+  commentId: M:Reportman.Reporting.BaseReport.LoadFromCommand(System.Data.IDbCommand)
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_LoadFromCommand_System_Data_IDbCommand_
+  name: LoadFromCommand(IDbCommand)
+  nameWithType: BaseReport.LoadFromCommand(IDbCommand)
+  fullName: Reportman.Reporting.BaseReport.LoadFromCommand(System.Data.IDbCommand)
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.LoadFromCommand(System.Data.IDbCommand)
+    name: LoadFromCommand
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_LoadFromCommand_System_Data_IDbCommand_
+  - name: (
+  - uid: System.Data.IDbCommand
+    name: IDbCommand
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.idbcommand
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.LoadFromCommand(System.Data.IDbCommand)
+    name: LoadFromCommand
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_LoadFromCommand_System_Data_IDbCommand_
+  - name: (
+  - uid: System.Data.IDbCommand
+    name: IDbCommand
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.idbcommand
+  - name: )
+- uid: Reportman.Reporting.BaseReport.LoadFromDataReader(System.Data.IDataReader)
+  commentId: M:Reportman.Reporting.BaseReport.LoadFromDataReader(System.Data.IDataReader)
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_LoadFromDataReader_System_Data_IDataReader_
+  name: LoadFromDataReader(IDataReader)
+  nameWithType: BaseReport.LoadFromDataReader(IDataReader)
+  fullName: Reportman.Reporting.BaseReport.LoadFromDataReader(System.Data.IDataReader)
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.LoadFromDataReader(System.Data.IDataReader)
+    name: LoadFromDataReader
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_LoadFromDataReader_System_Data_IDataReader_
+  - name: (
+  - uid: System.Data.IDataReader
+    name: IDataReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.idatareader
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.LoadFromDataReader(System.Data.IDataReader)
+    name: LoadFromDataReader
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_LoadFromDataReader_System_Data_IDataReader_
+  - name: (
+  - uid: System.Data.IDataReader
+    name: IDataReader
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.idatareader
+  - name: )
+- uid: Reportman.Reporting.BaseReport.LoadFromStream(System.IO.Stream)
+  commentId: M:Reportman.Reporting.BaseReport.LoadFromStream(System.IO.Stream)
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_LoadFromStream_System_IO_Stream_
+  name: LoadFromStream(Stream)
+  nameWithType: BaseReport.LoadFromStream(Stream)
+  fullName: Reportman.Reporting.BaseReport.LoadFromStream(System.IO.Stream)
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.LoadFromStream(System.IO.Stream)
+    name: LoadFromStream
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_LoadFromStream_System_IO_Stream_
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.LoadFromStream(System.IO.Stream)
+    name: LoadFromStream
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_LoadFromStream_System_IO_Stream_
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+- uid: Reportman.Reporting.BaseReport.ConvertToDotNet
+  commentId: M:Reportman.Reporting.BaseReport.ConvertToDotNet
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_ConvertToDotNet
+  name: ConvertToDotNet()
+  nameWithType: BaseReport.ConvertToDotNet()
+  fullName: Reportman.Reporting.BaseReport.ConvertToDotNet()
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.ConvertToDotNet
+    name: ConvertToDotNet
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_ConvertToDotNet
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.ConvertToDotNet
+    name: ConvertToDotNet
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_ConvertToDotNet
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.BaseReport.LoadFromStream(System.IO.Stream,System.Int32)
+  commentId: M:Reportman.Reporting.BaseReport.LoadFromStream(System.IO.Stream,System.Int32)
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_LoadFromStream_System_IO_Stream_System_Int32_
+  name: LoadFromStream(Stream, int)
+  nameWithType: BaseReport.LoadFromStream(Stream, int)
+  fullName: Reportman.Reporting.BaseReport.LoadFromStream(System.IO.Stream, int)
+  nameWithType.vb: BaseReport.LoadFromStream(Stream, Integer)
+  fullName.vb: Reportman.Reporting.BaseReport.LoadFromStream(System.IO.Stream, Integer)
+  name.vb: LoadFromStream(Stream, Integer)
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.LoadFromStream(System.IO.Stream,System.Int32)
+    name: LoadFromStream
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_LoadFromStream_System_IO_Stream_System_Int32_
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.LoadFromStream(System.IO.Stream,System.Int32)
+    name: LoadFromStream
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_LoadFromStream_System_IO_Stream_System_Int32_
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Reportman.Reporting.BaseReport.LoadFromFile(System.String)
+  commentId: M:Reportman.Reporting.BaseReport.LoadFromFile(System.String)
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_LoadFromFile_System_String_
+  name: LoadFromFile(string)
+  nameWithType: BaseReport.LoadFromFile(string)
+  fullName: Reportman.Reporting.BaseReport.LoadFromFile(string)
+  nameWithType.vb: BaseReport.LoadFromFile(String)
+  fullName.vb: Reportman.Reporting.BaseReport.LoadFromFile(String)
+  name.vb: LoadFromFile(String)
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.LoadFromFile(System.String)
+    name: LoadFromFile
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_LoadFromFile_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.LoadFromFile(System.String)
+    name: LoadFromFile
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_LoadFromFile_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Reportman.Reporting.BaseReport.SaveToStream(System.IO.Stream,Reportman.Reporting.StreamVersion)
+  commentId: M:Reportman.Reporting.BaseReport.SaveToStream(System.IO.Stream,Reportman.Reporting.StreamVersion)
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_SaveToStream_System_IO_Stream_Reportman_Reporting_StreamVersion_
+  name: SaveToStream(Stream, StreamVersion)
+  nameWithType: BaseReport.SaveToStream(Stream, StreamVersion)
+  fullName: Reportman.Reporting.BaseReport.SaveToStream(System.IO.Stream, Reportman.Reporting.StreamVersion)
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.SaveToStream(System.IO.Stream,Reportman.Reporting.StreamVersion)
+    name: SaveToStream
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_SaveToStream_System_IO_Stream_Reportman_Reporting_StreamVersion_
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: Reportman.Reporting.StreamVersion
+    name: StreamVersion
+    isExternal: true
+    href: Reportman.Reporting.StreamVersion.html
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.SaveToStream(System.IO.Stream,Reportman.Reporting.StreamVersion)
+    name: SaveToStream
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_SaveToStream_System_IO_Stream_Reportman_Reporting_StreamVersion_
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: Reportman.Reporting.StreamVersion
+    name: StreamVersion
+    isExternal: true
+    href: Reportman.Reporting.StreamVersion.html
+  - name: )
+- uid: Reportman.Reporting.BaseReport.SaveToFile(System.String,Reportman.Reporting.StreamVersion)
+  commentId: M:Reportman.Reporting.BaseReport.SaveToFile(System.String,Reportman.Reporting.StreamVersion)
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_SaveToFile_System_String_Reportman_Reporting_StreamVersion_
+  name: SaveToFile(string, StreamVersion)
+  nameWithType: BaseReport.SaveToFile(string, StreamVersion)
+  fullName: Reportman.Reporting.BaseReport.SaveToFile(string, Reportman.Reporting.StreamVersion)
+  nameWithType.vb: BaseReport.SaveToFile(String, StreamVersion)
+  fullName.vb: Reportman.Reporting.BaseReport.SaveToFile(String, Reportman.Reporting.StreamVersion)
+  name.vb: SaveToFile(String, StreamVersion)
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.SaveToFile(System.String,Reportman.Reporting.StreamVersion)
+    name: SaveToFile
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_SaveToFile_System_String_Reportman_Reporting_StreamVersion_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: Reportman.Reporting.StreamVersion
+    name: StreamVersion
+    isExternal: true
+    href: Reportman.Reporting.StreamVersion.html
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.SaveToFile(System.String,Reportman.Reporting.StreamVersion)
+    name: SaveToFile
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_SaveToFile_System_String_Reportman_Reporting_StreamVersion_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: Reportman.Reporting.StreamVersion
+    name: StreamVersion
+    isExternal: true
+    href: Reportman.Reporting.StreamVersion.html
+  - name: )
+- uid: Reportman.Reporting.BaseReport.AddTotalPagesItem(System.Int32,System.Int32,System.String)
+  commentId: M:Reportman.Reporting.BaseReport.AddTotalPagesItem(System.Int32,System.Int32,System.String)
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_AddTotalPagesItem_System_Int32_System_Int32_System_String_
+  name: AddTotalPagesItem(int, int, string)
+  nameWithType: BaseReport.AddTotalPagesItem(int, int, string)
+  fullName: Reportman.Reporting.BaseReport.AddTotalPagesItem(int, int, string)
+  nameWithType.vb: BaseReport.AddTotalPagesItem(Integer, Integer, String)
+  fullName.vb: Reportman.Reporting.BaseReport.AddTotalPagesItem(Integer, Integer, String)
+  name.vb: AddTotalPagesItem(Integer, Integer, String)
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.AddTotalPagesItem(System.Int32,System.Int32,System.String)
+    name: AddTotalPagesItem
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_AddTotalPagesItem_System_Int32_System_Int32_System_String_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.AddTotalPagesItem(System.Int32,System.Int32,System.String)
+    name: AddTotalPagesItem
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_AddTotalPagesItem_System_Int32_System_Int32_System_String_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Reportman.Reporting.BaseReport.RequestPage(System.Int32)
+  commentId: M:Reportman.Reporting.BaseReport.RequestPage(System.Int32)
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_RequestPage_System_Int32_
+  name: RequestPage(int)
+  nameWithType: BaseReport.RequestPage(int)
+  fullName: Reportman.Reporting.BaseReport.RequestPage(int)
+  nameWithType.vb: BaseReport.RequestPage(Integer)
+  fullName.vb: Reportman.Reporting.BaseReport.RequestPage(Integer)
+  name.vb: RequestPage(Integer)
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.RequestPage(System.Int32)
+    name: RequestPage
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_RequestPage_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.RequestPage(System.Int32)
+    name: RequestPage
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_RequestPage_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Reportman.Reporting.BaseReport.FillGlobalHeaders
+  commentId: M:Reportman.Reporting.BaseReport.FillGlobalHeaders
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_FillGlobalHeaders
+  name: FillGlobalHeaders()
+  nameWithType: BaseReport.FillGlobalHeaders()
+  fullName: Reportman.Reporting.BaseReport.FillGlobalHeaders()
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.FillGlobalHeaders
+    name: FillGlobalHeaders
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_FillGlobalHeaders
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.FillGlobalHeaders
+    name: FillGlobalHeaders
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_FillGlobalHeaders
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.BaseReport.EndPrint
+  commentId: M:Reportman.Reporting.BaseReport.EndPrint
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_EndPrint
+  name: EndPrint()
+  nameWithType: BaseReport.EndPrint()
+  fullName: Reportman.Reporting.BaseReport.EndPrint()
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.EndPrint
+    name: EndPrint
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_EndPrint
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.EndPrint
+    name: EndPrint
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_EndPrint
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.BaseReport.InitEvaluator
+  commentId: M:Reportman.Reporting.BaseReport.InitEvaluator
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_InitEvaluator
+  name: InitEvaluator()
+  nameWithType: BaseReport.InitEvaluator()
+  fullName: Reportman.Reporting.BaseReport.InitEvaluator()
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.InitEvaluator
+    name: InitEvaluator
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_InitEvaluator
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.InitEvaluator
+    name: InitEvaluator
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_InitEvaluator
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.BaseReport.InitializeParams
+  commentId: M:Reportman.Reporting.BaseReport.InitializeParams
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_InitializeParams
+  name: InitializeParams()
+  nameWithType: BaseReport.InitializeParams()
+  fullName: Reportman.Reporting.BaseReport.InitializeParams()
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.InitializeParams
+    name: InitializeParams
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_InitializeParams
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.InitializeParams
+    name: InitializeParams
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_InitializeParams
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.BaseReport.PrintAll(Reportman.Drawing.PrintOut)
+  commentId: M:Reportman.Reporting.BaseReport.PrintAll(Reportman.Drawing.PrintOut)
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_PrintAll_Reportman_Drawing_PrintOut_
+  name: PrintAll(PrintOut)
+  nameWithType: BaseReport.PrintAll(PrintOut)
+  fullName: Reportman.Reporting.BaseReport.PrintAll(Reportman.Drawing.PrintOut)
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.PrintAll(Reportman.Drawing.PrintOut)
+    name: PrintAll
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_PrintAll_Reportman_Drawing_PrintOut_
+  - name: (
+  - uid: Reportman.Drawing.PrintOut
+    name: PrintOut
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.PrintAll(Reportman.Drawing.PrintOut)
+    name: PrintAll
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_PrintAll_Reportman_Drawing_PrintOut_
+  - name: (
+  - uid: Reportman.Drawing.PrintOut
+    name: PrintOut
+    isExternal: true
+  - name: )
+- uid: Reportman.Reporting.BaseReport.UpdateParamsBeforeOpen(System.Int32,System.Boolean)
+  commentId: M:Reportman.Reporting.BaseReport.UpdateParamsBeforeOpen(System.Int32,System.Boolean)
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_UpdateParamsBeforeOpen_System_Int32_System_Boolean_
+  name: UpdateParamsBeforeOpen(int, bool)
+  nameWithType: BaseReport.UpdateParamsBeforeOpen(int, bool)
+  fullName: Reportman.Reporting.BaseReport.UpdateParamsBeforeOpen(int, bool)
+  nameWithType.vb: BaseReport.UpdateParamsBeforeOpen(Integer, Boolean)
+  fullName.vb: Reportman.Reporting.BaseReport.UpdateParamsBeforeOpen(Integer, Boolean)
+  name.vb: UpdateParamsBeforeOpen(Integer, Boolean)
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.UpdateParamsBeforeOpen(System.Int32,System.Boolean)
+    name: UpdateParamsBeforeOpen
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_UpdateParamsBeforeOpen_System_Int32_System_Boolean_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.UpdateParamsBeforeOpen(System.Int32,System.Boolean)
+    name: UpdateParamsBeforeOpen
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_UpdateParamsBeforeOpen_System_Int32_System_Boolean_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Reportman.Reporting.BaseReport.UpdateParamsAfterOpen(System.Int32,System.Boolean)
+  commentId: M:Reportman.Reporting.BaseReport.UpdateParamsAfterOpen(System.Int32,System.Boolean)
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_UpdateParamsAfterOpen_System_Int32_System_Boolean_
+  name: UpdateParamsAfterOpen(int, bool)
+  nameWithType: BaseReport.UpdateParamsAfterOpen(int, bool)
+  fullName: Reportman.Reporting.BaseReport.UpdateParamsAfterOpen(int, bool)
+  nameWithType.vb: BaseReport.UpdateParamsAfterOpen(Integer, Boolean)
+  fullName.vb: Reportman.Reporting.BaseReport.UpdateParamsAfterOpen(Integer, Boolean)
+  name.vb: UpdateParamsAfterOpen(Integer, Boolean)
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.UpdateParamsAfterOpen(System.Int32,System.Boolean)
+    name: UpdateParamsAfterOpen
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_UpdateParamsAfterOpen_System_Int32_System_Boolean_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.UpdateParamsAfterOpen(System.Int32,System.Boolean)
+    name: UpdateParamsAfterOpen
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_UpdateParamsAfterOpen_System_Int32_System_Boolean_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Reportman.Reporting.BaseReport.PrepareParamsBeforeOpen
+  commentId: M:Reportman.Reporting.BaseReport.PrepareParamsBeforeOpen
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_PrepareParamsBeforeOpen
+  name: PrepareParamsBeforeOpen()
+  nameWithType: BaseReport.PrepareParamsBeforeOpen()
+  fullName: Reportman.Reporting.BaseReport.PrepareParamsBeforeOpen()
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.PrepareParamsBeforeOpen
+    name: PrepareParamsBeforeOpen
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_PrepareParamsBeforeOpen
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.PrepareParamsBeforeOpen
+    name: PrepareParamsBeforeOpen
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_PrepareParamsBeforeOpen
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.BaseReport.PrepareParamsAfterOpen
+  commentId: M:Reportman.Reporting.BaseReport.PrepareParamsAfterOpen
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_PrepareParamsAfterOpen
+  name: PrepareParamsAfterOpen()
+  nameWithType: BaseReport.PrepareParamsAfterOpen()
+  fullName: Reportman.Reporting.BaseReport.PrepareParamsAfterOpen()
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.PrepareParamsAfterOpen
+    name: PrepareParamsAfterOpen
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_PrepareParamsAfterOpen
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.PrepareParamsAfterOpen
+    name: PrepareParamsAfterOpen
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_PrepareParamsAfterOpen
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.BaseReport.CheckIfDataAvailable
+  commentId: M:Reportman.Reporting.BaseReport.CheckIfDataAvailable
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_CheckIfDataAvailable
+  name: CheckIfDataAvailable()
+  nameWithType: BaseReport.CheckIfDataAvailable()
+  fullName: Reportman.Reporting.BaseReport.CheckIfDataAvailable()
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.CheckIfDataAvailable
+    name: CheckIfDataAvailable
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_CheckIfDataAvailable
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.CheckIfDataAvailable
+    name: CheckIfDataAvailable
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_CheckIfDataAvailable
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.BaseReport.DeActivateDatasets
+  commentId: M:Reportman.Reporting.BaseReport.DeActivateDatasets
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_DeActivateDatasets
+  name: DeActivateDatasets()
+  nameWithType: BaseReport.DeActivateDatasets()
+  fullName: Reportman.Reporting.BaseReport.DeActivateDatasets()
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.DeActivateDatasets
+    name: DeActivateDatasets
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_DeActivateDatasets
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.DeActivateDatasets
+    name: DeActivateDatasets
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_DeActivateDatasets
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.BaseReport.SubreportMustBeExecuted(Reportman.Reporting.SubReport)
+  commentId: M:Reportman.Reporting.BaseReport.SubreportMustBeExecuted(Reportman.Reporting.SubReport)
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_SubreportMustBeExecuted_Reportman_Reporting_SubReport_
+  name: SubreportMustBeExecuted(SubReport)
+  nameWithType: BaseReport.SubreportMustBeExecuted(SubReport)
+  fullName: Reportman.Reporting.BaseReport.SubreportMustBeExecuted(Reportman.Reporting.SubReport)
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.SubreportMustBeExecuted(Reportman.Reporting.SubReport)
+    name: SubreportMustBeExecuted
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_SubreportMustBeExecuted_Reportman_Reporting_SubReport_
+  - name: (
+  - uid: Reportman.Reporting.SubReport
+    name: SubReport
+    isExternal: true
+    href: Reportman.Reporting.SubReport.html
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.SubreportMustBeExecuted(Reportman.Reporting.SubReport)
+    name: SubreportMustBeExecuted
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_SubreportMustBeExecuted_Reportman_Reporting_SubReport_
+  - name: (
+  - uid: Reportman.Reporting.SubReport
+    name: SubReport
+    isExternal: true
+    href: Reportman.Reporting.SubReport.html
+  - name: )
+- uid: Reportman.Reporting.BaseReport.ActivateDatasets
+  commentId: M:Reportman.Reporting.BaseReport.ActivateDatasets
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_ActivateDatasets
+  name: ActivateDatasets()
+  nameWithType: BaseReport.ActivateDatasets()
+  fullName: Reportman.Reporting.BaseReport.ActivateDatasets()
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.ActivateDatasets
+    name: ActivateDatasets
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_ActivateDatasets
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.ActivateDatasets
+    name: ActivateDatasets
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_ActivateDatasets
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.BaseReport.CreateNew
+  commentId: M:Reportman.Reporting.BaseReport.CreateNew
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_CreateNew
+  name: CreateNew()
+  nameWithType: BaseReport.CreateNew()
+  fullName: Reportman.Reporting.BaseReport.CreateNew()
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.CreateNew
+    name: CreateNew
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_CreateNew
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.CreateNew
+    name: CreateNew
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_CreateNew
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.BaseReport.AddSubReport
+  commentId: M:Reportman.Reporting.BaseReport.AddSubReport
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_AddSubReport
+  name: AddSubReport()
+  nameWithType: BaseReport.AddSubReport()
+  fullName: Reportman.Reporting.BaseReport.AddSubReport()
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.AddSubReport
+    name: AddSubReport
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_AddSubReport
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.AddSubReport
+    name: AddSubReport
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_AddSubReport
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.BaseReport.DeleteSubReport(Reportman.Reporting.SubReport)
+  commentId: M:Reportman.Reporting.BaseReport.DeleteSubReport(Reportman.Reporting.SubReport)
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_DeleteSubReport_Reportman_Reporting_SubReport_
+  name: DeleteSubReport(SubReport)
+  nameWithType: BaseReport.DeleteSubReport(SubReport)
+  fullName: Reportman.Reporting.BaseReport.DeleteSubReport(Reportman.Reporting.SubReport)
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.DeleteSubReport(Reportman.Reporting.SubReport)
+    name: DeleteSubReport
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_DeleteSubReport_Reportman_Reporting_SubReport_
+  - name: (
+  - uid: Reportman.Reporting.SubReport
+    name: SubReport
+    isExternal: true
+    href: Reportman.Reporting.SubReport.html
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.DeleteSubReport(Reportman.Reporting.SubReport)
+    name: DeleteSubReport
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_DeleteSubReport_Reportman_Reporting_SubReport_
+  - name: (
+  - uid: Reportman.Reporting.SubReport
+    name: SubReport
+    isExternal: true
+    href: Reportman.Reporting.SubReport.html
+  - name: )
+- uid: Reportman.Reporting.BaseReport.DoUpdatePageSize(Reportman.Drawing.MetaPage,Reportman.Drawing.PageSizeDetail)
+  commentId: M:Reportman.Reporting.BaseReport.DoUpdatePageSize(Reportman.Drawing.MetaPage,Reportman.Drawing.PageSizeDetail)
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_DoUpdatePageSize_Reportman_Drawing_MetaPage_Reportman_Drawing_PageSizeDetail_
+  name: DoUpdatePageSize(MetaPage, PageSizeDetail)
+  nameWithType: BaseReport.DoUpdatePageSize(MetaPage, PageSizeDetail)
+  fullName: Reportman.Reporting.BaseReport.DoUpdatePageSize(Reportman.Drawing.MetaPage, Reportman.Drawing.PageSizeDetail)
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.DoUpdatePageSize(Reportman.Drawing.MetaPage,Reportman.Drawing.PageSizeDetail)
+    name: DoUpdatePageSize
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_DoUpdatePageSize_Reportman_Drawing_MetaPage_Reportman_Drawing_PageSizeDetail_
+  - name: (
+  - uid: Reportman.Drawing.MetaPage
+    name: MetaPage
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.PageSizeDetail
+    name: PageSizeDetail
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.DoUpdatePageSize(Reportman.Drawing.MetaPage,Reportman.Drawing.PageSizeDetail)
+    name: DoUpdatePageSize
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_DoUpdatePageSize_Reportman_Drawing_MetaPage_Reportman_Drawing_PageSizeDetail_
+  - name: (
+  - uid: Reportman.Drawing.MetaPage
+    name: MetaPage
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.PageSizeDetail
+    name: PageSizeDetail
+    isExternal: true
+  - name: )
+- uid: Reportman.Reporting.BaseReport.AddReportItemsToEvaluator(Reportman.Reporting.Evaluator)
+  commentId: M:Reportman.Reporting.BaseReport.AddReportItemsToEvaluator(Reportman.Reporting.Evaluator)
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_AddReportItemsToEvaluator_Reportman_Reporting_Evaluator_
+  name: AddReportItemsToEvaluator(Evaluator)
+  nameWithType: BaseReport.AddReportItemsToEvaluator(Evaluator)
+  fullName: Reportman.Reporting.BaseReport.AddReportItemsToEvaluator(Reportman.Reporting.Evaluator)
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.AddReportItemsToEvaluator(Reportman.Reporting.Evaluator)
+    name: AddReportItemsToEvaluator
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_AddReportItemsToEvaluator_Reportman_Reporting_Evaluator_
+  - name: (
+  - uid: Reportman.Reporting.Evaluator
+    name: Evaluator
+    isExternal: true
+    href: Reportman.Reporting.Evaluator.html
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.AddReportItemsToEvaluator(Reportman.Reporting.Evaluator)
+    name: AddReportItemsToEvaluator
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_AddReportItemsToEvaluator_Reportman_Reporting_Evaluator_
+  - name: (
+  - uid: Reportman.Reporting.Evaluator
+    name: Evaluator
+    isExternal: true
+    href: Reportman.Reporting.Evaluator.html
+  - name: )
+- uid: Reportman.Reporting.BaseReport.CheckParameters
+  commentId: M:Reportman.Reporting.BaseReport.CheckParameters
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_CheckParameters
+  name: CheckParameters()
+  nameWithType: BaseReport.CheckParameters()
+  fullName: Reportman.Reporting.BaseReport.CheckParameters()
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.CheckParameters
+    name: CheckParameters
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_CheckParameters
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.CheckParameters
+    name: CheckParameters
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_CheckParameters
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.BaseReport.GenerateNewName(Reportman.Reporting.ReportItem)
+  commentId: M:Reportman.Reporting.BaseReport.GenerateNewName(Reportman.Reporting.ReportItem)
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_GenerateNewName_Reportman_Reporting_ReportItem_
+  name: GenerateNewName(ReportItem)
+  nameWithType: BaseReport.GenerateNewName(ReportItem)
+  fullName: Reportman.Reporting.BaseReport.GenerateNewName(Reportman.Reporting.ReportItem)
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.GenerateNewName(Reportman.Reporting.ReportItem)
+    name: GenerateNewName
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_GenerateNewName_Reportman_Reporting_ReportItem_
+  - name: (
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.GenerateNewName(Reportman.Reporting.ReportItem)
+    name: GenerateNewName
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_GenerateNewName_Reportman_Reporting_ReportItem_
+  - name: (
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: )
+- uid: Reportman.Reporting.BaseReport.FindNewName(Reportman.Reporting.ReportItem)
+  commentId: M:Reportman.Reporting.BaseReport.FindNewName(Reportman.Reporting.ReportItem)
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_FindNewName_Reportman_Reporting_ReportItem_
+  name: FindNewName(ReportItem)
+  nameWithType: BaseReport.FindNewName(ReportItem)
+  fullName: Reportman.Reporting.BaseReport.FindNewName(Reportman.Reporting.ReportItem)
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.FindNewName(Reportman.Reporting.ReportItem)
+    name: FindNewName
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_FindNewName_Reportman_Reporting_ReportItem_
+  - name: (
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.FindNewName(Reportman.Reporting.ReportItem)
+    name: FindNewName
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_FindNewName_Reportman_Reporting_ReportItem_
+  - name: (
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: )
+- uid: Reportman.Reporting.BaseReport.GetReportVariables
+  commentId: M:Reportman.Reporting.BaseReport.GetReportVariables
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_GetReportVariables
+  name: GetReportVariables()
+  nameWithType: BaseReport.GetReportVariables()
+  fullName: Reportman.Reporting.BaseReport.GetReportVariables()
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.GetReportVariables
+    name: GetReportVariables
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_GetReportVariables
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.GetReportVariables
+    name: GetReportVariables
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_GetReportVariables
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.BaseReport.Dispose
+  commentId: M:Reportman.Reporting.BaseReport.Dispose
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_Dispose
+  name: Dispose()
+  nameWithType: BaseReport.Dispose()
+  fullName: Reportman.Reporting.BaseReport.Dispose()
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.Dispose
+    name: Dispose
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_Dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.Dispose
+    name: Dispose
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_Dispose
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.BaseReport.NewComponentByClassName(System.String)
+  commentId: M:Reportman.Reporting.BaseReport.NewComponentByClassName(System.String)
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_NewComponentByClassName_System_String_
+  name: NewComponentByClassName(string)
+  nameWithType: BaseReport.NewComponentByClassName(string)
+  fullName: Reportman.Reporting.BaseReport.NewComponentByClassName(string)
+  nameWithType.vb: BaseReport.NewComponentByClassName(String)
+  fullName.vb: Reportman.Reporting.BaseReport.NewComponentByClassName(String)
+  name.vb: NewComponentByClassName(String)
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.NewComponentByClassName(System.String)
+    name: NewComponentByClassName
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_NewComponentByClassName_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.NewComponentByClassName(System.String)
+    name: NewComponentByClassName
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_NewComponentByClassName_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Reportman.Reporting.BaseReport.DeleteItem(Reportman.Reporting.ReportItem,System.Int32)
+  commentId: M:Reportman.Reporting.BaseReport.DeleteItem(Reportman.Reporting.ReportItem,System.Int32)
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_DeleteItem_Reportman_Reporting_ReportItem_System_Int32_
+  name: DeleteItem(ReportItem, int)
+  nameWithType: BaseReport.DeleteItem(ReportItem, int)
+  fullName: Reportman.Reporting.BaseReport.DeleteItem(Reportman.Reporting.ReportItem, int)
+  nameWithType.vb: BaseReport.DeleteItem(ReportItem, Integer)
+  fullName.vb: Reportman.Reporting.BaseReport.DeleteItem(Reportman.Reporting.ReportItem, Integer)
+  name.vb: DeleteItem(ReportItem, Integer)
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.DeleteItem(Reportman.Reporting.ReportItem,System.Int32)
+    name: DeleteItem
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_DeleteItem_Reportman_Reporting_ReportItem_System_Int32_
+  - name: (
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.DeleteItem(Reportman.Reporting.ReportItem,System.Int32)
+    name: DeleteItem
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_DeleteItem_Reportman_Reporting_ReportItem_System_Int32_
+  - name: (
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Reportman.Reporting.BaseReport.GetParentSection(Reportman.Reporting.PrintPosItem)
+  commentId: M:Reportman.Reporting.BaseReport.GetParentSection(Reportman.Reporting.PrintPosItem)
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_GetParentSection_Reportman_Reporting_PrintPosItem_
+  name: GetParentSection(PrintPosItem)
+  nameWithType: BaseReport.GetParentSection(PrintPosItem)
+  fullName: Reportman.Reporting.BaseReport.GetParentSection(Reportman.Reporting.PrintPosItem)
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.GetParentSection(Reportman.Reporting.PrintPosItem)
+    name: GetParentSection
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_GetParentSection_Reportman_Reporting_PrintPosItem_
+  - name: (
+  - uid: Reportman.Reporting.PrintPosItem
+    name: PrintPosItem
+    isExternal: true
+    href: Reportman.Reporting.PrintPosItem.html
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.GetParentSection(Reportman.Reporting.PrintPosItem)
+    name: GetParentSection
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_GetParentSection_Reportman_Reporting_PrintPosItem_
+  - name: (
+  - uid: Reportman.Reporting.PrintPosItem
+    name: PrintPosItem
+    isExternal: true
+    href: Reportman.Reporting.PrintPosItem.html
+  - name: )
+- uid: Reportman.Reporting.BaseReport.GetParentSubReport(Reportman.Reporting.Section)
+  commentId: M:Reportman.Reporting.BaseReport.GetParentSubReport(Reportman.Reporting.Section)
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_GetParentSubReport_Reportman_Reporting_Section_
+  name: GetParentSubReport(Section)
+  nameWithType: BaseReport.GetParentSubReport(Section)
+  fullName: Reportman.Reporting.BaseReport.GetParentSubReport(Reportman.Reporting.Section)
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.GetParentSubReport(Reportman.Reporting.Section)
+    name: GetParentSubReport
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_GetParentSubReport_Reportman_Reporting_Section_
+  - name: (
+  - uid: Reportman.Reporting.Section
+    name: Section
+    isExternal: true
+    href: Reportman.Reporting.Section.html
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.GetParentSubReport(Reportman.Reporting.Section)
+    name: GetParentSubReport
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_GetParentSubReport_Reportman_Reporting_Section_
+  - name: (
+  - uid: Reportman.Reporting.Section
+    name: Section
+    isExternal: true
+    href: Reportman.Reporting.Section.html
+  - name: )
+- uid: Reportman.Reporting.BaseReport.DeleteComponentPrintPosItem(Reportman.Reporting.Section,Reportman.Reporting.PrintPosItem,System.Int32,System.Int32)
+  commentId: M:Reportman.Reporting.BaseReport.DeleteComponentPrintPosItem(Reportman.Reporting.Section,Reportman.Reporting.PrintPosItem,System.Int32,System.Int32)
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_DeleteComponentPrintPosItem_Reportman_Reporting_Section_Reportman_Reporting_PrintPosItem_System_Int32_System_Int32_
+  name: DeleteComponentPrintPosItem(Section, PrintPosItem, int, int)
+  nameWithType: BaseReport.DeleteComponentPrintPosItem(Section, PrintPosItem, int, int)
+  fullName: Reportman.Reporting.BaseReport.DeleteComponentPrintPosItem(Reportman.Reporting.Section, Reportman.Reporting.PrintPosItem, int, int)
+  nameWithType.vb: BaseReport.DeleteComponentPrintPosItem(Section, PrintPosItem, Integer, Integer)
+  fullName.vb: Reportman.Reporting.BaseReport.DeleteComponentPrintPosItem(Reportman.Reporting.Section, Reportman.Reporting.PrintPosItem, Integer, Integer)
+  name.vb: DeleteComponentPrintPosItem(Section, PrintPosItem, Integer, Integer)
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.DeleteComponentPrintPosItem(Reportman.Reporting.Section,Reportman.Reporting.PrintPosItem,System.Int32,System.Int32)
+    name: DeleteComponentPrintPosItem
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_DeleteComponentPrintPosItem_Reportman_Reporting_Section_Reportman_Reporting_PrintPosItem_System_Int32_System_Int32_
+  - name: (
+  - uid: Reportman.Reporting.Section
+    name: Section
+    isExternal: true
+    href: Reportman.Reporting.Section.html
+  - name: ','
+  - name: " "
+  - uid: Reportman.Reporting.PrintPosItem
+    name: PrintPosItem
+    isExternal: true
+    href: Reportman.Reporting.PrintPosItem.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.DeleteComponentPrintPosItem(Reportman.Reporting.Section,Reportman.Reporting.PrintPosItem,System.Int32,System.Int32)
+    name: DeleteComponentPrintPosItem
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_DeleteComponentPrintPosItem_Reportman_Reporting_Section_Reportman_Reporting_PrintPosItem_System_Int32_System_Int32_
+  - name: (
+  - uid: Reportman.Reporting.Section
+    name: Section
+    isExternal: true
+    href: Reportman.Reporting.Section.html
+  - name: ','
+  - name: " "
+  - uid: Reportman.Reporting.PrintPosItem
+    name: PrintPosItem
+    isExternal: true
+    href: Reportman.Reporting.PrintPosItem.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Reportman.Reporting.BaseReport.DeleteComponents(Reportman.Reporting.Section,System.Int32)
+  commentId: M:Reportman.Reporting.BaseReport.DeleteComponents(Reportman.Reporting.Section,System.Int32)
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_DeleteComponents_Reportman_Reporting_Section_System_Int32_
+  name: DeleteComponents(Section, int)
+  nameWithType: BaseReport.DeleteComponents(Section, int)
+  fullName: Reportman.Reporting.BaseReport.DeleteComponents(Reportman.Reporting.Section, int)
+  nameWithType.vb: BaseReport.DeleteComponents(Section, Integer)
+  fullName.vb: Reportman.Reporting.BaseReport.DeleteComponents(Reportman.Reporting.Section, Integer)
+  name.vb: DeleteComponents(Section, Integer)
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.DeleteComponents(Reportman.Reporting.Section,System.Int32)
+    name: DeleteComponents
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_DeleteComponents_Reportman_Reporting_Section_System_Int32_
+  - name: (
+  - uid: Reportman.Reporting.Section
+    name: Section
+    isExternal: true
+    href: Reportman.Reporting.Section.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.DeleteComponents(Reportman.Reporting.Section,System.Int32)
+    name: DeleteComponents
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_DeleteComponents_Reportman_Reporting_Section_System_Int32_
+  - name: (
+  - uid: Reportman.Reporting.Section
+    name: Section
+    isExternal: true
+    href: Reportman.Reporting.Section.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Reportman.Reporting.BaseReport.DeleteComponent(Reportman.Reporting.ReportItem)
+  commentId: M:Reportman.Reporting.BaseReport.DeleteComponent(Reportman.Reporting.ReportItem)
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_DeleteComponent_Reportman_Reporting_ReportItem_
+  name: DeleteComponent(ReportItem)
+  nameWithType: BaseReport.DeleteComponent(ReportItem)
+  fullName: Reportman.Reporting.BaseReport.DeleteComponent(Reportman.Reporting.ReportItem)
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.DeleteComponent(Reportman.Reporting.ReportItem)
+    name: DeleteComponent
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_DeleteComponent_Reportman_Reporting_ReportItem_
+  - name: (
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.DeleteComponent(Reportman.Reporting.ReportItem)
+    name: DeleteComponent
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_DeleteComponent_Reportman_Reporting_ReportItem_
+  - name: (
+  - uid: Reportman.Reporting.ReportItem
+    name: ReportItem
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html
+  - name: )
+- uid: Reportman.Reporting.BaseReport.UpdateReferences
+  commentId: M:Reportman.Reporting.BaseReport.UpdateReferences
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_UpdateReferences
+  name: UpdateReferences()
+  nameWithType: BaseReport.UpdateReferences()
+  fullName: Reportman.Reporting.BaseReport.UpdateReferences()
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.UpdateReferences
+    name: UpdateReferences
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_UpdateReferences
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.UpdateReferences
+    name: UpdateReferences
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_UpdateReferences
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.BaseReport.MetaFile
+  commentId: P:Reportman.Reporting.BaseReport.MetaFile
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_MetaFile
+  name: MetaFile
+  nameWithType: BaseReport.MetaFile
+  fullName: Reportman.Reporting.BaseReport.MetaFile
+- uid: Reportman.Reporting.BaseReport.Compose
+  commentId: P:Reportman.Reporting.BaseReport.Compose
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_Compose
+  name: Compose
+  nameWithType: BaseReport.Compose
+  fullName: Reportman.Reporting.BaseReport.Compose
+- uid: Reportman.Reporting.BaseReport.RecordCount
+  commentId: P:Reportman.Reporting.BaseReport.RecordCount
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_RecordCount
+  name: RecordCount
+  nameWithType: BaseReport.RecordCount
+  fullName: Reportman.Reporting.BaseReport.RecordCount
+- uid: Reportman.Reporting.BaseReport.Driver
+  commentId: P:Reportman.Reporting.BaseReport.Driver
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_Driver
+  name: Driver
+  nameWithType: BaseReport.Driver
+  fullName: Reportman.Reporting.BaseReport.Driver
+- uid: Reportman.Reporting.BaseReport.Language
+  commentId: P:Reportman.Reporting.BaseReport.Language
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_Language
+  name: Language
+  nameWithType: BaseReport.Language
+  fullName: Reportman.Reporting.BaseReport.Language
+- uid: Reportman.Reporting.BaseReport.WFontName
+  commentId: P:Reportman.Reporting.BaseReport.WFontName
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_WFontName
+  name: WFontName
+  nameWithType: BaseReport.WFontName
+  fullName: Reportman.Reporting.BaseReport.WFontName
+- uid: Reportman.Reporting.BaseReport.LFontName
+  commentId: P:Reportman.Reporting.BaseReport.LFontName
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_LFontName
+  name: LFontName
+  nameWithType: BaseReport.LFontName
+  fullName: Reportman.Reporting.BaseReport.LFontName
+- uid: Reportman.Reporting.BaseReport.GridVisible
+  commentId: P:Reportman.Reporting.BaseReport.GridVisible
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_GridVisible
+  name: GridVisible
+  nameWithType: BaseReport.GridVisible
+  fullName: Reportman.Reporting.BaseReport.GridVisible
+- uid: Reportman.Reporting.BaseReport.GridLines
+  commentId: P:Reportman.Reporting.BaseReport.GridLines
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_GridLines
+  name: GridLines
+  nameWithType: BaseReport.GridLines
+  fullName: Reportman.Reporting.BaseReport.GridLines
+- uid: Reportman.Reporting.BaseReport.GridEnabled
+  commentId: P:Reportman.Reporting.BaseReport.GridEnabled
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_GridEnabled
+  name: GridEnabled
+  nameWithType: BaseReport.GridEnabled
+  fullName: Reportman.Reporting.BaseReport.GridEnabled
+- uid: Reportman.Reporting.BaseReport.GridColor
+  commentId: P:Reportman.Reporting.BaseReport.GridColor
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_GridColor
+  name: GridColor
+  nameWithType: BaseReport.GridColor
+  fullName: Reportman.Reporting.BaseReport.GridColor
+- uid: Reportman.Reporting.BaseReport.GridWidth
+  commentId: P:Reportman.Reporting.BaseReport.GridWidth
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_GridWidth
+  name: GridWidth
+  nameWithType: BaseReport.GridWidth
+  fullName: Reportman.Reporting.BaseReport.GridWidth
+- uid: Reportman.Reporting.BaseReport.GridHeight
+  commentId: P:Reportman.Reporting.BaseReport.GridHeight
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_GridHeight
+  name: GridHeight
+  nameWithType: BaseReport.GridHeight
+  fullName: Reportman.Reporting.BaseReport.GridHeight
+- uid: Reportman.Reporting.BaseReport.PageOrientation
+  commentId: P:Reportman.Reporting.BaseReport.PageOrientation
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_PageOrientation
+  name: PageOrientation
+  nameWithType: BaseReport.PageOrientation
+  fullName: Reportman.Reporting.BaseReport.PageOrientation
+- uid: Reportman.Reporting.BaseReport.PageSize
+  commentId: P:Reportman.Reporting.BaseReport.PageSize
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_PageSize
+  name: PageSize
+  nameWithType: BaseReport.PageSize
+  fullName: Reportman.Reporting.BaseReport.PageSize
+- uid: Reportman.Reporting.BaseReport.PageSizeIndex
+  commentId: P:Reportman.Reporting.BaseReport.PageSizeIndex
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_PageSizeIndex
+  name: PageSizeIndex
+  nameWithType: BaseReport.PageSizeIndex
+  fullName: Reportman.Reporting.BaseReport.PageSizeIndex
+- uid: Reportman.Reporting.BaseReport.PageHeight
+  commentId: P:Reportman.Reporting.BaseReport.PageHeight
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_PageHeight
+  name: PageHeight
+  nameWithType: BaseReport.PageHeight
+  fullName: Reportman.Reporting.BaseReport.PageHeight
+- uid: Reportman.Reporting.BaseReport.PageWidth
+  commentId: P:Reportman.Reporting.BaseReport.PageWidth
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_PageWidth
+  name: PageWidth
+  nameWithType: BaseReport.PageWidth
+  fullName: Reportman.Reporting.BaseReport.PageWidth
+- uid: Reportman.Reporting.BaseReport.CustomPageHeight
+  commentId: P:Reportman.Reporting.BaseReport.CustomPageHeight
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_CustomPageHeight
+  name: CustomPageHeight
+  nameWithType: BaseReport.CustomPageHeight
+  fullName: Reportman.Reporting.BaseReport.CustomPageHeight
+- uid: Reportman.Reporting.BaseReport.CustomPageWidth
+  commentId: P:Reportman.Reporting.BaseReport.CustomPageWidth
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_CustomPageWidth
+  name: CustomPageWidth
+  nameWithType: BaseReport.CustomPageWidth
+  fullName: Reportman.Reporting.BaseReport.CustomPageWidth
+- uid: Reportman.Reporting.BaseReport.PageBackColor
+  commentId: P:Reportman.Reporting.BaseReport.PageBackColor
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_PageBackColor
+  name: PageBackColor
+  nameWithType: BaseReport.PageBackColor
+  fullName: Reportman.Reporting.BaseReport.PageBackColor
+- uid: Reportman.Reporting.BaseReport.AutoScale
+  commentId: P:Reportman.Reporting.BaseReport.AutoScale
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_AutoScale
+  name: AutoScale
+  nameWithType: BaseReport.AutoScale
+  fullName: Reportman.Reporting.BaseReport.AutoScale
+- uid: Reportman.Reporting.BaseReport.PreviewWindow
+  commentId: P:Reportman.Reporting.BaseReport.PreviewWindow
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_PreviewWindow
+  name: PreviewWindow
+  nameWithType: BaseReport.PreviewWindow
+  fullName: Reportman.Reporting.BaseReport.PreviewWindow
+- uid: Reportman.Reporting.BaseReport.LeftMargin
+  commentId: P:Reportman.Reporting.BaseReport.LeftMargin
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_LeftMargin
+  name: LeftMargin
+  nameWithType: BaseReport.LeftMargin
+  fullName: Reportman.Reporting.BaseReport.LeftMargin
+- uid: Reportman.Reporting.BaseReport.TopMargin
+  commentId: P:Reportman.Reporting.BaseReport.TopMargin
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_TopMargin
+  name: TopMargin
+  nameWithType: BaseReport.TopMargin
+  fullName: Reportman.Reporting.BaseReport.TopMargin
+- uid: Reportman.Reporting.BaseReport.RightMargin
+  commentId: P:Reportman.Reporting.BaseReport.RightMargin
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_RightMargin
+  name: RightMargin
+  nameWithType: BaseReport.RightMargin
+  fullName: Reportman.Reporting.BaseReport.RightMargin
+- uid: Reportman.Reporting.BaseReport.BottomMargin
+  commentId: P:Reportman.Reporting.BaseReport.BottomMargin
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_BottomMargin
+  name: BottomMargin
+  nameWithType: BaseReport.BottomMargin
+  fullName: Reportman.Reporting.BaseReport.BottomMargin
+- uid: Reportman.Reporting.BaseReport.PrinterSelect
+  commentId: P:Reportman.Reporting.BaseReport.PrinterSelect
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_PrinterSelect
+  name: PrinterSelect
+  nameWithType: BaseReport.PrinterSelect
+  fullName: Reportman.Reporting.BaseReport.PrinterSelect
+- uid: Reportman.Reporting.BaseReport.SubReports
+  commentId: P:Reportman.Reporting.BaseReport.SubReports
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_SubReports
+  name: SubReports
+  nameWithType: BaseReport.SubReports
+  fullName: Reportman.Reporting.BaseReport.SubReports
+- uid: Reportman.Reporting.BaseReport.Params
+  commentId: P:Reportman.Reporting.BaseReport.Params
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_Params
+  name: Params
+  nameWithType: BaseReport.Params
+  fullName: Reportman.Reporting.BaseReport.Params
+- uid: Reportman.Reporting.BaseReport.DataInfo
+  commentId: P:Reportman.Reporting.BaseReport.DataInfo
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_DataInfo
+  name: DataInfo
+  nameWithType: BaseReport.DataInfo
+  fullName: Reportman.Reporting.BaseReport.DataInfo
+- uid: Reportman.Reporting.BaseReport.DatabaseInfo
+  commentId: P:Reportman.Reporting.BaseReport.DatabaseInfo
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_DatabaseInfo
+  name: DatabaseInfo
+  nameWithType: BaseReport.DatabaseInfo
+  fullName: Reportman.Reporting.BaseReport.DatabaseInfo
+- uid: Reportman.Reporting.BaseReport.Copies
+  commentId: P:Reportman.Reporting.BaseReport.Copies
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_Copies
+  name: Copies
+  nameWithType: BaseReport.Copies
+  fullName: Reportman.Reporting.BaseReport.Copies
+- uid: Reportman.Reporting.BaseReport.CollateCopies
+  commentId: P:Reportman.Reporting.BaseReport.CollateCopies
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_CollateCopies
+  name: CollateCopies
+  nameWithType: BaseReport.CollateCopies
+  fullName: Reportman.Reporting.BaseReport.CollateCopies
+- uid: Reportman.Reporting.BaseReport.TwoPass
+  commentId: P:Reportman.Reporting.BaseReport.TwoPass
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_TwoPass
+  name: TwoPass
+  nameWithType: BaseReport.TwoPass
+  fullName: Reportman.Reporting.BaseReport.TwoPass
+- uid: Reportman.Reporting.BaseReport.PrinterFonts
+  commentId: P:Reportman.Reporting.BaseReport.PrinterFonts
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_PrinterFonts
+  name: PrinterFonts
+  nameWithType: BaseReport.PrinterFonts
+  fullName: Reportman.Reporting.BaseReport.PrinterFonts
+- uid: Reportman.Reporting.BaseReport.PrintOnlyIfDataAvailable
+  commentId: P:Reportman.Reporting.BaseReport.PrintOnlyIfDataAvailable
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_PrintOnlyIfDataAvailable
+  name: PrintOnlyIfDataAvailable
+  nameWithType: BaseReport.PrintOnlyIfDataAvailable
+  fullName: Reportman.Reporting.BaseReport.PrintOnlyIfDataAvailable
+- uid: Reportman.Reporting.BaseReport.StreamFormat
+  commentId: P:Reportman.Reporting.BaseReport.StreamFormat
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_StreamFormat
+  name: StreamFormat
+  nameWithType: BaseReport.StreamFormat
+  fullName: Reportman.Reporting.BaseReport.StreamFormat
+- uid: Reportman.Reporting.BaseReport.ActionBefore
+  commentId: P:Reportman.Reporting.BaseReport.ActionBefore
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_ActionBefore
+  name: ActionBefore
+  nameWithType: BaseReport.ActionBefore
+  fullName: Reportman.Reporting.BaseReport.ActionBefore
+- uid: Reportman.Reporting.BaseReport.ActionAfter
+  commentId: P:Reportman.Reporting.BaseReport.ActionAfter
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_ActionAfter
+  name: ActionAfter
+  nameWithType: BaseReport.ActionAfter
+  fullName: Reportman.Reporting.BaseReport.ActionAfter
+- uid: Reportman.Reporting.BaseReport.PreviewAbout
+  commentId: P:Reportman.Reporting.BaseReport.PreviewAbout
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_PreviewAbout
+  name: PreviewAbout
+  nameWithType: BaseReport.PreviewAbout
+  fullName: Reportman.Reporting.BaseReport.PreviewAbout
+- uid: Reportman.Reporting.BaseReport.Type1Font
+  commentId: P:Reportman.Reporting.BaseReport.Type1Font
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_Type1Font
+  name: Type1Font
+  nameWithType: BaseReport.Type1Font
+  fullName: Reportman.Reporting.BaseReport.Type1Font
+- uid: Reportman.Reporting.BaseReport.FontSize
+  commentId: P:Reportman.Reporting.BaseReport.FontSize
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_FontSize
+  name: FontSize
+  nameWithType: BaseReport.FontSize
+  fullName: Reportman.Reporting.BaseReport.FontSize
+- uid: Reportman.Reporting.BaseReport.FontRotation
+  commentId: P:Reportman.Reporting.BaseReport.FontRotation
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_FontRotation
+  name: FontRotation
+  nameWithType: BaseReport.FontRotation
+  fullName: Reportman.Reporting.BaseReport.FontRotation
+- uid: Reportman.Reporting.BaseReport.FontStyle
+  commentId: P:Reportman.Reporting.BaseReport.FontStyle
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_FontStyle
+  name: FontStyle
+  nameWithType: BaseReport.FontStyle
+  fullName: Reportman.Reporting.BaseReport.FontStyle
+- uid: Reportman.Reporting.BaseReport.FontColor
+  commentId: P:Reportman.Reporting.BaseReport.FontColor
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_FontColor
+  name: FontColor
+  nameWithType: BaseReport.FontColor
+  fullName: Reportman.Reporting.BaseReport.FontColor
+- uid: Reportman.Reporting.BaseReport.BackColor
+  commentId: P:Reportman.Reporting.BaseReport.BackColor
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_BackColor
+  name: BackColor
+  nameWithType: BaseReport.BackColor
+  fullName: Reportman.Reporting.BaseReport.BackColor
+- uid: Reportman.Reporting.BaseReport.Transparent
+  commentId: P:Reportman.Reporting.BaseReport.Transparent
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_Transparent
+  name: Transparent
+  nameWithType: BaseReport.Transparent
+  fullName: Reportman.Reporting.BaseReport.Transparent
+- uid: Reportman.Reporting.BaseReport.CutText
+  commentId: P:Reportman.Reporting.BaseReport.CutText
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_CutText
+  name: CutText
+  nameWithType: BaseReport.CutText
+  fullName: Reportman.Reporting.BaseReport.CutText
+- uid: Reportman.Reporting.BaseReport.Alignment
+  commentId: P:Reportman.Reporting.BaseReport.Alignment
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_Alignment
+  name: Alignment
+  nameWithType: BaseReport.Alignment
+  fullName: Reportman.Reporting.BaseReport.Alignment
+- uid: Reportman.Reporting.BaseReport.VAlignment
+  commentId: P:Reportman.Reporting.BaseReport.VAlignment
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_VAlignment
+  name: VAlignment
+  nameWithType: BaseReport.VAlignment
+  fullName: Reportman.Reporting.BaseReport.VAlignment
+- uid: Reportman.Reporting.BaseReport.WordWrap
+  commentId: P:Reportman.Reporting.BaseReport.WordWrap
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_WordWrap
+  name: WordWrap
+  nameWithType: BaseReport.WordWrap
+  fullName: Reportman.Reporting.BaseReport.WordWrap
+- uid: Reportman.Reporting.BaseReport.SingleLine
+  commentId: P:Reportman.Reporting.BaseReport.SingleLine
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_SingleLine
+  name: SingleLine
+  nameWithType: BaseReport.SingleLine
+  fullName: Reportman.Reporting.BaseReport.SingleLine
+- uid: Reportman.Reporting.BaseReport.MultiPage
+  commentId: P:Reportman.Reporting.BaseReport.MultiPage
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_MultiPage
+  name: MultiPage
+  nameWithType: BaseReport.MultiPage
+  fullName: Reportman.Reporting.BaseReport.MultiPage
+- uid: Reportman.Reporting.BaseReport.PrintStep
+  commentId: P:Reportman.Reporting.BaseReport.PrintStep
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_PrintStep
+  name: PrintStep
+  nameWithType: BaseReport.PrintStep
+  fullName: Reportman.Reporting.BaseReport.PrintStep
+- uid: Reportman.Reporting.BaseReport.PaperSource
+  commentId: P:Reportman.Reporting.BaseReport.PaperSource
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_PaperSource
+  name: PaperSource
+  nameWithType: BaseReport.PaperSource
+  fullName: Reportman.Reporting.BaseReport.PaperSource
+- uid: Reportman.Reporting.BaseReport.Duplex
+  commentId: P:Reportman.Reporting.BaseReport.Duplex
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_Duplex
+  name: Duplex
+  nameWithType: BaseReport.Duplex
+  fullName: Reportman.Reporting.BaseReport.Duplex
+- uid: Reportman.Reporting.BaseReport.ForcePaperName
+  commentId: P:Reportman.Reporting.BaseReport.ForcePaperName
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_ForcePaperName
+  name: ForcePaperName
+  nameWithType: BaseReport.ForcePaperName
+  fullName: Reportman.Reporting.BaseReport.ForcePaperName
+- uid: Reportman.Reporting.BaseReport.LinesPerInch
+  commentId: P:Reportman.Reporting.BaseReport.LinesPerInch
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_LinesPerInch
+  name: LinesPerInch
+  nameWithType: BaseReport.LinesPerInch
+  fullName: Reportman.Reporting.BaseReport.LinesPerInch
+- uid: Reportman.Reporting.BaseReport.DocAuthor
+  commentId: P:Reportman.Reporting.BaseReport.DocAuthor
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_DocAuthor
+  name: DocAuthor
+  nameWithType: BaseReport.DocAuthor
+  fullName: Reportman.Reporting.BaseReport.DocAuthor
+- uid: Reportman.Reporting.BaseReport.DocTitle
+  commentId: P:Reportman.Reporting.BaseReport.DocTitle
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_DocTitle
+  name: DocTitle
+  nameWithType: BaseReport.DocTitle
+  fullName: Reportman.Reporting.BaseReport.DocTitle
+- uid: Reportman.Reporting.BaseReport.DocSubject
+  commentId: P:Reportman.Reporting.BaseReport.DocSubject
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_DocSubject
+  name: DocSubject
+  nameWithType: BaseReport.DocSubject
+  fullName: Reportman.Reporting.BaseReport.DocSubject
+- uid: Reportman.Reporting.BaseReport.DocProducer
+  commentId: P:Reportman.Reporting.BaseReport.DocProducer
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_DocProducer
+  name: DocProducer
+  nameWithType: BaseReport.DocProducer
+  fullName: Reportman.Reporting.BaseReport.DocProducer
+- uid: Reportman.Reporting.BaseReport.DocCreator
+  commentId: P:Reportman.Reporting.BaseReport.DocCreator
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_DocCreator
+  name: DocCreator
+  nameWithType: BaseReport.DocCreator
+  fullName: Reportman.Reporting.BaseReport.DocCreator
+- uid: Reportman.Reporting.BaseReport.DocCreationDate
+  commentId: P:Reportman.Reporting.BaseReport.DocCreationDate
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_DocCreationDate
+  name: DocCreationDate
+  nameWithType: BaseReport.DocCreationDate
+  fullName: Reportman.Reporting.BaseReport.DocCreationDate
+- uid: Reportman.Reporting.BaseReport.DocModificationDate
+  commentId: P:Reportman.Reporting.BaseReport.DocModificationDate
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_DocModificationDate
+  name: DocModificationDate
+  nameWithType: BaseReport.DocModificationDate
+  fullName: Reportman.Reporting.BaseReport.DocModificationDate
+- uid: Reportman.Reporting.BaseReport.DocKeywords
+  commentId: P:Reportman.Reporting.BaseReport.DocKeywords
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_DocKeywords
+  name: DocKeywords
+  nameWithType: BaseReport.DocKeywords
+  fullName: Reportman.Reporting.BaseReport.DocKeywords
+- uid: Reportman.Reporting.BaseReport.DocXMPContent
+  commentId: P:Reportman.Reporting.BaseReport.DocXMPContent
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_DocXMPContent
+  name: DocXMPContent
+  nameWithType: BaseReport.DocXMPContent
+  fullName: Reportman.Reporting.BaseReport.DocXMPContent
+- uid: Reportman.Reporting.BaseReport.PreviewMargins
+  commentId: P:Reportman.Reporting.BaseReport.PreviewMargins
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_PreviewMargins
+  name: PreviewMargins
+  nameWithType: BaseReport.PreviewMargins
+  fullName: Reportman.Reporting.BaseReport.PreviewMargins
+- uid: Reportman.Reporting.BaseReport.OnProgress
+  commentId: E:Reportman.Reporting.BaseReport.OnProgress
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_OnProgress
+  name: OnProgress
+  nameWithType: BaseReport.OnProgress
+  fullName: Reportman.Reporting.BaseReport.OnProgress
+- uid: Reportman.Reporting.BaseReport.OnWorkProgress
+  commentId: E:Reportman.Reporting.BaseReport.OnWorkProgress
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_OnWorkProgress
+  name: OnWorkProgress
+  nameWithType: BaseReport.OnWorkProgress
+  fullName: Reportman.Reporting.BaseReport.OnWorkProgress
+- uid: Reportman.Reporting.BaseReport.OnWorkAsyncError
+  commentId: E:Reportman.Reporting.BaseReport.OnWorkAsyncError
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_OnWorkAsyncError
+  name: OnWorkAsyncError
+  nameWithType: BaseReport.OnWorkAsyncError
+  fullName: Reportman.Reporting.BaseReport.OnWorkAsyncError
+- uid: Reportman.Reporting.ReportItem.SetReport(Reportman.Reporting.BaseReport)
+  commentId: M:Reportman.Reporting.ReportItem.SetReport(Reportman.Reporting.BaseReport)
+  parent: Reportman.Reporting.ReportItem
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_SetReport_Reportman_Reporting_BaseReport_
+  name: SetReport(BaseReport)
+  nameWithType: ReportItem.SetReport(BaseReport)
+  fullName: Reportman.Reporting.ReportItem.SetReport(Reportman.Reporting.BaseReport)
+  spec.csharp:
+  - uid: Reportman.Reporting.ReportItem.SetReport(Reportman.Reporting.BaseReport)
+    name: SetReport
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_SetReport_Reportman_Reporting_BaseReport_
+  - name: (
+  - uid: Reportman.Reporting.BaseReport
+    name: BaseReport
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.ReportItem.SetReport(Reportman.Reporting.BaseReport)
+    name: SetReport
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_SetReport_Reportman_Reporting_BaseReport_
+  - name: (
+  - uid: Reportman.Reporting.BaseReport
+    name: BaseReport
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html
+  - name: )
+- uid: Reportman.Reporting.ReportItem.GetClassName
+  commentId: M:Reportman.Reporting.ReportItem.GetClassName
+  parent: Reportman.Reporting.ReportItem
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_GetClassName
+  name: GetClassName()
+  nameWithType: ReportItem.GetClassName()
+  fullName: Reportman.Reporting.ReportItem.GetClassName()
+  spec.csharp:
+  - uid: Reportman.Reporting.ReportItem.GetClassName
+    name: GetClassName
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_GetClassName
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.ReportItem.GetClassName
+    name: GetClassName
+    isExternal: true
+    href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_GetClassName
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.ReportItem.Name
+  commentId: P:Reportman.Reporting.ReportItem.Name
+  parent: Reportman.Reporting.ReportItem
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_Name
+  name: Name
+  nameWithType: ReportItem.Name
+  fullName: Reportman.Reporting.ReportItem.Name
+- uid: Reportman.Reporting.ReportItem.Report
+  commentId: P:Reportman.Reporting.ReportItem.Report
+  parent: Reportman.Reporting.ReportItem
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_Report
+  name: Report
+  nameWithType: ReportItem.Report
+  fullName: Reportman.Reporting.ReportItem.Report
+- uid: Reportman.Reporting.ReportItem.ClassName
+  commentId: P:Reportman.Reporting.ReportItem.ClassName
+  parent: Reportman.Reporting.ReportItem
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_ClassName
+  name: ClassName
+  nameWithType: ReportItem.ClassName
+  fullName: Reportman.Reporting.ReportItem.ClassName
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Reporting.Report.#ctor*
+  commentId: Overload:Reportman.Reporting.Report.#ctor
+  isExternal: true
+  href: Reportman.Reporting.Report.html#Reportman_Reporting_Report__ctor
+  name: Report
+  nameWithType: Report.Report
+  fullName: Reportman.Reporting.Report.Report
+  nameWithType.vb: Report.New
+  fullName.vb: Reportman.Reporting.Report.New
+  name.vb: New
+- uid: Reportman.Reporting.BaseReport.BeginPrint(Reportman.Drawing.PrintOut)
+  commentId: M:Reportman.Reporting.BaseReport.BeginPrint(Reportman.Drawing.PrintOut)
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_BeginPrint_Reportman_Drawing_PrintOut_
+  name: BeginPrint(PrintOut)
+  nameWithType: BaseReport.BeginPrint(PrintOut)
+  fullName: Reportman.Reporting.BaseReport.BeginPrint(Reportman.Drawing.PrintOut)
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.BeginPrint(Reportman.Drawing.PrintOut)
+    name: BeginPrint
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_BeginPrint_Reportman_Drawing_PrintOut_
+  - name: (
+  - uid: Reportman.Drawing.PrintOut
+    name: PrintOut
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.BeginPrint(Reportman.Drawing.PrintOut)
+    name: BeginPrint
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_BeginPrint_Reportman_Drawing_PrintOut_
+  - name: (
+  - uid: Reportman.Drawing.PrintOut
+    name: PrintOut
+    isExternal: true
+  - name: )
+- uid: Reportman.Reporting.Report.BeginPrint*
+  commentId: Overload:Reportman.Reporting.Report.BeginPrint
+  isExternal: true
+  href: Reportman.Reporting.Report.html#Reportman_Reporting_Report_BeginPrint_Reportman_Drawing_PrintOut_
+  name: BeginPrint
+  nameWithType: Report.BeginPrint
+  fullName: Reportman.Reporting.Report.BeginPrint
+- uid: Reportman.Drawing.PrintOut
+  commentId: T:Reportman.Drawing.PrintOut
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PrintOut.html
+  name: PrintOut
+  nameWithType: PrintOut
+  fullName: Reportman.Drawing.PrintOut
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Reporting.BaseReport.PrintNextPage
+  commentId: M:Reportman.Reporting.BaseReport.PrintNextPage
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_PrintNextPage
+  name: PrintNextPage()
+  nameWithType: BaseReport.PrintNextPage()
+  fullName: Reportman.Reporting.BaseReport.PrintNextPage()
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.PrintNextPage
+    name: PrintNextPage
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_PrintNextPage
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.PrintNextPage
+    name: PrintNextPage
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_PrintNextPage
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.Report.PrintNextPage*
+  commentId: Overload:Reportman.Reporting.Report.PrintNextPage
+  isExternal: true
+  href: Reportman.Reporting.Report.html#Reportman_Reporting_Report_PrintNextPage
+  name: PrintNextPage
+  nameWithType: Report.PrintNextPage
+  fullName: Reportman.Reporting.Report.PrintNextPage
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean

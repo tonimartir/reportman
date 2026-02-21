@@ -1,0 +1,152 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.MetaFile.MetaFileVersion
+  commentId: T:Reportman.Drawing.MetaFile.MetaFileVersion
+  id: MetaFile.MetaFileVersion
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.MetaFile.MetaFileVersion.MetaVersion2_2
+  - Reportman.Drawing.MetaFile.MetaFileVersion.MetaVersion2_4
+  - Reportman.Drawing.MetaFile.MetaFileVersion.MetaVersion3_0
+  - Reportman.Drawing.MetaFile.MetaFileVersion.MetaVersion4_0
+  langs:
+  - csharp
+  - vb
+  name: MetaFile.MetaFileVersion
+  nameWithType: MetaFile.MetaFileVersion
+  fullName: Reportman.Drawing.MetaFile.MetaFileVersion
+  type: Enum
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public enum MetaFile.MetaFileVersion
+    content.vb: Public Enum MetaFile.MetaFileVersion
+- uid: Reportman.Drawing.MetaFile.MetaFileVersion.MetaVersion2_2
+  commentId: F:Reportman.Drawing.MetaFile.MetaFileVersion.MetaVersion2_2
+  id: MetaVersion2_2
+  parent: Reportman.Drawing.MetaFile.MetaFileVersion
+  langs:
+  - csharp
+  - vb
+  name: MetaVersion2_2
+  nameWithType: MetaFile.MetaFileVersion.MetaVersion2_2
+  fullName: Reportman.Drawing.MetaFile.MetaFileVersion.MetaVersion2_2
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: MetaVersion2_2 = 0
+    return:
+      type: Reportman.Drawing.MetaFile.MetaFileVersion
+- uid: Reportman.Drawing.MetaFile.MetaFileVersion.MetaVersion2_4
+  commentId: F:Reportman.Drawing.MetaFile.MetaFileVersion.MetaVersion2_4
+  id: MetaVersion2_4
+  parent: Reportman.Drawing.MetaFile.MetaFileVersion
+  langs:
+  - csharp
+  - vb
+  name: MetaVersion2_4
+  nameWithType: MetaFile.MetaFileVersion.MetaVersion2_4
+  fullName: Reportman.Drawing.MetaFile.MetaFileVersion.MetaVersion2_4
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: MetaVersion2_4 = 1
+    return:
+      type: Reportman.Drawing.MetaFile.MetaFileVersion
+- uid: Reportman.Drawing.MetaFile.MetaFileVersion.MetaVersion3_0
+  commentId: F:Reportman.Drawing.MetaFile.MetaFileVersion.MetaVersion3_0
+  id: MetaVersion3_0
+  parent: Reportman.Drawing.MetaFile.MetaFileVersion
+  langs:
+  - csharp
+  - vb
+  name: MetaVersion3_0
+  nameWithType: MetaFile.MetaFileVersion.MetaVersion3_0
+  fullName: Reportman.Drawing.MetaFile.MetaFileVersion.MetaVersion3_0
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: MetaVersion3_0 = 2
+    return:
+      type: Reportman.Drawing.MetaFile.MetaFileVersion
+- uid: Reportman.Drawing.MetaFile.MetaFileVersion.MetaVersion4_0
+  commentId: F:Reportman.Drawing.MetaFile.MetaFileVersion.MetaVersion4_0
+  id: MetaVersion4_0
+  parent: Reportman.Drawing.MetaFile.MetaFileVersion
+  langs:
+  - csharp
+  - vb
+  name: MetaVersion4_0
+  nameWithType: MetaFile.MetaFileVersion.MetaVersion4_0
+  fullName: Reportman.Drawing.MetaFile.MetaFileVersion.MetaVersion4_0
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: MetaVersion4_0 = 3
+    return:
+      type: Reportman.Drawing.MetaFile.MetaFileVersion
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.MetaFile.MetaFileVersion
+  commentId: T:Reportman.Drawing.MetaFile.MetaFileVersion
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.MetaFile.html
+  name: MetaFile.MetaFileVersion
+  nameWithType: MetaFile.MetaFileVersion
+  fullName: Reportman.Drawing.MetaFile.MetaFileVersion
+  spec.csharp:
+  - uid: Reportman.Drawing.MetaFile
+    name: MetaFile
+    isExternal: true
+    href: Reportman.Drawing.MetaFile.html
+  - name: .
+  - uid: Reportman.Drawing.MetaFile.MetaFileVersion
+    name: MetaFileVersion
+    isExternal: true
+    href: Reportman.Drawing.MetaFile.MetaFileVersion.html
+  spec.vb:
+  - uid: Reportman.Drawing.MetaFile
+    name: MetaFile
+    isExternal: true
+    href: Reportman.Drawing.MetaFile.html
+  - name: .
+  - uid: Reportman.Drawing.MetaFile.MetaFileVersion
+    name: MetaFileVersion
+    isExternal: true
+    href: Reportman.Drawing.MetaFile.MetaFileVersion.html

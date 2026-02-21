@@ -1,0 +1,214 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.PDFFontType
+  commentId: T:Reportman.Drawing.PDFFontType
+  id: PDFFontType
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.PDFFontType.Courier
+  - Reportman.Drawing.PDFFontType.Embedded
+  - Reportman.Drawing.PDFFontType.Helvetica
+  - Reportman.Drawing.PDFFontType.Linked
+  - Reportman.Drawing.PDFFontType.Symbol
+  - Reportman.Drawing.PDFFontType.TimesRoman
+  - Reportman.Drawing.PDFFontType.ZafDingbats
+  langs:
+  - csharp
+  - vb
+  name: PDFFontType
+  nameWithType: PDFFontType
+  fullName: Reportman.Drawing.PDFFontType
+  type: Enum
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    When exporting a document to PDF, there are some standard predefinded fonts you can use,
+
+    using this fonts redude file size
+  example: []
+  syntax:
+    content: public enum PDFFontType
+    content.vb: Public Enum PDFFontType
+- uid: Reportman.Drawing.PDFFontType.Helvetica
+  commentId: F:Reportman.Drawing.PDFFontType.Helvetica
+  id: Helvetica
+  parent: Reportman.Drawing.PDFFontType
+  langs:
+  - csharp
+  - vb
+  name: Helvetica
+  nameWithType: PDFFontType.Helvetica
+  fullName: Reportman.Drawing.PDFFontType.Helvetica
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Helvetica font, same look as Microsoft Arial, variable pitch
+  example: []
+  syntax:
+    content: Helvetica = 0
+    return:
+      type: Reportman.Drawing.PDFFontType
+- uid: Reportman.Drawing.PDFFontType.Courier
+  commentId: F:Reportman.Drawing.PDFFontType.Courier
+  id: Courier
+  parent: Reportman.Drawing.PDFFontType
+  langs:
+  - csharp
+  - vb
+  name: Courier
+  nameWithType: PDFFontType.Courier
+  fullName: Reportman.Drawing.PDFFontType.Courier
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Courier font, classic fixed pitch font
+  example: []
+  syntax:
+    content: Courier = 1
+    return:
+      type: Reportman.Drawing.PDFFontType
+- uid: Reportman.Drawing.PDFFontType.TimesRoman
+  commentId: F:Reportman.Drawing.PDFFontType.TimesRoman
+  id: TimesRoman
+  parent: Reportman.Drawing.PDFFontType
+  langs:
+  - csharp
+  - vb
+  name: TimesRoman
+  nameWithType: PDFFontType.TimesRoman
+  fullName: Reportman.Drawing.PDFFontType.TimesRoman
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Times Roman  font, classic variable pitch font
+  example: []
+  syntax:
+    content: TimesRoman = 2
+    return:
+      type: Reportman.Drawing.PDFFontType
+- uid: Reportman.Drawing.PDFFontType.Symbol
+  commentId: F:Reportman.Drawing.PDFFontType.Symbol
+  id: Symbol
+  parent: Reportman.Drawing.PDFFontType
+  langs:
+  - csharp
+  - vb
+  name: Symbol
+  nameWithType: PDFFontType.Symbol
+  fullName: Reportman.Drawing.PDFFontType.Symbol
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Symbol font, provided to print standard symbols
+  example: []
+  syntax:
+    content: Symbol = 3
+    return:
+      type: Reportman.Drawing.PDFFontType
+- uid: Reportman.Drawing.PDFFontType.ZafDingbats
+  commentId: F:Reportman.Drawing.PDFFontType.ZafDingbats
+  id: ZafDingbats
+  parent: Reportman.Drawing.PDFFontType
+  langs:
+  - csharp
+  - vb
+  name: ZafDingbats
+  nameWithType: PDFFontType.ZafDingbats
+  fullName: Reportman.Drawing.PDFFontType.ZafDingbats
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: ZafDingbats font, provided to print other symbols
+  example: []
+  syntax:
+    content: ZafDingbats = 4
+    return:
+      type: Reportman.Drawing.PDFFontType
+- uid: Reportman.Drawing.PDFFontType.Linked
+  commentId: F:Reportman.Drawing.PDFFontType.Linked
+  id: Linked
+  parent: Reportman.Drawing.PDFFontType
+  langs:
+  - csharp
+  - vb
+  name: Linked
+  nameWithType: PDFFontType.Linked
+  fullName: Reportman.Drawing.PDFFontType.Linked
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    Linked will store a reference to the font in the Adobe PDF file, the file
+                size will not be increased, but destination computer (computer that opens the pdf file)
+                must have the referenced installed
+  example: []
+  syntax:
+    content: Linked = 5
+    return:
+      type: Reportman.Drawing.PDFFontType
+- uid: Reportman.Drawing.PDFFontType.Embedded
+  commentId: F:Reportman.Drawing.PDFFontType.Embedded
+  id: Embedded
+  parent: Reportman.Drawing.PDFFontType
+  langs:
+  - csharp
+  - vb
+  name: Embedded
+  nameWithType: PDFFontType.Embedded
+  fullName: Reportman.Drawing.PDFFontType.Embedded
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    Embedded will store the font data in the Adobe PDF file, the file
+                size will be increased, but ensures the destination computer (computer that opens the pdf file)
+                will render correctly the document
+  example: []
+  syntax:
+    content: Embedded = 6
+    return:
+      type: Reportman.Drawing.PDFFontType
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.PDFFontType
+  commentId: T:Reportman.Drawing.PDFFontType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PDFFontType.html
+  name: PDFFontType
+  nameWithType: PDFFontType
+  fullName: Reportman.Drawing.PDFFontType

@@ -1,0 +1,633 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.IdenFunction
+  commentId: T:Reportman.Reporting.IdenFunction
+  id: IdenFunction
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.IdenFunction.#ctor(Reportman.Reporting.Evaluator)
+  - Reportman.Reporting.IdenFunction.ParamCount
+  - Reportman.Reporting.IdenFunction.Params
+  - Reportman.Reporting.IdenFunction.SetParamCount(System.Int32)
+  - Reportman.Reporting.IdenFunction.SetValue(Reportman.Reporting.Variant)
+  langs:
+  - csharp
+  - vb
+  name: IdenFunction
+  nameWithType: IdenFunction
+  fullName: Reportman.Reporting.IdenFunction
+  type: Class
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Base class to implement evaluator functions
+  example: []
+  syntax:
+    content: 'public abstract class IdenFunction : EvalIdentifier'
+    content.vb: Public MustInherit Class IdenFunction Inherits EvalIdentifier
+  inheritance:
+  - System.Object
+  - Reportman.Reporting.EvalIdentifier
+  derivedClasses:
+  - Reportman.Reporting.EvalIdenExpression
+  inheritedMembers:
+  - Reportman.Reporting.EvalIdentifier.Name
+  - Reportman.Reporting.EvalIdentifier.FModel
+  - Reportman.Reporting.EvalIdentifier.FHelp
+  - Reportman.Reporting.EvalIdentifier.EvalObject
+  - Reportman.Reporting.EvalIdentifier.GetValue
+  - Reportman.Reporting.EvalIdentifier.Model
+  - Reportman.Reporting.EvalIdentifier.Help
+  - Reportman.Reporting.EvalIdentifier.Value
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Reporting.IdenFunction.Params
+  commentId: F:Reportman.Reporting.IdenFunction.Params
+  id: Params
+  parent: Reportman.Reporting.IdenFunction
+  langs:
+  - csharp
+  - vb
+  name: Params
+  nameWithType: IdenFunction.Params
+  fullName: Reportman.Reporting.IdenFunction.Params
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Function parameters
+  example: []
+  syntax:
+    content: public Variant[] Params
+    return:
+      type: Reportman.Reporting.Variant[]
+    content.vb: Public Params As [Variant]()
+- uid: Reportman.Reporting.IdenFunction.#ctor(Reportman.Reporting.Evaluator)
+  commentId: M:Reportman.Reporting.IdenFunction.#ctor(Reportman.Reporting.Evaluator)
+  id: '#ctor(Reportman.Reporting.Evaluator)'
+  parent: Reportman.Reporting.IdenFunction
+  langs:
+  - csharp
+  - vb
+  name: IdenFunction(Evaluator)
+  nameWithType: IdenFunction.IdenFunction(Evaluator)
+  fullName: Reportman.Reporting.IdenFunction.IdenFunction(Reportman.Reporting.Evaluator)
+  type: Constructor
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Function constructor
+  example: []
+  syntax:
+    content: protected IdenFunction(Evaluator eval)
+    parameters:
+    - id: eval
+      type: Reportman.Reporting.Evaluator
+      description: ''
+    content.vb: Protected Sub New(eval As Evaluator)
+  overload: Reportman.Reporting.IdenFunction.#ctor*
+  nameWithType.vb: IdenFunction.New(Evaluator)
+  fullName.vb: Reportman.Reporting.IdenFunction.New(Reportman.Reporting.Evaluator)
+  name.vb: New(Evaluator)
+- uid: Reportman.Reporting.IdenFunction.SetParamCount(System.Int32)
+  commentId: M:Reportman.Reporting.IdenFunction.SetParamCount(System.Int32)
+  id: SetParamCount(System.Int32)
+  parent: Reportman.Reporting.IdenFunction
+  langs:
+  - csharp
+  - vb
+  name: SetParamCount(int)
+  nameWithType: IdenFunction.SetParamCount(int)
+  fullName: Reportman.Reporting.IdenFunction.SetParamCount(int)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Sets the param count
+  example: []
+  syntax:
+    content: protected void SetParamCount(int newparamcount)
+    parameters:
+    - id: newparamcount
+      type: System.Int32
+      description: ''
+    content.vb: Protected Sub SetParamCount(newparamcount As Integer)
+  overload: Reportman.Reporting.IdenFunction.SetParamCount*
+  nameWithType.vb: IdenFunction.SetParamCount(Integer)
+  fullName.vb: Reportman.Reporting.IdenFunction.SetParamCount(Integer)
+  name.vb: SetParamCount(Integer)
+- uid: Reportman.Reporting.IdenFunction.SetValue(Reportman.Reporting.Variant)
+  commentId: M:Reportman.Reporting.IdenFunction.SetValue(Reportman.Reporting.Variant)
+  id: SetValue(Reportman.Reporting.Variant)
+  parent: Reportman.Reporting.IdenFunction
+  langs:
+  - csharp
+  - vb
+  name: SetValue(Variant)
+  nameWithType: IdenFunction.SetValue(Variant)
+  fullName: Reportman.Reporting.IdenFunction.SetValue(Reportman.Reporting.Variant)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Setting a value to a function is not possible, a exception is thrown
+  example: []
+  syntax:
+    content: protected override void SetValue(Variant avalue)
+    parameters:
+    - id: avalue
+      type: Reportman.Reporting.Variant
+      description: ''
+    content.vb: Protected Overrides Sub SetValue(avalue As [Variant])
+  overridden: Reportman.Reporting.EvalIdentifier.SetValue(Reportman.Reporting.Variant)
+  overload: Reportman.Reporting.IdenFunction.SetValue*
+- uid: Reportman.Reporting.IdenFunction.ParamCount
+  commentId: P:Reportman.Reporting.IdenFunction.ParamCount
+  id: ParamCount
+  parent: Reportman.Reporting.IdenFunction
+  langs:
+  - csharp
+  - vb
+  name: ParamCount
+  nameWithType: IdenFunction.ParamCount
+  fullName: Reportman.Reporting.IdenFunction.ParamCount
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Gets the param count for the function, read only
+  example: []
+  syntax:
+    content: public int ParamCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property ParamCount As Integer
+  overload: Reportman.Reporting.IdenFunction.ParamCount*
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Reportman.Reporting.EvalIdentifier
+  commentId: T:Reportman.Reporting.EvalIdentifier
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.EvalIdentifier.html
+  name: EvalIdentifier
+  nameWithType: EvalIdentifier
+  fullName: Reportman.Reporting.EvalIdentifier
+- uid: Reportman.Reporting.EvalIdentifier.Name
+  commentId: F:Reportman.Reporting.EvalIdentifier.Name
+  parent: Reportman.Reporting.EvalIdentifier
+  isExternal: true
+  href: Reportman.Reporting.EvalIdentifier.html#Reportman_Reporting_EvalIdentifier_Name
+  name: Name
+  nameWithType: EvalIdentifier.Name
+  fullName: Reportman.Reporting.EvalIdentifier.Name
+- uid: Reportman.Reporting.EvalIdentifier.FModel
+  commentId: F:Reportman.Reporting.EvalIdentifier.FModel
+  parent: Reportman.Reporting.EvalIdentifier
+  isExternal: true
+  href: Reportman.Reporting.EvalIdentifier.html#Reportman_Reporting_EvalIdentifier_FModel
+  name: FModel
+  nameWithType: EvalIdentifier.FModel
+  fullName: Reportman.Reporting.EvalIdentifier.FModel
+- uid: Reportman.Reporting.EvalIdentifier.FHelp
+  commentId: F:Reportman.Reporting.EvalIdentifier.FHelp
+  parent: Reportman.Reporting.EvalIdentifier
+  isExternal: true
+  href: Reportman.Reporting.EvalIdentifier.html#Reportman_Reporting_EvalIdentifier_FHelp
+  name: FHelp
+  nameWithType: EvalIdentifier.FHelp
+  fullName: Reportman.Reporting.EvalIdentifier.FHelp
+- uid: Reportman.Reporting.EvalIdentifier.EvalObject
+  commentId: F:Reportman.Reporting.EvalIdentifier.EvalObject
+  parent: Reportman.Reporting.EvalIdentifier
+  isExternal: true
+  href: Reportman.Reporting.EvalIdentifier.html#Reportman_Reporting_EvalIdentifier_EvalObject
+  name: EvalObject
+  nameWithType: EvalIdentifier.EvalObject
+  fullName: Reportman.Reporting.EvalIdentifier.EvalObject
+- uid: Reportman.Reporting.EvalIdentifier.GetValue
+  commentId: M:Reportman.Reporting.EvalIdentifier.GetValue
+  parent: Reportman.Reporting.EvalIdentifier
+  isExternal: true
+  href: Reportman.Reporting.EvalIdentifier.html#Reportman_Reporting_EvalIdentifier_GetValue
+  name: GetValue()
+  nameWithType: EvalIdentifier.GetValue()
+  fullName: Reportman.Reporting.EvalIdentifier.GetValue()
+  spec.csharp:
+  - uid: Reportman.Reporting.EvalIdentifier.GetValue
+    name: GetValue
+    isExternal: true
+    href: Reportman.Reporting.EvalIdentifier.html#Reportman_Reporting_EvalIdentifier_GetValue
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.EvalIdentifier.GetValue
+    name: GetValue
+    isExternal: true
+    href: Reportman.Reporting.EvalIdentifier.html#Reportman_Reporting_EvalIdentifier_GetValue
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.EvalIdentifier.Model
+  commentId: P:Reportman.Reporting.EvalIdentifier.Model
+  parent: Reportman.Reporting.EvalIdentifier
+  isExternal: true
+  href: Reportman.Reporting.EvalIdentifier.html#Reportman_Reporting_EvalIdentifier_Model
+  name: Model
+  nameWithType: EvalIdentifier.Model
+  fullName: Reportman.Reporting.EvalIdentifier.Model
+- uid: Reportman.Reporting.EvalIdentifier.Help
+  commentId: P:Reportman.Reporting.EvalIdentifier.Help
+  parent: Reportman.Reporting.EvalIdentifier
+  isExternal: true
+  href: Reportman.Reporting.EvalIdentifier.html#Reportman_Reporting_EvalIdentifier_Help
+  name: Help
+  nameWithType: EvalIdentifier.Help
+  fullName: Reportman.Reporting.EvalIdentifier.Help
+- uid: Reportman.Reporting.EvalIdentifier.Value
+  commentId: P:Reportman.Reporting.EvalIdentifier.Value
+  parent: Reportman.Reporting.EvalIdentifier
+  isExternal: true
+  href: Reportman.Reporting.EvalIdentifier.html#Reportman_Reporting_EvalIdentifier_Value
+  name: Value
+  nameWithType: EvalIdentifier.Value
+  fullName: Reportman.Reporting.EvalIdentifier.Value
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Reporting.Variant[]
+  isExternal: true
+  href: Reportman.Reporting.Variant.html
+  name: Variant[]
+  nameWithType: Variant[]
+  fullName: Reportman.Reporting.Variant[]
+  nameWithType.vb: Variant()
+  fullName.vb: Reportman.Reporting.Variant()
+  name.vb: Variant()
+  spec.csharp:
+  - uid: Reportman.Reporting.Variant
+    name: Variant
+    isExternal: true
+    href: Reportman.Reporting.Variant.html
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: Reportman.Reporting.Variant
+    name: Variant
+    isExternal: true
+    href: Reportman.Reporting.Variant.html
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.IdenFunction.#ctor*
+  commentId: Overload:Reportman.Reporting.IdenFunction.#ctor
+  isExternal: true
+  href: Reportman.Reporting.IdenFunction.html#Reportman_Reporting_IdenFunction__ctor_Reportman_Reporting_Evaluator_
+  name: IdenFunction
+  nameWithType: IdenFunction.IdenFunction
+  fullName: Reportman.Reporting.IdenFunction.IdenFunction
+  nameWithType.vb: IdenFunction.New
+  fullName.vb: Reportman.Reporting.IdenFunction.New
+  name.vb: New
+- uid: Reportman.Reporting.Evaluator
+  commentId: T:Reportman.Reporting.Evaluator
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.Evaluator.html
+  name: Evaluator
+  nameWithType: Evaluator
+  fullName: Reportman.Reporting.Evaluator
+- uid: Reportman.Reporting.IdenFunction.SetParamCount*
+  commentId: Overload:Reportman.Reporting.IdenFunction.SetParamCount
+  isExternal: true
+  href: Reportman.Reporting.IdenFunction.html#Reportman_Reporting_IdenFunction_SetParamCount_System_Int32_
+  name: SetParamCount
+  nameWithType: IdenFunction.SetParamCount
+  fullName: Reportman.Reporting.IdenFunction.SetParamCount
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Reportman.Reporting.EvalIdentifier.SetValue(Reportman.Reporting.Variant)
+  commentId: M:Reportman.Reporting.EvalIdentifier.SetValue(Reportman.Reporting.Variant)
+  parent: Reportman.Reporting.EvalIdentifier
+  isExternal: true
+  href: Reportman.Reporting.EvalIdentifier.html#Reportman_Reporting_EvalIdentifier_SetValue_Reportman_Reporting_Variant_
+  name: SetValue(Variant)
+  nameWithType: EvalIdentifier.SetValue(Variant)
+  fullName: Reportman.Reporting.EvalIdentifier.SetValue(Reportman.Reporting.Variant)
+  spec.csharp:
+  - uid: Reportman.Reporting.EvalIdentifier.SetValue(Reportman.Reporting.Variant)
+    name: SetValue
+    isExternal: true
+    href: Reportman.Reporting.EvalIdentifier.html#Reportman_Reporting_EvalIdentifier_SetValue_Reportman_Reporting_Variant_
+  - name: (
+  - uid: Reportman.Reporting.Variant
+    name: Variant
+    isExternal: true
+    href: Reportman.Reporting.Variant.html
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.EvalIdentifier.SetValue(Reportman.Reporting.Variant)
+    name: SetValue
+    isExternal: true
+    href: Reportman.Reporting.EvalIdentifier.html#Reportman_Reporting_EvalIdentifier_SetValue_Reportman_Reporting_Variant_
+  - name: (
+  - uid: Reportman.Reporting.Variant
+    name: Variant
+    isExternal: true
+    href: Reportman.Reporting.Variant.html
+  - name: )
+- uid: Reportman.Reporting.IdenFunction.SetValue*
+  commentId: Overload:Reportman.Reporting.IdenFunction.SetValue
+  isExternal: true
+  href: Reportman.Reporting.IdenFunction.html#Reportman_Reporting_IdenFunction_SetValue_Reportman_Reporting_Variant_
+  name: SetValue
+  nameWithType: IdenFunction.SetValue
+  fullName: Reportman.Reporting.IdenFunction.SetValue
+- uid: Reportman.Reporting.Variant
+  commentId: T:Reportman.Reporting.Variant
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.Variant.html
+  name: Variant
+  nameWithType: Variant
+  fullName: Reportman.Reporting.Variant
+- uid: Reportman.Reporting.IdenFunction.ParamCount*
+  commentId: Overload:Reportman.Reporting.IdenFunction.ParamCount
+  isExternal: true
+  href: Reportman.Reporting.IdenFunction.html#Reportman_Reporting_IdenFunction_ParamCount
+  name: ParamCount
+  nameWithType: IdenFunction.ParamCount
+  fullName: Reportman.Reporting.IdenFunction.ParamCount

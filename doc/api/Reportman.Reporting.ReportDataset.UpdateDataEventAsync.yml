@@ -1,0 +1,367 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.ReportDataset.UpdateDataEventAsync
+  commentId: T:Reportman.Reporting.ReportDataset.UpdateDataEventAsync
+  id: ReportDataset.UpdateDataEventAsync
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.ReportDataset.UpdateDataEventAsync.#ctor(System.Object,System.IntPtr)
+  - Reportman.Reporting.ReportDataset.UpdateDataEventAsync.BeginInvoke(System.Object,System.Data.DataRow,System.Object[],System.Data.DataTable,System.AsyncCallback,System.Object)
+  - Reportman.Reporting.ReportDataset.UpdateDataEventAsync.EndInvoke(System.IAsyncResult)
+  - Reportman.Reporting.ReportDataset.UpdateDataEventAsync.Invoke(System.Object,System.Data.DataRow,System.Object[],System.Data.DataTable)
+  langs:
+  - csharp
+  - vb
+  name: ReportDataset.UpdateDataEventAsync
+  nameWithType: ReportDataset.UpdateDataEventAsync
+  fullName: Reportman.Reporting.ReportDataset.UpdateDataEventAsync
+  type: Delegate
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public delegate Task ReportDataset.UpdateDataEventAsync(object sender, DataRow xrow, object[] values, DataTable newtable)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: xrow
+      type: System.Data.DataRow
+    - id: values
+      type: System.Object[]
+    - id: newtable
+      type: System.Data.DataTable
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Delegate Function ReportDataset.UpdateDataEventAsync(sender As Object, xrow As DataRow, values As Object(), newtable As DataTable) As Task
+- uid: Reportman.Reporting.ReportDataset.UpdateDataEventAsync.#ctor(System.Object,System.IntPtr)
+  commentId: M:Reportman.Reporting.ReportDataset.UpdateDataEventAsync.#ctor(System.Object,System.IntPtr)
+  id: '#ctor(System.Object,System.IntPtr)'
+  parent: Reportman.Reporting.ReportDataset.UpdateDataEventAsync
+  langs:
+  - csharp
+  - vb
+  name: UpdateDataEventAsync(object, nint)
+  nameWithType: ReportDataset.UpdateDataEventAsync.UpdateDataEventAsync(object, nint)
+  fullName: Reportman.Reporting.ReportDataset.UpdateDataEventAsync.UpdateDataEventAsync(object, nint)
+  type: Constructor
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public UpdateDataEventAsync(object @object, nint method)
+    parameters:
+    - id: object
+      type: System.Object
+    - id: method
+      type: System.IntPtr
+    content.vb: Public Sub New([object] As Object, method As IntPtr)
+  overload: Reportman.Reporting.ReportDataset.UpdateDataEventAsync.#ctor*
+  nameWithType.vb: ReportDataset.UpdateDataEventAsync.New(Object, IntPtr)
+  fullName.vb: Reportman.Reporting.ReportDataset.UpdateDataEventAsync.New(Object, System.IntPtr)
+  name.vb: New(Object, IntPtr)
+- uid: Reportman.Reporting.ReportDataset.UpdateDataEventAsync.Invoke(System.Object,System.Data.DataRow,System.Object[],System.Data.DataTable)
+  commentId: M:Reportman.Reporting.ReportDataset.UpdateDataEventAsync.Invoke(System.Object,System.Data.DataRow,System.Object[],System.Data.DataTable)
+  id: Invoke(System.Object,System.Data.DataRow,System.Object[],System.Data.DataTable)
+  parent: Reportman.Reporting.ReportDataset.UpdateDataEventAsync
+  langs:
+  - csharp
+  - vb
+  name: Invoke(object, DataRow, object[], DataTable)
+  nameWithType: ReportDataset.UpdateDataEventAsync.Invoke(object, DataRow, object[], DataTable)
+  fullName: Reportman.Reporting.ReportDataset.UpdateDataEventAsync.Invoke(object, System.Data.DataRow, object[], System.Data.DataTable)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public virtual Task Invoke(object sender, DataRow xrow, object[] values, DataTable newtable)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: xrow
+      type: System.Data.DataRow
+    - id: values
+      type: System.Object[]
+    - id: newtable
+      type: System.Data.DataTable
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Overridable Function Invoke(sender As Object, xrow As DataRow, values As Object(), newtable As DataTable) As Task
+  overload: Reportman.Reporting.ReportDataset.UpdateDataEventAsync.Invoke*
+  nameWithType.vb: ReportDataset.UpdateDataEventAsync.Invoke(Object, DataRow, Object(), DataTable)
+  fullName.vb: Reportman.Reporting.ReportDataset.UpdateDataEventAsync.Invoke(Object, System.Data.DataRow, Object(), System.Data.DataTable)
+  name.vb: Invoke(Object, DataRow, Object(), DataTable)
+- uid: Reportman.Reporting.ReportDataset.UpdateDataEventAsync.BeginInvoke(System.Object,System.Data.DataRow,System.Object[],System.Data.DataTable,System.AsyncCallback,System.Object)
+  commentId: M:Reportman.Reporting.ReportDataset.UpdateDataEventAsync.BeginInvoke(System.Object,System.Data.DataRow,System.Object[],System.Data.DataTable,System.AsyncCallback,System.Object)
+  id: BeginInvoke(System.Object,System.Data.DataRow,System.Object[],System.Data.DataTable,System.AsyncCallback,System.Object)
+  parent: Reportman.Reporting.ReportDataset.UpdateDataEventAsync
+  langs:
+  - csharp
+  - vb
+  name: BeginInvoke(object, DataRow, object[], DataTable, AsyncCallback, object)
+  nameWithType: ReportDataset.UpdateDataEventAsync.BeginInvoke(object, DataRow, object[], DataTable, AsyncCallback, object)
+  fullName: Reportman.Reporting.ReportDataset.UpdateDataEventAsync.BeginInvoke(object, System.Data.DataRow, object[], System.Data.DataTable, System.AsyncCallback, object)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public virtual IAsyncResult BeginInvoke(object sender, DataRow xrow, object[] values, DataTable newtable, AsyncCallback callback, object @object)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: xrow
+      type: System.Data.DataRow
+    - id: values
+      type: System.Object[]
+    - id: newtable
+      type: System.Data.DataTable
+    - id: callback
+      type: System.AsyncCallback
+    - id: object
+      type: System.Object
+    return:
+      type: System.IAsyncResult
+    content.vb: Public Overridable Function BeginInvoke(sender As Object, xrow As DataRow, values As Object(), newtable As DataTable, callback As AsyncCallback, [object] As Object) As IAsyncResult
+  overload: Reportman.Reporting.ReportDataset.UpdateDataEventAsync.BeginInvoke*
+  nameWithType.vb: ReportDataset.UpdateDataEventAsync.BeginInvoke(Object, DataRow, Object(), DataTable, AsyncCallback, Object)
+  fullName.vb: Reportman.Reporting.ReportDataset.UpdateDataEventAsync.BeginInvoke(Object, System.Data.DataRow, Object(), System.Data.DataTable, System.AsyncCallback, Object)
+  name.vb: BeginInvoke(Object, DataRow, Object(), DataTable, AsyncCallback, Object)
+- uid: Reportman.Reporting.ReportDataset.UpdateDataEventAsync.EndInvoke(System.IAsyncResult)
+  commentId: M:Reportman.Reporting.ReportDataset.UpdateDataEventAsync.EndInvoke(System.IAsyncResult)
+  id: EndInvoke(System.IAsyncResult)
+  parent: Reportman.Reporting.ReportDataset.UpdateDataEventAsync
+  langs:
+  - csharp
+  - vb
+  name: EndInvoke(IAsyncResult)
+  nameWithType: ReportDataset.UpdateDataEventAsync.EndInvoke(IAsyncResult)
+  fullName: Reportman.Reporting.ReportDataset.UpdateDataEventAsync.EndInvoke(System.IAsyncResult)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public virtual Task EndInvoke(IAsyncResult result)
+    parameters:
+    - id: result
+      type: System.IAsyncResult
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Overridable Function EndInvoke(result As IAsyncResult) As Task
+  overload: Reportman.Reporting.ReportDataset.UpdateDataEventAsync.EndInvoke*
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Data.DataRow
+  commentId: T:System.Data.DataRow
+  parent: System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datarow
+  name: DataRow
+  nameWithType: DataRow
+  fullName: System.Data.DataRow
+- uid: System.Object[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object[]
+  nameWithType: object[]
+  fullName: object[]
+  nameWithType.vb: Object()
+  fullName.vb: Object()
+  name.vb: Object()
+  spec.csharp:
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: (
+  - name: )
+- uid: System.Data.DataTable
+  commentId: T:System.Data.DataTable
+  parent: System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable
+  name: DataTable
+  nameWithType: DataTable
+  fullName: System.Data.DataTable
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Data
+  commentId: N:System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Data
+  nameWithType: System.Data
+  fullName: System.Data
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: Reportman.Reporting.ReportDataset.UpdateDataEventAsync.#ctor*
+  commentId: Overload:Reportman.Reporting.ReportDataset.UpdateDataEventAsync.#ctor
+  isExternal: true
+  href: Reportman.Reporting.ReportDataset.UpdateDataEventAsync.html#Reportman_Reporting_ReportDataset_UpdateDataEventAsync__ctor_System_Object_System_IntPtr_
+  name: UpdateDataEventAsync
+  nameWithType: ReportDataset.UpdateDataEventAsync.UpdateDataEventAsync
+  fullName: Reportman.Reporting.ReportDataset.UpdateDataEventAsync.UpdateDataEventAsync
+  nameWithType.vb: ReportDataset.UpdateDataEventAsync.New
+  fullName.vb: Reportman.Reporting.ReportDataset.UpdateDataEventAsync.New
+  name.vb: New
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: Reportman.Reporting.ReportDataset.UpdateDataEventAsync.Invoke*
+  commentId: Overload:Reportman.Reporting.ReportDataset.UpdateDataEventAsync.Invoke
+  isExternal: true
+  href: Reportman.Reporting.ReportDataset.UpdateDataEventAsync.html#Reportman_Reporting_ReportDataset_UpdateDataEventAsync_Invoke_System_Object_System_Data_DataRow_System_Object___System_Data_DataTable_
+  name: Invoke
+  nameWithType: ReportDataset.UpdateDataEventAsync.Invoke
+  fullName: Reportman.Reporting.ReportDataset.UpdateDataEventAsync.Invoke
+- uid: Reportman.Reporting.ReportDataset.UpdateDataEventAsync.BeginInvoke*
+  commentId: Overload:Reportman.Reporting.ReportDataset.UpdateDataEventAsync.BeginInvoke
+  isExternal: true
+  href: Reportman.Reporting.ReportDataset.UpdateDataEventAsync.html#Reportman_Reporting_ReportDataset_UpdateDataEventAsync_BeginInvoke_System_Object_System_Data_DataRow_System_Object___System_Data_DataTable_System_AsyncCallback_System_Object_
+  name: BeginInvoke
+  nameWithType: ReportDataset.UpdateDataEventAsync.BeginInvoke
+  fullName: Reportman.Reporting.ReportDataset.UpdateDataEventAsync.BeginInvoke
+- uid: System.AsyncCallback
+  commentId: T:System.AsyncCallback
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.asynccallback
+  name: AsyncCallback
+  nameWithType: AsyncCallback
+  fullName: System.AsyncCallback
+- uid: System.IAsyncResult
+  commentId: T:System.IAsyncResult
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncresult
+  name: IAsyncResult
+  nameWithType: IAsyncResult
+  fullName: System.IAsyncResult
+- uid: Reportman.Reporting.ReportDataset.UpdateDataEventAsync.EndInvoke*
+  commentId: Overload:Reportman.Reporting.ReportDataset.UpdateDataEventAsync.EndInvoke
+  isExternal: true
+  href: Reportman.Reporting.ReportDataset.UpdateDataEventAsync.html#Reportman_Reporting_ReportDataset_UpdateDataEventAsync_EndInvoke_System_IAsyncResult_
+  name: EndInvoke
+  nameWithType: ReportDataset.UpdateDataEventAsync.EndInvoke
+  fullName: Reportman.Reporting.ReportDataset.UpdateDataEventAsync.EndInvoke

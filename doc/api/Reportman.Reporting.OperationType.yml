@@ -1,0 +1,151 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.OperationType
+  commentId: T:Reportman.Reporting.OperationType
+  id: OperationType
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.OperationType.Add
+  - Reportman.Reporting.OperationType.Modify
+  - Reportman.Reporting.OperationType.Remove
+  - Reportman.Reporting.OperationType.SwapDown
+  - Reportman.Reporting.OperationType.SwapUp
+  langs:
+  - csharp
+  - vb
+  name: OperationType
+  nameWithType: OperationType
+  fullName: Reportman.Reporting.OperationType
+  type: Enum
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public enum OperationType
+    content.vb: Public Enum OperationType
+- uid: Reportman.Reporting.OperationType.Add
+  commentId: F:Reportman.Reporting.OperationType.Add
+  id: Add
+  parent: Reportman.Reporting.OperationType
+  langs:
+  - csharp
+  - vb
+  name: Add
+  nameWithType: OperationType.Add
+  fullName: Reportman.Reporting.OperationType.Add
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Add = 0
+    return:
+      type: Reportman.Reporting.OperationType
+- uid: Reportman.Reporting.OperationType.Modify
+  commentId: F:Reportman.Reporting.OperationType.Modify
+  id: Modify
+  parent: Reportman.Reporting.OperationType
+  langs:
+  - csharp
+  - vb
+  name: Modify
+  nameWithType: OperationType.Modify
+  fullName: Reportman.Reporting.OperationType.Modify
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Modify = 1
+    return:
+      type: Reportman.Reporting.OperationType
+- uid: Reportman.Reporting.OperationType.Remove
+  commentId: F:Reportman.Reporting.OperationType.Remove
+  id: Remove
+  parent: Reportman.Reporting.OperationType
+  langs:
+  - csharp
+  - vb
+  name: Remove
+  nameWithType: OperationType.Remove
+  fullName: Reportman.Reporting.OperationType.Remove
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: Remove = 2
+    return:
+      type: Reportman.Reporting.OperationType
+- uid: Reportman.Reporting.OperationType.SwapDown
+  commentId: F:Reportman.Reporting.OperationType.SwapDown
+  id: SwapDown
+  parent: Reportman.Reporting.OperationType
+  langs:
+  - csharp
+  - vb
+  name: SwapDown
+  nameWithType: OperationType.SwapDown
+  fullName: Reportman.Reporting.OperationType.SwapDown
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: SwapDown = 3
+    return:
+      type: Reportman.Reporting.OperationType
+- uid: Reportman.Reporting.OperationType.SwapUp
+  commentId: F:Reportman.Reporting.OperationType.SwapUp
+  id: SwapUp
+  parent: Reportman.Reporting.OperationType
+  langs:
+  - csharp
+  - vb
+  name: SwapUp
+  nameWithType: OperationType.SwapUp
+  fullName: Reportman.Reporting.OperationType.SwapUp
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: SwapUp = 4
+    return:
+      type: Reportman.Reporting.OperationType
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: Reportman.Reporting.OperationType
+  commentId: T:Reportman.Reporting.OperationType
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.OperationType.html
+  name: OperationType
+  nameWithType: OperationType
+  fullName: Reportman.Reporting.OperationType

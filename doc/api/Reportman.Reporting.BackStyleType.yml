@@ -1,0 +1,129 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.BackStyleType
+  commentId: T:Reportman.Reporting.BackStyleType
+  id: BackStyleType
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.BackStyleType.Design
+  - Reportman.Reporting.BackStyleType.Preview
+  - Reportman.Reporting.BackStyleType.Print
+  langs:
+  - csharp
+  - vb
+  name: BackStyleType
+  nameWithType: BackStyleType
+  fullName: Reportman.Reporting.BackStyleType
+  type: Enum
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    The background of a section can be visible only on design time, while preview only (will not print) or
+
+    also print the background
+  example: []
+  syntax:
+    content: public enum BackStyleType
+    content.vb: Public Enum BackStyleType
+- uid: Reportman.Reporting.BackStyleType.Design
+  commentId: F:Reportman.Reporting.BackStyleType.Design
+  id: Design
+  parent: Reportman.Reporting.BackStyleType
+  langs:
+  - csharp
+  - vb
+  name: Design
+  nameWithType: BackStyleType.Design
+  fullName: Reportman.Reporting.BackStyleType.Design
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    The background will be only visible at design time, useful to fill preprinted forms, 
+
+    you can place the background in the section, with exact dots per inch define,
+
+    so you place each expression in each predefined location
+  example: []
+  syntax:
+    content: Design = 0
+    return:
+      type: Reportman.Reporting.BackStyleType
+- uid: Reportman.Reporting.BackStyleType.Preview
+  commentId: F:Reportman.Reporting.BackStyleType.Preview
+  id: Preview
+  parent: Reportman.Reporting.BackStyleType
+  langs:
+  - csharp
+  - vb
+  name: Preview
+  nameWithType: BackStyleType.Preview
+  fullName: Reportman.Reporting.BackStyleType.Preview
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: The background will be also visible at preview, but will not be printed
+  example: []
+  syntax:
+    content: Preview = 1
+    return:
+      type: Reportman.Reporting.BackStyleType
+- uid: Reportman.Reporting.BackStyleType.Print
+  commentId: F:Reportman.Reporting.BackStyleType.Print
+  id: Print
+  parent: Reportman.Reporting.BackStyleType
+  langs:
+  - csharp
+  - vb
+  name: Print
+  nameWithType: BackStyleType.Print
+  fullName: Reportman.Reporting.BackStyleType.Print
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: The background will be visible at design, preview and will be printed
+  example: []
+  syntax:
+    content: Print = 2
+    return:
+      type: Reportman.Reporting.BackStyleType
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: Reportman.Reporting.BackStyleType
+  commentId: T:Reportman.Reporting.BackStyleType
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.BackStyleType.html
+  name: BackStyleType
+  nameWithType: BackStyleType
+  fullName: Reportman.Reporting.BackStyleType

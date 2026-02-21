@@ -1,0 +1,1253 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.Evaluator
+  commentId: T:Reportman.Reporting.Evaluator
+  id: Evaluator
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.Evaluator.#ctor
+  - Reportman.Reporting.Evaluator.#ctor(System.ComponentModel.IContainer)
+  - Reportman.Reporting.Evaluator.AddIden(System.String,Reportman.Reporting.EvalIdentifier)
+  - Reportman.Reporting.Evaluator.AddVariable(System.String,Reportman.Reporting.EvalIdentifier)
+  - Reportman.Reporting.Evaluator.AliasList
+  - Reportman.Reporting.Evaluator.CheckSyntax(System.String)
+  - Reportman.Reporting.Evaluator.Dispose(System.Boolean)
+  - Reportman.Reporting.Evaluator.Evaluate
+  - Reportman.Reporting.Evaluator.EvaluateText(System.String)
+  - Reportman.Reporting.Evaluator.Expression
+  - Reportman.Reporting.Evaluator.GetStreamFromExpression(System.String)
+  - Reportman.Reporting.Evaluator.Identifiers
+  - Reportman.Reporting.Evaluator.Language
+  - Reportman.Reporting.Evaluator.NewVariable(System.String,Reportman.Reporting.Variant)
+  - Reportman.Reporting.Evaluator.OnDatasetNeeded
+  - Reportman.Reporting.Evaluator.Result
+  - Reportman.Reporting.Evaluator.SearchIdentifier(System.String)
+  langs:
+  - csharp
+  - vb
+  name: Evaluator
+  nameWithType: Evaluator
+  fullName: Reportman.Reporting.Evaluator
+  type: Class
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    Evaluator is an expression evaluator, it includes variable assignment and support
+
+    for dataset fields, function calls are also supported
+  example: []
+  syntax:
+    content: 'public class Evaluator : Component, IComponent, IDisposable'
+    content.vb: Public Class Evaluator Inherits Component Implements IComponent, IDisposable
+  inheritance:
+  - System.Object
+  - System.MarshalByRefObject
+  - System.ComponentModel.Component
+  implements:
+  - System.ComponentModel.IComponent
+  - System.IDisposable
+  inheritedMembers:
+  - System.ComponentModel.Component.Dispose
+  - System.ComponentModel.Component.GetService(System.Type)
+  - System.ComponentModel.Component.ToString
+  - System.ComponentModel.Component.CanRaiseEvents
+  - System.ComponentModel.Component.Events
+  - System.ComponentModel.Component.Site
+  - System.ComponentModel.Component.Container
+  - System.ComponentModel.Component.DesignMode
+  - System.ComponentModel.Component.Disposed
+  - System.MarshalByRefObject.GetLifetimeService
+  - System.MarshalByRefObject.InitializeLifetimeService
+  - System.MarshalByRefObject.MemberwiseClone(System.Boolean)
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Reporting.Evaluator.Language
+  commentId: F:Reportman.Reporting.Evaluator.Language
+  id: Language
+  parent: Reportman.Reporting.Evaluator
+  langs:
+  - csharp
+  - vb
+  name: Language
+  nameWithType: Evaluator.Language
+  fullName: Reportman.Reporting.Evaluator.Language
+  type: Field
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Language property is used in funtions returning localized strings
+  example: []
+  syntax:
+    content: public int Language
+    return:
+      type: System.Int32
+    content.vb: Public Language As Integer
+- uid: Reportman.Reporting.Evaluator.CheckSyntax(System.String)
+  commentId: M:Reportman.Reporting.Evaluator.CheckSyntax(System.String)
+  id: CheckSyntax(System.String)
+  parent: Reportman.Reporting.Evaluator
+  langs:
+  - csharp
+  - vb
+  name: CheckSyntax(string)
+  nameWithType: Evaluator.CheckSyntax(string)
+  fullName: Reportman.Reporting.Evaluator.CheckSyntax(string)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Provide syntax checking utility
+  example: []
+  syntax:
+    content: public void CheckSyntax(string atext)
+    parameters:
+    - id: atext
+      type: System.String
+    content.vb: Public Sub CheckSyntax(atext As String)
+  overload: Reportman.Reporting.Evaluator.CheckSyntax*
+  nameWithType.vb: Evaluator.CheckSyntax(String)
+  fullName.vb: Reportman.Reporting.Evaluator.CheckSyntax(String)
+  name.vb: CheckSyntax(String)
+- uid: Reportman.Reporting.Evaluator.AddVariable(System.String,Reportman.Reporting.EvalIdentifier)
+  commentId: M:Reportman.Reporting.Evaluator.AddVariable(System.String,Reportman.Reporting.EvalIdentifier)
+  id: AddVariable(System.String,Reportman.Reporting.EvalIdentifier)
+  parent: Reportman.Reporting.Evaluator
+  langs:
+  - csharp
+  - vb
+  name: AddVariable(string, EvalIdentifier)
+  nameWithType: Evaluator.AddVariable(string, EvalIdentifier)
+  fullName: Reportman.Reporting.Evaluator.AddVariable(string, Reportman.Reporting.EvalIdentifier)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Add a variable to the evaluator
+  example: []
+  syntax:
+    content: public void AddVariable(string name1, EvalIdentifier iden)
+    parameters:
+    - id: name1
+      type: System.String
+      description: Variable name
+    - id: iden
+      type: Reportman.Reporting.EvalIdentifier
+      description: Identifier object, usually a IdenVariable typed object
+    content.vb: Public Sub AddVariable(name1 As String, iden As EvalIdentifier)
+  overload: Reportman.Reporting.Evaluator.AddVariable*
+  nameWithType.vb: Evaluator.AddVariable(String, EvalIdentifier)
+  fullName.vb: Reportman.Reporting.Evaluator.AddVariable(String, Reportman.Reporting.EvalIdentifier)
+  name.vb: AddVariable(String, EvalIdentifier)
+- uid: Reportman.Reporting.Evaluator.AddIden(System.String,Reportman.Reporting.EvalIdentifier)
+  commentId: M:Reportman.Reporting.Evaluator.AddIden(System.String,Reportman.Reporting.EvalIdentifier)
+  id: AddIden(System.String,Reportman.Reporting.EvalIdentifier)
+  parent: Reportman.Reporting.Evaluator
+  langs:
+  - csharp
+  - vb
+  name: AddIden(string, EvalIdentifier)
+  nameWithType: Evaluator.AddIden(string, EvalIdentifier)
+  fullName: Reportman.Reporting.Evaluator.AddIden(string, Reportman.Reporting.EvalIdentifier)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Addd any identifier object to the evaluator
+  example: []
+  syntax:
+    content: public void AddIden(string name1, EvalIdentifier iden)
+    parameters:
+    - id: name1
+      type: System.String
+      description: Identifier name
+    - id: iden
+      type: Reportman.Reporting.EvalIdentifier
+      description: Identifier object
+    content.vb: Public Sub AddIden(name1 As String, iden As EvalIdentifier)
+  overload: Reportman.Reporting.Evaluator.AddIden*
+  nameWithType.vb: Evaluator.AddIden(String, EvalIdentifier)
+  fullName.vb: Reportman.Reporting.Evaluator.AddIden(String, Reportman.Reporting.EvalIdentifier)
+  name.vb: AddIden(String, EvalIdentifier)
+- uid: Reportman.Reporting.Evaluator.NewVariable(System.String,Reportman.Reporting.Variant)
+  commentId: M:Reportman.Reporting.Evaluator.NewVariable(System.String,Reportman.Reporting.Variant)
+  id: NewVariable(System.String,Reportman.Reporting.Variant)
+  parent: Reportman.Reporting.Evaluator
+  langs:
+  - csharp
+  - vb
+  name: NewVariable(string, Variant)
+  nameWithType: Evaluator.NewVariable(string, Variant)
+  fullName: Reportman.Reporting.Evaluator.NewVariable(string, Reportman.Reporting.Variant)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Create a new variable with an initial value
+  example: []
+  syntax:
+    content: public IdenVariable NewVariable(string name1, Variant valueIni)
+    parameters:
+    - id: name1
+      type: System.String
+      description: Variable name
+    - id: valueIni
+      type: Reportman.Reporting.Variant
+      description: Initial value
+    return:
+      type: Reportman.Reporting.IdenVariable
+      description: ''
+    content.vb: Public Function NewVariable(name1 As String, valueIni As [Variant]) As IdenVariable
+  overload: Reportman.Reporting.Evaluator.NewVariable*
+  nameWithType.vb: Evaluator.NewVariable(String, Variant)
+  fullName.vb: Reportman.Reporting.Evaluator.NewVariable(String, Reportman.Reporting.Variant)
+  name.vb: NewVariable(String, Variant)
+- uid: Reportman.Reporting.Evaluator.SearchIdentifier(System.String)
+  commentId: M:Reportman.Reporting.Evaluator.SearchIdentifier(System.String)
+  id: SearchIdentifier(System.String)
+  parent: Reportman.Reporting.Evaluator
+  langs:
+  - csharp
+  - vb
+  name: SearchIdentifier(string)
+  nameWithType: Evaluator.SearchIdentifier(string)
+  fullName: Reportman.Reporting.Evaluator.SearchIdentifier(string)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Looks for an identifier, returns null if not found
+  example: []
+  syntax:
+    content: public EvalIdentifier SearchIdentifier(string idenname)
+    parameters:
+    - id: idenname
+      type: System.String
+      description: Identifier name
+    return:
+      type: Reportman.Reporting.EvalIdentifier
+      description: Identifier found or null
+    content.vb: Public Function SearchIdentifier(idenname As String) As EvalIdentifier
+  overload: Reportman.Reporting.Evaluator.SearchIdentifier*
+  nameWithType.vb: Evaluator.SearchIdentifier(String)
+  fullName.vb: Reportman.Reporting.Evaluator.SearchIdentifier(String)
+  name.vb: SearchIdentifier(String)
+- uid: Reportman.Reporting.Evaluator.GetStreamFromExpression(System.String)
+  commentId: M:Reportman.Reporting.Evaluator.GetStreamFromExpression(System.String)
+  id: GetStreamFromExpression(System.String)
+  parent: Reportman.Reporting.Evaluator
+  langs:
+  - csharp
+  - vb
+  name: GetStreamFromExpression(string)
+  nameWithType: Evaluator.GetStreamFromExpression(string)
+  fullName: Reportman.Reporting.Evaluator.GetStreamFromExpression(string)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    Obtains a memory stream from an expression resulting in a file name path or
+
+    a database field
+  example: []
+  syntax:
+    content: public MemoryStream GetStreamFromExpression(string expre)
+    parameters:
+    - id: expre
+      type: System.String
+      description: Expression to evaluate
+    return:
+      type: System.IO.MemoryStream
+      description: A Memory stream or null if the result is not a stream
+    content.vb: Public Function GetStreamFromExpression(expre As String) As MemoryStream
+  overload: Reportman.Reporting.Evaluator.GetStreamFromExpression*
+  nameWithType.vb: Evaluator.GetStreamFromExpression(String)
+  fullName.vb: Reportman.Reporting.Evaluator.GetStreamFromExpression(String)
+  name.vb: GetStreamFromExpression(String)
+- uid: Reportman.Reporting.Evaluator.EvaluateText(System.String)
+  commentId: M:Reportman.Reporting.Evaluator.EvaluateText(System.String)
+  id: EvaluateText(System.String)
+  parent: Reportman.Reporting.Evaluator
+  langs:
+  - csharp
+  - vb
+  name: EvaluateText(string)
+  nameWithType: Evaluator.EvaluateText(string)
+  fullName: Reportman.Reporting.Evaluator.EvaluateText(string)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public Variant EvaluateText(string text)
+    parameters:
+    - id: text
+      type: System.String
+    return:
+      type: Reportman.Reporting.Variant
+    content.vb: Public Function EvaluateText(text As String) As [Variant]
+  overload: Reportman.Reporting.Evaluator.EvaluateText*
+  nameWithType.vb: Evaluator.EvaluateText(String)
+  fullName.vb: Reportman.Reporting.Evaluator.EvaluateText(String)
+  name.vb: EvaluateText(String)
+- uid: Reportman.Reporting.Evaluator.Evaluate
+  commentId: M:Reportman.Reporting.Evaluator.Evaluate
+  id: Evaluate
+  parent: Reportman.Reporting.Evaluator
+  langs:
+  - csharp
+  - vb
+  name: Evaluate()
+  nameWithType: Evaluator.Evaluate()
+  fullName: Reportman.Reporting.Evaluator.Evaluate()
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public Variant Evaluate()
+    return:
+      type: Reportman.Reporting.Variant
+    content.vb: Public Function Evaluate() As [Variant]
+  overload: Reportman.Reporting.Evaluator.Evaluate*
+- uid: Reportman.Reporting.Evaluator.#ctor(System.ComponentModel.IContainer)
+  commentId: M:Reportman.Reporting.Evaluator.#ctor(System.ComponentModel.IContainer)
+  id: '#ctor(System.ComponentModel.IContainer)'
+  parent: Reportman.Reporting.Evaluator
+  langs:
+  - csharp
+  - vb
+  name: Evaluator(IContainer)
+  nameWithType: Evaluator.Evaluator(IContainer)
+  fullName: Reportman.Reporting.Evaluator.Evaluator(System.ComponentModel.IContainer)
+  type: Constructor
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public Evaluator(IContainer container)
+    parameters:
+    - id: container
+      type: System.ComponentModel.IContainer
+    content.vb: Public Sub New(container As IContainer)
+  overload: Reportman.Reporting.Evaluator.#ctor*
+  nameWithType.vb: Evaluator.New(IContainer)
+  fullName.vb: Reportman.Reporting.Evaluator.New(System.ComponentModel.IContainer)
+  name.vb: New(IContainer)
+- uid: Reportman.Reporting.Evaluator.#ctor
+  commentId: M:Reportman.Reporting.Evaluator.#ctor
+  id: '#ctor'
+  parent: Reportman.Reporting.Evaluator
+  langs:
+  - csharp
+  - vb
+  name: Evaluator()
+  nameWithType: Evaluator.Evaluator()
+  fullName: Reportman.Reporting.Evaluator.Evaluator()
+  type: Constructor
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public Evaluator()
+    content.vb: Public Sub New()
+  overload: Reportman.Reporting.Evaluator.#ctor*
+  nameWithType.vb: Evaluator.New()
+  fullName.vb: Reportman.Reporting.Evaluator.New()
+  name.vb: New()
+- uid: Reportman.Reporting.Evaluator.Dispose(System.Boolean)
+  commentId: M:Reportman.Reporting.Evaluator.Dispose(System.Boolean)
+  id: Dispose(System.Boolean)
+  parent: Reportman.Reporting.Evaluator
+  langs:
+  - csharp
+  - vb
+  name: Dispose(bool)
+  nameWithType: Evaluator.Dispose(bool)
+  fullName: Reportman.Reporting.Evaluator.Dispose(bool)
+  type: Method
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Cleanup resources
+  example: []
+  syntax:
+    content: protected override void Dispose(bool disposing)
+    parameters:
+    - id: disposing
+      type: System.Boolean
+    content.vb: Protected Overrides Sub Dispose(disposing As Boolean)
+  overridden: System.ComponentModel.Component.Dispose(System.Boolean)
+  overload: Reportman.Reporting.Evaluator.Dispose*
+  nameWithType.vb: Evaluator.Dispose(Boolean)
+  fullName.vb: Reportman.Reporting.Evaluator.Dispose(Boolean)
+  name.vb: Dispose(Boolean)
+- uid: Reportman.Reporting.Evaluator.Identifiers
+  commentId: P:Reportman.Reporting.Evaluator.Identifiers
+  id: Identifiers
+  parent: Reportman.Reporting.Evaluator
+  langs:
+  - csharp
+  - vb
+  name: Identifiers
+  nameWithType: Evaluator.Identifiers
+  fullName: Reportman.Reporting.Evaluator.Identifiers
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public EvalIdentifiers Identifiers { get; }
+    parameters: []
+    return:
+      type: Reportman.Reporting.EvalIdentifiers
+    content.vb: Public ReadOnly Property Identifiers As EvalIdentifiers
+  overload: Reportman.Reporting.Evaluator.Identifiers*
+- uid: Reportman.Reporting.Evaluator.AliasList
+  commentId: P:Reportman.Reporting.Evaluator.AliasList
+  id: AliasList
+  parent: Reportman.Reporting.Evaluator
+  langs:
+  - csharp
+  - vb
+  name: AliasList
+  nameWithType: Evaluator.AliasList
+  fullName: Reportman.Reporting.Evaluator.AliasList
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: AliasList is used to provide access to dataset fields to the Evaluator
+  example: []
+  syntax:
+    content: public DatasetAlias AliasList { get; set; }
+    parameters: []
+    return:
+      type: Reportman.Reporting.DatasetAlias
+    content.vb: Public Property AliasList As DatasetAlias
+  overload: Reportman.Reporting.Evaluator.AliasList*
+- uid: Reportman.Reporting.Evaluator.Result
+  commentId: P:Reportman.Reporting.Evaluator.Result
+  id: Result
+  parent: Reportman.Reporting.Evaluator
+  langs:
+  - csharp
+  - vb
+  name: Result
+  nameWithType: Evaluator.Result
+  fullName: Reportman.Reporting.Evaluator.Result
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: This property contains the last result of the evaluation of an expression
+  example: []
+  syntax:
+    content: public Variant Result { get; }
+    parameters: []
+    return:
+      type: Reportman.Reporting.Variant
+    content.vb: Public ReadOnly Property Result As [Variant]
+  overload: Reportman.Reporting.Evaluator.Result*
+- uid: Reportman.Reporting.Evaluator.Expression
+  commentId: P:Reportman.Reporting.Evaluator.Expression
+  id: Expression
+  parent: Reportman.Reporting.Evaluator
+  langs:
+  - csharp
+  - vb
+  name: Expression
+  nameWithType: Evaluator.Expression
+  fullName: Reportman.Reporting.Evaluator.Expression
+  type: Property
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public string Expression { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Expression As String
+  overload: Reportman.Reporting.Evaluator.Expression*
+- uid: Reportman.Reporting.Evaluator.OnDatasetNeeded
+  commentId: E:Reportman.Reporting.Evaluator.OnDatasetNeeded
+  id: OnDatasetNeeded
+  parent: Reportman.Reporting.Evaluator
+  langs:
+  - csharp
+  - vb
+  name: OnDatasetNeeded
+  nameWithType: Evaluator.OnDatasetNeeded
+  fullName: Reportman.Reporting.Evaluator.OnDatasetNeeded
+  type: Event
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public event DataNeededEvent OnDatasetNeeded
+    return:
+      type: Reportman.Reporting.DataNeededEvent
+    content.vb: Public Event OnDatasetNeeded As DataNeededEvent
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.MarshalByRefObject
+  commentId: T:System.MarshalByRefObject
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject
+  name: MarshalByRefObject
+  nameWithType: MarshalByRefObject
+  fullName: System.MarshalByRefObject
+- uid: System.ComponentModel.Component
+  commentId: T:System.ComponentModel.Component
+  parent: System.ComponentModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component
+  name: Component
+  nameWithType: Component
+  fullName: System.ComponentModel.Component
+- uid: System.ComponentModel.IComponent
+  commentId: T:System.ComponentModel.IComponent
+  parent: System.ComponentModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.icomponent
+  name: IComponent
+  nameWithType: IComponent
+  fullName: System.ComponentModel.IComponent
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System.ComponentModel.Component.Dispose
+  commentId: M:System.ComponentModel.Component.Dispose
+  parent: System.ComponentModel.Component
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.dispose#system-componentmodel-component-dispose
+  name: Dispose()
+  nameWithType: Component.Dispose()
+  fullName: System.ComponentModel.Component.Dispose()
+  spec.csharp:
+  - uid: System.ComponentModel.Component.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.dispose#system-componentmodel-component-dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.Component.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.dispose#system-componentmodel-component-dispose
+  - name: (
+  - name: )
+- uid: System.ComponentModel.Component.GetService(System.Type)
+  commentId: M:System.ComponentModel.Component.GetService(System.Type)
+  parent: System.ComponentModel.Component
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.getservice
+  name: GetService(Type)
+  nameWithType: Component.GetService(Type)
+  fullName: System.ComponentModel.Component.GetService(System.Type)
+  spec.csharp:
+  - uid: System.ComponentModel.Component.GetService(System.Type)
+    name: GetService
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.getservice
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.Component.GetService(System.Type)
+    name: GetService
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.getservice
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+- uid: System.ComponentModel.Component.ToString
+  commentId: M:System.ComponentModel.Component.ToString
+  parent: System.ComponentModel.Component
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.tostring
+  name: ToString()
+  nameWithType: Component.ToString()
+  fullName: System.ComponentModel.Component.ToString()
+  spec.csharp:
+  - uid: System.ComponentModel.Component.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.Component.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.tostring
+  - name: (
+  - name: )
+- uid: System.ComponentModel.Component.CanRaiseEvents
+  commentId: P:System.ComponentModel.Component.CanRaiseEvents
+  parent: System.ComponentModel.Component
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.canraiseevents
+  name: CanRaiseEvents
+  nameWithType: Component.CanRaiseEvents
+  fullName: System.ComponentModel.Component.CanRaiseEvents
+- uid: System.ComponentModel.Component.Events
+  commentId: P:System.ComponentModel.Component.Events
+  parent: System.ComponentModel.Component
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.events
+  name: Events
+  nameWithType: Component.Events
+  fullName: System.ComponentModel.Component.Events
+- uid: System.ComponentModel.Component.Site
+  commentId: P:System.ComponentModel.Component.Site
+  parent: System.ComponentModel.Component
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.site
+  name: Site
+  nameWithType: Component.Site
+  fullName: System.ComponentModel.Component.Site
+- uid: System.ComponentModel.Component.Container
+  commentId: P:System.ComponentModel.Component.Container
+  parent: System.ComponentModel.Component
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.container
+  name: Container
+  nameWithType: Component.Container
+  fullName: System.ComponentModel.Component.Container
+- uid: System.ComponentModel.Component.DesignMode
+  commentId: P:System.ComponentModel.Component.DesignMode
+  parent: System.ComponentModel.Component
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.designmode
+  name: DesignMode
+  nameWithType: Component.DesignMode
+  fullName: System.ComponentModel.Component.DesignMode
+- uid: System.ComponentModel.Component.Disposed
+  commentId: E:System.ComponentModel.Component.Disposed
+  parent: System.ComponentModel.Component
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.disposed
+  name: Disposed
+  nameWithType: Component.Disposed
+  fullName: System.ComponentModel.Component.Disposed
+- uid: System.MarshalByRefObject.GetLifetimeService
+  commentId: M:System.MarshalByRefObject.GetLifetimeService
+  parent: System.MarshalByRefObject
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.getlifetimeservice
+  name: GetLifetimeService()
+  nameWithType: MarshalByRefObject.GetLifetimeService()
+  fullName: System.MarshalByRefObject.GetLifetimeService()
+  spec.csharp:
+  - uid: System.MarshalByRefObject.GetLifetimeService
+    name: GetLifetimeService
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.getlifetimeservice
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.MarshalByRefObject.GetLifetimeService
+    name: GetLifetimeService
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.getlifetimeservice
+  - name: (
+  - name: )
+- uid: System.MarshalByRefObject.InitializeLifetimeService
+  commentId: M:System.MarshalByRefObject.InitializeLifetimeService
+  parent: System.MarshalByRefObject
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.initializelifetimeservice
+  name: InitializeLifetimeService()
+  nameWithType: MarshalByRefObject.InitializeLifetimeService()
+  fullName: System.MarshalByRefObject.InitializeLifetimeService()
+  spec.csharp:
+  - uid: System.MarshalByRefObject.InitializeLifetimeService
+    name: InitializeLifetimeService
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.initializelifetimeservice
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.MarshalByRefObject.InitializeLifetimeService
+    name: InitializeLifetimeService
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.initializelifetimeservice
+  - name: (
+  - name: )
+- uid: System.MarshalByRefObject.MemberwiseClone(System.Boolean)
+  commentId: M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)
+  parent: System.MarshalByRefObject
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.memberwiseclone
+  name: MemberwiseClone(bool)
+  nameWithType: MarshalByRefObject.MemberwiseClone(bool)
+  fullName: System.MarshalByRefObject.MemberwiseClone(bool)
+  nameWithType.vb: MarshalByRefObject.MemberwiseClone(Boolean)
+  fullName.vb: System.MarshalByRefObject.MemberwiseClone(Boolean)
+  name.vb: MemberwiseClone(Boolean)
+  spec.csharp:
+  - uid: System.MarshalByRefObject.MemberwiseClone(System.Boolean)
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.memberwiseclone
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: System.MarshalByRefObject.MemberwiseClone(System.Boolean)
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.memberwiseclone
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ComponentModel
+  commentId: N:System.ComponentModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.ComponentModel
+  nameWithType: System.ComponentModel
+  fullName: System.ComponentModel
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.ComponentModel
+    name: ComponentModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.ComponentModel
+    name: ComponentModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Reportman.Reporting.Evaluator.CheckSyntax*
+  commentId: Overload:Reportman.Reporting.Evaluator.CheckSyntax
+  isExternal: true
+  href: Reportman.Reporting.Evaluator.html#Reportman_Reporting_Evaluator_CheckSyntax_System_String_
+  name: CheckSyntax
+  nameWithType: Evaluator.CheckSyntax
+  fullName: Reportman.Reporting.Evaluator.CheckSyntax
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Reportman.Reporting.Evaluator.AddVariable*
+  commentId: Overload:Reportman.Reporting.Evaluator.AddVariable
+  isExternal: true
+  href: Reportman.Reporting.Evaluator.html#Reportman_Reporting_Evaluator_AddVariable_System_String_Reportman_Reporting_EvalIdentifier_
+  name: AddVariable
+  nameWithType: Evaluator.AddVariable
+  fullName: Reportman.Reporting.Evaluator.AddVariable
+- uid: Reportman.Reporting.EvalIdentifier
+  commentId: T:Reportman.Reporting.EvalIdentifier
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.EvalIdentifier.html
+  name: EvalIdentifier
+  nameWithType: EvalIdentifier
+  fullName: Reportman.Reporting.EvalIdentifier
+- uid: Reportman.Reporting.Evaluator.AddIden*
+  commentId: Overload:Reportman.Reporting.Evaluator.AddIden
+  isExternal: true
+  href: Reportman.Reporting.Evaluator.html#Reportman_Reporting_Evaluator_AddIden_System_String_Reportman_Reporting_EvalIdentifier_
+  name: AddIden
+  nameWithType: Evaluator.AddIden
+  fullName: Reportman.Reporting.Evaluator.AddIden
+- uid: Reportman.Reporting.Evaluator.NewVariable*
+  commentId: Overload:Reportman.Reporting.Evaluator.NewVariable
+  isExternal: true
+  href: Reportman.Reporting.Evaluator.html#Reportman_Reporting_Evaluator_NewVariable_System_String_Reportman_Reporting_Variant_
+  name: NewVariable
+  nameWithType: Evaluator.NewVariable
+  fullName: Reportman.Reporting.Evaluator.NewVariable
+- uid: Reportman.Reporting.Variant
+  commentId: T:Reportman.Reporting.Variant
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.Variant.html
+  name: Variant
+  nameWithType: Variant
+  fullName: Reportman.Reporting.Variant
+- uid: Reportman.Reporting.IdenVariable
+  commentId: T:Reportman.Reporting.IdenVariable
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.IdenVariable.html
+  name: IdenVariable
+  nameWithType: IdenVariable
+  fullName: Reportman.Reporting.IdenVariable
+- uid: Reportman.Reporting.Evaluator.SearchIdentifier*
+  commentId: Overload:Reportman.Reporting.Evaluator.SearchIdentifier
+  isExternal: true
+  href: Reportman.Reporting.Evaluator.html#Reportman_Reporting_Evaluator_SearchIdentifier_System_String_
+  name: SearchIdentifier
+  nameWithType: Evaluator.SearchIdentifier
+  fullName: Reportman.Reporting.Evaluator.SearchIdentifier
+- uid: Reportman.Reporting.Evaluator.GetStreamFromExpression*
+  commentId: Overload:Reportman.Reporting.Evaluator.GetStreamFromExpression
+  isExternal: true
+  href: Reportman.Reporting.Evaluator.html#Reportman_Reporting_Evaluator_GetStreamFromExpression_System_String_
+  name: GetStreamFromExpression
+  nameWithType: Evaluator.GetStreamFromExpression
+  fullName: Reportman.Reporting.Evaluator.GetStreamFromExpression
+- uid: System.IO.MemoryStream
+  commentId: T:System.IO.MemoryStream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.memorystream
+  name: MemoryStream
+  nameWithType: MemoryStream
+  fullName: System.IO.MemoryStream
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+- uid: Reportman.Reporting.Evaluator.EvaluateText*
+  commentId: Overload:Reportman.Reporting.Evaluator.EvaluateText
+  isExternal: true
+  href: Reportman.Reporting.Evaluator.html#Reportman_Reporting_Evaluator_EvaluateText_System_String_
+  name: EvaluateText
+  nameWithType: Evaluator.EvaluateText
+  fullName: Reportman.Reporting.Evaluator.EvaluateText
+- uid: Reportman.Reporting.Evaluator.Evaluate*
+  commentId: Overload:Reportman.Reporting.Evaluator.Evaluate
+  isExternal: true
+  href: Reportman.Reporting.Evaluator.html#Reportman_Reporting_Evaluator_Evaluate
+  name: Evaluate
+  nameWithType: Evaluator.Evaluate
+  fullName: Reportman.Reporting.Evaluator.Evaluate
+- uid: Reportman.Reporting.Evaluator.#ctor*
+  commentId: Overload:Reportman.Reporting.Evaluator.#ctor
+  isExternal: true
+  href: Reportman.Reporting.Evaluator.html#Reportman_Reporting_Evaluator__ctor_System_ComponentModel_IContainer_
+  name: Evaluator
+  nameWithType: Evaluator.Evaluator
+  fullName: Reportman.Reporting.Evaluator.Evaluator
+  nameWithType.vb: Evaluator.New
+  fullName.vb: Reportman.Reporting.Evaluator.New
+  name.vb: New
+- uid: System.ComponentModel.IContainer
+  commentId: T:System.ComponentModel.IContainer
+  parent: System.ComponentModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.icontainer
+  name: IContainer
+  nameWithType: IContainer
+  fullName: System.ComponentModel.IContainer
+- uid: System.ComponentModel.Component.Dispose(System.Boolean)
+  commentId: M:System.ComponentModel.Component.Dispose(System.Boolean)
+  parent: System.ComponentModel.Component
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.dispose#system-componentmodel-component-dispose(system-boolean)
+  name: Dispose(bool)
+  nameWithType: Component.Dispose(bool)
+  fullName: System.ComponentModel.Component.Dispose(bool)
+  nameWithType.vb: Component.Dispose(Boolean)
+  fullName.vb: System.ComponentModel.Component.Dispose(Boolean)
+  name.vb: Dispose(Boolean)
+  spec.csharp:
+  - uid: System.ComponentModel.Component.Dispose(System.Boolean)
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.dispose#system-componentmodel-component-dispose(system-boolean)
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.Component.Dispose(System.Boolean)
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.component.dispose#system-componentmodel-component-dispose(system-boolean)
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Reportman.Reporting.Evaluator.Dispose*
+  commentId: Overload:Reportman.Reporting.Evaluator.Dispose
+  isExternal: true
+  href: Reportman.Reporting.Evaluator.html#Reportman_Reporting_Evaluator_Dispose_System_Boolean_
+  name: Dispose
+  nameWithType: Evaluator.Dispose
+  fullName: Reportman.Reporting.Evaluator.Dispose
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Reportman.Reporting.Evaluator.Identifiers*
+  commentId: Overload:Reportman.Reporting.Evaluator.Identifiers
+  isExternal: true
+  href: Reportman.Reporting.Evaluator.html#Reportman_Reporting_Evaluator_Identifiers
+  name: Identifiers
+  nameWithType: Evaluator.Identifiers
+  fullName: Reportman.Reporting.Evaluator.Identifiers
+- uid: Reportman.Reporting.EvalIdentifiers
+  commentId: T:Reportman.Reporting.EvalIdentifiers
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.EvalIdentifiers.html
+  name: EvalIdentifiers
+  nameWithType: EvalIdentifiers
+  fullName: Reportman.Reporting.EvalIdentifiers
+- uid: Reportman.Reporting.Evaluator.AliasList*
+  commentId: Overload:Reportman.Reporting.Evaluator.AliasList
+  isExternal: true
+  href: Reportman.Reporting.Evaluator.html#Reportman_Reporting_Evaluator_AliasList
+  name: AliasList
+  nameWithType: Evaluator.AliasList
+  fullName: Reportman.Reporting.Evaluator.AliasList
+- uid: Reportman.Reporting.DatasetAlias
+  commentId: T:Reportman.Reporting.DatasetAlias
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.DatasetAlias.html
+  name: DatasetAlias
+  nameWithType: DatasetAlias
+  fullName: Reportman.Reporting.DatasetAlias
+- uid: Reportman.Reporting.Evaluator.Result*
+  commentId: Overload:Reportman.Reporting.Evaluator.Result
+  isExternal: true
+  href: Reportman.Reporting.Evaluator.html#Reportman_Reporting_Evaluator_Result
+  name: Result
+  nameWithType: Evaluator.Result
+  fullName: Reportman.Reporting.Evaluator.Result
+- uid: Reportman.Reporting.Evaluator.Expression*
+  commentId: Overload:Reportman.Reporting.Evaluator.Expression
+  isExternal: true
+  href: Reportman.Reporting.Evaluator.html#Reportman_Reporting_Evaluator_Expression
+  name: Expression
+  nameWithType: Evaluator.Expression
+  fullName: Reportman.Reporting.Evaluator.Expression
+- uid: Reportman.Reporting.DataNeededEvent
+  commentId: T:Reportman.Reporting.DataNeededEvent
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.DataNeededEvent.html
+  name: DataNeededEvent
+  nameWithType: DataNeededEvent
+  fullName: Reportman.Reporting.DataNeededEvent

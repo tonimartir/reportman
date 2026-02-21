@@ -1,0 +1,295 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.TabPageAdvanced.Property
+  commentId: T:Reportman.Drawing.Forms.TabPageAdvanced.Property
+  id: TabPageAdvanced.Property
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.TabPageAdvanced.Property.CanClose
+  - Reportman.Drawing.Forms.TabPageAdvanced.Property.Control
+  - Reportman.Drawing.Forms.TabPageAdvanced.Property.DrawIconHightlight
+  - Reportman.Drawing.Forms.TabPageAdvanced.Property.Icon
+  - Reportman.Drawing.Forms.TabPageAdvanced.Property.IconFrame
+  - Reportman.Drawing.Forms.TabPageAdvanced.Property.ImageIndex
+  - Reportman.Drawing.Forms.TabPageAdvanced.Property.ImageList
+  - Reportman.Drawing.Forms.TabPageAdvanced.Property.Selected
+  - Reportman.Drawing.Forms.TabPageAdvanced.Property.TabWidth
+  - Reportman.Drawing.Forms.TabPageAdvanced.Property.Title
+  - Reportman.Drawing.Forms.TabPageAdvanced.Property.TitleAlignment
+  langs:
+  - csharp
+  - vb
+  name: TabPageAdvanced.Property
+  nameWithType: TabPageAdvanced.Property
+  fullName: Reportman.Drawing.Forms.TabPageAdvanced.Property
+  type: Enum
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public enum TabPageAdvanced.Property
+    content.vb: Public Enum TabPageAdvanced.Property
+- uid: Reportman.Drawing.Forms.TabPageAdvanced.Property.Title
+  commentId: F:Reportman.Drawing.Forms.TabPageAdvanced.Property.Title
+  id: Title
+  parent: Reportman.Drawing.Forms.TabPageAdvanced.Property
+  langs:
+  - csharp
+  - vb
+  name: Title
+  nameWithType: TabPageAdvanced.Property.Title
+  fullName: Reportman.Drawing.Forms.TabPageAdvanced.Property.Title
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Title = 0
+    return:
+      type: Reportman.Drawing.Forms.TabPageAdvanced.Property
+- uid: Reportman.Drawing.Forms.TabPageAdvanced.Property.Control
+  commentId: F:Reportman.Drawing.Forms.TabPageAdvanced.Property.Control
+  id: Control
+  parent: Reportman.Drawing.Forms.TabPageAdvanced.Property
+  langs:
+  - csharp
+  - vb
+  name: Control
+  nameWithType: TabPageAdvanced.Property.Control
+  fullName: Reportman.Drawing.Forms.TabPageAdvanced.Property.Control
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Control = 1
+    return:
+      type: Reportman.Drawing.Forms.TabPageAdvanced.Property
+- uid: Reportman.Drawing.Forms.TabPageAdvanced.Property.ImageIndex
+  commentId: F:Reportman.Drawing.Forms.TabPageAdvanced.Property.ImageIndex
+  id: ImageIndex
+  parent: Reportman.Drawing.Forms.TabPageAdvanced.Property
+  langs:
+  - csharp
+  - vb
+  name: ImageIndex
+  nameWithType: TabPageAdvanced.Property.ImageIndex
+  fullName: Reportman.Drawing.Forms.TabPageAdvanced.Property.ImageIndex
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: ImageIndex = 2
+    return:
+      type: Reportman.Drawing.Forms.TabPageAdvanced.Property
+- uid: Reportman.Drawing.Forms.TabPageAdvanced.Property.ImageList
+  commentId: F:Reportman.Drawing.Forms.TabPageAdvanced.Property.ImageList
+  id: ImageList
+  parent: Reportman.Drawing.Forms.TabPageAdvanced.Property
+  langs:
+  - csharp
+  - vb
+  name: ImageList
+  nameWithType: TabPageAdvanced.Property.ImageList
+  fullName: Reportman.Drawing.Forms.TabPageAdvanced.Property.ImageList
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: ImageList = 3
+    return:
+      type: Reportman.Drawing.Forms.TabPageAdvanced.Property
+- uid: Reportman.Drawing.Forms.TabPageAdvanced.Property.Icon
+  commentId: F:Reportman.Drawing.Forms.TabPageAdvanced.Property.Icon
+  id: Icon
+  parent: Reportman.Drawing.Forms.TabPageAdvanced.Property
+  langs:
+  - csharp
+  - vb
+  name: Icon
+  nameWithType: TabPageAdvanced.Property.Icon
+  fullName: Reportman.Drawing.Forms.TabPageAdvanced.Property.Icon
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Icon = 4
+    return:
+      type: Reportman.Drawing.Forms.TabPageAdvanced.Property
+- uid: Reportman.Drawing.Forms.TabPageAdvanced.Property.IconFrame
+  commentId: F:Reportman.Drawing.Forms.TabPageAdvanced.Property.IconFrame
+  id: IconFrame
+  parent: Reportman.Drawing.Forms.TabPageAdvanced.Property
+  langs:
+  - csharp
+  - vb
+  name: IconFrame
+  nameWithType: TabPageAdvanced.Property.IconFrame
+  fullName: Reportman.Drawing.Forms.TabPageAdvanced.Property.IconFrame
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: IconFrame = 5
+    return:
+      type: Reportman.Drawing.Forms.TabPageAdvanced.Property
+- uid: Reportman.Drawing.Forms.TabPageAdvanced.Property.Selected
+  commentId: F:Reportman.Drawing.Forms.TabPageAdvanced.Property.Selected
+  id: Selected
+  parent: Reportman.Drawing.Forms.TabPageAdvanced.Property
+  langs:
+  - csharp
+  - vb
+  name: Selected
+  nameWithType: TabPageAdvanced.Property.Selected
+  fullName: Reportman.Drawing.Forms.TabPageAdvanced.Property.Selected
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: Selected = 6
+    return:
+      type: Reportman.Drawing.Forms.TabPageAdvanced.Property
+- uid: Reportman.Drawing.Forms.TabPageAdvanced.Property.CanClose
+  commentId: F:Reportman.Drawing.Forms.TabPageAdvanced.Property.CanClose
+  id: CanClose
+  parent: Reportman.Drawing.Forms.TabPageAdvanced.Property
+  langs:
+  - csharp
+  - vb
+  name: CanClose
+  nameWithType: TabPageAdvanced.Property.CanClose
+  fullName: Reportman.Drawing.Forms.TabPageAdvanced.Property.CanClose
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: CanClose = 7
+    return:
+      type: Reportman.Drawing.Forms.TabPageAdvanced.Property
+- uid: Reportman.Drawing.Forms.TabPageAdvanced.Property.DrawIconHightlight
+  commentId: F:Reportman.Drawing.Forms.TabPageAdvanced.Property.DrawIconHightlight
+  id: DrawIconHightlight
+  parent: Reportman.Drawing.Forms.TabPageAdvanced.Property
+  langs:
+  - csharp
+  - vb
+  name: DrawIconHightlight
+  nameWithType: TabPageAdvanced.Property.DrawIconHightlight
+  fullName: Reportman.Drawing.Forms.TabPageAdvanced.Property.DrawIconHightlight
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: DrawIconHightlight = 8
+    return:
+      type: Reportman.Drawing.Forms.TabPageAdvanced.Property
+- uid: Reportman.Drawing.Forms.TabPageAdvanced.Property.TabWidth
+  commentId: F:Reportman.Drawing.Forms.TabPageAdvanced.Property.TabWidth
+  id: TabWidth
+  parent: Reportman.Drawing.Forms.TabPageAdvanced.Property
+  langs:
+  - csharp
+  - vb
+  name: TabWidth
+  nameWithType: TabPageAdvanced.Property.TabWidth
+  fullName: Reportman.Drawing.Forms.TabPageAdvanced.Property.TabWidth
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: TabWidth = 9
+    return:
+      type: Reportman.Drawing.Forms.TabPageAdvanced.Property
+- uid: Reportman.Drawing.Forms.TabPageAdvanced.Property.TitleAlignment
+  commentId: F:Reportman.Drawing.Forms.TabPageAdvanced.Property.TitleAlignment
+  id: TitleAlignment
+  parent: Reportman.Drawing.Forms.TabPageAdvanced.Property
+  langs:
+  - csharp
+  - vb
+  name: TitleAlignment
+  nameWithType: TabPageAdvanced.Property.TitleAlignment
+  fullName: Reportman.Drawing.Forms.TabPageAdvanced.Property.TitleAlignment
+  type: Field
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: TitleAlignment = 10
+    return:
+      type: Reportman.Drawing.Forms.TabPageAdvanced.Property
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: Reportman.Drawing.Forms.TabPageAdvanced.Property
+  commentId: T:Reportman.Drawing.Forms.TabPageAdvanced.Property
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabPageAdvanced.html
+  name: TabPageAdvanced.Property
+  nameWithType: TabPageAdvanced.Property
+  fullName: Reportman.Drawing.Forms.TabPageAdvanced.Property
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.TabPageAdvanced
+    name: TabPageAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabPageAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TabPageAdvanced.Property
+    name: Property
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabPageAdvanced.Property.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.TabPageAdvanced
+    name: TabPageAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabPageAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TabPageAdvanced.Property
+    name: Property
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabPageAdvanced.Property.html

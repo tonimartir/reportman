@@ -1,0 +1,100 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.PreviewWindowStyleType
+  commentId: T:Reportman.Drawing.PreviewWindowStyleType
+  id: PreviewWindowStyleType
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.PreviewWindowStyleType.Maximized
+  - Reportman.Drawing.PreviewWindowStyleType.Normal
+  langs:
+  - csharp
+  - vb
+  name: PreviewWindowStyleType
+  nameWithType: PreviewWindowStyleType
+  fullName: Reportman.Drawing.PreviewWindowStyleType
+  type: Enum
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Preview window size the first time it's shown
+  example: []
+  syntax:
+    content: public enum PreviewWindowStyleType
+    content.vb: Public Enum PreviewWindowStyleType
+- uid: Reportman.Drawing.PreviewWindowStyleType.Normal
+  commentId: F:Reportman.Drawing.PreviewWindowStyleType.Normal
+  id: Normal
+  parent: Reportman.Drawing.PreviewWindowStyleType
+  langs:
+  - csharp
+  - vb
+  name: Normal
+  nameWithType: PreviewWindowStyleType.Normal
+  fullName: Reportman.Drawing.PreviewWindowStyleType.Normal
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Non maximized, normal size
+  example: []
+  syntax:
+    content: Normal = 0
+    return:
+      type: Reportman.Drawing.PreviewWindowStyleType
+- uid: Reportman.Drawing.PreviewWindowStyleType.Maximized
+  commentId: F:Reportman.Drawing.PreviewWindowStyleType.Maximized
+  id: Maximized
+  parent: Reportman.Drawing.PreviewWindowStyleType
+  langs:
+  - csharp
+  - vb
+  name: Maximized
+  nameWithType: PreviewWindowStyleType.Maximized
+  fullName: Reportman.Drawing.PreviewWindowStyleType.Maximized
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Maximized size
+  example: []
+  syntax:
+    content: Maximized = 1
+    return:
+      type: Reportman.Drawing.PreviewWindowStyleType
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.PreviewWindowStyleType
+  commentId: T:Reportman.Drawing.PreviewWindowStyleType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.PreviewWindowStyleType.html
+  name: PreviewWindowStyleType
+  nameWithType: PreviewWindowStyleType
+  fullName: Reportman.Drawing.PreviewWindowStyleType

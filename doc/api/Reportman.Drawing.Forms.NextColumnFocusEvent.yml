@@ -1,0 +1,270 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Forms.NextColumnFocusEvent
+  commentId: T:Reportman.Drawing.Forms.NextColumnFocusEvent
+  id: NextColumnFocusEvent
+  parent: Reportman.Drawing.Forms
+  children:
+  - Reportman.Drawing.Forms.NextColumnFocusEvent.#ctor(System.Object,System.IntPtr)
+  - Reportman.Drawing.Forms.NextColumnFocusEvent.BeginInvoke(System.Object,System.Int32,System.Int32@,System.AsyncCallback,System.Object)
+  - Reportman.Drawing.Forms.NextColumnFocusEvent.EndInvoke(System.Int32@,System.IAsyncResult)
+  - Reportman.Drawing.Forms.NextColumnFocusEvent.Invoke(System.Object,System.Int32,System.Int32@)
+  langs:
+  - csharp
+  - vb
+  name: NextColumnFocusEvent
+  nameWithType: NextColumnFocusEvent
+  fullName: Reportman.Drawing.Forms.NextColumnFocusEvent
+  type: Delegate
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public delegate void NextColumnFocusEvent(object sender, int currentcolumn, ref int nextcolumn)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: currentcolumn
+      type: System.Int32
+    - id: nextcolumn
+      type: System.Int32
+    content.vb: Public Delegate Sub NextColumnFocusEvent(sender As Object, currentcolumn As Integer, nextcolumn As Integer)
+- uid: Reportman.Drawing.Forms.NextColumnFocusEvent.#ctor(System.Object,System.IntPtr)
+  commentId: M:Reportman.Drawing.Forms.NextColumnFocusEvent.#ctor(System.Object,System.IntPtr)
+  id: '#ctor(System.Object,System.IntPtr)'
+  parent: Reportman.Drawing.Forms.NextColumnFocusEvent
+  langs:
+  - csharp
+  - vb
+  name: NextColumnFocusEvent(object, nint)
+  nameWithType: NextColumnFocusEvent.NextColumnFocusEvent(object, nint)
+  fullName: Reportman.Drawing.Forms.NextColumnFocusEvent.NextColumnFocusEvent(object, nint)
+  type: Constructor
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public NextColumnFocusEvent(object @object, nint method)
+    parameters:
+    - id: object
+      type: System.Object
+    - id: method
+      type: System.IntPtr
+    content.vb: Public Sub New([object] As Object, method As IntPtr)
+  overload: Reportman.Drawing.Forms.NextColumnFocusEvent.#ctor*
+  nameWithType.vb: NextColumnFocusEvent.New(Object, IntPtr)
+  fullName.vb: Reportman.Drawing.Forms.NextColumnFocusEvent.New(Object, System.IntPtr)
+  name.vb: New(Object, IntPtr)
+- uid: Reportman.Drawing.Forms.NextColumnFocusEvent.Invoke(System.Object,System.Int32,System.Int32@)
+  commentId: M:Reportman.Drawing.Forms.NextColumnFocusEvent.Invoke(System.Object,System.Int32,System.Int32@)
+  id: Invoke(System.Object,System.Int32,System.Int32@)
+  parent: Reportman.Drawing.Forms.NextColumnFocusEvent
+  langs:
+  - csharp
+  - vb
+  name: Invoke(object, int, ref int)
+  nameWithType: NextColumnFocusEvent.Invoke(object, int, ref int)
+  fullName: Reportman.Drawing.Forms.NextColumnFocusEvent.Invoke(object, int, ref int)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual void Invoke(object sender, int currentcolumn, ref int nextcolumn)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: currentcolumn
+      type: System.Int32
+    - id: nextcolumn
+      type: System.Int32
+    content.vb: Public Overridable Sub Invoke(sender As Object, currentcolumn As Integer, nextcolumn As Integer)
+  overload: Reportman.Drawing.Forms.NextColumnFocusEvent.Invoke*
+  nameWithType.vb: NextColumnFocusEvent.Invoke(Object, Integer, Integer)
+  fullName.vb: Reportman.Drawing.Forms.NextColumnFocusEvent.Invoke(Object, Integer, Integer)
+  name.vb: Invoke(Object, Integer, Integer)
+- uid: Reportman.Drawing.Forms.NextColumnFocusEvent.BeginInvoke(System.Object,System.Int32,System.Int32@,System.AsyncCallback,System.Object)
+  commentId: M:Reportman.Drawing.Forms.NextColumnFocusEvent.BeginInvoke(System.Object,System.Int32,System.Int32@,System.AsyncCallback,System.Object)
+  id: BeginInvoke(System.Object,System.Int32,System.Int32@,System.AsyncCallback,System.Object)
+  parent: Reportman.Drawing.Forms.NextColumnFocusEvent
+  langs:
+  - csharp
+  - vb
+  name: BeginInvoke(object, int, ref int, AsyncCallback, object)
+  nameWithType: NextColumnFocusEvent.BeginInvoke(object, int, ref int, AsyncCallback, object)
+  fullName: Reportman.Drawing.Forms.NextColumnFocusEvent.BeginInvoke(object, int, ref int, System.AsyncCallback, object)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual IAsyncResult BeginInvoke(object sender, int currentcolumn, ref int nextcolumn, AsyncCallback callback, object @object)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: currentcolumn
+      type: System.Int32
+    - id: nextcolumn
+      type: System.Int32
+    - id: callback
+      type: System.AsyncCallback
+    - id: object
+      type: System.Object
+    return:
+      type: System.IAsyncResult
+    content.vb: Public Overridable Function BeginInvoke(sender As Object, currentcolumn As Integer, nextcolumn As Integer, callback As AsyncCallback, [object] As Object) As IAsyncResult
+  overload: Reportman.Drawing.Forms.NextColumnFocusEvent.BeginInvoke*
+  nameWithType.vb: NextColumnFocusEvent.BeginInvoke(Object, Integer, Integer, AsyncCallback, Object)
+  fullName.vb: Reportman.Drawing.Forms.NextColumnFocusEvent.BeginInvoke(Object, Integer, Integer, System.AsyncCallback, Object)
+  name.vb: BeginInvoke(Object, Integer, Integer, AsyncCallback, Object)
+- uid: Reportman.Drawing.Forms.NextColumnFocusEvent.EndInvoke(System.Int32@,System.IAsyncResult)
+  commentId: M:Reportman.Drawing.Forms.NextColumnFocusEvent.EndInvoke(System.Int32@,System.IAsyncResult)
+  id: EndInvoke(System.Int32@,System.IAsyncResult)
+  parent: Reportman.Drawing.Forms.NextColumnFocusEvent
+  langs:
+  - csharp
+  - vb
+  name: EndInvoke(ref int, IAsyncResult)
+  nameWithType: NextColumnFocusEvent.EndInvoke(ref int, IAsyncResult)
+  fullName: Reportman.Drawing.Forms.NextColumnFocusEvent.EndInvoke(ref int, System.IAsyncResult)
+  type: Method
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public virtual void EndInvoke(ref int nextcolumn, IAsyncResult result)
+    parameters:
+    - id: nextcolumn
+      type: System.Int32
+    - id: result
+      type: System.IAsyncResult
+    content.vb: Public Overridable Sub EndInvoke(nextcolumn As Integer, result As IAsyncResult)
+  overload: Reportman.Drawing.Forms.NextColumnFocusEvent.EndInvoke*
+  nameWithType.vb: NextColumnFocusEvent.EndInvoke(Integer, IAsyncResult)
+  fullName.vb: Reportman.Drawing.Forms.NextColumnFocusEvent.EndInvoke(Integer, System.IAsyncResult)
+  name.vb: EndInvoke(Integer, IAsyncResult)
+references:
+- uid: Reportman.Drawing.Forms
+  commentId: N:Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.Forms
+  nameWithType: Reportman.Drawing.Forms
+  fullName: Reportman.Drawing.Forms
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.Forms
+    name: Forms
+    isExternal: true
+    href: Reportman.Drawing.Forms.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.Forms.NextColumnFocusEvent.#ctor*
+  commentId: Overload:Reportman.Drawing.Forms.NextColumnFocusEvent.#ctor
+  isExternal: true
+  href: Reportman.Drawing.Forms.NextColumnFocusEvent.html#Reportman_Drawing_Forms_NextColumnFocusEvent__ctor_System_Object_System_IntPtr_
+  name: NextColumnFocusEvent
+  nameWithType: NextColumnFocusEvent.NextColumnFocusEvent
+  fullName: Reportman.Drawing.Forms.NextColumnFocusEvent.NextColumnFocusEvent
+  nameWithType.vb: NextColumnFocusEvent.New
+  fullName.vb: Reportman.Drawing.Forms.NextColumnFocusEvent.New
+  name.vb: New
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: Reportman.Drawing.Forms.NextColumnFocusEvent.Invoke*
+  commentId: Overload:Reportman.Drawing.Forms.NextColumnFocusEvent.Invoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.NextColumnFocusEvent.html#Reportman_Drawing_Forms_NextColumnFocusEvent_Invoke_System_Object_System_Int32_System_Int32__
+  name: Invoke
+  nameWithType: NextColumnFocusEvent.Invoke
+  fullName: Reportman.Drawing.Forms.NextColumnFocusEvent.Invoke
+- uid: Reportman.Drawing.Forms.NextColumnFocusEvent.BeginInvoke*
+  commentId: Overload:Reportman.Drawing.Forms.NextColumnFocusEvent.BeginInvoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.NextColumnFocusEvent.html#Reportman_Drawing_Forms_NextColumnFocusEvent_BeginInvoke_System_Object_System_Int32_System_Int32__System_AsyncCallback_System_Object_
+  name: BeginInvoke
+  nameWithType: NextColumnFocusEvent.BeginInvoke
+  fullName: Reportman.Drawing.Forms.NextColumnFocusEvent.BeginInvoke
+- uid: System.AsyncCallback
+  commentId: T:System.AsyncCallback
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.asynccallback
+  name: AsyncCallback
+  nameWithType: AsyncCallback
+  fullName: System.AsyncCallback
+- uid: System.IAsyncResult
+  commentId: T:System.IAsyncResult
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncresult
+  name: IAsyncResult
+  nameWithType: IAsyncResult
+  fullName: System.IAsyncResult
+- uid: Reportman.Drawing.Forms.NextColumnFocusEvent.EndInvoke*
+  commentId: Overload:Reportman.Drawing.Forms.NextColumnFocusEvent.EndInvoke
+  isExternal: true
+  href: Reportman.Drawing.Forms.NextColumnFocusEvent.html#Reportman_Drawing_Forms_NextColumnFocusEvent_EndInvoke_System_Int32__System_IAsyncResult_
+  name: EndInvoke
+  nameWithType: NextColumnFocusEvent.EndInvoke
+  fullName: Reportman.Drawing.Forms.NextColumnFocusEvent.EndInvoke

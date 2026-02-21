@@ -1,0 +1,163 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.ImageDrawStyleType
+  commentId: T:Reportman.Drawing.ImageDrawStyleType
+  id: ImageDrawStyleType
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.ImageDrawStyleType.Crop
+  - Reportman.Drawing.ImageDrawStyleType.Full
+  - Reportman.Drawing.ImageDrawStyleType.Stretch
+  - Reportman.Drawing.ImageDrawStyleType.Tile
+  - Reportman.Drawing.ImageDrawStyleType.Tiledpi
+  langs:
+  - csharp
+  - vb
+  name: ImageDrawStyleType
+  nameWithType: ImageDrawStyleType
+  fullName: Reportman.Drawing.ImageDrawStyleType
+  type: Enum
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: Drawing styles, determines the way the image adapt to a bounding box
+  example: []
+  syntax:
+    content: public enum ImageDrawStyleType
+    content.vb: Public Enum ImageDrawStyleType
+- uid: Reportman.Drawing.ImageDrawStyleType.Crop
+  commentId: F:Reportman.Drawing.ImageDrawStyleType.Crop
+  id: Crop
+  parent: Reportman.Drawing.ImageDrawStyleType
+  langs:
+  - csharp
+  - vb
+  name: Crop
+  nameWithType: ImageDrawStyleType.Crop
+  fullName: Reportman.Drawing.ImageDrawStyleType.Crop
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: The image is drawn, but it's clipped inside the rectangle, part of the image can be not visible
+  example: []
+  syntax:
+    content: Crop = 0
+    return:
+      type: Reportman.Drawing.ImageDrawStyleType
+- uid: Reportman.Drawing.ImageDrawStyleType.Stretch
+  commentId: F:Reportman.Drawing.ImageDrawStyleType.Stretch
+  id: Stretch
+  parent: Reportman.Drawing.ImageDrawStyleType
+  langs:
+  - csharp
+  - vb
+  name: Stretch
+  nameWithType: ImageDrawStyleType.Stretch
+  fullName: Reportman.Drawing.ImageDrawStyleType.Stretch
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: The image is adapted to the bounding box size
+  example: []
+  syntax:
+    content: Stretch = 1
+    return:
+      type: Reportman.Drawing.ImageDrawStyleType
+- uid: Reportman.Drawing.ImageDrawStyleType.Full
+  commentId: F:Reportman.Drawing.ImageDrawStyleType.Full
+  id: Full
+  parent: Reportman.Drawing.ImageDrawStyleType
+  langs:
+  - csharp
+  - vb
+  name: Full
+  nameWithType: ImageDrawStyleType.Full
+  fullName: Reportman.Drawing.ImageDrawStyleType.Full
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: The image is drawn without clipping, so bounding box size is ignored, dots per inch is used to calculate size
+  example: []
+  syntax:
+    content: Full = 2
+    return:
+      type: Reportman.Drawing.ImageDrawStyleType
+- uid: Reportman.Drawing.ImageDrawStyleType.Tile
+  commentId: F:Reportman.Drawing.ImageDrawStyleType.Tile
+  id: Tile
+  parent: Reportman.Drawing.ImageDrawStyleType
+  langs:
+  - csharp
+  - vb
+  name: Tile
+  nameWithType: ImageDrawStyleType.Tile
+  fullName: Reportman.Drawing.ImageDrawStyleType.Tile
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: The image is drawn as many times as necessary to fill the rectangle left to right and top to bottom, scaling will depend on ouput device
+  example: []
+  syntax:
+    content: Tile = 3
+    return:
+      type: Reportman.Drawing.ImageDrawStyleType
+- uid: Reportman.Drawing.ImageDrawStyleType.Tiledpi
+  commentId: F:Reportman.Drawing.ImageDrawStyleType.Tiledpi
+  id: Tiledpi
+  parent: Reportman.Drawing.ImageDrawStyleType
+  langs:
+  - csharp
+  - vb
+  name: Tiledpi
+  nameWithType: ImageDrawStyleType.Tiledpi
+  fullName: Reportman.Drawing.ImageDrawStyleType.Tiledpi
+  type: Field
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: The image is drawn as many times as necessary to fill the rectangle left to right and top to bottom, the dots per inch image attribute will remain
+  example: []
+  syntax:
+    content: Tiledpi = 4
+    return:
+      type: Reportman.Drawing.ImageDrawStyleType
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.ImageDrawStyleType
+  commentId: T:Reportman.Drawing.ImageDrawStyleType
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.ImageDrawStyleType.html
+  name: ImageDrawStyleType
+  nameWithType: ImageDrawStyleType
+  fullName: Reportman.Drawing.ImageDrawStyleType

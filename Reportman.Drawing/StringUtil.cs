@@ -1081,7 +1081,7 @@ namespace Reportman.Drawing
             aux = nif.Substring(0, nif.Length - 1);
             // quitamos la letra del NIF
             bool numero = DoubleUtil.IsNumeric(aux, NumberStyles.Integer);
-            if (aux.Length >= 7 && numero)
+            if (aux.Length >= 8 && numero)
                 aux = CalculaNIF(aux); // calculamos la letra del NIF para comparar con la que tenemos
             else
                 return false;
