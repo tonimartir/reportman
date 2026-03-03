@@ -41,6 +41,14 @@ namespace Reportman.Drawing
         public int Cluster;
         public int LineCluster;
         public string FontFamily;
+        public bool Bold;
+        public bool Italic;
+        public bool Underline;
+        public bool StrikeOut;
+        public float FontSize;
+        public bool HasFontSize;
+        public int Color;
+        public bool HasColor;
     }
     public class PDFFont
     {
@@ -147,7 +155,7 @@ namespace Reportman.Drawing
         public abstract double GetGlyphWidth(PDFFont pdfFont, TTFontData fontData, int glyph, char charC);
         public abstract List<LineInfo>  TextExtent(string Text,
            ref Rectangle Rect, PDFFont pdfFont, TTFontData fontData,
-            bool wordwrap,bool singleline,double FontSize);
+            bool wordwrap,bool singleline,double FontSize, bool isHtml = false);
   
         public abstract int GetKerning(PDFFont pdfFont, TTFontData fontData,
                  char leftChar, char rightChar);

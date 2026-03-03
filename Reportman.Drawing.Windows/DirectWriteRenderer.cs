@@ -37,14 +37,18 @@ namespace Reportman.Drawing.Windows
         private int TextLength;
         public FontFace _fontFace;
         private TFontFaceCache _fontFamilyCache = new TFontFaceCache();
+        private List<HtmlFormatRun> _htmlRuns;
+        private bool _paragraphIsRTL;
+        private bool _paragraphDirectionDetected = false;
 
         public List<TGlyphPos> GlyphPositions { get; } = new List<TGlyphPos>();
         public List<TGlyphLine> Lines { get; } = new List<TGlyphLine>();
 
-        public TTextExtentRenderer(string originalText)
+        public TTextExtentRenderer(string originalText, List<HtmlFormatRun> htmlRuns = null)
         {
             _originalText = originalText;
             TextLength = originalText.Length;
+            _htmlRuns = htmlRuns;
         }
 
         private TGlyphLine GetLineByBaseline(float baselineY, bool firstRunIsRTL)
@@ -58,7 +62,7 @@ namespace Reportman.Drawing.Windows
                 }
             }
 
-            var newLine = new TGlyphLine(baselineY, firstRunIsRTL)
+            var newLine = new TGlyphLine(baselineY, _paragraphIsRTL)
             {
                 LastRunIsLTR = !firstRunIsRTL,
                 RunCount = 1
@@ -90,6 +94,14 @@ namespace Reportman.Drawing.Windows
             ComObject clientDrawingEffect)
         {
             bool runIsRTL = (glyphRun.BidiLevel % 2) == 1;
+
+            // Detect paragraph direction from the first run
+            if (!_paragraphDirectionDetected)
+            {
+                _paragraphIsRTL = runIsRTL;
+                _paragraphDirectionDetected = true;
+            }
+
             var line = GetLineByBaseline(baselineOriginY, runIsRTL);
 
             var glyphList = new List<TGlyphPos>();
@@ -148,6 +160,29 @@ namespace Reportman.Drawing.Windows
                 if (_fontFace != glyphRun.FontFace)
                 {
                     pos.FontFamily = GetFontFamily(glyphRun.FontFace);
+                }
+
+                if (_htmlRuns != null && _htmlRuns.Count > 0)
+                {
+                    int currentLength = 0;
+                    foreach (var run in _htmlRuns)
+                    {
+                        currentLength += run.Text.Length;
+                        if (pos.LineCluster < currentLength)
+                        {
+                            pos.Bold = run.Bold;
+                            pos.Italic = run.Italic;
+                            pos.Underline = run.Underline;
+                            pos.StrikeOut = run.StrikeOut;
+                            if (string.IsNullOrEmpty(pos.FontFamily) || _fontFace == glyphRun.FontFace)
+                                pos.FontFamily = run.FontFamily;
+                            pos.HasFontSize = run.HasFontSize;
+                            pos.FontSize = run.FontSize;
+                            pos.Color = run.Color;
+                            pos.HasColor = run.HasColor;
+                            break;
+                        }
+                    }
                 }
 
                 glyphList.Add(pos);

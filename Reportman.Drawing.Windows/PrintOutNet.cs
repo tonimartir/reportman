@@ -1,10 +1,12 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Drawing.Text;
 using System.IO;
 using System.Text;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 
 namespace Reportman.Drawing
@@ -18,7 +20,7 @@ namespace Reportman.Drawing
     /// preview, becuase it can use bitmap as output
     /// <see cref="Variant">PrintOutPrint</see>
     /// </summary>
-	public class PrintOutNet : PrintOut, IDisposable
+ 	public class PrintOutNet : PrintOut, IDisposable
     {
         private Graphics gbitmap;
         /// <summary>
@@ -523,11 +525,15 @@ namespace Reportman.Drawing
                         graph.FillRectangle(stock_backbrush, nrec);
                     }
                     // Text justify is implemented separaterly
-                    if (!objt.RightToLeft &&   
+                    if (!objt.RightToLeft && !objt.IsHtml &&   
                          (((objt.Alignment & MetaFile.AlignmentFlags_AlignHJustify) > 0) || (objt.Type1Font == PDFFontType.Embedded) || (objt.Type1Font == PDFFontType.Embedded) || (CurrentMetafile.PDFConformance == PDFConformanceType.PDF_A_3)
                          ))
                     {
                         TextRectJustify(graph, new Rectangle(aleft, atop, obj.Width, obj.Height), TextObjectStruct.FromMetaObjectText(page, objt), font, stock_brush);
+                    }
+                    else if (objt.IsHtml)
+                    {
+                        TextRectHtml(graph, new Rectangle(aleft, atop, obj.Width, obj.Height), TextObjectStruct.FromMetaObjectText(page, objt), font, stock_brush);
                     }
                     else
                     {
@@ -852,6 +858,335 @@ namespace Reportman.Drawing
                 IntDrawPage(meta, page, gr);
             }
         }
+
+        // GDI P/Invoke declarations for HTML glyph rendering
+        private const uint ETO_GLYPH_INDEX = 0x0010;
+        private const int TRANSPARENT = 1;
+
+        [StructLayout(LayoutKind.Sequential)]
+        private struct TEXTMETRIC
+        {
+            public int tmHeight;
+            public int tmAscent;
+            public int tmDescent;
+            public int tmInternalLeading;
+            public int tmExternalLeading;
+            public int tmAveCharWidth;
+            public int tmMaxCharWidth;
+            public int tmWeight;
+            public int tmOverhang;
+            public int tmDigitizedAspectX;
+            public int tmDigitizedAspectY;
+            public char tmFirstChar;
+            public char tmLastChar;
+            public char tmDefaultChar;
+            public char tmBreakChar;
+            public byte tmItalic;
+            public byte tmUnderlined;
+            public byte tmStruckOut;
+            public byte tmPitchAndFamily;
+            public byte tmCharSet;
+        }
+
+        [DllImport("gdi32.dll", CharSet = CharSet.Unicode)]
+        private static extern bool ExtTextOutW(IntPtr hdc, int x, int y, uint options,
+            IntPtr lpRect, ushort[] lpString, uint count, int[] lpDx);
+
+        [DllImport("gdi32.dll")]
+        private static extern bool GetTextMetricsW(IntPtr hdc, out TEXTMETRIC lptm);
+
+        [DllImport("gdi32.dll")]
+        private static extern uint SetTextColor(IntPtr hdc, uint color);
+
+        [DllImport("gdi32.dll")]
+        private static extern IntPtr SelectObject(IntPtr hdc, IntPtr hObject);
+
+        [DllImport("gdi32.dll")]
+        private static extern bool DeleteObject(IntPtr hObject);
+
+        [DllImport("gdi32.dll")]
+        private static extern int SetBkMode(IntPtr hdc, int mode);
+
+        [DllImport("gdi32.dll")]
+        private static extern int GetDeviceCaps(IntPtr hdc, int index);
+
+        [DllImport("gdi32.dll")]
+        private static extern int SaveDC(IntPtr hdc);
+
+        [DllImport("gdi32.dll")]
+        private static extern bool RestoreDC(IntPtr hdc, int nSavedDC);
+
+        [DllImport("gdi32.dll")]
+        private static extern int IntersectClipRect(IntPtr hdc, int left, int top, int right, int bottom);
+
+        private const int LOGPIXELSY = 90;
+
+        [DllImport("gdi32.dll", CharSet = CharSet.Unicode)]
+        private static extern IntPtr CreateFontW(
+            int cHeight, int cWidth, int cEscapement, int cOrientation,
+            int cWeight, uint bItalic, uint bUnderline, uint bStrikeOut,
+            uint iCharSet, uint iOutPrecision, uint iClipPrecision,
+            uint iQuality, uint iPitchAndFamily, string pszFaceName);
+
+        private const int FW_NORMAL = 400;
+        private const int FW_BOLD = 700;
+        private const uint DEFAULT_CHARSET = 1;
+        private const uint OUT_DEFAULT_PRECIS = 0;
+        private const uint CLIP_DEFAULT_PRECIS = 0;
+        private const uint ANTIALIASED_QUALITY = 4;
+        private const uint DEFAULT_PITCH = 0;
+
+        /// <summary>
+        /// Creates an HFONT sized correctly for the rendering context.
+        /// Uses the same DPI as pixel position calculations (from gr.DpiY) to ensure
+        /// font size and glyph positions are always proportional.
+        /// </summary>
+        private IntPtr CreateFontForDC(IntPtr hdc, string family, float sizeInPoints, FontStyle style, float dpiY, float scale)
+        {
+            int dcDpi = GetDeviceCaps(hdc, LOGPIXELSY);
+            if (dcDpi == 0) dcDpi = 96;
+            double effectiveScale = (dpiY * scale) / dcDpi;
+            int height = -(int)Math.Round(sizeInPoints * dcDpi / 72.0 * effectiveScale);
+            int weight = (style & FontStyle.Bold) != 0 ? FW_BOLD : FW_NORMAL;
+            uint italic = (style & FontStyle.Italic) != 0 ? 1u : 0u;
+            uint underline = (style & FontStyle.Underline) != 0 ? 1u : 0u;
+            uint strikeOut = (style & FontStyle.Strikeout) != 0 ? 1u : 0u;
+            return CreateFontW(height, 0, 0, 0, weight, italic, underline, strikeOut,
+                DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
+                ANTIALIASED_QUALITY, DEFAULT_PITCH, family);
+        }
+
+        protected void TextRectHtml(Graphics gr, Rectangle arect, TextObjectStruct atext, Font nfont, SolidBrush sbrush)
+        {
+            float intdpix = gr.DpiX;
+            float intdpiy = gr.DpiY;
+
+            // Use the PDF driver for line metrics (vertical alignment, line count)
+            if (npdfdriver == null)
+            {
+                npdfdriver = new PrintOutPDF();
+            }
+            npdfdriver.PDFConformance = CurrentMetafile.PDFConformance;
+            Point full_extent = new Point(arect.Width, arect.Height);
+            var linfos = npdfdriver.TextExtentLineInfo(atext, ref full_extent);
+            Rectangle recsize = new Rectangle(0, 0, full_extent.X, full_extent.Y);
+
+            int Alignment = atext.Alignment;
+            int posy = arect.Top;
+            if ((Alignment & MetaFile.AlignmentFlags_AlignBottom) > 0)
+                posy = arect.Bottom - recsize.Height;
+            if ((Alignment & MetaFile.AlignmentFlags_AlignVCenter) > 0)
+                posy = arect.Top + (((arect.Bottom - arect.Top) - recsize.Bottom) / 2);
+
+            // Base font style from element
+            bool baseBold = (atext.FontStyle & 1) > 0;
+            bool baseItalic = (atext.FontStyle & 2) > 0;
+            bool baseUnderline = (atext.FontStyle & 4) > 0;
+            bool baseStrikeOut = (atext.FontStyle & 8) > 0;
+
+            // Shared variables for both preview and print paths
+            int origFontColor = atext.FontColor;
+            uint origColorRef = (uint)((origFontColor & 0xFF) << 16 | (origFontColor & 0xFF00) | ((origFontColor >> 16) & 0xFF));
+            float baseFontSizePt = Scale > 0 ? nfont.Size / Scale : nfont.Size;
+            int ascent = 0;
+
+            // Get GDI DC for ExtTextOutW
+            IntPtr hdc = gr.GetHdc();
+            int savedDC = 0;
+            try
+            {
+                SetBkMode(hdc, TRANSPARENT);
+
+                // Apply clipping if CutText is enabled
+                if (atext.CutText)
+                {
+                    savedDC = SaveDC(hdc);
+                    int clipLeft = (int)Math.Round(arect.Left * intdpix / 1440 * Scale);
+                    int clipTop = (int)Math.Round(arect.Top * intdpiy / 1440 * Scale);
+                    int clipRight = (int)Math.Round(arect.Right * intdpix / 1440 * Scale);
+                    int clipBottom = (int)Math.Round(arect.Bottom * intdpiy / 1440 * Scale);
+                    IntersectClipRect(hdc, clipLeft, clipTop, clipRight, clipBottom);
+                }
+
+                for (int i = 0; i < linfos.Count; i++)
+                {
+                    var linfo = linfos[i];
+                    if (i == 0) ascent = linfo.TopPos;
+
+                    if (linfo.Glyphs != null && linfo.Glyphs.Count > 0)
+                    {
+                        int glyphCount = linfo.Glyphs.Count;
+                        int[] allPixPos = new int[glyphCount];
+                        int[] allDx = new int[glyphCount];
+
+                        // Pre-compute pixel X positions
+                        if ((Alignment & MetaFile.AlignmentFlags_AlignRight) > 0)
+                        {
+                            int pixRight = (int)Math.Round(arect.Right * intdpix / 1440 * Scale);
+                            int cumRight = 0;
+                            for (int k = glyphCount - 1; k >= 0; k--)
+                            {
+                                cumRight += linfo.Glyphs[k].XAdvance;
+                                allPixPos[k] = pixRight - (int)Math.Round(cumRight * intdpix / 1440 * Scale);
+                            }
+                        }
+                        else
+                        {
+                            int pixLeft = (int)Math.Round(arect.Left * intdpix / 1440 * Scale);
+                            if ((Alignment & MetaFile.AlignmentFlags_AlignHCenter) > 0)
+                            {
+                                int totalTwips = 0;
+                                for (int k = 0; k < glyphCount; k++)
+                                    totalTwips += linfo.Glyphs[k].XAdvance;
+                                int totalPix = (int)Math.Round(totalTwips * intdpix / 1440 * Scale);
+                                int rectPix = (int)Math.Round(arect.Right * intdpix / 1440 * Scale) - pixLeft;
+                                pixLeft = pixLeft + (rectPix - totalPix) / 2;
+                            }
+                            int cumLeft = 0;
+                            for (int k = 0; k < glyphCount; k++)
+                            {
+                                allPixPos[k] = pixLeft + (int)Math.Round(cumLeft * intdpix / 1440 * Scale);
+                                cumLeft += linfo.Glyphs[k].XAdvance;
+                            }
+                        }
+
+                        for (int k = 0; k < glyphCount - 1; k++)
+                            allDx[k] = allPixPos[k + 1] - allPixPos[k];
+                        allDx[glyphCount - 1] = (int)Math.Round(linfo.Glyphs[glyphCount - 1].XAdvance * intdpix / 1440 * Scale);
+
+                        int nposy = posy + linfo.TopPos - ascent;
+                        int runStyle = (linfo.Glyphs[0].Bold ? 1 : 0) | (linfo.Glyphs[0].Italic ? 2 : 0) | (linfo.Glyphs[0].Underline ? 4 : 0) | (linfo.Glyphs[0].StrikeOut ? 8 : 0);
+                        string runFontFamily = linfo.Glyphs[0].FontFamily ?? nfont.FontFamily.Name;
+                        float runFontSize = linfo.Glyphs[0].HasFontSize ? linfo.Glyphs[0].FontSize : baseFontSizePt;
+                        int runColor = linfo.Glyphs[0].Color;
+                        bool runHasColor = linfo.Glyphs[0].HasColor;
+                        string origFontName = nfont.FontFamily.Name;
+
+                        // Get base ascent
+                        IntPtr hBaseFont = CreateFontForDC(hdc, origFontName, baseFontSizePt, nfont.Style, intdpiy, Scale);
+                        IntPtr hOldFont = SelectObject(hdc, hBaseFont);
+                        GetTextMetricsW(hdc, out TEXTMETRIC baseTM);
+                        int baseAscent = baseTM.tmAscent;
+                        SelectObject(hdc, hOldFont);
+                        DeleteObject(hBaseFont);
+
+                        // Font caching
+                        IntPtr currentFont = IntPtr.Zero;
+                        string curFontFamily = "";
+                        float curFontSize = -1;
+                        int curStyle = -1;
+                        int curTmAscent = 0;
+
+                        int runFirstGlyph = 0;
+                        var runGlyphs = new List<ushort>();
+                        var runDx = new List<int>();
+
+                        for (int k = 0; k < glyphCount; k++)
+                        {
+                            var g = linfo.Glyphs[k];
+                            int glyphStyle = (g.Bold ? 1 : 0) | (g.Italic ? 2 : 0) | (g.Underline ? 4 : 0) | (g.StrikeOut ? 8 : 0);
+                            string gFontFamily = g.FontFamily ?? origFontName;
+                            float gFontSize = g.HasFontSize ? g.FontSize : baseFontSizePt;
+                            int gColor = g.Color;
+                            bool gHasColor = g.HasColor;
+
+                            if ((glyphStyle != runStyle || gFontFamily != runFontFamily ||
+                                 Math.Abs(gFontSize - runFontSize) > 0.01f || gColor != runColor ||
+                                 gHasColor != runHasColor) && runGlyphs.Count > 0)
+                            {
+                                currentFont = EnsureFont(hdc, ref curFontFamily, ref curFontSize, ref curStyle, ref curTmAscent,
+                                    runFontFamily, runFontSize, runStyle, baseBold, baseItalic, baseUnderline, baseStrikeOut,
+                                    intdpiy, Scale, currentFont);
+                                if (runHasColor)
+                                {
+                                    uint cr = (uint)((runColor & 0xFF) << 16 | (runColor & 0xFF00) | ((runColor >> 16) & 0xFF));
+                                    SetTextColor(hdc, cr);
+                                }
+                                else
+                                    SetTextColor(hdc, origColorRef);
+
+                                int baselineOffset = curTmAscent - baseAscent;
+                                int pixY = (int)Math.Round(nposy * intdpiy / 1440 * Scale) - baselineOffset;
+                                ExtTextOutW(hdc, allPixPos[runFirstGlyph], pixY, ETO_GLYPH_INDEX, IntPtr.Zero,
+                                    runGlyphs.ToArray(), (uint)runGlyphs.Count, runDx.ToArray());
+
+                                runGlyphs.Clear(); runDx.Clear();
+                                runStyle = glyphStyle; runFontFamily = gFontFamily;
+                                runFontSize = gFontSize; runColor = gColor;
+                                runHasColor = gHasColor; runFirstGlyph = k;
+                            }
+                            runGlyphs.Add((ushort)g.GlyphIndex);
+                            runDx.Add(allDx[k]);
+                        }
+
+                        // Flush last run
+                        if (runGlyphs.Count > 0)
+                        {
+                            currentFont = EnsureFont(hdc, ref curFontFamily, ref curFontSize, ref curStyle, ref curTmAscent,
+                                runFontFamily, runFontSize, runStyle, baseBold, baseItalic, baseUnderline, baseStrikeOut,
+                                intdpiy, Scale, currentFont);
+                            if (runHasColor)
+                            {
+                                uint cr = (uint)((runColor & 0xFF) << 16 | (runColor & 0xFF00) | ((runColor >> 16) & 0xFF));
+                                SetTextColor(hdc, cr);
+                            }
+                            else
+                                SetTextColor(hdc, origColorRef);
+
+                            int baselineOffset2 = curTmAscent - baseAscent;
+                            int pixY2 = (int)Math.Round(nposy * intdpiy / 1440 * Scale) - baselineOffset2;
+                            ExtTextOutW(hdc, allPixPos[runFirstGlyph], pixY2, ETO_GLYPH_INDEX, IntPtr.Zero,
+                                runGlyphs.ToArray(), (uint)runGlyphs.Count, runDx.ToArray());
+                        }
+
+                        if (currentFont != IntPtr.Zero)
+                        {
+                            SelectObject(hdc, hOldFont);
+                            DeleteObject(currentFont);
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                if (atext.CutText && savedDC != 0)
+                    RestoreDC(hdc, savedDC);
+                gr.ReleaseHdc(hdc);
+            }
+        }
+
+        /// <summary>
+        /// Creates/selects font only when properties change. Returns current HFONT.
+        /// </summary>
+        private IntPtr EnsureFont(IntPtr hdc, ref string curFamily, ref float curSize, ref int curStyle, ref int curTmAscent,
+            string wantFamily, float wantSize, int wantStyle,
+            bool baseBold, bool baseItalic, bool baseUnderline, bool baseStrikeOut,
+            float intdpiy, float scale, IntPtr currentFont)
+        {
+            // Compute effective style
+            FontStyle fs = FontStyle.Regular;
+            if (baseBold || (wantStyle & 1) > 0) fs |= FontStyle.Bold;
+            if (baseItalic || (wantStyle & 2) > 0) fs |= FontStyle.Italic;
+            if (baseUnderline || (wantStyle & 4) > 0) fs |= FontStyle.Underline;
+            if (baseStrikeOut || (wantStyle & 8) > 0) fs |= FontStyle.Strikeout;
+            int effStyle = (int)fs;
+
+            if (wantFamily == curFamily && Math.Abs(wantSize - curSize) < 0.01f && effStyle == curStyle)
+                return currentFont; // No change needed
+
+            // Need new font
+            IntPtr newFont = CreateFontForDC(hdc, wantFamily, wantSize, fs, intdpiy, scale);
+            if (currentFont != IntPtr.Zero)
+                DeleteObject(currentFont);
+            SelectObject(hdc, newFont);
+            GetTextMetricsW(hdc, out TEXTMETRIC tm);
+            curTmAscent = tm.tmAscent;
+            curFamily = wantFamily;
+            curSize = wantSize;
+            curStyle = effStyle;
+            return newFont;
+        }
+
         /// <summary>
         /// Draws the text full justified
         /// </summary>
@@ -901,7 +1236,7 @@ namespace Reportman.Drawing
             }
             npdfdriver.PDFConformance = CurrentMetafile.PDFConformance;
             Point full_extent = new Point(arect.Width, arect.Height);
-            full_extent = npdfdriver.TextExtentLineInfo(atext, full_extent);
+            var linfos = npdfdriver.TextExtentLineInfo(atext, ref full_extent);
             Rectangle recsize = new Rectangle(0, 0, full_extent.X, full_extent.Y);
             // Align bottom or center
             posy = arect.Top;
@@ -909,7 +1244,6 @@ namespace Reportman.Drawing
                 posy = arect.Bottom - recsize.Height;
             if ((Alignment & MetaFile.AlignmentFlags_AlignVCenter) > 0)
                 posy = arect.Top + (((arect.Bottom - arect.Top) - recsize.Bottom) / 2);
-            var linfos = npdfdriver.LineInfo;
             bool dojustify;
             for (i = 0; i < linfos.Count; i++)
             {

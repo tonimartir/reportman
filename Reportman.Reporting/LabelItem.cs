@@ -82,8 +82,9 @@ namespace Reportman.Reporting
             MetaPage apage = metafile.Pages[metafile.CurrentPage];
             MetaObjectText metaobj = new MetaObjectText();
             FillAnnotation(metaobj, apage);
-            metaobj.TextP = apage.AddString(Text);
-            metaobj.TextS = Text.Length;
+            string finalText = IsHtml ? EvaluateHtmlExpressions(Text) : Text;
+            metaobj.TextP = apage.AddString(finalText);
+            metaobj.TextS = finalText.Length;
             metaobj.LFontNameP = apage.AddString(LFontName);
             metaobj.LFontNameS = LFontName.Length;
             metaobj.WFontNameP = apage.AddString(WFontName);
@@ -103,6 +104,7 @@ namespace Reportman.Reporting
             metaobj.Height = PrintHeight;
             metaobj.RightToLeft = RightToLeft;
             metaobj.PrintStep = PrintStep;
+            metaobj.IsHtml = IsHtml;
             aalign = PrintAlignment | VPrintAlignment;
             if (SingleLine)
                 aalign = aalign | MetaFile.AlignmentFlags_SingleLine;
@@ -113,7 +115,7 @@ namespace Reportman.Reporting
         {
             int aalign;
             TextObjectStruct aresult = new TextObjectStruct();
-            aresult.Text = Text;
+            aresult.Text = IsHtml ? EvaluateHtmlExpressions(Text) : Text;
             aresult.LFontName = LFontName;
             aresult.WFontName = WFontName;
             aresult.FontSize = FontSize;
@@ -129,6 +131,7 @@ namespace Reportman.Reporting
             aresult.WordWrap = WordWrap;
             aresult.RightToLeft = RightToLeft;
             aresult.PrintStep = PrintStep;
+            aresult.IsHtml = IsHtml;
             return aresult;
         }
         override public Point GetExtension(PrintOut adriver, Point MaxExtent, bool ForcePartial)

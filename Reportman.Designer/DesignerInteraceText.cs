@@ -115,6 +115,13 @@ namespace Reportman.Designer
             lcat.Add(Translator.TranslateStr(1202));
             if (lvalues != null)
                 lvalues.Add(FPrintItemText.WordWrap);
+            // IsHtml
+            lnames.Add("IsHtml");
+            ltypes.Add(Translator.TranslateStr(568));
+            lhints.Add("refcommontext.html");
+            lcat.Add(Translator.TranslateStr(1202));
+            if (lvalues != null)
+                lvalues.Add(FPrintItemText.IsHtml);
             // Word Break
             //            lnames.Add(Translator.TranslateStr(626));
             //            ltypes.Add(Translator.TranslateStr(568));
@@ -345,6 +352,12 @@ namespace Reportman.Designer
                 FPrintItemText.WordWrap = newvalue;
                 return;
             }
+            // IsHtml
+            if (pname == "IsHtml")
+            {
+                FPrintItemText.IsHtml = newvalue;
+                return;
+            }
             // Word Break
             //            lnames.Add(Translator.TranslateStr(626));
             //            ltypes.Add(Translator.TranslateStr(568));
@@ -431,6 +444,9 @@ namespace Reportman.Designer
             // Word Wrap
             if (pname == Translator.TranslateStr(626))
                 return FPrintItemText.WordWrap;
+            // IsHtml
+            if (pname == "IsHtml")
+                return FPrintItemText.IsHtml;
             // Word Break
             //            lnames.Add(Translator.TranslateStr(626));
             //            ltypes.Add(Translator.TranslateStr(568));

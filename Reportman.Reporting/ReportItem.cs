@@ -577,6 +577,7 @@ namespace Reportman.Reporting
         public bool CutText { get; set; }
         /// <summary>Will break the sentences in more lines if the lines does not fit in current box width</summary>
         public bool WordWrap { get; set; }
+        public bool IsHtml { get; set; }
         /// <summary>Still not implemented, for future use, to break words when they not fit on single line</summary>
         public bool WordBreak { get; set; }
         /// <summary>Still not implemented, for future use, when multiple lines are drawn represents the space 
@@ -610,6 +611,7 @@ namespace Reportman.Reporting
             : base()
         {
             Transparent = true;
+    IsHtml = false;
             FontSize = 10;
             BackColor = 0xFFFFFF;
             WFontName = "Arial";
@@ -654,6 +656,50 @@ namespace Reportman.Reporting
                 return aresult;
             }
         }        
+        /// <summary>
+        /// Replaces all {{expression}} placeholders in the given text 
+        /// with evaluated results using the report's Evaluator.
+        /// Only intended to be called when IsHtml is true.
+        /// </summary>
+        protected string EvaluateHtmlExpressions(string text)
+        {
+            if (Report?.Evaluator == null || string.IsNullOrEmpty(text))
+                return text;
+
+            var sb = new System.Text.StringBuilder();
+            int pos = 0;
+            while (pos < text.Length)
+            {
+                int start = text.IndexOf("{{", pos);
+                if (start < 0)
+                {
+                    sb.Append(text, pos, text.Length - pos);
+                    break;
+                }
+                int end = text.IndexOf("}}", start + 2);
+                if (end < 0)
+                {
+                    sb.Append(text, pos, text.Length - pos);
+                    break;
+                }
+                // Append text before {{
+                sb.Append(text, pos, start - pos);
+                // Extract and evaluate expression
+                string expr = text.Substring(start + 2, end - start - 2).Trim();
+                try
+                {
+                    Variant result = Report.Evaluator.EvaluateText(expr);
+                    sb.Append(result.AsString);
+                }
+                catch
+                {
+                    // On error, keep the original placeholder
+                    sb.Append(text, start, end + 2 - start);
+                }
+                pos = end + 2;
+            }
+            return sb.ToString();
+        }
     }
     /*    class ReportItemTypeConverter : ExpandableObjectConverter
         {
@@ -900,7 +946,7 @@ namespace Reportman.Reporting
             //writer.WritePropertyName("classname");
             //writer.WriteValue(GetClassName(item.GetType()));
 
-            // Serializar otras propiedades automáticamente
+            // Serializar otras propiedades automÃ¡ticamente
             var contract = serializer.ContractResolver.ResolveContract(item.GetType()) as JsonObjectContract;
             foreach (var prop in contract.Properties)
             {

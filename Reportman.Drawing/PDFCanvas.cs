@@ -615,7 +615,7 @@ namespace Reportman.Drawing
         }
 
         public void TextOut(int X, int Y, string Text, int LineWidth,
-         int Rotation, bool RightToLeft, LineInfo lInfo)
+         int Rotation, bool RightToLeft, LineInfo lInfo, bool isHtml = false)
         {
             double rotrad, fsize;
             string rotstring;
@@ -656,10 +656,10 @@ namespace Reportman.Drawing
                 SWriteLine(File.STempStream, "/F" +
                  Type1FontTopdfFontName(FFont.Name, FFont.Italic, FFont.Bold, FFont.GetFontFamilyKey(), FFont.Style, PDFConformance) + " " +
                     FFont.Size.ToString() + " Tf");
-                if (RightToLeft)
+                if (RightToLeft || isHtml || this.InfoProvider.GetType().Name == "FontInfoFt")
                 {
                     SWriteLine(File.STempStream, "/Span << /ActualText " +
-                     PDFFile.EncodePDFText(Text) + " >> BDC");
+                     PDFFile.EncodePDFText(isHtml && lInfo.Text != null ? lInfo.Text : Text) + " >> BDC");
                 }
                 // Rotates
                 if (Rotation != 0)
@@ -678,7 +678,7 @@ namespace Reportman.Drawing
                 else
                     SWriteLine(File.STempStream, UnitsToTextX(X) + " " + UnitsToTextText(Y, FFont.Size) + " Td");
                 astring = Text;
-                if (RightToLeft)
+                if (RightToLeft || isHtml || this.InfoProvider.GetType().Name == "FontInfoFt")
                 {
                     astring = PDFCompatibleTextShaping(lInfo.Text,adata, Font, RightToLeft, X, Y, Font.Size, lInfo);
                     SWriteLine(File.STempStream, astring);
@@ -687,7 +687,7 @@ namespace Reportman.Drawing
                 {
                     SWriteLine(File.STempStream, PDFCompatibleText(astring, adata, FFont) + " Tj");
                 }
-                if (RightToLeft)
+                if (RightToLeft || isHtml || this.InfoProvider.GetType().Name == "FontInfoFt")
                 {
                     SWriteLine(File.STempStream, "EMC");
                 }
@@ -701,7 +701,93 @@ namespace Reportman.Drawing
                 }
             }
             // Underline and strikeout
-            if (FFont.Underline)
+            // Per-glyph decorators for HTML text (grouped segments)
+            if (isHtml && lInfo.Glyphs != null && lInfo.Glyphs.Count > 0)
+            {
+                double decCursor = 0.0;
+                bool inUnderline = false;
+                bool inStrikeOut = false;
+                double ulStartX = 0;
+                double soStartX = 0;
+                float ulFontSize = FFont.Size;
+                float soFontSize = FFont.Size;
+                // Per-glyph text is rendered via Tm at UnitsToTextY(Y), but the element-level
+                // underline constants (CONS_UNDERLINEPOS=1.1) were calibrated for Td which uses
+                // UnitsToTextText(Y,FSize) = UnitsToTextY(Y) - FSize. The text appears FSize higher,
+                // so we need to subtract the font size offset from Y for correct positioning.
+                int fontSizeOffset = (int)Math.Round((double)FFont.Size / PDFFile.CONS_PDFRES * FResolution);
+
+                for (int i = 0; i <= lInfo.Glyphs.Count; i++)
+                {
+                    bool isLast = (i == lInfo.Glyphs.Count);
+                    bool gUnderline = false;
+                    bool gStrikeOut = false;
+                    float gFontSize = FFont.Size;
+
+                    if (!isLast)
+                    {
+                        TGlyphPos g = lInfo.Glyphs[i];
+                        gUnderline = g.Underline;
+                        gStrikeOut = g.StrikeOut;
+                        gFontSize = g.HasFontSize ? g.FontSize : FFont.Size;
+                    }
+
+                    // Underline segment tracking
+                    if (gUnderline && !inUnderline)
+                    {
+                        inUnderline = true;
+                        ulStartX = X + decCursor;
+                        ulFontSize = gFontSize;
+                    }
+                    else if ((!gUnderline || isLast) && inUnderline)
+                    {
+                        double ulEndX = X + decCursor;
+                        if (gUnderline && isLast)
+                            ulEndX = X + decCursor + lInfo.Glyphs[i - 1].XAdvance;
+                        PenStyle = 0;
+                        PenWidth = (int)Math.Round(((double)ulFontSize / PDFFile.CONS_PDFRES * FResolution) * PDFFile.CONS_UNDERLINEWIDTH);
+                        PenColor = FFont.Color;
+                        PosLine = (int)Math.Round(PDFFile.CONS_UNDERLINEPOS * ((double)ulFontSize / PDFFile.CONS_PDFRES * FResolution));
+                        Line((int)ulStartX, Y - fontSizeOffset + PosLine, (int)ulEndX, Y - fontSizeOffset + PosLine);
+                        inUnderline = gUnderline;
+                        if (gUnderline)
+                        {
+                            ulStartX = X + decCursor;
+                            ulFontSize = gFontSize;
+                        }
+                    }
+
+                    // StrikeOut segment tracking
+                    if (gStrikeOut && !inStrikeOut)
+                    {
+                        inStrikeOut = true;
+                        soStartX = X + decCursor;
+                        soFontSize = gFontSize;
+                    }
+                    else if ((!gStrikeOut || isLast) && inStrikeOut)
+                    {
+                        double soEndX = X + decCursor;
+                        if (gStrikeOut && isLast)
+                            soEndX = X + decCursor + lInfo.Glyphs[i - 1].XAdvance;
+                        PenStyle = 0;
+                        PenWidth = (int)Math.Round(((double)soFontSize / PDFFile.CONS_PDFRES * FResolution) * PDFFile.CONS_UNDERLINEWIDTH);
+                        PenColor = FFont.Color;
+                        PosLine = (int)Math.Round(PDFFile.CONS_STRIKEOUTPOS * ((double)soFontSize / PDFFile.CONS_PDFRES * FResolution));
+                        Line((int)soStartX, Y - fontSizeOffset + PosLine, (int)soEndX, Y - fontSizeOffset + PosLine);
+                        inStrikeOut = gStrikeOut;
+                        if (gStrikeOut)
+                        {
+                            soStartX = X + decCursor;
+                            soFontSize = gFontSize;
+                        }
+                    }
+
+                    if (!isLast)
+                        decCursor += lInfo.Glyphs[i].XAdvance;
+                }
+            }
+            // Element-level underline (non-HTML or full-element underline)
+            else if (FFont.Underline)
             {
                 PenStyle = 0;
                 PenWidth = (int)Math.Round(((double)FFont.Size / PDFFile.CONS_PDFRES * FResolution) * PDFFile.CONS_UNDERLINEWIDTH);
@@ -724,7 +810,8 @@ namespace Reportman.Drawing
                     Y = Y - (int)Math.Round(PDFFile.CONS_UNDERLINEPOS * ((double)FFont.Size / PDFFile.CONS_PDFRES * FResolution));
                 }
             }
-            if (FFont.StrikeOut)
+            // Element-level strikeout (non-HTML or full-element strikeout)
+            else if (FFont.StrikeOut)
             {
                 PenStyle = 0;
                 PenWidth = (int)Math.Round(((double)FFont.Size / PDFFile.CONS_PDFRES * FResolution) * PDFFile.CONS_UNDERLINEWIDTH);
@@ -841,6 +928,14 @@ namespace Reportman.Drawing
 
             string actualFontFamily = Font.GetFontFamily();
             string originalFontFamily = Font.GetFontFamily();
+            bool actualBold = Font.Bold;
+            bool originalBold = Font.Bold;
+            bool actualItalic = Font.Italic;
+            bool originalItalic = Font.Italic;
+            float actualFontSize = FontSize;
+            float originalFontSize = FontSize;
+            int actualColor = Font.Color;
+            int originalColor = Font.Color;
 
             for (int i = 0; i < lInfo.Glyphs.Count; i++)
             {
@@ -850,19 +945,38 @@ namespace Reportman.Drawing
                 string gidHex = IntToHex(g.GlyphIndex);
 
                 string newFontFamily = string.IsNullOrEmpty(g.FontFamily) ? originalFontFamily : g.FontFamily;
+                bool newBold = g.Bold;
+                bool newItalic = g.Italic;
+                float newFontSize = g.HasFontSize ? g.FontSize : originalFontSize;
 
-                if (actualFontFamily != newFontFamily)
+                if (actualFontFamily != newFontFamily || actualBold != newBold || actualItalic != newItalic || actualFontSize != newFontSize)
                 {
                     Font.WFontName = newFontFamily;
                     Font.LFontName = newFontFamily;
-
+                    Font.Bold = newBold;
+                    Font.Italic = newItalic;
+                    Font.Style = (newBold ? 1 : 0) + (newItalic ? 2 : 0) + (Font.Underline ? 4 : 0) + (Font.StrikeOut ? 8 : 0);
+                    Font.Size = (int)newFontSize;
+                    
+                    UpdateFonts();
                     adata = GetTTFontData();
 
                     result += "/F" +
                         Type1FontTopdfFontName(Font.Name, Font.Italic, Font.Bold, Font.GetFontFamilyKey(), Font.Style,File.PDFConformance) + " " +
-                        Font.Size + " Tf" + eol;
+                        Font.Size.ToString(System.Globalization.CultureInfo.InvariantCulture) + " Tf" + eol;
 
                     actualFontFamily = newFontFamily;
+                    actualBold = newBold;
+                    actualItalic = newItalic;
+                    actualFontSize = newFontSize;
+                }
+
+                // Color change via rg operator (valid inside BT/ET)
+                int newColor = g.HasColor ? g.Color : originalColor;
+                if (newColor != actualColor)
+                {
+                    result += RGBToFloats(newColor) + " rg" + eol;
+                    actualColor = newColor;
                 }
 
                 // Llamadas auxiliares para compatibilidad
@@ -873,7 +987,7 @@ namespace Reportman.Drawing
                 double absY = posY - g.YOffset;
                 double absX = posX + cursor + g.XOffset;
 
-                // Emitir instrucción PDF: Tm + Tj
+                // Emitir instrucciÃ³n PDF: Tm + Tj
                 result += string.Format(
                     System.Globalization.CultureInfo.InvariantCulture,
                     "1 0 0 1 {0} {1} Tm <{2}> Tj" + eol,
@@ -886,12 +1000,22 @@ namespace Reportman.Drawing
                 cursor += g.XAdvance;
             }
 
-            // Restaurar font original si se cambió
-            if (actualFontFamily != originalFontFamily)
+            // Restaurar font original si se cambiÃ³
+            if (actualFontFamily != originalFontFamily || actualBold != originalBold || actualItalic != originalItalic || actualFontSize != originalFontSize)
             {
                 Font.WFontName = originalFontFamily;
                 Font.LFontName = originalFontFamily;
+                Font.Bold = originalBold;
+                Font.Italic = originalItalic;
+                Font.Style = (originalBold ? 1 : 0) + (originalItalic ? 2 : 0) + (Font.Underline ? 4 : 0) + (Font.StrikeOut ? 8 : 0);
+                Font.Size = (int)originalFontSize;
+                UpdateFonts();
                 adata = GetTTFontData();
+            }
+            // Restore original color if changed
+            if (actualColor != originalColor)
+            {
+                result += RGBToFloats(originalColor) + " rg" + eol;
             }
 
             return result;
@@ -1205,7 +1329,7 @@ namespace Reportman.Drawing
             SWriteLine(File.STempStream, rotstring + " cm");
         }
         public void TextRect(Rectangle arect, string Text, int Alignment, bool Clipping,
-            bool wordbreak, int Rotation, bool RightToLeft)
+            bool wordbreak, int Rotation, bool RightToLeft, bool isHtml = false)
         {
             // Replace cr/lf for only cfs
             //Text = Text.Replace("" + (char)13 + (char)10, "" + (char)10);
@@ -1269,7 +1393,7 @@ namespace Reportman.Drawing
                     wordbreak = false;
                 // Calculates text extent and apply alignment
                 recsize = arect;
-                var linfo = TextExtent(Text, ref recsize, wordbreak, singleline, true,RightToLeft);
+                var linfo = TextExtent(Text, ref recsize, wordbreak, singleline, true,RightToLeft, isHtml);
                 // Align bottom or center
                 posy = arect.Top;
                 if ((Alignment & AlignmentFlags_AlignBottom) > 0)
@@ -1329,7 +1453,7 @@ namespace Reportman.Drawing
                         for (index = 0; index < lwords.Count; index++)
                         {
                             arec = arect;
-                            TextExtent(lwords[index], ref arec, false, true, false,RightToLeft);
+                            TextExtent(lwords[index], ref arec, false, true, false,RightToLeft, isHtml);
                             int nwidth;
                             if (RightToLeft)
                                 nwidth = -(arec.Width);
@@ -1368,7 +1492,7 @@ namespace Reportman.Drawing
                             }
                             for (index = 0; index < lwords.Count; index++)
                             {
-                                TextOut(Convert.ToInt32(currpos), posy + Lines[i].TopPos, lwords[index], Lines[i].Width, 0, RightToLeft, Lines[i]);
+                                TextOut(Convert.ToInt32(currpos), posy + Lines[i].TopPos, lwords[index], Lines[i].Width, 0, RightToLeft, Lines[i], isHtml);
                                 currpos = currpos + lwidths[index] + alinedif;
                             }
                         }
@@ -1392,7 +1516,7 @@ namespace Reportman.Drawing
                             BrushStyle = PreviousBrushStyle;
                         }
 
-                        TextOut(posx, posy + Lines[i].TopPos, astring, Lines[i].Width, 0, RightToLeft, Lines[i]);
+                        TextOut(posx, posy + Lines[i].TopPos, astring, Lines[i].Width, 0, RightToLeft, Lines[i], isHtml);
                     }
                 }
             }
@@ -1518,7 +1642,7 @@ namespace Reportman.Drawing
                     }
                 }
 
-                /* Cambio no fusionado mediante combinación del proyecto 'Reportman.Drawing (net48)'
+                /* Cambio no fusionado mediante combinaciÃ³n del proyecto 'Reportman.Drawing (net48)'
                 Antes:
                                 if (imageMaskStream != null)
                                 {
@@ -1584,7 +1708,7 @@ namespace Reportman.Drawing
                                     {
                                         /*if (newstream && (imageMaskStream != null))
                                         {
-                Después:
+                DespuÃ©s:
                                 if (imageMaskStream != null)
                                 {
                                     if (imageMaskStream.Length == 0)
@@ -1841,14 +1965,14 @@ namespace Reportman.Drawing
             {
             }
         }
-        public List<LineInfo> TextExtent(string Text, ref Rectangle rect, bool wordbreak, bool singleline, bool dolineinfo,bool RightToLeft)
+        public List<LineInfo> TextExtent(string Text, ref Rectangle rect, bool wordbreak, bool singleline, bool dolineinfo,bool RightToLeft, bool isHtml = false)
         {
             List<LineInfo> result;
-            if (RightToLeft)
+            if (RightToLeft || isHtml || this.InfoProvider.GetType().Name == "FontInfoFt")
             {
                 Font.Name = PDFFontType.Embedded;
                 var data = GetTTFontData();
-                result = this.InfoProvider.TextExtent(Text,ref rect,Font,data,wordbreak,singleline,Font.Size);
+                result = this.InfoProvider.TextExtent(Text,ref rect,Font,data,wordbreak,singleline,Font.Size, isHtml);
             }
             else
             {
@@ -2948,7 +3072,7 @@ namespace Reportman.Drawing
                 }
             }
 
-            // Si todos los caracteres son ASCII, usar formato de cadena normal con paréntesis
+            // Si todos los caracteres son ASCII, usar formato de cadena normal con parÃ©ntesis
             if (isASCII)
             {
                 StringBuilder result = new StringBuilder("(");
@@ -2978,10 +3102,10 @@ namespace Reportman.Drawing
                 // Crear el resultado en formato hexadecimal PDF: Comienza con el BOM UTF-16BE 0xFEFF
                 StringBuilder hexString = new StringBuilder("<FEFF");
 
-                // Convertir cada byte a su representación hexadecimal
+                // Convertir cada byte a su representaciÃ³n hexadecimal
                 foreach (byte b in utf16BEBytes)
                 {
-                    // Formatear cada byte como hexadecimal de dos dígitos
+                    // Formatear cada byte como hexadecimal de dos dÃ­gitos
                     hexString.Append(b.ToString("X2"));
                 }
 
@@ -3091,7 +3215,7 @@ namespace Reportman.Drawing
             {
                 try
                 {
-                    // Escribir las líneas iniciales de XMP Metadata
+                    // Escribir las lÃ­neas iniciales de XMP Metadata
                     SWriteLine(xmpStream, "<?xpacket begin=\"\" id=\"W5M0MpCehiHzreSzNTczkc9d\"?>");
                     SWriteLine(xmpStream, "<x:xmpmeta xmlns:x=\"adobe:ns:meta/\">");
                     SWriteLine(xmpStream, "<rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"");
@@ -3109,7 +3233,7 @@ namespace Reportman.Drawing
                     SWriteLine(xmpStream, "      </rdf:Seq>");
                     SWriteLine(xmpStream, "    </dc:creator>");
 
-                    // Título
+                    // TÃ­tulo
                     SWriteLine(xmpStream, "    <dc:title>");
                     SWriteLine(xmpStream, "      <rdf:Alt>");
                     SWriteLine(xmpStream, "        <rdf:li xml:lang=\"x-default\">" + StringUtil.EscapeXML(DocTitle) + "</rdf:li>");
@@ -3130,14 +3254,14 @@ namespace Reportman.Drawing
                         SWriteLine(xmpStream, "    </dc:subject>");
                     }
 
-                    // Descripción
+                    // DescripciÃ³n
                     SWriteLine(xmpStream, "    <dc:description>");
                     SWriteLine(xmpStream, "      <rdf:Alt>");
                     SWriteLine(xmpStream, "        <rdf:li xml:lang=\"x-default\">" + StringUtil.EscapeXML(DocSubject) + "</rdf:li>");
                     SWriteLine(xmpStream, "      </rdf:Alt>");
                     SWriteLine(xmpStream, "    </dc:description>");
 
-                    // Fecha de creación
+                    // Fecha de creaciÃ³n
                     if (string.IsNullOrEmpty(DocCreationDate))
                     {
                         SWriteLine(xmpStream, "    <xmp:CreateDate>" + DateUtil.DateToISO8601(FInternalFDocCreationDate, false) + "</xmp:CreateDate>");
@@ -3163,7 +3287,7 @@ namespace Reportman.Drawing
                         SWriteLine(xmpStream, DocXMPContent);
                     }
 
-                    // Cerrar la descripción RDF
+                    // Cerrar la descripciÃ³n RDF
                     SWriteLine(xmpStream, "  </rdf:Description>");
                     SWriteLine(xmpStream, "</rdf:RDF>");
                     SWriteLine(xmpStream, "</x:xmpmeta>");

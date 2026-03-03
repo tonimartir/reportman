@@ -817,7 +817,7 @@ namespace Reportman.Drawing.Forms
                     newwidth = 1;
                 if (newheight <= 0)
                     newheight = 1;
-                if ((newheight != FBitmap.Height) || (newwidth != FBitmap.Width))
+                if ((newheight != FBitmap.Height / 2) || (newwidth != FBitmap.Width / 2))
                 {
                     dorefresh = true;
                     if (FBitmap != null)
@@ -825,10 +825,12 @@ namespace Reportman.Drawing.Forms
                         FBitmap.Dispose();
                         FBitmap = null;
                     }
-                    FBitmap = new Bitmap(newwidth, newheight);
+                    FBitmap = new Bitmap(newwidth * 2, newheight * 2);
+                    FBitmap.SetResolution(dpix * 2, dpiy * 2);
                     image.Image = FBitmap;
                     image.Width = newwidth;
                     image.Height = newheight;
+                    image.SizeMode = PictureBoxSizeMode.Zoom;
                 }
                 else
                     if ((FPageDrawn != FPage) || (FScaleDrawn != FPreviewScale) || FPagesDrawn != intentirepcount)
@@ -857,15 +859,17 @@ namespace Reportman.Drawing.Forms
                     {
                         if (FIntBitmap == null)
                         {
-                            FIntBitmap = new Bitmap(pwidth, pheight);
+                            FIntBitmap = new Bitmap(pwidth * 2, pheight * 2);
+                            FIntBitmap.SetResolution(dpix * 2, dpiy * 2);
                         }
                         else
                         {
-                            if ((FIntBitmap.Width != pwidth) || (FIntBitmap.Height != pheight))
+                            if ((FIntBitmap.Width != pwidth * 2) || (FIntBitmap.Height != pheight * 2))
                             {
                                 FIntBitmap.Dispose();
                                 FIntBitmap = null;
-                                FIntBitmap = new Bitmap(pwidth, pheight);
+                                FIntBitmap = new Bitmap(pwidth * 2, pheight * 2);
+                                FIntBitmap.SetResolution(dpix * 2, dpiy * 2);
                             }
                         }
                         int pdrawn = 0;
@@ -884,14 +888,14 @@ namespace Reportman.Drawing.Forms
                                         prdriver.OptimizeWMF = OptimizeWMF;
 #endif
                                         prdriver.DrawPage(FMetaFile, FMetaFile.Pages[FPage + pdrawn]);
-                                        gr.DrawImage(FIntBitmap, x * pwidth, y * pheight);
-                                        gr.DrawLine(apen, (x + 1) * pwidth - 1, y * pheight - 1, (x + 1) * pwidth - 1, (y + 1) * pheight - 1);
-                                        gr.DrawLine(apen, (x) * pwidth - 1, (y + 1) * pheight - 1, (x + 1) * pwidth - 1, (y + 1) * pheight - 1);
+                                        gr.DrawImage(FIntBitmap, x * pwidth * 2, y * pheight * 2);
+                                        gr.DrawLine(apen, (x + 1) * pwidth * 2 - 1, y * pheight * 2 - 1, (x + 1) * pwidth * 2 - 1, (y + 1) * pheight * 2 - 1);
+                                        gr.DrawLine(apen, (x) * pwidth * 2 - 1, (y + 1) * pheight * 2 - 1, (x + 1) * pwidth * 2 - 1, (y + 1) * pheight * 2 - 1);
                                     }
                                     else
                                     {
                                         Brush abrush = new SolidBrush(BackColor);
-                                        gr.FillRectangle(abrush, x * pwidth, y * pheight, (x + 1) * pwidth, (y + 1) * (pheight));
+                                        gr.FillRectangle(abrush, x * pwidth * 2, y * pheight * 2, pwidth * 2, pheight * 2);
                                     }
                                     pdrawn++;
                                 }
@@ -909,14 +913,14 @@ namespace Reportman.Drawing.Forms
                                         prdriver.OptimizeWMF = OptimizeWMF;
 #endif
                                         prdriver.DrawPage(FMetaFile, FMetaFile.Pages[FPage + pdrawn]);
-                                        gr.DrawImage(FIntBitmap, x * pwidth, y * pheight);
-                                        gr.DrawLine(apen, (x + 1) * pwidth - 1, y * pheight - 1, (x + 1) * pwidth - 1, (y + 1) * pheight - 1);
-                                        gr.DrawLine(apen, (x) * pwidth - 1, (y + 1) * pheight - 1, (x + 1) * pwidth - 1, (y + 1) * pheight - 1);
+                                        gr.DrawImage(FIntBitmap, x * pwidth * 2, y * pheight * 2);
+                                        gr.DrawLine(apen, (x + 1) * pwidth * 2 - 1, y * pheight * 2 - 1, (x + 1) * pwidth * 2 - 1, (y + 1) * pheight * 2 - 1);
+                                        gr.DrawLine(apen, (x) * pwidth * 2 - 1, (y + 1) * pheight * 2 - 1, (x + 1) * pwidth * 2 - 1, (y + 1) * pheight * 2 - 1);
                                     }
                                     else
                                     {
                                         Brush abrush = new SolidBrush(BackColor);
-                                        gr.FillRectangle(abrush, x * pwidth, y * pheight, (x + 1) * pwidth, (y + 1) * (pheight));
+                                        gr.FillRectangle(abrush, x * pwidth * 2, y * pheight * 2, pwidth * 2, pheight * 2);
                                     }
                                     pdrawn++;
                                 }

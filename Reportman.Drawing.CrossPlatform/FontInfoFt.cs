@@ -29,6 +29,8 @@ using System.Threading;
 using FreeTypeSharp;
 using System.Text;
 using System.Diagnostics;
+using Icu;
+using HarfBuzzSharp;
 
 namespace Reportman.Drawing
 {
@@ -43,6 +45,7 @@ namespace Reportman.Drawing
         public string filename;
         public int ascent;
         public int descent;
+        public int height;
         public int weight;
         public int MaxWidth;
         public int avCharWidth;
@@ -111,7 +114,7 @@ namespace Reportman.Drawing
                     // Don't need scale, but this is a scale that returns
                     // exact widht for pdf if you divide the result
                     // of Get_Char_Width by 64
-                    //aface.SetCharSize(0, 64 * 100, 96, 96); // Tamaño en puntos y DPI
+                    //aface.SetCharSize(0, 64 * 100, 96, 96); // TamaÃ±o en puntos y DPI
                     int acharWidth = 0;
                     var pointer = &acharWidth;
                     int heightInt = 64 * 100;
@@ -150,7 +153,7 @@ namespace Reportman.Drawing
             while (ptr[length] != 0)
                 length++;
 
-            // Convertir a string con codificación UTF-8
+            // Convertir a string con codificaciÃ³n UTF-8
             return Encoding.UTF8.GetString(ptr, length);
         }
         public static void CheckFreeType(FT_Error nerror)
@@ -173,6 +176,64 @@ namespace Reportman.Drawing
             {
                 return ptr; // Retornar el puntero a los bytes
             }
+        }
+
+        private struct OS2Metrics
+        {
+            public bool Found;
+            public short sTypoAscender;
+            public short sTypoDescender;
+            public short sTypoLineGap;
+            public ushort usWinAscent;
+            public ushort usWinDescent;
+            public ushort fsSelection;
+            public bool UseTypoMetrics => (fsSelection & 0x0080) != 0; // bit 7
+        }
+
+        /// <summary>
+        /// Reads OS/2 table metrics from raw TTF/OTF binary data.
+        /// Returns sTypo* and usWin* metrics, plus fsSelection to determine USE_TYPO_METRICS flag.
+        /// </summary>
+        private static OS2Metrics ReadOS2Metrics(byte[] fontData)
+        {
+            var result = new OS2Metrics();
+            if (fontData == null || fontData.Length < 12) return result;
+
+            // Read number of tables from the TrueType/OpenType header
+            int numTables = (fontData[4] << 8) | fontData[5];
+            // Each table record is 16 bytes, starting at offset 12
+            for (int i = 0; i < numTables; i++)
+            {
+                int recordOffset = 12 + i * 16;
+                if (recordOffset + 16 > fontData.Length) break;
+
+                // Table tag is 4 bytes ASCII
+                string tag = Encoding.ASCII.GetString(fontData, recordOffset, 4);
+                if (tag == "OS/2")
+                {
+                    uint tableOffset = (uint)((fontData[recordOffset + 8] << 24) | (fontData[recordOffset + 9] << 16) |
+                                              (fontData[recordOffset + 10] << 8) | fontData[recordOffset + 11]);
+
+                    if (tableOffset + 78 > fontData.Length) return result;
+
+                    int off = (int)tableOffset;
+                    // fsSelection at offset 62
+                    result.fsSelection = (ushort)((fontData[off + 62] << 8) | fontData[off + 63]);
+                    // sTypoAscender at offset 68
+                    result.sTypoAscender = (short)((fontData[off + 68] << 8) | fontData[off + 69]);
+                    // sTypoDescender at offset 70
+                    result.sTypoDescender = (short)((fontData[off + 70] << 8) | fontData[off + 71]);
+                    // sTypoLineGap at offset 72
+                    result.sTypoLineGap = (short)((fontData[off + 72] << 8) | fontData[off + 73]);
+                    // usWinAscent at offset 74
+                    result.usWinAscent = (ushort)((fontData[off + 74] << 8) | fontData[off + 75]);
+                    // usWinDescent at offset 76
+                    result.usWinDescent = (ushort)((fontData[off + 76] << 8) | fontData[off + 77]);
+                    result.Found = true;
+                    return result;
+                }
+            }
+            return result;
         }
 
         private static void InitLibrary()
@@ -252,17 +313,18 @@ namespace Reportman.Drawing
                                 int bboxtop  = iface->bbox.yMin.ToInt32();
                                 int bboxbottom = iface->bbox.yMax.ToInt32();
 
-                                int nleft = System.Convert.ToInt32(Math.Round(aobj.widthmult*bboxleft));
-                                int nright = System.Convert.ToInt32(Math.Round(aobj.widthmult * bboxright));
-                                int ntop = System.Convert.ToInt32(Math.Round(aobj.heightmult * bboxtop));
-                                int nbottom = System.Convert.ToInt32(Math.Round(aobj.heightmult * bboxbottom));
+                                int nleft = System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)bboxleft));
+                                int nright = System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)bboxright));
+                                int ntop = System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)bboxtop));
+                                int nbottom = System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)bboxbottom));
                                 // BBox calcultions are incorrect
                                 // aobj.BBox = new Rectangle(nleft,ntop,nright-nleft,nbottom-ntop);
-                                aobj.ascent=System.Convert.ToInt32(Math.Round(aobj.heightmult * iface->ascender));
-                                aobj.descent=System.Convert.ToInt32(Math.Round(aobj.heightmult * iface->descender));
-                                aobj.leading=System.Convert.ToInt32(Math.Round(aobj.heightmult * iface->height)-(aobj.ascent-aobj.descent));
-                                aobj.MaxWidth=System.Convert.ToInt32(Math.Round(aobj.widthmult*iface->max_advance_width));
-                                aobj.Capheight=System.Convert.ToInt32(Math.Round(aobj.heightmult*iface->ascender));
+                                aobj.ascent=System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)iface->ascender));
+                                aobj.descent=System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)iface->descender));
+                                aobj.height=System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)iface->height));
+                                aobj.leading=System.Convert.ToInt32(Math.Round(aobj.convfactor * (double)iface->height)-(aobj.ascent-aobj.descent));
+                                aobj.MaxWidth=System.Convert.ToInt32(Math.Round(aobj.convfactor*(double)iface->max_advance_width));
+                                aobj.Capheight=System.Convert.ToInt32(Math.Round(aobj.convfactor*(double)iface->ascender));
                                 string style_name = BytePtrToString(iface->style_name);
                                 aobj.stylename=style_name;
                                     //aobj.bold=(aface.style_flags & (int)FT_Style_Flags.FT_STYLE_FLAG_BOLD)!=0;
@@ -477,6 +539,51 @@ namespace Reportman.Drawing
             data.Ascent = currentfont.ascent;
             data.Descent = currentfont.descent;
             data.Leading = currentfont.leading;
+            data.Height = currentfont.height > 0 ? currentfont.height : currentfont.ascent - currentfont.descent + currentfont.leading;
+
+            // Override with OS/2 table metrics to match DirectWrite/GDI
+            if (data.FontData != null && data.FontData.Data != null)
+            {
+                var os2 = ReadOS2Metrics(data.FontData.Data);
+                if (os2.Found)
+                {
+                    // Use same scaling as InitLibrary: value * convfactor (where convfactor = 1000/unitsPerEM)
+                    double cf = currentfont.convfactor;
+
+                    // DirectWrite checks fsSelection bit 7 (USE_TYPO_METRICS):
+                    //   When set: uses sTypoAscender/sTypoDescender/sTypoLineGap for everything
+                    //   When not set: Ascent/Descent from usWinAscent/usWinDescent,
+                    //                  but Height from hhea (= ascender-descender+lineGap), matching GDI's GetLineSpacing
+
+                    if (os2.UseTypoMetrics)
+                    {
+                        // USE_TYPO_METRICS: use sTypo* values directly
+                        int dwAscent = os2.sTypoAscender;
+                        int dwDescent = -os2.sTypoDescender; // sTypoDescender is negative
+                        int dwLineGap = os2.sTypoLineGap;
+
+                        data.Ascent = (int)Math.Round(cf * dwAscent);
+                        data.Descent = -(int)Math.Round(cf * dwDescent);
+                        data.Height = (int)Math.Round(cf * (dwAscent + dwDescent + dwLineGap));
+                        data.Leading = data.Height - data.Ascent + data.Descent;
+                    }
+                    else
+                    {
+                        // Non-USE_TYPO_METRICS: 
+                        //   Ascent/Descent from OS/2 usWinAscent/usWinDescent (matches GDI GetCellAscent/GetCellDescent)
+                        //   Height from hhea table (matches GDI GetLineSpacing), keep original FreeType value
+                        data.Ascent = (int)Math.Round(cf * os2.usWinAscent);
+                        data.Descent = -(int)Math.Round(cf * os2.usWinDescent);
+                        // data.Height stays as currentfont.height (hhea-based, already set above)
+                        data.Leading = data.Height - data.Ascent + data.Descent;
+                    }
+                    Console.WriteLine($"[FT-FillFontData-OS2] Font={currentfont.familyname}, UseTypo={os2.UseTypoMetrics}, Ascent={data.Ascent}, Descent={data.Descent}, Height={data.Height}, Leading={data.Leading}");
+                }
+                else
+                {
+                    Console.WriteLine($"[FT-FillFontData-hhea] Font={currentfont.familyname}, Ascent={data.Ascent}, Descent={data.Descent}, Height={data.Height}, Leading={data.Leading}");
+                }
+            }
             data.CapHeight = currentfont.Capheight;
             data.Encoding = "WinAnsiEncoding";
             data.FontWeight = 0;
@@ -597,7 +704,7 @@ namespace Reportman.Drawing
 
 
 
-                            // Opcional: Escalar el ancho a píxeles
+                            // Opcional: Escalar el ancho a pÃ­xeles
                             double scaleFactor = 1000.0 / unitsPerEM; // Asume 1000 como base
                             double scaledWidth = advanceWidth * scaleFactor;
                             awidth = scaledWidth;
@@ -762,6 +869,14 @@ namespace Reportman.Drawing
                     break;
                 default:
                     dirs.Add(GetFontPath());
+                    // Also add user-local fonts directory (Windows 10+)
+                    string localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                    if (!string.IsNullOrEmpty(localAppData))
+                    {
+                        string userFonts = Path.Combine(localAppData, "Microsoft", "Windows", "Fonts");
+                        if (Directory.Exists(userFonts))
+                            dirs.Add(userFonts);
+                    }
                     break;
             }
             return dirs;
@@ -769,12 +884,588 @@ namespace Reportman.Drawing
 
         public override double GetGlyphWidth(PDFFont pdfFont, TTFontData fontData, int glyph, char charC)
         {
-            throw new NotImplementedException();
+            double baseWidth = GetCharWidth(pdfFont, fontData, charC);
+            if (fontData.glyphsInfo.IndexOfKey(glyph) >= 0)
+            {
+                return fontData.glyphsInfo[glyph].Width;
+            }
+
+            // Also check if the base character's nominal glyph was actually THIS glyph
+            if (fontData.CacheWidths.IndexOfKey(charC) >= 0 && fontData.CacheWidths[charC].Glyph == glyph)
+            {
+                fontData.glyphsInfo.Add(glyph, fontData.CacheWidths[charC]);
+                return fontData.CacheWidths[charC].Width;
+            }
+
+            // It's a newly discovered OpenType ligature or contextual glyph
+            // Map it to a Private Use Area character so PDFCanvas sees it and subsets it
+            char puaChar = (char)(0xE000 + fontData.glyphsInfo.Count);
+            
+            InitLibrary();
+            LogFontFt cfont = (LogFontFt)fontData.LogFont;
+            cfont.OpenFont();
+
+            Monitor.Enter(flag);
+            double awidth;
+            try
+            {
+                CheckFreeType(FT.FT_Load_Glyph(cfont.ftface, (uint)glyph, FT_LOAD.FT_LOAD_NO_SCALE));
+                var aglyph = cfont.ftface->glyph;
+                long advanceWidth = aglyph->metrics.horiAdvance.ToInt64();
+                awidth = (long)Math.Round((double)advanceWidth * cfont.convfactor * cfont.widthmult);
+
+                GlyphInfo ninfo = new GlyphInfo();
+                ninfo.Width = awidth;
+                ninfo.Glyph = glyph;
+
+                while (fontData.CacheWidths.IndexOfKey(puaChar) >= 0) puaChar++;
+
+                fontData.CacheWidths.Add(puaChar, ninfo);
+                fontData.Widths.Add(puaChar, awidth);
+                fontData.Glyphs.Add(puaChar, glyph);
+                fontData.glyphsInfo.Add(glyph, ninfo);
+            }
+            finally
+            {
+                Monitor.Exit(flag);
+            }
+
+            return awidth;
         }
 
-        public override List<LineInfo> TextExtent(string Text, ref Rectangle Rect, PDFFont pdfFont, TTFontData fontData, bool wordwrap, bool singleline, double FontSize)
+        public override List<LineInfo> TextExtent(string Text, ref System.Drawing.Rectangle Rect, PDFFont pdfFont, TTFontData fontData, bool wordwrap, bool singleline, double FontSize, bool isHtml)
         {
-            throw new NotImplementedException();
+            if (!isHtml)
+            {
+                // In Delphi, TextExtent just calls TextExtentHtml.
+                // We fake a single HTML segment for the entire text so it goes through
+                // the exact same Harfbuzz/BiDi layout pipeline as HTML text does.
+                return TextExtentHtml(Text, ref Rect, fontData, pdfFont, wordwrap, singleline, FontSize, false /* isHtml */);
+            }
+            return TextExtentHtml(Text, ref Rect, fontData, pdfFont, wordwrap, singleline, FontSize, true /* isHtml */);
+        }
+
+        /// <summary>
+        /// Detect HarfBuzz script tag from the first significant character in the text.
+        /// Matches the Delphi logicalRun.ScriptString behavior from ICU.
+        /// </summary>
+        private static string DetectScript(string text)
+        {
+            foreach (char c in text)
+            {
+                if (c <= ' ') continue; // skip whitespace/control
+                int cp = (int)c;
+                // Arabic: U+0600..U+06FF, U+0750..U+077F, U+08A0..U+08FF, U+FB50..U+FDFF, U+FE70..U+FEFF
+                if ((cp >= 0x0600 && cp <= 0x06FF) || (cp >= 0x0750 && cp <= 0x077F) ||
+                    (cp >= 0x08A0 && cp <= 0x08FF) || (cp >= 0xFB50 && cp <= 0xFDFF) ||
+                    (cp >= 0xFE70 && cp <= 0xFEFF))
+                    return "Arab";
+                // Hebrew: U+0590..U+05FF, U+FB1D..U+FB4F
+                if ((cp >= 0x0590 && cp <= 0x05FF) || (cp >= 0xFB1D && cp <= 0xFB4F))
+                    return "Hebr";
+                // Thai: U+0E00..U+0E7F
+                if (cp >= 0x0E00 && cp <= 0x0E7F)
+                    return "Thai";
+                // Devanagari: U+0900..U+097F
+                if (cp >= 0x0900 && cp <= 0x097F)
+                    return "Deva";
+                // CJK ranges
+                if ((cp >= 0x4E00 && cp <= 0x9FFF) || (cp >= 0x3400 && cp <= 0x4DBF) ||
+                    (cp >= 0x3000 && cp <= 0x303F))
+                    return "Hani";
+                // Hangul
+                if ((cp >= 0xAC00 && cp <= 0xD7AF) || (cp >= 0x1100 && cp <= 0x11FF))
+                    return "Hang";
+                // Latin/Common: default
+                if (cp >= 0x0020 && cp <= 0x024F)
+                    return "Latn";
+            }
+            return "Latn";
+        }
+
+        private TGlyphPos[] CalcGlyphPositions(string text, bool rightToLeft, string script, double FontSize, TTFontData adata, PDFFont pdfFont)
+        {
+            if (string.IsNullOrEmpty(text)) return new TGlyphPos[0];
+
+            if (adata.FontData == null || adata.FontData.Data == null)
+            {
+                FillFontData(pdfFont, adata);
+            }
+            
+            byte[] bytes = adata.FontData.Data;
+            fixed (byte* pData = bytes)
+            {
+                using (var blob = new HarfBuzzSharp.Blob((IntPtr)pData, bytes.Length, HarfBuzzSharp.MemoryMode.ReadOnly))
+                using (var hbFace = new HarfBuzzSharp.Face(blob, 0))
+                using (var font = new HarfBuzzSharp.Font(hbFace))
+                using (var buffer = new HarfBuzzSharp.Buffer())
+                {
+                    font.SetScale((int)adata.UnitsPerEM, (int)adata.UnitsPerEM);
+                    font.SetFunctionsOpenType();
+                    buffer.Direction = rightToLeft ? HarfBuzzSharp.Direction.RightToLeft : HarfBuzzSharp.Direction.LeftToRight;
+                    if (!string.IsNullOrEmpty(script))
+                    {
+                        buffer.Script = HarfBuzzSharp.Script.Parse(script);
+                        if (script == "Arab")
+                        {
+                            buffer.Language = new HarfBuzzSharp.Language("ar");
+                        }
+                    }
+                    buffer.AddUtf16(text);
+                    font.Shape(buffer);
+                    
+                    var glyphInfos = buffer.GlyphInfos;
+                    var glyphPositions = buffer.GlyphPositions;
+
+                    if (script == "Arab")
+                    {
+                        Console.Write($"[HB] Shaped '{text}' -> ");
+                        foreach (var gi in glyphInfos) Console.Write(gi.Codepoint + " ");
+                        Console.WriteLine();
+                    }
+                    
+                    var result = new TGlyphPos[glyphInfos.Length];
+                    
+                    double scaleFactor = FontSize * 20.0 / adata.UnitsPerEM;
+                    for(int i = 0; i < glyphInfos.Length; i++)
+                    {
+                        result[i] = new TGlyphPos();
+                        result[i].GlyphIndex = (ushort)glyphInfos[i].Codepoint;
+                        result[i].XAdvance = (int)Math.Round(glyphPositions[i].XAdvance * scaleFactor);
+                        result[i].XOffset = (int)Math.Round(glyphPositions[i].XOffset * scaleFactor);
+                        result[i].YOffset = (int)Math.Round(glyphPositions[i].YOffset * scaleFactor);
+                        result[i].Cluster = (int)glyphInfos[i].Cluster;
+                        if (result[i].Cluster < text.Length)
+                            result[i].CharCode = text[result[i].Cluster];
+                    }
+                    return result;
+                }
+            }
+        }
+
+        private struct BiDiRun
+        {
+            public int Start;
+            public int Length;
+            public byte Level;
+            public bool IsRightToLeft;
+        }
+
+        public List<LineInfo> TextExtentHtml(
+            string Text,
+            ref System.Drawing.Rectangle Rect,
+            TTFontData adata,
+            PDFFont pdfFont,
+            bool wordwrap,
+            bool singleline,
+            double FontSize,
+            bool isHtml = true)
+        {
+            var Result = new List<LineInfo>();
+            Wrapper.Init(); // initialize ICU
+
+            lock (flag)
+            {
+                SelectFont(pdfFont);
+            }
+            var originalFont = currentfont;
+
+            // Use adata as default for line spacing, but will be overridden per-segment below
+            double linespacingEM = (double)adata.Height / 1000.0;
+            int linespacing = (int)Math.Round(linespacingEM * FontSize * 20.0);
+            int ascentSpacing = (int)Math.Round(((double)adata.Ascent / 1000.0) * FontSize * 20.0);
+            Console.WriteLine($"[FreeType] Font: {pdfFont.WFontName}, Size: {FontSize}, adata.Height={adata.Height}, -> linespacing={linespacing}, ascentSpacing={ascentSpacing}");
+            
+            // rectTop tracks the top of the current line (not the baseline)
+            // This matches GDI's: lineInfo.TopPos = rectTopTwips + realBaseline
+            double rectTop = 0;
+
+            List<Reportman.Drawing.HtmlFormatRun> Segments;
+            if (isHtml)
+            {
+                Segments = HtmlTextParser.Parse(Text, pdfFont.WFontName);
+            }
+            else
+            {
+                Segments = new List<Reportman.Drawing.HtmlFormatRun> { new Reportman.Drawing.HtmlFormatRun { Text = Text } };
+            }
+
+            string PlainText = "";
+            foreach (var seg in Segments)
+                PlainText += seg.Text;
+
+            var lineSubTexts = HtmlLayoutUtils.DividesIntoLines(PlainText);
+            double maxWidth = 0;
+            double lineWidthLimit = Rect.Width; // Twips
+
+            var TempFont = new PDFFont();
+            TempFont.Name = pdfFont.Name;
+            TempFont.Size = pdfFont.Size;
+            TempFont.Color = pdfFont.Color;
+            TempFont.WFontName = pdfFont.WFontName;
+            TempFont.LFontName = pdfFont.LFontName;
+
+            var fontDataCache = new Dictionary<string, TTFontData>();
+
+            using (var bidi = new BiDi())
+            {
+                foreach (var lineSubText in lineSubTexts)
+                {
+                    string line = PlainText.Substring(lineSubText.Position, lineSubText.Length);
+                    var possibleBreaksCharIdx = HtmlLayoutUtils.FillPossibleLineBreaksString(line);
+                    var calculatedLines = new List<LineGlyphs>();
+
+                    bidi.SetPara(line, 255, null);
+
+                    double remaining = lineWidthLimit;
+                    int textOffset = lineSubText.Position;
+                    var currentChunk = new LineGlyphs(textOffset);
+
+                    // Reconstruct logical runs manually since ICU.net exposes GetVisualRun well but logical runs maps natively 
+                    var logicalRuns = new List<BiDiRun>();
+                    int startLog = 0;
+                    while(startLog < line.Length)
+                    {
+                        byte lvl = bidi.GetLevelAt(startLog);
+                        int rLen = 1;
+                        while(startLog + rLen < line.Length && bidi.GetLevelAt(startLog + rLen) == lvl) rLen++;
+                        
+                        logicalRuns.Add(new BiDiRun { Start = startLog, Length = rLen, Level = lvl, IsRightToLeft = (lvl % 2 == 1) });
+                        startLog += rLen;
+                    }
+
+                    foreach (var logicalRun in logicalRuns)
+                    {
+                        int RunAbsStart = lineSubText.Position + logicalRun.Start;
+                        int RunLen = logicalRun.Length;
+                        int SegStartAbs = 0;
+
+                        foreach (var Seg in Segments)
+                        {
+                            int SegLen = Seg.Text.Length;
+                            int SegEndAbs = SegStartAbs + SegLen;
+                            int IntStart = Math.Max(RunAbsStart, SegStartAbs);
+                            int IntEnd = Math.Min(RunAbsStart + RunLen, SegEndAbs);
+
+                            if (IntStart < IntEnd)
+                            {
+                                TempFont.Bold = pdfFont.Bold || Seg.Bold;
+                                TempFont.Italic = pdfFont.Italic || Seg.Italic;
+                                TempFont.WFontName = !string.IsNullOrEmpty(Seg.FontFamily) ? Seg.FontFamily : pdfFont.WFontName;
+                                double activeSize = Seg.HasFontSize ? Seg.FontSize : FontSize;
+
+                                TempFont.Style = 0;
+                                if (TempFont.Bold) TempFont.Style |= 1;
+                                if (TempFont.Italic) TempFont.Style |= 2;
+
+                                string tempKey = TempFont.GetFontFamilyKey() + TempFont.Style.ToString();
+                                if (!fontDataCache.TryGetValue(tempKey, out var tempAdata))
+                                {
+                                    tempAdata = new TTFontData();
+                                    FillFontData(TempFont, tempAdata);
+                                    fontDataCache[tempKey] = tempAdata;
+                                }
+
+                                lock (flag)
+                                {
+                                    SelectFont(TempFont);
+                                }
+                                
+                                bool rToL = logicalRun.IsRightToLeft;
+                                string ChunkText = PlainText.Substring(IntStart, IntEnd - IntStart);
+                                string scriptStr = DetectScript(ChunkText);
+                                
+                                var positions = CalcGlyphPositions(ChunkText, rToL, scriptStr, activeSize, tempAdata, TempFont);
+                                
+                                // Font fallback: if any glyph has GlyphIndex=0, the current font
+                                // doesn't support these characters. Try re-selecting with content.
+                                // This matches the old Delphi TextExtent fallback logic.
+                                bool hasMissingGlyphs = false;
+                                for (int k = 0; k < positions.Length; k++)
+                                {
+                                    if (positions[k].GlyphIndex == 0) { hasMissingGlyphs = true; break; }
+                                }
+                                if (hasMissingGlyphs)
+                                {
+                                    // Try to find a font that supports these characters
+                                    var fallbackFont = new PDFFont();
+                                    fallbackFont.Name = pdfFont.Name;
+                                    fallbackFont.Size = (short)Math.Round(activeSize);
+                                    fallbackFont.Color = pdfFont.Color;
+                                    fallbackFont.Bold = TempFont.Bold;
+                                    fallbackFont.Italic = TempFont.Italic;
+                                    fallbackFont.WFontName = TempFont.WFontName;
+                                    fallbackFont.LFontName = TempFont.LFontName;
+                                    
+                                    var fallbackData = new TTFontData();
+                                    FillFontData(fallbackFont, fallbackData);
+                                    lock (flag) { SelectFont(fallbackFont); }
+                                    positions = CalcGlyphPositions(ChunkText, rToL, scriptStr, activeSize, fallbackData, fallbackFont);
+                                }
+                                
+                                double runWidth = 0;
+                                for (int k = 0; k < positions.Length; k++)
+                                {
+                                    runWidth += positions[k].XAdvance;
+                                    positions[k].LineCluster = positions[k].Cluster + (IntStart - lineSubText.Position);
+                                    positions[k].Bold = TempFont.Bold;
+                                    positions[k].Italic = TempFont.Italic;
+                                    positions[k].Underline = Seg.Underline;
+                                    positions[k].StrikeOut = Seg.StrikeOut;
+                                    positions[k].FontFamily = TempFont.WFontName;
+                                    positions[k].FontSize = (float)activeSize;
+                                    positions[k].HasFontSize = Seg.HasFontSize;
+                                    positions[k].Color = Seg.Color;
+                                    positions[k].HasColor = Seg.HasColor;
+                                }
+
+                                if (runWidth <= remaining || !wordwrap)
+                                {
+                                    foreach (var g in positions)
+                                        currentChunk.AddGlyph(g, logicalRun.Start);
+                                    remaining -= runWidth;
+                                }
+                                else
+                                {
+                                    bool lineHasContent = currentChunk.Glyphs.Count > 0;
+                                    var chunksList = rToL ? HtmlLayoutUtils.BreakChunksRTL(new List<TGlyphPos>(positions), ref remaining, lineWidthLimit, possibleBreaksCharIdx, line, lineHasContent)
+                                                          : HtmlLayoutUtils.BreakChunksLTR(new List<TGlyphPos>(positions), ref remaining, lineWidthLimit, possibleBreaksCharIdx, line, lineHasContent);
+
+                                    for (int j = 0; j < chunksList.Count; j++)
+                                    {
+                                        var chunk = chunksList[j];
+                                        if (j == 0)
+                                        {
+                                            foreach (var g in chunk) currentChunk.AddGlyph(g, logicalRun.Start);
+                                            calculatedLines.Add(currentChunk);
+                                            currentChunk = new LineGlyphs(textOffset);
+                                            remaining = lineWidthLimit;
+                                        }
+                                        else if (j == chunksList.Count - 1)
+                                        {
+                                            remaining = lineWidthLimit;
+                                            foreach (var g in chunk)
+                                            {
+                                                currentChunk.AddGlyph(g, logicalRun.Start);
+                                                remaining -= g.XAdvance;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            foreach (var g in chunk) currentChunk.AddGlyph(g, logicalRun.Start);
+                                            remaining = lineWidthLimit;
+                                            calculatedLines.Add(currentChunk);
+                                            currentChunk = new LineGlyphs(textOffset);
+                                        }
+                                    }
+                                }
+                            }
+                            SegStartAbs = SegEndAbs;
+                        }
+                    }
+                    if (currentChunk.Glyphs.Count > 0) calculatedLines.Add(currentChunk);
+
+                    for (int lineIdx = 0; lineIdx < calculatedLines.Count; lineIdx++)
+                    {
+                        var calculatedLine = calculatedLines[lineIdx];
+                        int minCluster = calculatedLine.MinClusterText;
+                        int maxCluster = calculatedLine.MaxClusterText;
+                        var visualGlyphs = new List<TGlyphPos>();
+                        
+                        int vCount = bidi.CountRuns();
+                        for (int i=0; i < vCount; i++)
+                        {
+                            var vDir = bidi.GetVisualRun(i, out int vStart, out int vLength);
+                            bool vRtL = vDir.ToString().Contains("RTL");
+                            
+                            var runGlyphs = new List<TGlyphPos>();
+                            if (vRtL)
+                            {
+                                // RTL visual runs: iterate clusters in descending order.
+                                // HarfBuzz outputs RTL glyphs in visual L-to-R order with
+                                // decreasing cluster values. ClusterMap maps clusterâ†’glyph-index,
+                                // so ascending iteration reverses the visual order. Descending
+                                // iteration preserves HarfBuzz's correct visual order.
+                                for (int k = vStart + vLength - 1; k >= vStart; k--)
+                                {
+                                    if (calculatedLine.ClusterMap.TryGetValue(k, out var lst))
+                                    {
+                                        foreach (var idx in lst) runGlyphs.Add(calculatedLine.Glyphs[idx]);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (int k = vStart; k < vStart + vLength; k++)
+                                {
+                                    if (calculatedLine.ClusterMap.TryGetValue(k, out var lst))
+                                    {
+                                        foreach (var idx in lst) runGlyphs.Add(calculatedLine.Glyphs[idx]);
+                                    }
+                                }
+                            }
+                            
+                            visualGlyphs.AddRange(runGlyphs);
+                        }
+                        
+                        // --- Trim whitespace at word-wrap boundaries (matching DirectWrite/GDI AdjustLineSpaces) ---
+                        // Direction-aware: for RTL, "trailing" whitespace is at the visual LEFT (beginning of list)
+                        bool isParaRTL = (bidi.GetParaLevel() % 2) == 1;
+                        
+                        if (!isParaRTL)
+                        {
+                            // LTR: remove trailing whitespace from END of list (visual right)
+                            while (visualGlyphs.Count > 0)
+                            {
+                                char ch = visualGlyphs[visualGlyphs.Count - 1].CharCode;
+                                if (ch == ' ' || ch == '\t' || ch == '\n' || ch == '\r')
+                                    visualGlyphs.RemoveAt(visualGlyphs.Count - 1);
+                                else
+                                    break;
+                            }
+                            // Remove leading whitespace from continuation lines
+                            if (lineIdx > 0)
+                            {
+                                while (visualGlyphs.Count > 0)
+                                {
+                                    char ch = visualGlyphs[0].CharCode;
+                                    if (ch == ' ' || ch == '\t')
+                                        visualGlyphs.RemoveAt(0);
+                                    else
+                                        break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            // RTL: remove trailing whitespace from BEGINNING of list (visual left)
+                            while (visualGlyphs.Count > 0)
+                            {
+                                char ch = visualGlyphs[0].CharCode;
+                                if (ch == ' ' || ch == '\t' || ch == '\n' || ch == '\r')
+                                    visualGlyphs.RemoveAt(0);
+                                else
+                                    break;
+                            }
+                            // Remove leading whitespace from continuation lines (visual right for RTL)
+                            if (lineIdx > 0)
+                            {
+                                while (visualGlyphs.Count > 0)
+                                {
+                                    char ch = visualGlyphs[visualGlyphs.Count - 1].CharCode;
+                                    if (ch == ' ' || ch == '\t')
+                                        visualGlyphs.RemoveAt(visualGlyphs.Count - 1);
+                                    else
+                                        break;
+                                }
+                            }
+                        }
+
+                        var lineInfo = new LineInfo();
+                        lineInfo.Glyphs = visualGlyphs;
+                        // Recompute min/max cluster after trimming
+                        if (visualGlyphs.Count > 0)
+                        {
+                            minCluster = int.MaxValue;
+                            maxCluster = int.MinValue;
+                            foreach (var g in visualGlyphs)
+                            {
+                                if (g.LineCluster < minCluster) minCluster = g.LineCluster;
+                                if (g.LineCluster > maxCluster) maxCluster = g.LineCluster;
+                            }
+                        }
+                        lineInfo.Position = minCluster;
+                        lineInfo.Size = visualGlyphs.Count > 0 ? maxCluster - minCluster + 1 : 0;
+                        lineInfo.Text = lineInfo.Size > 0 && minCluster + lineInfo.Size <= PlainText.Length
+                            ? PlainText.Substring(minCluster, lineInfo.Size)
+                            : (lineInfo.Size > 0 ? PlainText.Substring(minCluster) : string.Empty);
+                        
+                        double lw = 0;
+                        double maxLineFontSize = FontSize;
+                        foreach (var g in lineInfo.Glyphs) 
+                        {
+                            lw += g.XAdvance;
+                            if (g.HasFontSize && g.FontSize > maxLineFontSize)
+                                maxLineFontSize = g.FontSize;
+                        }
+                        lineInfo.Width = (int)Math.Round(lw);
+                        
+                        // Compute per-line baseline (max ascent in twips) and line height
+                        // matching DirectWrite's GetLineMetrics().Baseline and .Height
+                        int maxAscentEM = adata.Ascent;  // default to original font
+                        int maxHeightEM = adata.Height;   // default to original font
+                        double maxAscentTwips = (double)adata.Ascent / 1000.0 * FontSize * 20.0;
+                        double maxLineHeight = (double)adata.Height / 1000.0 * FontSize * 20.0;
+                        // Baseline = Ascent + Leading (lineGap added above the baseline, matching DirectWrite)
+                        double maxBaselineTwips = (double)(adata.Ascent + Math.Max(0, adata.Leading)) / 1000.0 * FontSize * 20.0;
+                        
+                        foreach (var g in lineInfo.Glyphs)
+                        {
+                            double gFontSize = g.HasFontSize ? g.FontSize : FontSize;
+                            string gFontFamily = g.FontFamily ?? pdfFont.WFontName;
+                            
+                            // Find the font data for this glyph
+                            TTFontData gFontData = null;
+                            foreach (var kvp in fontDataCache)
+                            {
+                                if (kvp.Key.ToUpper().Contains(gFontFamily.ToUpper()))
+                                {
+                                    gFontData = kvp.Value;
+                                    break;
+                                }
+                            }
+                            
+                            if (gFontData != null)
+                            {
+                                double gAscentTwips = (double)gFontData.Ascent / 1000.0 * gFontSize * 20.0;
+                                double gHeightTwips = (double)gFontData.Height / 1000.0 * gFontSize * 20.0;
+                                // Baseline includes Leading (lineGap) to match DirectWrite
+                                double gBaselineTwips = (double)(gFontData.Ascent + Math.Max(0, gFontData.Leading)) / 1000.0 * gFontSize * 20.0;
+                                if (gBaselineTwips > maxBaselineTwips)
+                                    maxBaselineTwips = gBaselineTwips;
+                                if (gHeightTwips > maxLineHeight)
+                                    maxLineHeight = gHeightTwips;
+                            }
+                            else
+                            {
+                                // Fallback: use default font data scaled by glyph font size
+                                double gAscentTwips = (double)adata.Ascent / 1000.0 * gFontSize * 20.0;
+                                double gHeightTwips = (double)adata.Height / 1000.0 * gFontSize * 20.0;
+                                double gBaselineTwips = (double)(adata.Ascent + Math.Max(0, adata.Leading)) / 1000.0 * gFontSize * 20.0;
+                                if (gBaselineTwips > maxBaselineTwips)
+                                    maxBaselineTwips = gBaselineTwips;
+                                if (gHeightTwips > maxLineHeight)
+                                    maxLineHeight = gHeightTwips;
+                            }
+                        }
+
+                        int currentLineSpacing = (int)Math.Round(maxLineHeight);
+                        int lineBaseline = (int)Math.Round(maxBaselineTwips);
+
+                        // TopPos = rectTop + baseline (matches GDI's pattern)
+                        lineInfo.TopPos = (int)Math.Round(rectTop) + lineBaseline;
+                        lineInfo.Height = currentLineSpacing;
+                        lineInfo.LineHeight = currentLineSpacing;
+                        lineInfo.LastLine = false;
+                        
+                        Result.Add(lineInfo);
+                        if (lw > maxWidth) maxWidth = lw;
+                        rectTop += currentLineSpacing;
+                    }
+                }
+            }
+            if (Result.Count > 0) 
+            {
+                var l = Result[Result.Count - 1];
+                l.LastLine = true;
+                Result[Result.Count - 1] = l;
+            }
+            
+            Rect.Width = (int)Math.Round(maxWidth);
+            Rect.Height = (int)Math.Round(rectTop);
+            
+            currentfont = originalFont;
+            return Result;
         }
     }
 }

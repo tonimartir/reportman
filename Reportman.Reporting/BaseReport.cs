@@ -1334,7 +1334,7 @@ namespace Reportman.Reporting
             string WFontNamem, int RecWidth, int FontSize, int FontStyle,
             int Type1Font, int PrintStep)
         {
-            TextObjectStruct textr;
+            TextObjectStruct textr = new TextObjectStruct();
             System.Drawing.Point extent = new System.Drawing.Point();
             textr.Text = Text;
             textr.LFontName = LFontName;
@@ -3213,6 +3213,7 @@ end;
             op.AddProperty("transparent", PropertyType.Boolean, null, item.Transparent);
             op.AddProperty("wordBreak", PropertyType.Boolean, null, item.WordBreak);
             op.AddProperty("wordWrap", PropertyType.Boolean, null, item.WordWrap);
+            op.AddProperty("isHtml", PropertyType.Boolean, null, item.IsHtml);
             op.AddProperty("type1Font", PropertyType.Integer, null, item.Type1Font);
         }
 

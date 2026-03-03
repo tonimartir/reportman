@@ -1509,6 +1509,10 @@ namespace Reportman.Reporting
                         compt.WordWrap = GetAsBool();
                         assigned = true;
                         break;
+                    case "ISHTML":
+                        compt.IsHtml = GetAsBool();
+                        assigned = true;
+                        break;
                     case "SINGLELINE":
                         compt.SingleLine = GetAsBool();
                         assigned = true;
@@ -2249,6 +2253,7 @@ namespace Reportman.Reporting
                 WritePropertyI("VALIGNMENT", aalign, astream);
                 WritePropertyI("INTERLINE", compt.InterLine, astream);
                 WritePropertyBool("WORDWRAP", compt.WordWrap, astream);
+                WritePropertyBool("ISHTML", compt.IsHtml, astream);
                 WritePropertyBool("WORDBREAK", compt.WordBreak, astream);
                 WritePropertyBool("SINGLELINE", compt.SingleLine, astream);
                 int intbidi = 0;

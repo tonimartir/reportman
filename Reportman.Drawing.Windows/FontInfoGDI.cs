@@ -526,7 +526,7 @@ namespace Reportman.Drawing
                 fontData.FirstLoaded = aint;
             if (fontData.LastLoaded < aint)
                 fontData.LastLoaded = aint;
-            // Guardarlo en cachÈ si no existÌa
+            // Guardarlo en cach√© si no exist√≠a
             if (glyphindex!=0 && (!fontData.glyphsInfo.ContainsKey(glyphindex)))
             {
                 GlyphInfo ginfo = new GlyphInfo
@@ -582,8 +582,8 @@ namespace Reportman.Drawing
             public short gmCellIncX;
             public short gmCellIncY;
         }
-        private const uint GGO_METRICS = 0;            // obtener sÛlo mÈtricas
-        private const uint GGO_GLYPH_INDEX = 0x0008;   // indica que uChar es Ìndice de glifo (uChar es un glyph index)
+        private const uint GGO_METRICS = 0;            // obtener s√≥lo m√©tricas
+        private const uint GGO_GLYPH_INDEX = 0x0008;   // indica que uChar es √≠ndice de glifo (uChar es un glyph index)
         private const uint GDI_ERROR = 0xFFFFFFFF;
 
         [DllImport("gdi32.dll", CharSet = CharSet.Unicode)]
@@ -598,13 +598,13 @@ namespace Reportman.Drawing
 
         public override double GetGlyphWidth(PDFFont pdffont, TTFontData data, int glyph, char charC)
         {
-            // Si ya lo tenemos en cachÈ, devolverlo
+            // Si ya lo tenemos en cach√©, devolverlo
             if (data.glyphsInfo != null && data.glyphsInfo.ContainsKey(glyph))
             {
                 return data.glyphsInfo[glyph].Width;
             }
 
-            // Preparar MAT2 como identidad (sin escala, rotaciÛn ni sesgo)
+            // Preparar MAT2 como identidad (sin escala, rotaci√≥n ni sesgo)
             MAT2 mat = new MAT2();
             // eM11 = 1.0
             mat.eM11.value = 1;
@@ -635,7 +635,7 @@ namespace Reportman.Drawing
                 width = gm.gmCellIncX;
             }
 
-            // Guardarlo en cachÈ si no existÌa
+            // Guardarlo en cach√© si no exist√≠a
             if (!data.glyphsInfo.ContainsKey(glyph))
             {
                 GlyphInfo ginfo = new GlyphInfo
@@ -655,7 +655,7 @@ namespace Reportman.Drawing
 
             if (!line.IsRTL)
             {
-                // DirecciÛn principal LTR
+                // Direcci√≥n principal LTR
                 int lastIndex = line.Glyphs.Count - 1;
 
                 while (lastIndex >= 0)
@@ -672,14 +672,14 @@ namespace Reportman.Drawing
                     if (!isWS)
                         break;
 
-                    // Eliminar ˙ltimo glifo lÛgico (trailing whitespace)
+                    // Eliminar √∫ltimo glifo l√≥gico (trailing whitespace)
                     line.Glyphs.RemoveAt(lastIndex);
                     lastIndex--;
                 }
             }
             else
             {
-                // DirecciÛn principal RTL
+                // Direcci√≥n principal RTL
                 while (line.Glyphs.Count > 0)
                 {
                     char ch = line.Glyphs[0].CharCode;
@@ -694,11 +694,54 @@ namespace Reportman.Drawing
                     if (!isWS)
                         break;
 
-                    // Eliminar primer glifo lÛgico (trailing whitespace en RTL)
+                    // Eliminar primer glifo l√≥gico (trailing whitespace en RTL)
                     line.Glyphs.RemoveAt(0);
                 }
             }
         }
+        
+        /// <summary>
+        /// Detect paragraph direction from the first strong directional character.
+        /// Returns true if the text should be treated as RTL (Arabic, Hebrew, etc.)
+        /// This implements the Unicode Bidi Algorithm paragraph level detection (rule P2/P3).
+        /// </summary>
+        public static bool DetectParagraphDirectionPublic(string text)
+        {
+            if (string.IsNullOrEmpty(text)) return false;
+            bool inTag = false;
+            bool inEntity = false;
+            foreach (char c in text)
+            {
+                // Skip HTML tags
+                if (c == '<') { inTag = true; continue; }
+                if (c == '>') { inTag = false; continue; }
+                if (inTag) continue;
+                // Skip HTML entities like &amp; 
+                if (c == '&') { inEntity = true; continue; }
+                if (c == ';' && inEntity) { inEntity = false; continue; }
+                if (inEntity) continue;
+                
+                int cp = (int)c;
+                // Skip whitespace, control chars, digits, punctuation
+                if (cp <= 0x0040) continue;
+                // Arabic
+                if ((cp >= 0x0600 && cp <= 0x06FF) || (cp >= 0x0750 && cp <= 0x077F) ||
+                    (cp >= 0x08A0 && cp <= 0x08FF) || (cp >= 0xFB50 && cp <= 0xFDFF) ||
+                    (cp >= 0xFE70 && cp <= 0xFEFF))
+                    return true;
+                // Hebrew
+                if ((cp >= 0x0590 && cp <= 0x05FF) || (cp >= 0xFB1D && cp <= 0xFB4F))
+                    return true;
+                // Latin, Greek, Cyrillic ‚Äî LTR
+                if (cp >= 0x0041 && cp <= 0x024F)
+                    return false;
+                // CJK ‚Äî LTR
+                if (cp >= 0x4E00 && cp <= 0x9FFF)
+                    return false;
+            }
+            return false;
+        }
+
         public override List<LineInfo> TextExtent(
             string Text,
             ref Rectangle Rect,
@@ -706,7 +749,8 @@ namespace Reportman.Drawing
             TTFontData fontData,
             bool wordwrap,
             bool singleline,
-            double FontSize)
+            double FontSize,
+            bool isHtml = false)
         {
             const float DIP_TO_TWIPS_FACTOR = 15f;
             const float POINTS_TO_DIPS_FACTOR = 4f / 3f;
@@ -760,22 +804,80 @@ namespace Reportman.Drawing
 
                 // --- Crear TextFormat ---
                 var textFormat = new SharpDX.DirectWrite.TextFormat(factory, familyName, fontWeight, fontStyle, SharpDX.DirectWrite.FontStretch.Normal, fontSizeInDips);
+                
+                // Detect paragraph direction from first strong directional character.
+                // This is a fundamental bidi requirement: visual run ordering depends on paragraph embedding level.
+                textFormat.ReadingDirection = DetectParagraphDirectionPublic(Text) 
+                    ? SharpDX.DirectWrite.ReadingDirection.RightToLeft 
+                    : SharpDX.DirectWrite.ReadingDirection.LeftToRight;
+            
+            string layoutText = Text;
+            List<HtmlFormatRun> htmlRuns = null;
+
+            if (isHtml)
+            {
+                htmlRuns = HtmlTextParser.Parse(Text, familyName);
+                if (htmlRuns.Count > 0)
+                {
+                    System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                    foreach (var run in htmlRuns)
+                    {
+                        sb.Append(run.Text);
+                    }
+                    layoutText = sb.ToString();
+                }
+            }
+
             // --- Crear TextLayout ---
-            var textLayout = new SharpDX.DirectWrite.TextLayout(factory, Text, textFormat, maxLineWidth / DIP_TO_TWIPS_FACTOR, 0);
-            // --- Obtener mÈtricas de la fuente ---
+            var textLayout = new SharpDX.DirectWrite.TextLayout(factory, layoutText, textFormat, maxLineWidth / DIP_TO_TWIPS_FACTOR, 0);
+            
+            if (isHtml && htmlRuns != null)
+            {
+                int currentPos = 0;
+                foreach (var run in htmlRuns)
+                {
+                    int runLength = run.Text.Length;
+                    if (runLength > 0)
+                    {
+                        var textRange = new SharpDX.DirectWrite.TextRange(currentPos, runLength);
+                        if (run.Bold)
+                            textLayout.SetFontWeight(SharpDX.DirectWrite.FontWeight.Bold, textRange);
+                        if (run.Italic)
+                            textLayout.SetFontStyle(SharpDX.DirectWrite.FontStyle.Italic, textRange);
+                        if (run.Underline)
+                            textLayout.SetUnderline(true, textRange);
+                        if (run.StrikeOut)
+                            textLayout.SetStrikethrough(true, textRange);
+                        if (!string.IsNullOrEmpty(run.FontFamily) && run.FontFamily != familyName)
+                            textLayout.SetFontFamilyName(run.FontFamily, textRange);
+                        if (run.HasFontSize)
+                            textLayout.SetFontSize((float)(run.FontSize * POINTS_TO_DIPS_FACTOR), textRange);
+                        
+                        currentPos += runLength;
+                    }
+                }
+            }
+
+            // --- Obtener m√©tricas de la fuente ---
             var fontMetrics = fontFace.Metrics;
             float scale = fontSizeInDips / fontMetrics.DesignUnitsPerEm;
 
             // --- Crear Renderer y disparar layout ---
-            var renderer = new TTextExtentRenderer(Text);
+            var renderer = new TTextExtentRenderer(layoutText, htmlRuns);
             try
             {
                 renderer._fontFace = fontFace;
                 textLayout.Draw(null, renderer, 0, 0);
 
+                var dwriteMetrics = isHtml ? textLayout.GetLineMetrics() : null;
+
                 float rectTopTwips = 0f;
                 int ascentSpacing = (int)Math.Round(fontMetrics.Ascent * scale * DIP_TO_TWIPS_FACTOR);
-                rectTopTwips += ascentSpacing;
+                
+                if (!isHtml) 
+                {
+                    rectTopTwips += ascentSpacing;
+                }
 
                 float totalWidth = 0f;
 
@@ -808,7 +910,20 @@ namespace Reportman.Drawing
                     {
                         lineInfo.Position = minLineCluster;
                         lineInfo.Size = maxLineCluster - minLineCluster + 1;
-                        lineInfo.Text = Text.Substring(lineInfo.Position, lineInfo.Size);
+                        if (isHtml && htmlRuns != null)
+                        {
+                            if (lineInfo.Position + lineInfo.Size <= layoutText.Length)
+                                lineInfo.Text = layoutText.Substring(lineInfo.Position, lineInfo.Size);
+                            else
+                                lineInfo.Text = layoutText.Substring(lineInfo.Position);
+                        }
+                        else
+                        {
+                            if (lineInfo.Position + lineInfo.Size <= Text.Length)
+                                lineInfo.Text = Text.Substring(lineInfo.Position, lineInfo.Size);
+                            else
+                                lineInfo.Text = Text.Substring(lineInfo.Position);
+                        }
                     }
                     else
                     {
@@ -817,12 +932,29 @@ namespace Reportman.Drawing
                         lineInfo.Text = string.Empty;
                     }
 
-                    lineInfo.TopPos = (int)Math.Round(rectTopTwips);
-                    lineInfo.LineHeight = (int)Math.Round((fontMetrics.Ascent + fontMetrics.Descent + fontMetrics.LineGap) * scale * DIP_TO_TWIPS_FACTOR);
-                    lineInfo.Height = Convert.ToInt32(lineInfo.LineHeight);
-                    lineInfo.LastLine = (i == renderer.Lines.Count - 1);
+                    if (isHtml)
+                    {
+                        var dwriteLine = (dwriteMetrics != null && i < dwriteMetrics.Length) ? dwriteMetrics[i] : new SharpDX.DirectWrite.LineMetrics();
+                        int realHeight = (int)Math.Round(dwriteLine.Height * DIP_TO_TWIPS_FACTOR);
+                        int realBaseline = (int)Math.Round(dwriteLine.Baseline * DIP_TO_TWIPS_FACTOR);
+                        if (i == 0) Console.WriteLine($"[GDI] Font: {pdfFont.WFontName}, Size: {FontSize}, Dwrite First Line Height (Twips): {realHeight}, Baseline: {realBaseline}");
 
-                    rectTopTwips += Convert.ToInt32(lineInfo.LineHeight);
+                        lineInfo.TopPos = (int)Math.Round(rectTopTwips) + realBaseline;
+                        lineInfo.LineHeight = realHeight;
+                        lineInfo.Height = realHeight;
+                        lineInfo.LastLine = (i == renderer.Lines.Count - 1);
+
+                        rectTopTwips += realHeight;
+                    } 
+                    else 
+                    {
+                        lineInfo.TopPos = (int)Math.Round(rectTopTwips);
+                        lineInfo.LineHeight = (int)Math.Round((fontMetrics.Ascent + fontMetrics.Descent + fontMetrics.LineGap) * scale * DIP_TO_TWIPS_FACTOR);
+                        lineInfo.Height = Convert.ToInt32(lineInfo.LineHeight);
+                        lineInfo.LastLine = (i == renderer.Lines.Count - 1);
+
+                        rectTopTwips += Convert.ToInt32(lineInfo.LineHeight);
+                    }
 
                     if (lineInfo.Width > totalWidth)
                         totalWidth = lineInfo.Width;
@@ -830,9 +962,9 @@ namespace Reportman.Drawing
                     result.Add(lineInfo);
                 }
 
-                // Ajustar rect·ngulo final
+                // Ajustar rect√°ngulo final
                 Rect.Width = (int)totalWidth;
-                Rect.Height = (int)(rectTopTwips - ascentSpacing);
+                Rect.Height = isHtml ? (int)Math.Round(rectTopTwips) : (int)(rectTopTwips - ascentSpacing);
 
                 return result;
             }

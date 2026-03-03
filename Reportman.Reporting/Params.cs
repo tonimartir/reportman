@@ -210,13 +210,28 @@ namespace Reportman.Reporting
             writer.WriteEndArray();
         }
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        /*public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             var array = JArray.Load(reader);  // ⬅️ Cargar directamente el array
             var result = new Params();
             foreach (var token in array)
             {
                 var param = token.ToObject<Param>(serializer);
+                result.Add(param);
+            }
+            return result;
+        }*/
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            var token = JToken.Load(reader);  
+
+            if (token.Type != JTokenType.Array)
+                return null;
+
+            var result = new Params();
+            foreach (var item in token)
+            {
+                var param = item.ToObject<Param>(serializer);
                 result.Add(param);
             }
             return result;

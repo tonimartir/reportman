@@ -1,0 +1,766 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Reportman Report XML Schema Definition (XSD)
+  Generated from ReportReader.cs / ReportWriter.cs
+  
+  Format notes:
+  - Property elements use type="String|Integer|Boolean|Double|Binary|DateTime" attribute
+  - Binary elements also have size="N" attribute with hex-encoded content
+  - String values use custom encoding: alphanumeric chars literal, others as #charcode#
+  - DateTime values stored as Delphi date doubles (days since 1899-12-30)
+  - Boolean values: "True" / "False"
+  - Integer enums stored as their numeric value
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="unqualified">
+
+  <!-- ============================================================ -->
+  <!-- Simple types for property values                              -->
+  <!-- ============================================================ -->
+
+  <xs:simpleType name="RpBoolean">
+    <xs:annotation><xs:documentation>Boolean: "True" or "False"</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="True"/>
+      <xs:enumeration value="False"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="RpInteger">
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="RpDouble">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="-?[0-9]+(\.[0-9]+)?"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- ============================================================ -->
+  <!-- Enum types (stored as integers in XML)                        -->
+  <!-- ============================================================ -->
+
+  <xs:simpleType name="OrientationType">
+    <xs:annotation><xs:documentation>0=Default, 1=Portrait, 2=Landscape</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="PageSizeType">
+    <xs:annotation><xs:documentation>Page size enum (0=Default, 1=Letter, 2=Legal, etc.)</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="AutoScaleType">
+    <xs:annotation><xs:documentation>Preview auto-scale style</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="PreviewWindowStyleType">
+    <xs:annotation><xs:documentation>Preview window style</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="PrinterSelectType">
+    <xs:annotation><xs:documentation>Printer selection type</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="PrinterFontsType">
+    <xs:annotation><xs:documentation>Printer fonts type</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="StreamFormatType">
+    <xs:annotation><xs:documentation>Stream format type</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="PDFFontType">
+    <xs:annotation><xs:documentation>PDF Type1 font type</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="PrintStepType">
+    <xs:annotation><xs:documentation>Print step type</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="PDFConformanceType">
+    <xs:annotation><xs:documentation>PDF conformance (0=Normal, 1=PDF/A-1b, etc.)</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="SectionType">
+    <xs:annotation><xs:documentation>Section type (0=Detail, 1=PageHeader, 2=PageFooter, 3=GroupHeader, 4=GroupFooter, etc.)</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="SkipType">
+    <xs:annotation><xs:documentation>Skip type for sections</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="BackStyleType">
+    <xs:annotation><xs:documentation>Background style type</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="ImageDrawStyleType">
+    <xs:annotation><xs:documentation>Image draw style (0=Full, 1=Stretch, 2=Crop, 3=Tile, 4=Tiledpi)</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="SharedImageType">
+    <xs:annotation><xs:documentation>Shared/cached image type</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="DriverType">
+    <xs:annotation><xs:documentation>Database driver type</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="DotNetDriverType">
+    <xs:annotation><xs:documentation>.NET database driver type</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="DatasetType">
+    <xs:annotation><xs:documentation>Dataset/BDE type</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="ParamType">
+    <xs:annotation>
+      <xs:documentation>
+        0=String, 1=Integer, 2=Double, 3=Currency, 4=Date, 5=Time,
+        6=DateTime, 7=Bool, 8=ExpreA, 9=ExpreB, 10=Subst,
+        11=List, 12=SubsExpreList, 13=InitialValue, 14=Unknown
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="PrintItemAlign">
+    <xs:annotation><xs:documentation>Component alignment within section</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="TextAlignType">
+    <xs:annotation><xs:documentation>Horizontal text alignment (flags-based)</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="TextAlignVerticalType">
+    <xs:annotation><xs:documentation>Vertical text alignment (flags-based)</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="Aggregate">
+    <xs:annotation><xs:documentation>Aggregate function type</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="AggregateType">
+    <xs:annotation><xs:documentation>Aggregate type</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="ShapeType">
+    <xs:annotation><xs:documentation>0=Rectangle, 1=Square, 2=RoundRect, 3=RoundSquare, 4=Ellipse, 5=Circle, 6=HorzLine, 7=VertLine, 8=Oblique1, 9=Oblique2</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="BrushType">
+    <xs:annotation><xs:documentation>Brush style type</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="PenType">
+    <xs:annotation><xs:documentation>Pen style type</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="BarcodeType">
+    <xs:annotation><xs:documentation>Barcode type enum</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="ChartType">
+    <xs:annotation><xs:documentation>Chart style type</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="ChartDriver">
+    <xs:annotation><xs:documentation>Chart driver/renderer</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="BarType">
+    <xs:annotation><xs:documentation>Multi-bar chart type</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="AutoRangeAxis">
+    <xs:annotation><xs:documentation>Auto range axis setting</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="PDFAFRelationShip">
+    <xs:annotation><xs:documentation>PDF AF relationship for embedded files</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="ComponentClassName">
+    <xs:annotation><xs:documentation>Valid component class names</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="TRPEXPRESSION"/>
+      <xs:enumeration value="TRPLABEL"/>
+      <xs:enumeration value="TRPCHART"/>
+      <xs:enumeration value="TRPSHAPE"/>
+      <xs:enumeration value="TRPIMAGE"/>
+      <xs:enumeration value="TRPBARCODE"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- ============================================================ -->
+  <!-- Property element type: <PROPNAME type="T" size="N">val</...> -->
+  <!-- ============================================================ -->
+
+  <xs:complexType name="PropertyElement" mixed="true">
+    <xs:attribute name="type" use="optional">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="String"/>
+          <xs:enumeration value="Integer"/>
+          <xs:enumeration value="Boolean"/>
+          <xs:enumeration value="Double"/>
+          <xs:enumeration value="Binary"/>
+          <xs:enumeration value="DateTime"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="size" type="xs:integer" use="optional"/>
+  </xs:complexType>
+
+  <!-- ============================================================ -->
+  <!-- DATABASEINFO element                                          -->
+  <!-- ============================================================ -->
+
+  <xs:complexType name="DatabaseInfoType">
+    <xs:annotation>
+      <xs:documentation>Database connection configuration</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="ALIAS" type="PropertyElement" minOccurs="1">
+        <xs:annotation><xs:documentation>Required. Database alias identifier (String)</xs:documentation></xs:annotation>
+      </xs:element>
+      <xs:element name="NAME" type="PropertyElement" minOccurs="0">
+        <xs:annotation><xs:documentation>Internal name (String)</xs:documentation></xs:annotation>
+      </xs:element>
+      <xs:element name="CONFIGFILE" type="PropertyElement" minOccurs="0">
+        <xs:annotation><xs:documentation>Legacy config file (ignored in .NET)</xs:documentation></xs:annotation>
+      </xs:element>
+      <xs:element name="LOADPARAMS" type="PropertyElement" minOccurs="0">
+        <xs:annotation><xs:documentation>Legacy load params (ignored)</xs:documentation></xs:annotation>
+      </xs:element>
+      <xs:element name="LOADDRIVERPARAMS" type="PropertyElement" minOccurs="0">
+        <xs:annotation><xs:documentation>Legacy load driver params (ignored)</xs:documentation></xs:annotation>
+      </xs:element>
+      <xs:element name="LOGINPROMPT" type="PropertyElement" minOccurs="0">
+        <xs:annotation><xs:documentation>Legacy login prompt (ignored)</xs:documentation></xs:annotation>
+      </xs:element>
+      <xs:element name="PROVIDERFACTORY" type="PropertyElement" minOccurs="0">
+        <xs:annotation><xs:documentation>.NET provider factory name (String)</xs:documentation></xs:annotation>
+      </xs:element>
+      <xs:element name="DRIVER" type="PropertyElement" minOccurs="0">
+        <xs:annotation><xs:documentation>Database driver type (Integer/DriverType enum)</xs:documentation></xs:annotation>
+      </xs:element>
+      <xs:element name="DOTNETDRIVER" type="PropertyElement" minOccurs="0">
+        <xs:annotation><xs:documentation>.NET driver type (Integer/DotNetDriverType enum)</xs:documentation></xs:annotation>
+      </xs:element>
+      <xs:element name="REPORTTABLE" type="PropertyElement" minOccurs="0">
+        <xs:annotation><xs:documentation>Report table name (String)</xs:documentation></xs:annotation>
+      </xs:element>
+      <xs:element name="REPORTSEARCHFIELD" type="PropertyElement" minOccurs="0">
+        <xs:annotation><xs:documentation>Report search field (String)</xs:documentation></xs:annotation>
+      </xs:element>
+      <xs:element name="REPORTFIELD" type="PropertyElement" minOccurs="0">
+        <xs:annotation><xs:documentation>Report field name (String)</xs:documentation></xs:annotation>
+      </xs:element>
+      <xs:element name="REPORTGROUPSTABLE" type="PropertyElement" minOccurs="0">
+        <xs:annotation><xs:documentation>Report groups table (String)</xs:documentation></xs:annotation>
+      </xs:element>
+      <xs:element name="ADOCONNECTIONSTRING" type="PropertyElement" minOccurs="0">
+        <xs:annotation><xs:documentation>ADO/Connection string (String)</xs:documentation></xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+
+  <!-- ============================================================ -->
+  <!-- DATAINFO element                                              -->
+  <!-- ============================================================ -->
+
+  <xs:complexType name="DataInfoType">
+    <xs:annotation>
+      <xs:documentation>Dataset / query configuration</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="ALIAS" type="PropertyElement" minOccurs="1">
+        <xs:annotation><xs:documentation>Required. Dataset alias (String)</xs:documentation></xs:annotation>
+      </xs:element>
+      <xs:element name="NAME" type="PropertyElement" minOccurs="0"/>
+      <xs:element name="DATABASEALIAS" type="PropertyElement" minOccurs="0">
+        <xs:annotation><xs:documentation>Reference to DATABASEINFO alias (String)</xs:documentation></xs:annotation>
+      </xs:element>
+      <xs:element name="SQL" type="PropertyElement" minOccurs="0">
+        <xs:annotation><xs:documentation>SQL query text (String)</xs:documentation></xs:annotation>
+      </xs:element>
+      <xs:element name="DATASOURCE" type="PropertyElement" minOccurs="0">
+        <xs:annotation><xs:documentation>Data source alias for master-detail (String)</xs:documentation></xs:annotation>
+      </xs:element>
+      <xs:element name="MYBASEFILENAME" type="PropertyElement" minOccurs="0"/>
+      <xs:element name="MYBASEFIELDS" type="PropertyElement" minOccurs="0"/>
+      <xs:element name="MYBASEINDEXFIELDS" type="PropertyElement" minOccurs="0"/>
+      <xs:element name="MYBASEMASTERFIELDS" type="PropertyElement" minOccurs="0"/>
+      <xs:element name="BDEINDEXFIELDS" type="PropertyElement" minOccurs="0"/>
+      <xs:element name="BDEINDEXNAME" type="PropertyElement" minOccurs="0"/>
+      <xs:element name="BDETABLE" type="PropertyElement" minOccurs="0"/>
+      <xs:element name="BDETYPE" type="PropertyElement" minOccurs="0">
+        <xs:annotation><xs:documentation>BDE dataset type (Integer/DatasetType enum)</xs:documentation></xs:annotation>
+      </xs:element>
+      <xs:element name="BDEFILTER" type="PropertyElement" minOccurs="0"/>
+      <xs:element name="BDEMASTERFIELDS" type="PropertyElement" minOccurs="0"/>
+      <xs:element name="BDEFIRSTRANGE" type="PropertyElement" minOccurs="0"/>
+      <xs:element name="BDELASTRANGE" type="PropertyElement" minOccurs="0"/>
+      <xs:element name="DATAUNIONS" type="PropertyElement" minOccurs="0">
+        <xs:annotation><xs:documentation>Data union aliases, multiline (String)</xs:documentation></xs:annotation>
+      </xs:element>
+      <xs:element name="GROUPUNION" type="PropertyElement" minOccurs="0"/>
+      <xs:element name="PARALLELUNION" type="PropertyElement" minOccurs="0"/>
+      <xs:element name="OPENONSTART" type="PropertyElement" minOccurs="0"/>
+    </xs:all>
+  </xs:complexType>
+
+  <!-- ============================================================ -->
+  <!-- PARAMETER element                                             -->
+  <!-- ============================================================ -->
+
+  <xs:complexType name="ParameterType">
+    <xs:annotation>
+      <xs:documentation>Report parameter definition</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="NAME" type="PropertyElement" minOccurs="1">
+        <xs:annotation><xs:documentation>Required. Parameter name/alias (String)</xs:documentation></xs:annotation>
+      </xs:element>
+      <xs:element name="INTNAME" type="PropertyElement" minOccurs="0"/>
+      <xs:element name="DESCRIPTION" type="PropertyElement" minOccurs="0"/>
+      <xs:element name="HINT" type="PropertyElement" minOccurs="0"/>
+      <xs:element name="ERRORMESSAGE" type="PropertyElement" minOccurs="0"/>
+      <xs:element name="VALIDATION" type="PropertyElement" minOccurs="0"/>
+      <xs:element name="SEARCH" type="PropertyElement" minOccurs="0"/>
+      <xs:element name="VISIBLE" type="PropertyElement" minOccurs="0"/>
+      <xs:element name="ISREADONLY" type="PropertyElement" minOccurs="0"/>
+      <xs:element name="NEVERVISIBLE" type="PropertyElement" minOccurs="0"/>
+      <xs:element name="ALLOWNULLS" type="PropertyElement" minOccurs="0"/>
+      <xs:element name="PARAMTYPE" type="PropertyElement" minOccurs="0">
+        <xs:annotation><xs:documentation>Parameter data type (Integer/ParamType enum)</xs:documentation></xs:annotation>
+      </xs:element>
+      <xs:element name="DATASETS" type="PropertyElement" minOccurs="0">
+        <xs:annotation><xs:documentation>Linked dataset aliases, multiline (String)</xs:documentation></xs:annotation>
+      </xs:element>
+      <xs:element name="ITEMS" type="PropertyElement" minOccurs="0">
+        <xs:annotation><xs:documentation>List items, multiline (String)</xs:documentation></xs:annotation>
+      </xs:element>
+      <xs:element name="VALUES" type="PropertyElement" minOccurs="0">
+        <xs:annotation><xs:documentation>List values, multiline (String)</xs:documentation></xs:annotation>
+      </xs:element>
+      <xs:element name="SELECTED" type="PropertyElement" minOccurs="0">
+        <xs:annotation><xs:documentation>Selected items, multiline (String)</xs:documentation></xs:annotation>
+      </xs:element>
+      <xs:element name="LOOKUPDATASET" type="PropertyElement" minOccurs="0"/>
+      <xs:element name="SEARCHPARAM" type="PropertyElement" minOccurs="0"/>
+      <xs:element name="SEARCHDATASET" type="PropertyElement" minOccurs="0"/>
+      <xs:element name="VALUE" type="PropertyElement" minOccurs="0">
+        <xs:annotation><xs:documentation>Default value. Type depends on PARAMTYPE (String/Integer/Double/DateTime/Boolean)</xs:documentation></xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+
+  <!-- ============================================================ -->
+  <!-- EMBEDDEDFILE element                                          -->
+  <!-- ============================================================ -->
+
+  <xs:complexType name="EmbeddedFileType">
+    <xs:annotation>
+      <xs:documentation>Embedded file for PDF/A output</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="FILENAME" type="PropertyElement" minOccurs="0"/>
+      <xs:element name="MIMETYPE" type="PropertyElement" minOccurs="0"/>
+      <xs:element name="DESCRIPTION" type="PropertyElement" minOccurs="0"/>
+      <xs:element name="CREATIONDATE" type="PropertyElement" minOccurs="0"/>
+      <xs:element name="MODIFICATIONDATE" type="PropertyElement" minOccurs="0"/>
+      <xs:element name="RELATIONSHIP" type="PropertyElement" minOccurs="0">
+        <xs:annotation><xs:documentation>PDFAFRelationShip enum (Integer)</xs:documentation></xs:annotation>
+      </xs:element>
+      <xs:element name="STREAM" type="PropertyElement" minOccurs="0">
+        <xs:annotation><xs:documentation>Binary stream content (type="Binary" size="N")</xs:documentation></xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+
+  <!-- ============================================================ -->
+  <!-- COMPONENT element (polymorphic by CLASSNAME)                  -->
+  <!-- ============================================================ -->
+
+  <xs:complexType name="ComponentType">
+    <xs:annotation>
+      <xs:documentation>
+        Report component. CLASSNAME determines which properties apply:
+        TRPLABEL, TRPEXPRESSION, TRPSHAPE, TRPIMAGE, TRPBARCODE, TRPCHART.
+        All components share PrintPosItem base properties.
+        Text-based components (Label, Expression) share PrintItemText properties.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <!-- Required first elements -->
+      <xs:element name="NAME" type="PropertyElement" minOccurs="1"/>
+      <xs:element name="CLASSNAME" type="PropertyElement" minOccurs="1">
+        <xs:annotation><xs:documentation>Component class: TRPLABEL|TRPEXPRESSION|TRPSHAPE|TRPIMAGE|TRPBARCODE|TRPCHART</xs:documentation></xs:annotation>
+      </xs:element>
+      <!-- All remaining properties in any order -->
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <!-- === PrintPosItem base properties === -->
+        <xs:element name="PRINTCONDITION" type="PropertyElement"/>
+        <xs:element name="DOAFTERPRINT" type="PropertyElement"/>
+        <xs:element name="ANNOTATION" type="PropertyElement"/>
+        <xs:element name="DOBEFOREPRINT" type="PropertyElement"/>
+        <xs:element name="WIDTH" type="PropertyElement"/>
+        <xs:element name="HEIGHT" type="PropertyElement"/>
+        <xs:element name="POSX" type="PropertyElement"/>
+        <xs:element name="POSY" type="PropertyElement"/>
+        <xs:element name="ALIGN" type="PropertyElement">
+          <xs:annotation><xs:documentation>PrintItemAlign enum (Integer)</xs:documentation></xs:annotation>
+        </xs:element>
+
+        <!-- === PrintItemText properties (TRPLABEL, TRPEXPRESSION) === -->
+        <xs:element name="WFONTNAME" type="PropertyElement"/>
+        <xs:element name="LFONTNAME" type="PropertyElement"/>
+        <xs:element name="TYPE1FONT" type="PropertyElement"/>
+        <xs:element name="FONTSIZE" type="PropertyElement"/>
+        <xs:element name="FONTROTATION" type="PropertyElement"/>
+        <xs:element name="FONTSTYLE" type="PropertyElement"/>
+        <xs:element name="FONTCOLOR" type="PropertyElement"/>
+        <xs:element name="BACKCOLOR" type="PropertyElement"/>
+        <xs:element name="TRANSPARENT" type="PropertyElement"/>
+        <xs:element name="CUTTEXT" type="PropertyElement"/>
+        <xs:element name="ALIGNMENT" type="PropertyElement">
+          <xs:annotation><xs:documentation>Horizontal alignment flags (Integer)</xs:documentation></xs:annotation>
+        </xs:element>
+        <xs:element name="VALIGNMENT" type="PropertyElement">
+          <xs:annotation><xs:documentation>Vertical alignment flags (Integer)</xs:documentation></xs:annotation>
+        </xs:element>
+        <xs:element name="WORDWRAP" type="PropertyElement"/>
+        <xs:element name="ISHTML" type="PropertyElement"/>
+        <xs:element name="SINGLELINE" type="PropertyElement"/>
+        <xs:element name="WORDBREAK" type="PropertyElement"/>
+        <xs:element name="INTERLINE" type="PropertyElement"/>
+        <xs:element name="BIDIMODES" type="PropertyElement"/>
+        <xs:element name="BIDIMODE" type="PropertyElement"/>
+        <xs:element name="MULTIPAGE" type="PropertyElement"/>
+        <xs:element name="PRINTSTEP" type="PropertyElement"/>
+
+        <!-- === TRPLABEL-specific === -->
+        <xs:element name="WIDETEXT" type="PropertyElement">
+          <xs:annotation><xs:documentation>Label text content, multiline (String, no trim)</xs:documentation></xs:annotation>
+        </xs:element>
+
+        <!-- === TRPEXPRESSION-specific === -->
+        <xs:element name="EXPRESSION" type="PropertyElement"/>
+        <xs:element name="AGINIVALUE" type="PropertyElement"/>
+        <xs:element name="EXPORTEXPRESSION" type="PropertyElement"/>
+        <xs:element name="DATATYPE" type="PropertyElement"/>
+        <xs:element name="DISPLAYFORMAT" type="PropertyElement"/>
+        <xs:element name="IDENTIFIER" type="PropertyElement"/>
+        <xs:element name="GROUPNAME" type="PropertyElement"/>
+        <xs:element name="AGGREGATE" type="PropertyElement"/>
+        <xs:element name="AGTYPE" type="PropertyElement"/>
+        <xs:element name="AUTOEXPAND" type="PropertyElement"/>
+        <xs:element name="AUTOCONTRACT" type="PropertyElement"/>
+        <xs:element name="PRINTONLYONE" type="PropertyElement"/>
+        <xs:element name="PRINTNULLS" type="PropertyElement"/>
+        <xs:element name="EXPORTDISPLAYFORMAT" type="PropertyElement"/>
+        <xs:element name="EXPORTLINE" type="PropertyElement"/>
+        <xs:element name="EXPORTPOSITION" type="PropertyElement"/>
+        <xs:element name="EXPORTSIZE" type="PropertyElement"/>
+        <xs:element name="EXPORTDONEWLINE" type="PropertyElement"/>
+
+        <!-- === TRPSHAPE-specific === -->
+        <xs:element name="SHAPE" type="PropertyElement"/>
+        <xs:element name="BRUSHSTYLE" type="PropertyElement"/>
+        <xs:element name="BRUSHCOLOR" type="PropertyElement"/>
+        <xs:element name="PENSTYLE" type="PropertyElement"/>
+        <xs:element name="PENCOLOR" type="PropertyElement"/>
+        <xs:element name="PENWIDTH" type="PropertyElement"/>
+
+        <!-- === TRPIMAGE-specific === -->
+        <xs:element name="DPIRES" type="PropertyElement"/>
+        <xs:element name="DRAWSTYLE" type="PropertyElement"/>
+        <xs:element name="CACHEDIMAGE" type="PropertyElement"/>
+        <xs:element name="STREAM" type="PropertyElement"/>
+        <xs:element name="ROTATION" type="PropertyElement"/>
+        <xs:element name="COPYMODE" type="PropertyElement"/>
+
+        <!-- === TRPBARCODE-specific === -->
+        <xs:element name="MODUL" type="PropertyElement"/>
+        <xs:element name="RATIO" type="PropertyElement"/>
+        <xs:element name="TYP" type="PropertyElement">
+          <xs:annotation><xs:documentation>BarcodeType enum (Integer)</xs:documentation></xs:annotation>
+        </xs:element>
+        <xs:element name="CHECKSUM" type="PropertyElement"/>
+        <xs:element name="BCOLOR" type="PropertyElement"/>
+        <xs:element name="NUMCOLUMNS" type="PropertyElement"/>
+        <xs:element name="NUMROWS" type="PropertyElement"/>
+        <xs:element name="ECCLEVEL" type="PropertyElement"/>
+        <xs:element name="TRUNCATED" type="PropertyElement"/>
+
+        <!-- === TRPCHART-specific === -->
+        <xs:element name="VALUEEXPRESSION" type="PropertyElement"/>
+        <xs:element name="VALUEXEXPRESSION" type="PropertyElement"/>
+        <xs:element name="GETVALUECONDITION" type="PropertyElement"/>
+        <xs:element name="CHANGESERIEEXPRESSION" type="PropertyElement"/>
+        <xs:element name="CAPTIONEXPRESSION" type="PropertyElement"/>
+        <xs:element name="COLOREXPRESSION" type="PropertyElement"/>
+        <xs:element name="SERIECOLOREXPRESSION" type="PropertyElement"/>
+        <xs:element name="SERIECAPTION" type="PropertyElement"/>
+        <xs:element name="CLEAREXPRESSION" type="PropertyElement"/>
+        <xs:element name="CHANGESERIEBOOL" type="PropertyElement"/>
+        <xs:element name="CLEAREXPRESSIONBOOL" type="PropertyElement"/>
+        <xs:element name="CHARTTYPE" type="PropertyElement"/>
+        <xs:element name="DRIVER" type="PropertyElement"/>
+        <xs:element name="VIEW3D" type="PropertyElement"/>
+        <xs:element name="VIEW3DWALLS" type="PropertyElement"/>
+        <xs:element name="PERSPECTIVE" type="PropertyElement"/>
+        <xs:element name="ELEVATION" type="PropertyElement"/>
+        <xs:element name="ZOOM" type="PropertyElement"/>
+        <xs:element name="HORZOFFSET" type="PropertyElement"/>
+        <xs:element name="VERTOFFSET" type="PropertyElement"/>
+        <xs:element name="TILT" type="PropertyElement"/>
+        <xs:element name="ORTHOGONAL" type="PropertyElement"/>
+        <xs:element name="MULTIBAR" type="PropertyElement"/>
+        <xs:element name="RESOLUTION" type="PropertyElement"/>
+        <xs:element name="SHOWLEGEND" type="PropertyElement"/>
+        <xs:element name="SHOWHINT" type="PropertyElement"/>
+        <xs:element name="MARKSTYLE" type="PropertyElement"/>
+        <xs:element name="HORZFONTSIZE" type="PropertyElement"/>
+        <xs:element name="VERTFONTSIZE" type="PropertyElement"/>
+        <xs:element name="HORZFONTROTATION" type="PropertyElement"/>
+        <xs:element name="VERTFONTROTATION" type="PropertyElement"/>
+        <xs:element name="AUTORANGE" type="PropertyElement"/>
+        <xs:element name="YMIN" type="PropertyElement"/>
+        <xs:element name="YMAX" type="PropertyElement"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- ============================================================ -->
+  <!-- SECTION element                                               -->
+  <!-- ============================================================ -->
+
+  <xs:complexType name="SectionType_Element">
+    <xs:annotation>
+      <xs:documentation>Report section (band): header, detail, footer, group header/footer, etc.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="NAME" type="PropertyElement" minOccurs="1"/>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <!-- Section properties -->
+        <xs:element name="CHANGEEXPRESSION" type="PropertyElement"/>
+        <xs:element name="BEGINPAGEEXPRESSION" type="PropertyElement"/>
+        <xs:element name="SKIPEXPREV" type="PropertyElement"/>
+        <xs:element name="SKIPEXPREH" type="PropertyElement"/>
+        <xs:element name="SKIPTOPAGEEXPRE" type="PropertyElement"/>
+        <xs:element name="BACKEXPRESSION" type="PropertyElement"/>
+        <xs:element name="PRINTCONDITION" type="PropertyElement"/>
+        <xs:element name="DOAFTERPRINT" type="PropertyElement"/>
+        <xs:element name="DOBEFOREPRINT" type="PropertyElement"/>
+        <xs:element name="WIDTH" type="PropertyElement"/>
+        <xs:element name="HEIGHT" type="PropertyElement"/>
+        <xs:element name="SUBREPORT" type="PropertyElement">
+          <xs:annotation><xs:documentation>Parent subreport name reference (String)</xs:documentation></xs:annotation>
+        </xs:element>
+        <xs:element name="GROUPNAME" type="PropertyElement"/>
+        <xs:element name="CHANGEBOOL" type="PropertyElement"/>
+        <xs:element name="PAGEREPEAT" type="PropertyElement"/>
+        <xs:element name="FORCEPRINT" type="PropertyElement"/>
+        <xs:element name="SKIPPAGE" type="PropertyElement"/>
+        <xs:element name="ALIGNBOTTOM" type="PropertyElement"/>
+        <xs:element name="SYNCWIDTH" type="PropertyElement"/>
+        <xs:element name="SECTIONTYPE" type="PropertyElement">
+          <xs:annotation><xs:documentation>SectionType enum (Integer)</xs:documentation></xs:annotation>
+        </xs:element>
+        <xs:element name="AUTOEXPAND" type="PropertyElement"/>
+        <xs:element name="AUTOCONTRACT" type="PropertyElement"/>
+        <xs:element name="HORZDESP" type="PropertyElement"/>
+        <xs:element name="VERTDESP" type="PropertyElement"/>
+        <xs:element name="EXTERNALFILENAME" type="PropertyElement"/>
+        <xs:element name="EXTERNALCONNECTION" type="PropertyElement"/>
+        <xs:element name="EXTERNALTABLE" type="PropertyElement"/>
+        <xs:element name="EXTERNALFIELD" type="PropertyElement"/>
+        <xs:element name="EXTERNALSEARCHFIELD" type="PropertyElement"/>
+        <xs:element name="EXTERNALSEARCHVALUE" type="PropertyElement"/>
+        <xs:element name="STREAMFORMAT" type="PropertyElement"/>
+        <xs:element name="CHILDSUBREPORT" type="PropertyElement">
+          <xs:annotation><xs:documentation>Child subreport name reference (String)</xs:documentation></xs:annotation>
+        </xs:element>
+        <xs:element name="SKIPRELATIVEH" type="PropertyElement"/>
+        <xs:element name="SKIPRELATIVEV" type="PropertyElement"/>
+        <xs:element name="SKIPTYPE" type="PropertyElement"/>
+        <xs:element name="ININUMPAGE" type="PropertyElement"/>
+        <xs:element name="GLOBAL" type="PropertyElement"/>
+        <xs:element name="BACKSTYLE" type="PropertyElement"/>
+        <xs:element name="DPIRES" type="PropertyElement"/>
+        <xs:element name="DRAWSTYLE" type="PropertyElement"/>
+        <xs:element name="CACHEDIMAGE" type="PropertyElement"/>
+        <xs:element name="STREAM" type="PropertyElement">
+          <xs:annotation><xs:documentation>Background image binary stream</xs:documentation></xs:annotation>
+        </xs:element>
+
+        <!-- Nested components -->
+        <xs:element name="COMPONENT" type="ComponentType"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- ============================================================ -->
+  <!-- SUBREPORT element                                             -->
+  <!-- ============================================================ -->
+
+  <xs:complexType name="SubReportType">
+    <xs:annotation>
+      <xs:documentation>Subreport: groups sections with optional data linkage</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="NAME" type="PropertyElement" minOccurs="1"/>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ALIAS" type="PropertyElement"/>
+        <xs:element name="PARENTSUBREPORT" type="PropertyElement">
+          <xs:annotation><xs:documentation>Parent subreport name reference (String)</xs:documentation></xs:annotation>
+        </xs:element>
+        <xs:element name="PARENTSECTION" type="PropertyElement">
+          <xs:annotation><xs:documentation>Parent section name reference (String)</xs:documentation></xs:annotation>
+        </xs:element>
+        <xs:element name="PRINTONLYIFDATAAVAILABLE" type="PropertyElement"/>
+        <xs:element name="REOPENONPRINT" type="PropertyElement"/>
+        <xs:element name="SECTION" type="SectionType_Element"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- ============================================================ -->
+  <!-- REPORT root element                                           -->
+  <!-- ============================================================ -->
+
+  <xs:element name="REPORT">
+    <xs:annotation>
+      <xs:documentation>
+        Root element for a Reportman report template.
+        Contains global report properties, database connections, datasets,
+        parameters, embedded files, and subreports with sections/components.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+
+          <!-- === Report-level properties === -->
+          <xs:element name="BINCUE" type="PropertyElement">
+            <xs:annotation><xs:documentation>Undo/redo cue data (Binary, JSON)</xs:documentation></xs:annotation>
+          </xs:element>
+          <xs:element name="WFONTNAME" type="PropertyElement">
+            <xs:annotation><xs:documentation>Default Windows font name (String)</xs:documentation></xs:annotation>
+          </xs:element>
+          <xs:element name="LFONTNAME" type="PropertyElement">
+            <xs:annotation><xs:documentation>Default Linux font name (String)</xs:documentation></xs:annotation>
+          </xs:element>
+          <xs:element name="GRIDVISIBLE" type="PropertyElement"/>
+          <xs:element name="GRIDLINES" type="PropertyElement"/>
+          <xs:element name="GRIDENABLED" type="PropertyElement"/>
+          <xs:element name="GRIDCOLOR" type="PropertyElement"/>
+          <xs:element name="GRIDWIDTH" type="PropertyElement"/>
+          <xs:element name="GRIDHEIGHT" type="PropertyElement"/>
+          <xs:element name="PAGEORIENTATION" type="PropertyElement">
+            <xs:annotation><xs:documentation>OrientationType enum (Integer)</xs:documentation></xs:annotation>
+          </xs:element>
+          <xs:element name="PAGESIZE" type="PropertyElement">
+            <xs:annotation><xs:documentation>PageSizeType enum (Integer)</xs:documentation></xs:annotation>
+          </xs:element>
+          <xs:element name="PAGESIZEQT" type="PropertyElement"/>
+          <xs:element name="PAGEHEIGHT" type="PropertyElement"/>
+          <xs:element name="PAGEWIDTH" type="PropertyElement"/>
+          <xs:element name="CUSTOMPAGEHEIGHT" type="PropertyElement"/>
+          <xs:element name="CUSTOMPAGEWIDTH" type="PropertyElement"/>
+          <xs:element name="PAGEBACKCOLOR" type="PropertyElement"/>
+          <xs:element name="PREVIEWSTYLE" type="PropertyElement"/>
+          <xs:element name="PREVIEWMARGINS" type="PropertyElement"/>
+          <xs:element name="PREVIEWWINDOW" type="PropertyElement"/>
+          <xs:element name="LEFTMARGIN" type="PropertyElement"/>
+          <xs:element name="TOPMARGIN" type="PropertyElement"/>
+          <xs:element name="RIGHTMARGIN" type="PropertyElement"/>
+          <xs:element name="BOTTOMMARGIN" type="PropertyElement"/>
+          <xs:element name="PRINTERSELECT" type="PropertyElement"/>
+          <xs:element name="LANGUAGE" type="PropertyElement"/>
+          <xs:element name="COPIES" type="PropertyElement"/>
+          <xs:element name="COLLATECOPIES" type="PropertyElement"/>
+          <xs:element name="TWOPASS" type="PropertyElement"/>
+          <xs:element name="PRINTERFONTS" type="PropertyElement"/>
+          <xs:element name="PRINTONLYIFDATAAVAILABLE" type="PropertyElement"/>
+          <xs:element name="STREAMFORMAT" type="PropertyElement"/>
+          <xs:element name="REPORTACTIONDRAWERBEFORE" type="PropertyElement"/>
+          <xs:element name="REPORTACTIONDRAWERAFTER" type="PropertyElement"/>
+          <xs:element name="PREVIEWABOUT" type="PropertyElement"/>
+          <xs:element name="TYPE1FONT" type="PropertyElement"/>
+          <xs:element name="FONTSIZE" type="PropertyElement"/>
+          <xs:element name="FONTROTATION" type="PropertyElement"/>
+          <xs:element name="FONTSTYLE" type="PropertyElement"/>
+          <xs:element name="FONTCOLOR" type="PropertyElement"/>
+          <xs:element name="BACKCOLOR" type="PropertyElement"/>
+          <xs:element name="TRANSPARENT" type="PropertyElement"/>
+          <xs:element name="CUTTEXT" type="PropertyElement"/>
+          <xs:element name="ALIGNMENT" type="PropertyElement"/>
+          <xs:element name="VALIGNMENT" type="PropertyElement"/>
+          <xs:element name="WORDWRAP" type="PropertyElement"/>
+          <xs:element name="SINGLELINE" type="PropertyElement"/>
+          <xs:element name="BIDIMODES" type="PropertyElement"/>
+          <xs:element name="MULTIPAGE" type="PropertyElement"/>
+          <xs:element name="PRINTSTEP" type="PropertyElement"/>
+          <xs:element name="PAPERSOURCE" type="PropertyElement"/>
+          <xs:element name="DUPLEX" type="PropertyElement"/>
+          <xs:element name="FORCEPAPERNAME" type="PropertyElement"/>
+          <xs:element name="LINESPERINCH" type="PropertyElement"/>
+          <xs:element name="PDFCONFORMANCE" type="PropertyElement"/>
+          <xs:element name="PDFCOMPRESSED" type="PropertyElement"/>
+          <xs:element name="DOCAUTHOR" type="PropertyElement"/>
+          <xs:element name="DOCCREATOR" type="PropertyElement"/>
+          <xs:element name="DOCPRODUCER" type="PropertyElement"/>
+          <xs:element name="DOCSUBJECT" type="PropertyElement"/>
+          <xs:element name="DOCTITLE" type="PropertyElement"/>
+          <xs:element name="DOCCREATIONDATE" type="PropertyElement"/>
+          <xs:element name="DOCMODIFICATIONDATE" type="PropertyElement"/>
+          <xs:element name="DOCKEYWORDS" type="PropertyElement"/>
+          <xs:element name="DOCXMPCONTENT" type="PropertyElement"/>
+
+          <!-- === Child structures === -->
+          <xs:element name="DATABASEINFO" type="DatabaseInfoType"/>
+          <xs:element name="DATAINFO" type="DataInfoType"/>
+          <xs:element name="PARAMETER" type="ParameterType"/>
+          <xs:element name="EMBEDDEDFILE" type="EmbeddedFileType"/>
+          <xs:element name="SUBREPORT" type="SubReportType"/>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

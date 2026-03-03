@@ -18,6 +18,7 @@
 */
 #endregion
 
+using Newtonsoft.Json;
 using Reportman.Drawing;
 using System;
 using System.Data;
@@ -45,6 +46,7 @@ namespace Reportman.Reporting
         }
         public ParamType ParamType;
         public string Alias;
+        [JsonConverter(typeof(NewlineDelimitedStringConverter))]
         public string Descriptions;
         public string Description
         {
@@ -60,6 +62,7 @@ namespace Reportman.Reporting
                 }
             }
         }
+        [JsonConverter(typeof(NewlineDelimitedStringConverter))]
         public string Hints;
         protected override string GetClassName()
         {
@@ -83,6 +86,7 @@ namespace Reportman.Reporting
                 }
             }
         }
+        [JsonConverter(typeof(NewlineDelimitedStringConverter))]
         public string ErrorMessages;
         public string ErrorMessage
         {
@@ -321,5 +325,27 @@ namespace Reportman.Reporting
                 }
             }
         }
+    }
+}
+
+public class NewlineDelimitedStringConverter : JsonConverter
+{
+    public override bool CanConvert(Type objectType) => objectType == typeof(string);
+
+    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    {
+        var str = (string)value ?? "";
+        var array = string.IsNullOrEmpty(str) ? new string[0] : str.Split('\n');
+        serializer.Serialize(writer, array);
+    }
+
+    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+    {
+        if (reader.TokenType == JsonToken.StartArray)
+        {
+            var array = serializer.Deserialize<string[]>(reader) ?? new string[0];
+            return string.Join("\n", array);
+        }
+        return reader.Value?.ToString() ?? "";
     }
 }

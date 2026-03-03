@@ -120,6 +120,7 @@ namespace Reportman.Reporting
             aobj.WFontNameP = apage.AddString(WFontName);
             aobj.WFontNameS = WFontName.Length;
             aobj.RightToLeft = TextObj.RightToLeft;
+            aobj.IsHtml = TextObj.IsHtml;
             apage.Objects.Add(aobj);
 
             LastMetaIndex = metafile.Pages[metafile.CurrentPage].Objects.Count - 1;
@@ -247,6 +248,8 @@ namespace Reportman.Reporting
             {
                 Evaluate();
                 aresult = Value.ToString(DisplayFormat, DataType, PrintNulls);
+                if (IsHtml)
+                    aresult = EvaluateHtmlExpressions(aresult);
             }
             catch (Exception E)
             {
@@ -462,6 +465,7 @@ namespace Reportman.Reporting
             aresult.WordWrap = WordWrap;
             aresult.RightToLeft = RightToLeft;
             aresult.PrintStep = PrintStep;
+            aresult.IsHtml = IsHtml;
             return aresult;
         }
         override public Point GetExtension(PrintOut adriver, Point MaxExtent, bool ForcePartial)

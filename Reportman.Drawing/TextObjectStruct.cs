@@ -32,6 +32,8 @@
         public bool RightToLeft;
         /// <summary>Print step, for dot matrix printers</summary>
         public PrintStepType PrintStep;
+        /// <summary>Indicates if the text represents HTML markup content</summary>
+        public bool IsHtml;
         /// <summary>
         /// Returns a TextObjectStruct from a MetaObject
         /// </summary>
@@ -53,6 +55,7 @@
             aresult.CutText = aobj.CutText;
             aresult.FontSize = aobj.FontSize;
             aresult.Alignment = aobj.Alignment;
+            aresult.IsHtml = aobj.IsHtml;
             return aresult;
         }
     }

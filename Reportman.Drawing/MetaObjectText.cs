@@ -45,6 +45,8 @@ namespace Reportman.Drawing
         public bool RightToLeft;
         /// <summary>Print step</summary>
         public PrintStepType PrintStep;
+        /// <summary>True if text represents HTML</summary>
+        public bool IsHtml;
         /// <summary>
         /// Fill the values of a MetaObjectText, loading it from a binary buffer
         /// </summary>
@@ -72,6 +74,7 @@ namespace Reportman.Drawing
             WordWrap = buf[index + RECORD_OFFSET + 44] != 0;
             RightToLeft = buf[index + RECORD_OFFSET + 45] != 0;
             PrintStep = (PrintStepType)buf[index + RECORD_OFFSET + 46];
+            IsHtml = buf[index + RECORD_OFFSET + 47] != 0;
         }
         /// <summary>
         /// Save the information of the object into a stream
@@ -100,7 +103,8 @@ namespace Reportman.Drawing
             astream.Write(StreamUtil.BoolToByteArray(WordWrap), 0, 1);
             astream.Write(StreamUtil.BoolToByteArray(RightToLeft), 0, 1);
             astream.Write(StreamUtil.ByteToByteArray((byte)PrintStep), 0, 1);
-            astream.Write(emptybuf, 0, RECORD_SIZE - 47 - RECORD_OFFSET);
+            astream.Write(StreamUtil.BoolToByteArray(IsHtml), 0, 1);
+            astream.Write(emptybuf, 0, RECORD_SIZE - 48 - RECORD_OFFSET);
         }
     }
 }

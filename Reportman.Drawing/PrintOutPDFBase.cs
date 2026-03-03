@@ -19,6 +19,7 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 
@@ -247,7 +248,7 @@ namespace Reportman.Drawing
                     rec = new Rectangle(posx, posy, objt.Width, objt.Height);
                     astring = page.GetText(objt);
                     FPDFFile.Canvas.TextRect(rec, astring, aalign, objt.CutText,
-                        objt.WordWrap, objt.FontRotation, objt.RightToLeft);
+                        objt.WordWrap, objt.FontRotation, objt.RightToLeft, objt.IsHtml);
                     string annotation = page.GetAnnotationText(objt);
                     if (annotation != null)
                     {
@@ -516,7 +517,7 @@ namespace Reportman.Drawing
             FPDFFile.Canvas.Font.Bold = (aobj.FontStyle & 1) > 0;
             FPDFFile.Canvas.Font.Italic = (aobj.FontStyle & 2) > 0;
             rect = new Rectangle(0, 0, extent.X, 0);
-            FPDFFile.Canvas.TextExtent(aobj.Text, ref rect, aobj.WordWrap, singleline, false, aobj.RightToLeft);
+            FPDFFile.Canvas.TextExtent(aobj.Text, ref rect, aobj.WordWrap, singleline, false, aobj.RightToLeft, aobj.IsHtml);
             extent.X = rect.Width;
             extent.Y = rect.Height;
             if (aobj.CutText)
@@ -527,17 +528,14 @@ namespace Reportman.Drawing
             return extent;
         }
         /// <summary>
-        /// Obtain text extent, fills LineInfo
+        /// Obtain text extent, fills LineInfo (original signature for backward compatibility)
         /// </summary>
         public Point TextExtentLineInfo(TextObjectStruct aobj, Point extent)
         {
             bool singleline;
             Rectangle rect;
             Point maxextent;
-            //if (aobj.FontRotation != 0)
-            //    return extent;
             maxextent = extent;
-            // single line
             singleline = (aobj.Alignment & AlignmentFlags_SingleLine) > 0;
             FPDFFile.Canvas.Font.Name = aobj.Type1Font;
             FPDFFile.Canvas.Font.WFontName = aobj.WFontName;
@@ -547,7 +545,7 @@ namespace Reportman.Drawing
             FPDFFile.Canvas.Font.Bold = (aobj.FontStyle & 1) > 0;
             FPDFFile.Canvas.Font.Italic = (aobj.FontStyle & 2) > 0;
             rect = new Rectangle(0, 0, extent.X, 0);
-            FPDFFile.Canvas.TextExtent(aobj.Text, ref rect, aobj.WordWrap, singleline, true, aobj.RightToLeft);
+            FPDFFile.Canvas.TextExtent(aobj.Text, ref rect, aobj.WordWrap, singleline, true, aobj.RightToLeft, aobj.IsHtml);
             extent.X = rect.Width;
             extent.Y = rect.Height;
             if (aobj.CutText)
@@ -556,6 +554,34 @@ namespace Reportman.Drawing
                     extent.Y = maxextent.Y;
             }
             return extent;
+        }
+        /// <summary>
+        /// Obtain text extent and return LineInfo list directly
+        /// </summary>
+        public List<LineInfo> TextExtentLineInfo(TextObjectStruct aobj, ref Point extent)
+        {
+            bool singleline;
+            Rectangle rect;
+            Point maxextent;
+            maxextent = extent;
+            singleline = (aobj.Alignment & AlignmentFlags_SingleLine) > 0;
+            FPDFFile.Canvas.Font.Name = aobj.Type1Font;
+            FPDFFile.Canvas.Font.WFontName = aobj.WFontName;
+            FPDFFile.Canvas.Font.LFontName = aobj.LFontName;
+
+            FPDFFile.Canvas.Font.Size = aobj.FontSize;
+            FPDFFile.Canvas.Font.Bold = (aobj.FontStyle & 1) > 0;
+            FPDFFile.Canvas.Font.Italic = (aobj.FontStyle & 2) > 0;
+            rect = new Rectangle(0, 0, extent.X, 0);
+            var result = FPDFFile.Canvas.TextExtent(aobj.Text, ref rect, aobj.WordWrap, singleline, true, aobj.RightToLeft, aobj.IsHtml);
+            extent.X = rect.Width;
+            extent.Y = rect.Height;
+            if (aobj.CutText)
+            {
+                if (maxextent.Y < extent.Y)
+                    extent.Y = maxextent.Y;
+            }
+            return result;
         }
         /// <summary>
         /// Obtain graphic extent
