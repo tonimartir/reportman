@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-
 namespace Reportman.Drawing.Forms
 {
     public delegate void StringEvent(object sender, object nitem);

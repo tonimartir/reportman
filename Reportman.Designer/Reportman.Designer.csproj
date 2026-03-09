@@ -25,6 +25,9 @@
 	<ItemGroup>
 		<None Include="..\README.md" Pack="true" PackagePath="" />
 	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="System.Resources.Extensions" Version="10.0.3" />
+	</ItemGroup>
   <ItemGroup>
     <Compile Update="Inspector.cs">
       <SubType>Component</SubType>
