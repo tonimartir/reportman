@@ -143,12 +143,25 @@ namespace Reportman.Designer
         public void SelectItem(ReportItem sec)
         {
             List<TreeNode> col = GetAllNodes();
+            // First try to find by reference
             foreach (TreeNode node in col)
             {
                 if (node.Tag == sec)
                 {
                     RView.SelectedNode = node;
-                    break;
+                    return;
+                }
+            }
+            // If not found by reference, try to find by name (for undo/redo scenarios)
+            if (!string.IsNullOrEmpty(sec.Name))
+            {
+                foreach (TreeNode node in col)
+                {
+                    if (node.Tag is ReportItem item && item.Name == sec.Name)
+                    {
+                        RView.SelectedNode = node;
+                        return;
+                    }
                 }
             }
         }
