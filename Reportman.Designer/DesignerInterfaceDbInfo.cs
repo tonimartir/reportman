@@ -296,5 +296,24 @@ namespace Reportman.Designer
             // inherited
             base.SetProperty(pname, newvalue);
         }
+        public override string GetRealPropertyName(string translatedName)
+        {
+            // Connection Name/Alias
+            if (translatedName == Translator.TranslateStr(400))
+                return "Alias";
+            // Driver
+            if (translatedName == Translator.TranslateStr(67))
+                return "Driver";
+            // Provider factory
+            if (translatedName == Translator.TranslateStr(1394))
+                return "ProviderFactory";
+            // Connection string
+            if (translatedName == Translator.TranslateStr(1099))
+                return "ConnectionString";
+            // Transaction isolation
+            if (translatedName == "Transaction Isolation")
+                return "TransIsolation";
+            return base.GetRealPropertyName(translatedName);
+        }
     }
 }

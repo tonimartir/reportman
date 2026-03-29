@@ -122,6 +122,7 @@ namespace Reportman.Designer
             FReport.GenerateNewName(dbinfo);
             dbinfo.Alias = conname;
             FReport.DatabaseInfo.Add(dbinfo);
+            FReport.AddComponent(dbinfo);
             RefreshInterface();
             SelectItem(dbinfo);
         }
@@ -176,6 +177,7 @@ namespace Reportman.Designer
             if (FReport.DatabaseInfo.Count > 0)
                 dinfo.DatabaseAlias = FReport.DatabaseInfo[0].Alias;
             FReport.DataInfo.Add(dinfo);
+            FReport.AddComponent(dinfo);
             RefreshInterface();
             SelectItem(dinfo);
         }
@@ -196,6 +198,7 @@ namespace Reportman.Designer
             FReport.GenerateNewName(nparam);
             nparam.Alias = paramname;
             FReport.Params.Add(nparam);
+            FReport.AddComponent(nparam);
             RefreshInterface();
             SelectItem(nparam);
         }
@@ -207,32 +210,8 @@ namespace Reportman.Designer
             if (!(RView.SelectedNode.Tag is ReportItem))
                 return;
             ReportItem pitem = (ReportItem)RView.SelectedNode.Tag;
-            if (pitem is DatabaseInfo)
-            {
-                DatabaseInfo dbinfo = (DatabaseInfo)pitem;
-                FReport.DatabaseInfo.Remove(dbinfo);
-                int index = FReport.Components.IndexOfValue(dbinfo);
-                if (index >= 0)
-                    FReport.Components.RemoveAt(index);
-            }
-            else
-                if (pitem is DataInfo)
-            {
-                DataInfo dinfo = (DataInfo)pitem;
-                FReport.DataInfo.Remove(dinfo);
-                int index = FReport.Components.IndexOfValue(dinfo);
-                if (index >= 0)
-                    FReport.Components.RemoveAt(index);
-            }
-            else
-                if (pitem is Param)
-            {
-                Param nparam = (Param)pitem;
-                FReport.Params.Remove(nparam);
-                int index = FReport.Components.IndexOfValue(nparam);
-                if (index >= 0)
-                    FReport.Components.RemoveAt(index);
-            }
+            int groupId = FReport.UndoCue?.GetGroupId() ?? 0;
+            FReport.DeleteItem(pitem, groupId);
             RefreshInterface();
         }
 

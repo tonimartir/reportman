@@ -169,6 +169,22 @@ namespace Reportman.Designer
             // inherited
             base.SetProperty(pname, newvalue);
         }
+        public override string GetRealPropertyName(string translatedName)
+        {
+            // DataSet Name/Alias
+            if (translatedName == Translator.TranslateStr(518))
+                return "Alias";
+            // Connection
+            if (translatedName == Translator.TranslateStr(154))
+                return "DatabaseAlias";
+            // Master dataset
+            if (translatedName == Translator.TranslateStr(155))
+                return "DataSource";
+            // SQL
+            if (translatedName == "SQL")
+                return "SQL";
+            return base.GetRealPropertyName(translatedName);
+        }
     }
 
 }

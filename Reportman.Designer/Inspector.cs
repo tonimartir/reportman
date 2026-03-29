@@ -81,6 +81,8 @@ namespace Reportman.Designer
                 return PropertyType.Boolean;
             if (t == typeof(DateTime))
                 return PropertyType.Date;
+            if (t == typeof(Variant))
+                return PropertyType.Variant;
             return PropertyType.String;
         }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), Browsable(false)]

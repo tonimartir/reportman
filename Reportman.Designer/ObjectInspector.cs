@@ -431,13 +431,29 @@ namespace Reportman.Designer
         {
             object newValue = DBNull.Value;
             bool executeonpropchange = false;
+            string propName = args.Row["NAME"].ToString();
+
+            // Capture old value before modification for undo
+            Variant oldValue = new Variant();
+            if (CurrentInterface != null && CurrentInterface.SelectionList.Count > 0)
+            {
+                try
+                {
+                    oldValue = CurrentInterface.GetPropertyMulti(propName);
+                }
+                catch
+                {
+                    // Property may not exist yet
+                }
+            }
+
             if (args.Row["VALUE"] != DBNull.Value)
             {
                 if (CurrentInterface != null)
                 {
                     if ((bool)args.Row["TWIPS"])
                     {
-                        CurrentInterface.SetPropertyMulti(args.Row["NAME"].ToString(), Twips.TwipsFromUnits(Variant.VariantFromObject(args.Row["VALUE"])));
+                        CurrentInterface.SetPropertyMulti(propName, Twips.TwipsFromUnits(Variant.VariantFromObject(args.Row["VALUE"])));
                         executeonpropchange = true;
                     }
                     else
@@ -448,7 +464,6 @@ namespace Reportman.Designer
                         if (!isbinary)
                         {
                             object newValueObject = args.Row["VALUE"];
-                            string propName = args.Row["NAME"].ToString();
                             object interfaceParamObject = args.Row["INTERFACE"];
                             if ((interfaceParamObject is DesignerInterfaceParam) && (propName == Translator.TranslateStr(194)))
                             {
@@ -471,7 +486,7 @@ namespace Reportman.Designer
                                         break;
                                 }
                             }
-                            CurrentInterface.SetPropertyMulti(args.Row["NAME"].ToString(), Variant.VariantFromObject(newValueObject));
+                            CurrentInterface.SetPropertyMulti(propName, Variant.VariantFromObject(newValueObject));
                             executeonpropchange = true;
                         }
                     }
@@ -488,16 +503,64 @@ namespace Reportman.Designer
                         isbinary = true;
                     if (isbinary)
                     {
-                        CurrentInterface.SetPropertyMulti(args.Row["NAME"].ToString(), Variant.VariantFromObject(args.Row["VALUEBIN"]));
+                        CurrentInterface.SetPropertyMulti(propName, Variant.VariantFromObject(args.Row["VALUEBIN"]));
                         executeonpropchange = true;
                     }
                 }
                 newValue = args.Row["VALUEBIN"];
             }
+
+            // Generate undo operation for property change
+            if (executeonpropchange && CurrentInterface != null && CurrentInterface.SelectionList.Count > 0)
+            {
+                var firstItem = CurrentInterface.SelectionList.Values[0];
+                if (firstItem.Report?.UndoCue != null)
+                {
+                    int groupId = firstItem.Report.UndoCue.GetGroupId();
+                    // Determine if this is a Variant property (e.g., Param.Value)
+                    bool isVariantProperty = (CurrentInterface is DesignerInterfaceParam) && 
+                                              (propName == Translator.TranslateStr(194)); // "Value" property
+                    // Get the real property name for undo/redo (convert from translated name)
+                    string realPropName = CurrentInterface.GetRealPropertyName(propName);
+                    foreach (ReportItem ritem in CurrentInterface.SelectionList.Values)
+                    {
+                        var op = new ChangeObjectOperation(OperationType.Modify, groupId);
+                        op.ComponentName = ritem.Name;
+                        op.ComponentClass = ritem.ClassName;
+                        var propType = GetPropertyTypeForValue(oldValue, newValue, isVariantProperty);
+                        // For Variant properties, store the Variant itself, not AsObject()
+                        object oldVal = isVariantProperty ? (object)oldValue : oldValue.AsObject();
+                        object newVal = isVariantProperty ? Variant.VariantFromObject(newValue) : newValue;
+                        op.AddProperty(realPropName, propType, oldVal, newVal);
+                        firstItem.Report.UndoCue.AddOperation(op, (Report)firstItem.Report);
+                    }
+                }
+            }
+
             if ((executeonpropchange) && (OnPropertyChange != null))
             {
-                OnPropertyChange(args.Row["NAME"].ToString(), newValue);
+                OnPropertyChange(propName, newValue);
             }
+        }
+
+        private static PropertyType GetPropertyTypeForValue(Variant oldValue, object newValue, bool isVariantProperty)
+        {
+            // If explicitly marked as Variant property (e.g., Param.Value), use Variant type
+            if (isVariantProperty)
+                return PropertyType.Variant;
+            if (oldValue.VarType == VariantType.Integer || newValue is int || newValue is long)
+                return PropertyType.Integer;
+            if (oldValue.VarType == VariantType.Double || newValue is double || newValue is float || newValue is decimal)
+                return PropertyType.Number;
+            if (oldValue.VarType == VariantType.String || newValue is string)
+                return PropertyType.String;
+            if (oldValue.VarType == VariantType.Boolean || newValue is bool)
+                return PropertyType.Boolean;
+            if (oldValue.VarType == VariantType.DateTime || newValue is DateTime)
+                return PropertyType.Date;
+            if (oldValue.VarType == VariantType.Binary)
+                return PropertyType.Binary;
+            return PropertyType.String;
         }
     }
 }

@@ -2900,7 +2900,7 @@ end;
                         DeleteComponent(section);
                         if (groupId != 0)
                         {
-                            var op = new ChangeObjectOperation(OperationType.Remove, UndoCue.GetGroupId())
+                            var op = new ChangeObjectOperation(OperationType.Remove, groupId)
                             {
                                 ComponentName = section.Name,
                                 ParentName = subreport.Name,
@@ -2920,12 +2920,15 @@ end;
                     var secToDelete = new List<Section>();
                     foreach (var sec in subreport.Sections)
                     {
-                        DeleteComponents(sec, groupId);
                         if (sec.GroupName == groupName &&
                            (sec.SectionType == SectionType.GroupFooter || sec.SectionType == SectionType.GroupHeader))
                         {
                             secToDelete.Add(sec);
                         }
+                    }
+                    foreach (var sec in secToDelete)
+                    {
+                        DeleteComponents(sec, groupId);
                     }
                     foreach (var sec in secToDelete)
                     {
@@ -3023,6 +3026,7 @@ end;
                 AddDataInfoProperties(dataInfo, op);
                 UndoCue?.AddOperation(op, this);
             }
+            DeleteComponent(dataInfo);
             DataInfo.RemoveAt(index);
         }
 
@@ -3045,6 +3049,7 @@ end;
                 UndoCue.AddOperation(op, this);
             }
 
+            DeleteComponent(databaseInfo);
             DatabaseInfo.RemoveAt(index);
         }
 
@@ -3065,14 +3070,15 @@ end;
                 AddParamProperties(param, op);
                 UndoCue?.AddOperation(op, this);
             }
+            DeleteComponent(param);
             Params.RemoveAt(index);
         }
 
         public void DeleteComponent(ReportItem item)
         {
-            if (Components.ContainsKey(item.Name))
+            if (Components.ContainsKey(item.Name.ToUpper()))
             {
-                Components.Remove(item.Name);
+                Components.Remove(item.Name.ToUpper());
             }
         }
         private void AddDatabaseInfoProperties(DatabaseInfo item, ChangeObjectOperation op)

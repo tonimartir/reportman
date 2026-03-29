@@ -216,6 +216,17 @@ namespace Reportman.Designer
         {
             throw new Exception(Translator.TranslateStr(642) + ":" + pname);
         }
+        /// <summary>
+        /// Converts a translated property name (shown in UI) to the actual property name used in the object.
+        /// Override in derived classes to provide specific mappings.
+        /// </summary>
+        /// <param name="translatedName">The translated property name from the UI</param>
+        /// <returns>The actual property name for reflection/undo operations</returns>
+        public virtual string GetRealPropertyName(string translatedName)
+        {
+            // Default implementation returns the translated name as-is
+            return translatedName;
+        }
     }
 
 }
