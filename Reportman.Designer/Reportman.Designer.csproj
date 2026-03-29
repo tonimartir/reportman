@@ -73,6 +73,9 @@
     <Compile Update="PropertyFrame.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="UndoCuePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="SQLEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>

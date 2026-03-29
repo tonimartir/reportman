@@ -203,7 +203,9 @@ namespace Reportman.Designer
                 bpaste,
                 bpagesetup,
                 bpreview,
-                bEdit
+                bEdit,
+                bundo,
+                bredo
             };
 
             SelectedButtons = new List<ToolStripItem>
@@ -326,6 +328,8 @@ namespace Reportman.Designer
 
             DisableMenus();
 
+            tabudocue.Text = "Undo";
+            fundocue.OnUndoRedo += UndoCue_OnUndoRedo;
         }
         System.IO.MemoryStream OriginalStream;
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), Browsable(false)]
@@ -346,10 +350,13 @@ namespace Reportman.Designer
                 else
                     OriginalStream = null;
                 FReport = value;
+                if (FReport.UndoCue == null)
+                    FReport.UndoCue = new UndoCue();
                 FixReport(FReport);
                 fstructure.Report = FReport;
                 fdatadef.Report = FReport;
                 ffields.Report = FReport;
+                fundocue.Report = FReport;
                 CurrentSubReport = FReport.SubReports[0];
                 subreportedit.SetSubReport(FReport, CurrentSubReport);
                 if (FReport == null)
@@ -413,6 +420,7 @@ namespace Reportman.Designer
                 return;
             Report nrep = new Report();
             nrep.CreateNew();
+            nrep.UndoCue = new UndoCue();
             Report = nrep;
         }
         public bool ReportChanged()
@@ -684,32 +692,31 @@ namespace Reportman.Designer
                     break;
             }
             SortedList<int, ReportItem> lselec = new SortedList<int, ReportItem>();
-            if (PControl.SelectedIndex == 0)
+            foreach (int key in subreportedit.SelectedItems.Keys)
+                lselec.Add(key, subreportedit.SelectedItems[key]);
+            if (lselec.Count == 0)
             {
-                foreach (int key in subreportedit.SelectedItems.Keys)
-                    lselec.Add(key, subreportedit.SelectedItems[key]);
-                if (lselec.Count == 0)
+                if (PControl.SelectedIndex == 0)
                 {
                     if (fstructure.FindSelectedNode().Tag is ReportItem)
                         lselec.Add(1, (ReportItem)fstructure.FindSelectedNode().Tag);
                 }
-            }
-            else
-            if (PControl.SelectedIndex == 1)
-            {
-                TreeNode nnode = fdatadef.FindSelectedNode();
-                if (nnode != null)
-                    if (fdatadef.FindSelectedNode().Tag is ReportItem)
-                    {
-                        lselec.Add(1, (ReportItem)fdatadef.FindSelectedNode().Tag);
-                    }
+                else if (PControl.SelectedIndex == 1)
+                {
+                    TreeNode nnode = fdatadef.FindSelectedNode();
+                    if (nnode != null)
+                        if (fdatadef.FindSelectedNode().Tag is ReportItem)
+                        {
+                            lselec.Add(1, (ReportItem)fdatadef.FindSelectedNode().Tag);
+                        }
+                }
             }
             if (lselec.Count > 0)
             {
                 CurrentInterface = DesignerInterface.GetFromOject(lselec, frameproperties.inspector);
                 frameproperties.SetObject(CurrentInterface);
                 subreportedit.parentcontrol.Focus();        // For MoveControls - Set the focus to the parent control for the keyboard events to fire for moving controls from keyboard
-            }            
+            }
         }
         private void StructureChange(object sender, EventArgs args)
         {
@@ -828,6 +835,21 @@ namespace Reportman.Designer
                         sec.Components.Add(xitem);
                         xitem.Section = sec;
                     }
+                    // Generate undo Add operations for pasted items
+                    if (FReport?.UndoCue != null)
+                    {
+                        int groupId = FReport.UndoCue.GetGroupId();
+                        foreach (PrintPosItem xitem in nlist)
+                        {
+                            var op = new ChangeObjectOperation(OperationType.Add, groupId);
+                            op.ComponentName = xitem.Name;
+                            op.ComponentClass = xitem.ClassName;
+                            op.ParentName = sec.Name;
+                            op.OldItemIndex = sec.Components.IndexOf(xitem);
+                            AddAllPropertiesToOperation(xitem, op);
+                            FReport.UndoCue.AddOperation(op, FReport);
+                        }
+                    }
                     subreportedit.Redraw();
                     // Select recently added items
                     subreportedit.ClearSelection();
@@ -842,15 +864,28 @@ namespace Reportman.Designer
             subreportedit.SelectPosItem();
             AfterSelectDesign(this, null);
             subreportedit.parentcontrol.Invalidate();
+            fundocue.RefreshList();
         }
 
         private void ButtonDeleteClick(object sender, EventArgs e)
         {
+            int groupId = FReport?.UndoCue != null ? FReport.UndoCue.GetGroupId() : 0;
             foreach (PrintItem nitem in subreportedit.SelectedItems.Values)
             {
                 if (nitem is PrintPosItem)
                 {
                     PrintPosItem positem = (PrintPosItem)nitem;
+                    if (FReport?.UndoCue != null && groupId > 0)
+                    {
+                        var op = new ChangeObjectOperation(OperationType.Remove, groupId);
+                        op.ComponentName = positem.Name;
+                        op.ComponentClass = positem.ClassName;
+                        if (positem.Section != null)
+                            op.ParentName = positem.Section.Name;
+                        op.OldItemIndex = positem.Section != null ? positem.Section.Components.IndexOf(positem) : 0;
+                        AddAllPropertiesToOperation(positem, op);
+                        FReport.UndoCue.AddOperation(op, FReport);
+                    }
                     positem.Section.Components.Remove(positem);
                     FReport.RemoveComponent(positem);
                 }
@@ -860,6 +895,7 @@ namespace Reportman.Designer
                 subreportedit.ReDrawBand(ninfo);
             AfterSelectDesign(this, null);
             subreportedit.parentcontrol.Invalidate();
+            fundocue.RefreshList();
         }
 
         private void ButtonCutClick(object sender, EventArgs e)
@@ -1135,6 +1171,68 @@ namespace Reportman.Designer
                 subreportedit.parentcontrol.Invalidate();
                 subreportedit.SelectPosItem();
             }
+            fundocue.RefreshList();
+        }
+
+        private void ButtonUndoClick(object sender, EventArgs e)
+        {
+            PerformUndo();
+        }
+        private void ButtonRedoClick(object sender, EventArgs e)
+        {
+            PerformRedo();
+        }
+        private void PerformUndo()
+        {
+            if (FReport?.UndoCue == null) return;
+            var result = FReport.UndoCue.Undo(FReport);
+            if (result != null)
+            {
+                RefreshAfterUndoRedo();
+            }
+        }
+        private void PerformRedo()
+        {
+            if (FReport?.UndoCue == null) return;
+            var result = FReport.UndoCue.Redo(FReport);
+            if (result != null)
+            {
+                RefreshAfterUndoRedo();
+            }
+        }
+        private void RefreshAfterUndoRedo()
+        {
+            fstructure.Report = FReport;
+            fdatadef.Report = FReport;
+            ffields.Report = FReport;
+            if (FReport.SubReports.IndexOf(CurrentSubReport) < 0)
+                CurrentSubReport = FReport.SubReports[0];
+            subreportedit.SetSubReport(FReport, CurrentSubReport);
+            fundocue.RefreshList();
+            subreportedit.ClearSelection();
+            AfterSelectDesign(this, null);
+            subreportedit.parentcontrol.Invalidate();
+        }
+        private void UndoCue_OnUndoRedo(object sender, EventArgs e)
+        {
+            RefreshAfterUndoRedo();
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (FReport != null)
+            {
+                if (keyData == (Keys.Control | Keys.Z))
+                {
+                    PerformUndo();
+                    return true;
+                }
+                if (keyData == (Keys.Control | Keys.Y))
+                {
+                    PerformRedo();
+                    return true;
+                }
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         private void FinishEdit()
@@ -1291,6 +1389,87 @@ namespace Reportman.Designer
         private void mseleccionartodo_Click(object sender, EventArgs e)
         {
             subreportedit.SelectAll(false);
+        }
+
+        /// <summary>
+        /// Adds all public properties/fields of a ReportItem to a ChangeObjectOperation.
+        /// Compatible with the TypeScript addComponentProperties pattern.
+        /// </summary>
+        internal static void AddAllPropertiesToOperation(ReportItem item, ChangeObjectOperation op)
+        {
+            var type = item.GetType();
+            foreach (var pi in type.GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance))
+            {
+                if (!pi.CanRead || !pi.CanWrite) continue;
+                if (pi.GetIndexParameters().Length > 0) continue;
+                if (!IsSerializableType(pi.PropertyType)) continue;
+                var propType = GetPropertyTypeForType(pi.PropertyType);
+                try
+                {
+                    var val = pi.GetValue(item);
+                    op.AddProperty(pi.Name, propType, val, val);
+                }
+                catch
+                {
+                    // Skip properties that can't be read
+                }
+            }
+            foreach (var fi in type.GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance))
+            {
+                if (!IsSerializableType(fi.FieldType)) continue;
+                var propType = GetPropertyTypeForType(fi.FieldType);
+                try
+                {
+                    var val = fi.GetValue(item);
+                    op.AddProperty(fi.Name, propType, val, val);
+                }
+                catch
+                {
+                    // Skip fields that can't be read
+                }
+            }
+        }
+
+        internal static bool IsSerializableType(System.Type t)
+        {
+            if (t == typeof(int) || t == typeof(long) || t == typeof(short) || t == typeof(byte))
+                return true;
+            if (t == typeof(double) || t == typeof(float) || t == typeof(decimal))
+                return true;
+            if (t == typeof(string))
+                return true;
+            if (t == typeof(bool))
+                return true;
+            if (t == typeof(DateTime))
+                return true;
+            if (t == typeof(byte[]))
+                return true;
+            if (t == typeof(Variant))
+                return true;
+            if (t.IsEnum)
+                return true;
+            return false;
+        }
+
+        internal static PropertyType GetPropertyTypeForType(System.Type t)
+        {
+            if (t == typeof(int) || t == typeof(long) || t == typeof(short) || t == typeof(byte))
+                return PropertyType.Integer;
+            if (t == typeof(double) || t == typeof(float) || t == typeof(decimal))
+                return PropertyType.Number;
+            if (t == typeof(string))
+                return PropertyType.String;
+            if (t == typeof(bool))
+                return PropertyType.Boolean;
+            if (t == typeof(DateTime))
+                return PropertyType.Date;
+            if (t == typeof(byte[]))
+                return PropertyType.Binary;
+            if (t == typeof(Variant))
+                return PropertyType.Variant;
+            if (t.IsEnum)
+                return PropertyType.Integer;
+            return PropertyType.String;
         }
     }
 }

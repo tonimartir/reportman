@@ -515,6 +515,7 @@ namespace Reportman.Reporting
         Modify,
         Remove,
         SwapDown,
-        SwapUp
+        SwapUp,
+        Rename
     }
 }

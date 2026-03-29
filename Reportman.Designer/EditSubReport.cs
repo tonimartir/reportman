@@ -1693,6 +1693,14 @@ namespace Reportman.Designer
                     ncontrol.Cursor = Cursors.No;
                 if (destband != null)
                 {
+                    // Capture old positions for undo before moving
+                    Dictionary<string, Point> oldPositions = new Dictionary<string, Point>();
+                    string oldParentSectionName = selectedposband?.Section?.Name;
+                    foreach (PrintItem nitem in SelectedItems.Values)
+                    {
+                        if (nitem is PrintPosItem positem)
+                            oldPositions[positem.Name] = new Point(positem.PosX, positem.PosY);
+                    }
                     // Get diferences and apply to all components
                     int offsetx = e.X - mouseorigin.X;
                     int offsety = e.Y - mouseorigin.Y;
@@ -1765,6 +1773,34 @@ namespace Reportman.Designer
                     SelectPosItem();
                     if (destband != null)
                         SelectedSection = destband.Section;
+                    // Generate undo Modify operations for moved items
+                    if (FReport?.UndoCue != null && oldPositions.Count > 0)
+                    {
+                        int groupId = FReport.UndoCue.GetGroupId();
+                        foreach (PrintItem nitem in SelectedItems.Values)
+                        {
+                            if (nitem is PrintPosItem positem && oldPositions.ContainsKey(positem.Name))
+                            {
+                                Point oldPos = oldPositions[positem.Name];
+                                if (positem.PosX != oldPos.X || positem.PosY != oldPos.Y)
+                                {
+                                    var op = new ChangeObjectOperation(OperationType.Modify, groupId);
+                                    op.ComponentName = positem.Name;
+                                    op.ComponentClass = positem.ClassName;
+                                    if (positem.PosX != oldPos.X)
+                                        op.AddProperty("PosX", PropertyType.Integer, oldPos.X, positem.PosX);
+                                    if (positem.PosY != oldPos.Y)
+                                        op.AddProperty("PosY", PropertyType.Integer, oldPos.Y, positem.PosY);
+                                    if (destband != selectedposband)
+                                    {
+                                        op.OldParentName = oldParentSectionName;
+                                        op.ParentName = destband.Section.Name;
+                                    }
+                                    FReport.UndoCue.AddOperation(op, FReport);
+                                }
+                            }
+                        }
+                    }
                     parentcontrol.Invalidate();
                 }
             }
@@ -1809,6 +1845,8 @@ namespace Reportman.Designer
         {
             if (SelectedItems.Values[0] is PrintPosItem)    // if PrintPosItem Object is selected (and not Section object)
             {
+                // Capture old positions for undo
+                var oldPositions = CaptureSelectedPositions();
                 // Move all selected controls
                 foreach (PrintPosItem nitem in SelectedItems.Values)
                 {
@@ -1822,6 +1860,7 @@ namespace Reportman.Designer
                     else
                         nitem.PosX -= 30;
                 }
+                RecordMoveUndo(oldPositions);
 
                 // Required To move the selection rectangle when only 1 control is selected
                 if (SelectedItems.Count == 1)
@@ -1843,6 +1882,8 @@ namespace Reportman.Designer
         {
             if (SelectedItems.Values[0] is PrintPosItem)    // if PrintPosItem Object is selected (and not Section object)
             {
+                // Capture old positions for undo
+                var oldPositions = CaptureSelectedPositions();
                 // Move all selected controls
                 foreach (PrintPosItem nitem in SelectedItems.Values)
                 {
@@ -1856,6 +1897,7 @@ namespace Reportman.Designer
                     else
                         nitem.PosX += 30;
                 }
+                RecordMoveUndo(oldPositions);
 
                 // Required To move the selection rectangle when only 1 control is selected
                 if (SelectedItems.Count == 1)
@@ -1877,6 +1919,8 @@ namespace Reportman.Designer
         {
             if (SelectedItems.Values[0] is PrintPosItem)    // if PrintPosItem Object is selected (and not Section object)
             {
+                // Capture old positions for undo
+                var oldPositions = CaptureSelectedPositions();
                 // Move all selected controls
                 foreach (PrintPosItem nitem in SelectedItems.Values)
                 {
@@ -1890,6 +1934,7 @@ namespace Reportman.Designer
                     else
                         nitem.PosY -= 30;
                 }
+                RecordMoveUndo(oldPositions);
 
                 // Required To move the selection rectangle when only 1 control is selected
                 if (SelectedItems.Count == 1)
@@ -1911,6 +1956,8 @@ namespace Reportman.Designer
         {
             if (SelectedItems.Values[0] is PrintPosItem)    // if PrintPosItem Object is selected (and not Section object)
             {
+                // Capture old positions for undo
+                var oldPositions = CaptureSelectedPositions();
                 // Move all selected controls
                 foreach (PrintPosItem nitem in SelectedItems.Values)
                 {
@@ -1924,6 +1971,7 @@ namespace Reportman.Designer
                     else
                         nitem.PosY += 30;
                 }
+                RecordMoveUndo(oldPositions);
 
                 // Required To move the selection rectangle when only 1 control is selected
                 if (SelectedItems.Count == 1)
@@ -1935,6 +1983,55 @@ namespace Reportman.Designer
                     ReDrawBand(binfo);
                 }
                 parentcontrol.Invalidate();
+            }
+        }
+
+        private Dictionary<string, Point> CaptureSelectedPositions()
+        {
+            var result = new Dictionary<string, Point>();
+            foreach (PrintItem nitem in SelectedItems.Values)
+            {
+                if (nitem is PrintPosItem positem)
+                    result[positem.Name] = new Point(positem.PosX, positem.PosY);
+            }
+            return result;
+        }
+
+        private void RecordMoveUndo(Dictionary<string, Point> oldPositions)
+        {
+            if (FReport?.UndoCue == null) return;
+            bool hasChanges = false;
+            foreach (PrintItem nitem in SelectedItems.Values)
+            {
+                if (nitem is PrintPosItem positem && oldPositions.ContainsKey(positem.Name))
+                {
+                    Point oldPos = oldPositions[positem.Name];
+                    if (positem.PosX != oldPos.X || positem.PosY != oldPos.Y)
+                    {
+                        hasChanges = true;
+                        break;
+                    }
+                }
+            }
+            if (!hasChanges) return;
+            int groupId = FReport.UndoCue.GetGroupId();
+            foreach (PrintItem nitem in SelectedItems.Values)
+            {
+                if (nitem is PrintPosItem positem && oldPositions.ContainsKey(positem.Name))
+                {
+                    Point oldPos = oldPositions[positem.Name];
+                    if (positem.PosX != oldPos.X || positem.PosY != oldPos.Y)
+                    {
+                        var op = new ChangeObjectOperation(OperationType.Modify, groupId);
+                        op.ComponentName = positem.Name;
+                        op.ComponentClass = positem.ClassName;
+                        if (positem.PosX != oldPos.X)
+                            op.AddProperty("PosX", PropertyType.Integer, oldPos.X, positem.PosX);
+                        if (positem.PosY != oldPos.Y)
+                            op.AddProperty("PosY", PropertyType.Integer, oldPos.Y, positem.PosY);
+                        FReport.UndoCue.AddOperation(op, FReport);
+                    }
+                }
             }
         }
 
@@ -2239,10 +2336,31 @@ namespace Reportman.Designer
                 int newheight = newvalue.Height;
 
                 PrintPosItem positem = (PrintPosItem)SelectedItems.Values[0];
+                int oldPosX = positem.PosX;
+                int oldPosY = positem.PosY;
+                int oldWidth = positem.Width;
+                int oldHeight = positem.Height;
                 positem.PosX = TwipsGraphics.PixelsToTwips(newleft, FDrawScale);
                 positem.PosY = TwipsGraphics.PixelsToTwips(newtop, FDrawScale);
                 positem.Width = TwipsGraphics.PixelsToTwips(newwidth, FDrawScale);
                 positem.Height = TwipsGraphics.PixelsToTwips(newheight, FDrawScale);
+                if (FReport?.UndoCue != null &&
+                    (positem.PosX != oldPosX || positem.PosY != oldPosY || positem.Width != oldWidth || positem.Height != oldHeight))
+                {
+                    int groupId = FReport.UndoCue.GetGroupId();
+                    var op = new ChangeObjectOperation(OperationType.Modify, groupId);
+                    op.ComponentName = positem.Name;
+                    op.ComponentClass = positem.ClassName;
+                    if (positem.PosX != oldPosX)
+                        op.AddProperty("PosX", PropertyType.Integer, oldPosX, positem.PosX);
+                    if (positem.PosY != oldPosY)
+                        op.AddProperty("PosY", PropertyType.Integer, oldPosY, positem.PosY);
+                    if (positem.Width != oldWidth)
+                        op.AddProperty("Width", PropertyType.Integer, oldWidth, positem.Width);
+                    if (positem.Height != oldHeight)
+                        op.AddProperty("Height", PropertyType.Integer, oldHeight, positem.Height);
+                    FReport.UndoCue.AddOperation(op, FReport);
+                }
 
                 ReDrawBand(binfo);
                 parentcontrol.Invalidate();
@@ -2509,6 +2627,18 @@ namespace Reportman.Designer
             newitem.SelectionIndex = countselection;
             countselection++;
             FReport.GenerateNewName(newitem);
+            // Generate undo Add operation for new item
+            if (FReport?.UndoCue != null)
+            {
+                int groupId = FReport.UndoCue.GetGroupId();
+                var op = new ChangeObjectOperation(OperationType.Add, groupId);
+                op.ComponentName = newitem.Name;
+                op.ComponentClass = newitem.ClassName;
+                op.ParentName = binfo.Section.Name;
+                op.OldItemIndex = binfo.Section.Components.IndexOf(newitem);
+                FrameMainDesigner.AddAllPropertiesToOperation(newitem, op);
+                FReport.UndoCue.AddOperation(op, FReport);
+            }
             ClearSelection();
             SelectedItems.Add(newitem.SelectionIndex, newitem);
             SelectedItemsBands.Add(binfo.Section.SelectionIndex, binfo);

@@ -44,11 +44,44 @@ namespace Reportman.Designer
                         break;
                 }
             }
+            // Generate undo operation for property change
+            if (SelectedInterface != null && SelectedInterface.SelectionList.Count > 0)
+            {
+                var firstItem = SelectedInterface.SelectionList.Values[0];
+                if (firstItem.Report?.UndoCue != null)
+                {
+                    int groupId = firstItem.Report.UndoCue.GetGroupId();
+                    foreach (ReportItem ritem in SelectedInterface.SelectionList.Values)
+                    {
+                        var op = new ChangeObjectOperation(OperationType.Modify, groupId);
+                        op.ComponentName = ritem.Name;
+                        op.ComponentClass = ritem.ClassName;
+                        string propName = e.ChangedItem.PropertyDescriptor.Name;
+                        var propType = GetPropertyTypeForClrType(e.ChangedItem.PropertyDescriptor.PropertyType);
+                        op.AddProperty(propName, propType, e.OldValue, e.ChangedItem.Value);
+                        firstItem.Report.UndoCue.AddOperation(op, (Report)firstItem.Report);
+                    }
+                }
+            }
             base.OnPropertyValueChanged(e);
             if ((executeonpropchange) && (OnPropertyChange != null))
             {
                 OnPropertyChange(e.ChangedItem.PropertyDescriptor.Name, e.ChangedItem.Value);
             }
+        }
+        private static PropertyType GetPropertyTypeForClrType(Type t)
+        {
+            if (t == typeof(int) || t == typeof(long) || t == typeof(short) || t == typeof(byte))
+                return PropertyType.Integer;
+            if (t == typeof(double) || t == typeof(float) || t == typeof(decimal))
+                return PropertyType.Number;
+            if (t == typeof(string))
+                return PropertyType.String;
+            if (t == typeof(bool))
+                return PropertyType.Boolean;
+            if (t == typeof(DateTime))
+                return PropertyType.Date;
+            return PropertyType.String;
         }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), Browsable(false)]
         public ComboBox ComboSelection
