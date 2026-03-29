@@ -1202,6 +1202,13 @@ namespace Reportman.Designer
         }
         private void RefreshAfterUndoRedo()
         {
+            // Save the currently selected object before refresh
+            ReportItem selectedItem = null;
+            if (CurrentInterface != null && CurrentInterface.SelectionList.Count > 0)
+            {
+                selectedItem = CurrentInterface.SelectionList.Values[0];
+            }
+
             fstructure.Report = FReport;
             fdatadef.Report = FReport;
             ffields.Report = FReport;
@@ -1210,6 +1217,21 @@ namespace Reportman.Designer
             subreportedit.SetSubReport(FReport, CurrentSubReport);
             fundocue.RefreshList();
             subreportedit.ClearSelection();
+
+            // Re-select the previously selected item if it still exists
+            if (selectedItem != null)
+            {
+                // Try to find and re-select the item
+                if (selectedItem is DatabaseInfo || selectedItem is DataInfo || selectedItem is Param)
+                {
+                    fdatadef.SelectItem(selectedItem);
+                }
+                else if (selectedItem is Section || selectedItem is SubReport)
+                {
+                    fstructure.SelectItem(selectedItem, false);
+                }
+            }
+
             AfterSelectDesign(this, null);
             subreportedit.parentcontrol.Invalidate();
         }
