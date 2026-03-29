@@ -257,5 +257,39 @@ namespace Reportman.Designer
             }
             return base.GetProperty(pname);
         }
+        public override string GetRealPropertyName(string translatedName)
+        {
+            // Name/Alias
+            if (translatedName == Translator.TranslateStr(544))
+                return "Alias";
+            // Param type
+            if (translatedName == Translator.TranslateStr(193))
+                return "ParamType";
+            // Value
+            if (translatedName == Translator.TranslateStr(194))
+                return "Value";
+            // Visible
+            if (translatedName == Translator.TranslateStr(183))
+                return "Visible";
+            // Description
+            if (translatedName == Translator.TranslateStr(197))
+                return "Description";
+            // Hint
+            if (translatedName == Translator.TranslateStr(1382))
+                return "Hint";
+            // Validation
+            if (translatedName == Translator.TranslateStr(1401))
+                return "Validation";
+            // Error Message
+            if (translatedName == Translator.TranslateStr(1403))
+                return "ErrorMessage";
+            // Datasets
+            if (translatedName == Translator.TranslateStr(198))
+                return "Datasets";
+            // Search
+            if (translatedName == Translator.TranslateStr(946))
+                return "Search";
+            return base.GetRealPropertyName(translatedName);
+        }
     }
 }

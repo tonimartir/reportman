@@ -235,28 +235,45 @@ namespace Reportman.Designer
                 Translator.TranslateStr(729), MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.No)
                 return;
             TreeNode nnode = FindSelectedNode();
+            int groupId = FReport?.UndoCue != null ? FReport.UndoCue.GetGroupId() : 0;
             if (nnode.Tag is SubReport)
             {
                 SubReport sub = (SubReport)nnode.Tag;
-                if (MessageBox.Show("¿Eliminar parámetros y datos relacionados?",
-                    Translator.TranslateStr(729), MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.No)
+                if (FReport.SubReports.Count <= 1)
+                    return;
+                if (sub.Alias != null && sub.Alias.Length > 0)
                 {
-                    FReport.DeleteSubReport(sub);
+                    var resultado = MessageBox.Show("¿Eliminar parámetros y datos relacionados?",
+                        Translator.TranslateStr(729), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                    if (resultado == DialogResult.Cancel)
+                        return;
+                    if (resultado == DialogResult.Yes)
+                    {
+                        ExternalReport.DeleteSubReport(FReport, sub);
+                    }
+                    else
+                    {
+                        FReport.DeleteItem(sub, groupId);
+                    }
                 }
                 else
                 {
-                    ExternalReport.DeleteSubReport(FReport, sub);
+                    FReport.DeleteItem(sub, groupId);
                 }
                 RefreshInterface();
+                if (OnReportChange != null)
+                    OnReportChange(this, new EventArgs());
                 return;
             }
             if (nnode.Tag is Section)
             {
                 SubReport subrep = FindSelectedSubReport();
                 Section sec = (Section)nnode.Tag;
-                sec.SubReport.DeleteSection(sec);
+                FReport.DeleteItem(sec, groupId);
                 RefreshInterface();
                 SelectItem(subrep, false);
+                if (OnReportChange != null)
+                    OnReportChange(this, new EventArgs());
             }
         }
 

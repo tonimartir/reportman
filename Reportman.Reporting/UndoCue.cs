@@ -90,7 +90,10 @@ namespace Reportman.Reporting
             {
                 if (!report.Components.TryGetValue(name, out var item))
                 {
-                    throw new Exception("Item not found at apply Operation undo/redo cue: " + name);
+                    if (!report.Components.TryGetValue(name.ToUpper(), out item))
+                    {
+                        throw new Exception("Item not found at apply Operation undo/redo cue: " + name);
+                    }
                 }
                 return item;
             }
@@ -158,6 +161,17 @@ namespace Reportman.Reporting
                     );
                     return;
 
+                case OperationType.Rename:
+                    {
+                        var oldName = isUndo ? operation.OldParentName : operation.ComponentName;
+                        var newName = isUndo ? operation.ComponentName : operation.OldParentName;
+                        var compo = GetComponentByName(newName, report);
+                        compo.Name = oldName;
+                        report.Components.Remove(newName);
+                        report.Components[oldName] = compo;
+                    }
+                    return;
+
                 case OperationType.Remove:
                     if (isUndo)
                     {
@@ -174,13 +188,19 @@ namespace Reportman.Reporting
                             if (parentCompo.ClassName == "TRPSECTION")
                             {
                                 var parentSec = parentCompo as Section;
-                                parentSec.Components.Insert(operation.OldItemIndex ?? 0, (PrintPosItem)target);
+                                var printPosItem = (PrintPosItem)target;
+                                printPosItem.Section = parentSec;
+                                parentSec.Components.Insert(operation.OldItemIndex ?? 0, printPosItem);
                             }
                             else
                             {
                                 var parentSub = GetComponentByName(operation.ParentName, report) as SubReport;
                                 if (parentSub == null)
                                     throw new Exception("Parent section name not found: " + operation.ParentName);
+                                if (target.ClassName == "TRPSECTION")
+                                {
+                                    ((Section)target).SubReport = parentSub;
+                                }
                                 parentSub.Sections.Insert(operation.OldItemIndex ?? 0, (Section)target);
                             }
                         }
@@ -198,9 +218,12 @@ namespace Reportman.Reporting
                                 case "TRPPARAM":
                                     report.Params.Insert(operation.OldItemIndex ?? 0, (Param)target);
                                     break;
+                                case "TRPSUBREPORT":
+                                    report.SubReports.Insert(operation.OldItemIndex ?? 0, (SubReport)target);
+                                    break;
                             }
                         }
-                        report.Components[target.Name] = target;
+                        report.Components[target.Name.ToUpper()] = target;
                     }
                     else
                     {
@@ -253,6 +276,7 @@ namespace Reportman.Reporting
                             if (componentToRemove.Name == operation.ComponentName)
                             {
                                 parentSection.Components.RemoveAt(idx);
+                                operation.OldItemIndex = idx;
                                 report.Components.Remove(componentToRemove.Name);
                                 return;
                             }
@@ -270,6 +294,7 @@ namespace Reportman.Reporting
                                     if (parentSubreport.Sections[i].Name == targetReportItem.Name)
                                     {
                                         parentSubreport.Sections.RemoveAt(i);
+                                        operation.OldItemIndex = i;
                                         report.Components.Remove(targetReportItem.Name);
                                         return;
                                     }
@@ -282,6 +307,7 @@ namespace Reportman.Reporting
                                     if (report.SubReports[i].Name == targetReportItem.Name)
                                     {
                                         report.SubReports.RemoveAt(i);
+                                        operation.OldItemIndex = i;
                                         report.Components.Remove(targetReportItem.Name);
                                         return;
                                     }
@@ -294,6 +320,7 @@ namespace Reportman.Reporting
                                     if (report.DataInfo[i].Name == targetReportItem.Name)
                                     {
                                         report.DataInfo.RemoveAt(i);
+                                        operation.OldItemIndex = i;
                                         report.Components.Remove(targetReportItem.Name);
                                         return;
                                     }
@@ -306,6 +333,7 @@ namespace Reportman.Reporting
                                     if (report.DatabaseInfo[i].Name == targetReportItem.Name)
                                     {
                                         report.DatabaseInfo.RemoveAt(i);
+                                        operation.OldItemIndex = i;
                                         report.Components.Remove(targetReportItem.Name);
                                         return;
                                     }
@@ -341,7 +369,7 @@ namespace Reportman.Reporting
                     {
                         if (parentSubreport != null)
                         {
-                            report.SubReports.Insert(operation.OldItemIndex ?? 0, (SubReport)target);
+                            parentSubreport.Sections.Insert(operation.OldItemIndex ?? 0, (Section)target);
                         }
                         else
                         {
@@ -355,6 +383,9 @@ namespace Reportman.Reporting
                                     break;
                                 case "TRPDATABASEINFOITEM":
                                     report.DatabaseInfo.Insert(operation.OldItemIndex ?? 0, (DatabaseInfo)target);
+                                    break;
+                                case "TRPSUBREPORT":
+                                    report.SubReports.Insert(operation.OldItemIndex ?? 0, (SubReport)target);
                                     break;
                                 default:
                                     throw new Exception("Class not found: " + target.ClassName);
@@ -425,6 +456,36 @@ namespace Reportman.Reporting
             var valueType = value.GetType();
 
             if (targetType.IsAssignableFrom(valueType)) return value;
+
+            // Handle Variant type specially (like TypeScript any type)
+            if (targetType == typeof(Variant))
+            {
+                if (value is Variant v) return v;
+                if (value is string strVal) return (Variant)strVal;
+                if (value is int intVal) return (Variant)intVal;
+                if (value is long longVal) return (Variant)longVal;
+                if (value is double doubleVal) return (Variant)doubleVal;
+                if (value is decimal decVal) return (Variant)decVal;
+                if (value is bool boolVal) return (Variant)boolVal;
+                if (value is DateTime dtVal) return (Variant)dtVal;
+                if (value is byte byteVal) return (Variant)byteVal;
+                if (value is char charVal) return (Variant)charVal;
+                // fallback: convert to string then to Variant
+                return (Variant)(value?.ToString() ?? "");
+            }
+
+            // Handle conversion from Variant to other types
+            if (valueType == typeof(Variant))
+            {
+                var variant = (Variant)value;
+                if (targetType == typeof(string)) return variant.AsString;
+                if (targetType == typeof(int)) return variant.AsInteger;
+                if (targetType == typeof(long)) return variant.AsLong;
+                if (targetType == typeof(double)) return variant.AsDouble;
+                if (targetType == typeof(decimal)) return variant.AsDecimal;
+                if (targetType == typeof(bool)) return (bool)variant;
+                if (targetType == typeof(DateTime)) return variant.AsDateTime;
+            }
 
             // handle common conversions
             try
