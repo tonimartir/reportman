@@ -2631,6 +2631,65 @@ end;
             ritem.Name = newName;
         }
         /// <summary>
+        /// Ensures all components have valid names. Generates names for components without one.
+        /// Call this after loading a report template to ensure undo/redo works correctly.
+        /// This is needed because in older versions, DataInfo, DatabaseInfo and Param did not have names.
+        /// </summary>
+        public void EnsureComponentNames()
+        {
+            // Ensure DatabaseInfo have names
+            foreach (var dbInfo in DatabaseInfo)
+            {
+                if (string.IsNullOrEmpty(dbInfo.Name))
+                {
+                    GenerateNewName(dbInfo);
+                }
+            }
+
+            // Ensure DataInfo have names
+            foreach (var dataInfo in DataInfo)
+            {
+                if (string.IsNullOrEmpty(dataInfo.Name))
+                {
+                    GenerateNewName(dataInfo);
+                }
+            }
+
+            // Ensure Params have names
+            for (int i = 0; i < Params.Count; i++)
+            {
+                if (string.IsNullOrEmpty(Params[i].Name))
+                {
+                    GenerateNewName(Params[i]);
+                }
+            }
+
+            // Ensure SubReports and their components have names
+            foreach (var subReport in SubReports)
+            {
+                if (string.IsNullOrEmpty(subReport.Name))
+                {
+                    GenerateNewName(subReport);
+                }
+
+                foreach (var section in subReport.Sections)
+                {
+                    if (string.IsNullOrEmpty(section.Name))
+                    {
+                        GenerateNewName(section);
+                    }
+
+                    foreach (var component in section.Components)
+                    {
+                        if (string.IsNullOrEmpty(component.Name))
+                        {
+                            GenerateNewName(component);
+                        }
+                    }
+                }
+            }
+        }
+        /// <summary>
         /// Find  new name for a report item
         /// </summary>
         /// <param name="ritem"></param>

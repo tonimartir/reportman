@@ -721,19 +721,21 @@ namespace Reportman.Reporting
                             sec.ChildSubReport.ParentSubReport = sec.ChildSubReport;
                         }
                     }
-                    if (sec.SubReportName.Length > 0)
-                    {
-                        sec.SubReportName = subrep.Name;
-                        sec.SubReport = subrep;
-                        /*
+					if (sec.SubReportName.Length > 0)
+					{
+						sec.SubReportName = subrep.Name;
+						sec.SubReport = subrep;
+						/*
 						sec.SubReport = (SubReport)areport.Components[sec.SubReportName];
 						if (sec.SubReport == null)
 							throw new NamedException("SubReport not found:" + sec.SubReportName, sec.SubReportName);*/
-                    }
-                }
-            }
-        }
-        private void ReadPropReport()
+					}
+				}
+			}
+			// Ensure all components have names (needed for undo/redo, older versions didn't require names for DataInfo, etc.)
+			areport.EnsureComponentNames();
+		}
+		private void ReadPropReport()
         {
             switch (propname)
             {
