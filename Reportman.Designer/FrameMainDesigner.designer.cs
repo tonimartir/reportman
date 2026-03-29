@@ -133,6 +133,8 @@
             mtextfile2 = new System.Windows.Forms.ToolStripMenuItem();
             bhideRight = new System.Windows.Forms.ToolStripButton();
             bexit = new System.Windows.Forms.ToolStripButton();
+            bundo = new System.Windows.Forms.ToolStripButton();
+            bredo = new System.Windows.Forms.ToolStripButton();
             openreportdialog = new System.Windows.Forms.OpenFileDialog();
             toolStripContainer1.ContentPanel.SuspendLayout();
             toolStripContainer1.TopToolStripPanel.SuspendLayout();
@@ -143,10 +145,13 @@
             panelparentprops.SuspendLayout();
             panel2.SuspendLayout();
             panelEstruc.SuspendLayout();
+            tabudocue = new System.Windows.Forms.TabPage();
+            fundocue = new UndoCuePanel();
             PControl.SuspendLayout();
             tabstruc.SuspendLayout();
             tabdata.SuspendLayout();
             tabfields.SuspendLayout();
+            tabudocue.SuspendLayout();
             panel1.SuspendLayout();
             TopBar.SuspendLayout();
             SuspendLayout();
@@ -295,6 +300,7 @@
             PControl.Controls.Add(tabstruc);
             PControl.Controls.Add(tabdata);
             PControl.Controls.Add(tabfields);
+            PControl.Controls.Add(tabudocue);
             PControl.Dock = System.Windows.Forms.DockStyle.Fill;
             PControl.Location = new System.Drawing.Point(0, 40);
             PControl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -369,6 +375,28 @@
             ffields.Size = new System.Drawing.Size(317, 662);
             ffields.TabIndex = 1;
             // 
+            // tabudocue
+            // 
+            tabudocue.Controls.Add(fundocue);
+            tabudocue.Location = new System.Drawing.Point(4, 29);
+            tabudocue.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            tabudocue.Name = "tabudocue";
+            tabudocue.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            tabudocue.Size = new System.Drawing.Size(325, 672);
+            tabudocue.TabIndex = 3;
+            tabudocue.Text = "Undo";
+            tabudocue.UseVisualStyleBackColor = true;
+            // 
+            // fundocue
+            // 
+            fundocue.Dock = System.Windows.Forms.DockStyle.Fill;
+            fundocue.Location = new System.Drawing.Point(4, 5);
+            fundocue.Margin = new System.Windows.Forms.Padding(5, 8, 5, 8);
+            fundocue.Name = "fundocue";
+            fundocue.Report = null;
+            fundocue.Size = new System.Drawing.Size(317, 662);
+            fundocue.TabIndex = 0;
+            // 
             // panel1
             // 
             panel1.Controls.Add(label1);
@@ -398,7 +426,7 @@
             TopBar.Dock = System.Windows.Forms.DockStyle.None;
             TopBar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             TopBar.ImageScalingSize = new System.Drawing.Size(19, 19);
-            TopBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { bnew, bopen, bsep1, bsave, bsep2, bpreview, bprint, toolStripSeparator6, bzoomplus, dropdownzoom, bzoomminus, toolStripSeparator5, bcopy, bpaste, bcut, bdelete, toolStripSeparator1, barrow, blabel, bexpression, bimage, bshape, bchart, bbarcode, toolStripSeparator7, bmoveleft, bmoveright, bmoveup, bmovedown, toolStripSeparator4, balignleft, balignright, baligntop, balignbottom, bhorizontalgap, bverticalgap, toolStripSeparator2, bEdit, bpagesetup, bgrid, bexecute, bhideRight, bexit });
+            TopBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { bnew, bopen, bsep1, bsave, bsep2, bpreview, bprint, toolStripSeparator6, bundo, bredo, bzoomplus, dropdownzoom, bzoomminus, toolStripSeparator5, bcopy, bpaste, bcut, bdelete, toolStripSeparator1, barrow, blabel, bexpression, bimage, bshape, bchart, bbarcode, toolStripSeparator7, bmoveleft, bmoveright, bmoveup, bmovedown, toolStripSeparator4, balignleft, balignright, baligntop, balignbottom, bhorizontalgap, bverticalgap, toolStripSeparator2, bEdit, bpagesetup, bgrid, bexecute, bhideRight, bexit });
             TopBar.Location = new System.Drawing.Point(4, 0);
             TopBar.Name = "TopBar";
             TopBar.Size = new System.Drawing.Size(1590, 27);
@@ -510,6 +538,24 @@
             bprint.Size = new System.Drawing.Size(29, 24);
             bprint.Text = "Print";
             bprint.Click += ButtonPrintClick;
+            // 
+            // bundo
+            // 
+            bundo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            bundo.Name = "bundo";
+            bundo.Size = new System.Drawing.Size(50, 24);
+            bundo.Text = "↩ Undo";
+            bundo.ToolTipText = "Undo (Ctrl+Z)";
+            bundo.Click += ButtonUndoClick;
+            // 
+            // bredo
+            // 
+            bredo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            bredo.Name = "bredo";
+            bredo.Size = new System.Drawing.Size(50, 24);
+            bredo.Text = "↪ Redo";
+            bredo.ToolTipText = "Redo (Ctrl+Y)";
+            bredo.Click += ButtonRedoClick;
             // 
             // toolStripSeparator6
             // 
@@ -1094,6 +1140,7 @@
             tabstruc.ResumeLayout(false);
             tabdata.ResumeLayout(false);
             tabfields.ResumeLayout(false);
+            tabudocue.ResumeLayout(false);
             panel1.ResumeLayout(false);
             TopBar.ResumeLayout(false);
             TopBar.PerformLayout();
@@ -1202,6 +1249,10 @@
         private System.Windows.Forms.Panel panelparentprops;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TabPage tabudocue;
+        private UndoCuePanel fundocue;
+        private System.Windows.Forms.ToolStripButton bundo;
+        private System.Windows.Forms.ToolStripButton bredo;
         private System.Windows.Forms.ToolStripDropDownButton bEdit;
         private System.Windows.Forms.ToolStripMenuItem majustar1_5;
         private System.Windows.Forms.ToolStripMenuItem mseleccionar;
