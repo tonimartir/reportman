@@ -28,6 +28,7 @@
 		<None Include="..\README.md" Pack="true" PackagePath="" />
 	</ItemGroup>
   <ItemGroup>
+		<ProjectReference Include="..\Reportman.Reporting.Design\Reportman.Reporting.Design.csproj" />
     <ProjectReference Include="..\Reportman.Reporting\Reportman.Reporting.csproj" />
   </ItemGroup>
 </Project>
