@@ -84,6 +84,7 @@
     <ProjectReference Include="..\Reportman.Drawing.Forms\Reportman.Drawing.Forms.csproj" />
     <ProjectReference Include="..\Reportman.Drawing\Reportman.Drawing.csproj" />
     <ProjectReference Include="..\Reportman.Reporting.Forms\Reportman.Reporting.Forms.csproj" />
+    <ProjectReference Include="..\Reportman.Reporting.Templates\Reportman.Reporting.Templates.csproj" />
     <ProjectReference Include="..\Reportman.Reporting\Reportman.Reporting.csproj" />
   </ItemGroup>
   <ItemGroup>

@@ -22,6 +22,7 @@ using Reportman.Drawing;
 using Reportman.Drawing.Forms;
 using Reportman.Reporting;
 using Reportman.Reporting.Forms;
+using Reportman.Reporting.Templates;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -246,6 +247,8 @@ namespace Reportman.Designer
             FReport = null;
             bexport.Text = Translator.TranslateStr(704);
             bnew.Text = Translator.TranslateStr(40);
+            mnewblank.Text = "Blank";
+            mnewgrouped.Text = "Grouped";
             bopen.Text = Translator.TranslateStr(42);
             bsave.Text = Translator.TranslateStr(46);
             bpreview.Text = Translator.TranslateStr(54);
@@ -414,14 +417,31 @@ namespace Reportman.Designer
 
             panelcontent.Visible = false;
         }
-        private void ButtonNewClick(object sender, EventArgs e)
+        private void OpenNewReport(Report report)
+        {
+            report.UndoCue = report.UndoCue ?? new UndoCue();
+            Report = report;
+            CurrentFilename = "";
+            CurrentReportSelection = null;
+
+            var memstream = new System.IO.MemoryStream();
+            report.SaveToStream(memstream, StreamVersion.V2);
+            memstream.Seek(0, System.IO.SeekOrigin.Begin);
+            SetSaved(memstream);
+        }
+
+        private void ButtonNewBlankClick(object sender, EventArgs e)
         {
             if (!CheckSave())
                 return;
-            Report nrep = new Report();
-            nrep.CreateNew();
-            nrep.UndoCue = new UndoCue();
-            Report = nrep;
+            OpenNewReport(ReportTemplateFactory.CreateBlankReport());
+        }
+
+        private void ButtonNewGroupedClick(object sender, EventArgs e)
+        {
+            if (!CheckSave())
+                return;
+            OpenNewReport(ReportTemplateFactory.CreateGroupedReport());
         }
         public bool ReportChanged()
         {

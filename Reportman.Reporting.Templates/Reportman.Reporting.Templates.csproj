@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+	<TargetFrameworks>net8.0;net9.0;net48</TargetFrameworks>
+    <OutputType>Library</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Configurations>Debug;Release</Configurations>
+    <AssemblyTitle>Reportman.Reporting.Templates</AssemblyTitle>
+    <Product>Reportman.Reporting.Templates</Product>
+    <Copyright>Copyright © 2017</Copyright>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <Platforms>AnyCPU;x86</Platforms>
+  </PropertyGroup>
+	<PropertyGroup>
+		<PackageId>Reportman.Reporting.Templates</PackageId>
+		<Version>3.9.15</Version>
+		<Authors>Toni Martir</Authors>
+		<Company>Reportman</Company>
+		<Description>Reusable report templates for Reportman designer and automation flows.</Description>
+		<PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
+		<RepositoryUrl>https://github.com/tonimartir/reportman</RepositoryUrl>
+		<PackageProjectUrl>https://reportman.es</PackageProjectUrl>
+		<PackageReleaseNotes>Initial release</PackageReleaseNotes>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Include="..\README.md" Pack="true" PackagePath="" />
+	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Reportman.Reporting\Reportman.Reporting.csproj" />
+  </ItemGroup>
+</Project>

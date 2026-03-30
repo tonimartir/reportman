@@ -183,7 +183,7 @@ namespace Reportman.Reporting
             }
             foreach (DatabaseInfo dbinfo in rp.DatabaseInfo)
             {
-                if (dbinfo.Driver != DriverType.Mybase)
+                if (dbinfo.Driver != DriverType.Mybase && dbinfo.Driver != DriverType.HttpAgent)
                 {
                     if (dbinfo.Driver == DriverType.IBX)
                         if (provider_factory.Length == 0)

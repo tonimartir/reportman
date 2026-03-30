@@ -51,7 +51,9 @@
             panel1 = new System.Windows.Forms.Panel();
             label1 = new System.Windows.Forms.Label();
             TopBar = new System.Windows.Forms.ToolStrip();
-            bnew = new System.Windows.Forms.ToolStripButton();
+            bnew = new System.Windows.Forms.ToolStripSplitButton();
+            mnewblank = new System.Windows.Forms.ToolStripMenuItem();
+            mnewgrouped = new System.Windows.Forms.ToolStripMenuItem();
             bopen = new System.Windows.Forms.ToolStripSplitButton();
             mopen = new System.Windows.Forms.ToolStripMenuItem();
             mopenfromlib = new System.Windows.Forms.ToolStripMenuItem();
@@ -435,12 +437,27 @@
             // bnew
             // 
             bnew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            bnew.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { mnewblank, mnewgrouped });
             bnew.Image = Properties.Resources.newdocument;
             bnew.ImageTransparentColor = System.Drawing.Color.Magenta;
             bnew.Name = "bnew";
-            bnew.Size = new System.Drawing.Size(29, 24);
+            bnew.Size = new System.Drawing.Size(38, 24);
             bnew.Text = "New";
-            bnew.Click += ButtonNewClick;
+            bnew.ButtonClick += ButtonNewBlankClick;
+            // 
+            // mnewblank
+            // 
+            mnewblank.Name = "mnewblank";
+            mnewblank.Size = new System.Drawing.Size(151, 26);
+            mnewblank.Text = "Blank";
+            mnewblank.Click += ButtonNewBlankClick;
+            // 
+            // mnewgrouped
+            // 
+            mnewgrouped.Name = "mnewgrouped";
+            mnewgrouped.Size = new System.Drawing.Size(151, 26);
+            mnewgrouped.Text = "Grouped";
+            mnewgrouped.Click += ButtonNewGroupedClick;
             // 
             // bopen
             // 
@@ -1157,7 +1174,9 @@
         private FrameDataDef fdatadef;
         private System.Windows.Forms.TabPage tabfields;
         private FrameFields ffields;
-        private System.Windows.Forms.ToolStripButton bnew;
+        private System.Windows.Forms.ToolStripSplitButton bnew;
+        private System.Windows.Forms.ToolStripMenuItem mnewblank;
+        private System.Windows.Forms.ToolStripMenuItem mnewgrouped;
         private System.Windows.Forms.ToolStripSplitButton bopen;
         private System.Windows.Forms.ToolStripSplitButton bsave;
         private System.Windows.Forms.ToolStripButton bpreview;
