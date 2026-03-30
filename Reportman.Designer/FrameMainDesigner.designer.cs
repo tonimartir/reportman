@@ -54,6 +54,7 @@
             bnew = new System.Windows.Forms.ToolStripSplitButton();
             mnewblank = new System.Windows.Forms.ToolStripMenuItem();
             mnewgrouped = new System.Windows.Forms.ToolStripMenuItem();
+            mnewgroupeddesign = new System.Windows.Forms.ToolStripMenuItem();
             bopen = new System.Windows.Forms.ToolStripSplitButton();
             mopen = new System.Windows.Forms.ToolStripMenuItem();
             mopenfromlib = new System.Windows.Forms.ToolStripMenuItem();
@@ -437,7 +438,7 @@
             // bnew
             // 
             bnew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            bnew.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { mnewblank, mnewgrouped });
+            bnew.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { mnewblank, mnewgrouped, mnewgroupeddesign });
             bnew.Image = Properties.Resources.newdocument;
             bnew.ImageTransparentColor = System.Drawing.Color.Magenta;
             bnew.Name = "bnew";
@@ -458,6 +459,13 @@
             mnewgrouped.Size = new System.Drawing.Size(151, 26);
             mnewgrouped.Text = "Grouped";
             mnewgrouped.Click += ButtonNewGroupedClick;
+            // 
+            // mnewgroupeddesign
+            // 
+            mnewgroupeddesign.Name = "mnewgroupeddesign";
+            mnewgroupeddesign.Size = new System.Drawing.Size(191, 26);
+            mnewgroupeddesign.Text = "Grouped (Design)";
+            mnewgroupeddesign.Click += ButtonNewGroupedDesignClick;
             // 
             // bopen
             // 
@@ -1177,6 +1185,7 @@
         private System.Windows.Forms.ToolStripSplitButton bnew;
         private System.Windows.Forms.ToolStripMenuItem mnewblank;
         private System.Windows.Forms.ToolStripMenuItem mnewgrouped;
+        private System.Windows.Forms.ToolStripMenuItem mnewgroupeddesign;
         private System.Windows.Forms.ToolStripSplitButton bopen;
         private System.Windows.Forms.ToolStripSplitButton bsave;
         private System.Windows.Forms.ToolStripButton bpreview;

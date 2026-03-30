@@ -10,6 +10,11 @@ namespace Reportman.Reporting.Design
 {
     public class ReportBatchEditor : IReportBatchEditor, IReportBatchValidator
     {
+        private const int DefaultSectionWidth = 10770;
+        private const int DefaultSectionHeight = 1113;
+        private const int ConstructorSectionWidth = 10700;
+        private const int ConstructorSectionHeight = 1500;
+
         private static readonly HashSet<string> TopLevelClasses = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         {
             "TRPSUBREPORT",
@@ -427,6 +432,7 @@ namespace Reportman.Reporting.Design
 
                 section.SubReport = parentSubReport;
                 section.SubReportName = parentSubReport.Name;
+                InitializeSectionDefaults(section, parentSubReport);
                 index = NormalizeIndex(insertIndex, parentSubReport.Sections.Count);
                 parentSubReport.Sections.Insert(index, section);
                 return;
@@ -447,6 +453,19 @@ namespace Reportman.Reporting.Design
             }
 
             throw new InvalidOperationException("Unsupported AddObject target class: " + target.ClassName);
+        }
+
+        private static void InitializeSectionDefaults(Section section, SubReport parentSubReport)
+        {
+            if (section.Width == ConstructorSectionWidth)
+            {
+                section.Width = parentSubReport.Sections.Count > 0 ? parentSubReport.Sections[0].Width : DefaultSectionWidth;
+            }
+
+            if (section.Height == ConstructorSectionHeight)
+            {
+                section.Height = parentSubReport.Sections.Count > 0 ? parentSubReport.Sections[0].Height : DefaultSectionHeight;
+            }
         }
 
         private static void ApplyProperties(ReportItem target, IList<ReportBatchProperty> properties, ChangeObjectOperation undoOperation, bool recordUndo)

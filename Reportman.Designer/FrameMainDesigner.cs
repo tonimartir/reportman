@@ -249,6 +249,7 @@ namespace Reportman.Designer
             bnew.Text = Translator.TranslateStr(40);
             mnewblank.Text = "Blank";
             mnewgrouped.Text = "Grouped";
+            mnewgroupeddesign.Text = "Grouped (Design)";
             bopen.Text = Translator.TranslateStr(42);
             bsave.Text = Translator.TranslateStr(46);
             bpreview.Text = Translator.TranslateStr(54);
@@ -442,6 +443,13 @@ namespace Reportman.Designer
             if (!CheckSave())
                 return;
             OpenNewReport(ReportTemplateFactory.CreateGroupedReport());
+        }
+
+        private void ButtonNewGroupedDesignClick(object sender, EventArgs e)
+        {
+            if (!CheckSave())
+                return;
+            OpenNewReport(ReportTemplateFactory.CreateGroupedReportUsingDesign());
         }
         public bool ReportChanged()
         {
