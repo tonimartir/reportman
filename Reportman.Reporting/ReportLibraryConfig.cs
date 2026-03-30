@@ -38,6 +38,22 @@ namespace Reportman.Reporting
             get; set;
         } = DriverType.DotNet2;
         public string ProviderName { get; set; } = "";
+        /// <summary>
+        /// Base URL for HttpAgent API (e.g., "https://api.reportman.es")
+        /// </summary>
+        public string HttpAgentBaseUrl { get; set; } = "";
+        /// <summary>
+        /// API Key for HttpAgent driver authentication (alternative to Bearer token)
+        /// </summary>
+        public string ApiKey { get; set; } = "";
+        /// <summary>
+        /// Hub Database Id for HttpAgent driver - identifies the database on the remote agent
+        /// </summary>
+        public long HubDatabaseId { get; set; } = 0;
+        /// <summary>
+        /// Bearer token for HttpAgent driver authentication (alternative to ApiKey)
+        /// </summary>
+        public string Token { get; set; } = "";
         public DbConnection CurrentConnection;
         public override string ToString()
         {
@@ -205,6 +221,11 @@ namespace Reportman.Reporting
                 aitem.ReportSearchField = inif.ReadString(conname, "REPORTSEARCHFIELD", aitem.ReportSearchField);
                 aitem.ReportGroupsTable = inif.ReadString(conname, "REPORTGROUPSTABLE", aitem.ReportGroupsTable);
                 aitem.ProviderName = inif.ReadString(conname, "PROVIDERFACTORY", "");
+                // HttpAgent properties
+                aitem.HttpAgentBaseUrl = inif.ReadString(conname, "HTTPAGENTBASEURL", "");
+                aitem.ApiKey = inif.ReadString(conname, "APIKEY", "");
+                aitem.HubDatabaseId = inif.ReadInteger(conname, "HUBDATABASEID", 0);
+                aitem.Token = inif.ReadString(conname, "TOKEN", "");
             }
         }
         public void SaveToFile(string filename)
@@ -226,6 +247,11 @@ namespace Reportman.Reporting
                 inif.WriteString(conname, "REPORTSEARCHFIELD", aitem.ReportSearchField);
                 inif.WriteString(conname, "REPORTGROUPSTABLE", aitem.ReportGroupsTable);
                 inif.WriteString(conname, "PROVIDERFACTORY", aitem.ProviderName);
+                // HttpAgent properties
+                inif.WriteString(conname, "HTTPAGENTBASEURL", aitem.HttpAgentBaseUrl);
+                inif.WriteString(conname, "APIKEY", aitem.ApiKey);
+                inif.WriteInteger(conname, "HUBDATABASEID", (int)aitem.HubDatabaseId);
+                inif.WriteString(conname, "TOKEN", aitem.Token);
             }
             inif.SaveToFile(filename);
         }

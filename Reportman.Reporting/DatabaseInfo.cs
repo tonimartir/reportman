@@ -75,7 +75,11 @@ namespace Reportman.Reporting
         /// <summary>Driver used to connect to databases using Firedac Delphi/C++Buider drivers
         /// DatabaseInfo to perform the connection<see cref="Variant">DatabaseInfo</see>
         /// Not Available only in .Net</summary>
-        Firedac = 9
+        Firedac = 9,
+        /// <summary>Driver used to connect to databases via HTTP Agent API.
+        /// Uses ApiKey or Bearer token authentication to execute SQL through a remote agent.
+        /// Available in .Net</summary>
+        HttpAgent = 10
     };
     /// <summary>
     /// The DotNetDriverType indicates the database provider to be used when you select DriverType.DotNet, that
@@ -152,7 +156,8 @@ namespace Reportman.Reporting
                 "Zeos Database Objects",
                 "Dot Net Connection",
                 "Dot Net 2 Connection",
-                "Firedac"
+                "Firedac",
+                "Http Agent"
             };
             return alist;
         }
@@ -202,24 +207,29 @@ namespace Reportman.Reporting
         /// </summary>
         /// <returns>A new DatabaseInfo item with same data as the original</returns>
 		public object Clone()
-        {
-            DatabaseInfo ninfo = new DatabaseInfo();
-            ninfo.Report = Report;
-            ninfo.Alias = Alias;
-            ninfo.Driver = Driver;
-            ninfo.ProviderFactory = ProviderFactory;
-            ninfo.ReportTable = ReportTable;
-            ninfo.ReportSearchField = ReportSearchField;
-            ninfo.Name = Name;
-            ninfo.ReportField = ReportField;
-            ninfo.ReportGroupsTable = ReportGroupsTable;
-            ninfo.ConnectionString = ConnectionString;
-            ninfo.FExternalConnection = FExternalConnection;
-            ninfo.Transaction = Transaction;
-            ninfo.DotNetDriver = DotNetDriver;
-            ninfo.TransIsolation = TransIsolation;
-            return ninfo;
-        }
+		{
+			DatabaseInfo ninfo = new DatabaseInfo();
+			ninfo.Report = Report;
+			ninfo.Alias = Alias;
+			ninfo.Driver = Driver;
+			ninfo.ProviderFactory = ProviderFactory;
+			ninfo.ReportTable = ReportTable;
+			ninfo.ReportSearchField = ReportSearchField;
+			ninfo.Name = Name;
+			ninfo.ReportField = ReportField;
+			ninfo.ReportGroupsTable = ReportGroupsTable;
+			ninfo.ConnectionString = ConnectionString;
+			ninfo.FExternalConnection = FExternalConnection;
+			ninfo.Transaction = Transaction;
+			ninfo.DotNetDriver = DotNetDriver;
+			ninfo.TransIsolation = TransIsolation;
+			// HttpAgent properties
+			ninfo.HttpAgentBaseUrl = HttpAgentBaseUrl;
+			ninfo.HttpAgentApiKey = HttpAgentApiKey;
+			ninfo.HttpAgentToken = HttpAgentToken;
+			ninfo.HttpAgentHubDatabaseId = HttpAgentHubDatabaseId;
+			return ninfo;
+		}
         /// <summary>
         /// Clone the DatabaseInfo item
         /// </summary>
@@ -249,6 +259,26 @@ namespace Reportman.Reporting
         public string ConnectionString { get; set; }
         /// <summary>DotNet driver type</summary>
         public DotNetDriverType DotNetDriver { get; set; }
+        /// <summary>
+        /// Base URL for HttpAgent API (e.g., "https://api.reportman.es")
+        /// </summary>
+#if DEBUG
+        public string HttpAgentBaseUrl { get; set; } = "https://api.reportman.es:7006";
+#else
+        public string HttpAgentBaseUrl { get; } = "https://api.reportman.es:44568";
+#endif
+        /// <summary>
+        /// API Key for HttpAgent authentication (alternative to Token)
+        /// </summary>
+        public string HttpAgentApiKey { get; set; }
+        /// <summary>
+        /// Bearer token for HttpAgent authentication (alternative to ApiKey)
+        /// </summary>
+        public string HttpAgentToken { get; set; }
+        /// <summary>
+        /// Hub Database Id for HttpAgent - identifies the database on the remote agent
+        /// </summary>
+        public long HttpAgentHubDatabaseId { get; set; }
         /// <summary>
         /// Default isolation level if a transaction have not assigned, all the querys related
         /// to this connection will run inside the same transaction
@@ -306,6 +336,19 @@ namespace Reportman.Reporting
             if (SqlExecuter != null)
                 return;
 
+            // HttpAgent driver uses HttpAgentExecutor instead of a database connection
+            if (Driver == DriverType.HttpAgent)
+            {
+                SqlExecuter = new HttpAgentExecutor
+                {
+                    BaseUrl = HttpAgentBaseUrl,
+                    ApiKey = HttpAgentApiKey,
+                    Token = HttpAgentToken,
+                    HubDatabaseId = HttpAgentHubDatabaseId
+                };
+                return;
+            }
+
             if (Connection != null)
             {
                 if (Transaction == null)
@@ -345,93 +388,93 @@ namespace Reportman.Reporting
                 IntTransaction = FConnection.BeginTransaction(TransIsolation);
             /*			switch (DotNetDriver)
                         {
-            #if REPMAN_OLEDB
+#if REPMAN_OLEDB
                             case DotNetDriverType.OleDb:
                                 System.Data.OleDb.OleDbConnection OleDbConn;
                                 OleDbConn = new OleDbConnection(UsedConnectionString);
                                 OleDbConn.Open();
                                 FConnection = OleDbConn;
                                 break;
-            #endif
-            #if REPMAN_ODBC
+#endif
+#if REPMAN_ODBC
                             case DotNetDriverType.Odbc:
                                 System.Data.Odbc.OdbcConnection OdbcConn;
                                 OdbcConn = new OdbcConnection(UsedConnectionString);
                                 OdbcConn.Open();
                                 FConnection = OdbcConn;
                                 break;
-            #endif
-            #if REPMAN_FIREBIRD
+#endif
+#if REPMAN_FIREBIRD
                             case DotNetDriverType.Firebird:
                                 FbConnection fbconn = new FbConnection(UsedConnectionString);
                                 fbconn.Open();
                                 FConnection = fbconn;
                                 break;
-            #endif
-            #if REPMAN_ORACLE
+#endif
+#if REPMAN_ORACLE
                             case DotNetDriverType.Oracle:
                                 OracleConnection oraconn = new OracleConnection(UsedConnectionString);
                                 oraconn.Open();
                                 FConnection = oraconn;
                                 break;
-            #endif
-            #if REPMAN_POSTGRESQL
+#endif
+#if REPMAN_POSTGRESQL
                             case DotNetDriverType.PostgreSql:
                                 Npgsql.NpgsqlConnection pgsqlconn=new Npgsql.NpgsqlConnection(UsedConnectionString);
                                 pgsqlconn.Open();
                                 FConnection=pgsqlconn;
                                 break;
-            #endif
-            #if REPMAN_SQLITE
+#endif
+#if REPMAN_SQLITE
                             case DotNetDriverType.SQLite:
                                 Mono.Data.SqliteClient.SqliteConnection sqliconn=new Mono.Data.SqliteClient.SqliteConnection(UsedConnectionString);
                                 sqliconn.Open();
                                 FConnection=sqliconn;
                                 break;
-            #endif
-            #if REPMAN_SYBASE
+#endif
+#if REPMAN_SYBASE
                             case DotNetDriverType.Sybase:
                                 Mono.Data.SybaseClient.SybaseConnection sybaseconn=new Mono.Data.SybaseClient.SybaseConnection(UsedConnectionString);
                                 sybaseconn.Open();
                                 FConnection=sybaseconn;
                                 break;
-            #endif
-            #if REPMAN_DB2
+#endif
+#if REPMAN_DB2
                             case DotNetDriverType.DB2:
                                 IBM.Data.DB2.DB2Connection db2conn=new IBM.Data.DB2.DB2Connection(UsedConnectionString);
                                 db2conn.Open();
                                 FConnection=db2conn;
                                 break;
-            #endif
-            #if REPMAN_MYSQL
+#endif
+#if REPMAN_MYSQL
                             case DotNetDriverType.MySql:
                                 MySql.Data.MySqlClient.MySqlConnection myconn=new MySql.Data.MySqlClient.MySqlConnection(UsedConnectionString);
                                 myconn.Open();
                                 FConnection=myconn;
                                 break;
-            #endif
-            #if REPMAN_SQL
+#endif
+#if REPMAN_SQL
                             case DotNetDriverType.Sql:
                                 SqlConnection sqconn = new SqlConnection(UsedConnectionString);
                                 sqconn.Open();
                                 FConnection = sqconn;
                                 break;
-            #endif
-            #if REPMAN_SQLCE
+#endif
+#if REPMAN_SQLCE
                             case DotNetDriverType.SqlCE:
                                 SqlCeConnection sqceconn=new SqlCeConnection(UsedConnectionString);
                                 sqceconn.Open();
                                 FConnection=sqceconn;
                                 break;
-            #endif
+#endif
                             default:
                                 throw new NamedException("Database driver not supported:" + DotNetDriver.ToString(),DotNetDriver.ToString());
                         }
-            #if NETSTANDARD2_0
-            #else
+#if NETSTANDARD2_0
+#else
                         if (Connection != null)
                             Transaction = Connection.BeginTransaction(TransIsolation);
-            #endif*/
+#endif*/
         }
         /// <summary>
         /// Obrains a IDataReader from a sql sentence
