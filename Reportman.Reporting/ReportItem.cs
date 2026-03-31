@@ -870,10 +870,10 @@ namespace Reportman.Reporting
             JObject jo = JObject.Load(reader);           
             
             // Lee el discriminador
-            var className = (string)jo["className"];
-            if (string.IsNullOrEmpty(className))
+            string className = null;
+            if (jo.TryGetValue("className", StringComparison.OrdinalIgnoreCase, out JToken classNameToken))
             {
-                // fallback al tipo base
+                className = classNameToken.ToObject<string>();
             }
             Type targetType;
             switch (className)
@@ -897,7 +897,7 @@ namespace Reportman.Reporting
                     targetType = typeof(ChartItem);
                     break;
                 default:
-                    throw new Exception("No se puede instanciar un PrintPosItem: " + className);
+                    throw new Exception("No se puede instanciar un PrintPosItem: " + (className ?? "<null>"));
             }
             // Crear instancia manualmente
             var obj = Activator.CreateInstance(targetType);
