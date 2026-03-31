@@ -449,7 +449,7 @@ namespace Reportman.Designer
         {
             if (!CheckSave())
                 return;
-            OpenNewReport(ReportTemplateFactory.CreateGroupedReportUsingDesign());
+            OpenNewReport(ReportTemplateFactory.CreateGroupedReportUsingDesignForDesigner());
         }
         public bool ReportChanged()
         {

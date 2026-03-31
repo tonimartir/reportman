@@ -53,6 +53,7 @@ namespace Reportman.Reporting.Design
         public Report Report { get; set; }
         public int UndoGroupId { get; set; }
         public int AppliedOperations { get; set; }
+        public List<ChangeObjectOperation> UndoOperations { get; } = new List<ChangeObjectOperation>();
         public List<ReportBatchIssue> Issues { get; } = new List<ReportBatchIssue>();
     }
 
