@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Reflection;
 using Reportman.Drawing;
 using Reportman.Reporting;
@@ -59,6 +60,24 @@ namespace Reportman.Reporting.Design
 
             report.EnsureComponentNames();
 
+            Report workingReport;
+            try
+            {
+                workingReport = CloneReport(report);
+            }
+            catch (Exception ex)
+            {
+                result.Issues.Add(new ReportBatchIssue
+                {
+                    Code = "clone_failed",
+                    Message = "Unable to create validation clone: " + ex.Message
+                });
+                return result;
+            }
+
+            workingReport.UndoCue = new UndoCue();
+            workingReport.Modified = report.Modified;
+
             bool createNewReportSeen = false;
             for (int index = 0; index < operations.Count; index++)
             {
@@ -80,26 +99,50 @@ namespace Reportman.Reporting.Design
                         result.Issues.Add(CreateIssue("create_new_not_first", "CreateNewReport must be the first operation in the batch.", index, operation));
                     }
                     createNewReportSeen = true;
+
+                    if (!HasIssuesForOperation(result, index))
+                    {
+                        try
+                        {
+                            ApplyOperation(workingReport, operation, 0);
+                        }
+                        catch (Exception ex)
+                        {
+                            result.Issues.Add(CreateIssue("validation_apply_failed", ex.Message, index, operation));
+                        }
+                    }
                     continue;
                 }
 
                 switch (operation.Type)
                 {
                     case ReportBatchOperationType.AddObject:
-                        ValidateAddObject(report, operation, index, result);
+                        ValidateAddObject(workingReport, operation, index, result);
                         break;
                     case ReportBatchOperationType.RemoveObject:
-                        ValidateTargetExists(report, operation, index, result);
+                        ValidateTargetExists(workingReport, operation, index, result);
                         break;
                     case ReportBatchOperationType.ModifyProperties:
-                        ValidateModify(report, operation, index, result);
+                        ValidateModify(workingReport, operation, index, result);
                         break;
                     case ReportBatchOperationType.ReorderObject:
-                        ValidateReorder(report, operation, index, result);
+                        ValidateReorder(workingReport, operation, index, result);
                         break;
                     default:
                         result.Issues.Add(CreateIssue("unknown_operation", "Unsupported batch operation.", index, operation));
                         break;
+                }
+
+                if (!HasIssuesForOperation(result, index))
+                {
+                    try
+                    {
+                        ApplyOperation(workingReport, operation, 0);
+                    }
+                    catch (Exception ex)
+                    {
+                        result.Issues.Add(CreateIssue("validation_apply_failed", ex.Message, index, operation));
+                    }
                 }
             }
 
@@ -123,6 +166,8 @@ namespace Reportman.Reporting.Design
             report.UndoCue = report.UndoCue ?? new UndoCue();
             report.EnsureComponentNames();
 
+            int initialUndoCount = report.UndoCue.UndoOperations.Count;
+
             int groupId = report.UndoCue.GetGroupId();
             result.UndoGroupId = groupId;
 
@@ -141,7 +186,38 @@ namespace Reportman.Reporting.Design
                 }
             }
 
+            for (int index = initialUndoCount; index < report.UndoCue.UndoOperations.Count; index++)
+            {
+                result.UndoOperations.Add(report.UndoCue.UndoOperations[index]);
+            }
+
             return result;
+        }
+
+        private static bool HasIssuesForOperation(ReportBatchValidationResult result, int operationIndex)
+        {
+            foreach (var issue in result.Issues)
+            {
+                if (issue != null && issue.OperationIndex == operationIndex)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static Report CloneReport(Report report)
+        {
+            using (var stream = new MemoryStream())
+            {
+                report.SaveToStream(stream, StreamVersion.V2);
+                stream.Position = 0;
+
+                var clone = new Report();
+                clone.LoadFromStream(stream);
+                return clone;
+            }
         }
 
         private static void ApplyOperation(Report report, ReportBatchOperation operation, int groupId)

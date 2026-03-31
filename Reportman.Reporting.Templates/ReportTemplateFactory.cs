@@ -55,6 +55,16 @@ namespace Reportman.Reporting.Templates
 
         public static Report CreateGroupedReportUsingDesign()
         {
+            return CreateGroupedReportUsingDesign(normalizeForSerialization: true);
+        }
+
+        public static Report CreateGroupedReportUsingDesignForDesigner()
+        {
+            return CreateGroupedReportUsingDesign(normalizeForSerialization: false);
+        }
+
+        private static Report CreateGroupedReportUsingDesign(bool normalizeForSerialization)
+        {
             var report = new Report();
             var editor = new ReportBatchEditor();
 
@@ -113,7 +123,10 @@ namespace Reportman.Reporting.Templates
                     new ReportBatchProperty { PropertyName = "DisplayFormat", Value = "#,##0.00" },
                     new ReportBatchProperty { PropertyName = "DataType", Value = ParamType.Double }));
 
-            NormalizeDesignBuiltTemplate(report);
+            if (normalizeForSerialization)
+            {
+                NormalizeDesignBuiltTemplate(report);
+            }
             report.EnsureComponentNames();
             return report;
         }
