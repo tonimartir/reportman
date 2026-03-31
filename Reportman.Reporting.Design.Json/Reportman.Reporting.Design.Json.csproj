@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+	<TargetFrameworks>net8.0;net9.0;net48</TargetFrameworks>
+    <OutputType>Library</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Configurations>Debug;Release</Configurations>
+    <AssemblyTitle>Reportman.Reporting.Design.Json</AssemblyTitle>
+    <Product>Reportman.Reporting.Design.Json</Product>
+    <Copyright>Copyright © 2017</Copyright>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <Platforms>AnyCPU;x86</Platforms>
+  </PropertyGroup>
+	<PropertyGroup>
+		<PackageId>Reportman.Reporting.Design.Json</PackageId>
+		<Version>3.9.15</Version>
+		<Authors>Toni Martir</Authors>
+		<Company>Reportman</Company>
+		<Description>JSON transport and adapters for Reportman batch design operations.</Description>
+		<PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
+		<RepositoryUrl>https://github.com/tonimartir/reportman</RepositoryUrl>
+		<PackageProjectUrl>https://reportman.es</PackageProjectUrl>
+		<PackageReleaseNotes>Initial release</PackageReleaseNotes>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Include="..\README.md" Pack="true" PackagePath="" />
+	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Reportman.Reporting.Design\Reportman.Reporting.Design.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="9.0.8" />
+  </ItemGroup>
+</Project>
