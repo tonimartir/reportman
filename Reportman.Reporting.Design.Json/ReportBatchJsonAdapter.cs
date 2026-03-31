@@ -1,14 +1,19 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 using Reportman.Reporting;
+using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace Reportman.Reporting.Design.Json
 {
     public class ReportBatchJsonAdapter : IReportBatchJsonAdapter
     {
         private static readonly JsonSerializerOptions SerializerOptions = CreateSerializerOptions();
+        private static readonly JsonSerializerSettings ReportSerializerSettings = CreateReportSerializerSettings();
 
         private readonly IReportBatchEditor editor;
 
@@ -29,7 +34,7 @@ namespace Reportman.Reporting.Design.Json
                 throw new ArgumentException("JSON payload is required.", nameof(json));
             }
 
-            var request = JsonSerializer.Deserialize<ReportBatchJsonRequest>(json, SerializerOptions);
+            var request = SystemTextJsonSerializer.Deserialize<ReportBatchJsonRequest>(json, SerializerOptions);
             if (request == null)
             {
                 throw new InvalidOperationException("Unable to deserialize batch request.");
@@ -45,7 +50,7 @@ namespace Reportman.Reporting.Design.Json
                 throw new ArgumentNullException(nameof(request));
             }
 
-            return JsonSerializer.Serialize(request, SerializerOptions);
+            return SystemTextJsonSerializer.Serialize(request, SerializerOptions);
         }
 
         public IReadOnlyList<ReportBatchOperation> ToOperations(ReportBatchJsonRequest request)
@@ -110,6 +115,71 @@ namespace Reportman.Reporting.Design.Json
             return result;
         }
 
+        public Report DeserializeReport(string reportJson)
+        {
+            return DeserializeReport(reportJson, ReportDocumentFormat.Json);
+        }
+
+        public Report DeserializeReport(string reportDocument, ReportDocumentFormat format)
+        {
+            if (string.IsNullOrWhiteSpace(reportDocument))
+            {
+                throw new ArgumentException("Report document payload is required.", nameof(reportDocument));
+            }
+
+            Report report;
+            switch (format)
+            {
+                case ReportDocumentFormat.Json:
+                    report = JsonConvert.DeserializeObject<Report>(reportDocument, ReportSerializerSettings);
+                    break;
+                case ReportDocumentFormat.Xml:
+                    report = DeserializeXmlReport(reportDocument);
+                    break;
+                default:
+                    throw new InvalidOperationException("Unsupported report document format: " + format);
+            }
+
+            if (report == null)
+            {
+                throw new InvalidOperationException("Unable to deserialize report document.");
+            }
+
+            report.EnsureComponentNames();
+            report.UndoCue = report.UndoCue ?? new UndoCue();
+            return report;
+        }
+
+        public Report DeserializeReportDocument(string reportDocument)
+        {
+            return DeserializeReport(reportDocument, DetectFormat(reportDocument));
+        }
+
+        public string SerializeReport(Report report)
+        {
+            return SerializeReport(report, ReportDocumentFormat.Json);
+        }
+
+        public string SerializeReport(Report report, ReportDocumentFormat format)
+        {
+            if (report == null)
+            {
+                throw new ArgumentNullException(nameof(report));
+            }
+
+            report.EnsureComponentNames();
+
+            switch (format)
+            {
+                case ReportDocumentFormat.Json:
+                    return JsonConvert.SerializeObject(report, Formatting.Indented, ReportSerializerSettings);
+                case ReportDocumentFormat.Xml:
+                    return SerializeXmlReport(report);
+                default:
+                    throw new InvalidOperationException("Unsupported report document format: " + format);
+            }
+        }
+
         public ReportBatchValidationResult Validate(Report report, string json)
         {
             return Validate(report, DeserializeRequest(json));
@@ -118,6 +188,21 @@ namespace Reportman.Reporting.Design.Json
         public ReportBatchValidationResult Validate(Report report, ReportBatchJsonRequest request)
         {
             return editor.Validate(report, ToOperations(request));
+        }
+
+        public ReportBatchValidationResult ValidateReportJson(string reportJson, string operationsJson)
+        {
+            return Validate(DeserializeReport(reportJson), operationsJson);
+        }
+
+        public ReportBatchValidationResult ValidateReportDocument(string reportDocument, string operationsJson, ReportDocumentFormat format)
+        {
+            return Validate(DeserializeReport(reportDocument, format), operationsJson);
+        }
+
+        public ReportBatchValidationResult ValidateReportDocument(string reportDocument, string operationsJson)
+        {
+            return Validate(DeserializeReportDocument(reportDocument), operationsJson);
         }
 
         public ReportBatchApplyResult Apply(Report report, string json)
@@ -130,6 +215,49 @@ namespace Reportman.Reporting.Design.Json
             return editor.Apply(report, ToOperations(request));
         }
 
+        public ReportBatchJsonDocumentApplyResponse ApplyReportJson(string reportJson, string operationsJson)
+        {
+            return ApplyReportDocument(reportJson, operationsJson, ReportDocumentFormat.Json);
+        }
+
+        public ReportBatchJsonDocumentApplyResponse ApplyReportDocument(string reportDocument, string operationsJson, ReportDocumentFormat format)
+        {
+            var report = DeserializeReport(reportDocument, format);
+            var applyResult = Apply(report, operationsJson);
+
+            var response = new ReportBatchJsonDocumentApplyResponse
+            {
+                Format = format,
+                UndoGroupId = applyResult.UndoGroupId,
+                AppliedOperations = applyResult.AppliedOperations,
+                ReportDocument = SerializeReport(report, format)
+            };
+
+            CopyIssues(response.Issues, applyResult.Issues);
+            return response;
+        }
+
+        public ReportBatchJsonDocumentApplyResponse ApplyReportDocument(string reportDocument, string operationsJson)
+        {
+            var format = DetectFormat(reportDocument);
+            return ApplyReportDocument(reportDocument, operationsJson, format);
+        }
+
+        public string ApplyReportJsonToReportJson(string reportJson, string operationsJson)
+        {
+            return ApplyReportJson(reportJson, operationsJson).ReportJson;
+        }
+
+        public string ApplyReportDocumentToReportDocument(string reportDocument, string operationsJson, ReportDocumentFormat format)
+        {
+            return ApplyReportDocument(reportDocument, operationsJson, format).ReportDocument;
+        }
+
+        public string ApplyReportDocumentToReportDocument(string reportDocument, string operationsJson)
+        {
+            return ApplyReportDocument(reportDocument, operationsJson).ReportDocument;
+        }
+
         public string SerializeValidationResult(ReportBatchValidationResult result)
         {
             if (result == null)
@@ -139,7 +267,7 @@ namespace Reportman.Reporting.Design.Json
 
             var response = new ReportBatchJsonValidationResponse();
             CopyIssues(response.Issues, result.Issues);
-            return JsonSerializer.Serialize(response, SerializerOptions);
+            return SystemTextJsonSerializer.Serialize(response, SerializerOptions);
         }
 
         public string SerializeApplyResult(ReportBatchApplyResult result)
@@ -155,7 +283,17 @@ namespace Reportman.Reporting.Design.Json
                 AppliedOperations = result.AppliedOperations
             };
             CopyIssues(response.Issues, result.Issues);
-            return JsonSerializer.Serialize(response, SerializerOptions);
+            return SystemTextJsonSerializer.Serialize(response, SerializerOptions);
+        }
+
+        public string SerializeDocumentApplyResult(ReportBatchJsonDocumentApplyResponse result)
+        {
+            if (result == null)
+            {
+                throw new ArgumentNullException(nameof(result));
+            }
+
+            return SystemTextJsonSerializer.Serialize(result, SerializerOptions);
         }
 
         private static JsonSerializerOptions CreateSerializerOptions()
@@ -166,6 +304,64 @@ namespace Reportman.Reporting.Design.Json
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
                 DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
             };
+        }
+
+        private static JsonSerializerSettings CreateReportSerializerSettings()
+        {
+            return new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore,
+                MissingMemberHandling = MissingMemberHandling.Ignore,
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+            };
+        }
+
+        private static Report DeserializeXmlReport(string reportXml)
+        {
+            var report = new Report();
+            using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(reportXml)))
+            {
+                report.LoadFromStream(stream);
+            }
+            return report;
+        }
+
+        private static string SerializeXmlReport(Report report)
+        {
+            var originalFormat = report.StreamFormat;
+            try
+            {
+                report.StreamFormat = StreamFormatType.XML;
+                using (var stream = new MemoryStream())
+                {
+                    report.SaveToStream(stream);
+                    return Encoding.UTF8.GetString(stream.ToArray());
+                }
+            }
+            finally
+            {
+                report.StreamFormat = originalFormat;
+            }
+        }
+
+        private static ReportDocumentFormat DetectFormat(string reportDocument)
+        {
+            if (string.IsNullOrWhiteSpace(reportDocument))
+            {
+                throw new ArgumentException("Report document payload is required.", nameof(reportDocument));
+            }
+
+            foreach (var character in reportDocument)
+            {
+                if (char.IsWhiteSpace(character))
+                {
+                    continue;
+                }
+
+                return character == '<' ? ReportDocumentFormat.Xml : ReportDocumentFormat.Json;
+            }
+
+            throw new ArgumentException("Report document payload is empty.", nameof(reportDocument));
         }
 
         private static void CopyIssues(List<ReportBatchJsonIssue> destination, IList<ReportBatchIssue> source)

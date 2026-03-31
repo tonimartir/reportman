@@ -52,16 +52,42 @@ namespace Reportman.Reporting.Design.Json
         public int AppliedOperations { get; set; }
     }
 
+    public class ReportBatchJsonDocumentApplyResponse : ReportBatchJsonApplyResponse
+    {
+        public ReportDocumentFormat Format { get; set; }
+        public string ReportDocument { get; set; }
+        public string ReportJson
+        {
+            get { return ReportDocument; }
+            set { ReportDocument = value; }
+        }
+    }
+
     public interface IReportBatchJsonAdapter
     {
         ReportBatchJsonRequest DeserializeRequest(string json);
         string SerializeRequest(ReportBatchJsonRequest request);
         IReadOnlyList<ReportBatchOperation> ToOperations(ReportBatchJsonRequest request);
+        Report DeserializeReport(string reportJson);
+        Report DeserializeReport(string reportDocument, ReportDocumentFormat format);
+        Report DeserializeReportDocument(string reportDocument);
+        string SerializeReport(Report report);
+        string SerializeReport(Report report, ReportDocumentFormat format);
         ReportBatchValidationResult Validate(Report report, string json);
         ReportBatchValidationResult Validate(Report report, ReportBatchJsonRequest request);
+        ReportBatchValidationResult ValidateReportJson(string reportJson, string operationsJson);
+        ReportBatchValidationResult ValidateReportDocument(string reportDocument, string operationsJson, ReportDocumentFormat format);
+        ReportBatchValidationResult ValidateReportDocument(string reportDocument, string operationsJson);
         ReportBatchApplyResult Apply(Report report, string json);
         ReportBatchApplyResult Apply(Report report, ReportBatchJsonRequest request);
+        ReportBatchJsonDocumentApplyResponse ApplyReportJson(string reportJson, string operationsJson);
+        ReportBatchJsonDocumentApplyResponse ApplyReportDocument(string reportDocument, string operationsJson, ReportDocumentFormat format);
+        ReportBatchJsonDocumentApplyResponse ApplyReportDocument(string reportDocument, string operationsJson);
+        string ApplyReportJsonToReportJson(string reportJson, string operationsJson);
+        string ApplyReportDocumentToReportDocument(string reportDocument, string operationsJson, ReportDocumentFormat format);
+        string ApplyReportDocumentToReportDocument(string reportDocument, string operationsJson);
         string SerializeValidationResult(ReportBatchValidationResult result);
         string SerializeApplyResult(ReportBatchApplyResult result);
+        string SerializeDocumentApplyResult(ReportBatchJsonDocumentApplyResponse result);
     }
 }
