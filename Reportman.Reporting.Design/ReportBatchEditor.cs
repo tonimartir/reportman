@@ -264,7 +264,7 @@ namespace Reportman.Reporting.Design
             var objectClass = operation.ObjectClass.Trim();
             if (string.Equals(objectClass, "TRPSUBREPORT", StringComparison.OrdinalIgnoreCase) && operation.InsertIndex == null)
             {
-                result.Issues.Add(CreateIssue("missing_insert_index", "TRPSUBREPORT requires zero-based InsertIndex because subreport order is significant.", index, operation));
+                result.Issues.Add(CreateIssue("missing_index", "TRPSUBREPORT requires zero-based index because subreport order is significant.", index, operation));
                 return;
             }
 
@@ -272,7 +272,7 @@ namespace Reportman.Reporting.Design
             {
                 if (operation.InsertIndex == null)
                 {
-                    result.Issues.Add(CreateIssue("missing_insert_index", "TRPSECTION requires zero-based InsertIndex because section order is significant.", index, operation));
+                    result.Issues.Add(CreateIssue("missing_index", "TRPSECTION requires zero-based index because section order is significant.", index, operation));
                     return;
                 }
 
@@ -355,7 +355,7 @@ namespace Reportman.Reporting.Design
             ValidateTargetExists(report, operation, index, result);
             if (operation.NewIndex == null)
             {
-                result.Issues.Add(CreateIssue("missing_new_index", "ReorderObject requires NewIndex.", index, operation));
+                result.Issues.Add(CreateIssue("missing_index", "ReorderObject requires zero-based index.", index, operation));
                 return;
             }
 

@@ -50,7 +50,36 @@ namespace Reportman.Reporting.Design.Json
                 throw new ArgumentNullException(nameof(request));
             }
 
-            return SystemTextJsonSerializer.Serialize(request, SerializerOptions);
+            var normalizedRequest = new ReportBatchJsonRequest
+            {
+                Version = request.Version,
+                Operations = new List<ReportBatchJsonOperation>()
+            };
+
+            if (request.Operations != null)
+            {
+                foreach (var operation in request.Operations)
+                {
+                    if (operation == null)
+                    {
+                        normalizedRequest.Operations.Add(null);
+                        continue;
+                    }
+
+                    normalizedRequest.Operations.Add(new ReportBatchJsonOperation
+                    {
+                        OperationId = operation.OperationId,
+                        Type = operation.Type,
+                        TargetName = operation.TargetName,
+                        ObjectClass = operation.ObjectClass,
+                        ParentName = operation.ParentName,
+                        Index = ResolveExternalIndex(operation),
+                        Properties = operation.Properties
+                    });
+                }
+            }
+
+            return SystemTextJsonSerializer.Serialize(normalizedRequest, SerializerOptions);
         }
 
         public IReadOnlyList<ReportBatchOperation> ToOperations(ReportBatchJsonRequest request)
@@ -86,10 +115,15 @@ namespace Reportman.Reporting.Design.Json
                     TargetName = operation.TargetName,
                     ObjectClass = operation.ObjectClass,
                     ParentName = operation.ParentName,
-                    InsertIndex = operation.InsertIndex,
-                    NewIndex = operation.NewIndex,
                     Properties = new List<ReportBatchProperty>()
                 };
+
+                mapped.InsertIndex = mapped.Type == ReportBatchOperationType.AddObject
+                    ? (operation.Index ?? operation.InsertIndex)
+                    : operation.InsertIndex;
+                mapped.NewIndex = mapped.Type == ReportBatchOperationType.ReorderObject
+                    ? (operation.Index ?? operation.NewIndex)
+                    : operation.NewIndex;
 
                 if (operation.Properties != null)
                 {
@@ -396,6 +430,29 @@ namespace Reportman.Reporting.Design.Json
             }
 
             return parsed;
+        }
+
+        private static int? ResolveExternalIndex(ReportBatchJsonOperation operation)
+        {
+            if (operation == null)
+            {
+                return null;
+            }
+
+            if (!string.IsNullOrWhiteSpace(operation.Type) && Enum.TryParse(operation.Type, true, out ReportBatchOperationType parsedType))
+            {
+                if (parsedType == ReportBatchOperationType.AddObject)
+                {
+                    return operation.Index ?? operation.InsertIndex;
+                }
+
+                if (parsedType == ReportBatchOperationType.ReorderObject)
+                {
+                    return operation.Index ?? operation.NewIndex;
+                }
+            }
+
+            return operation.Index;
         }
 
         private static object ConvertJsonElement(JsonElement element)

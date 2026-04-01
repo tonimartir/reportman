@@ -16,6 +16,7 @@ namespace Reportman.Reporting.Design.Json
         public string TargetName { get; set; }
         public string ObjectClass { get; set; }
         public string ParentName { get; set; }
+        public int? Index { get; set; }
         public int? InsertIndex { get; set; }
         public int? NewIndex { get; set; }
         public List<ReportBatchJsonProperty> Properties { get; set; } = new List<ReportBatchJsonProperty>();
