@@ -2676,16 +2676,6 @@ namespace Reportman.Reporting
                 astring = "</DATABASEINFO>";
                 StreamUtil.SWriteLine(astream, astring);
             }
-
-            // Write database info list
-            foreach (DatabaseInfo dbinfo in areport.DatabaseInfo)
-            {
-                astring = "<DATABASEINFO>";
-                StreamUtil.SWriteLine(astream, astring);
-                WriteDatabaseInfoXML(dbinfo, astream, version);
-                astring = "</DATABASEINFO>";
-                StreamUtil.SWriteLine(astream, astring);
-            }
             // Write datainfo list
             foreach (DataInfo dinfo in areport.DataInfo)
             {
