@@ -287,6 +287,11 @@ namespace Reportman.Reporting.Design
                 {
                     result.Issues.Add(CreateIssue("invalid_parent", "TRPSECTION parent must be a subreport.", index, operation));
                 }
+
+                if (!HasIssuesForOperation(result, index))
+                {
+                    ValidatePropertiesAgainstTarget(BaseReport.NewComponentByClassName(objectClass), operation.Properties, index, operation, result);
+                }
                 return;
             }
 
@@ -303,12 +308,24 @@ namespace Reportman.Reporting.Design
                 {
                     result.Issues.Add(CreateIssue("invalid_parent", objectClass + " parent must be a section.", index, operation));
                 }
+
+                if (!HasIssuesForOperation(result, index))
+                {
+                    ValidatePropertiesAgainstTarget(BaseReport.NewComponentByClassName(objectClass), operation.Properties, index, operation, result);
+                }
                 return;
             }
 
             if (!TopLevelClasses.Contains(objectClass))
             {
                 result.Issues.Add(CreateIssue("unsupported_class", "Unsupported AddObject class: " + objectClass, index, operation));
+                return;
+            }
+
+            if (!HasIssuesForOperation(result, index))
+            {
+                var target = BaseReport.NewComponentByClassName(objectClass);
+                ValidatePropertiesAgainstTarget(target, operation.Properties, index, operation, result);
             }
         }
 
@@ -346,6 +363,36 @@ namespace Reportman.Reporting.Design
                 if (string.Equals(property.PropertyName, "Name", StringComparison.OrdinalIgnoreCase))
                 {
                     result.Issues.Add(CreateIssue("rename_not_supported", "Rename is not supported in ModifyProperties V1.", index, operation));
+                }
+            }
+
+            if (!HasIssuesForOperation(result, index))
+            {
+                var target = TryGetComponentByName(report, operation.TargetName);
+                if (target != null)
+                {
+                    ValidatePropertiesAgainstTarget(target, operation.Properties, index, operation, result);
+                }
+            }
+        }
+
+        private static void ValidatePropertiesAgainstTarget(ReportItem target, IList<ReportBatchProperty> properties, int index, ReportBatchOperation operation, ReportBatchValidationResult result)
+        {
+            if (target == null || properties == null)
+            {
+                return;
+            }
+
+            foreach (var property in properties)
+            {
+                if (property == null || string.IsNullOrWhiteSpace(property.PropertyName))
+                {
+                    continue;
+                }
+
+                if (GetWritableMember(target.GetType(), property.PropertyName) == null)
+                {
+                    result.Issues.Add(CreateIssue("invalid_property", "Property '" + property.PropertyName + "' is not valid for target class " + target.ClassName + ".", index, operation));
                 }
             }
         }
@@ -905,7 +952,7 @@ namespace Reportman.Reporting.Design
                 }
 
                 var oldValue = GetMemberValue(target, member);
-                var newValue = ConvertValue(property.Value, GetMemberType(member));
+                var newValue = ConvertValue(property.Value, GetMemberType(member), resolvedPropertyName);
                 SetMemberValue(target, member, newValue);
 
                 if (recordUndo)
@@ -1038,9 +1085,40 @@ namespace Reportman.Reporting.Design
 
         private static string ResolveWritableMemberName(ReportItem target, string memberName)
         {
-            if (target is ShapeItem && string.Equals(memberName, "ShapeType", StringComparison.OrdinalIgnoreCase))
+            if (target is ShapeItem)
             {
-                return nameof(ShapeItem.Shape);
+                if (string.Equals(memberName, "ShapeType", StringComparison.OrdinalIgnoreCase))
+                {
+                    return nameof(ShapeItem.Shape);
+                }
+
+                if (string.Equals(memberName, "FillColor", StringComparison.OrdinalIgnoreCase))
+                {
+                    return nameof(ShapeItem.BrushColor);
+                }
+
+                if (string.Equals(memberName, "FillStyle", StringComparison.OrdinalIgnoreCase))
+                {
+                    return nameof(ShapeItem.BrushStyle);
+                }
+
+                if (string.Equals(memberName, "BorderColor", StringComparison.OrdinalIgnoreCase)
+                    || string.Equals(memberName, "LineColor", StringComparison.OrdinalIgnoreCase))
+                {
+                    return nameof(ShapeItem.PenColor);
+                }
+
+                if (string.Equals(memberName, "BorderWidth", StringComparison.OrdinalIgnoreCase)
+                    || string.Equals(memberName, "LineWidth", StringComparison.OrdinalIgnoreCase))
+                {
+                    return nameof(ShapeItem.PenWidth);
+                }
+
+                if (string.Equals(memberName, "BorderStyle", StringComparison.OrdinalIgnoreCase)
+                    || string.Equals(memberName, "LineStyle", StringComparison.OrdinalIgnoreCase))
+                {
+                    return nameof(ShapeItem.PenStyle);
+                }
             }
 
             return memberName;
@@ -1089,7 +1167,7 @@ namespace Reportman.Reporting.Design
             ((FieldInfo)member).SetValue(target, value);
         }
 
-        private static object ConvertValue(object value, Type targetType)
+        private static object ConvertValue(object value, Type targetType, string memberName = null)
         {
             if (value == null)
             {
@@ -1126,6 +1204,14 @@ namespace Reportman.Reporting.Design
                 return bool.Parse(boolText);
             }
 
+            if (nonNullableType == typeof(int) && value is string intText)
+            {
+                if (TryConvertIntegerString(intText, memberName, out var convertedInt))
+                {
+                    return convertedInt;
+                }
+            }
+
             if (nonNullableType == typeof(int[]))
             {
                 return ConvertArray<int>(value);
@@ -1142,6 +1228,41 @@ namespace Reportman.Reporting.Design
             }
 
             return Convert.ChangeType(value, nonNullableType, CultureInfo.InvariantCulture);
+        }
+
+        private static bool TryConvertIntegerString(string text, string memberName, out int converted)
+        {
+            converted = default;
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                return false;
+            }
+
+            var trimmed = text.Trim();
+            if (IsColorProperty(memberName) && (trimmed.StartsWith("#", StringComparison.Ordinal) || char.IsLetter(trimmed[0])))
+            {
+                converted = GraphicUtils.IntegerFromColor(GraphicUtils.ColorFromString(trimmed));
+                return true;
+            }
+
+            if (trimmed.StartsWith("0x", StringComparison.OrdinalIgnoreCase))
+            {
+                converted = Convert.ToInt32(trimmed.Substring(2), 16);
+                return true;
+            }
+
+            return false;
+        }
+
+        private static bool IsColorProperty(string memberName)
+        {
+            return string.Equals(memberName, nameof(PrintItemText.FontColor), StringComparison.OrdinalIgnoreCase)
+                || string.Equals(memberName, nameof(PrintItemText.BackColor), StringComparison.OrdinalIgnoreCase)
+                || string.Equals(memberName, nameof(ShapeItem.BrushColor), StringComparison.OrdinalIgnoreCase)
+                || string.Equals(memberName, nameof(ShapeItem.PenColor), StringComparison.OrdinalIgnoreCase)
+                || string.Equals(memberName, nameof(ShapeItem.Color), StringComparison.OrdinalIgnoreCase)
+                || string.Equals(memberName, nameof(BarcodeItem.BColor), StringComparison.OrdinalIgnoreCase)
+                || string.Equals(memberName, nameof(BarcodeItem.BackColor), StringComparison.OrdinalIgnoreCase);
         }
 
         private static Variant ConvertToVariant(object value)
