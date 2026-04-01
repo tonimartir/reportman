@@ -3076,7 +3076,7 @@ end;
             // ...
             if (groupId != 0)
             {
-                var op = new ChangeObjectOperation(OperationType.Remove, UndoCue.GetGroupId())
+                var op = new ChangeObjectOperation(OperationType.Remove, groupId)
                 {
                     ComponentClass = dataInfo.ClassName,
                     OldItemIndex = index,
@@ -3098,7 +3098,7 @@ end;
             // limpiar alias en dataInfo
             if (groupId != 0)
             {
-                var op = new ChangeObjectOperation(OperationType.Remove, UndoCue.GetGroupId())
+                var op = new ChangeObjectOperation(OperationType.Remove, groupId)
                 {
                     ComponentClass = databaseInfo.ClassName,
                     OldItemIndex = index,
