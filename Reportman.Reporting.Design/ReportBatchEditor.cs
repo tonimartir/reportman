@@ -897,7 +897,8 @@ namespace Reportman.Reporting.Design
                     continue;
                 }
 
-                var member = GetWritableMember(target.GetType(), property.PropertyName);
+                var resolvedPropertyName = ResolveWritableMemberName(target, property.PropertyName);
+                var member = GetWritableMember(target.GetType(), resolvedPropertyName);
                 if (member == null)
                 {
                     throw new InvalidOperationException("Property or field not found: " + property.PropertyName);
@@ -910,7 +911,7 @@ namespace Reportman.Reporting.Design
                 if (recordUndo)
                 {
                     undoOperation.AddProperty(
-                        property.PropertyName,
+                        resolvedPropertyName,
                         InferPropertyType(newValue, GetMemberType(member)),
                         oldValue,
                         newValue);
@@ -1033,6 +1034,16 @@ namespace Reportman.Reporting.Design
             }
 
             return requestedIndex.Value;
+        }
+
+        private static string ResolveWritableMemberName(ReportItem target, string memberName)
+        {
+            if (target is ShapeItem && string.Equals(memberName, "ShapeType", StringComparison.OrdinalIgnoreCase))
+            {
+                return nameof(ShapeItem.Shape);
+            }
+
+            return memberName;
         }
 
         private static MemberInfo GetWritableMember(Type type, string memberName)

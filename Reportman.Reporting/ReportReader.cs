@@ -1544,8 +1544,7 @@ namespace Reportman.Reporting
                         break;
                     case "BIDIMODE":
                         int nbidi = GetAsInteger();
-                        if (nbidi != 0)
-                            compt.RightToLeft = true;
+                        compt.RightToLeft = nbidi != 0;
                         assigned = true;
                         break;
                     case "MULTIPAGE":
@@ -2229,7 +2228,7 @@ namespace Reportman.Reporting
                 WritePropertyS("LFONTNAME", compt.LFontName, astream);
                 int bidi = 0;
                 if (compt.RightToLeft)
-                    bidi = 2;
+                    bidi = 1;
                 WritePropertyI("BIDIMODE", bidi, astream);
                 WritePropertyI("TYPE1FONT", (int)compt.Type1Font, astream);
                 WritePropertyI("FONTSIZE", compt.FontSize, astream);
@@ -2272,7 +2271,7 @@ namespace Reportman.Reporting
                 WritePropertyBool("SINGLELINE", compt.SingleLine, astream);
                 int intbidi = 0;
                 if (compt.RightToLeft)
-                    intbidi = 2;
+                    intbidi = 1;
                 WritePropertyI("BIDIMODE", intbidi, astream);
                 //                WritePropertyBool("RIGHTTOLEFT",compt.RightToLeft,astream);
                 WritePropertyBool("MULTIPAGE", compt.MultiPage, astream);
