@@ -517,6 +517,7 @@ namespace Reportman.Reporting
         }
         private void IntReadFromString()
         {
+            ResetReportState();
             position = astring.IndexOf("<REPORT");
             if (position < 0)
                 throw new UnNamedException("Report must begin with <REPORT" + (char)10 + astring);
@@ -735,6 +736,17 @@ namespace Reportman.Reporting
 			// Ensure all components have names (needed for undo/redo, older versions didn't require names for DataInfo, etc.)
 			areport.EnsureComponentNames();
 		}
+
+        private void ResetReportState()
+        {
+            areport.UndoCue = null;
+            areport.DatabaseInfo.Clear();
+            areport.DataInfo.Clear();
+            areport.Params.Clear();
+            areport.SubReports.Clear();
+            areport.EmbeddedFiles.Clear();
+            areport.Components = new ReportItems();
+        }
 		private void ReadPropReport()
         {
             switch (propname)
