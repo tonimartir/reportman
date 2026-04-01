@@ -3298,6 +3298,7 @@ end;
             op.AddProperty("groupName", PropertyType.String, null, item.GroupName);
             op.AddProperty("identifier", PropertyType.String, null, item.Identifier);
             op.AddProperty("printOnlyOne", PropertyType.Boolean, null, item.PrintOnlyOne);
+            op.AddProperty("printNulls", PropertyType.Boolean, null, item.PrintNulls);
         }
 
         private void AddShapeProperties(ShapeItem item, ChangeObjectOperation op)
