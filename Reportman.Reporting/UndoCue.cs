@@ -25,8 +25,31 @@ namespace Reportman.Reporting
 
         public int GetGroupId()
         {
+            SynchronizeGroupIdFromQueues();
             GroupId++;
             return GroupId;
+        }
+
+        public void EnsureGroupIdIsSynchronized()
+        {
+            SynchronizeGroupIdFromQueues();
+        }
+
+        private void SynchronizeGroupIdFromQueues()
+        {
+            if (UndoOperations.Count > 0 || (RedoOperations.Count > 0 && GroupId == 0))
+            {
+                if (UndoOperations.Count > 0)
+                {
+                    GroupId = UndoOperations[UndoOperations.Count - 1].GroupId;
+                }
+
+                if (RedoOperations.Count > 0)
+                {
+                    int redoGroupId = RedoOperations[0].GroupId;
+                    GroupId = Math.Max(GroupId, redoGroupId);
+                }
+            }
         }
 
         public List<ChangeObjectOperation> Undo(Report report)
