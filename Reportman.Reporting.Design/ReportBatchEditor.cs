@@ -262,8 +262,20 @@ namespace Reportman.Reporting.Design
             }
 
             var objectClass = operation.ObjectClass.Trim();
+            if (string.Equals(objectClass, "TRPSUBREPORT", StringComparison.OrdinalIgnoreCase) && operation.InsertIndex == null)
+            {
+                result.Issues.Add(CreateIssue("missing_insert_index", "TRPSUBREPORT requires zero-based InsertIndex because subreport order is significant.", index, operation));
+                return;
+            }
+
             if (string.Equals(objectClass, "TRPSECTION", StringComparison.OrdinalIgnoreCase))
             {
+                if (operation.InsertIndex == null)
+                {
+                    result.Issues.Add(CreateIssue("missing_insert_index", "TRPSECTION requires zero-based InsertIndex because section order is significant.", index, operation));
+                    return;
+                }
+
                 if (string.IsNullOrWhiteSpace(operation.ParentName))
                 {
                     result.Issues.Add(CreateIssue("missing_parent", "TRPSECTION requires ParentName pointing to a subreport.", index, operation));
