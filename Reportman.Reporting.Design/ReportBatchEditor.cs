@@ -1205,6 +1205,10 @@ namespace Reportman.Reporting.Design
             {
                 if (value is string stringValue)
                 {
+                    if (TryConvertKnownEnumString(nonNullableType, stringValue, out var enumValue))
+                    {
+                        return enumValue;
+                    }
                     return Enum.Parse(nonNullableType, stringValue, true);
                 }
                 return Enum.ToObject(nonNullableType, Convert.ChangeType(value, Enum.GetUnderlyingType(nonNullableType), CultureInfo.InvariantCulture));
@@ -1239,6 +1243,90 @@ namespace Reportman.Reporting.Design
             }
 
             return Convert.ChangeType(value, nonNullableType, CultureInfo.InvariantCulture);
+        }
+
+        private static bool TryConvertKnownEnumString(Type enumType, string value, out object converted)
+        {
+            converted = null;
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return false;
+            }
+
+            var normalized = NormalizeEnumText(value);
+            if (enumType == typeof(Aggregate))
+            {
+                switch (normalized)
+                {
+                    case "NONE":
+                    case "NINGUNO":
+                        converted = Aggregate.None;
+                        return true;
+                    case "GROUP":
+                    case "GRUPO":
+                        converted = Aggregate.Group;
+                        return true;
+                    case "PAGE":
+                    case "PAGINA":
+                        converted = Aggregate.Page;
+                        return true;
+                    case "GENERAL":
+                        converted = Aggregate.General;
+                        return true;
+                }
+            }
+
+            if (enumType == typeof(AggregateType))
+            {
+                switch (normalized)
+                {
+                    case "SUMMARY":
+                    case "SUM":
+                    case "SUMA":
+                    case "RESUMEN":
+                        converted = AggregateType.Summary;
+                        return true;
+                    case "MINIMUM":
+                    case "MIN":
+                    case "MINIMO":
+                        converted = AggregateType.Minimum;
+                        return true;
+                    case "MAXIMUM":
+                    case "MAX":
+                    case "MAXIMO":
+                        converted = AggregateType.Maximum;
+                        return true;
+                    case "AVERAGE":
+                    case "AVG":
+                    case "MEDIA":
+                    case "PROMEDIO":
+                        converted = AggregateType.Average;
+                        return true;
+                    case "STANDARDDEVIATION":
+                    case "STDDEV":
+                    case "DESVIACIONTIPICA":
+                        converted = AggregateType.StandardDeviation;
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static string NormalizeEnumText(string value)
+        {
+            return value
+                .Trim()
+                .ToUpperInvariant()
+                .Replace("Á", "A", StringComparison.Ordinal)
+                .Replace("É", "E", StringComparison.Ordinal)
+                .Replace("Í", "I", StringComparison.Ordinal)
+                .Replace("Ó", "O", StringComparison.Ordinal)
+                .Replace("Ú", "U", StringComparison.Ordinal)
+                .Replace("Ü", "U", StringComparison.Ordinal)
+                .Replace("_", string.Empty, StringComparison.Ordinal)
+                .Replace("-", string.Empty, StringComparison.Ordinal)
+                .Replace(" ", string.Empty, StringComparison.Ordinal);
         }
 
         private static bool TryConvertIntegerString(string text, string memberName, out int converted)
