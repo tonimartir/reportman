@@ -146,6 +146,8 @@ namespace Reportman.Reporting.Design
                 }
             }
 
+            ValidateReportStructureRules(workingReport, result);
+
             return result;
         }
 
@@ -382,6 +384,7 @@ namespace Reportman.Reporting.Design
             };
 
             ApplyProperties(target, operation.Properties, undoOperation, recordUndo: true);
+            SynchronizeGroupSectionChangeExpression(report, target as Section, operation.Properties, undoOperation, groupId);
             report.UndoCue.AddOperation(undoOperation, report);
         }
 
@@ -396,6 +399,7 @@ namespace Reportman.Reporting.Design
             };
 
             ApplyProperties(target, operation.Properties, undoOperation, recordUndo: true);
+            SynchronizeGroupSectionChangeExpression(report, target as Section, operation.Properties, undoOperation, groupId);
             report.UndoCue.AddOperation(undoOperation, report);
         }
 
@@ -541,6 +545,329 @@ namespace Reportman.Reporting.Design
             if (section.Height == ConstructorSectionHeight)
             {
                 section.Height = parentSubReport.Sections.Count > 0 ? parentSubReport.Sections[0].Height : DefaultSectionHeight;
+            }
+        }
+
+        private static void SynchronizeGroupSectionChangeExpression(Report report, Section section, IList<ReportBatchProperty> properties, ChangeObjectOperation currentUndoOperation, int groupId)
+        {
+            if (section == null || section.SubReport == null)
+            {
+                return;
+            }
+
+            if (section.SectionType != SectionType.GroupHeader && section.SectionType != SectionType.GroupFooter)
+            {
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(section.GroupName))
+            {
+                return;
+            }
+
+            var sibling = FindMatchingGroupSection(section);
+            if (sibling == null)
+            {
+                return;
+            }
+
+            var explicitChangeExpression = HasProperty(properties, "ChangeExpression");
+            var synchronizedExpression = ResolveSynchronizedChangeExpression(section, sibling, explicitChangeExpression);
+
+            SetSectionChangeExpression(section, synchronizedExpression, currentUndoOperation, recordUndo: currentUndoOperation != null);
+
+            ChangeObjectOperation siblingUndoOperation = null;
+            if (groupId != 0)
+            {
+                siblingUndoOperation = new ChangeObjectOperation(OperationType.Modify, groupId)
+                {
+                    ComponentName = sibling.Name,
+                    ComponentClass = sibling.ClassName,
+                    ParentName = sibling.SubReport == null ? null : sibling.SubReport.Name
+                };
+            }
+
+            if (SetSectionChangeExpression(sibling, synchronizedExpression, siblingUndoOperation, recordUndo: siblingUndoOperation != null) && siblingUndoOperation != null)
+            {
+                report.UndoCue.AddOperation(siblingUndoOperation, report);
+            }
+        }
+
+        private static Section FindMatchingGroupSection(Section section)
+        {
+            if (section.SubReport == null || string.IsNullOrWhiteSpace(section.GroupName))
+            {
+                return null;
+            }
+
+            var targetType = section.SectionType == SectionType.GroupHeader ? SectionType.GroupFooter : SectionType.GroupHeader;
+            foreach (var candidate in section.SubReport.Sections)
+            {
+                if (!ReferenceEquals(candidate, section)
+                    && candidate.SectionType == targetType
+                    && string.Equals(candidate.GroupName, section.GroupName, StringComparison.OrdinalIgnoreCase))
+                {
+                    return candidate;
+                }
+            }
+
+            return null;
+        }
+
+        private static string ResolveSynchronizedChangeExpression(Section section, Section sibling, bool explicitChangeExpression)
+        {
+            if (explicitChangeExpression)
+            {
+                return section.ChangeExpression ?? string.Empty;
+            }
+
+            if (!string.IsNullOrWhiteSpace(sibling.ChangeExpression))
+            {
+                return sibling.ChangeExpression;
+            }
+
+            return section.ChangeExpression ?? string.Empty;
+        }
+
+        private static bool SetSectionChangeExpression(Section section, string newValue, ChangeObjectOperation undoOperation, bool recordUndo)
+        {
+            newValue = newValue ?? string.Empty;
+            var oldValue = section.ChangeExpression ?? string.Empty;
+            if (string.Equals(oldValue, newValue, StringComparison.Ordinal))
+            {
+                return false;
+            }
+
+            section.ChangeExpression = newValue;
+
+            if (recordUndo && undoOperation != null && !HasUndoProperty(undoOperation, "ChangeExpression"))
+            {
+                undoOperation.AddProperty("ChangeExpression", PropertyType.String, oldValue, newValue);
+            }
+
+            return true;
+        }
+
+        private static bool HasProperty(IList<ReportBatchProperty> properties, string propertyName)
+        {
+            if (properties == null)
+            {
+                return false;
+            }
+
+            foreach (var property in properties)
+            {
+                if (property != null && string.Equals(property.PropertyName, propertyName, StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static bool HasUndoProperty(ChangeObjectOperation undoOperation, string propertyName)
+        {
+            foreach (var property in undoOperation.Properties)
+            {
+                if (string.Equals(property.PropertyName, propertyName, StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static void ValidateReportStructureRules(Report report, ReportBatchValidationResult result)
+        {
+            if (report.SubReports == null || report.SubReports.Count == 0)
+            {
+                result.Issues.Add(CreateIssue("no_subreports", "The report must contain at least one subreport.", null, null));
+                return;
+            }
+
+            foreach (SubReport subReport in report.SubReports)
+            {
+                ValidateSubReportStructure(subReport, result);
+            }
+        }
+
+        private static void ValidateSubReportStructure(SubReport subReport, ReportBatchValidationResult result)
+        {
+            var subReportName = string.IsNullOrWhiteSpace(subReport.Name) ? "(unnamed subreport)" : subReport.Name;
+            if (subReport.Sections == null || subReport.Sections.Count == 0)
+            {
+                result.Issues.Add(CreateIssue("missing_sections", "Subreport '" + subReportName + "' must contain at least one section.", null, null));
+                return;
+            }
+
+            ValidatePageHeadersAtStart(subReport, subReportName, result);
+            ValidatePageFootersAtEnd(subReport, subReportName, result);
+
+            var firstDetail = subReport.FirstDetail;
+            var lastDetail = subReport.LastDetail;
+            if (firstDetail < 0 || lastDetail < 0)
+            {
+                result.Issues.Add(CreateIssue("missing_detail", "Subreport '" + subReportName + "' must contain at least one detail section.", null, null));
+                return;
+            }
+
+            for (int index = 0; index < subReport.Sections.Count; index++)
+            {
+                var section = subReport.Sections[index];
+                if (section.SectionType == SectionType.GroupHeader && index >= firstDetail)
+                {
+                    result.Issues.Add(CreateIssue("group_header_after_detail", "Subreport '" + subReportName + "' has a group header after the first detail.", null, null));
+                    break;
+                }
+            }
+
+            for (int index = 0; index < subReport.Sections.Count; index++)
+            {
+                var section = subReport.Sections[index];
+                if (section.SectionType == SectionType.GroupFooter && index <= lastDetail)
+                {
+                    result.Issues.Add(CreateIssue("group_footer_before_detail", "Subreport '" + subReportName + "' has a group footer before the last detail.", null, null));
+                    break;
+                }
+            }
+
+            for (int index = firstDetail; index <= lastDetail; index++)
+            {
+                if (subReport.Sections[index].SectionType != SectionType.Detail)
+                {
+                    result.Issues.Add(CreateIssue("detail_block_invalid", "Subreport '" + subReportName + "' must keep all detail sections in one continuous detail block.", null, null));
+                    break;
+                }
+            }
+
+            ValidateGroupRules(subReport, subReportName, firstDetail, lastDetail, result);
+        }
+
+        private static void ValidatePageHeadersAtStart(SubReport subReport, string subReportName, ReportBatchValidationResult result)
+        {
+            bool nonHeaderSeen = false;
+            foreach (var section in subReport.Sections)
+            {
+                if (section.SectionType == SectionType.PageHeader)
+                {
+                    if (nonHeaderSeen)
+                    {
+                        result.Issues.Add(CreateIssue("page_header_not_first", "Subreport '" + subReportName + "' must keep page headers at the beginning.", null, null));
+                        return;
+                    }
+                }
+                else
+                {
+                    nonHeaderSeen = true;
+                }
+            }
+        }
+
+        private static void ValidatePageFootersAtEnd(SubReport subReport, string subReportName, ReportBatchValidationResult result)
+        {
+            bool nonFooterSeen = false;
+            for (int index = subReport.Sections.Count - 1; index >= 0; index--)
+            {
+                var section = subReport.Sections[index];
+                if (section.SectionType == SectionType.PageFooter)
+                {
+                    if (nonFooterSeen)
+                    {
+                        result.Issues.Add(CreateIssue("page_footer_not_last", "Subreport '" + subReportName + "' must keep page footers at the end.", null, null));
+                        return;
+                    }
+                }
+                else
+                {
+                    nonFooterSeen = true;
+                }
+            }
+        }
+
+        private static void ValidateGroupRules(SubReport subReport, string subReportName, int firstDetail, int lastDetail, ReportBatchValidationResult result)
+        {
+            var headerIndexes = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+            var footerIndexes = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+            var headerExpressions = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            var footerExpressions = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+
+            for (int index = 0; index < subReport.Sections.Count; index++)
+            {
+                var section = subReport.Sections[index];
+                if (section.SectionType != SectionType.GroupHeader && section.SectionType != SectionType.GroupFooter)
+                {
+                    continue;
+                }
+
+                if (string.IsNullOrWhiteSpace(section.GroupName))
+                {
+                    result.Issues.Add(CreateIssue("missing_group_name", "Subreport '" + subReportName + "' has a group section without GroupName.", null, null));
+                    continue;
+                }
+
+                var groupName = section.GroupName;
+                if (section.SectionType == SectionType.GroupHeader)
+                {
+                    if (headerIndexes.ContainsKey(groupName))
+                    {
+                        result.Issues.Add(CreateIssue("duplicate_group_header", "Subreport '" + subReportName + "' has more than one group header for group '" + groupName + "'.", null, null));
+                        continue;
+                    }
+
+                    headerIndexes[groupName] = index;
+                    headerExpressions[groupName] = section.ChangeExpression ?? string.Empty;
+                }
+                else
+                {
+                    if (footerIndexes.ContainsKey(groupName))
+                    {
+                        result.Issues.Add(CreateIssue("duplicate_group_footer", "Subreport '" + subReportName + "' has more than one group footer for group '" + groupName + "'.", null, null));
+                        continue;
+                    }
+
+                    footerIndexes[groupName] = index;
+                    footerExpressions[groupName] = section.ChangeExpression ?? string.Empty;
+                }
+            }
+
+            foreach (var pair in headerIndexes)
+            {
+                if (!footerIndexes.ContainsKey(pair.Key))
+                {
+                    result.Issues.Add(CreateIssue("group_pair_missing", "Subreport '" + subReportName + "' is missing the group footer for group '" + pair.Key + "'.", null, null));
+                }
+            }
+
+            foreach (var pair in footerIndexes)
+            {
+                if (!headerIndexes.ContainsKey(pair.Key))
+                {
+                    result.Issues.Add(CreateIssue("group_pair_missing", "Subreport '" + subReportName + "' is missing the group header for group '" + pair.Key + "'.", null, null));
+                }
+            }
+
+            foreach (var pair in headerIndexes)
+            {
+                if (!footerIndexes.TryGetValue(pair.Key, out var footerIndex))
+                {
+                    continue;
+                }
+
+                var headerIndex = pair.Value;
+                var headerExpression = headerExpressions[pair.Key] ?? string.Empty;
+                var footerExpression = footerExpressions[pair.Key] ?? string.Empty;
+
+                if (!string.Equals(headerExpression, footerExpression, StringComparison.Ordinal))
+                {
+                    result.Issues.Add(CreateIssue("group_change_expression_mismatch", "Subreport '" + subReportName + "' must keep the same ChangeExpression in the group header and group footer for group '" + pair.Key + "'.", null, null));
+                }
+
+                if ((firstDetail - headerIndex) != (footerIndex - lastDetail))
+                {
+                    result.Issues.Add(CreateIssue("group_not_symmetric", "Subreport '" + subReportName + "' must keep group '" + pair.Key + "' symmetric relative to the first and last detail.", null, null));
+                }
             }
         }
 
