@@ -390,9 +390,20 @@ namespace Reportman.Reporting.Design
                     continue;
                 }
 
-                if (GetWritableMember(target.GetType(), property.PropertyName) == null)
+                var member = GetWritableMember(target.GetType(), property.PropertyName);
+                if (member == null)
                 {
                     result.Issues.Add(CreateIssue("invalid_property", "Property '" + property.PropertyName + "' is not valid for target class " + target.ClassName + ".", index, operation));
+                    continue;
+                }
+
+                try
+                {
+                    ConvertValue(property.Value, GetMemberType(member), property.PropertyName);
+                }
+                catch (Exception ex)
+                {
+                    result.Issues.Add(CreateIssue("invalid_property_value", "Value '" + Convert.ToString(property.Value, CultureInfo.InvariantCulture) + "' is not valid for property '" + property.PropertyName + "' on target class " + target.ClassName + ": " + ex.Message, index, operation));
                 }
             }
         }
