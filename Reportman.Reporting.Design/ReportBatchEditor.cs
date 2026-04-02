@@ -1318,15 +1318,15 @@ namespace Reportman.Reporting.Design
             return value
                 .Trim()
                 .ToUpperInvariant()
-                .Replace("Á", "A", StringComparison.Ordinal)
-                .Replace("É", "E", StringComparison.Ordinal)
-                .Replace("Í", "I", StringComparison.Ordinal)
-                .Replace("Ó", "O", StringComparison.Ordinal)
-                .Replace("Ú", "U", StringComparison.Ordinal)
-                .Replace("Ü", "U", StringComparison.Ordinal)
-                .Replace("_", string.Empty, StringComparison.Ordinal)
-                .Replace("-", string.Empty, StringComparison.Ordinal)
-                .Replace(" ", string.Empty, StringComparison.Ordinal);
+                .Replace("Á", "A")
+                .Replace("É", "E")
+                .Replace("Í", "I")
+                .Replace("Ó", "O")
+                .Replace("Ú", "U")
+                .Replace("Ü", "U")
+                .Replace("_", string.Empty)
+                .Replace("-", string.Empty)
+                .Replace(" ", string.Empty);
         }
 
         private static bool TryConvertIntegerString(string text, string memberName, out int converted)
