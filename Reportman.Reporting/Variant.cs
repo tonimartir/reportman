@@ -2457,6 +2457,15 @@ namespace Reportman.Reporting
                 throw new Newtonsoft.Json.JsonSerializationException($"Unknown VariantType: {typeStr}");
 
             object value = valueToken.ToObject<object>();
+
+            if (vtype == VariantType.DateTime && value is DateTime aDate)
+            {
+                if (aDate.Kind == DateTimeKind.Utc)
+                {
+                    value = aDate.ToLocalTime();
+                }
+            }
+
             var variant = new Variant();
             variant.AssignFromObject(value);
             return variant;
@@ -2496,7 +2505,14 @@ namespace Reportman.Reporting
                 else if (vtype == VariantType.String)
                     value = valueElement.GetString();
                 else if (vtype == VariantType.DateTime)
-                    value = valueElement.GetDateTime();
+                {
+                    DateTime dt = valueElement.GetDateTime();
+                    if (dt.Kind == DateTimeKind.Utc)
+                    {
+                        dt = dt.ToLocalTime();
+                    }
+                    value = dt;
+                }
                 else if (vtype == VariantType.Null)
                     value = null;
                 else

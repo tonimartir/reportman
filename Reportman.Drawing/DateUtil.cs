@@ -14,7 +14,16 @@ namespace Reportman.Drawing
         /// </summary>
         public static DateTime DelphiDateToDateTime(double avalue)
         {
-            return FIRST_DELPHI_DAY.Add(DateUtil.DelphiDateTimeToTimeSpan(avalue));
+            return DateTime.FromOADate(avalue);
+        }
+        /// <summary>
+        /// Converts a DateTime to a double value representing the number of days from 30 Dec 1899
+        /// It mantains the time
+        /// </summary>
+        public static double DateTimeToDelphiDateTime(DateTime avalue)
+        {
+            TimeSpan difdate = avalue - FIRST_DELPHI_DAY;
+            return difdate.TotalDays;
         }
         public static string DateTimeToFbLiteralHour(DateTime nvalue)
         {

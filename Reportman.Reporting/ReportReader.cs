@@ -492,7 +492,7 @@ namespace Reportman.Reporting
         }
         private DateTime GetAsDateTime()
         {
-            DateTime adate = ((new DateTime(1899, 12, 30)).Add(DateUtil.DelphiDateTimeToTimeSpan(GetAsDouble())));
+            DateTime adate = DateUtil.DelphiDateToDateTime(GetAsDouble());
             return adate;
         }
         private double GetAsDouble()
@@ -2087,6 +2087,12 @@ namespace Reportman.Reporting
         private static void WritePropertyDateTime(string propname, DateTime propvalue, Stream astream)
         {
             string astring = "<" + propname + " type=\"DateTime\">" +
+                RpDoubleToStr(DateUtil.DateTimeToDelphiDateTime(propvalue)) + "</" + propname + ">";
+            StreamUtil.SWriteLine(astream, astring);
+        }
+        private static void WritePropertyDate(string propname, DateTime propvalue, Stream astream)
+        {
+            string astring = "<" + propname + " type=\"DateTime\">" +
                 RpDoubleToStr(DateUtil.DateTimeToDelphiDate(propvalue)) + "</" + propname + ">";
             StreamUtil.SWriteLine(astream, astring);
         }
@@ -2532,8 +2538,10 @@ namespace Reportman.Reporting
                         WritePropertyD("VALUE", aparam.Value, astream);
                     break;
                 case ParamType.Date:
-                case ParamType.Time:
+                    WritePropertyDate("VALUE", aparam.Value, astream);
+                    break;
                 case ParamType.DateTime:
+                case ParamType.Time:
                     WritePropertyDateTime("VALUE", aparam.Value, astream);
                     break;
                 case ParamType.Bool:
