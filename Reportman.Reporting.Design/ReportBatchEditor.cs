@@ -290,7 +290,9 @@ namespace Reportman.Reporting.Design
 
                 if (!HasIssuesForOperation(result, index))
                 {
-                    ValidatePropertiesAgainstTarget(BaseReport.NewComponentByClassName(objectClass), operation.Properties, index, operation, result);
+                    var target = BaseReport.NewComponentByClassName(objectClass);
+                    ValidatePropertiesAgainstTarget(target, operation.Properties, index, operation, result);
+                    ValidateSemanticProperties(report, target, operation.Properties, index, operation, result);
                 }
                 return;
             }
@@ -326,6 +328,7 @@ namespace Reportman.Reporting.Design
             {
                 var target = BaseReport.NewComponentByClassName(objectClass);
                 ValidatePropertiesAgainstTarget(target, operation.Properties, index, operation, result);
+                ValidateSemanticProperties(report, target, operation.Properties, index, operation, result);
             }
         }
 
@@ -372,7 +375,51 @@ namespace Reportman.Reporting.Design
                 if (target != null)
                 {
                     ValidatePropertiesAgainstTarget(target, operation.Properties, index, operation, result);
+                    ValidateSemanticProperties(report, target, operation.Properties, index, operation, result);
                 }
+            }
+        }
+
+        private static void ValidateSemanticProperties(Report report, ReportItem target, IList<ReportBatchProperty> properties, int index, ReportBatchOperation operation, ReportBatchValidationResult result)
+        {
+            if (report == null || target == null || properties == null || properties.Count == 0)
+            {
+                return;
+            }
+
+            if (!(target is SubReport))
+            {
+                return;
+            }
+
+            foreach (var property in properties)
+            {
+                if (property == null || string.IsNullOrWhiteSpace(property.PropertyName))
+                {
+                    continue;
+                }
+
+                if (!string.Equals(property.PropertyName, nameof(SubReport.Alias), StringComparison.OrdinalIgnoreCase))
+                {
+                    continue;
+                }
+
+                var aliasValue = Convert.ToString(property.Value, CultureInfo.InvariantCulture) ?? string.Empty;
+                if (string.IsNullOrWhiteSpace(aliasValue))
+                {
+                    return;
+                }
+
+                if (!HasDataInfoWithAlias(report, aliasValue))
+                {
+                    result.Issues.Add(CreateIssue(
+                        "invalid_subreport_alias",
+                        "Subreport Alias must match an existing dataset Alias. Dataset alias not found: '" + aliasValue + "'.",
+                        index,
+                        operation));
+                }
+
+                return;
             }
         }
 
@@ -812,7 +859,31 @@ namespace Reportman.Reporting.Design
                 }
             }
 
+            if (!string.IsNullOrWhiteSpace(subReport.Alias) && !HasDataInfoWithAlias(subReport.Report, subReport.Alias))
+            {
+                result.Issues.Add(CreateIssue("invalid_subreport_alias", "Subreport '" + subReportName + "' Alias must match an existing dataset Alias. Dataset alias not found: '" + subReport.Alias + "'.", null, null));
+            }
+
             ValidateGroupRules(subReport, subReportName, firstDetail, lastDetail, result);
+        }
+
+        private static bool HasDataInfoWithAlias(BaseReport report, string dataInfoAlias)
+        {
+            var typedReport = report as Report;
+            if (typedReport == null || string.IsNullOrWhiteSpace(dataInfoAlias) || typedReport.DataInfo == null)
+            {
+                return false;
+            }
+
+            foreach (DataInfo dataInfo in typedReport.DataInfo)
+            {
+                if (string.Equals(dataInfo.Alias, dataInfoAlias, StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private static void ValidatePageHeadersAtStart(SubReport subReport, string subReportName, ReportBatchValidationResult result)
