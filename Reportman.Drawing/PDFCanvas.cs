@@ -1420,7 +1420,7 @@ namespace Reportman.Drawing
                         posx = arect.Left + (int)(((arect.Width) - Lines[i].Width) / 2);
                     }
                     astring = Text.Substring(Lines[i].Position, Lines[i].Size);
-                    if (((Alignment & AlignmentFlags_AlignHJustify) > 0) && (!Lines[i].LastLine))
+                    if (((Alignment & AlignmentFlags_AlignHJustify) > 0) && (!Lines[i].LastLine) && !isHtml)
                     {
                         // Calculate the sizes of the words, then
                         // share space between words
