@@ -38,7 +38,10 @@ namespace Reportman.Reporting
             get { return sql; }
             set
             {
-                value ??= string.Empty;
+                    if (value == null)
+                    {
+                        value = string.Empty;
+                    }
                 if (string.Equals(sql, value, StringComparison.Ordinal))
                     return;
                 sql = value;
