@@ -1251,6 +1251,12 @@ namespace Reportman.Reporting
                 case "DATASOURCE":
                     ditem.DataSource = GetAsString();
                     break;
+                case "SQLEXPLANATION":
+                    ditem.SQLExplanation = GetAsString();
+                    break;
+                case "SQLEXPLANATIONERROR":
+                    ditem.SQLExplanationError = GetAsString();
+                    break;
                 case "MYBASEFILENAME":
                     ditem.MyBaseFilename = GetAsString();
                     break;

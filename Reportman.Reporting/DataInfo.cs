@@ -15,6 +15,7 @@ namespace Reportman.Reporting
         Strings masterfieldslist;
         Strings sharedfieldslist;
         object[] mastervalues;
+        private string sql;
 
         private Evaluator internalevaluator;
         private Evaluator GetEvaluator()
@@ -32,7 +33,21 @@ namespace Reportman.Reporting
         /// <summary>DatabaseInfo alias related to this dataset</summary>
 		public string DatabaseAlias { get; set; }
         /// <summary>Sql sentence, for parameters precede them by double quotes in native drivers or by @ symbol in .Net drivers</summary>
-		public string SQL { get; set; }
+        public string SQL
+        {
+            get { return sql; }
+            set
+            {
+                value ??= string.Empty;
+                if (string.Equals(sql, value, StringComparison.Ordinal))
+                    return;
+                sql = value;
+                SQLExplanation = string.Empty;
+                SQLExplanationError = string.Empty;
+            }
+        }
+        public string SQLExplanation { get; set; }
+        public string SQLExplanationError { get; set; }
         /// <summary>A master dataset can be assigned so the query is executed each time the parameters of the
         /// query change, the parameters with the same name as master dataset fields will be checked</summary>
 		public string DataSource { get; set; }
@@ -136,6 +151,8 @@ namespace Reportman.Reporting
             ninfo.OpenOnStart = this.OpenOnStart;
             ninfo.Report = Report;
             ninfo.SQL = this.SQL;
+            ninfo.SQLExplanation = this.SQLExplanation;
+            ninfo.SQLExplanationError = this.SQLExplanationError;
             return ninfo;
         }
         /// <summary>
@@ -148,6 +165,8 @@ namespace Reportman.Reporting
             OpenOnStart = true;
             DataUnions = new Strings();
             Alias = ""; DatabaseAlias = ""; SQL = ""; DataSource = ""; SQLOverride = "";
+            SQLExplanation = "";
+            SQLExplanationError = "";
             MyBaseFilename = ""; MyBaseFields = ""; MyBaseIndexFields = ""; MyBaseMasterFields = "";
             BDEIndexFields = ""; BDEIndexName = ""; BDETable = "";
             BDEFilter = ""; BDEMasterFields = ""; BDEFirstRange = ""; BDELastRange = "";
