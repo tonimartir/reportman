@@ -1257,6 +1257,9 @@ namespace Reportman.Reporting
                 case "SQLEXPLANATIONERROR":
                     ditem.SQLExplanationError = GetAsString();
                     break;
+                case "HUBSCHEMAID":
+                    ditem.HubSchemaId = GetAsInteger();
+                    break;
                 case "MYBASEFILENAME":
                     ditem.MyBaseFilename = GetAsString();
                     break;
@@ -2444,6 +2447,7 @@ namespace Reportman.Reporting
             }
             WritePropertyS("DATABASEALIAS", dinfo.DatabaseAlias, astream);
             WritePropertyS("SQL", dinfo.SQL, astream);
+            WritePropertyI("HUBSCHEMAID", (int)dinfo.HubSchemaId, astream);
             WritePropertyS("DATASOURCE", dinfo.DataSource, astream);
             WritePropertyS("MYBASEFILENAME", dinfo.MyBaseFilename, astream);
             WritePropertyS("MYBASEFIELDS", dinfo.MyBaseFields, astream);

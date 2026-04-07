@@ -51,6 +51,7 @@ namespace Reportman.Reporting
         }
         public string SQLExplanation { get; set; }
         public string SQLExplanationError { get; set; }
+        public long HubSchemaId { get; set; }
         /// <summary>A master dataset can be assigned so the query is executed each time the parameters of the
         /// query change, the parameters with the same name as master dataset fields will be checked</summary>
 		public string DataSource { get; set; }
@@ -156,6 +157,7 @@ namespace Reportman.Reporting
             ninfo.SQL = this.SQL;
             ninfo.SQLExplanation = this.SQLExplanation;
             ninfo.SQLExplanationError = this.SQLExplanationError;
+            ninfo.HubSchemaId = this.HubSchemaId;
             return ninfo;
         }
         /// <summary>
@@ -170,6 +172,7 @@ namespace Reportman.Reporting
             Alias = ""; DatabaseAlias = ""; SQL = ""; DataSource = ""; SQLOverride = "";
             SQLExplanation = "";
             SQLExplanationError = "";
+            HubSchemaId = 0;
             MyBaseFilename = ""; MyBaseFields = ""; MyBaseIndexFields = ""; MyBaseMasterFields = "";
             BDEIndexFields = ""; BDEIndexName = ""; BDETable = "";
             BDEFilter = ""; BDEMasterFields = ""; BDEFirstRange = ""; BDELastRange = "";
