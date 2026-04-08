@@ -2447,6 +2447,8 @@ namespace Reportman.Reporting
             }
             WritePropertyS("DATABASEALIAS", dinfo.DatabaseAlias, astream);
             WritePropertyS("SQL", dinfo.SQL, astream);
+            WritePropertyS("SQLEXPLANATION", dinfo.SQLExplanation, astream);
+            WritePropertyS("SQLEXPLANATIONERROR", dinfo.SQLExplanationError, astream);
             WritePropertyI("HUBSCHEMAID", (int)dinfo.HubSchemaId, astream);
             WritePropertyS("DATASOURCE", dinfo.DataSource, astream);
             WritePropertyS("MYBASEFILENAME", dinfo.MyBaseFilename, astream);
