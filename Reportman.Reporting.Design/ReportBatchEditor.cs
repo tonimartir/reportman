@@ -128,6 +128,10 @@ namespace Reportman.Reporting.Design
                     case ReportBatchOperationType.ReorderObject:
                         ValidateReorder(workingReport, operation, index, result);
                         break;
+                    case ReportBatchOperationType.SendToBackItem:
+                    case ReportBatchOperationType.BringToFrontItem:
+                        ValidateItemFrontBack(workingReport, operation, index, result);
+                        break;
                     default:
                         result.Issues.Add(CreateIssue("unknown_operation", "Unsupported batch operation.", index, operation));
                         break;
@@ -242,6 +246,12 @@ namespace Reportman.Reporting.Design
                     break;
                 case ReportBatchOperationType.ReorderObject:
                     ApplyReorder(report, operation, groupId);
+                    break;
+                case ReportBatchOperationType.SendToBackItem:
+                    ApplyItemFrontBack(report, operation, moveToFront: false, groupId);
+                    break;
+                case ReportBatchOperationType.BringToFrontItem:
+                    ApplyItemFrontBack(report, operation, moveToFront: true, groupId);
                     break;
                 default:
                     throw new InvalidOperationException("Unsupported batch operation: " + operation.Type.ToString());
@@ -476,6 +486,35 @@ namespace Reportman.Reporting.Design
             }
         }
 
+        private static void ValidateItemFrontBack(Report report, ReportBatchOperation operation, int index, ReportBatchValidationResult result)
+        {
+            ValidateTargetExists(report, operation, index, result);
+            if (HasIssuesForOperation(result, index))
+            {
+                return;
+            }
+
+            var target = TryGetComponentByName(report, operation.TargetName);
+            if (!(target is PrintPosItem printPosItem))
+            {
+                result.Issues.Add(CreateIssue(
+                    "invalid_item_target",
+                    operation.Type + " requires TargetName pointing to a section child item.",
+                    index,
+                    operation));
+                return;
+            }
+
+            if (printPosItem.Section == null)
+            {
+                result.Issues.Add(CreateIssue(
+                    "missing_item_parent",
+                    operation.Type + " requires the target item to belong to a section.",
+                    index,
+                    operation));
+            }
+        }
+
         private static void ApplyAddObject(Report report, ReportBatchOperation operation, int groupId)
         {
             var target = BaseReport.NewComponentByClassName(operation.ObjectClass.Trim());
@@ -549,6 +588,45 @@ namespace Reportman.Reporting.Design
             }
         }
 
+        private static void ApplyItemFrontBack(Report report, ReportBatchOperation operation, bool moveToFront, int groupId)
+        {
+            var target = GetComponentByName(report, operation.TargetName) as PrintPosItem;
+            if (target == null)
+            {
+                throw new InvalidOperationException(operation.Type + " requires a section child item target.");
+            }
+
+            var parentSection = target.Section;
+            if (parentSection == null)
+            {
+                throw new InvalidOperationException("Target item does not belong to a section.");
+            }
+
+            int currentIndex = parentSection.Components.IndexOf(target);
+            if (currentIndex < 0)
+            {
+                throw new InvalidOperationException("Target item was not found in its parent section.");
+            }
+
+            int targetIndex = moveToFront ? parentSection.Components.Count - 1 : 0;
+            if (currentIndex == targetIndex)
+            {
+                return;
+            }
+
+            while (currentIndex < targetIndex)
+            {
+                ApplySingleSwap(report, target, currentIndex, true, groupId);
+                currentIndex++;
+            }
+
+            while (currentIndex > targetIndex)
+            {
+                ApplySingleSwap(report, target, currentIndex, false, groupId);
+                currentIndex--;
+            }
+        }
+
         private static void ApplySingleSwap(Report report, ReportItem target, int currentIndex, bool moveDown, int groupId)
         {
             var operationType = moveDown ? OperationType.SwapDown : OperationType.SwapUp;
@@ -579,6 +657,10 @@ namespace Reportman.Reporting.Design
             else if (target is DatabaseInfo)
             {
                 report.DatabaseInfo.Swap(currentIndex, currentIndex + (moveDown ? 1 : -1));
+            }
+            else if (target is PrintPosItem printPosItem)
+            {
+                Swap(printPosItem.Section.Components, currentIndex, currentIndex + (moveDown ? 1 : -1));
             }
             else
             {

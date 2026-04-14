@@ -9,7 +9,9 @@ namespace Reportman.Reporting.Design
         AddObject,
         RemoveObject,
         ModifyProperties,
-        ReorderObject
+        ReorderObject,
+        SendToBackItem,
+        BringToFrontItem
     }
 
     public class ReportBatchProperty
