@@ -2377,7 +2377,7 @@ namespace Reportman.Reporting
                 WritePropertyI("PERSPECTIVE", compc.Perspective, astream);
                 WritePropertyI("ELEVATION", compc.Elevation, astream);
                 WritePropertyI("ROTATION", compc.Rotation, astream);
-                WritePropertyI("ZOOM", compc.Rotation, astream);
+                WritePropertyI("ZOOM", compc.Zoom, astream);
                 WritePropertyI("HORZOFFSET", compc.HorzOffset, astream);
                 WritePropertyI("VERTOFFSET", compc.VertOffset, astream);
                 WritePropertyI("TILT", compc.Tilt, astream);

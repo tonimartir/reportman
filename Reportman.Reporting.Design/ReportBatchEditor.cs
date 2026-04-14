@@ -11,6 +11,7 @@ namespace Reportman.Reporting.Design
 {
     public class ReportBatchEditor : IReportBatchEditor, IReportBatchValidator
     {
+        private const string FontNameProperty = "FontName";
         private const int DefaultSectionWidth = 10770;
         private const int DefaultSectionHeight = 1113;
         private const int ConstructorSectionWidth = 10700;
@@ -447,8 +448,8 @@ namespace Reportman.Reporting.Design
                     continue;
                 }
 
-                var member = GetWritableMember(target.GetType(), property.PropertyName);
-                if (member == null)
+                var members = ResolveWritableMembers(target, property.PropertyName);
+                if (members.Count == 0)
                 {
                     result.Issues.Add(CreateIssue("invalid_property", "Property '" + property.PropertyName + "' is not valid for target class " + target.ClassName + ".", index, operation));
                     continue;
@@ -456,7 +457,7 @@ namespace Reportman.Reporting.Design
 
                 try
                 {
-                    ConvertValue(property.Value, GetMemberType(member), property.PropertyName);
+                    ConvertValue(property.Value, GetMemberType(members[0]), property.PropertyName);
                 }
                 catch (Exception ex)
                 {
@@ -1108,24 +1109,27 @@ namespace Reportman.Reporting.Design
                     continue;
                 }
 
-                var resolvedPropertyName = ResolveWritableMemberName(target, property.PropertyName);
-                var member = GetWritableMember(target.GetType(), resolvedPropertyName);
-                if (member == null)
+                var members = ResolveWritableMembers(target, property.PropertyName);
+                if (members.Count == 0)
                 {
                     throw new InvalidOperationException("Property or field not found: " + property.PropertyName);
                 }
 
-                var oldValue = GetMemberValue(target, member);
-                var newValue = ConvertValue(property.Value, GetMemberType(member), resolvedPropertyName);
-                SetMemberValue(target, member, newValue);
-
-                if (recordUndo)
+                var newValue = ConvertValue(property.Value, GetMemberType(members[0]), property.PropertyName);
+                foreach (var member in members)
                 {
-                    undoOperation.AddProperty(
-                        resolvedPropertyName,
-                        InferPropertyType(newValue, GetMemberType(member)),
-                        oldValue,
-                        newValue);
+                    var oldValue = GetMemberValue(target, member);
+                    SetMemberValue(target, member, newValue);
+
+                    if (recordUndo)
+                    {
+                        var resolvedPropertyName = GetMemberName(member);
+                        undoOperation.AddProperty(
+                            resolvedPropertyName,
+                            InferPropertyType(newValue, GetMemberType(member)),
+                            oldValue,
+                            newValue);
+                    }
                 }
             }
         }
@@ -1249,6 +1253,11 @@ namespace Reportman.Reporting.Design
 
         private static string ResolveWritableMemberName(ReportItem target, string memberName)
         {
+            if (target is PrintItemText && string.Equals(memberName, FontNameProperty, StringComparison.OrdinalIgnoreCase))
+            {
+                return nameof(PrintItemText.WFontName);
+            }
+
             if (target is ShapeItem)
             {
                 if (string.Equals(memberName, "ShapeType", StringComparison.OrdinalIgnoreCase))
@@ -1286,6 +1295,52 @@ namespace Reportman.Reporting.Design
             }
 
             return memberName;
+        }
+
+        private static IReadOnlyList<MemberInfo> ResolveWritableMembers(ReportItem target, string memberName)
+        {
+            if (target is PrintItemText && string.Equals(memberName, FontNameProperty, StringComparison.OrdinalIgnoreCase))
+            {
+                var members = new List<MemberInfo>(2);
+                var windowsFontMember = GetWritableMember(target.GetType(), nameof(PrintItemText.WFontName));
+                var linuxFontMember = GetWritableMember(target.GetType(), nameof(PrintItemText.LFontName));
+
+                if (windowsFontMember != null)
+                {
+                    members.Add(windowsFontMember);
+                }
+
+                if (linuxFontMember != null)
+                {
+                    members.Add(linuxFontMember);
+                }
+
+                return members;
+            }
+
+            var resolvedPropertyName = ResolveWritableMemberName(target, memberName);
+            var member = GetWritableMember(target.GetType(), resolvedPropertyName);
+            if (member == null)
+            {
+                return Array.Empty<MemberInfo>();
+            }
+
+            return new[] { member };
+        }
+
+        private static string GetMemberName(MemberInfo member)
+        {
+            if (member is PropertyInfo property)
+            {
+                return property.Name;
+            }
+
+            if (member is FieldInfo field)
+            {
+                return field.Name;
+            }
+
+            return member.Name;
         }
 
         private static MemberInfo GetWritableMember(Type type, string memberName)
