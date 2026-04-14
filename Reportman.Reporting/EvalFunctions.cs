@@ -291,7 +291,7 @@ namespace Reportman.Reporting
                             nresult = "Febrer";
                             break;
                         case 3:
-                            nresult = "Març";
+                            nresult = "MarÃ§";
                             break;
                         case 4:
                             nresult = "Abril";
@@ -358,7 +358,7 @@ namespace Reportman.Reporting
         {
             SetParamCount(2);
             Name = "FORMATSTR";
-            FModel = "function FormatStr(format:string;value:Variant):string";
+            FModel = "function FormatStr(format:string, value:Variant):string";
         }
         protected override Variant GetValue()
         {
@@ -405,7 +405,7 @@ namespace Reportman.Reporting
         {
             SetParamCount(2);
             Name = "Left";
-            FModel = "function Left(value:string;count:integer):string";
+            FModel = "function Left(value:string, count:integer):string";
         }
         protected override Variant GetValue()
         {
@@ -428,7 +428,7 @@ namespace Reportman.Reporting
         {
             SetParamCount(3);
             Name = "REPLACESTR";
-            FModel = "function Replace(const S:string;OldPattern,NewPattern: string):string";
+            FModel = "function Replace(const S:string, OldPattern,NewPattern: string):string";
         }
         protected override Variant GetValue()
         {
@@ -459,7 +459,7 @@ namespace Reportman.Reporting
         {
             SetParamCount(2);
             Name = "Right";
-            FModel = "function Right(value:string;count:integer):string";
+            FModel = "function Right(value:string, count:integer):string";
         }
         protected override Variant GetValue()
         {
@@ -633,7 +633,7 @@ namespace Reportman.Reporting
         {
             SetParamCount(3);
             Name = "SubStr";
-            FModel = "function SubStr(value:string;index,count:integer):string";
+            FModel = "function SubStr(value:string, index,count:integer):string";
         }
         protected override Variant GetValue()
         {
@@ -988,7 +988,7 @@ namespace Reportman.Reporting
         {
             SetParamCount(2);
             Name = "NumToText";
-            FModel = "function NumToText(num:double;female:boolean):string";
+            FModel = "function NumToText(num:double, female:boolean):string";
         }
         protected override Variant GetValue()
         {
