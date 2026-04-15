@@ -20,6 +20,23 @@ namespace Reportman.Reporting.Design.Json
         public int? InsertIndex { get; set; }
         public int? NewIndex { get; set; }
         public List<ReportBatchJsonProperty> Properties { get; set; } = new List<ReportBatchJsonProperty>();
+
+        // Optional semantic V1 fields used by the AI designer before expansion to low-level operations.
+        public string ParentSubreportName { get; set; }
+        public string SectionName { get; set; }
+        public string PageHeaderName { get; set; }
+        public string PageFooterName { get; set; }
+        public string DetailName { get; set; }
+        public string GroupHeaderSectionName { get; set; }
+        public string GroupFooterSectionName { get; set; }
+        public string GroupName { get; set; }
+        public string ChangeExpression { get; set; }
+        public int? InsertIndexRelativeToFirstPageHeader { get; set; }
+        public int? InsertIndexRelativeToFirstPageFooter { get; set; }
+        public int? InsertIndexRelativeToFirstDetail { get; set; }
+        public int? InsertIndexRelativeToFirstGroupHeader { get; set; }
+        public List<ReportBatchJsonProperty> GroupHeaderProperties { get; set; }
+        public List<ReportBatchJsonProperty> GroupFooterProperties { get; set; }
     }
 
     public class ReportBatchJsonProperty

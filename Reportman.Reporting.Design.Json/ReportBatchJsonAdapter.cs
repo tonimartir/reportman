@@ -74,7 +74,22 @@ namespace Reportman.Reporting.Design.Json
                         ObjectClass = operation.ObjectClass,
                         ParentName = operation.ParentName,
                         Index = ResolveExternalIndex(operation),
-                        Properties = operation.Properties
+                        Properties = operation.Properties,
+                        ParentSubreportName = operation.ParentSubreportName,
+                        SectionName = operation.SectionName,
+                        PageHeaderName = operation.PageHeaderName,
+                        PageFooterName = operation.PageFooterName,
+                        DetailName = operation.DetailName,
+                        GroupHeaderSectionName = operation.GroupHeaderSectionName,
+                        GroupFooterSectionName = operation.GroupFooterSectionName,
+                        GroupName = operation.GroupName,
+                        ChangeExpression = operation.ChangeExpression,
+                        InsertIndexRelativeToFirstPageHeader = operation.InsertIndexRelativeToFirstPageHeader,
+                        InsertIndexRelativeToFirstPageFooter = operation.InsertIndexRelativeToFirstPageFooter,
+                        InsertIndexRelativeToFirstDetail = operation.InsertIndexRelativeToFirstDetail,
+                        InsertIndexRelativeToFirstGroupHeader = operation.InsertIndexRelativeToFirstGroupHeader,
+                        GroupHeaderProperties = operation.GroupHeaderProperties,
+                        GroupFooterProperties = operation.GroupFooterProperties,
                     });
                 }
             }
