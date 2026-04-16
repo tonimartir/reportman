@@ -72,6 +72,33 @@ namespace Reportman.Reporting
             get { return Convert.ToBase64String(Stream.ToArray()); }
             set { FStream = new MemoryStream(Convert.FromBase64String(value)); }
         }
+        public bool HasEmbeddedImageStream
+        {
+            get { return FStream != null && FStream.Length > 0; }
+            set
+            {
+                if (!value)
+                {
+                    ClearEmbeddedImageStream();
+                }
+            }
+        }
+        public long EmbeddedImageByteCount
+        {
+            get { return FStream?.Length ?? 0; }
+        }
+
+        private void ClearEmbeddedImageStream()
+        {
+            if (FStream != null)
+            {
+                FStream.Dispose();
+            }
+
+            FStream = new MemoryStream();
+            OldStreamPos = -1;
+            FOldStream = null;
+        }
 
         public override void SubReportChanged(SubReportEvent newstate, string newgroup)
         {
