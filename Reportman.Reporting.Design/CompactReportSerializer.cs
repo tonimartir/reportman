@@ -162,7 +162,7 @@ namespace Reportman.Reporting.Design
                 sb.AppendLine();
                 sb.Append(i).Append("SECTION ").Append(sec.SectionType);
                 sb.Append(" \"").Append(Esc(sec.Name)).Append("\"");
-                sb.Append(' ').Append(sec.Width).Append('x').Append(sec.Height);
+                sb.Append(' ').Append(Px(sec.Width)).Append('x').Append(Px(sec.Height));
                 sb.AppendLine();
                 WriteSectionProps(sb, sec, i + "  ");
                 WriteComponents(sb, sec, i + "  ");
@@ -196,8 +196,8 @@ namespace Reportman.Reporting.Design
                 sb.AppendLine();
                 sb.Append(i).Append(TypeName(comp));
                 sb.Append(" \"").Append(Esc(comp.Name)).Append("\"");
-                sb.Append(" @").Append(comp.PosX).Append(',').Append(comp.PosY);
-                sb.Append(' ').Append(comp.Width).Append('x').Append(comp.Height);
+                sb.Append(" @").Append(Px(comp.PosX)).Append(',').Append(Px(comp.PosY));
+                sb.Append(' ').Append(Px(comp.Width)).Append('x').Append(Px(comp.Height));
                 sb.AppendLine();
                 WriteComponentProps(sb, comp, i + "  ");
             }
@@ -347,6 +347,16 @@ namespace Reportman.Reporting.Design
             if (comp is ShapeItem) return "SHAPE";
             if (comp is BarcodeItem) return "BARCODE";
             return comp.ClassName;
+        }
+
+        /// <summary>
+        /// Converts a twips value to pixels at 96 DPI (1 px = 15 twips),
+        /// matching the conversion used by ReportContextBuilder for currentValues.
+        /// </summary>
+        private static string Px(int twips)
+        {
+            var pixels = Math.Round((decimal)twips / 15m, 3, MidpointRounding.AwayFromZero);
+            return pixels.ToString(System.Globalization.CultureInfo.InvariantCulture);
         }
 
         private static string Esc(string s)
