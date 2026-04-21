@@ -1409,6 +1409,11 @@ namespace Reportman.Reporting.Design
                 return ConvertToVariant(value);
             }
 
+            if (nonNullableType == typeof(Strings))
+            {
+                return ConvertToStrings(value);
+            }
+
             if (nonNullableType.IsEnum)
             {
                 if (value is string stringValue)
@@ -1574,6 +1579,7 @@ namespace Reportman.Reporting.Design
 
         private static Variant ConvertToVariant(object value)
         {
+            value = UnwrapTaggedValue(value);
             if (value is Variant variant)
             {
                 return variant;
@@ -1607,6 +1613,70 @@ namespace Reportman.Reporting.Design
                 return (Variant)dateTimeValue;
             }
             return (Variant)Convert.ToString(value, CultureInfo.InvariantCulture);
+        }
+
+        private static object UnwrapTaggedValue(object value)
+        {
+            if (value is IDictionary dictionary)
+            {
+                foreach (var key in new[] { "Value", "value" })
+                {
+                    if (dictionary.Contains(key))
+                    {
+                        return dictionary[key];
+                    }
+                }
+            }
+
+            if (value != null && !(value is string) && !(value is Variant))
+            {
+                var type = value.GetType();
+                var prop = type.GetProperty("Value", BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase);
+                if (prop != null && prop.GetIndexParameters().Length == 0 && prop.DeclaringType != typeof(Variant))
+                {
+                    return prop.GetValue(value);
+                }
+            }
+
+            return value;
+        }
+
+        private static Strings ConvertToStrings(object value)
+        {
+            var result = new Strings();
+            if (value == null)
+            {
+                return result;
+            }
+
+            if (value is Strings existing)
+            {
+                result.AddRange(existing);
+                return result;
+            }
+
+            if (value is string single)
+            {
+                foreach (var piece in single.Split(','))
+                {
+                    var trimmed = piece.Trim();
+                    if (trimmed.Length > 0) result.Add(trimmed);
+                }
+                return result;
+            }
+
+            if (value is IEnumerable enumerable)
+            {
+                foreach (var item in enumerable)
+                {
+                    if (item == null) continue;
+                    result.Add(Convert.ToString(item, CultureInfo.InvariantCulture) ?? string.Empty);
+                }
+                return result;
+            }
+
+            result.Add(Convert.ToString(value, CultureInfo.InvariantCulture) ?? string.Empty);
+            return result;
         }
 
         private static T[] ConvertArray<T>(object value)

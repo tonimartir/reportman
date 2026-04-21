@@ -36,9 +36,9 @@ namespace Reportman.Reporting.Design
     ///   BDEType, BDEFilter, BDEMasterFields, BDEFirstRange, BDELastRange, OpenOnStart,
     ///   GroupUnion, ParallelUnion, HubSchemaId, DataUnions
     ///
-    /// Param (extras): Value, Description, Hint, ErrorMessage, IsReadOnly, NeverVisible,
+    /// Param (extras): ErrorMessage, IsReadOnly, NeverVisible,
     ///   AllowNulls, LookupDataset, SearchDataset, Search, SearchParam, Items, Values,
-    ///   Selected, Datasets
+    ///   Selected
     ///
     /// SubReport (extras): ReOpenOnPrint, ParentSub, ParentSec
     ///
@@ -131,11 +131,13 @@ namespace Reportman.Reporting.Design
 
         private static void WriteParamProps(StringBuilder sb, Param p, string i)
         {
-            // Schema-allowed: Alias, ParamType, Descriptions, Hints, Validation, UserVisible
+            // Schema-allowed: Alias, ParamType, Description, Hint, Datasets, Value, Validation, UserVisible
             Str(sb, i, "Alias", p.Alias, "");
             Enm(sb, i, "ParamType", p.ParamType, ParamType.String);
-            Str(sb, i, "Descriptions", p.Descriptions, "");
-            Str(sb, i, "Hints", p.Hints, "");
+            Str(sb, i, "Description", p.Description, "");
+            Str(sb, i, "Hint", p.Hint, "");
+            DatasetList(sb, i, "Datasets", p.Datasets);
+            ParamValueTuple(sb, i, "Value", p);
             Str(sb, i, "Validation", p.Validation, "");
             Bool(sb, i, "UserVisible", p.UserVisible, false);
         }
@@ -413,6 +415,44 @@ namespace Reportman.Reporting.Design
         {
             if (val.Equals(def)) return;
             sb.Append(i).Append(name).Append('=').Append(val).AppendLine();
+        }
+
+        private static void DatasetList(StringBuilder sb, string i, string name, Strings values)
+        {
+            if (values == null || values.Count == 0) return;
+            sb.Append(i).Append(name).Append("=\"");
+            for (int k = 0; k < values.Count; k++)
+            {
+                if (k > 0) sb.Append(',');
+                sb.Append(Esc(values[k] ?? ""));
+            }
+            sb.AppendLine("\"");
+        }
+
+        private static void ParamValueTuple(StringBuilder sb, string i, string name, Param p)
+        {
+            object raw = p.Value.AsObject();
+            string rendered = RenderVariantLiteral(raw);
+            if (string.IsNullOrEmpty(rendered) && p.ParamType == ParamType.String) return;
+            sb.Append(i).Append(name).Append("={ DataType=").Append(p.ParamType)
+              .Append(", Value=").Append(rendered).AppendLine(" }");
+        }
+
+        private static string RenderVariantLiteral(object raw)
+        {
+            if (raw == null) return "null";
+            if (raw is string s) return "\"" + Esc(s) + "\"";
+            if (raw is bool b) return b ? "true" : "false";
+            if (raw is DateTime dt) return "\"" + dt.ToString("o", System.Globalization.CultureInfo.InvariantCulture) + "\"";
+            if (raw is float f) return f.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            if (raw is double d) return d.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            if (raw is decimal m) return m.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            if (raw is byte || raw is sbyte || raw is short || raw is ushort
+                || raw is int || raw is uint || raw is long || raw is ulong)
+            {
+                return System.Convert.ToString(raw, System.Globalization.CultureInfo.InvariantCulture);
+            }
+            return "\"" + Esc(System.Convert.ToString(raw, System.Globalization.CultureInfo.InvariantCulture) ?? "") + "\"";
         }
 
         #endregion
