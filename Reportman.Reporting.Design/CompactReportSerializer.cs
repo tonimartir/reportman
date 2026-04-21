@@ -432,18 +432,25 @@ namespace Reportman.Reporting.Design
         private static void ParamValueTuple(StringBuilder sb, string i, string name, Param p)
         {
             object raw = p.Value.AsObject();
-            string rendered = RenderVariantLiteral(raw);
+            string rendered = RenderVariantLiteral(raw, p.ParamType);
             if (string.IsNullOrEmpty(rendered) && p.ParamType == ParamType.String) return;
             sb.Append(i).Append(name).Append("={ DataType=").Append(p.ParamType)
               .Append(", Value=").Append(rendered).AppendLine(" }");
         }
 
-        private static string RenderVariantLiteral(object raw)
+        private static string RenderVariantLiteral(object raw, ParamType paramType = ParamType.Unknown)
         {
             if (raw == null) return "null";
             if (raw is string s) return "\"" + Esc(s) + "\"";
             if (raw is bool b) return b ? "true" : "false";
-            if (raw is DateTime dt) return "\"" + dt.ToString("o", System.Globalization.CultureInfo.InvariantCulture) + "\"";
+            if (raw is DateTime dt)
+            {
+                string fmt;
+                if (paramType == ParamType.Date) fmt = "yyyy-MM-dd";
+                else if (paramType == ParamType.Time) fmt = "HH:mm:ss";
+                else fmt = "yyyy-MM-ddTHH:mm:ss";
+                return "\"" + dt.ToString(fmt, System.Globalization.CultureInfo.InvariantCulture) + "\"";
+            }
             if (raw is float f) return f.ToString(System.Globalization.CultureInfo.InvariantCulture);
             if (raw is double d) return d.ToString(System.Globalization.CultureInfo.InvariantCulture);
             if (raw is decimal m) return m.ToString(System.Globalization.CultureInfo.InvariantCulture);

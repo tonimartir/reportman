@@ -1579,7 +1579,16 @@ namespace Reportman.Reporting.Design
 
         private static Variant ConvertToVariant(object value)
         {
+            string dataType = ExtractDataType(value);
             value = UnwrapTaggedValue(value);
+            if (!string.IsNullOrEmpty(dataType))
+            {
+                Variant coerced;
+                if (TryCoerceByDataType(value, dataType, out coerced))
+                {
+                    return coerced;
+                }
+            }
             if (value is Variant variant)
             {
                 return variant;
@@ -1613,6 +1622,95 @@ namespace Reportman.Reporting.Design
                 return (Variant)dateTimeValue;
             }
             return (Variant)Convert.ToString(value, CultureInfo.InvariantCulture);
+        }
+
+        private static string ExtractDataType(object value)
+        {
+            if (value is IDictionary dictionary)
+            {
+                foreach (var key in new[] { "DataType", "dataType" })
+                {
+                    if (dictionary.Contains(key))
+                    {
+                        var raw = dictionary[key];
+                        if (raw is string s) return s;
+                        if (raw != null) return Convert.ToString(raw, CultureInfo.InvariantCulture);
+                    }
+                }
+            }
+            return null;
+        }
+
+        private static bool TryCoerceByDataType(object value, string dataType, out Variant result)
+        {
+            result = default(Variant);
+            if (value == null) return false;
+            ParamType pt;
+            if (!Enum.TryParse<ParamType>(dataType, true, out pt)) return false;
+            try
+            {
+                switch (pt)
+                {
+                    case ParamType.Date:
+                    case ParamType.DateTime:
+                    case ParamType.Time:
+                        if (value is DateTime dt)
+                        {
+                            result = (Variant)dt;
+                            return true;
+                        }
+                        if (value is string sdt)
+                        {
+                            if (DateTime.TryParse(sdt, CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal, out var parsed))
+                            {
+                                result = (Variant)parsed;
+                                return true;
+                            }
+                        }
+                        return false;
+                    case ParamType.Integer:
+                        result = (Variant)Convert.ToInt32(value, CultureInfo.InvariantCulture);
+                        return true;
+                    case ParamType.Double:
+                        result = (Variant)Convert.ToDouble(value, CultureInfo.InvariantCulture);
+                        return true;
+                    case ParamType.Currency:
+                        result = (Variant)Convert.ToDecimal(value, CultureInfo.InvariantCulture);
+                        return true;
+                    case ParamType.Bool:
+                        if (value is bool bv)
+                        {
+                            result = (Variant)bv;
+                            return true;
+                        }
+                        if (value is string sbv)
+                        {
+                            if (bool.TryParse(sbv, out var parsedBool))
+                            {
+                                result = (Variant)parsedBool;
+                                return true;
+                            }
+                        }
+                        return false;
+                    case ParamType.String:
+                    case ParamType.ExpreA:
+                    case ParamType.ExpreB:
+                    case ParamType.List:
+                    case ParamType.Multiple:
+                    case ParamType.SubsExpreList:
+                    case ParamType.Subst:
+                    case ParamType.SubstExpre:
+                    case ParamType.InitialValue:
+                    case ParamType.Unknown:
+                        result = (Variant)Convert.ToString(value, CultureInfo.InvariantCulture);
+                        return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+            return false;
         }
 
         private static object UnwrapTaggedValue(object value)
