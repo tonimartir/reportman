@@ -107,16 +107,30 @@ namespace Reportman.Reporting
         }
         public void Insert(int insertIndex, Param obj)
         {
-            var list = FItems.ToList();
-            list.Insert(insertIndex, obj);
-            FItems = list.ToArray();
-            FCount = FItems.Count();
+            if ((insertIndex < 0) || (insertIndex > FCount))
+                throw new Exception("Parameter insert index out of range: " + insertIndex.ToString());
+            if (FCount > (FItems.Length - 2))
+            {
+                Param[] nobjects = new Param[FItems.Length * 2];
+                System.Array.Copy(FItems, 0, nobjects, 0, FCount);
+                FItems = nobjects;
+            }
+            for (int i = FCount; i > insertIndex; i--)
+            {
+                FItems[i] = FItems[i - 1];
+            }
+            FItems[insertIndex] = obj;
+            FCount++;
         }
         public void Swap(int index1, int index2)
         {
-            var list = FItems.ToList();
-            list.Swap(index1, index2);
-            FItems = list.ToArray();
+            if ((index1 < 0) || (index2 < 0))
+                throw new Exception("Index out of bounds in Params.Swap");
+            if ((index1 >= FCount) || (index2 >= FCount))
+                throw new Exception("Index out of bounds in Params.Swap");
+            Param buf = FItems[index1];
+            FItems[index1] = FItems[index2];
+            FItems[index2] = buf;
         }
         // IEnumerable Interface Implementation:
         //   Declaration of the GetEnumerator() method 
