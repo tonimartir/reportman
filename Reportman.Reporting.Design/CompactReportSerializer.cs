@@ -31,7 +31,7 @@ namespace Reportman.Reporting.Design
     ///
     /// DatabaseInfo: entire object type (not editable by the designer)
     ///
-    /// DataInfo (extras): SQL, SQLExplanation, MyBaseFilename, MyBaseFields,
+    /// DataInfo (extras): SQL, MyBaseFilename, MyBaseFields,
     ///   MyBaseIndexFields, MyBaseMasterFields, BDEIndexFields, BDEIndexName, BDETable,
     ///   BDEType, BDEFilter, BDEMasterFields, BDEFirstRange, BDELastRange, OpenOnStart,
     ///   GroupUnion, ParallelUnion, HubSchemaId, DataUnions
@@ -79,7 +79,7 @@ namespace Reportman.Reporting.Design
 
         private static void WriteReport(StringBuilder sb, Report report)
         {
-            sb.AppendLine("REPORT");
+            sb.AppendLine("[REPORT]");
             const string i = "  ";
 
             // Schema-allowed Report properties: DocTitle, DocAuthor, DocSubject, DocKeywords
@@ -93,24 +93,30 @@ namespace Reportman.Reporting.Design
             foreach (DataInfo di in report.DataInfo)
             {
                 sb.AppendLine();
-                sb.Append(i).Append("DATASET \"").Append(Esc(di.Name)).AppendLine("\"");
+                sb.Append(i).Append("[DATASET \"").Append(Esc(di.Name)).AppendLine("\"]");
                 WriteDatasetProps(sb, di, i + "  ");
+                sb.Append(i).AppendLine("[/DATASET]");
             }
 
             foreach (Param p in report.Params)
             {
                 sb.AppendLine();
-                sb.Append(i).Append("PARAM \"").Append(Esc(p.Name)).AppendLine("\"");
+                sb.Append(i).Append("[PARAM \"").Append(Esc(p.Name)).AppendLine("\"]");
                 WriteParamProps(sb, p, i + "  ");
+                sb.Append(i).AppendLine("[/PARAM]");
             }
 
-            foreach (SubReport sub in report.SubReports)
+            for (var subReportIndex = 0; subReportIndex < report.SubReports.Count; subReportIndex++)
             {
+                var sub = report.SubReports[subReportIndex];
                 sb.AppendLine();
-                sb.Append(i).Append("SUBREPORT \"").Append(Esc(sub.Name)).AppendLine("\"");
-                WriteSubReportProps(sb, sub, i + "  ");
+                sb.Append(i).Append("[SUBREPORT \"").Append(Esc(sub.Name)).AppendLine("\"]");
+                WriteSubReportProps(sb, sub, subReportIndex, i + "  ");
                 WriteSections(sb, sub, i + "  ");
+                sb.Append(i).AppendLine("[/SUBREPORT]");
             }
+
+            sb.AppendLine("[/REPORT]");
         }
 
         #endregion
@@ -120,9 +126,12 @@ namespace Reportman.Reporting.Design
         private static void WriteDatasetProps(StringBuilder sb, DataInfo di, string i)
         {
             // Schema-allowed: Alias, DatabaseAlias, DataSource
+            // Context-only extras kept in DSL to reduce duplicated JSON prompt payload.
             Str(sb, i, "Alias", di.Alias, "");
             Str(sb, i, "DatabaseAlias", di.DatabaseAlias, "");
             Str(sb, i, "DataSource", di.DataSource, "");
+            Str(sb, i, "SqlExplanation", di.SQLExplanation, "");
+            Str(sb, i, "SqlExplanationError", di.SQLExplanationError, "");
         }
 
         #endregion
@@ -146,10 +155,13 @@ namespace Reportman.Reporting.Design
 
         #region SubReport
 
-        private static void WriteSubReportProps(StringBuilder sb, SubReport sub, string i)
+        private static void WriteSubReportProps(StringBuilder sb, SubReport sub, int subReportIndex, string i)
         {
             // Schema-allowed: Alias, PrintOnlyIfDataAvailable
+            Int(sb, i, "Index", subReportIndex, -1);
             Str(sb, i, "Alias", sub.Alias, "");
+            Str(sb, i, "ParentSubReportName", sub.ParentSubReport?.Name, "");
+            Str(sb, i, "ParentSectionName", sub.ParentSection?.Name, "");
             Bool(sb, i, "PrintOnlyIfDataAvailable", sub.PrintOnlyIfDataAvailable, true);
         }
 
@@ -159,26 +171,30 @@ namespace Reportman.Reporting.Design
 
         private static void WriteSections(StringBuilder sb, SubReport sub, string i)
         {
-            foreach (Section sec in sub.Sections)
+            for (var sectionIndex = 0; sectionIndex < sub.Sections.Count; sectionIndex++)
             {
+                var sec = sub.Sections[sectionIndex];
                 sb.AppendLine();
-                sb.Append(i).Append("SECTION ").Append(sec.SectionType);
+                sb.Append(i).Append("[SECTION ").Append(sec.SectionType);
                 sb.Append(" \"").Append(Esc(sec.Name)).Append("\"");
                 sb.Append(' ').Append(Px(sec.Width)).Append('x').Append(Px(sec.Height));
-                sb.AppendLine();
-                WriteSectionProps(sb, sec, i + "  ");
+                sb.AppendLine("]");
+                WriteSectionProps(sb, sec, sectionIndex, i + "  ");
                 WriteComponents(sb, sec, i + "  ");
+                sb.Append(i).AppendLine("[/SECTION]");
             }
         }
 
-        private static void WriteSectionProps(StringBuilder sb, Section sec, string i)
+        private static void WriteSectionProps(StringBuilder sb, Section sec, int sectionIndex, string i)
         {
             // Schema-allowed: GroupName, ChangeExpression, BeginPageExpression,
             //   PageRepeat, ForcePrint, AlignBottom, AutoExpand, AutoContract, PrintCondition
             // (SectionType, Width, Height are on the inline header)
+            Int(sb, i, "Index", sectionIndex, -1);
             Str(sb, i, "GroupName", sec.GroupName, "");
             Str(sb, i, "ChangeExpression", sec.ChangeExpression, "");
             Str(sb, i, "BeginPageExpression", sec.BeginPageExpression, "");
+            Str(sb, i, "ChildSubReportName", sec.ChildSubReport?.Name, "");
             Bool(sb, i, "PageRepeat", sec.PageRepeat, false);
             Bool(sb, i, "ForcePrint", sec.ForcePrint, false);
             Bool(sb, i, "AlignBottom", sec.AlignBottom, false);
@@ -195,13 +211,15 @@ namespace Reportman.Reporting.Design
         {
             foreach (PrintPosItem comp in sec.Components)
             {
+                var typeName = TypeName(comp);
                 sb.AppendLine();
-                sb.Append(i).Append(TypeName(comp));
+                sb.Append(i).Append('[').Append(typeName);
                 sb.Append(" \"").Append(Esc(comp.Name)).Append("\"");
                 sb.Append(" @").Append(Px(comp.PosX)).Append(',').Append(Px(comp.PosY));
                 sb.Append(' ').Append(Px(comp.Width)).Append('x').Append(Px(comp.Height));
-                sb.AppendLine();
+                sb.AppendLine("]");
                 WriteComponentProps(sb, comp, i + "  ");
+                sb.Append(i).Append("[/").Append(typeName).AppendLine("]");
             }
         }
 
