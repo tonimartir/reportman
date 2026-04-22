@@ -870,11 +870,12 @@ namespace Reportman.Reporting
 #endif
             }
         }
-        public void LoadFromStream(Stream astream)
+        public void LoadFromStream(Stream astream, bool convertToDotNet = true)
         {
             ReportReader areader = new ReportReader(this);
             areader.LoadFromStream(astream);
-            ConvertToDotNet();
+            if (convertToDotNet)
+                ConvertToDotNet();
         }
         /// <summary>
         /// Converts a report to dot net, changing data driver type and parameters in sql sentences

@@ -222,7 +222,7 @@ namespace Reportman.Reporting.Design
                 stream.Position = 0;
 
                 var clone = new Report();
-                clone.LoadFromStream(stream);
+                clone.LoadFromStream(stream, false);
                 return clone;
             }
         }

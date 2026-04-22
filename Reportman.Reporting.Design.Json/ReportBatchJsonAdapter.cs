@@ -370,7 +370,7 @@ namespace Reportman.Reporting.Design.Json
             var report = new Report();
             using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(reportXml)))
             {
-                report.LoadFromStream(stream);
+                report.LoadFromStream(stream, false);
             }
             return report;
         }
