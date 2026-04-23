@@ -6,6 +6,7 @@ using System.IO;
 using System.Reflection;
 using Reportman.Drawing;
 using Reportman.Reporting;
+using System.Linq;
 
 namespace Reportman.Reporting.Design
 {
