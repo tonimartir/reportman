@@ -1102,11 +1102,16 @@ namespace Reportman.Reporting.Design
                 return;
             }
 
-            foreach (var property in properties)
+            foreach (var property in GetPropertiesInApplyOrder(target, properties))
             {
                 if (property == null || string.IsNullOrWhiteSpace(property.PropertyName))
                 {
                     continue;
+                }
+
+                if (target is Param paramTarget)
+                {
+                    SynchronizeParamTypeBeforeValueAssignment(paramTarget, property);
                 }
 
                 var members = ResolveWritableMembers(target, property.PropertyName);
@@ -1132,6 +1137,63 @@ namespace Reportman.Reporting.Design
                     }
                 }
             }
+        }
+
+        private static IEnumerable<ReportBatchProperty> GetPropertiesInApplyOrder(ReportItem target, IList<ReportBatchProperty> properties)
+        {
+            if (!(target is Param))
+            {
+                return properties;
+            }
+
+            return properties.OrderBy(GetParamPropertyApplyPriority).ToList();
+        }
+
+        private static int GetParamPropertyApplyPriority(ReportBatchProperty property)
+        {
+            if (property == null || string.IsNullOrWhiteSpace(property.PropertyName))
+            {
+                return 2;
+            }
+
+            if (string.Equals(property.PropertyName, nameof(Param.ParamType), StringComparison.OrdinalIgnoreCase))
+            {
+                return 0;
+            }
+
+            if (string.Equals(property.PropertyName, nameof(Param.Value), StringComparison.OrdinalIgnoreCase))
+            {
+                return 1;
+            }
+
+            return 2;
+        }
+
+        private static void SynchronizeParamTypeBeforeValueAssignment(Param target, ReportBatchProperty property)
+        {
+            if (!string.Equals(property.PropertyName, nameof(Param.Value), StringComparison.OrdinalIgnoreCase))
+            {
+                return;
+            }
+
+            if (!TryExtractParamType(property.Value, out var inferredParamType))
+            {
+                return;
+            }
+
+            target.ParamType = inferredParamType;
+        }
+
+        private static bool TryExtractParamType(object value, out ParamType paramType)
+        {
+            paramType = ParamType.Unknown;
+            var dataType = ExtractDataType(value);
+            if (string.IsNullOrWhiteSpace(dataType))
+            {
+                return false;
+            }
+
+            return Enum.TryParse(dataType, true, out paramType);
         }
 
         private static int ResolveCurrentIndex(Report report, ReportItem target)

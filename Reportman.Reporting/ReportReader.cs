@@ -1370,36 +1370,7 @@ namespace Reportman.Reporting
                     aparam.SearchDataset = GetAsString();
                     break;
                 case "VALUE":
-                    switch (aparam.ParamType)
-                    {
-                        case ParamType.String:
-                        case ParamType.ExpreA:
-                        case ParamType.ExpreB:
-                        case ParamType.Subst:
-                        case ParamType.List:
-                        case ParamType.SubsExpreList:
-                        case ParamType.InitialValue:
-                        case ParamType.Unknown:
-                            aparam.Value = GetAsString();
-                            break;
-                        case ParamType.Integer:
-                            aparam.Value = GetAsInteger();
-                            break;
-                        case ParamType.Double:
-                            aparam.Value = GetAsDouble();
-                            break;
-                        case ParamType.Currency:
-                            aparam.Value = GetAsDouble();
-                            break;
-                        case ParamType.Date:
-                        case ParamType.Time:
-                        case ParamType.DateTime:
-                            aparam.Value = GetAsDateTime();
-                            break;
-                        case ParamType.Bool:
-                            aparam.Value = GetAsBool();
-                            break;
-                    }
+                    ReadParamValue(aparam);
                     break;
                 case "INTNAME":
                     aparam.Name = GetAsString();
@@ -1409,6 +1380,101 @@ namespace Reportman.Reporting
                         throw new NamedException("Property not suported in Param:" + propname, propname);
                     break;
             }
+        }
+
+        private void ReadParamValue(Param aparam)
+        {
+            try
+            {
+                aparam.Value = ReadParamValueByType(aparam.ParamType);
+            }
+            catch (FormatException)
+            {
+                if (!string.Equals(proptype, "String", StringComparison.OrdinalIgnoreCase))
+                    throw;
+
+                RepairStringSerializedParamValue(aparam);
+            }
+        }
+
+        private Variant ReadParamValueByType(ParamType paramType)
+        {
+            switch (paramType)
+            {
+                case ParamType.String:
+                case ParamType.ExpreA:
+                case ParamType.ExpreB:
+                case ParamType.Subst:
+                case ParamType.List:
+                case ParamType.SubsExpreList:
+                case ParamType.InitialValue:
+                case ParamType.Unknown:
+                    return GetAsString();
+                case ParamType.Integer:
+                    return GetAsInteger();
+                case ParamType.Double:
+                    return GetAsDouble();
+                case ParamType.Currency:
+                    return GetAsDouble();
+                case ParamType.Date:
+                case ParamType.Time:
+                case ParamType.DateTime:
+                    return GetAsDateTime();
+                case ParamType.Bool:
+                    return GetAsBool();
+                default:
+                    return GetAsString();
+            }
+        }
+
+        private void RepairStringSerializedParamValue(Param aparam)
+        {
+            string stringValue = GetAsString();
+            if (TryParseDateLikeParamValue(stringValue, out Variant repairedValue, out ParamType repairedType))
+            {
+                aparam.ParamType = repairedType;
+                aparam.Value = repairedValue;
+                return;
+            }
+
+            aparam.ParamType = ParamType.String;
+            aparam.Value = stringValue;
+        }
+
+        private static bool TryParseDateLikeParamValue(string stringValue, out Variant repairedValue, out ParamType repairedType)
+        {
+            repairedValue = new Variant();
+            repairedType = ParamType.Unknown;
+
+            if (string.IsNullOrWhiteSpace(stringValue))
+                return false;
+
+            string[] formats = new[]
+            {
+                "yyyy-MM-dd",
+                "HH:mm:ss",
+                "yyyy-MM-ddTHH:mm:ss",
+                "yyyy-MM-ddTHH:mm:ss.fff",
+                "yyyy-MM-ddTHH:mm:ss.fffffff"
+            };
+
+            if (!DateTime.TryParseExact(stringValue, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDate))
+                return false;
+
+            repairedType = InferDateLikeParamType(stringValue);
+            repairedValue = parsedDate;
+            return true;
+        }
+
+        private static ParamType InferDateLikeParamType(string stringValue)
+        {
+            if (stringValue.IndexOf('T') >= 0)
+                return ParamType.DateTime;
+
+            if (stringValue.IndexOf(':') >= 0)
+                return ParamType.Time;
+
+            return ParamType.Date;
         }
         private void ReadCompProp(PrintPosItem comp)
         {
