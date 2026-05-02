@@ -19,6 +19,8 @@ namespace Reportman.Drawing.Forms
         private Control searchChild;
         private int IgnoreTextChange;
         private bool MsgFilterActive = false;
+        private bool FUppercaseOnly;
+        private bool applyingUppercase;
         public int AutoCompleteWidth = 0;
         public List<KeyValuePair<string, string>> AutoCompleteList;
         public int AutoCompleteMaxVisibleLines = 20;
@@ -350,6 +352,45 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        [DefaultValue(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public bool UppercaseOnly
+        {
+            get { return FUppercaseOnly; }
+            set
+            {
+                FUppercaseOnly = value;
+                CharacterCasing = value ? CharacterCasing.Upper : CharacterCasing.Normal;
+                ApplyUppercaseIfNeeded();
+            }
+        }
+
+        private void ApplyUppercaseIfNeeded()
+        {
+            if (!FUppercaseOnly || applyingUppercase)
+                return;
+            if (string.IsNullOrEmpty(Text))
+                return;
+
+            string upper = Text.ToUpper();
+            if (upper == Text)
+                return;
+
+            int selStart = SelectionStart;
+            int selLength = SelectionLength;
+            try
+            {
+                applyingUppercase = true;
+                Text = upper;
+            }
+            finally
+            {
+                applyingUppercase = false;
+            }
+            SelectionStart = Math.Min(selStart, Text.Length);
+            SelectionLength = selLength;
+        }
+
         private bool FReadBarCode;
         [DefaultValue(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
@@ -572,6 +613,13 @@ namespace Reportman.Drawing.Forms
                             }
                         }
                     }
+                }
+
+                if (FUppercaseOnly)
+                {
+                    ApplyUppercaseIfNeeded();
+                    if (applyingUppercase)
+                        return;
                 }
                 HandletextChanged(e);
             }

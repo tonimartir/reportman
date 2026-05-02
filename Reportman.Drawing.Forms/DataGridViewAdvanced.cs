@@ -1090,6 +1090,105 @@ namespace Reportman.Drawing.Forms
                 DataSource = dsource;
             }
         }
+		private static string EncodeClipboardField(string value)
+		{
+			if (value == null)
+				return "";
+			bool needsQuote = value.IndexOfAny(new[] { '\t', '\r', '\n', '"' }) >= 0;
+			if (!needsQuote)
+				return value;
+			return "\"" + value.Replace("\"", "\"\"") + "\"";
+		}
+		private static List<List<string>> ParseClipboardTable(string text)
+		{
+			var rows = new List<List<string>>();
+			if (string.IsNullOrEmpty(text))
+				return rows;
+
+			var row = new List<string>();
+			var field = new StringBuilder();
+			bool inQuotes = false;
+
+			for (int i = 0; i < text.Length; i++)
+			{
+				char c = text[i];
+
+				if (inQuotes)
+				{
+					if (c == '"')
+					{
+						// Escaped quote
+						if (i + 1 < text.Length && text[i + 1] == '"')
+						{
+							field.Append('"');
+							i++;
+						}
+						else
+						{
+							inQuotes = false;
+						}
+					}
+					else
+					{
+						field.Append(c);
+					}
+					continue;
+				}
+
+				// Not in quotes
+				if (c == '"' && field.Length == 0)
+				{
+					inQuotes = true;
+					continue;
+				}
+				if (c == '\t')
+				{
+					row.Add(field.ToString());
+					field.Clear();
+					continue;
+				}
+				if (c == '\r')
+				{
+					if (i + 1 < text.Length && text[i + 1] == '\n')
+						i++;
+					row.Add(field.ToString());
+					field.Clear();
+					rows.Add(row);
+					row = new List<string>();
+					continue;
+				}
+				if (c == '\n')
+				{
+					row.Add(field.ToString());
+					field.Clear();
+					rows.Add(row);
+					row = new List<string>();
+					continue;
+				}
+
+				field.Append(c);
+			}
+
+			// Flush last field/row
+			if (inQuotes)
+				inQuotes = false;
+
+			if (field.Length > 0 || row.Count > 0)
+			{
+				row.Add(field.ToString());
+				rows.Add(row);
+			}
+
+			// Remove trailing empty row if present
+			if (rows.Count > 0)
+			{
+				var last = rows[rows.Count - 1];
+				if (last.Count == 1 && last[0].Length == 0)
+					rows.RemoveAt(rows.Count - 1);
+			}
+
+			return rows;
+		}
         public void PasteFromClipBoardDataBound(bool assignnulls)
         {
             if (CurrentCell == null)
@@ -1137,8 +1236,8 @@ namespace Reportman.Drawing.Forms
                     int initialcolumn = CurrentCell.ColumnIndex;
                     int initialrow = CurrentCell.RowIndex;
                     string s = Clipboard.GetText();
-                    string[] lines = s.Split('\n');
-                    if (lines.Length > 1000)
+					List<List<string>> lines = ParseClipboardTable(s);
+					if (lines.Count > 1000)
                     {
                         if (Visible)
                         {
@@ -1146,9 +1245,9 @@ namespace Reportman.Drawing.Forms
                             Visible = false;
                         }
                     }
-                    foreach (string line in lines)
+					foreach (List<string> words in lines)
                     {
-                        if (line.Length > 0)
+						if (words.Count > 0)
                         {
                             DataRow nrow;
                             bool added = false;
@@ -1175,12 +1274,10 @@ namespace Reportman.Drawing.Forms
                                 else
                                     nrow = ((DataRowView)nvrow.DataBoundItem).Row;
                             }
-                            string[] words = line.Split('\t');
                             int col = initialcolumn - 1;
-                            int upbound = words.GetUpperBound(0);
-                            for (int i = 0; i <= upbound; i++)
+							for (int i = 0; i < words.Count; i++)
                             {
-                                string word = words[i].Trim();
+								string word = words[i].Trim();
                                 while (col < Columns.Count)
                                 {
                                     col++;
@@ -1202,7 +1299,10 @@ namespace Reportman.Drawing.Forms
                                                 nrow[propname] = Convert.FromBase64String(word);
                                             }
                                             else
-                                                nrow[propname] = DBNull.Value;
+                                            {
+                                                if(propname.Trim().Length>0)
+                                                    nrow[propname] = DBNull.Value;
+                                            }
                                         }
                                         else
                                         {
@@ -1296,7 +1396,7 @@ namespace Reportman.Drawing.Forms
             try
             {
                 string s = Clipboard.GetText();
-                string[] lines = s.Split('\n');
+				List<List<string>> lines = ParseClipboardTable(s);
                 // Count visible, not readonly columns
                 SortedList<int, int> validcolumns = new SortedList<int, int>();
                 SortedList<int, int> validtablecolumns = new SortedList<int, int>();
@@ -1317,17 +1417,15 @@ namespace Reportman.Drawing.Forms
                 DataSource = null;
                 object[] nvalues = new object[validtablecolumns.Count];
                 int idxrow = 0;
-                foreach (string line in lines)
+				foreach (List<string> words in lines)
                 {
-                    if (line.Length > 0)
+					if (words.Count > 0)
                     {
                         DataRow nrow = ntable.NewRow();
-                        string[] words = line.Split('\t');
                         int col = 0;
-                        int upbound = words.GetUpperBound(0);
-                        if (upbound != nvalues.Length - 1)
-                            nvalues = new object[upbound - 1];
-                        for (int i = 0; i <= upbound; i++)
+						if (words.Count != nvalues.Length)
+							nvalues = new object[words.Count];
+						for (int i = 0; i < words.Count; i++)
                         {
                             string word = words[i].Trim();
 
@@ -1425,14 +1523,12 @@ namespace Reportman.Drawing.Forms
             try
             {
                 string s = Clipboard.GetText();
-                string[] lines = s.Split('\n');
-                foreach (string line in lines)
+				List<List<string>> lines = ParseClipboardTable(s);
+				foreach (List<string> words in lines)
                 {
                     DataRow nrow = ntable.NewRow();
-                    string[] words = line.Split('\t');
                     int col = -1;
-                    int upbound = words.GetUpperBound(0);
-                    for (int i = 0; i <= upbound; i++)
+					for (int i = 0; i < words.Count; i++)
                     {
                         string word = words[i];
                         while (col < Columns.Count)
@@ -1483,7 +1579,7 @@ namespace Reportman.Drawing.Forms
             foreach (KeyValuePair<int, DataGridViewRow> npair in arows)
             {
                 if (i > 0)
-                    nresult.Append("\n");
+					nresult.Append("\r\n");
                 int j = 0;
                 foreach (KeyValuePair<int, DataGridViewColumn> colpari in acolumns)
                 {
@@ -1494,14 +1590,13 @@ namespace Reportman.Drawing.Forms
                         nresult.Append("");
                     else
                     {
-                        object avalue = nvalor;
                         if (nvalor is byte[])
                         {
                             string nbase64 = Convert.ToBase64String((byte[])nvalor);
-                            nresult.Append(nbase64);
+							nresult.Append(EncodeClipboardField(nbase64));
                         }
                         else
-                            nresult.Append(nvalor.ToString());
+							nresult.Append(EncodeClipboardField(nvalor.ToString()));
                     }
                     j++;
                 }
