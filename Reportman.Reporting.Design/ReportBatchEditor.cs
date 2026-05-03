@@ -12,11 +12,29 @@ namespace Reportman.Reporting.Design
 {
     public class ReportBatchEditor : IReportBatchEditor, IReportBatchValidator
     {
+        private const decimal TwipsPerPixel96Dpi = 15m;
         private const string FontNameProperty = "FontName";
+        private const string UserVisibleProperty = nameof(Param.UserVisible);
+        private const string PageSizeModeProperty = "PageSizeMode";
+        private const string PaperSizeProperty = "PaperSize";
         private const int DefaultSectionWidth = 10770;
         private const int DefaultSectionHeight = 1113;
         private const int ConstructorSectionWidth = 10700;
         private const int ConstructorSectionHeight = 1500;
+
+        private static readonly Dictionary<string, int> CommonPaperSizeIndices = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+        {
+            ["A4"] = 0,
+            ["A3"] = 8,
+            ["A5"] = 9,
+            ["B5"] = 1,
+            ["Letter"] = 2,
+            ["Legal"] = 3,
+            ["Executive"] = 4,
+            ["Statement"] = 36,
+            ["Ledger"] = 28,
+            ["Tabloid"] = 29,
+        };
 
         private static readonly HashSet<string> TopLevelClasses = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         {
@@ -445,6 +463,11 @@ namespace Reportman.Reporting.Design
             foreach (var property in properties)
             {
                 if (property == null || string.IsNullOrWhiteSpace(property.PropertyName))
+                {
+                    continue;
+                }
+
+                if (TryValidateSemanticProperty(target, property, index, operation, result))
                 {
                     continue;
                 }
@@ -1103,6 +1126,10 @@ namespace Reportman.Reporting.Design
                 return;
             }
 
+            bool autoPromoteCustomPageSize = target is Report
+                && !HasProperty(properties, PageSizeModeProperty)
+                && !HasProperty(properties, nameof(Report.PageSize));
+
             foreach (var property in GetPropertiesInApplyOrder(target, properties))
             {
                 if (property == null || string.IsNullOrWhiteSpace(property.PropertyName))
@@ -1113,6 +1140,16 @@ namespace Reportman.Reporting.Design
                 if (target is Param paramTarget)
                 {
                     SynchronizeParamTypeBeforeValueAssignment(paramTarget, property);
+                }
+
+                if (autoPromoteCustomPageSize && target is Report reportTarget)
+                {
+                    SynchronizeReportPageSizeModeBeforeDimensionAssignment(reportTarget, property, undoOperation, recordUndo);
+                }
+
+                if (TryApplySemanticProperty(target, property, undoOperation, recordUndo))
+                {
+                    continue;
                 }
 
                 var members = ResolveWritableMembers(target, property.PropertyName);
@@ -1142,12 +1179,17 @@ namespace Reportman.Reporting.Design
 
         private static IEnumerable<ReportBatchProperty> GetPropertiesInApplyOrder(ReportItem target, IList<ReportBatchProperty> properties)
         {
-            if (!(target is Param))
+            if (target is Param)
             {
-                return properties;
+                return properties.OrderBy(GetParamPropertyApplyPriority).ToList();
             }
 
-            return properties.OrderBy(GetParamPropertyApplyPriority).ToList();
+            if (target is Report)
+            {
+                return properties.OrderBy(GetReportPropertyApplyPriority).ToList();
+            }
+
+            return properties;
         }
 
         private static int GetParamPropertyApplyPriority(ReportBatchProperty property)
@@ -1168,6 +1210,196 @@ namespace Reportman.Reporting.Design
             }
 
             return 2;
+        }
+
+        private static int GetReportPropertyApplyPriority(ReportBatchProperty property)
+        {
+            if (property == null || string.IsNullOrWhiteSpace(property.PropertyName))
+            {
+                return 3;
+            }
+
+            if (string.Equals(property.PropertyName, PageSizeModeProperty, StringComparison.OrdinalIgnoreCase))
+            {
+                return 0;
+            }
+
+            if (string.Equals(property.PropertyName, PaperSizeProperty, StringComparison.OrdinalIgnoreCase))
+            {
+                return 1;
+            }
+
+            if (string.Equals(property.PropertyName, nameof(Report.CustomPageWidth), StringComparison.OrdinalIgnoreCase)
+                || string.Equals(property.PropertyName, nameof(Report.CustomPageHeight), StringComparison.OrdinalIgnoreCase))
+            {
+                return 2;
+            }
+
+            return 3;
+        }
+
+        private static bool TryValidateSemanticProperty(ReportItem target, ReportBatchProperty property, int index, ReportBatchOperation operation, ReportBatchValidationResult result)
+        {
+            try
+            {
+                if (IsSemanticUserVisibleProperty(target, property.PropertyName))
+                {
+                    ConvertValue(property.Value, typeof(bool), property.PropertyName);
+                    return true;
+                }
+
+                if (IsSemanticReportPageSizeModeProperty(target, property.PropertyName))
+                {
+                    ConvertSemanticPageSizeMode(property.Value, property.PropertyName);
+                    return true;
+                }
+
+                if (IsSemanticReportPaperSizeProperty(target, property.PropertyName))
+                {
+                    ConvertSemanticPaperSizeIndex(property.Value, property.PropertyName);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Issues.Add(CreateIssue("invalid_property_value", "Value '" + Convert.ToString(property.Value, CultureInfo.InvariantCulture) + "' is not valid for property '" + property.PropertyName + "' on target class " + target.ClassName + ": " + ex.Message, index, operation));
+                return true;
+            }
+
+            return false;
+        }
+
+        private static bool IsSemanticUserVisibleProperty(ReportItem target, string propertyName)
+        {
+            return target is Param && string.Equals(propertyName, UserVisibleProperty, StringComparison.OrdinalIgnoreCase);
+        }
+
+        private static bool IsSemanticReportPageSizeModeProperty(ReportItem target, string propertyName)
+        {
+            return target is Report && string.Equals(propertyName, PageSizeModeProperty, StringComparison.OrdinalIgnoreCase);
+        }
+
+        private static bool IsSemanticReportPaperSizeProperty(ReportItem target, string propertyName)
+        {
+            return target is Report && string.Equals(propertyName, PaperSizeProperty, StringComparison.OrdinalIgnoreCase);
+        }
+
+        private static bool TryApplySemanticProperty(ReportItem target, ReportBatchProperty property, ChangeObjectOperation undoOperation, bool recordUndo)
+        {
+            if (IsSemanticUserVisibleProperty(target, property.PropertyName))
+            {
+                var paramTarget = (Param)target;
+                var userVisible = (bool)ConvertValue(property.Value, typeof(bool), property.PropertyName);
+                var newVisible = userVisible;
+                var newNeverVisible = !userVisible;
+
+                if (recordUndo)
+                {
+                    AddUndoPropertyIfNeeded(undoOperation, nameof(Param.Visible), PropertyType.Boolean, paramTarget.Visible, newVisible);
+                    AddUndoPropertyIfNeeded(undoOperation, nameof(Param.NeverVisible), PropertyType.Boolean, paramTarget.NeverVisible, newNeverVisible);
+                }
+
+                paramTarget.Visible = newVisible;
+                paramTarget.NeverVisible = newNeverVisible;
+                return true;
+            }
+
+            if (IsSemanticReportPageSizeModeProperty(target, property.PropertyName))
+            {
+                var reportTarget = (Report)target;
+                var newPageSize = ConvertSemanticPageSizeMode(property.Value, property.PropertyName);
+                if (recordUndo)
+                {
+                    AddUndoPropertyIfNeeded(undoOperation, nameof(Report.PageSize), PropertyType.Integer, reportTarget.PageSize, newPageSize);
+                }
+
+                reportTarget.PageSize = newPageSize;
+                return true;
+            }
+
+            if (IsSemanticReportPaperSizeProperty(target, property.PropertyName))
+            {
+                var reportTarget = (Report)target;
+                var newPageSizeIndex = ConvertSemanticPaperSizeIndex(property.Value, property.PropertyName);
+                if (recordUndo)
+                {
+                    AddUndoPropertyIfNeeded(undoOperation, nameof(Report.PageSize), PropertyType.Integer, reportTarget.PageSize, PageSizeType.Custom);
+                    AddUndoPropertyIfNeeded(undoOperation, nameof(Report.PageSizeIndex), PropertyType.Integer, reportTarget.PageSizeIndex, newPageSizeIndex);
+                }
+
+                reportTarget.PageSize = PageSizeType.Custom;
+                reportTarget.PageSizeIndex = newPageSizeIndex;
+                return true;
+            }
+
+            return false;
+        }
+
+        private static void SynchronizeReportPageSizeModeBeforeDimensionAssignment(Report target, ReportBatchProperty property, ChangeObjectOperation undoOperation, bool recordUndo)
+        {
+            if (!string.Equals(property.PropertyName, nameof(Report.CustomPageWidth), StringComparison.OrdinalIgnoreCase)
+                && !string.Equals(property.PropertyName, nameof(Report.CustomPageHeight), StringComparison.OrdinalIgnoreCase))
+            {
+                return;
+            }
+
+            if (target.PageSize == PageSizeType.User)
+            {
+                return;
+            }
+
+            if (recordUndo)
+            {
+                AddUndoPropertyIfNeeded(undoOperation, nameof(Report.PageSize), PropertyType.Integer, target.PageSize, PageSizeType.User);
+            }
+
+            target.PageSize = PageSizeType.User;
+        }
+
+        private static PageSizeType ConvertSemanticPageSizeMode(object value, string memberName)
+        {
+            var text = Convert.ToString(ConvertValue(value, typeof(string), memberName), CultureInfo.InvariantCulture) ?? string.Empty;
+            switch (NormalizeEnumText(text))
+            {
+                case "DEFAULT":
+                    return PageSizeType.Default;
+                case "DEFINED":
+                case "CUSTOM":
+                    return PageSizeType.Custom;
+                case "USERDEFINED":
+                case "USER":
+                    return PageSizeType.User;
+                default:
+                    throw new InvalidOperationException("Allowed values are Default, Defined or UserDefined.");
+            }
+        }
+
+        private static int ConvertSemanticPaperSizeIndex(object value, string memberName)
+        {
+            var text = Convert.ToString(ConvertValue(value, typeof(string), memberName), CultureInfo.InvariantCulture) ?? string.Empty;
+            var normalized = NormalizeEnumText(text);
+            foreach (var entry in CommonPaperSizeIndices)
+            {
+                if (NormalizeEnumText(entry.Key) == normalized)
+                {
+                    return entry.Value;
+                }
+            }
+
+            if (normalized == "USLETTER")
+            {
+                return CommonPaperSizeIndices["Letter"];
+            }
+
+            throw new InvalidOperationException("Allowed paper sizes are A4, A3, A5, B5, Letter, Legal, Executive, Statement, Ledger or Tabloid.");
+        }
+
+        private static void AddUndoPropertyIfNeeded(ChangeObjectOperation undoOperation, string propertyName, PropertyType propertyType, object oldValue, object newValue)
+        {
+            if (!HasUndoProperty(undoOperation, propertyName))
+            {
+                undoOperation.AddProperty(propertyName, propertyType, oldValue, newValue);
+            }
         }
 
         private static void SynchronizeParamTypeBeforeValueAssignment(Param target, ReportBatchProperty property)
@@ -1457,6 +1689,15 @@ namespace Reportman.Reporting.Design
             }
 
             var nonNullableType = Nullable.GetUnderlyingType(targetType) ?? targetType;
+
+            if (nonNullableType == typeof(int) && IsReportPixelProperty(memberName))
+            {
+                if (TryConvertPixelValueToTwips(value, out var convertedTwips))
+                {
+                    return convertedTwips;
+                }
+            }
+
             if (nonNullableType.IsInstanceOfType(value))
             {
                 return value;
@@ -1638,6 +1879,44 @@ namespace Reportman.Reporting.Design
                 || string.Equals(memberName, nameof(ShapeItem.Color), StringComparison.OrdinalIgnoreCase)
                 || string.Equals(memberName, nameof(BarcodeItem.BColor), StringComparison.OrdinalIgnoreCase)
                 || string.Equals(memberName, nameof(BarcodeItem.BackColor), StringComparison.OrdinalIgnoreCase);
+        }
+
+        private static bool IsReportPixelProperty(string memberName)
+        {
+            return string.Equals(memberName, nameof(Report.LeftMargin), StringComparison.OrdinalIgnoreCase)
+                || string.Equals(memberName, nameof(Report.TopMargin), StringComparison.OrdinalIgnoreCase)
+                || string.Equals(memberName, nameof(Report.RightMargin), StringComparison.OrdinalIgnoreCase)
+                || string.Equals(memberName, nameof(Report.BottomMargin), StringComparison.OrdinalIgnoreCase)
+                || string.Equals(memberName, nameof(Report.CustomPageWidth), StringComparison.OrdinalIgnoreCase)
+                || string.Equals(memberName, nameof(Report.CustomPageHeight), StringComparison.OrdinalIgnoreCase);
+        }
+
+        private static bool TryConvertPixelValueToTwips(object value, out int twips)
+        {
+            twips = default;
+            decimal pixels;
+
+            if (value is string text)
+            {
+                if (!decimal.TryParse(text, NumberStyles.Float, CultureInfo.InvariantCulture, out pixels))
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                try
+                {
+                    pixels = Convert.ToDecimal(value, CultureInfo.InvariantCulture);
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+
+            twips = (int)Math.Round(pixels * TwipsPerPixel96Dpi, MidpointRounding.AwayFromZero);
+            return true;
         }
 
         private static Variant ConvertToVariant(object value)

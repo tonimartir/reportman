@@ -20,11 +20,11 @@ namespace Reportman.Reporting.Design
     ///
     /// Report: FontName, FontSize, FontStyle, FontRotation, FontColor, BackColor, Transparent,
     ///   CutText, Alignment, VAlignment, WordWrap, SingleLine, MultiPage, PrintStep, Type1Font,
-    ///   PageOrientation, PageSize, PageHeight, PageWidth, CustomPageHeight, CustomPageWidth,
+    ///   PageSize, PageHeight, PageWidth,
     ///   PageBackColor, LeftMargin, RightMargin, TopMargin, BottomMargin, LinesPerInch,
     ///   PaperSource, Duplex, ForcePaperName, PageSizeIndex, AutoScale, PreviewWindow,
     ///   PreviewMargins, PreviewAbout, GridVisible, GridEnabled, GridLines, GridColor,
-    ///   GridWidth, GridHeight, Copies, CollateCopies, TwoPass, PrinterFonts,
+    ///   GridWidth, GridHeight, Copies, CollateCopies, PrinterFonts,
     ///   PrintOnlyIfDataAvailable, PrinterSelect, PDFConformance, PDFCompressed,
     ///   DocProducer, DocCreator, DocCreationDate, DocModificationDate, DocXMPContent,
     ///   StreamFormat, ActionBefore, ActionAfter, Language
@@ -68,6 +68,9 @@ namespace Reportman.Reporting.Design
     /// </remarks>
     public static class CompactReportSerializer
     {
+        private const string PageSizeModeProperty = "PageSizeMode";
+        private const string PaperSizeProperty = "PaperSize";
+
         public static string Serialize(Report report)
         {
             var sb = new StringBuilder(4096);
@@ -82,11 +85,17 @@ namespace Reportman.Reporting.Design
             sb.AppendLine("[REPORT]");
             const string i = "  ";
 
-            // Schema-allowed Report properties: DocTitle, DocAuthor, DocSubject, DocKeywords
-            Str(sb, i, "DocTitle", report.DocTitle, "");
-            Str(sb, i, "DocAuthor", report.DocAuthor, "");
-            Str(sb, i, "DocSubject", report.DocSubject, "");
-            Str(sb, i, "DocKeywords", report.DocKeywords, "");
+            // Schema-allowed Report properties: PageOrientation, PageSizeMode, PaperSize, TwoPass, margins, CustomPageWidth, CustomPageHeight
+            Enm(sb, i, nameof(Report.PageOrientation), report.PageOrientation, OrientationType.Default);
+            Str(sb, i, PageSizeModeProperty, MapReportPageSizeMode(report.PageSize), "Default");
+            Str(sb, i, PaperSizeProperty, ResolveReportPaperSizeName(report), report.PageSize == PageSizeType.Default ? "A4" : "");
+            Bool(sb, i, nameof(Report.TwoPass), report.TwoPass, false);
+            Str(sb, i, nameof(Report.LeftMargin), Px(report.LeftMargin), Px(574));
+            Str(sb, i, nameof(Report.TopMargin), Px(report.TopMargin), Px(574));
+            Str(sb, i, nameof(Report.RightMargin), Px(report.RightMargin), Px(574));
+            Str(sb, i, nameof(Report.BottomMargin), Px(report.BottomMargin), Px(861));
+            Str(sb, i, nameof(Report.CustomPageWidth), report.CustomPageWidth > 0 ? Px(report.CustomPageWidth) : null, "");
+            Str(sb, i, nameof(Report.CustomPageHeight), report.CustomPageHeight > 0 ? Px(report.CustomPageHeight) : null, "");
 
             // DatabaseInfo is not exposed to the designer (entire type excluded)
 
@@ -433,6 +442,67 @@ namespace Reportman.Reporting.Design
         {
             if (val.Equals(def)) return;
             sb.Append(i).Append(name).Append('=').Append(val).AppendLine();
+        }
+
+        private static string MapReportPageSizeMode(PageSizeType pageSize)
+        {
+            switch (pageSize)
+            {
+                case PageSizeType.Default:
+                    return "Default";
+                case PageSizeType.Custom:
+                    return "Defined";
+                case PageSizeType.User:
+                    return "UserDefined";
+                default:
+                    return pageSize.ToString();
+            }
+        }
+
+        private static string ResolveReportPaperSizeName(Report report)
+        {
+            if (report.PageSize == PageSizeType.User)
+            {
+                return null;
+            }
+
+            switch (NormalizePageSizeName(PrintOut.PageSizeName(report.PageSizeIndex)))
+            {
+                case "A4":
+                    return "A4";
+                case "A3":
+                    return "A3";
+                case "A5":
+                    return "A5";
+                case "B5":
+                    return "B5";
+                case "LETTER":
+                case "USLETTER":
+                    return "Letter";
+                case "LEGAL":
+                    return "Legal";
+                case "EXECUTIVE":
+                    return "Executive";
+                case "STATEMENT":
+                    return "Statement";
+                case "LEDGER":
+                    return "Ledger";
+                case "TABLOID":
+                    return "Tabloid";
+                default:
+                    return report.PageSize == PageSizeType.Default ? "A4" : null;
+            }
+        }
+
+        private static string NormalizePageSizeName(string pageSizeName)
+        {
+            return (pageSizeName ?? string.Empty)
+                .Trim()
+                .ToUpperInvariant()
+                .Replace("_", string.Empty)
+                .Replace("-", string.Empty)
+                .Replace(" ", string.Empty)
+                .Replace(".", string.Empty);
         }
 
         private static void DatasetList(StringBuilder sb, string i, string name, Strings values)
