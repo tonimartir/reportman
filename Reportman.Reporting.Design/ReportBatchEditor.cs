@@ -1476,7 +1476,7 @@ namespace Reportman.Reporting.Design
                 return printPosItem.Section == null ? null : printPosItem.Section.Name;
             }
 
-            if (item is SubReport || item is Param || item is DataInfo || item is DatabaseInfo)
+            if (item is Report || item is SubReport || item is Param || item is DataInfo || item is DatabaseInfo)
             {
                 return null;
             }
