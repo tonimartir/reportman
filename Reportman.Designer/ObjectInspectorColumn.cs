@@ -12,7 +12,7 @@ namespace Reportman.Designer
     public enum ObjectInspectorCellType
     {
         Text, Expression, Integer, Decimal, Boolean, DropDown, DropDownList, Color, Image, FontName, FontStyle, SQL,
-        ConnectionString
+        ConnectionString, MultilineText
     };
 
     public class ObjectInspectorColumn : DataGridViewColumn
@@ -51,6 +51,7 @@ namespace Reportman.Designer
         private EllipsisClick ClickExpressionEvent;
         private EllipsisClick ClickSQLEvent;
         private EllipsisClick ClickConnectionStringEvent;
+        private EllipsisClick ClickMultilineTextEvent;
         private EventHandler ClickFontStyleEvent;
         public ObjectInspectorCell()
             : base()
@@ -59,6 +60,7 @@ namespace Reportman.Designer
             ClickExpressionEvent = new EllipsisClick(ClickExpression);
             ClickSQLEvent = new EllipsisClick(ClickSQL);
             ClickConnectionStringEvent = new EllipsisClick(ClickConnectionString);
+            ClickMultilineTextEvent = new EllipsisClick(ClickMultilineText);
             ClickFontStyleEvent = new EventHandler(ClickFontStyle);
             ComboPickerClick = new EventHandler(ClickCombo);
         }
@@ -253,9 +255,17 @@ namespace Reportman.Designer
                     return ClickSQL(sender, ref text);
                 case ObjectInspectorCellType.ConnectionString:
                     return ClickConnectionString(sender, ref text);
+                case ObjectInspectorCellType.MultilineText:
+                    return ClickMultilineText(sender, ref text);
                 default:
                     throw new Exception("Ellipsisclick not implemented for " + sender.Tag.ToString());
             }
+        }
+
+        private bool ClickMultilineText(EllipsisEditingControl sender, ref string text)
+        {
+            string title = GetColumnValue("NAME").ToString();
+            return MultilineTextEditorDialog.ShowDialog(ref text, GetMainDesigner(), title);
         }
 
         private Font CreateOriginalFont()
@@ -490,6 +500,9 @@ namespace Reportman.Designer
                         case ObjectInspectorCellType.ConnectionString:
                             ntype = typeof(EllipsisEditingControl);
                             break;
+                        case ObjectInspectorCellType.MultilineText:
+                            ntype = typeof(EllipsisEditingControl);
+                            break;
                     }
                 }
                 return ntype;
@@ -670,6 +683,7 @@ namespace Reportman.Designer
                 case ObjectInspectorCellType.Expression:
                 case ObjectInspectorCellType.SQL:
                 case ObjectInspectorCellType.ConnectionString:
+                case ObjectInspectorCellType.MultilineText:
                     aresult = formattedValue.ToString();
                     break;
                 case ObjectInspectorCellType.Color:

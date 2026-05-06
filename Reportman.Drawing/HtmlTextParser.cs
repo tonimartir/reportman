@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using AngleSharp.Html.Parser;
+using Ganss.Xss;
 
 namespace Reportman.Drawing
 {
@@ -46,7 +48,7 @@ namespace Reportman.Drawing
         private static readonly Regex TagRegex = new Regex(@"<(/?)(\w+)([^>]*)>", RegexOptions.IgnoreCase | RegexOptions.Compiled);
         private static readonly Regex StyleRegex = new Regex(@"font-family\s*:\s*'?([^';]+)'?", RegexOptions.IgnoreCase | RegexOptions.Compiled);
         private static readonly Regex SizeRegex = new Regex(@"font-size\s*:\s*'?(\d+)(pt|px)?'?", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-        private static readonly Regex ColorRegex = new Regex(@"(?<![-\w])color\s*:\s*([^;'""]+)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+        private static readonly Regex ColorRegex = new Regex(@"(?<![-\w])color\s*[:=]\s*['""]?([^;'""\s>]+)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
         public static List<HtmlFormatRun> Parse(string htmlText, string defaultFontFamily = "")
         {
@@ -55,8 +57,12 @@ namespace Reportman.Drawing
             if (string.IsNullOrEmpty(htmlText))
                 return runs;
 
+            // Normalize broken incoming HTML into the supported subset, but fall back to
+            // the original fragment if the preprocessing pipeline cannot handle it.
+            string preprocessedHtml = NormalizeSupportedHtml(htmlText);
+
             // Normalize line endings
-            string normalizedHtml = htmlText.Replace("\r\n", "\n").Replace("\r", "\n");
+            string normalizedHtml = preprocessedHtml.Replace("\r\n", "\n").Replace("\r", "\n");
 
             var currentRun = new HtmlFormatRun
             {
@@ -83,6 +89,13 @@ namespace Reportman.Drawing
 
             var colorStack = new Stack<int>();
             colorStack.Push(-1); // -1 = no color override
+
+            void AddSpecialText(string text)
+            {
+                var runToAdd = currentRun.Clone();
+                runToAdd.Text = text;
+                runs.Add(runToAdd);
+            }
 
             foreach (Match match in matches)
             {
@@ -161,7 +174,7 @@ namespace Reportman.Drawing
                                 }
                             }
                             break;
-                        case "font": // Legacy <font face="Arial"> support
+                        case "font": // Legacy <font face="Arial" color="#ff0000"> support
                             string face = ExtractFontFace(tagAttributes);
                             if (!string.IsNullOrEmpty(face))
                             {
@@ -183,11 +196,30 @@ namespace Reportman.Drawing
                             {
                                 fontSizeStack.Push(currentRun.FontSize);
                             }
+                            {
+                                int fontColor;
+                                if (ExtractColorValue(tagAttributes, out fontColor))
+                                {
+                                    colorStack.Push(fontColor);
+                                    currentRun.Color = fontColor;
+                                    currentRun.HasColor = true;
+                                }
+                                else
+                                {
+                                    colorStack.Push(colorStack.Peek());
+                                }
+                            }
                             break;
                         case "br":
-                            var runToAdd = currentRun.Clone();
-                            runToAdd.Text = "\n";
-                            runs.Add(runToAdd);
+                            AddSpecialText("\n");
+                            break;
+                        case "p":
+                        case "div":
+                            break;
+                        case "tr":
+                            break;
+                        case "td":
+                        case "th":
                             break;
                     }
                 }
@@ -249,6 +281,15 @@ namespace Reportman.Drawing
                                 }
                             }
                             break;
+                        case "p":
+                        case "div":
+                        case "tr":
+                            AddSpecialText("\n");
+                            break;
+                        case "td":
+                        case "th":
+                            AddSpecialText(" ");
+                            break;
                     }
                 }
 
@@ -302,6 +343,74 @@ namespace Reportman.Drawing
             merged.Add(current);
 
             return merged;
+        }
+
+        private static string NormalizeSupportedHtml(string htmlText)
+        {
+            if (string.IsNullOrWhiteSpace(htmlText) || htmlText.IndexOf('<') < 0)
+            {
+                return htmlText;
+            }
+
+            try
+            {
+                var parser = new HtmlParser();
+                var document = parser.ParseDocument(htmlText);
+                string normalizedHtml = document.Body?.InnerHtml;
+
+                if (string.IsNullOrEmpty(normalizedHtml))
+                {
+                    normalizedHtml = document.DocumentElement?.InnerHtml;
+                }
+
+                if (string.IsNullOrEmpty(normalizedHtml))
+                {
+                    normalizedHtml = htmlText;
+                }
+
+                var sanitizer = CreateSupportedHtmlSanitizer();
+                return sanitizer.Sanitize(normalizedHtml);
+            }
+            catch
+            {
+                return htmlText;
+            }
+        }
+
+        private static HtmlSanitizer CreateSupportedHtmlSanitizer()
+        {
+            var sanitizer = new HtmlSanitizer();
+
+            sanitizer.AllowedTags.Clear();
+            foreach (string tag in new[]
+            {
+                "b", "strong", "i", "em", "u", "s", "del", "strike",
+                "span", "font", "br", "p", "div",
+                "table", "tbody", "thead", "tfoot", "tr", "td", "th"
+            })
+            {
+                sanitizer.AllowedTags.Add(tag);
+            }
+
+            sanitizer.AllowedAttributes.Clear();
+            foreach (string attribute in new[]
+            {
+                "style", "face", "size", "color", "colspan", "rowspan"
+            })
+            {
+                sanitizer.AllowedAttributes.Add(attribute);
+            }
+
+            sanitizer.AllowedCssProperties.Clear();
+            foreach (string cssProperty in new[]
+            {
+                "color", "font-family", "font-size"
+            })
+            {
+                sanitizer.AllowedCssProperties.Add(cssProperty);
+            }
+
+            return sanitizer;
         }
 
         private static string ExtractFontFamily(string attributes)
@@ -389,6 +498,11 @@ namespace Reportman.Drawing
             {
                 return match.Groups[1].Value;
             }
+            match = Regex.Match(attributes, @"face\s*=\s*([^\s>]+)", RegexOptions.IgnoreCase);
+            if (match.Success)
+            {
+                return match.Groups[1].Value.Trim();
+            }
             return string.Empty;
         }
         
@@ -399,6 +513,11 @@ namespace Reportman.Drawing
             {
                 if (float.TryParse(match.Groups[1].Value, out float size))
                 {
+                    var hasPtSuffix = match.Index + match.Length + 1 < attributes.Length &&
+                        string.Compare(attributes, match.Index + match.Length, "pt", 0, 2, StringComparison.OrdinalIgnoreCase) == 0;
+                    if (hasPtSuffix)
+                        return size;
+
                     // Convert legacy HTML sizes (1-7) to approximate point sizes
                     switch ((int)size)
                     {

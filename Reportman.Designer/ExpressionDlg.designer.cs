@@ -133,6 +133,7 @@
             tableLayoutPanel1.SetColumnSpan(MemoExpre, 4);
             MemoExpre.Location = new System.Drawing.Point(4, 5);
             MemoExpre.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            MemoExpre.MaxLength = 0;
             MemoExpre.Multiline = true;
             MemoExpre.Name = "MemoExpre";
             MemoExpre.ScrollBars = System.Windows.Forms.ScrollBars.Both;

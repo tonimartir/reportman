@@ -189,6 +189,12 @@ namespace Reportman.Designer
                     {
                         nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.Integer);
                     }
+
+                    if ((obj is DesignerInterfaceLabel) && (pnames[i] == Translator.TranslateStr(570)))
+                    {
+                        nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.MultilineText);
+                    }
+
                     if (pvalues != null)
                     {
                         if (isbinary)
