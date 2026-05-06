@@ -345,6 +345,9 @@ namespace Reportman.Reporting
             SplitHtmlRuns(runs, visibleLength, out List<HtmlFormatRun> currentRuns, out List<HtmlFormatRun> remainingRuns);
             SkipLeadingPartialWhitespace(remainingRuns);
 
+            if (!HasPrintableHtmlContent(remainingRuns))
+                return true;
+
             currentHtml = BuildHtmlFromRuns(currentRuns);
             remainingHtml = BuildHtmlFromRuns(remainingRuns);
 
@@ -420,6 +423,23 @@ namespace Reportman.Reporting
                 }
                 break;
             }
+        }
+
+        private static bool HasPrintableHtmlContent(List<HtmlFormatRun> runs)
+        {
+            foreach (HtmlFormatRun run in runs)
+            {
+                if (string.IsNullOrEmpty(run.Text))
+                    continue;
+
+                foreach (char character in run.Text)
+                {
+                    if (!char.IsWhiteSpace(character) && character != '\u00A0')
+                        return true;
+                }
+            }
+
+            return false;
         }
 
         private static string BuildHtmlFromRuns(List<HtmlFormatRun> runs)
