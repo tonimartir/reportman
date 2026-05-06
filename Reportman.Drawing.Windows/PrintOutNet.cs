@@ -163,6 +163,16 @@ namespace Reportman.Drawing
             }
             return extent;
         }
+
+        public override List<LineInfo> TextExtentLineInfo(TextObjectStruct aobj, ref Point extent)
+        {
+            if (npdfdriver == null)
+                npdfdriver = new PrintOutPDF();
+
+            npdfdriver.PDFConformance = CurrentMetafile.PDFConformance;
+            aobj.Type1Font = PDFFontType.Linked;
+            return npdfdriver.TextExtentLineInfo(aobj, ref extent);
+        }
         /// <summary>
         /// Set page size
         /// </summary>
@@ -968,7 +978,7 @@ namespace Reportman.Drawing
             }
             npdfdriver.PDFConformance = CurrentMetafile.PDFConformance;
             Point full_extent = new Point(arect.Width, arect.Height);
-            var linfos = npdfdriver.TextExtentLineInfo(atext, ref full_extent);
+            var linfos = TextExtentLineInfo(atext, ref full_extent);
             Rectangle recsize = new Rectangle(0, 0, full_extent.X, full_extent.Y);
 
             int Alignment = atext.Alignment;

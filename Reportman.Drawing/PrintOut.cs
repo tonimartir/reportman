@@ -19,6 +19,7 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 
@@ -753,6 +754,10 @@ namespace Reportman.Drawing
         /// The driver must return the text extent in twips
         /// </summary>
         public abstract Point TextExtent(TextObjectStruct aobj, Point extent);
+        public virtual List<LineInfo> TextExtentLineInfo(TextObjectStruct aobj, ref Point extent)
+        {
+            return null;
+        }
         /// <summary>
         /// The driver must return the image extent in twips
         /// </summary>

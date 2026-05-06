@@ -558,7 +558,7 @@ namespace Reportman.Drawing
         /// <summary>
         /// Obtain text extent and return LineInfo list directly
         /// </summary>
-        public List<LineInfo> TextExtentLineInfo(TextObjectStruct aobj, ref Point extent)
+        public override List<LineInfo> TextExtentLineInfo(TextObjectStruct aobj, ref Point extent)
         {
             bool singleline;
             Rectangle rect;

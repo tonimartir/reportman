@@ -1,6 +1,9 @@
 ﻿using Reportman.Drawing;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
+using System.Text;
 
 namespace Reportman.Reporting
 {
@@ -11,6 +14,7 @@ namespace Reportman.Reporting
         private Variant FExportValue;
         private bool FIsPartial;
         private bool FForcedPartial;
+        private string FHtmlPartialText;
         private string FOldString;
         private bool FUpdated;
         private int FDataCount;
@@ -78,20 +82,46 @@ namespace Reportman.Reporting
             {
 
                 MaxExtent.X = PrintWidth;
-                newposition = MetaFile.CalcTextExtent(Report.Driver, MaxExtent, TextObj);
-                if (newposition < TextObj.Text.Length)
+                if (IsHtml)
                 {
-                    if (!FIsPartial)
-                        PartialPos = 0;
-                    FIsPartial = true;
-                    PartialPrint = true;
-                    PartialPos = PartialPos + newposition;
-                    TextObj.Text = TextObj.Text.Substring(0, newposition);
+                    if (!TrySplitHtmlForMultipage(adriver, TextObj, MaxExtent, out string currentHtml, out string remainingHtml))
+                    {
+                        currentHtml = TextObj.Text;
+                        remainingHtml = string.Empty;
+                    }
+
+                    TextObj.Text = currentHtml;
+                    if (!string.IsNullOrEmpty(remainingHtml))
+                    {
+                        FIsPartial = true;
+                        PartialPrint = true;
+                        FHtmlPartialText = remainingHtml;
+                    }
+                    else
+                    {
+                        FIsPartial = false;
+                        FForcedPartial = false;
+                        FHtmlPartialText = null;
+                    }
                 }
                 else
                 {
-                    FIsPartial = false;
-                    FForcedPartial = false;
+                    FHtmlPartialText = null;
+                    newposition = MetaFile.CalcTextExtent(Report.Driver, MaxExtent, TextObj);
+                    if (newposition < TextObj.Text.Length)
+                    {
+                        if (!FIsPartial)
+                            PartialPos = 0;
+                        FIsPartial = true;
+                        PartialPrint = true;
+                        PartialPos = PartialPos + newposition;
+                        TextObj.Text = TextObj.Text.Substring(0, newposition);
+                    }
+                    else
+                    {
+                        FIsPartial = false;
+                        FForcedPartial = false;
+                    }
                 }
             }
             MetaPage apage = metafile.Pages[metafile.CurrentPage];
@@ -256,6 +286,9 @@ namespace Reportman.Reporting
                 throw new ReportException(E.Message + (char)10 + Name + " Prop:Expression",
                     this, "Expression");
             }
+            if (IsHtml && FIsPartial && FHtmlPartialText != null)
+                return FHtmlPartialText;
+
             if (IsPartial)
             {
                 if ((aresult[PartialPos] == ' ') || (aresult[PartialPos] == (char)10))
@@ -264,6 +297,211 @@ namespace Reportman.Reporting
                 aresult = aresult.Substring(PartialPos, aresult.Length - PartialPos);
             }
             return aresult;
+        }
+
+        private bool TrySplitHtmlForMultipage(PrintOut adriver, TextObjectStruct textObj, Point maxExtent,
+            out string currentHtml, out string remainingHtml)
+        {
+            currentHtml = textObj.Text;
+            remainingHtml = string.Empty;
+
+            if (string.IsNullOrEmpty(textObj.Text) || maxExtent.Y <= 0)
+                return true;
+
+            Point measureExtent = maxExtent;
+            measureExtent.X = PrintWidth;
+            List<LineInfo> lines = adriver.TextExtentLineInfo(textObj, ref measureExtent);
+            if ((lines == null) || (lines.Count == 0))
+                return false;
+
+            int visibleLength = 0;
+            int consumedHeight = 0;
+            foreach (LineInfo line in lines)
+            {
+                int lineHeight = line.Height > 0 ? line.Height : Convert.ToInt32(Math.Round(line.LineHeight));
+                if (lineHeight <= 0)
+                    continue;
+
+                if ((consumedHeight + lineHeight) > maxExtent.Y)
+                    break;
+
+                consumedHeight += lineHeight;
+                int lineEnd = line.Position + line.Size;
+                if (lineEnd > visibleLength)
+                    visibleLength = lineEnd;
+            }
+
+            if (visibleLength <= 0)
+                return false;
+
+            List<HtmlFormatRun> runs = HtmlTextParser.Parse(textObj.Text, WFontName);
+            int totalPlainLength = GetTotalPlainTextLength(runs);
+            if (totalPlainLength <= 0)
+                return true;
+
+            if (visibleLength >= totalPlainLength)
+                return true;
+
+            SplitHtmlRuns(runs, visibleLength, out List<HtmlFormatRun> currentRuns, out List<HtmlFormatRun> remainingRuns);
+            SkipLeadingPartialWhitespace(remainingRuns);
+
+            currentHtml = BuildHtmlFromRuns(currentRuns);
+            remainingHtml = BuildHtmlFromRuns(remainingRuns);
+
+            if (string.IsNullOrEmpty(currentHtml) || string.IsNullOrEmpty(remainingHtml))
+                return false;
+
+            return true;
+        }
+
+        private static int GetTotalPlainTextLength(List<HtmlFormatRun> runs)
+        {
+            int totalLength = 0;
+            foreach (HtmlFormatRun run in runs)
+            {
+                if (!string.IsNullOrEmpty(run.Text))
+                    totalLength += run.Text.Length;
+            }
+            return totalLength;
+        }
+
+        private static void SplitHtmlRuns(List<HtmlFormatRun> runs, int visibleLength,
+            out List<HtmlFormatRun> currentRuns, out List<HtmlFormatRun> remainingRuns)
+        {
+            currentRuns = new List<HtmlFormatRun>();
+            remainingRuns = new List<HtmlFormatRun>();
+            int remainingVisibleLength = visibleLength;
+
+            foreach (HtmlFormatRun run in runs)
+            {
+                string runText = run.Text ?? string.Empty;
+                if (remainingVisibleLength <= 0)
+                {
+                    if (runText.Length > 0)
+                        remainingRuns.Add(run.Clone());
+                    continue;
+                }
+
+                if (runText.Length <= remainingVisibleLength)
+                {
+                    if (runText.Length > 0)
+                        currentRuns.Add(run.Clone());
+                    remainingVisibleLength -= runText.Length;
+                    continue;
+                }
+
+                HtmlFormatRun currentRun = run.Clone();
+                currentRun.Text = runText.Substring(0, remainingVisibleLength);
+                currentRuns.Add(currentRun);
+
+                HtmlFormatRun nextRun = run.Clone();
+                nextRun.Text = runText.Substring(remainingVisibleLength);
+                remainingRuns.Add(nextRun);
+                remainingVisibleLength = 0;
+            }
+        }
+
+        private static void SkipLeadingPartialWhitespace(List<HtmlFormatRun> runs)
+        {
+            for (int index = 0; index < runs.Count; index++)
+            {
+                HtmlFormatRun run = runs[index];
+                if (string.IsNullOrEmpty(run.Text))
+                    continue;
+
+                char firstChar = run.Text[0];
+                if ((firstChar == ' ') || (firstChar == '\n'))
+                {
+                    run.Text = run.Text.Substring(1);
+                    if (run.Text.Length == 0)
+                    {
+                        runs.RemoveAt(index);
+                    }
+                }
+                break;
+            }
+        }
+
+        private static string BuildHtmlFromRuns(List<HtmlFormatRun> runs)
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach (HtmlFormatRun run in runs)
+            {
+                if (string.IsNullOrEmpty(run.Text))
+                    continue;
+
+                string segment = EncodeHtmlText(run.Text);
+                if (segment.Length == 0)
+                    continue;
+
+                if (run.HasColor)
+                {
+                    int red = run.Color & 0xFF;
+                    int green = (run.Color >> 8) & 0xFF;
+                    int blue = (run.Color >> 16) & 0xFF;
+                    segment = "<font color=\"#" + red.ToString("X2", CultureInfo.InvariantCulture)
+                        + green.ToString("X2", CultureInfo.InvariantCulture)
+                        + blue.ToString("X2", CultureInfo.InvariantCulture) + "\">" + segment + "</font>";
+                }
+
+                if (run.HasFontSize)
+                    segment = "<span style=\"font-size:" + run.FontSize.ToString("0.##", CultureInfo.InvariantCulture) + "pt\">" + segment + "</span>";
+
+                if (!string.IsNullOrEmpty(run.FontFamily))
+                    segment = "<font face=\"" + EncodeHtmlAttribute(run.FontFamily) + "\">" + segment + "</font>";
+
+                if (run.StrikeOut)
+                    segment = "<strike>" + segment + "</strike>";
+                if (run.Underline)
+                    segment = "<u>" + segment + "</u>";
+                if (run.Italic)
+                    segment = "<i>" + segment + "</i>";
+                if (run.Bold)
+                    segment = "<b>" + segment + "</b>";
+
+                builder.Append(segment);
+            }
+            return builder.ToString();
+        }
+
+        private static string EncodeHtmlText(string text)
+        {
+            StringBuilder builder = new StringBuilder(text.Length);
+            foreach (char character in text)
+            {
+                switch (character)
+                {
+                    case '&':
+                        builder.Append("&amp;");
+                        break;
+                    case '<':
+                        builder.Append("&lt;");
+                        break;
+                    case '>':
+                        builder.Append("&gt;");
+                        break;
+                    case '"':
+                        builder.Append("&quot;");
+                        break;
+                    case '\r':
+                        break;
+                    case '\n':
+                        builder.Append("<br>");
+                        break;
+                    case '\u00A0':
+                        builder.Append("&nbsp;");
+                        break;
+                    default:
+                        builder.Append(character);
+                        break;
+                }
+            }
+            return builder.ToString();
+        }
+
+        private static string EncodeHtmlAttribute(string value)
+        {
+            return value.Replace("&", "&amp;").Replace("\"", "&quot;").Replace("<", "&lt;").Replace(">", "&gt;");
         }
         public override void SubReportChanged(SubReportEvent newstate, string newgroup)
         {
@@ -277,6 +515,7 @@ namespace Reportman.Reporting
                     FExportValue = new Variant();
                     FIsPartial = false;
                     FForcedPartial = false;
+                    FHtmlPartialText = null;
                     FOldString = "";
                     FUpdated = false;
                     FDataCount = 0;
@@ -301,6 +540,7 @@ namespace Reportman.Reporting
                     FExportValue = new Variant();
                     FIsPartial = false;
                     FForcedPartial = false;
+                    FHtmlPartialText = null;
                     FOldString = "";
                     FUpdated = false;
                     FDataCount = 0;
@@ -324,6 +564,7 @@ namespace Reportman.Reporting
                 case SubReportEvent.DataChange:
                     FIsPartial = false;
                     FForcedPartial = false;
+                    FHtmlPartialText = null;
                     FUpdated = false;
                     FDataCount++;
                     if (Aggregate != Aggregate.None)
@@ -388,6 +629,7 @@ namespace Reportman.Reporting
                 case SubReportEvent.GroupChange:
                     FIsPartial = false;
                     FForcedPartial = false;
+                    FHtmlPartialText = null;
                     FUpdated = false;
                     FOldString = "";
                     if (Aggregate == Aggregate.Group)
@@ -440,6 +682,7 @@ namespace Reportman.Reporting
                 case SubReportEvent.InvalidateValue:
                     FIsPartial = false;
                     FForcedPartial = false;
+                    FHtmlPartialText = null;
                     FOldString = "";
                     FUpdated = false;
                     break;
@@ -488,13 +731,29 @@ namespace Reportman.Reporting
             if ((MultiPage) || ForcePartial)
             {
                 MaxExtent.X = aresult.X;
-                aposition = MetaFile.CalcTextExtent(adriver, MaxExtent, atext);
-                if (aposition < atext.Text.Length)
-                    IsPartial = true;
-                atext.Text = atext.Text.Substring(0, aposition);
-                aresult = adriver.TextExtent(atext, aresult);
-                if (IsPartial)
-                    aresult.Y = MaxExtent.Y;
+                if (IsHtml)
+                {
+                    if (!TrySplitHtmlForMultipage(adriver, atext, MaxExtent, out string currentHtml, out string remainingHtml))
+                    {
+                        currentHtml = atext.Text;
+                        remainingHtml = string.Empty;
+                    }
+                    IsPartial = !string.IsNullOrEmpty(remainingHtml);
+                    atext.Text = currentHtml;
+                    aresult = adriver.TextExtent(atext, aresult);
+                    if (IsPartial)
+                        aresult.Y = MaxExtent.Y;
+                }
+                else
+                {
+                    aposition = MetaFile.CalcTextExtent(adriver, MaxExtent, atext);
+                    if (aposition < atext.Text.Length)
+                        IsPartial = true;
+                    atext.Text = atext.Text.Substring(0, aposition);
+                    aresult = adriver.TextExtent(atext, aresult);
+                    if (IsPartial)
+                        aresult.Y = MaxExtent.Y;
+                }
             }
             else
                 aresult = adriver.TextExtent(atext, aresult);
