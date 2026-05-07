@@ -449,8 +449,7 @@ namespace Reportman.Reporting
         }
         private string GetAsString()
         {
-            string anumber;
-            string aresult = "";
+            StringBuilder aresult = new StringBuilder(propvalue.Length);
             int i = 0;
             while (i < propvalue.Length)
             {
@@ -458,7 +457,7 @@ namespace Reportman.Reporting
                 {
                     if (propvalue[i] == '#')
                     {
-                        anumber = "0";
+                        int anumber = 0;
                         i++;
                         while (i < propvalue.Length)
                         {
@@ -467,24 +466,22 @@ namespace Reportman.Reporting
                                 i++;
                                 break;
                             }
-                            else
-                            {
-                                anumber = anumber + propvalue[i];
-                                i++;
-                            }
+
+                            anumber = (anumber * 10) + (propvalue[i] - '0');
+                            i++;
                         }
-                        aresult = aresult + (char)System.Convert.ToInt32(anumber);
+                        aresult.Append((char)anumber);
                     }
                     else
                     {
-                        aresult = aresult + propvalue[i];
+                        aresult.Append(propvalue[i]);
                         i++;
                     }
                 }
                 else
                     i++;
             }
-            return (aresult);
+            return aresult.ToString();
         }
         private int GetAsInteger()
         {

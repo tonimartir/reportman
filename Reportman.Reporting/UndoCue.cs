@@ -75,6 +75,11 @@ namespace Reportman.Reporting
                 newGroupId = UndoOperations[UndoOperations.Count - 1].GroupId;
             }
 
+            if (operations.Count > 0)
+            {
+                report.Modified = true;
+            }
+
             return operations;
         }
 
@@ -98,6 +103,11 @@ namespace Reportman.Reporting
 
                 if (RedoOperations.Count == 0) break;
                 newGroupId = RedoOperations[RedoOperations.Count - 1].GroupId;
+            }
+
+            if (operations.Count > 0)
+            {
+                report.Modified = true;
             }
 
             return operations;

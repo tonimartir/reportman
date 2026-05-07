@@ -54,6 +54,8 @@ namespace Reportman.Designer
         public delegate void SaveReportEvent(object sender, SaveReportArgs args);
         public delegate void ExitReportEventHandler(object sender, ExitReportArgs args);
         public delegate void PreviewReportEvent(object sender, PreviewReportArgs args);
+        private const string LibraryEntrySeparator = "->";
+        private const int RecentFileCaptionWidth = 40;
         private string CurrentFilename = "";
         ReportLibrarySelection CurrentReportSelection = null;
 
@@ -163,6 +165,8 @@ namespace Reportman.Designer
         public PreviewReportEvent OnPreviewClick;
         ReportLibraryConfigCollection libs = new ReportLibraryConfigCollection();
         string configFilenameLibs = ReportLibraryConfig.GetConfigFilename();
+        private readonly DelphiRecentFiles recentFiles = new DelphiRecentFiles();
+        private ToolStripItem[] openMenuBaseItems;
         public FrameMainDesigner()
         {
             InitializeComponent();
@@ -283,6 +287,9 @@ namespace Reportman.Designer
             mopenfromlib.ToolTipText = Translator.TranslateStr(1138);
             mopen.Text = Translator.TranslateStr(42);
             mopen.ToolTipText = Translator.TranslateStr(43);
+            openMenuBaseItems = new ToolStripItem[] { mopen, mopenfromlib, msetuplib };
+            recentFiles.Load();
+            RefreshOpenMenu();
             bpagesetup.Text = Translator.TranslateStr(50);
             bpagesetup.ToolTipText = Translator.TranslateStr(51);
             bprint.Text = Translator.TranslateStr(52);
@@ -335,7 +342,6 @@ namespace Reportman.Designer
             tabudocue.Text = "Undo";
             fundocue.OnUndoRedo += UndoCue_OnUndoRedo;
         }
-        System.IO.MemoryStream OriginalStream;
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), Browsable(false)]
         public Report Report
         {
@@ -346,13 +352,6 @@ namespace Reportman.Designer
             set
             {
                 DisableMenus();
-                if (FReport != null)
-                {
-                    OriginalStream = new System.IO.MemoryStream();
-                    FReport.SaveToStream(OriginalStream, StreamVersion.V2);
-                }
-                else
-                    OriginalStream = null;
                 FReport = value;
                 if (FReport.UndoCue == null)
                     FReport.UndoCue = new UndoCue();
@@ -382,9 +381,12 @@ namespace Reportman.Designer
                 }
             }
         }
-        public void SetSaved(System.IO.MemoryStream neworiginalstream)
+        public void SetSaved()
         {
-            OriginalStream = neworiginalstream;
+            if (FReport != null)
+            {
+                FReport.Modified = false;
+            }
         }
         public void EnableMenus()
         {
@@ -424,11 +426,7 @@ namespace Reportman.Designer
             Report = report;
             CurrentFilename = "";
             CurrentReportSelection = null;
-
-            var memstream = new System.IO.MemoryStream();
-            report.SaveToStream(memstream, StreamVersion.V2);
-            memstream.Seek(0, System.IO.SeekOrigin.Begin);
-            SetSaved(memstream);
+            SetSaved();
         }
 
         private void ButtonNewBlankClick(object sender, EventArgs e)
@@ -453,19 +451,7 @@ namespace Reportman.Designer
         }
         public bool ReportChanged()
         {
-            if (FReport == null)
-                return false;
-            if (OriginalStream == null)
-                return true;
-            using (System.IO.MemoryStream newstream = new System.IO.MemoryStream())
-            {
-                FReport.SaveToStream(newstream, StreamVersion.V2);
-                newstream.Seek(0, System.IO.SeekOrigin.Begin);
-                OriginalStream.Seek(0, System.IO.SeekOrigin.Begin);
-                if (StreamUtil.CompareArrayContent(newstream.ToArray(), OriginalStream.ToArray()))
-                    return false;
-                else return true;
-            }
+            return FReport != null && FReport.Modified;
         }
         public bool CheckSave()
         {
@@ -493,16 +479,7 @@ namespace Reportman.Designer
                 if (!CheckSave())
                     return;
             }
-            Report nrep = new Report();
-            System.IO.MemoryStream memstream = StreamUtil.FileToMemoryStream(filename);
-            memstream.Seek(0, System.IO.SeekOrigin.Begin);
-            nrep.LoadFromStream(memstream);
-            nrep.ConvertToDotNet();
-            FixReport(nrep);
-            Report = nrep;
-            CurrentFilename = filename;
-            CurrentReportSelection = null;
-            SetSaved(memstream);
+            OpenReportFileInternal(filename, true);
 
         }
         private void ButtonOpenClick(object sender, EventArgs e)
@@ -532,13 +509,7 @@ namespace Reportman.Designer
         {
             if (!CheckSave())
                 return;
-            Report nrep = new Report();
-            nrep.LoadFromFile(nfilename);
-            FixReport(nrep);
-            Report = nrep;
-            CurrentFilename = nfilename;
-            CurrentReportSelection = null;
-
+            OpenReportFileInternal(nfilename, true);
         }
         public bool PrintReport(bool preview)
         {
@@ -1297,8 +1268,10 @@ namespace Reportman.Designer
             {
                 SaveReportArgs args = new SaveReportArgs();
                 OnSaveClick(this, args);
-                OriginalStream = new System.IO.MemoryStream();
-                FReport.SaveToStream(OriginalStream, StreamVersion.V2);
+                if (args.Saved)
+                {
+                    SetSaved();
+                }
                 return args.Saved;
             }
             if ((CurrentFilename.Length == 0) && (CurrentReportSelection == null))
@@ -1310,19 +1283,21 @@ namespace Reportman.Designer
                 string nfilename = ndiag.FileName;
                 FReport.SaveToFile(nfilename);
                 CurrentFilename = nfilename;
-                OriginalStream = StreamUtil.FileToMemoryStream(CurrentFilename);
+                SetSaved();
+                AddRecentEntry(CurrentFilename);
             }
             else
             {
                 if (CurrentFilename.Length > 0)
                 {
                     FReport.SaveToFile(CurrentFilename);
-                    OriginalStream = StreamUtil.FileToMemoryStream(CurrentFilename);
+                    SetSaved();
+                    AddRecentEntry(CurrentFilename);
                 }
                 else
                 {
                     CurrentReportSelection.Save(FReport);
-                    OriginalStream = CurrentReportSelection.Stream;
+                    SetSaved();
                 }
             }
             return true;
@@ -1341,6 +1316,7 @@ namespace Reportman.Designer
             if (savedialog.ShowDialog(this.FindForm()) == DialogResult.OK)
             {
                 Report.SaveToFile(savedialog.FileName);
+                AddRecentEntry(savedialog.FileName);
                 if (sender == msaveas)
                 {
                     CurrentFilename = savedialog.FileName;
@@ -1407,12 +1383,43 @@ namespace Reportman.Designer
 
         private void ButtonOpenFromLibClick(object sender, EventArgs e)
         {
+            if (!CheckSave())
+            {
+                return;
+            }
+
             libs.LoadFromFile(configFilenameLibs);
             ReportLibrarySelection selection = OpenFromLibraryForm.SelectReportFromLibraries(libs, OpenFromLibrary.SelectionModeType.SelectionEdit, this.FindForm());
             if (selection == null)
             {
                 return;
             }
+            OpenReportLibrarySelection(selection, true);
+        }
+
+        private void OpenReportFileInternal(string filename, bool updateRecentFiles)
+        {
+            Report nrep = new Report();
+            using (System.IO.MemoryStream memstream = StreamUtil.FileToMemoryStream(filename))
+            {
+                memstream.Seek(0, System.IO.SeekOrigin.Begin);
+                nrep.LoadFromStream(memstream);
+            }
+            nrep.ConvertToDotNet();
+            FixReport(nrep);
+            Report = nrep;
+            CurrentFilename = filename;
+            CurrentReportSelection = null;
+            SetSaved();
+
+            if (updateRecentFiles)
+            {
+                AddRecentEntry(filename);
+            }
+        }
+
+        private void OpenReportLibrarySelection(ReportLibrarySelection selection, bool updateRecentFiles)
+        {
             Report nrep = new Report();
             System.IO.MemoryStream memstream = selection.Stream;
             memstream.Seek(0, System.IO.SeekOrigin.Begin);
@@ -1420,9 +1427,115 @@ namespace Reportman.Designer
             nrep.ConvertToDotNet();
             FixReport(nrep);
             Report = nrep;
-            CurrentFilename = "";
-            SetSaved(memstream);
+            CurrentFilename = string.Empty;
+            SetSaved();
             CurrentReportSelection = selection;
+
+            if (updateRecentFiles)
+            {
+                AddRecentEntry(BuildLibraryEntry(selection));
+            }
+        }
+
+        private void AddRecentEntry(string value)
+        {
+            recentFiles.UseString(value);
+            recentFiles.Save();
+            RefreshOpenMenu();
+        }
+
+        private void RefreshOpenMenu()
+        {
+            bopen.DropDownItems.Clear();
+            bopen.DropDownItems.AddRange(openMenuBaseItems);
+
+            bool hasRecentEntries = false;
+            for (int index = 0; index < recentFiles.Entries.Count; index++)
+            {
+                if (!string.IsNullOrEmpty(recentFiles.Entries[index]))
+                {
+                    hasRecentEntries = true;
+                    break;
+                }
+            }
+
+            if (!hasRecentEntries)
+            {
+                return;
+            }
+
+            bopen.DropDownItems.Add(new ToolStripSeparator());
+            for (int index = 0; index < recentFiles.Entries.Count; index++)
+            {
+                string entry = recentFiles.Entries[index];
+                if (string.IsNullOrEmpty(entry))
+                {
+                    continue;
+                }
+
+                ToolStripMenuItem menuItem = new ToolStripMenuItem();
+                menuItem.Text = DelphiRecentFiles.ShortenForDisplay(entry, RecentFileCaptionWidth);
+                menuItem.Tag = entry;
+                menuItem.Click += RecentFileClick;
+                bopen.DropDownItems.Add(menuItem);
+            }
+        }
+
+        private void RecentFileClick(object sender, EventArgs e)
+        {
+            string entry = (sender as ToolStripItem)?.Tag as string;
+            if (string.IsNullOrWhiteSpace(entry))
+            {
+                return;
+            }
+
+            if (entry.Contains(LibraryEntrySeparator))
+            {
+                OpenRecentLibraryEntry(entry);
+                return;
+            }
+
+            Open(entry, true);
+        }
+
+        private void OpenRecentLibraryEntry(string entry)
+        {
+            if (!CheckSave())
+            {
+                return;
+            }
+
+            string[] parts = entry.Split(new[] { LibraryEntrySeparator }, 2, StringSplitOptions.None);
+            if (parts.Length != 2)
+            {
+                return;
+            }
+
+            libs.LoadFromFile(configFilenameLibs);
+            ReportLibraryConfig config = null;
+            foreach (ReportLibraryConfig item in libs)
+            {
+                if (string.Equals(item.Alias, parts[0], StringComparison.OrdinalIgnoreCase))
+                {
+                    config = item;
+                    break;
+                }
+            }
+            if (config == null)
+            {
+                throw new Exception("Can not find library alias: " + parts[0]);
+            }
+
+            ReportLibrarySelection selection = new ReportLibrarySelection();
+            selection.ReportLibrary = config;
+            selection.ReportName = parts[1];
+            selection.Stream = config.ReadReport(parts[1]);
+            OpenReportLibrarySelection(selection, true);
+        }
+
+        private static string BuildLibraryEntry(ReportLibrarySelection selection)
+        {
+            return selection.ReportLibrary.Alias + LibraryEntrySeparator + selection.ReportName;
         }
 
         private void majustar1_5_Click(object sender, EventArgs e)

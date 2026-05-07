@@ -732,6 +732,7 @@ namespace Reportman.Reporting
             bool DoPartialPrint;
             MemoryStream astream;
             ExpressionItem compe = null;
+            Point componentExtent;
 
             base.DoPrint(adriver, aposx, aposy, newwidth, newheight, metafile, MaxExtent, ref PartialPrint);
             // Draw the background if needed
@@ -828,6 +829,9 @@ namespace Reportman.Reporting
                         break;
                 }
 
+                componentExtent = MaxExtent;
+                componentExtent.Y = componentExtent.Y - compo.PosY;
+
                 if (DoPartialPrint)
                 {
                     bool compoprinted = false;
@@ -838,7 +842,7 @@ namespace Reportman.Reporting
                         {
                             intPartialPrint = false;
                             compo.Print(adriver, newposx, newposy,
-                                newwidth, newheight, metafile, MaxExtent, ref intPartialPrint);
+                                newwidth, newheight, metafile, componentExtent, ref intPartialPrint);
                             if (intPartialPrint)
                                 PartialPrint = true;
                             compoprinted = true;
@@ -849,14 +853,14 @@ namespace Reportman.Reporting
                         intPartialPrint = false;
                         compo.PartialFlag = false;
                         compo.Print(adriver, newposx, newposy,
-                            newwidth, newheight, metafile, MaxExtent, ref intPartialPrint);
+                            newwidth, newheight, metafile, componentExtent, ref intPartialPrint);
                     }
                     if ((compe == null) && ((compo.Align == PrintItemAlign.TopBottom) ||
                              (compo.Align == PrintItemAlign.AllClient)))
                     {
                         bool dummypartial = false;
                         compo.Print(adriver, newposx, newposy,
-                            newwidth, newheight, metafile, MaxExtent, ref dummypartial);
+                            newwidth, newheight, metafile, componentExtent, ref dummypartial);
                     }
                 }
                 else
@@ -875,7 +879,7 @@ namespace Reportman.Reporting
                         else
                             compo.Print(adriver, newposx, newposy,
                                 newwidth, newheight, metafile,
-                                MaxExtent, ref intPartialPrint);
+                                componentExtent, ref intPartialPrint);
                         if (intPartialPrint)
                             PartialPrint = true;
                         if (compo is ExpressionItem)

@@ -49,6 +49,33 @@ namespace Reportman.Drawing
         private static readonly Regex StyleRegex = new Regex(@"font-family\s*:\s*'?([^';]+)'?", RegexOptions.IgnoreCase | RegexOptions.Compiled);
         private static readonly Regex SizeRegex = new Regex(@"font-size\s*:\s*'?(\d+)(pt|px)?'?", RegexOptions.IgnoreCase | RegexOptions.Compiled);
         private static readonly Regex ColorRegex = new Regex(@"(?<![-\w])color\s*[:=]\s*['""]?([^;'""\s>]+)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+        private static readonly Regex MetaCharsetRegex = new Regex(@"<meta\b[^>]*(charset\s*=|http-equiv\s*=\s*[""']?content-type[""']?)[^>]*>", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+        private sealed class HtmlCharsetEncodingProvider : EncodingProvider
+        {
+            public override Encoding GetEncoding(string name)
+            {
+                if (string.Equals(name, "iso-2022-cn", StringComparison.OrdinalIgnoreCase))
+                {
+                    return Encoding.UTF8;
+                }
+
+                return null;
+            }
+
+            public override Encoding GetEncoding(int codepage)
+            {
+                return null;
+            }
+        }
+
+        static HtmlTextParser()
+        {
+            // The HTML arrives here already decoded as a .NET string. This alias only
+            // prevents AngleSharp from failing when it sees an unsupported charset name.
+            Encoding.RegisterProvider(new HtmlCharsetEncodingProvider());
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+        }
 
         public static List<HtmlFormatRun> Parse(string htmlText, string defaultFontFamily = "")
         {
@@ -354,8 +381,9 @@ namespace Reportman.Drawing
 
             try
             {
+                string htmlWithoutCharsetDeclarations = MetaCharsetRegex.Replace(htmlText, string.Empty);
                 var parser = new HtmlParser();
-                var document = parser.ParseDocument(htmlText);
+                var document = parser.ParseDocument(htmlWithoutCharsetDeclarations);
                 string normalizedHtml = document.Body?.InnerHtml;
 
                 if (string.IsNullOrEmpty(normalizedHtml))
