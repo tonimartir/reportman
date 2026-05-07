@@ -112,7 +112,7 @@ namespace Reportman.Designer
         {
             InitializeComponent();
 
-            UseWindowsMetafiles = true;
+            UseWindowsMetafiles = false;
 
             BandsToRedraw = new SortedList<int, BandInfo>();
 
