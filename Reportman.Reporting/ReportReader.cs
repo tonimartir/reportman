@@ -313,7 +313,8 @@ namespace Reportman.Reporting
             ReadBuf(astream, ref buf, asize);
             memstream.Write(buf, 0, buf.Length);
             memstream.Seek(0, System.IO.SeekOrigin.Begin);
-
+            if (asize == 0)
+                throw new UnNamedException("Zero Length stream");
             if (buf[0] == 'x')
             {
 #if REPMAN_ZLIB
@@ -335,8 +336,6 @@ namespace Reportman.Reporting
 				throw new UnNamedException("REPMAN_ZLIB not defined. ZLib compression not supported");
 #endif
             }
-            if (asize == 0)
-                throw new UnNamedException("Zero Length stream");
             char[] achar = new char[asize];
             for (int i = 0; i < asize; i++)
                 achar[i] = (char)buf[i];

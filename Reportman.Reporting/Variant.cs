@@ -27,6 +27,7 @@ using System.Data;
 using System.IO;
 using System.Drawing;
 using Reportman.Drawing;
+using System.Threading;
 
 namespace Reportman.Reporting
 {
@@ -2436,12 +2437,21 @@ namespace Reportman.Reporting
     {
         public override void WriteJson(Newtonsoft.Json.JsonWriter writer, Variant value, Newtonsoft.Json.JsonSerializer serializer)
         {
-            var obj = new Newtonsoft.Json.Linq.JObject
+            try
             {
-                ["type"] = value.VarType.ToString(),
-                ["value"] = Newtonsoft.Json.Linq.JToken.FromObject(value.AsObject())
-            };
-            obj.WriteTo(writer);
+                object newValue = value.AsObject();
+                Newtonsoft.Json.Linq.JToken jToken = Newtonsoft.Json.Linq.JToken.FromObject(newValue);
+                var obj = new Newtonsoft.Json.Linq.JObject
+                {
+                    ["type"] = value.VarType.ToString(),
+                    ["value"] = jToken
+                };
+                obj.WriteTo(writer);
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public override Variant ReadJson(Newtonsoft.Json.JsonReader reader, Type objectType, Variant existingValue, bool hasExistingValue, Newtonsoft.Json.JsonSerializer serializer)
