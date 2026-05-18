@@ -14,6 +14,7 @@ namespace Reportman.Reporting.Design
     {
         private const decimal TwipsPerPixel96Dpi = 15m;
         private const string FontNameProperty = "FontName";
+        private const string FillOrderProperty = "FillOrder";
         private const string UserVisibleProperty = nameof(Param.UserVisible);
         private const string PageSizeModeProperty = "PageSizeMode";
         private const string PaperSizeProperty = "PaperSize";
@@ -1240,6 +1241,27 @@ namespace Reportman.Reporting.Design
 
         private static bool TryValidateSemanticProperty(ReportItem target, ReportBatchProperty property, int index, ReportBatchOperation operation, ReportBatchValidationResult result)
         {
+            if (IsSemanticSectionFillOrderProperty(target, property.PropertyName))
+            {
+                var sectionTarget = (Section)target;
+                if (!IsFillOrderAllowedSection(sectionTarget))
+                {
+                    result.Issues.Add(CreateIssue("invalid_property", "Property 'FillOrder' is only valid for GroupHeader, Detail or GroupFooter sections.", index, operation));
+                    return true;
+                }
+
+                try
+                {
+                    ConvertSemanticFillOrder(property.Value, property.PropertyName);
+                }
+                catch (Exception ex)
+                {
+                    result.Issues.Add(CreateIssue("invalid_property_value", "Value '" + Convert.ToString(property.Value, CultureInfo.InvariantCulture) + "' is not valid for property '" + property.PropertyName + "' on target class " + target.ClassName + ": " + ex.Message, index, operation));
+                }
+
+                return true;
+            }
+
             try
             {
                 if (IsSemanticUserVisibleProperty(target, property.PropertyName))
@@ -1274,6 +1296,11 @@ namespace Reportman.Reporting.Design
             return target is Param && string.Equals(propertyName, UserVisibleProperty, StringComparison.OrdinalIgnoreCase);
         }
 
+        private static bool IsSemanticSectionFillOrderProperty(ReportItem target, string propertyName)
+        {
+            return target is Section && string.Equals(propertyName, FillOrderProperty, StringComparison.OrdinalIgnoreCase);
+        }
+
         private static bool IsSemanticReportPageSizeModeProperty(ReportItem target, string propertyName)
         {
             return target is Report && string.Equals(propertyName, PageSizeModeProperty, StringComparison.OrdinalIgnoreCase);
@@ -1286,6 +1313,29 @@ namespace Reportman.Reporting.Design
 
         private static bool TryApplySemanticProperty(ReportItem target, ReportBatchProperty property, ChangeObjectOperation undoOperation, bool recordUndo)
         {
+            if (IsSemanticSectionFillOrderProperty(target, property.PropertyName))
+            {
+                var sectionTarget = (Section)target;
+                if (!IsFillOrderAllowedSection(sectionTarget))
+                {
+                    throw new InvalidOperationException("FillOrder is only available for GroupHeader, Detail or GroupFooter sections.");
+                }
+
+                var canonicalFillOrder = ConvertSemanticFillOrder(property.Value, property.PropertyName);
+                var newHorzDesp = string.Equals(canonicalFillOrder, SectionFillOrderHelper.AcrossThenDown, StringComparison.Ordinal);
+                var newVertDesp = string.Equals(canonicalFillOrder, SectionFillOrderHelper.DownThenAcross, StringComparison.Ordinal);
+
+                if (recordUndo)
+                {
+                    AddUndoPropertyIfNeeded(undoOperation, nameof(Section.HorzDesp), PropertyType.Boolean, sectionTarget.HorzDesp, newHorzDesp);
+                    AddUndoPropertyIfNeeded(undoOperation, nameof(Section.VertDesp), PropertyType.Boolean, sectionTarget.VertDesp, newVertDesp);
+                }
+
+                sectionTarget.HorzDesp = newHorzDesp;
+                sectionTarget.VertDesp = newVertDesp;
+                return true;
+            }
+
             if (IsSemanticUserVisibleProperty(target, property.PropertyName))
             {
                 var paramTarget = (Param)target;
@@ -1392,6 +1442,20 @@ namespace Reportman.Reporting.Design
             }
 
             throw new InvalidOperationException("Allowed paper sizes are A4, A3, A5, B5, Letter, Legal, Executive, Statement, Ledger or Tabloid.");
+        }
+
+        private static string ConvertSemanticFillOrder(object value, string memberName)
+        {
+            var text = Convert.ToString(ConvertValue(value, typeof(string), memberName), CultureInfo.InvariantCulture) ?? string.Empty;
+            return SectionFillOrderHelper.NormalizeFillOrder(text);
+        }
+
+        private static bool IsFillOrderAllowedSection(Section section)
+        {
+            return section != null
+                && (section.SectionType == SectionType.Detail
+                    || section.SectionType == SectionType.GroupHeader
+                    || section.SectionType == SectionType.GroupFooter);
         }
 
         private static void AddUndoPropertyIfNeeded(ChangeObjectOperation undoOperation, string propertyName, PropertyType propertyType, object oldValue, object newValue)

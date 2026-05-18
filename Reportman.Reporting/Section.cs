@@ -99,6 +99,95 @@ namespace Reportman.Reporting
         After
     };
     /// <summary>
+    /// AI-friendly semantic fill order for repeated section printing.
+    /// </summary>
+    public static class SectionFillOrderHelper
+    {
+        public const string Down = "Down";
+        public const string AcrossThenDown = "AcrossThenDown";
+        public const string DownThenAcross = "DownThenAcross";
+
+        public static string GetFillOrder(Section section)
+        {
+            if (section == null)
+            {
+                throw new ArgumentNullException(nameof(section));
+            }
+
+            if (section.HorzDesp)
+            {
+                return AcrossThenDown;
+            }
+
+            if (section.VertDesp)
+            {
+                return DownThenAcross;
+            }
+
+            return Down;
+        }
+
+        public static void ApplyFillOrder(Section section, string fillOrder)
+        {
+            if (section == null)
+            {
+                throw new ArgumentNullException(nameof(section));
+            }
+
+            var canonicalValue = NormalizeFillOrder(fillOrder);
+            section.HorzDesp = string.Equals(canonicalValue, AcrossThenDown, StringComparison.Ordinal);
+            section.VertDesp = string.Equals(canonicalValue, DownThenAcross, StringComparison.Ordinal);
+        }
+
+        public static string NormalizeFillOrder(string fillOrder)
+        {
+            if (TryNormalizeFillOrder(fillOrder, out string canonicalValue))
+            {
+                return canonicalValue;
+            }
+
+            throw new InvalidOperationException("Allowed values are Down, AcrossThenDown or DownThenAcross.");
+        }
+
+        public static bool TryNormalizeFillOrder(string fillOrder, out string canonicalValue)
+        {
+            canonicalValue = string.Empty;
+            if (string.IsNullOrWhiteSpace(fillOrder))
+            {
+                return false;
+            }
+
+            switch (NormalizeFillOrderToken(fillOrder))
+            {
+                case "DOWN":
+                case "NORMAL":
+                    canonicalValue = Down;
+                    return true;
+                case "ACROSSTHENDOWN":
+                case "LEFTRIGHTTHENDOWN":
+                    canonicalValue = AcrossThenDown;
+                    return true;
+                case "DOWNTHENACROSS":
+                case "TOPBOTTOMTHENACROSS":
+                case "TOPTOBOTTOMTHENACROSS":
+                    canonicalValue = DownThenAcross;
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+        private static string NormalizeFillOrderToken(string value)
+        {
+            return value
+                .Trim()
+                .ToUpperInvariant()
+                .Replace("_", string.Empty)
+                .Replace("-", string.Empty)
+                .Replace(" ", string.Empty);
+        }
+    }
+    /// <summary>
     /// The sections are contained inside subreports, depending on the section type it 
     /// will print after the detail (group header), before the detail (group header), 
     /// or in special places (page headers and footers)

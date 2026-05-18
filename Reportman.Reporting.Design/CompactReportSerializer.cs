@@ -43,7 +43,7 @@ namespace Reportman.Reporting.Design
     /// SubReport (extras): ReOpenOnPrint, ParentSub, ParentSec
     ///
     /// Section (extras): ChangeBool, SkipPage, SkipType, SkipToPageExpre, SkipRelativeH,
-    ///   SkipRelativeV, SkipExpreH, SkipExpreV, HorzDesp, VertDesp, BeginPage, IniNumPage,
+    ///   SkipRelativeV, SkipExpreH, SkipExpreV, HorzDesp, VertDesp (use FillOrder instead), BeginPage, IniNumPage,
     ///   Global, Visible, BackStyle, DrawStyle, SharedImage, dpires, StreamFormat, SyncWidth,
     ///   DoBeforePrint, DoAfterPrint, BackExpression, ExternalFilename, ExternalConnection,
     ///   ExternalTable, ExternalField, ExternalSearchField, ExternalSearchValue,
@@ -68,6 +68,7 @@ namespace Reportman.Reporting.Design
     /// </remarks>
     public static class CompactReportSerializer
     {
+        private const string FillOrderProperty = "FillOrder";
         private const string PageSizeModeProperty = "PageSizeMode";
         private const string PaperSizeProperty = "PaperSize";
 
@@ -197,7 +198,7 @@ namespace Reportman.Reporting.Design
         private static void WriteSectionProps(StringBuilder sb, Section sec, int sectionIndex, string i)
         {
             // Schema-allowed: GroupName, ChangeExpression, BeginPageExpression,
-            //   PageRepeat, ForcePrint, AlignBottom, AutoExpand, AutoContract, PrintCondition
+            //   PageRepeat, ForcePrint, AlignBottom, FillOrder, AutoExpand, AutoContract, PrintCondition
             // (SectionType, Width, Height are on the inline header)
             Int(sb, i, "Index", sectionIndex, -1);
             Str(sb, i, "GroupName", sec.GroupName, "");
@@ -207,6 +208,7 @@ namespace Reportman.Reporting.Design
             Bool(sb, i, "PageRepeat", sec.PageRepeat, false);
             Bool(sb, i, "ForcePrint", sec.ForcePrint, false);
             Bool(sb, i, "AlignBottom", sec.AlignBottom, false);
+            Str(sb, i, FillOrderProperty, SectionFillOrderHelper.GetFillOrder(sec), SectionFillOrderHelper.Down);
             Bool(sb, i, "AutoExpand", sec.AutoExpand, false);
             Bool(sb, i, "AutoContract", sec.AutoContract, false);
             Str(sb, i, "PrintCondition", sec.PrintCondition, "");
