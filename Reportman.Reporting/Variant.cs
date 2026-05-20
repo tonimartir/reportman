@@ -844,11 +844,22 @@ namespace Reportman.Reporting
             }
             return aresult;
         }
+        private static bool CoerceIfNeeded(ref Variant avalue1, ref Variant avalue2)
+        {
+            if (avalue1.FVarType == avalue2.FVarType)
+                return false;
+
+            return VariantCoercion.Coercion(ref avalue1, ref avalue2);
+        }
         /// <summary>
         /// Compare to other Variant
         /// </summary>
         public int CompareTo(Variant obj)
         {
+            Variant avalue = this;
+            if (CoerceIfNeeded(ref avalue, ref obj))
+                return avalue.CompareTo(obj);
+
             int aresult = -2;
             if (obj.IsNull)
             {
@@ -938,6 +949,7 @@ namespace Reportman.Reporting
         /// </summary>
         public static bool operator |(Variant avalue1, Variant avalue2)
         {
+            CoerceIfNeeded(ref avalue1, ref avalue2);
             Variant aresult = new Variant();
             bool a1 = avalue1, a2 = avalue2;
             aresult.FVarType = VariantType.Boolean;
@@ -949,6 +961,7 @@ namespace Reportman.Reporting
         /// </summary>
         public static Variant operator &(Variant avalue1, Variant avalue2)
         {
+            CoerceIfNeeded(ref avalue1, ref avalue2);
             Variant aresult = new Variant();
             bool a1 = avalue1, a2 = avalue2;
             aresult.FVarType = VariantType.Boolean;

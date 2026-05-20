@@ -643,16 +643,10 @@ namespace Reportman.Reporting
                     auxiliar2 = FValue;
                     sum_diff(ref auxiliar);
                     if (!FChecking)
-                        FValue = (auxiliar != auxiliar2);
-                }
-                else
-                    if ((aoperator == "<>") || (aoperator == "><"))
-                {
-                    FParser.NextToken();
-                    auxiliar2 = FValue;
-                    sum_diff(ref auxiliar);
-                    if (!FChecking)
-                        FValue = (auxiliar != auxiliar2);
+                    {
+                        CoerceOperands(ref auxiliar2, ref auxiliar);
+                        FValue = (auxiliar2 != auxiliar);
+                    }
                 }
                 else
                         if ((aoperator == "==") || (aoperator == "="))
@@ -661,7 +655,10 @@ namespace Reportman.Reporting
                     auxiliar2 = FValue;
                     sum_diff(ref auxiliar);
                     if (!FChecking)
-                        FValue = (auxiliar == auxiliar2);
+                    {
+                        CoerceOperands(ref auxiliar2, ref auxiliar);
+                        FValue = (auxiliar2 == auxiliar);
+                    }
                 }
                 else
                             if (aoperator == "<")
@@ -670,7 +667,10 @@ namespace Reportman.Reporting
                     auxiliar2 = FValue;
                     sum_diff(ref auxiliar);
                     if (!FChecking)
+                    {
+                        CoerceOperands(ref auxiliar2, ref auxiliar);
                         FValue = (auxiliar2 < auxiliar);
+                    }
                 }
                 else
                                 if (aoperator == "<=")
@@ -679,7 +679,10 @@ namespace Reportman.Reporting
                     auxiliar2 = FValue;
                     sum_diff(ref auxiliar);
                     if (!FChecking)
+                    {
+                        CoerceOperands(ref auxiliar2, ref auxiliar);
                         FValue = (auxiliar2 <= auxiliar);
+                    }
                 }
                 else
                                     if (aoperator == ">")
@@ -688,7 +691,10 @@ namespace Reportman.Reporting
                     auxiliar2 = FValue;
                     sum_diff(ref auxiliar);
                     if (!FChecking)
+                    {
+                        CoerceOperands(ref auxiliar2, ref auxiliar);
                         FValue = (auxiliar2 > auxiliar);
+                    }
                 }
                 else
                                         if (aoperator == ">=")
@@ -697,11 +703,19 @@ namespace Reportman.Reporting
                     auxiliar2 = FValue;
                     sum_diff(ref auxiliar);
                     if (!FChecking)
+                    {
+                        CoerceOperands(ref auxiliar2, ref auxiliar);
                         FValue = (auxiliar2 >= auxiliar);
+                    }
                 }
                 else
                     break;
             }
+        }
+        private static void CoerceOperands(ref Variant value1, ref Variant value2)
+        {
+            if (value1.VarType != value2.VarType)
+                VariantCoercion.Coercion(ref value1, ref value2);
         }
         private void logicalAND(ref Variant FValue)
         {
