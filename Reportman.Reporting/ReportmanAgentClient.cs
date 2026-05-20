@@ -340,6 +340,24 @@ namespace Reportman.Reporting
             return await StreamJsonRequestAsync("ReportDesigner/ModifyReportStream", requestBody, sender, onProgress, cancellationToken);
         }
 
+        public async Task<JsonDocument> SuggestExpressionAsync(string userPrompt, string currentExpression, bool fix,
+            int cursorPosition, string mode, string semanticContextJson, object sender,
+            ProgressEventHandler onProgress, CancellationToken cancellationToken)
+        {
+            var requestBody = BuildBaseRequest(new
+            {
+                userQuery = new[] { userPrompt },
+                currentExpression = currentExpression ?? "",
+                fix = fix,
+                cursorPosition = cursorPosition,
+                mode = mode,
+                semanticContextJson = semanticContextJson ?? "",
+                simplifiedPrompt = false
+            });
+
+            return await StreamJsonRequestAsync("ReportmanExpression/SuggestExpressionStream", requestBody, sender, onProgress, cancellationToken);
+        }
+
         // Additional endpoints (ExplainSql, ModifyReport, etc.) can be similarly implemented...
     }
 }

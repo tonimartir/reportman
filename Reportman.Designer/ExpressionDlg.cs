@@ -3,18 +3,26 @@ using Reportman.Reporting;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Text;
+using System.Text.Json;
 using System.Windows.Forms;
 
 namespace Reportman.Designer
 {
     public partial class ExpressionDlg : UserControl
     {
+        private const string ExpressionChatInitialMessage = "Ask for help rewriting, simplifying or validating the current expression. Click 'Apply' to replace the expression.";
+
         Report Report;
         Evaluator Evaluator;
+        ExpressionChatPanelControl FExpressionChat;
+        SplitContainer FSplitContainer;
+        bool FSplitterInitialized;
 
         public ExpressionDlg()
         {
             InitializeComponent();
+            InitializeExpressionChatLayout();
 
 
             BOK.Text = Translator.TranslateStr(93);
@@ -39,6 +47,83 @@ namespace Reportman.Designer
 
             LItems.Items.Clear();
         }
+
+        private void InitializeExpressionChatLayout()
+        {
+            if (FExpressionChat != null)
+                return;
+
+            Controls.Remove(tableLayoutPanel1);
+
+            FSplitContainer = new SplitContainer
+            {
+                Dock = DockStyle.Fill,
+                Orientation = Orientation.Vertical,
+                SplitterWidth = 6,
+                Panel1MinSize = 0,
+                Panel2MinSize = 0
+            };
+            FSplitContainer.SizeChanged += (s, e) => ApplyInitialSplitterDistance();
+
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            FSplitContainer.Panel1.Controls.Add(tableLayoutPanel1);
+
+            FExpressionChat = new ExpressionChatPanelControl
+            {
+                Dock = DockStyle.Fill,
+                CurrentExpressionProvider = () => MemoExpre.Text,
+                CursorPositionProvider = () => MemoExpre.SelectionStart,
+                SemanticContextProvider = BuildExpressionSemanticContextJson,
+                ValidateExpression = ValidateExpressionForChat
+            };
+            FExpressionChat.ApplySuggestion += ExpressionChat_ApplySuggestion;
+            FSplitContainer.Panel2.Controls.Add(FExpressionChat);
+
+            Controls.Add(FSplitContainer);
+            MemoExpre.TextChanged += (s, e) => FExpressionChat.SetCurrentExpression(MemoExpre.Text);
+            HandleCreated += (s, e) => BeginInvoke(new Action(ApplyInitialSplitterDistance));
+        }
+
+        private void ApplyInitialSplitterDistance()
+        {
+            if (FSplitterInitialized || FSplitContainer == null || FSplitContainer.Width <= 0)
+                return;
+
+            int width = FSplitContainer.ClientSize.Width;
+            int splitterWidth = FSplitContainer.SplitterWidth;
+            int desiredPanel1Min = Convert.ToInt32(300 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
+            int desiredPanel2Min = Convert.ToInt32(280 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
+            int available = width - splitterWidth;
+            if (available < desiredPanel1Min + desiredPanel2Min)
+                return;
+
+            int chatWidth = Convert.ToInt32(380 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
+            int distance = width - splitterWidth - chatWidth;
+            int maxDistance = width - splitterWidth - desiredPanel2Min;
+            if (distance < desiredPanel1Min)
+                distance = desiredPanel1Min;
+            if (distance > maxDistance)
+                distance = maxDistance;
+            if (distance < 0)
+                return;
+
+            FSplitContainer.Panel1MinSize = 0;
+            FSplitContainer.Panel2MinSize = 0;
+            FSplitContainer.SplitterDistance = distance;
+            FSplitContainer.Panel1MinSize = desiredPanel1Min;
+            FSplitContainer.Panel2MinSize = desiredPanel2Min;
+            FSplitterInitialized = true;
+        }
+
+        private void ExpressionChat_ApplySuggestion(object sender, string expression)
+        {
+            MemoExpre.Text = expression;
+            MemoExpre.Focus();
+            MemoExpre.SelectionStart = MemoExpre.Text.Length;
+            MemoExpre.SelectionLength = 0;
+            FExpressionChat.SetCurrentExpression(MemoExpre.Text);
+        }
+
         private void Label1_Click(object sender, EventArgs e)
         {
 
@@ -50,8 +135,11 @@ namespace Reportman.Designer
                 newform.ShowIcon = false;
                 newform.ShowInTaskbar = false;
                 newform.StartPosition = FormStartPosition.CenterScreen;
-                newform.Width = Convert.ToInt32(800 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
-                newform.Height = Convert.ToInt32(600 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
+                newform.Width = Convert.ToInt32(1120 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
+                newform.Height = Convert.ToInt32(680 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
+                newform.MinimumSize = new System.Drawing.Size(
+                    Convert.ToInt32(900 * Reportman.Drawing.Windows.GraphicUtils.DPIScale),
+                    Convert.ToInt32(560 * Reportman.Drawing.Windows.GraphicUtils.DPIScale));
                 ExpressionDlg dia = new ExpressionDlg();
                 dia.Report = framemain.Report;
                 dia.MemoExpre.Text = expression;
@@ -119,7 +207,28 @@ namespace Reportman.Designer
                     }
                 }
             }
+            RebuildEvaluatorAliases();
         }
+
+        private void RebuildEvaluatorAliases()
+        {
+            if (Evaluator == null || Report == null)
+                return;
+
+            FDataAlias.List.Clear();
+            foreach (DataInfo datainfo in Report.DataInfo)
+            {
+                if (datainfo.Data == null)
+                    continue;
+
+                AliasCollectionItem aitem = new AliasCollectionItem();
+                aitem.Alias = datainfo.Alias;
+                aitem.Data = datainfo.Data;
+                FDataAlias.List.Add(aitem);
+            }
+            Evaluator.AliasList = FDataAlias;
+        }
+
         private void Init()
         {
             Evaluator = new Evaluator();
@@ -187,6 +296,9 @@ namespace Reportman.Designer
             // IIF
             oplist.Add(new HelpInformation("IIF", Translator.TranslateStr(462), Translator.TranslateStr(463), ""));
 
+            if (FExpressionChat != null)
+                FExpressionChat.Initialize(MemoExpre.Text, ExpressionChatInitialMessage);
+
         }
 
         DatasetAlias FDataAlias = new DatasetAlias();
@@ -201,17 +313,179 @@ namespace Reportman.Designer
             foreach (DataInfo datainfo in Report.DataInfo)
             {
                 datainfo.Connect();
-                AliasCollectionItem aitem = new AliasCollectionItem();
-                aitem.Alias = datainfo.Alias;
-                aitem.Data = datainfo.Data;
-                FDataAlias.List.Add(aitem);
             }
             FillConnectedDataSets();
 
-            Evaluator.AliasList = FDataAlias;
-
 
             LCategory_SelectedIndexChanged(this, new EventArgs());
+        }
+
+        private string BuildExpressionSemanticContextJson()
+        {
+            var datasetColumnsBlocks = new List<string>();
+            var functions = new List<Dictionary<string, string>>();
+            var constants = new List<Dictionary<string, string>>();
+            var memoryVariables = new List<string>();
+            var root = new Dictionary<string, object>();
+
+            if (Report != null)
+            {
+                foreach (DataInfo datainfo in Report.DataInfo)
+                {
+                    if (datainfo.Data == null || datainfo.Data.Columns.Count == 0)
+                        continue;
+                    datasetColumnsBlocks.Add(BuildDatasetColumnsBlock(datainfo.Alias, datainfo.Data.Columns));
+                }
+
+                foreach (Param param in Report.Params)
+                {
+                    if (param == null || string.IsNullOrWhiteSpace(param.Alias))
+                        continue;
+                    memoryVariables.Add("M." + param.Alias + ":" + GetSemanticParamType(param.ParamType));
+                }
+            }
+
+            if (Evaluator != null)
+            {
+                foreach (EvalIdentifier iden in Evaluator.Identifiers)
+                {
+                    if (iden == null || iden is EvalIdenExpression)
+                        continue;
+
+                    if (iden is IdenFunction)
+                        AddCatalogEntry(functions, iden.Model, iden.Help);
+                    else if (iden is IdenConstant)
+                        AddCatalogEntry(constants, iden.Model, iden.Help);
+                }
+            }
+
+            root["datasetColumnsBlocks"] = datasetColumnsBlocks;
+            root["functions"] = functions;
+            root["constants"] = constants;
+            if (memoryVariables.Count > 0)
+                root["memoryVariablesBlock"] = BuildMemoryVariablesBlock(memoryVariables);
+
+            return JsonSerializer.Serialize(root);
+        }
+
+        private static void AddCatalogEntry(List<Dictionary<string, string>> target, string model, string help)
+        {
+            if (string.IsNullOrWhiteSpace(model) && string.IsNullOrWhiteSpace(help))
+                return;
+
+            var entry = new Dictionary<string, string>();
+            entry["model"] = model ?? "";
+            if (!string.IsNullOrWhiteSpace(help))
+                entry["help"] = help;
+            target.Add(entry);
+        }
+
+        private static string BuildDatasetColumnsBlock(string datasetAlias, DataColumnCollection columns)
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.Append("[DATASET_COLUMNS ").Append(datasetAlias ?? "").AppendLine(" columns]");
+            foreach (DataColumn column in columns)
+                builder.Append(column.ColumnName).Append(':').AppendLine(GetSemanticFieldDataType(column.DataType));
+            builder.Append("[/DATASET_COLUMNS]");
+            return builder.ToString();
+        }
+
+        private static string BuildMemoryVariablesBlock(List<string> variables)
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine("[MEMORY_VARIABLES]");
+            foreach (string variable in variables)
+                builder.AppendLine(variable);
+            builder.Append("[/MEMORY_VARIABLES]");
+            return builder.ToString();
+        }
+
+        private static string GetSemanticFieldDataType(Type dataType)
+        {
+            if (dataType == typeof(string) || dataType == typeof(char))
+                return "string";
+            if (dataType == typeof(bool))
+                return "boolean";
+            if (dataType == typeof(DateTime))
+                return "datetime";
+            if (dataType == typeof(byte) || dataType == typeof(short) || dataType == typeof(int) || dataType == typeof(sbyte) || dataType == typeof(ushort))
+                return "integer";
+            if (dataType == typeof(long) || dataType == typeof(uint) || dataType == typeof(ulong))
+                return "bigint";
+            if (dataType == typeof(float) || dataType == typeof(double))
+                return "float";
+            if (dataType == typeof(decimal))
+                return "currency";
+            if (dataType == typeof(byte[]))
+                return "binary";
+            return "unknown";
+        }
+
+        private static string GetSemanticParamType(ParamType paramType)
+        {
+            switch (paramType)
+            {
+                case ParamType.String:
+                    return "string";
+                case ParamType.Integer:
+                    return "integer";
+                case ParamType.Double:
+                    return "float";
+                case ParamType.Date:
+                    return "date";
+                case ParamType.Time:
+                    return "time";
+                case ParamType.DateTime:
+                    return "datetime";
+                case ParamType.Currency:
+                    return "currency";
+                case ParamType.Bool:
+                    return "boolean";
+                case ParamType.ExpreB:
+                    return "expression_boolean";
+                case ParamType.ExpreA:
+                    return "expression_string";
+                case ParamType.Subst:
+                    return "substitution";
+                case ParamType.List:
+                    return "list";
+                case ParamType.Multiple:
+                    return "multiple";
+                case ParamType.SubstExpre:
+                    return "substitution_expression";
+                case ParamType.SubsExpreList:
+                    return "substitution_list";
+                case ParamType.InitialValue:
+                    return "initial_expression";
+                default:
+                    return "unknown";
+            }
+        }
+
+        private bool ValidateExpressionForChat(string expression, out string errorMessage)
+        {
+            errorMessage = "";
+            if (Evaluator == null)
+            {
+                if (string.IsNullOrWhiteSpace(expression))
+                {
+                    errorMessage = "Empty expression returned";
+                    return false;
+                }
+                return true;
+            }
+
+            try
+            {
+                RebuildEvaluatorAliases();
+                Evaluator.CheckSyntax(expression ?? "");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                errorMessage = ex.Message;
+                return false;
+            }
         }
 
         private void LCategory_SelectedIndexChanged(object sender, EventArgs e)
