@@ -1187,10 +1187,10 @@ namespace Reportman.Reporting
             switch (propname)
             {
                 case "CONFIGFILE":
-                    //					dbitem.ConfigFile = GetAsString();
+                    dbitem.ConfigFile = GetAsString();
                     break;
                 case "LOADPARAMS":
-                    //					dbitem.LoadParams = GetAsBool();
+                    dbitem.LoadParams = GetAsBool();
                     break;
                 case "LOADDRIVERPARAMS":
                     //					dbitem.LoadDriverParams = GetAsBool();
@@ -2343,7 +2343,8 @@ namespace Reportman.Reporting
                 WritePropertyI("VALIGNMENT", aalign, astream);
                 WritePropertyI("INTERLINE", compt.InterLine, astream);
                 WritePropertyBool("WORDWRAP", compt.WordWrap, astream);
-                WritePropertyBool("ISHTML", compt.IsHtml, astream);
+                if (compt.IsHtml)
+                    WritePropertyBool("ISHTML", compt.IsHtml, astream);
                 WritePropertyBool("WORDBREAK", compt.WordBreak, astream);
                 WritePropertyBool("SINGLELINE", compt.SingleLine, astream);
                 int intbidi = 0;
@@ -2487,8 +2488,10 @@ namespace Reportman.Reporting
             {
                 WritePropertyS("NAME", dbinfo.Name, astream);
             }
-            //            WritePropertyS("CONFIGFILE",dbinfo.Configfile,astream);
-            //            WritePropertyBool("LOADPARAMS",dbinfo.LoadParams,astream);
+            if (!string.IsNullOrWhiteSpace(dbinfo.ConfigFile))
+                WritePropertyS("CONFIGFILE", dbinfo.ConfigFile, astream);
+            if (!dbinfo.LoadParams)
+                WritePropertyBool("LOADPARAMS", dbinfo.LoadParams, astream);
             //            WritePropertyBool("LOADDRIVERPARAMS",dbinfo.LoadDriverParams,astream);
             //            WritePropertyBool("LOGINPROMPT",dbinfo.LoginPrompt,astream);
             WritePropertyI("DRIVER", (int)dbinfo.Driver, astream);
@@ -2509,8 +2512,10 @@ namespace Reportman.Reporting
             }
             WritePropertyS("DATABASEALIAS", dinfo.DatabaseAlias, astream);
             WritePropertyS("SQL", dinfo.SQL, astream);
-            WritePropertyS("SQLEXPLANATION", dinfo.SQLExplanation, astream);
-            WritePropertyS("SQLEXPLANATIONERROR", dinfo.SQLExplanationError, astream);
+            if (!string.IsNullOrWhiteSpace(dinfo.SQLExplanation))
+                WritePropertyS("SQLEXPLANATION", dinfo.SQLExplanation, astream);
+            if (!string.IsNullOrWhiteSpace(dinfo.SQLExplanationError))
+                WritePropertyS("SQLEXPLANATIONERROR", dinfo.SQLExplanationError, astream);
             WritePropertyI("HUBSCHEMAID", (int)dinfo.HubSchemaId, astream);
             WritePropertyS("DATASOURCE", dinfo.DataSource, astream);
             WritePropertyS("MYBASEFILENAME", dinfo.MyBaseFilename, astream);

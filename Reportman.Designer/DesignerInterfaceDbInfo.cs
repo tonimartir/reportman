@@ -83,6 +83,12 @@ namespace Reportman.Designer
                 case DriverType.DotNet2:
                     aresult = "Dot Net 2 Connection";
                     break;
+                case DriverType.Firedac:
+                    aresult = "Firedac";
+                    break;
+                case DriverType.HttpAgent:
+                    aresult = "Http Agent";
+                    break;
             }
             return aresult;
         }
@@ -118,6 +124,18 @@ namespace Reportman.Designer
                 case "Dot Net 2 Connection":
                     aresult = DriverType.DotNet2;
                     break;
+                case "Firedac":
+                    aresult = DriverType.Firedac;
+                    break;
+                case "Http Agent":
+                    aresult = DriverType.HttpAgent;
+                    break;
+                case "Reportman AI Agent":
+                    aresult = DriverType.HttpAgent;
+                    break;
+                case "Reportman Agent":
+                    aresult = DriverType.HttpAgent;
+                    break;
             }
             return aresult;
         }
@@ -133,7 +151,9 @@ namespace Reportman.Designer
                 "Interbase Objects",
                 "Zeos Database Objects",
                 "Dot Net Connection",
-                "Dot Net 2 Connection"
+                "Dot Net 2 Connection",
+                "Firedac",
+                "Http Agent"
             };
             return aresult;
         }

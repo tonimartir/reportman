@@ -23,6 +23,8 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Globalization;
+using System.IO;
 
 namespace Reportman.Reporting
 {
@@ -224,6 +226,8 @@ namespace Reportman.Reporting
 			ninfo.DotNetDriver = DotNetDriver;
 			ninfo.TransIsolation = TransIsolation;
 			// HttpAgent properties
+            ninfo.ConfigFile = ConfigFile;
+            ninfo.LoadParams = LoadParams;
 			ninfo.HttpAgentBaseUrl = HttpAgentBaseUrl;
 			ninfo.HttpAgentApiKey = HttpAgentApiKey;
 			ninfo.HttpAgentToken = HttpAgentToken;
@@ -257,6 +261,10 @@ namespace Reportman.Reporting
         public string ReportGroupsTable { get; set; }
         /// <summary>Connection string, for ADO and .Net drivers</summary>
         public string ConnectionString { get; set; }
+        /// <summary>Optional DBX connection configuration file override.</summary>
+        public string ConfigFile { get; set; }
+        /// <summary>Load connection parameters from the configured/public DBX connection file.</summary>
+        public bool LoadParams { get; set; } = true;
         /// <summary>DotNet driver type</summary>
         public DotNetDriverType DotNetDriver { get; set; }
         /// <summary>
@@ -265,7 +273,7 @@ namespace Reportman.Reporting
 #if DEBUG
         public string HttpAgentBaseUrl { get; set; } = "https://api.reportman.es:7006";
 #else
-        public string HttpAgentBaseUrl { get; } = "https://api.reportman.es:44568";
+    public string HttpAgentBaseUrl { get; set; } = "https://api.reportman.es:44568";
 #endif
         /// <summary>
         /// API Key for HttpAgent authentication (alternative to Token)
@@ -299,9 +307,108 @@ namespace Reportman.Reporting
             this.ProviderFactory = "";
             ReportTable = ""; ReportSearchField = ""; ReportField = ""; ReportGroupsTable = "";
             ConnectionString = "";
+            ConfigFile = "";
             //TransIsolation = System.Data.IsolationLevel.ReadCommitted;
             TransIsolation = System.Data.IsolationLevel.RepeatableRead;
         }
+
+        private static IEnumerable<string> GetDbxConnectionConfigCandidates()
+        {
+            string publicProfile = Environment.GetEnvironmentVariable("PUBLIC");
+            if (!string.IsNullOrWhiteSpace(publicProfile))
+                yield return Path.Combine(publicProfile, "dbxconnections.ini");
+
+            string systemDrive = Environment.GetEnvironmentVariable("SystemDrive");
+            if (!string.IsNullOrWhiteSpace(systemDrive))
+                yield return Path.Combine(systemDrive + Path.DirectorySeparatorChar, "Users", "Public", "dbxconnections.ini");
+
+            string commonApplicationData = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+            if (!string.IsNullOrWhiteSpace(commonApplicationData))
+                yield return Path.Combine(commonApplicationData, "dbxconnections.ini");
+
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            if (!string.IsNullOrWhiteSpace(baseDirectory))
+                yield return Path.Combine(baseDirectory, "dbxconnections.ini");
+        }
+
+        private string GetDbxConnectionConfigFilename()
+        {
+            if (!string.IsNullOrWhiteSpace(ConfigFile))
+                return ConfigFile;
+
+            foreach (string candidate in GetDbxConnectionConfigCandidates())
+            {
+                if (File.Exists(candidate))
+                    return candidate;
+            }
+
+            return "";
+        }
+
+        private static long ReadInt64(IniFile iniFile, string sectionName, string valueName, long defaultValue)
+        {
+            string textValue = iniFile.ReadString(sectionName, valueName, "");
+            if (string.IsNullOrWhiteSpace(textValue))
+                return defaultValue;
+
+            if (long.TryParse(textValue.Trim(), NumberStyles.Integer, CultureInfo.InvariantCulture, out long result))
+                return result;
+
+            return defaultValue;
+        }
+
+        private static bool IsHttpAgentDriverName(string driverName)
+        {
+            return string.Equals(driverName, "Reportman AI Agent", StringComparison.OrdinalIgnoreCase) ||
+                   string.Equals(driverName, "Reportman Agent", StringComparison.OrdinalIgnoreCase) ||
+                   string.Equals(driverName, "Http Agent", StringComparison.OrdinalIgnoreCase) ||
+                   string.Equals(driverName, "HttpAgent", StringComparison.OrdinalIgnoreCase);
+        }
+
+        private void ResolveHttpAgentDriverFromConfig()
+        {
+            if (!LoadParams || Driver == DriverType.HttpAgent || string.IsNullOrWhiteSpace(Alias))
+                return;
+
+            string configFilename = GetDbxConnectionConfigFilename();
+            if (string.IsNullOrWhiteSpace(configFilename) || !File.Exists(configFilename))
+                return;
+
+            IniFile iniFile = new IniFile(configFilename);
+            string driverName = iniFile.ReadString(Alias, "DriverName", "").Trim();
+            if (IsHttpAgentDriverName(driverName))
+                Driver = DriverType.HttpAgent;
+        }
+
+        private void LoadHttpAgentConnectionParams()
+        {
+            if (!LoadParams || string.IsNullOrWhiteSpace(Alias))
+                return;
+
+            string configFilename = GetDbxConnectionConfigFilename();
+            if (string.IsNullOrWhiteSpace(configFilename) || !File.Exists(configFilename))
+                return;
+
+            IniFile iniFile = new IniFile(configFilename);
+            string apiKey = iniFile.ReadString(Alias, "ApiKey", "").Trim();
+            string token = iniFile.ReadString(Alias, "Token", "").Trim();
+            string baseUrl = iniFile.ReadString(Alias, "Url", "").Trim();
+            if (string.IsNullOrWhiteSpace(baseUrl))
+                baseUrl = iniFile.ReadString(Alias, "HttpAgentBaseUrl", "").Trim();
+
+            if (string.IsNullOrWhiteSpace(HttpAgentApiKey) && !string.IsNullOrWhiteSpace(apiKey))
+                HttpAgentApiKey = apiKey;
+
+            if (HttpAgentHubDatabaseId == 0)
+                HttpAgentHubDatabaseId = ReadInt64(iniFile, Alias, "HubDatabaseId", 0);
+
+            if (!string.IsNullOrWhiteSpace(baseUrl))
+                HttpAgentBaseUrl = baseUrl;
+
+            if (string.IsNullOrWhiteSpace(HttpAgentToken) && string.IsNullOrWhiteSpace(HttpAgentApiKey) && !string.IsNullOrWhiteSpace(token))
+                HttpAgentToken = token;
+        }
+
         /// <summary>
         /// Disconnect from database, also dispose any transaction
         /// </summary>
@@ -336,9 +443,12 @@ namespace Reportman.Reporting
             if (SqlExecuter != null)
                 return;
 
+            ResolveHttpAgentDriverFromConfig();
+
             // HttpAgent driver uses HttpAgentExecutor instead of a database connection
             if (Driver == DriverType.HttpAgent)
             {
+                LoadHttpAgentConnectionParams();
                 SqlExecuter = new HttpAgentExecutor
                 {
                     BaseUrl = HttpAgentBaseUrl,

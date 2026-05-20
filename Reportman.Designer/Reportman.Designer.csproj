@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net48;net8.0-windows;net9.0-windows</TargetFrameworks>
     <OutputType>Library</OutputType>
@@ -7,7 +7,13 @@
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
     <Configurations>Debug;Release</Configurations>
     <Platforms>AnyCPU;x86</Platforms>
+    <GenerateResourceUsePreserializedResources Condition="'$(TargetFramework)' == 'net48'">true</GenerateResourceUsePreserializedResources>
   </PropertyGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
 	<PropertyGroup>
 		<PackageId>Reportman.Designer</PackageId>
 		<Version>3.9.15</Version>
@@ -27,6 +33,11 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="System.Resources.Extensions" Version="10.0.7" />
+	  <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2903.40" />
+	</ItemGroup>
+	<ItemGroup>
+	  <EmbeddedResource Include="Resources\MonacoEditor.zip" />
+	  <EmbeddedResource Include="Resources\WebMarkdown.zip" />
 	</ItemGroup>
   <ItemGroup>
     <Compile Update="Inspector.cs">

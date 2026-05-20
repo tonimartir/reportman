@@ -26,6 +26,7 @@ using Reportman.Reporting.Templates;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Text;
 using System.Windows.Forms;
 
 
@@ -68,6 +69,7 @@ namespace Reportman.Designer
         private List<ToolStripItem> SelectedButtons;
         private List<ToolStripItem> TwoSelectedButtons;
         private List<ToolStripItem> ThreeSelectedButtons;
+        private AIChatPanelControl FAIChatControl;
         public enum EditModeType { OpenSave, Save, SelfSave }
         EditModeType FEditMode;
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), Browsable(false)]
@@ -170,6 +172,16 @@ namespace Reportman.Designer
         public FrameMainDesigner()
         {
             InitializeComponent();
+
+            // AI Copilot Chat Integration
+            FAIChatControl = new AIChatPanelControl { Dock = DockStyle.Right, Width = 350 };
+            FAIChatControl.ReportDocumentProvider = SaveReportAsXmlForAI;
+            FAIChatControl.ApplyModifiedReportDocument = ApplyModifiedReportDocumentFromAI;
+            var aiSplitter = new Splitter { Dock = DockStyle.Right, Width = 5 };
+            panelcontent.Controls.Add(aiSplitter);
+            panelcontent.Controls.Add(FAIChatControl);
+            FAIChatControl.SendToBack();
+            aiSplitter.SendToBack();
 
             libs.LoadFromFile(configFilenameLibs);
 
@@ -341,6 +353,33 @@ namespace Reportman.Designer
 
             tabudocue.Text = "Undo";
             fundocue.OnUndoRedo += UndoCue_OnUndoRedo;
+        }
+
+        private string SaveReportAsXmlForAI()
+        {
+            if (FReport == null)
+                return "";
+
+            using (var stream = new System.IO.MemoryStream())
+            {
+                FReport.SaveToStream(stream, StreamVersion.V2);
+                return Encoding.UTF8.GetString(stream.ToArray());
+            }
+        }
+
+        private void ApplyModifiedReportDocumentFromAI(string modifiedReportDocument)
+        {
+            if (FReport == null || string.IsNullOrWhiteSpace(modifiedReportDocument))
+                return;
+
+            using (var stream = new System.IO.MemoryStream(Encoding.UTF8.GetBytes(modifiedReportDocument)))
+            {
+                FReport.LoadFromStream(stream);
+            }
+
+            FReport.Modified = true;
+            Report = FReport;
+            FReport.Modified = true;
         }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), Browsable(false)]
         public Report Report
