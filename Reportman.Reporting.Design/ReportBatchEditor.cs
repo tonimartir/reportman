@@ -260,7 +260,7 @@ namespace Reportman.Reporting.Design
                     ApplyAddObject(report, operation, groupId);
                     break;
                 case ReportBatchOperationType.RemoveObject:
-                    report.DeleteItem(GetComponentByName(report, operation.TargetName), groupId);
+                    ApplyRemoveObject(report, operation, groupId);
                     break;
                 case ReportBatchOperationType.ModifyProperties:
                     ApplyModify(report, operation, groupId);
@@ -277,6 +277,162 @@ namespace Reportman.Reporting.Design
                 default:
                     throw new InvalidOperationException("Unsupported batch operation: " + operation.Type.ToString());
             }
+        }
+
+        private static void ApplyRemoveObject(Report report, ReportBatchOperation operation, int groupId)
+        {
+            var target = GetComponentByName(report, operation.TargetName);
+            if (target is Section section)
+            {
+                ApplyRemoveSection(report, section, groupId);
+                return;
+            }
+
+            if (target is SubReport subReport)
+            {
+                ApplyRemoveSubReport(report, subReport, groupId);
+                return;
+            }
+
+            report.DeleteItem(target, groupId);
+        }
+
+        private static void ApplyRemoveSection(Report report, Section section, int groupId)
+        {
+            var subReport = report.GetParentSubReport(section);
+            if (subReport == null)
+            {
+                return;
+            }
+
+            switch (section.SectionType)
+            {
+                case SectionType.Detail:
+                case SectionType.PageFooter:
+                case SectionType.PageHeader:
+                    ApplyRemoveSingleSection(report, subReport, section, groupId);
+                    return;
+                case SectionType.GroupFooter:
+                case SectionType.GroupHeader:
+                    var groupName = section.GroupName;
+                    var sectionsToDelete = new List<Section>();
+                    foreach (Section candidate in subReport.Sections)
+                    {
+                        if (string.Equals(candidate.GroupName, groupName, StringComparison.Ordinal)
+                            && (candidate.SectionType == SectionType.GroupFooter || candidate.SectionType == SectionType.GroupHeader))
+                        {
+                            sectionsToDelete.Add(candidate);
+                        }
+                    }
+
+                    foreach (var candidate in sectionsToDelete)
+                    {
+                        report.DeleteComponents(candidate, groupId);
+                    }
+
+                    foreach (var candidate in sectionsToDelete)
+                    {
+                        var index = subReport.Sections.IndexOf(candidate);
+                        if (index < 0)
+                        {
+                            continue;
+                        }
+
+                        if (groupId != 0)
+                        {
+                            var undoOperation = new ChangeObjectOperation(OperationType.Remove, groupId)
+                            {
+                                ComponentName = candidate.Name,
+                                ParentName = subReport.Name,
+                                ComponentClass = candidate.ClassName,
+                                OldItemIndex = index
+                            };
+                            AddCommonSectionProperties(candidate, undoOperation);
+                            report.UndoCue?.AddOperation(undoOperation, report);
+                        }
+
+                        report.DeleteComponent(candidate);
+                        subReport.Sections.RemoveAt(index);
+                    }
+                    return;
+                default:
+                    throw new InvalidOperationException("Unsupported section type for batch removal: " + section.SectionType.ToString());
+            }
+        }
+
+        private static void ApplyRemoveSingleSection(Report report, SubReport subReport, Section section, int groupId)
+        {
+            report.DeleteComponents(section, groupId);
+            var index = subReport.Sections.IndexOf(section);
+            if (index < 0)
+            {
+                return;
+            }
+
+            if (groupId != 0)
+            {
+                var undoOperation = new ChangeObjectOperation(OperationType.Remove, groupId)
+                {
+                    ComponentName = section.Name,
+                    ParentName = subReport.Name,
+                    ComponentClass = section.ClassName,
+                    OldItemIndex = index
+                };
+                AddCommonSectionProperties(section, undoOperation);
+                report.UndoCue?.AddOperation(undoOperation, report);
+            }
+
+            report.DeleteComponent(section);
+            subReport.Sections.RemoveAt(index);
+        }
+
+        private static void ApplyRemoveSubReport(Report report, SubReport subReport, int groupId)
+        {
+            var index = report.SubReports.IndexOf(subReport);
+            if (index < 0)
+            {
+                return;
+            }
+
+            foreach (SubReport candidateSubReport in report.SubReports)
+            {
+                foreach (Section section in candidateSubReport.Sections)
+                {
+                    if (!string.Equals(section.ChildSubReportName, subReport.Name, StringComparison.Ordinal))
+                    {
+                        continue;
+                    }
+
+                    if (groupId != 0)
+                    {
+                        var undoOperation = new ChangeObjectOperation(OperationType.Modify, groupId);
+                        undoOperation.AddProperty("childSubreportName", PropertyType.String, section.ChildSubReportName, string.Empty);
+                        report.UndoCue?.AddOperation(undoOperation, report);
+                    }
+
+                    section.ChildSubReportName = string.Empty;
+                }
+            }
+
+            while (subReport.Sections.Count > 0)
+            {
+                ApplyRemoveSection(report, subReport.Sections[0], groupId);
+            }
+
+            if (groupId != 0)
+            {
+                var undoOperation = new ChangeObjectOperation(OperationType.Remove, groupId)
+                {
+                    ComponentName = subReport.Name,
+                    ComponentClass = subReport.ClassName,
+                    OldItemIndex = index
+                };
+                AddSubreportProperties(subReport, undoOperation);
+                report.UndoCue?.AddOperation(undoOperation, report);
+            }
+
+            report.DeleteComponent(subReport);
+            report.SubReports.RemoveAt(index);
         }
 
         private static void ValidateAddObject(Report report, ReportBatchOperation operation, int index, ReportBatchValidationResult result)
@@ -1118,6 +1274,51 @@ namespace Reportman.Reporting.Design
                     result.Issues.Add(CreateIssue("group_not_symmetric", "Subreport '" + subReportName + "' must keep group '" + pair.Key + "' symmetric relative to the first and last detail.", null, null));
                 }
             }
+        }
+
+        private static void AddSubreportProperties(SubReport item, ChangeObjectOperation operation)
+        {
+            operation.AddProperty("alias", PropertyType.String, null, item.Alias);
+            operation.AddProperty("printOnlyIfDataAvailable", PropertyType.Boolean, null, item.PrintOnlyIfDataAvailable);
+        }
+
+        private static void AddCommonSectionProperties(Section section, ChangeObjectOperation operation)
+        {
+            operation.AddProperty("printCondition", PropertyType.String, null, section.PrintCondition);
+            operation.AddProperty("alignBottom", PropertyType.Boolean, null, section.AlignBottom);
+            operation.AddProperty("autoContract", PropertyType.Boolean, null, section.AutoContract);
+            operation.AddProperty("autoExpand", PropertyType.Boolean, null, section.AutoExpand);
+            operation.AddProperty("backExpression", PropertyType.String, null, section.BackExpression);
+            operation.AddProperty("backStyle", PropertyType.Integer, null, section.BackStyle);
+            operation.AddProperty("beginPageExpression", PropertyType.String, null, section.BeginPageExpression);
+            operation.AddProperty("childSubreportName", PropertyType.String, null, section.ChildSubReportName);
+            operation.AddProperty("doAfterPrint", PropertyType.String, null, section.DoAfterPrint);
+            operation.AddProperty("doBeforePrint", PropertyType.String, null, section.DoBeforePrint);
+            operation.AddProperty("dpiRes", PropertyType.Integer, null, section.dpires);
+            operation.AddProperty("drawStyle", PropertyType.Integer, null, section.DrawStyle);
+            operation.AddProperty("forcePrint", PropertyType.Boolean, null, section.ForcePrint);
+            operation.AddProperty("global", PropertyType.Boolean, null, section.Global);
+            operation.AddProperty("height", PropertyType.Integer, null, section.Height);
+            operation.AddProperty("width", PropertyType.Integer, null, section.Width);
+            operation.AddProperty("horzDesp", PropertyType.Boolean, null, section.HorzDesp);
+            operation.AddProperty("iniNumPage", PropertyType.Boolean, null, section.IniNumPage);
+            operation.AddProperty("pageRepeat", PropertyType.Boolean, null, section.PageRepeat);
+            operation.AddProperty("sectionType", PropertyType.Integer, null, section.SectionType);
+            operation.AddProperty("sharedImage", PropertyType.Integer, null, section.SharedImage);
+            operation.AddProperty("skipExpreH", PropertyType.String, null, section.SkipExpreH);
+            operation.AddProperty("skipExpreV", PropertyType.String, null, section.SkipExpreV);
+            operation.AddProperty("skipPage", PropertyType.Boolean, null, section.SkipPage);
+            operation.AddProperty("skipRelativeH", PropertyType.Boolean, null, section.SkipRelativeH);
+            operation.AddProperty("skipRelativeV", PropertyType.Boolean, null, section.SkipRelativeV);
+            operation.AddProperty("skipToPageExpre", PropertyType.String, null, section.SkipToPageExpre);
+            operation.AddProperty("skipType", PropertyType.Integer, null, section.SkipType);
+            operation.AddProperty("streamBase64", PropertyType.String, null, section.StreamBase64);
+            operation.AddProperty("subReportName", PropertyType.String, null, section.SubReportName);
+            operation.AddProperty("streamFormat", PropertyType.Integer, null, section.StreamFormat);
+            operation.AddProperty("vertDesp", PropertyType.Boolean, null, section.VertDesp);
+            operation.AddProperty("groupName", PropertyType.String, null, section.GroupName);
+            operation.AddProperty("changeExpression", PropertyType.String, null, section.ChangeExpression);
+            operation.AddProperty("changeBool", PropertyType.Boolean, null, section.ChangeBool);
         }
 
         private static void ApplyProperties(ReportItem target, IList<ReportBatchProperty> properties, ChangeObjectOperation undoOperation, bool recordUndo)
