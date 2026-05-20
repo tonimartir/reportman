@@ -409,6 +409,12 @@ namespace Reportman.Reporting
                 HttpAgentToken = token;
         }
 
+        public void ResolveHttpAgentConnectionParamsFromConfig()
+        {
+            ResolveHttpAgentDriverFromConfig();
+            LoadHttpAgentConnectionParams();
+        }
+
         /// <summary>
         /// Disconnect from database, also dispose any transaction
         /// </summary>

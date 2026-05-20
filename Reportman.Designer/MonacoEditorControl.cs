@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Text.Json;
@@ -47,13 +46,35 @@ namespace Reportman.Designer
             get => _cachedSql;
             set
             {
-                _cachedSql = value;
+                _cachedSql = NormalizeLineEndings(value);
                 if (_isReady && !_updatingFromBrowser && _webView.CoreWebView2 != null)
                 {
-                    string safeSql = JsonSerializer.Serialize(value);
+                    string safeSql = JsonSerializer.Serialize(_cachedSql);
                     _webView.ExecuteScriptAsync($"if (window.editor) {{ window.editor.setValue({safeSql}); }}");
                 }
             }
+        }
+
+        [System.ComponentModel.Browsable(false)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public long HubDatabaseId { get; private set; }
+
+        [System.ComponentModel.Browsable(false)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public long HubSchemaId { get; private set; }
+
+        [System.ComponentModel.Browsable(false)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public string ApiKey { get; set; } = "";
+
+        [System.ComponentModel.Browsable(false)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public string RuntimeDb { get; set; } = "";
+
+        public void SetHubContext(long hubDatabaseId, long hubSchemaId)
+        {
+            HubDatabaseId = hubDatabaseId;
+            HubSchemaId = hubSchemaId;
         }
 
         protected override async void OnLoad(EventArgs e)
@@ -86,11 +107,7 @@ namespace Reportman.Designer
             if (e.IsSuccess)
             {
                 _isReady = true;
-                // Apply pending cached SQL
-                if (!string.IsNullOrEmpty(_cachedSql))
-                {
-                    SQL = _cachedSql;
-                }
+                SQL = _cachedSql;
             }
         }
 
@@ -98,40 +115,185 @@ namespace Reportman.Designer
         {
             try
             {
-                string message = e.TryGetWebMessageAsString();
-                
-                // Assuming Monaco posts back { type: 'contentChanged', value: '...' } 
-                // Wait, Delphi implementation says: 
-                // if it's a JSON object we parse it.
-                // Let's implement basic handling based on standard Monaco integration events
-                
-                using (var doc = JsonDocument.Parse(message))
-                {
-                    var root = doc.RootElement;
-                    if (root.TryGetProperty("type", out var typeProp) && typeProp.GetString() == "contentChanged")
-                    {
-                        if (root.TryGetProperty("value", out var valProp))
-                        {
-                            _updatingFromBrowser = true;
-                            _cachedSql = valProp.GetString() ?? "";
-                            SqlContentChanged?.Invoke(this, EventArgs.Empty);
-                            _updatingFromBrowser = false;
-                        }
-                    }
-                }
+                ProcessWebMessage(GetWebMessage(e));
             }
-            catch 
+            catch
             {
                 // Ignore parsing errors for unknown messages
             }
+        }
+
+        private static string GetWebMessage(CoreWebView2WebMessageReceivedEventArgs e)
+        {
+            try
+            {
+                return e.TryGetWebMessageAsString();
+            }
+            catch
+            {
+                return e.WebMessageAsJson;
+            }
+        }
+
+        private void ProcessWebMessage(string message)
+        {
+            if (_updatingFromBrowser)
+                return;
+
+            string newSql = null;
+
+            using (JsonDocument doc = TryParseJson(message))
+            {
+                if (doc != null)
+                {
+                    JsonElement root = doc.RootElement;
+                    if (root.ValueKind == JsonValueKind.Object)
+                    {
+                        string messageType = GetJsonString(root, "type");
+                        if (string.Equals(messageType, "EDITOR_READY", StringComparison.OrdinalIgnoreCase))
+                        {
+                            _isReady = true;
+                            SQL = _cachedSql;
+                            return;
+                        }
+
+                        if (string.Equals(messageType, "GET_AI_COMPLETIONS", StringComparison.OrdinalIgnoreCase))
+                        {
+                            string requestId = GetJsonString(root, "requestId");
+                            _ = SendEmptyAICompletionsAsync(requestId);
+                            return;
+                        }
+
+                        if (string.Equals(messageType, "contentChanged", StringComparison.OrdinalIgnoreCase) ||
+                            string.Equals(messageType, "CONTENT_CHANGED", StringComparison.OrdinalIgnoreCase))
+                        {
+                            newSql = GetFirstJsonString(root, "value", "sql", "code", "text");
+                        }
+                        else if (TryGetJsonProperty(root, "value", out JsonElement valueElement) &&
+                            valueElement.ValueKind == JsonValueKind.String)
+                        {
+                            newSql = valueElement.GetString();
+                        }
+                    }
+                    else if (root.ValueKind == JsonValueKind.String)
+                    {
+                        newSql = root.GetString();
+                    }
+                }
+            }
+
+            if (newSql == null)
+                newSql = message;
+
+            UpdateCachedSqlFromBrowser(newSql);
+        }
+
+        private void UpdateCachedSqlFromBrowser(string sql)
+        {
+            sql = NormalizeLineEndings(sql);
+            if (string.Equals(_cachedSql, sql, StringComparison.Ordinal))
+                return;
+
+            _updatingFromBrowser = true;
+            try
+            {
+                _cachedSql = sql;
+                SqlContentChanged?.Invoke(this, EventArgs.Empty);
+            }
+            finally
+            {
+                _updatingFromBrowser = false;
+            }
+        }
+
+        private async Task SendEmptyAICompletionsAsync(string requestId)
+        {
+            await SendAICompletionsAsync(requestId, "{\"inlineItems\":[],\"completionItems\":[]}");
+        }
+
+        public async Task SendAICompletionsAsync(string requestId, string responseJson)
+        {
+            if (!_isReady || _webView.CoreWebView2 == null)
+                return;
+
+            if (string.IsNullOrWhiteSpace(responseJson))
+                responseJson = "{\"inlineItems\":[],\"completionItems\":[]}";
+
+            string safeRequestId = JsonSerializer.Serialize(requestId ?? "");
+            await _webView.ExecuteScriptAsync(
+                $"if (window.receiveAICompletions) {{ window.receiveAICompletions({safeRequestId}, {responseJson}); }}");
+        }
+
+        private static JsonDocument TryParseJson(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                return null;
+
+            try
+            {
+                return JsonDocument.Parse(value);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        private static bool TryGetJsonProperty(JsonElement element, string propertyName, out JsonElement value)
+        {
+            if (element.ValueKind == JsonValueKind.Object && element.TryGetProperty(propertyName, out value))
+                return true;
+
+            if (element.ValueKind == JsonValueKind.Object)
+            {
+                foreach (JsonProperty property in element.EnumerateObject())
+                {
+                    if (string.Equals(property.Name, propertyName, StringComparison.OrdinalIgnoreCase))
+                    {
+                        value = property.Value;
+                        return true;
+                    }
+                }
+            }
+
+            value = default(JsonElement);
+            return false;
+        }
+
+        private static string GetJsonString(JsonElement element, string propertyName)
+        {
+            if (!TryGetJsonProperty(element, propertyName, out JsonElement value) ||
+                value.ValueKind == JsonValueKind.Null || value.ValueKind == JsonValueKind.Undefined)
+                return "";
+
+            return value.ValueKind == JsonValueKind.String ? value.GetString() ?? "" : value.GetRawText();
+        }
+
+        private static string GetFirstJsonString(JsonElement element, params string[] propertyNames)
+        {
+            foreach (string propertyName in propertyNames)
+            {
+                string value = GetJsonString(element, propertyName);
+                if (value.Length > 0)
+                    return value;
+            }
+            return "";
+        }
+
+        private static string NormalizeLineEndings(string value)
+        {
+            if (value == null)
+                return string.Empty;
+            return value.Replace("\r\n", "\n").Replace("\r", "\n").Replace("\n", Environment.NewLine);
         }
         
         // Expose a method to get content asynchronously directly from Monaco if needed
         public async Task<string> GetSqlFromEditorAsync()
         {
             if (!_isReady || _webView.CoreWebView2 == null) return _cachedSql;
-            string resultJson = await _webView.ExecuteScriptAsync("window.editor ? window.editor.getValue() : ''");
-            _cachedSql = JsonSerializer.Deserialize<string>(resultJson);
+            string resultJson = await _webView.ExecuteScriptAsync("window.editor ? window.editor.getValue() : null");
+            if (!string.IsNullOrWhiteSpace(resultJson) && !string.Equals(resultJson, "null", StringComparison.OrdinalIgnoreCase))
+                _cachedSql = NormalizeLineEndings(JsonSerializer.Deserialize<string>(resultJson));
             return _cachedSql;
         }
     }

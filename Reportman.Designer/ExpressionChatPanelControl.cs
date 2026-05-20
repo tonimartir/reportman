@@ -16,7 +16,13 @@ namespace Reportman.Designer
 
         private AILoginFrameControl _loginControl;
         private AISelectionControl _aiSelectionControl;
+        private TabControl _tabControl;
+        private TabPage _chatTab;
+        private TabPage _aiLogTab;
+        private TabPage _netLogTab;
         private WebMarkdownControl _conversation;
+        private TextBox _aiLogText;
+        private TextBox _netLogText;
         private Panel _bottomPanel;
         private Panel _buttonPanel;
         private TextBox _promptText;
@@ -103,7 +109,71 @@ namespace Reportman.Designer
             topPanel.Controls.Add(_loginControl, 0, 0);
             topPanel.Controls.Add(_aiSelectionControl, 0, 1);
 
+            _tabControl = new TabControl { Dock = DockStyle.Fill };
+
+            _chatTab = new TabPage { Text = "Chat" };
             _conversation = new WebMarkdownControl { Dock = DockStyle.Fill };
+            _chatTab.Controls.Add(_conversation);
+
+            _aiLogTab = new TabPage { Text = "AI Log" };
+            Panel aiLogToolbar = new Panel
+            {
+                Dock = DockStyle.Top,
+                Height = 38,
+                Padding = new Padding(8, 5, 8, 5)
+            };
+            Button clearAiLogButton = new Button
+            {
+                Text = "Clear",
+                Dock = DockStyle.Left,
+                Width = 90
+            };
+            clearAiLogButton.Click += (s, e) => _aiLogText.Clear();
+            aiLogToolbar.Controls.Add(clearAiLogButton);
+            _aiLogText = new TextBox
+            {
+                Dock = DockStyle.Fill,
+                Multiline = true,
+                ScrollBars = ScrollBars.Vertical,
+                ReadOnly = true,
+                BackColor = Color.Black,
+                ForeColor = Color.Lime,
+                Font = new Font("Consolas", 9f)
+            };
+            _aiLogTab.Controls.Add(_aiLogText);
+            _aiLogTab.Controls.Add(aiLogToolbar);
+
+            _netLogTab = new TabPage { Text = "Net Log" };
+            Panel netLogToolbar = new Panel
+            {
+                Dock = DockStyle.Top,
+                Height = 38,
+                Padding = new Padding(8, 5, 8, 5)
+            };
+            Button clearNetLogButton = new Button
+            {
+                Text = "Clear",
+                Dock = DockStyle.Left,
+                Width = 90
+            };
+            clearNetLogButton.Click += (s, e) => _netLogText.Clear();
+            netLogToolbar.Controls.Add(clearNetLogButton);
+            _netLogText = new TextBox
+            {
+                Dock = DockStyle.Fill,
+                Multiline = true,
+                ScrollBars = ScrollBars.Vertical,
+                ReadOnly = true,
+                BackColor = Color.FromArgb(30, 30, 30),
+                ForeColor = Color.FromArgb(0xCC, 0xCC, 0xCC),
+                Font = new Font("Consolas", 9f)
+            };
+            _netLogTab.Controls.Add(_netLogText);
+            _netLogTab.Controls.Add(netLogToolbar);
+
+            _tabControl.TabPages.Add(_chatTab);
+            _tabControl.TabPages.Add(_aiLogTab);
+            _tabControl.TabPages.Add(_netLogTab);
 
             _bottomPanel = new Panel
             {
@@ -160,7 +230,7 @@ namespace Reportman.Designer
             _bottomPanel.Controls.Add(_promptText);
             _bottomPanel.Controls.Add(_buttonPanel);
 
-            Controls.Add(_conversation);
+            Controls.Add(_tabControl);
             Controls.Add(_bottomPanel);
             Controls.Add(topPanel);
         }
@@ -280,6 +350,9 @@ namespace Reportman.Designer
             _promptText.Enabled = !busy;
             _aiSelectionControl.SetInferenceProgress(busy);
             UpdateButtons();
+
+            if (_tabControl != null)
+                _tabControl.SelectedTab = busy ? _aiLogTab : _chatTab;
         }
 
         private void ApplyButton_Click(object sender, EventArgs e)
@@ -406,7 +479,13 @@ namespace Reportman.Designer
                     {
                         if (string.Equals(stage, "ReceivingResponse", StringComparison.OrdinalIgnoreCase) &&
                             string.Equals(chunkType, "Partial", StringComparison.OrdinalIgnoreCase))
+                        {
                             SafeAppendStreamingChunk(chunk, prefillPercent);
+                        }
+                        else if (!string.IsNullOrWhiteSpace(stage) || !string.IsNullOrWhiteSpace(chunk))
+                        {
+                            AppendAILog("[" + actor + ":" + stage + "] " + chunk);
+                        }
 
                         _aiSelectionControl.UpdateTokens(inputTokens, outputTokens);
                     },
@@ -524,7 +603,31 @@ namespace Reportman.Designer
 
         private void LogClientMessage(string message)
         {
-            System.Diagnostics.Debug.WriteLine("ExpressionChat: " + message);
+            AppendNetLog(message);
+        }
+
+        private void AppendAILog(string message)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(() => AppendAILog(message)));
+                return;
+            }
+
+            if (_aiLogText != null)
+                _aiLogText.AppendText("[" + DateTime.Now.ToString("HH:mm:ss") + "] " + message + Environment.NewLine);
+        }
+
+        private void AppendNetLog(string message)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(() => AppendNetLog(message)));
+                return;
+            }
+
+            if (_netLogText != null)
+                _netLogText.AppendText("[" + DateTime.Now.ToString("HH:mm:ss") + "] " + message + Environment.NewLine);
         }
 
         private static bool TryGetJsonProperty(JsonElement element, string propertyName, out JsonElement value)
