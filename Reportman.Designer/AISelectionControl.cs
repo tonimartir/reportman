@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -18,6 +19,7 @@ namespace Reportman.Designer
         private Label _lblMode;
         private ComboBox _comboMode;
         private Panel _panelGauge;
+        private ColumnStyle _gaugeColumnStyle;
         private int _creditPercent = 0;
 
         // Inference progress mode controls
@@ -29,12 +31,37 @@ namespace Reportman.Designer
         private int _spinnerAngle = 0;
         private int _tokensIn = 0;
         private int _tokensOut = 0;
+        private readonly Dictionary<string, ProgressTokenEntry> _progressTokens = new Dictionary<string, ProgressTokenEntry>(StringComparer.Ordinal);
 
         // State
         private bool _isInferring;
+        private bool _showGauge = true;
 
         // Events
         public event EventHandler StopRequested;
+
+        private sealed class ProgressTokenEntry
+        {
+            public string ProgressId;
+            public int InputTokens;
+            public int OutputTokens;
+            public int PrefillPercent;
+        }
+
+        [System.ComponentModel.Browsable(false)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public bool ShowGauge
+        {
+            get { return _showGauge; }
+            set
+            {
+                if (_showGauge == value)
+                    return;
+
+                _showGauge = value;
+                UpdateGaugeVisibility();
+            }
+        }
 
         public string SelectedTier
         {
@@ -74,7 +101,8 @@ namespace Reportman.Designer
             };
             gridAI.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
             gridAI.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
-            gridAI.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 44f));
+            _gaugeColumnStyle = new ColumnStyle(SizeType.Absolute, 44f);
+            gridAI.ColumnStyles.Add(_gaugeColumnStyle);
             gridAI.RowStyles.Add(new RowStyle(SizeType.AutoSize));
             gridAI.RowStyles.Add(new RowStyle(SizeType.AutoSize));
 
@@ -193,8 +221,10 @@ namespace Reportman.Designer
 
         private void UpdateGaugeVisibility()
         {
-            // In Delphi, gauge is hidden when using agent endpoints (index >= 2)
-            _panelGauge.Visible = _comboProvider.SelectedIndex < 2;
+            bool gaugeVisible = _showGauge && _comboProvider.SelectedIndex < 2;
+            _panelGauge.Visible = gaugeVisible;
+            if (_gaugeColumnStyle != null)
+                _gaugeColumnStyle.Width = _showGauge ? 44f : 0f;
         }
 
         /// <summary>
@@ -212,6 +242,39 @@ namespace Reportman.Designer
                 _spinnerAngle = 0;
                 _tokensIn = 0;
                 _tokensOut = 0;
+                _progressTokens.Clear();
+                UpdateTokenLabel();
+            }
+        }
+
+        public void TouchProgressToken(string progressId)
+        {
+            if (InvokeRequired)
+            {
+                PostToUi(() => TouchProgressToken(progressId));
+                return;
+            }
+
+            string key = GetProgressTokenKey(progressId);
+            if (!_progressTokens.ContainsKey(key))
+            {
+                _progressTokens[key] = new ProgressTokenEntry { ProgressId = key };
+                UpdateTokenLabel();
+            }
+        }
+
+        public void FinishProgressToken(string progressId)
+        {
+            if (InvokeRequired)
+            {
+                PostToUi(() => FinishProgressToken(progressId));
+                return;
+            }
+
+            string key = GetProgressTokenKey(progressId);
+            if (_progressTokens.Remove(key))
+            {
+                RefreshTokenTotals();
                 UpdateTokenLabel();
             }
         }
@@ -221,17 +284,115 @@ namespace Reportman.Designer
         /// </summary>
         public void UpdateTokens(int tokensIn, int tokensOut)
         {
-            _tokensIn = tokensIn;
-            _tokensOut = tokensOut;
+            UpdateTokens(tokensIn, tokensOut, "", 0);
+        }
+
+        public void UpdateTokens(int tokensIn, int tokensOut, string progressId, int prefillPercent = 0)
+        {
             if (InvokeRequired)
-                Invoke(new Action(UpdateTokenLabel));
-            else
-                UpdateTokenLabel();
+            {
+                PostToUi(() => UpdateTokens(tokensIn, tokensOut, progressId, prefillPercent));
+                return;
+            }
+
+            string key = GetProgressTokenKey(progressId);
+            ProgressTokenEntry entry;
+            if (!_progressTokens.TryGetValue(key, out entry))
+            {
+                if (tokensIn <= 0 && tokensOut <= 0 && prefillPercent <= 0)
+                    return;
+
+                entry = new ProgressTokenEntry { ProgressId = key };
+                _progressTokens[key] = entry;
+            }
+
+            if (tokensIn > entry.InputTokens)
+                entry.InputTokens = tokensIn;
+            if (tokensOut > entry.OutputTokens)
+                entry.OutputTokens = tokensOut;
+            if (prefillPercent > entry.PrefillPercent)
+                entry.PrefillPercent = prefillPercent;
+
+            RefreshTokenTotals();
+            UpdateTokenLabel();
+        }
+
+        private void PostToUi(Action action)
+        {
+            if (action == null || IsDisposed)
+                return;
+
+            if (!IsHandleCreated)
+                return;
+
+            try
+            {
+                BeginInvoke(action);
+            }
+            catch (InvalidOperationException)
+            {
+            }
+        }
+
+        private static string GetProgressTokenKey(string progressId)
+        {
+            string key = (progressId ?? "").Trim();
+            return key.Length == 0 ? "__default__" : key;
+        }
+
+        private static string FormatProgressTokenId(string progressId)
+        {
+            string id = (progressId ?? "").Trim();
+            if (id.Length == 0 || string.Equals(id, "__default__", StringComparison.OrdinalIgnoreCase))
+                return "";
+
+            if (id.Length > 18)
+                id = id.Substring(0, 8) + "..." + id.Substring(id.Length - 4, 4);
+
+            return " #" + id;
+        }
+
+        private static string FormatProgressTokenEntry(ProgressTokenEntry entry)
+        {
+            string inputText = entry.PrefillPercent > 0 && entry.OutputTokens == 0
+                ? entry.PrefillPercent.ToString() + "% prefill"
+                : entry.InputTokens.ToString();
+
+            return "Input/Output: " + inputText + " / " + entry.OutputTokens + FormatProgressTokenId(entry.ProgressId);
+        }
+
+        private void RefreshTokenTotals()
+        {
+            int totalIn = 0;
+            int totalOut = 0;
+            foreach (ProgressTokenEntry entry in _progressTokens.Values)
+            {
+                totalIn += entry.InputTokens;
+                totalOut += entry.OutputTokens;
+            }
+
+            _tokensIn = totalIn;
+            _tokensOut = totalOut;
         }
 
         private void UpdateTokenLabel()
         {
-            _lblTokens.Text = $"Tokens (In/Out): {_tokensIn} / {_tokensOut}";
+            if (_progressTokens.Count == 0)
+            {
+                _lblTokens.Text = $"Tokens (In/Out): {_tokensIn} / {_tokensOut}";
+                return;
+            }
+
+            if (_progressTokens.Count == 1)
+            {
+                foreach (ProgressTokenEntry entry in _progressTokens.Values)
+                {
+                    _lblTokens.Text = FormatProgressTokenEntry(entry);
+                    return;
+                }
+            }
+
+            _lblTokens.Text = _progressTokens.Count + "- Input/Output: " + _tokensIn + " / " + _tokensOut;
         }
 
         /// <summary>

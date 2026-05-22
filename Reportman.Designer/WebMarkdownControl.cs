@@ -12,8 +12,12 @@ namespace Reportman.Designer
 {
     public class WebMarkdownControl : UserControl
     {
+        private static readonly object EnvironmentLock = new object();
+        private static Task<CoreWebView2Environment> _sharedEnvironmentTask;
+
         private WebView2 _webView;
         private bool _isReady;
+        private bool _initializationStarted;
         private List<string> _pendingScripts;
         
         public bool IsReady => _isReady;
@@ -39,22 +43,42 @@ namespace Reportman.Designer
             this.Controls.Add(_webView);
         }
 
-        protected override async void OnLoad(EventArgs e)
+        protected override void OnHandleCreated(EventArgs e)
+        {
+            base.OnHandleCreated(e);
+            EnsureInitialized();
+        }
+
+        protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            
-            if (DesignMode) return;
+            EnsureInitialized();
+        }
 
+        public void EnsureInitialized()
+        {
+            if (DesignMode || IsDisposed || _initializationStarted)
+                return;
+
+            _initializationStarted = true;
+            _ = InitializeWebViewAsync();
+        }
+
+        private async Task InitializeWebViewAsync()
+        {
             try
             {
                 string assetPath = AssetsManager.EnsureWebMarkdownAssetsExtracted();
                 AssetsManager.TryPreloadWebView2Loader(assetPath);
 
-                // Setup user data folder in the same parent dir to avoid access rights issues
-                string userDataFolder = Path.Combine(Path.GetDirectoryName(assetPath), "EdgeData");
-                var env = await CoreWebView2Environment.CreateAsync(null, userDataFolder);
+                _webView.CreateControl();
+                var env = await GetSharedEnvironmentAsync(assetPath);
+                if (IsDisposed)
+                    return;
                 
                 await _webView.EnsureCoreWebView2Async(env);
+                if (IsDisposed)
+                    return;
                 
                 string url = "file:///" + assetPath.Replace('\\', '/') + "/index.html";
                 _webView.CoreWebView2.Navigate(url);
@@ -62,6 +86,20 @@ namespace Reportman.Designer
             catch (Exception ex)
             {
                 Console.WriteLine("Error initializing WebMarkdown WebView2: " + ex.Message);
+            }
+        }
+
+        private static Task<CoreWebView2Environment> GetSharedEnvironmentAsync(string assetPath)
+        {
+            lock (EnvironmentLock)
+            {
+                if (_sharedEnvironmentTask == null || _sharedEnvironmentTask.IsFaulted || _sharedEnvironmentTask.IsCanceled)
+                {
+                    string userDataFolder = Path.Combine(Path.GetDirectoryName(assetPath), "EdgeData");
+                    _sharedEnvironmentTask = CoreWebView2Environment.CreateAsync(null, userDataFolder);
+                }
+
+                return _sharedEnvironmentTask;
             }
         }
 
@@ -122,6 +160,35 @@ namespace Reportman.Designer
         public void FinishStreaming()
         {
             ExecuteOrQueue("window.finishStreaming();");
+        }
+
+        public void AppendLogLine(string text)
+        {
+            string safeText = JsonSerializer.Serialize(text ?? "");
+            ExecuteOrQueue($"window.appendLogLine({safeText});");
+        }
+
+        public void AppendLogChunk(string chunk)
+        {
+            AppendLogChunkForKey("", chunk);
+        }
+
+        public void AppendLogChunkForKey(string key, string chunk)
+        {
+            string safeKey = JsonSerializer.Serialize(key ?? "");
+            string safeChunk = JsonSerializer.Serialize(chunk ?? "");
+            ExecuteOrQueue($"window.appendLogChunkForKey({safeKey}, {safeChunk});");
+        }
+
+        public void EndLogChunk()
+        {
+            EndLogChunkForKey("");
+        }
+
+        public void EndLogChunkForKey(string key)
+        {
+            string safeKey = JsonSerializer.Serialize(key ?? "");
+            ExecuteOrQueue($"window.endLogChunkForKey({safeKey});");
         }
 
         public void ClearAll()

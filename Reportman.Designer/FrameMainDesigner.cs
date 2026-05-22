@@ -57,6 +57,9 @@ namespace Reportman.Designer
         public delegate void PreviewReportEvent(object sender, PreviewReportArgs args);
         private const string LibraryEntrySeparator = "->";
         private const int RecentFileCaptionWidth = 40;
+        private const int DefaultAIChatPanelWidth = 350;
+        private const string PreferencesSectionName = "Preferences";
+        private const string ShowAIChatPreferenceKey = "ShowAIChat";
         private string CurrentFilename = "";
         ReportLibrarySelection CurrentReportSelection = null;
 
@@ -70,6 +73,8 @@ namespace Reportman.Designer
         private List<ToolStripItem> TwoSelectedButtons;
         private List<ToolStripItem> ThreeSelectedButtons;
         private AIChatPanelControl FAIChatControl;
+        private Splitter FAIChatSplitter;
+        private int FAIChatPanelWidth = DefaultAIChatPanelWidth;
         public enum EditModeType { OpenSave, Save, SelfSave }
         EditModeType FEditMode;
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), Browsable(false)]
@@ -174,14 +179,15 @@ namespace Reportman.Designer
             InitializeComponent();
 
             // AI Copilot Chat Integration
-            FAIChatControl = new AIChatPanelControl { Dock = DockStyle.Right, Width = 350 };
+            FAIChatControl = new AIChatPanelControl { Dock = DockStyle.Right, Width = DefaultAIChatPanelWidth };
             FAIChatControl.ReportDocumentProvider = SaveReportAsXmlForAI;
             FAIChatControl.ApplyModifiedReportDocument = ApplyModifiedReportDocumentFromAI;
-            var aiSplitter = new Splitter { Dock = DockStyle.Right, Width = 5 };
-            panelcontent.Controls.Add(aiSplitter);
+            FAIChatSplitter = new Splitter { Dock = DockStyle.Right, Width = 5 };
+            panelcontent.Controls.Add(FAIChatSplitter);
             panelcontent.Controls.Add(FAIChatControl);
             FAIChatControl.SendToBack();
-            aiSplitter.SendToBack();
+            FAIChatSplitter.SendToBack();
+            LoadAIChatPanelPreference();
 
             libs.LoadFromFile(configFilenameLibs);
 
@@ -355,6 +361,59 @@ namespace Reportman.Designer
             fundocue.OnUndoRedo += UndoCue_OnUndoRedo;
         }
 
+        private void ApplyAIChatPanelVisibility()
+        {
+            bool showAIChat = bchatIA.Checked;
+
+            if (!showAIChat)
+            {
+                if (FAIChatControl != null && FAIChatControl.Visible && FAIChatControl.Width > 0)
+                {
+                    FAIChatPanelWidth = FAIChatControl.Width;
+                }
+            }
+
+            if (FAIChatControl != null)
+            {
+                if (showAIChat && FAIChatPanelWidth > 0)
+                {
+                    FAIChatControl.Width = FAIChatPanelWidth;
+                }
+
+                FAIChatControl.Visible = showAIChat;
+            }
+
+            if (FAIChatSplitter != null)
+            {
+                FAIChatSplitter.Visible = showAIChat;
+            }
+
+            panelcontent.PerformLayout();
+
+            if (showAIChat && FAIChatControl != null)
+            {
+                FAIChatControl.PerformLayout();
+                FAIChatControl.Invalidate();
+            }
+        }
+
+        private void LoadAIChatPanelPreference()
+        {
+            IniFile inif = new IniFile(DelphiRecentFiles.GetConfigFilename());
+            bchatIA.Checked = inif.ReadBool(PreferencesSectionName,
+                ShowAIChatPreferenceKey, true);
+            ApplyAIChatPanelVisibility();
+        }
+
+        private void SaveAIChatPanelPreference()
+        {
+            string configFilename = DelphiRecentFiles.GetConfigFilename();
+            IniFile inif = new IniFile(configFilename);
+            inif.WriteBool(PreferencesSectionName, ShowAIChatPreferenceKey,
+                bchatIA.Checked);
+            inif.SaveToFile(configFilename);
+        }
+
         private string SaveReportAsXmlForAI()
         {
             if (FReport == null)
@@ -403,8 +462,74 @@ namespace Reportman.Designer
                 subreportedit.SetSubReport(FReport, CurrentSubReport);
                 if (FReport == null)
                     return;
+                InitializeAIChatSchemaSelection();
                 EnableMenus();
             }
+        }
+
+        private void ResolveInitialAIChatSchemaContext(out long hubDatabaseId,
+            out long hubSchemaId, out string schemaApiKey)
+        {
+            hubDatabaseId = 0;
+            hubSchemaId = 0;
+            schemaApiKey = "";
+
+            bool hasPersistedSchema = false;
+            if (FReport == null)
+                return;
+
+            if (FReport.DataInfo.Count > 0)
+            {
+                DataInfo dataInfo = FReport.DataInfo[0];
+                if (dataInfo != null && dataInfo.HubSchemaId > 0)
+                {
+                    hasPersistedSchema = true;
+                    hubSchemaId = dataInfo.HubSchemaId;
+
+                    DatabaseInfo databaseInfo = FReport.DatabaseInfo[dataInfo.DatabaseAlias];
+                    if (databaseInfo != null)
+                    {
+                        databaseInfo.ResolveHttpAgentConnectionParamsFromConfig();
+                        if (databaseInfo.Driver == DriverType.HttpAgent)
+                        {
+                            hubDatabaseId = databaseInfo.HttpAgentHubDatabaseId;
+                            schemaApiKey = (databaseInfo.HttpAgentApiKey ?? "").Trim();
+                            if (hubDatabaseId > 0)
+                                return;
+                        }
+                    }
+                }
+            }
+
+            for (int index = 0; index < FReport.DatabaseInfo.Count; index++)
+            {
+                DatabaseInfo databaseInfo = FReport.DatabaseInfo[index];
+                if (databaseInfo == null)
+                    continue;
+
+                databaseInfo.ResolveHttpAgentConnectionParamsFromConfig();
+                if (databaseInfo.Driver != DriverType.HttpAgent)
+                    continue;
+
+                hubDatabaseId = databaseInfo.HttpAgentHubDatabaseId;
+                schemaApiKey = (databaseInfo.HttpAgentApiKey ?? "").Trim();
+                if (hubDatabaseId > 0)
+                {
+                    if (!hasPersistedSchema)
+                        hubSchemaId = 0;
+                    return;
+                }
+            }
+        }
+
+        private void InitializeAIChatSchemaSelection()
+        {
+            if (FAIChatControl == null)
+                return;
+
+            ResolveInitialAIChatSchemaContext(out long hubDatabaseId,
+                out long hubSchemaId, out string schemaApiKey);
+            FAIChatControl.SetHubContext(hubDatabaseId, hubSchemaId, schemaApiKey);
         }
         private static void FixReport(Report xreport)
         {
@@ -1413,6 +1538,12 @@ namespace Reportman.Designer
             bhideRight.Checked = !bhideRight.Checked;
             splitter1.Visible = !bhideRight.Checked;
             panelprops.Visible = !bhideRight.Checked;
+        }
+
+        private void ButtonAIChatClick(object sender, EventArgs e)
+        {
+            ApplyAIChatPanelVisibility();
+            SaveAIChatPanelPreference();
         }
 
         private void ButtonSetupLibClick(object sender, EventArgs e)

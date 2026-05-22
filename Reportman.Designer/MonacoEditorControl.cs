@@ -1,31 +1,121 @@
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Web.WebView2.Core;
 using Microsoft.Web.WebView2.WinForms;
+using Reportman.Reporting;
 
 namespace Reportman.Designer
 {
     public class MonacoEditorControl : UserControl
     {
+        private const int AutoCompleteDebounceDelayMs = 1000;
+
+        private readonly ReportmanAgentClient _agentClient;
+        private readonly SemaphoreSlim _inferenceSemaphore = new SemaphoreSlim(1, 1);
         private WebView2 _webView;
+        private TableLayoutPanel _topPanel;
+        private AISchemaSelectorControl _schemaSelector;
+        private CheckBox _chkAiToggle;
+        private AISelectionControl _aiSelectionControl;
+        private bool _enableSqlAutocompleteUi;
         private bool _isReady;
         private string _cachedSql = string.Empty;
         private bool _updatingFromBrowser;
+        private CancellationTokenSource _debounceCts;
+        private CancellationTokenSource _inferenceCts;
+        private bool _isProcessingInference;
+        private string _pendingRequestId = "";
+        private string _pendingSql = "";
+        private int _pendingCursorPosition;
+        private string _lastAutoCompleteSql = "";
+        private long _baseHubDatabaseId;
+        private long _baseHubSchemaId;
+        private long _selectedHubDatabaseId;
+        private long _selectedHubSchemaId;
+        private string _selectedSchemaApiKey = "";
         
         public event EventHandler SqlContentChanged;
+        public event EventHandler<SqlSchemaContextChangedEventArgs> SchemaContextChanged;
         
         public MonacoEditorControl()
         {
+            _agentClient = new ReportmanAgentClient();
             InitializeComponent();
+            RpAuthManager.Instance.AuthChanged += AuthManager_AuthChanged;
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                RpAuthManager.Instance.AuthChanged -= AuthManager_AuthChanged;
+                _debounceCts?.Cancel();
+                _debounceCts?.Dispose();
+                _inferenceCts?.Cancel();
+                _inferenceCts?.Dispose();
+                _inferenceSemaphore.Dispose();
+            }
+            base.Dispose(disposing);
         }
 
         private void InitializeComponent()
         {
             this.Size = new Size(800, 600);
+
+            _schemaSelector = new AISchemaSelectorControl
+            {
+                Dock = DockStyle.Fill,
+                AutoSize = true,
+                AutoSizeMode = AutoSizeMode.GrowAndShrink
+            };
+            _schemaSelector.SchemaChanged += SchemaSelector_SchemaChanged;
+
+            _chkAiToggle = new CheckBox
+            {
+                Text = "AI Autocomplete",
+                Appearance = Appearance.Button,
+                AutoSize = false,
+                Width = 130,
+                Dock = DockStyle.Fill,
+                TextAlign = ContentAlignment.MiddleCenter,
+                Cursor = Cursors.Hand
+            };
+            _chkAiToggle.CheckedChanged += ChkAiToggle_CheckedChanged;
+
+            _aiSelectionControl = new AISelectionControl
+            {
+                Dock = DockStyle.Fill,
+                AutoSize = true,
+                AutoSizeMode = AutoSizeMode.GrowAndShrink,
+                ShowGauge = false,
+                Visible = false
+            };
+            _aiSelectionControl.StopRequested += (s, e) => CancelAutoCompleteInference();
+
+            _topPanel = new TableLayoutPanel
+            {
+                Dock = DockStyle.Top,
+                ColumnCount = 2,
+                RowCount = 2,
+                AutoSize = true,
+                AutoSizeMode = AutoSizeMode.GrowAndShrink,
+                Padding = new Padding(4),
+                Visible = false
+            };
+            _topPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            _topPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100f));
+            _topPanel.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+            _topPanel.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+            _topPanel.Controls.Add(_chkAiToggle, 0, 0);
+            _topPanel.Controls.Add(_schemaSelector, 1, 0);
+            _topPanel.Controls.Add(_aiSelectionControl, 0, 1);
+            _topPanel.SetColumnSpan(_aiSelectionControl, 2);
             
             _webView = new WebView2
             {
@@ -37,6 +127,41 @@ namespace Reportman.Designer
             _webView.WebMessageReceived += WebView_WebMessageReceived;
             
             this.Controls.Add(_webView);
+            this.Controls.Add(_topPanel);
+        }
+
+        [System.ComponentModel.Browsable(false)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public bool EnableSqlAutocompleteUi
+        {
+            get => _enableSqlAutocompleteUi;
+            set
+            {
+                if (_enableSqlAutocompleteUi == value)
+                    return;
+
+                _enableSqlAutocompleteUi = value;
+                _topPanel.Visible = value;
+                UpdateAutoCompleteOptionsLayout();
+
+                if (!value)
+                {
+                    _chkAiToggle.Checked = false;
+                    CancelAutoCompleteInference();
+                    UpdateEffectiveSchemaContext();
+                    return;
+                }
+
+                _aiSelectionControl.ShowGauge = false;
+                _chkAiToggle.Checked = false;
+                UpdateAutoCompleteOptionsLayout();
+                _aiSelectionControl.RefreshState();
+                _schemaSelector.SetPreferredConnection(_baseHubDatabaseId, ApiKey);
+                _schemaSelector.SetHubContext(_selectedHubDatabaseId, _selectedHubSchemaId, _selectedSchemaApiKey);
+                _schemaSelector.RefreshSchemas();
+                LoadUserAgentsAsync();
+                UpdateEffectiveSchemaContext();
+            }
         }
 
         [System.ComponentModel.Browsable(false)]
@@ -71,10 +196,37 @@ namespace Reportman.Designer
         [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public string RuntimeDb { get; set; } = "";
 
+        public void SetBaseConnectionContext(long hubDatabaseId, long hubSchemaId, string apiKey = "", string runtimeDb = "")
+        {
+            _baseHubDatabaseId = hubDatabaseId;
+            _baseHubSchemaId = hubSchemaId;
+            ApiKey = apiKey ?? "";
+            RuntimeDb = runtimeDb ?? "";
+
+            if (EnableSqlAutocompleteUi)
+                _schemaSelector.SetPreferredConnection(_baseHubDatabaseId, ApiKey);
+
+            SetHubContext(hubDatabaseId, hubSchemaId, ApiKey);
+
+            if (EnableSqlAutocompleteUi)
+                _schemaSelector.RefreshSchemas();
+        }
+
         public void SetHubContext(long hubDatabaseId, long hubSchemaId)
         {
-            HubDatabaseId = hubDatabaseId;
-            HubSchemaId = hubSchemaId;
+            SetHubContext(hubDatabaseId, hubSchemaId, "");
+        }
+
+        public void SetHubContext(long hubDatabaseId, long hubSchemaId, string apiKey)
+        {
+            _selectedHubDatabaseId = hubDatabaseId;
+            _selectedHubSchemaId = hubSchemaId;
+            _selectedSchemaApiKey = apiKey ?? "";
+
+            if (EnableSqlAutocompleteUi)
+                _schemaSelector.SetHubContext(hubDatabaseId, hubSchemaId, _selectedSchemaApiKey);
+
+            UpdateEffectiveSchemaContext();
         }
 
         protected override async void OnLoad(EventArgs e)
@@ -140,52 +292,192 @@ namespace Reportman.Designer
             if (_updatingFromBrowser)
                 return;
 
-            string newSql = null;
+            if (message == null)
+                return;
 
-            using (JsonDocument doc = TryParseJson(message))
+            if (message.StartsWith("00:", StringComparison.Ordinal))
             {
-                if (doc != null)
+                _isReady = true;
+                SQL = _cachedSql;
+                return;
+            }
+
+            if (message.StartsWith("02:", StringComparison.Ordinal))
+            {
+                string requestId;
+                int cursorOffset;
+                string sql;
+                if (TryParseAICompletionRequest(message.Substring(3), out requestId, out cursorOffset, out sql))
+                    HandleAICompletionRequest(requestId, cursorOffset, sql);
+                return;
+            }
+
+            if (!message.StartsWith("01:", StringComparison.Ordinal))
+                return;
+
+            UpdateCachedSqlFromBrowser(message.Substring(3));
+        }
+
+        private void AuthManager_AuthChanged(bool success)
+        {
+            if (InvokeRequired)
+            {
+                try
                 {
-                    JsonElement root = doc.RootElement;
-                    if (root.ValueKind == JsonValueKind.Object)
-                    {
-                        string messageType = GetJsonString(root, "type");
-                        if (string.Equals(messageType, "EDITOR_READY", StringComparison.OrdinalIgnoreCase))
-                        {
-                            _isReady = true;
-                            SQL = _cachedSql;
-                            return;
-                        }
+                    Invoke(new Action(() => AuthManager_AuthChanged(success)));
+                }
+                catch
+                {
+                }
+                return;
+            }
 
-                        if (string.Equals(messageType, "GET_AI_COMPLETIONS", StringComparison.OrdinalIgnoreCase))
-                        {
-                            string requestId = GetJsonString(root, "requestId");
-                            _ = SendEmptyAICompletionsAsync(requestId);
-                            return;
-                        }
+            if (!EnableSqlAutocompleteUi)
+                return;
 
-                        if (string.Equals(messageType, "contentChanged", StringComparison.OrdinalIgnoreCase) ||
-                            string.Equals(messageType, "CONTENT_CHANGED", StringComparison.OrdinalIgnoreCase))
-                        {
-                            newSql = GetFirstJsonString(root, "value", "sql", "code", "text");
-                        }
-                        else if (TryGetJsonProperty(root, "value", out JsonElement valueElement) &&
-                            valueElement.ValueKind == JsonValueKind.String)
-                        {
-                            newSql = valueElement.GetString();
-                        }
-                    }
-                    else if (root.ValueKind == JsonValueKind.String)
-                    {
-                        newSql = root.GetString();
-                    }
+            _aiSelectionControl.RefreshState();
+            _schemaSelector.RefreshSchemas();
+            LoadUserAgentsAsync();
+        }
+
+        private void ChkAiToggle_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateAutoCompleteOptionsLayout();
+            if (_chkAiToggle.Checked)
+                return;
+
+            CancelAutoCompleteInference();
+        }
+
+        private void UpdateAutoCompleteOptionsLayout()
+        {
+            if (_aiSelectionControl == null)
+                return;
+
+            _aiSelectionControl.Visible = EnableSqlAutocompleteUi && _chkAiToggle.Checked;
+        }
+
+        private void SchemaSelector_SchemaChanged(object sender, EventArgs e)
+        {
+            UpdateEffectiveSchemaContext();
+            SchemaContextChanged?.Invoke(this,
+                new SqlSchemaContextChangedEventArgs(HubDatabaseId, HubSchemaId, EffectiveApiKey));
+        }
+
+        private void UpdateEffectiveSchemaContext()
+        {
+            if (EnableSqlAutocompleteUi)
+            {
+                HubDatabaseId = _schemaSelector.HubDatabaseId > 0 ? _schemaSelector.HubDatabaseId : _baseHubDatabaseId;
+                HubSchemaId = (_schemaSelector.HubDatabaseId > 0 || _schemaSelector.HubSchemaId > 0)
+                    ? _schemaSelector.HubSchemaId
+                    : _baseHubSchemaId;
+                return;
+            }
+
+            HubDatabaseId = _selectedHubDatabaseId > 0 ? _selectedHubDatabaseId : _baseHubDatabaseId;
+            HubSchemaId = (_selectedHubDatabaseId > 0 || _selectedHubSchemaId > 0)
+                ? _selectedHubSchemaId
+                : _baseHubSchemaId;
+        }
+
+        private string EffectiveApiKey
+        {
+            get
+            {
+                if (EnableSqlAutocompleteUi)
+                    return !string.IsNullOrWhiteSpace(_schemaSelector.SchemaApiKey) ? _schemaSelector.SchemaApiKey : ApiKey;
+
+                return !string.IsNullOrWhiteSpace(_selectedSchemaApiKey) ? _selectedSchemaApiKey : ApiKey;
+            }
+        }
+
+        private async void LoadUserAgentsAsync()
+        {
+            if (!EnableSqlAutocompleteUi || IsDisposed)
+                return;
+
+            try
+            {
+                string selectedTier = _aiSelectionControl.SelectedTier;
+                long selectedAgentAiId = _aiSelectionControl.AgentAiId;
+                _aiSelectionControl.ClearAgentEndpoints();
+
+                if (string.IsNullOrWhiteSpace(RpAuthManager.Instance.Token))
+                {
+                    _aiSelectionControl.RestoreProviderSelection(selectedTier, selectedAgentAiId);
+                    return;
+                }
+
+                var agents = await RpAuthManager.Instance.GetUserAgentsAsync();
+                if (IsDisposed)
+                    return;
+
+                if (InvokeRequired)
+                    Invoke(new Action(() => ApplyLoadedAgents(agents, selectedTier, selectedAgentAiId)));
+                else
+                    ApplyLoadedAgents(agents, selectedTier, selectedAgentAiId);
+            }
+            catch (Exception ex)
+            {
+                RpAuthManager.Instance.Log("LoadUserAgents Error: " + ex.Message);
+            }
+        }
+
+        private void ApplyLoadedAgents(List<string> agents, string selectedTier, long selectedAgentAiId)
+        {
+            _aiSelectionControl.ClearAgentEndpoints();
+            if (agents != null)
+            {
+                foreach (string entry in agents)
+                {
+                    int eq = entry.IndexOf('=');
+                    if (eq <= 0)
+                        continue;
+
+                    string displayName = entry.Substring(0, eq);
+                    string value = entry.Substring(eq + 1);
+                    string[] parts = value.Split('|');
+                    if (parts.Length < 2)
+                        continue;
+
+                    if (!long.TryParse(parts[0], out long agentAiId))
+                        agentAiId = 0;
+                    string secret = parts[1];
+                    bool isOnline = parts.Length >= 3 && parts[2] == "1";
+                    if (isOnline)
+                        _aiSelectionControl.AddAgentEndpoint(agentAiId, secret, displayName, true);
                 }
             }
 
-            if (newSql == null)
-                newSql = message;
+            _aiSelectionControl.RestoreProviderSelection(selectedTier, selectedAgentAiId);
+        }
 
-            UpdateCachedSqlFromBrowser(newSql);
+        private static bool TryParseAICompletionRequest(string payload, out string requestId,
+            out int cursorOffset, out string sql)
+        {
+            requestId = "";
+            cursorOffset = 0;
+            sql = "";
+
+            int headerEnd = payload.IndexOf('\n');
+            if (headerEnd < 0)
+                return false;
+
+            string header = payload.Substring(0, headerEnd).TrimEnd('\r');
+            int offsetSeparator = header.LastIndexOf(':');
+            if (offsetSeparator <= 0)
+                return false;
+
+            requestId = header.Substring(0, offsetSeparator);
+            if (requestId.Length == 0)
+                return false;
+
+            if (!int.TryParse(header.Substring(offsetSeparator + 1), out cursorOffset))
+                cursorOffset = 0;
+
+            sql = payload.Substring(headerEnd + 1);
+            return true;
         }
 
         private void UpdateCachedSqlFromBrowser(string sql)
@@ -206,40 +498,245 @@ namespace Reportman.Designer
             }
         }
 
-        private async Task SendEmptyAICompletionsAsync(string requestId)
+        private void CancelAutoCompleteInference()
         {
-            await SendAICompletionsAsync(requestId, "{\"inlineItems\":[],\"completionItems\":[]}");
+            _debounceCts?.Cancel();
+            _inferenceCts?.Cancel();
+            SetInferenceProgress(false);
         }
 
-        public async Task SendAICompletionsAsync(string requestId, string responseJson)
+        private async void HandleAICompletionRequest(string requestId, int cursorOffset, string sql)
         {
-            if (!_isReady || _webView.CoreWebView2 == null)
+            if (string.IsNullOrWhiteSpace(requestId))
                 return;
 
-            if (string.IsNullOrWhiteSpace(responseJson))
-                responseJson = "{\"inlineItems\":[],\"completionItems\":[]}";
+            if (!EnableSqlAutocompleteUi || !_chkAiToggle.Checked)
+            {
+                await SendEmptyAICompletionsAsync(requestId);
+                return;
+            }
 
-            string safeRequestId = JsonSerializer.Serialize(requestId ?? "");
-            await _webView.ExecuteScriptAsync(
-                $"if (window.receiveAICompletions) {{ window.receiveAICompletions({safeRequestId}, {responseJson}); }}");
-        }
+            if (string.Equals(sql, _lastAutoCompleteSql, StringComparison.Ordinal))
+            {
+                await SendEmptyAICompletionsAsync(requestId);
+                return;
+            }
 
-        private static JsonDocument TryParseJson(string value)
-        {
-            if (string.IsNullOrWhiteSpace(value))
-                return null;
+            _pendingRequestId = requestId;
+            _pendingSql = sql ?? "";
+            _pendingCursorPosition = cursorOffset;
+
+            if (_isProcessingInference)
+            {
+                _inferenceCts?.Cancel();
+                return;
+            }
+
+            _debounceCts?.Cancel();
+            _debounceCts?.Dispose();
+            _debounceCts = new CancellationTokenSource();
 
             try
             {
-                return JsonDocument.Parse(value);
+                await Task.Delay(AutoCompleteDebounceDelayMs, _debounceCts.Token);
             }
-            catch
+            catch (TaskCanceledException)
             {
-                return null;
+                return;
+            }
+
+            await ProcessPendingInferenceAsync();
+        }
+
+        private async Task ProcessPendingInferenceAsync()
+        {
+            if (_isProcessingInference || string.IsNullOrWhiteSpace(_pendingRequestId))
+                return;
+
+            if (!EnableSqlAutocompleteUi || !_chkAiToggle.Checked)
+            {
+                string requestId = _pendingRequestId;
+                _pendingRequestId = "";
+                _pendingSql = "";
+                _pendingCursorPosition = 0;
+                await SendEmptyAICompletionsAsync(requestId);
+                return;
+            }
+
+            string requestIdToProcess = _pendingRequestId;
+            string sqlToProcess = _pendingSql;
+            int cursorOffsetToProcess = _pendingCursorPosition;
+            _lastAutoCompleteSql = sqlToProcess;
+            await ProcessAutoCompleteInferenceAsync(requestIdToProcess, sqlToProcess, cursorOffsetToProcess);
+        }
+
+        private async Task ProcessAutoCompleteInferenceAsync(string requestId, string sql, int cursorOffset)
+        {
+            await _inferenceSemaphore.WaitAsync();
+            _isProcessingInference = true;
+
+            try
+            {
+                SetInferenceProgress(true);
+                _aiSelectionControl.UpdateTokens(0, 0);
+
+                _inferenceCts?.Cancel();
+                _inferenceCts?.Dispose();
+                _inferenceCts = new CancellationTokenSource(TimeSpan.FromSeconds(30));
+
+                _agentClient.Token = RpAuthManager.Instance.Token;
+                _agentClient.InstallId = RpAuthManager.Instance.InstallId;
+                _agentClient.ApiKey = EffectiveApiKey;
+                _agentClient.HubDatabaseId = HubDatabaseId;
+                _agentClient.HubSchemaId = HubSchemaId;
+                _agentClient.RuntimeDb = RuntimeDb;
+                _agentClient.AITier = _aiSelectionControl.SelectedTier;
+
+                if (string.Equals(_aiSelectionControl.SelectedTier, "LocalAgent", StringComparison.OrdinalIgnoreCase))
+                {
+                    _agentClient.AgentSecret = _aiSelectionControl.AgentSecret;
+                    _agentClient.AgentAiId = _aiSelectionControl.AgentAiId;
+                }
+                else
+                {
+                    _agentClient.AgentSecret = "";
+                    _agentClient.AgentAiId = 0;
+                }
+
+                JsonDocument result = await _agentClient.SuggestSqlAsync(
+                    sql,
+                    cursorOffset,
+                    _aiSelectionControl.SelectedMode,
+                    this,
+                    (senderObj, actor, stage, chunkType, chunk, inTokens, outTokens, progId, prefill) =>
+                    {
+                        if (!string.Equals(actor, "AI", StringComparison.OrdinalIgnoreCase))
+                            return;
+
+                        if (IsDisposed)
+                            return;
+
+                        if (InvokeRequired)
+                            BeginInvoke(new Action(() => UpdateInferenceTokens(inTokens, outTokens, progId, prefill, chunkType)));
+                        else
+                            UpdateInferenceTokens(inTokens, outTokens, progId, prefill, chunkType);
+                    },
+                    _inferenceCts.Token);
+
+                if (result == null)
+                {
+                    await SendEmptyAICompletionsAsync(requestId);
+                    return;
+                }
+
+                using (result)
+                {
+                    string responseJson = BuildAutoCompleteResponseJson(result);
+                    if (string.IsNullOrWhiteSpace(responseJson))
+                        await SendEmptyAICompletionsAsync(requestId);
+                    else
+                        await SendAICompletionsAsync(requestId, responseJson);
+                }
+            }
+            catch (OperationCanceledException)
+            {
+                await SendEmptyAICompletionsAsync(requestId);
+            }
+            catch (Exception ex)
+            {
+                RpAuthManager.Instance.Log("SuggestSql Error: " + ex.Message);
+                await SendEmptyAICompletionsAsync(requestId);
+            }
+            finally
+            {
+                SetInferenceProgress(false);
+                _isProcessingInference = false;
+                _inferenceSemaphore.Release();
+
+                bool hasNewPendingRequest = !string.IsNullOrWhiteSpace(_pendingRequestId) &&
+                    (!string.Equals(_pendingRequestId, requestId, StringComparison.Ordinal) ||
+                     !string.Equals(_pendingSql, sql, StringComparison.Ordinal) ||
+                     _pendingCursorPosition != cursorOffset);
+
+                if (hasNewPendingRequest)
+                    await ProcessPendingInferenceAsync();
             }
         }
 
-        private static bool TryGetJsonProperty(JsonElement element, string propertyName, out JsonElement value)
+        private void SetInferenceProgress(bool inferring)
+        {
+            if (IsDisposed)
+                return;
+
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action(() => _aiSelectionControl.SetInferenceProgress(inferring)));
+                return;
+            }
+
+            _aiSelectionControl.SetInferenceProgress(inferring);
+        }
+
+        private void UpdateInferenceTokens(int inputTokens, int outputTokens, string progressId, int prefillPercent, string chunkType)
+        {
+            if (!string.IsNullOrWhiteSpace(progressId))
+                _aiSelectionControl.TouchProgressToken(progressId);
+
+            _aiSelectionControl.UpdateTokens(inputTokens, outputTokens, progressId, prefillPercent);
+
+            if (string.Equals(chunkType, "End", StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(chunkType, "Full", StringComparison.OrdinalIgnoreCase))
+            {
+                _aiSelectionControl.FinishProgressToken(progressId);
+            }
+        }
+
+        private static string BuildAutoCompleteResponseJson(JsonDocument result)
+        {
+            var inlineItems = new List<object>();
+            var completionItems = new List<object>();
+
+            if (TryGetProperty(result.RootElement, "result", out JsonElement resultElement) &&
+                TryGetProperty(resultElement, "autoComplete", out JsonElement autoCompleteElement))
+            {
+                if (TryGetProperty(autoCompleteElement, "inlineCompletions", out JsonElement inlineCompletions) &&
+                    inlineCompletions.ValueKind == JsonValueKind.Array)
+                {
+                    foreach (JsonElement item in inlineCompletions.EnumerateArray())
+                    {
+                        string text = JsonValueToString(item);
+                        if (!string.IsNullOrWhiteSpace(text))
+                            inlineItems.Add(new { insertText = text });
+                    }
+                }
+
+                if (TryGetProperty(autoCompleteElement, "listCompletions", out JsonElement listCompletions) &&
+                    listCompletions.ValueKind == JsonValueKind.Array)
+                {
+                    foreach (JsonElement item in listCompletions.EnumerateArray())
+                    {
+                        string text = JsonValueToString(item);
+                        if (!string.IsNullOrWhiteSpace(text))
+                        {
+                            completionItems.Add(new
+                            {
+                                label = text,
+                                insertText = text,
+                                detail = "AI"
+                            });
+                        }
+                    }
+                }
+            }
+
+            return JsonSerializer.Serialize(new
+            {
+                inlineItems = inlineItems,
+                completionItems = completionItems
+            });
+        }
+
+        private static bool TryGetProperty(JsonElement element, string propertyName, out JsonElement value)
         {
             if (element.ValueKind == JsonValueKind.Object && element.TryGetProperty(propertyName, out value))
                 return true;
@@ -260,24 +757,42 @@ namespace Reportman.Designer
             return false;
         }
 
-        private static string GetJsonString(JsonElement element, string propertyName)
+        private static string JsonValueToString(JsonElement value)
         {
-            if (!TryGetJsonProperty(element, propertyName, out JsonElement value) ||
-                value.ValueKind == JsonValueKind.Null || value.ValueKind == JsonValueKind.Undefined)
-                return "";
-
-            return value.ValueKind == JsonValueKind.String ? value.GetString() ?? "" : value.GetRawText();
+            switch (value.ValueKind)
+            {
+                case JsonValueKind.String:
+                    return value.GetString() ?? "";
+                case JsonValueKind.Number:
+                    return value.GetRawText();
+                case JsonValueKind.True:
+                    return "true";
+                case JsonValueKind.False:
+                    return "false";
+                case JsonValueKind.Null:
+                case JsonValueKind.Undefined:
+                    return "";
+                default:
+                    return value.GetRawText().Trim('"');
+            }
         }
 
-        private static string GetFirstJsonString(JsonElement element, params string[] propertyNames)
+        private async Task SendEmptyAICompletionsAsync(string requestId)
         {
-            foreach (string propertyName in propertyNames)
-            {
-                string value = GetJsonString(element, propertyName);
-                if (value.Length > 0)
-                    return value;
-            }
-            return "";
+            await SendAICompletionsAsync(requestId, "{\"inlineItems\":[],\"completionItems\":[]}");
+        }
+
+        public async Task SendAICompletionsAsync(string requestId, string responseJson)
+        {
+            if (!_isReady || _webView.CoreWebView2 == null)
+                return;
+
+            if (string.IsNullOrWhiteSpace(responseJson))
+                responseJson = "{\"inlineItems\":[],\"completionItems\":[]}";
+
+            string safeRequestId = JsonSerializer.Serialize(requestId ?? "");
+            await _webView.ExecuteScriptAsync(
+                $"if (window.receiveAICompletions) {{ window.receiveAICompletions({safeRequestId}, {responseJson}); }}");
         }
 
         private static string NormalizeLineEndings(string value)

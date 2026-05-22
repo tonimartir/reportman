@@ -32,12 +32,12 @@ namespace Reportman.Designer
         private Panel _logToolbar;
         private Button _btnClearLog;
         private Button _btnReportAI;
-        private TextBox _txtLog;
+        private WebMarkdownControl _logView;
 
         // Net Log tab content
         private Panel _netLogToolbar;
         private Button _btnClearNetLog;
-        private TextBox _txtNetLog;
+        private WebMarkdownControl _netLogView;
 
         // Bottom panel (always visible, outside tabs)
         private Panel _panelBottom;
@@ -80,7 +80,11 @@ namespace Reportman.Designer
             RpAuthManager.Instance.LogMessage += _authLogHandler;
 
             // Deferred startup: load schemas/agents and refresh status
-            this.HandleCreated += (s, e) => StartOnlineInitialization();
+            this.HandleCreated += (s, e) =>
+            {
+                EnsureWebMarkdownViewsInitialized();
+                StartOnlineInitialization();
+            };
         }
 
         protected override void Dispose(bool disposing)
@@ -133,20 +137,27 @@ namespace Reportman.Designer
             }
         }
 
-        private async void LoadSchemasAsync()
+        public void SetHubContext(long hubDatabaseId, long hubSchemaId, string apiKey)
         {
-            try
+            string schemaApiKey = (apiKey ?? "").Trim();
+
+            if (InvokeRequired)
             {
-                var schemas = await RpAuthManager.Instance.GetUserSchemasAsync();
-                if (InvokeRequired)
-                    Invoke(new Action(() => _aiSchemaSelectorControl.ApplySchemas(schemas)));
-                else
-                    _aiSchemaSelectorControl.ApplySchemas(schemas);
+                try { Invoke(new Action(() => SetHubContext(hubDatabaseId, hubSchemaId, schemaApiKey))); } catch { }
+                return;
             }
-            catch (Exception ex)
-            {
-                AppendLog("LoadSchemas Error: " + ex.Message);
-            }
+
+            _aiSchemaSelectorControl.SetPreferredConnection(hubDatabaseId, schemaApiKey);
+            _aiSchemaSelectorControl.SetHubContext(hubDatabaseId, hubSchemaId, schemaApiKey);
+            LoadSchemasAsync();
+        }
+
+        private void LoadSchemasAsync()
+        {
+            if (IsDisposed)
+                return;
+
+            _aiSchemaSelectorControl.RefreshSchemas();
         }
 
         private async void LoadUserAgentsAsync()
@@ -324,7 +335,7 @@ namespace Reportman.Designer
                 Dock = DockStyle.Left,
                 Width = 93
             };
-            _btnClearLog.Click += (s, e) => _txtLog.Clear();
+            _btnClearLog.Click += (s, e) => _logView.ClearAll();
             _btnReportAI = new Button
             {
                 Text = "Report content",
@@ -337,17 +348,11 @@ namespace Reportman.Designer
             _logToolbar.Controls.Add(logSpacer);
             _logToolbar.Controls.Add(_btnClearLog);
 
-            _txtLog = new TextBox
+            _logView = new WebMarkdownControl
             {
-                Multiline = true,
-                ScrollBars = ScrollBars.Vertical,
-                Dock = DockStyle.Fill,
-                ReadOnly = true,
-                BackColor = Color.Black,
-                ForeColor = Color.Lime,
-                Font = new Font("Consolas", 9f)
+                Dock = DockStyle.Fill
             };
-            _tabLog.Controls.Add(_txtLog);
+            _tabLog.Controls.Add(_logView);
             _tabLog.Controls.Add(_logToolbar);
 
             // --- Tab: Net Log ---
@@ -365,20 +370,14 @@ namespace Reportman.Designer
                 Dock = DockStyle.Left,
                 Width = 93
             };
-            _btnClearNetLog.Click += (s, e) => _txtNetLog.Clear();
+            _btnClearNetLog.Click += (s, e) => _netLogView.ClearAll();
             _netLogToolbar.Controls.Add(_btnClearNetLog);
 
-            _txtNetLog = new TextBox
+            _netLogView = new WebMarkdownControl
             {
-                Multiline = true,
-                ScrollBars = ScrollBars.Vertical,
-                Dock = DockStyle.Fill,
-                ReadOnly = true,
-                BackColor = Color.FromArgb(30, 30, 30),
-                ForeColor = Color.FromArgb(0xCC, 0xCC, 0xCC),
-                Font = new Font("Consolas", 9f)
+                Dock = DockStyle.Fill
             };
-            _tabNetLog.Controls.Add(_txtNetLog);
+            _tabNetLog.Controls.Add(_netLogView);
             _tabNetLog.Controls.Add(_netLogToolbar);
 
             _tabControl.TabPages.Add(_tabChat);
@@ -390,6 +389,13 @@ namespace Reportman.Designer
             this.Controls.Add(_tabControl);    // alClient (Fill) - added first
             this.Controls.Add(_panelBottom);   // alBottom
             this.Controls.Add(topGrid);        // alTop
+        }
+
+        private void EnsureWebMarkdownViewsInitialized()
+        {
+            _markdownControl?.EnsureInitialized();
+            _logView?.EnsureInitialized();
+            _netLogView?.EnsureInitialized();
         }
 
         // ===== Keyboard handling =====
@@ -462,6 +468,8 @@ namespace Reportman.Designer
             {
                 // Clear mode
                 _markdownControl.ClearAll();
+                _logView.ClearAll();
+                _netLogView.ClearAll();
                 _txtPrompt.Clear();
                 _suggestedExpression = "";
                 UpdateButtons();
@@ -478,22 +486,35 @@ namespace Reportman.Designer
 
         public void AppendLog(string message)
         {
-            if (InvokeRequired)
-            {
-                Invoke(new Action(() => AppendLog(message)));
-                return;
-            }
-            _txtLog.AppendText($"[{DateTime.Now:HH:mm:ss}] {message}{Environment.NewLine}");
+            PostToUi(() => _logView.AppendLogLine($"[{DateTime.Now:HH:mm:ss}] {message}"));
         }
 
         public void AppendNetLog(string message)
         {
+            PostToUi(() => _netLogView.AppendLogLine($"[{DateTime.Now:HH:mm:ss}] {message}"));
+        }
+
+        private void PostToUi(Action action)
+        {
+            if (action == null || IsDisposed)
+                return;
+
             if (InvokeRequired)
             {
-                Invoke(new Action(() => AppendNetLog(message)));
+                if (!IsHandleCreated)
+                    return;
+
+                try
+                {
+                    BeginInvoke(action);
+                }
+                catch (InvalidOperationException)
+                {
+                }
                 return;
             }
-            _txtNetLog.AppendText($"[{DateTime.Now:HH:mm:ss}] {message}{Environment.NewLine}");
+
+            action();
         }
 
         // ===== Send logic =====
@@ -543,37 +564,20 @@ namespace Reportman.Designer
                 };
                 AICopilotManager.Instance.BeginInference();
 
-                var resultDoc = await _agentClient.ModifyReportAsync(
-                    prompt,
-                    reportDocument,
-                    mode,
-                    RpAuthManager.Instance.AILanguage,
-                    _existingContextJson,
-                    this,
-                    (senderObj, actor, stage, chunkType, chunk, inTokens, outTokens, progId, prefill) =>
-                    {
-                        if (string.Equals(stage, "ReceivingResponse", StringComparison.OrdinalIgnoreCase) &&
-                            string.Equals(chunkType, "Partial", StringComparison.OrdinalIgnoreCase))
+                var resultDoc = await System.Threading.Tasks.Task.Run(async () =>
+                    await _agentClient.ModifyReportAsync(
+                        prompt,
+                        reportDocument,
+                        mode,
+                        RpAuthManager.Instance.AILanguage,
+                        _existingContextJson,
+                        this,
+                        (senderObj, actor, stage, chunkType, chunk, inTokens, outTokens, progId, prefill) =>
                         {
-                            if (InvokeRequired)
-                            {
-                                Invoke(new Action(() => ProcessChunk(chunk)));
-                            }
-                            else
-                            {
-                                ProcessChunk(chunk);
-                            }
-                        }
-                        else
-                        {
-                            AppendLog($"[{actor}:{stage}] {chunk}");
-                        }
-
-                        // Update token counters in AI selection
-                        _aiSelectionControl.UpdateTokens(inTokens, outTokens);
-                    },
-                    _cts.Token
-                );
+                            PostToUi(() => UpdateStreamingProgress(actor, stage, chunkType, chunk,
+                                inTokens, outTokens, progId, prefill));
+                        },
+                        _cts.Token).ConfigureAwait(false), _cts.Token);
 
                 _markdownControl.FinishStreaming();
                 HandleModifyReportResult(resultDoc);
@@ -599,15 +603,60 @@ namespace Reportman.Designer
 
         private void SafeAppendMessage(string role, string text)
         {
-            if (InvokeRequired)
-                Invoke(new Action(() => _markdownControl.AppendMessage(role, text)));
-            else
-                _markdownControl.AppendMessage(role, text);
+            PostToUi(() => _markdownControl.AppendMessage(role, text));
         }
 
         private void ProcessChunk(string chunk)
         {
             _markdownControl.AppendStreamingChunk("assistant", chunk, 0);
+        }
+
+        private void UpdateStreamingProgress(string actor, string stage, string chunkType, string chunk,
+            int inputTokens, int outputTokens, string progressId, int prefillPercent)
+        {
+            if (string.Equals(stage, "ReceivingResponse", StringComparison.OrdinalIgnoreCase) &&
+                string.Equals(chunkType, "Partial", StringComparison.OrdinalIgnoreCase))
+            {
+                ProcessChunk(chunk);
+            }
+
+            AppendAILogProgress(chunkType, chunk, progressId);
+
+            if (string.Equals(actor, "AI", StringComparison.OrdinalIgnoreCase))
+            {
+                if (!string.IsNullOrWhiteSpace(progressId))
+                    _aiSelectionControl.TouchProgressToken(progressId);
+
+                _aiSelectionControl.UpdateTokens(inputTokens, outputTokens, progressId, prefillPercent);
+
+                if (IsFinalChunk(chunkType))
+                    _aiSelectionControl.FinishProgressToken(progressId);
+            }
+        }
+
+        private void AppendAILogProgress(string chunkType, string chunk, string progressId)
+        {
+            if (_logView == null)
+                return;
+
+            string key = (progressId ?? "").Trim();
+            string logChunk = chunk ?? "";
+            if (IsFinalChunk(chunkType))
+            {
+                if (logChunk.Length > 0)
+                    _logView.AppendLogChunkForKey(key, logChunk);
+                _logView.EndLogChunkForKey(key);
+            }
+            else if (logChunk.Length > 0)
+            {
+                _logView.AppendLogChunkForKey(key, logChunk);
+            }
+        }
+
+        private static bool IsFinalChunk(string chunkType)
+        {
+            return string.Equals(chunkType, "End", StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(chunkType, "Full", StringComparison.OrdinalIgnoreCase);
         }
 
         private void HandleModifyReportResult(JsonDocument resultDoc)
@@ -657,7 +706,7 @@ namespace Reportman.Designer
         {
             if (InvokeRequired)
             {
-                Invoke(new Action(() => ApplyModifiedReportDocumentSafely(reportDocument)));
+                PostToUi(() => ApplyModifiedReportDocumentSafely(reportDocument));
                 return;
             }
 

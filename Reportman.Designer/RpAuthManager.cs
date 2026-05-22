@@ -639,7 +639,21 @@ namespace Reportman.Designer
         /// GET /api/agent/databases → { databases: [...], aiEndpoints: [...] }
         /// Returns schemas as list of "DisplayName=hubDatabaseId|hubSchemaId"
         /// </summary>
-        public async Task<List<string>> GetUserSchemasAsync()
+        public Task<List<string>> GetUserSchemasAsync()
+        {
+            return GetSchemasAsync("");
+        }
+
+        /// <summary>
+        /// GET /api/agent/databases using a Reportman Agent ApiKey.
+        /// Returns schemas as list of "DisplayName=hubDatabaseId|hubSchemaId"
+        /// </summary>
+        public Task<List<string>> GetApiKeySchemasAsync(string apiKey)
+        {
+            return GetSchemasAsync(apiKey);
+        }
+
+        private async Task<List<string>> GetSchemasAsync(string apiKey)
         {
             var result = new List<string>();
             try
@@ -648,9 +662,11 @@ namespace Reportman.Designer
                 {
                     if (!string.IsNullOrEmpty(Token))
                         client.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", "Bearer " + Token);
+                    if (!string.IsNullOrWhiteSpace(apiKey))
+                        client.DefaultRequestHeaders.TryAddWithoutValidation("X-Reportman-ApiKey", apiKey.Trim());
 
                     var response = await client.GetAsync(HUB_API_URL + "/api/agent/databases");
-                    Log("GetUserSchemas: " + (int)response.StatusCode);
+                    Log((string.IsNullOrWhiteSpace(apiKey) ? "GetUserSchemas" : "GetApiKeySchemas") + ": " + (int)response.StatusCode);
                     if (response.IsSuccessStatusCode)
                     {
                         var json = await response.Content.ReadAsStringAsync();
@@ -678,7 +694,7 @@ namespace Reportman.Designer
             }
             catch (Exception ex)
             {
-                Log("GetUserSchemas Error: " + ex.Message);
+                Log((string.IsNullOrWhiteSpace(apiKey) ? "GetUserSchemas" : "GetApiKeySchemas") + " Error: " + ex.Message);
             }
             return result;
         }

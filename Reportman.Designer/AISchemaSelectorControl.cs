@@ -16,6 +16,12 @@ namespace Reportman.Designer
         private ComboBox _comboSchema;
         private Button _btnConfig;
         private Button _btnRefresh;
+        private bool _suppressSchemaChanged;
+        private long _preferredHubDatabaseId;
+        private long _preferredHubSchemaId;
+        private string _preferredApiKey = "";
+        private long _preferredConnectionHubDatabaseId;
+        private string _preferredConnectionApiKey = "";
 
         public event EventHandler SchemaChanged;
 
@@ -109,8 +115,7 @@ namespace Reportman.Designer
 
         private void BtnRefresh_Click(object sender, EventArgs e)
         {
-            // Trigger schema reload asynchronously
-            LoadSchemasAsync();
+            RefreshSchemas();
         }
 
         private async void LoadSchemasAsync()
@@ -118,8 +123,20 @@ namespace Reportman.Designer
             _btnRefresh.Enabled = false;
             try
             {
-                var schemas = await RpAuthManager.Instance.GetUserSchemasAsync();
-                ApplySchemas(schemas);
+                var mergedSchemas = new List<string>();
+                var seenSchemaKeys = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+                if (!string.IsNullOrWhiteSpace(_preferredConnectionApiKey))
+                {
+                    var apiKeySchemas = await RpAuthManager.Instance.GetApiKeySchemasAsync(_preferredConnectionApiKey);
+                    AddMergedSchemas(apiKeySchemas, mergedSchemas, seenSchemaKeys, _preferredConnectionApiKey);
+                }
+
+                var userSchemas = await RpAuthManager.Instance.GetUserSchemasAsync();
+                AddMergedSchemas(userSchemas, mergedSchemas, seenSchemaKeys, "");
+
+                if (!IsDisposed)
+                    ApplySchemas(mergedSchemas);
             }
             catch (Exception ex)
             {
@@ -131,43 +148,138 @@ namespace Reportman.Designer
             }
         }
 
+        public void RefreshSchemas()
+        {
+            LoadSchemasAsync();
+        }
+
         /// <summary>
         /// Apply loaded schemas to the combo. Called by AIChatPanelControl after loading.
         /// Format: "DisplayName=hubDatabaseId|hubSchemaId" or "DisplayName=hubDatabaseId|hubSchemaId|apiKey"
         /// </summary>
         public void ApplySchemas(List<string> schemas)
         {
-            int prevSelected = _comboSchema.SelectedIndex;
-
-            // Clear and add default
-            ClearSchemaItems();
-            _comboSchema.Items.Add("Default / None");
-
-            if (schemas != null)
+            long previousHubDatabaseId = HubDatabaseId;
+            long previousHubSchemaId = HubSchemaId;
+            string previousApiKey = SchemaApiKey;
+            if (_preferredHubDatabaseId == 0 && _preferredHubSchemaId == 0)
             {
-                foreach (var entry in schemas)
-                {
-                    int eq = entry.IndexOf('=');
-                    if (eq <= 0) continue;
-                    string displayName = entry.Substring(0, eq);
-                    string value = entry.Substring(eq + 1);
-                    string[] parts = value.Split('|');
-
-                    var item = new SchemaItem();
-                    item.DisplayName = displayName;
-                    if (parts.Length >= 1) item.HubDatabaseId = long.TryParse(parts[0], out var dbId) ? dbId : 0;
-                    if (parts.Length >= 2) item.HubSchemaId = long.TryParse(parts[1], out var scId) ? scId : 0;
-                    if (parts.Length >= 3) item.ApiKey = parts[2];
-
-                    _comboSchema.Items.Add(item);
-                }
+                _preferredHubDatabaseId = previousHubDatabaseId;
+                _preferredHubSchemaId = previousHubSchemaId;
+                _preferredApiKey = previousApiKey;
             }
 
-            // Restore selection if possible
-            if (prevSelected >= 0 && prevSelected < _comboSchema.Items.Count)
-                _comboSchema.SelectedIndex = prevSelected;
-            else
-                _comboSchema.SelectedIndex = 0;
+            // Clear and add default
+            _suppressSchemaChanged = true;
+            try
+            {
+                ClearSchemaItems();
+                _comboSchema.Items.Add("Default / None");
+
+                if (schemas != null)
+                {
+                    var preferredItems = new List<SchemaItem>();
+                    var otherItems = new List<SchemaItem>();
+
+                    foreach (var entry in schemas)
+                    {
+                        if (!TryParseSchemaEntry(entry, out var item))
+                            continue;
+
+                        if (_preferredConnectionHubDatabaseId != 0 && item.HubDatabaseId == _preferredConnectionHubDatabaseId)
+                            preferredItems.Add(item);
+                        else
+                            otherItems.Add(item);
+                    }
+
+                    AddSchemaItems(preferredItems);
+                    AddSchemaItems(otherItems);
+                }
+
+                if (!SelectPreferredSchema())
+                    _comboSchema.SelectedIndex = 0;
+            }
+            finally
+            {
+                _suppressSchemaChanged = false;
+            }
+
+            ApplySelectedSchema();
+        }
+
+        public void SetPreferredConnection(long hubDatabaseId, string apiKey = "")
+        {
+            _preferredConnectionHubDatabaseId = hubDatabaseId;
+            _preferredConnectionApiKey = (apiKey ?? "").Trim();
+        }
+
+        public void SetHubContext(long hubDatabaseId, long hubSchemaId, string apiKey = "")
+        {
+            _preferredHubDatabaseId = hubDatabaseId;
+            _preferredHubSchemaId = hubSchemaId;
+            _preferredApiKey = apiKey ?? "";
+
+            _suppressSchemaChanged = true;
+            try
+            {
+                if (!SelectPreferredSchema() && _comboSchema.Items.Count > 0)
+                    _comboSchema.SelectedIndex = 0;
+            }
+            finally
+            {
+                _suppressSchemaChanged = false;
+            }
+
+            ApplySelectedSchema();
+        }
+
+        private static void AddMergedSchemas(IEnumerable<string> source, List<string> destination,
+            HashSet<string> seenSchemaKeys, string defaultApiKey)
+        {
+            if (source == null)
+                return;
+
+            foreach (var entry in source)
+            {
+                if (!TryParseSchemaEntry(entry, out var item))
+                    continue;
+
+                string schemaKey = item.HubDatabaseId.ToString() + "|" + item.HubSchemaId.ToString();
+                if (!seenSchemaKeys.Add(schemaKey))
+                    continue;
+
+                string apiKey = string.IsNullOrWhiteSpace(item.ApiKey) ? defaultApiKey : item.ApiKey;
+                destination.Add(item.DisplayName + "=" + item.HubDatabaseId + "|" + item.HubSchemaId + "|" + apiKey);
+            }
+        }
+
+        private void AddSchemaItems(IEnumerable<SchemaItem> items)
+        {
+            foreach (var item in items)
+                _comboSchema.Items.Add(item);
+        }
+
+        private static bool TryParseSchemaEntry(string entry, out SchemaItem item)
+        {
+            item = null;
+
+            if (string.IsNullOrWhiteSpace(entry))
+                return false;
+
+            int eq = entry.IndexOf('=');
+            if (eq <= 0)
+                return false;
+
+            string displayName = entry.Substring(0, eq);
+            string value = entry.Substring(eq + 1);
+            string[] parts = value.Split('|');
+
+            item = new SchemaItem();
+            item.DisplayName = displayName;
+            if (parts.Length >= 1) item.HubDatabaseId = long.TryParse(parts[0], out var dbId) ? dbId : 0;
+            if (parts.Length >= 2) item.HubSchemaId = long.TryParse(parts[1], out var scId) ? scId : 0;
+            if (parts.Length >= 3) item.ApiKey = parts[2];
+            return true;
         }
 
         private void ClearSchemaItems()
@@ -180,19 +292,93 @@ namespace Reportman.Designer
 
         private void ComboSchema_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ApplySelectedSchema();
+            if (!_suppressSchemaChanged)
+                SchemaChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void ApplySelectedSchema()
+        {
             if (_comboSchema.SelectedItem is SchemaItem si)
             {
                 HubDatabaseId = si.HubDatabaseId;
                 HubSchemaId = si.HubSchemaId;
                 SchemaApiKey = si.ApiKey;
+                _preferredHubDatabaseId = si.HubDatabaseId;
+                _preferredHubSchemaId = si.HubSchemaId;
+                _preferredApiKey = si.ApiKey;
             }
             else
             {
                 HubDatabaseId = 0;
                 HubSchemaId = 0;
                 SchemaApiKey = "";
+                _preferredHubDatabaseId = 0;
+                _preferredHubSchemaId = 0;
+                _preferredApiKey = "";
             }
-            SchemaChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        private bool SelectPreferredSchema()
+        {
+            if (_comboSchema.Items.Count == 0)
+                return false;
+
+            if (_preferredHubSchemaId != 0)
+            {
+                for (int i = 1; i < _comboSchema.Items.Count; i++)
+                {
+                    SchemaItem item = _comboSchema.Items[i] as SchemaItem;
+                    if (item == null)
+                        continue;
+
+                    if (item.HubSchemaId == _preferredHubSchemaId)
+                    {
+                        _comboSchema.SelectedIndex = i;
+                        return true;
+                    }
+                }
+            }
+
+            if (_preferredHubDatabaseId != 0)
+            {
+                for (int i = 1; i < _comboSchema.Items.Count; i++)
+                {
+                    SchemaItem item = _comboSchema.Items[i] as SchemaItem;
+                    if (item == null)
+                        continue;
+
+                    if (item.HubDatabaseId == _preferredHubDatabaseId)
+                    {
+                        _comboSchema.SelectedIndex = i;
+                        return true;
+                    }
+                }
+            }
+
+            if (_preferredConnectionHubDatabaseId != 0)
+            {
+                for (int i = 1; i < _comboSchema.Items.Count; i++)
+                {
+                    SchemaItem item = _comboSchema.Items[i] as SchemaItem;
+                    if (item == null)
+                        continue;
+
+                    if (item.HubDatabaseId == _preferredConnectionHubDatabaseId)
+                    {
+                        _comboSchema.SelectedIndex = i;
+                        return true;
+                    }
+                }
+            }
+
+            if (_comboSchema.Items.Count > 1)
+            {
+                _comboSchema.SelectedIndex = 1;
+                return true;
+            }
+
+            return false;
         }
 
         /// <summary>

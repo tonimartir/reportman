@@ -195,27 +195,31 @@ namespace Reportman.Reporting
         {
             var request = CreateRequest(endpoint, requestBody);
             var startedAt = Stopwatch.StartNew();
+            var chunkedAIResponseIds = new HashSet<string>(StringComparer.Ordinal);
             
-            using (var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken))
+            using (var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false))
             {
                 Log("HTTP Response Status: " + (int)response.StatusCode + " (" + startedAt.ElapsedMilliseconds + " ms)");
                 if (!response.IsSuccessStatusCode)
                 {
-                    var errorBody = await response.Content.ReadAsStringAsync();
+                    var errorBody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
                     var message = "HTTP Error " + (int)response.StatusCode + ": " + response.ReasonPhrase;
                     if (!string.IsNullOrWhiteSpace(errorBody))
                         message += " - " + errorBody;
                     throw new HttpRequestException(message);
                 }
 
-                using (var stream = await response.Content.ReadAsStreamAsync())
+                using (var stream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false))
                 using (var reader = new StreamReader(stream, Encoding.UTF8))
                 {
                     JsonDocument finalResult = null;
                     
-                    while (!reader.EndOfStream && !cancellationToken.IsCancellationRequested)
+                    while (!cancellationToken.IsCancellationRequested)
                     {
-                        var line = await reader.ReadLineAsync();
+                        var line = await reader.ReadLineAsync().ConfigureAwait(false);
+                        if (line == null)
+                            break;
+
                         if (string.IsNullOrWhiteSpace(line)) continue;
                         
                         if (line.StartsWith("data: "))
@@ -242,6 +246,9 @@ namespace Reportman.Reporting
                                         int outputTokens = GetJsonInt(root, "outputTokens");
                                         int prefillPercent = GetPrefillPercent(root);
 
+                                        if (ShouldSkipRedundantAIResponse(actor, stage, chunkType, id, chunkedAIResponseIds))
+                                            continue;
+
                                         onProgress?.Invoke(sender, actor, stage, chunkType, chunk, inputTokens, outputTokens, id, prefillPercent);
                                     }
                                     else if (TryGetJsonProperty(root, "result", out _) || TryGetJsonProperty(root, "errorMessage", out _))
@@ -264,10 +271,32 @@ namespace Reportman.Reporting
                             }
                         }
                     }
+
+                    cancellationToken.ThrowIfCancellationRequested();
                     
                     return finalResult;
                 }
             }
+        }
+
+        private static bool ShouldSkipRedundantAIResponse(string actor, string stage, string chunkType,
+            string progressId, HashSet<string> chunkedAIResponseIds)
+        {
+            if (!string.Equals(actor, "AI", StringComparison.OrdinalIgnoreCase) ||
+                !string.Equals(stage, "ReceivingResponse", StringComparison.OrdinalIgnoreCase) ||
+                string.IsNullOrEmpty(progressId))
+                return false;
+
+            if (string.Equals(chunkType, "Start", StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(chunkType, "Partial", StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(chunkType, "End", StringComparison.OrdinalIgnoreCase))
+            {
+                chunkedAIResponseIds.Add(progressId);
+                return false;
+            }
+
+            return string.Equals(chunkType, "Full", StringComparison.OrdinalIgnoreCase) &&
+                chunkedAIResponseIds.Contains(progressId);
         }
 
         private object BuildBaseRequest(object customFields = null)
@@ -303,7 +332,7 @@ namespace Reportman.Reporting
                 mode = mode
             });
 
-            return await StreamJsonRequestAsync("NlToSql/SuggestSqlCodeStream", requestBody, sender, onProgress, cancellationToken);
+            return await StreamJsonRequestAsync("NlToSql/SuggestSqlCodeStream", requestBody, sender, onProgress, cancellationToken).ConfigureAwait(false);
         }
 
         public async Task<JsonDocument> TranslateToSqlAsync(string userPrompt, string sqlToRefine, string mode, string userLanguage, 
@@ -318,7 +347,7 @@ namespace Reportman.Reporting
                 transcribeLanguage = string.IsNullOrWhiteSpace(userLanguage) ? "Auto" : userLanguage
             });
 
-            return await StreamJsonRequestAsync("NlToSql/TranslateToSQLStream", requestBody, sender, onProgress, cancellationToken);
+            return await StreamJsonRequestAsync("NlToSql/TranslateToSQLStream", requestBody, sender, onProgress, cancellationToken).ConfigureAwait(false);
         }
 
         public async Task<JsonDocument> ModifyReportAsync(string userPrompt, string reportDocument, string mode, string userLanguage,
@@ -337,7 +366,7 @@ namespace Reportman.Reporting
                 returnModifiedDocument = true
             });
 
-            return await StreamJsonRequestAsync("ReportDesigner/ModifyReportStream", requestBody, sender, onProgress, cancellationToken);
+            return await StreamJsonRequestAsync("ReportDesigner/ModifyReportStream", requestBody, sender, onProgress, cancellationToken).ConfigureAwait(false);
         }
 
         public async Task<JsonDocument> SuggestExpressionAsync(string userPrompt, string currentExpression, bool fix,
@@ -355,7 +384,7 @@ namespace Reportman.Reporting
                 simplifiedPrompt = false
             });
 
-            return await StreamJsonRequestAsync("ReportmanExpression/SuggestExpressionStream", requestBody, sender, onProgress, cancellationToken);
+            return await StreamJsonRequestAsync("ReportmanExpression/SuggestExpressionStream", requestBody, sender, onProgress, cancellationToken).ConfigureAwait(false);
         }
 
         // Additional endpoints (ExplainSql, ModifyReport, etc.) can be similarly implemented...

@@ -10,12 +10,25 @@ using Reportman.Reporting;
 
 namespace Reportman.Designer
 {
-    public class ExpressionChatPanelControl : UserControl
+    public class SqlSchemaContextChangedEventArgs : EventArgs
     {
-        public delegate bool ValidateExpressionHandler(string expression, out string errorMessage);
+        public SqlSchemaContextChangedEventArgs(long hubDatabaseId, long hubSchemaId, string apiKey)
+        {
+            HubDatabaseId = hubDatabaseId;
+            HubSchemaId = hubSchemaId;
+            ApiKey = apiKey ?? "";
+        }
 
+        public long HubDatabaseId { get; private set; }
+        public long HubSchemaId { get; private set; }
+        public string ApiKey { get; private set; }
+    }
+
+    public class SqlChatPanelControl : UserControl
+    {
         private AILoginFrameControl _loginControl;
         private AISelectionControl _aiSelectionControl;
+        private AISchemaSelectorControl _schemaSelector;
         private TabControl _tabControl;
         private TabPage _chatTab;
         private TabPage _aiLogTab;
@@ -31,34 +44,30 @@ namespace Reportman.Designer
         private Button _clearButton;
         private ReportmanAgentClient _agentClient;
         private CancellationTokenSource _cts;
+        private Action<string> _authLogHandler;
         private bool _isBusy;
-        private string _suggestedExpression = "";
-        private string _currentExpression = "";
+        private string _currentSql = "";
+        private string _suggestedSql = "";
+        private long _baseHubDatabaseId;
+        private long _baseHubSchemaId;
+        private string _baseApiKey = "";
+        private string _runtimeDb = "";
 
         public event EventHandler<string> ApplySuggestion;
+        public event EventHandler<SqlSchemaContextChangedEventArgs> SchemaContextChanged;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Func<string> CurrentExpressionProvider { get; set; }
+        public Func<Task<string>> CurrentSqlProvider { get; set; }
 
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Func<int> CursorPositionProvider { get; set; }
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Func<string> SemanticContextProvider { get; set; }
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public ValidateExpressionHandler ValidateExpression { get; set; }
-
-        public ExpressionChatPanelControl()
+        public SqlChatPanelControl()
         {
             InitializeComponent();
 
             _agentClient = new ReportmanAgentClient();
-            _agentClient.LogMessage += LogClientMessage;
+            _agentClient.LogMessage += AppendNetLog;
+            _authLogHandler = AppendNetLog;
+            RpAuthManager.Instance.LogMessage += _authLogHandler;
             RpAuthManager.Instance.AuthChanged += OnAuthChanged;
             HandleCreated += (s, e) =>
             {
@@ -72,8 +81,10 @@ namespace Reportman.Designer
             if (disposing)
             {
                 RpAuthManager.Instance.AuthChanged -= OnAuthChanged;
+                if (_authLogHandler != null)
+                    RpAuthManager.Instance.LogMessage -= _authLogHandler;
                 if (_agentClient != null)
-                    _agentClient.LogMessage -= LogClientMessage;
+                    _agentClient.LogMessage -= AppendNetLog;
                 if (_cts != null)
                     _cts.Dispose();
             }
@@ -82,7 +93,7 @@ namespace Reportman.Designer
 
         private void InitializeComponent()
         {
-            MinimumSize = new Size(300, 350);
+            MinimumSize = new Size(320, 400);
 
             _loginControl = new AILoginFrameControl
             {
@@ -99,19 +110,29 @@ namespace Reportman.Designer
             };
             _aiSelectionControl.StopRequested += (s, e) => StopInference();
 
+            _schemaSelector = new AISchemaSelectorControl
+            {
+                Dock = DockStyle.Fill,
+                AutoSize = true,
+                AutoSizeMode = AutoSizeMode.GrowAndShrink
+            };
+            _schemaSelector.SchemaChanged += SchemaSelector_SchemaChanged;
+
             TableLayoutPanel topPanel = new TableLayoutPanel
             {
                 Dock = DockStyle.Top,
                 ColumnCount = 1,
-                RowCount = 2,
+                RowCount = 3,
                 AutoSize = true,
                 AutoSizeMode = AutoSizeMode.GrowAndShrink
             };
             topPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100f));
             topPanel.RowStyles.Add(new RowStyle(SizeType.AutoSize));
             topPanel.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+            topPanel.RowStyles.Add(new RowStyle(SizeType.AutoSize));
             topPanel.Controls.Add(_loginControl, 0, 0);
             topPanel.Controls.Add(_aiSelectionControl, 0, 1);
+            topPanel.Controls.Add(_schemaSelector, 0, 2);
 
             _tabControl = new TabControl { Dock = DockStyle.Fill };
 
@@ -234,20 +255,59 @@ namespace Reportman.Designer
             _netLogView?.EnsureInitialized();
         }
 
-        public void Initialize(string currentExpression, string initialAssistantMessage)
+        public void Initialize(string currentSql, string initialAssistantMessage)
         {
-            _currentExpression = currentExpression ?? "";
-            _suggestedExpression = "";
+            _currentSql = currentSql ?? "";
+            _suggestedSql = "";
             _promptText.Clear();
             _conversation.ClearAll();
+            _aiLogView.ClearAll();
+            _netLogView.ClearAll();
+            EnsureWebMarkdownViewsInitialized();
             if (!string.IsNullOrWhiteSpace(initialAssistantMessage))
                 _conversation.AppendMessage("assistant", initialAssistantMessage);
             UpdateButtons();
         }
 
-        public void SetCurrentExpression(string expression)
+        public void SetCurrentSql(string sql)
         {
-            _currentExpression = expression ?? "";
+            _currentSql = sql ?? "";
+        }
+
+        public void SetHubContext(long hubDatabaseId, long hubSchemaId, string apiKey, string runtimeDb)
+        {
+            SetBaseConnectionContext(hubDatabaseId, hubSchemaId, apiKey, runtimeDb);
+        }
+
+        public void SetBaseConnectionContext(long hubDatabaseId, long hubSchemaId, string apiKey, string runtimeDb)
+        {
+            _baseHubDatabaseId = hubDatabaseId;
+            _baseHubSchemaId = hubSchemaId;
+            _baseApiKey = apiKey ?? "";
+            _runtimeDb = runtimeDb ?? "";
+            _schemaSelector.SetPreferredConnection(_baseHubDatabaseId, _baseApiKey);
+            _schemaSelector.SetHubContext(hubDatabaseId, hubSchemaId, _baseApiKey);
+            _schemaSelector.RefreshSchemas();
+        }
+
+        public void SetSelectedSchemaContext(long hubDatabaseId, long hubSchemaId, string apiKey)
+        {
+            _schemaSelector.SetHubContext(hubDatabaseId, hubSchemaId, apiKey ?? "");
+        }
+
+        private long EffectiveHubDatabaseId
+        {
+            get { return _schemaSelector.HubDatabaseId > 0 ? _schemaSelector.HubDatabaseId : _baseHubDatabaseId; }
+        }
+
+        private long EffectiveHubSchemaId
+        {
+            get { return _schemaSelector.HubDatabaseId > 0 || _schemaSelector.HubSchemaId > 0 ? _schemaSelector.HubSchemaId : _baseHubSchemaId; }
+        }
+
+        private string EffectiveApiKey
+        {
+            get { return !string.IsNullOrWhiteSpace(_schemaSelector.SchemaApiKey) ? _schemaSelector.SchemaApiKey : _baseApiKey; }
         }
 
         private void OnAuthChanged(bool success)
@@ -259,17 +319,24 @@ namespace Reportman.Designer
             }
 
             _aiSelectionControl.RefreshState();
+            _schemaSelector.RefreshSchemas();
             LoadUserAgentsAsync();
         }
 
         private void StartOnlineInitialization()
         {
             _aiSelectionControl.RefreshState();
+            _schemaSelector.RefreshSchemas();
             if (RpAuthManager.Instance.IsLoggedIn)
             {
                 RpAuthManager.Instance.RefreshStatusInBackground();
                 LoadUserAgentsAsync();
             }
+        }
+
+        private async void LoadSchemasAsync()
+        {
+            _schemaSelector.RefreshSchemas();
         }
 
         private async void LoadUserAgentsAsync()
@@ -294,7 +361,7 @@ namespace Reportman.Designer
             }
             catch (Exception ex)
             {
-                LogClientMessage("LoadUserAgents Error: " + ex.Message);
+                AppendAILog("LoadUserAgents Error: " + ex.Message);
             }
         }
 
@@ -326,6 +393,12 @@ namespace Reportman.Designer
             _aiSelectionControl.RestoreProviderSelection(selectedTier, selectedAgentAiId);
         }
 
+        private void SchemaSelector_SchemaChanged(object sender, EventArgs e)
+        {
+            SchemaContextChanged?.Invoke(this,
+                new SqlSchemaContextChangedEventArgs(EffectiveHubDatabaseId, EffectiveHubSchemaId, EffectiveApiKey));
+        }
+
         private void PromptText_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter && !e.Shift)
@@ -339,7 +412,7 @@ namespace Reportman.Designer
         private void UpdateButtons()
         {
             _sendButton.Enabled = !_isBusy && !string.IsNullOrWhiteSpace(_promptText.Text);
-            _applyButton.Enabled = !_isBusy && !string.IsNullOrWhiteSpace(_suggestedExpression);
+            _applyButton.Enabled = !_isBusy && !string.IsNullOrWhiteSpace(_suggestedSql);
             _clearButton.Text = _isBusy ? "Stop" : "Clear";
         }
 
@@ -349,15 +422,13 @@ namespace Reportman.Designer
             _promptText.Enabled = !busy;
             _aiSelectionControl.SetInferenceProgress(busy);
             UpdateButtons();
-
-            if (_tabControl != null)
-                _tabControl.SelectedTab = busy ? _aiLogTab : _chatTab;
+            _tabControl.SelectedTab = busy ? _aiLogTab : _chatTab;
         }
 
         private void ApplyButton_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(_suggestedExpression))
-                ApplySuggestion?.Invoke(this, _suggestedExpression);
+            if (!string.IsNullOrWhiteSpace(_suggestedSql))
+                ApplySuggestion?.Invoke(this, _suggestedSql);
         }
 
         private void ClearButton_Click(object sender, EventArgs e)
@@ -370,7 +441,7 @@ namespace Reportman.Designer
 
             _conversation.ClearAll();
             _promptText.Clear();
-            _suggestedExpression = "";
+            _suggestedSql = "";
             UpdateButtons();
         }
 
@@ -388,58 +459,28 @@ namespace Reportman.Designer
                 return;
 
             _promptText.Clear();
-            _suggestedExpression = "";
+            _suggestedSql = "";
             SetBusy(true);
             _cts = new CancellationTokenSource();
-
             AICopilotManager.Instance.OnCancelRequested = StopInference;
             AICopilotManager.Instance.BeginInference();
 
             try
             {
-                string currentExpression = CurrentExpressionProvider != null ? CurrentExpressionProvider() : _currentExpression;
-                int cursorPosition = CursorPositionProvider != null ? CursorPositionProvider() : currentExpression.Length;
-                string semanticContextJson = SemanticContextProvider != null ? SemanticContextProvider() : "{}";
+                string currentSql = CurrentSqlProvider != null ? await CurrentSqlProvider() : _currentSql;
+                currentSql = currentSql ?? "";
+                _currentSql = currentSql;
 
                 SafeAppendMessage("user", prompt);
-
-                SuggestionResult result = await RequestSuggestionAsync(prompt, currentExpression, false, cursorPosition, semanticContextJson, _cts.Token);
+                SqlSuggestionResult result = await RequestSqlSuggestionAsync(prompt, currentSql, _cts.Token);
                 if (!result.Success)
                 {
                     SafeAppendMessage("system", result.ErrorMessage);
                     return;
                 }
 
-                string validationError;
-                if (!ValidateSuggestedExpression(result.Expression, out validationError))
-                {
-                    SafeAppendMessage("system", "Local validation failed. Retrying once: " + validationError);
-                    result = await RequestSuggestionAsync(prompt, result.Expression, true, cursorPosition, semanticContextJson, _cts.Token);
-                    if (!result.Success)
-                    {
-                        SafeAppendMessage("system", result.ErrorMessage);
-                        return;
-                    }
-
-                    if (!ValidateSuggestedExpression(result.Expression, out validationError))
-                    {
-                        string retryMessage = "Generated expression is still invalid after one automatic fix: " + validationError;
-                        if (!string.IsNullOrWhiteSpace(result.Explanation))
-                            retryMessage += Environment.NewLine + Environment.NewLine + result.Explanation;
-                        retryMessage += Environment.NewLine + Environment.NewLine + "You can still apply it and edit it manually.";
-                        SetSuggestedExpression(result.Expression, retryMessage);
-                        return;
-                    }
-
-                    SetSuggestedExpression(result.Expression,
-                        string.IsNullOrWhiteSpace(result.Explanation)
-                            ? "Expression fixed after local validation."
-                            : "Expression fixed after local validation." + Environment.NewLine + Environment.NewLine + result.Explanation);
-                    return;
-                }
-
-                SetSuggestedExpression(result.Expression,
-                    string.IsNullOrWhiteSpace(result.Explanation) ? "Expression generated." : result.Explanation);
+                SetSuggestedSql(result.Sql,
+                    string.IsNullOrWhiteSpace(result.Explanation) ? "SQL generated." : result.Explanation);
             }
             catch (OperationCanceledException)
             {
@@ -458,21 +499,19 @@ namespace Reportman.Designer
             }
         }
 
-        private async Task<SuggestionResult> RequestSuggestionAsync(string prompt, string currentExpression, bool fix,
-            int cursorPosition, string semanticContextJson, CancellationToken cancellationToken)
+        private async Task<SqlSuggestionResult> RequestSqlSuggestionAsync(string prompt, string currentSql,
+            CancellationToken cancellationToken)
         {
             ConfigureAgentClient();
             _conversation.BeginStreaming("agent");
             JsonDocument resultDoc = null;
             try
             {
-                resultDoc = await _agentClient.SuggestExpressionAsync(
+                resultDoc = await _agentClient.TranslateToSqlAsync(
                     prompt,
-                    currentExpression,
-                    fix,
-                    cursorPosition,
+                    currentSql,
                     _aiSelectionControl.SelectedMode,
-                    semanticContextJson,
+                    RpAuthManager.Instance.AILanguage,
                     this,
                     (senderObj, actor, stage, chunkType, chunk, inputTokens, outputTokens, progressId, prefillPercent) =>
                     {
@@ -481,7 +520,7 @@ namespace Reportman.Designer
                     },
                     cancellationToken);
 
-                return ExtractSuggestionResult(resultDoc);
+                return ExtractSqlSuggestionResult(resultDoc);
             }
             finally
             {
@@ -497,9 +536,10 @@ namespace Reportman.Designer
             _agentClient.Token = RpAuthManager.Instance.Token;
             _agentClient.InstallId = RpAuthManager.Instance.InstallId;
             _agentClient.AITier = tier;
-            _agentClient.ApiKey = "";
-            _agentClient.HubDatabaseId = 0;
-            _agentClient.HubSchemaId = 0;
+            _agentClient.ApiKey = EffectiveApiKey;
+            _agentClient.HubDatabaseId = EffectiveHubDatabaseId;
+            _agentClient.HubSchemaId = EffectiveHubSchemaId;
+            _agentClient.RuntimeDb = _runtimeDb;
 
             if (string.Equals(tier, "LocalAgent", StringComparison.OrdinalIgnoreCase))
             {
@@ -513,30 +553,18 @@ namespace Reportman.Designer
             }
         }
 
-        private bool ValidateSuggestedExpression(string expression, out string errorMessage)
+        private void SetSuggestedSql(string sql, string message)
         {
-            if (ValidateExpression != null)
-                return ValidateExpression(expression, out errorMessage);
-
-            errorMessage = "";
-            bool result = !string.IsNullOrWhiteSpace(expression);
-            if (!result)
-                errorMessage = "Empty expression returned";
-            return result;
-        }
-
-        private void SetSuggestedExpression(string expression, string message)
-        {
-            _suggestedExpression = expression ?? "";
-            string text = string.IsNullOrWhiteSpace(message) ? "Suggested expression:" : message + Environment.NewLine + Environment.NewLine + "Suggested expression:";
-            text += Environment.NewLine + "```reportman" + Environment.NewLine + _suggestedExpression + Environment.NewLine + "```";
+            _suggestedSql = sql ?? "";
+            string text = string.IsNullOrWhiteSpace(message) ? "Suggested SQL:" : message + Environment.NewLine + Environment.NewLine + "Suggested SQL:";
+            text += Environment.NewLine + "```sql" + Environment.NewLine + _suggestedSql + Environment.NewLine + "```";
             SafeAppendMessage("assistant", text);
             UpdateButtons();
         }
 
-        private SuggestionResult ExtractSuggestionResult(JsonDocument resultDoc)
+        private SqlSuggestionResult ExtractSqlSuggestionResult(JsonDocument resultDoc)
         {
-            SuggestionResult result = new SuggestionResult();
+            SqlSuggestionResult result = new SqlSuggestionResult();
             if (resultDoc == null)
             {
                 result.ErrorMessage = "No final response received";
@@ -552,7 +580,8 @@ namespace Reportman.Designer
             }
 
             JsonElement resultElement = root;
-            if (TryGetJsonProperty(root, "result", out JsonElement nestedResult) && nestedResult.ValueKind == JsonValueKind.Object)
+            JsonElement nestedResult;
+            if (TryGetJsonProperty(root, "result", out nestedResult) && nestedResult.ValueKind == JsonValueKind.Object)
                 resultElement = nestedResult;
 
             string resultError = GetJsonString(resultElement, "errorMessage");
@@ -562,15 +591,14 @@ namespace Reportman.Designer
                 return result;
             }
 
-            result.Expression = GetJsonString(resultElement, "expression");
+            result.Sql = FirstNonEmpty(
+                GetJsonString(resultElement, "sql"),
+                GetJsonString(resultElement, "generatedSql"),
+                GetJsonString(resultElement, "SQL"));
             result.Explanation = GetJsonString(resultElement, "explanation");
 
-            if (string.IsNullOrWhiteSpace(result.Expression))
-            {
-                result.ErrorMessage = string.IsNullOrWhiteSpace(result.Explanation)
-                    ? "Empty expression returned"
-                    : result.Explanation;
-            }
+            if (string.IsNullOrWhiteSpace(result.Sql))
+                result.ErrorMessage = string.IsNullOrWhiteSpace(result.Explanation) ? "No SQL was returned by the service." : result.Explanation;
 
             return result;
         }
@@ -631,11 +659,6 @@ namespace Reportman.Designer
         {
             return string.Equals(chunkType, "End", StringComparison.OrdinalIgnoreCase) ||
                 string.Equals(chunkType, "Full", StringComparison.OrdinalIgnoreCase);
-        }
-
-        private void LogClientMessage(string message)
-        {
-            AppendNetLog(message);
         }
 
         private void AppendAILog(string message)
@@ -713,9 +736,19 @@ namespace Reportman.Designer
             return value.GetRawText();
         }
 
-        private class SuggestionResult
+        private static string FirstNonEmpty(params string[] values)
         {
-            public string Expression = "";
+            foreach (string value in values)
+            {
+                if (!string.IsNullOrWhiteSpace(value))
+                    return value;
+            }
+            return "";
+        }
+
+        private class SqlSuggestionResult
+        {
+            public string Sql = "";
             public string Explanation = "";
             public string ErrorMessage = "";
             public bool Success { get { return string.IsNullOrEmpty(ErrorMessage); } }

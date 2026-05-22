@@ -12,7 +12,9 @@ namespace Reportman.Designer
         string datainfoalias;
         private MonacoEditorControl monacoEditor;
         private SplitContainer sqlSplitContainer;
+        private SqlChatPanelControl sqlChatPanel;
         private SqlEditorContext sqlEditorContext;
+        private bool initialSqlSplitterDistanceApplied;
 
         public SQLEditor()
         {
@@ -42,7 +44,7 @@ namespace Reportman.Designer
                 Dock = DockStyle.Fill,
                 FixedPanel = FixedPanel.Panel2,
                 Orientation = Orientation.Vertical,
-                Panel2Collapsed = true,
+                Panel2Collapsed = false,
                 SplitterWidth = 6,
                 TabIndex = MemoSQL.TabIndex
             };
@@ -50,18 +52,74 @@ namespace Reportman.Designer
             monacoEditor = new MonacoEditorControl
             {
                 Dock = DockStyle.Fill,
-                SQL = MemoSQL.Text
+                SQL = MemoSQL.Text,
+                EnableSqlAutocompleteUi = true
             };
             monacoEditor.SqlContentChanged += MonacoEditor_SqlContentChanged;
+            monacoEditor.SchemaContextChanged += MonacoEditor_SchemaContextChanged;
+
+            sqlChatPanel = new SqlChatPanelControl
+            {
+                Dock = DockStyle.Fill,
+                CurrentSqlProvider = SyncSqlAndReturnAsync
+            };
+            sqlChatPanel.Initialize(MemoSQL.Text,
+                "Write your query in natural language. A new SQL query will be generated based on the current SQL and the selected schema. Click 'Apply' to use the generated SQL.");
+            sqlChatPanel.ApplySuggestion += SqlChatPanel_ApplySuggestion;
+            sqlChatPanel.SchemaContextChanged += SqlChatPanel_SchemaContextChanged;
 
             sqlSplitContainer.Panel1.Controls.Add(monacoEditor);
+            sqlSplitContainer.Panel2.Controls.Add(sqlChatPanel);
             tableLayoutPanel1.Controls.Add(sqlSplitContainer, 0, 0);
             tableLayoutPanel1.SetColumnSpan(sqlSplitContainer, 3);
+
+            ScheduleInitialSqlSplitterDistance();
         }
 
         private void MonacoEditor_SqlContentChanged(object sender, EventArgs e)
         {
             MemoSQL.Text = monacoEditor.SQL;
+            if (sqlChatPanel != null)
+                sqlChatPanel.SetCurrentSql(MemoSQL.Text);
+        }
+
+        private void SqlChatPanel_ApplySuggestion(object sender, string sql)
+        {
+            if (monacoEditor != null)
+                monacoEditor.SQL = sql ?? "";
+            MemoSQL.Text = sql ?? "";
+            if (sqlChatPanel != null)
+                sqlChatPanel.SetCurrentSql(MemoSQL.Text);
+        }
+
+        private void SqlChatPanel_SchemaContextChanged(object sender, SqlSchemaContextChangedEventArgs e)
+        {
+            DataInfo dinfo = GetDataInfo();
+            if (dinfo != null)
+                dinfo.HubSchemaId = e.HubSchemaId;
+
+            sqlEditorContext.HubDatabaseId = e.HubDatabaseId;
+            sqlEditorContext.HubSchemaId = e.HubSchemaId;
+            sqlEditorContext.ApiKey = e.ApiKey ?? "";
+
+            if (monacoEditor != null)
+                monacoEditor.SetHubContext(sqlEditorContext.HubDatabaseId, sqlEditorContext.HubSchemaId,
+                    sqlEditorContext.ApiKey);
+        }
+
+        private void MonacoEditor_SchemaContextChanged(object sender, SqlSchemaContextChangedEventArgs e)
+        {
+            DataInfo dinfo = GetDataInfo();
+            if (dinfo != null)
+                dinfo.HubSchemaId = e.HubSchemaId;
+
+            sqlEditorContext.HubDatabaseId = e.HubDatabaseId;
+            sqlEditorContext.HubSchemaId = e.HubSchemaId;
+            sqlEditorContext.ApiKey = e.ApiKey ?? "";
+
+            if (sqlChatPanel != null)
+                sqlChatPanel.SetSelectedSchemaContext(sqlEditorContext.HubDatabaseId,
+                    sqlEditorContext.HubSchemaId, sqlEditorContext.ApiKey);
         }
 
         private async Task SyncSqlFromEditorAsync()
@@ -69,6 +127,14 @@ namespace Reportman.Designer
             if (monacoEditor == null)
                 return;
             MemoSQL.Text = await monacoEditor.GetSqlFromEditorAsync();
+            if (sqlChatPanel != null)
+                sqlChatPanel.SetCurrentSql(MemoSQL.Text);
+        }
+
+        private async Task<string> SyncSqlAndReturnAsync()
+        {
+            await SyncSqlFromEditorAsync();
+            return MemoSQL.Text;
         }
 
         private void ApplySqlEditorContext()
@@ -77,9 +143,66 @@ namespace Reportman.Designer
             if (monacoEditor == null)
                 return;
 
-            monacoEditor.SetHubContext(sqlEditorContext.HubDatabaseId, sqlEditorContext.HubSchemaId);
-            monacoEditor.ApiKey = sqlEditorContext.ApiKey;
-            monacoEditor.RuntimeDb = sqlEditorContext.RuntimeDb;
+            monacoEditor.SetBaseConnectionContext(sqlEditorContext.HubDatabaseId,
+                sqlEditorContext.HubSchemaId, sqlEditorContext.ApiKey,
+                sqlEditorContext.RuntimeDb);
+
+            if (sqlChatPanel != null)
+            {
+                sqlChatPanel.SetBaseConnectionContext(sqlEditorContext.HubDatabaseId,
+                    sqlEditorContext.HubSchemaId, sqlEditorContext.ApiKey,
+                    sqlEditorContext.RuntimeDb);
+                sqlChatPanel.SetCurrentSql(MemoSQL.Text);
+            }
+        }
+
+        private void ScheduleInitialSqlSplitterDistance()
+        {
+            sqlSplitContainer.HandleCreated += SqlSplitContainer_ApplyInitialSplitterDistanceWhenReady;
+            sqlSplitContainer.SizeChanged += SqlSplitContainer_ApplyInitialSplitterDistanceWhenReady;
+            SqlSplitContainer_ApplyInitialSplitterDistanceWhenReady(sqlSplitContainer, EventArgs.Empty);
+        }
+
+        private void SqlSplitContainer_ApplyInitialSplitterDistanceWhenReady(object sender, EventArgs e)
+        {
+            if (initialSqlSplitterDistanceApplied || sqlSplitContainer == null || !sqlSplitContainer.IsHandleCreated)
+                return;
+
+            if (!ApplyInitialSqlSplitterDistance())
+                return;
+
+            initialSqlSplitterDistanceApplied = true;
+            sqlSplitContainer.HandleCreated -= SqlSplitContainer_ApplyInitialSplitterDistanceWhenReady;
+            sqlSplitContainer.SizeChanged -= SqlSplitContainer_ApplyInitialSplitterDistanceWhenReady;
+        }
+
+        private bool ApplyInitialSqlSplitterDistance()
+        {
+            if (sqlSplitContainer == null || sqlSplitContainer.IsDisposed || sqlSplitContainer.Width <= 0)
+                return false;
+
+            int splitterWidth = Math.Max(1, sqlSplitContainer.SplitterWidth);
+            int width = sqlSplitContainer.Width;
+            int availableWidth = width - splitterWidth;
+            if (availableWidth < 240)
+                return false;
+
+            int scaledMin = Convert.ToInt32(300 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
+            int panel1Min = Math.Min(scaledMin, Math.Max(120, availableWidth / 2));
+            int panel2Min = Math.Min(scaledMin, Math.Max(120, availableWidth - panel1Min));
+            if (panel1Min + panel2Min > availableWidth)
+                panel2Min = Math.Max(0, availableWidth - panel1Min);
+
+            sqlSplitContainer.Panel1MinSize = panel1Min;
+            sqlSplitContainer.Panel2MinSize = panel2Min;
+
+            int desiredPanel2 = Math.Min(Convert.ToInt32(360 * Reportman.Drawing.Windows.GraphicUtils.DPIScale), availableWidth - panel1Min);
+            desiredPanel2 = Math.Max(panel2Min, desiredPanel2);
+            int distance = availableWidth - desiredPanel2;
+            int maxDistance = availableWidth - panel2Min;
+            distance = Math.Max(panel1Min, Math.Min(distance, maxDistance));
+            sqlSplitContainer.SplitterDistance = distance;
+            return true;
         }
 
         private SqlEditorContext ResolveSqlEditorContext()

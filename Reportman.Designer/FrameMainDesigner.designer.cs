@@ -51,6 +51,7 @@
             panel1 = new System.Windows.Forms.Panel();
             label1 = new System.Windows.Forms.Label();
             TopBar = new System.Windows.Forms.ToolStrip();
+            TopBarSecondary = new System.Windows.Forms.ToolStrip();
             bnew = new System.Windows.Forms.ToolStripSplitButton();
             mnewblank = new System.Windows.Forms.ToolStripMenuItem();
             mnewgrouped = new System.Windows.Forms.ToolStripMenuItem();
@@ -102,7 +103,6 @@
             bchart = new System.Windows.Forms.ToolStripButton();
             bbarcode = new System.Windows.Forms.ToolStripButton();
             toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             bmoveleft = new System.Windows.Forms.ToolStripButton();
             bmoveright = new System.Windows.Forms.ToolStripButton();
             bmoveup = new System.Windows.Forms.ToolStripButton();
@@ -135,6 +135,7 @@
             msvgfile = new System.Windows.Forms.ToolStripMenuItem();
             mtextfile2 = new System.Windows.Forms.ToolStripMenuItem();
             bhideRight = new System.Windows.Forms.ToolStripButton();
+            bchatIA = new System.Windows.Forms.ToolStripButton();
             bexit = new System.Windows.Forms.ToolStripButton();
             bundo = new System.Windows.Forms.ToolStripButton();
             bredo = new System.Windows.Forms.ToolStripButton();
@@ -157,6 +158,7 @@
             tabudocue.SuspendLayout();
             panel1.SuspendLayout();
             TopBar.SuspendLayout();
+            TopBarSecondary.SuspendLayout();
             SuspendLayout();
             // 
             // toolStripContainer1
@@ -178,6 +180,7 @@
             // toolStripContainer1.TopToolStripPanel
             // 
             toolStripContainer1.TopToolStripPanel.Controls.Add(TopBar);
+            toolStripContainer1.TopToolStripPanel.Controls.Add(TopBarSecondary);
             // 
             // panelcontent
             // 
@@ -429,11 +432,22 @@
             TopBar.Dock = System.Windows.Forms.DockStyle.None;
             TopBar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             TopBar.ImageScalingSize = new System.Drawing.Size(19, 19);
-            TopBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { bnew, bopen, bsep1, bsave, bsep2, bpreview, bprint, toolStripSeparator6, bundo, bredo, bzoomplus, dropdownzoom, bzoomminus, toolStripSeparator5, bcopy, bpaste, bcut, bdelete, toolStripSeparator1, barrow, blabel, bexpression, bimage, bshape, bchart, bbarcode, toolStripSeparator7, bmoveleft, bmoveright, bmoveup, bmovedown, toolStripSeparator4, balignleft, balignright, baligntop, balignbottom, bhorizontalgap, bverticalgap, toolStripSeparator2, bEdit, bpagesetup, bgrid, bexecute, bhideRight, bexit });
+            TopBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { bnew, bopen, bsep1, bsave, bsep2, bpreview, bprint, toolStripSeparator6, bundo, bredo, bzoomplus, dropdownzoom, bzoomminus, toolStripSeparator5, bcopy, bpaste, bcut, bdelete, toolStripSeparator1, barrow, blabel, bexpression, bimage, bshape, bchart, bbarcode });
             TopBar.Location = new System.Drawing.Point(4, 0);
             TopBar.Name = "TopBar";
-            TopBar.Size = new System.Drawing.Size(1590, 27);
+            TopBar.Size = new System.Drawing.Size(949, 27);
             TopBar.TabIndex = 1;
+            // 
+            // TopBarSecondary
+            // 
+            TopBarSecondary.Dock = System.Windows.Forms.DockStyle.None;
+            TopBarSecondary.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            TopBarSecondary.ImageScalingSize = new System.Drawing.Size(19, 19);
+            TopBarSecondary.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { bmoveleft, bmoveright, bmoveup, bmovedown, toolStripSeparator4, balignleft, balignright, baligntop, balignbottom, bhorizontalgap, bverticalgap, toolStripSeparator2, bEdit, bpagesetup, bgrid, bexecute, bhideRight, bchatIA, bexit });
+            TopBarSecondary.Location = new System.Drawing.Point(4, 27);
+            TopBarSecondary.Name = "TopBarSecondary";
+            TopBarSecondary.Size = new System.Drawing.Size(708, 27);
+            TopBarSecondary.TabIndex = 2;
             // 
             // bnew
             // 
@@ -581,11 +595,6 @@
             bredo.Text = "↪ Redo";
             bredo.ToolTipText = "Redo (Ctrl+Y)";
             bredo.Click += ButtonRedoClick;
-            // 
-            // toolStripSeparator6
-            // 
-            toolStripSeparator6.Name = "toolStripSeparator6";
-            toolStripSeparator6.Size = new System.Drawing.Size(6, 27);
             // 
             // bzoomplus
             // 
@@ -864,11 +873,6 @@
             bbarcode.Text = "Barcode";
             bbarcode.Click += ButtonArrowClick;
             // 
-            // toolStripSeparator7
-            // 
-            toolStripSeparator7.Name = "toolStripSeparator7";
-            toolStripSeparator7.Size = new System.Drawing.Size(6, 27);
-            // 
             // bmoveleft
             // 
             bmoveleft.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -1132,6 +1136,18 @@
             bhideRight.Text = "Show/Hide";
             bhideRight.Click += ButtonHideRightClick;
             // 
+            // bchatIA
+            // 
+            bchatIA.CheckOnClick = true;
+            bchatIA.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            bchatIA.Image = Properties.Resources.chatia32;
+            bchatIA.ImageTransparentColor = System.Drawing.Color.Magenta;
+            bchatIA.Name = "bchatIA";
+            bchatIA.Size = new System.Drawing.Size(29, 24);
+            bchatIA.Text = "AI chat";
+            bchatIA.ToolTipText = "Show or hide the AI chat panel";
+            bchatIA.Click += ButtonAIChatClick;
+            // 
             // bexit
             // 
             bexit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -1169,6 +1185,8 @@
             panel1.ResumeLayout(false);
             TopBar.ResumeLayout(false);
             TopBar.PerformLayout();
+            TopBarSecondary.ResumeLayout(false);
+            TopBarSecondary.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -1260,7 +1278,6 @@
         private System.Windows.Forms.ToolStripButton bzoomplus;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripButton bmoveleft;
         private System.Windows.Forms.ToolStripButton bmoveright;
         private System.Windows.Forms.ToolStripButton bmoveup;
@@ -1271,6 +1288,7 @@
         private System.Windows.Forms.Panel panelprops;
         private System.Windows.Forms.Splitter splitter2;
         private System.Windows.Forms.ToolStripButton bhideRight;
+        private System.Windows.Forms.ToolStripButton bchatIA;
         private System.Windows.Forms.Panel panelEstruc;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
@@ -1283,6 +1301,7 @@
         private System.Windows.Forms.ToolStripButton bredo;
         private System.Windows.Forms.ToolStripDropDownButton bEdit;
         private System.Windows.Forms.ToolStripMenuItem majustar1_5;
+        private System.Windows.Forms.ToolStrip TopBarSecondary;
         private System.Windows.Forms.ToolStripMenuItem mseleccionar;
         private System.Windows.Forms.ToolStripMenuItem mseleccionartodoslostextos;
         private System.Windows.Forms.ToolStripMenuItem mseleccionartodo;
