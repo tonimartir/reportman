@@ -39,6 +39,14 @@ namespace Reportman.Drawing
         /// <see cref="Variant">WMFOptimization</see>
         /// </summary>
 		public WMFOptimization OptimizeWMF;
+        /// <summary>
+        /// When true, plain (non-HTML, non-justified, non-RTL, non-rotated) text is measured and
+        /// drawn via the PDF font subsystem (DirectWrite/HarfBuzz shaping + glyph-indexed ExtTextOutW),
+        /// matching exactly what the PDF preview produces. Default false preserves the historical
+        /// GDI+ behavior. HTML, justified, embedded/linked-font, PDF/A-3 and RTL paths are unaffected
+        /// by this flag (they already use the PDF subsystem where applicable).
+        /// </summary>
+        public bool UsePDFFonts = false;
         private PrintOutPDF npdfdriver;
 
         private Color stock_brushcolor;
@@ -128,8 +136,10 @@ namespace Reportman.Drawing
         /// <returns>Returns the extent in twips of the text, it can be larger than the input extent</returns>
 		override public Point TextExtent(TextObjectStruct aobj, Point extent)
         {
-            // Text extent for justify is implemented separately
-            if (!aobj.RightToLeft && ((CurrentMetafile.PDFConformance == PDFConformanceType.PDF_A_3) || (((aobj.Alignment & MetaFile.AlignmentFlags_AlignHJustify) > 0) || (aobj.Type1Font == PDFFontType.Linked) || (aobj.Type1Font == PDFFontType.Embedded))))
+            // Text extent for justify is implemented separately.
+            // UsePDFFonts forces the same delegation so the line/word metrics seen on screen and
+            // on paper match the PDF preview byte-for-byte.
+            if ((UsePDFFonts && !aobj.RightToLeft) || (!aobj.RightToLeft && ((CurrentMetafile.PDFConformance == PDFConformanceType.PDF_A_3) || (((aobj.Alignment & MetaFile.AlignmentFlags_AlignHJustify) > 0) || (aobj.Type1Font == PDFFontType.Linked) || (aobj.Type1Font == PDFFontType.Embedded)))))
             {
                 if (npdfdriver == null)
                     npdfdriver = new PrintOutPDF();
@@ -496,7 +506,7 @@ namespace Reportman.Drawing
                         }
                         Point oldextent = new Point(objt.Width, objt.Height);
                         Point extent;
-                        if (!objt.RightToLeft && ((objt.Alignment & MetaFile.AlignmentFlags_AlignHJustify) > 0) || (objt.Type1Font == PDFFontType.Linked) || (objt.Type1Font == PDFFontType.Embedded) || (CurrentMetafile.PDFConformance == PDFConformanceType.PDF_A_3))
+                        if ((UsePDFFonts && !objt.RightToLeft) || (!objt.RightToLeft && ((objt.Alignment & MetaFile.AlignmentFlags_AlignHJustify) > 0) || (objt.Type1Font == PDFFontType.Linked) || (objt.Type1Font == PDFFontType.Embedded) || (CurrentMetafile.PDFConformance == PDFConformanceType.PDF_A_3)))
                         {
                             if (npdfdriver == null)
                                 npdfdriver = new PrintOutPDF();
@@ -535,7 +545,7 @@ namespace Reportman.Drawing
                         graph.FillRectangle(stock_backbrush, nrec);
                     }
                     // Text justify is implemented separaterly
-                    if (!objt.RightToLeft && !objt.IsHtml &&   
+                    if (!objt.RightToLeft && !objt.IsHtml &&
                          (((objt.Alignment & MetaFile.AlignmentFlags_AlignHJustify) > 0) || (objt.Type1Font == PDFFontType.Embedded) || (objt.Type1Font == PDFFontType.Embedded) || (CurrentMetafile.PDFConformance == PDFConformanceType.PDF_A_3)
                          ))
                     {
@@ -543,6 +553,14 @@ namespace Reportman.Drawing
                     }
                     else if (objt.IsHtml)
                     {
+                        TextRectHtml(graph, new Rectangle(aleft, atop, obj.Width, obj.Height), TextObjectStruct.FromMetaObjectText(page, objt), font, stock_brush);
+                    }
+                    else if (UsePDFFonts && !objt.RightToLeft && objt.FontRotation == 0)
+                    {
+                        // Route plain text through the glyph-perfect path so the printed output
+                        // matches the PDF preview (same DirectWrite/HarfBuzz shaping + glyph-indexed
+                        // ExtTextOutW the PDF subsystem uses). RTL and rotated text keep the legacy
+                        // GDI+ path.
                         TextRectHtml(graph, new Rectangle(aleft, atop, obj.Width, obj.Height), TextObjectStruct.FromMetaObjectText(page, objt), font, stock_brush);
                     }
                     else
