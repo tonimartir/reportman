@@ -144,6 +144,10 @@ namespace Reportman.Drawing
                 if (npdfdriver == null)
                     npdfdriver = new PrintOutPDF();
                 npdfdriver.PDFConformance = CurrentMetafile.PDFConformance;
+                // With UsePDFFonts, force the PDF canvas to go through the DirectWrite/HarfBuzz
+                // shaper (instead of TextExtentSimple) so measurements and the drawing path
+                // (TextRectHtml) share identical glyph metrics.
+                npdfdriver.ForceComplexShaping = UsePDFFonts;
                 aobj.Type1Font = PDFFontType.Linked;
 
                 extent = npdfdriver.TextExtent(aobj, extent);
@@ -180,6 +184,11 @@ namespace Reportman.Drawing
                 npdfdriver = new PrintOutPDF();
 
             npdfdriver.PDFConformance = CurrentMetafile.PDFConformance;
+            // When UsePDFFonts is on, force the shaper so LineInfo.Glyphs is populated
+            // (required by TextRectHtml's glyph-indexed ExtTextOutW). Without this, plain text
+            // would go through TextExtentSimple which leaves Glyphs null and TextRectHtml
+            // silently skips drawing — the symptom is "no text on paper at all".
+            npdfdriver.ForceComplexShaping = UsePDFFonts;
             aobj.Type1Font = PDFFontType.Linked;
             return npdfdriver.TextExtentLineInfo(aobj, ref extent);
         }
@@ -510,6 +519,7 @@ namespace Reportman.Drawing
                         {
                             if (npdfdriver == null)
                                 npdfdriver = new PrintOutPDF();
+                            npdfdriver.ForceComplexShaping = UsePDFFonts;
                             objt.Type1Font = PDFFontType.Linked;
                             extent = npdfdriver.TextExtent(TextObjectStruct.FromMetaObjectText(page, objt), oldextent);
                         }
@@ -1263,6 +1273,9 @@ namespace Reportman.Drawing
                 npdfdriver = new PrintOutPDF();
             }
             npdfdriver.PDFConformance = CurrentMetafile.PDFConformance;
+            // Stay coherent with the rest of the pipeline: if UsePDFFonts is on, all measuring
+            // (TextExtentLineInfo + WordExtent calls below) goes through the same shaper.
+            npdfdriver.ForceComplexShaping = UsePDFFonts;
             Point full_extent = new Point(arect.Width, arect.Height);
             var linfos = npdfdriver.TextExtentLineInfo(atext, ref full_extent);
             Rectangle recsize = new Rectangle(0, 0, full_extent.X, full_extent.Y);

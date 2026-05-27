@@ -75,6 +75,17 @@ namespace Reportman.Drawing
 
         }
         /// <summary>
+        /// Routes to PDFCanvas.ForceComplexShaping. When true, TextExtent/TextExtentLineInfo
+        /// always populate LineInfo.Glyphs by going through the DirectWrite/HarfBuzz shaper,
+        /// even for plain (non-HTML, non-RTL) text. Required for callers that need glyph-indexed
+        /// rendering (e.g. ExtTextOutW with ETO_GLYPH_INDEX) on plain text.
+        /// </summary>
+        public bool ForceComplexShaping
+        {
+            get { return FPDFFile.Canvas.ForceComplexShaping; }
+            set { FPDFFile.Canvas.ForceComplexShaping = value; }
+        }
+        /// <summary>
         /// Constructo and initialization
         /// </summary>
 		public PrintOutPDFBase()

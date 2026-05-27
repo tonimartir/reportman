@@ -209,6 +209,14 @@ namespace Reportman.Drawing
         private List<LineInfo> Lines;
         private SortedList FFontData;
         public int Resolution;
+        /// <summary>
+        /// When true, TextExtent always routes to the complex shaper (InfoProvider.TextExtent —
+        /// DirectWrite on Windows, HarfBuzz on Linux) and populates LineInfo.Glyphs with glyph
+        /// indices and advances. Default false preserves the historical fast path (TextExtentSimple)
+        /// that only computes line widths without glyph data. Callers that need per-glyph data
+        /// (e.g. glyph-indexed ExtTextOutW rendering) must set this to true before measuring.
+        /// </summary>
+        public bool ForceComplexShaping = false;
         public List<LineInfo> LineInfo
         {
             get
@@ -1968,9 +1976,15 @@ namespace Reportman.Drawing
         public List<LineInfo> TextExtent(string Text, ref Rectangle rect, bool wordbreak, bool singleline, bool dolineinfo,bool RightToLeft, bool isHtml = false)
         {
             List<LineInfo> result;
-            if (RightToLeft || isHtml || this.InfoProvider.GetType().Name == "FontInfoFt")
+            bool useShaper = RightToLeft || isHtml || this.InfoProvider.GetType().Name == "FontInfoFt";
+            if (useShaper || ForceComplexShaping)
             {
-                Font.Name = PDFFontType.Embedded;
+                if (useShaper)
+                {
+                    Font.Name = PDFFontType.Embedded;
+                }
+                // else (ForceComplexShaping path): preserve Font.Name as the caller set it
+                // (typically PDFFontType.Linked). GetTTFontData accepts Linked or Embedded.
                 var data = GetTTFontData();
                 result = this.InfoProvider.TextExtent(Text,ref rect,Font,data,wordbreak,singleline,Font.Size, isHtml);
             }
