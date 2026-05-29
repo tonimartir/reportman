@@ -451,10 +451,25 @@ namespace Reportman.Reporting
 
             ResolveHttpAgentDriverFromConfig();
 
-            // HttpAgent driver uses HttpAgentExecutor instead of a database connection
+            // HttpAgent driver uses an Agent executor instead of a database
+            // connection. On net48 (no WebRTC stack available) we keep the
+            // legacy HttpAgentExecutor; on .NET 8+ we wrap it inside the
+            // composite DirectAgentExecutor that tries the WebRTC DataChannel
+            // first and falls back to HTTP transparently when negotiation
+            // fails. UI consumers can read DirectAgentExecutor.LastConnectionMode
+            // and subscribe to ConnectionModeChanged to paint a transport chip.
             if (Driver == DriverType.HttpAgent)
             {
                 LoadHttpAgentConnectionParams();
+#if NET8_0_OR_GREATER
+                SqlExecuter = new DirectAgentExecutor
+                {
+                    BaseUrl = HttpAgentBaseUrl,
+                    ApiKey = HttpAgentApiKey,
+                    Token = HttpAgentToken,
+                    HubDatabaseId = HttpAgentHubDatabaseId
+                };
+#else
                 SqlExecuter = new HttpAgentExecutor
                 {
                     BaseUrl = HttpAgentBaseUrl,
@@ -462,6 +477,7 @@ namespace Reportman.Reporting
                     Token = HttpAgentToken,
                     HubDatabaseId = HttpAgentHubDatabaseId
                 };
+#endif
                 return;
             }
 

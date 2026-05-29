@@ -42,6 +42,13 @@
   <ItemGroup>
     <ProjectReference Include="..\Reportman.Drawing\Reportman.Drawing.csproj" />
   </ItemGroup>
+  <!-- WebRTC DataChannel for direct Client↔Agent transport. Modern .NET only:
+       SIPSorcery 8.x requires .NET 6+ and net48 falls back to HTTP exclusively
+       (same model as the Delphi engine where rpdcintegration.pas is
+       {$IFDEF MSWINDOWS}-wrapped and Linux/FPC builds use only the HTTP path). -->
+  <ItemGroup Condition="'$(TargetFramework)' != 'net48'">
+    <ProjectReference Include="..\Reportman.DataChannel\Reportman.DataChannel.csproj" />
+  </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
     <Reference Include="System.Net.Http" />
   </ItemGroup>
