@@ -7,7 +7,7 @@
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
     <Configurations>Debug;Release</Configurations>
     <Platforms>AnyCPU;x86</Platforms>
-    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+    <GenerateResourceUsePreserializedResources Condition="'$(TargetFramework)' != 'net48'">true</GenerateResourceUsePreserializedResources>
   </PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<DefineConstants>TRACE;DEBUG;REPMAN_ZLIB</DefineConstants>
@@ -100,9 +100,6 @@
     <ProjectReference Include="..\Reportman.Drawing.Windows\Reportman.Drawing.Windows.csproj" />
     <ProjectReference Include="..\Reportman.Drawing\Reportman.Drawing.csproj" />
   </ItemGroup>
-	<PropertyGroup Condition="'$(TargetFramework)' == 'net48'">
-		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
-	</PropertyGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'net48'">
 		<Reference Include="System.Windows.Forms.DataVisualization">
 			<Version>4.0</Version>

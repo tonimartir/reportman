@@ -7,7 +7,7 @@
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
     <Configurations>Debug;Release</Configurations>
     <Platforms>AnyCPU;x86</Platforms>
-    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+    <GenerateResourceUsePreserializedResources Condition="'$(TargetFramework)' != 'net48'">true</GenerateResourceUsePreserializedResources>
   </PropertyGroup>
 	<PropertyGroup>
 		<PackageId>Reportman.Reporting.Forms</PackageId>
