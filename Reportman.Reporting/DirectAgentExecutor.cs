@@ -99,8 +99,27 @@ namespace Reportman.Reporting
         public DirectAgentExecutor()
         {
             _inner = new HttpAgentExecutor();
-            _httpClient = new HttpClient { Timeout = Timeout.InfiniteTimeSpan };
+            _httpClient = CreateHttpClient();
             _pool = new WebRtcChannelPool();
+        }
+
+        /// <summary>
+        /// Builds the HttpClient used for the data-session signaling REST/WS
+        /// calls. Debug builds accept any server certificate so a developer
+        /// can hit a self-signed Kestrel (api.reportman.es:7006 dev) the same
+        /// way HttpAgentExecutor and ReportmanAgentClient already do —
+        /// keeping the three Agent-facing clients in lock-step.
+        /// </summary>
+        private static HttpClient CreateHttpClient()
+        {
+#if DEBUG
+            var handler = new HttpClientHandler();
+            handler.ServerCertificateCustomValidationCallback =
+                (message, cert, chain, errors) => true;
+            return new HttpClient(handler) { Timeout = Timeout.InfiniteTimeSpan };
+#else
+            return new HttpClient { Timeout = Timeout.InfiniteTimeSpan };
+#endif
         }
 
         public DirectAgentExecutor(string baseUrl, string apiKey, long hubDatabaseId) : this()
