@@ -7,10 +7,12 @@
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
     <Configurations>Debug;Release</Configurations>
     <Platforms>AnyCPU;x86</Platforms>
-    <!-- Required for non-string resources (Forms .resx with binary blobs)
-         under every target. The System.Resources.Extensions package below
-         provides the preserialized-resource writer for net48 as well as
-         the modern net8/net9 targets. -->
+    <!-- Required for Forms .resx files containing non-string resources (icons,
+         bitmaps, color blocks). SDK 10 dropped the legacy BinaryFormatter
+         resource writer even for net48, so the flag has to be set
+         uniformly across every target. The System.Resources.Extensions NuGet
+         supplies the preserialized writer; it's already pulled in below for
+         each TFM-specific ItemGroup. -->
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
   </PropertyGroup>
 	<PropertyGroup>
