@@ -7,7 +7,11 @@
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
     <Configurations>Debug;Release</Configurations>
     <Platforms>AnyCPU;x86</Platforms>
-    <GenerateResourceUsePreserializedResources Condition="'$(TargetFramework)' != 'net48'">true</GenerateResourceUsePreserializedResources>
+    <!-- Required for non-string resources (Forms .resx with binary blobs)
+         under every target. The System.Resources.Extensions package below
+         provides the preserialized-resource writer for net48 as well as
+         the modern net8/net9 targets. -->
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
   </PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<DefineConstants>TRACE;DEBUG;REPMAN_ZLIB</DefineConstants>
