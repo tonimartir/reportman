@@ -43,6 +43,17 @@ namespace Reportman.Reporting
             if (value1.VarType == value2.VarType)
                 return false;
 
+            // Delphi semantics: comparing/operating against Null never triggers a
+            // type coercion error. The native Variant comparison resolves Null
+            // directly (e.g. AVISO.IMAGEN=NULL on a Binary field, which Delphi
+            // treats as an empty/null comparison instead of failing). We must not
+            // try to coerce when either operand is Null: leave both untouched and
+            // let the downstream == / CompareTo Null handling decide the result.
+            // This also keeps Binary (which has no numeric base type) from raising
+            // when matched against Null.
+            if (value1.VarType == VariantType.Null || value2.VarType == VariantType.Null)
+                return false;
+
             BaseType leftBaseType = GetBaseType(value1.VarType);
             BaseType rightBaseType = GetBaseType(value2.VarType);
             BaseType targetBaseType = CoercionTypeMap[(int)leftBaseType, (int)rightBaseType];

@@ -2516,7 +2516,8 @@ namespace Reportman.Reporting
                 WritePropertyS("SQLEXPLANATION", dinfo.SQLExplanation, astream);
             if (!string.IsNullOrWhiteSpace(dinfo.SQLExplanationError))
                 WritePropertyS("SQLEXPLANATIONERROR", dinfo.SQLExplanationError, astream);
-            WritePropertyI("HUBSCHEMAID", (int)dinfo.HubSchemaId, astream);
+            if (dinfo.HubSchemaId != 0)
+                WritePropertyI("HUBSCHEMAID", (int)dinfo.HubSchemaId, astream);
             WritePropertyS("DATASOURCE", dinfo.DataSource, astream);
             WritePropertyS("MYBASEFILENAME", dinfo.MyBaseFilename, astream);
             WritePropertyS("MYBASEFIELDS", dinfo.MyBaseFields, astream);
