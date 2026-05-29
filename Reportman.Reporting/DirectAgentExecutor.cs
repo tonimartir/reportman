@@ -64,9 +64,20 @@ namespace Reportman.Reporting
         // ─────────────── internals ───────────────
 
         private readonly HttpAgentExecutor _inner;
-        private readonly WebRtcChannelPool _pool;
         private readonly HttpClient _httpClient;
-        private DateTimeOffset _negotiationFailedUntil = DateTimeOffset.MinValue;
+
+        // Pool and cooldown live on a shared static so they survive the
+        // engine recreating DatabaseInfo (and therefore DirectAgentExecutor)
+        // for every ShowData / preview / report run. Without this each
+        // click would renegotiate from scratch, ignore the previous
+        // failure's cooldown, and stack repeated 5 s open-timeouts back
+        // to back. The pool keys sessions by hubDatabaseId which is
+        // already the unit of Agent-side authentication, so two
+        // executors with the same Id sharing a warm session is safe by
+        // construction (the Hub validates each signaling request anyway).
+        private static readonly WebRtcChannelPool s_pool = new();
+        private static readonly System.Collections.Concurrent.ConcurrentDictionary<long, DateTimeOffset>
+            s_negotiationFailedUntil = new();
 
         /// <summary>
         /// After a failed negotiation, suppress further direct attempts for
@@ -79,18 +90,15 @@ namespace Reportman.Reporting
         private static readonly TimeSpan NegotiationFailureCooldown = TimeSpan.FromMinutes(10);
 
         /// <summary>
-        /// Open-channel timeout. STUN gather is fast (&lt;500ms locally,
-        /// &lt;1.5s over the public internet) and DTLS another ~500ms — 5s is
-        /// the practical upper bound for any legitimate path including NAT
-        /// hole-punching. Matches the Web/WPF clients exactly.
-        /// </summary>
-        private static readonly TimeSpan OpenTimeout = TimeSpan.FromSeconds(5);
-
-        /// <summary>
         /// Per-Execute timeout. The Agent emits a 1 Hz progress pulse so any
         /// longer silence means the Agent died — let the rolling watchdog
         /// inside <see cref="WebRtcDataChannelSession"/> raise. This outer
         /// cap stops a runaway query from blocking the engine thread forever.
+        /// WebRtcDataChannelSession applies its own OpenTimeoutSeconds (5s)
+        /// internally, so we don't add a second one here — wrapping the open
+        /// in a linked CTS that gets disposed when the lambda returns can
+        /// leave the session's background tasks observing a disposed token
+        /// and surface as SocketException("operation aborted").
         /// </summary>
         private static readonly TimeSpan ExecuteTimeout = TimeSpan.FromMinutes(5);
 
@@ -100,7 +108,7 @@ namespace Reportman.Reporting
         {
             _inner = new HttpAgentExecutor();
             _httpClient = CreateHttpClient();
-            _pool = new WebRtcChannelPool();
+            // s_pool is shared statically — see field declaration.
         }
 
         /// <summary>
@@ -198,10 +206,15 @@ namespace Reportman.Reporting
             WebRtcDataChannelSession session;
             try
             {
-                session = await _pool.GetOrOpenAsync(HubDatabaseId, async tokn =>
+                session = await s_pool.GetOrOpenAsync(HubDatabaseId, async tokn =>
                 {
-                    using var openCts = CancellationTokenSource.CreateLinkedTokenSource(tokn);
-                    openCts.CancelAfter(OpenTimeout);
+                    // Use the pool-supplied token directly. The session
+                    // applies its own OpenTimeoutSeconds (5s) — wrapping
+                    // this in a linked CTS that disposes when the lambda
+                    // exits left the session's background workers
+                    // observing a disposed token and surfaced as
+                    // SocketException("operation aborted") on the next
+                    // ShowData.
                     var startBody = BuildStartBody();
                     return await WebRtcDataChannelSession.TryOpenAsync(
                         _httpClient,
@@ -209,7 +222,7 @@ namespace Reportman.Reporting
                         Token,
                         startBody,
                         onProgress: null,
-                        ct: openCts.Token);
+                        ct: tokn);
                 }, ct);
             }
             catch
@@ -279,13 +292,15 @@ namespace Reportman.Reporting
         private bool ShouldTryDirect()
         {
             if (!UseDirectChannel) return false;
-            if (_negotiationFailedUntil > DateTimeOffset.UtcNow) return false;
+            if (s_negotiationFailedUntil.TryGetValue(HubDatabaseId, out var until)
+                && until > DateTimeOffset.UtcNow) return false;
             return true;
         }
 
         private void MarkNegotiationFailed()
         {
-            _negotiationFailedUntil = DateTimeOffset.UtcNow + NegotiationFailureCooldown;
+            s_negotiationFailedUntil[HubDatabaseId] =
+                DateTimeOffset.UtcNow + NegotiationFailureCooldown;
         }
 
         private void UpdateMode(ConnectionMode mode)
@@ -321,8 +336,9 @@ namespace Reportman.Reporting
 
         public void Dispose()
         {
-            try { _pool.DisposeAsync().AsTask().GetAwaiter().GetResult(); }
-            catch { /* swallow */ }
+            // s_pool is static + shared across executors; do not dispose it
+            // when one executor goes away — the next one needs the warm
+            // sessions. The pool's own idle/maxlife eviction handles staleness.
             try { _httpClient.Dispose(); }
             catch { /* swallow */ }
         }
