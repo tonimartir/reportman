@@ -110,19 +110,25 @@
 		<Reference Include="System.Windows.Forms.DataVisualization">
 			<Version>4.0</Version>
 		</Reference>
-		<PackageReference Include="System.Resources.Extensions" Version="10.0.7" />
+		<!-- PrivateAssets="all" so System.Resources.Extensions is consumed by
+		     the build (MSBuild's GenerateResource task in SDK 10 demands it
+		     for non-string .resx entries) but NOT propagated to downstream
+		     consumers — a .net 8 app referencing this library should not
+		     inherit the 10.0.7 transitive package, which can clash with its
+		     own 8.0.x reference. The asset never flows out of this csproj. -->
+		<PackageReference Include="System.Resources.Extensions" Version="10.0.7" PrivateAssets="all" />
 	</ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net8.0-windows'">
     <PackageReference Include="WinForms.DataVisualization">
       <Version>1.10.0</Version>
     </PackageReference>
-	  <PackageReference Include="System.Resources.Extensions" Version="10.0.7" />
+	  <PackageReference Include="System.Resources.Extensions" Version="10.0.7" PrivateAssets="all" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net9.0-windows'">
     <PackageReference Include="WinForms.DataVisualization">
       <Version>1.10.0</Version>
     </PackageReference>
-	  <PackageReference Include="System.Resources.Extensions" Version="10.0.7" />
+	  <PackageReference Include="System.Resources.Extensions" Version="10.0.7" PrivateAssets="all" />
 
   </ItemGroup>
 </Project>

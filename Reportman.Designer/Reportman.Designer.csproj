@@ -32,7 +32,11 @@
 		<None Include="..\README.md" Pack="true" PackagePath="" />
 	</ItemGroup>
 	<ItemGroup>
-	  <PackageReference Include="System.Resources.Extensions" Version="10.0.7" />
+	  <!-- PrivateAssets="all": consumed by GenerateResource at build time
+	       (SDK 10 demands it for the Designer's own .resx blobs) but never
+	       propagated to apps that reference Reportman.Designer. Keeps a
+	       downstream .net 8 host from inheriting the 10.0.7 transitive. -->
+	  <PackageReference Include="System.Resources.Extensions" Version="10.0.7" PrivateAssets="all" />
 	  <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2903.40" />
 	</ItemGroup>
 	<ItemGroup>
