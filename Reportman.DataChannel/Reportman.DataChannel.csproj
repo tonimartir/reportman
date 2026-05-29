@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Reportman.Hub.Client.DataChannel</RootNamespace>
+    <AssemblyName>Reportman.DataChannel</AssemblyName>
+    <Description>
+      WebRTC DataChannel transport (Direct Client↔Agent) for the Reportman
+      engine. Self-contained: no Reportman.Core / no AI suite dependency, so
+      it can be referenced from both the Delphi-to-C# port at
+      danzai/comunnt/reportman AND from the higher-level Reportman.AI suite
+      without circular references.
+    </Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- WebRTC peer for the direct Client↔Agent DataChannel. -->
+    <PackageReference Include="SIPSorcery" Version="8.0.22" />
+  </ItemGroup>
+
+</Project>

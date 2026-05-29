@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reportman.Drawing.CrossPlat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "printreportpdf", "printreportpdf\printreportpdf.csproj", "{44A18B93-89A6-40BF-A367-F92299C19D08}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reportman.DataChannel", "Reportman.DataChannel\Reportman.DataChannel.csproj", "{692EB90D-37D6-445C-8C3E-595E0DFA099D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -223,6 +225,18 @@ Global
 		{44A18B93-89A6-40BF-A367-F92299C19D08}.Release|x64.Build.0 = Release|Any CPU
 		{44A18B93-89A6-40BF-A367-F92299C19D08}.Release|x86.ActiveCfg = Release|Any CPU
 		{44A18B93-89A6-40BF-A367-F92299C19D08}.Release|x86.Build.0 = Release|Any CPU
+		{692EB90D-37D6-445C-8C3E-595E0DFA099D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{692EB90D-37D6-445C-8C3E-595E0DFA099D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{692EB90D-37D6-445C-8C3E-595E0DFA099D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{692EB90D-37D6-445C-8C3E-595E0DFA099D}.Debug|x64.Build.0 = Debug|Any CPU
+		{692EB90D-37D6-445C-8C3E-595E0DFA099D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{692EB90D-37D6-445C-8C3E-595E0DFA099D}.Debug|x86.Build.0 = Debug|Any CPU
+		{692EB90D-37D6-445C-8C3E-595E0DFA099D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{692EB90D-37D6-445C-8C3E-595E0DFA099D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{692EB90D-37D6-445C-8C3E-595E0DFA099D}.Release|x64.ActiveCfg = Release|Any CPU
+		{692EB90D-37D6-445C-8C3E-595E0DFA099D}.Release|x64.Build.0 = Release|Any CPU
+		{692EB90D-37D6-445C-8C3E-595E0DFA099D}.Release|x86.ActiveCfg = Release|Any CPU
+		{692EB90D-37D6-445C-8C3E-595E0DFA099D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
