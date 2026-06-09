@@ -7,13 +7,15 @@
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
     <Configurations>Debug;Release</Configurations>
     <Platforms>AnyCPU;x86</Platforms>
-    <!-- Required for Forms .resx files containing non-string resources (icons,
-         bitmaps, color blocks). SDK 10 dropped the legacy BinaryFormatter
-         resource writer even for net48, so the flag has to be set
-         uniformly across every target. The System.Resources.Extensions NuGet
-         supplies the preserialized writer; it's already pulled in below for
-         each TFM-specific ItemGroup. -->
-    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+    <!-- Preserialized resources (which need System.Resources.Extensions) ONLY for
+         the modern .NET targets: their GenerateResource task runs on the .NET
+         runtime, which no longer ships BinaryFormatter. net48 is built by
+         full-framework MSBuild.exe, whose classic ResourceWriter still uses
+         BinaryFormatter — so net48 emits CLASSIC .resources with zero dependency
+         on System.Resources.Extensions, keeping the assembly fully loadable by
+         legacy net48 consumers. (net48 therefore must be built with MSBuild.exe,
+         not `dotnet build`.) -->
+    <GenerateResourceUsePreserializedResources Condition="'$(TargetFramework)' != 'net48'">true</GenerateResourceUsePreserializedResources>
   </PropertyGroup>
 	<PropertyGroup>
 		<PackageId>Reportman.Reporting.Forms</PackageId>
@@ -46,12 +48,10 @@
   <ItemGroup>
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
   </ItemGroup>
-  <!-- PrivateAssets="all" so System.Resources.Extensions is consumed by
-       MSBuild's GenerateResource task (SDK 10 requires it for non-string
-       .resx entries on every TFM) but NOT propagated to downstream
-       consumers. A .net 8 app referencing this library would otherwise
-       inherit the 10.0.7 transitive package, clashing with its own 8.0.x. -->
-  <ItemGroup>
-    <PackageReference Include="System.Resources.Extensions" Version="10.0.7" PrivateAssets="all" />
+  <!-- System.Resources.Extensions only for the modern targets (preserialized
+       resources). net48 emits classic resources and must NOT depend on it.
+       PrivateAssets="all" keeps it from flowing to downstream consumers. -->
+  <ItemGroup Condition="'$(TargetFramework)' != 'net48'">
+    <PackageReference Include="System.Resources.Extensions" Version="10.0.8" PrivateAssets="all" />
   </ItemGroup>
 </Project>

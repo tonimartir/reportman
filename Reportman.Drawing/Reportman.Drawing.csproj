@@ -40,6 +40,13 @@
     <DefineConstants>RELEASE;REPMAN_ZLIB</DefineConstants>
     <DebugType>none</DebugType>
   </PropertyGroup>
+  <!-- REPMAN_ZLIB must be defined for every config/platform: StreamUtil's
+       (de)compression API lives behind it and consumers (Reportman.Reporting)
+       call it unconditionally. The per-config groups above only cover the
+       AnyCPU platform, so x86 solution builds would otherwise drop it. -->
+  <PropertyGroup>
+    <DefineConstants>$(DefineConstants);REPMAN_ZLIB</DefineConstants>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Update="Translator.cs">
       <SubType>Component</SubType>
@@ -51,7 +58,7 @@
     <EmbeddedResource Include="Resources\sRGB.icm" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="AngleSharp" Version="0.17.1" />
+    <PackageReference Include="AngleSharp" Version="1.5.0" />
     <PackageReference Include="HtmlSanitizer" Version="9.0.892" />
     <PackageReference Include="SharpZipLib" Version="1.4.2" />
   </ItemGroup>

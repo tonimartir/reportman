@@ -1,7 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>net48;net8.0;net9.0</TargetFrameworks>
+    <!-- net48 defaults to C# 7.3, but the source uses records / init / file-scoped
+         namespaces / nullable, so pin the language version across all targets. -->
+    <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>Reportman.Hub.Client.DataChannel</RootNamespace>
@@ -17,7 +20,17 @@
 
   <ItemGroup>
     <!-- WebRTC peer for the direct Client↔Agent DataChannel. -->
-    <PackageReference Include="SIPSorcery" Version="8.0.22" />
+    <PackageReference Include="SIPSorcery" Version="10.0.9" />
+  </ItemGroup>
+
+  <!-- System.Text.Json ships in-box on net8.0/net9.0 but not on .NET Framework,
+       where SIPSorcery doesn't pull it transitively. (System.Net.WebSockets.Client,
+       System.Memory, etc. already arrive via SIPSorcery's net462 dependencies.) -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
+    <!-- HttpClient / StringContent live in System.Net.Http, which SDK-style
+         .NET Framework projects don't reference automatically. -->
+    <Reference Include="System.Net.Http" />
+    <PackageReference Include="System.Text.Json" Version="10.0.8" />
   </ItemGroup>
 
 </Project>

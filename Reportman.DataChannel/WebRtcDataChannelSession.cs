@@ -1,5 +1,5 @@
 using System.Collections.Concurrent;
-using System.Net.Http.Json;
+using System.Net.Http; // not in the .NET Framework target's implicit usings
 using System.Net.WebSockets;
 using System.Text;
 using System.Text.Json;
@@ -200,12 +200,19 @@ public sealed class WebRtcDataChannelSession : IAsyncDisposable
         using var req = new HttpRequestMessage(HttpMethod.Post, new Uri(_apiBaseUri, "api/data-session/start"));
         if (!string.IsNullOrEmpty(_bearer))
             req.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_bearer}");
-        req.Content = JsonContent.Create(startBody, options: JsonOptions);
+        // StringContent instead of JsonContent.Create so we don't drag in the
+        // System.Net.Http.Json package on the .NET Framework target.
+        var startJson = JsonSerializer.Serialize(startBody, JsonOptions);
+        req.Content = new StringContent(startJson, Encoding.UTF8, "application/json");
 
         using var resp = await _http.SendAsync(req, ct);
         if (!resp.IsSuccessStatusCode) return false;
 
+#if NETFRAMEWORK
+        var body = await resp.Content.ReadAsStringAsync();
+#else
         var body = await resp.Content.ReadAsStringAsync(ct);
+#endif
         using var doc = JsonDocument.Parse(body);
         var root = doc.RootElement;
         _sessionId = root.GetProperty("sessionId").GetString();
@@ -246,7 +253,13 @@ public sealed class WebRtcDataChannelSession : IAsyncDisposable
         // certs in local dev (Kestrel, IIS Express, debug IIS sites with cert
         // bound to a different SAN) would otherwise abort the TLS handshake
         // with RemoteCertificateNameMismatch / ChainErrors.
+#if NETFRAMEWORK
+        // net48's ClientWebSocketOptions has no RemoteCertificateValidationCallback;
+        // the .NET Framework ClientWebSocket honours the process-wide hook instead.
+        System.Net.ServicePointManager.ServerCertificateValidationCallback = (_, _, _, _) => true;
+#else
         _signalingWs.Options.RemoteCertificateValidationCallback = (_, _, _, _) => true;
+#endif
 #endif
         await _signalingWs.ConnectAsync(wsUri, ct);
         return _signalingWs.State == WebSocketState.Open;
@@ -311,6 +324,28 @@ public sealed class WebRtcDataChannelSession : IAsyncDisposable
 
     private static bool IsBinaryFrame(DataChannelPayloadProtocols proto) =>
         proto == DataChannelPayloadProtocols.WebRTC_Binary;
+
+    /// <summary>
+    /// Inflates a zlib (RFC 1950) stream that the Agent produced over the
+    /// FastSerializer output. <see cref="System.IO.Compression.ZLibStream"/>
+    /// only exists on .NET 6+, so on the .NET Framework target we strip the
+    /// 2-byte zlib header and raw-inflate the RFC 1951 deflate payload with
+    /// <see cref="System.IO.Compression.DeflateStream"/> (the trailing 4-byte
+    /// Adler-32 is simply ignored once the deflate block ends).
+    /// </summary>
+    private static byte[] InflateZlib(byte[] buffer, int length)
+    {
+#if NETFRAMEWORK
+        using var src = new MemoryStream(buffer, 2, length - 2, writable: false);
+        using var inflate = new System.IO.Compression.DeflateStream(src, System.IO.Compression.CompressionMode.Decompress);
+#else
+        using var src = new MemoryStream(buffer, 0, length, writable: false);
+        using var inflate = new System.IO.Compression.ZLibStream(src, System.IO.Compression.CompressionMode.Decompress);
+#endif
+        using var dst = new MemoryStream();
+        inflate.CopyTo(dst);
+        return dst.ToArray();
+    }
 
     private ConnectionMode DetectMode()
     {
@@ -450,7 +485,8 @@ public sealed class WebRtcDataChannelSession : IAsyncDisposable
     {
         var json = JsonSerializer.Serialize(payload, JsonOptions);
         var bytes = Encoding.UTF8.GetBytes(json);
-        await _signalingWs!.SendAsync(bytes, WebSocketMessageType.Text, true, ct);
+        // ArraySegment overload — the Memory<byte> overload doesn't exist on net48.
+        await _signalingWs!.SendAsync(new ArraySegment<byte>(bytes), WebSocketMessageType.Text, true, ct);
     }
 
     private async Task<RTCSessionDescriptionInit?> ReadSignalUntilAnswerAsync(CancellationToken ct)
@@ -459,7 +495,7 @@ public sealed class WebRtcDataChannelSession : IAsyncDisposable
         var ms = new MemoryStream();
         while (_signalingWs!.State == WebSocketState.Open)
         {
-            var res = await _signalingWs.ReceiveAsync(buf, ct);
+            var res = await _signalingWs.ReceiveAsync(new ArraySegment<byte>(buf), ct);
             if (res.MessageType == WebSocketMessageType.Close) return null;
             ms.Write(buf, 0, res.Count);
             if (!res.EndOfMessage) continue;
@@ -504,7 +540,7 @@ public sealed class WebRtcDataChannelSession : IAsyncDisposable
         {
             while (_signalingWs!.State == WebSocketState.Open)
             {
-                var res = await _signalingWs.ReceiveAsync(buf, ct);
+                var res = await _signalingWs.ReceiveAsync(new ArraySegment<byte>(buf), ct);
                 if (res.MessageType == WebSocketMessageType.Close) return;
                 ms.Write(buf, 0, res.Count);
                 if (!res.EndOfMessage) continue;
@@ -725,12 +761,9 @@ public sealed class WebRtcDataChannelSession : IAsyncDisposable
                                 });
                                 try
                                 {
-                                    using var src = new MemoryStream(state.Buffer.GetBuffer(), 0, (int)state.Buffer.Length, writable: false);
-                                    using var zlib = new System.IO.Compression.ZLibStream(src, System.IO.Compression.CompressionMode.Decompress);
-                                    using var dst = new MemoryStream();
-                                    zlib.CopyTo(dst);
+                                    var inflated = InflateZlib(state.Buffer.GetBuffer(), (int)state.Buffer.Length);
                                     _onProgress?.Invoke(QueryProgress.Done());
-                                    state.Completion.TrySetResult(dst.ToArray());
+                                    state.Completion.TrySetResult(inflated);
                                 }
                                 catch (Exception decompressEx)
                                 {
@@ -802,10 +835,13 @@ public sealed class WebRtcDataChannelSession : IAsyncDisposable
         {
             try
             {
-                // Bounded wait — anything still hanging will be observed
-                // either way because we awaited the Task.
-                using var to = new CancellationTokenSource(TimeSpan.FromSeconds(2));
-                await _signalingLoopTask.WaitAsync(to.Token);
+                // Bounded wait — Task.WaitAsync is net6+, so use WhenAny for the
+                // net48 target. If the loop finished we await it to observe any
+                // exception; if it timed out, SignalingReceiveLoopAsync swallows
+                // everything internally so nothing surfaces unobserved.
+                var finished = await Task.WhenAny(_signalingLoopTask, Task.Delay(TimeSpan.FromSeconds(2)));
+                if (finished == _signalingLoopTask)
+                    await _signalingLoopTask;
             }
             catch { /* observed and intentionally swallowed */ }
         }

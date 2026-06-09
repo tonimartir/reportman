@@ -7,7 +7,9 @@
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
     <Configurations>Debug;Release</Configurations>
     <Platforms>AnyCPU;x86</Platforms>
-    <GenerateResourceUsePreserializedResources Condition="'$(TargetFramework)' == 'net48'">true</GenerateResourceUsePreserializedResources>
+    <!-- Preserialized resources solo para targets modernos (.NET sin BinaryFormatter);
+         net48 emite recursos clásicos y NO depende de System.Resources.Extensions. -->
+    <GenerateResourceUsePreserializedResources Condition="'$(TargetFramework)' != 'net48'">true</GenerateResourceUsePreserializedResources>
   </PropertyGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
     <Reference Include="System.IO.Compression" />
@@ -36,7 +38,7 @@
 	       (SDK 10 demands it for the Designer's own .resx blobs) but never
 	       propagated to apps that reference Reportman.Designer. Keeps a
 	       downstream .net 8 host from inheriting the 10.0.7 transitive. -->
-	  <PackageReference Include="System.Resources.Extensions" Version="10.0.7" PrivateAssets="all" />
+	  <PackageReference Include="System.Resources.Extensions" Version="10.0.7" PrivateAssets="all" Condition="'$(TargetFramework)' != 'net48'" />
 	  <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2903.40" />
 	</ItemGroup>
 	<ItemGroup>
