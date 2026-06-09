@@ -1279,6 +1279,14 @@ namespace Reportman.Drawing
             Point full_extent = new Point(arect.Width, arect.Height);
             var linfos = npdfdriver.TextExtentLineInfo(atext, ref full_extent);
             Rectangle recsize = new Rectangle(0, 0, full_extent.X, full_extent.Y);
+            // When the measurement comes from the complex shaper (UsePDFFonts / FreeType / RTL /
+            // HTML) LineInfo.TopPos is baseline-relative (line top + ascent), the same convention
+            // the PDF TextOut and the glyph ExtTextOutW paths consume. GDI+ DrawString below
+            // positions text by the TOP of the rectangle, so the baseline-relative TopPos must be
+            // converted to a top offset by subtracting the first line's TopPos, exactly as
+            // TextRectHtml does. The legacy (non-shaped) path leaves Glyphs null and already
+            // returns a top-relative TopPos, so no adjustment is applied there.
+            int baselineToTop = (linfos.Count > 0 && linfos[0].Glyphs != null) ? linfos[0].TopPos : 0;
             // Align bottom or center
             posy = arect.Top;
             if ((Alignment & MetaFile.AlignmentFlags_AlignBottom) > 0)
@@ -1343,7 +1351,7 @@ namespace Reportman.Drawing
                         for (int lindex = 0; lindex < lwords.Count; lindex++)
                         {
                             string nword = lwords[lindex];
-                            nposy = posy + linfo.TopPos;
+                            nposy = posy + linfo.TopPos - baselineToTop;
                             nposy = (int)Math.Round((double)(nposy * intdpiy) / 1440 * Scale);
                             // Last word aligned to the right
                             if ((lwords.Count > 1) && (lindex == lwords.Count - 1))
@@ -1375,7 +1383,7 @@ namespace Reportman.Drawing
                     //StringFormat.GenericTypographic
                     posx = arect.Left;
                     nposx = posx;
-                    nposy = posy + linfo.TopPos;
+                    nposy = posy + linfo.TopPos - baselineToTop;
 
                     nposy = (int)Math.Round((double)(nposy * intdpiy) / 1440 * Scale);
                     //gr.DrawRectangle(new Pen(Brushes.Black, 0), new Rectangle((int)Math.Round((double)(nposx * intdpix) / 1440 * Scale),
