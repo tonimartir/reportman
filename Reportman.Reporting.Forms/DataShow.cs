@@ -21,6 +21,9 @@
 using Reportman.Drawing;
 using System;
 using System.Windows.Forms;
+#if NET8_0_OR_GREATER
+using Reportman.Hub.Client.DataChannel;
+#endif
 
 namespace Reportman.Reporting.Forms
 {
@@ -45,6 +48,7 @@ namespace Reportman.Reporting.Forms
             InitializeComponent();
             Width = Convert.ToInt32(800 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
             Height = Convert.ToInt32(600 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
+            CreateTransportChip();
         }
 
         /// <summary>
@@ -140,6 +144,93 @@ namespace Reportman.Reporting.Forms
             dataGrid1.Invalidate();
         }
         private ReportDataset Data;
+        private Label transportChip;
+
+        /// <summary>
+        /// Chip on the top bar showing the effective transport of the query
+        /// (mirror of the Delphi rpdctransportchip panel in the sample data
+        /// form). Created empty/hidden; painted by ApplyTransportChip once
+        /// the dataset is connected — only then is the final protocol known.
+        /// </summary>
+        private void CreateTransportChip()
+        {
+            transportChip = new Label();
+            transportChip.AutoSize = false;
+            transportChip.Width = Convert.ToInt32(180 * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
+            transportChip.Dock = DockStyle.Right;
+            transportChip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            transportChip.Font = new System.Drawing.Font(Font, System.Drawing.FontStyle.Bold);
+            transportChip.Visible = false;
+            panel1.Controls.Add(transportChip);
+        }
+
+        private void ApplyTransportChip(DatabaseInfo dbinfo)
+        {
+            // Wording and colors follow the Delphi FormatTransportMode /
+            // ApplyTransportChip pair so both designers read the same.
+            string caption = null;
+            var fill = System.Drawing.Color.FromArgb(0xE0, 0xE0, 0xE0);
+            var text = System.Drawing.Color.FromArgb(0x80, 0x80, 0x80);
+            if (dbinfo != null)
+            {
+#if NET8_0_OR_GREATER
+                if (dbinfo.SqlExecuter is DirectAgentExecutor direct)
+                {
+                    switch (direct.LastConnectionMode)
+                    {
+                        case ConnectionMode.P2P:
+                            caption = "Direct P2P (Host)";
+                            fill = System.Drawing.Color.FromArgb(0x84, 0xD6, 0xA5);
+                            text = System.Drawing.Color.FromArgb(0x1C, 0x50, 0x23);
+                            break;
+                        case ConnectionMode.HolePunched:
+                            caption = "Hole-Punch (NAT/STUN)";
+                            fill = System.Drawing.Color.FromArgb(0x6B, 0xB7, 0xBD);
+                            text = System.Drawing.Color.FromArgb(0x40, 0x3C, 0x20);
+                            break;
+                        case ConnectionMode.Relay:
+                            caption = "Relay (TURN)";
+                            fill = System.Drawing.Color.FromArgb(0xEB, 0x8D, 0x1F);
+                            text = System.Drawing.Color.White;
+                            break;
+                        case ConnectionMode.Api:
+                            caption = "API (HTTP fallback)";
+                            fill = System.Drawing.Color.FromArgb(0xBD, 0xBD, 0xBD);
+                            text = System.Drawing.Color.FromArgb(0x40, 0x40, 0x40);
+                            break;
+                        default:
+                            caption = "Unknown";
+                            break;
+                    }
+                }
+                else if (dbinfo.SqlExecuter is HttpAgentExecutor)
+                {
+                    caption = "API (HTTP)";
+                    fill = System.Drawing.Color.FromArgb(0xBD, 0xBD, 0xBD);
+                    text = System.Drawing.Color.FromArgb(0x40, 0x40, 0x40);
+                }
+#else
+                if (dbinfo.SqlExecuter is HttpAgentExecutor)
+                {
+                    caption = "API (HTTP)";
+                    fill = System.Drawing.Color.FromArgb(0xBD, 0xBD, 0xBD);
+                    text = System.Drawing.Color.FromArgb(0x40, 0x40, 0x40);
+                }
+#endif
+            }
+            if (caption == null)
+            {
+                // Plain database drivers (no Agent executor): no chip, same
+                // as a local BDE/FireDAC dataset in the Delphi designer.
+                transportChip.Visible = false;
+                return;
+            }
+            transportChip.Text = caption;
+            transportChip.BackColor = fill;
+            transportChip.ForeColor = text;
+            transportChip.Visible = true;
+        }
+
         /// <summary>
         /// Show report dataset data
         /// </summary>
@@ -151,13 +242,24 @@ namespace Reportman.Reporting.Forms
             index = areport.DataInfo.IndexOf(datasetName);
             if (index < 0)
                 throw new NamedException("Dataset not found:" + datasetName, datasetName);
-            areport.DataInfo[index].Connect();
+            DataInfo dinfo = areport.DataInfo[index];
+            dinfo.Connect();
             DataShow dia = new DataShow();
-            dia.Data = areport.DataInfo[index].Data;
+            dia.Data = dinfo.Data;
             dia.dataGrid1.Columns.Clear();
             dia.dataGrid1.AutoGenerateColumns = true;
             dia.dataGrid1.DataSource = null;
-            dia.dataGrid1.DataSource = dia.Data;
+            // With an IDbCommandExecuter (HttpAgent / DataDirect) the rows
+            // live in Data.CurrentView — a DataView over the executor's
+            // result table — and the ReportDataset itself stays empty, so
+            // binding the dataset showed an empty grid. Bind the view when
+            // present; reader-based drivers keep the legacy binding.
+            dia.dataGrid1.DataSource = (object)dinfo.Data.CurrentView ?? dinfo.Data;
+            DatabaseInfo dbinfo = null;
+            if (!string.IsNullOrEmpty(dinfo.DatabaseAlias)
+                && areport.DatabaseInfo.IndexOf(dinfo.DatabaseAlias) >= 0)
+                dbinfo = areport.DatabaseInfo[dinfo.DatabaseAlias];
+            dia.ApplyTransportChip(dbinfo);
             dia.ShowDialog(ParentForm);
         }
 
