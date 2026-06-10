@@ -807,10 +807,19 @@ namespace Reportman.Drawing
                 
                 // Detect paragraph direction from first strong directional character.
                 // This is a fundamental bidi requirement: visual run ordering depends on paragraph embedding level.
-                textFormat.ReadingDirection = DetectParagraphDirectionPublic(Text) 
-                    ? SharpDX.DirectWrite.ReadingDirection.RightToLeft 
+                textFormat.ReadingDirection = DetectParagraphDirectionPublic(Text)
+                    ? SharpDX.DirectWrite.ReadingDirection.RightToLeft
                     : SharpDX.DirectWrite.ReadingDirection.LeftToRight;
-            
+
+                // Honour the WordWrap / SingleLine flags. DirectWrite's TextLayout defaults to
+                // WordWrapping.Wrap, which would break long lines at the box width even when the
+                // report object has WordWrap = false (only explicit line breaks should split lines).
+                // The legacy TextExtentSimple path already respects this (PDFCanvas: "|| !wordbreak"),
+                // so the shaper must too, otherwise GDI/metafile printing wraps where the PDF does not.
+                textFormat.WordWrapping = (wordwrap && !singleline)
+                    ? SharpDX.DirectWrite.WordWrapping.Wrap
+                    : SharpDX.DirectWrite.WordWrapping.NoWrap;
+
             string layoutText = Text;
             List<HtmlFormatRun> htmlRuns = null;
 

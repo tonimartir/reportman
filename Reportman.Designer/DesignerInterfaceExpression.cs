@@ -13,6 +13,23 @@ namespace Reportman.Designer
             if (repitem.Count >= 0)
                 FPrintItemExpression = (ExpressionItem)repitem.Values[0];
         }
+        // The "dataType" dropdown (see GetPropertyValues) lists its options in a curated order
+        // [Unknown, String, Integer, Float, Currency, Date, DateTime, Time, Boolean] that does NOT
+        // match the ParamType enum integer order. The object inspector binds a list property by the
+        // POSITION of the value within the options list, so we translate between the ParamType value
+        // and that position. Index in the dropdown -> ParamType numeric value:
+        private static readonly int[] DataTypeIndexToParamType = { 16, 0, 1, 2, 6, 3, 5, 4, 7 };
+        private static int DataTypeToIndex(ParamType dataType)
+        {
+            int index = System.Array.IndexOf(DataTypeIndexToParamType, (int)dataType);
+            return index >= 0 ? index : 0;
+        }
+        private static ParamType IndexToDataType(int index)
+        {
+            if (index >= 0 && index < DataTypeIndexToParamType.Length)
+                return (ParamType)DataTypeIndexToParamType[index];
+            return ParamType.Unknown;
+        }
         public override void GetProperties(Strings lnames, Strings ltypes, Variants lvalues, Strings lhints, Strings lcat)
         {
             base.GetProperties(lnames, ltypes, lvalues, lhints, lcat);
@@ -31,7 +48,7 @@ namespace Reportman.Designer
             lhints.Add("refexpression.html");
             lcat.Add(Translator.TranslateStr(571));
             if (lvalues != null)
-                lvalues.Add((int)FPrintItemExpression.DataType);
+                lvalues.Add(DataTypeToIndex(FPrintItemExpression.DataType));
 
             // DisplayFormat
             lnames.Add(Translator.TranslateStr(574));
@@ -166,7 +183,7 @@ namespace Reportman.Designer
                 return FPrintItemExpression.Expression;
             // DataType
             if (pname == Translator.TranslateStr(892))
-                return (int)FPrintItemExpression.DataType;
+                return DataTypeToIndex(FPrintItemExpression.DataType);
             // DisplayFormat
             if (pname == Translator.TranslateStr(574))
                 return FPrintItemExpression.DisplayFormat;
@@ -208,7 +225,7 @@ namespace Reportman.Designer
             // DataType
             if (pname == Translator.TranslateStr(892))
             {
-                FPrintItemExpression.DataType = (ParamType)(int)newvalue;
+                FPrintItemExpression.DataType = IndexToDataType((int)newvalue);
             }
             else
             // DisplayFormat

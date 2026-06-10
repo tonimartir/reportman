@@ -23,6 +23,19 @@ namespace Reportman.Reporting
             RedoOperations.Clear();
         }
 
+        /// <summary>
+        /// Elimina del histórico las operaciones de deshacer (y rehacer) anteriores a <paramref name="date"/>,
+        /// según su marca de tiempo <see cref="ChangeObjectOperation.Date"/>. Las operaciones sin fecha se
+        /// conservan (no se pueden datar). Sirve para que el histórico persistido del informe no crezca sin
+        /// límite. Devuelve el número de operaciones de deshacer eliminadas.
+        /// </summary>
+        public int RemoveOperationsOlderThan(DateTime date)
+        {
+            int removed = UndoOperations.RemoveAll(op => op.Date.HasValue && op.Date.Value < date);
+            RedoOperations.RemoveAll(op => op.Date.HasValue && op.Date.Value < date);
+            return removed;
+        }
+
         public int GetGroupId()
         {
             SynchronizeGroupIdFromQueues();
