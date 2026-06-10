@@ -76,6 +76,18 @@ public sealed class WebRtcDataChannelSession : IAsyncDisposable
     private Task? _signalingLoopTask;
     private readonly CancellationTokenSource _signalingLoopCts = new();
 
+    // Serialises every signaling-WS send (the offer plus trickled local ICE
+    // candidates). ClientWebSocket.SendAsync forbids concurrent sends, and the
+    // onicecandidate callback fires on a worker thread while NegotiateAsync may
+    // still be sending the offer.
+    private readonly SemaphoreSlim _wsSendLock = new(1, 1);
+    // Local ICE candidates gathered before the offer reached the Agent are
+    // buffered here and flushed once the Agent has a remote description to
+    // attach them to (addIceCandidate needs the offer applied first).
+    private readonly object _iceSendLock = new();
+    private bool _offerDelivered;
+    private readonly List<object> _bufferedLocalCandidates = new();
+
     private readonly ConcurrentDictionary<string, RequestState> _requests = new();
 
     /// <summary>
@@ -234,6 +246,14 @@ public sealed class WebRtcDataChannelSession : IAsyncDisposable
 
         _peer = new RTCPeerConnection(new RTCConfiguration { iceServers = iceServers });
         _channel = await _peer.createDataChannel("data");
+        // Trickle our local ICE candidates to the Agent as they are gathered,
+        // exactly like the Delphi client (rpdchub.OnSessionLocalCandidate).
+        // Without this a home/NAT client's srflx (STUN-reflexive) candidate —
+        // which is gathered asynchronously, often after the offer's gather
+        // window — never reaches the Agent, so the only candidate pair that
+        // could ever form was a same-machine host<->host one. That is why the
+        // C# direct channel worked on the server but threw on a remote client.
+        _peer.onicecandidate += OnLocalIceCandidate;
         return true;
     }
 
@@ -277,6 +297,11 @@ public sealed class WebRtcDataChannelSession : IAsyncDisposable
         // from the Hub. The middleware echoes the Hub response as
         // {"source":"hub","body":"{\"requestId\":..,\"success\":..,\"data\":..}"}.
         await SendSignalAsync(new { type = "offer", sdp = offerSdp }, ct);
+
+        // The Agent now has (or is about to receive) the offer, so it can
+        // attach trickled candidates. Release the ones buffered during the
+        // gather window and let subsequent ones flow straight through.
+        await FlushLocalIceCandidatesAsync(ct);
 
         var answer = await ReadSignalUntilAnswerAsync(ct);
         if (answer == null) return false;
@@ -485,8 +510,68 @@ public sealed class WebRtcDataChannelSession : IAsyncDisposable
     {
         var json = JsonSerializer.Serialize(payload, JsonOptions);
         var bytes = Encoding.UTF8.GetBytes(json);
-        // ArraySegment overload — the Memory<byte> overload doesn't exist on net48.
-        await _signalingWs!.SendAsync(new ArraySegment<byte>(bytes), WebSocketMessageType.Text, true, ct);
+        // ClientWebSocket forbids overlapping SendAsync calls; the offer send
+        // and the trickled ICE candidates (fired from the gather callback)
+        // would otherwise race. The receive side is independent and unaffected.
+        await _wsSendLock.WaitAsync(ct);
+        try
+        {
+            // ArraySegment overload — the Memory<byte> overload doesn't exist on net48.
+            await _signalingWs!.SendAsync(new ArraySegment<byte>(bytes), WebSocketMessageType.Text, true, ct);
+        }
+        finally
+        {
+            _wsSendLock.Release();
+        }
+    }
+
+    /// <summary>
+    /// onicecandidate callback: forward a freshly-gathered local candidate to
+    /// the Agent. Candidates discovered before the offer was delivered are
+    /// buffered (the Agent can't attach them without a remote description yet)
+    /// and released by <see cref="FlushLocalIceCandidatesAsync"/>.
+    /// </summary>
+    private void OnLocalIceCandidate(RTCIceCandidate candidate)
+    {
+        if (candidate == null) return;
+        var frame = new
+        {
+            type = "ice",
+            candidate = new
+            {
+                candidate = candidate.candidate,
+                sdpMid = candidate.sdpMid,
+                sdpMLineIndex = candidate.sdpMLineIndex
+            }
+        };
+        lock (_iceSendLock)
+        {
+            if (!_offerDelivered)
+            {
+                _bufferedLocalCandidates.Add(frame);
+                return;
+            }
+        }
+        _ = TrySendSignalAsync(frame, _signalingLoopCts.Token);
+    }
+
+    private async Task FlushLocalIceCandidatesAsync(CancellationToken ct)
+    {
+        List<object> toFlush;
+        lock (_iceSendLock)
+        {
+            _offerDelivered = true;
+            toFlush = new List<object>(_bufferedLocalCandidates);
+            _bufferedLocalCandidates.Clear();
+        }
+        foreach (var frame in toFlush)
+            await TrySendSignalAsync(frame, ct);
+    }
+
+    private async Task TrySendSignalAsync(object payload, CancellationToken ct)
+    {
+        try { await SendSignalAsync(payload, ct); }
+        catch { /* WS closing/closed — a late candidate is no longer needed */ }
     }
 
     private async Task<RTCSessionDescriptionInit?> ReadSignalUntilAnswerAsync(CancellationToken ct)
@@ -847,6 +932,7 @@ public sealed class WebRtcDataChannelSession : IAsyncDisposable
         }
 
         try { _signalingLoopCts.Dispose(); } catch { }
+        try { _wsSendLock.Dispose(); } catch { }
         GC.SuppressFinalize(this);
     }
 
