@@ -198,11 +198,40 @@ public sealed class WebRtcDataChannelSession : IAsyncDisposable
             }
             return session;
         }
-        catch
+        catch (Exception ex)
         {
+            DcLog($"TryOpenAsync FAILED: {ex.GetType().Name}: {ex.Message}");
             await session.DisposeAsync();
             return null;
         }
+    }
+
+    /// <summary>
+    /// Debug-only trace of the direct-channel negotiation. Writes to
+    /// <c>%TEMP%\repman_dc_debug.log</c> so a home/NAT run can be diagnosed
+    /// after the fact (which phase reached, which candidates were exchanged,
+    /// where it threw). Compiled out of Release builds.
+    /// </summary>
+    [System.Diagnostics.Conditional("DEBUG")]
+    private static void DcLog(string msg)
+    {
+        try
+        {
+            var line = DateTime.Now.ToString("HH:mm:ss.fff ") + msg + Environment.NewLine;
+            System.IO.File.AppendAllText(
+                System.IO.Path.Combine(System.IO.Path.GetTempPath(), "repman_dc_debug.log"), line);
+        }
+        catch { /* diagnostics must never throw */ }
+    }
+
+    /// <summary>Compact a full ICE candidate line to "&lt;addr&gt; typ &lt;type&gt;" for the trace.</summary>
+    private static string ShortCand(string? cand)
+    {
+        if (string.IsNullOrEmpty(cand)) return "(empty)";
+        var parts = cand.Split(' ');
+        if (parts.Length >= 8 && parts[6] == "typ")
+            return $"{parts[4]}:{parts[5]} typ {parts[7]}";
+        return cand.Length > 60 ? cand.Substring(0, 60) : cand;
     }
 
     // --------------- Negotiation ---------------
@@ -243,6 +272,7 @@ public sealed class WebRtcDataChannelSession : IAsyncDisposable
         }
         if (iceServers.Count == 0)
             iceServers.Add(new RTCIceServer { urls = "stun:stun.l.google.com:19302" });
+        DcLog($"session started, iceServers=[{string.Join(", ", iceServers.Select(s => s.urls))}]");
 
         _peer = new RTCPeerConnection(new RTCConfiguration { iceServers = iceServers });
         _channel = await _peer.createDataChannel("data");
@@ -268,6 +298,14 @@ public sealed class WebRtcDataChannelSession : IAsyncDisposable
         }.Uri;
 
         _signalingWs = new ClientWebSocket();
+        // Disable the WebSocket keep-alive heartbeat. The session is short-lived
+        // and the Agent's liveness pulse rides the DataChannel, not this WS. With
+        // keep-alive enabled, its background timer fires an unsolicited pong AFTER
+        // we dispose the WS during teardown, writing to an already-disposed
+        // SslStream -> ObjectDisposedException on a timer thread, unobserved. From
+        // a home/NAT client (where negotiation churns and tears down more often)
+        // that surfaced as part of the socket-exception storm.
+        _signalingWs.Options.KeepAliveInterval = TimeSpan.Zero;
 #if DEBUG
         // Match the HubApiClient HttpClient policy in Debug builds — self-signed
         // certs in local dev (Kestrel, IIS Express, debug IIS sites with cert
@@ -292,6 +330,8 @@ public sealed class WebRtcDataChannelSession : IAsyncDisposable
         await _peer.setLocalDescription(offer);
         await WaitIceGatherAsync(_peer, IceGatherTimeout);
         var offerSdp = _peer.localDescription!.sdp.ToString();
+        DcLog($"offer built, gatherState={_peer.iceGatheringState}, offer candidate lines=" +
+              offerSdp.Split('\n').Count(l => l.Contains("a=candidate")));
 
         // Send the offer through the signaling WS and read the wrapped reply
         // from the Hub. The middleware echoes the Hub response as
@@ -304,7 +344,8 @@ public sealed class WebRtcDataChannelSession : IAsyncDisposable
         await FlushLocalIceCandidatesAsync(ct);
 
         var answer = await ReadSignalUntilAnswerAsync(ct);
-        if (answer == null) return false;
+        if (answer == null) { DcLog("answer NULL (signaling closed or error)"); return false; }
+        DcLog("answer received, setting remote description");
         _peer.setRemoteDescription(answer);
 
         // From here on, keep the signaling WS open just to receive Agent-
@@ -334,7 +375,9 @@ public sealed class WebRtcDataChannelSession : IAsyncDisposable
         timeoutCts.CancelAfter(TimeSpan.FromSeconds(OpenTimeoutSeconds));
         timeoutCts.Token.Register(() => openTcs.TrySetResult(false));
 
+        _peer!.onconnectionstatechange += st => DcLog($"peer connectionState={st}");
         var opened = await openTcs.Task;
+        DcLog($"DataChannel openResult={opened}, channelState={_channel?.readyState}, peerState={_peer?.connectionState}");
         if (!opened) return false;
 
         // Plug the DC inbound handler now that we know it's live. The proto
@@ -544,6 +587,7 @@ public sealed class WebRtcDataChannelSession : IAsyncDisposable
                 sdpMLineIndex = candidate.sdpMLineIndex
             }
         };
+        DcLog($"local ICE -> agent: {ShortCand(candidate.candidate)}");
         lock (_iceSendLock)
         {
             if (!_offerDelivered)
@@ -642,7 +686,7 @@ public sealed class WebRtcDataChannelSession : IAsyncDisposable
                         payload.TryGetProperty("candidate", out var cand))
                     {
                         var init = JsonSerializer.Deserialize<RTCIceCandidateInit>(cand.GetRawText(), JsonOptions);
-                        if (init != null) _peer?.addIceCandidate(init);
+                        if (init != null) { DcLog($"agent ICE -> local: {ShortCand(init.candidate)}"); _peer?.addIceCandidate(init); }
                     }
                 }
                 catch { /* ignore */ }
