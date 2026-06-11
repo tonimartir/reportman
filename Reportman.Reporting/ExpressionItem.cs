@@ -291,9 +291,15 @@ namespace Reportman.Reporting
 
             if (IsPartial)
             {
-                if ((aresult[PartialPos] == ' ') || (aresult[PartialPos] == (char)10))
-                    if (aresult.Length >= (PartialPos - 2))
-                        PartialPos++;
+                // Skip one boundary space/newline. Guard the index: PartialPos is a
+                // full-string offset and could reach or exceed aresult.Length if the
+                // evaluated text is shorter on a later pass (two-pass / total-pages
+                // substitution), which would throw IndexOutOfRangeException.
+                if (PartialPos < aresult.Length &&
+                    ((aresult[PartialPos] == ' ') || (aresult[PartialPos] == (char)10)))
+                    PartialPos++;
+                if (PartialPos > aresult.Length)
+                    PartialPos = aresult.Length;
                 aresult = aresult.Substring(PartialPos, aresult.Length - PartialPos);
             }
             return aresult;
