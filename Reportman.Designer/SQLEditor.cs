@@ -294,6 +294,16 @@ namespace Reportman.Designer
         {
             await SyncSqlFromEditorAsync();
 
+            // SyncSqlFromEditorAsync awaits WebView2.ExecuteScriptAsync (reads the
+            // SQL from Monaco). That Task completes INLINE inside CoreWebView2's
+            // native completion callback, so our continuation here is still running
+            // on WebView2's COM (STA) apartment. Opening a modal dialog below pumps
+            // a nested message loop, which re-enters that apartment mid-callback and
+            // throws SEHException "External component has thrown an exception". Yield
+            // first so the connect + DataShow run on a clean message-loop turn, fully
+            // outside the WebView2 callback.
+            await Task.Yield();
+
             DataInfo dinfo = GetDataInfo();
             DatabaseInfo dbinfo = GetDatabaseInfo(dinfo);
             if (dinfo == null || dbinfo == null)
