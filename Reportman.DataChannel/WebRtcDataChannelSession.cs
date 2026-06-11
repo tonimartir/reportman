@@ -87,6 +87,10 @@ public sealed class WebRtcDataChannelSession : IAsyncDisposable
     private readonly object _iceSendLock = new();
     private bool _offerDelivered;
     private readonly List<object> _bufferedLocalCandidates = new();
+    // Agent ICE candidates that arrived (over the signaling WS) before the
+    // answer was applied. addIceCandidate needs a remote description, so they
+    // are held here and flushed immediately after setRemoteDescription.
+    private readonly List<RTCIceCandidateInit> _pendingRemoteCandidates = new();
 
     private readonly ConcurrentDictionary<string, RequestState> _requests = new();
 
@@ -207,14 +211,26 @@ public sealed class WebRtcDataChannelSession : IAsyncDisposable
     }
 
     /// <summary>
-    /// Debug-only trace of the direct-channel negotiation. Writes to
-    /// <c>%TEMP%\repman_dc_debug.log</c> so a home/NAT run can be diagnosed
-    /// after the fact (which phase reached, which candidates were exchanged,
-    /// where it threw). Compiled out of Release builds.
+    /// Raised for every direct-channel negotiation trace line. A UI host (e.g.
+    /// the Designer's "Net Log" tab) can subscribe to surface the handshake
+    /// live: iceServers, candidates exchanged, answer arrival, peer state and
+    /// where it threw. Fired on whatever thread produced the line (often a
+    /// SIPSorcery worker) — subscribers must marshal to their UI thread.
+    /// Static because sessions are created deep inside the engine
+    /// (DirectAgentExecutor) with no handle to the UI.
     /// </summary>
-    [System.Diagnostics.Conditional("DEBUG")]
+    public static event Action<string>? DiagnosticLog;
+
+    /// <summary>
+    /// Trace one line of the direct-channel negotiation. Always raises
+    /// <see cref="DiagnosticLog"/> (cheap no-op when nobody listens); also
+    /// appends to <c>%TEMP%\repman_dc_debug.log</c> in Debug builds so a
+    /// home/NAT run can be diagnosed from a file after the fact.
+    /// </summary>
     private static void DcLog(string msg)
     {
+        try { DiagnosticLog?.Invoke(msg); } catch { /* a bad UI handler must not break negotiation */ }
+#if DEBUG
         try
         {
             var line = DateTime.Now.ToString("HH:mm:ss.fff ") + msg + Environment.NewLine;
@@ -222,6 +238,7 @@ public sealed class WebRtcDataChannelSession : IAsyncDisposable
                 System.IO.Path.Combine(System.IO.Path.GetTempPath(), "repman_dc_debug.log"), line);
         }
         catch { /* diagnostics must never throw */ }
+#endif
     }
 
     /// <summary>Compact a full ICE candidate line to "&lt;addr&gt; typ &lt;type&gt;" for the trace.</summary>
@@ -347,6 +364,17 @@ public sealed class WebRtcDataChannelSession : IAsyncDisposable
         if (answer == null) { DcLog("answer NULL (signaling closed or error)"); return false; }
         DcLog("answer received, setting remote description");
         _peer.setRemoteDescription(answer);
+
+        // Apply Agent candidates that arrived before the answer (buffered above,
+        // because addIceCandidate requires the remote description to exist). This
+        // is what gives a NAT/home client the Agent's srflx candidate so ICE can
+        // actually form a pair.
+        foreach (var ic in _pendingRemoteCandidates)
+        {
+            try { DcLog($"agent ICE (flush after answer): {ShortCand(ic.candidate)}"); _peer.addIceCandidate(ic); }
+            catch (Exception ex) { DcLog($"addIceCandidate(buffered) threw: {ex.GetType().Name}"); }
+        }
+        _pendingRemoteCandidates.Clear();
 
         // From here on, keep the signaling WS open just to receive Agent-
         // originated ICE candidates (Fase 3 already works with non-trickle,
@@ -638,7 +666,32 @@ public sealed class WebRtcDataChannelSession : IAsyncDisposable
                 using var doc = JsonDocument.Parse(msgBytes);
                 var root = doc.RootElement;
                 if (!root.TryGetProperty("source", out var src)) continue;
-                if (src.GetString() != "hub") continue;
+                var srcStr = src.GetString();
+                if (srcStr == "agent")
+                {
+                    // The Agent trickles its ICE candidates as soon as it builds
+                    // the answer, so they routinely arrive BEFORE or alongside the
+                    // answer. We can't addIceCandidate yet (no remote description),
+                    // so BUFFER them and apply right after setRemoteDescription.
+                    // Previously they were dropped here, which is why a NAT/home
+                    // client received zero Agent candidates and ICE could never
+                    // form a pair (peer stuck in 'new'). On the same machine the
+                    // answer SDP already carried a usable host candidate, hiding
+                    // the bug.
+                    if (root.TryGetProperty("payload", out var ap) &&
+                        ap.TryGetProperty("type", out var at) && at.GetString() == "ice" &&
+                        ap.TryGetProperty("candidate", out var ac))
+                    {
+                        var ic = JsonSerializer.Deserialize<RTCIceCandidateInit>(ac.GetRawText(), JsonOptions);
+                        if (ic != null)
+                        {
+                            DcLog($"agent ICE (pre-answer, buffered): {ShortCand(ic.candidate)}");
+                            _pendingRemoteCandidates.Add(ic);
+                        }
+                    }
+                    continue;
+                }
+                if (srcStr != "hub") continue;
                 var body = root.GetProperty("body").GetString();
                 if (string.IsNullOrEmpty(body)) continue;
                 using var inner = JsonDocument.Parse(body);

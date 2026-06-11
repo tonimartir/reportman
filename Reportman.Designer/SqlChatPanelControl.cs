@@ -7,6 +7,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Reportman.Reporting;
+#if NET8_0_OR_GREATER
+using Reportman.Hub.Client.DataChannel;
+#endif
 
 namespace Reportman.Designer
 {
@@ -45,6 +48,9 @@ namespace Reportman.Designer
         private ReportmanAgentClient _agentClient;
         private CancellationTokenSource _cts;
         private Action<string> _authLogHandler;
+#if NET8_0_OR_GREATER
+        private Action<string> _dcLogHandler;
+#endif
         private bool _isBusy;
         private string _currentSql = "";
         private string _suggestedSql = "";
@@ -68,6 +74,14 @@ namespace Reportman.Designer
             _agentClient.LogMessage += AppendNetLog;
             _authLogHandler = AppendNetLog;
             RpAuthManager.Instance.LogMessage += _authLogHandler;
+#if NET8_0_OR_GREATER
+            // Surface the WebRTC direct-channel handshake (iceServers, ICE
+            // candidate exchange, peer state) in the Net Log so a Show Data
+            // negotiation can be watched live, not just via the temp file.
+            // net48 falls back to HTTP only, so there is no handshake to trace.
+            _dcLogHandler = msg => AppendNetLog("DC " + msg);
+            WebRtcDataChannelSession.DiagnosticLog += _dcLogHandler;
+#endif
             RpAuthManager.Instance.AuthChanged += OnAuthChanged;
             HandleCreated += (s, e) =>
             {
@@ -83,6 +97,10 @@ namespace Reportman.Designer
                 RpAuthManager.Instance.AuthChanged -= OnAuthChanged;
                 if (_authLogHandler != null)
                     RpAuthManager.Instance.LogMessage -= _authLogHandler;
+#if NET8_0_OR_GREATER
+                if (_dcLogHandler != null)
+                    WebRtcDataChannelSession.DiagnosticLog -= _dcLogHandler;
+#endif
                 if (_agentClient != null)
                     _agentClient.LogMessage -= AppendNetLog;
                 if (_cts != null)
