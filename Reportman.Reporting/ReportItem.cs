@@ -537,7 +537,8 @@ namespace Reportman.Reporting
                         var pos = page.AddString(annotation);
                         meta.AnnotationP = pos;
                         meta.AnnotationS = annotation.Length;
-                        page.MetaFile.Version = MetaFile.MetaFileVersion.MetaVersion4_0;
+                        if (page.MetaFile.Version < MetaFile.MetaFileVersion.MetaVersion4_0)
+                            page.MetaFile.Version = MetaFile.MetaFileVersion.MetaVersion4_0;
                     }
                 }
             }

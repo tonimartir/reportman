@@ -511,7 +511,7 @@ namespace Reportman.Drawing
     /// </summary>
     public class MetaFile : IDisposable, ICloneable
     {
-        public enum MetaFileVersion { MetaVersion2_2, MetaVersion2_4, MetaVersion3_0, MetaVersion4_0 };
+        public enum MetaFileVersion { MetaVersion2_2, MetaVersion2_4, MetaVersion3_0, MetaVersion4_0, MetaVersion4_1 };
 
         private MemoryStream FSharedStream;
         private byte[] sign2_4 ={(byte)'R',(byte)'P',(byte)'M',(byte)'E',(byte)'T',(byte)'A',
@@ -522,6 +522,8 @@ namespace Reportman.Drawing
                              (byte)'F',(byte)'I',(byte)'L',(byte)'E',(byte)'3',(byte)'0',0};
         private byte[] sign4_0 ={(byte)'R',(byte)'P',(byte)'M',(byte)'E',(byte)'T',(byte)'A',
                              (byte)'F',(byte)'I',(byte)'L',(byte)'E',(byte)'4',(byte)'0',0};
+        private byte[] sign4_1 ={(byte)'R',(byte)'P',(byte)'M',(byte)'E',(byte)'T',(byte)'A',
+                             (byte)'F',(byte)'I',(byte)'L',(byte)'E',(byte)'4',(byte)'1',0};
         /// <summary>Stream used to save image streams shared between multiple pages</summary>
 		public MemoryStream SharedStream { get { return FSharedStream; } }
         /// <summary>
@@ -1039,8 +1041,16 @@ namespace Reportman.Drawing
         }
         private void IntSaveToStream(Stream astream)
         {
+            // PrinterFonts = Recalculate must survive the round trip (the print client reads
+            // it to enable the glyph-exact pipeline), and only version 4.1 carries the field.
+            if ((PrinterFonts == PrinterFontsType.Recalculate) && (FVersion < MetaFileVersion.MetaVersion4_1))
+                FVersion = MetaFileVersion.MetaVersion4_1;
             // Write the signature
-            if (FVersion == MetaFileVersion.MetaVersion4_0)
+            if (FVersion == MetaFileVersion.MetaVersion4_1)
+            {
+                astream.Write(sign4_1, 0, sign4_1.Length);
+            }
+            else if (FVersion == MetaFileVersion.MetaVersion4_0)
             {
                 astream.Write(sign4_0, 0, sign4_0.Length);
             }
@@ -1096,6 +1106,11 @@ namespace Reportman.Drawing
                     astream.Write(bufSize, 0, bufSize.Length);
                     efile.Stream.Seek(0, SeekOrigin.Begin);
                     efile.Stream.CopyTo(astream);
+                }
+                if (FVersion >= MetaFileVersion.MetaVersion4_1)
+                {
+                    bytesValue[0] = (byte)PrinterFonts;
+                    astream.Write(bytesValue, 0, 1);
                 }
             }
 
@@ -1227,6 +1242,9 @@ namespace Reportman.Drawing
                     if (StreamUtil.CompareArrayContent(buf, sign4_0))
                     FVersion = MetaFileVersion.MetaVersion4_0;
                 else
+                    if (StreamUtil.CompareArrayContent(buf, sign4_1))
+                    FVersion = MetaFileVersion.MetaVersion4_1;
+                else
                     throw new Exception(Translator.TranslateStr(520));
                 ReadBuf(astream, ref buf, 4);
                 MetaSeparator separator = MetaSeparator.FileHeader;
@@ -1293,6 +1311,11 @@ namespace Reportman.Drawing
                             ssize -= readed2;
                         }
                         EmbeddedFiles.Add(efile);
+                    }
+                    if (FVersion >= MetaFileVersion.MetaVersion4_1)
+                    {
+                        astream.Read(conformanceByte, 0, 1);
+                        PrinterFonts = (PrinterFontsType)conformanceByte[0];
                     }
 
                 }
@@ -1701,7 +1724,7 @@ namespace Reportman.Drawing
                             break;
                     }
                 }
-                //sergi 01-08-2025: indico <= porqué si el currentpos=0 no termina nunca
+                //sergi 01-08-2025: indico <= porquï¿½ si el currentpos=0 no termina nunca
                 if (currentpos <= 0)
                     break;
                 objt.Text = originalstring.Substring(0, currentpos);

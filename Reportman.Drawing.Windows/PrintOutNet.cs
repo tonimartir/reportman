@@ -47,6 +47,20 @@ namespace Reportman.Drawing
         /// by this flag (they already use the PDF subsystem where applicable).
         /// </summary>
         public bool UsePDFFonts = false;
+        /// <summary>
+        /// Effective switch for the glyph-exact (PDF metrics) text pipeline: enabled explicitly
+        /// through UsePDFFonts or implicitly when the metafile being drawn was generated with
+        /// PrinterFonts = Recalculate, the report-level option requesting PDF/print parity.
+        /// </summary>
+        protected bool UseExactPDFText
+        {
+            get
+            {
+                if (UsePDFFonts)
+                    return true;
+                return (CurrentMetafile != null) && (CurrentMetafile.PrinterFonts == PrinterFontsType.Recalculate);
+            }
+        }
         private PrintOutPDF npdfdriver;
 
         private Color stock_brushcolor;
@@ -137,17 +151,17 @@ namespace Reportman.Drawing
 		override public Point TextExtent(TextObjectStruct aobj, Point extent)
         {
             // Text extent for justify is implemented separately.
-            // UsePDFFonts forces the same delegation so the line/word metrics seen on screen and
-            // on paper match the PDF preview byte-for-byte.
-            if ((UsePDFFonts && !aobj.RightToLeft) || (!aobj.RightToLeft && ((CurrentMetafile.PDFConformance == PDFConformanceType.PDF_A_3) || (((aobj.Alignment & MetaFile.AlignmentFlags_AlignHJustify) > 0) || (aobj.Type1Font == PDFFontType.Linked) || (aobj.Type1Font == PDFFontType.Embedded)))))
+            // UseExactPDFText forces the same delegation (including RTL) so the line/word
+            // metrics seen on screen and on paper match the PDF preview byte-for-byte.
+            if (UseExactPDFText || (!aobj.RightToLeft && ((CurrentMetafile.PDFConformance == PDFConformanceType.PDF_A_3) || (((aobj.Alignment & MetaFile.AlignmentFlags_AlignHJustify) > 0) || (aobj.Type1Font == PDFFontType.Linked) || (aobj.Type1Font == PDFFontType.Embedded)))))
             {
                 if (npdfdriver == null)
                     npdfdriver = new PrintOutPDF();
                 npdfdriver.PDFConformance = CurrentMetafile.PDFConformance;
-                // With UsePDFFonts, force the PDF canvas to go through the DirectWrite/HarfBuzz
+                // With UseExactPDFText, force the PDF canvas to go through the DirectWrite/HarfBuzz
                 // shaper (instead of TextExtentSimple) so measurements and the drawing path
                 // (TextRectHtml) share identical glyph metrics.
-                npdfdriver.ForceComplexShaping = UsePDFFonts;
+                npdfdriver.ForceComplexShaping = UseExactPDFText;
                 aobj.Type1Font = PDFFontType.Linked;
 
                 extent = npdfdriver.TextExtent(aobj, extent);
@@ -184,11 +198,11 @@ namespace Reportman.Drawing
                 npdfdriver = new PrintOutPDF();
 
             npdfdriver.PDFConformance = CurrentMetafile.PDFConformance;
-            // When UsePDFFonts is on, force the shaper so LineInfo.Glyphs is populated
+            // When UseExactPDFText is on, force the shaper so LineInfo.Glyphs is populated
             // (required by TextRectHtml's glyph-indexed ExtTextOutW). Without this, plain text
             // would go through TextExtentSimple which leaves Glyphs null and TextRectHtml
             // silently skips drawing — the symptom is "no text on paper at all".
-            npdfdriver.ForceComplexShaping = UsePDFFonts;
+            npdfdriver.ForceComplexShaping = UseExactPDFText;
             aobj.Type1Font = PDFFontType.Linked;
             return npdfdriver.TextExtentLineInfo(aobj, ref extent);
         }
@@ -515,13 +529,16 @@ namespace Reportman.Drawing
                         }
                         Point oldextent = new Point(objt.Width, objt.Height);
                         Point extent;
-                        if ((UsePDFFonts && !objt.RightToLeft) || (!objt.RightToLeft && ((objt.Alignment & MetaFile.AlignmentFlags_AlignHJustify) > 0) || (objt.Type1Font == PDFFontType.Linked) || (objt.Type1Font == PDFFontType.Embedded) || (CurrentMetafile.PDFConformance == PDFConformanceType.PDF_A_3)))
+                        if (UseExactPDFText || (!objt.RightToLeft && ((objt.Alignment & MetaFile.AlignmentFlags_AlignHJustify) > 0) || (objt.Type1Font == PDFFontType.Linked) || (objt.Type1Font == PDFFontType.Embedded) || (CurrentMetafile.PDFConformance == PDFConformanceType.PDF_A_3)))
                         {
                             if (npdfdriver == null)
                                 npdfdriver = new PrintOutPDF();
-                            npdfdriver.ForceComplexShaping = UsePDFFonts;
-                            objt.Type1Font = PDFFontType.Linked;
-                            extent = npdfdriver.TextExtent(TextObjectStruct.FromMetaObjectText(page, objt), oldextent);
+                            npdfdriver.ForceComplexShaping = UseExactPDFText;
+                            // Override Type1Font only on the local struct: mutating the metafile
+                            // object would alter how it renders in later draws (preview vs print).
+                            TextObjectStruct textstruct = TextObjectStruct.FromMetaObjectText(page, objt);
+                            textstruct.Type1Font = PDFFontType.Linked;
+                            extent = npdfdriver.TextExtent(textstruct, oldextent);
                         }
                         else
                             extent = TextExtent(TextObjectStruct.FromMetaObjectText(page, objt), oldextent);
@@ -555,23 +572,24 @@ namespace Reportman.Drawing
                         graph.FillRectangle(stock_backbrush, nrec);
                     }
                     // Text justify is implemented separaterly
-                    if (!objt.RightToLeft && !objt.IsHtml &&
-                         (((objt.Alignment & MetaFile.AlignmentFlags_AlignHJustify) > 0) || (objt.Type1Font == PDFFontType.Embedded) || (objt.Type1Font == PDFFontType.Embedded) || (CurrentMetafile.PDFConformance == PDFConformanceType.PDF_A_3)
+                    if (objt.IsHtml)
+                    {
+                        TextRectHtml(graph, new Rectangle(aleft, atop, obj.Width, obj.Height), TextObjectStruct.FromMetaObjectText(page, objt), font, stock_brush);
+                    }
+                    else if (UseExactPDFText && objt.FontRotation == 0 &&
+                             ((objt.Alignment & MetaFile.AlignmentFlags_AlignHJustify) == 0))
+                    {
+                        // Route plain text (LTR and RTL) through the glyph-perfect path so the
+                        // printed output matches the PDF preview (same DirectWrite/HarfBuzz
+                        // shaping + glyph-indexed ExtTextOutW the PDF subsystem uses). Justified
+                        // and rotated text keep their own paths.
+                        TextRectHtml(graph, new Rectangle(aleft, atop, obj.Width, obj.Height), TextObjectStruct.FromMetaObjectText(page, objt), font, stock_brush);
+                    }
+                    else if ((!objt.RightToLeft || UseExactPDFText) &&
+                         (((objt.Alignment & MetaFile.AlignmentFlags_AlignHJustify) > 0) || (objt.Type1Font == PDFFontType.Linked) || (objt.Type1Font == PDFFontType.Embedded) || (CurrentMetafile.PDFConformance == PDFConformanceType.PDF_A_3)
                          ))
                     {
                         TextRectJustify(graph, new Rectangle(aleft, atop, obj.Width, obj.Height), TextObjectStruct.FromMetaObjectText(page, objt), font, stock_brush);
-                    }
-                    else if (objt.IsHtml)
-                    {
-                        TextRectHtml(graph, new Rectangle(aleft, atop, obj.Width, obj.Height), TextObjectStruct.FromMetaObjectText(page, objt), font, stock_brush);
-                    }
-                    else if (UsePDFFonts && !objt.RightToLeft && objt.FontRotation == 0)
-                    {
-                        // Route plain text through the glyph-perfect path so the printed output
-                        // matches the PDF preview (same DirectWrite/HarfBuzz shaping + glyph-indexed
-                        // ExtTextOutW the PDF subsystem uses). RTL and rotated text keep the legacy
-                        // GDI+ path.
-                        TextRectHtml(graph, new Rectangle(aleft, atop, obj.Width, obj.Height), TextObjectStruct.FromMetaObjectText(page, objt), font, stock_brush);
                     }
                     else
                     {
@@ -1053,135 +1071,11 @@ namespace Reportman.Drawing
 
                     if (linfo.Glyphs != null && linfo.Glyphs.Count > 0)
                     {
-                        int glyphCount = linfo.Glyphs.Count;
-                        int[] allPixPos = new int[glyphCount];
-                        int[] allDx = new int[glyphCount];
-
-                        // Pre-compute pixel X positions
-                        if ((Alignment & MetaFile.AlignmentFlags_AlignRight) > 0)
-                        {
-                            int pixRight = (int)Math.Round(arect.Right * intdpix / 1440 * Scale);
-                            int cumRight = 0;
-                            for (int k = glyphCount - 1; k >= 0; k--)
-                            {
-                                cumRight += linfo.Glyphs[k].XAdvance;
-                                allPixPos[k] = pixRight - (int)Math.Round(cumRight * intdpix / 1440 * Scale);
-                            }
-                        }
-                        else
-                        {
-                            int pixLeft = (int)Math.Round(arect.Left * intdpix / 1440 * Scale);
-                            if ((Alignment & MetaFile.AlignmentFlags_AlignHCenter) > 0)
-                            {
-                                int totalTwips = 0;
-                                for (int k = 0; k < glyphCount; k++)
-                                    totalTwips += linfo.Glyphs[k].XAdvance;
-                                int totalPix = (int)Math.Round(totalTwips * intdpix / 1440 * Scale);
-                                int rectPix = (int)Math.Round(arect.Right * intdpix / 1440 * Scale) - pixLeft;
-                                pixLeft = pixLeft + (rectPix - totalPix) / 2;
-                            }
-                            int cumLeft = 0;
-                            for (int k = 0; k < glyphCount; k++)
-                            {
-                                allPixPos[k] = pixLeft + (int)Math.Round(cumLeft * intdpix / 1440 * Scale);
-                                cumLeft += linfo.Glyphs[k].XAdvance;
-                            }
-                        }
-
-                        for (int k = 0; k < glyphCount - 1; k++)
-                            allDx[k] = allPixPos[k + 1] - allPixPos[k];
-                        allDx[glyphCount - 1] = (int)Math.Round(linfo.Glyphs[glyphCount - 1].XAdvance * intdpix / 1440 * Scale);
-
+                        int[] allDx;
+                        int[] allPixPos = ComputeGlyphPixPositions(linfo, Alignment, arect, intdpix, out allDx);
                         int nposy = posy + linfo.TopPos - ascent;
-                        int runStyle = (linfo.Glyphs[0].Bold ? 1 : 0) | (linfo.Glyphs[0].Italic ? 2 : 0) | (linfo.Glyphs[0].Underline ? 4 : 0) | (linfo.Glyphs[0].StrikeOut ? 8 : 0);
-                        string runFontFamily = linfo.Glyphs[0].FontFamily ?? nfont.FontFamily.Name;
-                        float runFontSize = linfo.Glyphs[0].HasFontSize ? linfo.Glyphs[0].FontSize : baseFontSizePt;
-                        int runColor = linfo.Glyphs[0].Color;
-                        bool runHasColor = linfo.Glyphs[0].HasColor;
-                        string origFontName = nfont.FontFamily.Name;
-
-                        // Get base ascent
-                        IntPtr hBaseFont = CreateFontForDC(hdc, origFontName, baseFontSizePt, nfont.Style, intdpiy, Scale);
-                        IntPtr hOldFont = SelectObject(hdc, hBaseFont);
-                        GetTextMetricsW(hdc, out TEXTMETRIC baseTM);
-                        int baseAscent = baseTM.tmAscent;
-                        SelectObject(hdc, hOldFont);
-                        DeleteObject(hBaseFont);
-
-                        // Font caching
-                        IntPtr currentFont = IntPtr.Zero;
-                        string curFontFamily = "";
-                        float curFontSize = -1;
-                        int curStyle = -1;
-                        int curTmAscent = 0;
-
-                        int runFirstGlyph = 0;
-                        var runGlyphs = new List<ushort>();
-                        var runDx = new List<int>();
-
-                        for (int k = 0; k < glyphCount; k++)
-                        {
-                            var g = linfo.Glyphs[k];
-                            int glyphStyle = (g.Bold ? 1 : 0) | (g.Italic ? 2 : 0) | (g.Underline ? 4 : 0) | (g.StrikeOut ? 8 : 0);
-                            string gFontFamily = g.FontFamily ?? origFontName;
-                            float gFontSize = g.HasFontSize ? g.FontSize : baseFontSizePt;
-                            int gColor = g.Color;
-                            bool gHasColor = g.HasColor;
-
-                            if ((glyphStyle != runStyle || gFontFamily != runFontFamily ||
-                                 Math.Abs(gFontSize - runFontSize) > 0.01f || gColor != runColor ||
-                                 gHasColor != runHasColor) && runGlyphs.Count > 0)
-                            {
-                                currentFont = EnsureFont(hdc, ref curFontFamily, ref curFontSize, ref curStyle, ref curTmAscent,
-                                    runFontFamily, runFontSize, runStyle, baseBold, baseItalic, baseUnderline, baseStrikeOut,
-                                    intdpiy, Scale, currentFont);
-                                if (runHasColor)
-                                {
-                                    uint cr = (uint)((runColor & 0xFF) << 16 | (runColor & 0xFF00) | ((runColor >> 16) & 0xFF));
-                                    SetTextColor(hdc, cr);
-                                }
-                                else
-                                    SetTextColor(hdc, origColorRef);
-
-                                int baselineOffset = curTmAscent - baseAscent;
-                                int pixY = (int)Math.Round(nposy * intdpiy / 1440 * Scale) - baselineOffset;
-                                ExtTextOutW(hdc, allPixPos[runFirstGlyph], pixY, ETO_GLYPH_INDEX, IntPtr.Zero,
-                                    runGlyphs.ToArray(), (uint)runGlyphs.Count, runDx.ToArray());
-
-                                runGlyphs.Clear(); runDx.Clear();
-                                runStyle = glyphStyle; runFontFamily = gFontFamily;
-                                runFontSize = gFontSize; runColor = gColor;
-                                runHasColor = gHasColor; runFirstGlyph = k;
-                            }
-                            runGlyphs.Add((ushort)g.GlyphIndex);
-                            runDx.Add(allDx[k]);
-                        }
-
-                        // Flush last run
-                        if (runGlyphs.Count > 0)
-                        {
-                            currentFont = EnsureFont(hdc, ref curFontFamily, ref curFontSize, ref curStyle, ref curTmAscent,
-                                runFontFamily, runFontSize, runStyle, baseBold, baseItalic, baseUnderline, baseStrikeOut,
-                                intdpiy, Scale, currentFont);
-                            if (runHasColor)
-                            {
-                                uint cr = (uint)((runColor & 0xFF) << 16 | (runColor & 0xFF00) | ((runColor >> 16) & 0xFF));
-                                SetTextColor(hdc, cr);
-                            }
-                            else
-                                SetTextColor(hdc, origColorRef);
-
-                            int baselineOffset2 = curTmAscent - baseAscent;
-                            int pixY2 = (int)Math.Round(nposy * intdpiy / 1440 * Scale) - baselineOffset2;
-                            ExtTextOutW(hdc, allPixPos[runFirstGlyph], pixY2, ETO_GLYPH_INDEX, IntPtr.Zero,
-                                runGlyphs.ToArray(), (uint)runGlyphs.Count, runDx.ToArray());
-                        }
-
-                        if (currentFont != IntPtr.Zero)
-                        {
-                            SelectObject(hdc, hOldFont);
-                            DeleteObject(currentFont);
-                        }
+                        DrawGlyphRuns(hdc, linfo, allPixPos, allDx, nposy, nfont, baseFontSizePt, origColorRef,
+                            baseBold, baseItalic, baseUnderline, baseStrikeOut, intdpiy);
                     }
                 }
             }
@@ -1190,6 +1084,155 @@ namespace Reportman.Drawing
                 if (atext.CutText && savedDC != 0)
                     RestoreDC(hdc, savedDC);
                 gr.ReleaseHdc(hdc);
+            }
+        }
+
+        /// <summary>
+        /// Computes the device pixel X position of every glyph of a shaped line, applying
+        /// horizontal alignment inside arect (twips). Right alignment anchors at the right
+        /// edge so rounding error goes left; left/center anchor at the left.
+        /// </summary>
+        private int[] ComputeGlyphPixPositions(LineInfo linfo, int alignment, Rectangle arect, float intdpix, out int[] allDx)
+        {
+            int glyphCount = linfo.Glyphs.Count;
+            int[] allPixPos = new int[glyphCount];
+            allDx = new int[glyphCount];
+
+            if ((alignment & MetaFile.AlignmentFlags_AlignRight) > 0)
+            {
+                int pixRight = (int)Math.Round(arect.Right * intdpix / 1440 * Scale);
+                int cumRight = 0;
+                for (int k = glyphCount - 1; k >= 0; k--)
+                {
+                    cumRight += linfo.Glyphs[k].XAdvance;
+                    allPixPos[k] = pixRight - (int)Math.Round(cumRight * intdpix / 1440 * Scale);
+                }
+            }
+            else
+            {
+                int pixLeft = (int)Math.Round(arect.Left * intdpix / 1440 * Scale);
+                if ((alignment & MetaFile.AlignmentFlags_AlignHCenter) > 0)
+                {
+                    int totalTwips = 0;
+                    for (int k = 0; k < glyphCount; k++)
+                        totalTwips += linfo.Glyphs[k].XAdvance;
+                    int totalPix = (int)Math.Round(totalTwips * intdpix / 1440 * Scale);
+                    int rectPix = (int)Math.Round(arect.Right * intdpix / 1440 * Scale) - pixLeft;
+                    pixLeft = pixLeft + (rectPix - totalPix) / 2;
+                }
+                int cumLeft = 0;
+                for (int k = 0; k < glyphCount; k++)
+                {
+                    allPixPos[k] = pixLeft + (int)Math.Round(cumLeft * intdpix / 1440 * Scale);
+                    cumLeft += linfo.Glyphs[k].XAdvance;
+                }
+            }
+
+            for (int k = 0; k < glyphCount - 1; k++)
+                allDx[k] = allPixPos[k + 1] - allPixPos[k];
+            allDx[glyphCount - 1] = (int)Math.Round(linfo.Glyphs[glyphCount - 1].XAdvance * intdpix / 1440 * Scale);
+            return allPixPos;
+        }
+
+        /// <summary>
+        /// Draws the glyphs of a shaped line with ExtTextOutW (ETO_GLYPH_INDEX), batching
+        /// consecutive glyphs into runs whenever style/family/size/color stay constant.
+        /// nposy is the line top in twips; per-run ascent differences are compensated so
+        /// all runs share the same baseline.
+        /// </summary>
+        private void DrawGlyphRuns(IntPtr hdc, LineInfo linfo, int[] allPixPos, int[] allDx, int nposy,
+            Font nfont, float baseFontSizePt, uint origColorRef,
+            bool baseBold, bool baseItalic, bool baseUnderline, bool baseStrikeOut, float intdpiy)
+        {
+            int glyphCount = linfo.Glyphs.Count;
+            int runStyle = (linfo.Glyphs[0].Bold ? 1 : 0) | (linfo.Glyphs[0].Italic ? 2 : 0) | (linfo.Glyphs[0].Underline ? 4 : 0) | (linfo.Glyphs[0].StrikeOut ? 8 : 0);
+            string runFontFamily = linfo.Glyphs[0].FontFamily ?? nfont.FontFamily.Name;
+            float runFontSize = linfo.Glyphs[0].HasFontSize ? linfo.Glyphs[0].FontSize : baseFontSizePt;
+            int runColor = linfo.Glyphs[0].Color;
+            bool runHasColor = linfo.Glyphs[0].HasColor;
+            string origFontName = nfont.FontFamily.Name;
+
+            // Get base ascent
+            IntPtr hBaseFont = CreateFontForDC(hdc, origFontName, baseFontSizePt, nfont.Style, intdpiy, Scale);
+            IntPtr hOldFont = SelectObject(hdc, hBaseFont);
+            GetTextMetricsW(hdc, out TEXTMETRIC baseTM);
+            int baseAscent = baseTM.tmAscent;
+            SelectObject(hdc, hOldFont);
+            DeleteObject(hBaseFont);
+
+            // Font caching
+            IntPtr currentFont = IntPtr.Zero;
+            string curFontFamily = "";
+            float curFontSize = -1;
+            int curStyle = -1;
+            int curTmAscent = 0;
+
+            int runFirstGlyph = 0;
+            var runGlyphs = new List<ushort>();
+            var runDx = new List<int>();
+
+            for (int k = 0; k < glyphCount; k++)
+            {
+                var g = linfo.Glyphs[k];
+                int glyphStyle = (g.Bold ? 1 : 0) | (g.Italic ? 2 : 0) | (g.Underline ? 4 : 0) | (g.StrikeOut ? 8 : 0);
+                string gFontFamily = g.FontFamily ?? origFontName;
+                float gFontSize = g.HasFontSize ? g.FontSize : baseFontSizePt;
+                int gColor = g.Color;
+                bool gHasColor = g.HasColor;
+
+                if ((glyphStyle != runStyle || gFontFamily != runFontFamily ||
+                     Math.Abs(gFontSize - runFontSize) > 0.01f || gColor != runColor ||
+                     gHasColor != runHasColor) && runGlyphs.Count > 0)
+                {
+                    currentFont = EnsureFont(hdc, ref curFontFamily, ref curFontSize, ref curStyle, ref curTmAscent,
+                        runFontFamily, runFontSize, runStyle, baseBold, baseItalic, baseUnderline, baseStrikeOut,
+                        intdpiy, Scale, currentFont);
+                    if (runHasColor)
+                    {
+                        uint cr = (uint)((runColor & 0xFF) << 16 | (runColor & 0xFF00) | ((runColor >> 16) & 0xFF));
+                        SetTextColor(hdc, cr);
+                    }
+                    else
+                        SetTextColor(hdc, origColorRef);
+
+                    int baselineOffset = curTmAscent - baseAscent;
+                    int pixY = (int)Math.Round(nposy * intdpiy / 1440 * Scale) - baselineOffset;
+                    ExtTextOutW(hdc, allPixPos[runFirstGlyph], pixY, ETO_GLYPH_INDEX, IntPtr.Zero,
+                        runGlyphs.ToArray(), (uint)runGlyphs.Count, runDx.ToArray());
+
+                    runGlyphs.Clear(); runDx.Clear();
+                    runStyle = glyphStyle; runFontFamily = gFontFamily;
+                    runFontSize = gFontSize; runColor = gColor;
+                    runHasColor = gHasColor; runFirstGlyph = k;
+                }
+                runGlyphs.Add((ushort)g.GlyphIndex);
+                runDx.Add(allDx[k]);
+            }
+
+            // Flush last run
+            if (runGlyphs.Count > 0)
+            {
+                currentFont = EnsureFont(hdc, ref curFontFamily, ref curFontSize, ref curStyle, ref curTmAscent,
+                    runFontFamily, runFontSize, runStyle, baseBold, baseItalic, baseUnderline, baseStrikeOut,
+                    intdpiy, Scale, currentFont);
+                if (runHasColor)
+                {
+                    uint cr = (uint)((runColor & 0xFF) << 16 | (runColor & 0xFF00) | ((runColor >> 16) & 0xFF));
+                    SetTextColor(hdc, cr);
+                }
+                else
+                    SetTextColor(hdc, origColorRef);
+
+                int baselineOffset2 = curTmAscent - baseAscent;
+                int pixY2 = (int)Math.Round(nposy * intdpiy / 1440 * Scale) - baselineOffset2;
+                ExtTextOutW(hdc, allPixPos[runFirstGlyph], pixY2, ETO_GLYPH_INDEX, IntPtr.Zero,
+                    runGlyphs.ToArray(), (uint)runGlyphs.Count, runDx.ToArray());
+            }
+
+            if (currentFont != IntPtr.Zero)
+            {
+                SelectObject(hdc, hOldFont);
+                DeleteObject(currentFont);
             }
         }
 
@@ -1273,9 +1316,9 @@ namespace Reportman.Drawing
                 npdfdriver = new PrintOutPDF();
             }
             npdfdriver.PDFConformance = CurrentMetafile.PDFConformance;
-            // Stay coherent with the rest of the pipeline: if UsePDFFonts is on, all measuring
+            // Stay coherent with the rest of the pipeline: if UseExactPDFText is on, all measuring
             // (TextExtentLineInfo + WordExtent calls below) goes through the same shaper.
-            npdfdriver.ForceComplexShaping = UsePDFFonts;
+            npdfdriver.ForceComplexShaping = UseExactPDFText;
             Point full_extent = new Point(arect.Width, arect.Height);
             var linfos = npdfdriver.TextExtentLineInfo(atext, ref full_extent);
             Rectangle recsize = new Rectangle(0, 0, full_extent.X, full_extent.Y);
@@ -1293,6 +1336,15 @@ namespace Reportman.Drawing
                 posy = arect.Bottom - recsize.Height;
             if ((Alignment & MetaFile.AlignmentFlags_AlignVCenter) > 0)
                 posy = arect.Top + (((arect.Bottom - arect.Top) - recsize.Bottom) / 2);
+            // Exact mode draws every word glyph by glyph with the same space-distribution
+            // arithmetic the PDF canvas uses, so justified output matches the PDF.
+            // Rotated text keeps the legacy GDI+ path (the raw DC used by the glyph
+            // renderer does not inherit the GDI+ rotation transform).
+            if (UseExactPDFText && atext.FontRotation == 0)
+            {
+                TextRectJustifyGlyphs(gr, arect, atext, nfont, linfos, posy, baselineToTop);
+                return;
+            }
             bool dojustify;
             for (i = 0; i < linfos.Count; i++)
             {
@@ -1432,9 +1484,150 @@ namespace Reportman.Drawing
                 }
             }
         }
+
+        /// <summary>
+        /// Glyph-exact justified drawing: word origins computed with the same arithmetic the
+        /// PDF canvas uses (double space distribution, no last-word re-anchoring) and every
+        /// word drawn glyph by glyph, so justified paragraphs print identical to the PDF.
+        /// Lines that cannot be justified (last line of paragraph, or no space to share)
+        /// are drawn as a single shaped line at their aligned position.
+        /// </summary>
+        private void TextRectJustifyGlyphs(Graphics gr, Rectangle arect, TextObjectStruct atext, Font nfont,
+            List<LineInfo> linfos, int posy, int baselineToTop)
+        {
+            float intdpix = gr.DpiX;
+            float intdpiy = gr.DpiY;
+            bool RightToLeft = atext.RightToLeft;
+            // The shaped LineInfos were measured over the NFC-normalized text (RTL is
+            // always normalized like the PDF does), so line substrings must use it too.
+            string Text = RightToLeft ? StringUtil.NormalizeToNFC(atext.Text) : atext.Text;
+            int Alignment = atext.Alignment;
+
+            bool baseBold = (atext.FontStyle & 1) > 0;
+            bool baseItalic = (atext.FontStyle & 2) > 0;
+            bool baseUnderline = (atext.FontStyle & 4) > 0;
+            bool baseStrikeOut = (atext.FontStyle & 8) > 0;
+            int origFontColor = atext.FontColor;
+            uint origColorRef = (uint)((origFontColor & 0xFF) << 16 | (origFontColor & 0xFF00) | ((origFontColor >> 16) & 0xFF));
+            float baseFontSizePt = Scale > 0 ? nfont.Size / Scale : nfont.Size;
+
+            IntPtr hdc = gr.GetHdc();
+            int savedDC = 0;
+            try
+            {
+                SetBkMode(hdc, TRANSPARENT);
+                if (atext.CutText)
+                {
+                    savedDC = SaveDC(hdc);
+                    int clipLeft = (int)Math.Round(arect.Left * intdpix / 1440 * Scale);
+                    int clipTop = (int)Math.Round(arect.Top * intdpiy / 1440 * Scale);
+                    int clipRight = (int)Math.Round(arect.Right * intdpix / 1440 * Scale);
+                    int clipBottom = (int)Math.Round(arect.Bottom * intdpiy / 1440 * Scale);
+                    IntersectClipRect(hdc, clipLeft, clipTop, clipRight, clipBottom);
+                }
+
+                for (int i = 0; i < linfos.Count; i++)
+                {
+                    LineInfo linfo = linfos[i];
+                    if (linfo.Glyphs == null || linfo.Glyphs.Count == 0)
+                        continue;
+                    string astring = Text.Substring(linfo.Position, linfo.Size);
+                    int nposy = posy + linfo.TopPos - baselineToTop;
+                    // Line start with horizontal alignment, same expressions as PDFCanvas.TextRect
+                    int posx = arect.Left;
+                    if ((Alignment & MetaFile.AlignmentFlags_AlignRight) > 0)
+                        posx = arect.Left + arect.Width - linfo.Width;
+                    if ((Alignment & MetaFile.AlignmentFlags_AlignHCenter) > 0)
+                        posx = arect.Left + (int)((arect.Width - linfo.Width) / 2);
+                    bool dojustify = ((Alignment & MetaFile.AlignmentFlags_AlignHJustify) > 0) && !linfo.LastLine;
+                    if (dojustify)
+                    {
+                        // Word splitting, same criteria the PDF canvas uses (ASCII space)
+                        Strings lwords = new Strings();
+                        StringBuilder aword = new StringBuilder();
+                        int index = 0;
+                        while (index < astring.Length)
+                        {
+                            if (astring[index] != ' ')
+                                aword.Append(astring[index]);
+                            else
+                            {
+                                if (aword.Length > 0)
+                                    lwords.Add(aword.ToString());
+                                aword = new StringBuilder();
+                            }
+                            index++;
+                        }
+                        if (aword.Length > 0)
+                            lwords.Add(aword.ToString());
+
+                        // Measure every word with the shaper, keeping its glyphs
+                        int alinesize = 0;
+                        Integers lwidths = new Integers();
+                        List<LineInfo> lwordinfos = new List<LineInfo>();
+                        foreach (string nword in lwords)
+                        {
+                            Point extent = new Point(arect.Width, arect.Height);
+                            var winfos = npdfdriver.WordExtentLineInfo(nword, ref extent, RightToLeft);
+                            if (winfos.Count > 0)
+                                lwordinfos.Add(winfos[0]);
+                            else
+                                lwordinfos.Add(linfo);
+                            // RTL words accumulate negative, exactly like PDFCanvas.TextRect
+                            int nwidth = RightToLeft ? -extent.X : extent.X;
+                            lwidths.Add(nwidth);
+                            alinesize = alinesize + nwidth;
+                        }
+                        // Same arithmetic as PDFCanvas.TextRect: double space distribution
+                        double alinedif = arect.Width - alinesize;
+                        if (alinedif > 0)
+                        {
+                            if (lwords.Count > 1)
+                                alinedif = alinedif / (lwords.Count - 1);
+                            double currpos = posx;
+                            if (RightToLeft)
+                            {
+                                currpos = arect.Width;
+                                alinedif = -alinedif;
+                            }
+                            for (int lindex = 0; lindex < lwords.Count; lindex++)
+                            {
+                                LineInfo winfo = lwordinfos[lindex];
+                                if (winfo.Glyphs != null && winfo.Glyphs.Count > 0)
+                                {
+                                    Rectangle wordrect = new Rectangle(Convert.ToInt32(currpos), 0, 0, 0);
+                                    int[] wDx;
+                                    int[] wPixPos = ComputeGlyphPixPositions(winfo, 0, wordrect, intdpix, out wDx);
+                                    DrawGlyphRuns(hdc, winfo, wPixPos, wDx, nposy, nfont, baseFontSizePt, origColorRef,
+                                        baseBold, baseItalic, baseUnderline, baseStrikeOut, intdpiy);
+                                }
+                                currpos = currpos + lwidths[lindex] + alinedif;
+                            }
+                        }
+                        else
+                            dojustify = false;
+                    }
+                    if (!dojustify)
+                    {
+                        // Whole line at its aligned position (last paragraph line or
+                        // lines where the space cannot be distributed)
+                        int[] allDx;
+                        int[] allPixPos = ComputeGlyphPixPositions(linfo, Alignment, arect, intdpix, out allDx);
+                        DrawGlyphRuns(hdc, linfo, allPixPos, allDx, nposy, nfont, baseFontSizePt, origColorRef,
+                            baseBold, baseItalic, baseUnderline, baseStrikeOut, intdpiy);
+                    }
+                }
+            }
+            finally
+            {
+                if (atext.CutText && savedDC != 0)
+                    RestoreDC(hdc, savedDC);
+                gr.ReleaseHdc(hdc);
+            }
+        }
     }
     /// <summary>
-    /// This enumeration indicates diferent optimization implementations while drawing pages 
+    /// This enumeration indicates diferent optimization implementations while drawing pages
     /// (preview, web presentation or print). Microsoft .Net have an optimized graphic object, 
     /// called Windows Metafile, so when the same graphic operations must be done multiple times,
     /// they can be stored in it and "played" multiple times. This is the case for example, 

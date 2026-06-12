@@ -169,8 +169,41 @@ namespace Reportman.Drawing
                     FPDFFile.EmbeddedFiles.Add((EmbeddedFile)efile.Clone());
                 }
 
+            // PrinterFonts = Recalculate requests exact PDF/print parity: write plain text
+            // glyph by glyph with shaped advances so the GDI redraw (TextRectHtml) can
+            // reproduce the very same positions. Must be set after recreating FPDFFile
+            // because the flag lives in its canvas.
+            if (meta.PrinterFonts == PrinterFontsType.Recalculate)
+                ForceComplexShaping = true;
+
             FPDFFile.CalculateOnly = CalculateOnly;
             FPDFFile.BeginDoc();
+        }
+        /// <summary>
+        /// Layout (BeginPrint) runs before NewDocument, so the shaper must be forced here too:
+        /// otherwise line breaks would be computed with the simple metrics and then drawn with
+        /// the shaped ones.
+        /// </summary>
+        public override bool PreparePrint(MetaFile meta)
+        {
+            if ((meta != null) && (meta.PrinterFonts == PrinterFontsType.Recalculate))
+                ForceComplexShaping = true;
+            return base.PreparePrint(meta);
+        }
+        /// <summary>
+        /// The report engine copies PrinterFonts into the metafile at the start of BeginPrint,
+        /// which runs after PreparePrint already checked it. Re-checking before each measurement
+        /// keeps the layout phase shaped regardless of that event ordering.
+        /// </summary>
+        private void SyncForceShaping()
+        {
+            if (FPDFFile.Canvas.ForceComplexShaping)
+                return;
+            MetaFile nmeta = CurrentMetafile;
+            if (nmeta == null)
+                nmeta = MetaFile;
+            if ((nmeta != null) && (nmeta.PrinterFonts == PrinterFontsType.Recalculate))
+                FPDFFile.Canvas.ForceComplexShaping = true;
         }
         /// <summary>
         /// Finalization
@@ -237,6 +270,7 @@ namespace Reportman.Drawing
             {
                 case MetaObjectType.Text:
                     MetaObjectText objt = (MetaObjectText)obj;
+                    SyncForceShaping();
                     FPDFFile.Canvas.Font.WFontName = page.GetWFontNameText(objt);
                     FPDFFile.Canvas.Font.LFontName = page.GetLFontNameText(objt);
                     FPDFFile.Canvas.Font.Style = objt.FontStyle;
@@ -246,6 +280,13 @@ namespace Reportman.Drawing
                     else
                         FPDFFile.Canvas.Font.Name = (PDFFontType)objt.Type1Font;
                     FPDFFile.Canvas.Font.Name = (PDFFontType)objt.Type1Font;
+                    // Exact-parity mode (PrinterFonts = Recalculate): route standard Type1 fonts
+                    // through the linked TrueType pipeline so the PDF shares glyph metrics with
+                    // the GDI redraw. Embedded stays embedded, PDF/A-3 keeps its own handling.
+                    if ((MetaFile.PrinterFonts == PrinterFontsType.Recalculate) &&
+                        (MetaFile.PDFConformance != PDFConformanceType.PDF_A_3) &&
+                        (FPDFFile.Canvas.Font.Name != PDFFontType.Embedded))
+                        FPDFFile.Canvas.Font.Name = PDFFontType.Linked;
                     FPDFFile.Canvas.Font.Size = objt.FontSize;
                     FPDFFile.Canvas.Font.Color = objt.FontColor;
                     FPDFFile.Canvas.Font.Bold = (objt.FontStyle & 1) > 0;
@@ -508,6 +549,19 @@ namespace Reportman.Drawing
             return extent;
         }
         /// <summary>
+        /// Same measurement WordExtent performs, but returning the shaped LineInfo so the
+        /// caller can reproduce the word glyph by glyph (glyph-exact justified printing).
+        /// Uses the current canvas font, set by a previous TextExtentLineInfo call.
+        /// </summary>
+        public List<LineInfo> WordExtentLineInfo(string text, ref Point extent, bool rightToLeft = false)
+        {
+            Rectangle rect = new Rectangle(0, 0, extent.X, extent.Y);
+            var result = FPDFFile.Canvas.TextExtent(text, ref rect, false, true, true, rightToLeft);
+            extent.X = rect.Width;
+            extent.Y = rect.Height;
+            return result;
+        }
+        /// <summary>
         /// Obtain text extent
         /// </summary>
 		override public Point TextExtent(TextObjectStruct aobj, Point extent)
@@ -517,9 +571,18 @@ namespace Reportman.Drawing
             Point maxextent;
             if (aobj.FontRotation != 0)
                 return extent;
+            SyncForceShaping();
             maxextent = extent;
             // single line
             singleline = (aobj.Alignment & AlignmentFlags_SingleLine) > 0;
+            // RTL is always measured shaped; normalize like the PDF drawing path does
+            // (PDFCanvas.TextRect) so line breaks and glyph advances stay identical.
+            if (aobj.RightToLeft && aobj.Text != null)
+                aobj.Text = StringUtil.NormalizeToNFC(aobj.Text);
+            // The forced shaper needs a TrueType font (GetTTFontData): promote standard
+            // Type1 fonts to Linked, only on the local struct copy.
+            if (ForceComplexShaping && aobj.Type1Font != PDFFontType.Embedded)
+                aobj.Type1Font = PDFFontType.Linked;
             FPDFFile.Canvas.Font.Name = aobj.Type1Font;
             FPDFFile.Canvas.Font.WFontName = aobj.WFontName;
             FPDFFile.Canvas.Font.LFontName = aobj.LFontName;
@@ -547,7 +610,12 @@ namespace Reportman.Drawing
             Rectangle rect;
             Point maxextent;
             maxextent = extent;
+            SyncForceShaping();
             singleline = (aobj.Alignment & AlignmentFlags_SingleLine) > 0;
+            if (aobj.RightToLeft && aobj.Text != null)
+                aobj.Text = StringUtil.NormalizeToNFC(aobj.Text);
+            if (ForceComplexShaping && aobj.Type1Font != PDFFontType.Embedded)
+                aobj.Type1Font = PDFFontType.Linked;
             FPDFFile.Canvas.Font.Name = aobj.Type1Font;
             FPDFFile.Canvas.Font.WFontName = aobj.WFontName;
             FPDFFile.Canvas.Font.LFontName = aobj.LFontName;
@@ -575,7 +643,12 @@ namespace Reportman.Drawing
             Rectangle rect;
             Point maxextent;
             maxextent = extent;
+            SyncForceShaping();
             singleline = (aobj.Alignment & AlignmentFlags_SingleLine) > 0;
+            if (aobj.RightToLeft && aobj.Text != null)
+                aobj.Text = StringUtil.NormalizeToNFC(aobj.Text);
+            if (ForceComplexShaping && aobj.Type1Font != PDFFontType.Embedded)
+                aobj.Type1Font = PDFFontType.Linked;
             FPDFFile.Canvas.Font.Name = aobj.Type1Font;
             FPDFFile.Canvas.Font.WFontName = aobj.WFontName;
             FPDFFile.Canvas.Font.LFontName = aobj.LFontName;
