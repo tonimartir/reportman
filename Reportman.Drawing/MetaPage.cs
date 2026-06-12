@@ -286,7 +286,7 @@ namespace Reportman.Drawing
 		public void SaveToStream(Stream astream)
         {
             int version = 3;
-            if (Version == MetaFile.MetaFileVersion.MetaVersion4_0)
+            if (Version >= MetaFile.MetaFileVersion.MetaVersion4_0)
             {
                 version = 4;
             }
@@ -335,7 +335,7 @@ namespace Reportman.Drawing
             int i;
             MetaSeparator separator = MetaSeparator.ObjectHeader;
             int version = 3;
-            if (Version == MetaFile.MetaFileVersion.MetaVersion4_0)
+            if (Version >= MetaFile.MetaFileVersion.MetaVersion4_0)
             {
                 version = 4;
             }

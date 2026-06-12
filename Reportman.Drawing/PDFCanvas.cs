@@ -650,6 +650,13 @@ namespace Reportman.Drawing
             linespacing = (int)Math.Round((((double)linespacing) / 100000.0) * FResolution * FFont.Size * 1.25);
             Y = Y + leading;
 
+            // Per-glyph (shaped) output: mandatory for RTL/HTML/FreeType, opt-in for plain
+            // text through ForceComplexShaping so the PDF and the glyph-indexed GDI redraw
+            // (ExtTextOutW) place every glyph at the same advance. The opt-in route requires
+            // shaped glyph data in lInfo, which TextExtent provides when the flag is active.
+            bool shapedOutput = RightToLeft || isHtml || this.InfoProvider.GetType().Name == "FontInfoFt"
+                || (ForceComplexShaping && lInfo.Glyphs != null && lInfo.Glyphs.Count > 0);
+
             File.CheckPrinting();
             if (Rotation != 0)
             {
@@ -664,7 +671,7 @@ namespace Reportman.Drawing
                 SWriteLine(File.STempStream, "/F" +
                  Type1FontTopdfFontName(FFont.Name, FFont.Italic, FFont.Bold, FFont.GetFontFamilyKey(), FFont.Style, PDFConformance) + " " +
                     FFont.Size.ToString() + " Tf");
-                if (RightToLeft || isHtml || this.InfoProvider.GetType().Name == "FontInfoFt")
+                if (shapedOutput)
                 {
                     SWriteLine(File.STempStream, "/Span << /ActualText " +
                      PDFFile.EncodePDFText(isHtml && lInfo.Text != null ? lInfo.Text : Text) + " >> BDC");
@@ -686,7 +693,7 @@ namespace Reportman.Drawing
                 else
                     SWriteLine(File.STempStream, UnitsToTextX(X) + " " + UnitsToTextText(Y, FFont.Size) + " Td");
                 astring = Text;
-                if (RightToLeft || isHtml || this.InfoProvider.GetType().Name == "FontInfoFt")
+                if (shapedOutput)
                 {
                     astring = PDFCompatibleTextShaping(lInfo.Text,adata, Font, RightToLeft, X, Y, Font.Size, lInfo);
                     SWriteLine(File.STempStream, astring);
@@ -695,7 +702,7 @@ namespace Reportman.Drawing
                 {
                     SWriteLine(File.STempStream, PDFCompatibleText(astring, adata, FFont) + " Tj");
                 }
-                if (RightToLeft || isHtml || this.InfoProvider.GetType().Name == "FontInfoFt")
+                if (shapedOutput)
                 {
                     SWriteLine(File.STempStream, "EMC");
                 }
@@ -803,7 +810,13 @@ namespace Reportman.Drawing
                 if (Rotation == 0)
                 {
                     PosLine = (int)Math.Round(PDFFile.CONS_UNDERLINEPOS * ((double)FFont.Size / PDFFile.CONS_PDFRES * FResolution));
-                    Line(X, Y + PosLine, X + LineWidth, Y + PosLine);
+                    int nliney = Y + PosLine;
+                    // Shaped output positions text via Tm at UnitsToTextY(Y) while the underline
+                    // constants were calibrated for Td (UnitsToTextY(Y) - FSize): compensate the
+                    // font size offset, same correction the HTML decorators apply.
+                    if (shapedOutput)
+                        nliney = nliney - (int)Math.Round((double)FFont.Size / PDFFile.CONS_PDFRES * FResolution);
+                    Line(X, nliney, X + LineWidth, nliney);
                 }
                 else
                 {
@@ -827,7 +840,11 @@ namespace Reportman.Drawing
                 if (Rotation == 0)
                 {
                     PosLine = (int)Math.Round(PDFFile.CONS_STRIKEOUTPOS * ((double)FFont.Size / PDFFile.CONS_PDFRES * FResolution));
-                    Line(X, Y + PosLine, X + LineWidth, Y + PosLine);
+                    int nliney = Y + PosLine;
+                    // Same Tm/Td baseline compensation as the underline above.
+                    if (shapedOutput)
+                        nliney = nliney - (int)Math.Round((double)FFont.Size / PDFFile.CONS_PDFRES * FResolution);
+                    Line(X, nliney, X + LineWidth, nliney);
                 }
                 else
                 {
@@ -1372,6 +1389,16 @@ namespace Reportman.Drawing
 
             File.CheckPrinting();
 
+            // Rotated text keeps the legacy pipeline on both PDF and GDI (the GDI exact-metrics
+            // path excludes rotation), so forced shaping is suspended here to keep both outputs
+            // aligned. RTL/HTML rotated text is unaffected: it shapes regardless of this flag.
+            bool suspendedForceShaping = false;
+            if ((Rotation != 0) && ForceComplexShaping)
+            {
+                ForceComplexShaping = false;
+                suspendedForceShaping = true;
+            }
+
             if (Clipping || (Rotation != 0))
             {
                 SaveGraph();
@@ -1428,7 +1455,8 @@ namespace Reportman.Drawing
                         posx = arect.Left + (int)(((arect.Width) - Lines[i].Width) / 2);
                     }
                     astring = Text.Substring(Lines[i].Position, Lines[i].Size);
-                    if (((Alignment & AlignmentFlags_AlignHJustify) > 0) && (!Lines[i].LastLine) && !isHtml)
+                    bool dojustify = ((Alignment & AlignmentFlags_AlignHJustify) > 0) && (!Lines[i].LastLine) && !isHtml;
+                    if (dojustify)
                     {
                         // Calculate the sizes of the words, then
                         // share space between words
@@ -1458,10 +1486,18 @@ namespace Reportman.Drawing
                         // Calculate all words size
                         alinesize = 0;
                         lwidths = new Integers();
+                        // Keep each word's own shaped LineInfo: when TextOut emits per-glyph
+                        // output it must receive the glyphs of the word being drawn, not the
+                        // glyphs of the whole line.
+                        List<LineInfo> lwordinfos = new List<LineInfo>();
                         for (index = 0; index < lwords.Count; index++)
                         {
                             arec = arect;
-                            TextExtent(lwords[index], ref arec, false, true, false,RightToLeft, isHtml);
+                            var winfos = TextExtent(lwords[index], ref arec, false, true, false,RightToLeft, isHtml);
+                            if (winfos.Count > 0)
+                                lwordinfos.Add(winfos[0]);
+                            else
+                                lwordinfos.Add(Lines[i]);
                             int nwidth;
                             if (RightToLeft)
                                 nwidth = -(arec.Width);
@@ -1500,12 +1536,18 @@ namespace Reportman.Drawing
                             }
                             for (index = 0; index < lwords.Count; index++)
                             {
-                                TextOut(Convert.ToInt32(currpos), posy + Lines[i].TopPos, lwords[index], Lines[i].Width, 0, RightToLeft, Lines[i], isHtml);
+                                TextOut(Convert.ToInt32(currpos), posy + Lines[i].TopPos, lwords[index], Lines[i].Width, 0, RightToLeft, lwordinfos[index], isHtml);
                                 currpos = currpos + lwidths[index] + alinedif;
                             }
                         }
+                        else
+                        {
+                            // No space to share (overflowing line): fall back to drawing the
+                            // line unjustified instead of dropping it, matching the GDI driver.
+                            dojustify = false;
+                        }
                     }
-                    else
+                    if (!dojustify)
                     {
                         if (!Font.Transparent)
                         {
@@ -1533,6 +1575,10 @@ namespace Reportman.Drawing
                 if (Clipping || (Rotation != 0))
                 {
                     RestoreGraph();
+                }
+                if (suspendedForceShaping)
+                {
+                    ForceComplexShaping = true;
                 }
             }
         }
