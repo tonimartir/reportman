@@ -503,6 +503,31 @@ namespace Reportman.Reporting
 
             if (targetType.IsAssignableFrom(valueType)) return value;
 
+            // Listas de cadenas (p.ej. AllStrings de LabelItem): tras el viaje por JSON
+            // llegan como JArray y la conversión genérica fallaba, dejando el deshacer
+            // sin efecto para esas propiedades.
+            if (targetType == typeof(Strings))
+            {
+                Strings nstrings = new Strings();
+                if (value is Newtonsoft.Json.Linq.JArray jarray)
+                {
+                    foreach (var token in jarray)
+                        nstrings.Add(token?.ToString() ?? "");
+                    return nstrings;
+                }
+                if (value is string joined)
+                {
+                    nstrings.Text = joined;
+                    return nstrings;
+                }
+                if (value is System.Collections.IEnumerable enumerable)
+                {
+                    foreach (object element in enumerable)
+                        nstrings.Add(element?.ToString() ?? "");
+                    return nstrings;
+                }
+            }
+
             // Handle Variant type specially (like TypeScript any type)
             if (targetType == typeof(Variant))
             {

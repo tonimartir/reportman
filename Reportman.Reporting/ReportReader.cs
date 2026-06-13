@@ -425,12 +425,23 @@ namespace Reportman.Reporting
             int index = avalue.IndexOf((char)10);
             while (index >= 0)
             {
-                list.Add(avalue.Substring(0, index));
+                AddLineNoTrim(list, avalue.Substring(0, index));
                 avalue = avalue.Substring(index + 1, avalue.Length - (index + 1));
                 index = avalue.IndexOf((char)10);
             }
             if (avalue.Length > 0)
-                list.Add(avalue);
+                AddLineNoTrim(list, avalue);
+        }
+        private static void AddLineNoTrim(Strings list, string line)
+        {
+            // El separador de idiomas en WIDETEXT es CRLF: el CR no forma parte del texto.
+            // Versiones anteriores partían solo por LF y dejaban CR acumulados al final de
+            // cada idioma; se eliminan aquí (autorrepara informes ya corrompidos). Los
+            // elementos compuestos solo de CR son residuos de esa fuga, no idiomas reales.
+            string clean = line.TrimEnd((char)13);
+            if (clean.Length == 0 && line.Length > 0)
+                return;
+            list.Add(clean);
         }
         private void FillStrings(Strings list)
         {
@@ -2359,7 +2370,13 @@ namespace Reportman.Reporting
             if (comp is LabelItem)
             {
                 LabelItem compl = (LabelItem)comp;
-                WritePropertyS("WIDETEXT", compl.AllStrings.Text, astream);
+                // WIDETEXT no puede representar saltos de línea dentro de un idioma
+                // (cada línea es un idioma): los CR residuales se eliminan y los LF
+                // embebidos se sustituyen por espacio antes de unir con CRLF.
+                Strings cleanStrings = new Strings();
+                foreach (string lang in compl.AllStrings)
+                    cleanStrings.Add(lang == null ? "" : lang.Replace("\r", "").Replace('\n', ' '));
+                WritePropertyS("WIDETEXT", cleanStrings.Text, astream);
             }
             else
             // TRpExpression

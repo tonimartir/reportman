@@ -3285,7 +3285,9 @@ end;
 
         private void AddLabelProperties(LabelItem item, ChangeObjectOperation op)
         {
-            op.AddProperty("allStrings", PropertyType.String, null, item.AllStrings);
+            // Copia: guardar la referencia viva haría que ediciones posteriores
+            // mutasen el valor registrado en la operación de deshacer.
+            op.AddProperty("allStrings", PropertyType.StringArray, null, (Strings)item.AllStrings.Clone());
         }
 
         private void AddExpressionProperties(ExpressionItem item, ChangeObjectOperation op)
