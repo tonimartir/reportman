@@ -55,7 +55,10 @@ namespace Reportman.Reporting
             }
             set
             {
-                int lang = Report.Language;
+                // Mismo convenio que el getter (y que el designer web): el idioma L
+                // vive en AllStrings[L + 1]. Antes el setter escribía en [L] y con
+                // Language >= 0 leía y escribía slots distintos.
+                int lang = Report.Language + 1;
                 if (lang < 0)
                     lang = 0;
                 string defaultvalue = "";

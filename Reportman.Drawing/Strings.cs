@@ -52,13 +52,21 @@ namespace Reportman.Drawing
             StringBuilder partial = new StringBuilder();
             while (i < astring.Length)
             {
-                if (astring[i] == (char)10)
+                // El separador canónico es CRLF (el que genera el getter de Text);
+                // se aceptan también CR o LF sueltos. Antes se comprobaba LF seguido
+                // de CR (orden invertido) y el CR acababa dentro del elemento.
+                if (astring[i] == (char)13)
                 {
                     Add(partial.ToString());
                     partial = new StringBuilder();
                     if (i < astring.Length - 1)
-                        if (astring[i + 1] == (char)13)
+                        if (astring[i + 1] == (char)10)
                             i++;
+                }
+                else if (astring[i] == (char)10)
+                {
+                    Add(partial.ToString());
+                    partial = new StringBuilder();
                 }
                 else
                 {
@@ -83,7 +91,7 @@ namespace Reportman.Drawing
                 return "";
             if (index < 0)
                 index = 0;
-            if (alist.Count < index)
+            if (index < alist.Count)
             {
                 return alist[index];
             }
