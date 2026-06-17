@@ -190,6 +190,16 @@ namespace Reportman.Designer
                 result.AgentApiKey = dia.FParams.AgentApiKey;
                 result.AgentBaseUrl = dia.FParams.AgentBaseUrl;
                 result.AgentHubDatabaseId = dia.FParams.AgentHubDatabaseId;
+
+#if NET8_0_OR_GREATER
+                // The connection settings (e.g. ApiKey / HubDatabaseId) may have
+                // changed in the dialog. Invalidate the cached warm Direct Channel
+                // sessions so the next data fetch / report run uses the new values
+                // instead of reusing a session opened with the previous ones — no
+                // application restart needed. (net48 has no Direct Channel pool —
+                // HTTP only — so there is nothing to invalidate there.)
+                DirectAgentExecutor.ResetChannelPool();
+#endif
                 return true;
             }
         }

@@ -342,6 +342,24 @@ namespace Reportman.Reporting
             try { _httpClient.Dispose(); }
             catch { /* swallow */ }
         }
+
+        /// <summary>
+        /// Drop every warm Direct Channel session and clear the negotiation
+        /// cooldowns. Call after the user edits a connection (ApiKey /
+        /// HubDatabaseId) so the next query renegotiates with the new
+        /// credentials instead of reusing a session opened with the old ones.
+        /// The warm pool keys sessions by HubDatabaseId, so an ApiKey change on
+        /// the same database would otherwise keep hitting the stale session
+        /// until the application is restarted. EvictAllAsync clears the pool
+        /// synchronously (only the teardown of the old sessions is async), so a
+        /// fire-and-forget call invalidates the cache immediately.
+        /// </summary>
+        public static void ResetChannelPool()
+        {
+            s_negotiationFailedUntil.Clear();
+            try { _ = s_pool.EvictAllAsync(); }
+            catch { /* best effort */ }
+        }
     }
 }
 #endif
