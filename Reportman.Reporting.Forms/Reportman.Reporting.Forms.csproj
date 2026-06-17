@@ -52,6 +52,6 @@
        resources). net48 emits classic resources and must NOT depend on it.
        PrivateAssets="all" keeps it from flowing to downstream consumers. -->
   <ItemGroup Condition="'$(TargetFramework)' != 'net48'">
-    <PackageReference Include="System.Resources.Extensions" Version="10.0.8" PrivateAssets="all" />
+    <PackageReference Include="System.Resources.Extensions" Version="10.0.9" PrivateAssets="all" />
   </ItemGroup>
 </Project>

@@ -124,13 +124,13 @@
     <PackageReference Include="WinForms.DataVisualization">
       <Version>1.10.2</Version>
     </PackageReference>
-	  <PackageReference Include="System.Resources.Extensions" Version="10.0.8" PrivateAssets="all" />
+	  <PackageReference Include="System.Resources.Extensions" Version="10.0.9" PrivateAssets="all" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net9.0-windows'">
     <PackageReference Include="WinForms.DataVisualization">
       <Version>1.10.2</Version>
     </PackageReference>
-	  <PackageReference Include="System.Resources.Extensions" Version="10.0.8" PrivateAssets="all" />
+	  <PackageReference Include="System.Resources.Extensions" Version="10.0.9" PrivateAssets="all" />
 
   </ItemGroup>
 </Project>
