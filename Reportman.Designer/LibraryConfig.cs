@@ -32,6 +32,35 @@ namespace Reportman.Designer
             labelReportSearchField.Text = Translator.TranslateStr(1117);
             labelReportGroupsTable.Text = Translator.TranslateStr(1118);
             labelConnectionString.Text = Translator.TranslateStr(1119);
+
+            BuildDbxPathRow();
+        }
+
+        /// <summary>
+        /// Shows the path of the shared dbxconnections.ini, where HTTP Agent
+        /// connections (API key + Hub database) are stored, compatible with the
+        /// Delphi designer.
+        /// </summary>
+        private void BuildDbxPathRow()
+        {
+            Panel p = new Panel();
+            p.Dock = DockStyle.Bottom;
+            p.Height = 50;
+            p.Padding = new Padding(6, 4, 6, 4);
+
+            TextBox tb = new TextBox();
+            tb.Dock = DockStyle.Top;
+            tb.ReadOnly = true;
+            tb.Text = DbxConnections.GetPath();
+
+            Label l = new Label();
+            l.Dock = DockStyle.Top;
+            l.AutoSize = true;
+            l.Text = "dbxconnections.ini (HTTP Agent connections):";
+
+            p.Controls.Add(tb);
+            p.Controls.Add(l);
+            Controls.Add(p);
         }
         public void FillProviders()
         {
