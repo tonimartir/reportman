@@ -597,7 +597,11 @@ namespace Reportman.Designer
         {
             if (!CheckSave())
                 return;
-            OpenNewReport(ReportTemplateFactory.CreateBlankReport());
+            // New report connection wizard (Agent / Direct / no connection).
+            Report report = ReportTemplateFactory.CreateBlankReport();
+            if (NewReportWizard.Run(report, FindForm()) == DialogResult.Cancel)
+                return;
+            OpenNewReport(report);
         }
 
         private void ButtonNewGroupedClick(object sender, EventArgs e)

@@ -426,6 +426,48 @@ namespace Reportman.Designer
             PrintItem nitem = (PrintItem)ritem;
             SubReportEdit.SelectPrintItem(nitem);
         }
+
+        /// <summary>
+        /// Headless self-test of the selection→property-commit→undo path. Populates the
+        /// grid from the model (so the row value already equals the model) and fires the
+        /// same no-op commit that switching selection triggers; it must NOT create an undo
+        /// entry. Then it changes the value and commits, which MUST create one. Returns a
+        /// short result string.
+        /// </summary>
+        internal string SelfTestUndoOnSelect(DesignerInterface obj, string translatedPropName, string changedValue)
+        {
+            if (data == null)
+                data = new DataSet();
+            selectingobject = true;
+            CurrentInterface = obj;
+            DataTable props = FindDataTable(obj.SelectionClassName, obj);
+            DataSource = props;
+            selectingobject = false;
+
+            ReportItem first = obj.SelectionList.Values[0];
+            UndoCue cue = first.Report != null ? first.Report.UndoCue : null;
+            if (cue == null)
+                return "NO UndoCue on report";
+
+            DataRow target = null;
+            foreach (DataRow row in props.Rows)
+                if (row["NAME"].ToString() == translatedPropName) { target = row; break; }
+            if (target == null)
+                return "PROP NOT FOUND: " + translatedPropName;
+
+            int before = cue.UndoOperations.Count;
+            // (1) no-op commit (value already equals model) — what selection switching does
+            RowChange(this, new DataRowChangeEventArgs(target, DataRowAction.Change));
+            int afterNoop = cue.UndoOperations.Count;
+            // (2) real change
+            target["VALUE"] = changedValue;
+            RowChange(this, new DataRowChangeEventArgs(target, DataRowAction.Change));
+            int afterChange = cue.UndoOperations.Count;
+
+            return string.Format("noopUndoDelta={0} (expect 0); realChangeUndoDelta={1} (expect 1)",
+                afterNoop - before, afterChange - afterNoop);
+        }
+
         protected override void OnPaint(PaintEventArgs pe)
         {
             // TODO: Agregar código de dibujo personalizado aquí
@@ -433,19 +475,42 @@ namespace Reportman.Designer
             // Llamando a la clase base OnPaint
             base.OnPaint(pe);
         }
+        // Compares two Variant values to detect no-op property commits. Selecting an
+        // object re-commits the focused property row (PrintCondition is the first row),
+        // which must NOT apply the value again nor create an undo entry. Not used for
+        // binary/image values (byte arrays all stringify the same).
+        private static bool SameVariantValue(Variant a, Variant b)
+        {
+            try
+            {
+                object oa = a.AsObject();
+                object ob = b.AsObject();
+                if (oa == null) return ob == null;
+                if (ob == null) return false;
+                if (oa.Equals(ob)) return true;
+                return string.Equals(oa.ToString(), ob.ToString(), StringComparison.Ordinal);
+            }
+            catch
+            {
+                return false; // on any uncertainty treat as changed (apply)
+            }
+        }
+
         private void RowChange(object sender, DataRowChangeEventArgs args)
         {
             object newValue = DBNull.Value;
             bool executeonpropchange = false;
             string propName = args.Row["NAME"].ToString();
 
-            // Capture old value before modification for undo
+            // Capture old value before modification for undo / no-op detection
             Variant oldValue = new Variant();
+            bool haveOld = false;
             if (CurrentInterface != null && CurrentInterface.SelectionList.Count > 0)
             {
                 try
                 {
                     oldValue = CurrentInterface.GetPropertyMulti(propName);
+                    haveOld = true;
                 }
                 catch
                 {
@@ -459,8 +524,15 @@ namespace Reportman.Designer
                 {
                     if ((bool)args.Row["TWIPS"])
                     {
-                        CurrentInterface.SetPropertyMulti(propName, Twips.TwipsFromUnits(Variant.VariantFromObject(args.Row["VALUE"])));
-                        executeonpropchange = true;
+                        Variant newvar = Twips.TwipsFromUnits(Variant.VariantFromObject(args.Row["VALUE"]));
+                        // Only apply/record when the value really changed: selecting an
+                        // object re-commits the focused row (often PrintCondition) and
+                        // must not create a spurious undo entry.
+                        if (!haveOld || !SameVariantValue(oldValue, newvar))
+                        {
+                            CurrentInterface.SetPropertyMulti(propName, newvar);
+                            executeonpropchange = true;
+                        }
                     }
                     else
                     {
@@ -492,8 +564,13 @@ namespace Reportman.Designer
                                         break;
                                 }
                             }
-                            CurrentInterface.SetPropertyMulti(propName, Variant.VariantFromObject(newValueObject));
-                            executeonpropchange = true;
+                            Variant newvar = Variant.VariantFromObject(newValueObject);
+                            // Only apply/record on a real change (see note above).
+                            if (!haveOld || !SameVariantValue(oldValue, newvar))
+                            {
+                                CurrentInterface.SetPropertyMulti(propName, newvar);
+                                executeonpropchange = true;
+                            }
                         }
                     }
 

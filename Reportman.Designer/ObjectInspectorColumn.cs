@@ -363,6 +363,13 @@ namespace Reportman.Designer
             string datainfoalias = dinfo.GetProperty(Translator.TranslateStr(400));
             if (ConnectionEditor.ShowDialog(ref connection_string, GetMainDesigner(), datainfoalias))
             {
+                // The dialog also updated the DatabaseInfo Driver and Provider Factory
+                // (HTTP Agent => provider factory empty). Refresh the whole inspector
+                // (deferred, after the cell write-back) so the Driver / Provider Factory /
+                // Connection String rows all reflect the model.
+                ObjectInspector insp = IntDataGridView as ObjectInspector;
+                if (insp != null)
+                    insp.BeginInvoke((MethodInvoker)delegate { insp.SetObject(dinfo); });
                 return true;
             }
             else

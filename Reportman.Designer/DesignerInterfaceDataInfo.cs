@@ -124,18 +124,24 @@ namespace Reportman.Designer
             if (pname == Translator.TranslateStr(154))
             {
                 Strings nstrings = GetAvaliableConnections();
-                if (newvalue <= nstrings.Count)
+                if (newvalue.VarType == VariantType.String)
                 {
-                    if (newvalue == 0)
+                    newvalue = nstrings.IndexOf(newvalue);
+                }
+                else
+                    newvalue = newvalue - 1;
+                if (newvalue < nstrings.Count)
+                {
+                    if (newvalue < 0)
                     {
                         FDataInfo.DatabaseAlias = "";
                     }
                     else
-                        FDataInfo.DatabaseAlias = nstrings[newvalue - 1];
+                        FDataInfo.DatabaseAlias = nstrings[newvalue];
                 }
                 else
                 {
-                    if (newvalue == 0)
+                    if (newvalue < 0)
                     {
                         FDataInfo.DatabaseAlias = "";
                     }
