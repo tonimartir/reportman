@@ -1,6 +1,6 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net48;net8.0-windows;net9.0-windows</TargetFrameworks>
+    <TargetFrameworks>net48;net8.0-windows;net9.0-windows;net10.0-windows</TargetFrameworks>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWindowsForms>true</UseWindowsForms>
@@ -11,11 +11,11 @@
          the modern .NET targets: their GenerateResource task runs on the .NET
          runtime, which no longer ships BinaryFormatter. net48 is built by
          full-framework MSBuild.exe, whose classic ResourceWriter still uses
-         BinaryFormatter — so net48 emits CLASSIC .resources with zero dependency
+         BinaryFormatter � so net48 emits CLASSIC .resources with zero dependency
          on System.Resources.Extensions, keeping the assembly fully loadable by
          legacy net48 consumers. (net48 therefore must be built with MSBuild.exe,
          not `dotnet build`.) -->
-    <GenerateResourceUsePreserializedResources Condition="'$(TargetFramework)' != 'net48'">true</GenerateResourceUsePreserializedResources>
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
   </PropertyGroup>
 	<PropertyGroup>
 		<PackageId>Reportman.Reporting.Forms</PackageId>
@@ -51,7 +51,5 @@
   <!-- System.Resources.Extensions only for the modern targets (preserialized
        resources). net48 emits classic resources and must NOT depend on it.
        PrivateAssets="all" keeps it from flowing to downstream consumers. -->
-  <ItemGroup Condition="'$(TargetFramework)' != 'net48'">
-    <PackageReference Include="System.Resources.Extensions" Version="10.0.9" PrivateAssets="all" />
-  </ItemGroup>
+  <ItemGroup><PackageReference Include="System.Resources.Extensions" Version="10.0.9" PrivateAssets="all" /></ItemGroup>
 </Project>

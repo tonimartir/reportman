@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-	<TargetFrameworks>net48;net9.0-windows;net8.0-windows</TargetFrameworks>
+	<TargetFrameworks>net48;net9.0-windows;net10.0-windows;net8.0-windows</TargetFrameworks>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWindowsForms>true</UseWindowsForms>
@@ -15,7 +15,7 @@
          on System.Resources.Extensions, keeping the assembly fully loadable by
          legacy net48 consumers. (net48 therefore must be built with MSBuild.exe,
          not `dotnet build`.) -->
-    <GenerateResourceUsePreserializedResources Condition="'$(TargetFramework)' != 'net48'">true</GenerateResourceUsePreserializedResources>
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
   </PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<DefineConstants>TRACE;DEBUG;REPMAN_ZLIB</DefineConstants>
@@ -115,10 +115,9 @@
   </ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'net48'">
 		<Reference Include="System.Windows.Forms.DataVisualization">
-			<Version>4.0</Version>
+			<Version>1.7.0</Version>
 		</Reference>
-		<!-- No System.Resources.Extensions on net48: it emits classic resources
-		     (see GenerateResourceUsePreserializedResources above). -->
+		<PackageReference Include="System.Resources.Extensions" Version="10.0.9" />
 	</ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net8.0-windows'">
     <PackageReference Include="WinForms.DataVisualization">
@@ -126,7 +125,7 @@
     </PackageReference>
 	  <PackageReference Include="System.Resources.Extensions" Version="10.0.9" PrivateAssets="all" />
   </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net9.0-windows'">
+  <ItemGroup Condition="'$(TargetFramework)' == 'net9.0-windows' Or '$(TargetFramework)' == 'net10.0-windows'">
     <PackageReference Include="WinForms.DataVisualization">
       <Version>1.10.2</Version>
     </PackageReference>
