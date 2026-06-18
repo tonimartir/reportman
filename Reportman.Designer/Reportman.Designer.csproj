@@ -1,15 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net48;net8.0-windows;net9.0-windows</TargetFrameworks>
+    <TargetFrameworks>net48;net8.0-windows;net9.0-windows;net10.0-windows</TargetFrameworks>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWindowsForms>true</UseWindowsForms>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
     <Configurations>Debug;Release</Configurations>
     <Platforms>AnyCPU;x86</Platforms>
-    <!-- Preserialized resources solo para targets modernos (.NET sin BinaryFormatter);
-         net48 emite recursos clásicos y NO depende de System.Resources.Extensions. -->
-    <GenerateResourceUsePreserializedResources Condition="'$(TargetFramework)' != 'net48'">true</GenerateResourceUsePreserializedResources>
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
   </PropertyGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
     <Reference Include="System.IO.Compression" />
@@ -39,7 +37,7 @@
 	       propagated to apps that reference Reportman.Designer. Keeps a
 	       downstream .net 8 host from inheriting the 10.0.7 transitive. -->
 	  <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="10.0.9" />
-	  <PackageReference Include="System.Resources.Extensions" Version="10.0.9" PrivateAssets="all" Condition="'$(TargetFramework)' != 'net48'" />
+	  <PackageReference Include="System.Resources.Extensions" Version="10.0.9" PrivateAssets="all" />
 	  <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.4022.49" />
 	</ItemGroup>
 	<ItemGroup>

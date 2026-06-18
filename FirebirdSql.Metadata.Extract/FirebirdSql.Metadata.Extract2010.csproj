@@ -1,6 +1,6 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net48;net8.0;net9.0</TargetFrameworks>
+    <TargetFrameworks>net48;net8.0;net9.0;net10.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <RootNamespace>FirebirdSql.Metadata.Extract</RootNamespace>
     <AssemblyName>FirebirdSql.Metadata.Extract</AssemblyName>
@@ -23,7 +23,7 @@
     <Configurations>Debug;MonoDebug;Release_35;Release_40;Release_45;Release_Mono_w_Linux;Release</Configurations>
     <AssemblyTitle>FirebirdSql.Metadata.Extract</AssemblyTitle>
     <Product>FirebirdSql.Metadata.Extract</Product>
-    <Copyright>©  2007</Copyright>
+    <Copyright>�  2007</Copyright>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
