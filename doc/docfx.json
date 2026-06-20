@@ -11,7 +11,7 @@
             "Reportman.Drawing.Forms.dll",
             "Reportman.Reporting.Forms.dll",
             "Reportman.WPF.dll",
-            "Reportman.CrossPlatform.dll"
+            "Reportman.Drawing.CrossPlatform.dll"
           ],
           "exclude": ["*Test*.dll"]
         }

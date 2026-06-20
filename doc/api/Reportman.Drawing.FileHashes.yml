@@ -15,9 +15,13 @@ items:
   nameWithType: FileHashes
   fullName: Reportman.Drawing.FileHashes
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/HashGenerator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: A snapshot of file hashes for a folder tree, with the UTC timestamp at which it was generated.
+  example: []
   syntax:
     content: public class FileHashes
     content.vb: Public Class FileHashes
@@ -42,6 +46,8 @@ items:
   nameWithType: FileHashes.Hashes
   fullName: Reportman.Drawing.FileHashes.Hashes
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/HashGenerator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -61,6 +67,8 @@ items:
   nameWithType: FileHashes.DateTimeCreatedUtc
   fullName: Reportman.Drawing.FileHashes.DateTimeCreatedUtc
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/HashGenerator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -80,6 +88,8 @@ items:
   nameWithType: FileHashes.FileHashes()
   fullName: Reportman.Drawing.FileHashes.FileHashes()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/HashGenerator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

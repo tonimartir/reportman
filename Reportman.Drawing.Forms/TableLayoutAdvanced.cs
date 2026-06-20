@@ -7,6 +7,9 @@ using System.Windows.Forms;
 namespace Reportman.Drawing.Forms
 {
 
+    /// <summary>
+    /// A TableLayoutPanel that lets the user interactively resize rows and columns by dragging the splitter regions between cells with the mouse.
+    /// </summary>
     public partial class TableLayoutPanelAdvanced : TableLayoutPanel
     {
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]

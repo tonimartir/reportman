@@ -15,9 +15,16 @@ items:
   nameWithType: VariantSystemTextJsonConverter
   fullName: Reportman.Reporting.VariantSystemTextJsonConverter
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
+  summary: >-
+    System.Text.Json converter that serializes a <xref href="Reportman.Reporting.Variant" data-throw-if-not-resolved="false"></xref> as a JSON object with
+
+    Type and Value properties, and reconstructs the typed Variant when reading.
+  example: []
   syntax:
     content: 'public class VariantSystemTextJsonConverter : JsonConverter<Variant>'
     content.vb: Public Class VariantSystemTextJsonConverter Inherits JsonConverter(Of Variant)
@@ -49,6 +56,8 @@ items:
   nameWithType: VariantSystemTextJsonConverter.Read(ref Utf8JsonReader, Type, JsonSerializerOptions)
   fullName: Reportman.Reporting.VariantSystemTextJsonConverter.Read(ref System.Text.Json.Utf8JsonReader, System.Type, System.Text.Json.JsonSerializerOptions)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -81,6 +90,8 @@ items:
   nameWithType: VariantSystemTextJsonConverter.Write(Utf8JsonWriter, Variant, JsonSerializerOptions)
   fullName: Reportman.Reporting.VariantSystemTextJsonConverter.Write(System.Text.Json.Utf8JsonWriter, Reportman.Reporting.Variant, System.Text.Json.JsonSerializerOptions)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -108,6 +119,8 @@ items:
   nameWithType: VariantSystemTextJsonConverter.VariantSystemTextJsonConverter()
   fullName: Reportman.Reporting.VariantSystemTextJsonConverter.VariantSystemTextJsonConverter()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -119,6 +132,14 @@ items:
   fullName.vb: Reportman.Reporting.VariantSystemTextJsonConverter.New()
   name.vb: New()
 references:
+- uid: Reportman.Reporting.Variant
+  commentId: T:Reportman.Reporting.Variant
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.Variant.html
+  name: Variant
+  nameWithType: Variant
+  fullName: Reportman.Reporting.Variant
 - uid: Reportman.Reporting
   commentId: N:Reportman.Reporting
   isExternal: true
@@ -914,14 +935,6 @@ references:
   name: JsonSerializerOptions
   nameWithType: JsonSerializerOptions
   fullName: System.Text.Json.JsonSerializerOptions
-- uid: Reportman.Reporting.Variant
-  commentId: T:Reportman.Reporting.Variant
-  parent: Reportman.Reporting
-  isExternal: true
-  href: Reportman.Reporting.Variant.html
-  name: Variant
-  nameWithType: Variant
-  fullName: Reportman.Reporting.Variant
 - uid: System.Text.Json.Serialization.JsonConverter`1.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
   commentId: M:System.Text.Json.Serialization.JsonConverter`1.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
   isExternal: true

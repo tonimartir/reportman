@@ -4,6 +4,10 @@ using System.Text;
 
 namespace Reportman.Drawing
 {
+    /// <summary>
+    /// Static utility helpers for working with streams: file/stream/memory conversions, writing strings,
+    /// primitive-to-byte-array conversions and (when ZLib is enabled) stream compression and decompression.
+    /// </summary>
     public class StreamUtil
     {
         public static string[] GetFiles(string path, string searchPattern, SearchOption searchOption)
@@ -1127,6 +1131,10 @@ namespace Reportman.Drawing
 
 #endif
     }
+    /// <summary>
+    /// Result of an asynchronous compression task, reporting the source and destination streams,
+    /// whether the source was disposed, whether the operation was cancelled and the number of compressed bytes produced.
+    /// </summary>
     public class TaskCompressResult
     {
         public Stream Source;

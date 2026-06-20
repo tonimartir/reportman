@@ -16,9 +16,16 @@ items:
   nameWithType: ISqlExecuterPartialFillEvent
   fullName: Reportman.Drawing.ISqlExecuterPartialFillEvent
   type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    Callback raised while a result set is being filled incrementally, giving access to the
+
+    partially populated table through <xref href="Reportman.Drawing.ISqlExecuterPartialFillArgs" data-throw-if-not-resolved="false"></xref>.
+  example: []
   syntax:
     content: public delegate void ISqlExecuterPartialFillEvent(object sender, ISqlExecuterPartialFillArgs args)
     parameters:
@@ -38,6 +45,8 @@ items:
   nameWithType: ISqlExecuterPartialFillEvent.ISqlExecuterPartialFillEvent(object, nint)
   fullName: Reportman.Drawing.ISqlExecuterPartialFillEvent.ISqlExecuterPartialFillEvent(object, nint)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -64,6 +73,8 @@ items:
   nameWithType: ISqlExecuterPartialFillEvent.Invoke(object, ISqlExecuterPartialFillArgs)
   fullName: Reportman.Drawing.ISqlExecuterPartialFillEvent.Invoke(object, Reportman.Drawing.ISqlExecuterPartialFillArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -90,6 +101,8 @@ items:
   nameWithType: ISqlExecuterPartialFillEvent.BeginInvoke(object, ISqlExecuterPartialFillArgs, AsyncCallback, object)
   fullName: Reportman.Drawing.ISqlExecuterPartialFillEvent.BeginInvoke(object, Reportman.Drawing.ISqlExecuterPartialFillArgs, System.AsyncCallback, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -122,6 +135,8 @@ items:
   nameWithType: ISqlExecuterPartialFillEvent.EndInvoke(IAsyncResult)
   fullName: Reportman.Drawing.ISqlExecuterPartialFillEvent.EndInvoke(System.IAsyncResult)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -133,6 +148,14 @@ items:
     content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
   overload: Reportman.Drawing.ISqlExecuterPartialFillEvent.EndInvoke*
 references:
+- uid: Reportman.Drawing.ISqlExecuterPartialFillArgs
+  commentId: T:Reportman.Drawing.ISqlExecuterPartialFillArgs
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.ISqlExecuterPartialFillArgs.html
+  name: ISqlExecuterPartialFillArgs
+  nameWithType: ISqlExecuterPartialFillArgs
+  fullName: Reportman.Drawing.ISqlExecuterPartialFillArgs
 - uid: Reportman.Drawing
   commentId: N:Reportman.Drawing
   isExternal: true
@@ -171,14 +194,6 @@ references:
   nameWithType.vb: Object
   fullName.vb: Object
   name.vb: Object
-- uid: Reportman.Drawing.ISqlExecuterPartialFillArgs
-  commentId: T:Reportman.Drawing.ISqlExecuterPartialFillArgs
-  parent: Reportman.Drawing
-  isExternal: true
-  href: Reportman.Drawing.ISqlExecuterPartialFillArgs.html
-  name: ISqlExecuterPartialFillArgs
-  nameWithType: ISqlExecuterPartialFillArgs
-  fullName: Reportman.Drawing.ISqlExecuterPartialFillArgs
 - uid: System
   commentId: N:System
   isExternal: true

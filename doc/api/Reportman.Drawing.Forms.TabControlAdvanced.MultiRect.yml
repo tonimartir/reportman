@@ -21,6 +21,8 @@ items:
   nameWithType: TabControlAdvanced.MultiRect
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.MultiRect
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -48,6 +50,8 @@ items:
   nameWithType: TabControlAdvanced.MultiRect._rect
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.MultiRect._rect
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -67,6 +71,8 @@ items:
   nameWithType: TabControlAdvanced.MultiRect._index
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.MultiRect._index
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -86,6 +92,8 @@ items:
   nameWithType: TabControlAdvanced.MultiRect.MultiRect(Rectangle, int)
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.MultiRect.MultiRect(System.Drawing.Rectangle, int)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -112,6 +120,8 @@ items:
   nameWithType: TabControlAdvanced.MultiRect.Index
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.MultiRect.Index
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -133,6 +143,8 @@ items:
   nameWithType: TabControlAdvanced.MultiRect.Rect
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.MultiRect.Rect
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -154,6 +166,8 @@ items:
   nameWithType: TabControlAdvanced.MultiRect.X
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.MultiRect.X
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -175,6 +189,8 @@ items:
   nameWithType: TabControlAdvanced.MultiRect.Y
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.MultiRect.Y
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -196,6 +212,8 @@ items:
   nameWithType: TabControlAdvanced.MultiRect.Width
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.MultiRect.Width
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -217,6 +235,8 @@ items:
   nameWithType: TabControlAdvanced.MultiRect.Height
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.MultiRect.Height
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

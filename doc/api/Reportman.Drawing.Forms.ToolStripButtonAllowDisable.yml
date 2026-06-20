@@ -14,9 +14,16 @@ items:
   nameWithType: ToolStripButtonAllowDisable
   fullName: Reportman.Drawing.Forms.ToolStripButtonAllowDisable
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    A tool strip button that opts in to custom disabled-state rendering by implementing
+
+    <xref href="Reportman.Drawing.Forms.IDisplayDisable" data-throw-if-not-resolved="false"></xref>.
+  example: []
   syntax:
     content: 'public class ToolStripButtonAllowDisable : ToolStripButton, IBindableComponent, IDropTarget, IComponent, IDisposable, IDisplayDisable'
     content.vb: Public Class ToolStripButtonAllowDisable Inherits ToolStripButton Implements IBindableComponent, IDropTarget, IComponent, IDisposable, IDisplayDisable
@@ -226,6 +233,8 @@ items:
   nameWithType: ToolStripButtonAllowDisable.DisplayDisable()
   fullName: Reportman.Drawing.Forms.ToolStripButtonAllowDisable.DisplayDisable()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -249,6 +258,8 @@ items:
   nameWithType: ToolStripButtonAllowDisable.ToolStripButtonAllowDisable()
   fullName: Reportman.Drawing.Forms.ToolStripButtonAllowDisable.ToolStripButtonAllowDisable()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -260,6 +271,14 @@ items:
   fullName.vb: Reportman.Drawing.Forms.ToolStripButtonAllowDisable.New()
   name.vb: New()
 references:
+- uid: Reportman.Drawing.Forms.IDisplayDisable
+  commentId: T:Reportman.Drawing.Forms.IDisplayDisable
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.IDisplayDisable.html
+  name: IDisplayDisable
+  nameWithType: IDisplayDisable
+  fullName: Reportman.Drawing.Forms.IDisplayDisable
 - uid: Reportman.Drawing.Forms
   commentId: N:Reportman.Drawing.Forms
   isExternal: true
@@ -380,14 +399,6 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
-- uid: Reportman.Drawing.Forms.IDisplayDisable
-  commentId: T:Reportman.Drawing.Forms.IDisplayDisable
-  parent: Reportman.Drawing.Forms
-  isExternal: true
-  href: Reportman.Drawing.Forms.IDisplayDisable.html
-  name: IDisplayDisable
-  nameWithType: IDisplayDisable
-  fullName: Reportman.Drawing.Forms.IDisplayDisable
 - uid: System.Windows.Forms.ToolStripButton.CreateAccessibilityInstance
   commentId: M:System.Windows.Forms.ToolStripButton.CreateAccessibilityInstance
   parent: System.Windows.Forms.ToolStripButton

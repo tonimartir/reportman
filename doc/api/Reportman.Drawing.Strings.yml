@@ -24,6 +24,8 @@ items:
   nameWithType: Strings
   fullName: Reportman.Drawing.Strings
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Strings.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -117,6 +119,8 @@ items:
   nameWithType: Strings.Clone()
   fullName: Reportman.Drawing.Strings.Clone()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Strings.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -142,6 +146,8 @@ items:
   nameWithType: Strings.GetStringByIndex(string, int)
   fullName: Reportman.Drawing.Strings.GetStringByIndex(string, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Strings.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -175,6 +181,8 @@ items:
   nameWithType: Strings.SetStringByIndex(string, string, int)
   fullName: Reportman.Drawing.Strings.SetStringByIndex(string, string, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Strings.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -214,6 +222,8 @@ items:
   nameWithType: Strings.FromSemiColon(string)
   fullName: Reportman.Drawing.Strings.FromSemiColon(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Strings.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -244,6 +254,8 @@ items:
   nameWithType: Strings.FromSeparator(char, string)
   fullName: Reportman.Drawing.Strings.FromSeparator(char, string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Strings.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -277,6 +289,8 @@ items:
   nameWithType: Strings.RemoveBlanks()
   fullName: Reportman.Drawing.Strings.RemoveBlanks()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Strings.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -297,6 +311,8 @@ items:
   nameWithType: Strings.ToSemiColon()
   fullName: Reportman.Drawing.Strings.ToSemiColon()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Strings.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -320,6 +336,8 @@ items:
   nameWithType: Strings.ToCharSeparated(char)
   fullName: Reportman.Drawing.Strings.ToCharSeparated(char)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Strings.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -349,6 +367,8 @@ items:
   nameWithType: Strings.LoadFromFile(string)
   fullName: Reportman.Drawing.Strings.LoadFromFile(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Strings.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -373,6 +393,8 @@ items:
   nameWithType: Strings.LoadFromStream(Stream)
   fullName: Reportman.Drawing.Strings.LoadFromStream(System.IO.Stream)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Strings.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -394,6 +416,8 @@ items:
   nameWithType: Strings.Strings()
   fullName: Reportman.Drawing.Strings.Strings()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Strings.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -415,6 +439,8 @@ items:
   nameWithType: Strings.Text
   fullName: Reportman.Drawing.Strings.Text
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Strings.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -5582,7 +5608,7 @@ references:
   commentId: T:Reportman.Drawing.Strings
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.Strings.html
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Strings.cs
   name: Strings
   nameWithType: Strings
   fullName: Reportman.Drawing.Strings

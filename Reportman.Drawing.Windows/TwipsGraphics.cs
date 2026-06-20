@@ -4,6 +4,10 @@ using System.Threading;
 
 namespace Reportman.Drawing
 {
+    /// <summary>
+    /// Helper for converting between twips and screen pixels at the current display DPI (with an
+    /// optional scale factor) and for snapping points to a design grid.
+    /// </summary>
     public class TwipsGraphics
     {
         /// <summary>

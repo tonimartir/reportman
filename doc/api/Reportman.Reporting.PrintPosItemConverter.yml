@@ -16,9 +16,18 @@ items:
   nameWithType: PrintPosItemConverter
   fullName: Reportman.Reporting.PrintPosItemConverter
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
+  summary: >-
+    Json.NET converter that serializes and deserializes <xref href="Reportman.Reporting.PrintPosItem" data-throw-if-not-resolved="false"></xref> instances,
+
+    using the "className" discriminator to instantiate the correct concrete report item type
+
+    (shape, label, expression, image, barcode or chart).
+  example: []
   syntax:
     content: 'public class PrintPosItemConverter : JsonConverter'
     content.vb: Public Class PrintPosItemConverter Inherits JsonConverter
@@ -46,6 +55,8 @@ items:
   nameWithType: PrintPosItemConverter.CanConvert(Type)
   fullName: Reportman.Reporting.PrintPosItemConverter.CanConvert(System.Type)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -71,6 +82,8 @@ items:
   nameWithType: PrintPosItemConverter.ReadJson(JsonReader, Type, object, JsonSerializer)
   fullName: Reportman.Reporting.PrintPosItemConverter.ReadJson(Newtonsoft.Json.JsonReader, System.Type, object, Newtonsoft.Json.JsonSerializer)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -105,6 +118,8 @@ items:
   nameWithType: PrintPosItemConverter.WriteJson(JsonWriter, object, JsonSerializer)
   fullName: Reportman.Reporting.PrintPosItemConverter.WriteJson(Newtonsoft.Json.JsonWriter, object, Newtonsoft.Json.JsonSerializer)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -135,6 +150,8 @@ items:
   nameWithType: PrintPosItemConverter.PrintPosItemConverter()
   fullName: Reportman.Reporting.PrintPosItemConverter.PrintPosItemConverter()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -146,6 +163,14 @@ items:
   fullName.vb: Reportman.Reporting.PrintPosItemConverter.New()
   name.vb: New()
 references:
+- uid: Reportman.Reporting.PrintPosItem
+  commentId: T:Reportman.Reporting.PrintPosItem
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.PrintPosItem.html
+  name: PrintPosItem
+  nameWithType: PrintPosItem
+  fullName: Reportman.Reporting.PrintPosItem
 - uid: Reportman.Reporting
   commentId: N:Reportman.Reporting
   isExternal: true

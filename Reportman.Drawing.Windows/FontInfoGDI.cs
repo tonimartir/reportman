@@ -332,8 +332,12 @@ namespace Reportman.Drawing
             }
         }
 
+        /// <summary>
+        /// Win32 GCP_* flags returned by GetFontLanguageInfo / passed to GetCharacterPlacement,
+        /// describing language-dependent text features such as kerning, ligatures and glyph reordering.
+        /// </summary>
         [Flags]
-        public enum GcpFlags    // Win32: GCP_xxx flags, WinGDI.h 
+        public enum GcpFlags    // Win32: GCP_xxx flags, WinGDI.h
         {
             DBCS = 0x00000001,
             ReOrder = 0x00000002,
@@ -363,8 +367,12 @@ namespace Reportman.Drawing
         [DllImport("gdi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         public static extern int GetCharacterPlacementW(IntPtr dev, string text, int count, int max,
             [In, Out] ref GpcResults results, GcpFlags flags);
+        /// <summary>
+        /// Managed layout of the Win32 GCP_RESULTS structure that receives the output
+        /// (glyph indices, ordering, dx widths) of a GetCharacterPlacement call.
+        /// </summary>
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
-        public struct GpcResults   // Win32: GCP_RESULTS 
+        public struct GpcResults   // Win32: GCP_RESULTS
         {
             public int StructSize;
             [MarshalAs(UnmanagedType.LPTStr)]
@@ -380,6 +388,10 @@ namespace Reportman.Drawing
         [DllImport("gdi32.dll", ExactSpelling = true)]
         public static extern GcpFlags GetFontLanguageInfo(IntPtr dev);
 
+        /// <summary>
+        /// Managed layout of the Win32 ABC structure holding the A (left side bearing),
+        /// B (glyph width) and C (right side bearing) spacing of a character.
+        /// </summary>
         [StructLayout(LayoutKind.Sequential)]
         public struct ABC
         {
@@ -551,12 +563,19 @@ namespace Reportman.Drawing
             else
                 return 0;
         }
+        /// <summary>
+        /// Managed layout of the Win32 POINT structure, an x/y coordinate pair in integer units.
+        /// </summary>
         [StructLayout(LayoutKind.Sequential)]
         public struct POINT
         {
             public int x;
             public int y;
         }
+        /// <summary>
+        /// Managed layout of the Win32 FIXED structure, a fixed-point number split into a
+        /// signed integer part and an unsigned fractional part, used by the GDI glyph outline API.
+        /// </summary>
         [StructLayout(LayoutKind.Sequential)]
         public struct FIXED
         {
@@ -564,6 +583,10 @@ namespace Reportman.Drawing
             public ushort fract;  // fractional part
         }
 
+        /// <summary>
+        /// Managed layout of the Win32 MAT2 structure, the 2x2 fixed-point transformation matrix
+        /// passed to GetGlyphOutline (typically set to identity for unscaled glyph metrics).
+        /// </summary>
         [StructLayout(LayoutKind.Sequential)]
         public struct MAT2
         {
@@ -573,6 +596,10 @@ namespace Reportman.Drawing
             public FIXED eM22;
         }
 
+        /// <summary>
+        /// Managed layout of the Win32 GLYPHMETRICS structure returned by GetGlyphOutline,
+        /// describing a glyph's black box size, origin and cell advance.
+        /// </summary>
         [StructLayout(LayoutKind.Sequential)]
         public struct GLYPHMETRICS
         {

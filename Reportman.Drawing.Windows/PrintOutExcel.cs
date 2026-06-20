@@ -25,6 +25,10 @@ using System.IO;
 
 namespace Reportman.Drawing
 {
+    /// <summary>
+    /// Identifies the workbook format used when saving an Excel file, mapping to Excel's native
+    /// XlFileFormat values (or auto-detected from the file extension).
+    /// </summary>
     public enum ExcelFileFormat { Auto = 0, Normal = -4143, Excel97 = 56, Csv = 6, Txt = -4158, Prn = 36, Excel2007 = 51 }
     /// <summary>
     /// Report preocessing driver, capable of generate excel files

@@ -1,0 +1,1530 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.FontInfoFt
+  commentId: T:Reportman.Drawing.FontInfoFt
+  id: FontInfoFt
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.FontInfoFt.#ctor
+  - Reportman.Drawing.FontInfoFt.CheckFreeType(FreeTypeSharp.FT_Error)
+  - Reportman.Drawing.FontInfoFt.Dispose
+  - Reportman.Drawing.FontInfoFt.FillFontData(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData)
+  - Reportman.Drawing.FontInfoFt.GetCharWidth(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Char)
+  - Reportman.Drawing.FontInfoFt.GetFontDirectories
+  - Reportman.Drawing.FontInfoFt.GetFontPath
+  - Reportman.Drawing.FontInfoFt.GetFontStream(Reportman.Drawing.TTFontData)
+  - Reportman.Drawing.FontInfoFt.GetGlyphWidth(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Int32,System.Char)
+  - Reportman.Drawing.FontInfoFt.GetKerning(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Char,System.Char)
+  - Reportman.Drawing.FontInfoFt.StringToBytePtr(System.String)
+  - Reportman.Drawing.FontInfoFt.TextExtent(System.String,System.Drawing.Rectangle@,Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Boolean,System.Boolean,System.Double,System.Boolean)
+  - Reportman.Drawing.FontInfoFt.TextExtentHtml(System.String,System.Drawing.Rectangle@,Reportman.Drawing.TTFontData,Reportman.Drawing.PDFFont,System.Boolean,System.Boolean,System.Double,System.Boolean)
+  - Reportman.Drawing.FontInfoFt.flag
+  langs:
+  - csharp
+  - vb
+  name: FontInfoFt
+  nameWithType: FontInfoFt
+  fullName: Reportman.Drawing.FontInfoFt
+  type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  summary: >-
+    Cross-platform <xref href="Reportman.Drawing.FontInfoProvider" data-throw-if-not-resolved="false"></xref> built on FreeType, HarfBuzz and ICU that enumerates
+
+    system fonts, supplies font metrics, glyph and kerning widths, subsetted font streams and performs
+
+    BiDi/script-aware text layout (including HTML) for the PDF and rendering pipeline.
+  example: []
+  syntax:
+    content: 'public class FontInfoFt : FontInfoProvider, IDisposable'
+    content.vb: Public Class FontInfoFt Inherits FontInfoProvider Implements IDisposable
+  inheritance:
+  - System.Object
+  - Reportman.Drawing.FontInfoProvider
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.FontInfoFt.flag
+  commentId: F:Reportman.Drawing.FontInfoFt.flag
+  id: flag
+  parent: Reportman.Drawing.FontInfoFt
+  langs:
+  - csharp
+  - vb
+  name: flag
+  nameWithType: FontInfoFt.flag
+  fullName: Reportman.Drawing.FontInfoFt.flag
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static object flag
+    return:
+      type: System.Object
+    content.vb: Public Shared flag As Object
+- uid: Reportman.Drawing.FontInfoFt.CheckFreeType(FreeTypeSharp.FT_Error)
+  commentId: M:Reportman.Drawing.FontInfoFt.CheckFreeType(FreeTypeSharp.FT_Error)
+  id: CheckFreeType(FreeTypeSharp.FT_Error)
+  parent: Reportman.Drawing.FontInfoFt
+  langs:
+  - csharp
+  - vb
+  name: CheckFreeType(FT_Error)
+  nameWithType: FontInfoFt.CheckFreeType(FT_Error)
+  fullName: Reportman.Drawing.FontInfoFt.CheckFreeType(FreeTypeSharp.FT_Error)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static void CheckFreeType(FT_Error nerror)
+    parameters:
+    - id: nerror
+      type: FreeTypeSharp.FT_Error
+    content.vb: Public Shared Sub CheckFreeType(nerror As FT_Error)
+  overload: Reportman.Drawing.FontInfoFt.CheckFreeType*
+- uid: Reportman.Drawing.FontInfoFt.StringToBytePtr(System.String)
+  commentId: M:Reportman.Drawing.FontInfoFt.StringToBytePtr(System.String)
+  id: StringToBytePtr(System.String)
+  parent: Reportman.Drawing.FontInfoFt
+  langs:
+  - csharp
+  - vb
+  name: StringToBytePtr(string)
+  nameWithType: FontInfoFt.StringToBytePtr(string)
+  fullName: Reportman.Drawing.FontInfoFt.StringToBytePtr(string)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static byte* StringToBytePtr(string str)
+    parameters:
+    - id: str
+      type: System.String
+    return:
+      type: System.Byte*
+    content.vb: Public Shared Function StringToBytePtr(str As String) As Byte*
+  overload: Reportman.Drawing.FontInfoFt.StringToBytePtr*
+  nameWithType.vb: FontInfoFt.StringToBytePtr(String)
+  fullName.vb: Reportman.Drawing.FontInfoFt.StringToBytePtr(String)
+  name.vb: StringToBytePtr(String)
+- uid: Reportman.Drawing.FontInfoFt.FillFontData(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData)
+  commentId: M:Reportman.Drawing.FontInfoFt.FillFontData(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData)
+  id: FillFontData(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData)
+  parent: Reportman.Drawing.FontInfoFt
+  langs:
+  - csharp
+  - vb
+  name: FillFontData(PDFFont, TTFontData)
+  nameWithType: FontInfoFt.FillFontData(PDFFont, TTFontData)
+  fullName: Reportman.Drawing.FontInfoFt.FillFontData(Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  example: []
+  syntax:
+    content: public override void FillFontData(PDFFont pdfFont, TTFontData data)
+    parameters:
+    - id: pdfFont
+      type: Reportman.Drawing.PDFFont
+    - id: data
+      type: Reportman.Drawing.TTFontData
+    content.vb: Public Overrides Sub FillFontData(pdfFont As PDFFont, data As TTFontData)
+  overridden: Reportman.Drawing.FontInfoProvider.FillFontData(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData)
+  overload: Reportman.Drawing.FontInfoFt.FillFontData*
+- uid: Reportman.Drawing.FontInfoFt.GetCharWidth(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Char)
+  commentId: M:Reportman.Drawing.FontInfoFt.GetCharWidth(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Char)
+  id: GetCharWidth(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Char)
+  parent: Reportman.Drawing.FontInfoFt
+  langs:
+  - csharp
+  - vb
+  name: GetCharWidth(PDFFont, TTFontData, char)
+  nameWithType: FontInfoFt.GetCharWidth(PDFFont, TTFontData, char)
+  fullName: Reportman.Drawing.FontInfoFt.GetCharWidth(Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData, char)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  example: []
+  syntax:
+    content: public override double GetCharWidth(PDFFont pdfFont, TTFontData data, char charCode)
+    parameters:
+    - id: pdfFont
+      type: Reportman.Drawing.PDFFont
+    - id: data
+      type: Reportman.Drawing.TTFontData
+    - id: charCode
+      type: System.Char
+    return:
+      type: System.Double
+    content.vb: Public Overrides Function GetCharWidth(pdfFont As PDFFont, data As TTFontData, charCode As Char) As Double
+  overridden: Reportman.Drawing.FontInfoProvider.GetCharWidth(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Char)
+  overload: Reportman.Drawing.FontInfoFt.GetCharWidth*
+  nameWithType.vb: FontInfoFt.GetCharWidth(PDFFont, TTFontData, Char)
+  fullName.vb: Reportman.Drawing.FontInfoFt.GetCharWidth(Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData, Char)
+  name.vb: GetCharWidth(PDFFont, TTFontData, Char)
+- uid: Reportman.Drawing.FontInfoFt.GetKerning(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Char,System.Char)
+  commentId: M:Reportman.Drawing.FontInfoFt.GetKerning(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Char,System.Char)
+  id: GetKerning(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Char,System.Char)
+  parent: Reportman.Drawing.FontInfoFt
+  langs:
+  - csharp
+  - vb
+  name: GetKerning(PDFFont, TTFontData, char, char)
+  nameWithType: FontInfoFt.GetKerning(PDFFont, TTFontData, char, char)
+  fullName: Reportman.Drawing.FontInfoFt.GetKerning(Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData, char, char)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  example: []
+  syntax:
+    content: public override int GetKerning(PDFFont pdfFont, TTFontData data, char leftChar, char rightChar)
+    parameters:
+    - id: pdfFont
+      type: Reportman.Drawing.PDFFont
+    - id: data
+      type: Reportman.Drawing.TTFontData
+    - id: leftChar
+      type: System.Char
+    - id: rightChar
+      type: System.Char
+    return:
+      type: System.Int32
+    content.vb: Public Overrides Function GetKerning(pdfFont As PDFFont, data As TTFontData, leftChar As Char, rightChar As Char) As Integer
+  overridden: Reportman.Drawing.FontInfoProvider.GetKerning(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Char,System.Char)
+  overload: Reportman.Drawing.FontInfoFt.GetKerning*
+  nameWithType.vb: FontInfoFt.GetKerning(PDFFont, TTFontData, Char, Char)
+  fullName.vb: Reportman.Drawing.FontInfoFt.GetKerning(Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData, Char, Char)
+  name.vb: GetKerning(PDFFont, TTFontData, Char, Char)
+- uid: Reportman.Drawing.FontInfoFt.GetFontStream(Reportman.Drawing.TTFontData)
+  commentId: M:Reportman.Drawing.FontInfoFt.GetFontStream(Reportman.Drawing.TTFontData)
+  id: GetFontStream(Reportman.Drawing.TTFontData)
+  parent: Reportman.Drawing.FontInfoFt
+  langs:
+  - csharp
+  - vb
+  name: GetFontStream(TTFontData)
+  nameWithType: FontInfoFt.GetFontStream(TTFontData)
+  fullName: Reportman.Drawing.FontInfoFt.GetFontStream(Reportman.Drawing.TTFontData)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  example: []
+  syntax:
+    content: public override MemoryStream GetFontStream(TTFontData data)
+    parameters:
+    - id: data
+      type: Reportman.Drawing.TTFontData
+    return:
+      type: System.IO.MemoryStream
+    content.vb: Public Overrides Function GetFontStream(data As TTFontData) As MemoryStream
+  overridden: Reportman.Drawing.FontInfoProvider.GetFontStream(Reportman.Drawing.TTFontData)
+  overload: Reportman.Drawing.FontInfoFt.GetFontStream*
+- uid: Reportman.Drawing.FontInfoFt.#ctor
+  commentId: M:Reportman.Drawing.FontInfoFt.#ctor
+  id: '#ctor'
+  parent: Reportman.Drawing.FontInfoFt
+  langs:
+  - csharp
+  - vb
+  name: FontInfoFt()
+  nameWithType: FontInfoFt.FontInfoFt()
+  fullName: Reportman.Drawing.FontInfoFt.FontInfoFt()
+  type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public FontInfoFt()
+    content.vb: Public Sub New()
+  overload: Reportman.Drawing.FontInfoFt.#ctor*
+  nameWithType.vb: FontInfoFt.New()
+  fullName.vb: Reportman.Drawing.FontInfoFt.New()
+  name.vb: New()
+- uid: Reportman.Drawing.FontInfoFt.Dispose
+  commentId: M:Reportman.Drawing.FontInfoFt.Dispose
+  id: Dispose
+  parent: Reportman.Drawing.FontInfoFt
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: FontInfoFt.Dispose()
+  fullName: Reportman.Drawing.FontInfoFt.Dispose()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  example: []
+  syntax:
+    content: public void Dispose()
+    content.vb: Public Sub Dispose()
+  overload: Reportman.Drawing.FontInfoFt.Dispose*
+  implements:
+  - System.IDisposable.Dispose
+- uid: Reportman.Drawing.FontInfoFt.GetFontPath
+  commentId: M:Reportman.Drawing.FontInfoFt.GetFontPath
+  id: GetFontPath
+  parent: Reportman.Drawing.FontInfoFt
+  langs:
+  - csharp
+  - vb
+  name: GetFontPath()
+  nameWithType: FontInfoFt.GetFontPath()
+  fullName: Reportman.Drawing.FontInfoFt.GetFontPath()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static string GetFontPath()
+    return:
+      type: System.String
+    content.vb: Public Shared Function GetFontPath() As String
+  overload: Reportman.Drawing.FontInfoFt.GetFontPath*
+- uid: Reportman.Drawing.FontInfoFt.GetFontDirectories
+  commentId: M:Reportman.Drawing.FontInfoFt.GetFontDirectories
+  id: GetFontDirectories
+  parent: Reportman.Drawing.FontInfoFt
+  langs:
+  - csharp
+  - vb
+  name: GetFontDirectories()
+  nameWithType: FontInfoFt.GetFontDirectories()
+  fullName: Reportman.Drawing.FontInfoFt.GetFontDirectories()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static Strings GetFontDirectories()
+    return:
+      type: Reportman.Drawing.Strings
+    content.vb: Public Shared Function GetFontDirectories() As Strings
+  overload: Reportman.Drawing.FontInfoFt.GetFontDirectories*
+- uid: Reportman.Drawing.FontInfoFt.GetGlyphWidth(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Int32,System.Char)
+  commentId: M:Reportman.Drawing.FontInfoFt.GetGlyphWidth(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Int32,System.Char)
+  id: GetGlyphWidth(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Int32,System.Char)
+  parent: Reportman.Drawing.FontInfoFt
+  langs:
+  - csharp
+  - vb
+  name: GetGlyphWidth(PDFFont, TTFontData, int, char)
+  nameWithType: FontInfoFt.GetGlyphWidth(PDFFont, TTFontData, int, char)
+  fullName: Reportman.Drawing.FontInfoFt.GetGlyphWidth(Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData, int, char)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  example: []
+  syntax:
+    content: public override double GetGlyphWidth(PDFFont pdfFont, TTFontData fontData, int glyph, char charC)
+    parameters:
+    - id: pdfFont
+      type: Reportman.Drawing.PDFFont
+    - id: fontData
+      type: Reportman.Drawing.TTFontData
+    - id: glyph
+      type: System.Int32
+    - id: charC
+      type: System.Char
+    return:
+      type: System.Double
+    content.vb: Public Overrides Function GetGlyphWidth(pdfFont As PDFFont, fontData As TTFontData, glyph As Integer, charC As Char) As Double
+  overridden: Reportman.Drawing.FontInfoProvider.GetGlyphWidth(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Int32,System.Char)
+  overload: Reportman.Drawing.FontInfoFt.GetGlyphWidth*
+  nameWithType.vb: FontInfoFt.GetGlyphWidth(PDFFont, TTFontData, Integer, Char)
+  fullName.vb: Reportman.Drawing.FontInfoFt.GetGlyphWidth(Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData, Integer, Char)
+  name.vb: GetGlyphWidth(PDFFont, TTFontData, Integer, Char)
+- uid: Reportman.Drawing.FontInfoFt.TextExtent(System.String,System.Drawing.Rectangle@,Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Boolean,System.Boolean,System.Double,System.Boolean)
+  commentId: M:Reportman.Drawing.FontInfoFt.TextExtent(System.String,System.Drawing.Rectangle@,Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Boolean,System.Boolean,System.Double,System.Boolean)
+  id: TextExtent(System.String,System.Drawing.Rectangle@,Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Boolean,System.Boolean,System.Double,System.Boolean)
+  parent: Reportman.Drawing.FontInfoFt
+  langs:
+  - csharp
+  - vb
+  name: TextExtent(string, ref Rectangle, PDFFont, TTFontData, bool, bool, double, bool)
+  nameWithType: FontInfoFt.TextExtent(string, ref Rectangle, PDFFont, TTFontData, bool, bool, double, bool)
+  fullName: Reportman.Drawing.FontInfoFt.TextExtent(string, ref System.Drawing.Rectangle, Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData, bool, bool, double, bool)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  example: []
+  syntax:
+    content: public override List<LineInfo> TextExtent(string Text, ref Rectangle Rect, PDFFont pdfFont, TTFontData fontData, bool wordwrap, bool singleline, double FontSize, bool isHtml)
+    parameters:
+    - id: Text
+      type: System.String
+    - id: Rect
+      type: System.Drawing.Rectangle
+    - id: pdfFont
+      type: Reportman.Drawing.PDFFont
+    - id: fontData
+      type: Reportman.Drawing.TTFontData
+    - id: wordwrap
+      type: System.Boolean
+    - id: singleline
+      type: System.Boolean
+    - id: FontSize
+      type: System.Double
+    - id: isHtml
+      type: System.Boolean
+    return:
+      type: System.Collections.Generic.List{Reportman.Drawing.LineInfo}
+    content.vb: Public Overrides Function TextExtent(Text As String, Rect As Rectangle, pdfFont As PDFFont, fontData As TTFontData, wordwrap As Boolean, singleline As Boolean, FontSize As Double, isHtml As Boolean) As List(Of LineInfo)
+  overridden: Reportman.Drawing.FontInfoProvider.TextExtent(System.String,System.Drawing.Rectangle@,Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Boolean,System.Boolean,System.Double,System.Boolean)
+  overload: Reportman.Drawing.FontInfoFt.TextExtent*
+  nameWithType.vb: FontInfoFt.TextExtent(String, Rectangle, PDFFont, TTFontData, Boolean, Boolean, Double, Boolean)
+  fullName.vb: Reportman.Drawing.FontInfoFt.TextExtent(String, System.Drawing.Rectangle, Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData, Boolean, Boolean, Double, Boolean)
+  name.vb: TextExtent(String, Rectangle, PDFFont, TTFontData, Boolean, Boolean, Double, Boolean)
+- uid: Reportman.Drawing.FontInfoFt.TextExtentHtml(System.String,System.Drawing.Rectangle@,Reportman.Drawing.TTFontData,Reportman.Drawing.PDFFont,System.Boolean,System.Boolean,System.Double,System.Boolean)
+  commentId: M:Reportman.Drawing.FontInfoFt.TextExtentHtml(System.String,System.Drawing.Rectangle@,Reportman.Drawing.TTFontData,Reportman.Drawing.PDFFont,System.Boolean,System.Boolean,System.Double,System.Boolean)
+  id: TextExtentHtml(System.String,System.Drawing.Rectangle@,Reportman.Drawing.TTFontData,Reportman.Drawing.PDFFont,System.Boolean,System.Boolean,System.Double,System.Boolean)
+  parent: Reportman.Drawing.FontInfoFt
+  langs:
+  - csharp
+  - vb
+  name: TextExtentHtml(string, ref Rectangle, TTFontData, PDFFont, bool, bool, double, bool)
+  nameWithType: FontInfoFt.TextExtentHtml(string, ref Rectangle, TTFontData, PDFFont, bool, bool, double, bool)
+  fullName: Reportman.Drawing.FontInfoFt.TextExtentHtml(string, ref System.Drawing.Rectangle, Reportman.Drawing.TTFontData, Reportman.Drawing.PDFFont, bool, bool, double, bool)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public List<LineInfo> TextExtentHtml(string Text, ref Rectangle Rect, TTFontData adata, PDFFont pdfFont, bool wordwrap, bool singleline, double FontSize, bool isHtml = true)
+    parameters:
+    - id: Text
+      type: System.String
+    - id: Rect
+      type: System.Drawing.Rectangle
+    - id: adata
+      type: Reportman.Drawing.TTFontData
+    - id: pdfFont
+      type: Reportman.Drawing.PDFFont
+    - id: wordwrap
+      type: System.Boolean
+    - id: singleline
+      type: System.Boolean
+    - id: FontSize
+      type: System.Double
+    - id: isHtml
+      type: System.Boolean
+    return:
+      type: System.Collections.Generic.List{Reportman.Drawing.LineInfo}
+    content.vb: Public Function TextExtentHtml(Text As String, Rect As Rectangle, adata As TTFontData, pdfFont As PDFFont, wordwrap As Boolean, singleline As Boolean, FontSize As Double, isHtml As Boolean = True) As List(Of LineInfo)
+  overload: Reportman.Drawing.FontInfoFt.TextExtentHtml*
+  nameWithType.vb: FontInfoFt.TextExtentHtml(String, Rectangle, TTFontData, PDFFont, Boolean, Boolean, Double, Boolean)
+  fullName.vb: Reportman.Drawing.FontInfoFt.TextExtentHtml(String, System.Drawing.Rectangle, Reportman.Drawing.TTFontData, Reportman.Drawing.PDFFont, Boolean, Boolean, Double, Boolean)
+  name.vb: TextExtentHtml(String, Rectangle, TTFontData, PDFFont, Boolean, Boolean, Double, Boolean)
+references:
+- uid: Reportman.Drawing.FontInfoProvider
+  commentId: T:Reportman.Drawing.FontInfoProvider
+  parent: Reportman.Drawing
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  name: FontInfoProvider
+  nameWithType: FontInfoProvider
+  fullName: Reportman.Drawing.FontInfoProvider
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.FontInfoFt.CheckFreeType*
+  commentId: Overload:Reportman.Drawing.FontInfoFt.CheckFreeType
+  isExternal: true
+  href: Reportman.Drawing.FontInfoFt.html#Reportman_Drawing_FontInfoFt_CheckFreeType_FreeTypeSharp_FT_Error_
+  name: CheckFreeType
+  nameWithType: FontInfoFt.CheckFreeType
+  fullName: Reportman.Drawing.FontInfoFt.CheckFreeType
+- uid: FreeTypeSharp.FT_Error
+  commentId: T:FreeTypeSharp.FT_Error
+  parent: FreeTypeSharp
+  isExternal: true
+  name: FT_Error
+  nameWithType: FT_Error
+  fullName: FreeTypeSharp.FT_Error
+- uid: FreeTypeSharp
+  commentId: N:FreeTypeSharp
+  isExternal: true
+  name: FreeTypeSharp
+  nameWithType: FreeTypeSharp
+  fullName: FreeTypeSharp
+- uid: Reportman.Drawing.FontInfoFt.StringToBytePtr*
+  commentId: Overload:Reportman.Drawing.FontInfoFt.StringToBytePtr
+  isExternal: true
+  href: Reportman.Drawing.FontInfoFt.html#Reportman_Drawing_FontInfoFt_StringToBytePtr_System_String_
+  name: StringToBytePtr
+  nameWithType: FontInfoFt.StringToBytePtr
+  fullName: Reportman.Drawing.FontInfoFt.StringToBytePtr
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Byte*
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte*
+  nameWithType: byte*
+  fullName: byte*
+  nameWithType.vb: Byte*
+  fullName.vb: Byte*
+  name.vb: Byte*
+  spec.csharp:
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '*'
+  spec.vb:
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '*'
+- uid: Reportman.Drawing.FontInfoProvider.FillFontData(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData)
+  commentId: M:Reportman.Drawing.FontInfoProvider.FillFontData(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData)
+  parent: Reportman.Drawing.FontInfoProvider
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  name: FillFontData(PDFFont, TTFontData)
+  nameWithType: FontInfoProvider.FillFontData(PDFFont, TTFontData)
+  fullName: Reportman.Drawing.FontInfoProvider.FillFontData(Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData)
+  spec.csharp:
+  - uid: Reportman.Drawing.FontInfoProvider.FillFontData(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData)
+    name: FillFontData
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: (
+  - uid: Reportman.Drawing.PDFFont
+    name: PDFFont
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.TTFontData
+    name: TTFontData
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.FontInfoProvider.FillFontData(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData)
+    name: FillFontData
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: (
+  - uid: Reportman.Drawing.PDFFont
+    name: PDFFont
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.TTFontData
+    name: TTFontData
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: )
+- uid: Reportman.Drawing.FontInfoFt.FillFontData*
+  commentId: Overload:Reportman.Drawing.FontInfoFt.FillFontData
+  isExternal: true
+  href: Reportman.Drawing.FontInfoFt.html#Reportman_Drawing_FontInfoFt_FillFontData_Reportman_Drawing_PDFFont_Reportman_Drawing_TTFontData_
+  name: FillFontData
+  nameWithType: FontInfoFt.FillFontData
+  fullName: Reportman.Drawing.FontInfoFt.FillFontData
+- uid: Reportman.Drawing.PDFFont
+  commentId: T:Reportman.Drawing.PDFFont
+  parent: Reportman.Drawing
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  name: PDFFont
+  nameWithType: PDFFont
+  fullName: Reportman.Drawing.PDFFont
+- uid: Reportman.Drawing.TTFontData
+  commentId: T:Reportman.Drawing.TTFontData
+  parent: Reportman.Drawing
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  name: TTFontData
+  nameWithType: TTFontData
+  fullName: Reportman.Drawing.TTFontData
+- uid: Reportman.Drawing.FontInfoProvider.GetCharWidth(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Char)
+  commentId: M:Reportman.Drawing.FontInfoProvider.GetCharWidth(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Char)
+  parent: Reportman.Drawing.FontInfoProvider
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  name: GetCharWidth(PDFFont, TTFontData, char)
+  nameWithType: FontInfoProvider.GetCharWidth(PDFFont, TTFontData, char)
+  fullName: Reportman.Drawing.FontInfoProvider.GetCharWidth(Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData, char)
+  nameWithType.vb: FontInfoProvider.GetCharWidth(PDFFont, TTFontData, Char)
+  fullName.vb: Reportman.Drawing.FontInfoProvider.GetCharWidth(Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData, Char)
+  name.vb: GetCharWidth(PDFFont, TTFontData, Char)
+  spec.csharp:
+  - uid: Reportman.Drawing.FontInfoProvider.GetCharWidth(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Char)
+    name: GetCharWidth
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: (
+  - uid: Reportman.Drawing.PDFFont
+    name: PDFFont
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.TTFontData
+    name: TTFontData
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: ','
+  - name: " "
+  - uid: System.Char
+    name: char
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.char
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.FontInfoProvider.GetCharWidth(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Char)
+    name: GetCharWidth
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: (
+  - uid: Reportman.Drawing.PDFFont
+    name: PDFFont
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.TTFontData
+    name: TTFontData
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: ','
+  - name: " "
+  - uid: System.Char
+    name: Char
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.char
+  - name: )
+- uid: Reportman.Drawing.FontInfoFt.GetCharWidth*
+  commentId: Overload:Reportman.Drawing.FontInfoFt.GetCharWidth
+  isExternal: true
+  href: Reportman.Drawing.FontInfoFt.html#Reportman_Drawing_FontInfoFt_GetCharWidth_Reportman_Drawing_PDFFont_Reportman_Drawing_TTFontData_System_Char_
+  name: GetCharWidth
+  nameWithType: FontInfoFt.GetCharWidth
+  fullName: Reportman.Drawing.FontInfoFt.GetCharWidth
+- uid: System.Char
+  commentId: T:System.Char
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.char
+  name: char
+  nameWithType: char
+  fullName: char
+  nameWithType.vb: Char
+  fullName.vb: Char
+  name.vb: Char
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.double
+  name: double
+  nameWithType: double
+  fullName: double
+  nameWithType.vb: Double
+  fullName.vb: Double
+  name.vb: Double
+- uid: Reportman.Drawing.FontInfoProvider.GetKerning(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Char,System.Char)
+  commentId: M:Reportman.Drawing.FontInfoProvider.GetKerning(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Char,System.Char)
+  parent: Reportman.Drawing.FontInfoProvider
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  name: GetKerning(PDFFont, TTFontData, char, char)
+  nameWithType: FontInfoProvider.GetKerning(PDFFont, TTFontData, char, char)
+  fullName: Reportman.Drawing.FontInfoProvider.GetKerning(Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData, char, char)
+  nameWithType.vb: FontInfoProvider.GetKerning(PDFFont, TTFontData, Char, Char)
+  fullName.vb: Reportman.Drawing.FontInfoProvider.GetKerning(Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData, Char, Char)
+  name.vb: GetKerning(PDFFont, TTFontData, Char, Char)
+  spec.csharp:
+  - uid: Reportman.Drawing.FontInfoProvider.GetKerning(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Char,System.Char)
+    name: GetKerning
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: (
+  - uid: Reportman.Drawing.PDFFont
+    name: PDFFont
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.TTFontData
+    name: TTFontData
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: ','
+  - name: " "
+  - uid: System.Char
+    name: char
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.char
+  - name: ','
+  - name: " "
+  - uid: System.Char
+    name: char
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.char
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.FontInfoProvider.GetKerning(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Char,System.Char)
+    name: GetKerning
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: (
+  - uid: Reportman.Drawing.PDFFont
+    name: PDFFont
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.TTFontData
+    name: TTFontData
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: ','
+  - name: " "
+  - uid: System.Char
+    name: Char
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.char
+  - name: ','
+  - name: " "
+  - uid: System.Char
+    name: Char
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.char
+  - name: )
+- uid: Reportman.Drawing.FontInfoFt.GetKerning*
+  commentId: Overload:Reportman.Drawing.FontInfoFt.GetKerning
+  isExternal: true
+  href: Reportman.Drawing.FontInfoFt.html#Reportman_Drawing_FontInfoFt_GetKerning_Reportman_Drawing_PDFFont_Reportman_Drawing_TTFontData_System_Char_System_Char_
+  name: GetKerning
+  nameWithType: FontInfoFt.GetKerning
+  fullName: Reportman.Drawing.FontInfoFt.GetKerning
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Reportman.Drawing.FontInfoProvider.GetFontStream(Reportman.Drawing.TTFontData)
+  commentId: M:Reportman.Drawing.FontInfoProvider.GetFontStream(Reportman.Drawing.TTFontData)
+  parent: Reportman.Drawing.FontInfoProvider
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  name: GetFontStream(TTFontData)
+  nameWithType: FontInfoProvider.GetFontStream(TTFontData)
+  fullName: Reportman.Drawing.FontInfoProvider.GetFontStream(Reportman.Drawing.TTFontData)
+  spec.csharp:
+  - uid: Reportman.Drawing.FontInfoProvider.GetFontStream(Reportman.Drawing.TTFontData)
+    name: GetFontStream
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: (
+  - uid: Reportman.Drawing.TTFontData
+    name: TTFontData
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.FontInfoProvider.GetFontStream(Reportman.Drawing.TTFontData)
+    name: GetFontStream
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: (
+  - uid: Reportman.Drawing.TTFontData
+    name: TTFontData
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: )
+- uid: Reportman.Drawing.FontInfoFt.GetFontStream*
+  commentId: Overload:Reportman.Drawing.FontInfoFt.GetFontStream
+  isExternal: true
+  href: Reportman.Drawing.FontInfoFt.html#Reportman_Drawing_FontInfoFt_GetFontStream_Reportman_Drawing_TTFontData_
+  name: GetFontStream
+  nameWithType: FontInfoFt.GetFontStream
+  fullName: Reportman.Drawing.FontInfoFt.GetFontStream
+- uid: System.IO.MemoryStream
+  commentId: T:System.IO.MemoryStream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.memorystream
+  name: MemoryStream
+  nameWithType: MemoryStream
+  fullName: System.IO.MemoryStream
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+- uid: Reportman.Drawing.FontInfoFt.#ctor*
+  commentId: Overload:Reportman.Drawing.FontInfoFt.#ctor
+  isExternal: true
+  href: Reportman.Drawing.FontInfoFt.html#Reportman_Drawing_FontInfoFt__ctor
+  name: FontInfoFt
+  nameWithType: FontInfoFt.FontInfoFt
+  fullName: Reportman.Drawing.FontInfoFt.FontInfoFt
+  nameWithType.vb: FontInfoFt.New
+  fullName.vb: Reportman.Drawing.FontInfoFt.New
+  name.vb: New
+- uid: Reportman.Drawing.FontInfoFt.Dispose*
+  commentId: Overload:Reportman.Drawing.FontInfoFt.Dispose
+  isExternal: true
+  href: Reportman.Drawing.FontInfoFt.html#Reportman_Drawing_FontInfoFt_Dispose
+  name: Dispose
+  nameWithType: FontInfoFt.Dispose
+  fullName: Reportman.Drawing.FontInfoFt.Dispose
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
+  spec.csharp:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )
+- uid: Reportman.Drawing.FontInfoFt.GetFontPath*
+  commentId: Overload:Reportman.Drawing.FontInfoFt.GetFontPath
+  isExternal: true
+  href: Reportman.Drawing.FontInfoFt.html#Reportman_Drawing_FontInfoFt_GetFontPath
+  name: GetFontPath
+  nameWithType: FontInfoFt.GetFontPath
+  fullName: Reportman.Drawing.FontInfoFt.GetFontPath
+- uid: Reportman.Drawing.FontInfoFt.GetFontDirectories*
+  commentId: Overload:Reportman.Drawing.FontInfoFt.GetFontDirectories
+  isExternal: true
+  href: Reportman.Drawing.FontInfoFt.html#Reportman_Drawing_FontInfoFt_GetFontDirectories
+  name: GetFontDirectories
+  nameWithType: FontInfoFt.GetFontDirectories
+  fullName: Reportman.Drawing.FontInfoFt.GetFontDirectories
+- uid: Reportman.Drawing.Strings
+  commentId: T:Reportman.Drawing.Strings
+  parent: Reportman.Drawing
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Strings.cs
+  name: Strings
+  nameWithType: Strings
+  fullName: Reportman.Drawing.Strings
+- uid: Reportman.Drawing.FontInfoProvider.GetGlyphWidth(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Int32,System.Char)
+  commentId: M:Reportman.Drawing.FontInfoProvider.GetGlyphWidth(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Int32,System.Char)
+  parent: Reportman.Drawing.FontInfoProvider
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  name: GetGlyphWidth(PDFFont, TTFontData, int, char)
+  nameWithType: FontInfoProvider.GetGlyphWidth(PDFFont, TTFontData, int, char)
+  fullName: Reportman.Drawing.FontInfoProvider.GetGlyphWidth(Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData, int, char)
+  nameWithType.vb: FontInfoProvider.GetGlyphWidth(PDFFont, TTFontData, Integer, Char)
+  fullName.vb: Reportman.Drawing.FontInfoProvider.GetGlyphWidth(Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData, Integer, Char)
+  name.vb: GetGlyphWidth(PDFFont, TTFontData, Integer, Char)
+  spec.csharp:
+  - uid: Reportman.Drawing.FontInfoProvider.GetGlyphWidth(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Int32,System.Char)
+    name: GetGlyphWidth
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: (
+  - uid: Reportman.Drawing.PDFFont
+    name: PDFFont
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.TTFontData
+    name: TTFontData
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Char
+    name: char
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.char
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.FontInfoProvider.GetGlyphWidth(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Int32,System.Char)
+    name: GetGlyphWidth
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: (
+  - uid: Reportman.Drawing.PDFFont
+    name: PDFFont
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.TTFontData
+    name: TTFontData
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Char
+    name: Char
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.char
+  - name: )
+- uid: Reportman.Drawing.FontInfoFt.GetGlyphWidth*
+  commentId: Overload:Reportman.Drawing.FontInfoFt.GetGlyphWidth
+  isExternal: true
+  href: Reportman.Drawing.FontInfoFt.html#Reportman_Drawing_FontInfoFt_GetGlyphWidth_Reportman_Drawing_PDFFont_Reportman_Drawing_TTFontData_System_Int32_System_Char_
+  name: GetGlyphWidth
+  nameWithType: FontInfoFt.GetGlyphWidth
+  fullName: Reportman.Drawing.FontInfoFt.GetGlyphWidth
+- uid: Reportman.Drawing.FontInfoProvider.TextExtent(System.String,System.Drawing.Rectangle@,Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Boolean,System.Boolean,System.Double,System.Boolean)
+  commentId: M:Reportman.Drawing.FontInfoProvider.TextExtent(System.String,System.Drawing.Rectangle@,Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Boolean,System.Boolean,System.Double,System.Boolean)
+  parent: Reportman.Drawing.FontInfoProvider
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  name: TextExtent(string, ref Rectangle, PDFFont, TTFontData, bool, bool, double, bool)
+  nameWithType: FontInfoProvider.TextExtent(string, ref Rectangle, PDFFont, TTFontData, bool, bool, double, bool)
+  fullName: Reportman.Drawing.FontInfoProvider.TextExtent(string, ref System.Drawing.Rectangle, Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData, bool, bool, double, bool)
+  nameWithType.vb: FontInfoProvider.TextExtent(String, Rectangle, PDFFont, TTFontData, Boolean, Boolean, Double, Boolean)
+  fullName.vb: Reportman.Drawing.FontInfoProvider.TextExtent(String, System.Drawing.Rectangle, Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData, Boolean, Boolean, Double, Boolean)
+  name.vb: TextExtent(String, Rectangle, PDFFont, TTFontData, Boolean, Boolean, Double, Boolean)
+  spec.csharp:
+  - uid: Reportman.Drawing.FontInfoProvider.TextExtent(System.String,System.Drawing.Rectangle@,Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Boolean,System.Boolean,System.Double,System.Boolean)
+    name: TextExtent
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: ref
+  - name: " "
+  - uid: System.Drawing.Rectangle
+    name: Rectangle
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.rectangle
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.PDFFont
+    name: PDFFont
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.TTFontData
+    name: TTFontData
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Double
+    name: double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.FontInfoProvider.TextExtent(System.String,System.Drawing.Rectangle@,Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Boolean,System.Boolean,System.Double,System.Boolean)
+    name: TextExtent
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.Rectangle
+    name: Rectangle
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.rectangle
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.PDFFont
+    name: PDFFont
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.TTFontData
+    name: TTFontData
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Double
+    name: Double
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.double
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Reportman.Drawing.FontInfoFt.TextExtent*
+  commentId: Overload:Reportman.Drawing.FontInfoFt.TextExtent
+  isExternal: true
+  href: Reportman.Drawing.FontInfoFt.html#Reportman_Drawing_FontInfoFt_TextExtent_System_String_System_Drawing_Rectangle__Reportman_Drawing_PDFFont_Reportman_Drawing_TTFontData_System_Boolean_System_Boolean_System_Double_System_Boolean_
+  name: TextExtent
+  nameWithType: FontInfoFt.TextExtent
+  fullName: Reportman.Drawing.FontInfoFt.TextExtent
+- uid: System.Drawing.Rectangle
+  commentId: T:System.Drawing.Rectangle
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.rectangle
+  name: Rectangle
+  nameWithType: Rectangle
+  fullName: System.Drawing.Rectangle
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Collections.Generic.List{Reportman.Drawing.LineInfo}
+  commentId: T:System.Collections.Generic.List{Reportman.Drawing.LineInfo}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<LineInfo>
+  nameWithType: List<LineInfo>
+  fullName: System.Collections.Generic.List<Reportman.Drawing.LineInfo>
+  nameWithType.vb: List(Of LineInfo)
+  fullName.vb: System.Collections.Generic.List(Of Reportman.Drawing.LineInfo)
+  name.vb: List(Of LineInfo)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Reportman.Drawing.LineInfo
+    name: LineInfo
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Reportman.Drawing.LineInfo
+    name: LineInfo
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+  - name: )
+- uid: System.Drawing
+  commentId: N:System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Drawing
+  nameWithType: System.Drawing
+  fullName: System.Drawing
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Reportman.Drawing.FontInfoFt.TextExtentHtml*
+  commentId: Overload:Reportman.Drawing.FontInfoFt.TextExtentHtml
+  isExternal: true
+  href: Reportman.Drawing.FontInfoFt.html#Reportman_Drawing_FontInfoFt_TextExtentHtml_System_String_System_Drawing_Rectangle__Reportman_Drawing_TTFontData_Reportman_Drawing_PDFFont_System_Boolean_System_Boolean_System_Double_System_Boolean_
+  name: TextExtentHtml
+  nameWithType: FontInfoFt.TextExtentHtml
+  fullName: Reportman.Drawing.FontInfoFt.TextExtentHtml

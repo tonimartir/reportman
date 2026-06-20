@@ -28,6 +28,9 @@ using System.Drawing;
 
 namespace Reportman.Reporting
 {
+    /// <summary>
+    /// The barcode symbology a <see cref="BarcodeItem"/> renders, covering the 2-of-5 family, Code 39/93/128, MSI, PostNet, Codabar, EAN-8/13, PDF417 and QR.
+    /// </summary>
     public enum BarcodeType
     {
         Code_2_5_interleaved,
@@ -35,6 +38,9 @@ namespace Reportman.Reporting
         Code128B, Code128C, Code128, Code93, Code93Extended, CodeMSI, CodePostNet,
         CodeCodabar, CodeEAN8, CodeEAN13, CodePDF417, CodeQR
     };
+    /// <summary>
+    /// A report print item that evaluates an expression and draws it as a barcode of the configured <see cref="BarType"/>, emitting bar/space (or QR module) rectangles into the metafile with optional checksum, rotation and colors.
+    /// </summary>
     public class BarcodeItem : PrintPosItem
     {
         private int[] modules = { 0, 1, 2, 3 };

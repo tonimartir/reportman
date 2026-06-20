@@ -14,9 +14,13 @@ items:
   nameWithType: ShowSearchWindowArgs
   fullName: Reportman.Drawing.Forms.ShowSearchWindowArgs
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: Event arguments for showing a search window, exposing the control that hosts the search UI.
+  example: []
   syntax:
     content: public class ShowSearchWindowArgs
     content.vb: Public Class ShowSearchWindowArgs
@@ -41,6 +45,8 @@ items:
   nameWithType: ShowSearchWindowArgs.Window
   fullName: Reportman.Drawing.Forms.ShowSearchWindowArgs.Window
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -60,6 +66,8 @@ items:
   nameWithType: ShowSearchWindowArgs.ShowSearchWindowArgs(Control)
   fullName: Reportman.Drawing.Forms.ShowSearchWindowArgs.ShowSearchWindowArgs(System.Windows.Forms.Control)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

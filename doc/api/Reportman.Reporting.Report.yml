@@ -15,9 +15,18 @@ items:
   nameWithType: Report
   fullName: Reportman.Reporting.Report
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Report.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
+  summary: >-
+    Concrete report document derived from <xref href="Reportman.Reporting.BaseReport" data-throw-if-not-resolved="false"></xref>; it drives the page-generation
+
+    lifecycle (BeginPrint/PrintNextPage) and rewires its child objects — params, database/data info,
+
+    subreports, sections and items — back to the report after deserialization.
+  example: []
   syntax:
     content: 'public class Report : BaseReport, IDisposable'
     content.vb: Public Class Report Inherits BaseReport Implements IDisposable
@@ -89,7 +98,7 @@ items:
   - Reportman.Reporting.BaseReport.RemoveComponent(Reportman.Reporting.ReportItem)
   - Reportman.Reporting.BaseReport.LoadFromCommand(System.Data.IDbCommand)
   - Reportman.Reporting.BaseReport.LoadFromDataReader(System.Data.IDataReader)
-  - Reportman.Reporting.BaseReport.LoadFromStream(System.IO.Stream)
+  - Reportman.Reporting.BaseReport.LoadFromStream(System.IO.Stream,System.Boolean)
   - Reportman.Reporting.BaseReport.ConvertToDotNet
   - Reportman.Reporting.BaseReport.LoadFromStream(System.IO.Stream,System.Int32)
   - Reportman.Reporting.BaseReport.LoadFromFile(System.String)
@@ -117,6 +126,7 @@ items:
   - Reportman.Reporting.BaseReport.AddReportItemsToEvaluator(Reportman.Reporting.Evaluator)
   - Reportman.Reporting.BaseReport.CheckParameters
   - Reportman.Reporting.BaseReport.GenerateNewName(Reportman.Reporting.ReportItem)
+  - Reportman.Reporting.BaseReport.EnsureComponentNames
   - Reportman.Reporting.BaseReport.FindNewName(Reportman.Reporting.ReportItem)
   - Reportman.Reporting.BaseReport.GetReportVariables
   - Reportman.Reporting.BaseReport.Dispose
@@ -223,6 +233,8 @@ items:
   nameWithType: Report.Report()
   fullName: Reportman.Reporting.Report.Report()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Report.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -244,6 +256,8 @@ items:
   nameWithType: Report.BeginPrint(PrintOut)
   fullName: Reportman.Reporting.Report.BeginPrint(Reportman.Drawing.PrintOut)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Report.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -267,6 +281,8 @@ items:
   nameWithType: Report.PrintNextPage()
   fullName: Reportman.Reporting.Report.PrintNextPage()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Report.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -279,6 +295,14 @@ items:
   overridden: Reportman.Reporting.BaseReport.PrintNextPage
   overload: Reportman.Reporting.Report.PrintNextPage*
 references:
+- uid: Reportman.Reporting.BaseReport
+  commentId: T:Reportman.Reporting.BaseReport
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html
+  name: BaseReport
+  nameWithType: BaseReport
+  fullName: Reportman.Reporting.BaseReport
 - uid: Reportman.Reporting
   commentId: N:Reportman.Reporting
   isExternal: true
@@ -325,14 +349,6 @@ references:
   name: ReportItem
   nameWithType: ReportItem
   fullName: Reportman.Reporting.ReportItem
-- uid: Reportman.Reporting.BaseReport
-  commentId: T:Reportman.Reporting.BaseReport
-  parent: Reportman.Reporting
-  isExternal: true
-  href: Reportman.Reporting.BaseReport.html
-  name: BaseReport
-  nameWithType: BaseReport
-  fullName: Reportman.Reporting.BaseReport
 - uid: System.IDisposable
   commentId: T:System.IDisposable
   parent: System
@@ -967,35 +983,50 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.data.idatareader
   - name: )
-- uid: Reportman.Reporting.BaseReport.LoadFromStream(System.IO.Stream)
-  commentId: M:Reportman.Reporting.BaseReport.LoadFromStream(System.IO.Stream)
+- uid: Reportman.Reporting.BaseReport.LoadFromStream(System.IO.Stream,System.Boolean)
+  commentId: M:Reportman.Reporting.BaseReport.LoadFromStream(System.IO.Stream,System.Boolean)
   parent: Reportman.Reporting.BaseReport
   isExternal: true
-  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_LoadFromStream_System_IO_Stream_
-  name: LoadFromStream(Stream)
-  nameWithType: BaseReport.LoadFromStream(Stream)
-  fullName: Reportman.Reporting.BaseReport.LoadFromStream(System.IO.Stream)
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_LoadFromStream_System_IO_Stream_System_Boolean_
+  name: LoadFromStream(Stream, bool)
+  nameWithType: BaseReport.LoadFromStream(Stream, bool)
+  fullName: Reportman.Reporting.BaseReport.LoadFromStream(System.IO.Stream, bool)
+  nameWithType.vb: BaseReport.LoadFromStream(Stream, Boolean)
+  fullName.vb: Reportman.Reporting.BaseReport.LoadFromStream(System.IO.Stream, Boolean)
+  name.vb: LoadFromStream(Stream, Boolean)
   spec.csharp:
-  - uid: Reportman.Reporting.BaseReport.LoadFromStream(System.IO.Stream)
+  - uid: Reportman.Reporting.BaseReport.LoadFromStream(System.IO.Stream,System.Boolean)
     name: LoadFromStream
     isExternal: true
-    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_LoadFromStream_System_IO_Stream_
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_LoadFromStream_System_IO_Stream_System_Boolean_
   - name: (
   - uid: System.IO.Stream
     name: Stream
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
   spec.vb:
-  - uid: Reportman.Reporting.BaseReport.LoadFromStream(System.IO.Stream)
+  - uid: Reportman.Reporting.BaseReport.LoadFromStream(System.IO.Stream,System.Boolean)
     name: LoadFromStream
     isExternal: true
-    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_LoadFromStream_System_IO_Stream_
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_LoadFromStream_System_IO_Stream_System_Boolean_
   - name: (
   - uid: System.IO.Stream
     name: Stream
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
 - uid: Reportman.Reporting.BaseReport.ConvertToDotNet
   commentId: M:Reportman.Reporting.BaseReport.ConvertToDotNet
@@ -1379,6 +1410,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: )
   spec.vb:
   - uid: Reportman.Reporting.BaseReport.PrintAll(Reportman.Drawing.PrintOut)
@@ -1389,6 +1421,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: )
 - uid: Reportman.Reporting.BaseReport.UpdateParamsBeforeOpen(System.Int32,System.Boolean)
   commentId: M:Reportman.Reporting.BaseReport.UpdateParamsBeforeOpen(System.Int32,System.Boolean)
@@ -1711,11 +1744,13 @@ references:
   - uid: Reportman.Drawing.MetaPage
     name: MetaPage
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
   - name: ','
   - name: " "
   - uid: Reportman.Drawing.PageSizeDetail
     name: PageSizeDetail
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: )
   spec.vb:
   - uid: Reportman.Reporting.BaseReport.DoUpdatePageSize(Reportman.Drawing.MetaPage,Reportman.Drawing.PageSizeDetail)
@@ -1726,11 +1761,13 @@ references:
   - uid: Reportman.Drawing.MetaPage
     name: MetaPage
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
   - name: ','
   - name: " "
   - uid: Reportman.Drawing.PageSizeDetail
     name: PageSizeDetail
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: )
 - uid: Reportman.Reporting.BaseReport.AddReportItemsToEvaluator(Reportman.Reporting.Evaluator)
   commentId: M:Reportman.Reporting.BaseReport.AddReportItemsToEvaluator(Reportman.Reporting.Evaluator)
@@ -1813,6 +1850,28 @@ references:
     name: ReportItem
     isExternal: true
     href: Reportman.Reporting.ReportItem.html
+  - name: )
+- uid: Reportman.Reporting.BaseReport.EnsureComponentNames
+  commentId: M:Reportman.Reporting.BaseReport.EnsureComponentNames
+  parent: Reportman.Reporting.BaseReport
+  isExternal: true
+  href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_EnsureComponentNames
+  name: EnsureComponentNames()
+  nameWithType: BaseReport.EnsureComponentNames()
+  fullName: Reportman.Reporting.BaseReport.EnsureComponentNames()
+  spec.csharp:
+  - uid: Reportman.Reporting.BaseReport.EnsureComponentNames
+    name: EnsureComponentNames
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_EnsureComponentNames
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.BaseReport.EnsureComponentNames
+    name: EnsureComponentNames
+    isExternal: true
+    href: Reportman.Reporting.BaseReport.html#Reportman_Reporting_BaseReport_EnsureComponentNames
+  - name: (
   - name: )
 - uid: Reportman.Reporting.BaseReport.FindNewName(Reportman.Reporting.ReportItem)
   commentId: M:Reportman.Reporting.BaseReport.FindNewName(Reportman.Reporting.ReportItem)
@@ -3097,6 +3156,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: )
   spec.vb:
   - uid: Reportman.Reporting.BaseReport.BeginPrint(Reportman.Drawing.PrintOut)
@@ -3107,6 +3167,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: )
 - uid: Reportman.Reporting.Report.BeginPrint*
   commentId: Overload:Reportman.Reporting.Report.BeginPrint
@@ -3119,7 +3180,7 @@ references:
   commentId: T:Reportman.Drawing.PrintOut
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.PrintOut.html
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   name: PrintOut
   nameWithType: PrintOut
   fullName: Reportman.Drawing.PrintOut

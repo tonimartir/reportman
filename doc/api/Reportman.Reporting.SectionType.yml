@@ -17,6 +17,8 @@ items:
   nameWithType: SectionType
   fullName: Reportman.Reporting.SectionType
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -36,6 +38,8 @@ items:
   nameWithType: SectionType.PageHeader
   fullName: Reportman.Reporting.SectionType.PageHeader
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -56,6 +60,8 @@ items:
   nameWithType: SectionType.GroupHeader
   fullName: Reportman.Reporting.SectionType.GroupHeader
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -76,6 +82,8 @@ items:
   nameWithType: SectionType.Detail
   fullName: Reportman.Reporting.SectionType.Detail
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -96,6 +104,8 @@ items:
   nameWithType: SectionType.GroupFooter
   fullName: Reportman.Reporting.SectionType.GroupFooter
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -116,6 +126,8 @@ items:
   nameWithType: SectionType.PageFooter
   fullName: Reportman.Reporting.SectionType.PageFooter
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

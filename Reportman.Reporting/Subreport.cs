@@ -26,11 +26,20 @@ using System.Collections.Generic;
 
 namespace Reportman.Reporting
 {
+    /// <summary>
+    /// Notifications raised during report processing to inform a subreport and its sections
+    /// of state transitions such as report start, data/group/page changes and subreport start/end.
+    /// </summary>
     public enum SubReportEvent
     {
         Start, DataChange, GroupChange, PageChange,
         InvalidateValue, SubReportStart, SubReportEnd
     };
+    /// <summary>
+    /// A subreport bound to a data alias, holding the ordered collection of sections
+    /// (page headers/footers, group headers/footers and details) that are printed for
+    /// each record of its dataset, and managing group breaks and page-count tracking.
+    /// </summary>
     public class SubReport : ReportItem
     {
         public bool LastRecord;
@@ -501,6 +510,10 @@ namespace Reportman.Reporting
     }
 
 #if REPMAN_DOTNET1
+	/// <summary>
+	/// Strongly typed collection of <see cref="SubReport"/> instances (legacy .NET 1 implementation
+	/// backed by a manually grown array).
+	/// </summary>
 	public class SubReports
 	{
 		SubReport[] FItems;
@@ -575,6 +588,9 @@ namespace Reportman.Reporting
 			return new SubReportsEnumerator(this);
 		}
 		// Inner class implements IEnumerator interface:
+		/// <summary>
+		/// Enumerator that iterates over the <see cref="SubReport"/> items of a <see cref="SubReports"/> collection.
+		/// </summary>
 		public class SubReportsEnumerator : IEnumerator
 		{
 			private int position = -1;
@@ -616,6 +632,9 @@ namespace Reportman.Reporting
 		}
 	}
 #else
+    /// <summary>
+    /// Strongly typed list of the <see cref="SubReport"/> instances contained in a report.
+    /// </summary>
     public class SubReports : System.Collections.Generic.List<SubReport>
     {
 

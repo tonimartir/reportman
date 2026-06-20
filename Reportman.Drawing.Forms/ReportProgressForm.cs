@@ -218,6 +218,10 @@ namespace Reportman.Drawing.Forms
             Close();
         }
     }
+    /// <summary>
+    /// Runs report calculation on a background thread and, if it does not finish quickly,
+    /// shows a <see cref="ReportProgressForm"/> to display progress and allow cancellation.
+    /// </summary>
     public class CalcReportProgress
     {
         public PrintOut driver;

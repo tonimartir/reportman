@@ -13,9 +13,13 @@ items:
   nameWithType: SubReports
   fullName: Reportman.Reporting.SubReports
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Subreport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
+  summary: Strongly typed list of the <xref href="Reportman.Reporting.SubReport" data-throw-if-not-resolved="false"></xref> instances contained in a report.
+  example: []
   syntax:
     content: 'public class SubReports : List<SubReport>, IList<SubReport>, ICollection<SubReport>, IList, ICollection, IReadOnlyList<SubReport>, IReadOnlyCollection<SubReport>, IEnumerable<SubReport>, IEnumerable'
     content.vb: Public Class SubReports Inherits List(Of SubReport) Implements IList(Of SubReport), ICollection(Of SubReport), IList, ICollection, IReadOnlyList(Of SubReport), IReadOnlyCollection(Of SubReport), IEnumerable(Of SubReport), IEnumerable
@@ -101,6 +105,8 @@ items:
   nameWithType: SubReports.SubReports()
   fullName: Reportman.Reporting.SubReports.SubReports()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Subreport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -112,6 +118,14 @@ items:
   fullName.vb: Reportman.Reporting.SubReports.New()
   name.vb: New()
 references:
+- uid: Reportman.Reporting.SubReport
+  commentId: T:Reportman.Reporting.SubReport
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.SubReport.html
+  name: SubReport
+  nameWithType: SubReport
+  fullName: Reportman.Reporting.SubReport
 - uid: Reportman.Reporting
   commentId: N:Reportman.Reporting
   isExternal: true

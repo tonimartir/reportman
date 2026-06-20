@@ -23,9 +23,16 @@ items:
   nameWithType: Updater
   fullName: Reportman.Drawing.Updater
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Updater.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    Applies file updates to a target directory, scanning source folders, detecting modified files
+
+    by hash or timestamp, optionally backing up existing files and reporting progress as content is written.
+  example: []
   syntax:
     content: public class Updater
     content.vb: Public Class Updater
@@ -50,6 +57,8 @@ items:
   nameWithType: Updater.PerformBackup
   fullName: Reportman.Drawing.Updater.PerformBackup
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Updater.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -69,6 +78,8 @@ items:
   nameWithType: Updater.OnProgress
   fullName: Reportman.Drawing.Updater.OnProgress
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Updater.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -88,6 +99,8 @@ items:
   nameWithType: Updater.ExcludeExecutingAssembly
   fullName: Reportman.Drawing.Updater.ExcludeExecutingAssembly
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Updater.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -107,6 +120,8 @@ items:
   nameWithType: Updater.Updater(string)
   fullName: Reportman.Drawing.Updater.Updater(string)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Updater.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -131,6 +146,8 @@ items:
   nameWithType: Updater.GetModifiedFiles(DataTable, string, bool, SortedList<string, FileHash>, SortedList<string, FileHash>)
   fullName: Reportman.Drawing.Updater.GetModifiedFiles(System.Data.DataTable, string, bool, System.Collections.Generic.SortedList<string, Reportman.Drawing.FileHash>, System.Collections.Generic.SortedList<string, Reportman.Drawing.FileHash>)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Updater.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -165,6 +182,8 @@ items:
   nameWithType: Updater.GetModifiedFilesAsync(DataTable, string, bool, SortedList<string, FileHash>, SortedList<string, FileHash>)
   fullName: Reportman.Drawing.Updater.GetModifiedFilesAsync(System.Data.DataTable, string, bool, System.Collections.Generic.SortedList<string, Reportman.Drawing.FileHash>, System.Collections.Generic.SortedList<string, Reportman.Drawing.FileHash>)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Updater.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -199,6 +218,8 @@ items:
   nameWithType: Updater.CreateFilesTable()
   fullName: Reportman.Drawing.Updater.CreateFilesTable()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Updater.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -219,6 +240,8 @@ items:
   nameWithType: Updater.FillFiles(DataTable, string, string, bool)
   fullName: Reportman.Drawing.Updater.FillFiles(System.Data.DataTable, string, string, bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Updater.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -249,6 +272,8 @@ items:
   nameWithType: Updater.GetFiles(string, bool)
   fullName: Reportman.Drawing.Updater.GetFiles(string, bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Updater.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -277,6 +302,8 @@ items:
   nameWithType: Updater.Update(DataTable)
   fullName: Reportman.Drawing.Updater.Update(System.Data.DataTable)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Updater.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -298,6 +325,8 @@ items:
   nameWithType: Updater.FilePath
   fullName: Reportman.Drawing.Updater.FilePath
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Updater.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

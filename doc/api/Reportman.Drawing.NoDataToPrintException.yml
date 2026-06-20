@@ -13,6 +13,8 @@ items:
   nameWithType: NoDataToPrintException
   fullName: Reportman.Drawing.NoDataToPrintException
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/NoDataToPrintException.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -55,6 +57,8 @@ items:
   nameWithType: NoDataToPrintException.NoDataToPrintException(string)
   fullName: Reportman.Drawing.NoDataToPrintException.NoDataToPrintException(string)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/NoDataToPrintException.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

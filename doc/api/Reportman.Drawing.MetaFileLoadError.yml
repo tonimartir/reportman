@@ -16,6 +16,8 @@ items:
   nameWithType: MetaFileLoadError
   fullName: Reportman.Drawing.MetaFileLoadError
   type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -39,6 +41,8 @@ items:
   nameWithType: MetaFileLoadError.MetaFileLoadError(object, nint)
   fullName: Reportman.Drawing.MetaFileLoadError.MetaFileLoadError(object, nint)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -65,6 +69,8 @@ items:
   nameWithType: MetaFileLoadError.Invoke(string)
   fullName: Reportman.Drawing.MetaFileLoadError.Invoke(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -89,6 +95,8 @@ items:
   nameWithType: MetaFileLoadError.BeginInvoke(string, AsyncCallback, object)
   fullName: Reportman.Drawing.MetaFileLoadError.BeginInvoke(string, System.AsyncCallback, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -119,6 +127,8 @@ items:
   nameWithType: MetaFileLoadError.EndInvoke(IAsyncResult)
   fullName: Reportman.Drawing.MetaFileLoadError.EndInvoke(System.IAsyncResult)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

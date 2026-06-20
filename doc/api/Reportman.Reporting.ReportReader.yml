@@ -18,6 +18,8 @@ items:
   nameWithType: ReportReader
   fullName: Reportman.Reporting.ReportReader
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportReader.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -47,6 +49,8 @@ items:
   nameWithType: ReportReader.ReportReader(BaseReport)
   fullName: Reportman.Reporting.ReportReader.ReportReader(Reportman.Reporting.BaseReport)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportReader.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -77,6 +81,8 @@ items:
   nameWithType: ReportReader.ConvertToDotNet(Report, DriverType, string)
   fullName: Reportman.Reporting.ReportReader.ConvertToDotNet(Reportman.Reporting.Report, Reportman.Reporting.DriverType, string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportReader.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -110,6 +116,8 @@ items:
   nameWithType: ReportReader.LoadFromStream(Stream)
   fullName: Reportman.Reporting.ReportReader.LoadFromStream(System.IO.Stream)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportReader.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -134,6 +142,8 @@ items:
   nameWithType: ReportReader.LoadFromStream(Stream, int)
   fullName: Reportman.Reporting.ReportReader.LoadFromStream(System.IO.Stream, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportReader.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -164,6 +174,8 @@ items:
   nameWithType: ReportReader.LoadFromFile(string)
   fullName: Reportman.Reporting.ReportReader.LoadFromFile(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportReader.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -191,6 +203,8 @@ items:
   nameWithType: ReportReader.ReadFromString(string)
   fullName: Reportman.Reporting.ReportReader.ReadFromString(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportReader.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

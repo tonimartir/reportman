@@ -9,6 +9,10 @@ namespace Reportman.Drawing.Forms
 
     [ProvideProperty("CueBannerText", typeof(TextBox))]
     [ProvideProperty("CueBannerText", typeof(TextBox))]
+    /// <summary>
+    /// An extender provider that adds a CueBannerText property to TextBox controls,
+    /// displaying placeholder (cue banner) text via the EM_SETCUEBANNER Windows message.
+    /// </summary>
     public class CueHelper : Component, IExtenderProvider
     {
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = false)]

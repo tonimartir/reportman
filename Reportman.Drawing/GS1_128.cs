@@ -3,6 +3,9 @@ using System.Text;
 
 namespace Reportman.Drawing
 {
+    /// <summary>
+    /// Parses the application-identifier data of a GS1-128 (UCC/EAN-128) barcode payload, exposing decoded fields such as SSCC, product code, dates, batch/serial numbers and a wide set of weight, dimension and volume measurements.
+    /// </summary>
     public class GS1_128
     {
         public DateTime ExpirationDate = DateTime.MinValue;

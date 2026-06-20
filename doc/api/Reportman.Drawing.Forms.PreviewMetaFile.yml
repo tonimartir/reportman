@@ -40,6 +40,8 @@ items:
   nameWithType: PreviewMetaFile
   fullName: Reportman.Drawing.Forms.PreviewMetaFile
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -495,6 +497,8 @@ items:
   nameWithType: PreviewMetaFile.OnPageSetup
   fullName: Reportman.Drawing.Forms.PreviewMetaFile.OnPageSetup
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -516,6 +520,8 @@ items:
   nameWithType: PreviewMetaFile.OnReportParams
   fullName: Reportman.Drawing.Forms.PreviewMetaFile.OnReportParams
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -537,6 +543,8 @@ items:
   nameWithType: PreviewMetaFile.OnMail
   fullName: Reportman.Drawing.Forms.PreviewMetaFile.OnMail
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -558,6 +566,8 @@ items:
   nameWithType: PreviewMetaFile.prdriver
   fullName: Reportman.Drawing.Forms.PreviewMetaFile.prdriver
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -579,6 +589,8 @@ items:
   nameWithType: PreviewMetaFile.OptimizeWMF
   fullName: Reportman.Drawing.Forms.PreviewMetaFile.OptimizeWMF
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -600,6 +612,8 @@ items:
   nameWithType: PreviewMetaFile.ProgressCancel
   fullName: Reportman.Drawing.Forms.PreviewMetaFile.ProgressCancel
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -621,6 +635,8 @@ items:
   nameWithType: PreviewMetaFile.WorkProgress(int, int, ref bool)
   fullName: Reportman.Drawing.Forms.PreviewMetaFile.WorkProgress(int, int, ref bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -654,6 +670,8 @@ items:
   nameWithType: PreviewMetaFile.SetDriver(PrintOutNet)
   fullName: Reportman.Drawing.Forms.PreviewMetaFile.SetDriver(Reportman.Drawing.PrintOutNet)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -678,6 +696,8 @@ items:
   nameWithType: PreviewMetaFile.NextPage()
   fullName: Reportman.Drawing.Forms.PreviewMetaFile.NextPage()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -698,6 +718,8 @@ items:
   nameWithType: PreviewMetaFile.PriorPage()
   fullName: Reportman.Drawing.Forms.PreviewMetaFile.PriorPage()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -718,6 +740,8 @@ items:
   nameWithType: PreviewMetaFile.LastPage()
   fullName: Reportman.Drawing.Forms.PreviewMetaFile.LastPage()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -738,6 +762,8 @@ items:
   nameWithType: PreviewMetaFile.PreviewMetaFile(IContainer)
   fullName: Reportman.Drawing.Forms.PreviewMetaFile.PreviewMetaFile(System.ComponentModel.IContainer)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -764,6 +790,8 @@ items:
   nameWithType: PreviewMetaFile.PreviewMetaFile()
   fullName: Reportman.Drawing.Forms.PreviewMetaFile.PreviewMetaFile()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -787,6 +815,8 @@ items:
   nameWithType: PreviewMetaFile.ReDrawPage()
   fullName: Reportman.Drawing.Forms.PreviewMetaFile.ReDrawPage()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -807,6 +837,8 @@ items:
   nameWithType: PreviewMetaFile.RefreshPage()
   fullName: Reportman.Drawing.Forms.PreviewMetaFile.RefreshPage()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -827,6 +859,8 @@ items:
   nameWithType: PreviewMetaFile.SetMetaFile(MetaFile)
   fullName: Reportman.Drawing.Forms.PreviewMetaFile.SetMetaFile(Reportman.Drawing.MetaFile)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -850,6 +884,8 @@ items:
   nameWithType: PreviewMetaFile.Dispose(bool)
   fullName: Reportman.Drawing.Forms.PreviewMetaFile.Dispose(bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -876,6 +912,8 @@ items:
   nameWithType: PreviewMetaFile.ProgressRecords
   fullName: Reportman.Drawing.Forms.PreviewMetaFile.ProgressRecords
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -899,6 +937,8 @@ items:
   nameWithType: PreviewMetaFile.ProgressPageCount
   fullName: Reportman.Drawing.Forms.PreviewMetaFile.ProgressPageCount
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -922,6 +962,8 @@ items:
   nameWithType: PreviewMetaFile.MetaFile
   fullName: Reportman.Drawing.Forms.PreviewMetaFile.MetaFile
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -957,6 +999,8 @@ items:
   nameWithType: PreviewMetaFile.PagesDrawn
   fullName: Reportman.Drawing.Forms.PreviewMetaFile.PagesDrawn
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -980,6 +1024,8 @@ items:
   nameWithType: PreviewMetaFile.EntireToDown
   fullName: Reportman.Drawing.Forms.PreviewMetaFile.EntireToDown
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1006,6 +1052,8 @@ items:
   nameWithType: PreviewMetaFile.EntirePageCount
   fullName: Reportman.Drawing.Forms.PreviewMetaFile.EntirePageCount
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1032,6 +1080,8 @@ items:
   nameWithType: PreviewMetaFile.AutoScale
   fullName: Reportman.Drawing.Forms.PreviewMetaFile.AutoScale
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1055,6 +1105,8 @@ items:
   nameWithType: PreviewMetaFile.Page
   fullName: Reportman.Drawing.Forms.PreviewMetaFile.Page
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1090,6 +1142,8 @@ items:
   nameWithType: PreviewMetaFile.PreviewScale
   fullName: Reportman.Drawing.Forms.PreviewMetaFile.PreviewScale
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1113,6 +1167,8 @@ items:
   nameWithType: PreviewMetaFile.OnPageDrawn
   fullName: Reportman.Drawing.Forms.PreviewMetaFile.OnPageDrawn
   type: Event
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1134,6 +1190,8 @@ items:
   nameWithType: PreviewMetaFile.OnWorkProgress
   fullName: Reportman.Drawing.Forms.PreviewMetaFile.OnWorkProgress
   type: Event
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -10503,7 +10561,7 @@ references:
   commentId: T:Reportman.Drawing.PrintOutNet
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.PrintOutNet.html
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   name: PrintOutNet
   nameWithType: PrintOutNet
   fullName: Reportman.Drawing.PrintOutNet
@@ -10538,7 +10596,7 @@ references:
   commentId: T:Reportman.Drawing.WMFOptimization
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.WMFOptimization.html
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   name: WMFOptimization
   nameWithType: WMFOptimization
   fullName: Reportman.Drawing.WMFOptimization

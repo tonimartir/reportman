@@ -24,6 +24,11 @@ using System.Text;
 
 namespace Reportman.Drawing
 {
+    /// <summary>
+    /// Serializes and deserializes ADO.NET DataSets to and from a compact custom binary
+    /// format (including table schema, primary keys and row values), as an alternative to
+    /// the slower built-in DataSet XML serialization.
+    /// </summary>
     public class FastSerializer
     {
         enum TypeData

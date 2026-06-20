@@ -16,9 +16,16 @@ items:
   nameWithType: WinFormsGraphics
   fullName: Reportman.Drawing.Forms.WinFormsGraphics
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/WinFormsGraphics.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    Windows Forms helpers for resolving the screen DPI, the corresponding DPI scale factor,
+
+    and whether the current process is DPI-aware.
+  example: []
   syntax:
     content: public static class WinFormsGraphics
     content.vb: Public Module WinFormsGraphics
@@ -43,6 +50,8 @@ items:
   nameWithType: WinFormsGraphics.ScreenDPI()
   fullName: Reportman.Drawing.Forms.WinFormsGraphics.ScreenDPI()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/WinFormsGraphics.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -63,6 +72,8 @@ items:
   nameWithType: WinFormsGraphics.GetProcessDpiAwareness(nint, out WinFormsGraphics.DpiAwareness)
   fullName: Reportman.Drawing.Forms.WinFormsGraphics.GetProcessDpiAwareness(nint, out Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/WinFormsGraphics.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -91,6 +102,8 @@ items:
   nameWithType: WinFormsGraphics.IsWindowsFormsDPIAware()
   fullName: Reportman.Drawing.Forms.WinFormsGraphics.IsWindowsFormsDPIAware()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/WinFormsGraphics.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -111,6 +124,8 @@ items:
   nameWithType: WinFormsGraphics.DPIScale
   fullName: Reportman.Drawing.Forms.WinFormsGraphics.DPIScale
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/WinFormsGraphics.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

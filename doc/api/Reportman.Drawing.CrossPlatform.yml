@@ -1,0 +1,24 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.CrossPlatform
+  commentId: N:Reportman.Drawing.CrossPlatform
+  id: Reportman.Drawing.CrossPlatform
+  children:
+  - Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType
+  langs:
+  - csharp
+  - vb
+  name: Reportman.Drawing.CrossPlatform
+  nameWithType: Reportman.Drawing.CrossPlatform
+  fullName: Reportman.Drawing.CrossPlatform
+  type: Namespace
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+references:
+- uid: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType
+  commentId: T:Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType
+  isExternal: true
+  href: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.html
+  name: PrintOutPDFFreeType
+  nameWithType: PrintOutPDFFreeType
+  fullName: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType

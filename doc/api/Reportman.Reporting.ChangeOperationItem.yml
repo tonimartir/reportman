@@ -17,9 +17,16 @@ items:
   nameWithType: ChangeOperationItem
   fullName: Reportman.Reporting.ChangeOperationItem
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
+  summary: >-
+    Records the change of a single property within a <xref href="Reportman.Reporting.ChangeObjectOperation" data-throw-if-not-resolved="false"></xref>,
+
+    keeping its name, type and the old and new values for undo and redo.
+  example: []
   syntax:
     content: public class ChangeOperationItem
     content.vb: Public Class ChangeOperationItem
@@ -44,6 +51,8 @@ items:
   nameWithType: ChangeOperationItem.ChangeOperationItem(string, PropertyType, object, object)
   fullName: Reportman.Reporting.ChangeOperationItem.ChangeOperationItem(string, Reportman.Reporting.PropertyType, object, object)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -74,6 +83,8 @@ items:
   nameWithType: ChangeOperationItem.PropertyName
   fullName: Reportman.Reporting.ChangeOperationItem.PropertyName
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -95,6 +106,8 @@ items:
   nameWithType: ChangeOperationItem.PropertyType
   fullName: Reportman.Reporting.ChangeOperationItem.PropertyType
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -116,6 +129,8 @@ items:
   nameWithType: ChangeOperationItem.OldValue
   fullName: Reportman.Reporting.ChangeOperationItem.OldValue
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -137,6 +152,8 @@ items:
   nameWithType: ChangeOperationItem.NewValue
   fullName: Reportman.Reporting.ChangeOperationItem.NewValue
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -148,6 +165,14 @@ items:
     content.vb: Public Property NewValue As Object
   overload: Reportman.Reporting.ChangeOperationItem.NewValue*
 references:
+- uid: Reportman.Reporting.ChangeObjectOperation
+  commentId: T:Reportman.Reporting.ChangeObjectOperation
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.ChangeObjectOperation.html
+  name: ChangeObjectOperation
+  nameWithType: ChangeObjectOperation
+  fullName: Reportman.Reporting.ChangeObjectOperation
 - uid: Reportman.Reporting
   commentId: N:Reportman.Reporting
   isExternal: true

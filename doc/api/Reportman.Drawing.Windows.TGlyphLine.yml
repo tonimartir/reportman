@@ -19,9 +19,16 @@ items:
   nameWithType: TGlyphLine
   fullName: Reportman.Drawing.Windows.TGlyphLine
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/DirectWriteRenderer.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
+  summary: >-
+    Holds the positioned glyphs that share a single text baseline, tracking the
+
+    line's reading direction and the most recent run for correct RTL/LTR ordering.
+  example: []
   syntax:
     content: public class TGlyphLine
     content.vb: Public Class TGlyphLine
@@ -46,6 +53,8 @@ items:
   nameWithType: TGlyphLine.BaselineY
   fullName: Reportman.Drawing.Windows.TGlyphLine.BaselineY
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/DirectWriteRenderer.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -65,6 +74,8 @@ items:
   nameWithType: TGlyphLine.Glyphs
   fullName: Reportman.Drawing.Windows.TGlyphLine.Glyphs
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/DirectWriteRenderer.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -84,6 +95,8 @@ items:
   nameWithType: TGlyphLine.IsRTL
   fullName: Reportman.Drawing.Windows.TGlyphLine.IsRTL
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/DirectWriteRenderer.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -103,6 +116,8 @@ items:
   nameWithType: TGlyphLine.LastRunIsLTR
   fullName: Reportman.Drawing.Windows.TGlyphLine.LastRunIsLTR
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/DirectWriteRenderer.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -122,6 +137,8 @@ items:
   nameWithType: TGlyphLine.LastRunLength
   fullName: Reportman.Drawing.Windows.TGlyphLine.LastRunLength
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/DirectWriteRenderer.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -141,6 +158,8 @@ items:
   nameWithType: TGlyphLine.RunCount
   fullName: Reportman.Drawing.Windows.TGlyphLine.RunCount
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/DirectWriteRenderer.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -160,6 +179,8 @@ items:
   nameWithType: TGlyphLine.TGlyphLine(float, bool)
   fullName: Reportman.Drawing.Windows.TGlyphLine.TGlyphLine(float, bool)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/DirectWriteRenderer.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows

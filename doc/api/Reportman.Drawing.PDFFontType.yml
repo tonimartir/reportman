@@ -19,6 +19,8 @@ items:
   nameWithType: PDFFontType
   fullName: Reportman.Drawing.PDFFontType
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -41,6 +43,8 @@ items:
   nameWithType: PDFFontType.Helvetica
   fullName: Reportman.Drawing.PDFFontType.Helvetica
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -61,6 +65,8 @@ items:
   nameWithType: PDFFontType.Courier
   fullName: Reportman.Drawing.PDFFontType.Courier
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -81,6 +87,8 @@ items:
   nameWithType: PDFFontType.TimesRoman
   fullName: Reportman.Drawing.PDFFontType.TimesRoman
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -101,6 +109,8 @@ items:
   nameWithType: PDFFontType.Symbol
   fullName: Reportman.Drawing.PDFFontType.Symbol
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -121,6 +131,8 @@ items:
   nameWithType: PDFFontType.ZafDingbats
   fullName: Reportman.Drawing.PDFFontType.ZafDingbats
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -141,6 +153,8 @@ items:
   nameWithType: PDFFontType.Linked
   fullName: Reportman.Drawing.PDFFontType.Linked
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -164,6 +178,8 @@ items:
   nameWithType: PDFFontType.Embedded
   fullName: Reportman.Drawing.PDFFontType.Embedded
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

@@ -26,6 +26,11 @@ namespace Reportman.Reporting
 {
 
 
+    /// <summary>
+    /// A printable report item that builds and renders a chart from expression-driven data series,
+    /// accumulating values, captions and colors as the subreport iterates and drawing the result
+    /// through the report's charting driver.
+    /// </summary>
     public class ChartItem : PrintItemText
     {
         public int[] SeriesColors ={0xFF0000,0xFFDDFF,0x00FF00,0x0000FF,

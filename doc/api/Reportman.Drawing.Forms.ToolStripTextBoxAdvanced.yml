@@ -26,9 +26,18 @@ items:
   nameWithType: ToolStripTextBoxAdvanced
   fullName: Reportman.Drawing.Forms.ToolStripTextBoxAdvanced
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    A ToolStripTextBox that drops down a self-managed suggestion list as the user types,
+
+    matching against a local auto-complete list and optionally Google query suggestions,
+
+    with a cue-banner placeholder and DPI-aware drawing.
+  example: []
   syntax:
     content: 'public class ToolStripTextBoxAdvanced : ToolStripTextBox, IBindableComponent, IDropTarget, IComponent, IDisposable, IMessageFilter'
     content.vb: Public Class ToolStripTextBoxAdvanced Inherits ToolStripTextBox Implements IBindableComponent, IDropTarget, IComponent, IDisposable, IMessageFilter
@@ -306,6 +315,8 @@ items:
   nameWithType: ToolStripTextBoxAdvanced.AutoCompleteWidth
   fullName: Reportman.Drawing.Forms.ToolStripTextBoxAdvanced.AutoCompleteWidth
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -325,6 +336,8 @@ items:
   nameWithType: ToolStripTextBoxAdvanced.AutoCompleteList
   fullName: Reportman.Drawing.Forms.ToolStripTextBoxAdvanced.AutoCompleteList
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -344,6 +357,8 @@ items:
   nameWithType: ToolStripTextBoxAdvanced.AutoCompleteListTop
   fullName: Reportman.Drawing.Forms.ToolStripTextBoxAdvanced.AutoCompleteListTop
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -363,6 +378,8 @@ items:
   nameWithType: ToolStripTextBoxAdvanced.AutoCompleteMaxVisibleLines
   fullName: Reportman.Drawing.Forms.ToolStripTextBoxAdvanced.AutoCompleteMaxVisibleLines
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -382,6 +399,8 @@ items:
   nameWithType: ToolStripTextBoxAdvanced.IncludeGoogleTerms
   fullName: Reportman.Drawing.Forms.ToolStripTextBoxAdvanced.IncludeGoogleTerms
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -401,6 +420,8 @@ items:
   nameWithType: ToolStripTextBoxAdvanced.GoogleTermsImage
   fullName: Reportman.Drawing.Forms.ToolStripTextBoxAdvanced.GoogleTermsImage
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -420,6 +441,8 @@ items:
   nameWithType: ToolStripTextBoxAdvanced.NotGoogleTermsImage
   fullName: Reportman.Drawing.Forms.ToolStripTextBoxAdvanced.NotGoogleTermsImage
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -439,6 +462,8 @@ items:
   nameWithType: ToolStripTextBoxAdvanced.OnDropDownClicked
   fullName: Reportman.Drawing.Forms.ToolStripTextBoxAdvanced.OnDropDownClicked
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -458,6 +483,8 @@ items:
   nameWithType: ToolStripTextBoxAdvanced.ToolStripTextBoxAdvanced()
   fullName: Reportman.Drawing.Forms.ToolStripTextBoxAdvanced.ToolStripTextBoxAdvanced()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -479,6 +506,8 @@ items:
   nameWithType: ToolStripTextBoxAdvanced.GetPreferredSize(Size)
   fullName: Reportman.Drawing.Forms.ToolStripTextBoxAdvanced.GetPreferredSize(System.Drawing.Size)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -504,6 +533,8 @@ items:
   nameWithType: ToolStripTextBoxAdvanced.HideDropDown()
   fullName: Reportman.Drawing.Forms.ToolStripTextBoxAdvanced.HideDropDown()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -522,6 +553,8 @@ items:
   nameWithType: ToolStripTextBoxAdvanced.PreFilterMessage(ref Message)
   fullName: Reportman.Drawing.Forms.ToolStripTextBoxAdvanced.PreFilterMessage(ref System.Windows.Forms.Message)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -551,6 +584,8 @@ items:
   nameWithType: ToolStripTextBoxAdvanced.CueBannerText
   fullName: Reportman.Drawing.Forms.ToolStripTextBoxAdvanced.CueBannerText
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -572,6 +607,8 @@ items:
   nameWithType: ToolStripTextBoxAdvanced.SelectedDropDown
   fullName: Reportman.Drawing.Forms.ToolStripTextBoxAdvanced.SelectedDropDown
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

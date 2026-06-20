@@ -69,6 +69,8 @@ items:
   nameWithType: Section
   fullName: Reportman.Reporting.Section
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -126,6 +128,8 @@ items:
   nameWithType: Section.ChangeExpression
   fullName: Reportman.Reporting.Section.ChangeExpression
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -150,6 +154,8 @@ items:
   nameWithType: Section.ChangeBool
   fullName: Reportman.Reporting.Section.ChangeBool
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -174,6 +180,8 @@ items:
   nameWithType: Section.PageRepeat
   fullName: Reportman.Reporting.Section.PageRepeat
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -195,6 +203,8 @@ items:
   nameWithType: Section.SkipPage
   fullName: Reportman.Reporting.Section.SkipPage
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -219,6 +229,8 @@ items:
   nameWithType: Section.BeginPageExpression
   fullName: Reportman.Reporting.Section.BeginPageExpression
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -240,6 +252,8 @@ items:
   nameWithType: Section.SkipType
   fullName: Reportman.Reporting.Section.SkipType
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -264,6 +278,8 @@ items:
   nameWithType: Section.SkipToPageExpre
   fullName: Reportman.Reporting.Section.SkipToPageExpre
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -288,6 +304,8 @@ items:
   nameWithType: Section.SkipRelativeH
   fullName: Reportman.Reporting.Section.SkipRelativeH
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -309,6 +327,8 @@ items:
   nameWithType: Section.SkipRelativeV
   fullName: Reportman.Reporting.Section.SkipRelativeV
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -330,6 +350,8 @@ items:
   nameWithType: Section.SkipExpreH
   fullName: Reportman.Reporting.Section.SkipExpreH
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -356,6 +378,8 @@ items:
   nameWithType: Section.SkipExpreV
   fullName: Reportman.Reporting.Section.SkipExpreV
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -382,6 +406,8 @@ items:
   nameWithType: Section.AlignBottom
   fullName: Reportman.Reporting.Section.AlignBottom
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -408,6 +434,8 @@ items:
   nameWithType: Section.AutoExpand
   fullName: Reportman.Reporting.Section.AutoExpand
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -434,6 +462,8 @@ items:
   nameWithType: Section.AutoContract
   fullName: Reportman.Reporting.Section.AutoContract
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -462,6 +492,8 @@ items:
   nameWithType: Section.HorzDesp
   fullName: Reportman.Reporting.Section.HorzDesp
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -496,6 +528,8 @@ items:
   nameWithType: Section.VertDesp
   fullName: Reportman.Reporting.Section.VertDesp
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -534,6 +568,8 @@ items:
   nameWithType: Section.ExternalFilename
   fullName: Reportman.Reporting.Section.ExternalFilename
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -562,6 +598,8 @@ items:
   nameWithType: Section.ExternalConnection
   fullName: Reportman.Reporting.Section.ExternalConnection
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -583,6 +621,8 @@ items:
   nameWithType: Section.ExternalTable
   fullName: Reportman.Reporting.Section.ExternalTable
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -604,6 +644,8 @@ items:
   nameWithType: Section.ExternalField
   fullName: Reportman.Reporting.Section.ExternalField
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -625,6 +667,8 @@ items:
   nameWithType: Section.ExternalSearchField
   fullName: Reportman.Reporting.Section.ExternalSearchField
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -646,6 +690,8 @@ items:
   nameWithType: Section.ExternalSearchValue
   fullName: Reportman.Reporting.Section.ExternalSearchValue
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -667,6 +713,8 @@ items:
   nameWithType: Section.StreamFormat
   fullName: Reportman.Reporting.Section.StreamFormat
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -691,6 +739,8 @@ items:
   nameWithType: Section.ChildSubReport
   fullName: Reportman.Reporting.Section.ChildSubReport
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -732,6 +782,8 @@ items:
   nameWithType: Section.BeginPage
   fullName: Reportman.Reporting.Section.BeginPage
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -756,6 +808,8 @@ items:
   nameWithType: Section.ForcePrint
   fullName: Reportman.Reporting.Section.ForcePrint
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -782,6 +836,8 @@ items:
   nameWithType: Section.IniNumPage
   fullName: Reportman.Reporting.Section.IniNumPage
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -806,6 +862,8 @@ items:
   nameWithType: Section.Global
   fullName: Reportman.Reporting.Section.Global
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -830,6 +888,8 @@ items:
   nameWithType: Section.dpires
   fullName: Reportman.Reporting.Section.dpires
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -854,6 +914,8 @@ items:
   nameWithType: Section.BackStyle
   fullName: Reportman.Reporting.Section.BackStyle
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -882,6 +944,8 @@ items:
   nameWithType: Section.DrawStyle
   fullName: Reportman.Reporting.Section.DrawStyle
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -903,6 +967,8 @@ items:
   nameWithType: Section.SectionType
   fullName: Reportman.Reporting.Section.SectionType
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -924,6 +990,8 @@ items:
   nameWithType: Section.GroupName
   fullName: Reportman.Reporting.Section.GroupName
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -945,6 +1013,8 @@ items:
   nameWithType: Section.SharedImage
   fullName: Reportman.Reporting.Section.SharedImage
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -969,6 +1039,8 @@ items:
   nameWithType: Section.BackExpression
   fullName: Reportman.Reporting.Section.BackExpression
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -999,6 +1071,8 @@ items:
   nameWithType: Section.GroupValue
   fullName: Reportman.Reporting.Section.GroupValue
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1020,6 +1094,8 @@ items:
   nameWithType: Section.FirstPage
   fullName: Reportman.Reporting.Section.FirstPage
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1041,6 +1117,8 @@ items:
   nameWithType: Section.SubReport
   fullName: Reportman.Reporting.Section.SubReport
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1079,6 +1157,8 @@ items:
   nameWithType: Section.ChildSubReportName
   fullName: Reportman.Reporting.Section.ChildSubReportName
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1100,6 +1180,8 @@ items:
   nameWithType: Section.SubReportName
   fullName: Reportman.Reporting.Section.SubReportName
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1121,6 +1203,8 @@ items:
   nameWithType: Section.SyncWidth
   fullName: Reportman.Reporting.Section.SyncWidth
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1142,6 +1226,8 @@ items:
   nameWithType: Section.Dispose()
   fullName: Reportman.Reporting.Section.Dispose()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1165,6 +1251,8 @@ items:
   nameWithType: Section.GetExternalDataDescription()
   fullName: Reportman.Reporting.Section.GetExternalDataDescription()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1185,6 +1273,8 @@ items:
   nameWithType: Section.ClearPageCountList()
   fullName: Reportman.Reporting.Section.ClearPageCountList()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1205,6 +1295,8 @@ items:
   nameWithType: Section.UpdatePageCounts()
   fullName: Reportman.Reporting.Section.UpdatePageCounts()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1228,6 +1320,8 @@ items:
   nameWithType: Section.SubReportChanged(SubReportEvent, string)
   fullName: Reportman.Reporting.Section.SubReportChanged(Reportman.Reporting.SubReportEvent, string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1262,6 +1356,8 @@ items:
   nameWithType: Section.Section()
   fullName: Reportman.Reporting.Section.Section()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1285,6 +1381,8 @@ items:
   nameWithType: Section.EvaluateBeginPage()
   fullName: Reportman.Reporting.Section.EvaluateBeginPage()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1311,6 +1409,8 @@ items:
   nameWithType: Section.GetExtension(PrintOut, Point, bool)
   fullName: Reportman.Reporting.Section.GetExtension(Reportman.Drawing.PrintOut, System.Drawing.Point, bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1351,6 +1451,8 @@ items:
   nameWithType: Section.GetDisplayName(bool)
   fullName: Reportman.Reporting.Section.GetDisplayName(bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1377,6 +1479,8 @@ items:
   nameWithType: Section.GetStream()
   fullName: Reportman.Reporting.Section.GetStream()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1403,6 +1507,8 @@ items:
   nameWithType: Section.DoPrint(PrintOut, int, int, int, int, MetaFile, Point, ref bool)
   fullName: Reportman.Reporting.Section.DoPrint(Reportman.Drawing.PrintOut, int, int, int, int, Reportman.Drawing.MetaFile, System.Drawing.Point, ref bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1455,6 +1561,8 @@ items:
   nameWithType: Section.GetClassName()
   fullName: Reportman.Reporting.Section.GetClassName()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1479,6 +1587,8 @@ items:
   nameWithType: Section.Components
   fullName: Reportman.Reporting.Section.Components
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1502,6 +1612,8 @@ items:
   nameWithType: Section.IsExternal
   fullName: Reportman.Reporting.Section.IsExternal
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1537,6 +1649,8 @@ items:
   nameWithType: Section.Stream
   fullName: Reportman.Reporting.Section.Stream
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1593,6 +1707,8 @@ items:
   nameWithType: Section.StreamBase64
   fullName: Reportman.Reporting.Section.StreamBase64
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1756,6 +1872,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -1785,6 +1902,7 @@ references:
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -1809,6 +1927,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -1838,6 +1957,7 @@ references:
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -2508,6 +2628,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -2530,6 +2651,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -2554,7 +2676,7 @@ references:
   commentId: T:Reportman.Drawing.PrintOut
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.PrintOut.html
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   name: PrintOut
   nameWithType: PrintOut
   fullName: Reportman.Drawing.PrintOut
@@ -2662,6 +2784,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -2691,6 +2814,7 @@ references:
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -2715,6 +2839,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -2744,6 +2869,7 @@ references:
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point

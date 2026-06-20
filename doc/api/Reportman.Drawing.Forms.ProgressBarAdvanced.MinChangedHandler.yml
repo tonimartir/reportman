@@ -16,6 +16,8 @@ items:
   nameWithType: ProgressBarAdvanced.MinChangedHandler
   fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.MinChangedHandler
   type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ProgressBarAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -40,6 +42,8 @@ items:
   nameWithType: ProgressBarAdvanced.MinChangedHandler.MinChangedHandler(object, nint)
   fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.MinChangedHandler.MinChangedHandler(object, nint)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ProgressBarAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -66,6 +70,8 @@ items:
   nameWithType: ProgressBarAdvanced.MinChangedHandler.Invoke(object, EventArgs)
   fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.MinChangedHandler.Invoke(object, System.EventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ProgressBarAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -92,6 +98,8 @@ items:
   nameWithType: ProgressBarAdvanced.MinChangedHandler.BeginInvoke(object, EventArgs, AsyncCallback, object)
   fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.MinChangedHandler.BeginInvoke(object, System.EventArgs, System.AsyncCallback, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ProgressBarAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -124,6 +132,8 @@ items:
   nameWithType: ProgressBarAdvanced.MinChangedHandler.EndInvoke(IAsyncResult)
   fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.MinChangedHandler.EndInvoke(System.IAsyncResult)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ProgressBarAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

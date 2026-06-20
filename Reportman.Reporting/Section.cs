@@ -1009,6 +1009,10 @@ namespace Reportman.Reporting
     /// Collection of sections
     /// </summary>
 #if REPMAN_DOTNET1
+	/// <summary>
+	/// Strongly typed collection of <see cref="Section"/> instances belonging to a subreport
+	/// (legacy .NET 1 implementation backed by a manually grown array).
+	/// </summary>
 	public class Sections
 	{
 		Section[] FItems;
@@ -1092,6 +1096,9 @@ namespace Reportman.Reporting
 			return new SectionsEnumerator(this);
 		}
 		// Inner class implements IEnumerator interface:
+		/// <summary>
+		/// Enumerator that iterates over the <see cref="Section"/> items of a <see cref="Sections"/> collection.
+		/// </summary>
 		public class SectionsEnumerator : IEnumerator
 		{
 			private int position = -1;

@@ -16,6 +16,8 @@ items:
   nameWithType: ParamsForm
   fullName: Reportman.Reporting.Forms.ParamsForm
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/ParamsForm.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -602,6 +604,8 @@ items:
   nameWithType: ParamsForm.Dispose(bool)
   fullName: Reportman.Reporting.Forms.ParamsForm.Dispose(bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/ParamsForm.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -629,6 +633,8 @@ items:
   nameWithType: ParamsForm.ParamsForm()
   fullName: Reportman.Reporting.Forms.ParamsForm.ParamsForm()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/ParamsForm.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -652,6 +658,8 @@ items:
   nameWithType: ParamsForm.ShowParams(Report, IWin32Window)
   fullName: Reportman.Reporting.Forms.ParamsForm.ShowParams(Reportman.Reporting.Report, System.Windows.Forms.IWin32Window)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/ParamsForm.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -681,6 +689,8 @@ items:
   nameWithType: ParamsForm.ShowParams(Report, string)
   fullName: Reportman.Reporting.Forms.ParamsForm.ShowParams(Reportman.Reporting.Report, string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/ParamsForm.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms

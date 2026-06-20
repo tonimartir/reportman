@@ -16,9 +16,16 @@ items:
   nameWithType: ProgressArgs
   fullName: Reportman.Drawing.ProgressArgs
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ProgressArgs.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    Event arguments reporting progress of a long-running operation, exposing the current
+
+    count and total and allowing the handler to request cancellation.
+  example: []
   syntax:
     content: public class ProgressArgs
     content.vb: Public Class ProgressArgs
@@ -43,6 +50,8 @@ items:
   nameWithType: ProgressArgs.Cancel
   fullName: Reportman.Drawing.ProgressArgs.Cancel
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ProgressArgs.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -62,6 +71,8 @@ items:
   nameWithType: ProgressArgs.ProgressArgs(long, long)
   fullName: Reportman.Drawing.ProgressArgs.ProgressArgs(long, long)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ProgressArgs.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -88,6 +99,8 @@ items:
   nameWithType: ProgressArgs.Count
   fullName: Reportman.Drawing.ProgressArgs.Count
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ProgressArgs.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -109,6 +122,8 @@ items:
   nameWithType: ProgressArgs.Total
   fullName: Reportman.Drawing.ProgressArgs.Total
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ProgressArgs.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

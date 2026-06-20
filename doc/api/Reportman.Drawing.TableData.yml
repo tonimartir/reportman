@@ -17,9 +17,16 @@ items:
   nameWithType: TableData
   fullName: Reportman.Drawing.TableData
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    Directory entry for a single table inside a TrueType font file, holding its tag name,
+
+    byte offset, length and checksum.
+  example: []
   syntax:
     content: public class TableData
     content.vb: Public Class TableData
@@ -44,6 +51,8 @@ items:
   nameWithType: TableData.TableName
   fullName: Reportman.Drawing.TableData.TableName
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -63,6 +72,8 @@ items:
   nameWithType: TableData.Location
   fullName: Reportman.Drawing.TableData.Location
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -82,6 +93,8 @@ items:
   nameWithType: TableData.Length
   fullName: Reportman.Drawing.TableData.Length
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -101,6 +114,8 @@ items:
   nameWithType: TableData.Checksum
   fullName: Reportman.Drawing.TableData.Checksum
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -120,6 +135,8 @@ items:
   nameWithType: TableData.TableData(string, int, int, int)
   fullName: Reportman.Drawing.TableData.TableData(string, int, int, int)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

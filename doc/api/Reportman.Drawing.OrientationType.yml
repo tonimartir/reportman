@@ -15,6 +15,8 @@ items:
   nameWithType: OrientationType
   fullName: Reportman.Drawing.OrientationType
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -34,6 +36,8 @@ items:
   nameWithType: OrientationType.Default
   fullName: Reportman.Drawing.OrientationType.Default
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -54,6 +58,8 @@ items:
   nameWithType: OrientationType.Portrait
   fullName: Reportman.Drawing.OrientationType.Portrait
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -74,6 +80,8 @@ items:
   nameWithType: OrientationType.Landscape
   fullName: Reportman.Drawing.OrientationType.Landscape
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

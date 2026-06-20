@@ -1,0 +1,315 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler
+  commentId: T:Reportman.Reporting.ReportmanAgentClient.ResultEventHandler
+  id: ReportmanAgentClient.ResultEventHandler
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.#ctor(System.Object,System.IntPtr)
+  - Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.BeginInvoke(System.Object,System.Text.Json.JsonDocument,System.String,System.AsyncCallback,System.Object)
+  - Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.EndInvoke(System.IAsyncResult)
+  - Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.Invoke(System.Object,System.Text.Json.JsonDocument,System.String)
+  langs:
+  - csharp
+  - vb
+  name: ReportmanAgentClient.ResultEventHandler
+  nameWithType: ReportmanAgentClient.ResultEventHandler
+  fullName: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler
+  type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportmanAgentClient.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    Callback raised when an agent request completes, delivering the final result JSON document
+
+    or an error message if the request failed.
+  example: []
+  syntax:
+    content: public delegate void ReportmanAgentClient.ResultEventHandler(object sender, JsonDocument resultJson, string errorMessage)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: resultJson
+      type: System.Text.Json.JsonDocument
+    - id: errorMessage
+      type: System.String
+    content.vb: Public Delegate Sub ReportmanAgentClient.ResultEventHandler(sender As Object, resultJson As JsonDocument, errorMessage As String)
+- uid: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.#ctor(System.Object,System.IntPtr)
+  commentId: M:Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.#ctor(System.Object,System.IntPtr)
+  id: '#ctor(System.Object,System.IntPtr)'
+  parent: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler
+  langs:
+  - csharp
+  - vb
+  name: ResultEventHandler(object, nint)
+  nameWithType: ReportmanAgentClient.ResultEventHandler.ResultEventHandler(object, nint)
+  fullName: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.ResultEventHandler(object, nint)
+  type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportmanAgentClient.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public ResultEventHandler(object @object, nint method)
+    parameters:
+    - id: object
+      type: System.Object
+    - id: method
+      type: System.IntPtr
+    content.vb: Public Sub New([object] As Object, method As IntPtr)
+  overload: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.#ctor*
+  nameWithType.vb: ReportmanAgentClient.ResultEventHandler.New(Object, IntPtr)
+  fullName.vb: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.New(Object, System.IntPtr)
+  name.vb: New(Object, IntPtr)
+- uid: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.Invoke(System.Object,System.Text.Json.JsonDocument,System.String)
+  commentId: M:Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.Invoke(System.Object,System.Text.Json.JsonDocument,System.String)
+  id: Invoke(System.Object,System.Text.Json.JsonDocument,System.String)
+  parent: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler
+  langs:
+  - csharp
+  - vb
+  name: Invoke(object, JsonDocument, string)
+  nameWithType: ReportmanAgentClient.ResultEventHandler.Invoke(object, JsonDocument, string)
+  fullName: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.Invoke(object, System.Text.Json.JsonDocument, string)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportmanAgentClient.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public virtual void Invoke(object sender, JsonDocument resultJson, string errorMessage)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: resultJson
+      type: System.Text.Json.JsonDocument
+    - id: errorMessage
+      type: System.String
+    content.vb: Public Overridable Sub Invoke(sender As Object, resultJson As JsonDocument, errorMessage As String)
+  overload: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.Invoke*
+  nameWithType.vb: ReportmanAgentClient.ResultEventHandler.Invoke(Object, JsonDocument, String)
+  fullName.vb: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.Invoke(Object, System.Text.Json.JsonDocument, String)
+  name.vb: Invoke(Object, JsonDocument, String)
+- uid: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.BeginInvoke(System.Object,System.Text.Json.JsonDocument,System.String,System.AsyncCallback,System.Object)
+  commentId: M:Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.BeginInvoke(System.Object,System.Text.Json.JsonDocument,System.String,System.AsyncCallback,System.Object)
+  id: BeginInvoke(System.Object,System.Text.Json.JsonDocument,System.String,System.AsyncCallback,System.Object)
+  parent: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler
+  langs:
+  - csharp
+  - vb
+  name: BeginInvoke(object, JsonDocument, string, AsyncCallback, object)
+  nameWithType: ReportmanAgentClient.ResultEventHandler.BeginInvoke(object, JsonDocument, string, AsyncCallback, object)
+  fullName: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.BeginInvoke(object, System.Text.Json.JsonDocument, string, System.AsyncCallback, object)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportmanAgentClient.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public virtual IAsyncResult BeginInvoke(object sender, JsonDocument resultJson, string errorMessage, AsyncCallback callback, object @object)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: resultJson
+      type: System.Text.Json.JsonDocument
+    - id: errorMessage
+      type: System.String
+    - id: callback
+      type: System.AsyncCallback
+    - id: object
+      type: System.Object
+    return:
+      type: System.IAsyncResult
+    content.vb: Public Overridable Function BeginInvoke(sender As Object, resultJson As JsonDocument, errorMessage As String, callback As AsyncCallback, [object] As Object) As IAsyncResult
+  overload: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.BeginInvoke*
+  nameWithType.vb: ReportmanAgentClient.ResultEventHandler.BeginInvoke(Object, JsonDocument, String, AsyncCallback, Object)
+  fullName.vb: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.BeginInvoke(Object, System.Text.Json.JsonDocument, String, System.AsyncCallback, Object)
+  name.vb: BeginInvoke(Object, JsonDocument, String, AsyncCallback, Object)
+- uid: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.EndInvoke(System.IAsyncResult)
+  commentId: M:Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.EndInvoke(System.IAsyncResult)
+  id: EndInvoke(System.IAsyncResult)
+  parent: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler
+  langs:
+  - csharp
+  - vb
+  name: EndInvoke(IAsyncResult)
+  nameWithType: ReportmanAgentClient.ResultEventHandler.EndInvoke(IAsyncResult)
+  fullName: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.EndInvoke(System.IAsyncResult)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportmanAgentClient.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public virtual void EndInvoke(IAsyncResult result)
+    parameters:
+    - id: result
+      type: System.IAsyncResult
+    content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
+  overload: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.EndInvoke*
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Text.Json.JsonDocument
+  commentId: T:System.Text.Json.JsonDocument
+  parent: System.Text.Json
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.text.json.jsondocument
+  name: JsonDocument
+  nameWithType: JsonDocument
+  fullName: System.Text.Json.JsonDocument
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Text.Json
+  commentId: N:System.Text.Json
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Text.Json
+  nameWithType: System.Text.Json
+  fullName: System.Text.Json
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  - name: .
+  - uid: System.Text.Json
+    name: Json
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  - name: .
+  - uid: System.Text.Json
+    name: Json
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.json
+- uid: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.#ctor*
+  commentId: Overload:Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.#ctor
+  isExternal: true
+  href: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.html#Reportman_Reporting_ReportmanAgentClient_ResultEventHandler__ctor_System_Object_System_IntPtr_
+  name: ResultEventHandler
+  nameWithType: ReportmanAgentClient.ResultEventHandler.ResultEventHandler
+  fullName: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.ResultEventHandler
+  nameWithType.vb: ReportmanAgentClient.ResultEventHandler.New
+  fullName.vb: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.New
+  name.vb: New
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.Invoke*
+  commentId: Overload:Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.Invoke
+  isExternal: true
+  href: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.html#Reportman_Reporting_ReportmanAgentClient_ResultEventHandler_Invoke_System_Object_System_Text_Json_JsonDocument_System_String_
+  name: Invoke
+  nameWithType: ReportmanAgentClient.ResultEventHandler.Invoke
+  fullName: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.Invoke
+- uid: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.BeginInvoke*
+  commentId: Overload:Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.BeginInvoke
+  isExternal: true
+  href: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.html#Reportman_Reporting_ReportmanAgentClient_ResultEventHandler_BeginInvoke_System_Object_System_Text_Json_JsonDocument_System_String_System_AsyncCallback_System_Object_
+  name: BeginInvoke
+  nameWithType: ReportmanAgentClient.ResultEventHandler.BeginInvoke
+  fullName: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.BeginInvoke
+- uid: System.AsyncCallback
+  commentId: T:System.AsyncCallback
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.asynccallback
+  name: AsyncCallback
+  nameWithType: AsyncCallback
+  fullName: System.AsyncCallback
+- uid: System.IAsyncResult
+  commentId: T:System.IAsyncResult
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncresult
+  name: IAsyncResult
+  nameWithType: IAsyncResult
+  fullName: System.IAsyncResult
+- uid: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.EndInvoke*
+  commentId: Overload:Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.EndInvoke
+  isExternal: true
+  href: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.html#Reportman_Reporting_ReportmanAgentClient_ResultEventHandler_EndInvoke_System_IAsyncResult_
+  name: EndInvoke
+  nameWithType: ReportmanAgentClient.ResultEventHandler.EndInvoke
+  fullName: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.EndInvoke

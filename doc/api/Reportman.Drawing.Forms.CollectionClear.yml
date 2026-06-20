@@ -16,9 +16,13 @@ items:
   nameWithType: CollectionClear
   fullName: Reportman.Drawing.Forms.CollectionClear
   type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: Callback signaling that a collection is being or has been cleared of all items.
+  example: []
   syntax:
     content: public delegate void CollectionClear()
     content.vb: Public Delegate Sub CollectionClear()
@@ -33,6 +37,8 @@ items:
   nameWithType: CollectionClear.CollectionClear(object, nint)
   fullName: Reportman.Drawing.Forms.CollectionClear.CollectionClear(object, nint)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -59,6 +65,8 @@ items:
   nameWithType: CollectionClear.Invoke()
   fullName: Reportman.Drawing.Forms.CollectionClear.Invoke()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -77,6 +85,8 @@ items:
   nameWithType: CollectionClear.BeginInvoke(AsyncCallback, object)
   fullName: Reportman.Drawing.Forms.CollectionClear.BeginInvoke(System.AsyncCallback, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -105,6 +115,8 @@ items:
   nameWithType: CollectionClear.EndInvoke(IAsyncResult)
   fullName: Reportman.Drawing.Forms.CollectionClear.EndInvoke(System.IAsyncResult)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

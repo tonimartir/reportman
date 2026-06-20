@@ -16,9 +16,16 @@ items:
   nameWithType: DataNeededEvent
   fullName: Reportman.Reporting.DataNeededEvent
   type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Evaluator.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
+  summary: >-
+    Callback raised by the <xref href="Reportman.Reporting.Evaluator" data-throw-if-not-resolved="false"></xref> when a referenced dataset is not yet
+
+    available, giving the host a chance to open or supply it before field resolution retries.
+  example: []
   syntax:
     content: public delegate void DataNeededEvent(DataNeededEventArgs args)
     parameters:
@@ -36,6 +43,8 @@ items:
   nameWithType: DataNeededEvent.DataNeededEvent(object, nint)
   fullName: Reportman.Reporting.DataNeededEvent.DataNeededEvent(object, nint)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Evaluator.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -62,6 +71,8 @@ items:
   nameWithType: DataNeededEvent.Invoke(DataNeededEventArgs)
   fullName: Reportman.Reporting.DataNeededEvent.Invoke(Reportman.Reporting.DataNeededEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Evaluator.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -83,6 +94,8 @@ items:
   nameWithType: DataNeededEvent.BeginInvoke(DataNeededEventArgs, AsyncCallback, object)
   fullName: Reportman.Reporting.DataNeededEvent.BeginInvoke(Reportman.Reporting.DataNeededEventArgs, System.AsyncCallback, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Evaluator.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -113,6 +126,8 @@ items:
   nameWithType: DataNeededEvent.EndInvoke(IAsyncResult)
   fullName: Reportman.Reporting.DataNeededEvent.EndInvoke(System.IAsyncResult)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Evaluator.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -124,6 +139,14 @@ items:
     content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
   overload: Reportman.Reporting.DataNeededEvent.EndInvoke*
 references:
+- uid: Reportman.Reporting.Evaluator
+  commentId: T:Reportman.Reporting.Evaluator
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.Evaluator.html
+  name: Evaluator
+  nameWithType: Evaluator
+  fullName: Reportman.Reporting.Evaluator
 - uid: Reportman.Reporting
   commentId: N:Reportman.Reporting
   isExternal: true

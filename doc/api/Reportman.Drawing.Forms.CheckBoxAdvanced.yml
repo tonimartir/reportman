@@ -17,9 +17,16 @@ items:
   nameWithType: CheckBoxAdvanced
   fullName: Reportman.Drawing.Forms.CheckBoxAdvanced
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    A CheckBox that optionally treats the Enter key as a Tab keypress to move focus
+
+    to the next control, raising a cancelable event beforehand.
+  example: []
   syntax:
     content: 'public class CheckBoxAdvanced : CheckBox, IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable'
     content.vb: Public Class CheckBoxAdvanced Inherits CheckBox Implements IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable
@@ -471,6 +478,8 @@ items:
   nameWithType: CheckBoxAdvanced.BeforeEnterTab
   fullName: Reportman.Drawing.Forms.CheckBoxAdvanced.BeforeEnterTab
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -490,6 +499,8 @@ items:
   nameWithType: CheckBoxAdvanced.ProcessCmdKey(ref Message, Keys)
   fullName: Reportman.Drawing.Forms.CheckBoxAdvanced.ProcessCmdKey(ref System.Windows.Forms.Message, System.Windows.Forms.Keys)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -520,6 +531,8 @@ items:
   nameWithType: CheckBoxAdvanced.OnKeyDown(KeyEventArgs)
   fullName: Reportman.Drawing.Forms.CheckBoxAdvanced.OnKeyDown(System.Windows.Forms.KeyEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -543,6 +556,8 @@ items:
   nameWithType: CheckBoxAdvanced.CheckBoxAdvanced()
   fullName: Reportman.Drawing.Forms.CheckBoxAdvanced.CheckBoxAdvanced()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -564,6 +579,8 @@ items:
   nameWithType: CheckBoxAdvanced.EnterAsTab
   fullName: Reportman.Drawing.Forms.CheckBoxAdvanced.EnterAsTab
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

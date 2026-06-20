@@ -18,9 +18,16 @@ items:
   nameWithType: TokenCalc.TokenType
   fullName: Reportman.Drawing.Forms.TokenCalc.TokenType
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    Kind of a <xref href="Reportman.Drawing.Forms.TokenCalc" data-throw-if-not-resolved="false"></xref>: one of the four arithmetic operators, a numeric
+
+    value, or Nil to mark the absence of a token.
+  example: []
   syntax:
     content: public enum TokenCalc.TokenType
     content.vb: Public Enum TokenCalc.TokenType
@@ -35,6 +42,8 @@ items:
   nameWithType: TokenCalc.TokenType.Nil
   fullName: Reportman.Drawing.Forms.TokenCalc.TokenType.Nil
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -53,6 +62,8 @@ items:
   nameWithType: TokenCalc.TokenType.Add
   fullName: Reportman.Drawing.Forms.TokenCalc.TokenType.Add
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -71,6 +82,8 @@ items:
   nameWithType: TokenCalc.TokenType.Subtract
   fullName: Reportman.Drawing.Forms.TokenCalc.TokenType.Subtract
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -89,6 +102,8 @@ items:
   nameWithType: TokenCalc.TokenType.Multiply
   fullName: Reportman.Drawing.Forms.TokenCalc.TokenType.Multiply
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -107,6 +122,8 @@ items:
   nameWithType: TokenCalc.TokenType.Divide
   fullName: Reportman.Drawing.Forms.TokenCalc.TokenType.Divide
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -125,6 +142,8 @@ items:
   nameWithType: TokenCalc.TokenType.TokenNumber
   fullName: Reportman.Drawing.Forms.TokenCalc.TokenType.TokenNumber
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -133,6 +152,14 @@ items:
     return:
       type: Reportman.Drawing.Forms.TokenCalc.TokenType
 references:
+- uid: Reportman.Drawing.Forms.TokenCalc
+  commentId: T:Reportman.Drawing.Forms.TokenCalc
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TokenCalc.html
+  name: TokenCalc
+  nameWithType: TokenCalc
+  fullName: Reportman.Drawing.Forms.TokenCalc
 - uid: Reportman.Drawing.Forms
   commentId: N:Reportman.Drawing.Forms
   isExternal: true

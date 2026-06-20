@@ -15,9 +15,13 @@ items:
   nameWithType: FileHash
   fullName: Reportman.Drawing.FileHash
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/HashGenerator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: Pairs a file's path (relative to a base folder) with its computed content hash.
+  example: []
   syntax:
     content: public class FileHash
     content.vb: Public Class FileHash
@@ -42,6 +46,8 @@ items:
   nameWithType: FileHash.FullPath
   fullName: Reportman.Drawing.FileHash.FullPath
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/HashGenerator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -61,6 +67,8 @@ items:
   nameWithType: FileHash.Hash
   fullName: Reportman.Drawing.FileHash.Hash
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/HashGenerator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -80,6 +88,8 @@ items:
   nameWithType: FileHash.FileHash()
   fullName: Reportman.Drawing.FileHash.FileHash()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/HashGenerator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

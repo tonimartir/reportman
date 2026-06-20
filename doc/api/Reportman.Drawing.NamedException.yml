@@ -14,6 +14,8 @@ items:
   nameWithType: NamedException
   fullName: Reportman.Drawing.NamedException
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/NamedException.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -56,6 +58,8 @@ items:
   nameWithType: NamedException.NamedException(string, string)
   fullName: Reportman.Drawing.NamedException.NamedException(string, string)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/NamedException.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -84,6 +88,8 @@ items:
   nameWithType: NamedException.Name
   fullName: Reportman.Drawing.NamedException.Name
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/NamedException.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

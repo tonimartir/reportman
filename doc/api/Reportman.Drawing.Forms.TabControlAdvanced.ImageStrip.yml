@@ -19,6 +19,8 @@ items:
   nameWithType: TabControlAdvanced.ImageStrip
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -36,6 +38,8 @@ items:
   nameWithType: TabControlAdvanced.ImageStrip.LeftEnabled
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.LeftEnabled
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -54,6 +58,8 @@ items:
   nameWithType: TabControlAdvanced.ImageStrip.LeftDisabled
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.LeftDisabled
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -72,6 +78,8 @@ items:
   nameWithType: TabControlAdvanced.ImageStrip.RightEnabled
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.RightEnabled
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -90,6 +98,8 @@ items:
   nameWithType: TabControlAdvanced.ImageStrip.RightDisabled
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.RightDisabled
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -108,6 +118,8 @@ items:
   nameWithType: TabControlAdvanced.ImageStrip.Close
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.Close
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -126,6 +138,8 @@ items:
   nameWithType: TabControlAdvanced.ImageStrip.Error
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.Error
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -144,6 +158,8 @@ items:
   nameWithType: TabControlAdvanced.ImageStrip.DropDown
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.ImageStrip.DropDown
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

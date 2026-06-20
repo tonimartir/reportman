@@ -16,11 +16,13 @@ items:
   nameWithType: WMFOptimization
   fullName: Reportman.Drawing.WMFOptimization
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing
   summary: >-
-    This enumeration indicates diferent optimization implementations while drawing pages 
+    This enumeration indicates diferent optimization implementations while drawing pages
 
     (preview, web presentation or print). Microsoft .Net have an optimized graphic object, 
 
@@ -40,7 +42,7 @@ items:
 
     optimize performance you hit memory consumption.
 
-    Variant
+    <xref href="Reportman.Drawing.PrintOutNet" data-throw-if-not-resolved="false"></xref>
   example: []
   syntax:
     content: public enum WMFOptimization
@@ -56,6 +58,8 @@ items:
   nameWithType: WMFOptimization.None
   fullName: Reportman.Drawing.WMFOptimization.None
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing
@@ -76,6 +80,8 @@ items:
   nameWithType: WMFOptimization.Gdi
   fullName: Reportman.Drawing.WMFOptimization.Gdi
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing
@@ -96,6 +102,8 @@ items:
   nameWithType: WMFOptimization.Gdiplus
   fullName: Reportman.Drawing.WMFOptimization.Gdiplus
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing
@@ -116,6 +124,8 @@ items:
   nameWithType: WMFOptimization.Gdiplusonly
   fullName: Reportman.Drawing.WMFOptimization.Gdiplusonly
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing
@@ -126,6 +136,14 @@ items:
     return:
       type: Reportman.Drawing.WMFOptimization
 references:
+- uid: Reportman.Drawing.PrintOutNet
+  commentId: T:Reportman.Drawing.PrintOutNet
+  parent: Reportman.Drawing
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
+  name: PrintOutNet
+  nameWithType: PrintOutNet
+  fullName: Reportman.Drawing.PrintOutNet
 - uid: Reportman.Drawing
   commentId: N:Reportman.Drawing
   isExternal: true
@@ -157,7 +175,7 @@ references:
   commentId: T:Reportman.Drawing.WMFOptimization
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.WMFOptimization.html
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   name: WMFOptimization
   nameWithType: WMFOptimization
   fullName: Reportman.Drawing.WMFOptimization

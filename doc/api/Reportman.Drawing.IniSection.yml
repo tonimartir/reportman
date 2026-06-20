@@ -14,9 +14,16 @@ items:
   nameWithType: IniSection
   fullName: Reportman.Drawing.IniSection
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IniFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    A single section of an <xref href="Reportman.Drawing.IniFile" data-throw-if-not-resolved="false"></xref>, holding its key/value pairs as a
+
+    sorted list keyed by value name.
+  example: []
   syntax:
     content: public class IniSection
     content.vb: Public Class IniSection
@@ -41,6 +48,8 @@ items:
   nameWithType: IniSection.Values
   fullName: Reportman.Drawing.IniSection.Values
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IniFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -60,6 +69,8 @@ items:
   nameWithType: IniSection.IniSection()
   fullName: Reportman.Drawing.IniSection.IniSection()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IniFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -71,6 +82,13 @@ items:
   fullName.vb: Reportman.Drawing.IniSection.New()
   name.vb: New()
 references:
+- uid: Reportman.Drawing.IniFile
+  commentId: T:Reportman.Drawing.IniFile
+  isExternal: true
+  href: Reportman.Drawing.IniFile.html
+  name: IniFile
+  nameWithType: IniFile
+  fullName: Reportman.Drawing.IniFile
 - uid: Reportman.Drawing
   commentId: N:Reportman.Drawing
   isExternal: true

@@ -17,9 +17,16 @@ items:
   nameWithType: AutoCompleteInfo
   fullName: Reportman.Drawing.Forms.AutoCompleteInfo
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    A pinned auto-complete suggestion that carries display text, an address detail,
+
+    and an icon to show alongside it in the suggestion list.
+  example: []
   syntax:
     content: public class AutoCompleteInfo
     content.vb: Public Class AutoCompleteInfo
@@ -43,6 +50,8 @@ items:
   nameWithType: AutoCompleteInfo.Text
   fullName: Reportman.Drawing.Forms.AutoCompleteInfo.Text
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -62,6 +71,8 @@ items:
   nameWithType: AutoCompleteInfo.Address
   fullName: Reportman.Drawing.Forms.AutoCompleteInfo.Address
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -81,6 +92,8 @@ items:
   nameWithType: AutoCompleteInfo.Icon
   fullName: Reportman.Drawing.Forms.AutoCompleteInfo.Icon
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -100,6 +113,8 @@ items:
   nameWithType: AutoCompleteInfo.AutoCompleteInfo(string, string, Image)
   fullName: Reportman.Drawing.Forms.AutoCompleteInfo.AutoCompleteInfo(string, string, System.Drawing.Image)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -128,6 +143,8 @@ items:
   nameWithType: AutoCompleteInfo.ToString()
   fullName: Reportman.Drawing.Forms.AutoCompleteInfo.ToString()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

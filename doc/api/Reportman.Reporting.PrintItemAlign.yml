@@ -19,6 +19,8 @@ items:
   nameWithType: PrintItemAlign
   fullName: Reportman.Reporting.PrintItemAlign
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -31,7 +33,7 @@ items:
 
     align to bottom or expand lines from top to bottom.
 
-    <xref href="Reportman.Reporting.Variant?text=PrintPosItem" data-throw-if-not-resolved="false"></xref><xref href="Reportman.Reporting.Variant?text=Section" data-throw-if-not-resolved="false"></xref>
+    <xref href="Reportman.Reporting.PrintPosItem" data-throw-if-not-resolved="false"></xref><xref href="Reportman.Reporting.Section" data-throw-if-not-resolved="false"></xref>
   example: []
   syntax:
     content: public enum PrintItemAlign
@@ -47,6 +49,8 @@ items:
   nameWithType: PrintItemAlign.None
   fullName: Reportman.Reporting.PrintItemAlign.None
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -67,6 +71,8 @@ items:
   nameWithType: PrintItemAlign.Bottom
   fullName: Reportman.Reporting.PrintItemAlign.Bottom
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -87,6 +93,8 @@ items:
   nameWithType: PrintItemAlign.Right
   fullName: Reportman.Reporting.PrintItemAlign.Right
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -107,6 +115,8 @@ items:
   nameWithType: PrintItemAlign.BottomRight
   fullName: Reportman.Reporting.PrintItemAlign.BottomRight
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -127,6 +137,8 @@ items:
   nameWithType: PrintItemAlign.LeftRight
   fullName: Reportman.Reporting.PrintItemAlign.LeftRight
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -147,6 +159,8 @@ items:
   nameWithType: PrintItemAlign.TopBottom
   fullName: Reportman.Reporting.PrintItemAlign.TopBottom
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -167,6 +181,8 @@ items:
   nameWithType: PrintItemAlign.AllClient
   fullName: Reportman.Reporting.PrintItemAlign.AllClient
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -177,14 +193,22 @@ items:
     return:
       type: Reportman.Reporting.PrintItemAlign
 references:
-- uid: Reportman.Reporting.Variant
-  commentId: T:Reportman.Reporting.Variant
+- uid: Reportman.Reporting.PrintPosItem
+  commentId: T:Reportman.Reporting.PrintPosItem
   parent: Reportman.Reporting
   isExternal: true
-  href: Reportman.Reporting.Variant.html
-  name: Variant
-  nameWithType: Variant
-  fullName: Reportman.Reporting.Variant
+  href: Reportman.Reporting.PrintPosItem.html
+  name: PrintPosItem
+  nameWithType: PrintPosItem
+  fullName: Reportman.Reporting.PrintPosItem
+- uid: Reportman.Reporting.Section
+  commentId: T:Reportman.Reporting.Section
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.Section.html
+  name: Section
+  nameWithType: Section
+  fullName: Reportman.Reporting.Section
 - uid: Reportman.Reporting
   commentId: N:Reportman.Reporting
   isExternal: true

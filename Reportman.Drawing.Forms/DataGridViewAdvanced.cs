@@ -33,13 +33,25 @@ using System.Windows.Forms;
 
 namespace Reportman.Drawing.Forms
 {
+    /// <summary>
+    /// Callback that lets a handler override which column receives focus next when the user
+    /// advances with Enter/Tab; the target column index is returned through nextcolumn.
+    /// </summary>
     public delegate void NextColumnFocusEvent(object sender, int currentcolumn, ref int nextcolumn);
+    /// <summary>
+    /// Callback raised when the grid's double-click action is triggered, passing the control
+    /// that was double-clicked (typically the active editing control).
+    /// </summary>
     public delegate void DoubleClickControlEvent(object sender, Control ncontrol);
     /// <summary>
     /// Datagrid view Intro is tab
     /// </summary>
 	public class DataGridViewAdvanced : DataGridView
     {
+        /// <summary>
+        /// Callback raised just before focus moves to a new row after the user presses Enter,
+        /// passing the row that was being edited so handlers can validate or react to it.
+        /// </summary>
         public delegate void SelectNextRowAfterEnterKeyEvent(object sender, DataGridViewRow gridRow);
         public static bool DoubleBufferedPerformance = true;
         public static DataGridViewCellBorderStyle DefaultCellBorderStyle = DataGridViewCellBorderStyle.Single;
@@ -2190,6 +2202,10 @@ namespace Reportman.Drawing.Forms
 
         #endregion
     }
+    /// <summary>
+    /// A panel that displays a single line of text scrolling horizontally (marquee style),
+    /// driven by a timer; scrolling and speed are configurable.
+    /// </summary>
     public class ScrollTextPanel : Panel
     {
         System.Windows.Forms.Timer ntimer = new System.Windows.Forms.Timer();
@@ -2265,6 +2281,10 @@ namespace Reportman.Drawing.Forms
         }
 
     }
+    /// <summary>
+    /// A panel that paints its background as a semi-transparent dark overlay, used to dim
+    /// the area behind it.
+    /// </summary>
     public class TransparentPanel : Panel
     {
         public TransparentPanel() : base()
@@ -2295,6 +2315,10 @@ namespace Reportman.Drawing.Forms
             e.Graphics.FillRectangle(sb, this.DisplayRectangle);
         }
     }
+    /// <summary>
+    /// A panel that defers its size-changed handling to the UI thread via BeginInvoke,
+    /// avoiding reentrancy issues during layout on Windows.
+    /// </summary>
     public class PanelAdvanced : Panel
     {
         protected override void OnSizeChanged(EventArgs e)

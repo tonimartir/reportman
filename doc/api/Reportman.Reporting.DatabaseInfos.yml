@@ -18,9 +18,16 @@ items:
   nameWithType: DatabaseInfos
   fullName: Reportman.Reporting.DatabaseInfos
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfos.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
+  summary: >-
+    Collection of a report's database connection definitions, indexable by alias and
+
+    holding the shared in-memory DataSet; supports cloning for a new report owner.
+  example: []
   syntax:
     content: 'public class DatabaseInfos : List<DatabaseInfo>, IList<DatabaseInfo>, ICollection<DatabaseInfo>, IList, ICollection, IReadOnlyList<DatabaseInfo>, IReadOnlyCollection<DatabaseInfo>, IEnumerable<DatabaseInfo>, IEnumerable, ICloneable'
     content.vb: Public Class DatabaseInfos Inherits List(Of DatabaseInfo) Implements IList(Of DatabaseInfo), ICollection(Of DatabaseInfo), IList, ICollection, IReadOnlyList(Of DatabaseInfo), IReadOnlyCollection(Of DatabaseInfo), IEnumerable(Of DatabaseInfo), IEnumerable, ICloneable
@@ -107,6 +114,8 @@ items:
   nameWithType: DatabaseInfos.MemoryDataSet
   fullName: Reportman.Reporting.DatabaseInfos.MemoryDataSet
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfos.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -126,6 +135,8 @@ items:
   nameWithType: DatabaseInfos.DatabaseInfos()
   fullName: Reportman.Reporting.DatabaseInfos.DatabaseInfos()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfos.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -147,6 +158,8 @@ items:
   nameWithType: DatabaseInfos.IndexOf(string)
   fullName: Reportman.Reporting.DatabaseInfos.IndexOf(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfos.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -177,6 +190,8 @@ items:
   nameWithType: DatabaseInfos.Clone()
   fullName: Reportman.Reporting.DatabaseInfos.Clone()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfos.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -202,6 +217,8 @@ items:
   nameWithType: DatabaseInfos.Clone(Report)
   fullName: Reportman.Reporting.DatabaseInfos.Clone(Reportman.Reporting.Report)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfos.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -229,6 +246,8 @@ items:
   nameWithType: DatabaseInfos.this[string]
   fullName: Reportman.Reporting.DatabaseInfos.this[string]
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfos.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

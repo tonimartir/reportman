@@ -54,9 +54,18 @@ items:
   nameWithType: DateTimePickerAdvanced
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    Masked date/time entry control that combines a formatted text box with a
+
+    drop-down month calendar, validating user input against configurable date and
+
+    time format strings and min/max date limits.
+  example: []
   syntax:
     content: 'public class DateTimePickerAdvanced : UserControl, IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable, IContainerControl'
     content.vb: Public Class DateTimePickerAdvanced Inherits UserControl Implements IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable, IContainerControl
@@ -506,6 +515,8 @@ items:
   nameWithType: DateTimePickerAdvanced.NOSUPPORTDATECHARS
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.NOSUPPORTDATECHARS
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -525,6 +536,8 @@ items:
   nameWithType: DateTimePickerAdvanced.BeforeEnterTab
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.BeforeEnterTab
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -544,6 +557,8 @@ items:
   nameWithType: DateTimePickerAdvanced.txtDate
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.txtDate
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -563,6 +578,8 @@ items:
   nameWithType: DateTimePickerAdvanced.btnCalendar
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.btnCalendar
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -582,6 +599,8 @@ items:
   nameWithType: DateTimePickerAdvanced.ProcessCmdKey(ref Message, Keys)
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.ProcessCmdKey(ref System.Windows.Forms.Message, System.Windows.Forms.Keys)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -612,6 +631,8 @@ items:
   nameWithType: DateTimePickerAdvanced.OnKeyDown(KeyEventArgs)
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.OnKeyDown(System.Windows.Forms.KeyEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -635,6 +656,8 @@ items:
   nameWithType: DateTimePickerAdvanced.SetBoundsCore(int, int, int, int, BoundsSpecified)
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.SetBoundsCore(int, int, int, int, System.Windows.Forms.BoundsSpecified)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -669,6 +692,8 @@ items:
   nameWithType: DateTimePickerAdvanced.OnValueChanged(EventArgs)
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.OnValueChanged(System.EventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -692,6 +717,8 @@ items:
   nameWithType: DateTimePickerAdvanced.DateTimePickerAdvanced()
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.DateTimePickerAdvanced()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -713,6 +740,8 @@ items:
   nameWithType: DateTimePickerAdvanced.OnEnter(EventArgs)
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.OnEnter(System.EventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -736,6 +765,8 @@ items:
   nameWithType: DateTimePickerAdvanced.OnLeave(EventArgs)
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.OnLeave(System.EventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -759,6 +790,8 @@ items:
   nameWithType: DateTimePickerAdvanced.OnEnabledChanged(EventArgs)
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.OnEnabledChanged(System.EventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -782,6 +815,8 @@ items:
   nameWithType: DateTimePickerAdvanced.OnValidating(CancelEventArgs)
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.OnValidating(System.ComponentModel.CancelEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -805,6 +840,8 @@ items:
   nameWithType: DateTimePickerAdvanced.ShowValFailMsg(IsDateValidResult)
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.ShowValFailMsg(Reportman.Drawing.Forms.IsDateValidResult)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -826,6 +863,8 @@ items:
   nameWithType: DateTimePickerAdvanced.IsFocused()
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.IsFocused()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -846,6 +885,8 @@ items:
   nameWithType: DateTimePickerAdvanced.IsDateValid(string)
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.IsDateValid(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -872,6 +913,8 @@ items:
   nameWithType: DateTimePickerAdvanced.SelectAll()
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.SelectAll()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -892,6 +935,8 @@ items:
   nameWithType: DateTimePickerAdvanced.Dispose(bool)
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.Dispose(bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.designer.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -920,6 +965,8 @@ items:
   nameWithType: DateTimePickerAdvanced.CalendarFont
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.CalendarFont
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -941,6 +988,8 @@ items:
   nameWithType: DateTimePickerAdvanced.HandleKeyUpDown
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.HandleKeyUpDown
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -962,6 +1011,8 @@ items:
   nameWithType: DateTimePickerAdvanced.HandleLeftRightTabs
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.HandleLeftRightTabs
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -983,6 +1034,8 @@ items:
   nameWithType: DateTimePickerAdvanced.ValidFormatStrings
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.ValidFormatStrings
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1006,6 +1059,8 @@ items:
   nameWithType: DateTimePickerAdvanced.DateTimeEntryPattern
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.DateTimeEntryPattern
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1029,6 +1084,8 @@ items:
   nameWithType: DateTimePickerAdvanced.DateFormatInfo
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.DateFormatInfo
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1050,6 +1107,8 @@ items:
   nameWithType: DateTimePickerAdvanced.EnterAsTab
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.EnterAsTab
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1071,6 +1130,8 @@ items:
   nameWithType: DateTimePickerAdvanced.CustomFormat
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.CustomFormat
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1092,6 +1153,8 @@ items:
   nameWithType: DateTimePickerAdvanced.DateFormat
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.DateFormat
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1115,6 +1178,8 @@ items:
   nameWithType: DateTimePickerAdvanced.TimeFormat
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.TimeFormat
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1138,6 +1203,8 @@ items:
   nameWithType: DateTimePickerAdvanced.DateTimeFormat
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.DateTimeFormat
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1161,6 +1228,8 @@ items:
   nameWithType: DateTimePickerAdvanced.Text
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.Text
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1185,6 +1254,8 @@ items:
   nameWithType: DateTimePickerAdvanced.FormattedText
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.FormattedText
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1208,6 +1279,8 @@ items:
   nameWithType: DateTimePickerAdvanced.Value
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.Value
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1231,6 +1304,8 @@ items:
   nameWithType: DateTimePickerAdvanced.BackColor
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.BackColor
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1255,6 +1330,8 @@ items:
   nameWithType: DateTimePickerAdvanced.ForeColor
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.ForeColor
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1279,6 +1356,8 @@ items:
   nameWithType: DateTimePickerAdvanced.Font
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.Font
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1303,6 +1382,8 @@ items:
   nameWithType: DateTimePickerAdvanced.ContextMenuStrip
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.ContextMenuStrip
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1327,6 +1408,8 @@ items:
   nameWithType: DateTimePickerAdvanced.SelectionStart
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.SelectionStart
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1362,6 +1445,8 @@ items:
   nameWithType: DateTimePickerAdvanced.SelectionLength
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.SelectionLength
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1397,6 +1482,8 @@ items:
   nameWithType: DateTimePickerAdvanced.MaxDate
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.MaxDate
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1420,6 +1507,8 @@ items:
   nameWithType: DateTimePickerAdvanced.MinDate
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.MinDate
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1443,6 +1532,8 @@ items:
   nameWithType: DateTimePickerAdvanced.ValidDate
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.ValidDate
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1466,6 +1557,8 @@ items:
   nameWithType: DateTimePickerAdvanced.ValueChanged
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.ValueChanged
   type: Event
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

@@ -34,12 +34,23 @@ items:
   nameWithType: ISqlExecuter
   fullName: Reportman.Drawing.ISqlExecuter
   type: Interface
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    Abstraction over a database connection used by the reporting engine to run SQL,
+
+    open result sets, manage transactions, batch inserts, and obtain generator values,
+
+    independent of the underlying data driver.
+  example: []
   syntax:
     content: public interface ISqlExecuter
     content.vb: Public Interface ISqlExecuter
+  derivedClasses:
+  - Reportman.Drawing.DbSqlExecuter
 - uid: Reportman.Drawing.ISqlExecuter.ExecuteInmediate(System.String)
   commentId: M:Reportman.Drawing.ISqlExecuter.ExecuteInmediate(System.String)
   id: ExecuteInmediate(System.String)
@@ -51,6 +62,8 @@ items:
   nameWithType: ISqlExecuter.ExecuteInmediate(string)
   fullName: Reportman.Drawing.ISqlExecuter.ExecuteInmediate(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -77,6 +90,8 @@ items:
   nameWithType: ISqlExecuter.Execute(string)
   fullName: Reportman.Drawing.ISqlExecuter.Execute(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -101,6 +116,8 @@ items:
   nameWithType: ISqlExecuter.Execute(DbCommand)
   fullName: Reportman.Drawing.ISqlExecuter.Execute(System.Data.Common.DbCommand)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -122,6 +139,8 @@ items:
   nameWithType: ISqlExecuter.CreateCommand(string)
   fullName: Reportman.Drawing.ISqlExecuter.CreateCommand(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -148,6 +167,8 @@ items:
   nameWithType: ISqlExecuter.StartTransaction(IsolationLevel)
   fullName: Reportman.Drawing.ISqlExecuter.StartTransaction(System.Data.IsolationLevel)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -169,6 +190,8 @@ items:
   nameWithType: ISqlExecuter.Commit()
   fullName: Reportman.Drawing.ISqlExecuter.Commit()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -187,6 +210,8 @@ items:
   nameWithType: ISqlExecuter.Rollback()
   fullName: Reportman.Drawing.ISqlExecuter.Rollback()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -205,6 +230,8 @@ items:
   nameWithType: ISqlExecuter.RollbackInmediate()
   fullName: Reportman.Drawing.ISqlExecuter.RollbackInmediate()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -223,6 +250,8 @@ items:
   nameWithType: ISqlExecuter.OpenInmediate(DataSet, string, string)
   fullName: Reportman.Drawing.ISqlExecuter.OpenInmediate(System.Data.DataSet, string, string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -253,6 +282,8 @@ items:
   nameWithType: ISqlExecuter.Open(DataSet, string, string)
   fullName: Reportman.Drawing.ISqlExecuter.Open(System.Data.DataSet, string, string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -281,6 +312,8 @@ items:
   nameWithType: ISqlExecuter.Open(DataSet, DbCommand, string)
   fullName: Reportman.Drawing.ISqlExecuter.Open(System.Data.DataSet, System.Data.Common.DbCommand, string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -309,6 +342,8 @@ items:
   nameWithType: ISqlExecuter.Open(DataSet, string, string, int, ISqlExecuterPartialFillEvent)
   fullName: Reportman.Drawing.ISqlExecuter.Open(System.Data.DataSet, string, string, int, Reportman.Drawing.ISqlExecuterPartialFillEvent)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -341,6 +376,8 @@ items:
   nameWithType: ISqlExecuter.BeginInsertBlock()
   fullName: Reportman.Drawing.ISqlExecuter.BeginInsertBlock()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -359,6 +396,8 @@ items:
   nameWithType: ISqlExecuter.EndInsertBlock()
   fullName: Reportman.Drawing.ISqlExecuter.EndInsertBlock()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -377,6 +416,8 @@ items:
   nameWithType: ISqlExecuter.Flush()
   fullName: Reportman.Drawing.ISqlExecuter.Flush()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -395,6 +436,8 @@ items:
   nameWithType: ISqlExecuter.Flush(ISqlExecuterProgressEvent)
   fullName: Reportman.Drawing.ISqlExecuter.Flush(Reportman.Drawing.ISqlExecuterProgressEvent)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -416,6 +459,8 @@ items:
   nameWithType: ISqlExecuter.GetGenerator(string, int)
   fullName: Reportman.Drawing.ISqlExecuter.GetGenerator(string, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -444,6 +489,8 @@ items:
   nameWithType: ISqlExecuter.GetValueFromSql(string)
   fullName: Reportman.Drawing.ISqlExecuter.GetValueFromSql(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -470,6 +517,8 @@ items:
   nameWithType: ISqlExecuter.AddExternalColumnsToLastCommand(string, string)
   fullName: Reportman.Drawing.ISqlExecuter.AddExternalColumnsToLastCommand(string, string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -496,6 +545,8 @@ items:
   nameWithType: ISqlExecuter.AddCustomOperation(int, string, byte[])
   fullName: Reportman.Drawing.ISqlExecuter.AddCustomOperation(int, string, byte[])
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -524,6 +575,8 @@ items:
   nameWithType: ISqlExecuter.Connect()
   fullName: Reportman.Drawing.ISqlExecuter.Connect()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -542,6 +595,8 @@ items:
   nameWithType: ISqlExecuter.Disconnect()
   fullName: Reportman.Drawing.ISqlExecuter.Disconnect()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

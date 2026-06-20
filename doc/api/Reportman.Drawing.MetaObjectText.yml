@@ -14,6 +14,7 @@ items:
   - Reportman.Drawing.MetaObjectText.FontRotation
   - Reportman.Drawing.MetaObjectText.FontSize
   - Reportman.Drawing.MetaObjectText.FontStyle
+  - Reportman.Drawing.MetaObjectText.IsHtml
   - Reportman.Drawing.MetaObjectText.LFontNameP
   - Reportman.Drawing.MetaObjectText.LFontNameS
   - Reportman.Drawing.MetaObjectText.PrintStep
@@ -33,6 +34,8 @@ items:
   nameWithType: MetaObjectText
   fullName: Reportman.Drawing.MetaObjectText
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObjectText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -86,6 +89,8 @@ items:
   nameWithType: MetaObjectText.TextP
   fullName: Reportman.Drawing.MetaObjectText.TextP
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObjectText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -107,6 +112,8 @@ items:
   nameWithType: MetaObjectText.TextS
   fullName: Reportman.Drawing.MetaObjectText.TextS
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObjectText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -128,6 +135,8 @@ items:
   nameWithType: MetaObjectText.LFontNameP
   fullName: Reportman.Drawing.MetaObjectText.LFontNameP
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObjectText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -149,6 +158,8 @@ items:
   nameWithType: MetaObjectText.LFontNameS
   fullName: Reportman.Drawing.MetaObjectText.LFontNameS
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObjectText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -170,6 +181,8 @@ items:
   nameWithType: MetaObjectText.WFontNameP
   fullName: Reportman.Drawing.MetaObjectText.WFontNameP
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObjectText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -191,6 +204,8 @@ items:
   nameWithType: MetaObjectText.WFontNameS
   fullName: Reportman.Drawing.MetaObjectText.WFontNameS
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObjectText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -212,6 +227,8 @@ items:
   nameWithType: MetaObjectText.FontSize
   fullName: Reportman.Drawing.MetaObjectText.FontSize
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObjectText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -233,6 +250,8 @@ items:
   nameWithType: MetaObjectText.FontRotation
   fullName: Reportman.Drawing.MetaObjectText.FontRotation
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObjectText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -254,6 +273,8 @@ items:
   nameWithType: MetaObjectText.FontStyle
   fullName: Reportman.Drawing.MetaObjectText.FontStyle
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObjectText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -275,6 +296,8 @@ items:
   nameWithType: MetaObjectText.Type1Font
   fullName: Reportman.Drawing.MetaObjectText.Type1Font
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObjectText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -296,6 +319,8 @@ items:
   nameWithType: MetaObjectText.FontColor
   fullName: Reportman.Drawing.MetaObjectText.FontColor
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObjectText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -317,6 +342,8 @@ items:
   nameWithType: MetaObjectText.BackColor
   fullName: Reportman.Drawing.MetaObjectText.BackColor
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObjectText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -338,6 +365,8 @@ items:
   nameWithType: MetaObjectText.Transparent
   fullName: Reportman.Drawing.MetaObjectText.Transparent
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObjectText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -359,6 +388,8 @@ items:
   nameWithType: MetaObjectText.CutText
   fullName: Reportman.Drawing.MetaObjectText.CutText
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObjectText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -380,6 +411,8 @@ items:
   nameWithType: MetaObjectText.Alignment
   fullName: Reportman.Drawing.MetaObjectText.Alignment
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObjectText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -401,6 +434,8 @@ items:
   nameWithType: MetaObjectText.WordWrap
   fullName: Reportman.Drawing.MetaObjectText.WordWrap
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObjectText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -422,6 +457,8 @@ items:
   nameWithType: MetaObjectText.RightToLeft
   fullName: Reportman.Drawing.MetaObjectText.RightToLeft
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObjectText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -443,6 +480,8 @@ items:
   nameWithType: MetaObjectText.PrintStep
   fullName: Reportman.Drawing.MetaObjectText.PrintStep
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObjectText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -453,6 +492,29 @@ items:
     return:
       type: Reportman.Drawing.PrintStepType
     content.vb: Public PrintStep As PrintStepType
+- uid: Reportman.Drawing.MetaObjectText.IsHtml
+  commentId: F:Reportman.Drawing.MetaObjectText.IsHtml
+  id: IsHtml
+  parent: Reportman.Drawing.MetaObjectText
+  langs:
+  - csharp
+  - vb
+  name: IsHtml
+  nameWithType: MetaObjectText.IsHtml
+  fullName: Reportman.Drawing.MetaObjectText.IsHtml
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObjectText.cs
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: True if text represents HTML
+  example: []
+  syntax:
+    content: public bool IsHtml
+    return:
+      type: System.Boolean
+    content.vb: Public IsHtml As Boolean
 - uid: Reportman.Drawing.MetaObjectText.FillFromBuf(System.Byte[],System.Int32,System.Int32)
   commentId: M:Reportman.Drawing.MetaObjectText.FillFromBuf(System.Byte[],System.Int32,System.Int32)
   id: FillFromBuf(System.Byte[],System.Int32,System.Int32)
@@ -464,6 +526,8 @@ items:
   nameWithType: MetaObjectText.FillFromBuf(byte[], int, int)
   fullName: Reportman.Drawing.MetaObjectText.FillFromBuf(byte[], int, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObjectText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -497,6 +561,8 @@ items:
   nameWithType: MetaObjectText.SaveToStream(Stream, int)
   fullName: Reportman.Drawing.MetaObjectText.SaveToStream(System.IO.Stream, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObjectText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -527,6 +593,8 @@ items:
   nameWithType: MetaObjectText.MetaObjectText()
   fullName: Reportman.Drawing.MetaObjectText.MetaObjectText()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObjectText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

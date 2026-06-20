@@ -1,0 +1,1642 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.HttpAgentParameterCollection
+  commentId: T:Reportman.Reporting.HttpAgentParameterCollection
+  id: HttpAgentParameterCollection
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.HttpAgentParameterCollection.#ctor
+  - Reportman.Reporting.HttpAgentParameterCollection.Add(System.Object)
+  - Reportman.Reporting.HttpAgentParameterCollection.Clear
+  - Reportman.Reporting.HttpAgentParameterCollection.Contains(System.Object)
+  - Reportman.Reporting.HttpAgentParameterCollection.Contains(System.String)
+  - Reportman.Reporting.HttpAgentParameterCollection.CopyTo(System.Array,System.Int32)
+  - Reportman.Reporting.HttpAgentParameterCollection.Count
+  - Reportman.Reporting.HttpAgentParameterCollection.GetEnumerator
+  - Reportman.Reporting.HttpAgentParameterCollection.IndexOf(System.Object)
+  - Reportman.Reporting.HttpAgentParameterCollection.IndexOf(System.String)
+  - Reportman.Reporting.HttpAgentParameterCollection.Insert(System.Int32,System.Object)
+  - Reportman.Reporting.HttpAgentParameterCollection.IsFixedSize
+  - Reportman.Reporting.HttpAgentParameterCollection.IsReadOnly
+  - Reportman.Reporting.HttpAgentParameterCollection.IsSynchronized
+  - Reportman.Reporting.HttpAgentParameterCollection.Item(System.Int32)
+  - Reportman.Reporting.HttpAgentParameterCollection.Item(System.String)
+  - Reportman.Reporting.HttpAgentParameterCollection.Remove(System.Object)
+  - Reportman.Reporting.HttpAgentParameterCollection.RemoveAt(System.Int32)
+  - Reportman.Reporting.HttpAgentParameterCollection.RemoveAt(System.String)
+  - Reportman.Reporting.HttpAgentParameterCollection.SyncRoot
+  langs:
+  - csharp
+  - vb
+  name: HttpAgentParameterCollection
+  nameWithType: HttpAgentParameterCollection
+  fullName: Reportman.Reporting.HttpAgentParameterCollection
+  type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: IDataParameterCollection implementation for HttpAgent.
+  example: []
+  syntax:
+    content: 'public class HttpAgentParameterCollection : IDataParameterCollection, IList, ICollection, IEnumerable'
+    content.vb: Public Class HttpAgentParameterCollection Implements IDataParameterCollection, IList, ICollection, IEnumerable
+  inheritance:
+  - System.Object
+  implements:
+  - System.Data.IDataParameterCollection
+  - System.Collections.IList
+  - System.Collections.ICollection
+  - System.Collections.IEnumerable
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Reporting.HttpAgentParameterCollection.Add(System.Object)
+  commentId: M:Reportman.Reporting.HttpAgentParameterCollection.Add(System.Object)
+  id: Add(System.Object)
+  parent: Reportman.Reporting.HttpAgentParameterCollection
+  langs:
+  - csharp
+  - vb
+  name: Add(object)
+  nameWithType: HttpAgentParameterCollection.Add(object)
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.Add(object)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  example: []
+  syntax:
+    content: public int Add(object value)
+    parameters:
+    - id: value
+      type: System.Object
+    return:
+      type: System.Int32
+    content.vb: Public Function Add(value As Object) As Integer
+  overload: Reportman.Reporting.HttpAgentParameterCollection.Add*
+  implements:
+  - System.Collections.IList.Add(System.Object)
+  nameWithType.vb: HttpAgentParameterCollection.Add(Object)
+  fullName.vb: Reportman.Reporting.HttpAgentParameterCollection.Add(Object)
+  name.vb: Add(Object)
+- uid: Reportman.Reporting.HttpAgentParameterCollection.Clear
+  commentId: M:Reportman.Reporting.HttpAgentParameterCollection.Clear
+  id: Clear
+  parent: Reportman.Reporting.HttpAgentParameterCollection
+  langs:
+  - csharp
+  - vb
+  name: Clear()
+  nameWithType: HttpAgentParameterCollection.Clear()
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.Clear()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  example: []
+  syntax:
+    content: public void Clear()
+    content.vb: Public Sub Clear()
+  overload: Reportman.Reporting.HttpAgentParameterCollection.Clear*
+  implements:
+  - System.Collections.IList.Clear
+- uid: Reportman.Reporting.HttpAgentParameterCollection.Contains(System.String)
+  commentId: M:Reportman.Reporting.HttpAgentParameterCollection.Contains(System.String)
+  id: Contains(System.String)
+  parent: Reportman.Reporting.HttpAgentParameterCollection
+  langs:
+  - csharp
+  - vb
+  name: Contains(string)
+  nameWithType: HttpAgentParameterCollection.Contains(string)
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.Contains(string)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  example: []
+  syntax:
+    content: public bool Contains(string parameterName)
+    parameters:
+    - id: parameterName
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Function Contains(parameterName As String) As Boolean
+  overload: Reportman.Reporting.HttpAgentParameterCollection.Contains*
+  implements:
+  - System.Data.IDataParameterCollection.Contains(System.String)
+  nameWithType.vb: HttpAgentParameterCollection.Contains(String)
+  fullName.vb: Reportman.Reporting.HttpAgentParameterCollection.Contains(String)
+  name.vb: Contains(String)
+- uid: Reportman.Reporting.HttpAgentParameterCollection.Contains(System.Object)
+  commentId: M:Reportman.Reporting.HttpAgentParameterCollection.Contains(System.Object)
+  id: Contains(System.Object)
+  parent: Reportman.Reporting.HttpAgentParameterCollection
+  langs:
+  - csharp
+  - vb
+  name: Contains(object)
+  nameWithType: HttpAgentParameterCollection.Contains(object)
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.Contains(object)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  example: []
+  syntax:
+    content: public bool Contains(object value)
+    parameters:
+    - id: value
+      type: System.Object
+    return:
+      type: System.Boolean
+    content.vb: Public Function Contains(value As Object) As Boolean
+  overload: Reportman.Reporting.HttpAgentParameterCollection.Contains*
+  implements:
+  - System.Collections.IList.Contains(System.Object)
+  nameWithType.vb: HttpAgentParameterCollection.Contains(Object)
+  fullName.vb: Reportman.Reporting.HttpAgentParameterCollection.Contains(Object)
+  name.vb: Contains(Object)
+- uid: Reportman.Reporting.HttpAgentParameterCollection.CopyTo(System.Array,System.Int32)
+  commentId: M:Reportman.Reporting.HttpAgentParameterCollection.CopyTo(System.Array,System.Int32)
+  id: CopyTo(System.Array,System.Int32)
+  parent: Reportman.Reporting.HttpAgentParameterCollection
+  langs:
+  - csharp
+  - vb
+  name: CopyTo(Array, int)
+  nameWithType: HttpAgentParameterCollection.CopyTo(Array, int)
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.CopyTo(System.Array, int)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  example: []
+  syntax:
+    content: public void CopyTo(Array array, int index)
+    parameters:
+    - id: array
+      type: System.Array
+    - id: index
+      type: System.Int32
+    content.vb: Public Sub CopyTo(array As Array, index As Integer)
+  overload: Reportman.Reporting.HttpAgentParameterCollection.CopyTo*
+  implements:
+  - System.Collections.ICollection.CopyTo(System.Array,System.Int32)
+  nameWithType.vb: HttpAgentParameterCollection.CopyTo(Array, Integer)
+  fullName.vb: Reportman.Reporting.HttpAgentParameterCollection.CopyTo(System.Array, Integer)
+  name.vb: CopyTo(Array, Integer)
+- uid: Reportman.Reporting.HttpAgentParameterCollection.GetEnumerator
+  commentId: M:Reportman.Reporting.HttpAgentParameterCollection.GetEnumerator
+  id: GetEnumerator
+  parent: Reportman.Reporting.HttpAgentParameterCollection
+  langs:
+  - csharp
+  - vb
+  name: GetEnumerator()
+  nameWithType: HttpAgentParameterCollection.GetEnumerator()
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.GetEnumerator()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  example: []
+  syntax:
+    content: public IEnumerator GetEnumerator()
+    return:
+      type: System.Collections.IEnumerator
+    content.vb: Public Function GetEnumerator() As IEnumerator
+  overload: Reportman.Reporting.HttpAgentParameterCollection.GetEnumerator*
+  implements:
+  - System.Collections.IEnumerable.GetEnumerator
+- uid: Reportman.Reporting.HttpAgentParameterCollection.IndexOf(System.String)
+  commentId: M:Reportman.Reporting.HttpAgentParameterCollection.IndexOf(System.String)
+  id: IndexOf(System.String)
+  parent: Reportman.Reporting.HttpAgentParameterCollection
+  langs:
+  - csharp
+  - vb
+  name: IndexOf(string)
+  nameWithType: HttpAgentParameterCollection.IndexOf(string)
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.IndexOf(string)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  example: []
+  syntax:
+    content: public int IndexOf(string parameterName)
+    parameters:
+    - id: parameterName
+      type: System.String
+    return:
+      type: System.Int32
+    content.vb: Public Function IndexOf(parameterName As String) As Integer
+  overload: Reportman.Reporting.HttpAgentParameterCollection.IndexOf*
+  implements:
+  - System.Data.IDataParameterCollection.IndexOf(System.String)
+  nameWithType.vb: HttpAgentParameterCollection.IndexOf(String)
+  fullName.vb: Reportman.Reporting.HttpAgentParameterCollection.IndexOf(String)
+  name.vb: IndexOf(String)
+- uid: Reportman.Reporting.HttpAgentParameterCollection.IndexOf(System.Object)
+  commentId: M:Reportman.Reporting.HttpAgentParameterCollection.IndexOf(System.Object)
+  id: IndexOf(System.Object)
+  parent: Reportman.Reporting.HttpAgentParameterCollection
+  langs:
+  - csharp
+  - vb
+  name: IndexOf(object)
+  nameWithType: HttpAgentParameterCollection.IndexOf(object)
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.IndexOf(object)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  example: []
+  syntax:
+    content: public int IndexOf(object value)
+    parameters:
+    - id: value
+      type: System.Object
+    return:
+      type: System.Int32
+    content.vb: Public Function IndexOf(value As Object) As Integer
+  overload: Reportman.Reporting.HttpAgentParameterCollection.IndexOf*
+  implements:
+  - System.Collections.IList.IndexOf(System.Object)
+  nameWithType.vb: HttpAgentParameterCollection.IndexOf(Object)
+  fullName.vb: Reportman.Reporting.HttpAgentParameterCollection.IndexOf(Object)
+  name.vb: IndexOf(Object)
+- uid: Reportman.Reporting.HttpAgentParameterCollection.Insert(System.Int32,System.Object)
+  commentId: M:Reportman.Reporting.HttpAgentParameterCollection.Insert(System.Int32,System.Object)
+  id: Insert(System.Int32,System.Object)
+  parent: Reportman.Reporting.HttpAgentParameterCollection
+  langs:
+  - csharp
+  - vb
+  name: Insert(int, object)
+  nameWithType: HttpAgentParameterCollection.Insert(int, object)
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.Insert(int, object)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  example: []
+  syntax:
+    content: public void Insert(int index, object value)
+    parameters:
+    - id: index
+      type: System.Int32
+    - id: value
+      type: System.Object
+    content.vb: Public Sub Insert(index As Integer, value As Object)
+  overload: Reportman.Reporting.HttpAgentParameterCollection.Insert*
+  implements:
+  - System.Collections.IList.Insert(System.Int32,System.Object)
+  nameWithType.vb: HttpAgentParameterCollection.Insert(Integer, Object)
+  fullName.vb: Reportman.Reporting.HttpAgentParameterCollection.Insert(Integer, Object)
+  name.vb: Insert(Integer, Object)
+- uid: Reportman.Reporting.HttpAgentParameterCollection.Remove(System.Object)
+  commentId: M:Reportman.Reporting.HttpAgentParameterCollection.Remove(System.Object)
+  id: Remove(System.Object)
+  parent: Reportman.Reporting.HttpAgentParameterCollection
+  langs:
+  - csharp
+  - vb
+  name: Remove(object)
+  nameWithType: HttpAgentParameterCollection.Remove(object)
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.Remove(object)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  example: []
+  syntax:
+    content: public void Remove(object value)
+    parameters:
+    - id: value
+      type: System.Object
+    content.vb: Public Sub Remove(value As Object)
+  overload: Reportman.Reporting.HttpAgentParameterCollection.Remove*
+  implements:
+  - System.Collections.IList.Remove(System.Object)
+  nameWithType.vb: HttpAgentParameterCollection.Remove(Object)
+  fullName.vb: Reportman.Reporting.HttpAgentParameterCollection.Remove(Object)
+  name.vb: Remove(Object)
+- uid: Reportman.Reporting.HttpAgentParameterCollection.RemoveAt(System.String)
+  commentId: M:Reportman.Reporting.HttpAgentParameterCollection.RemoveAt(System.String)
+  id: RemoveAt(System.String)
+  parent: Reportman.Reporting.HttpAgentParameterCollection
+  langs:
+  - csharp
+  - vb
+  name: RemoveAt(string)
+  nameWithType: HttpAgentParameterCollection.RemoveAt(string)
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.RemoveAt(string)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  example: []
+  syntax:
+    content: public void RemoveAt(string parameterName)
+    parameters:
+    - id: parameterName
+      type: System.String
+    content.vb: Public Sub RemoveAt(parameterName As String)
+  overload: Reportman.Reporting.HttpAgentParameterCollection.RemoveAt*
+  implements:
+  - System.Data.IDataParameterCollection.RemoveAt(System.String)
+  nameWithType.vb: HttpAgentParameterCollection.RemoveAt(String)
+  fullName.vb: Reportman.Reporting.HttpAgentParameterCollection.RemoveAt(String)
+  name.vb: RemoveAt(String)
+- uid: Reportman.Reporting.HttpAgentParameterCollection.RemoveAt(System.Int32)
+  commentId: M:Reportman.Reporting.HttpAgentParameterCollection.RemoveAt(System.Int32)
+  id: RemoveAt(System.Int32)
+  parent: Reportman.Reporting.HttpAgentParameterCollection
+  langs:
+  - csharp
+  - vb
+  name: RemoveAt(int)
+  nameWithType: HttpAgentParameterCollection.RemoveAt(int)
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.RemoveAt(int)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  example: []
+  syntax:
+    content: public void RemoveAt(int index)
+    parameters:
+    - id: index
+      type: System.Int32
+    content.vb: Public Sub RemoveAt(index As Integer)
+  overload: Reportman.Reporting.HttpAgentParameterCollection.RemoveAt*
+  implements:
+  - System.Collections.IList.RemoveAt(System.Int32)
+  nameWithType.vb: HttpAgentParameterCollection.RemoveAt(Integer)
+  fullName.vb: Reportman.Reporting.HttpAgentParameterCollection.RemoveAt(Integer)
+  name.vb: RemoveAt(Integer)
+- uid: Reportman.Reporting.HttpAgentParameterCollection.#ctor
+  commentId: M:Reportman.Reporting.HttpAgentParameterCollection.#ctor
+  id: '#ctor'
+  parent: Reportman.Reporting.HttpAgentParameterCollection
+  langs:
+  - csharp
+  - vb
+  name: HttpAgentParameterCollection()
+  nameWithType: HttpAgentParameterCollection.HttpAgentParameterCollection()
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.HttpAgentParameterCollection()
+  type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public HttpAgentParameterCollection()
+    content.vb: Public Sub New()
+  overload: Reportman.Reporting.HttpAgentParameterCollection.#ctor*
+  nameWithType.vb: HttpAgentParameterCollection.New()
+  fullName.vb: Reportman.Reporting.HttpAgentParameterCollection.New()
+  name.vb: New()
+- uid: Reportman.Reporting.HttpAgentParameterCollection.Item(System.String)
+  commentId: P:Reportman.Reporting.HttpAgentParameterCollection.Item(System.String)
+  id: Item(System.String)
+  parent: Reportman.Reporting.HttpAgentParameterCollection
+  langs:
+  - csharp
+  - vb
+  name: this[string]
+  nameWithType: HttpAgentParameterCollection.this[string]
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.this[string]
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  example: []
+  syntax:
+    content: public object this[string parameterName] { get; set; }
+    parameters:
+    - id: parameterName
+      type: System.String
+    return:
+      type: System.Object
+    content.vb: Public Default Property this[](parameterName As String) As Object
+  overload: Reportman.Reporting.HttpAgentParameterCollection.Item*
+  implements:
+  - System.Data.IDataParameterCollection.Item(System.String)
+  nameWithType.vb: HttpAgentParameterCollection.this[](String)
+  fullName.vb: Reportman.Reporting.HttpAgentParameterCollection.this[](String)
+  name.vb: this[](String)
+- uid: Reportman.Reporting.HttpAgentParameterCollection.Item(System.Int32)
+  commentId: P:Reportman.Reporting.HttpAgentParameterCollection.Item(System.Int32)
+  id: Item(System.Int32)
+  parent: Reportman.Reporting.HttpAgentParameterCollection
+  langs:
+  - csharp
+  - vb
+  name: this[int]
+  nameWithType: HttpAgentParameterCollection.this[int]
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.this[int]
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  example: []
+  syntax:
+    content: public object this[int index] { get; set; }
+    parameters:
+    - id: index
+      type: System.Int32
+    return:
+      type: System.Object
+    content.vb: Public Default Property this[](index As Integer) As Object
+  overload: Reportman.Reporting.HttpAgentParameterCollection.Item*
+  implements:
+  - System.Collections.IList.Item(System.Int32)
+  nameWithType.vb: HttpAgentParameterCollection.this[](Integer)
+  fullName.vb: Reportman.Reporting.HttpAgentParameterCollection.this[](Integer)
+  name.vb: this[](Integer)
+- uid: Reportman.Reporting.HttpAgentParameterCollection.IsFixedSize
+  commentId: P:Reportman.Reporting.HttpAgentParameterCollection.IsFixedSize
+  id: IsFixedSize
+  parent: Reportman.Reporting.HttpAgentParameterCollection
+  langs:
+  - csharp
+  - vb
+  name: IsFixedSize
+  nameWithType: HttpAgentParameterCollection.IsFixedSize
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.IsFixedSize
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  example: []
+  syntax:
+    content: public bool IsFixedSize { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsFixedSize As Boolean
+  overload: Reportman.Reporting.HttpAgentParameterCollection.IsFixedSize*
+  implements:
+  - System.Collections.IList.IsFixedSize
+- uid: Reportman.Reporting.HttpAgentParameterCollection.IsReadOnly
+  commentId: P:Reportman.Reporting.HttpAgentParameterCollection.IsReadOnly
+  id: IsReadOnly
+  parent: Reportman.Reporting.HttpAgentParameterCollection
+  langs:
+  - csharp
+  - vb
+  name: IsReadOnly
+  nameWithType: HttpAgentParameterCollection.IsReadOnly
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.IsReadOnly
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  example: []
+  syntax:
+    content: public bool IsReadOnly { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsReadOnly As Boolean
+  overload: Reportman.Reporting.HttpAgentParameterCollection.IsReadOnly*
+  implements:
+  - System.Collections.IList.IsReadOnly
+- uid: Reportman.Reporting.HttpAgentParameterCollection.IsSynchronized
+  commentId: P:Reportman.Reporting.HttpAgentParameterCollection.IsSynchronized
+  id: IsSynchronized
+  parent: Reportman.Reporting.HttpAgentParameterCollection
+  langs:
+  - csharp
+  - vb
+  name: IsSynchronized
+  nameWithType: HttpAgentParameterCollection.IsSynchronized
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.IsSynchronized
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  example: []
+  syntax:
+    content: public bool IsSynchronized { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsSynchronized As Boolean
+  overload: Reportman.Reporting.HttpAgentParameterCollection.IsSynchronized*
+  implements:
+  - System.Collections.ICollection.IsSynchronized
+- uid: Reportman.Reporting.HttpAgentParameterCollection.Count
+  commentId: P:Reportman.Reporting.HttpAgentParameterCollection.Count
+  id: Count
+  parent: Reportman.Reporting.HttpAgentParameterCollection
+  langs:
+  - csharp
+  - vb
+  name: Count
+  nameWithType: HttpAgentParameterCollection.Count
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.Count
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  example: []
+  syntax:
+    content: public int Count { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Count As Integer
+  overload: Reportman.Reporting.HttpAgentParameterCollection.Count*
+  implements:
+  - System.Collections.ICollection.Count
+- uid: Reportman.Reporting.HttpAgentParameterCollection.SyncRoot
+  commentId: P:Reportman.Reporting.HttpAgentParameterCollection.SyncRoot
+  id: SyncRoot
+  parent: Reportman.Reporting.HttpAgentParameterCollection
+  langs:
+  - csharp
+  - vb
+  name: SyncRoot
+  nameWithType: HttpAgentParameterCollection.SyncRoot
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.SyncRoot
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  example: []
+  syntax:
+    content: public object SyncRoot { get; }
+    parameters: []
+    return:
+      type: System.Object
+    content.vb: Public ReadOnly Property SyncRoot As Object
+  overload: Reportman.Reporting.HttpAgentParameterCollection.SyncRoot*
+  implements:
+  - System.Collections.ICollection.SyncRoot
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Data.IDataParameterCollection
+  commentId: T:System.Data.IDataParameterCollection
+  parent: System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.idataparametercollection
+  name: IDataParameterCollection
+  nameWithType: IDataParameterCollection
+  fullName: System.Data.IDataParameterCollection
+- uid: System.Collections.IList
+  commentId: T:System.Collections.IList
+  parent: System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ilist
+  name: IList
+  nameWithType: IList
+  fullName: System.Collections.IList
+- uid: System.Collections.ICollection
+  commentId: T:System.Collections.ICollection
+  parent: System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.icollection
+  name: ICollection
+  nameWithType: ICollection
+  fullName: System.Collections.ICollection
+- uid: System.Collections.IEnumerable
+  commentId: T:System.Collections.IEnumerable
+  parent: System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ienumerable
+  name: IEnumerable
+  nameWithType: IEnumerable
+  fullName: System.Collections.IEnumerable
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Data
+  commentId: N:System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Data
+  nameWithType: System.Data
+  fullName: System.Data
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+- uid: System.Collections
+  commentId: N:System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections
+  nameWithType: System.Collections
+  fullName: System.Collections
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+- uid: Reportman.Reporting.HttpAgentParameterCollection.Add*
+  commentId: Overload:Reportman.Reporting.HttpAgentParameterCollection.Add
+  isExternal: true
+  href: Reportman.Reporting.HttpAgentParameterCollection.html#Reportman_Reporting_HttpAgentParameterCollection_Add_System_Object_
+  name: Add
+  nameWithType: HttpAgentParameterCollection.Add
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.Add
+- uid: System.Collections.IList.Add(System.Object)
+  commentId: M:System.Collections.IList.Add(System.Object)
+  parent: System.Collections.IList
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ilist.add
+  name: Add(object)
+  nameWithType: IList.Add(object)
+  fullName: System.Collections.IList.Add(object)
+  nameWithType.vb: IList.Add(Object)
+  fullName.vb: System.Collections.IList.Add(Object)
+  name.vb: Add(Object)
+  spec.csharp:
+  - uid: System.Collections.IList.Add(System.Object)
+    name: Add
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.ilist.add
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Collections.IList.Add(System.Object)
+    name: Add
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.ilist.add
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Reportman.Reporting.HttpAgentParameterCollection.Clear*
+  commentId: Overload:Reportman.Reporting.HttpAgentParameterCollection.Clear
+  isExternal: true
+  href: Reportman.Reporting.HttpAgentParameterCollection.html#Reportman_Reporting_HttpAgentParameterCollection_Clear
+  name: Clear
+  nameWithType: HttpAgentParameterCollection.Clear
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.Clear
+- uid: System.Collections.IList.Clear
+  commentId: M:System.Collections.IList.Clear
+  parent: System.Collections.IList
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ilist.clear
+  name: Clear()
+  nameWithType: IList.Clear()
+  fullName: System.Collections.IList.Clear()
+  spec.csharp:
+  - uid: System.Collections.IList.Clear
+    name: Clear
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.ilist.clear
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.IList.Clear
+    name: Clear
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.ilist.clear
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.HttpAgentParameterCollection.Contains*
+  commentId: Overload:Reportman.Reporting.HttpAgentParameterCollection.Contains
+  isExternal: true
+  href: Reportman.Reporting.HttpAgentParameterCollection.html#Reportman_Reporting_HttpAgentParameterCollection_Contains_System_String_
+  name: Contains
+  nameWithType: HttpAgentParameterCollection.Contains
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.Contains
+- uid: System.Data.IDataParameterCollection.Contains(System.String)
+  commentId: M:System.Data.IDataParameterCollection.Contains(System.String)
+  parent: System.Data.IDataParameterCollection
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.idataparametercollection.contains
+  name: Contains(string)
+  nameWithType: IDataParameterCollection.Contains(string)
+  fullName: System.Data.IDataParameterCollection.Contains(string)
+  nameWithType.vb: IDataParameterCollection.Contains(String)
+  fullName.vb: System.Data.IDataParameterCollection.Contains(String)
+  name.vb: Contains(String)
+  spec.csharp:
+  - uid: System.Data.IDataParameterCollection.Contains(System.String)
+    name: Contains
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.idataparametercollection.contains
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: System.Data.IDataParameterCollection.Contains(System.String)
+    name: Contains
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.idataparametercollection.contains
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Collections.IList.Contains(System.Object)
+  commentId: M:System.Collections.IList.Contains(System.Object)
+  parent: System.Collections.IList
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ilist.contains
+  name: Contains(object)
+  nameWithType: IList.Contains(object)
+  fullName: System.Collections.IList.Contains(object)
+  nameWithType.vb: IList.Contains(Object)
+  fullName.vb: System.Collections.IList.Contains(Object)
+  name.vb: Contains(Object)
+  spec.csharp:
+  - uid: System.Collections.IList.Contains(System.Object)
+    name: Contains
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.ilist.contains
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Collections.IList.Contains(System.Object)
+    name: Contains
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.ilist.contains
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Reportman.Reporting.HttpAgentParameterCollection.CopyTo*
+  commentId: Overload:Reportman.Reporting.HttpAgentParameterCollection.CopyTo
+  isExternal: true
+  href: Reportman.Reporting.HttpAgentParameterCollection.html#Reportman_Reporting_HttpAgentParameterCollection_CopyTo_System_Array_System_Int32_
+  name: CopyTo
+  nameWithType: HttpAgentParameterCollection.CopyTo
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.CopyTo
+- uid: System.Collections.ICollection.CopyTo(System.Array,System.Int32)
+  commentId: M:System.Collections.ICollection.CopyTo(System.Array,System.Int32)
+  parent: System.Collections.ICollection
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.icollection.copyto
+  name: CopyTo(Array, int)
+  nameWithType: ICollection.CopyTo(Array, int)
+  fullName: System.Collections.ICollection.CopyTo(System.Array, int)
+  nameWithType.vb: ICollection.CopyTo(Array, Integer)
+  fullName.vb: System.Collections.ICollection.CopyTo(System.Array, Integer)
+  name.vb: CopyTo(Array, Integer)
+  spec.csharp:
+  - uid: System.Collections.ICollection.CopyTo(System.Array,System.Int32)
+    name: CopyTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.icollection.copyto
+  - name: (
+  - uid: System.Array
+    name: Array
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.array
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Collections.ICollection.CopyTo(System.Array,System.Int32)
+    name: CopyTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.icollection.copyto
+  - name: (
+  - uid: System.Array
+    name: Array
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.array
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Array
+  commentId: T:System.Array
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.array
+  name: Array
+  nameWithType: Array
+  fullName: System.Array
+- uid: Reportman.Reporting.HttpAgentParameterCollection.GetEnumerator*
+  commentId: Overload:Reportman.Reporting.HttpAgentParameterCollection.GetEnumerator
+  isExternal: true
+  href: Reportman.Reporting.HttpAgentParameterCollection.html#Reportman_Reporting_HttpAgentParameterCollection_GetEnumerator
+  name: GetEnumerator
+  nameWithType: HttpAgentParameterCollection.GetEnumerator
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.GetEnumerator
+- uid: System.Collections.IEnumerable.GetEnumerator
+  commentId: M:System.Collections.IEnumerable.GetEnumerator
+  parent: System.Collections.IEnumerable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ienumerable.getenumerator
+  name: GetEnumerator()
+  nameWithType: IEnumerable.GetEnumerator()
+  fullName: System.Collections.IEnumerable.GetEnumerator()
+  spec.csharp:
+  - uid: System.Collections.IEnumerable.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.ienumerable.getenumerator
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.IEnumerable.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.ienumerable.getenumerator
+  - name: (
+  - name: )
+- uid: System.Collections.IEnumerator
+  commentId: T:System.Collections.IEnumerator
+  parent: System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ienumerator
+  name: IEnumerator
+  nameWithType: IEnumerator
+  fullName: System.Collections.IEnumerator
+- uid: Reportman.Reporting.HttpAgentParameterCollection.IndexOf*
+  commentId: Overload:Reportman.Reporting.HttpAgentParameterCollection.IndexOf
+  isExternal: true
+  href: Reportman.Reporting.HttpAgentParameterCollection.html#Reportman_Reporting_HttpAgentParameterCollection_IndexOf_System_String_
+  name: IndexOf
+  nameWithType: HttpAgentParameterCollection.IndexOf
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.IndexOf
+- uid: System.Data.IDataParameterCollection.IndexOf(System.String)
+  commentId: M:System.Data.IDataParameterCollection.IndexOf(System.String)
+  parent: System.Data.IDataParameterCollection
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.idataparametercollection.indexof
+  name: IndexOf(string)
+  nameWithType: IDataParameterCollection.IndexOf(string)
+  fullName: System.Data.IDataParameterCollection.IndexOf(string)
+  nameWithType.vb: IDataParameterCollection.IndexOf(String)
+  fullName.vb: System.Data.IDataParameterCollection.IndexOf(String)
+  name.vb: IndexOf(String)
+  spec.csharp:
+  - uid: System.Data.IDataParameterCollection.IndexOf(System.String)
+    name: IndexOf
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.idataparametercollection.indexof
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: System.Data.IDataParameterCollection.IndexOf(System.String)
+    name: IndexOf
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.idataparametercollection.indexof
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.IList.IndexOf(System.Object)
+  commentId: M:System.Collections.IList.IndexOf(System.Object)
+  parent: System.Collections.IList
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ilist.indexof
+  name: IndexOf(object)
+  nameWithType: IList.IndexOf(object)
+  fullName: System.Collections.IList.IndexOf(object)
+  nameWithType.vb: IList.IndexOf(Object)
+  fullName.vb: System.Collections.IList.IndexOf(Object)
+  name.vb: IndexOf(Object)
+  spec.csharp:
+  - uid: System.Collections.IList.IndexOf(System.Object)
+    name: IndexOf
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.ilist.indexof
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Collections.IList.IndexOf(System.Object)
+    name: IndexOf
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.ilist.indexof
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Reportman.Reporting.HttpAgentParameterCollection.Insert*
+  commentId: Overload:Reportman.Reporting.HttpAgentParameterCollection.Insert
+  isExternal: true
+  href: Reportman.Reporting.HttpAgentParameterCollection.html#Reportman_Reporting_HttpAgentParameterCollection_Insert_System_Int32_System_Object_
+  name: Insert
+  nameWithType: HttpAgentParameterCollection.Insert
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.Insert
+- uid: System.Collections.IList.Insert(System.Int32,System.Object)
+  commentId: M:System.Collections.IList.Insert(System.Int32,System.Object)
+  parent: System.Collections.IList
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ilist.insert
+  name: Insert(int, object)
+  nameWithType: IList.Insert(int, object)
+  fullName: System.Collections.IList.Insert(int, object)
+  nameWithType.vb: IList.Insert(Integer, Object)
+  fullName.vb: System.Collections.IList.Insert(Integer, Object)
+  name.vb: Insert(Integer, Object)
+  spec.csharp:
+  - uid: System.Collections.IList.Insert(System.Int32,System.Object)
+    name: Insert
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.ilist.insert
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Collections.IList.Insert(System.Int32,System.Object)
+    name: Insert
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.ilist.insert
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Reportman.Reporting.HttpAgentParameterCollection.Remove*
+  commentId: Overload:Reportman.Reporting.HttpAgentParameterCollection.Remove
+  isExternal: true
+  href: Reportman.Reporting.HttpAgentParameterCollection.html#Reportman_Reporting_HttpAgentParameterCollection_Remove_System_Object_
+  name: Remove
+  nameWithType: HttpAgentParameterCollection.Remove
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.Remove
+- uid: System.Collections.IList.Remove(System.Object)
+  commentId: M:System.Collections.IList.Remove(System.Object)
+  parent: System.Collections.IList
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ilist.remove
+  name: Remove(object)
+  nameWithType: IList.Remove(object)
+  fullName: System.Collections.IList.Remove(object)
+  nameWithType.vb: IList.Remove(Object)
+  fullName.vb: System.Collections.IList.Remove(Object)
+  name.vb: Remove(Object)
+  spec.csharp:
+  - uid: System.Collections.IList.Remove(System.Object)
+    name: Remove
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.ilist.remove
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Collections.IList.Remove(System.Object)
+    name: Remove
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.ilist.remove
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Reportman.Reporting.HttpAgentParameterCollection.RemoveAt*
+  commentId: Overload:Reportman.Reporting.HttpAgentParameterCollection.RemoveAt
+  isExternal: true
+  href: Reportman.Reporting.HttpAgentParameterCollection.html#Reportman_Reporting_HttpAgentParameterCollection_RemoveAt_System_String_
+  name: RemoveAt
+  nameWithType: HttpAgentParameterCollection.RemoveAt
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.RemoveAt
+- uid: System.Data.IDataParameterCollection.RemoveAt(System.String)
+  commentId: M:System.Data.IDataParameterCollection.RemoveAt(System.String)
+  parent: System.Data.IDataParameterCollection
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.idataparametercollection.removeat
+  name: RemoveAt(string)
+  nameWithType: IDataParameterCollection.RemoveAt(string)
+  fullName: System.Data.IDataParameterCollection.RemoveAt(string)
+  nameWithType.vb: IDataParameterCollection.RemoveAt(String)
+  fullName.vb: System.Data.IDataParameterCollection.RemoveAt(String)
+  name.vb: RemoveAt(String)
+  spec.csharp:
+  - uid: System.Data.IDataParameterCollection.RemoveAt(System.String)
+    name: RemoveAt
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.idataparametercollection.removeat
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: System.Data.IDataParameterCollection.RemoveAt(System.String)
+    name: RemoveAt
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.idataparametercollection.removeat
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.IList.RemoveAt(System.Int32)
+  commentId: M:System.Collections.IList.RemoveAt(System.Int32)
+  parent: System.Collections.IList
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ilist.removeat
+  name: RemoveAt(int)
+  nameWithType: IList.RemoveAt(int)
+  fullName: System.Collections.IList.RemoveAt(int)
+  nameWithType.vb: IList.RemoveAt(Integer)
+  fullName.vb: System.Collections.IList.RemoveAt(Integer)
+  name.vb: RemoveAt(Integer)
+  spec.csharp:
+  - uid: System.Collections.IList.RemoveAt(System.Int32)
+    name: RemoveAt
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.ilist.removeat
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Collections.IList.RemoveAt(System.Int32)
+    name: RemoveAt
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.ilist.removeat
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Reportman.Reporting.HttpAgentParameterCollection.#ctor*
+  commentId: Overload:Reportman.Reporting.HttpAgentParameterCollection.#ctor
+  isExternal: true
+  href: Reportman.Reporting.HttpAgentParameterCollection.html#Reportman_Reporting_HttpAgentParameterCollection__ctor
+  name: HttpAgentParameterCollection
+  nameWithType: HttpAgentParameterCollection.HttpAgentParameterCollection
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.HttpAgentParameterCollection
+  nameWithType.vb: HttpAgentParameterCollection.New
+  fullName.vb: Reportman.Reporting.HttpAgentParameterCollection.New
+  name.vb: New
+- uid: Reportman.Reporting.HttpAgentParameterCollection.Item*
+  commentId: Overload:Reportman.Reporting.HttpAgentParameterCollection.Item
+  isExternal: true
+  href: Reportman.Reporting.HttpAgentParameterCollection.html#Reportman_Reporting_HttpAgentParameterCollection_Item_System_String_
+  name: this
+  nameWithType: HttpAgentParameterCollection.this
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.this
+  nameWithType.vb: HttpAgentParameterCollection.this[]
+  fullName.vb: Reportman.Reporting.HttpAgentParameterCollection.this[]
+  name.vb: this[]
+- uid: System.Data.IDataParameterCollection.Item(System.String)
+  commentId: P:System.Data.IDataParameterCollection.Item(System.String)
+  parent: System.Data.IDataParameterCollection
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: this[string]
+  nameWithType: IDataParameterCollection.this[string]
+  fullName: System.Data.IDataParameterCollection.this[string]
+  nameWithType.vb: IDataParameterCollection.this[](String)
+  fullName.vb: System.Data.IDataParameterCollection.this[](String)
+  name.vb: this[](String)
+  spec.csharp:
+  - name: this
+  - name: '['
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ']'
+  spec.vb:
+  - uid: System.Data.IDataParameterCollection.Item(System.String)
+    name: this[]
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.idataparametercollection.item
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.IList.Item(System.Int32)
+  commentId: P:System.Collections.IList.Item(System.Int32)
+  parent: System.Collections.IList
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: this[int]
+  nameWithType: IList.this[int]
+  fullName: System.Collections.IList.this[int]
+  nameWithType.vb: IList.this[](Integer)
+  fullName.vb: System.Collections.IList.this[](Integer)
+  name.vb: this[](Integer)
+  spec.csharp:
+  - name: this
+  - name: '['
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ']'
+  spec.vb:
+  - uid: System.Collections.IList.Item(System.Int32)
+    name: this[]
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.ilist.item
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Reportman.Reporting.HttpAgentParameterCollection.IsFixedSize*
+  commentId: Overload:Reportman.Reporting.HttpAgentParameterCollection.IsFixedSize
+  isExternal: true
+  href: Reportman.Reporting.HttpAgentParameterCollection.html#Reportman_Reporting_HttpAgentParameterCollection_IsFixedSize
+  name: IsFixedSize
+  nameWithType: HttpAgentParameterCollection.IsFixedSize
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.IsFixedSize
+- uid: System.Collections.IList.IsFixedSize
+  commentId: P:System.Collections.IList.IsFixedSize
+  parent: System.Collections.IList
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ilist.isfixedsize
+  name: IsFixedSize
+  nameWithType: IList.IsFixedSize
+  fullName: System.Collections.IList.IsFixedSize
+- uid: Reportman.Reporting.HttpAgentParameterCollection.IsReadOnly*
+  commentId: Overload:Reportman.Reporting.HttpAgentParameterCollection.IsReadOnly
+  isExternal: true
+  href: Reportman.Reporting.HttpAgentParameterCollection.html#Reportman_Reporting_HttpAgentParameterCollection_IsReadOnly
+  name: IsReadOnly
+  nameWithType: HttpAgentParameterCollection.IsReadOnly
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.IsReadOnly
+- uid: System.Collections.IList.IsReadOnly
+  commentId: P:System.Collections.IList.IsReadOnly
+  parent: System.Collections.IList
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ilist.isreadonly
+  name: IsReadOnly
+  nameWithType: IList.IsReadOnly
+  fullName: System.Collections.IList.IsReadOnly
+- uid: Reportman.Reporting.HttpAgentParameterCollection.IsSynchronized*
+  commentId: Overload:Reportman.Reporting.HttpAgentParameterCollection.IsSynchronized
+  isExternal: true
+  href: Reportman.Reporting.HttpAgentParameterCollection.html#Reportman_Reporting_HttpAgentParameterCollection_IsSynchronized
+  name: IsSynchronized
+  nameWithType: HttpAgentParameterCollection.IsSynchronized
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.IsSynchronized
+- uid: System.Collections.ICollection.IsSynchronized
+  commentId: P:System.Collections.ICollection.IsSynchronized
+  parent: System.Collections.ICollection
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.icollection.issynchronized
+  name: IsSynchronized
+  nameWithType: ICollection.IsSynchronized
+  fullName: System.Collections.ICollection.IsSynchronized
+- uid: Reportman.Reporting.HttpAgentParameterCollection.Count*
+  commentId: Overload:Reportman.Reporting.HttpAgentParameterCollection.Count
+  isExternal: true
+  href: Reportman.Reporting.HttpAgentParameterCollection.html#Reportman_Reporting_HttpAgentParameterCollection_Count
+  name: Count
+  nameWithType: HttpAgentParameterCollection.Count
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.Count
+- uid: System.Collections.ICollection.Count
+  commentId: P:System.Collections.ICollection.Count
+  parent: System.Collections.ICollection
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.icollection.count
+  name: Count
+  nameWithType: ICollection.Count
+  fullName: System.Collections.ICollection.Count
+- uid: Reportman.Reporting.HttpAgentParameterCollection.SyncRoot*
+  commentId: Overload:Reportman.Reporting.HttpAgentParameterCollection.SyncRoot
+  isExternal: true
+  href: Reportman.Reporting.HttpAgentParameterCollection.html#Reportman_Reporting_HttpAgentParameterCollection_SyncRoot
+  name: SyncRoot
+  nameWithType: HttpAgentParameterCollection.SyncRoot
+  fullName: Reportman.Reporting.HttpAgentParameterCollection.SyncRoot
+- uid: System.Collections.ICollection.SyncRoot
+  commentId: P:System.Collections.ICollection.SyncRoot
+  parent: System.Collections.ICollection
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.icollection.syncroot
+  name: SyncRoot
+  nameWithType: ICollection.SyncRoot
+  fullName: System.Collections.ICollection.SyncRoot

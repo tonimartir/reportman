@@ -17,6 +17,8 @@ items:
   nameWithType: StreamFormatType
   fullName: Reportman.Reporting.StreamFormatType
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -36,6 +38,8 @@ items:
   nameWithType: StreamFormatType.Zlib
   fullName: Reportman.Reporting.StreamFormatType.Zlib
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -56,6 +60,8 @@ items:
   nameWithType: StreamFormatType.Text
   fullName: Reportman.Reporting.StreamFormatType.Text
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -76,6 +82,8 @@ items:
   nameWithType: StreamFormatType.Binary
   fullName: Reportman.Reporting.StreamFormatType.Binary
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -96,6 +104,8 @@ items:
   nameWithType: StreamFormatType.XML
   fullName: Reportman.Reporting.StreamFormatType.XML
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -116,6 +126,8 @@ items:
   nameWithType: StreamFormatType.XMLZlib
   fullName: Reportman.Reporting.StreamFormatType.XMLZlib
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

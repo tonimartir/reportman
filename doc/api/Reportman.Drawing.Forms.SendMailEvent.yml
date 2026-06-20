@@ -16,6 +16,8 @@ items:
   nameWithType: SendMailEvent
   fullName: Reportman.Drawing.Forms.SendMailEvent
   type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -40,6 +42,8 @@ items:
   nameWithType: SendMailEvent.SendMailEvent(object, nint)
   fullName: Reportman.Drawing.Forms.SendMailEvent.SendMailEvent(object, nint)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -66,6 +70,8 @@ items:
   nameWithType: SendMailEvent.Invoke(object, SendMailEventArgs)
   fullName: Reportman.Drawing.Forms.SendMailEvent.Invoke(object, Reportman.Drawing.Forms.SendMailEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -92,6 +98,8 @@ items:
   nameWithType: SendMailEvent.BeginInvoke(object, SendMailEventArgs, AsyncCallback, object)
   fullName: Reportman.Drawing.Forms.SendMailEvent.BeginInvoke(object, Reportman.Drawing.Forms.SendMailEventArgs, System.AsyncCallback, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -124,6 +132,8 @@ items:
   nameWithType: SendMailEvent.EndInvoke(IAsyncResult)
   fullName: Reportman.Drawing.Forms.SendMailEvent.EndInvoke(System.IAsyncResult)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

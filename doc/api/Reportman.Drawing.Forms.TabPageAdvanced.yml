@@ -51,9 +51,13 @@ items:
   nameWithType: TabPageAdvanced
   fullName: Reportman.Drawing.Forms.TabPageAdvanced
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: A single page within an advanced tab control, carrying its title, icon, hosted control and selection state, and raising change notifications; also supports animated processing and alerting icons.
+  example: []
   syntax:
     content: 'public class TabPageAdvanced : PanelAdvanced, IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable'
     content.vb: Public Class TabPageAdvanced Inherits PanelAdvanced Implements IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable
@@ -493,6 +497,8 @@ items:
   nameWithType: TabPageAdvanced._title
   fullName: Reportman.Drawing.Forms.TabPageAdvanced._title
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -512,6 +518,8 @@ items:
   nameWithType: TabPageAdvanced._control
   fullName: Reportman.Drawing.Forms.TabPageAdvanced._control
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -531,6 +539,8 @@ items:
   nameWithType: TabPageAdvanced._imageIndex
   fullName: Reportman.Drawing.Forms.TabPageAdvanced._imageIndex
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -550,6 +560,8 @@ items:
   nameWithType: TabPageAdvanced._imageList
   fullName: Reportman.Drawing.Forms.TabPageAdvanced._imageList
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -569,6 +581,8 @@ items:
   nameWithType: TabPageAdvanced._icon
   fullName: Reportman.Drawing.Forms.TabPageAdvanced._icon
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -588,6 +602,8 @@ items:
   nameWithType: TabPageAdvanced._selected
   fullName: Reportman.Drawing.Forms.TabPageAdvanced._selected
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -607,6 +623,8 @@ items:
   nameWithType: TabPageAdvanced._startFocus
   fullName: Reportman.Drawing.Forms.TabPageAdvanced._startFocus
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -626,6 +644,8 @@ items:
   nameWithType: TabPageAdvanced._shown
   fullName: Reportman.Drawing.Forms.TabPageAdvanced._shown
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -645,6 +665,8 @@ items:
   nameWithType: TabPageAdvanced.TabPageAdvanced()
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.TabPageAdvanced()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -666,6 +688,8 @@ items:
   nameWithType: TabPageAdvanced.SetWindowLong(nint, int, int)
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.SetWindowLong(nint, int, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -696,6 +720,8 @@ items:
   nameWithType: TabPageAdvanced.GetWindowLong(nint, int)
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.GetWindowLong(nint, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -724,6 +750,8 @@ items:
   nameWithType: TabPageAdvanced.OnResize(EventArgs)
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.OnResize(System.EventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -747,6 +775,8 @@ items:
   nameWithType: TabPageAdvanced.OnPaintBackground(PaintEventArgs)
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.OnPaintBackground(System.Windows.Forms.PaintEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -770,6 +800,8 @@ items:
   nameWithType: TabPageAdvanced.TabPageAdvanced(string)
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.TabPageAdvanced(string)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -794,6 +826,8 @@ items:
   nameWithType: TabPageAdvanced.TabPageAdvanced(string, Control)
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.TabPageAdvanced(string, System.Windows.Forms.Control)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -820,6 +854,8 @@ items:
   nameWithType: TabPageAdvanced.TabPageAdvanced(string, Control, int)
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.TabPageAdvanced(string, System.Windows.Forms.Control, int)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -848,6 +884,8 @@ items:
   nameWithType: TabPageAdvanced.TabPageAdvanced(string, Control, ImageList, int)
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.TabPageAdvanced(string, System.Windows.Forms.Control, System.Windows.Forms.ImageList, int)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -878,6 +916,8 @@ items:
   nameWithType: TabPageAdvanced.TabPageAdvanced(string, Control, Image)
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.TabPageAdvanced(string, System.Windows.Forms.Control, System.Drawing.Image)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -906,6 +946,8 @@ items:
   nameWithType: TabPageAdvanced.InternalConstruct(string, Control, ImageList, int, Image)
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.InternalConstruct(string, System.Windows.Forms.Control, System.Windows.Forms.ImageList, int, System.Drawing.Image)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -938,6 +980,8 @@ items:
   nameWithType: TabPageAdvanced.OnPropertyChanged(TabPageAdvanced.Property, object)
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.OnPropertyChanged(Reportman.Drawing.Forms.TabPageAdvanced.Property, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -964,6 +1008,8 @@ items:
   nameWithType: TabPageAdvanced.Composited
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.Composited
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -985,6 +1031,8 @@ items:
   nameWithType: TabPageAdvanced.CreateParams
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.CreateParams
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1008,6 +1056,8 @@ items:
   nameWithType: TabPageAdvanced.Processing
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.Processing
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1041,6 +1091,8 @@ items:
   nameWithType: TabPageAdvanced.AlertingIcon
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.AlertingIcon
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1062,6 +1114,8 @@ items:
   nameWithType: TabPageAdvanced.DefaultAlertingIcon
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.DefaultAlertingIcon
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1083,6 +1137,8 @@ items:
   nameWithType: TabPageAdvanced.DefaultProgressIcon
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.DefaultProgressIcon
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1104,6 +1160,8 @@ items:
   nameWithType: TabPageAdvanced.Alerting
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.Alerting
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1125,6 +1183,8 @@ items:
   nameWithType: TabPageAdvanced.Title
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.Title
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1146,6 +1206,8 @@ items:
   nameWithType: TabPageAdvanced.CanClose
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.CanClose
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1167,6 +1229,8 @@ items:
   nameWithType: TabPageAdvanced.TitleAlignment
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.TitleAlignment
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1188,6 +1252,8 @@ items:
   nameWithType: TabPageAdvanced.TabWidth
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.TabWidth
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1209,6 +1275,8 @@ items:
   nameWithType: TabPageAdvanced.DrawIconHightlight
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.DrawIconHightlight
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1230,6 +1298,8 @@ items:
   nameWithType: TabPageAdvanced.Control
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.Control
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1251,6 +1321,8 @@ items:
   nameWithType: TabPageAdvanced.ImageIndex
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.ImageIndex
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1272,6 +1344,8 @@ items:
   nameWithType: TabPageAdvanced.ImageList
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.ImageList
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1293,6 +1367,8 @@ items:
   nameWithType: TabPageAdvanced.Icon
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.Icon
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1314,6 +1390,8 @@ items:
   nameWithType: TabPageAdvanced.Selected
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.Selected
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1335,6 +1413,8 @@ items:
   nameWithType: TabPageAdvanced.StartFocus
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.StartFocus
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1356,6 +1436,8 @@ items:
   nameWithType: TabPageAdvanced.PropertyChanged
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.PropertyChanged
   type: Event
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

@@ -14,9 +14,16 @@ items:
   nameWithType: UnSelectableButton
   fullName: Reportman.Drawing.Forms.UnSelectableButton
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    A Button that never takes input focus when clicked, so it can be pressed without
+
+    stealing focus from the currently active control.
+  example: []
   syntax:
     content: 'public class UnSelectableButton : Button, IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable, IButtonControl'
     content.vb: Public Class UnSelectableButton Inherits Button Implements IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable, IButtonControl
@@ -462,6 +469,8 @@ items:
   nameWithType: UnSelectableButton.UnSelectableButton()
   fullName: Reportman.Drawing.Forms.UnSelectableButton.UnSelectableButton()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -483,6 +492,8 @@ items:
   nameWithType: UnSelectableButton.WndProc(ref Message)
   fullName: Reportman.Drawing.Forms.UnSelectableButton.WndProc(ref System.Windows.Forms.Message)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

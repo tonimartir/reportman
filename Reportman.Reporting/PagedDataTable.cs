@@ -26,6 +26,10 @@ using System.Xml;
 
 namespace Reportman.Reporting
 {
+    /// <summary>
+    /// A <see cref="DataTable"/> that loads rows incrementally from an <see cref="IDataReader"/>
+    /// in pages of <see cref="PageSize"/> records, tracking end-of-data and raising a change event.
+    /// </summary>
     public class PagedDataTable : DataTable
     {
         private bool FEof;
@@ -139,5 +143,9 @@ namespace Reportman.Reporting
             return true;
         }
     }
+    /// <summary>
+    /// Callback raised by a <see cref="PagedDataTable"/> each time a new row is read and added,
+    /// allowing observers to react to incremental data loading.
+    /// </summary>
     public delegate void PagedDataChange(PagedDataTable Data);
 }

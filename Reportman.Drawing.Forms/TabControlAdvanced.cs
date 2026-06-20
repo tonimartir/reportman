@@ -23,6 +23,10 @@ using System.Windows.Forms;
 
 namespace Reportman.Drawing.Forms
 {
+    /// <summary>
+    /// Event arguments for a tab page action that can be vetoed, carrying the affected
+    /// page and a <c>Cancel</c> flag a handler can set to prevent the operation.
+    /// </summary>
     public class CancelArgs
     {
         public bool Cancel = false;
@@ -32,20 +36,34 @@ namespace Reportman.Drawing.Forms
             Page = npage;
         }
     }
+    /// <summary>
+    /// Callback for tab page events that may be cancelled, supplying <see cref="CancelArgs"/>
+    /// whose <c>Cancel</c> flag the handler can set to stop the action.
+    /// </summary>
     public delegate void CancelEvent(object sender, CancelArgs args);
 
+    /// <summary>
+    /// The overall visual rendering style used to paint the tab control (Visual Studio IDE
+    /// look, a flat Plain look, or a Chrome-browser-like look).
+    /// </summary>
     public enum VisualStyle
     {
         IDE = 0,
         Plain = 1,
         Chrome
     }
+    /// <summary>
+    /// Orientation of a drawing or layout operation, either vertical or horizontal.
+    /// </summary>
     public enum Direction
     {
         Vertical = 0,
         Horizontal = 1
     }
 
+    /// <summary>
+    /// Identifies a side of a rectangle (top, left, bottom, or right), or none.
+    /// </summary>
     public enum Edge
     {
         Top,
@@ -54,6 +72,11 @@ namespace Reportman.Drawing.Forms
         Right,
         None
     }
+    /// <summary>
+    /// An owner-drawn, multi-style tabbed container control that hosts a collection of
+    /// <see cref="TabPageAdvanced"/> pages with configurable appearance, close/scroll/drop-down
+    /// buttons, hot tracking, multiline tabs, and optional tab reordering.
+    /// </summary>
     public partial class TabControlAdvanced : Panel
     {
         //      public TabControlAdvanced()
@@ -75,6 +98,10 @@ namespace Reportman.Drawing.Forms
             }
         }
         // Enumeration of appearance styles
+        /// <summary>
+        /// High-level appearance preset for the tab control: a multi-document (MDI-like)
+        /// look, a multi-form look, or a compact multi-box look.
+        /// </summary>
         public enum VisualAppearance
         {
             MultiDocument = 0,
@@ -102,6 +129,10 @@ namespace Reportman.Drawing.Forms
                 return (TabControlAdvanced)ncontrol;
         }
         // Enumeration of modes that control display of the tabs area
+        /// <summary>
+        /// Controls when the tabs area is shown or hidden: always shown, always hidden,
+        /// hidden based on logic (e.g. a single page), or hidden when the mouse is away.
+        /// </summary>
         public enum HideTabsModes
         {
             ShowAlways,
@@ -436,6 +467,10 @@ namespace Reportman.Drawing.Forms
         protected InertButton _leftArrow;
         protected InertButton _rightArrow;
 
+        /// <summary>
+        /// Callback raised when a tab is double-clicked, supplying the originating control
+        /// and the tab page that was double-clicked.
+        /// </summary>
         public delegate void DoubleClickTabHandler(TabControlAdvanced sender, TabPageAdvanced page);
 
         // Exposed events
@@ -5141,6 +5176,10 @@ namespace Reportman.Drawing.Forms
         }
 
     }
+    /// <summary>
+    /// A strongly typed, event-raising collection of <see cref="TabPageAdvanced"/> pages
+    /// belonging to a <see cref="TabControlAdvanced"/>, with lookup by index or title.
+    /// </summary>
     public class TabPageCollection : CollectionWithEvents
     {
         public TabPageAdvanced Add(TabPageAdvanced value)
@@ -5202,6 +5241,11 @@ namespace Reportman.Drawing.Forms
             return base.List.IndexOf(value);
         }
     }
+    /// <summary>
+    /// A lightweight, non-selectable image button drawn from an <see cref="ImageList"/>,
+    /// supporting hot-track and pushed states with a flat/popup border, used for the tab
+    /// control's close, drop-down, and scroll-arrow buttons.
+    /// </summary>
     [ToolboxBitmap(typeof(InertButton))]
     [DefaultProperty("PopupStyle")]
     public class InertButton : Control
@@ -5561,9 +5605,21 @@ namespace Reportman.Drawing.Forms
         }
     }
     // Declare the event signatures
+    /// <summary>
+    /// Callback signaling that a collection is being or has been cleared of all items.
+    /// </summary>
     public delegate void CollectionClear();
+    /// <summary>
+    /// Callback signaling that an item is being or has been inserted or removed,
+    /// supplying the affected index and value.
+    /// </summary>
     public delegate void CollectionChange(int index, object value);
 
+    /// <summary>
+    /// A <see cref="CollectionBase"/> that raises before/after events (Clearing/Cleared,
+    /// Inserting/Inserted, Removing/Removed) as its contents change, and supports swapping
+    /// two items by index.
+    /// </summary>
     public class CollectionWithEvents : CollectionBase
     {
         // Collection change events
@@ -5629,8 +5685,16 @@ namespace Reportman.Drawing.Forms
             return base.List.IndexOf(value);
         }
     }
+    /// <summary>
+    /// Static drawing utilities for the tab control, providing helpers such as rendering
+    /// reversed (rotated) text and painting raised plain-style borders.
+    /// </summary>
     public class DrawHelper
     {
+        /// <summary>
+        /// Visual state of a command/button being drawn: normal, hot-tracked (mouse over),
+        /// or pushed (pressed).
+        /// </summary>
         public enum CommandState
         {
             Normal,
@@ -6015,6 +6079,10 @@ namespace Reportman.Drawing.Forms
         }
 
     }
+    /// <summary>
+    /// Static helpers for safely removing child controls or detaching a hosted form from a
+    /// container, using a temporary hidden button to preserve a valid active control.
+    /// </summary>
     public class ControlHelper
     {
         public static void RemoveAll(Control control)
@@ -6116,6 +6184,10 @@ namespace Reportman.Drawing.Forms
             container.Controls.Remove(tempButton);
         }
     }
+    /// <summary>
+    /// Static color utilities for the tab control, deriving the IDE-style tab background
+    /// color from a given base control color (with special cases for Classic and XP themes).
+    /// </summary>
     public class ColorHelper
     {
         public static Color TabBackgroundFromBaseColor(Color backColor)

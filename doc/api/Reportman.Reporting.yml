@@ -26,6 +26,8 @@ items:
   - Reportman.Reporting.DatabaseInfos
   - Reportman.Reporting.DatasetAlias
   - Reportman.Reporting.DatasetType
+  - Reportman.Reporting.DbParameterInfo
+  - Reportman.Reporting.DirectAgentExecutor
   - Reportman.Reporting.DotNetDriverType
   - Reportman.Reporting.DriverType
   - Reportman.Reporting.EvalException
@@ -37,6 +39,10 @@ items:
   - Reportman.Reporting.Evaluator
   - Reportman.Reporting.ExpressionItem
   - Reportman.Reporting.ExternalReport
+  - Reportman.Reporting.HttpAgentCommand
+  - Reportman.Reporting.HttpAgentExecutor
+  - Reportman.Reporting.HttpAgentParameter
+  - Reportman.Reporting.HttpAgentParameterCollection
   - Reportman.Reporting.IdenConstant
   - Reportman.Reporting.IdenFunction
   - Reportman.Reporting.IdenVariable
@@ -74,7 +80,11 @@ items:
   - Reportman.Reporting.ReportProgress
   - Reportman.Reporting.ReportReader
   - Reportman.Reporting.ReportWriter
+  - Reportman.Reporting.ReportmanAgentClient
+  - Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler
+  - Reportman.Reporting.ReportmanAgentClient.ResultEventHandler
   - Reportman.Reporting.Section
+  - Reportman.Reporting.SectionFillOrderHelper
   - Reportman.Reporting.SectionType
   - Reportman.Reporting.Sections
   - Reportman.Reporting.ShapeItem
@@ -89,6 +99,7 @@ items:
   - Reportman.Reporting.TokenType
   - Reportman.Reporting.UndoCue
   - Reportman.Reporting.Variant
+  - Reportman.Reporting.VariantCoercion
   - Reportman.Reporting.VariantJsonConverter
   - Reportman.Reporting.VariantSystemTextJsonConverter
   - Reportman.Reporting.VariantType
@@ -266,6 +277,21 @@ references:
   name: AliasCollection
   nameWithType: AliasCollection
   fullName: Reportman.Reporting.AliasCollection
+- uid: Reportman.Reporting.DbParameterInfo
+  commentId: T:Reportman.Reporting.DbParameterInfo
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.DbParameterInfo.html
+  name: DbParameterInfo
+  nameWithType: DbParameterInfo
+  fullName: Reportman.Reporting.DbParameterInfo
+- uid: Reportman.Reporting.DirectAgentExecutor
+  commentId: T:Reportman.Reporting.DirectAgentExecutor
+  isExternal: true
+  href: Reportman.Reporting.DirectAgentExecutor.html
+  name: DirectAgentExecutor
+  nameWithType: DirectAgentExecutor
+  fullName: Reportman.Reporting.DirectAgentExecutor
 - uid: Reportman.Reporting.EvalException
   commentId: T:Reportman.Reporting.EvalException
   isExternal: true
@@ -362,6 +388,35 @@ references:
   name: ExternalReport
   nameWithType: ExternalReport
   fullName: Reportman.Reporting.ExternalReport
+- uid: Reportman.Reporting.HttpAgentExecutor
+  commentId: T:Reportman.Reporting.HttpAgentExecutor
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.HttpAgentExecutor.html
+  name: HttpAgentExecutor
+  nameWithType: HttpAgentExecutor
+  fullName: Reportman.Reporting.HttpAgentExecutor
+- uid: Reportman.Reporting.HttpAgentCommand
+  commentId: T:Reportman.Reporting.HttpAgentCommand
+  isExternal: true
+  href: Reportman.Reporting.HttpAgentCommand.html
+  name: HttpAgentCommand
+  nameWithType: HttpAgentCommand
+  fullName: Reportman.Reporting.HttpAgentCommand
+- uid: Reportman.Reporting.HttpAgentParameter
+  commentId: T:Reportman.Reporting.HttpAgentParameter
+  isExternal: true
+  href: Reportman.Reporting.HttpAgentParameter.html
+  name: HttpAgentParameter
+  nameWithType: HttpAgentParameter
+  fullName: Reportman.Reporting.HttpAgentParameter
+- uid: Reportman.Reporting.HttpAgentParameterCollection
+  commentId: T:Reportman.Reporting.HttpAgentParameterCollection
+  isExternal: true
+  href: Reportman.Reporting.HttpAgentParameterCollection.html
+  name: HttpAgentParameterCollection
+  nameWithType: HttpAgentParameterCollection
+  fullName: Reportman.Reporting.HttpAgentParameterCollection
 - uid: Reportman.Reporting.IdenConstant
   commentId: T:Reportman.Reporting.IdenConstant
   isExternal: true
@@ -718,6 +773,68 @@ references:
   name: ReportLibraryConfigCollection
   nameWithType: ReportLibraryConfigCollection
   fullName: Reportman.Reporting.ReportLibraryConfigCollection
+- uid: Reportman.Reporting.ReportmanAgentClient
+  commentId: T:Reportman.Reporting.ReportmanAgentClient
+  isExternal: true
+  href: Reportman.Reporting.ReportmanAgentClient.html
+  name: ReportmanAgentClient
+  nameWithType: ReportmanAgentClient
+  fullName: Reportman.Reporting.ReportmanAgentClient
+- uid: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler
+  commentId: T:Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.ReportmanAgentClient.html
+  name: ReportmanAgentClient.ProgressEventHandler
+  nameWithType: ReportmanAgentClient.ProgressEventHandler
+  fullName: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler
+  spec.csharp:
+  - uid: Reportman.Reporting.ReportmanAgentClient
+    name: ReportmanAgentClient
+    isExternal: true
+    href: Reportman.Reporting.ReportmanAgentClient.html
+  - name: .
+  - uid: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler
+    name: ProgressEventHandler
+    isExternal: true
+    href: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.html
+  spec.vb:
+  - uid: Reportman.Reporting.ReportmanAgentClient
+    name: ReportmanAgentClient
+    isExternal: true
+    href: Reportman.Reporting.ReportmanAgentClient.html
+  - name: .
+  - uid: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler
+    name: ProgressEventHandler
+    isExternal: true
+    href: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.html
+- uid: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler
+  commentId: T:Reportman.Reporting.ReportmanAgentClient.ResultEventHandler
+  isExternal: true
+  href: Reportman.Reporting.ReportmanAgentClient.html
+  name: ReportmanAgentClient.ResultEventHandler
+  nameWithType: ReportmanAgentClient.ResultEventHandler
+  fullName: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler
+  spec.csharp:
+  - uid: Reportman.Reporting.ReportmanAgentClient
+    name: ReportmanAgentClient
+    isExternal: true
+    href: Reportman.Reporting.ReportmanAgentClient.html
+  - name: .
+  - uid: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler
+    name: ResultEventHandler
+    isExternal: true
+    href: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.html
+  spec.vb:
+  - uid: Reportman.Reporting.ReportmanAgentClient
+    name: ReportmanAgentClient
+    isExternal: true
+    href: Reportman.Reporting.ReportmanAgentClient.html
+  - name: .
+  - uid: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler
+    name: ResultEventHandler
+    isExternal: true
+    href: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.html
 - uid: Reportman.Reporting.ReportReader
   commentId: T:Reportman.Reporting.ReportReader
   isExternal: true
@@ -764,6 +881,13 @@ references:
   name: SkipType
   nameWithType: SkipType
   fullName: Reportman.Reporting.SkipType
+- uid: Reportman.Reporting.SectionFillOrderHelper
+  commentId: T:Reportman.Reporting.SectionFillOrderHelper
+  isExternal: true
+  href: Reportman.Reporting.SectionFillOrderHelper.html
+  name: SectionFillOrderHelper
+  nameWithType: SectionFillOrderHelper
+  fullName: Reportman.Reporting.SectionFillOrderHelper
 - uid: Reportman.Reporting.Section
   commentId: T:Reportman.Reporting.Section
   parent: Reportman.Reporting
@@ -912,6 +1036,13 @@ references:
   name: VariantSystemTextJsonConverter
   nameWithType: VariantSystemTextJsonConverter
   fullName: Reportman.Reporting.VariantSystemTextJsonConverter
+- uid: Reportman.Reporting.VariantCoercion
+  commentId: T:Reportman.Reporting.VariantCoercion
+  isExternal: true
+  href: Reportman.Reporting.VariantCoercion.html
+  name: VariantCoercion
+  nameWithType: VariantCoercion
+  fullName: Reportman.Reporting.VariantCoercion
 - uid: Reportman.Reporting
   commentId: N:Reportman.Reporting
   isExternal: true

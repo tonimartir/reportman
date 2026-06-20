@@ -16,6 +16,8 @@ items:
   nameWithType: IdenConstant
   fullName: Reportman.Reporting.IdenConstant
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/IdenConstant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -53,6 +55,8 @@ items:
   nameWithType: IdenConstant.FValue
   fullName: Reportman.Reporting.IdenConstant.FValue
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/IdenConstant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -72,6 +76,8 @@ items:
   nameWithType: IdenConstant.IdenConstant(Evaluator)
   fullName: Reportman.Reporting.IdenConstant.IdenConstant(Reportman.Reporting.Evaluator)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/IdenConstant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -99,6 +105,8 @@ items:
   nameWithType: IdenConstant.GetValue()
   fullName: Reportman.Reporting.IdenConstant.GetValue()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/IdenConstant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -123,6 +131,8 @@ items:
   nameWithType: IdenConstant.SetValue(Variant)
   fullName: Reportman.Reporting.IdenConstant.SetValue(Reportman.Reporting.Variant)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/IdenConstant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

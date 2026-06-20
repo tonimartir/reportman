@@ -15,9 +15,13 @@ items:
   nameWithType: ChartDriver
   fullName: Reportman.Drawing.ChartDriver
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: 'Selects which charting back end renders the chart: the default, the built-in engine, or TeeChart.'
+  example: []
   syntax:
     content: public enum ChartDriver
     content.vb: Public Enum ChartDriver
@@ -32,6 +36,8 @@ items:
   nameWithType: ChartDriver.Default
   fullName: Reportman.Drawing.ChartDriver.Default
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -50,6 +56,8 @@ items:
   nameWithType: ChartDriver.Engine
   fullName: Reportman.Drawing.ChartDriver.Engine
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -68,6 +76,8 @@ items:
   nameWithType: ChartDriver.Teechart
   fullName: Reportman.Drawing.ChartDriver.Teechart
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

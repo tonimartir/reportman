@@ -19,9 +19,13 @@ items:
   nameWithType: StringExtensions
   fullName: Reportman.Drawing.StringExtensions
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringExtensions.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: Extension methods for <xref href="System.String" data-throw-if-not-resolved="false"></xref> providing escape-aware splitting, escaping/unescaping with a custom escape character, diacritic removal and quoting helpers.
+  example: []
   syntax:
     content: public static class StringExtensions
     content.vb: Public Module StringExtensions
@@ -47,6 +51,8 @@ items:
   nameWithType: StringExtensions.Split(string, char, char, bool, bool)
   fullName: Reportman.Drawing.StringExtensions.Split(string, char, char, bool, bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringExtensions.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -82,6 +88,8 @@ items:
   nameWithType: StringExtensions.Split(string, char, char, bool)
   fullName: Reportman.Drawing.StringExtensions.Split(string, char, char, bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringExtensions.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -115,6 +123,8 @@ items:
   nameWithType: StringExtensions.Escape(string, string, char)
   fullName: Reportman.Drawing.StringExtensions.Escape(string, string, char)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringExtensions.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -146,6 +156,8 @@ items:
   nameWithType: StringExtensions.Unescape(string, char)
   fullName: Reportman.Drawing.StringExtensions.Unescape(string, char)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringExtensions.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -175,6 +187,8 @@ items:
   nameWithType: StringExtensions.RemoveDiacritics(string)
   fullName: Reportman.Drawing.StringExtensions.RemoveDiacritics(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringExtensions.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -202,6 +216,8 @@ items:
   nameWithType: StringExtensions.QuoteStr(string)
   fullName: Reportman.Drawing.StringExtensions.QuoteStr(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringExtensions.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -229,6 +245,8 @@ items:
   nameWithType: StringExtensions.DoubleQuoteStr(string)
   fullName: Reportman.Drawing.StringExtensions.DoubleQuoteStr(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringExtensions.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -245,6 +263,17 @@ items:
   fullName.vb: Reportman.Drawing.StringExtensions.DoubleQuoteStr(String)
   name.vb: DoubleQuoteStr(String)
 references:
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
 - uid: Reportman.Drawing
   commentId: N:Reportman.Drawing
   isExternal: true
@@ -516,17 +545,6 @@ references:
   name: Split
   nameWithType: StringExtensions.Split
   fullName: Reportman.Drawing.StringExtensions.Split
-- uid: System.String
-  commentId: T:System.String
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: string
-  nameWithType: string
-  fullName: string
-  nameWithType.vb: String
-  fullName.vb: String
-  name.vb: String
 - uid: System.Char
   commentId: T:System.Char
   parent: System

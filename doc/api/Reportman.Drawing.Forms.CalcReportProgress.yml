@@ -17,9 +17,16 @@ items:
   nameWithType: CalcReportProgress
   fullName: Reportman.Drawing.Forms.CalcReportProgress
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ReportProgressForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    Runs report calculation on a background thread and, if it does not finish quickly,
+
+    shows a <xref href="Reportman.Drawing.Forms.ReportProgressForm" data-throw-if-not-resolved="false"></xref> to display progress and allow cancellation.
+  example: []
   syntax:
     content: public class CalcReportProgress
     content.vb: Public Class CalcReportProgress
@@ -44,6 +51,8 @@ items:
   nameWithType: CalcReportProgress.driver
   fullName: Reportman.Drawing.Forms.CalcReportProgress.driver
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ReportProgressForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -63,6 +72,8 @@ items:
   nameWithType: CalcReportProgress.threadcalc
   fullName: Reportman.Drawing.Forms.CalcReportProgress.threadcalc
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ReportProgressForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -82,6 +93,8 @@ items:
   nameWithType: CalcReportProgress.meta
   fullName: Reportman.Drawing.Forms.CalcReportProgress.meta
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ReportProgressForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -101,6 +114,8 @@ items:
   nameWithType: CalcReportProgress.CalculateReport(MetaFile, PrintOut, IWin32Window)
   fullName: Reportman.Drawing.Forms.CalcReportProgress.CalculateReport(Reportman.Drawing.MetaFile, Reportman.Drawing.PrintOut, System.Windows.Forms.IWin32Window)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ReportProgressForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -128,6 +143,8 @@ items:
   nameWithType: CalcReportProgress.CalcReportProgress()
   fullName: Reportman.Drawing.Forms.CalcReportProgress.CalcReportProgress()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ReportProgressForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -139,6 +156,13 @@ items:
   fullName.vb: Reportman.Drawing.Forms.CalcReportProgress.New()
   name.vb: New()
 references:
+- uid: Reportman.Drawing.Forms.ReportProgressForm
+  commentId: T:Reportman.Drawing.Forms.ReportProgressForm
+  isExternal: true
+  href: Reportman.Drawing.Forms.ReportProgressForm.html
+  name: ReportProgressForm
+  nameWithType: ReportProgressForm
+  fullName: Reportman.Drawing.Forms.ReportProgressForm
 - uid: Reportman.Drawing.Forms
   commentId: N:Reportman.Drawing.Forms
   isExternal: true
@@ -417,7 +441,7 @@ references:
   commentId: T:Reportman.Drawing.PrintOut
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.PrintOut.html
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   name: PrintOut
   nameWithType: PrintOut
   fullName: Reportman.Drawing.PrintOut

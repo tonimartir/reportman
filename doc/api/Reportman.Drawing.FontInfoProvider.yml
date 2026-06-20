@@ -11,7 +11,7 @@ items:
   - Reportman.Drawing.FontInfoProvider.GetFontStream(Reportman.Drawing.TTFontData)
   - Reportman.Drawing.FontInfoProvider.GetGlyphWidth(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Int32,System.Char)
   - Reportman.Drawing.FontInfoProvider.GetKerning(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Char,System.Char)
-  - Reportman.Drawing.FontInfoProvider.TextExtent(System.String,System.Drawing.Rectangle@,Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Boolean,System.Boolean,System.Double)
+  - Reportman.Drawing.FontInfoProvider.TextExtent(System.String,System.Drawing.Rectangle@,Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Boolean,System.Boolean,System.Double,System.Boolean)
   langs:
   - csharp
   - vb
@@ -19,14 +19,23 @@ items:
   nameWithType: FontInfoProvider
   fullName: Reportman.Drawing.FontInfoProvider
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    Abstract provider of font metrics and text measurement; implementations supply character/glyph
+
+    widths, kerning, text extent and font stream data for a given platform's font subsystem.
+  example: []
   syntax:
     content: public abstract class FontInfoProvider
     content.vb: Public MustInherit Class FontInfoProvider
   inheritance:
   - System.Object
+  derivedClasses:
+  - Reportman.Drawing.FontInfoFt
   inheritedMembers:
   - System.Object.GetType
   - System.Object.MemberwiseClone
@@ -46,6 +55,8 @@ items:
   nameWithType: FontInfoProvider.FillFontData(PDFFont, TTFontData)
   fullName: Reportman.Drawing.FontInfoProvider.FillFontData(Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -69,6 +80,8 @@ items:
   nameWithType: FontInfoProvider.GetCharWidth(PDFFont, TTFontData, char)
   fullName: Reportman.Drawing.FontInfoProvider.GetCharWidth(Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData, char)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -99,6 +112,8 @@ items:
   nameWithType: FontInfoProvider.GetGlyphWidth(PDFFont, TTFontData, int, char)
   fullName: Reportman.Drawing.FontInfoProvider.GetGlyphWidth(Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData, int, char)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -120,22 +135,24 @@ items:
   nameWithType.vb: FontInfoProvider.GetGlyphWidth(PDFFont, TTFontData, Integer, Char)
   fullName.vb: Reportman.Drawing.FontInfoProvider.GetGlyphWidth(Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData, Integer, Char)
   name.vb: GetGlyphWidth(PDFFont, TTFontData, Integer, Char)
-- uid: Reportman.Drawing.FontInfoProvider.TextExtent(System.String,System.Drawing.Rectangle@,Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Boolean,System.Boolean,System.Double)
-  commentId: M:Reportman.Drawing.FontInfoProvider.TextExtent(System.String,System.Drawing.Rectangle@,Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Boolean,System.Boolean,System.Double)
-  id: TextExtent(System.String,System.Drawing.Rectangle@,Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Boolean,System.Boolean,System.Double)
+- uid: Reportman.Drawing.FontInfoProvider.TextExtent(System.String,System.Drawing.Rectangle@,Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Boolean,System.Boolean,System.Double,System.Boolean)
+  commentId: M:Reportman.Drawing.FontInfoProvider.TextExtent(System.String,System.Drawing.Rectangle@,Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Boolean,System.Boolean,System.Double,System.Boolean)
+  id: TextExtent(System.String,System.Drawing.Rectangle@,Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Boolean,System.Boolean,System.Double,System.Boolean)
   parent: Reportman.Drawing.FontInfoProvider
   langs:
   - csharp
   - vb
-  name: TextExtent(string, ref Rectangle, PDFFont, TTFontData, bool, bool, double)
-  nameWithType: FontInfoProvider.TextExtent(string, ref Rectangle, PDFFont, TTFontData, bool, bool, double)
-  fullName: Reportman.Drawing.FontInfoProvider.TextExtent(string, ref System.Drawing.Rectangle, Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData, bool, bool, double)
+  name: TextExtent(string, ref Rectangle, PDFFont, TTFontData, bool, bool, double, bool)
+  nameWithType: FontInfoProvider.TextExtent(string, ref Rectangle, PDFFont, TTFontData, bool, bool, double, bool)
+  fullName: Reportman.Drawing.FontInfoProvider.TextExtent(string, ref System.Drawing.Rectangle, Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData, bool, bool, double, bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
   syntax:
-    content: public abstract List<LineInfo> TextExtent(string Text, ref Rectangle Rect, PDFFont pdfFont, TTFontData fontData, bool wordwrap, bool singleline, double FontSize)
+    content: public abstract List<LineInfo> TextExtent(string Text, ref Rectangle Rect, PDFFont pdfFont, TTFontData fontData, bool wordwrap, bool singleline, double FontSize, bool isHtml = false)
     parameters:
     - id: Text
       type: System.String
@@ -151,13 +168,15 @@ items:
       type: System.Boolean
     - id: FontSize
       type: System.Double
+    - id: isHtml
+      type: System.Boolean
     return:
       type: System.Collections.Generic.List{Reportman.Drawing.LineInfo}
-    content.vb: Public MustOverride Function TextExtent(Text As String, Rect As Rectangle, pdfFont As PDFFont, fontData As TTFontData, wordwrap As Boolean, singleline As Boolean, FontSize As Double) As List(Of LineInfo)
+    content.vb: Public MustOverride Function TextExtent(Text As String, Rect As Rectangle, pdfFont As PDFFont, fontData As TTFontData, wordwrap As Boolean, singleline As Boolean, FontSize As Double, isHtml As Boolean = False) As List(Of LineInfo)
   overload: Reportman.Drawing.FontInfoProvider.TextExtent*
-  nameWithType.vb: FontInfoProvider.TextExtent(String, Rectangle, PDFFont, TTFontData, Boolean, Boolean, Double)
-  fullName.vb: Reportman.Drawing.FontInfoProvider.TextExtent(String, System.Drawing.Rectangle, Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData, Boolean, Boolean, Double)
-  name.vb: TextExtent(String, Rectangle, PDFFont, TTFontData, Boolean, Boolean, Double)
+  nameWithType.vb: FontInfoProvider.TextExtent(String, Rectangle, PDFFont, TTFontData, Boolean, Boolean, Double, Boolean)
+  fullName.vb: Reportman.Drawing.FontInfoProvider.TextExtent(String, System.Drawing.Rectangle, Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData, Boolean, Boolean, Double, Boolean)
+  name.vb: TextExtent(String, Rectangle, PDFFont, TTFontData, Boolean, Boolean, Double, Boolean)
 - uid: Reportman.Drawing.FontInfoProvider.GetKerning(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Char,System.Char)
   commentId: M:Reportman.Drawing.FontInfoProvider.GetKerning(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Char,System.Char)
   id: GetKerning(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Char,System.Char)
@@ -169,6 +188,8 @@ items:
   nameWithType: FontInfoProvider.GetKerning(PDFFont, TTFontData, char, char)
   fullName: Reportman.Drawing.FontInfoProvider.GetKerning(Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData, char, char)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -201,6 +222,8 @@ items:
   nameWithType: FontInfoProvider.GetFontStream(TTFontData)
   fullName: Reportman.Drawing.FontInfoProvider.GetFontStream(Reportman.Drawing.TTFontData)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -224,6 +247,8 @@ items:
   nameWithType: FontInfoProvider.FontInfoProvider()
   fullName: Reportman.Drawing.FontInfoProvider.FontInfoProvider()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -510,7 +535,7 @@ references:
   commentId: T:Reportman.Drawing.PDFFont
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.PDFFont.html
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   name: PDFFont
   nameWithType: PDFFont
   fullName: Reportman.Drawing.PDFFont
@@ -518,7 +543,7 @@ references:
   commentId: T:Reportman.Drawing.TTFontData
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.TTFontData.html
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   name: TTFontData
   nameWithType: TTFontData
   fullName: Reportman.Drawing.TTFontData
@@ -572,7 +597,7 @@ references:
 - uid: Reportman.Drawing.FontInfoProvider.TextExtent*
   commentId: Overload:Reportman.Drawing.FontInfoProvider.TextExtent
   isExternal: true
-  href: Reportman.Drawing.FontInfoProvider.html#Reportman_Drawing_FontInfoProvider_TextExtent_System_String_System_Drawing_Rectangle__Reportman_Drawing_PDFFont_Reportman_Drawing_TTFontData_System_Boolean_System_Boolean_System_Double_
+  href: Reportman.Drawing.FontInfoProvider.html#Reportman_Drawing_FontInfoProvider_TextExtent_System_String_System_Drawing_Rectangle__Reportman_Drawing_PDFFont_Reportman_Drawing_TTFontData_System_Boolean_System_Boolean_System_Double_System_Boolean_
   name: TextExtent
   nameWithType: FontInfoProvider.TextExtent
   fullName: Reportman.Drawing.FontInfoProvider.TextExtent
@@ -626,7 +651,7 @@ references:
   - uid: Reportman.Drawing.LineInfo
     name: LineInfo
     isExternal: true
-    href: Reportman.Drawing.LineInfo.html
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   - name: '>'
   spec.vb:
   - uid: System.Collections.Generic.List`1
@@ -639,7 +664,7 @@ references:
   - uid: Reportman.Drawing.LineInfo
     name: LineInfo
     isExternal: true
-    href: Reportman.Drawing.LineInfo.html
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   - name: )
 - uid: System.Drawing
   commentId: N:System.Drawing

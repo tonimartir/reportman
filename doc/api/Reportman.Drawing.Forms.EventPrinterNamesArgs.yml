@@ -14,9 +14,16 @@ items:
   nameWithType: EventPrinterNamesArgs
   fullName: Reportman.Drawing.Forms.EventPrinterNamesArgs
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintersConfiguration.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    Event arguments carrying the alternative printer display names, keyed by printer slot
+
+    index, supplied to the printers configuration dialog.
+  example: []
   syntax:
     content: public class EventPrinterNamesArgs
     content.vb: Public Class EventPrinterNamesArgs
@@ -41,6 +48,8 @@ items:
   nameWithType: EventPrinterNamesArgs.PrinterNames
   fullName: Reportman.Drawing.Forms.EventPrinterNamesArgs.PrinterNames
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintersConfiguration.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -60,6 +69,8 @@ items:
   nameWithType: EventPrinterNamesArgs.EventPrinterNamesArgs(SortedList<int, string>)
   fullName: Reportman.Drawing.Forms.EventPrinterNamesArgs.EventPrinterNamesArgs(System.Collections.Generic.SortedList<int, string>)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintersConfiguration.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

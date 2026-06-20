@@ -9,11 +9,14 @@ items:
   - Reportman.Reporting.ReportLibraryConfig.ADOConnectionString
   - Reportman.Reporting.ReportLibraryConfig.Alias
   - Reportman.Reporting.ReportLibraryConfig.AllowSorting
+  - Reportman.Reporting.ReportLibraryConfig.ApiKey
   - Reportman.Reporting.ReportLibraryConfig.CurrentConnection
   - Reportman.Reporting.ReportLibraryConfig.Driver
   - Reportman.Reporting.ReportLibraryConfig.DriverIndex
   - Reportman.Reporting.ReportLibraryConfig.GetConfigFilename
   - Reportman.Reporting.ReportLibraryConfig.GetFactory
+  - Reportman.Reporting.ReportLibraryConfig.HttpAgentBaseUrl
+  - Reportman.Reporting.ReportLibraryConfig.HubDatabaseId
   - Reportman.Reporting.ReportLibraryConfig.LoadDriverParams
   - Reportman.Reporting.ReportLibraryConfig.LoadParams
   - Reportman.Reporting.ReportLibraryConfig.LoginPrompt
@@ -25,6 +28,7 @@ items:
   - Reportman.Reporting.ReportLibraryConfig.ReportTable
   - Reportman.Reporting.ReportLibraryConfig.SaveReport(Reportman.Reporting.Report,System.String,Reportman.Reporting.StreamVersion)
   - Reportman.Reporting.ReportLibraryConfig.ToString
+  - Reportman.Reporting.ReportLibraryConfig.Token
   langs:
   - csharp
   - vb
@@ -32,9 +36,18 @@ items:
   nameWithType: ReportLibraryConfig
   fullName: Reportman.Reporting.ReportLibraryConfig
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportLibraryConfig.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
+  summary: >-
+    Configuration for a report library connection: the database driver, connection
+
+    string and table/field mapping used to read and save report templates from a
+
+    database, including optional HttpAgent (remote agent) credentials.
+  example: []
   syntax:
     content: public class ReportLibraryConfig
     content.vb: Public Class ReportLibraryConfig
@@ -58,6 +71,8 @@ items:
   nameWithType: ReportLibraryConfig.CurrentConnection
   fullName: Reportman.Reporting.ReportLibraryConfig.CurrentConnection
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportLibraryConfig.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -77,6 +92,8 @@ items:
   nameWithType: ReportLibraryConfig.ReportLibraryConfig()
   fullName: Reportman.Reporting.ReportLibraryConfig.ReportLibraryConfig()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportLibraryConfig.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -98,6 +115,8 @@ items:
   nameWithType: ReportLibraryConfig.ToString()
   fullName: Reportman.Reporting.ReportLibraryConfig.ToString()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportLibraryConfig.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -120,6 +139,8 @@ items:
   nameWithType: ReportLibraryConfig.GetConfigFilename()
   fullName: Reportman.Reporting.ReportLibraryConfig.GetConfigFilename()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportLibraryConfig.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -140,6 +161,8 @@ items:
   nameWithType: ReportLibraryConfig.GetFactory()
   fullName: Reportman.Reporting.ReportLibraryConfig.GetFactory()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportLibraryConfig.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -160,6 +183,8 @@ items:
   nameWithType: ReportLibraryConfig.ReadReport(string)
   fullName: Reportman.Reporting.ReportLibraryConfig.ReadReport(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportLibraryConfig.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -186,6 +211,8 @@ items:
   nameWithType: ReportLibraryConfig.SaveReport(Report, string, StreamVersion)
   fullName: Reportman.Reporting.ReportLibraryConfig.SaveReport(Reportman.Reporting.Report, string, Reportman.Reporting.StreamVersion)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportLibraryConfig.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -216,6 +243,8 @@ items:
   nameWithType: ReportLibraryConfig.ReportTable
   fullName: Reportman.Reporting.ReportLibraryConfig.ReportTable
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportLibraryConfig.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -237,6 +266,8 @@ items:
   nameWithType: ReportLibraryConfig.ReportField
   fullName: Reportman.Reporting.ReportLibraryConfig.ReportField
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportLibraryConfig.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -258,6 +289,8 @@ items:
   nameWithType: ReportLibraryConfig.ReportSearchField
   fullName: Reportman.Reporting.ReportLibraryConfig.ReportSearchField
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportLibraryConfig.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -279,6 +312,8 @@ items:
   nameWithType: ReportLibraryConfig.ReportGroupsTable
   fullName: Reportman.Reporting.ReportLibraryConfig.ReportGroupsTable
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportLibraryConfig.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -300,6 +335,8 @@ items:
   nameWithType: ReportLibraryConfig.AllowSorting
   fullName: Reportman.Reporting.ReportLibraryConfig.AllowSorting
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportLibraryConfig.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -321,6 +358,8 @@ items:
   nameWithType: ReportLibraryConfig.ADOConnectionString
   fullName: Reportman.Reporting.ReportLibraryConfig.ADOConnectionString
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportLibraryConfig.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -342,6 +381,8 @@ items:
   nameWithType: ReportLibraryConfig.LoadParams
   fullName: Reportman.Reporting.ReportLibraryConfig.LoadParams
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportLibraryConfig.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -363,6 +404,8 @@ items:
   nameWithType: ReportLibraryConfig.LoadDriverParams
   fullName: Reportman.Reporting.ReportLibraryConfig.LoadDriverParams
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportLibraryConfig.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -384,6 +427,8 @@ items:
   nameWithType: ReportLibraryConfig.LoginPrompt
   fullName: Reportman.Reporting.ReportLibraryConfig.LoginPrompt
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportLibraryConfig.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -405,6 +450,8 @@ items:
   nameWithType: ReportLibraryConfig.Alias
   fullName: Reportman.Reporting.ReportLibraryConfig.Alias
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportLibraryConfig.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -426,6 +473,8 @@ items:
   nameWithType: ReportLibraryConfig.DriverIndex
   fullName: Reportman.Reporting.ReportLibraryConfig.DriverIndex
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportLibraryConfig.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -447,6 +496,8 @@ items:
   nameWithType: ReportLibraryConfig.Driver
   fullName: Reportman.Reporting.ReportLibraryConfig.Driver
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportLibraryConfig.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -468,6 +519,8 @@ items:
   nameWithType: ReportLibraryConfig.ProviderName
   fullName: Reportman.Reporting.ReportLibraryConfig.ProviderName
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportLibraryConfig.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -478,6 +531,106 @@ items:
       type: System.String
     content.vb: Public Property ProviderName As String
   overload: Reportman.Reporting.ReportLibraryConfig.ProviderName*
+- uid: Reportman.Reporting.ReportLibraryConfig.HttpAgentBaseUrl
+  commentId: P:Reportman.Reporting.ReportLibraryConfig.HttpAgentBaseUrl
+  id: HttpAgentBaseUrl
+  parent: Reportman.Reporting.ReportLibraryConfig
+  langs:
+  - csharp
+  - vb
+  name: HttpAgentBaseUrl
+  nameWithType: ReportLibraryConfig.HttpAgentBaseUrl
+  fullName: Reportman.Reporting.ReportLibraryConfig.HttpAgentBaseUrl
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportLibraryConfig.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Base URL for HttpAgent API (e.g., "https://api.reportman.es")
+  example: []
+  syntax:
+    content: public string HttpAgentBaseUrl { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property HttpAgentBaseUrl As String
+  overload: Reportman.Reporting.ReportLibraryConfig.HttpAgentBaseUrl*
+- uid: Reportman.Reporting.ReportLibraryConfig.ApiKey
+  commentId: P:Reportman.Reporting.ReportLibraryConfig.ApiKey
+  id: ApiKey
+  parent: Reportman.Reporting.ReportLibraryConfig
+  langs:
+  - csharp
+  - vb
+  name: ApiKey
+  nameWithType: ReportLibraryConfig.ApiKey
+  fullName: Reportman.Reporting.ReportLibraryConfig.ApiKey
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportLibraryConfig.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: API Key for HttpAgent driver authentication (alternative to Bearer token)
+  example: []
+  syntax:
+    content: public string ApiKey { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ApiKey As String
+  overload: Reportman.Reporting.ReportLibraryConfig.ApiKey*
+- uid: Reportman.Reporting.ReportLibraryConfig.HubDatabaseId
+  commentId: P:Reportman.Reporting.ReportLibraryConfig.HubDatabaseId
+  id: HubDatabaseId
+  parent: Reportman.Reporting.ReportLibraryConfig
+  langs:
+  - csharp
+  - vb
+  name: HubDatabaseId
+  nameWithType: ReportLibraryConfig.HubDatabaseId
+  fullName: Reportman.Reporting.ReportLibraryConfig.HubDatabaseId
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportLibraryConfig.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Hub Database Id for HttpAgent driver - identifies the database on the remote agent
+  example: []
+  syntax:
+    content: public long HubDatabaseId { get; set; }
+    parameters: []
+    return:
+      type: System.Int64
+    content.vb: Public Property HubDatabaseId As Long
+  overload: Reportman.Reporting.ReportLibraryConfig.HubDatabaseId*
+- uid: Reportman.Reporting.ReportLibraryConfig.Token
+  commentId: P:Reportman.Reporting.ReportLibraryConfig.Token
+  id: Token
+  parent: Reportman.Reporting.ReportLibraryConfig
+  langs:
+  - csharp
+  - vb
+  name: Token
+  nameWithType: ReportLibraryConfig.Token
+  fullName: Reportman.Reporting.ReportLibraryConfig.Token
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportLibraryConfig.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Bearer token for HttpAgent driver authentication (alternative to ApiKey)
+  example: []
+  syntax:
+    content: public string Token { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Token As String
+  overload: Reportman.Reporting.ReportLibraryConfig.Token*
 references:
 - uid: Reportman.Reporting
   commentId: N:Reportman.Reporting
@@ -1024,3 +1177,42 @@ references:
   name: ProviderName
   nameWithType: ReportLibraryConfig.ProviderName
   fullName: Reportman.Reporting.ReportLibraryConfig.ProviderName
+- uid: Reportman.Reporting.ReportLibraryConfig.HttpAgentBaseUrl*
+  commentId: Overload:Reportman.Reporting.ReportLibraryConfig.HttpAgentBaseUrl
+  isExternal: true
+  href: Reportman.Reporting.ReportLibraryConfig.html#Reportman_Reporting_ReportLibraryConfig_HttpAgentBaseUrl
+  name: HttpAgentBaseUrl
+  nameWithType: ReportLibraryConfig.HttpAgentBaseUrl
+  fullName: Reportman.Reporting.ReportLibraryConfig.HttpAgentBaseUrl
+- uid: Reportman.Reporting.ReportLibraryConfig.ApiKey*
+  commentId: Overload:Reportman.Reporting.ReportLibraryConfig.ApiKey
+  isExternal: true
+  href: Reportman.Reporting.ReportLibraryConfig.html#Reportman_Reporting_ReportLibraryConfig_ApiKey
+  name: ApiKey
+  nameWithType: ReportLibraryConfig.ApiKey
+  fullName: Reportman.Reporting.ReportLibraryConfig.ApiKey
+- uid: Reportman.Reporting.ReportLibraryConfig.HubDatabaseId*
+  commentId: Overload:Reportman.Reporting.ReportLibraryConfig.HubDatabaseId
+  isExternal: true
+  href: Reportman.Reporting.ReportLibraryConfig.html#Reportman_Reporting_ReportLibraryConfig_HubDatabaseId
+  name: HubDatabaseId
+  nameWithType: ReportLibraryConfig.HubDatabaseId
+  fullName: Reportman.Reporting.ReportLibraryConfig.HubDatabaseId
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: Reportman.Reporting.ReportLibraryConfig.Token*
+  commentId: Overload:Reportman.Reporting.ReportLibraryConfig.Token
+  isExternal: true
+  href: Reportman.Reporting.ReportLibraryConfig.html#Reportman_Reporting_ReportLibraryConfig_Token
+  name: Token
+  nameWithType: ReportLibraryConfig.Token
+  fullName: Reportman.Reporting.ReportLibraryConfig.Token

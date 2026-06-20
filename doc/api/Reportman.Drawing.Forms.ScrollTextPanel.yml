@@ -17,9 +17,16 @@ items:
   nameWithType: ScrollTextPanel
   fullName: Reportman.Drawing.Forms.ScrollTextPanel
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    A panel that displays a single line of text scrolling horizontally (marquee style),
+
+    driven by a timer; scrolling and speed are configurable.
+  example: []
   syntax:
     content: 'public class ScrollTextPanel : Panel, IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable'
     content.vb: Public Class ScrollTextPanel Inherits Panel Implements IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable
@@ -460,6 +467,8 @@ items:
   nameWithType: ScrollTextPanel.Speed
   fullName: Reportman.Drawing.Forms.ScrollTextPanel.Speed
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -479,6 +488,8 @@ items:
   nameWithType: ScrollTextPanel.ScrollString
   fullName: Reportman.Drawing.Forms.ScrollTextPanel.ScrollString
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -498,6 +509,8 @@ items:
   nameWithType: ScrollTextPanel.ScrollTextPanel()
   fullName: Reportman.Drawing.Forms.ScrollTextPanel.ScrollTextPanel()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -519,6 +532,8 @@ items:
   nameWithType: ScrollTextPanel.OnPaint(PaintEventArgs)
   fullName: Reportman.Drawing.Forms.ScrollTextPanel.OnPaint(System.Windows.Forms.PaintEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -542,6 +557,8 @@ items:
   nameWithType: ScrollTextPanel.ScrollText
   fullName: Reportman.Drawing.Forms.ScrollTextPanel.ScrollText
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

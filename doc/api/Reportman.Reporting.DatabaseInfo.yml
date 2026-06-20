@@ -9,6 +9,7 @@ items:
   - Reportman.Reporting.DatabaseInfo.Alias
   - Reportman.Reporting.DatabaseInfo.Clone
   - Reportman.Reporting.DatabaseInfo.Clone(Reportman.Reporting.Report)
+  - Reportman.Reporting.DatabaseInfo.ConfigFile
   - Reportman.Reporting.DatabaseInfo.Connect
   - Reportman.Reporting.DatabaseInfo.Connection
   - Reportman.Reporting.DatabaseInfo.ConnectionString
@@ -21,12 +22,18 @@ items:
   - Reportman.Reporting.DatabaseInfo.GetClassName
   - Reportman.Reporting.DatabaseInfo.GetDataReaderFromSQL(System.String,System.String,Reportman.Reporting.Params,System.Boolean)
   - Reportman.Reporting.DatabaseInfo.GetDriverDescriptions
+  - Reportman.Reporting.DatabaseInfo.HttpAgentApiKey
+  - Reportman.Reporting.DatabaseInfo.HttpAgentBaseUrl
+  - Reportman.Reporting.DatabaseInfo.HttpAgentHubDatabaseId
+  - Reportman.Reporting.DatabaseInfo.HttpAgentToken
+  - Reportman.Reporting.DatabaseInfo.LoadParams
   - Reportman.Reporting.DatabaseInfo.MYSQL_PROVIDER
   - Reportman.Reporting.DatabaseInfo.ProviderFactory
   - Reportman.Reporting.DatabaseInfo.ReportField
   - Reportman.Reporting.DatabaseInfo.ReportGroupsTable
   - Reportman.Reporting.DatabaseInfo.ReportSearchField
   - Reportman.Reporting.DatabaseInfo.ReportTable
+  - Reportman.Reporting.DatabaseInfo.ResolveHttpAgentConnectionParamsFromConfig
   - Reportman.Reporting.DatabaseInfo.SQLITE_PROVIDER
   - Reportman.Reporting.DatabaseInfo.SqlExecuter
   - Reportman.Reporting.DatabaseInfo.TransIsolation
@@ -38,6 +45,8 @@ items:
   nameWithType: DatabaseInfo
   fullName: Reportman.Reporting.DatabaseInfo
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -46,7 +55,7 @@ items:
 
     of connection definitions. Each connection can use diferent connectivity technology 
 
-    (database providers). <xref href="Reportman.Reporting.Variant?text=Report" data-throw-if-not-resolved="false"></xref><xref href="Reportman.Reporting.Variant?text=DatabaseInfos" data-throw-if-not-resolved="false"></xref>
+    (database providers). <xref href="Reportman.Reporting.Report" data-throw-if-not-resolved="false"></xref><xref href="Reportman.Reporting.DatabaseInfos" data-throw-if-not-resolved="false"></xref>
   example: []
   syntax:
     content: 'public class DatabaseInfo : ReportItem, IDisposable, ICloneable'
@@ -81,6 +90,8 @@ items:
   nameWithType: DatabaseInfo.FIREBIRD_PROVIDER2
   fullName: Reportman.Reporting.DatabaseInfo.FIREBIRD_PROVIDER2
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -100,6 +111,8 @@ items:
   nameWithType: DatabaseInfo.MYSQL_PROVIDER
   fullName: Reportman.Reporting.DatabaseInfo.MYSQL_PROVIDER
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -119,6 +132,8 @@ items:
   nameWithType: DatabaseInfo.SQLITE_PROVIDER
   fullName: Reportman.Reporting.DatabaseInfo.SQLITE_PROVIDER
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -138,6 +153,8 @@ items:
   nameWithType: DatabaseInfo.Transaction
   fullName: Reportman.Reporting.DatabaseInfo.Transaction
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -159,6 +176,8 @@ items:
   nameWithType: DatabaseInfo.SqlExecuter
   fullName: Reportman.Reporting.DatabaseInfo.SqlExecuter
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -178,6 +197,8 @@ items:
   nameWithType: DatabaseInfo.TransIsolation
   fullName: Reportman.Reporting.DatabaseInfo.TransIsolation
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -202,6 +223,8 @@ items:
   nameWithType: DatabaseInfo.CustomProviderFactories
   fullName: Reportman.Reporting.DatabaseInfo.CustomProviderFactories
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -221,6 +244,8 @@ items:
   nameWithType: DatabaseInfo.GetDriverDescriptions()
   fullName: Reportman.Reporting.DatabaseInfo.GetDriverDescriptions()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -241,6 +266,8 @@ items:
   nameWithType: DatabaseInfo.GetClassName()
   fullName: Reportman.Reporting.DatabaseInfo.GetClassName()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -265,6 +292,8 @@ items:
   nameWithType: DatabaseInfo.Clone()
   fullName: Reportman.Reporting.DatabaseInfo.Clone()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -290,6 +319,8 @@ items:
   nameWithType: DatabaseInfo.Clone(Report)
   fullName: Reportman.Reporting.DatabaseInfo.Clone(Reportman.Reporting.Report)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -317,6 +348,8 @@ items:
   nameWithType: DatabaseInfo.DatabaseInfo()
   fullName: Reportman.Reporting.DatabaseInfo.DatabaseInfo()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -329,6 +362,26 @@ items:
   nameWithType.vb: DatabaseInfo.New()
   fullName.vb: Reportman.Reporting.DatabaseInfo.New()
   name.vb: New()
+- uid: Reportman.Reporting.DatabaseInfo.ResolveHttpAgentConnectionParamsFromConfig
+  commentId: M:Reportman.Reporting.DatabaseInfo.ResolveHttpAgentConnectionParamsFromConfig
+  id: ResolveHttpAgentConnectionParamsFromConfig
+  parent: Reportman.Reporting.DatabaseInfo
+  langs:
+  - csharp
+  - vb
+  name: ResolveHttpAgentConnectionParamsFromConfig()
+  nameWithType: DatabaseInfo.ResolveHttpAgentConnectionParamsFromConfig()
+  fullName: Reportman.Reporting.DatabaseInfo.ResolveHttpAgentConnectionParamsFromConfig()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public void ResolveHttpAgentConnectionParamsFromConfig()
+    content.vb: Public Sub ResolveHttpAgentConnectionParamsFromConfig()
+  overload: Reportman.Reporting.DatabaseInfo.ResolveHttpAgentConnectionParamsFromConfig*
 - uid: Reportman.Reporting.DatabaseInfo.DisConnect
   commentId: M:Reportman.Reporting.DatabaseInfo.DisConnect
   id: DisConnect
@@ -340,6 +393,8 @@ items:
   nameWithType: DatabaseInfo.DisConnect()
   fullName: Reportman.Reporting.DatabaseInfo.DisConnect()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -360,6 +415,8 @@ items:
   nameWithType: DatabaseInfo.Connect()
   fullName: Reportman.Reporting.DatabaseInfo.Connect()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -380,6 +437,8 @@ items:
   nameWithType: DatabaseInfo.GetDataReaderFromSQL(string, string, Params, bool)
   fullName: Reportman.Reporting.DatabaseInfo.GetDataReaderFromSQL(string, string, Reportman.Reporting.Params, bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -419,6 +478,8 @@ items:
   nameWithType: DatabaseInfo.CurrentTransaction
   fullName: Reportman.Reporting.DatabaseInfo.CurrentTransaction
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -459,6 +520,8 @@ items:
   nameWithType: DatabaseInfo.Connection
   fullName: Reportman.Reporting.DatabaseInfo.Connection
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -504,6 +567,8 @@ items:
   nameWithType: DatabaseInfo.Alias
   fullName: Reportman.Reporting.DatabaseInfo.Alias
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -527,6 +592,8 @@ items:
   nameWithType: DatabaseInfo.Driver
   fullName: Reportman.Reporting.DatabaseInfo.Driver
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -550,6 +617,8 @@ items:
   nameWithType: DatabaseInfo.ProviderFactory
   fullName: Reportman.Reporting.DatabaseInfo.ProviderFactory
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -573,6 +642,8 @@ items:
   nameWithType: DatabaseInfo.ReportTable
   fullName: Reportman.Reporting.DatabaseInfo.ReportTable
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -596,6 +667,8 @@ items:
   nameWithType: DatabaseInfo.ReportSearchField
   fullName: Reportman.Reporting.DatabaseInfo.ReportSearchField
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -619,6 +692,8 @@ items:
   nameWithType: DatabaseInfo.ReportField
   fullName: Reportman.Reporting.DatabaseInfo.ReportField
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -642,6 +717,8 @@ items:
   nameWithType: DatabaseInfo.ReportGroupsTable
   fullName: Reportman.Reporting.DatabaseInfo.ReportGroupsTable
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -665,6 +742,8 @@ items:
   nameWithType: DatabaseInfo.ConnectionString
   fullName: Reportman.Reporting.DatabaseInfo.ConnectionString
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -677,6 +756,56 @@ items:
       type: System.String
     content.vb: Public Property ConnectionString As String
   overload: Reportman.Reporting.DatabaseInfo.ConnectionString*
+- uid: Reportman.Reporting.DatabaseInfo.ConfigFile
+  commentId: P:Reportman.Reporting.DatabaseInfo.ConfigFile
+  id: ConfigFile
+  parent: Reportman.Reporting.DatabaseInfo
+  langs:
+  - csharp
+  - vb
+  name: ConfigFile
+  nameWithType: DatabaseInfo.ConfigFile
+  fullName: Reportman.Reporting.DatabaseInfo.ConfigFile
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Optional DBX connection configuration file override.
+  example: []
+  syntax:
+    content: public string ConfigFile { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ConfigFile As String
+  overload: Reportman.Reporting.DatabaseInfo.ConfigFile*
+- uid: Reportman.Reporting.DatabaseInfo.LoadParams
+  commentId: P:Reportman.Reporting.DatabaseInfo.LoadParams
+  id: LoadParams
+  parent: Reportman.Reporting.DatabaseInfo
+  langs:
+  - csharp
+  - vb
+  name: LoadParams
+  nameWithType: DatabaseInfo.LoadParams
+  fullName: Reportman.Reporting.DatabaseInfo.LoadParams
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Load connection parameters from the configured/public DBX connection file.
+  example: []
+  syntax:
+    content: public bool LoadParams { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property LoadParams As Boolean
+  overload: Reportman.Reporting.DatabaseInfo.LoadParams*
 - uid: Reportman.Reporting.DatabaseInfo.DotNetDriver
   commentId: P:Reportman.Reporting.DatabaseInfo.DotNetDriver
   id: DotNetDriver
@@ -688,6 +817,8 @@ items:
   nameWithType: DatabaseInfo.DotNetDriver
   fullName: Reportman.Reporting.DatabaseInfo.DotNetDriver
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -700,15 +831,123 @@ items:
       type: Reportman.Reporting.DotNetDriverType
     content.vb: Public Property DotNetDriver As DotNetDriverType
   overload: Reportman.Reporting.DatabaseInfo.DotNetDriver*
+- uid: Reportman.Reporting.DatabaseInfo.HttpAgentBaseUrl
+  commentId: P:Reportman.Reporting.DatabaseInfo.HttpAgentBaseUrl
+  id: HttpAgentBaseUrl
+  parent: Reportman.Reporting.DatabaseInfo
+  langs:
+  - csharp
+  - vb
+  name: HttpAgentBaseUrl
+  nameWithType: DatabaseInfo.HttpAgentBaseUrl
+  fullName: Reportman.Reporting.DatabaseInfo.HttpAgentBaseUrl
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Base URL for HttpAgent API (e.g., "https://api.reportman.es")
+  example: []
+  syntax:
+    content: public string HttpAgentBaseUrl { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property HttpAgentBaseUrl As String
+  overload: Reportman.Reporting.DatabaseInfo.HttpAgentBaseUrl*
+- uid: Reportman.Reporting.DatabaseInfo.HttpAgentApiKey
+  commentId: P:Reportman.Reporting.DatabaseInfo.HttpAgentApiKey
+  id: HttpAgentApiKey
+  parent: Reportman.Reporting.DatabaseInfo
+  langs:
+  - csharp
+  - vb
+  name: HttpAgentApiKey
+  nameWithType: DatabaseInfo.HttpAgentApiKey
+  fullName: Reportman.Reporting.DatabaseInfo.HttpAgentApiKey
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: API Key for HttpAgent authentication (alternative to Token)
+  example: []
+  syntax:
+    content: public string HttpAgentApiKey { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property HttpAgentApiKey As String
+  overload: Reportman.Reporting.DatabaseInfo.HttpAgentApiKey*
+- uid: Reportman.Reporting.DatabaseInfo.HttpAgentToken
+  commentId: P:Reportman.Reporting.DatabaseInfo.HttpAgentToken
+  id: HttpAgentToken
+  parent: Reportman.Reporting.DatabaseInfo
+  langs:
+  - csharp
+  - vb
+  name: HttpAgentToken
+  nameWithType: DatabaseInfo.HttpAgentToken
+  fullName: Reportman.Reporting.DatabaseInfo.HttpAgentToken
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Bearer token for HttpAgent authentication (alternative to ApiKey)
+  example: []
+  syntax:
+    content: public string HttpAgentToken { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property HttpAgentToken As String
+  overload: Reportman.Reporting.DatabaseInfo.HttpAgentToken*
+- uid: Reportman.Reporting.DatabaseInfo.HttpAgentHubDatabaseId
+  commentId: P:Reportman.Reporting.DatabaseInfo.HttpAgentHubDatabaseId
+  id: HttpAgentHubDatabaseId
+  parent: Reportman.Reporting.DatabaseInfo
+  langs:
+  - csharp
+  - vb
+  name: HttpAgentHubDatabaseId
+  nameWithType: DatabaseInfo.HttpAgentHubDatabaseId
+  fullName: Reportman.Reporting.DatabaseInfo.HttpAgentHubDatabaseId
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Hub Database Id for HttpAgent - identifies the database on the remote agent
+  example: []
+  syntax:
+    content: public long HttpAgentHubDatabaseId { get; set; }
+    parameters: []
+    return:
+      type: System.Int64
+    content.vb: Public Property HttpAgentHubDatabaseId As Long
+  overload: Reportman.Reporting.DatabaseInfo.HttpAgentHubDatabaseId*
 references:
-- uid: Reportman.Reporting.Variant
-  commentId: T:Reportman.Reporting.Variant
+- uid: Reportman.Reporting.Report
+  commentId: T:Reportman.Reporting.Report
   parent: Reportman.Reporting
   isExternal: true
-  href: Reportman.Reporting.Variant.html
-  name: Variant
-  nameWithType: Variant
-  fullName: Reportman.Reporting.Variant
+  href: Reportman.Reporting.Report.html
+  name: Report
+  nameWithType: Report
+  fullName: Reportman.Reporting.Report
+- uid: Reportman.Reporting.DatabaseInfos
+  commentId: T:Reportman.Reporting.DatabaseInfos
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.DatabaseInfos.html
+  name: DatabaseInfos
+  nameWithType: DatabaseInfos
+  fullName: Reportman.Reporting.DatabaseInfos
 - uid: Reportman.Reporting
   commentId: N:Reportman.Reporting
   isExternal: true
@@ -1408,14 +1647,6 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.icloneable.clone
   - name: (
   - name: )
-- uid: Reportman.Reporting.Report
-  commentId: T:Reportman.Reporting.Report
-  parent: Reportman.Reporting
-  isExternal: true
-  href: Reportman.Reporting.Report.html
-  name: Report
-  nameWithType: Report
-  fullName: Reportman.Reporting.Report
 - uid: Reportman.Reporting.DatabaseInfo
   commentId: T:Reportman.Reporting.DatabaseInfo
   parent: Reportman.Reporting
@@ -1434,6 +1665,13 @@ references:
   nameWithType.vb: DatabaseInfo.New
   fullName.vb: Reportman.Reporting.DatabaseInfo.New
   name.vb: New
+- uid: Reportman.Reporting.DatabaseInfo.ResolveHttpAgentConnectionParamsFromConfig*
+  commentId: Overload:Reportman.Reporting.DatabaseInfo.ResolveHttpAgentConnectionParamsFromConfig
+  isExternal: true
+  href: Reportman.Reporting.DatabaseInfo.html#Reportman_Reporting_DatabaseInfo_ResolveHttpAgentConnectionParamsFromConfig
+  name: ResolveHttpAgentConnectionParamsFromConfig
+  nameWithType: DatabaseInfo.ResolveHttpAgentConnectionParamsFromConfig
+  fullName: Reportman.Reporting.DatabaseInfo.ResolveHttpAgentConnectionParamsFromConfig
 - uid: Reportman.Reporting.DatabaseInfo.DisConnect*
   commentId: Overload:Reportman.Reporting.DatabaseInfo.DisConnect
   isExternal: true
@@ -1568,6 +1806,20 @@ references:
   name: ConnectionString
   nameWithType: DatabaseInfo.ConnectionString
   fullName: Reportman.Reporting.DatabaseInfo.ConnectionString
+- uid: Reportman.Reporting.DatabaseInfo.ConfigFile*
+  commentId: Overload:Reportman.Reporting.DatabaseInfo.ConfigFile
+  isExternal: true
+  href: Reportman.Reporting.DatabaseInfo.html#Reportman_Reporting_DatabaseInfo_ConfigFile
+  name: ConfigFile
+  nameWithType: DatabaseInfo.ConfigFile
+  fullName: Reportman.Reporting.DatabaseInfo.ConfigFile
+- uid: Reportman.Reporting.DatabaseInfo.LoadParams*
+  commentId: Overload:Reportman.Reporting.DatabaseInfo.LoadParams
+  isExternal: true
+  href: Reportman.Reporting.DatabaseInfo.html#Reportman_Reporting_DatabaseInfo_LoadParams
+  name: LoadParams
+  nameWithType: DatabaseInfo.LoadParams
+  fullName: Reportman.Reporting.DatabaseInfo.LoadParams
 - uid: Reportman.Reporting.DatabaseInfo.DotNetDriver*
   commentId: Overload:Reportman.Reporting.DatabaseInfo.DotNetDriver
   isExternal: true
@@ -1583,3 +1835,42 @@ references:
   name: DotNetDriverType
   nameWithType: DotNetDriverType
   fullName: Reportman.Reporting.DotNetDriverType
+- uid: Reportman.Reporting.DatabaseInfo.HttpAgentBaseUrl*
+  commentId: Overload:Reportman.Reporting.DatabaseInfo.HttpAgentBaseUrl
+  isExternal: true
+  href: Reportman.Reporting.DatabaseInfo.html#Reportman_Reporting_DatabaseInfo_HttpAgentBaseUrl
+  name: HttpAgentBaseUrl
+  nameWithType: DatabaseInfo.HttpAgentBaseUrl
+  fullName: Reportman.Reporting.DatabaseInfo.HttpAgentBaseUrl
+- uid: Reportman.Reporting.DatabaseInfo.HttpAgentApiKey*
+  commentId: Overload:Reportman.Reporting.DatabaseInfo.HttpAgentApiKey
+  isExternal: true
+  href: Reportman.Reporting.DatabaseInfo.html#Reportman_Reporting_DatabaseInfo_HttpAgentApiKey
+  name: HttpAgentApiKey
+  nameWithType: DatabaseInfo.HttpAgentApiKey
+  fullName: Reportman.Reporting.DatabaseInfo.HttpAgentApiKey
+- uid: Reportman.Reporting.DatabaseInfo.HttpAgentToken*
+  commentId: Overload:Reportman.Reporting.DatabaseInfo.HttpAgentToken
+  isExternal: true
+  href: Reportman.Reporting.DatabaseInfo.html#Reportman_Reporting_DatabaseInfo_HttpAgentToken
+  name: HttpAgentToken
+  nameWithType: DatabaseInfo.HttpAgentToken
+  fullName: Reportman.Reporting.DatabaseInfo.HttpAgentToken
+- uid: Reportman.Reporting.DatabaseInfo.HttpAgentHubDatabaseId*
+  commentId: Overload:Reportman.Reporting.DatabaseInfo.HttpAgentHubDatabaseId
+  isExternal: true
+  href: Reportman.Reporting.DatabaseInfo.html#Reportman_Reporting_DatabaseInfo_HttpAgentHubDatabaseId
+  name: HttpAgentHubDatabaseId
+  nameWithType: DatabaseInfo.HttpAgentHubDatabaseId
+  fullName: Reportman.Reporting.DatabaseInfo.HttpAgentHubDatabaseId
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long

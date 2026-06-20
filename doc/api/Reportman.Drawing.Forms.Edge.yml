@@ -17,9 +17,13 @@ items:
   nameWithType: Edge
   fullName: Reportman.Drawing.Forms.Edge
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: Identifies a side of a rectangle (top, left, bottom, or right), or none.
+  example: []
   syntax:
     content: public enum Edge
     content.vb: Public Enum Edge
@@ -34,6 +38,8 @@ items:
   nameWithType: Edge.Top
   fullName: Reportman.Drawing.Forms.Edge.Top
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -52,6 +58,8 @@ items:
   nameWithType: Edge.Left
   fullName: Reportman.Drawing.Forms.Edge.Left
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -70,6 +78,8 @@ items:
   nameWithType: Edge.Bottom
   fullName: Reportman.Drawing.Forms.Edge.Bottom
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -88,6 +98,8 @@ items:
   nameWithType: Edge.Right
   fullName: Reportman.Drawing.Forms.Edge.Right
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -106,6 +118,8 @@ items:
   nameWithType: Edge.None
   fullName: Reportman.Drawing.Forms.Edge.None
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

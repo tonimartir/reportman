@@ -15,9 +15,16 @@ items:
   nameWithType: CustomPaintControl
   fullName: Reportman.Drawing.Forms.CustomPaintControl
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    A double-buffered Control that forwards its paint pass to a user-supplied
+
+    OnCustomPaint handler, allowing fully custom rendering.
+  example: []
   syntax:
     content: 'public class CustomPaintControl : Control, IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable'
     content.vb: Public Class CustomPaintControl Inherits Control Implements IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable
@@ -430,6 +437,8 @@ items:
   nameWithType: CustomPaintControl.OnCustomPaint
   fullName: Reportman.Drawing.Forms.CustomPaintControl.OnCustomPaint
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -449,6 +458,8 @@ items:
   nameWithType: CustomPaintControl.CustomPaintControl()
   fullName: Reportman.Drawing.Forms.CustomPaintControl.CustomPaintControl()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -470,6 +481,8 @@ items:
   nameWithType: CustomPaintControl.OnPaint(PaintEventArgs)
   fullName: Reportman.Drawing.Forms.CustomPaintControl.OnPaint(System.Windows.Forms.PaintEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

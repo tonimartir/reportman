@@ -36,6 +36,7 @@ items:
   - Reportman.Drawing.Forms.TextBoxAdvanced.SearchWindow
   - Reportman.Drawing.Forms.TextBoxAdvanced.SelectedDropDown
   - Reportman.Drawing.Forms.TextBoxAdvanced.Text
+  - Reportman.Drawing.Forms.TextBoxAdvanced.UppercaseOnly
   - Reportman.Drawing.Forms.TextBoxAdvanced.WaterMark
   - Reportman.Drawing.Forms.TextBoxAdvanced.WaterMarkActiveForeColor
   - Reportman.Drawing.Forms.TextBoxAdvanced.WaterMarkFont
@@ -50,9 +51,18 @@ items:
   nameWithType: TextBoxAdvanced
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    An enhanced Windows Forms text box that adds input validation by data type, an
+
+    auto-complete drop-down list (optionally including Google suggestions), a watermark,
+
+    barcode capture, uppercase-only mode and Enter-as-Tab navigation.
+  example: []
   syntax:
     content: 'public class TextBoxAdvanced : TextBox, IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable, IMessageFilter'
     content.vb: Public Class TextBoxAdvanced Inherits TextBox Implements IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable, IMessageFilter
@@ -516,6 +526,8 @@ items:
   nameWithType: TextBoxAdvanced.AutoCompleteListTop
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.AutoCompleteListTop
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -535,6 +547,8 @@ items:
   nameWithType: TextBoxAdvanced.AutoCompleteWidth
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.AutoCompleteWidth
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -554,6 +568,8 @@ items:
   nameWithType: TextBoxAdvanced.AutoCompleteList
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.AutoCompleteList
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -573,6 +589,8 @@ items:
   nameWithType: TextBoxAdvanced.AutoCompleteMaxVisibleLines
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.AutoCompleteMaxVisibleLines
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -592,6 +610,8 @@ items:
   nameWithType: TextBoxAdvanced.GoogleTermsImage
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.GoogleTermsImage
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -611,6 +631,8 @@ items:
   nameWithType: TextBoxAdvanced.NotGoogleTermsImage
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.NotGoogleTermsImage
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -630,6 +652,8 @@ items:
   nameWithType: TextBoxAdvanced.SearchWindow
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.SearchWindow
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -649,6 +673,8 @@ items:
   nameWithType: TextBoxAdvanced._waterMarkText
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced._waterMarkText
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -668,6 +694,8 @@ items:
   nameWithType: TextBoxAdvanced._waterMarkColor
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced._waterMarkColor
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -687,6 +715,8 @@ items:
   nameWithType: TextBoxAdvanced._waterMarkActiveColor
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced._waterMarkActiveColor
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -706,6 +736,8 @@ items:
   nameWithType: TextBoxAdvanced.OnDropDownClicked
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.OnDropDownClicked
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -725,6 +757,8 @@ items:
   nameWithType: TextBoxAdvanced.BeforeEnterTab
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.BeforeEnterTab
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -744,6 +778,8 @@ items:
   nameWithType: TextBoxAdvanced.TextBoxAdvanced()
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.TextBoxAdvanced()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -765,6 +801,8 @@ items:
   nameWithType: TextBoxAdvanced.OnPaint(PaintEventArgs)
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.OnPaint(System.Windows.Forms.PaintEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -788,6 +826,8 @@ items:
   nameWithType: TextBoxAdvanced.OnInvalidated(InvalidateEventArgs)
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.OnInvalidated(System.Windows.Forms.InvalidateEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -811,6 +851,8 @@ items:
   nameWithType: TextBoxAdvanced.OnLostFocus(EventArgs)
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.OnLostFocus(System.EventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -834,6 +876,8 @@ items:
   nameWithType: TextBoxAdvanced.OnMouseDown(MouseEventArgs)
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.OnMouseDown(System.Windows.Forms.MouseEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -857,6 +901,8 @@ items:
   nameWithType: TextBoxAdvanced.PreFilterMessage(ref Message)
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.PreFilterMessage(ref System.Windows.Forms.Message)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -886,6 +932,8 @@ items:
   nameWithType: TextBoxAdvanced.OnTextChanged(EventArgs)
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.OnTextChanged(System.EventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -909,6 +957,8 @@ items:
   nameWithType: TextBoxAdvanced.OnLeave(EventArgs)
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.OnLeave(System.EventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -932,6 +982,8 @@ items:
   nameWithType: TextBoxAdvanced.HideDropDown()
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.HideDropDown()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -950,6 +1002,8 @@ items:
   nameWithType: TextBoxAdvanced.OnHandleCreated(EventArgs)
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.OnHandleCreated(System.EventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -973,6 +1027,8 @@ items:
   nameWithType: TextBoxAdvanced.ProcessCmdKey(ref Message, Keys)
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.ProcessCmdKey(ref System.Windows.Forms.Message, System.Windows.Forms.Keys)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1003,6 +1059,8 @@ items:
   nameWithType: TextBoxAdvanced.OnKeyDown(KeyEventArgs)
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.OnKeyDown(System.Windows.Forms.KeyEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1026,6 +1084,8 @@ items:
   nameWithType: TextBoxAdvanced.OnKeyUp(KeyEventArgs)
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.OnKeyUp(System.Windows.Forms.KeyEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1049,6 +1109,8 @@ items:
   nameWithType: TextBoxAdvanced.OnKeyPress(KeyPressEventArgs)
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.OnKeyPress(System.Windows.Forms.KeyPressEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1072,6 +1134,8 @@ items:
   nameWithType: TextBoxAdvanced.IncludeGoogleTerms
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.IncludeGoogleTerms
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1093,6 +1157,8 @@ items:
   nameWithType: TextBoxAdvanced.Text
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.Text
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1116,6 +1182,8 @@ items:
   nameWithType: TextBoxAdvanced.SelectedDropDown
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.SelectedDropDown
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1137,6 +1205,8 @@ items:
   nameWithType: TextBoxAdvanced.WaterMark
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.WaterMark
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1158,6 +1228,8 @@ items:
   nameWithType: TextBoxAdvanced.WaterMarkActiveForeColor
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.WaterMarkActiveForeColor
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1179,6 +1251,8 @@ items:
   nameWithType: TextBoxAdvanced.WaterMarkForeColor
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.WaterMarkForeColor
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1200,6 +1274,8 @@ items:
   nameWithType: TextBoxAdvanced.WaterMarkFont
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.WaterMarkFont
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1221,6 +1297,8 @@ items:
   nameWithType: TextBoxAdvanced.DataType
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.DataType
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1231,6 +1309,29 @@ items:
       type: Reportman.Drawing.Forms.TextBoxDataType
     content.vb: Public Property DataType As TextBoxDataType
   overload: Reportman.Drawing.Forms.TextBoxAdvanced.DataType*
+- uid: Reportman.Drawing.Forms.TextBoxAdvanced.UppercaseOnly
+  commentId: P:Reportman.Drawing.Forms.TextBoxAdvanced.UppercaseOnly
+  id: UppercaseOnly
+  parent: Reportman.Drawing.Forms.TextBoxAdvanced
+  langs:
+  - csharp
+  - vb
+  name: UppercaseOnly
+  nameWithType: TextBoxAdvanced.UppercaseOnly
+  fullName: Reportman.Drawing.Forms.TextBoxAdvanced.UppercaseOnly
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
+  assemblies:
+  - Reportman.Drawing.Forms
+  namespace: Reportman.Drawing.Forms
+  syntax:
+    content: public bool UppercaseOnly { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property UppercaseOnly As Boolean
+  overload: Reportman.Drawing.Forms.TextBoxAdvanced.UppercaseOnly*
 - uid: Reportman.Drawing.Forms.TextBoxAdvanced.ReadBarCode
   commentId: P:Reportman.Drawing.Forms.TextBoxAdvanced.ReadBarCode
   id: ReadBarCode
@@ -1242,6 +1343,8 @@ items:
   nameWithType: TextBoxAdvanced.ReadBarCode
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.ReadBarCode
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1263,6 +1366,8 @@ items:
   nameWithType: TextBoxAdvanced.BarCodeBeginChar
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.BarCodeBeginChar
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1284,6 +1389,8 @@ items:
   nameWithType: TextBoxAdvanced.BarCodeEndChar
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.BarCodeEndChar
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1305,6 +1412,8 @@ items:
   nameWithType: TextBoxAdvanced.EnterAsTab
   fullName: Reportman.Drawing.Forms.TextBoxAdvanced.EnterAsTab
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TextBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -11827,6 +11936,13 @@ references:
   name: TextBoxDataType
   nameWithType: TextBoxDataType
   fullName: Reportman.Drawing.Forms.TextBoxDataType
+- uid: Reportman.Drawing.Forms.TextBoxAdvanced.UppercaseOnly*
+  commentId: Overload:Reportman.Drawing.Forms.TextBoxAdvanced.UppercaseOnly
+  isExternal: true
+  href: Reportman.Drawing.Forms.TextBoxAdvanced.html#Reportman_Drawing_Forms_TextBoxAdvanced_UppercaseOnly
+  name: UppercaseOnly
+  nameWithType: TextBoxAdvanced.UppercaseOnly
+  fullName: Reportman.Drawing.Forms.TextBoxAdvanced.UppercaseOnly
 - uid: Reportman.Drawing.Forms.TextBoxAdvanced.ReadBarCode*
   commentId: Overload:Reportman.Drawing.Forms.TextBoxAdvanced.ReadBarCode
   isExternal: true

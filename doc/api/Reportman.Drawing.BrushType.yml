@@ -27,6 +27,8 @@ items:
   nameWithType: BrushType
   fullName: Reportman.Drawing.BrushType
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -46,6 +48,8 @@ items:
   nameWithType: BrushType.Solid
   fullName: Reportman.Drawing.BrushType.Solid
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -66,6 +70,8 @@ items:
   nameWithType: BrushType.Clear
   fullName: Reportman.Drawing.BrushType.Clear
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -86,6 +92,8 @@ items:
   nameWithType: BrushType.Horizontal
   fullName: Reportman.Drawing.BrushType.Horizontal
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -106,6 +114,8 @@ items:
   nameWithType: BrushType.Vertical
   fullName: Reportman.Drawing.BrushType.Vertical
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -126,6 +136,8 @@ items:
   nameWithType: BrushType.ADiagonal
   fullName: Reportman.Drawing.BrushType.ADiagonal
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -146,6 +158,8 @@ items:
   nameWithType: BrushType.BDiagonal
   fullName: Reportman.Drawing.BrushType.BDiagonal
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -166,6 +180,8 @@ items:
   nameWithType: BrushType.ACross
   fullName: Reportman.Drawing.BrushType.ACross
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -186,6 +202,8 @@ items:
   nameWithType: BrushType.BCross
   fullName: Reportman.Drawing.BrushType.BCross
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -206,6 +224,8 @@ items:
   nameWithType: BrushType.Dense1
   fullName: Reportman.Drawing.BrushType.Dense1
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -226,6 +246,8 @@ items:
   nameWithType: BrushType.Dense2
   fullName: Reportman.Drawing.BrushType.Dense2
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -246,6 +268,8 @@ items:
   nameWithType: BrushType.Dense3
   fullName: Reportman.Drawing.BrushType.Dense3
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -266,6 +290,8 @@ items:
   nameWithType: BrushType.Dense4
   fullName: Reportman.Drawing.BrushType.Dense4
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -286,6 +312,8 @@ items:
   nameWithType: BrushType.Dense5
   fullName: Reportman.Drawing.BrushType.Dense5
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -306,6 +334,8 @@ items:
   nameWithType: BrushType.Dense6
   fullName: Reportman.Drawing.BrushType.Dense6
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -326,6 +356,8 @@ items:
   nameWithType: BrushType.Dense7
   fullName: Reportman.Drawing.BrushType.Dense7
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

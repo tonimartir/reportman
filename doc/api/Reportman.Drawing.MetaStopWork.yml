@@ -16,6 +16,8 @@ items:
   nameWithType: MetaStopWork
   fullName: Reportman.Drawing.MetaStopWork
   type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -35,6 +37,8 @@ items:
   nameWithType: MetaStopWork.MetaStopWork(object, nint)
   fullName: Reportman.Drawing.MetaStopWork.MetaStopWork(object, nint)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -61,6 +65,8 @@ items:
   nameWithType: MetaStopWork.Invoke()
   fullName: Reportman.Drawing.MetaStopWork.Invoke()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -79,6 +85,8 @@ items:
   nameWithType: MetaStopWork.BeginInvoke(AsyncCallback, object)
   fullName: Reportman.Drawing.MetaStopWork.BeginInvoke(System.AsyncCallback, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -107,6 +115,8 @@ items:
   nameWithType: MetaStopWork.EndInvoke(IAsyncResult)
   fullName: Reportman.Drawing.MetaStopWork.EndInvoke(System.IAsyncResult)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

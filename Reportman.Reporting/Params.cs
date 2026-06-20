@@ -7,6 +7,10 @@ using Reportman.Drawing;
 
 namespace Reportman.Reporting
 {
+    /// <summary>
+    /// An ordered, self-growing collection of report <see cref="Param"/> objects, indexable by position
+    /// or by alias, with add/insert/remove/swap operations and support for enumeration, cloning and JSON serialization.
+    /// </summary>
     [JsonConverter(typeof(ParamsConverter))]
     public class Params : IEnumerable, ICloneable
     {
@@ -140,6 +144,9 @@ namespace Reportman.Reporting
             return new ParamEnumerator(this);
         }
         // Inner class implements IEnumerator interface:
+        /// <summary>
+        /// Iterates over the <see cref="Param"/> items contained in a <see cref="Params"/> collection.
+        /// </summary>
         public class ParamEnumerator : IEnumerator
         {
             private int position = -1;
@@ -209,6 +216,10 @@ namespace Reportman.Reporting
         }
     }
 
+    /// <summary>
+    /// Newtonsoft.Json converter that serializes a <see cref="Params"/> collection as a plain JSON array
+    /// of parameters and reconstructs it when reading.
+    /// </summary>
     public class ParamsConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType) => objectType == typeof(Params);

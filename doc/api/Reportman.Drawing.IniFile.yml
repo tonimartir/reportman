@@ -28,9 +28,18 @@ items:
   nameWithType: IniFile
   fullName: Reportman.Drawing.IniFile
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IniFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    Reads and writes classic INI configuration files, exposing typed accessors for
+
+    string, integer, decimal, boolean and date/time values grouped into named sections,
+
+    with support for loading from a file or stream and saving back.
+  example: []
   syntax:
     content: public class IniFile
     content.vb: Public Class IniFile
@@ -55,6 +64,8 @@ items:
   nameWithType: IniFile.sections
   fullName: Reportman.Drawing.IniFile.sections
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IniFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -74,6 +85,8 @@ items:
   nameWithType: IniFile.IniFile(string)
   fullName: Reportman.Drawing.IniFile.IniFile(string)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IniFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -98,6 +111,8 @@ items:
   nameWithType: IniFile.IniFile(Stream)
   fullName: Reportman.Drawing.IniFile.IniFile(System.IO.Stream)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IniFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -122,6 +137,8 @@ items:
   nameWithType: IniFile.ReadString(string, string, string)
   fullName: Reportman.Drawing.IniFile.ReadString(string, string, string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IniFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -152,6 +169,8 @@ items:
   nameWithType: IniFile.WriteString(string, string, string)
   fullName: Reportman.Drawing.IniFile.WriteString(string, string, string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IniFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -180,6 +199,8 @@ items:
   nameWithType: IniFile.ReadDateTime(string, string, DateTime)
   fullName: Reportman.Drawing.IniFile.ReadDateTime(string, string, System.DateTime)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IniFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -210,6 +231,8 @@ items:
   nameWithType: IniFile.WriteDateTime(string, string, DateTime)
   fullName: Reportman.Drawing.IniFile.WriteDateTime(string, string, System.DateTime)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IniFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -238,6 +261,8 @@ items:
   nameWithType: IniFile.WriteInteger(string, string, int)
   fullName: Reportman.Drawing.IniFile.WriteInteger(string, string, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IniFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -266,6 +291,8 @@ items:
   nameWithType: IniFile.WriteDecimal(string, string, decimal)
   fullName: Reportman.Drawing.IniFile.WriteDecimal(string, string, decimal)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IniFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -294,6 +321,8 @@ items:
   nameWithType: IniFile.WriteBool(string, string, bool)
   fullName: Reportman.Drawing.IniFile.WriteBool(string, string, bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IniFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -322,6 +351,8 @@ items:
   nameWithType: IniFile.ReadInteger(string, string, int)
   fullName: Reportman.Drawing.IniFile.ReadInteger(string, string, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IniFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -352,6 +383,8 @@ items:
   nameWithType: IniFile.CheckNumberFormat()
   fullName: Reportman.Drawing.IniFile.CheckNumberFormat()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IniFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -370,6 +403,8 @@ items:
   nameWithType: IniFile.ReadDecimal(string, string, decimal)
   fullName: Reportman.Drawing.IniFile.ReadDecimal(string, string, decimal)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IniFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -400,6 +435,8 @@ items:
   nameWithType: IniFile.ReadBool(string, string, bool)
   fullName: Reportman.Drawing.IniFile.ReadBool(string, string, bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IniFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -430,6 +467,8 @@ items:
   nameWithType: IniFile.SaveToStream(Stream)
   fullName: Reportman.Drawing.IniFile.SaveToStream(System.IO.Stream)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IniFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -451,6 +490,8 @@ items:
   nameWithType: IniFile.SaveToFile(string)
   fullName: Reportman.Drawing.IniFile.SaveToFile(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IniFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

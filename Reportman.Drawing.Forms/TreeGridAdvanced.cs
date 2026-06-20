@@ -10,7 +10,15 @@ using System.Windows.Forms.VisualStyles;
 
 namespace Reportman.Drawing.Forms
 {
+    /// <summary>
+    /// Callback invoked during a long-running operation to report progress (current of count)
+    /// and to let the handler request cancellation via the <c>cancelar</c> parameter.
+    /// </summary>
     public delegate void ProgresEvent(int current, int count, ref bool cancelar);
+    /// <summary>
+    /// A <see cref="DataGridView"/> that displays hierarchical, expandable/collapsible tree nodes,
+    /// with support for tree lines, node images, level-based expansion, text search and Excel export.
+    /// </summary>
     public class TreeGridAdvanced : DataGridView
     {
         const int INDENT_FIRST_UNSCALED = 8;
@@ -556,6 +564,10 @@ namespace Reportman.Drawing.Forms
 
     }
 
+    /// <summary>
+    /// A node in a <see cref="TreeGridAdvanced"/> tree, linking a grid row to its parent and child
+    /// nodes and tracking its level and expanded state; provides expand/collapse and removal logic.
+    /// </summary>
     public class TreeGridAdvancedNode
     {
         public TreeGridAdvanced Grid;
@@ -685,6 +697,10 @@ namespace Reportman.Drawing.Forms
         }
 
     }
+    /// <summary>
+    /// The tree column of a <see cref="TreeGridAdvanced"/>: a text column whose cells render the
+    /// expand/collapse glyphs and indentation, and whose clicks toggle the node's expanded state.
+    /// </summary>
     public class TreeGridAdvancedColumn : DataGridViewTextBoxColumn
     {
         public void ClickNode(TreeGridRow nrow)
@@ -1132,6 +1148,10 @@ namespace Reportman.Drawing.Forms
         }
     }
 
+    /// <summary>
+    /// A <see cref="DataGridViewRow"/> used by <see cref="TreeGridAdvanced"/> that carries its tree
+    /// node, level, parent row, sibling position and optional image for hierarchical display.
+    /// </summary>
     public class TreeGridRow : DataGridViewRow
     {
         public TreeGridAdvancedNode Node;

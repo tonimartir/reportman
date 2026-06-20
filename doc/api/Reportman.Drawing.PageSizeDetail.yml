@@ -22,6 +22,8 @@ items:
   nameWithType: PageSizeDetail
   fullName: Reportman.Drawing.PageSizeDetail
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -51,6 +53,8 @@ items:
   nameWithType: PageSizeDetail.PageSizeDetail()
   fullName: Reportman.Drawing.PageSizeDetail.PageSizeDetail()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -72,6 +76,8 @@ items:
   nameWithType: PageSizeDetail.Index
   fullName: Reportman.Drawing.PageSizeDetail.Index
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -95,6 +101,8 @@ items:
   nameWithType: PageSizeDetail.Custom
   fullName: Reportman.Drawing.PageSizeDetail.Custom
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -118,6 +126,8 @@ items:
   nameWithType: PageSizeDetail.CustomWidth
   fullName: Reportman.Drawing.PageSizeDetail.CustomWidth
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -141,6 +151,8 @@ items:
   nameWithType: PageSizeDetail.CustomHeight
   fullName: Reportman.Drawing.PageSizeDetail.CustomHeight
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -164,6 +176,8 @@ items:
   nameWithType: PageSizeDetail.PhysicWidth
   fullName: Reportman.Drawing.PageSizeDetail.PhysicWidth
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -187,6 +201,8 @@ items:
   nameWithType: PageSizeDetail.PhysicHeight
   fullName: Reportman.Drawing.PageSizeDetail.PhysicHeight
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -210,6 +226,8 @@ items:
   nameWithType: PageSizeDetail.PaperSource
   fullName: Reportman.Drawing.PageSizeDetail.PaperSource
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -233,6 +251,8 @@ items:
   nameWithType: PageSizeDetail.ForcePaperName
   fullName: Reportman.Drawing.PageSizeDetail.ForcePaperName
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -256,6 +276,8 @@ items:
   nameWithType: PageSizeDetail.Duplex
   fullName: Reportman.Drawing.PageSizeDetail.Duplex
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

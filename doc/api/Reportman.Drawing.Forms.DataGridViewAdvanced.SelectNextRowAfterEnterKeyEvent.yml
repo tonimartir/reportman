@@ -16,9 +16,16 @@ items:
   nameWithType: DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent
   type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    Callback raised just before focus moves to a new row after the user presses Enter,
+
+    passing the row that was being edited so handlers can validate or react to it.
+  example: []
   syntax:
     content: public delegate void DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent(object sender, DataGridViewRow gridRow)
     parameters:
@@ -38,6 +45,8 @@ items:
   nameWithType: DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.SelectNextRowAfterEnterKeyEvent(object, nint)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.SelectNextRowAfterEnterKeyEvent(object, nint)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -64,6 +73,8 @@ items:
   nameWithType: DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.Invoke(object, DataGridViewRow)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.Invoke(object, System.Windows.Forms.DataGridViewRow)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -90,6 +101,8 @@ items:
   nameWithType: DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.BeginInvoke(object, DataGridViewRow, AsyncCallback, object)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.BeginInvoke(object, System.Windows.Forms.DataGridViewRow, System.AsyncCallback, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -122,6 +135,8 @@ items:
   nameWithType: DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.EndInvoke(IAsyncResult)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectNextRowAfterEnterKeyEvent.EndInvoke(System.IAsyncResult)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

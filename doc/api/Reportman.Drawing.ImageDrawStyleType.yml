@@ -17,6 +17,8 @@ items:
   nameWithType: ImageDrawStyleType
   fullName: Reportman.Drawing.ImageDrawStyleType
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -36,6 +38,8 @@ items:
   nameWithType: ImageDrawStyleType.Crop
   fullName: Reportman.Drawing.ImageDrawStyleType.Crop
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -56,6 +60,8 @@ items:
   nameWithType: ImageDrawStyleType.Stretch
   fullName: Reportman.Drawing.ImageDrawStyleType.Stretch
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -76,6 +82,8 @@ items:
   nameWithType: ImageDrawStyleType.Full
   fullName: Reportman.Drawing.ImageDrawStyleType.Full
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -96,6 +104,8 @@ items:
   nameWithType: ImageDrawStyleType.Tile
   fullName: Reportman.Drawing.ImageDrawStyleType.Tile
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -116,6 +126,8 @@ items:
   nameWithType: ImageDrawStyleType.Tiledpi
   fullName: Reportman.Drawing.ImageDrawStyleType.Tiledpi
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

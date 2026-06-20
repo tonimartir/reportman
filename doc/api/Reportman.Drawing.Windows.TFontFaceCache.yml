@@ -13,9 +13,16 @@ items:
   nameWithType: TFontFaceCache
   fullName: Reportman.Drawing.Windows.TFontFaceCache
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/DirectWriteRenderer.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
+  summary: >-
+    Cache that maps a DirectWrite font face native pointer to its resolved font
+
+    family name, avoiding repeated name-table lookups.
+  example: []
   syntax:
     content: 'public class TFontFaceCache : Dictionary<nint, string>, IDictionary<nint, string>, ICollection<KeyValuePair<nint, string>>, IDictionary, ICollection, IReadOnlyDictionary<nint, string>, IReadOnlyCollection<KeyValuePair<nint, string>>, IEnumerable<KeyValuePair<nint, string>>, IEnumerable, ISerializable, IDeserializationCallback'
     content.vb: Public Class TFontFaceCache Inherits Dictionary(Of IntPtr, String) Implements IDictionary(Of IntPtr, String), ICollection(Of KeyValuePair(Of IntPtr, String)), IDictionary, ICollection, IReadOnlyDictionary(Of IntPtr, String), IReadOnlyCollection(Of KeyValuePair(Of IntPtr, String)), IEnumerable(Of KeyValuePair(Of IntPtr, String)), IEnumerable, ISerializable, IDeserializationCallback
@@ -73,6 +80,8 @@ items:
   nameWithType: TFontFaceCache.TFontFaceCache()
   fullName: Reportman.Drawing.Windows.TFontFaceCache.TFontFaceCache()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/DirectWriteRenderer.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows

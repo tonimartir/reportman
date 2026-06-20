@@ -5,6 +5,10 @@ using System.Windows.Forms;
 
 namespace Reportman.Drawing.Forms
 {
+    /// <summary>
+    /// A GroupBox subclass that supports customizable border and caption text colors,
+    /// drawing its frame and title with the configured BorderColor and TextColor.
+    /// </summary>
     public partial class GroupBoxAdvanced : GroupBox
     {
         private Color FBorderColor;

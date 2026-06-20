@@ -31,9 +31,16 @@ items:
   nameWithType: QRCodeEncoder
   fullName: Reportman.Drawing.QRCodeEncoder
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/QRCodeEncoder.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Drawing
+  summary: >-
+    Generates QR Code symbols from input data, computing version, mask, and Reed-Solomon
+
+    error correction, and renders the resulting matrix into a report metafile.
+  example: []
   syntax:
     content: public class QRCodeEncoder
     content.vb: Public Class QRCodeEncoder
@@ -58,6 +65,8 @@ items:
   nameWithType: QRCodeEncoder.QRCodeEncoder()
   fullName: Reportman.Drawing.QRCodeEncoder.QRCodeEncoder()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/QRCodeEncoder.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Drawing
@@ -81,6 +90,8 @@ items:
   nameWithType: QRCodeEncoder.setStructureappend(int, int, int)
   fullName: Reportman.Drawing.QRCodeEncoder.setStructureappend(int, int, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/QRCodeEncoder.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Drawing
@@ -109,6 +120,8 @@ items:
   nameWithType: QRCodeEncoder.calStructureappendParity(sbyte[])
   fullName: Reportman.Drawing.QRCodeEncoder.calStructureappendParity(sbyte[])
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/QRCodeEncoder.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Drawing
@@ -135,6 +148,8 @@ items:
   nameWithType: QRCodeEncoder.WriteStackTrace(Exception, TextWriter)
   fullName: Reportman.Drawing.QRCodeEncoder.WriteStackTrace(System.Exception, System.IO.TextWriter)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/QRCodeEncoder.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Drawing
@@ -158,6 +173,8 @@ items:
   nameWithType: QRCodeEncoder.calQrcode(byte[])
   fullName: Reportman.Drawing.QRCodeEncoder.calQrcode(byte[])
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/QRCodeEncoder.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Drawing
@@ -184,6 +201,8 @@ items:
   nameWithType: QRCodeEncoder.ReadInput(Stream, sbyte[], int, int)
   fullName: Reportman.Drawing.QRCodeEncoder.ReadInput(System.IO.Stream, sbyte[], int, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/QRCodeEncoder.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Drawing
@@ -223,6 +242,8 @@ items:
   nameWithType: QRCodeEncoder.EncodeInMetafile(MetaFile, int, int, int, string, Encoding)
   fullName: Reportman.Drawing.QRCodeEncoder.EncodeInMetafile(Reportman.Drawing.MetaFile, int, int, int, string, System.Text.Encoding)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/QRCodeEncoder.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Drawing
@@ -261,6 +282,8 @@ items:
   nameWithType: QRCodeEncoder.URShift(int, int)
   fullName: Reportman.Drawing.QRCodeEncoder.URShift(int, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/QRCodeEncoder.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Drawing
@@ -294,6 +317,8 @@ items:
   nameWithType: QRCodeEncoder.AsciiStringToByteArray(string)
   fullName: Reportman.Drawing.QRCodeEncoder.AsciiStringToByteArray(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/QRCodeEncoder.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Drawing
@@ -320,6 +345,8 @@ items:
   nameWithType: QRCodeEncoder.UnicodeStringToByteArray(string)
   fullName: Reportman.Drawing.QRCodeEncoder.UnicodeStringToByteArray(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/QRCodeEncoder.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Drawing
@@ -346,6 +373,8 @@ items:
   nameWithType: QRCodeEncoder.FromASCIIByteArray(byte[])
   fullName: Reportman.Drawing.QRCodeEncoder.FromASCIIByteArray(byte[])
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/QRCodeEncoder.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Drawing
@@ -372,6 +401,8 @@ items:
   nameWithType: QRCodeEncoder.FromUnicodeByteArray(byte[])
   fullName: Reportman.Drawing.QRCodeEncoder.FromUnicodeByteArray(byte[])
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/QRCodeEncoder.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Drawing
@@ -398,6 +429,8 @@ items:
   nameWithType: QRCodeEncoder.IsUniCode(string)
   fullName: Reportman.Drawing.QRCodeEncoder.IsUniCode(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/QRCodeEncoder.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Drawing
@@ -424,6 +457,8 @@ items:
   nameWithType: QRCodeEncoder.QRCodeErrorCorrect
   fullName: Reportman.Drawing.QRCodeEncoder.QRCodeErrorCorrect
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/QRCodeEncoder.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Drawing
@@ -445,6 +480,8 @@ items:
   nameWithType: QRCodeEncoder.QRCodeVersion
   fullName: Reportman.Drawing.QRCodeEncoder.QRCodeVersion
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/QRCodeEncoder.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Drawing
@@ -466,6 +503,8 @@ items:
   nameWithType: QRCodeEncoder.QRCodeEncodeMode
   fullName: Reportman.Drawing.QRCodeEncoder.QRCodeEncodeMode
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/QRCodeEncoder.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Drawing
@@ -487,6 +526,8 @@ items:
   nameWithType: QRCodeEncoder.QRCodeScale
   fullName: Reportman.Drawing.QRCodeEncoder.QRCodeScale
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/QRCodeEncoder.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Drawing
@@ -508,6 +549,8 @@ items:
   nameWithType: QRCodeEncoder.QRCodeBackgroundColor
   fullName: Reportman.Drawing.QRCodeEncoder.QRCodeBackgroundColor
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/QRCodeEncoder.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Drawing
@@ -529,6 +572,8 @@ items:
   nameWithType: QRCodeEncoder.QRCodeForegroundColor
   fullName: Reportman.Drawing.QRCodeEncoder.QRCodeForegroundColor
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/QRCodeEncoder.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Drawing

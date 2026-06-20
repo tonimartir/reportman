@@ -41,9 +41,13 @@ items:
   nameWithType: AdvancedEditingControl
   fullName: Reportman.Drawing.Forms.AdvancedEditingControl
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: The in-cell editing control for <xref href="Reportman.Drawing.Forms.DataGridViewColumnAdvanced" data-throw-if-not-resolved="false"></xref>; switches between a text box and date/time pickers depending on the column's <xref href="Reportman.Drawing.Forms.ColumnDataType" data-throw-if-not-resolved="false"></xref> and supports an optional image button and search window.
+  example: []
   syntax:
     content: 'public class AdvancedEditingControl : UserControl, IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable, IContainerControl, IDataGridViewEditingControl'
     content.vb: Public Class AdvancedEditingControl Inherits UserControl Implements IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable, IContainerControl, IDataGridViewEditingControl
@@ -503,6 +507,8 @@ items:
   nameWithType: AdvancedEditingControl.CachedPictureBoxControls
   fullName: Reportman.Drawing.Forms.AdvancedEditingControl.CachedPictureBoxControls
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -522,6 +528,8 @@ items:
   nameWithType: AdvancedEditingControl.NewDatePicker
   fullName: Reportman.Drawing.Forms.AdvancedEditingControl.NewDatePicker
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -541,6 +549,8 @@ items:
   nameWithType: AdvancedEditingControl.ImageButtonScale
   fullName: Reportman.Drawing.Forms.AdvancedEditingControl.ImageButtonScale
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -560,6 +570,8 @@ items:
   nameWithType: AdvancedEditingControl.FImageButton
   fullName: Reportman.Drawing.Forms.AdvancedEditingControl.FImageButton
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -579,6 +591,8 @@ items:
   nameWithType: AdvancedEditingControl.MainControl
   fullName: Reportman.Drawing.Forms.AdvancedEditingControl.MainControl
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -598,6 +612,8 @@ items:
   nameWithType: AdvancedEditingControl.DoKeyDown(object, KeyEventArgs)
   fullName: Reportman.Drawing.Forms.AdvancedEditingControl.DoKeyDown(object, System.Windows.Forms.KeyEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -624,6 +640,8 @@ items:
   nameWithType: AdvancedEditingControl.DoKeyPress(object, KeyPressEventArgs)
   fullName: Reportman.Drawing.Forms.AdvancedEditingControl.DoKeyPress(object, System.Windows.Forms.KeyPressEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -650,6 +668,8 @@ items:
   nameWithType: AdvancedEditingControl.DoKeyUp(object, KeyEventArgs)
   fullName: Reportman.Drawing.Forms.AdvancedEditingControl.DoKeyUp(object, System.Windows.Forms.KeyEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -676,6 +696,8 @@ items:
   nameWithType: AdvancedEditingControl.AdvancedEditingControl()
   fullName: Reportman.Drawing.Forms.AdvancedEditingControl.AdvancedEditingControl()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -697,6 +719,8 @@ items:
   nameWithType: AdvancedEditingControl.SaveCurrentValue()
   fullName: Reportman.Drawing.Forms.AdvancedEditingControl.SaveCurrentValue()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -715,6 +739,8 @@ items:
   nameWithType: AdvancedEditingControl.ApplyCellStyleToEditingControl(DataGridViewCellStyle)
   fullName: Reportman.Drawing.Forms.AdvancedEditingControl.ApplyCellStyleToEditingControl(System.Windows.Forms.DataGridViewCellStyle)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -739,6 +765,8 @@ items:
   nameWithType: AdvancedEditingControl.EditingControlWantsInputKey(Keys, bool)
   fullName: Reportman.Drawing.Forms.AdvancedEditingControl.EditingControlWantsInputKey(System.Windows.Forms.Keys, bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -770,6 +798,8 @@ items:
   nameWithType: AdvancedEditingControl.GetEditingControlFormattedValue(DataGridViewDataErrorContexts)
   fullName: Reportman.Drawing.Forms.AdvancedEditingControl.GetEditingControlFormattedValue(System.Windows.Forms.DataGridViewDataErrorContexts)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -796,6 +826,8 @@ items:
   nameWithType: AdvancedEditingControl.CreateMainControl()
   fullName: Reportman.Drawing.Forms.AdvancedEditingControl.CreateMainControl()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -814,6 +846,8 @@ items:
   nameWithType: AdvancedEditingControl.SetBoundsCore(int, int, int, int, BoundsSpecified)
   fullName: Reportman.Drawing.Forms.AdvancedEditingControl.SetBoundsCore(int, int, int, int, System.Windows.Forms.BoundsSpecified)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -848,6 +882,8 @@ items:
   nameWithType: AdvancedEditingControl.PrepareEditingControlForEdit(bool)
   fullName: Reportman.Drawing.Forms.AdvancedEditingControl.PrepareEditingControlForEdit(bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -875,6 +911,8 @@ items:
   nameWithType: AdvancedEditingControl.Dispose(bool)
   fullName: Reportman.Drawing.Forms.AdvancedEditingControl.Dispose(bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -901,6 +939,8 @@ items:
   nameWithType: AdvancedEditingControl.ReadOnlyInput
   fullName: Reportman.Drawing.Forms.AdvancedEditingControl.ReadOnlyInput
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -922,6 +962,8 @@ items:
   nameWithType: AdvancedEditingControl.ImageButton
   fullName: Reportman.Drawing.Forms.AdvancedEditingControl.ImageButton
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -943,6 +985,8 @@ items:
   nameWithType: AdvancedEditingControl.Text
   fullName: Reportman.Drawing.Forms.AdvancedEditingControl.Text
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -964,6 +1008,8 @@ items:
   nameWithType: AdvancedEditingControl.NewValue
   fullName: Reportman.Drawing.Forms.AdvancedEditingControl.NewValue
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -985,6 +1031,8 @@ items:
   nameWithType: AdvancedEditingControl.EditingControlCursor
   fullName: Reportman.Drawing.Forms.AdvancedEditingControl.EditingControlCursor
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1006,6 +1054,8 @@ items:
   nameWithType: AdvancedEditingControl.EditingPanelCursor
   fullName: Reportman.Drawing.Forms.AdvancedEditingControl.EditingPanelCursor
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1030,6 +1080,8 @@ items:
   nameWithType: AdvancedEditingControl.EditingControlDataGridView
   fullName: Reportman.Drawing.Forms.AdvancedEditingControl.EditingControlDataGridView
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1066,6 +1118,8 @@ items:
   nameWithType: AdvancedEditingControl.EditingControlFormattedValue
   fullName: Reportman.Drawing.Forms.AdvancedEditingControl.EditingControlFormattedValue
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1090,6 +1144,8 @@ items:
   nameWithType: AdvancedEditingControl.EditingControlRowIndex
   fullName: Reportman.Drawing.Forms.AdvancedEditingControl.EditingControlRowIndex
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1126,6 +1182,8 @@ items:
   nameWithType: AdvancedEditingControl.EditingControlValueChanged
   fullName: Reportman.Drawing.Forms.AdvancedEditingControl.EditingControlValueChanged
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1162,6 +1220,8 @@ items:
   nameWithType: AdvancedEditingControl.RepositionEditingControlOnValueChange
   fullName: Reportman.Drawing.Forms.AdvancedEditingControl.RepositionEditingControlOnValueChange
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1186,6 +1246,8 @@ items:
   nameWithType: AdvancedEditingControl.Focused
   fullName: Reportman.Drawing.Forms.AdvancedEditingControl.Focused
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1199,6 +1261,21 @@ items:
   overridden: System.Windows.Forms.Control.Focused
   overload: Reportman.Drawing.Forms.AdvancedEditingControl.Focused*
 references:
+- uid: Reportman.Drawing.Forms.DataGridViewColumnAdvanced
+  commentId: T:Reportman.Drawing.Forms.DataGridViewColumnAdvanced
+  isExternal: true
+  href: Reportman.Drawing.Forms.DataGridViewColumnAdvanced.html
+  name: DataGridViewColumnAdvanced
+  nameWithType: DataGridViewColumnAdvanced
+  fullName: Reportman.Drawing.Forms.DataGridViewColumnAdvanced
+- uid: Reportman.Drawing.Forms.ColumnDataType
+  commentId: T:Reportman.Drawing.Forms.ColumnDataType
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.ColumnDataType.html
+  name: ColumnDataType
+  nameWithType: ColumnDataType
+  fullName: Reportman.Drawing.Forms.ColumnDataType
 - uid: Reportman.Drawing.Forms
   commentId: N:Reportman.Drawing.Forms
   isExternal: true

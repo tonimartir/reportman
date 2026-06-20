@@ -25,6 +25,10 @@ using System.Threading;
 
 namespace Reportman.Drawing
 {
+    /// <summary>
+    /// Directory entry for a single table inside a TrueType font file, holding its tag name,
+    /// byte offset, length and checksum.
+    /// </summary>
     public class TableData
     {
         public string TableName;
@@ -39,6 +43,10 @@ namespace Reportman.Drawing
             Checksum = tchecksum;
         }
     }
+    /// <summary>
+    /// Builds a minimal subset of a TrueType font containing only the glyphs actually used,
+    /// rewriting the loca/glyf tables and reassembling the font for embedding (e.g. in PDF output).
+    /// </summary>
     public class TrueTypeFontSubSet
     {
         internal static string[] tablenameconst = {"cvt ", "fpgm", "glyf", "head",

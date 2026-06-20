@@ -16,6 +16,8 @@ items:
   nameWithType: ReportItems.ReportItemEnumerator
   fullName: Reportman.Reporting.ReportItems.ReportItemEnumerator
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -47,6 +49,8 @@ items:
   nameWithType: ReportItems.ReportItemEnumerator.ReportItemEnumerator(ReportItems)
   fullName: Reportman.Reporting.ReportItems.ReportItemEnumerator.ReportItemEnumerator(Reportman.Reporting.ReportItems)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -74,6 +78,8 @@ items:
   nameWithType: ReportItems.ReportItemEnumerator.MoveNext()
   fullName: Reportman.Reporting.ReportItems.ReportItemEnumerator.MoveNext()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -99,6 +105,8 @@ items:
   nameWithType: ReportItems.ReportItemEnumerator.Reset()
   fullName: Reportman.Reporting.ReportItems.ReportItemEnumerator.Reset()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -121,6 +129,8 @@ items:
   nameWithType: ReportItems.ReportItemEnumerator.Current
   fullName: Reportman.Reporting.ReportItems.ReportItemEnumerator.Current
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

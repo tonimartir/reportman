@@ -18,9 +18,16 @@ items:
   nameWithType: ComboListMatcher
   fullName: Reportman.Drawing.Forms.ComboListMatcher
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    A TextBox that shows a floating, non-selectable list of matching entries from an
+
+    auto-complete list as the user types, letting them pick a value with the mouse or keyboard.
+  example: []
   syntax:
     content: 'public class ComboListMatcher : TextBox, IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable, IMessageFilter'
     content.vb: Public Class ComboListMatcher Inherits TextBox Implements IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable, IMessageFilter
@@ -496,6 +503,8 @@ items:
   nameWithType: ComboListMatcher.AutoCompleteWidth
   fullName: Reportman.Drawing.Forms.ComboListMatcher.AutoCompleteWidth
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -515,6 +524,8 @@ items:
   nameWithType: ComboListMatcher.AutoCompleteList
   fullName: Reportman.Drawing.Forms.ComboListMatcher.AutoCompleteList
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -534,6 +545,8 @@ items:
   nameWithType: ComboListMatcher.AutoCompleteMaxVisibleLines
   fullName: Reportman.Drawing.Forms.ComboListMatcher.AutoCompleteMaxVisibleLines
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -553,6 +566,8 @@ items:
   nameWithType: ComboListMatcher.ComboListMatcher()
   fullName: Reportman.Drawing.Forms.ComboListMatcher.ComboListMatcher()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -574,6 +589,8 @@ items:
   nameWithType: ComboListMatcher.~ComboListMatcher()
   fullName: Reportman.Drawing.Forms.ComboListMatcher.~ComboListMatcher()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -595,6 +612,8 @@ items:
   nameWithType: ComboListMatcher.PreFilterMessage(ref Message)
   fullName: Reportman.Drawing.Forms.ComboListMatcher.PreFilterMessage(ref System.Windows.Forms.Message)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

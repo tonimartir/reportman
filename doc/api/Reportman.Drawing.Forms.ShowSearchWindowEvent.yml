@@ -16,9 +16,13 @@ items:
   nameWithType: ShowSearchWindowEvent
   fullName: Reportman.Drawing.Forms.ShowSearchWindowEvent
   type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: Callback raised when a search window should be shown, carrying the control to display in <xref href="Reportman.Drawing.Forms.ShowSearchWindowArgs" data-throw-if-not-resolved="false"></xref>.
+  example: []
   syntax:
     content: public delegate void ShowSearchWindowEvent(object sender, ShowSearchWindowArgs args)
     parameters:
@@ -38,6 +42,8 @@ items:
   nameWithType: ShowSearchWindowEvent.ShowSearchWindowEvent(object, nint)
   fullName: Reportman.Drawing.Forms.ShowSearchWindowEvent.ShowSearchWindowEvent(object, nint)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -64,6 +70,8 @@ items:
   nameWithType: ShowSearchWindowEvent.Invoke(object, ShowSearchWindowArgs)
   fullName: Reportman.Drawing.Forms.ShowSearchWindowEvent.Invoke(object, Reportman.Drawing.Forms.ShowSearchWindowArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -90,6 +98,8 @@ items:
   nameWithType: ShowSearchWindowEvent.BeginInvoke(object, ShowSearchWindowArgs, AsyncCallback, object)
   fullName: Reportman.Drawing.Forms.ShowSearchWindowEvent.BeginInvoke(object, Reportman.Drawing.Forms.ShowSearchWindowArgs, System.AsyncCallback, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -122,6 +132,8 @@ items:
   nameWithType: ShowSearchWindowEvent.EndInvoke(IAsyncResult)
   fullName: Reportman.Drawing.Forms.ShowSearchWindowEvent.EndInvoke(System.IAsyncResult)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -133,6 +145,14 @@ items:
     content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
   overload: Reportman.Drawing.Forms.ShowSearchWindowEvent.EndInvoke*
 references:
+- uid: Reportman.Drawing.Forms.ShowSearchWindowArgs
+  commentId: T:Reportman.Drawing.Forms.ShowSearchWindowArgs
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.ShowSearchWindowArgs.html
+  name: ShowSearchWindowArgs
+  nameWithType: ShowSearchWindowArgs
+  fullName: Reportman.Drawing.Forms.ShowSearchWindowArgs
 - uid: Reportman.Drawing.Forms
   commentId: N:Reportman.Drawing.Forms
   isExternal: true
@@ -181,14 +201,6 @@ references:
   nameWithType.vb: Object
   fullName.vb: Object
   name.vb: Object
-- uid: Reportman.Drawing.Forms.ShowSearchWindowArgs
-  commentId: T:Reportman.Drawing.Forms.ShowSearchWindowArgs
-  parent: Reportman.Drawing.Forms
-  isExternal: true
-  href: Reportman.Drawing.Forms.ShowSearchWindowArgs.html
-  name: ShowSearchWindowArgs
-  nameWithType: ShowSearchWindowArgs
-  fullName: Reportman.Drawing.Forms.ShowSearchWindowArgs
 - uid: System
   commentId: N:System
   isExternal: true

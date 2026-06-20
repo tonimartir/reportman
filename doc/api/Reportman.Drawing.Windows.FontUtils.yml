@@ -13,9 +13,16 @@ items:
   nameWithType: FontUtils
   fullName: Reportman.Drawing.Windows.FontUtils
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/DirectWriteRenderer.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
+  summary: >-
+    Helper methods for reading raw OpenType font tables, in particular extracting the
+
+    font family name (name ID 1) directly from a DirectWrite font face's 'name' table.
+  example: []
   syntax:
     content: public static class FontUtils
     content.vb: Public Module FontUtils
@@ -40,6 +47,8 @@ items:
   nameWithType: FontUtils.GetFontFamilyFromFontFace(FontFace)
   fullName: Reportman.Drawing.Windows.FontUtils.GetFontFamilyFromFontFace(SharpDX.DirectWrite.FontFace)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/DirectWriteRenderer.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows

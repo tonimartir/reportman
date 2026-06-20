@@ -16,9 +16,16 @@ items:
   nameWithType: DataProgressEvent
   fullName: Reportman.Reporting.DataProgressEvent
   type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DBFExport.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Reporting
+  summary: >-
+    Progress callback invoked periodically during a long export, reporting the number of
+
+    records processed out of the total; set <code>docancel</code> to true to abort the operation.
+  example: []
   syntax:
     content: public delegate void DataProgressEvent(object sender, int records, int count, ref bool docancel)
     parameters:
@@ -42,6 +49,8 @@ items:
   nameWithType: DataProgressEvent.DataProgressEvent(object, nint)
   fullName: Reportman.Reporting.DataProgressEvent.DataProgressEvent(object, nint)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DBFExport.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Reporting
@@ -68,6 +77,8 @@ items:
   nameWithType: DataProgressEvent.Invoke(object, int, int, ref bool)
   fullName: Reportman.Reporting.DataProgressEvent.Invoke(object, int, int, ref bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DBFExport.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Reporting
@@ -98,6 +109,8 @@ items:
   nameWithType: DataProgressEvent.BeginInvoke(object, int, int, ref bool, AsyncCallback, object)
   fullName: Reportman.Reporting.DataProgressEvent.BeginInvoke(object, int, int, ref bool, System.AsyncCallback, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DBFExport.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Reporting
@@ -134,6 +147,8 @@ items:
   nameWithType: DataProgressEvent.EndInvoke(ref bool, IAsyncResult)
   fullName: Reportman.Reporting.DataProgressEvent.EndInvoke(ref bool, System.IAsyncResult)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DBFExport.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Reporting

@@ -27,6 +27,8 @@ items:
   nameWithType: ProgressBarAdvanced
   fullName: Reportman.Drawing.Forms.ProgressBarAdvanced
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ProgressBarAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -493,6 +495,8 @@ items:
   nameWithType: ProgressBarAdvanced.ProgressBarAdvanced()
   fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.ProgressBarAdvanced()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ProgressBarAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -516,6 +520,8 @@ items:
   nameWithType: ProgressBarAdvanced.Dispose(bool)
   fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.Dispose(bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ProgressBarAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -543,6 +549,8 @@ items:
   nameWithType: ProgressBarAdvanced.Caption
   fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.Caption
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ProgressBarAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -564,6 +572,8 @@ items:
   nameWithType: ProgressBarAdvanced.Value
   fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.Value
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ProgressBarAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -587,6 +597,8 @@ items:
   nameWithType: ProgressBarAdvanced.MaxValue
   fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxValue
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ProgressBarAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -610,6 +622,8 @@ items:
   nameWithType: ProgressBarAdvanced.MinValue
   fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.MinValue
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ProgressBarAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -633,6 +647,8 @@ items:
   nameWithType: ProgressBarAdvanced.StartColor
   fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.StartColor
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ProgressBarAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -665,6 +681,8 @@ items:
   nameWithType: ProgressBarAdvanced.EndColor
   fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.EndColor
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ProgressBarAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -697,6 +715,8 @@ items:
   nameWithType: ProgressBarAdvanced.HighlightColor
   fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.HighlightColor
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ProgressBarAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -720,6 +740,8 @@ items:
   nameWithType: ProgressBarAdvanced.BackgroundColor
   fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.BackgroundColor
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ProgressBarAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -743,6 +765,8 @@ items:
   nameWithType: ProgressBarAdvanced.Animate
   fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.Animate
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ProgressBarAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -766,6 +790,8 @@ items:
   nameWithType: ProgressBarAdvanced.GlowColor
   fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.GlowColor
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ProgressBarAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -789,6 +815,8 @@ items:
   nameWithType: ProgressBarAdvanced.ValueChanged
   fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.ValueChanged
   type: Event
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ProgressBarAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -810,6 +838,8 @@ items:
   nameWithType: ProgressBarAdvanced.MinChanged
   fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.MinChanged
   type: Event
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ProgressBarAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -831,6 +861,8 @@ items:
   nameWithType: ProgressBarAdvanced.MaxChanged
   fullName: Reportman.Drawing.Forms.ProgressBarAdvanced.MaxChanged
   type: Event
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ProgressBarAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

@@ -1028,7 +1028,15 @@ namespace Reportman.Reporting
         }
         #endregion
     }
+    /// <summary>
+    /// Callback raised by the <see cref="Evaluator"/> when a referenced dataset is not yet
+    /// available, giving the host a chance to open or supply it before field resolution retries.
+    /// </summary>
     public delegate void DataNeededEvent(DataNeededEventArgs args);
+    /// <summary>
+    /// Arguments for the <see cref="DataNeededEvent"/>, carrying the originating
+    /// <see cref="Evaluator"/> and the name of the dataset that needs to be provided.
+    /// </summary>
     public class DataNeededEventArgs
     {
         public string Dataset;

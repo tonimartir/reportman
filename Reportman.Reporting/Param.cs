@@ -25,6 +25,11 @@ using System.Data;
 
 namespace Reportman.Reporting
 {
+    /// <summary>
+    /// A report parameter prompted from the user, carrying its typed value, localized
+    /// descriptions/hints/error messages, validation rule and optional list, lookup or
+    /// search dataset that supplies selectable values.
+    /// </summary>
     public class Param : ReportItem, ICloneable
     {
         private Variant FValue;
@@ -328,6 +333,10 @@ namespace Reportman.Reporting
     }
 }
 
+/// <summary>
+/// JSON converter that serializes a newline-separated string as a JSON array of lines
+/// and deserializes such an array back into a single newline-joined string.
+/// </summary>
 public class NewlineDelimitedStringConverter : JsonConverter
 {
     public override bool CanConvert(Type objectType) => objectType == typeof(string);

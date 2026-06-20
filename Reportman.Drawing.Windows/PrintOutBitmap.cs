@@ -6,6 +6,10 @@ using System.IO;
 
 namespace Reportman.Drawing
 {
+    /// <summary>
+    /// Print-out driver that renders report metafile pages onto GDI+ bitmaps, stacking the
+    /// selected pages into a single image for export.
+    /// </summary>
     public class PrintOutBitmap : PrintOutNet
     {
         private int FPageWidth;

@@ -6,7 +6,16 @@ using System.Windows.Forms;
 
 namespace Reportman.Drawing.Forms
 {
+    /// <summary>
+    /// Callback used by the printers configuration dialog to retrieve the alternative
+    /// display names for the configurable printer slots.
+    /// </summary>
     public delegate void EventPrinterNamesHandler(object sender, EventPrinterNamesArgs args);
+    /// <summary>
+    /// Dialog for configuring the device, text-only driver and POS escape sequences
+    /// (cut paper, open drawer) of Report Manager's configurable printer slots, persisting
+    /// the settings to a per-user or system-wide reportman.ini file.
+    /// </summary>
     public partial class PrintersConfiguration : Form
     {
         EventPrinterNamesHandler OnGetNames;
@@ -310,6 +319,10 @@ namespace Reportman.Drawing.Forms
         }
 
     }
+    /// <summary>
+    /// Event arguments carrying the alternative printer display names, keyed by printer slot
+    /// index, supplied to the printers configuration dialog.
+    /// </summary>
     public class EventPrinterNamesArgs
     {
         public SortedList<int, string> PrinterNames;

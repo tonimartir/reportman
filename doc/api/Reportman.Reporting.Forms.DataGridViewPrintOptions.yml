@@ -26,9 +26,18 @@ items:
   nameWithType: DataGridViewPrintOptions
   fullName: Reportman.Reporting.Forms.DataGridViewPrintOptions
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
+  summary: >-
+    Options controlling how a <xref href="System.Windows.Forms.DataGridView" data-throw-if-not-resolved="false"></xref> is rendered to a report by
+
+    <xref href="Reportman.Reporting.Forms.DataGridViewPrint" data-throw-if-not-resolved="false"></xref>, such as paper size, orientation, selected columns,
+
+    width adjustment, word wrapping, grid lines, background colors and tree lines.
+  example: []
   syntax:
     content: public class DataGridViewPrintOptions
     content.vb: Public Class DataGridViewPrintOptions
@@ -53,6 +62,8 @@ items:
   nameWithType: DataGridViewPrintOptions.AdjustWidth
   fullName: Reportman.Reporting.Forms.DataGridViewPrintOptions.AdjustWidth
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -72,6 +83,8 @@ items:
   nameWithType: DataGridViewPrintOptions.SelectedColumns
   fullName: Reportman.Reporting.Forms.DataGridViewPrintOptions.SelectedColumns
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -91,6 +104,8 @@ items:
   nameWithType: DataGridViewPrintOptions.PaperSize
   fullName: Reportman.Reporting.Forms.DataGridViewPrintOptions.PaperSize
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -110,6 +125,8 @@ items:
   nameWithType: DataGridViewPrintOptions.LandsCape
   fullName: Reportman.Reporting.Forms.DataGridViewPrintOptions.LandsCape
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -129,6 +146,8 @@ items:
   nameWithType: DataGridViewPrintOptions.PrintSelected
   fullName: Reportman.Reporting.Forms.DataGridViewPrintOptions.PrintSelected
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -148,6 +167,8 @@ items:
   nameWithType: DataGridViewPrintOptions.WordWrap
   fullName: Reportman.Reporting.Forms.DataGridViewPrintOptions.WordWrap
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -167,6 +188,8 @@ items:
   nameWithType: DataGridViewPrintOptions.Report
   fullName: Reportman.Reporting.Forms.DataGridViewPrintOptions.Report
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -186,6 +209,8 @@ items:
   nameWithType: DataGridViewPrintOptions.Preview
   fullName: Reportman.Reporting.Forms.DataGridViewPrintOptions.Preview
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -205,6 +230,8 @@ items:
   nameWithType: DataGridViewPrintOptions.DrawTreeLines
   fullName: Reportman.Reporting.Forms.DataGridViewPrintOptions.DrawTreeLines
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -224,6 +251,8 @@ items:
   nameWithType: DataGridViewPrintOptions.DrawBackGroundColors
   fullName: Reportman.Reporting.Forms.DataGridViewPrintOptions.DrawBackGroundColors
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -243,6 +272,8 @@ items:
   nameWithType: DataGridViewPrintOptions.HorizontalLines
   fullName: Reportman.Reporting.Forms.DataGridViewPrintOptions.HorizontalLines
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -262,6 +293,8 @@ items:
   nameWithType: DataGridViewPrintOptions.VerticalLines
   fullName: Reportman.Reporting.Forms.DataGridViewPrintOptions.VerticalLines
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -281,6 +314,8 @@ items:
   nameWithType: DataGridViewPrintOptions.DataGridViewPrintOptions()
   fullName: Reportman.Reporting.Forms.DataGridViewPrintOptions.DataGridViewPrintOptions()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -302,6 +337,8 @@ items:
   nameWithType: DataGridViewPrintOptions.PaperWidth()
   fullName: Reportman.Reporting.Forms.DataGridViewPrintOptions.PaperWidth()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -312,6 +349,21 @@ items:
     content.vb: Public Function PaperWidth() As Integer
   overload: Reportman.Reporting.Forms.DataGridViewPrintOptions.PaperWidth*
 references:
+- uid: System.Windows.Forms.DataGridView
+  commentId: T:System.Windows.Forms.DataGridView
+  parent: System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridview
+  name: DataGridView
+  nameWithType: DataGridView
+  fullName: System.Windows.Forms.DataGridView
+- uid: Reportman.Reporting.Forms.DataGridViewPrint
+  commentId: T:Reportman.Reporting.Forms.DataGridViewPrint
+  isExternal: true
+  href: Reportman.Reporting.Forms.DataGridViewPrint.html
+  name: DataGridViewPrint
+  nameWithType: DataGridViewPrint
+  fullName: Reportman.Reporting.Forms.DataGridViewPrint
 - uid: Reportman.Reporting.Forms
   commentId: N:Reportman.Reporting.Forms
   isExternal: true
@@ -579,6 +631,43 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
   - name: )
+- uid: System.Windows.Forms
+  commentId: N:System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Windows.Forms
+  nameWithType: System.Windows.Forms
+  fullName: System.Windows.Forms
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Windows
+    name: Windows
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows
+  - name: .
+  - uid: System.Windows.Forms
+    name: Forms
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Windows
+    name: Windows
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows
+  - name: .
+  - uid: System.Windows.Forms
+    name: Forms
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms
 - uid: System
   commentId: N:System
   isExternal: true

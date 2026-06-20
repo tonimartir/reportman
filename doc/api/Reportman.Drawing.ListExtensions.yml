@@ -13,9 +13,13 @@ items:
   nameWithType: ListExtensions
   fullName: Reportman.Drawing.ListExtensions
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ListExtensions.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: Extension methods for <xref href="System.Collections.Generic.List%601" data-throw-if-not-resolved="false"></xref>, providing a helper to swap two elements by index.
+  example: []
   syntax:
     content: public static class ListExtensions
     content.vb: Public Module ListExtensions
@@ -41,6 +45,8 @@ items:
   nameWithType: ListExtensions.Swap<T>(List<T>, int, int)
   fullName: Reportman.Drawing.ListExtensions.Swap<T>(System.Collections.Generic.List<T>, int, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ListExtensions.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -61,6 +67,34 @@ items:
   fullName.vb: Reportman.Drawing.ListExtensions.Swap(Of T)(System.Collections.Generic.List(Of T), Integer, Integer)
   name.vb: Swap(Of T)(List(Of T), Integer, Integer)
 references:
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
 - uid: Reportman.Drawing
   commentId: N:Reportman.Drawing
   isExternal: true
@@ -372,34 +406,6 @@ references:
   nameWithType.vb: Integer
   fullName.vb: Integer
   name.vb: Integer
-- uid: System.Collections.Generic.List`1
-  commentId: T:System.Collections.Generic.List`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
-  name: List<T>
-  nameWithType: List<T>
-  fullName: System.Collections.Generic.List<T>
-  nameWithType.vb: List(Of T)
-  fullName.vb: System.Collections.Generic.List(Of T)
-  name.vb: List(Of T)
-  spec.csharp:
-  - uid: System.Collections.Generic.List`1
-    name: List
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.List`1
-    name: List
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
 - uid: System.Collections.Generic
   commentId: N:System.Collections.Generic
   isExternal: true

@@ -16,9 +16,13 @@ items:
   nameWithType: DataGridViewCellAdvanced
   fullName: Reportman.Drawing.Forms.DataGridViewCellAdvanced
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: The cell type used by <xref href="Reportman.Drawing.Forms.DataGridViewColumnAdvanced" data-throw-if-not-resolved="false"></xref>; hosts the <xref href="Reportman.Drawing.Forms.AdvancedEditingControl" data-throw-if-not-resolved="false"></xref> editor and masks password-typed values when displaying.
+  example: []
   syntax:
     content: 'public class DataGridViewCellAdvanced : DataGridViewTextBoxCell, ICloneable, IDisposable'
     content.vb: Public Class DataGridViewCellAdvanced Inherits DataGridViewTextBoxCell Implements ICloneable, IDisposable
@@ -153,6 +157,8 @@ items:
   nameWithType: DataGridViewCellAdvanced.DataGridViewCellAdvanced()
   fullName: Reportman.Drawing.Forms.DataGridViewCellAdvanced.DataGridViewCellAdvanced()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -174,6 +180,8 @@ items:
   nameWithType: DataGridViewCellAdvanced.Paint(Graphics, Rectangle, Rectangle, int, DataGridViewElementStates, object, object, string, DataGridViewCellStyle, DataGridViewAdvancedBorderStyle, DataGridViewPaintParts)
   fullName: Reportman.Drawing.Forms.DataGridViewCellAdvanced.Paint(System.Drawing.Graphics, System.Drawing.Rectangle, System.Drawing.Rectangle, int, System.Windows.Forms.DataGridViewElementStates, object, object, string, System.Windows.Forms.DataGridViewCellStyle, System.Windows.Forms.DataGridViewAdvancedBorderStyle, System.Windows.Forms.DataGridViewPaintParts)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -220,6 +228,8 @@ items:
   nameWithType: DataGridViewCellAdvanced.GetFormattedValue(object, int, ref DataGridViewCellStyle, TypeConverter, TypeConverter, DataGridViewDataErrorContexts)
   fullName: Reportman.Drawing.Forms.DataGridViewCellAdvanced.GetFormattedValue(object, int, ref System.Windows.Forms.DataGridViewCellStyle, System.ComponentModel.TypeConverter, System.ComponentModel.TypeConverter, System.Windows.Forms.DataGridViewDataErrorContexts)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -258,6 +268,8 @@ items:
   nameWithType: DataGridViewCellAdvanced.EditType
   fullName: Reportman.Drawing.Forms.DataGridViewCellAdvanced.EditType
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -271,6 +283,20 @@ items:
   overridden: System.Windows.Forms.DataGridViewCell.EditType
   overload: Reportman.Drawing.Forms.DataGridViewCellAdvanced.EditType*
 references:
+- uid: Reportman.Drawing.Forms.DataGridViewColumnAdvanced
+  commentId: T:Reportman.Drawing.Forms.DataGridViewColumnAdvanced
+  isExternal: true
+  href: Reportman.Drawing.Forms.DataGridViewColumnAdvanced.html
+  name: DataGridViewColumnAdvanced
+  nameWithType: DataGridViewColumnAdvanced
+  fullName: Reportman.Drawing.Forms.DataGridViewColumnAdvanced
+- uid: Reportman.Drawing.Forms.AdvancedEditingControl
+  commentId: T:Reportman.Drawing.Forms.AdvancedEditingControl
+  isExternal: true
+  href: Reportman.Drawing.Forms.AdvancedEditingControl.html
+  name: AdvancedEditingControl
+  nameWithType: AdvancedEditingControl
+  fullName: Reportman.Drawing.Forms.AdvancedEditingControl
 - uid: Reportman.Drawing.Forms
   commentId: N:Reportman.Drawing.Forms
   isExternal: true

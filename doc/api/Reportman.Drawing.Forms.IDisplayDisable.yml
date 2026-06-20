@@ -13,12 +13,22 @@ items:
   nameWithType: IDisplayDisable
   fullName: Reportman.Drawing.Forms.IDisplayDisable
   type: Interface
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    Marker interface implemented by tool strip items that allow a custom disabled
+
+    (grayed-out) appearance to be rendered for their image and text.
+  example: []
   syntax:
     content: public interface IDisplayDisable
     content.vb: Public Interface IDisplayDisable
+  derivedClasses:
+  - Reportman.Drawing.Forms.ToolStripButtonAllowDisable
+  - Reportman.Drawing.Forms.ToolStripDropDownButtonAllowDisable
 - uid: Reportman.Drawing.Forms.IDisplayDisable.DisplayDisable
   commentId: M:Reportman.Drawing.Forms.IDisplayDisable.DisplayDisable
   id: DisplayDisable
@@ -30,6 +40,8 @@ items:
   nameWithType: IDisplayDisable.DisplayDisable()
   fullName: Reportman.Drawing.Forms.IDisplayDisable.DisplayDisable()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

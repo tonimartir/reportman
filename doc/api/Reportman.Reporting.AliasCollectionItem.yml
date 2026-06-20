@@ -16,9 +16,16 @@ items:
   nameWithType: AliasCollectionItem
   fullName: Reportman.Reporting.AliasCollectionItem
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatasetAlias.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
+  summary: >-
+    A single dataset alias entry, pairing an (upper-cased) alias name with the
+
+    DataTable it refers to and tracking the current row used during evaluation.
+  example: []
   syntax:
     content: public class AliasCollectionItem
     content.vb: Public Class AliasCollectionItem
@@ -43,6 +50,8 @@ items:
   nameWithType: AliasCollectionItem.CurrentRow
   fullName: Reportman.Reporting.AliasCollectionItem.CurrentRow
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatasetAlias.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -62,6 +71,8 @@ items:
   nameWithType: AliasCollectionItem.AliasCollectionItem()
   fullName: Reportman.Reporting.AliasCollectionItem.AliasCollectionItem()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatasetAlias.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -83,6 +94,8 @@ items:
   nameWithType: AliasCollectionItem.Data
   fullName: Reportman.Reporting.AliasCollectionItem.Data
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatasetAlias.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -104,6 +117,8 @@ items:
   nameWithType: AliasCollectionItem.Alias
   fullName: Reportman.Reporting.AliasCollectionItem.Alias
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatasetAlias.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

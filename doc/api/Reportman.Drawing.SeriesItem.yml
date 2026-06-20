@@ -25,9 +25,16 @@ items:
   nameWithType: SeriesItem
   fullName: Reportman.Drawing.SeriesItem
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    A single data series within a chart, holding its values, per-point colors and captions,
+
+    value range, caption and the chart style used to draw it.
+  example: []
   syntax:
     content: public class SeriesItem
     content.vb: Public Class SeriesItem
@@ -52,6 +59,8 @@ items:
   nameWithType: SeriesItem.Values
   fullName: Reportman.Drawing.SeriesItem.Values
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -71,6 +80,8 @@ items:
   nameWithType: SeriesItem.ValuesX
   fullName: Reportman.Drawing.SeriesItem.ValuesX
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -90,6 +101,8 @@ items:
   nameWithType: SeriesItem.Colors
   fullName: Reportman.Drawing.SeriesItem.Colors
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -109,6 +122,8 @@ items:
   nameWithType: SeriesItem.ValueCaptions
   fullName: Reportman.Drawing.SeriesItem.ValueCaptions
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -128,6 +143,8 @@ items:
   nameWithType: SeriesItem.Color
   fullName: Reportman.Drawing.SeriesItem.Color
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -147,6 +164,8 @@ items:
   nameWithType: SeriesItem.Caption
   fullName: Reportman.Drawing.SeriesItem.Caption
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -166,6 +185,8 @@ items:
   nameWithType: SeriesItem.MaxValue
   fullName: Reportman.Drawing.SeriesItem.MaxValue
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -185,6 +206,8 @@ items:
   nameWithType: SeriesItem.MinValue
   fullName: Reportman.Drawing.SeriesItem.MinValue
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -204,6 +227,8 @@ items:
   nameWithType: SeriesItem.ChartStyle
   fullName: Reportman.Drawing.SeriesItem.ChartStyle
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -223,6 +248,8 @@ items:
   nameWithType: SeriesItem.FunctionName
   fullName: Reportman.Drawing.SeriesItem.FunctionName
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -242,6 +269,8 @@ items:
   nameWithType: SeriesItem.FunctionParams
   fullName: Reportman.Drawing.SeriesItem.FunctionParams
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -261,6 +290,8 @@ items:
   nameWithType: SeriesItem.SeriesItem()
   fullName: Reportman.Drawing.SeriesItem.SeriesItem()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -282,6 +313,8 @@ items:
   nameWithType: SeriesItem.SetLastValueColor(int)
   fullName: Reportman.Drawing.SeriesItem.SetLastValueColor(int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -680,7 +713,7 @@ references:
   commentId: T:Reportman.Drawing.Strings
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.Strings.html
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Strings.cs
   name: Strings
   nameWithType: Strings
   fullName: Reportman.Drawing.Strings

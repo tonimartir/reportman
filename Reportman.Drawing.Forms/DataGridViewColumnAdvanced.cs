@@ -6,9 +6,21 @@ using System.Windows.Forms;
 
 namespace Reportman.Drawing.Forms
 {
+    /// <summary>
+    /// Callback raised before a tab page is entered, allowing a handler to veto the change by setting <c>cancel</c> to true.
+    /// </summary>
     public delegate void BeforeEnterTabEvent(ref bool cancel);
+    /// <summary>
+    /// Identifies the kind of value a grid column edits, selecting the appropriate editor and formatting (text, numeric, date/time, boolean, combo box or password).
+    /// </summary>
     public enum ColumnDataType { Text, Integer, Numeric, Double, Date, DateTime, Time, ComboBox, ComboBoxList, Boolean, Password };
+    /// <summary>
+    /// Callback invoked when a column's editor button is clicked; returns true if it changed <c>value</c> so the cell should be updated.
+    /// </summary>
     public delegate bool DataColumnButtonClickEvent(DataGridViewColumn ncolumn, ref object value);
+    /// <summary>
+    /// A DataGridView column with extended editing behavior: typed input (<see cref="ColumnDataType"/>), maximum input length, an optional image button, and a pluggable search window.
+    /// </summary>
     public class DataGridViewColumnAdvanced : DataGridViewColumn
     {
         private ColumnDataType FDataType;
@@ -99,6 +111,9 @@ namespace Reportman.Drawing.Forms
         }
     }
 
+    /// <summary>
+    /// The cell type used by <see cref="DataGridViewColumnAdvanced"/>; hosts the <see cref="AdvancedEditingControl"/> editor and masks password-typed values when displaying.
+    /// </summary>
     public class DataGridViewCellAdvanced : DataGridViewTextBoxCell
     {
         //DataGridViewComboBoxEditingControl ComboBoxPicker;
@@ -193,6 +208,9 @@ namespace Reportman.Drawing.Forms
         }
 
     }
+    /// <summary>
+    /// The in-cell editing control for <see cref="DataGridViewColumnAdvanced"/>; switches between a text box and date/time pickers depending on the column's <see cref="ColumnDataType"/> and supports an optional image button and search window.
+    /// </summary>
     public partial class AdvancedEditingControl : UserControl, IDataGridViewEditingControl
     {
         public static List<PictureBox> CachedPictureBoxControls = new List<PictureBox>();
@@ -1117,8 +1135,17 @@ namespace Reportman.Drawing.Forms
             base.Dispose(disposing);
         }
     }
+    /// <summary>
+    /// Navigation keystrokes forwarded to a search window so it can move its selection or accept the current entry.
+    /// </summary>
     public enum SearchWindowKeyOperation { Up, Down, PageUp, PageDown, Return };
+    /// <summary>
+    /// Callback raised when a search window should be shown, carrying the control to display in <see cref="ShowSearchWindowArgs"/>.
+    /// </summary>
     public delegate void ShowSearchWindowEvent(object sender, ShowSearchWindowArgs args);
+    /// <summary>
+    /// Event arguments for showing a search window, exposing the control that hosts the search UI.
+    /// </summary>
     public class ShowSearchWindowArgs
     {
         public Control Window;
@@ -1127,6 +1154,9 @@ namespace Reportman.Drawing.Forms
             Window = ncontrol;
         }
     }
+    /// <summary>
+    /// Contract for a drop-down search/lookup window attached to a grid editor; implementers create the window control and respond to search-string changes, navigation keys and clicks.
+    /// </summary>
     public interface ISearchWindow
     {
         void ChangeSearchString(string newvalue);

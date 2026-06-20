@@ -15,9 +15,16 @@ items:
   nameWithType: WinFormsGraphics.DpiAwareness
   fullName: Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/WinFormsGraphics.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    The DPI-awareness level of a process as reported by the Windows shell:
+
+    unaware, system-aware, or per-monitor-aware.
+  example: []
   syntax:
     content: public enum WinFormsGraphics.DpiAwareness
     content.vb: Public Enum WinFormsGraphics.DpiAwareness
@@ -32,6 +39,8 @@ items:
   nameWithType: WinFormsGraphics.DpiAwareness.Unaware
   fullName: Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness.Unaware
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/WinFormsGraphics.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -50,6 +59,8 @@ items:
   nameWithType: WinFormsGraphics.DpiAwareness.SystemAware
   fullName: Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness.SystemAware
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/WinFormsGraphics.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -68,6 +79,8 @@ items:
   nameWithType: WinFormsGraphics.DpiAwareness.PerMonitorAware
   fullName: Reportman.Drawing.Forms.WinFormsGraphics.DpiAwareness.PerMonitorAware
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/WinFormsGraphics.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

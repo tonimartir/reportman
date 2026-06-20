@@ -24,6 +24,8 @@ items:
   nameWithType: TabControlAdvanced.PositionIndex
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -41,6 +43,8 @@ items:
   nameWithType: TabControlAdvanced.PositionIndex.BorderTop
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.BorderTop
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -59,6 +63,8 @@ items:
   nameWithType: TabControlAdvanced.PositionIndex.BorderLeft
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.BorderLeft
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -77,6 +83,8 @@ items:
   nameWithType: TabControlAdvanced.PositionIndex.BorderBottom
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.BorderBottom
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -95,6 +103,8 @@ items:
   nameWithType: TabControlAdvanced.PositionIndex.BorderRight
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.BorderRight
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -113,6 +123,8 @@ items:
   nameWithType: TabControlAdvanced.PositionIndex.ImageGapTop
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.ImageGapTop
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -131,6 +143,8 @@ items:
   nameWithType: TabControlAdvanced.PositionIndex.ImageGapLeft
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.ImageGapLeft
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -149,6 +163,8 @@ items:
   nameWithType: TabControlAdvanced.PositionIndex.ImageGapBottom
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.ImageGapBottom
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -167,6 +183,8 @@ items:
   nameWithType: TabControlAdvanced.PositionIndex.ImageGapRight
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.ImageGapRight
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -185,6 +203,8 @@ items:
   nameWithType: TabControlAdvanced.PositionIndex.TextOffset
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.TextOffset
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -203,6 +223,8 @@ items:
   nameWithType: TabControlAdvanced.PositionIndex.TextGapLeft
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.TextGapLeft
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -221,6 +243,8 @@ items:
   nameWithType: TabControlAdvanced.PositionIndex.TabsBottomGap
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.TabsBottomGap
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -239,6 +263,8 @@ items:
   nameWithType: TabControlAdvanced.PositionIndex.ButtonOffset
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.PositionIndex.ButtonOffset
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

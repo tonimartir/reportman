@@ -15,9 +15,16 @@ items:
   nameWithType: EvalIdenExpression
   fullName: Reportman.Reporting.EvalIdenExpression
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/LabelItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
+  summary: >-
+    An evaluator identifier function that resolves to the value of an associated
+
+    <xref href="Reportman.Reporting.ExpressionItem" data-throw-if-not-resolved="false"></xref>, evaluating it on demand.
+  example: []
   syntax:
     content: 'public class EvalIdenExpression : IdenFunction'
     content.vb: Public Class EvalIdenExpression Inherits IdenFunction
@@ -55,6 +62,8 @@ items:
   nameWithType: EvalIdenExpression.ExpreItem
   fullName: Reportman.Reporting.EvalIdenExpression.ExpreItem
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/LabelItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -74,6 +83,8 @@ items:
   nameWithType: EvalIdenExpression.EvalIdenExpression(Evaluator)
   fullName: Reportman.Reporting.EvalIdenExpression.EvalIdenExpression(Reportman.Reporting.Evaluator)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/LabelItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -98,6 +109,8 @@ items:
   nameWithType: EvalIdenExpression.GetValue()
   fullName: Reportman.Reporting.EvalIdenExpression.GetValue()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/LabelItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -112,6 +125,14 @@ items:
   overridden: Reportman.Reporting.EvalIdentifier.GetValue
   overload: Reportman.Reporting.EvalIdenExpression.GetValue*
 references:
+- uid: Reportman.Reporting.ExpressionItem
+  commentId: T:Reportman.Reporting.ExpressionItem
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.ExpressionItem.html
+  name: ExpressionItem
+  nameWithType: ExpressionItem
+  fullName: Reportman.Reporting.ExpressionItem
 - uid: Reportman.Reporting
   commentId: N:Reportman.Reporting
   isExternal: true
@@ -527,14 +548,6 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Reportman.Reporting.ExpressionItem
-  commentId: T:Reportman.Reporting.ExpressionItem
-  parent: Reportman.Reporting
-  isExternal: true
-  href: Reportman.Reporting.ExpressionItem.html
-  name: ExpressionItem
-  nameWithType: ExpressionItem
-  fullName: Reportman.Reporting.ExpressionItem
 - uid: Reportman.Reporting.EvalIdenExpression.#ctor*
   commentId: Overload:Reportman.Reporting.EvalIdenExpression.#ctor
   isExternal: true

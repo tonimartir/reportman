@@ -13,9 +13,13 @@ items:
   nameWithType: HashGenerator
   fullName: Reportman.Drawing.HashGenerator
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/HashGenerator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: Computes SHA-256 hashes for every file under a folder and its subfolders.
+  example: []
   syntax:
     content: public static class HashGenerator
     content.vb: Public Module HashGenerator
@@ -40,6 +44,8 @@ items:
   nameWithType: HashGenerator.GenerateHashes(string)
   fullName: Reportman.Drawing.HashGenerator.GenerateHashes(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/HashGenerator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

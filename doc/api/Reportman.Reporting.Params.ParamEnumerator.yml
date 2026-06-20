@@ -16,9 +16,13 @@ items:
   nameWithType: Params.ParamEnumerator
   fullName: Reportman.Reporting.Params.ParamEnumerator
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Params.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
+  summary: Iterates over the <xref href="Reportman.Reporting.Param" data-throw-if-not-resolved="false"></xref> items contained in a <xref href="Reportman.Reporting.Params" data-throw-if-not-resolved="false"></xref> collection.
+  example: []
   syntax:
     content: 'public class Params.ParamEnumerator : IEnumerator'
     content.vb: Public Class Params.ParamEnumerator Implements IEnumerator
@@ -45,6 +49,8 @@ items:
   nameWithType: Params.ParamEnumerator.ParamEnumerator(Params)
   fullName: Reportman.Reporting.Params.ParamEnumerator.ParamEnumerator(Reportman.Reporting.Params)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Params.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -69,6 +75,8 @@ items:
   nameWithType: Params.ParamEnumerator.MoveNext()
   fullName: Reportman.Reporting.Params.ParamEnumerator.MoveNext()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Params.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -92,6 +100,8 @@ items:
   nameWithType: Params.ParamEnumerator.Reset()
   fullName: Reportman.Reporting.Params.ParamEnumerator.Reset()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Params.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -113,6 +123,8 @@ items:
   nameWithType: Params.ParamEnumerator.Current
   fullName: Reportman.Reporting.Params.ParamEnumerator.Current
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Params.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -127,6 +139,22 @@ items:
   implements:
   - System.Collections.IEnumerator.Current
 references:
+- uid: Reportman.Reporting.Param
+  commentId: T:Reportman.Reporting.Param
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.Param.html
+  name: Param
+  nameWithType: Param
+  fullName: Reportman.Reporting.Param
+- uid: Reportman.Reporting.Params
+  commentId: T:Reportman.Reporting.Params
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.Params.html
+  name: Params
+  nameWithType: Params
+  fullName: Reportman.Reporting.Params
 - uid: Reportman.Reporting
   commentId: N:Reportman.Reporting
   isExternal: true
@@ -436,14 +464,6 @@ references:
   nameWithType.vb: Params.ParamEnumerator.New
   fullName.vb: Reportman.Reporting.Params.ParamEnumerator.New
   name.vb: New
-- uid: Reportman.Reporting.Params
-  commentId: T:Reportman.Reporting.Params
-  parent: Reportman.Reporting
-  isExternal: true
-  href: Reportman.Reporting.Params.html
-  name: Params
-  nameWithType: Params
-  fullName: Reportman.Reporting.Params
 - uid: Reportman.Reporting.Params.ParamEnumerator.MoveNext*
   commentId: Overload:Reportman.Reporting.Params.ParamEnumerator.MoveNext
   isExternal: true

@@ -14,9 +14,16 @@ items:
   nameWithType: ObjectViewModelHierarchy
   fullName: Reportman.Drawing.ObjectViewModelHierarchy
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ObjectViewModel.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    Wraps a root object as the top of an <xref href="Reportman.Drawing.ObjectViewModel" data-throw-if-not-resolved="false"></xref> tree, exposing the
+
+    first generation of nodes for binding to a tree view.
+  example: []
   syntax:
     content: public class ObjectViewModelHierarchy
     content.vb: Public Class ObjectViewModelHierarchy
@@ -41,6 +48,8 @@ items:
   nameWithType: ObjectViewModelHierarchy.ObjectViewModelHierarchy(object)
   fullName: Reportman.Drawing.ObjectViewModelHierarchy.ObjectViewModelHierarchy(object)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ObjectViewModel.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -65,6 +74,8 @@ items:
   nameWithType: ObjectViewModelHierarchy.FirstGeneration
   fullName: Reportman.Drawing.ObjectViewModelHierarchy.FirstGeneration
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ObjectViewModel.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -76,6 +87,14 @@ items:
     content.vb: Public ReadOnly Property FirstGeneration As ReadOnlyCollection(Of ObjectViewModel)
   overload: Reportman.Drawing.ObjectViewModelHierarchy.FirstGeneration*
 references:
+- uid: Reportman.Drawing.ObjectViewModel
+  commentId: T:Reportman.Drawing.ObjectViewModel
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.ObjectViewModel.html
+  name: ObjectViewModel
+  nameWithType: ObjectViewModel
+  fullName: Reportman.Drawing.ObjectViewModel
 - uid: Reportman.Drawing
   commentId: N:Reportman.Drawing
   isExternal: true

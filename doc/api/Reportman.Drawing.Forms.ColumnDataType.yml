@@ -23,9 +23,13 @@ items:
   nameWithType: ColumnDataType
   fullName: Reportman.Drawing.Forms.ColumnDataType
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: Identifies the kind of value a grid column edits, selecting the appropriate editor and formatting (text, numeric, date/time, boolean, combo box or password).
+  example: []
   syntax:
     content: public enum ColumnDataType
     content.vb: Public Enum ColumnDataType
@@ -40,6 +44,8 @@ items:
   nameWithType: ColumnDataType.Text
   fullName: Reportman.Drawing.Forms.ColumnDataType.Text
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -58,6 +64,8 @@ items:
   nameWithType: ColumnDataType.Integer
   fullName: Reportman.Drawing.Forms.ColumnDataType.Integer
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -76,6 +84,8 @@ items:
   nameWithType: ColumnDataType.Numeric
   fullName: Reportman.Drawing.Forms.ColumnDataType.Numeric
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -94,6 +104,8 @@ items:
   nameWithType: ColumnDataType.Double
   fullName: Reportman.Drawing.Forms.ColumnDataType.Double
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -112,6 +124,8 @@ items:
   nameWithType: ColumnDataType.Date
   fullName: Reportman.Drawing.Forms.ColumnDataType.Date
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -130,6 +144,8 @@ items:
   nameWithType: ColumnDataType.DateTime
   fullName: Reportman.Drawing.Forms.ColumnDataType.DateTime
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -148,6 +164,8 @@ items:
   nameWithType: ColumnDataType.Time
   fullName: Reportman.Drawing.Forms.ColumnDataType.Time
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -166,6 +184,8 @@ items:
   nameWithType: ColumnDataType.ComboBox
   fullName: Reportman.Drawing.Forms.ColumnDataType.ComboBox
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -184,6 +204,8 @@ items:
   nameWithType: ColumnDataType.ComboBoxList
   fullName: Reportman.Drawing.Forms.ColumnDataType.ComboBoxList
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -202,6 +224,8 @@ items:
   nameWithType: ColumnDataType.Boolean
   fullName: Reportman.Drawing.Forms.ColumnDataType.Boolean
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -220,6 +244,8 @@ items:
   nameWithType: ColumnDataType.Password
   fullName: Reportman.Drawing.Forms.ColumnDataType.Password
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

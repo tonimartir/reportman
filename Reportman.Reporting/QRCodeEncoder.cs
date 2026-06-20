@@ -10,10 +10,20 @@ using System.IO;
 
 namespace Reportman.Drawing
 {
+    /// <summary>
+    /// Generates QR Code symbols from input data, computing version, mask, and Reed-Solomon
+    /// error correction, and renders the resulting matrix into a report metafile.
+    /// </summary>
     public class QRCodeEncoder
     {
+        /// <summary>
+        /// Data encoding mode used to pack the QR Code payload: alphanumeric, numeric, or raw 8-bit byte.
+        /// </summary>
         public enum ENCODE_MODE { ALPHA_NUMERIC, NUMERIC, BYTE };
 
+        /// <summary>
+        /// QR Code error-correction level (L, M, Q, H), in increasing order of redundancy and recoverability.
+        /// </summary>
         public enum ERROR_CORRECTION { L, M, Q, H };
 
         //internal static String DATA_PATH = "qrcode_data";

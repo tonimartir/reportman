@@ -18,9 +18,16 @@ items:
   nameWithType: VersionInfo
   fullName: Reportman.Drawing.VersionInfo
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Updater.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    Helper for reading assembly and file version numbers and deciding whether one version
+
+    supersedes another, used to determine when files require upgrading.
+  example: []
   syntax:
     content: public class VersionInfo
     content.vb: Public Class VersionInfo
@@ -45,6 +52,8 @@ items:
   nameWithType: VersionInfo.GetAssemblyVersion(string)
   fullName: Reportman.Drawing.VersionInfo.GetAssemblyVersion(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Updater.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -71,6 +80,8 @@ items:
   nameWithType: VersionInfo.GetFileVersion(string)
   fullName: Reportman.Drawing.VersionInfo.GetFileVersion(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Updater.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -97,6 +108,8 @@ items:
   nameWithType: VersionInfo.GetAssemblyVersion()
   fullName: Reportman.Drawing.VersionInfo.GetAssemblyVersion()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Updater.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -117,6 +130,8 @@ items:
   nameWithType: VersionInfo.RequireUpgrade(Version, Version)
   fullName: Reportman.Drawing.VersionInfo.RequireUpgrade(System.Version, System.Version)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Updater.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -142,6 +157,8 @@ items:
   nameWithType: VersionInfo.RequireUpgrade(string, string)
   fullName: Reportman.Drawing.VersionInfo.RequireUpgrade(string, string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Updater.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -170,6 +187,8 @@ items:
   nameWithType: VersionInfo.VersionInfo()
   fullName: Reportman.Drawing.VersionInfo.VersionInfo()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Updater.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

@@ -16,9 +16,16 @@ items:
   nameWithType: StringEvent
   fullName: Reportman.Drawing.Forms.StringEvent
   type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    Callback raised when an item is chosen from an advanced control's drop-down list,
+
+    passing the selected item (a string or an AutoCompleteInfo) as the second argument.
+  example: []
   syntax:
     content: public delegate void StringEvent(object sender, object nitem)
     parameters:
@@ -38,6 +45,8 @@ items:
   nameWithType: StringEvent.StringEvent(object, nint)
   fullName: Reportman.Drawing.Forms.StringEvent.StringEvent(object, nint)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -64,6 +73,8 @@ items:
   nameWithType: StringEvent.Invoke(object, object)
   fullName: Reportman.Drawing.Forms.StringEvent.Invoke(object, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -90,6 +101,8 @@ items:
   nameWithType: StringEvent.BeginInvoke(object, object, AsyncCallback, object)
   fullName: Reportman.Drawing.Forms.StringEvent.BeginInvoke(object, object, System.AsyncCallback, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -122,6 +135,8 @@ items:
   nameWithType: StringEvent.EndInvoke(IAsyncResult)
   fullName: Reportman.Drawing.Forms.StringEvent.EndInvoke(System.IAsyncResult)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

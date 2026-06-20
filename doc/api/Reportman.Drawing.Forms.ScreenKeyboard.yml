@@ -25,9 +25,16 @@ items:
   nameWithType: ScreenKeyboard
   fullName: Reportman.Drawing.Forms.ScreenKeyboard
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    On-screen calculator UserControl that renders a 5x5 grid of buttons and an edit line,
+
+    used to enter or compute decimal/password values via mouse or keyboard.
+  example: []
   syntax:
     content: 'public class ScreenKeyboard : UserControl, IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable, IContainerControl'
     content.vb: Public Class ScreenKeyboard Inherits UserControl Implements IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable, IContainerControl
@@ -483,6 +490,8 @@ items:
   nameWithType: ScreenKeyboard.CustomParentForm
   fullName: Reportman.Drawing.Forms.ScreenKeyboard.CustomParentForm
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -502,6 +511,8 @@ items:
   nameWithType: ScreenKeyboard.editBox
   fullName: Reportman.Drawing.Forms.ScreenKeyboard.editBox
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -521,6 +532,8 @@ items:
   nameWithType: ScreenKeyboard.calc
   fullName: Reportman.Drawing.Forms.ScreenKeyboard.calc
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -540,6 +553,8 @@ items:
   nameWithType: ScreenKeyboard.RedrawCalc()
   fullName: Reportman.Drawing.Forms.ScreenKeyboard.RedrawCalc()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -558,6 +573,8 @@ items:
   nameWithType: ScreenKeyboard.ScreenKeyboard()
   fullName: Reportman.Drawing.Forms.ScreenKeyboard.ScreenKeyboard()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -579,6 +596,8 @@ items:
   nameWithType: ScreenKeyboard.OnPaint(PaintEventArgs)
   fullName: Reportman.Drawing.Forms.ScreenKeyboard.OnPaint(System.Windows.Forms.PaintEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -602,6 +621,8 @@ items:
   nameWithType: ScreenKeyboard.OnPaintBackground(PaintEventArgs)
   fullName: Reportman.Drawing.Forms.ScreenKeyboard.OnPaintBackground(System.Windows.Forms.PaintEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -625,6 +646,8 @@ items:
   nameWithType: ScreenKeyboard.OnMouseDown(MouseEventArgs)
   fullName: Reportman.Drawing.Forms.ScreenKeyboard.OnMouseDown(System.Windows.Forms.MouseEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -648,6 +671,8 @@ items:
   nameWithType: ScreenKeyboard.OnMouseMove(MouseEventArgs)
   fullName: Reportman.Drawing.Forms.ScreenKeyboard.OnMouseMove(System.Windows.Forms.MouseEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -671,6 +696,8 @@ items:
   nameWithType: ScreenKeyboard.OnMouseUp(MouseEventArgs)
   fullName: Reportman.Drawing.Forms.ScreenKeyboard.OnMouseUp(System.Windows.Forms.MouseEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -694,6 +721,8 @@ items:
   nameWithType: ScreenKeyboard.OnKeyPress(KeyPressEventArgs)
   fullName: Reportman.Drawing.Forms.ScreenKeyboard.OnKeyPress(System.Windows.Forms.KeyPressEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -717,6 +746,8 @@ items:
   nameWithType: ScreenKeyboard.Dispose(bool)
   fullName: Reportman.Drawing.Forms.ScreenKeyboard.Dispose(bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.designer.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -745,6 +776,8 @@ items:
   nameWithType: ScreenKeyboard.IsPassword
   fullName: Reportman.Drawing.Forms.ScreenKeyboard.IsPassword
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

@@ -16,9 +16,16 @@ items:
   nameWithType: ProgresEvent
   fullName: Reportman.Drawing.Forms.ProgresEvent
   type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    Callback invoked during a long-running operation to report progress (current of count)
+
+    and to let the handler request cancellation via the <code>cancelar</code> parameter.
+  example: []
   syntax:
     content: public delegate void ProgresEvent(int current, int count, ref bool cancelar)
     parameters:
@@ -40,6 +47,8 @@ items:
   nameWithType: ProgresEvent.ProgresEvent(object, nint)
   fullName: Reportman.Drawing.Forms.ProgresEvent.ProgresEvent(object, nint)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -66,6 +75,8 @@ items:
   nameWithType: ProgresEvent.Invoke(int, int, ref bool)
   fullName: Reportman.Drawing.Forms.ProgresEvent.Invoke(int, int, ref bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -94,6 +105,8 @@ items:
   nameWithType: ProgresEvent.BeginInvoke(int, int, ref bool, AsyncCallback, object)
   fullName: Reportman.Drawing.Forms.ProgresEvent.BeginInvoke(int, int, ref bool, System.AsyncCallback, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -128,6 +141,8 @@ items:
   nameWithType: ProgresEvent.EndInvoke(ref bool, IAsyncResult)
   fullName: Reportman.Drawing.Forms.ProgresEvent.EndInvoke(ref bool, System.IAsyncResult)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

@@ -23,9 +23,13 @@ items:
   nameWithType: TabPageAdvanced.Property
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.Property
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: Identifies which property of a <xref href="Reportman.Drawing.Forms.TabPageAdvanced" data-throw-if-not-resolved="false"></xref> changed, reported through the page's property-changed notification.
+  example: []
   syntax:
     content: public enum TabPageAdvanced.Property
     content.vb: Public Enum TabPageAdvanced.Property
@@ -40,6 +44,8 @@ items:
   nameWithType: TabPageAdvanced.Property.Title
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.Property.Title
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -58,6 +64,8 @@ items:
   nameWithType: TabPageAdvanced.Property.Control
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.Property.Control
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -76,6 +84,8 @@ items:
   nameWithType: TabPageAdvanced.Property.ImageIndex
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.Property.ImageIndex
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -94,6 +104,8 @@ items:
   nameWithType: TabPageAdvanced.Property.ImageList
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.Property.ImageList
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -112,6 +124,8 @@ items:
   nameWithType: TabPageAdvanced.Property.Icon
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.Property.Icon
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -130,6 +144,8 @@ items:
   nameWithType: TabPageAdvanced.Property.IconFrame
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.Property.IconFrame
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -148,6 +164,8 @@ items:
   nameWithType: TabPageAdvanced.Property.Selected
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.Property.Selected
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -166,6 +184,8 @@ items:
   nameWithType: TabPageAdvanced.Property.CanClose
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.Property.CanClose
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -184,6 +204,8 @@ items:
   nameWithType: TabPageAdvanced.Property.DrawIconHightlight
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.Property.DrawIconHightlight
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -202,6 +224,8 @@ items:
   nameWithType: TabPageAdvanced.Property.TabWidth
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.Property.TabWidth
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -220,6 +244,8 @@ items:
   nameWithType: TabPageAdvanced.Property.TitleAlignment
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.Property.TitleAlignment
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -228,6 +254,14 @@ items:
     return:
       type: Reportman.Drawing.Forms.TabPageAdvanced.Property
 references:
+- uid: Reportman.Drawing.Forms.TabPageAdvanced
+  commentId: T:Reportman.Drawing.Forms.TabPageAdvanced
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabPageAdvanced.html
+  name: TabPageAdvanced
+  nameWithType: TabPageAdvanced
+  fullName: Reportman.Drawing.Forms.TabPageAdvanced
 - uid: Reportman.Drawing.Forms
   commentId: N:Reportman.Drawing.Forms
   isExternal: true

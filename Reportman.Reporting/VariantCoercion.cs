@@ -4,6 +4,10 @@ using Reportman.Drawing;
 
 namespace Reportman.Reporting
 {
+    /// <summary>
+    /// Applies Delphi-compatible Variant type coercion rules, promoting two operands to a
+    /// common base type before comparison or arithmetic and raising on invalid combinations.
+    /// </summary>
     public static class VariantCoercion
     {
         private enum BaseType

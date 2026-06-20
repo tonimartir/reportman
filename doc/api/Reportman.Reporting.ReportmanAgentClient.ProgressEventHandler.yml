@@ -1,0 +1,317 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler
+  commentId: T:Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler
+  id: ReportmanAgentClient.ProgressEventHandler
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.#ctor(System.Object,System.IntPtr)
+  - Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.BeginInvoke(System.Object,System.String,System.String,System.String,System.String,System.Int32,System.Int32,System.String,System.Int32,System.AsyncCallback,System.Object)
+  - Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.EndInvoke(System.IAsyncResult)
+  - Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.Invoke(System.Object,System.String,System.String,System.String,System.String,System.Int32,System.Int32,System.String,System.Int32)
+  langs:
+  - csharp
+  - vb
+  name: ReportmanAgentClient.ProgressEventHandler
+  nameWithType: ReportmanAgentClient.ProgressEventHandler
+  fullName: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler
+  type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportmanAgentClient.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    Callback raised for each streamed progress event from the agent, carrying the actor, stage,
+
+    chunk type and content, token counts, progress identifier, and prefill percentage.
+  example: []
+  syntax:
+    content: public delegate void ReportmanAgentClient.ProgressEventHandler(object sender, string actor, string stage, string chunkType, string chunk, int inputTokens, int outputTokens, string progressId, int prefillPercent)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: actor
+      type: System.String
+    - id: stage
+      type: System.String
+    - id: chunkType
+      type: System.String
+    - id: chunk
+      type: System.String
+    - id: inputTokens
+      type: System.Int32
+    - id: outputTokens
+      type: System.Int32
+    - id: progressId
+      type: System.String
+    - id: prefillPercent
+      type: System.Int32
+    content.vb: Public Delegate Sub ReportmanAgentClient.ProgressEventHandler(sender As Object, actor As String, stage As String, chunkType As String, chunk As String, inputTokens As Integer, outputTokens As Integer, progressId As String, prefillPercent As Integer)
+- uid: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.#ctor(System.Object,System.IntPtr)
+  commentId: M:Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.#ctor(System.Object,System.IntPtr)
+  id: '#ctor(System.Object,System.IntPtr)'
+  parent: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler
+  langs:
+  - csharp
+  - vb
+  name: ProgressEventHandler(object, nint)
+  nameWithType: ReportmanAgentClient.ProgressEventHandler.ProgressEventHandler(object, nint)
+  fullName: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.ProgressEventHandler(object, nint)
+  type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportmanAgentClient.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public ProgressEventHandler(object @object, nint method)
+    parameters:
+    - id: object
+      type: System.Object
+    - id: method
+      type: System.IntPtr
+    content.vb: Public Sub New([object] As Object, method As IntPtr)
+  overload: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.#ctor*
+  nameWithType.vb: ReportmanAgentClient.ProgressEventHandler.New(Object, IntPtr)
+  fullName.vb: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.New(Object, System.IntPtr)
+  name.vb: New(Object, IntPtr)
+- uid: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.Invoke(System.Object,System.String,System.String,System.String,System.String,System.Int32,System.Int32,System.String,System.Int32)
+  commentId: M:Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.Invoke(System.Object,System.String,System.String,System.String,System.String,System.Int32,System.Int32,System.String,System.Int32)
+  id: Invoke(System.Object,System.String,System.String,System.String,System.String,System.Int32,System.Int32,System.String,System.Int32)
+  parent: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler
+  langs:
+  - csharp
+  - vb
+  name: Invoke(object, string, string, string, string, int, int, string, int)
+  nameWithType: ReportmanAgentClient.ProgressEventHandler.Invoke(object, string, string, string, string, int, int, string, int)
+  fullName: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.Invoke(object, string, string, string, string, int, int, string, int)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportmanAgentClient.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public virtual void Invoke(object sender, string actor, string stage, string chunkType, string chunk, int inputTokens, int outputTokens, string progressId, int prefillPercent)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: actor
+      type: System.String
+    - id: stage
+      type: System.String
+    - id: chunkType
+      type: System.String
+    - id: chunk
+      type: System.String
+    - id: inputTokens
+      type: System.Int32
+    - id: outputTokens
+      type: System.Int32
+    - id: progressId
+      type: System.String
+    - id: prefillPercent
+      type: System.Int32
+    content.vb: Public Overridable Sub Invoke(sender As Object, actor As String, stage As String, chunkType As String, chunk As String, inputTokens As Integer, outputTokens As Integer, progressId As String, prefillPercent As Integer)
+  overload: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.Invoke*
+  nameWithType.vb: ReportmanAgentClient.ProgressEventHandler.Invoke(Object, String, String, String, String, Integer, Integer, String, Integer)
+  fullName.vb: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.Invoke(Object, String, String, String, String, Integer, Integer, String, Integer)
+  name.vb: Invoke(Object, String, String, String, String, Integer, Integer, String, Integer)
+- uid: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.BeginInvoke(System.Object,System.String,System.String,System.String,System.String,System.Int32,System.Int32,System.String,System.Int32,System.AsyncCallback,System.Object)
+  commentId: M:Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.BeginInvoke(System.Object,System.String,System.String,System.String,System.String,System.Int32,System.Int32,System.String,System.Int32,System.AsyncCallback,System.Object)
+  id: BeginInvoke(System.Object,System.String,System.String,System.String,System.String,System.Int32,System.Int32,System.String,System.Int32,System.AsyncCallback,System.Object)
+  parent: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler
+  langs:
+  - csharp
+  - vb
+  name: BeginInvoke(object, string, string, string, string, int, int, string, int, AsyncCallback, object)
+  nameWithType: ReportmanAgentClient.ProgressEventHandler.BeginInvoke(object, string, string, string, string, int, int, string, int, AsyncCallback, object)
+  fullName: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.BeginInvoke(object, string, string, string, string, int, int, string, int, System.AsyncCallback, object)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportmanAgentClient.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public virtual IAsyncResult BeginInvoke(object sender, string actor, string stage, string chunkType, string chunk, int inputTokens, int outputTokens, string progressId, int prefillPercent, AsyncCallback callback, object @object)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: actor
+      type: System.String
+    - id: stage
+      type: System.String
+    - id: chunkType
+      type: System.String
+    - id: chunk
+      type: System.String
+    - id: inputTokens
+      type: System.Int32
+    - id: outputTokens
+      type: System.Int32
+    - id: progressId
+      type: System.String
+    - id: prefillPercent
+      type: System.Int32
+    - id: callback
+      type: System.AsyncCallback
+    - id: object
+      type: System.Object
+    return:
+      type: System.IAsyncResult
+    content.vb: Public Overridable Function BeginInvoke(sender As Object, actor As String, stage As String, chunkType As String, chunk As String, inputTokens As Integer, outputTokens As Integer, progressId As String, prefillPercent As Integer, callback As AsyncCallback, [object] As Object) As IAsyncResult
+  overload: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.BeginInvoke*
+  nameWithType.vb: ReportmanAgentClient.ProgressEventHandler.BeginInvoke(Object, String, String, String, String, Integer, Integer, String, Integer, AsyncCallback, Object)
+  fullName.vb: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.BeginInvoke(Object, String, String, String, String, Integer, Integer, String, Integer, System.AsyncCallback, Object)
+  name.vb: BeginInvoke(Object, String, String, String, String, Integer, Integer, String, Integer, AsyncCallback, Object)
+- uid: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.EndInvoke(System.IAsyncResult)
+  commentId: M:Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.EndInvoke(System.IAsyncResult)
+  id: EndInvoke(System.IAsyncResult)
+  parent: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler
+  langs:
+  - csharp
+  - vb
+  name: EndInvoke(IAsyncResult)
+  nameWithType: ReportmanAgentClient.ProgressEventHandler.EndInvoke(IAsyncResult)
+  fullName: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.EndInvoke(System.IAsyncResult)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportmanAgentClient.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public virtual void EndInvoke(IAsyncResult result)
+    parameters:
+    - id: result
+      type: System.IAsyncResult
+    content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
+  overload: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.EndInvoke*
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.#ctor*
+  commentId: Overload:Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.#ctor
+  isExternal: true
+  href: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.html#Reportman_Reporting_ReportmanAgentClient_ProgressEventHandler__ctor_System_Object_System_IntPtr_
+  name: ProgressEventHandler
+  nameWithType: ReportmanAgentClient.ProgressEventHandler.ProgressEventHandler
+  fullName: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.ProgressEventHandler
+  nameWithType.vb: ReportmanAgentClient.ProgressEventHandler.New
+  fullName.vb: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.New
+  name.vb: New
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.Invoke*
+  commentId: Overload:Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.Invoke
+  isExternal: true
+  href: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.html#Reportman_Reporting_ReportmanAgentClient_ProgressEventHandler_Invoke_System_Object_System_String_System_String_System_String_System_String_System_Int32_System_Int32_System_String_System_Int32_
+  name: Invoke
+  nameWithType: ReportmanAgentClient.ProgressEventHandler.Invoke
+  fullName: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.Invoke
+- uid: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.BeginInvoke*
+  commentId: Overload:Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.BeginInvoke
+  isExternal: true
+  href: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.html#Reportman_Reporting_ReportmanAgentClient_ProgressEventHandler_BeginInvoke_System_Object_System_String_System_String_System_String_System_String_System_Int32_System_Int32_System_String_System_Int32_System_AsyncCallback_System_Object_
+  name: BeginInvoke
+  nameWithType: ReportmanAgentClient.ProgressEventHandler.BeginInvoke
+  fullName: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.BeginInvoke
+- uid: System.AsyncCallback
+  commentId: T:System.AsyncCallback
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.asynccallback
+  name: AsyncCallback
+  nameWithType: AsyncCallback
+  fullName: System.AsyncCallback
+- uid: System.IAsyncResult
+  commentId: T:System.IAsyncResult
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncresult
+  name: IAsyncResult
+  nameWithType: IAsyncResult
+  fullName: System.IAsyncResult
+- uid: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.EndInvoke*
+  commentId: Overload:Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.EndInvoke
+  isExternal: true
+  href: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.html#Reportman_Reporting_ReportmanAgentClient_ProgressEventHandler_EndInvoke_System_IAsyncResult_
+  name: EndInvoke
+  nameWithType: ReportmanAgentClient.ProgressEventHandler.EndInvoke
+  fullName: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler.EndInvoke

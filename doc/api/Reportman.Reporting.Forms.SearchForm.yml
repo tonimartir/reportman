@@ -15,6 +15,8 @@ items:
   nameWithType: SearchForm
   fullName: Reportman.Reporting.Forms.SearchForm
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/SearchForm.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -588,6 +590,8 @@ items:
   nameWithType: SearchForm.Dispose(bool)
   fullName: Reportman.Reporting.Forms.SearchForm.Dispose(bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/SearchForm.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -616,6 +620,8 @@ items:
   nameWithType: SearchForm.SearchForm()
   fullName: Reportman.Reporting.Forms.SearchForm.SearchForm()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/SearchForm.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -639,6 +645,8 @@ items:
   nameWithType: SearchForm.SearchParamValue(Param, Report)
   fullName: Reportman.Reporting.Forms.SearchForm.SearchParamValue(Reportman.Reporting.Param, Reportman.Reporting.Report)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/SearchForm.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms

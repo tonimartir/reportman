@@ -17,9 +17,16 @@ items:
   nameWithType: PDFAFRelationShip
   fullName: Reportman.Drawing.PDFAFRelationShip
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    Relationship of an embedded (associated) file to the PDF document, as defined by the
+
+    PDF/A-3 AFRelationship key (for example Data, Source, Alternative or Supplement).
+  example: []
   syntax:
     content: public enum PDFAFRelationShip
     content.vb: Public Enum PDFAFRelationShip
@@ -34,6 +41,8 @@ items:
   nameWithType: PDFAFRelationShip.Unspecified
   fullName: Reportman.Drawing.PDFAFRelationShip.Unspecified
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -52,6 +61,8 @@ items:
   nameWithType: PDFAFRelationShip.Alternative
   fullName: Reportman.Drawing.PDFAFRelationShip.Alternative
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -70,6 +81,8 @@ items:
   nameWithType: PDFAFRelationShip.Data
   fullName: Reportman.Drawing.PDFAFRelationShip.Data
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -88,6 +101,8 @@ items:
   nameWithType: PDFAFRelationShip.Source
   fullName: Reportman.Drawing.PDFAFRelationShip.Source
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -106,6 +121,8 @@ items:
   nameWithType: PDFAFRelationShip.Supplement
   fullName: Reportman.Drawing.PDFAFRelationShip.Supplement
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

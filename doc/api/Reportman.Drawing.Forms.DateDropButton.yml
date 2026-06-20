@@ -14,9 +14,13 @@ items:
   nameWithType: DateDropButton
   fullName: Reportman.Drawing.Forms.DateDropButton
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: Button that paints itself as a combo-box style drop-down arrow, used to open the calendar popup.
+  example: []
   syntax:
     content: 'public class DateDropButton : Button, IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable, IButtonControl'
     content.vb: Public Class DateDropButton Inherits Button Implements IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable, IButtonControl
@@ -462,6 +466,8 @@ items:
   nameWithType: DateDropButton.OnPaint(PaintEventArgs)
   fullName: Reportman.Drawing.Forms.DateDropButton.OnPaint(System.Windows.Forms.PaintEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -485,6 +491,8 @@ items:
   nameWithType: DateDropButton.DateDropButton()
   fullName: Reportman.Drawing.Forms.DateDropButton.DateDropButton()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

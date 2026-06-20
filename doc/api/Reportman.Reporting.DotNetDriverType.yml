@@ -23,6 +23,8 @@ items:
   nameWithType: DotNetDriverType
   fullName: Reportman.Reporting.DotNetDriverType
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -35,7 +37,7 @@ items:
 
     This type is not used in .Net 2.x because the functionality of database providers, 
 
-    configured in machine.config or application.config<xref href="Reportman.Reporting.Variant?text=DatabaseInfo" data-throw-if-not-resolved="false"></xref>
+    configured in machine.config or application.config<xref href="Reportman.Reporting.DatabaseInfo" data-throw-if-not-resolved="false"></xref>
   example: []
   syntax:
     content: public enum DotNetDriverType
@@ -51,6 +53,8 @@ items:
   nameWithType: DotNetDriverType.OleDb
   fullName: Reportman.Reporting.DotNetDriverType.OleDb
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -71,6 +75,8 @@ items:
   nameWithType: DotNetDriverType.Odbc
   fullName: Reportman.Reporting.DotNetDriverType.Odbc
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -91,6 +97,8 @@ items:
   nameWithType: DotNetDriverType.Firebird
   fullName: Reportman.Reporting.DotNetDriverType.Firebird
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -111,6 +119,8 @@ items:
   nameWithType: DotNetDriverType.Sql
   fullName: Reportman.Reporting.DotNetDriverType.Sql
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -131,6 +141,8 @@ items:
   nameWithType: DotNetDriverType.PostgreSql
   fullName: Reportman.Reporting.DotNetDriverType.PostgreSql
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -151,6 +163,8 @@ items:
   nameWithType: DotNetDriverType.MySql
   fullName: Reportman.Reporting.DotNetDriverType.MySql
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -171,6 +185,8 @@ items:
   nameWithType: DotNetDriverType.SQLite
   fullName: Reportman.Reporting.DotNetDriverType.SQLite
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -191,6 +207,8 @@ items:
   nameWithType: DotNetDriverType.Oracle
   fullName: Reportman.Reporting.DotNetDriverType.Oracle
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -211,6 +229,8 @@ items:
   nameWithType: DotNetDriverType.DB2
   fullName: Reportman.Reporting.DotNetDriverType.DB2
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -231,6 +251,8 @@ items:
   nameWithType: DotNetDriverType.Sybase
   fullName: Reportman.Reporting.DotNetDriverType.Sybase
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -251,6 +273,8 @@ items:
   nameWithType: DotNetDriverType.SqlCE
   fullName: Reportman.Reporting.DotNetDriverType.SqlCE
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -261,14 +285,14 @@ items:
     return:
       type: Reportman.Reporting.DotNetDriverType
 references:
-- uid: Reportman.Reporting.Variant
-  commentId: T:Reportman.Reporting.Variant
+- uid: Reportman.Reporting.DatabaseInfo
+  commentId: T:Reportman.Reporting.DatabaseInfo
   parent: Reportman.Reporting
   isExternal: true
-  href: Reportman.Reporting.Variant.html
-  name: Variant
-  nameWithType: Variant
-  fullName: Reportman.Reporting.Variant
+  href: Reportman.Reporting.DatabaseInfo.html
+  name: DatabaseInfo
+  nameWithType: DatabaseInfo
+  fullName: Reportman.Reporting.DatabaseInfo
 - uid: Reportman.Reporting
   commentId: N:Reportman.Reporting
   isExternal: true

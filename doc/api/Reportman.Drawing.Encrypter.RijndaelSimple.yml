@@ -16,9 +16,16 @@ items:
   nameWithType: Encrypter.RijndaelSimple
   fullName: Reportman.Drawing.Encrypter.RijndaelSimple
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Encrypter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    Simple Rijndael (AES) helper that encrypts and decrypts strings to and from Base64
+
+    using CBC mode and a password-derived key, with most cryptographic parameters fixed as constants.
+  example: []
   syntax:
     content: public static class Encrypter.RijndaelSimple
     content.vb: Public Module Encrypter.RijndaelSimple
@@ -43,6 +50,8 @@ items:
   nameWithType: Encrypter.RijndaelSimple.Encrypt(string, string)
   fullName: Reportman.Drawing.Encrypter.RijndaelSimple.Encrypt(string, string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Encrypter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -71,6 +80,8 @@ items:
   nameWithType: Encrypter.RijndaelSimple.Encrypt(string, string, string, string, int, string, int)
   fullName: Reportman.Drawing.Encrypter.RijndaelSimple.Encrypt(string, string, string, string, int, string, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Encrypter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -109,6 +120,8 @@ items:
   nameWithType: Encrypter.RijndaelSimple.DeCrypt(string, string)
   fullName: Reportman.Drawing.Encrypter.RijndaelSimple.DeCrypt(string, string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Encrypter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -137,6 +150,8 @@ items:
   nameWithType: Encrypter.RijndaelSimple.Decrypt(string, string, string, string, int, string, int)
   fullName: Reportman.Drawing.Encrypter.RijndaelSimple.Decrypt(string, string, string, string, int, string, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Encrypter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

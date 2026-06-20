@@ -23,8 +23,20 @@ using System.Drawing;
 
 namespace Reportman.Reporting
 {
+    /// <summary>
+    /// Defines the scope over which an aggregate value is accumulated: none, per group,
+    /// per page, or across the whole report.
+    /// </summary>
     public enum Aggregate { None, Group, Page, General };
+    /// <summary>
+    /// The kind of aggregation applied to a value: sum, minimum, maximum, average, or
+    /// standard deviation.
+    /// </summary>
     public enum AggregateType { Summary, Minimum, Maximum, Average, StandardDeviation };
+    /// <summary>
+    /// A report print item that renders a static, language-aware text label, selecting the
+    /// string for the report's current language and supporting optional HTML content.
+    /// </summary>
     public class LabelItem : PrintItemText
     {
         Strings FAllStrings;
@@ -147,6 +159,10 @@ namespace Reportman.Reporting
             return aresult;
         }
     }
+    /// <summary>
+    /// An evaluator identifier function that resolves to the value of an associated
+    /// <see cref="ExpressionItem"/>, evaluating it on demand.
+    /// </summary>
     public class EvalIdenExpression : IdenFunction
     {
         public EvalIdenExpression(Evaluator eval)

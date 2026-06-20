@@ -3,6 +3,10 @@ using System.Data;
 
 namespace Reportman.Reporting
 {
+    /// <summary>
+    /// Collection of a report's database connection definitions, indexable by alias and
+    /// holding the shared in-memory DataSet; supports cloning for a new report owner.
+    /// </summary>
     public class DatabaseInfos : System.Collections.Generic.List<DatabaseInfo>, ICloneable
     {
         public DataSet MemoryDataSet;

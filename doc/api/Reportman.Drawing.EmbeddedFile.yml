@@ -24,9 +24,16 @@ items:
   nameWithType: EmbeddedFile
   fullName: Reportman.Drawing.EmbeddedFile
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    A file embedded in the metafile (and later in the generated PDF), holding its content stream
+
+    together with its name, MIME type, description, dates and PDF/A association relationship.
+  example: []
   syntax:
     content: 'public class EmbeddedFile : ICloneable, IDisposable'
     content.vb: Public Class EmbeddedFile Implements ICloneable, IDisposable
@@ -54,6 +61,8 @@ items:
   nameWithType: EmbeddedFile.FileName
   fullName: Reportman.Drawing.EmbeddedFile.FileName
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -73,6 +82,8 @@ items:
   nameWithType: EmbeddedFile.Stream
   fullName: Reportman.Drawing.EmbeddedFile.Stream
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -92,6 +103,8 @@ items:
   nameWithType: EmbeddedFile.MimeType
   fullName: Reportman.Drawing.EmbeddedFile.MimeType
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -111,6 +124,8 @@ items:
   nameWithType: EmbeddedFile.ResourceNumber
   fullName: Reportman.Drawing.EmbeddedFile.ResourceNumber
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -130,6 +145,8 @@ items:
   nameWithType: EmbeddedFile.Description
   fullName: Reportman.Drawing.EmbeddedFile.Description
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -149,6 +166,8 @@ items:
   nameWithType: EmbeddedFile.AFRelationShip
   fullName: Reportman.Drawing.EmbeddedFile.AFRelationShip
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -168,6 +187,8 @@ items:
   nameWithType: EmbeddedFile.CreationDate
   fullName: Reportman.Drawing.EmbeddedFile.CreationDate
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -187,6 +208,8 @@ items:
   nameWithType: EmbeddedFile.ModificationDate
   fullName: Reportman.Drawing.EmbeddedFile.ModificationDate
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -206,6 +229,8 @@ items:
   nameWithType: EmbeddedFile.AFRelationShipToString()
   fullName: Reportman.Drawing.EmbeddedFile.AFRelationShipToString()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -226,6 +251,8 @@ items:
   nameWithType: EmbeddedFile.Clone()
   fullName: Reportman.Drawing.EmbeddedFile.Clone()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -249,6 +276,8 @@ items:
   nameWithType: EmbeddedFile.Dispose()
   fullName: Reportman.Drawing.EmbeddedFile.Dispose()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -270,6 +299,8 @@ items:
   nameWithType: EmbeddedFile.EmbeddedFile()
   fullName: Reportman.Drawing.EmbeddedFile.EmbeddedFile()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

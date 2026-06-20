@@ -8,6 +8,7 @@ items:
   - Reportman.Drawing.DateUtil.#ctor
   - Reportman.Drawing.DateUtil.AddWorkableDays(System.DateTime,System.Int32)
   - Reportman.Drawing.DateUtil.DateTimeToDelphiDate(System.DateTime)
+  - Reportman.Drawing.DateUtil.DateTimeToDelphiDateTime(System.DateTime)
   - Reportman.Drawing.DateUtil.DateTimeToFbLiteralHour(System.DateTime)
   - Reportman.Drawing.DateUtil.DateTimeToUnixTimestamp(System.DateTime)
   - Reportman.Drawing.DateUtil.DateToISO8601(System.DateTime,System.Boolean)
@@ -27,6 +28,8 @@ items:
   nameWithType: DateUtil
   fullName: Reportman.Drawing.DateUtil
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -56,6 +59,8 @@ items:
   nameWithType: DateUtil.FIRST_DELPHI_DAY
   fullName: Reportman.Drawing.DateUtil.FIRST_DELPHI_DAY
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -75,6 +80,8 @@ items:
   nameWithType: DateUtil.DelphiDateToDateTime(double)
   fullName: Reportman.Drawing.DateUtil.DelphiDateToDateTime(double)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -92,6 +99,39 @@ items:
   nameWithType.vb: DateUtil.DelphiDateToDateTime(Double)
   fullName.vb: Reportman.Drawing.DateUtil.DelphiDateToDateTime(Double)
   name.vb: DelphiDateToDateTime(Double)
+- uid: Reportman.Drawing.DateUtil.DateTimeToDelphiDateTime(System.DateTime)
+  commentId: M:Reportman.Drawing.DateUtil.DateTimeToDelphiDateTime(System.DateTime)
+  id: DateTimeToDelphiDateTime(System.DateTime)
+  parent: Reportman.Drawing.DateUtil
+  langs:
+  - csharp
+  - vb
+  name: DateTimeToDelphiDateTime(DateTime)
+  nameWithType: DateUtil.DateTimeToDelphiDateTime(DateTime)
+  fullName: Reportman.Drawing.DateUtil.DateTimeToDelphiDateTime(System.DateTime)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    Converts a DateTime to a double value representing the number of days from 30 Dec 1899
+
+    It mantains the time
+  example: []
+  syntax:
+    content: public static double DateTimeToDelphiDateTime(DateTime avalue)
+    parameters:
+    - id: avalue
+      type: System.DateTime
+    return:
+      type: System.Double
+    content.vb: Public Shared Function DateTimeToDelphiDateTime(avalue As Date) As Double
+  overload: Reportman.Drawing.DateUtil.DateTimeToDelphiDateTime*
+  nameWithType.vb: DateUtil.DateTimeToDelphiDateTime(Date)
+  fullName.vb: Reportman.Drawing.DateUtil.DateTimeToDelphiDateTime(Date)
+  name.vb: DateTimeToDelphiDateTime(Date)
 - uid: Reportman.Drawing.DateUtil.DateTimeToFbLiteralHour(System.DateTime)
   commentId: M:Reportman.Drawing.DateUtil.DateTimeToFbLiteralHour(System.DateTime)
   id: DateTimeToFbLiteralHour(System.DateTime)
@@ -103,6 +143,8 @@ items:
   nameWithType: DateUtil.DateTimeToFbLiteralHour(DateTime)
   fullName: Reportman.Drawing.DateUtil.DateTimeToFbLiteralHour(System.DateTime)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -129,6 +171,8 @@ items:
   nameWithType: DateUtil.DateTimeToDelphiDate(DateTime)
   fullName: Reportman.Drawing.DateUtil.DateTimeToDelphiDate(System.DateTime)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -157,6 +201,8 @@ items:
   nameWithType: DateUtil.DateToSqlLiteral(DateTime)
   fullName: Reportman.Drawing.DateUtil.DateToSqlLiteral(System.DateTime)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -186,6 +232,8 @@ items:
   nameWithType: DateUtil.DelphiDateTimeToTimeSpan(double)
   fullName: Reportman.Drawing.DateUtil.DelphiDateTimeToTimeSpan(double)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -214,6 +262,8 @@ items:
   nameWithType: DateUtil.DateToISO8601(DateTime, bool)
   fullName: Reportman.Drawing.DateUtil.DateToISO8601(System.DateTime, bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -242,6 +292,8 @@ items:
   nameWithType: DateUtil.IsDateTime(string, out DateTime)
   fullName: Reportman.Drawing.DateUtil.IsDateTime(string, out System.DateTime)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -270,6 +322,8 @@ items:
   nameWithType: DateUtil.NextSaturday(DateTime)
   fullName: Reportman.Drawing.DateUtil.NextSaturday(System.DateTime)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -296,6 +350,8 @@ items:
   nameWithType: DateUtil.NextFriDay(DateTime)
   fullName: Reportman.Drawing.DateUtil.NextFriDay(System.DateTime)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -322,6 +378,8 @@ items:
   nameWithType: DateUtil.NextDayOfMonth(DateTime, int)
   fullName: Reportman.Drawing.DateUtil.NextDayOfMonth(System.DateTime, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -350,6 +408,8 @@ items:
   nameWithType: DateUtil.LastDayOfMonth(DateTime)
   fullName: Reportman.Drawing.DateUtil.LastDayOfMonth(System.DateTime)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -376,6 +436,8 @@ items:
   nameWithType: DateUtil.AddWorkableDays(DateTime, int)
   fullName: Reportman.Drawing.DateUtil.AddWorkableDays(System.DateTime, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -404,6 +466,8 @@ items:
   nameWithType: DateUtil.DateTimeToUnixTimestamp(DateTime)
   fullName: Reportman.Drawing.DateUtil.DateTimeToUnixTimestamp(System.DateTime)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -430,6 +494,8 @@ items:
   nameWithType: DateUtil.DateUtil()
   fullName: Reportman.Drawing.DateUtil.DateUtil()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -734,6 +800,13 @@ references:
   nameWithType.vb: Double
   fullName.vb: Double
   name.vb: Double
+- uid: Reportman.Drawing.DateUtil.DateTimeToDelphiDateTime*
+  commentId: Overload:Reportman.Drawing.DateUtil.DateTimeToDelphiDateTime
+  isExternal: true
+  href: Reportman.Drawing.DateUtil.html#Reportman_Drawing_DateUtil_DateTimeToDelphiDateTime_System_DateTime_
+  name: DateTimeToDelphiDateTime
+  nameWithType: DateUtil.DateTimeToDelphiDateTime
+  fullName: Reportman.Drawing.DateUtil.DateTimeToDelphiDateTime
 - uid: Reportman.Drawing.DateUtil.DateTimeToFbLiteralHour*
   commentId: Overload:Reportman.Drawing.DateUtil.DateTimeToFbLiteralHour
   isExternal: true

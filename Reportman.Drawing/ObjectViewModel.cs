@@ -8,6 +8,10 @@ using System.Reflection;
 
 namespace Reportman.Drawing
 {
+    /// <summary>
+    /// A tree node that exposes an arbitrary object's public fields (and enumerable items) for
+    /// display in a hierarchical, lazily expanded property browser, with selection and expansion state.
+    /// </summary>
     public class ObjectViewModel : INotifyPropertyChanged
     {
         ReadOnlyCollection<ObjectViewModel> _children;
@@ -259,6 +263,10 @@ namespace Reportman.Drawing
 
         #endregion
     }
+    /// <summary>
+    /// Wraps a root object as the top of an <see cref="ObjectViewModel"/> tree, exposing the
+    /// first generation of nodes for binding to a tree view.
+    /// </summary>
     public class ObjectViewModelHierarchy
     {
         readonly ReadOnlyCollection<ObjectViewModel> _firstGeneration;

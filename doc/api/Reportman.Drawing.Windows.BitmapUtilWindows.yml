@@ -13,9 +13,16 @@ items:
   nameWithType: BitmapUtilWindows
   fullName: Reportman.Drawing.Windows.BitmapUtilWindows
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/BitmapUtilWindows.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
+  summary: >-
+    Windows-specific bitmap helpers, including an extension method that resolves the default file
+
+    extension for a given <xref href="System.Drawing.Imaging.ImageFormat" data-throw-if-not-resolved="false"></xref>.
+  example: []
   syntax:
     content: public static class BitmapUtilWindows
     content.vb: Public Module BitmapUtilWindows
@@ -41,6 +48,8 @@ items:
   nameWithType: BitmapUtilWindows.GetFileExtension(ImageFormat)
   fullName: Reportman.Drawing.Windows.BitmapUtilWindows.GetFileExtension(System.Drawing.Imaging.ImageFormat)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/BitmapUtilWindows.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -54,6 +63,14 @@ items:
     content.vb: Public Shared Function GetFileExtension(imageFormat As ImageFormat) As String
   overload: Reportman.Drawing.Windows.BitmapUtilWindows.GetFileExtension*
 references:
+- uid: System.Drawing.Imaging.ImageFormat
+  commentId: T:System.Drawing.Imaging.ImageFormat
+  parent: System.Drawing.Imaging
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.imaging.imageformat
+  name: ImageFormat
+  nameWithType: ImageFormat
+  fullName: System.Drawing.Imaging.ImageFormat
 - uid: Reportman.Drawing.Windows
   commentId: N:Reportman.Drawing.Windows
   isExternal: true
@@ -321,39 +338,6 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
   - name: )
-- uid: System
-  commentId: N:System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System
-  nameWithType: System
-  fullName: System
-- uid: Reportman.Drawing.Windows.BitmapUtilWindows.GetFileExtension*
-  commentId: Overload:Reportman.Drawing.Windows.BitmapUtilWindows.GetFileExtension
-  isExternal: true
-  href: Reportman.Drawing.Windows.BitmapUtilWindows.html#Reportman_Drawing_Windows_BitmapUtilWindows_GetFileExtension_System_Drawing_Imaging_ImageFormat_
-  name: GetFileExtension
-  nameWithType: BitmapUtilWindows.GetFileExtension
-  fullName: Reportman.Drawing.Windows.BitmapUtilWindows.GetFileExtension
-- uid: System.Drawing.Imaging.ImageFormat
-  commentId: T:System.Drawing.Imaging.ImageFormat
-  parent: System.Drawing.Imaging
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.drawing.imaging.imageformat
-  name: ImageFormat
-  nameWithType: ImageFormat
-  fullName: System.Drawing.Imaging.ImageFormat
-- uid: System.String
-  commentId: T:System.String
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: string
-  nameWithType: string
-  fullName: string
-  nameWithType.vb: String
-  fullName.vb: String
-  name.vb: String
 - uid: System.Drawing.Imaging
   commentId: N:System.Drawing.Imaging
   isExternal: true
@@ -391,3 +375,28 @@ references:
     name: Imaging
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.drawing.imaging
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing.Windows.BitmapUtilWindows.GetFileExtension*
+  commentId: Overload:Reportman.Drawing.Windows.BitmapUtilWindows.GetFileExtension
+  isExternal: true
+  href: Reportman.Drawing.Windows.BitmapUtilWindows.html#Reportman_Drawing_Windows_BitmapUtilWindows_GetFileExtension_System_Drawing_Imaging_ImageFormat_
+  name: GetFileExtension
+  nameWithType: BitmapUtilWindows.GetFileExtension
+  fullName: Reportman.Drawing.Windows.BitmapUtilWindows.GetFileExtension
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String

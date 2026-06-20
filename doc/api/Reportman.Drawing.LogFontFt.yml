@@ -1,0 +1,1301 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.LogFontFt
+  commentId: T:Reportman.Drawing.LogFontFt
+  id: LogFontFt
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.LogFontFt.#ctor
+  - Reportman.Drawing.LogFontFt.BBox
+  - Reportman.Drawing.LogFontFt.Capheight
+  - Reportman.Drawing.LogFontFt.Dispose
+  - Reportman.Drawing.LogFontFt.FontFaces
+  - Reportman.Drawing.LogFontFt.ItalicAngle
+  - Reportman.Drawing.LogFontFt.MaxWidth
+  - Reportman.Drawing.LogFontFt.OpenFont
+  - Reportman.Drawing.LogFontFt.StemV
+  - Reportman.Drawing.LogFontFt.ascent
+  - Reportman.Drawing.LogFontFt.avCharWidth
+  - Reportman.Drawing.LogFontFt.bold
+  - Reportman.Drawing.LogFontFt.convfactor
+  - Reportman.Drawing.LogFontFt.descent
+  - Reportman.Drawing.LogFontFt.faceinit
+  - Reportman.Drawing.LogFontFt.familyname
+  - Reportman.Drawing.LogFontFt.filename
+  - Reportman.Drawing.LogFontFt.fixedpitch
+  - Reportman.Drawing.LogFontFt.ftface
+  - Reportman.Drawing.LogFontFt.ftlibrary
+  - Reportman.Drawing.LogFontFt.fullinfo
+  - Reportman.Drawing.LogFontFt.havekerning
+  - Reportman.Drawing.LogFontFt.height
+  - Reportman.Drawing.LogFontFt.heightmult
+  - Reportman.Drawing.LogFontFt.iface
+  - Reportman.Drawing.LogFontFt.italic
+  - Reportman.Drawing.LogFontFt.kerningfile
+  - Reportman.Drawing.LogFontFt.keyname
+  - Reportman.Drawing.LogFontFt.leading
+  - Reportman.Drawing.LogFontFt.postcriptname
+  - Reportman.Drawing.LogFontFt.stylename
+  - Reportman.Drawing.LogFontFt.type1
+  - Reportman.Drawing.LogFontFt.weight
+  - Reportman.Drawing.LogFontFt.widthmult
+  langs:
+  - csharp
+  - vb
+  name: LogFontFt
+  nameWithType: LogFontFt
+  fullName: Reportman.Drawing.LogFontFt
+  type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  summary: >-
+    Holds the FreeType face handle and cached metrics (family, style, ascent/descent, bounding box,
+
+    kerning and other attributes) for a single font file, and lazily opens the FreeType face on demand.
+  example: []
+  syntax:
+    content: public class LogFontFt
+    content.vb: Public Class LogFontFt
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.LogFontFt.fixedpitch
+  commentId: F:Reportman.Drawing.LogFontFt.fixedpitch
+  id: fixedpitch
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: fixedpitch
+  nameWithType: LogFontFt.fixedpitch
+  fullName: Reportman.Drawing.LogFontFt.fixedpitch
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public bool fixedpitch
+    return:
+      type: System.Boolean
+    content.vb: Public fixedpitch As Boolean
+- uid: Reportman.Drawing.LogFontFt.postcriptname
+  commentId: F:Reportman.Drawing.LogFontFt.postcriptname
+  id: postcriptname
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: postcriptname
+  nameWithType: LogFontFt.postcriptname
+  fullName: Reportman.Drawing.LogFontFt.postcriptname
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string postcriptname
+    return:
+      type: System.String
+    content.vb: Public postcriptname As String
+- uid: Reportman.Drawing.LogFontFt.familyname
+  commentId: F:Reportman.Drawing.LogFontFt.familyname
+  id: familyname
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: familyname
+  nameWithType: LogFontFt.familyname
+  fullName: Reportman.Drawing.LogFontFt.familyname
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string familyname
+    return:
+      type: System.String
+    content.vb: Public familyname As String
+- uid: Reportman.Drawing.LogFontFt.stylename
+  commentId: F:Reportman.Drawing.LogFontFt.stylename
+  id: stylename
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: stylename
+  nameWithType: LogFontFt.stylename
+  fullName: Reportman.Drawing.LogFontFt.stylename
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string stylename
+    return:
+      type: System.String
+    content.vb: Public stylename As String
+- uid: Reportman.Drawing.LogFontFt.italic
+  commentId: F:Reportman.Drawing.LogFontFt.italic
+  id: italic
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: italic
+  nameWithType: LogFontFt.italic
+  fullName: Reportman.Drawing.LogFontFt.italic
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public bool italic
+    return:
+      type: System.Boolean
+    content.vb: Public italic As Boolean
+- uid: Reportman.Drawing.LogFontFt.bold
+  commentId: F:Reportman.Drawing.LogFontFt.bold
+  id: bold
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: bold
+  nameWithType: LogFontFt.bold
+  fullName: Reportman.Drawing.LogFontFt.bold
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public bool bold
+    return:
+      type: System.Boolean
+    content.vb: Public bold As Boolean
+- uid: Reportman.Drawing.LogFontFt.filename
+  commentId: F:Reportman.Drawing.LogFontFt.filename
+  id: filename
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: filename
+  nameWithType: LogFontFt.filename
+  fullName: Reportman.Drawing.LogFontFt.filename
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string filename
+    return:
+      type: System.String
+    content.vb: Public filename As String
+- uid: Reportman.Drawing.LogFontFt.ascent
+  commentId: F:Reportman.Drawing.LogFontFt.ascent
+  id: ascent
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: ascent
+  nameWithType: LogFontFt.ascent
+  fullName: Reportman.Drawing.LogFontFt.ascent
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int ascent
+    return:
+      type: System.Int32
+    content.vb: Public ascent As Integer
+- uid: Reportman.Drawing.LogFontFt.descent
+  commentId: F:Reportman.Drawing.LogFontFt.descent
+  id: descent
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: descent
+  nameWithType: LogFontFt.descent
+  fullName: Reportman.Drawing.LogFontFt.descent
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int descent
+    return:
+      type: System.Int32
+    content.vb: Public descent As Integer
+- uid: Reportman.Drawing.LogFontFt.height
+  commentId: F:Reportman.Drawing.LogFontFt.height
+  id: height
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: height
+  nameWithType: LogFontFt.height
+  fullName: Reportman.Drawing.LogFontFt.height
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int height
+    return:
+      type: System.Int32
+    content.vb: Public height As Integer
+- uid: Reportman.Drawing.LogFontFt.weight
+  commentId: F:Reportman.Drawing.LogFontFt.weight
+  id: weight
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: weight
+  nameWithType: LogFontFt.weight
+  fullName: Reportman.Drawing.LogFontFt.weight
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int weight
+    return:
+      type: System.Int32
+    content.vb: Public weight As Integer
+- uid: Reportman.Drawing.LogFontFt.MaxWidth
+  commentId: F:Reportman.Drawing.LogFontFt.MaxWidth
+  id: MaxWidth
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: MaxWidth
+  nameWithType: LogFontFt.MaxWidth
+  fullName: Reportman.Drawing.LogFontFt.MaxWidth
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int MaxWidth
+    return:
+      type: System.Int32
+    content.vb: Public MaxWidth As Integer
+- uid: Reportman.Drawing.LogFontFt.avCharWidth
+  commentId: F:Reportman.Drawing.LogFontFt.avCharWidth
+  id: avCharWidth
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: avCharWidth
+  nameWithType: LogFontFt.avCharWidth
+  fullName: Reportman.Drawing.LogFontFt.avCharWidth
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int avCharWidth
+    return:
+      type: System.Int32
+    content.vb: Public avCharWidth As Integer
+- uid: Reportman.Drawing.LogFontFt.Capheight
+  commentId: F:Reportman.Drawing.LogFontFt.Capheight
+  id: Capheight
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: Capheight
+  nameWithType: LogFontFt.Capheight
+  fullName: Reportman.Drawing.LogFontFt.Capheight
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int Capheight
+    return:
+      type: System.Int32
+    content.vb: Public Capheight As Integer
+- uid: Reportman.Drawing.LogFontFt.ItalicAngle
+  commentId: F:Reportman.Drawing.LogFontFt.ItalicAngle
+  id: ItalicAngle
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: ItalicAngle
+  nameWithType: LogFontFt.ItalicAngle
+  fullName: Reportman.Drawing.LogFontFt.ItalicAngle
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public double ItalicAngle
+    return:
+      type: System.Double
+    content.vb: Public ItalicAngle As Double
+- uid: Reportman.Drawing.LogFontFt.leading
+  commentId: F:Reportman.Drawing.LogFontFt.leading
+  id: leading
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: leading
+  nameWithType: LogFontFt.leading
+  fullName: Reportman.Drawing.LogFontFt.leading
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int leading
+    return:
+      type: System.Int32
+    content.vb: Public leading As Integer
+- uid: Reportman.Drawing.LogFontFt.BBox
+  commentId: F:Reportman.Drawing.LogFontFt.BBox
+  id: BBox
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: BBox
+  nameWithType: LogFontFt.BBox
+  fullName: Reportman.Drawing.LogFontFt.BBox
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public Rectangle BBox
+    return:
+      type: System.Drawing.Rectangle
+    content.vb: Public BBox As Rectangle
+- uid: Reportman.Drawing.LogFontFt.fullinfo
+  commentId: F:Reportman.Drawing.LogFontFt.fullinfo
+  id: fullinfo
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: fullinfo
+  nameWithType: LogFontFt.fullinfo
+  fullName: Reportman.Drawing.LogFontFt.fullinfo
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public bool fullinfo
+    return:
+      type: System.Boolean
+    content.vb: Public fullinfo As Boolean
+- uid: Reportman.Drawing.LogFontFt.StemV
+  commentId: F:Reportman.Drawing.LogFontFt.StemV
+  id: StemV
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: StemV
+  nameWithType: LogFontFt.StemV
+  fullName: Reportman.Drawing.LogFontFt.StemV
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public double StemV
+    return:
+      type: System.Double
+    content.vb: Public StemV As Double
+- uid: Reportman.Drawing.LogFontFt.ftface
+  commentId: F:Reportman.Drawing.LogFontFt.ftface
+  id: ftface
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: ftface
+  nameWithType: LogFontFt.ftface
+  fullName: Reportman.Drawing.LogFontFt.ftface
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public FT_FaceRec_* ftface
+    return:
+      type: FreeTypeSharp.FT_FaceRec_*
+    content.vb: Public ftface As FT_FaceRec_*
+- uid: Reportman.Drawing.LogFontFt.faceinit
+  commentId: F:Reportman.Drawing.LogFontFt.faceinit
+  id: faceinit
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: faceinit
+  nameWithType: LogFontFt.faceinit
+  fullName: Reportman.Drawing.LogFontFt.faceinit
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public bool faceinit
+    return:
+      type: System.Boolean
+    content.vb: Public faceinit As Boolean
+- uid: Reportman.Drawing.LogFontFt.havekerning
+  commentId: F:Reportman.Drawing.LogFontFt.havekerning
+  id: havekerning
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: havekerning
+  nameWithType: LogFontFt.havekerning
+  fullName: Reportman.Drawing.LogFontFt.havekerning
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public bool havekerning
+    return:
+      type: System.Boolean
+    content.vb: Public havekerning As Boolean
+- uid: Reportman.Drawing.LogFontFt.type1
+  commentId: F:Reportman.Drawing.LogFontFt.type1
+  id: type1
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: type1
+  nameWithType: LogFontFt.type1
+  fullName: Reportman.Drawing.LogFontFt.type1
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public bool type1
+    return:
+      type: System.Boolean
+    content.vb: Public type1 As Boolean
+- uid: Reportman.Drawing.LogFontFt.widthmult
+  commentId: F:Reportman.Drawing.LogFontFt.widthmult
+  id: widthmult
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: widthmult
+  nameWithType: LogFontFt.widthmult
+  fullName: Reportman.Drawing.LogFontFt.widthmult
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public double widthmult
+    return:
+      type: System.Double
+    content.vb: Public widthmult As Double
+- uid: Reportman.Drawing.LogFontFt.convfactor
+  commentId: F:Reportman.Drawing.LogFontFt.convfactor
+  id: convfactor
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: convfactor
+  nameWithType: LogFontFt.convfactor
+  fullName: Reportman.Drawing.LogFontFt.convfactor
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public double convfactor
+    return:
+      type: System.Double
+    content.vb: Public convfactor As Double
+- uid: Reportman.Drawing.LogFontFt.heightmult
+  commentId: F:Reportman.Drawing.LogFontFt.heightmult
+  id: heightmult
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: heightmult
+  nameWithType: LogFontFt.heightmult
+  fullName: Reportman.Drawing.LogFontFt.heightmult
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public double heightmult
+    return:
+      type: System.Double
+    content.vb: Public heightmult As Double
+- uid: Reportman.Drawing.LogFontFt.keyname
+  commentId: F:Reportman.Drawing.LogFontFt.keyname
+  id: keyname
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: keyname
+  nameWithType: LogFontFt.keyname
+  fullName: Reportman.Drawing.LogFontFt.keyname
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string keyname
+    return:
+      type: System.String
+    content.vb: Public keyname As String
+- uid: Reportman.Drawing.LogFontFt.ftlibrary
+  commentId: F:Reportman.Drawing.LogFontFt.ftlibrary
+  id: ftlibrary
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: ftlibrary
+  nameWithType: LogFontFt.ftlibrary
+  fullName: Reportman.Drawing.LogFontFt.ftlibrary
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public FT_LibraryRec_* ftlibrary
+    return:
+      type: FreeTypeSharp.FT_LibraryRec_*
+    content.vb: Public ftlibrary As FT_LibraryRec_*
+- uid: Reportman.Drawing.LogFontFt.kerningfile
+  commentId: F:Reportman.Drawing.LogFontFt.kerningfile
+  id: kerningfile
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: kerningfile
+  nameWithType: LogFontFt.kerningfile
+  fullName: Reportman.Drawing.LogFontFt.kerningfile
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public string kerningfile
+    return:
+      type: System.String
+    content.vb: Public kerningfile As String
+- uid: Reportman.Drawing.LogFontFt.FontFaces
+  commentId: F:Reportman.Drawing.LogFontFt.FontFaces
+  id: FontFaces
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: FontFaces
+  nameWithType: LogFontFt.FontFaces
+  fullName: Reportman.Drawing.LogFontFt.FontFaces
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public static SortedList<string, int> FontFaces
+    return:
+      type: System.Collections.Generic.SortedList{System.String,System.Int32}
+    content.vb: Public Shared FontFaces As SortedList(Of String, Integer)
+- uid: Reportman.Drawing.LogFontFt.iface
+  commentId: F:Reportman.Drawing.LogFontFt.iface
+  id: iface
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: iface
+  nameWithType: LogFontFt.iface
+  fullName: Reportman.Drawing.LogFontFt.iface
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int iface
+    return:
+      type: System.Int32
+    content.vb: Public iface As Integer
+- uid: Reportman.Drawing.LogFontFt.#ctor
+  commentId: M:Reportman.Drawing.LogFontFt.#ctor
+  id: '#ctor'
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: LogFontFt()
+  nameWithType: LogFontFt.LogFontFt()
+  fullName: Reportman.Drawing.LogFontFt.LogFontFt()
+  type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public LogFontFt()
+    content.vb: Public Sub New()
+  overload: Reportman.Drawing.LogFontFt.#ctor*
+  nameWithType.vb: LogFontFt.New()
+  fullName.vb: Reportman.Drawing.LogFontFt.New()
+  name.vb: New()
+- uid: Reportman.Drawing.LogFontFt.Dispose
+  commentId: M:Reportman.Drawing.LogFontFt.Dispose
+  id: Dispose
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: LogFontFt.Dispose()
+  fullName: Reportman.Drawing.LogFontFt.Dispose()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public void Dispose()
+    content.vb: Public Sub Dispose()
+  overload: Reportman.Drawing.LogFontFt.Dispose*
+- uid: Reportman.Drawing.LogFontFt.OpenFont
+  commentId: M:Reportman.Drawing.LogFontFt.OpenFont
+  id: OpenFont
+  parent: Reportman.Drawing.LogFontFt
+  langs:
+  - csharp
+  - vb
+  name: OpenFont()
+  nameWithType: LogFontFt.OpenFont()
+  fullName: Reportman.Drawing.LogFontFt.OpenFont()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing
+  syntax:
+    content: public void OpenFont()
+    content.vb: Public Sub OpenFont()
+  overload: Reportman.Drawing.LogFontFt.OpenFont*
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.double
+  name: double
+  nameWithType: double
+  fullName: double
+  nameWithType.vb: Double
+  fullName.vb: Double
+  name.vb: Double
+- uid: System.Drawing.Rectangle
+  commentId: T:System.Drawing.Rectangle
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.rectangle
+  name: Rectangle
+  nameWithType: Rectangle
+  fullName: System.Drawing.Rectangle
+- uid: System.Drawing
+  commentId: N:System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Drawing
+  nameWithType: System.Drawing
+  fullName: System.Drawing
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+- uid: FreeTypeSharp.FT_FaceRec_*
+  isExternal: true
+  name: FT_FaceRec_*
+  nameWithType: FT_FaceRec_*
+  fullName: FreeTypeSharp.FT_FaceRec_*
+  spec.csharp:
+  - uid: FreeTypeSharp.FT_FaceRec_
+    name: FT_FaceRec_
+    isExternal: true
+  - name: '*'
+  spec.vb:
+  - uid: FreeTypeSharp.FT_FaceRec_
+    name: FT_FaceRec_
+    isExternal: true
+  - name: '*'
+- uid: FreeTypeSharp.FT_LibraryRec_*
+  isExternal: true
+  name: FT_LibraryRec_*
+  nameWithType: FT_LibraryRec_*
+  fullName: FreeTypeSharp.FT_LibraryRec_*
+  spec.csharp:
+  - uid: FreeTypeSharp.FT_LibraryRec_
+    name: FT_LibraryRec_
+    isExternal: true
+  - name: '*'
+  spec.vb:
+  - uid: FreeTypeSharp.FT_LibraryRec_
+    name: FT_LibraryRec_
+    isExternal: true
+  - name: '*'
+- uid: System.Collections.Generic.SortedList{System.String,System.Int32}
+  commentId: T:System.Collections.Generic.SortedList{System.String,System.Int32}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.SortedList`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  name: SortedList<string, int>
+  nameWithType: SortedList<string, int>
+  fullName: System.Collections.Generic.SortedList<string, int>
+  nameWithType.vb: SortedList(Of String, Integer)
+  fullName.vb: System.Collections.Generic.SortedList(Of String, Integer)
+  name.vb: SortedList(Of String, Integer)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Collections.Generic.SortedList`2
+  commentId: T:System.Collections.Generic.SortedList`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  name: SortedList<TKey, TValue>
+  nameWithType: SortedList<TKey, TValue>
+  fullName: System.Collections.Generic.SortedList<TKey, TValue>
+  nameWithType.vb: SortedList(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.SortedList(Of TKey, TValue)
+  name.vb: SortedList(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.SortedList`2
+    name: SortedList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.sortedlist-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Reportman.Drawing.LogFontFt.#ctor*
+  commentId: Overload:Reportman.Drawing.LogFontFt.#ctor
+  isExternal: true
+  href: Reportman.Drawing.LogFontFt.html#Reportman_Drawing_LogFontFt__ctor
+  name: LogFontFt
+  nameWithType: LogFontFt.LogFontFt
+  fullName: Reportman.Drawing.LogFontFt.LogFontFt
+  nameWithType.vb: LogFontFt.New
+  fullName.vb: Reportman.Drawing.LogFontFt.New
+  name.vb: New
+- uid: Reportman.Drawing.LogFontFt.Dispose*
+  commentId: Overload:Reportman.Drawing.LogFontFt.Dispose
+  isExternal: true
+  href: Reportman.Drawing.LogFontFt.html#Reportman_Drawing_LogFontFt_Dispose
+  name: Dispose
+  nameWithType: LogFontFt.Dispose
+  fullName: Reportman.Drawing.LogFontFt.Dispose
+- uid: Reportman.Drawing.LogFontFt.OpenFont*
+  commentId: Overload:Reportman.Drawing.LogFontFt.OpenFont
+  isExternal: true
+  href: Reportman.Drawing.LogFontFt.html#Reportman_Drawing_LogFontFt_OpenFont
+  name: OpenFont
+  nameWithType: LogFontFt.OpenFont
+  fullName: Reportman.Drawing.LogFontFt.OpenFont

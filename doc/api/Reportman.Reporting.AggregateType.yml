@@ -17,9 +17,16 @@ items:
   nameWithType: AggregateType
   fullName: Reportman.Reporting.AggregateType
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/LabelItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
+  summary: >-
+    The kind of aggregation applied to a value: sum, minimum, maximum, average, or
+
+    standard deviation.
+  example: []
   syntax:
     content: public enum AggregateType
     content.vb: Public Enum AggregateType
@@ -34,6 +41,8 @@ items:
   nameWithType: AggregateType.Summary
   fullName: Reportman.Reporting.AggregateType.Summary
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/LabelItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -52,6 +61,8 @@ items:
   nameWithType: AggregateType.Minimum
   fullName: Reportman.Reporting.AggregateType.Minimum
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/LabelItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -70,6 +81,8 @@ items:
   nameWithType: AggregateType.Maximum
   fullName: Reportman.Reporting.AggregateType.Maximum
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/LabelItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -88,6 +101,8 @@ items:
   nameWithType: AggregateType.Average
   fullName: Reportman.Reporting.AggregateType.Average
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/LabelItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -106,6 +121,8 @@ items:
   nameWithType: AggregateType.StandardDeviation
   fullName: Reportman.Reporting.AggregateType.StandardDeviation
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/LabelItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

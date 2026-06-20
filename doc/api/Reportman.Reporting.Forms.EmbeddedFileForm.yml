@@ -16,9 +16,16 @@ items:
   nameWithType: EmbeddedFileForm
   fullName: Reportman.Reporting.Forms.EmbeddedFileForm
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/EmbeddedFileForm.Designer.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
+  summary: >-
+    Dialog for editing the metadata of a file embedded in a PDF/A document (description,
+
+    file name, MIME type, creation/modification dates and AF relationship).
+  example: []
   syntax:
     content: 'public class EmbeddedFileForm : Form, IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable, IContainerControl'
     content.vb: Public Class EmbeddedFileForm Inherits Form Implements IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable, IContainerControl
@@ -584,6 +591,8 @@ items:
   nameWithType: EmbeddedFileForm.EmbeddedFileForm()
   fullName: Reportman.Reporting.Forms.EmbeddedFileForm.EmbeddedFileForm()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/EmbeddedFileForm.Designer.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -605,6 +614,8 @@ items:
   nameWithType: EmbeddedFileForm.Init()
   fullName: Reportman.Reporting.Forms.EmbeddedFileForm.Init()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/EmbeddedFileForm.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -623,6 +634,8 @@ items:
   nameWithType: EmbeddedFileForm.AskEmbeddedFileData(EmbeddedFile)
   fullName: Reportman.Reporting.Forms.EmbeddedFileForm.AskEmbeddedFileData(Reportman.Drawing.EmbeddedFile)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/EmbeddedFileForm.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -646,6 +659,8 @@ items:
   nameWithType: EmbeddedFileForm.Dispose(bool)
   fullName: Reportman.Reporting.Forms.EmbeddedFileForm.Dispose(bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/EmbeddedFileForm.Designer.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms

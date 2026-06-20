@@ -13,9 +13,16 @@ items:
   nameWithType: TotalPages
   fullName: Reportman.Drawing.TotalPages
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    List of <xref href="Reportman.Drawing.TotalPage" data-throw-if-not-resolved="false"></xref> references whose total-page placeholders are resolved
+
+    and updated once the report has finished and the final page count is known.
+  example: []
   syntax:
     content: 'public class TotalPages : List<TotalPage>, IList<TotalPage>, ICollection<TotalPage>, IList, ICollection, IReadOnlyList<TotalPage>, IReadOnlyCollection<TotalPage>, IEnumerable<TotalPage>, IEnumerable'
     content.vb: Public Class TotalPages Inherits List(Of TotalPage) Implements IList(Of TotalPage), ICollection(Of TotalPage), IList, ICollection, IReadOnlyList(Of TotalPage), IReadOnlyCollection(Of TotalPage), IEnumerable(Of TotalPage), IEnumerable
@@ -103,6 +110,8 @@ items:
   nameWithType: TotalPages.TotalPages()
   fullName: Reportman.Drawing.TotalPages.TotalPages()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -114,6 +123,13 @@ items:
   fullName.vb: Reportman.Drawing.TotalPages.New()
   name.vb: New()
 references:
+- uid: Reportman.Drawing.TotalPage
+  commentId: T:Reportman.Drawing.TotalPage
+  isExternal: true
+  href: Reportman.Drawing.TotalPage.html
+  name: TotalPage
+  nameWithType: TotalPage
+  fullName: Reportman.Drawing.TotalPage
 - uid: Reportman.Drawing
   commentId: N:Reportman.Drawing
   isExternal: true

@@ -24,12 +24,19 @@ using System.Drawing;
 using System.IO;
 namespace Reportman.Drawing
 {
+    /// <summary>
+    /// Holds metrics for a single glyph: its advance width, glyph index and source character.
+    /// </summary>
     public struct GlyphInfo
     {
         public double Width;
         public int Glyph;
         public char Char;
     }
+    /// <summary>
+    /// Describes the positioned glyph produced by text shaping, including its index, offsets,
+    /// advances, source character/cluster and the font styling (family, size, color, bold/italic) applied to it.
+    /// </summary>
     public struct TGlyphPos
     {
         public int GlyphIndex;
@@ -50,6 +57,10 @@ namespace Reportman.Drawing
         public int Color;
         public bool HasColor;
     }
+    /// <summary>
+    /// Describes a font as used by the rendering engine: the base PDF font type, platform-specific
+    /// font names, size, color and style flags (bold, italic, underline, strike-out, background).
+    /// </summary>
     public class PDFFont
     {
         public PDFFontType Name;
@@ -85,11 +96,18 @@ namespace Reportman.Drawing
                 return WFontName.Replace(" ", "");
         }
     }
+    /// <summary>
+    /// Wraps the raw bytes of a TrueType/OpenType font file together with the offset of its table directory.
+    /// </summary>
     public class AdvFontData
     {
         public byte[] Data;
         public uint DirectoryOffset;
     }
+    /// <summary>
+    /// Aggregates all the metrics and tables needed to embed and measure a TrueType/Type1 font in a PDF:
+    /// ascent/descent, bounding box, per-glyph widths, kerning, encoding and the PDF object indices for the font.
+    /// </summary>
     public class TTFontData
     {
         public object LogFont;
@@ -147,6 +165,10 @@ namespace Reportman.Drawing
             UnitsPerEM = 1024;
         }
     }
+    /// <summary>
+    /// Abstract provider of font metrics and text measurement; implementations supply character/glyph
+    /// widths, kerning, text extent and font stream data for a given platform's font subsystem.
+    /// </summary>
     public abstract class FontInfoProvider
     {
         public abstract void FillFontData(PDFFont pdfFont, TTFontData fontData);

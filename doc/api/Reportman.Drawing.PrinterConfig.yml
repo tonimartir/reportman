@@ -28,6 +28,8 @@ items:
   nameWithType: PrinterConfig
   fullName: Reportman.Drawing.PrinterConfig
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrinterConfig.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -57,6 +59,8 @@ items:
   nameWithType: PrinterConfig.PersistentConfiguration
   fullName: Reportman.Drawing.PrinterConfig.PersistentConfiguration
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrinterConfig.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -76,6 +80,8 @@ items:
   nameWithType: PrinterConfig.flag
   fullName: Reportman.Drawing.PrinterConfig.flag
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrinterConfig.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -95,6 +101,8 @@ items:
   nameWithType: PrinterConfig.ForceSystemConfig
   fullName: Reportman.Drawing.PrinterConfig.ForceSystemConfig
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrinterConfig.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -114,6 +122,8 @@ items:
   nameWithType: PrinterConfig.ConfigFile()
   fullName: Reportman.Drawing.PrinterConfig.ConfigFile()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrinterConfig.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -134,6 +144,8 @@ items:
   nameWithType: PrinterConfig.ReloadParameters()
   fullName: Reportman.Drawing.PrinterConfig.ReloadParameters()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrinterConfig.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -152,6 +164,8 @@ items:
   nameWithType: PrinterConfig.GetDriverName(PrinterSelectType)
   fullName: Reportman.Drawing.PrinterConfig.GetDriverName(Reportman.Drawing.PrinterSelectType)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrinterConfig.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -175,6 +189,8 @@ items:
   nameWithType: PrinterConfig.GetPrinterName(PrinterSelectType)
   fullName: Reportman.Drawing.PrinterConfig.GetPrinterName(Reportman.Drawing.PrinterSelectType)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrinterConfig.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -198,6 +214,8 @@ items:
   nameWithType: PrinterConfig.DecodeEscapeString(string)
   fullName: Reportman.Drawing.PrinterConfig.DecodeEscapeString(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrinterConfig.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -224,6 +242,8 @@ items:
   nameWithType: PrinterConfig.GetCutPaperOperation(PrinterSelectType)
   fullName: Reportman.Drawing.PrinterConfig.GetCutPaperOperation(Reportman.Drawing.PrinterSelectType)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrinterConfig.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -247,6 +267,8 @@ items:
   nameWithType: PrinterConfig.GetOpenDrawerOption(PrinterSelectType)
   fullName: Reportman.Drawing.PrinterConfig.GetOpenDrawerOption(Reportman.Drawing.PrinterSelectType)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrinterConfig.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -270,6 +292,8 @@ items:
   nameWithType: PrinterConfig.GetCutPaperOption(PrinterSelectType)
   fullName: Reportman.Drawing.PrinterConfig.GetCutPaperOption(Reportman.Drawing.PrinterSelectType)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrinterConfig.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -293,6 +317,8 @@ items:
   nameWithType: PrinterConfig.GetOpenDrawerOperation(PrinterSelectType)
   fullName: Reportman.Drawing.PrinterConfig.GetOpenDrawerOperation(Reportman.Drawing.PrinterSelectType)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrinterConfig.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -316,6 +342,8 @@ items:
   nameWithType: PrinterConfig.GetOEMConvert(PrinterSelectType)
   fullName: Reportman.Drawing.PrinterConfig.GetOEMConvert(Reportman.Drawing.PrinterSelectType)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrinterConfig.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -339,6 +367,8 @@ items:
   nameWithType: PrinterConfig.GetTextOnlyPrintDrivers()
   fullName: Reportman.Drawing.PrinterConfig.GetTextOnlyPrintDrivers()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrinterConfig.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -359,6 +389,8 @@ items:
   nameWithType: PrinterConfig.GetConfigurablePrinters()
   fullName: Reportman.Drawing.PrinterConfig.GetConfigurablePrinters()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrinterConfig.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -379,6 +411,8 @@ items:
   nameWithType: PrinterConfig.PrinterConfig()
   fullName: Reportman.Drawing.PrinterConfig.PrinterConfig()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrinterConfig.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -788,7 +822,7 @@ references:
   commentId: T:Reportman.Drawing.Strings
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.Strings.html
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Strings.cs
   name: Strings
   nameWithType: Strings
   fullName: Reportman.Drawing.Strings

@@ -6,10 +6,11 @@
     <Configurations>Debug;Release</Configurations>
     <AssemblyTitle>Reportman.Reporting</AssemblyTitle>
     <Product>Reportman.Reporting</Product>
-    <Copyright>Copyright ©  2017</Copyright>
+    <Copyright>Copyright ï¿½  2017</Copyright>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
     <Platforms>AnyCPU;x86</Platforms>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 	<PropertyGroup>
 		<PackageId>Reportman.Reporting</PackageId>

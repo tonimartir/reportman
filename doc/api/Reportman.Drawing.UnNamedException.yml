@@ -13,6 +13,8 @@ items:
   nameWithType: UnNamedException
   fullName: Reportman.Drawing.UnNamedException
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/UnNamedException.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -58,6 +60,8 @@ items:
   nameWithType: UnNamedException.UnNamedException(string)
   fullName: Reportman.Drawing.UnNamedException.UnNamedException(string)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/UnNamedException.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

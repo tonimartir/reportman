@@ -7,11 +7,12 @@
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
     <Configurations>Debug;Release</Configurations>
     <Platforms>AnyCPU;x86</Platforms>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <!-- Preserialized resources (which need System.Resources.Extensions) ONLY for
          the modern .NET targets: their GenerateResource task runs on the .NET
          runtime, which no longer ships BinaryFormatter. net48 is built by
          full-framework MSBuild.exe, whose classic ResourceWriter still uses
-         BinaryFormatter — so net48 emits CLASSIC .resources with zero dependency
+         BinaryFormatter ï¿½ so net48 emits CLASSIC .resources with zero dependency
          on System.Resources.Extensions, keeping the assembly fully loadable by
          legacy net48 consumers. (net48 therefore must be built with MSBuild.exe,
          not `dotnet build`.) -->

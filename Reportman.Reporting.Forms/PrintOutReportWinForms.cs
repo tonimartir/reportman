@@ -165,6 +165,11 @@ namespace Reportman.Reporting.Forms
         }
     }
 
+    /// <summary>
+    /// Builds a Report from the contents of a Windows Forms <see cref="DataGridView"/> (including
+    /// tree grids), mapping its columns, cell alignment, images, check boxes and row styling into
+    /// report sections so the grid can be printed or previewed.
+    /// </summary>
     public class DataGridViewPrint
     {
         public static void SetAlignFromCellFormat(DataGridViewContentAlignment nalign, PrintItemText nitem)
@@ -796,6 +801,11 @@ namespace Reportman.Reporting.Forms
 
         }
     }
+    /// <summary>
+    /// Options controlling how a <see cref="DataGridView"/> is rendered to a report by
+    /// <see cref="DataGridViewPrint"/>, such as paper size, orientation, selected columns,
+    /// width adjustment, word wrapping, grid lines, background colors and tree lines.
+    /// </summary>
     public class DataGridViewPrintOptions
     {
         public bool AdjustWidth;

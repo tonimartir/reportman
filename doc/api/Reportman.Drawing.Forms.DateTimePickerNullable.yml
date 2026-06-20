@@ -24,6 +24,8 @@ items:
   nameWithType: DateTimePickerNullable
   fullName: Reportman.Drawing.Forms.DateTimePickerNullable
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerNullable.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -469,6 +471,8 @@ items:
   nameWithType: DateTimePickerNullable.MaxDateValue
   fullName: Reportman.Drawing.Forms.DateTimePickerNullable.MaxDateValue
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerNullable.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -488,6 +492,8 @@ items:
   nameWithType: DateTimePickerNullable.MinDateValue
   fullName: Reportman.Drawing.Forms.DateTimePickerNullable.MinDateValue
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerNullable.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -507,6 +513,8 @@ items:
   nameWithType: DateTimePickerNullable.BeforeEnterTab
   fullName: Reportman.Drawing.Forms.DateTimePickerNullable.BeforeEnterTab
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerNullable.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -526,6 +534,8 @@ items:
   nameWithType: DateTimePickerNullable.DateTimePickerNullable()
   fullName: Reportman.Drawing.Forms.DateTimePickerNullable.DateTimePickerNullable()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerNullable.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -547,6 +557,8 @@ items:
   nameWithType: DateTimePickerNullable.ProcessCmdKey(ref Message, Keys)
   fullName: Reportman.Drawing.Forms.DateTimePickerNullable.ProcessCmdKey(ref System.Windows.Forms.Message, System.Windows.Forms.Keys)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerNullable.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -577,6 +589,8 @@ items:
   nameWithType: DateTimePickerNullable.OnValueChanged(EventArgs)
   fullName: Reportman.Drawing.Forms.DateTimePickerNullable.OnValueChanged(System.EventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerNullable.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -600,6 +614,8 @@ items:
   nameWithType: DateTimePickerNullable.OnValidated(EventArgs)
   fullName: Reportman.Drawing.Forms.DateTimePickerNullable.OnValidated(System.EventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerNullable.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -623,6 +639,8 @@ items:
   nameWithType: DateTimePickerNullable.OnCloseUp(EventArgs)
   fullName: Reportman.Drawing.Forms.DateTimePickerNullable.OnCloseUp(System.EventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerNullable.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -646,6 +664,8 @@ items:
   nameWithType: DateTimePickerNullable.OnKeyDown(KeyEventArgs)
   fullName: Reportman.Drawing.Forms.DateTimePickerNullable.OnKeyDown(System.Windows.Forms.KeyEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerNullable.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -669,6 +689,8 @@ items:
   nameWithType: DateTimePickerNullable.OnPaint(PaintEventArgs)
   fullName: Reportman.Drawing.Forms.DateTimePickerNullable.OnPaint(System.Windows.Forms.PaintEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerNullable.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -692,6 +714,8 @@ items:
   nameWithType: DateTimePickerNullable.EnterAsTab
   fullName: Reportman.Drawing.Forms.DateTimePickerNullable.EnterAsTab
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerNullable.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -713,6 +737,8 @@ items:
   nameWithType: DateTimePickerNullable.Value
   fullName: Reportman.Drawing.Forms.DateTimePickerNullable.Value
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerNullable.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

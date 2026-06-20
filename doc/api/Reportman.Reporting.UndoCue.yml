@@ -8,10 +8,12 @@ items:
   - Reportman.Reporting.UndoCue.#ctor
   - Reportman.Reporting.UndoCue.AddOperation(Reportman.Reporting.ChangeObjectOperation,Reportman.Reporting.BaseReport)
   - Reportman.Reporting.UndoCue.ApplyPropertiesToObject(Reportman.Reporting.ChangeObjectOperation,Reportman.Reporting.ReportItem,System.Boolean)
+  - Reportman.Reporting.UndoCue.EnsureGroupIdIsSynchronized
   - Reportman.Reporting.UndoCue.GetGroupId
   - Reportman.Reporting.UndoCue.GroupId
   - Reportman.Reporting.UndoCue.Redo(Reportman.Reporting.Report)
   - Reportman.Reporting.UndoCue.RedoOperations
+  - Reportman.Reporting.UndoCue.RemoveOperationsOlderThan(System.DateTime)
   - Reportman.Reporting.UndoCue.Undo(Reportman.Reporting.Report)
   - Reportman.Reporting.UndoCue.UndoOperations
   langs:
@@ -21,9 +23,16 @@ items:
   nameWithType: UndoCue
   fullName: Reportman.Reporting.UndoCue
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
+  summary: >-
+    Undo/redo history for a report, holding queues of grouped change operations and
+
+    applying them to a <xref href="Reportman.Reporting.Report" data-throw-if-not-resolved="false"></xref> to step backward or forward through edits.
+  example: []
   syntax:
     content: public class UndoCue
     content.vb: Public Class UndoCue
@@ -48,6 +57,8 @@ items:
   nameWithType: UndoCue.AddOperation(ChangeObjectOperation, BaseReport)
   fullName: Reportman.Reporting.UndoCue.AddOperation(Reportman.Reporting.ChangeObjectOperation, Reportman.Reporting.BaseReport)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -60,6 +71,43 @@ items:
       type: Reportman.Reporting.BaseReport
     content.vb: Public Sub AddOperation(op As ChangeObjectOperation, report As BaseReport)
   overload: Reportman.Reporting.UndoCue.AddOperation*
+- uid: Reportman.Reporting.UndoCue.RemoveOperationsOlderThan(System.DateTime)
+  commentId: M:Reportman.Reporting.UndoCue.RemoveOperationsOlderThan(System.DateTime)
+  id: RemoveOperationsOlderThan(System.DateTime)
+  parent: Reportman.Reporting.UndoCue
+  langs:
+  - csharp
+  - vb
+  name: RemoveOperationsOlderThan(DateTime)
+  nameWithType: UndoCue.RemoveOperationsOlderThan(DateTime)
+  fullName: Reportman.Reporting.UndoCue.RemoveOperationsOlderThan(System.DateTime)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    Elimina del histórico las operaciones de deshacer (y rehacer) anteriores a <code class="paramref">date</code>,
+
+    según su marca de tiempo <xref href="Reportman.Reporting.ChangeObjectOperation.Date" data-throw-if-not-resolved="false"></xref>. Las operaciones sin fecha se
+
+    conservan (no se pueden datar). Sirve para que el histórico persistido del informe no crezca sin
+
+    límite. Devuelve el número de operaciones de deshacer eliminadas.
+  example: []
+  syntax:
+    content: public int RemoveOperationsOlderThan(DateTime date)
+    parameters:
+    - id: date
+      type: System.DateTime
+    return:
+      type: System.Int32
+    content.vb: Public Function RemoveOperationsOlderThan([date] As Date) As Integer
+  overload: Reportman.Reporting.UndoCue.RemoveOperationsOlderThan*
+  nameWithType.vb: UndoCue.RemoveOperationsOlderThan(Date)
+  fullName.vb: Reportman.Reporting.UndoCue.RemoveOperationsOlderThan(Date)
+  name.vb: RemoveOperationsOlderThan(Date)
 - uid: Reportman.Reporting.UndoCue.GetGroupId
   commentId: M:Reportman.Reporting.UndoCue.GetGroupId
   id: GetGroupId
@@ -71,6 +119,8 @@ items:
   nameWithType: UndoCue.GetGroupId()
   fullName: Reportman.Reporting.UndoCue.GetGroupId()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -80,6 +130,26 @@ items:
       type: System.Int32
     content.vb: Public Function GetGroupId() As Integer
   overload: Reportman.Reporting.UndoCue.GetGroupId*
+- uid: Reportman.Reporting.UndoCue.EnsureGroupIdIsSynchronized
+  commentId: M:Reportman.Reporting.UndoCue.EnsureGroupIdIsSynchronized
+  id: EnsureGroupIdIsSynchronized
+  parent: Reportman.Reporting.UndoCue
+  langs:
+  - csharp
+  - vb
+  name: EnsureGroupIdIsSynchronized()
+  nameWithType: UndoCue.EnsureGroupIdIsSynchronized()
+  fullName: Reportman.Reporting.UndoCue.EnsureGroupIdIsSynchronized()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public void EnsureGroupIdIsSynchronized()
+    content.vb: Public Sub EnsureGroupIdIsSynchronized()
+  overload: Reportman.Reporting.UndoCue.EnsureGroupIdIsSynchronized*
 - uid: Reportman.Reporting.UndoCue.Undo(Reportman.Reporting.Report)
   commentId: M:Reportman.Reporting.UndoCue.Undo(Reportman.Reporting.Report)
   id: Undo(Reportman.Reporting.Report)
@@ -91,6 +161,8 @@ items:
   nameWithType: UndoCue.Undo(Report)
   fullName: Reportman.Reporting.UndoCue.Undo(Reportman.Reporting.Report)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -114,6 +186,8 @@ items:
   nameWithType: UndoCue.Redo(Report)
   fullName: Reportman.Reporting.UndoCue.Redo(Reportman.Reporting.Report)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -137,6 +211,8 @@ items:
   nameWithType: UndoCue.ApplyPropertiesToObject(ChangeObjectOperation, ReportItem, bool)
   fullName: Reportman.Reporting.UndoCue.ApplyPropertiesToObject(Reportman.Reporting.ChangeObjectOperation, Reportman.Reporting.ReportItem, bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -165,6 +241,8 @@ items:
   nameWithType: UndoCue.UndoCue()
   fullName: Reportman.Reporting.UndoCue.UndoCue()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -186,6 +264,8 @@ items:
   nameWithType: UndoCue.GroupId
   fullName: Reportman.Reporting.UndoCue.GroupId
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -207,6 +287,8 @@ items:
   nameWithType: UndoCue.UndoOperations
   fullName: Reportman.Reporting.UndoCue.UndoOperations
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -228,6 +310,8 @@ items:
   nameWithType: UndoCue.RedoOperations
   fullName: Reportman.Reporting.UndoCue.RedoOperations
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -239,6 +323,14 @@ items:
     content.vb: Public ReadOnly Property RedoOperations As List(Of ChangeObjectOperation)
   overload: Reportman.Reporting.UndoCue.RedoOperations*
 references:
+- uid: Reportman.Reporting.Report
+  commentId: T:Reportman.Reporting.Report
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.Report.html
+  name: Report
+  nameWithType: Report
+  fullName: Reportman.Reporting.Report
 - uid: Reportman.Reporting
   commentId: N:Reportman.Reporting
   isExternal: true
@@ -526,13 +618,31 @@ references:
   name: BaseReport
   nameWithType: BaseReport
   fullName: Reportman.Reporting.BaseReport
-- uid: Reportman.Reporting.UndoCue.GetGroupId*
-  commentId: Overload:Reportman.Reporting.UndoCue.GetGroupId
+- uid: Reportman.Reporting.ChangeObjectOperation.Date
+  commentId: P:Reportman.Reporting.ChangeObjectOperation.Date
   isExternal: true
-  href: Reportman.Reporting.UndoCue.html#Reportman_Reporting_UndoCue_GetGroupId
-  name: GetGroupId
-  nameWithType: UndoCue.GetGroupId
-  fullName: Reportman.Reporting.UndoCue.GetGroupId
+  href: Reportman.Reporting.ChangeObjectOperation.html#Reportman_Reporting_ChangeObjectOperation_Date
+  name: Date
+  nameWithType: ChangeObjectOperation.Date
+  fullName: Reportman.Reporting.ChangeObjectOperation.Date
+- uid: Reportman.Reporting.UndoCue.RemoveOperationsOlderThan*
+  commentId: Overload:Reportman.Reporting.UndoCue.RemoveOperationsOlderThan
+  isExternal: true
+  href: Reportman.Reporting.UndoCue.html#Reportman_Reporting_UndoCue_RemoveOperationsOlderThan_System_DateTime_
+  name: RemoveOperationsOlderThan
+  nameWithType: UndoCue.RemoveOperationsOlderThan
+  fullName: Reportman.Reporting.UndoCue.RemoveOperationsOlderThan
+- uid: System.DateTime
+  commentId: T:System.DateTime
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+  nameWithType.vb: Date
+  fullName.vb: Date
+  name.vb: Date
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -544,6 +654,20 @@ references:
   nameWithType.vb: Integer
   fullName.vb: Integer
   name.vb: Integer
+- uid: Reportman.Reporting.UndoCue.GetGroupId*
+  commentId: Overload:Reportman.Reporting.UndoCue.GetGroupId
+  isExternal: true
+  href: Reportman.Reporting.UndoCue.html#Reportman_Reporting_UndoCue_GetGroupId
+  name: GetGroupId
+  nameWithType: UndoCue.GetGroupId
+  fullName: Reportman.Reporting.UndoCue.GetGroupId
+- uid: Reportman.Reporting.UndoCue.EnsureGroupIdIsSynchronized*
+  commentId: Overload:Reportman.Reporting.UndoCue.EnsureGroupIdIsSynchronized
+  isExternal: true
+  href: Reportman.Reporting.UndoCue.html#Reportman_Reporting_UndoCue_EnsureGroupIdIsSynchronized
+  name: EnsureGroupIdIsSynchronized
+  nameWithType: UndoCue.EnsureGroupIdIsSynchronized
+  fullName: Reportman.Reporting.UndoCue.EnsureGroupIdIsSynchronized
 - uid: Reportman.Reporting.UndoCue.Undo*
   commentId: Overload:Reportman.Reporting.UndoCue.Undo
   isExternal: true
@@ -551,14 +675,6 @@ references:
   name: Undo
   nameWithType: UndoCue.Undo
   fullName: Reportman.Reporting.UndoCue.Undo
-- uid: Reportman.Reporting.Report
-  commentId: T:Reportman.Reporting.Report
-  parent: Reportman.Reporting
-  isExternal: true
-  href: Reportman.Reporting.Report.html
-  name: Report
-  nameWithType: Report
-  fullName: Reportman.Reporting.Report
 - uid: System.Collections.Generic.List{Reportman.Reporting.ChangeObjectOperation}
   commentId: T:System.Collections.Generic.List{Reportman.Reporting.ChangeObjectOperation}
   parent: System.Collections.Generic

@@ -16,9 +16,13 @@ items:
   nameWithType: DataColumnButtonClickEvent
   fullName: Reportman.Drawing.Forms.DataColumnButtonClickEvent
   type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: Callback invoked when a column's editor button is clicked; returns true if it changed <code>value</code> so the cell should be updated.
+  example: []
   syntax:
     content: public delegate bool DataColumnButtonClickEvent(DataGridViewColumn ncolumn, ref object value)
     parameters:
@@ -40,6 +44,8 @@ items:
   nameWithType: DataColumnButtonClickEvent.DataColumnButtonClickEvent(object, nint)
   fullName: Reportman.Drawing.Forms.DataColumnButtonClickEvent.DataColumnButtonClickEvent(object, nint)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -66,6 +72,8 @@ items:
   nameWithType: DataColumnButtonClickEvent.Invoke(DataGridViewColumn, ref object)
   fullName: Reportman.Drawing.Forms.DataColumnButtonClickEvent.Invoke(System.Windows.Forms.DataGridViewColumn, ref object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -94,6 +102,8 @@ items:
   nameWithType: DataColumnButtonClickEvent.BeginInvoke(DataGridViewColumn, ref object, AsyncCallback, object)
   fullName: Reportman.Drawing.Forms.DataColumnButtonClickEvent.BeginInvoke(System.Windows.Forms.DataGridViewColumn, ref object, System.AsyncCallback, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -126,6 +136,8 @@ items:
   nameWithType: DataColumnButtonClickEvent.EndInvoke(ref object, IAsyncResult)
   fullName: Reportman.Drawing.Forms.DataColumnButtonClickEvent.EndInvoke(ref object, System.IAsyncResult)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

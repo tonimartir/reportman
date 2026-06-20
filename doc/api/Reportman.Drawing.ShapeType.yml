@@ -22,6 +22,8 @@ items:
   nameWithType: ShapeType
   fullName: Reportman.Drawing.ShapeType
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -41,6 +43,8 @@ items:
   nameWithType: ShapeType.Rectangle
   fullName: Reportman.Drawing.ShapeType.Rectangle
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -61,6 +65,8 @@ items:
   nameWithType: ShapeType.Square
   fullName: Reportman.Drawing.ShapeType.Square
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -81,6 +87,8 @@ items:
   nameWithType: ShapeType.RoundRect
   fullName: Reportman.Drawing.ShapeType.RoundRect
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -101,6 +109,8 @@ items:
   nameWithType: ShapeType.RoundSquare
   fullName: Reportman.Drawing.ShapeType.RoundSquare
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -121,6 +131,8 @@ items:
   nameWithType: ShapeType.Ellipse
   fullName: Reportman.Drawing.ShapeType.Ellipse
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -141,6 +153,8 @@ items:
   nameWithType: ShapeType.Circle
   fullName: Reportman.Drawing.ShapeType.Circle
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -161,6 +175,8 @@ items:
   nameWithType: ShapeType.HorzLine
   fullName: Reportman.Drawing.ShapeType.HorzLine
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -181,6 +197,8 @@ items:
   nameWithType: ShapeType.VertLine
   fullName: Reportman.Drawing.ShapeType.VertLine
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -201,6 +219,8 @@ items:
   nameWithType: ShapeType.Oblique1
   fullName: Reportman.Drawing.ShapeType.Oblique1
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -221,6 +241,8 @@ items:
   nameWithType: ShapeType.Oblique2
   fullName: Reportman.Drawing.ShapeType.Oblique2
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

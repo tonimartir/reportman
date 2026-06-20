@@ -16,6 +16,8 @@ items:
   nameWithType: MetaFileLoadProgress
   fullName: Reportman.Drawing.MetaFileLoadProgress
   type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -48,6 +50,8 @@ items:
   nameWithType: MetaFileLoadProgress.MetaFileLoadProgress(object, nint)
   fullName: Reportman.Drawing.MetaFileLoadProgress.MetaFileLoadProgress(object, nint)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -74,6 +78,8 @@ items:
   nameWithType: MetaFileLoadProgress.Invoke(int, int, ref bool)
   fullName: Reportman.Drawing.MetaFileLoadProgress.Invoke(int, int, ref bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -102,6 +108,8 @@ items:
   nameWithType: MetaFileLoadProgress.BeginInvoke(int, int, ref bool, AsyncCallback, object)
   fullName: Reportman.Drawing.MetaFileLoadProgress.BeginInvoke(int, int, ref bool, System.AsyncCallback, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -136,6 +144,8 @@ items:
   nameWithType: MetaFileLoadProgress.EndInvoke(ref bool, IAsyncResult)
   fullName: Reportman.Drawing.MetaFileLoadProgress.EndInvoke(ref bool, System.IAsyncResult)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

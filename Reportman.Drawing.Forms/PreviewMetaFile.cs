@@ -1013,6 +1013,10 @@ namespace Reportman.Drawing.Forms
             base.Dispose(disposing);
         }
     }
+    /// <summary>
+    /// Carries the message details (recipients, subject, body and attached report content)
+    /// passed to the OnMail event so the host can customize the e-mail before it is sent from the preview.
+    /// </summary>
     public class SendMailEventArgs
     {
         public string Name;
@@ -1034,6 +1038,10 @@ namespace Reportman.Drawing.Forms
         }
     }
 #if REPMAN_DESIGN
+	/// <summary>
+	/// Design-time control designer for PreviewMetaFile that hides runtime-only properties
+	/// (such as MetaFile and PagesDrawn) from the Visual Studio property grid.
+	/// </summary>
 	public class PreviewMetafileDesigner : ControlDesigner
 	{
 

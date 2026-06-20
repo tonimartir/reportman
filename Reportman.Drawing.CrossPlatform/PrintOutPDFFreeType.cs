@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace Reportman.Drawing.CrossPlatform
 {
+        /// <summary>
+        /// Cross-platform PDF render driver that uses FreeType for font metrics and SkiaSharp for image
+        /// handling, supplying its own bitmap-info and font-info providers for portable PDF generation.
+        /// </summary>
         public class PrintOutPDFFreeType : PrintOutPDFBase,IBitmapInfoProvider
         {
             FontInfoFt FontInfoProv = new FontInfoFt();

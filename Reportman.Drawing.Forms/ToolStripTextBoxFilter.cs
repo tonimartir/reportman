@@ -5,6 +5,10 @@ using System.Windows.Forms;
 
 namespace Reportman.Drawing.Forms
 {
+    /// <summary>
+    /// A ToolStrip-hosted label-and-textbox filter control that raises a debounced
+    /// <see cref="DelayedTextChanged"/> event after the user stops typing for a configurable delay.
+    /// </summary>
     public class ToolStripTextBoxFilter : ToolStripControlHost
     {
         private Label label;

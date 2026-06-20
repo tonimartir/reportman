@@ -24,9 +24,16 @@ items:
   nameWithType: TreeGridRow
   fullName: Reportman.Drawing.Forms.TreeGridRow
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    A <xref href="System.Windows.Forms.DataGridViewRow" data-throw-if-not-resolved="false"></xref> used by <xref href="Reportman.Drawing.Forms.TreeGridAdvanced" data-throw-if-not-resolved="false"></xref> that carries its tree
+
+    node, level, parent row, sibling position and optional image for hierarchical display.
+  example: []
   syntax:
     content: 'public class TreeGridRow : DataGridViewRow, ICloneable, IDisposable'
     content.vb: Public Class TreeGridRow Inherits DataGridViewRow Implements ICloneable, IDisposable
@@ -107,6 +114,8 @@ items:
   nameWithType: TreeGridRow.Node
   fullName: Reportman.Drawing.Forms.TreeGridRow.Node
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -126,6 +135,8 @@ items:
   nameWithType: TreeGridRow.ChildIndex
   fullName: Reportman.Drawing.Forms.TreeGridRow.ChildIndex
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -145,6 +156,8 @@ items:
   nameWithType: TreeGridRow.NodeId
   fullName: Reportman.Drawing.Forms.TreeGridRow.NodeId
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -164,6 +177,8 @@ items:
   nameWithType: TreeGridRow.Level
   fullName: Reportman.Drawing.Forms.TreeGridRow.Level
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -183,6 +198,8 @@ items:
   nameWithType: TreeGridRow.IsRoot
   fullName: Reportman.Drawing.Forms.TreeGridRow.IsRoot
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -202,6 +219,8 @@ items:
   nameWithType: TreeGridRow.Parent
   fullName: Reportman.Drawing.Forms.TreeGridRow.Parent
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -221,6 +240,8 @@ items:
   nameWithType: TreeGridRow.TreeGridRow()
   fullName: Reportman.Drawing.Forms.TreeGridRow.TreeGridRow()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -242,6 +263,8 @@ items:
   nameWithType: TreeGridRow.IsFirstSibling
   fullName: Reportman.Drawing.Forms.TreeGridRow.IsFirstSibling
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -263,6 +286,8 @@ items:
   nameWithType: TreeGridRow.HasChildren
   fullName: Reportman.Drawing.Forms.TreeGridRow.HasChildren
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -284,6 +309,8 @@ items:
   nameWithType: TreeGridRow.IsLastSibling
   fullName: Reportman.Drawing.Forms.TreeGridRow.IsLastSibling
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -317,6 +344,8 @@ items:
   nameWithType: TreeGridRow.ImageIndex
   fullName: Reportman.Drawing.Forms.TreeGridRow.ImageIndex
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -350,6 +379,8 @@ items:
   nameWithType: TreeGridRow.Image
   fullName: Reportman.Drawing.Forms.TreeGridRow.Image
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -361,6 +392,22 @@ items:
     content.vb: Public ReadOnly Property Image As Image
   overload: Reportman.Drawing.Forms.TreeGridRow.Image*
 references:
+- uid: System.Windows.Forms.DataGridViewRow
+  commentId: T:System.Windows.Forms.DataGridViewRow
+  parent: System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewrow
+  name: DataGridViewRow
+  nameWithType: DataGridViewRow
+  fullName: System.Windows.Forms.DataGridViewRow
+- uid: Reportman.Drawing.Forms.TreeGridAdvanced
+  commentId: T:Reportman.Drawing.Forms.TreeGridAdvanced
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TreeGridAdvanced.html
+  name: TreeGridAdvanced
+  nameWithType: TreeGridAdvanced
+  fullName: Reportman.Drawing.Forms.TreeGridAdvanced
 - uid: Reportman.Drawing.Forms
   commentId: N:Reportman.Drawing.Forms
   isExternal: true
@@ -425,14 +472,6 @@ references:
   name: DataGridViewBand
   nameWithType: DataGridViewBand
   fullName: System.Windows.Forms.DataGridViewBand
-- uid: System.Windows.Forms.DataGridViewRow
-  commentId: T:System.Windows.Forms.DataGridViewRow
-  parent: System.Windows.Forms
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewrow
-  name: DataGridViewRow
-  nameWithType: DataGridViewRow
-  fullName: System.Windows.Forms.DataGridViewRow
 - uid: System.ICloneable
   commentId: T:System.ICloneable
   parent: System
@@ -2014,13 +2053,6 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
   - name: )
-- uid: System
-  commentId: N:System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System
-  nameWithType: System
-  fullName: System
 - uid: System.Windows.Forms
   commentId: N:System.Windows.Forms
   isExternal: true
@@ -2058,6 +2090,13 @@ references:
     name: Forms
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.windows.forms
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
 - uid: Reportman.Drawing.Forms.TreeGridAdvancedNode
   commentId: T:Reportman.Drawing.Forms.TreeGridAdvancedNode
   parent: Reportman.Drawing.Forms

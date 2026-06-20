@@ -122,12 +122,22 @@ namespace Reportman.Drawing
             }
             return nbuilder.ToString();
         }
+        /// <summary>
+        /// Captures the visual formatting (alignment, font size, family, style flags, and
+        /// color) of a text cell when exporting a metafile to a tabular array.
+        /// </summary>
         public class TextFormat
         {
+            /// <summary>
+            /// Horizontal alignment of a text cell: left, right, or centered.
+            /// </summary>
             public enum AlignmentType { Left, Right, Center };
             public AlignmentType Alignment;
             public float FontSize;
             public string FamilyName;
+            /// <summary>
+            /// Bit flags describing font styling: bold, underline, italic, and strikethrough.
+            /// </summary>
             [Flags]
             public enum FontStyle { Bold = 1, Underline = 2, Italic = 4, Strikethrough = 8 };
             public FontStyle Style;

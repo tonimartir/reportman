@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Reportman.Drawing
 {
+    /// <summary>
+    /// Extension methods for <see cref="string"/> providing escape-aware splitting, escaping/unescaping with a custom escape character, diacritic removal and quoting helpers.
+    /// </summary>
     public static class StringExtensions
     {
         public static IEnumerable<string> Split(

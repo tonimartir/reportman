@@ -49,9 +49,18 @@ items:
   nameWithType: ExpressionItem
   fullName: Reportman.Reporting.ExpressionItem
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
+  summary: >-
+    A report item that evaluates an expression and prints its formatted result, supporting
+
+    aggregates (sum, min, max, average, standard deviation), page-count variables, optional
+
+    export values, HTML content and splitting across multiple pages.
+  example: []
   syntax:
     content: 'public class ExpressionItem : PrintItemText, IDisposable'
     content.vb: Public Class ExpressionItem Inherits PrintItemText Implements IDisposable
@@ -64,6 +73,7 @@ items:
   implements:
   - System.IDisposable
   inheritedMembers:
+  - Reportman.Reporting.PrintItemText.EvaluateHtmlExpressions(System.String)
   - Reportman.Reporting.PrintItemText.WFontName
   - Reportman.Reporting.PrintItemText.LFontName
   - Reportman.Reporting.PrintItemText.FontSize
@@ -74,6 +84,7 @@ items:
   - Reportman.Reporting.PrintItemText.Transparent
   - Reportman.Reporting.PrintItemText.CutText
   - Reportman.Reporting.PrintItemText.WordWrap
+  - Reportman.Reporting.PrintItemText.IsHtml
   - Reportman.Reporting.PrintItemText.WordBreak
   - Reportman.Reporting.PrintItemText.InterLine
   - Reportman.Reporting.PrintItemText.Alignment
@@ -130,6 +141,8 @@ items:
   nameWithType: ExpressionItem.Value
   fullName: Reportman.Reporting.ExpressionItem.Value
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -149,6 +162,8 @@ items:
   nameWithType: ExpressionItem.SumValue
   fullName: Reportman.Reporting.ExpressionItem.SumValue
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -168,6 +183,8 @@ items:
   nameWithType: ExpressionItem.DataCount
   fullName: Reportman.Reporting.ExpressionItem.DataCount
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -187,6 +204,8 @@ items:
   nameWithType: ExpressionItem.Updated
   fullName: Reportman.Reporting.ExpressionItem.Updated
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -206,6 +225,8 @@ items:
   nameWithType: ExpressionItem.PartialPos
   fullName: Reportman.Reporting.ExpressionItem.PartialPos
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -225,6 +246,8 @@ items:
   nameWithType: ExpressionItem.IsPageCount
   fullName: Reportman.Reporting.ExpressionItem.IsPageCount
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -244,6 +267,8 @@ items:
   nameWithType: ExpressionItem.IsGroupPageCount
   fullName: Reportman.Reporting.ExpressionItem.IsGroupPageCount
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -263,6 +288,8 @@ items:
   nameWithType: ExpressionItem.LastMetaIndex
   fullName: Reportman.Reporting.ExpressionItem.LastMetaIndex
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -282,6 +309,8 @@ items:
   nameWithType: ExpressionItem.GetClassName()
   fullName: Reportman.Reporting.ExpressionItem.GetClassName()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -306,6 +335,8 @@ items:
   nameWithType: ExpressionItem.DoPrint(PrintOut, int, int, int, int, MetaFile, Point, ref bool)
   fullName: Reportman.Reporting.ExpressionItem.DoPrint(Reportman.Drawing.PrintOut, int, int, int, int, Reportman.Drawing.MetaFile, System.Drawing.Point, ref bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -355,6 +386,8 @@ items:
   nameWithType: ExpressionItem.UpdateIsPageCount()
   fullName: Reportman.Reporting.ExpressionItem.UpdateIsPageCount()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -373,6 +406,8 @@ items:
   nameWithType: ExpressionItem.SetReport(BaseReport)
   fullName: Reportman.Reporting.ExpressionItem.SetReport(Reportman.Reporting.BaseReport)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -396,6 +431,8 @@ items:
   nameWithType: ExpressionItem.ExpressionItem()
   fullName: Reportman.Reporting.ExpressionItem.ExpressionItem()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -417,6 +454,8 @@ items:
   nameWithType: ExpressionItem.Evaluate()
   fullName: Reportman.Reporting.ExpressionItem.Evaluate()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -435,6 +474,8 @@ items:
   nameWithType: ExpressionItem.SubReportChanged(SubReportEvent, string)
   fullName: Reportman.Reporting.ExpressionItem.SubReportChanged(Reportman.Reporting.SubReportEvent, string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -466,6 +507,8 @@ items:
   nameWithType: ExpressionItem.GetExtension(PrintOut, Point, bool)
   fullName: Reportman.Reporting.ExpressionItem.GetExtension(Reportman.Drawing.PrintOut, System.Drawing.Point, bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -502,6 +545,8 @@ items:
   nameWithType: ExpressionItem.Expression
   fullName: Reportman.Reporting.ExpressionItem.Expression
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -523,6 +568,8 @@ items:
   nameWithType: ExpressionItem.GroupName
   fullName: Reportman.Reporting.ExpressionItem.GroupName
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -544,6 +591,8 @@ items:
   nameWithType: ExpressionItem.Aggregate
   fullName: Reportman.Reporting.ExpressionItem.Aggregate
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -565,6 +614,8 @@ items:
   nameWithType: ExpressionItem.AgType
   fullName: Reportman.Reporting.ExpressionItem.AgType
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -586,6 +637,8 @@ items:
   nameWithType: ExpressionItem.Identifier
   fullName: Reportman.Reporting.ExpressionItem.Identifier
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -607,6 +660,8 @@ items:
   nameWithType: ExpressionItem.AutoExpand
   fullName: Reportman.Reporting.ExpressionItem.AutoExpand
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -628,6 +683,8 @@ items:
   nameWithType: ExpressionItem.AutoContract
   fullName: Reportman.Reporting.ExpressionItem.AutoContract
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -649,6 +706,8 @@ items:
   nameWithType: ExpressionItem.DisplayFormat
   fullName: Reportman.Reporting.ExpressionItem.DisplayFormat
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -670,6 +729,8 @@ items:
   nameWithType: ExpressionItem.ExportDisplayFormat
   fullName: Reportman.Reporting.ExpressionItem.ExportDisplayFormat
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -691,6 +752,8 @@ items:
   nameWithType: ExpressionItem.DataType
   fullName: Reportman.Reporting.ExpressionItem.DataType
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -712,6 +775,8 @@ items:
   nameWithType: ExpressionItem.ExportValue
   fullName: Reportman.Reporting.ExpressionItem.ExportValue
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -733,6 +798,8 @@ items:
   nameWithType: ExpressionItem.AgIniValue
   fullName: Reportman.Reporting.ExpressionItem.AgIniValue
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -754,6 +821,8 @@ items:
   nameWithType: ExpressionItem.PrintOnlyOne
   fullName: Reportman.Reporting.ExpressionItem.PrintOnlyOne
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -775,6 +844,8 @@ items:
   nameWithType: ExpressionItem.PrintNulls
   fullName: Reportman.Reporting.ExpressionItem.PrintNulls
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -796,6 +867,8 @@ items:
   nameWithType: ExpressionItem.IsPartial
   fullName: Reportman.Reporting.ExpressionItem.IsPartial
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -834,6 +907,8 @@ items:
   nameWithType: ExpressionItem.ExportExpression
   fullName: Reportman.Reporting.ExpressionItem.ExportExpression
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -855,6 +930,8 @@ items:
   nameWithType: ExpressionItem.ExportLine
   fullName: Reportman.Reporting.ExpressionItem.ExportLine
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -876,6 +953,8 @@ items:
   nameWithType: ExpressionItem.ExportPosition
   fullName: Reportman.Reporting.ExpressionItem.ExportPosition
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -897,6 +976,8 @@ items:
   nameWithType: ExpressionItem.ExportSize
   fullName: Reportman.Reporting.ExpressionItem.ExportSize
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -918,6 +999,8 @@ items:
   nameWithType: ExpressionItem.ExportDoNewLine
   fullName: Reportman.Reporting.ExpressionItem.ExportDoNewLine
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -939,6 +1022,8 @@ items:
   nameWithType: ExpressionItem.IdenExpression
   fullName: Reportman.Reporting.ExpressionItem.IdenExpression
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExpressionItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1045,6 +1130,39 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
+- uid: Reportman.Reporting.PrintItemText.EvaluateHtmlExpressions(System.String)
+  commentId: M:Reportman.Reporting.PrintItemText.EvaluateHtmlExpressions(System.String)
+  parent: Reportman.Reporting.PrintItemText
+  isExternal: true
+  href: Reportman.Reporting.PrintItemText.html#Reportman_Reporting_PrintItemText_EvaluateHtmlExpressions_System_String_
+  name: EvaluateHtmlExpressions(string)
+  nameWithType: PrintItemText.EvaluateHtmlExpressions(string)
+  fullName: Reportman.Reporting.PrintItemText.EvaluateHtmlExpressions(string)
+  nameWithType.vb: PrintItemText.EvaluateHtmlExpressions(String)
+  fullName.vb: Reportman.Reporting.PrintItemText.EvaluateHtmlExpressions(String)
+  name.vb: EvaluateHtmlExpressions(String)
+  spec.csharp:
+  - uid: Reportman.Reporting.PrintItemText.EvaluateHtmlExpressions(System.String)
+    name: EvaluateHtmlExpressions
+    isExternal: true
+    href: Reportman.Reporting.PrintItemText.html#Reportman_Reporting_PrintItemText_EvaluateHtmlExpressions_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.PrintItemText.EvaluateHtmlExpressions(System.String)
+    name: EvaluateHtmlExpressions
+    isExternal: true
+    href: Reportman.Reporting.PrintItemText.html#Reportman_Reporting_PrintItemText_EvaluateHtmlExpressions_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
 - uid: Reportman.Reporting.PrintItemText.WFontName
   commentId: P:Reportman.Reporting.PrintItemText.WFontName
   parent: Reportman.Reporting.PrintItemText
@@ -1125,6 +1243,14 @@ references:
   name: WordWrap
   nameWithType: PrintItemText.WordWrap
   fullName: Reportman.Reporting.PrintItemText.WordWrap
+- uid: Reportman.Reporting.PrintItemText.IsHtml
+  commentId: P:Reportman.Reporting.PrintItemText.IsHtml
+  parent: Reportman.Reporting.PrintItemText
+  isExternal: true
+  href: Reportman.Reporting.PrintItemText.html#Reportman_Reporting_PrintItemText_IsHtml
+  name: IsHtml
+  nameWithType: PrintItemText.IsHtml
+  fullName: Reportman.Reporting.PrintItemText.IsHtml
 - uid: Reportman.Reporting.PrintItemText.WordBreak
   commentId: P:Reportman.Reporting.PrintItemText.WordBreak
   parent: Reportman.Reporting.PrintItemText
@@ -1246,11 +1372,13 @@ references:
   - uid: Reportman.Drawing.MetaObject
     name: MetaObject
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
   - name: ','
   - name: " "
   - uid: Reportman.Drawing.MetaPage
     name: MetaPage
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
   - name: )
   spec.vb:
   - uid: Reportman.Reporting.PrintPosItem.FillAnnotation(Reportman.Drawing.MetaObject,Reportman.Drawing.MetaPage)
@@ -1261,11 +1389,13 @@ references:
   - uid: Reportman.Drawing.MetaObject
     name: MetaObject
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
   - name: ','
   - name: " "
   - uid: Reportman.Drawing.MetaPage
     name: MetaPage
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
   - name: )
 - uid: Reportman.Reporting.PrintPosItem.Hidden
   commentId: P:Reportman.Reporting.PrintPosItem.Hidden
@@ -1397,6 +1527,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -1426,6 +1557,7 @@ references:
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -1450,6 +1582,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -1479,6 +1612,7 @@ references:
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -1938,6 +2072,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -1967,6 +2102,7 @@ references:
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -1991,6 +2127,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -2020,6 +2157,7 @@ references:
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -2044,7 +2182,7 @@ references:
   commentId: T:Reportman.Drawing.PrintOut
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.PrintOut.html
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   name: PrintOut
   nameWithType: PrintOut
   fullName: Reportman.Drawing.PrintOut
@@ -2267,6 +2405,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -2289,6 +2428,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point

@@ -11,6 +11,10 @@ using System.Runtime.InteropServices;
 namespace Reportman.Drawing.Windows
 {
 
+    /// <summary>
+    /// Holds the positioned glyphs that share a single text baseline, tracking the
+    /// line's reading direction and the most recent run for correct RTL/LTR ordering.
+    /// </summary>
     public class TGlyphLine
     {
         public float BaselineY;
@@ -27,8 +31,17 @@ namespace Reportman.Drawing.Windows
         }
     }
 
+    /// <summary>
+    /// Cache that maps a DirectWrite font face native pointer to its resolved font
+    /// family name, avoiding repeated name-table lookups.
+    /// </summary>
     public class TFontFaceCache : Dictionary<IntPtr, string> { }
 
+    /// <summary>
+    /// Custom DirectWrite text renderer that does not draw, but instead captures glyph
+    /// indices, advances, offsets and per-run formatting into glyph and line lists for
+    /// measuring text extents and feeding the metafile.
+    /// </summary>
     public class TTextExtentRenderer : TextRendererBase
     {
         private const float DIP_TO_TWIPS_FACTOR = 15.0f;
@@ -247,6 +260,10 @@ namespace Reportman.Drawing.Windows
         }
     }
 
+    /// <summary>
+    /// Helper methods for reading raw OpenType font tables, in particular extracting the
+    /// font family name (name ID 1) directly from a DirectWrite font face's 'name' table.
+    /// </summary>
     public static class FontUtils
     {
         private const uint NAME_TABLE_TAG = 0x656D616E; // 'eman' en little endian invertido

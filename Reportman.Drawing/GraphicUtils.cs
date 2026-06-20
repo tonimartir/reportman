@@ -14,6 +14,10 @@ using System.Linq;
 
 namespace Reportman.Drawing
 {
+    /// <summary>
+    /// Static helpers for working with colors and font styles, including conversions between
+    /// <see cref="Color"/> and the engine's 32-bit integer (BBGGRR) and string color encodings.
+    /// </summary>
     public class GraphicUtils
     {
         public static object flag = 2;

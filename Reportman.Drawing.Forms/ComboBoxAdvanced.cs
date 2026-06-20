@@ -6,7 +6,15 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 namespace Reportman.Drawing.Forms
 {
+    /// <summary>
+    /// Callback raised when an item is chosen from an advanced control's drop-down list,
+    /// passing the selected item (a string or an AutoCompleteInfo) as the second argument.
+    /// </summary>
     public delegate void StringEvent(object sender, object nitem);
+    /// <summary>
+    /// A ComboBox that supports owner-drawn items with images from an ImageList,
+    /// auto-complete entries, and optional Enter-acts-as-Tab navigation.
+    /// </summary>
     public class ComboBoxAdvanced : ComboBox
     {
         public List<KeyValuePair<string, string>> AutoCompleteList;
@@ -104,6 +112,10 @@ namespace Reportman.Drawing.Forms
             base.OnKeyDown(e);
         }
     }
+    /// <summary>
+    /// A CheckBox that optionally treats the Enter key as a Tab keypress to move focus
+    /// to the next control, raising a cancelable event beforehand.
+    /// </summary>
     public class CheckBoxAdvanced : CheckBox
     {
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
@@ -135,6 +147,10 @@ namespace Reportman.Drawing.Forms
             base.OnKeyDown(e);
         }
     }
+    /// <summary>
+    /// A ToolStripComboBox whose Size property is automatically scaled by the current
+    /// DPI factors so it renders consistently across display resolutions.
+    /// </summary>
     public class ToolStripComboBoxAdvanced : ToolStripComboBox
     {
         Size FNewSize;
@@ -153,6 +169,11 @@ namespace Reportman.Drawing.Forms
             }
         }
     }
+    /// <summary>
+    /// A ToolStripTextBox that drops down a self-managed suggestion list as the user types,
+    /// matching against a local auto-complete list and optionally Google query suggestions,
+    /// with a cue-banner placeholder and DPI-aware drawing.
+    /// </summary>
     public class ToolStripTextBoxAdvanced : ToolStripTextBox, IMessageFilter
     {
         private const int EM_SETCUEBANNER = 0x1501;
@@ -800,6 +821,10 @@ namespace Reportman.Drawing.Forms
             }
         }
     }
+    /// <summary>
+    /// A TextBox that shows a floating, non-selectable list of matching entries from an
+    /// auto-complete list as the user types, letting them pick a value with the mouse or keyboard.
+    /// </summary>
     public class ComboListMatcher : TextBox, IMessageFilter
     {
         private Control ComboParentForm; // Or use type "Form" 
@@ -1143,6 +1168,10 @@ namespace Reportman.Drawing.Forms
             return false;
         }
     }
+    /// <summary>
+    /// An item for ComboBoxAdvanced that pairs display text with an ImageList image index
+    /// for owner-drawn rendering.
+    /// </summary>
     public class ComboBoxAdvancedItem
     {
         private string _text;
@@ -1180,6 +1209,10 @@ namespace Reportman.Drawing.Forms
             return _text;
         }
     }
+    /// <summary>
+    /// Static helpers for Windows Forms layout and focus, including locating the active form
+    /// and focused control, testing parent/child relationships, and DPI-scaling padding and image lists.
+    /// </summary>
     public class FormUtils
     {
         [DllImport("user32.dll")]
@@ -1287,6 +1320,10 @@ namespace Reportman.Drawing.Forms
 
 
     }
+    /// <summary>
+    /// A double-buffered Control that forwards its paint pass to a user-supplied
+    /// OnCustomPaint handler, allowing fully custom rendering.
+    /// </summary>
     public class CustomPaintControl : Control
     {
         public PaintEventHandler OnCustomPaint;
@@ -1304,6 +1341,10 @@ namespace Reportman.Drawing.Forms
 
     }
 
+    /// <summary>
+    /// A Button that never takes input focus when clicked, so it can be pressed without
+    /// stealing focus from the currently active control.
+    /// </summary>
     public class UnSelectableButton : Button
     {
         private const int WM_MOUSEACTIVATE = 0x0021;
@@ -1321,6 +1362,10 @@ namespace Reportman.Drawing.Forms
         }
     }
 
+    /// <summary>
+    /// A ToolStrip with DPI-scaled image sizing and a workaround that makes its buttons
+    /// respond on the first click even when the strip is not the active control.
+    /// </summary>
     public class ToolStripAdvanced : ToolStrip
     {
         Size FNewImageScalingSize;
@@ -1373,6 +1418,10 @@ namespace Reportman.Drawing.Forms
         }
     }
 
+    /// <summary>
+    /// A double-buffered ListBox that does not activate or take focus when shown or clicked,
+    /// used as the floating suggestion list for the advanced auto-complete controls.
+    /// </summary>
     public class ListBoxNonSelectable : ListBox
     {
         public ListBoxNonSelectable() : base()
@@ -1431,6 +1480,10 @@ namespace Reportman.Drawing.Forms
             return Text;
         }
     }
+    /// <summary>
+    /// A pinned auto-complete suggestion that carries display text, an address detail,
+    /// and an icon to show alongside it in the suggestion list.
+    /// </summary>
     public class AutoCompleteInfo
     {
         public string Text;

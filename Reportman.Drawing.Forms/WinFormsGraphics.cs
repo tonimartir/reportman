@@ -6,6 +6,10 @@ using System.Windows.Forms;
 
 namespace Reportman.Drawing.Forms
 {
+    /// <summary>
+    /// Windows Forms helpers for resolving the screen DPI, the corresponding DPI scale factor,
+    /// and whether the current process is DPI-aware.
+    /// </summary>
     public static class WinFormsGraphics
     {
         static object flag = 2;
@@ -54,6 +58,10 @@ namespace Reportman.Drawing.Forms
         [DllImport("shcore.dll", SetLastError = true)]
         public static extern int GetProcessDpiAwareness(IntPtr hprocess, out DpiAwareness dpiAwareness);
 
+        /// <summary>
+        /// The DPI-awareness level of a process as reported by the Windows shell:
+        /// unaware, system-aware, or per-monitor-aware.
+        /// </summary>
         public enum DpiAwareness
         {
             Unaware = 0,

@@ -27,9 +27,16 @@ items:
   nameWithType: ObjectViewModel
   fullName: Reportman.Drawing.ObjectViewModel
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ObjectViewModel.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    A tree node that exposes an arbitrary object's public fields (and enumerable items) for
+
+    display in a hierarchical, lazily expanded property browser, with selection and expansion state.
+  example: []
   syntax:
     content: 'public class ObjectViewModel : INotifyPropertyChanged'
     content.vb: Public Class ObjectViewModel Implements INotifyPropertyChanged
@@ -56,6 +63,8 @@ items:
   nameWithType: ObjectViewModel.ObjectViewModel(object)
   fullName: Reportman.Drawing.ObjectViewModel.ObjectViewModel(object)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ObjectViewModel.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -80,6 +89,8 @@ items:
   nameWithType: ObjectViewModel.LoadChildren()
   fullName: Reportman.Drawing.ObjectViewModel.LoadChildren()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ObjectViewModel.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -98,6 +109,8 @@ items:
   nameWithType: ObjectViewModel.NameContains(string)
   fullName: Reportman.Drawing.ObjectViewModel.NameContains(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ObjectViewModel.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -124,6 +137,8 @@ items:
   nameWithType: ObjectViewModel.ValueContains(string)
   fullName: Reportman.Drawing.ObjectViewModel.ValueContains(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ObjectViewModel.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -150,6 +165,8 @@ items:
   nameWithType: ObjectViewModel.OnPropertyChanged(string)
   fullName: Reportman.Drawing.ObjectViewModel.OnPropertyChanged(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ObjectViewModel.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -174,6 +191,8 @@ items:
   nameWithType: ObjectViewModel.ObjectInstance
   fullName: Reportman.Drawing.ObjectViewModel.ObjectInstance
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ObjectViewModel.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -195,6 +214,8 @@ items:
   nameWithType: ObjectViewModel.Parent
   fullName: Reportman.Drawing.ObjectViewModel.Parent
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ObjectViewModel.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -216,6 +237,8 @@ items:
   nameWithType: ObjectViewModel.Info
   fullName: Reportman.Drawing.ObjectViewModel.Info
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ObjectViewModel.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -237,6 +260,8 @@ items:
   nameWithType: ObjectViewModel.Children
   fullName: Reportman.Drawing.ObjectViewModel.Children
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ObjectViewModel.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -258,6 +283,8 @@ items:
   nameWithType: ObjectViewModel.Type
   fullName: Reportman.Drawing.ObjectViewModel.Type
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ObjectViewModel.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -279,6 +306,8 @@ items:
   nameWithType: ObjectViewModel.Name
   fullName: Reportman.Drawing.ObjectViewModel.Name
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ObjectViewModel.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -300,6 +329,8 @@ items:
   nameWithType: ObjectViewModel.Value
   fullName: Reportman.Drawing.ObjectViewModel.Value
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ObjectViewModel.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -321,6 +352,8 @@ items:
   nameWithType: ObjectViewModel.IsExpanded
   fullName: Reportman.Drawing.ObjectViewModel.IsExpanded
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ObjectViewModel.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -342,6 +375,8 @@ items:
   nameWithType: ObjectViewModel.IsSelected
   fullName: Reportman.Drawing.ObjectViewModel.IsSelected
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ObjectViewModel.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -363,6 +398,8 @@ items:
   nameWithType: ObjectViewModel.PropertyChanged
   fullName: Reportman.Drawing.ObjectViewModel.PropertyChanged
   type: Event
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ObjectViewModel.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

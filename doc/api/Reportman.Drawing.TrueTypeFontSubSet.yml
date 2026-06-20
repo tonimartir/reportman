@@ -46,9 +46,16 @@ items:
   nameWithType: TrueTypeFontSubSet
   fullName: Reportman.Drawing.TrueTypeFontSubSet
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    Builds a minimal subset of a TrueType font containing only the glyphs actually used,
+
+    rewriting the loca/glyf tables and reassembling the font for embedding (e.g. in PDF output).
+  example: []
   syntax:
     content: public class TrueTypeFontSubSet
     content.vb: Public Class TrueTypeFontSubSet
@@ -73,6 +80,8 @@ items:
   nameWithType: TrueTypeFontSubSet.tables
   fullName: Reportman.Drawing.TrueTypeFontSubSet.tables
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -92,6 +101,8 @@ items:
   nameWithType: TrueTypeFontSubSet.rfarray
   fullName: Reportman.Drawing.TrueTypeFontSubSet.rfarray
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -111,6 +122,8 @@ items:
   nameWithType: TrueTypeFontSubSet.locaShortTable
   fullName: Reportman.Drawing.TrueTypeFontSubSet.locaShortTable
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -130,6 +143,8 @@ items:
   nameWithType: TrueTypeFontSubSet.locaTable
   fullName: Reportman.Drawing.TrueTypeFontSubSet.locaTable
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -149,6 +164,8 @@ items:
   nameWithType: TrueTypeFontSubSet.glyphsUsed
   fullName: Reportman.Drawing.TrueTypeFontSubSet.glyphsUsed
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -168,6 +185,8 @@ items:
   nameWithType: TrueTypeFontSubSet.glyphsInList
   fullName: Reportman.Drawing.TrueTypeFontSubSet.glyphsInList
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -187,6 +206,8 @@ items:
   nameWithType: TrueTypeFontSubSet.tableGlyphOffset
   fullName: Reportman.Drawing.TrueTypeFontSubSet.tableGlyphOffset
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -206,6 +227,8 @@ items:
   nameWithType: TrueTypeFontSubSet.newLocaTable
   fullName: Reportman.Drawing.TrueTypeFontSubSet.newLocaTable
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -225,6 +248,8 @@ items:
   nameWithType: TrueTypeFontSubSet.newLocaTableOut
   fullName: Reportman.Drawing.TrueTypeFontSubSet.newLocaTableOut
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -244,6 +269,8 @@ items:
   nameWithType: TrueTypeFontSubSet.newGlyfTable
   fullName: Reportman.Drawing.TrueTypeFontSubSet.newGlyfTable
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -263,6 +290,8 @@ items:
   nameWithType: TrueTypeFontSubSet.glyfTableRealSize
   fullName: Reportman.Drawing.TrueTypeFontSubSet.glyfTableRealSize
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -282,6 +311,8 @@ items:
   nameWithType: TrueTypeFontSubSet.locaTableRealSize
   fullName: Reportman.Drawing.TrueTypeFontSubSet.locaTableRealSize
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -301,6 +332,8 @@ items:
   nameWithType: TrueTypeFontSubSet.outFont
   fullName: Reportman.Drawing.TrueTypeFontSubSet.outFont
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -320,6 +353,8 @@ items:
   nameWithType: TrueTypeFontSubSet.fontPtr
   fullName: Reportman.Drawing.TrueTypeFontSubSet.fontPtr
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -339,6 +374,8 @@ items:
   nameWithType: TrueTypeFontSubSet.directoryOffset
   fullName: Reportman.Drawing.TrueTypeFontSubSet.directoryOffset
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -358,6 +395,8 @@ items:
   nameWithType: TrueTypeFontSubSet.TrueTypeFontSubSet(string, byte[], Dictionary<int, int[]>, uint)
   fullName: Reportman.Drawing.TrueTypeFontSubSet.TrueTypeFontSubSet(string, byte[], System.Collections.Generic.Dictionary<int, int[]>, uint)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -394,6 +433,8 @@ items:
   nameWithType: TrueTypeFontSubSet.Execute()
   fullName: Reportman.Drawing.TrueTypeFontSubSet.Execute()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -414,6 +455,8 @@ items:
   nameWithType: TrueTypeFontSubSet.AssembleFont()
   fullName: Reportman.Drawing.TrueTypeFontSubSet.AssembleFont()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -432,6 +475,8 @@ items:
   nameWithType: TrueTypeFontSubSet.ByteArrayToUInt(byte[], int, int)
   fullName: Reportman.Drawing.TrueTypeFontSubSet.ByteArrayToUInt(byte[], int, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -464,6 +509,8 @@ items:
   nameWithType: TrueTypeFontSubSet.ByteArrayToInt(byte[], int, int)
   fullName: Reportman.Drawing.TrueTypeFontSubSet.ByteArrayToInt(byte[], int, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -494,6 +541,8 @@ items:
   nameWithType: TrueTypeFontSubSet.ByteArrayToUShort(byte[], int, int)
   fullName: Reportman.Drawing.TrueTypeFontSubSet.ByteArrayToUShort(byte[], int, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -524,6 +573,8 @@ items:
   nameWithType: TrueTypeFontSubSet.ByteArrayToShort(byte[], int, int)
   fullName: Reportman.Drawing.TrueTypeFontSubSet.ByteArrayToShort(byte[], int, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -554,6 +605,8 @@ items:
   nameWithType: TrueTypeFontSubSet.GetPostcriptName(int)
   fullName: Reportman.Drawing.TrueTypeFontSubSet.GetPostcriptName(int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -580,6 +633,8 @@ items:
   nameWithType: TrueTypeFontSubSet.CreateTableDirectory()
   fullName: Reportman.Drawing.TrueTypeFontSubSet.CreateTableDirectory()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -598,6 +653,8 @@ items:
   nameWithType: TrueTypeFontSubSet.ReadLoca()
   fullName: Reportman.Drawing.TrueTypeFontSubSet.ReadLoca()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -616,6 +673,8 @@ items:
   nameWithType: TrueTypeFontSubSet.CreateNewGlyphTables()
   fullName: Reportman.Drawing.TrueTypeFontSubSet.CreateNewGlyphTables()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -634,6 +693,8 @@ items:
   nameWithType: TrueTypeFontSubSet.ReadBytes(int, byte[], int, int)
   fullName: Reportman.Drawing.TrueTypeFontSubSet.ReadBytes(int, byte[], int, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -664,6 +725,8 @@ items:
   nameWithType: TrueTypeFontSubSet.LocaTobytes()
   fullName: Reportman.Drawing.TrueTypeFontSubSet.LocaTobytes()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -682,6 +745,8 @@ items:
   nameWithType: TrueTypeFontSubSet.FlatGlyphs()
   fullName: Reportman.Drawing.TrueTypeFontSubSet.FlatGlyphs()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -700,6 +765,8 @@ items:
   nameWithType: TrueTypeFontSubSet.CheckGlyphComposite(int)
   fullName: Reportman.Drawing.TrueTypeFontSubSet.CheckGlyphComposite(int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -724,6 +791,8 @@ items:
   nameWithType: TrueTypeFontSubSet.WriteFontShort(int)
   fullName: Reportman.Drawing.TrueTypeFontSubSet.WriteFontShort(int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -748,6 +817,8 @@ items:
   nameWithType: TrueTypeFontSubSet.WriteFontInt(int)
   fullName: Reportman.Drawing.TrueTypeFontSubSet.WriteFontInt(int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -772,6 +843,8 @@ items:
   nameWithType: TrueTypeFontSubSet.WriteFontString(string)
   fullName: Reportman.Drawing.TrueTypeFontSubSet.WriteFontString(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -796,6 +869,8 @@ items:
   nameWithType: TrueTypeFontSubSet.CalculateChecksum(byte[])
   fullName: Reportman.Drawing.TrueTypeFontSubSet.CalculateChecksum(byte[])
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TrueType.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

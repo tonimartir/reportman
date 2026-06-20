@@ -19,6 +19,7 @@ items:
   - Reportman.Drawing.PDFCanvas.File
   - Reportman.Drawing.PDFCanvas.Font
   - Reportman.Drawing.PDFCanvas.FontData
+  - Reportman.Drawing.PDFCanvas.ForceComplexShaping
   - Reportman.Drawing.PDFCanvas.GetTTFontData
   - Reportman.Drawing.PDFCanvas.InfoProvider
   - Reportman.Drawing.PDFCanvas.IntToHex(System.Int32)
@@ -42,10 +43,10 @@ items:
   - Reportman.Drawing.PDFCanvas.SaveGraph
   - Reportman.Drawing.PDFCanvas.SavedBrushColor
   - Reportman.Drawing.PDFCanvas.SavedPenColor
-  - Reportman.Drawing.PDFCanvas.TextExtent(System.String,System.Drawing.Rectangle@,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  - Reportman.Drawing.PDFCanvas.TextExtent(System.String,System.Drawing.Rectangle@,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
   - Reportman.Drawing.PDFCanvas.TextExtentSimple(System.String,System.Drawing.Rectangle@,System.Boolean,System.Boolean,System.Boolean)
-  - Reportman.Drawing.PDFCanvas.TextOut(System.Int32,System.Int32,System.String,System.Int32,System.Int32,System.Boolean,Reportman.Drawing.LineInfo)
-  - Reportman.Drawing.PDFCanvas.TextRect(System.Drawing.Rectangle,System.String,System.Int32,System.Boolean,System.Boolean,System.Int32,System.Boolean)
+  - Reportman.Drawing.PDFCanvas.TextOut(System.Int32,System.Int32,System.String,System.Int32,System.Int32,System.Boolean,Reportman.Drawing.LineInfo,System.Boolean)
+  - Reportman.Drawing.PDFCanvas.TextRect(System.Drawing.Rectangle,System.String,System.Int32,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
   - Reportman.Drawing.PDFCanvas.Translate(System.Int32,System.Int32)
   - Reportman.Drawing.PDFCanvas.Type1FontTopdfFontName(Reportman.Drawing.PDFFontType,System.Boolean,System.Boolean,System.String,System.Int32,Reportman.Drawing.PDFConformanceType)
   - Reportman.Drawing.PDFCanvas.UnitsToTextX(System.Double)
@@ -61,9 +62,16 @@ items:
   nameWithType: PDFCanvas
   fullName: Reportman.Drawing.PDFCanvas
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    Low-level PDF drawing surface that emits PDF content-stream operators for lines,
+
+    shapes, and (shaped or plain) text, handling fonts, colors, and unit conversion.
+  example: []
   syntax:
     content: public class PDFCanvas
     content.vb: Public Class PDFCanvas
@@ -88,6 +96,8 @@ items:
   nameWithType: PDFCanvas.ENDSTREAM
   fullName: Reportman.Drawing.PDFCanvas.ENDSTREAM
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -107,6 +117,8 @@ items:
   nameWithType: PDFCanvas.FInfoProvider
   fullName: Reportman.Drawing.PDFCanvas.FInfoProvider
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -126,6 +138,8 @@ items:
   nameWithType: PDFCanvas.FBitmapInfoProvider
   fullName: Reportman.Drawing.PDFCanvas.FBitmapInfoProvider
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -145,6 +159,8 @@ items:
   nameWithType: PDFCanvas.PDFConformance
   fullName: Reportman.Drawing.PDFCanvas.PDFConformance
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -164,6 +180,8 @@ items:
   nameWithType: PDFCanvas.File
   fullName: Reportman.Drawing.PDFCanvas.File
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -183,6 +201,8 @@ items:
   nameWithType: PDFCanvas.Resolution
   fullName: Reportman.Drawing.PDFCanvas.Resolution
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -191,6 +211,38 @@ items:
     return:
       type: System.Int32
     content.vb: Public Resolution As Integer
+- uid: Reportman.Drawing.PDFCanvas.ForceComplexShaping
+  commentId: F:Reportman.Drawing.PDFCanvas.ForceComplexShaping
+  id: ForceComplexShaping
+  parent: Reportman.Drawing.PDFCanvas
+  langs:
+  - csharp
+  - vb
+  name: ForceComplexShaping
+  nameWithType: PDFCanvas.ForceComplexShaping
+  fullName: Reportman.Drawing.PDFCanvas.ForceComplexShaping
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    When true, TextExtent always routes to the complex shaper (InfoProvider.TextExtent —
+
+    DirectWrite on Windows, HarfBuzz on Linux) and populates LineInfo.Glyphs with glyph
+
+    indices and advances. Default false preserves the historical fast path (TextExtentSimple)
+
+    that only computes line widths without glyph data. Callers that need per-glyph data
+
+    (e.g. glyph-indexed ExtTextOutW rendering) must set this to true before measuring.
+  example: []
+  syntax:
+    content: public bool ForceComplexShaping
+    return:
+      type: System.Boolean
+    content.vb: Public ForceComplexShaping As Boolean
 - uid: Reportman.Drawing.PDFCanvas.PenColor
   commentId: F:Reportman.Drawing.PDFCanvas.PenColor
   id: PenColor
@@ -202,6 +254,8 @@ items:
   nameWithType: PDFCanvas.PenColor
   fullName: Reportman.Drawing.PDFCanvas.PenColor
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -221,6 +275,8 @@ items:
   nameWithType: PDFCanvas.PenStyle
   fullName: Reportman.Drawing.PDFCanvas.PenStyle
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -240,6 +296,8 @@ items:
   nameWithType: PDFCanvas.PenWidth
   fullName: Reportman.Drawing.PDFCanvas.PenWidth
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -259,6 +317,8 @@ items:
   nameWithType: PDFCanvas.BrushColor
   fullName: Reportman.Drawing.PDFCanvas.BrushColor
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -278,6 +338,8 @@ items:
   nameWithType: PDFCanvas.BrushStyle
   fullName: Reportman.Drawing.PDFCanvas.BrushStyle
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -297,6 +359,8 @@ items:
   nameWithType: PDFCanvas.OldBrushColor
   fullName: Reportman.Drawing.PDFCanvas.OldBrushColor
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -316,6 +380,8 @@ items:
   nameWithType: PDFCanvas.OldPenColor
   fullName: Reportman.Drawing.PDFCanvas.OldPenColor
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -335,6 +401,8 @@ items:
   nameWithType: PDFCanvas.SavedPenColor
   fullName: Reportman.Drawing.PDFCanvas.SavedPenColor
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -354,6 +422,8 @@ items:
   nameWithType: PDFCanvas.SavedBrushColor
   fullName: Reportman.Drawing.PDFCanvas.SavedBrushColor
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -373,6 +443,8 @@ items:
   nameWithType: PDFCanvas.PDFCanvas(FontInfoProvider, IBitmapInfoProvider)
   fullName: Reportman.Drawing.PDFCanvas.PDFCanvas(Reportman.Drawing.FontInfoProvider, Reportman.Drawing.IBitmapInfoProvider)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -399,6 +471,8 @@ items:
   nameWithType: PDFCanvas.UnitsToTextX(double)
   fullName: Reportman.Drawing.PDFCanvas.UnitsToTextX(double)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -425,6 +499,8 @@ items:
   nameWithType: PDFCanvas.UnitsToTextY(double)
   fullName: Reportman.Drawing.PDFCanvas.UnitsToTextY(double)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -451,6 +527,8 @@ items:
   nameWithType: PDFCanvas.NumberToText(double)
   fullName: Reportman.Drawing.PDFCanvas.NumberToText(double)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -477,6 +555,8 @@ items:
   nameWithType: PDFCanvas.EOL()
   fullName: Reportman.Drawing.PDFCanvas.EOL()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -497,6 +577,8 @@ items:
   nameWithType: PDFCanvas.Line(int, int, int, int)
   fullName: Reportman.Drawing.PDFCanvas.Line(int, int, int, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -527,6 +609,8 @@ items:
   nameWithType: PDFCanvas.WritePenColor(int)
   fullName: Reportman.Drawing.PDFCanvas.WritePenColor(int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -551,6 +635,8 @@ items:
   nameWithType: PDFCanvas.WriteBrushColor(int)
   fullName: Reportman.Drawing.PDFCanvas.WriteBrushColor(int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -575,6 +661,8 @@ items:
   nameWithType: PDFCanvas.GetTTFontData()
   fullName: Reportman.Drawing.PDFCanvas.GetTTFontData()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -595,6 +683,8 @@ items:
   nameWithType: PDFCanvas.UpdateFonts()
   fullName: Reportman.Drawing.PDFCanvas.UpdateFonts()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -615,6 +705,8 @@ items:
   nameWithType: PDFCanvas.Ellipse(int, int, int, int)
   fullName: Reportman.Drawing.PDFCanvas.Ellipse(int, int, int, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -645,6 +737,8 @@ items:
   nameWithType: PDFCanvas.RoundedRectangle(int, int, int, int, int)
   fullName: Reportman.Drawing.PDFCanvas.RoundedRectangle(int, int, int, int, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -677,6 +771,8 @@ items:
   nameWithType: PDFCanvas.Rectangle(int, int, int, int)
   fullName: Reportman.Drawing.PDFCanvas.Rectangle(int, int, int, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -707,6 +803,8 @@ items:
   nameWithType: PDFCanvas.SaveGraph()
   fullName: Reportman.Drawing.PDFCanvas.SaveGraph()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -725,6 +823,8 @@ items:
   nameWithType: PDFCanvas.RestoreGraph()
   fullName: Reportman.Drawing.PDFCanvas.RestoreGraph()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -743,6 +843,8 @@ items:
   nameWithType: PDFCanvas.DoReverseString(string)
   fullName: Reportman.Drawing.PDFCanvas.DoReverseString(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -769,6 +871,8 @@ items:
   nameWithType: PDFCanvas.Type1FontTopdfFontName(PDFFontType, bool, bool, string, int, PDFConformanceType)
   fullName: Reportman.Drawing.PDFCanvas.Type1FontTopdfFontName(Reportman.Drawing.PDFFontType, bool, bool, string, int, Reportman.Drawing.PDFConformanceType)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -794,22 +898,24 @@ items:
   nameWithType.vb: PDFCanvas.Type1FontTopdfFontName(PDFFontType, Boolean, Boolean, String, Integer, PDFConformanceType)
   fullName.vb: Reportman.Drawing.PDFCanvas.Type1FontTopdfFontName(Reportman.Drawing.PDFFontType, Boolean, Boolean, String, Integer, Reportman.Drawing.PDFConformanceType)
   name.vb: Type1FontTopdfFontName(PDFFontType, Boolean, Boolean, String, Integer, PDFConformanceType)
-- uid: Reportman.Drawing.PDFCanvas.TextOut(System.Int32,System.Int32,System.String,System.Int32,System.Int32,System.Boolean,Reportman.Drawing.LineInfo)
-  commentId: M:Reportman.Drawing.PDFCanvas.TextOut(System.Int32,System.Int32,System.String,System.Int32,System.Int32,System.Boolean,Reportman.Drawing.LineInfo)
-  id: TextOut(System.Int32,System.Int32,System.String,System.Int32,System.Int32,System.Boolean,Reportman.Drawing.LineInfo)
+- uid: Reportman.Drawing.PDFCanvas.TextOut(System.Int32,System.Int32,System.String,System.Int32,System.Int32,System.Boolean,Reportman.Drawing.LineInfo,System.Boolean)
+  commentId: M:Reportman.Drawing.PDFCanvas.TextOut(System.Int32,System.Int32,System.String,System.Int32,System.Int32,System.Boolean,Reportman.Drawing.LineInfo,System.Boolean)
+  id: TextOut(System.Int32,System.Int32,System.String,System.Int32,System.Int32,System.Boolean,Reportman.Drawing.LineInfo,System.Boolean)
   parent: Reportman.Drawing.PDFCanvas
   langs:
   - csharp
   - vb
-  name: TextOut(int, int, string, int, int, bool, LineInfo)
-  nameWithType: PDFCanvas.TextOut(int, int, string, int, int, bool, LineInfo)
-  fullName: Reportman.Drawing.PDFCanvas.TextOut(int, int, string, int, int, bool, Reportman.Drawing.LineInfo)
+  name: TextOut(int, int, string, int, int, bool, LineInfo, bool)
+  nameWithType: PDFCanvas.TextOut(int, int, string, int, int, bool, LineInfo, bool)
+  fullName: Reportman.Drawing.PDFCanvas.TextOut(int, int, string, int, int, bool, Reportman.Drawing.LineInfo, bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
   syntax:
-    content: public void TextOut(int X, int Y, string Text, int LineWidth, int Rotation, bool RightToLeft, LineInfo lInfo)
+    content: public void TextOut(int X, int Y, string Text, int LineWidth, int Rotation, bool RightToLeft, LineInfo lInfo, bool isHtml = false)
     parameters:
     - id: X
       type: System.Int32
@@ -825,11 +931,13 @@ items:
       type: System.Boolean
     - id: lInfo
       type: Reportman.Drawing.LineInfo
-    content.vb: Public Sub TextOut(X As Integer, Y As Integer, Text As String, LineWidth As Integer, Rotation As Integer, RightToLeft As Boolean, lInfo As LineInfo)
+    - id: isHtml
+      type: System.Boolean
+    content.vb: Public Sub TextOut(X As Integer, Y As Integer, Text As String, LineWidth As Integer, Rotation As Integer, RightToLeft As Boolean, lInfo As LineInfo, isHtml As Boolean = False)
   overload: Reportman.Drawing.PDFCanvas.TextOut*
-  nameWithType.vb: PDFCanvas.TextOut(Integer, Integer, String, Integer, Integer, Boolean, LineInfo)
-  fullName.vb: Reportman.Drawing.PDFCanvas.TextOut(Integer, Integer, String, Integer, Integer, Boolean, Reportman.Drawing.LineInfo)
-  name.vb: TextOut(Integer, Integer, String, Integer, Integer, Boolean, LineInfo)
+  nameWithType.vb: PDFCanvas.TextOut(Integer, Integer, String, Integer, Integer, Boolean, LineInfo, Boolean)
+  fullName.vb: Reportman.Drawing.PDFCanvas.TextOut(Integer, Integer, String, Integer, Integer, Boolean, Reportman.Drawing.LineInfo, Boolean)
+  name.vb: TextOut(Integer, Integer, String, Integer, Integer, Boolean, LineInfo, Boolean)
 - uid: Reportman.Drawing.PDFCanvas.WideCharToHex(System.Char)
   commentId: M:Reportman.Drawing.PDFCanvas.WideCharToHex(System.Char)
   id: WideCharToHex(System.Char)
@@ -841,6 +949,8 @@ items:
   nameWithType: PDFCanvas.WideCharToHex(char)
   fullName: Reportman.Drawing.PDFCanvas.WideCharToHex(char)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -867,6 +977,8 @@ items:
   nameWithType: PDFCanvas.IntToHex(int)
   fullName: Reportman.Drawing.PDFCanvas.IntToHex(int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -893,6 +1005,8 @@ items:
   nameWithType: PDFCanvas.PDFCompatibleTextWithKerning(string, TTFontData, PDFFont)
   fullName: Reportman.Drawing.PDFCanvas.PDFCompatibleTextWithKerning(string, Reportman.Drawing.TTFontData, Reportman.Drawing.PDFFont)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -923,6 +1037,8 @@ items:
   nameWithType: PDFCanvas.PDFCompatibleTextShaping(string, TTFontData, PDFFont, bool, double, double, int, LineInfo)
   fullName: Reportman.Drawing.PDFCanvas.PDFCompatibleTextShaping(string, Reportman.Drawing.TTFontData, Reportman.Drawing.PDFFont, bool, double, double, int, Reportman.Drawing.LineInfo)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -963,6 +1079,8 @@ items:
   nameWithType: PDFCanvas.PDFCompatibleText(string, TTFontData, PDFFont)
   fullName: Reportman.Drawing.PDFCanvas.PDFCompatibleText(string, Reportman.Drawing.TTFontData, Reportman.Drawing.PDFFont)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -993,6 +1111,8 @@ items:
   nameWithType: PDFCanvas.Translate(int, int)
   fullName: Reportman.Drawing.PDFCanvas.Translate(int, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1019,6 +1139,8 @@ items:
   nameWithType: PDFCanvas.Rotate(double)
   fullName: Reportman.Drawing.PDFCanvas.Rotate(double)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1032,22 +1154,24 @@ items:
   nameWithType.vb: PDFCanvas.Rotate(Double)
   fullName.vb: Reportman.Drawing.PDFCanvas.Rotate(Double)
   name.vb: Rotate(Double)
-- uid: Reportman.Drawing.PDFCanvas.TextRect(System.Drawing.Rectangle,System.String,System.Int32,System.Boolean,System.Boolean,System.Int32,System.Boolean)
-  commentId: M:Reportman.Drawing.PDFCanvas.TextRect(System.Drawing.Rectangle,System.String,System.Int32,System.Boolean,System.Boolean,System.Int32,System.Boolean)
-  id: TextRect(System.Drawing.Rectangle,System.String,System.Int32,System.Boolean,System.Boolean,System.Int32,System.Boolean)
+- uid: Reportman.Drawing.PDFCanvas.TextRect(System.Drawing.Rectangle,System.String,System.Int32,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
+  commentId: M:Reportman.Drawing.PDFCanvas.TextRect(System.Drawing.Rectangle,System.String,System.Int32,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
+  id: TextRect(System.Drawing.Rectangle,System.String,System.Int32,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Boolean)
   parent: Reportman.Drawing.PDFCanvas
   langs:
   - csharp
   - vb
-  name: TextRect(Rectangle, string, int, bool, bool, int, bool)
-  nameWithType: PDFCanvas.TextRect(Rectangle, string, int, bool, bool, int, bool)
-  fullName: Reportman.Drawing.PDFCanvas.TextRect(System.Drawing.Rectangle, string, int, bool, bool, int, bool)
+  name: TextRect(Rectangle, string, int, bool, bool, int, bool, bool)
+  nameWithType: PDFCanvas.TextRect(Rectangle, string, int, bool, bool, int, bool, bool)
+  fullName: Reportman.Drawing.PDFCanvas.TextRect(System.Drawing.Rectangle, string, int, bool, bool, int, bool, bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
   syntax:
-    content: public void TextRect(Rectangle arect, string Text, int Alignment, bool Clipping, bool wordbreak, int Rotation, bool RightToLeft)
+    content: public void TextRect(Rectangle arect, string Text, int Alignment, bool Clipping, bool wordbreak, int Rotation, bool RightToLeft, bool isHtml = false)
     parameters:
     - id: arect
       type: System.Drawing.Rectangle
@@ -1063,11 +1187,13 @@ items:
       type: System.Int32
     - id: RightToLeft
       type: System.Boolean
-    content.vb: Public Sub TextRect(arect As Rectangle, Text As String, Alignment As Integer, Clipping As Boolean, wordbreak As Boolean, Rotation As Integer, RightToLeft As Boolean)
+    - id: isHtml
+      type: System.Boolean
+    content.vb: Public Sub TextRect(arect As Rectangle, Text As String, Alignment As Integer, Clipping As Boolean, wordbreak As Boolean, Rotation As Integer, RightToLeft As Boolean, isHtml As Boolean = False)
   overload: Reportman.Drawing.PDFCanvas.TextRect*
-  nameWithType.vb: PDFCanvas.TextRect(Rectangle, String, Integer, Boolean, Boolean, Integer, Boolean)
-  fullName.vb: Reportman.Drawing.PDFCanvas.TextRect(System.Drawing.Rectangle, String, Integer, Boolean, Boolean, Integer, Boolean)
-  name.vb: TextRect(Rectangle, String, Integer, Boolean, Boolean, Integer, Boolean)
+  nameWithType.vb: PDFCanvas.TextRect(Rectangle, String, Integer, Boolean, Boolean, Integer, Boolean, Boolean)
+  fullName.vb: Reportman.Drawing.PDFCanvas.TextRect(System.Drawing.Rectangle, String, Integer, Boolean, Boolean, Integer, Boolean, Boolean)
+  name.vb: TextRect(Rectangle, String, Integer, Boolean, Boolean, Integer, Boolean, Boolean)
 - uid: Reportman.Drawing.PDFCanvas.DrawImage(System.Drawing.Rectangle,System.IO.MemoryStream,System.Int32,System.Boolean,System.Boolean,System.Int64)
   commentId: M:Reportman.Drawing.PDFCanvas.DrawImage(System.Drawing.Rectangle,System.IO.MemoryStream,System.Int32,System.Boolean,System.Boolean,System.Int64)
   id: DrawImage(System.Drawing.Rectangle,System.IO.MemoryStream,System.Int32,System.Boolean,System.Boolean,System.Int64)
@@ -1079,6 +1205,8 @@ items:
   nameWithType: PDFCanvas.DrawImage(Rectangle, MemoryStream, int, bool, bool, long)
   fullName: Reportman.Drawing.PDFCanvas.DrawImage(System.Drawing.Rectangle, System.IO.MemoryStream, int, bool, bool, long)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1102,22 +1230,24 @@ items:
   nameWithType.vb: PDFCanvas.DrawImage(Rectangle, MemoryStream, Integer, Boolean, Boolean, Long)
   fullName.vb: Reportman.Drawing.PDFCanvas.DrawImage(System.Drawing.Rectangle, System.IO.MemoryStream, Integer, Boolean, Boolean, Long)
   name.vb: DrawImage(Rectangle, MemoryStream, Integer, Boolean, Boolean, Long)
-- uid: Reportman.Drawing.PDFCanvas.TextExtent(System.String,System.Drawing.Rectangle@,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  commentId: M:Reportman.Drawing.PDFCanvas.TextExtent(System.String,System.Drawing.Rectangle@,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  id: TextExtent(System.String,System.Drawing.Rectangle@,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+- uid: Reportman.Drawing.PDFCanvas.TextExtent(System.String,System.Drawing.Rectangle@,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  commentId: M:Reportman.Drawing.PDFCanvas.TextExtent(System.String,System.Drawing.Rectangle@,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+  id: TextExtent(System.String,System.Drawing.Rectangle@,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
   parent: Reportman.Drawing.PDFCanvas
   langs:
   - csharp
   - vb
-  name: TextExtent(string, ref Rectangle, bool, bool, bool, bool)
-  nameWithType: PDFCanvas.TextExtent(string, ref Rectangle, bool, bool, bool, bool)
-  fullName: Reportman.Drawing.PDFCanvas.TextExtent(string, ref System.Drawing.Rectangle, bool, bool, bool, bool)
+  name: TextExtent(string, ref Rectangle, bool, bool, bool, bool, bool)
+  nameWithType: PDFCanvas.TextExtent(string, ref Rectangle, bool, bool, bool, bool, bool)
+  fullName: Reportman.Drawing.PDFCanvas.TextExtent(string, ref System.Drawing.Rectangle, bool, bool, bool, bool, bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
   syntax:
-    content: public List<LineInfo> TextExtent(string Text, ref Rectangle rect, bool wordbreak, bool singleline, bool dolineinfo, bool RightToLeft)
+    content: public List<LineInfo> TextExtent(string Text, ref Rectangle rect, bool wordbreak, bool singleline, bool dolineinfo, bool RightToLeft, bool isHtml = false)
     parameters:
     - id: Text
       type: System.String
@@ -1131,13 +1261,15 @@ items:
       type: System.Boolean
     - id: RightToLeft
       type: System.Boolean
+    - id: isHtml
+      type: System.Boolean
     return:
       type: System.Collections.Generic.List{Reportman.Drawing.LineInfo}
-    content.vb: Public Function TextExtent(Text As String, rect As Rectangle, wordbreak As Boolean, singleline As Boolean, dolineinfo As Boolean, RightToLeft As Boolean) As List(Of LineInfo)
+    content.vb: Public Function TextExtent(Text As String, rect As Rectangle, wordbreak As Boolean, singleline As Boolean, dolineinfo As Boolean, RightToLeft As Boolean, isHtml As Boolean = False) As List(Of LineInfo)
   overload: Reportman.Drawing.PDFCanvas.TextExtent*
-  nameWithType.vb: PDFCanvas.TextExtent(String, Rectangle, Boolean, Boolean, Boolean, Boolean)
-  fullName.vb: Reportman.Drawing.PDFCanvas.TextExtent(String, System.Drawing.Rectangle, Boolean, Boolean, Boolean, Boolean)
-  name.vb: TextExtent(String, Rectangle, Boolean, Boolean, Boolean, Boolean)
+  nameWithType.vb: PDFCanvas.TextExtent(String, Rectangle, Boolean, Boolean, Boolean, Boolean, Boolean)
+  fullName.vb: Reportman.Drawing.PDFCanvas.TextExtent(String, System.Drawing.Rectangle, Boolean, Boolean, Boolean, Boolean, Boolean)
+  name.vb: TextExtent(String, Rectangle, Boolean, Boolean, Boolean, Boolean, Boolean)
 - uid: Reportman.Drawing.PDFCanvas.TextExtentSimple(System.String,System.Drawing.Rectangle@,System.Boolean,System.Boolean,System.Boolean)
   commentId: M:Reportman.Drawing.PDFCanvas.TextExtentSimple(System.String,System.Drawing.Rectangle@,System.Boolean,System.Boolean,System.Boolean)
   id: TextExtentSimple(System.String,System.Drawing.Rectangle@,System.Boolean,System.Boolean,System.Boolean)
@@ -1149,6 +1281,8 @@ items:
   nameWithType: PDFCanvas.TextExtentSimple(string, ref Rectangle, bool, bool, bool)
   fullName: Reportman.Drawing.PDFCanvas.TextExtentSimple(string, ref System.Drawing.Rectangle, bool, bool, bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1181,6 +1315,8 @@ items:
   nameWithType: PDFCanvas.InfoProvider
   fullName: Reportman.Drawing.PDFCanvas.InfoProvider
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1202,6 +1338,8 @@ items:
   nameWithType: PDFCanvas.BitmapInfoProvider
   fullName: Reportman.Drawing.PDFCanvas.BitmapInfoProvider
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1223,6 +1361,8 @@ items:
   nameWithType: PDFCanvas.LineInfo
   fullName: Reportman.Drawing.PDFCanvas.LineInfo
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1244,6 +1384,8 @@ items:
   nameWithType: PDFCanvas.Font
   fullName: Reportman.Drawing.PDFCanvas.Font
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1265,6 +1407,8 @@ items:
   nameWithType: PDFCanvas.FontData
   fullName: Reportman.Drawing.PDFCanvas.FontData
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1555,7 +1699,7 @@ references:
   commentId: T:Reportman.Drawing.FontInfoProvider
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.FontInfoProvider.html
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   name: FontInfoProvider
   nameWithType: FontInfoProvider
   fullName: Reportman.Drawing.FontInfoProvider
@@ -1563,7 +1707,7 @@ references:
   commentId: T:Reportman.Drawing.IBitmapInfoProvider
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.IBitmapInfoProvider.html
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IBitmapInfoProvider.cs
   name: IBitmapInfoProvider
   nameWithType: IBitmapInfoProvider
   fullName: Reportman.Drawing.IBitmapInfoProvider
@@ -1594,6 +1738,17 @@ references:
   nameWithType.vb: Integer
   fullName.vb: Integer
   name.vb: Integer
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
 - uid: Reportman.Drawing.PDFCanvas.#ctor*
   commentId: Overload:Reportman.Drawing.PDFCanvas.#ctor
   isExternal: true
@@ -1675,7 +1830,7 @@ references:
   commentId: T:Reportman.Drawing.TTFontData
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.TTFontData.html
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   name: TTFontData
   nameWithType: TTFontData
   fullName: Reportman.Drawing.TTFontData
@@ -1743,21 +1898,10 @@ references:
   name: PDFFontType
   nameWithType: PDFFontType
   fullName: Reportman.Drawing.PDFFontType
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.boolean
-  name: bool
-  nameWithType: bool
-  fullName: bool
-  nameWithType.vb: Boolean
-  fullName.vb: Boolean
-  name.vb: Boolean
 - uid: Reportman.Drawing.PDFCanvas.TextOut*
   commentId: Overload:Reportman.Drawing.PDFCanvas.TextOut
   isExternal: true
-  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_TextOut_System_Int32_System_Int32_System_String_System_Int32_System_Int32_System_Boolean_Reportman_Drawing_LineInfo_
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_TextOut_System_Int32_System_Int32_System_String_System_Int32_System_Int32_System_Boolean_Reportman_Drawing_LineInfo_System_Boolean_
   name: TextOut
   nameWithType: PDFCanvas.TextOut
   fullName: Reportman.Drawing.PDFCanvas.TextOut
@@ -1805,7 +1949,7 @@ references:
   commentId: T:Reportman.Drawing.PDFFont
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.PDFFont.html
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   name: PDFFont
   nameWithType: PDFFont
   fullName: Reportman.Drawing.PDFFont
@@ -1840,7 +1984,7 @@ references:
 - uid: Reportman.Drawing.PDFCanvas.TextRect*
   commentId: Overload:Reportman.Drawing.PDFCanvas.TextRect
   isExternal: true
-  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_TextRect_System_Drawing_Rectangle_System_String_System_Int32_System_Boolean_System_Boolean_System_Int32_System_Boolean_
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_TextRect_System_Drawing_Rectangle_System_String_System_Int32_System_Boolean_System_Boolean_System_Int32_System_Boolean_System_Boolean_
   name: TextRect
   nameWithType: PDFCanvas.TextRect
   fullName: Reportman.Drawing.PDFCanvas.TextRect
@@ -1935,7 +2079,7 @@ references:
 - uid: Reportman.Drawing.PDFCanvas.TextExtent*
   commentId: Overload:Reportman.Drawing.PDFCanvas.TextExtent
   isExternal: true
-  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_TextExtent_System_String_System_Drawing_Rectangle__System_Boolean_System_Boolean_System_Boolean_System_Boolean_
+  href: Reportman.Drawing.PDFCanvas.html#Reportman_Drawing_PDFCanvas_TextExtent_System_String_System_Drawing_Rectangle__System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
   name: TextExtent
   nameWithType: PDFCanvas.TextExtent
   fullName: Reportman.Drawing.PDFCanvas.TextExtent
@@ -1959,7 +2103,7 @@ references:
   - uid: Reportman.Drawing.LineInfo
     name: LineInfo
     isExternal: true
-    href: Reportman.Drawing.LineInfo.html
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   - name: '>'
   spec.vb:
   - uid: System.Collections.Generic.List`1
@@ -1972,7 +2116,7 @@ references:
   - uid: Reportman.Drawing.LineInfo
     name: LineInfo
     isExternal: true
-    href: Reportman.Drawing.LineInfo.html
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   - name: )
 - uid: System.Collections.Generic.List`1
   commentId: T:System.Collections.Generic.List`1

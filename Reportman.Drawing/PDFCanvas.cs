@@ -89,6 +89,10 @@ namespace Reportman.Drawing
             FCount++;
         }
     }
+    /// <summary>
+    /// Growable list of in-memory streams that spills to temporary files once the
+    /// total buffered size exceeds a threshold, keeping memory use bounded.
+    /// </summary>
     public class MemStreams : IDisposable
     {
         const long MAX_MEM_SIZE = 100000000;
@@ -177,6 +181,10 @@ namespace Reportman.Drawing
                 RemoveTempFile(FTempFiles.Keys[0]);
         }
     }
+    /// <summary>
+    /// Low-level PDF drawing surface that emits PDF content-stream operators for lines,
+    /// shapes, and (shaped or plain) text, handling fonts, colors, and unit conversion.
+    /// </summary>
     public class PDFCanvas
     {
         public PDFCanvas(FontInfoProvider fontInfoProvider,IBitmapInfoProvider bitmapInfoProvider)
@@ -2485,8 +2493,16 @@ namespace Reportman.Drawing
             return st.ToString();
         }
     }
+    /// <summary>
+    /// Builds a complete PDF document: manages object/cross-reference tables, pages,
+    /// embedded fonts, metadata, annotations, stream compression, and final assembly.
+    /// </summary>
     public class PDFFile : IDisposable
     {
+        /// <summary>
+        /// Describes a single PDF annotation (typically a link), recording its target
+        /// content stream, page, position, size, and annotation dictionary text.
+        /// </summary>
         public class PDFAnnotation
         {
             public long StreamNumber;
@@ -3895,6 +3911,10 @@ namespace Reportman.Drawing
             }
         }
     }
+    /// <summary>
+    /// Pairs a stream with a byte offset, used to remember where a value must later be
+    /// patched back into the PDF output.
+    /// </summary>
     public class StreamPosition
     {
         public Stream Stream;
@@ -3905,6 +3925,10 @@ namespace Reportman.Drawing
             Position = aposition;
         }
     }
+    /// <summary>
+    /// Tracks an asynchronous stream-compression operation, holding its task, cancellation
+    /// source, and the output stream position where the compressed result will be written.
+    /// </summary>
     public class CompressionTask
     {
         public CompressionTask(System.Threading.Tasks.Task<TaskCompressResult> nTask, CancellationTokenSource nCancelSource, Stream nPositionStream, long nStreamPosition)

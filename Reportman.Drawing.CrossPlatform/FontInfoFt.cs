@@ -34,6 +34,10 @@ using HarfBuzzSharp;
 
 namespace Reportman.Drawing
 {
+    /// <summary>
+    /// Holds the FreeType face handle and cached metrics (family, style, ascent/descent, bounding box,
+    /// kerning and other attributes) for a single font file, and lazily opens the FreeType face on demand.
+    /// </summary>
     unsafe public class  LogFontFt
     {
         public bool fixedpitch;
@@ -130,6 +134,11 @@ namespace Reportman.Drawing
         }
     }
  
+    /// <summary>
+    /// Cross-platform <see cref="FontInfoProvider"/> built on FreeType, HarfBuzz and ICU that enumerates
+    /// system fonts, supplies font metrics, glyph and kerning widths, subsetted font streams and performs
+    /// BiDi/script-aware text layout (including HTML) for the PDF and rendering pipeline.
+    /// </summary>
     public unsafe class FontInfoFt:FontInfoProvider,IDisposable
     {
         LogFontFt  currentfont;

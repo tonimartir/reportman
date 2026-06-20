@@ -4,6 +4,10 @@ using System.Windows.Forms;
 
 namespace Reportman.Reporting.Forms
 {
+    /// <summary>
+    /// Dialog for editing the metadata of a file embedded in a PDF/A document (description,
+    /// file name, MIME type, creation/modification dates and AF relationship).
+    /// </summary>
     public partial class EmbeddedFileForm : Form
     {
         public EmbeddedFileForm()

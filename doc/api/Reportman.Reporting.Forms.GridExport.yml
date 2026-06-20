@@ -14,9 +14,16 @@ items:
   nameWithType: GridExport
   fullName: Reportman.Reporting.Forms.GridExport
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/GridExport.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
+  summary: >-
+    Exports the contents of a Windows Forms DataGridView to a generated Report, producing
+
+    a .rep file and a PDF that mirror the grid's visible columns, headers and cell alignment.
+  example: []
   syntax:
     content: public class GridExport
     content.vb: Public Class GridExport
@@ -41,6 +48,8 @@ items:
   nameWithType: GridExport.Export(DataGridView, string)
   fullName: Reportman.Reporting.Forms.GridExport.Export(System.Windows.Forms.DataGridView, string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/GridExport.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -67,6 +76,8 @@ items:
   nameWithType: GridExport.GridExport()
   fullName: Reportman.Reporting.Forms.GridExport.GridExport()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/GridExport.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms

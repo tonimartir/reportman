@@ -16,9 +16,16 @@ items:
   nameWithType: EventPrinterNamesHandler
   fullName: Reportman.Drawing.Forms.EventPrinterNamesHandler
   type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintersConfiguration.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    Callback used by the printers configuration dialog to retrieve the alternative
+
+    display names for the configurable printer slots.
+  example: []
   syntax:
     content: public delegate void EventPrinterNamesHandler(object sender, EventPrinterNamesArgs args)
     parameters:
@@ -38,6 +45,8 @@ items:
   nameWithType: EventPrinterNamesHandler.EventPrinterNamesHandler(object, nint)
   fullName: Reportman.Drawing.Forms.EventPrinterNamesHandler.EventPrinterNamesHandler(object, nint)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintersConfiguration.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -64,6 +73,8 @@ items:
   nameWithType: EventPrinterNamesHandler.Invoke(object, EventPrinterNamesArgs)
   fullName: Reportman.Drawing.Forms.EventPrinterNamesHandler.Invoke(object, Reportman.Drawing.Forms.EventPrinterNamesArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintersConfiguration.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -90,6 +101,8 @@ items:
   nameWithType: EventPrinterNamesHandler.BeginInvoke(object, EventPrinterNamesArgs, AsyncCallback, object)
   fullName: Reportman.Drawing.Forms.EventPrinterNamesHandler.BeginInvoke(object, Reportman.Drawing.Forms.EventPrinterNamesArgs, System.AsyncCallback, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintersConfiguration.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -122,6 +135,8 @@ items:
   nameWithType: EventPrinterNamesHandler.EndInvoke(IAsyncResult)
   fullName: Reportman.Drawing.Forms.EventPrinterNamesHandler.EndInvoke(System.IAsyncResult)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintersConfiguration.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

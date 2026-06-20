@@ -16,9 +16,16 @@ items:
   nameWithType: CopyProgress
   fullName: Reportman.Drawing.CopyProgress
   type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Updater.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    Callback invoked during a file-copy/update operation to report progress for the current file
+
+    and allow the handler to request cancellation via the <code>docancel</code> reference parameter.
+  example: []
   syntax:
     content: public delegate void CopyProgress(string filename, int file, int filecount, int position, int size, ref bool docancel)
     parameters:
@@ -46,6 +53,8 @@ items:
   nameWithType: CopyProgress.CopyProgress(object, nint)
   fullName: Reportman.Drawing.CopyProgress.CopyProgress(object, nint)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Updater.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -72,6 +81,8 @@ items:
   nameWithType: CopyProgress.Invoke(string, int, int, int, int, ref bool)
   fullName: Reportman.Drawing.CopyProgress.Invoke(string, int, int, int, int, ref bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Updater.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -106,6 +117,8 @@ items:
   nameWithType: CopyProgress.BeginInvoke(string, int, int, int, int, ref bool, AsyncCallback, object)
   fullName: Reportman.Drawing.CopyProgress.BeginInvoke(string, int, int, int, int, ref bool, System.AsyncCallback, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Updater.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -146,6 +159,8 @@ items:
   nameWithType: CopyProgress.EndInvoke(ref bool, IAsyncResult)
   fullName: Reportman.Drawing.CopyProgress.EndInvoke(ref bool, System.IAsyncResult)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Updater.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

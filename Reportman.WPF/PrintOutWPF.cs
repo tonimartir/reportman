@@ -10,6 +10,10 @@ using System.Windows.Markup;
 
 namespace Reportman.WPF
 {
+    /// <summary>
+    /// Render driver that lays out a report MetaFile into a WPF FixedDocument, building one
+    /// fixed page per metafile page for on-screen preview and WPF-based printing.
+    /// </summary>
     public class PrintOutWPF:PrintOut
     {
         FixedDocument FDoc;

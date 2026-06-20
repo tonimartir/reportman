@@ -16,9 +16,16 @@ items:
   nameWithType: DataProgressEventHandler
   fullName: Reportman.Reporting.Forms.DataProgressEventHandler
   type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataProgress.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Reporting.Forms
+  summary: >-
+    Callback executed by the <xref href="Reportman.Reporting.Forms.DataProgress" data-throw-if-not-resolved="false"></xref> dialog to run the long-running data operation
+
+    whose progress the dialog displays.
+  example: []
   syntax:
     content: public delegate void DataProgressEventHandler(object sender, DataProgress nform)
     parameters:
@@ -38,6 +45,8 @@ items:
   nameWithType: DataProgressEventHandler.DataProgressEventHandler(object, nint)
   fullName: Reportman.Reporting.Forms.DataProgressEventHandler.DataProgressEventHandler(object, nint)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataProgress.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Reporting.Forms
@@ -64,6 +73,8 @@ items:
   nameWithType: DataProgressEventHandler.Invoke(object, DataProgress)
   fullName: Reportman.Reporting.Forms.DataProgressEventHandler.Invoke(object, Reportman.Reporting.Forms.DataProgress)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataProgress.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Reporting.Forms
@@ -90,6 +101,8 @@ items:
   nameWithType: DataProgressEventHandler.BeginInvoke(object, DataProgress, AsyncCallback, object)
   fullName: Reportman.Reporting.Forms.DataProgressEventHandler.BeginInvoke(object, Reportman.Reporting.Forms.DataProgress, System.AsyncCallback, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataProgress.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Reporting.Forms
@@ -122,6 +135,8 @@ items:
   nameWithType: DataProgressEventHandler.EndInvoke(IAsyncResult)
   fullName: Reportman.Reporting.Forms.DataProgressEventHandler.EndInvoke(System.IAsyncResult)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataProgress.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Reporting.Forms
@@ -133,6 +148,14 @@ items:
     content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
   overload: Reportman.Reporting.Forms.DataProgressEventHandler.EndInvoke*
 references:
+- uid: Reportman.Reporting.Forms.DataProgress
+  commentId: T:Reportman.Reporting.Forms.DataProgress
+  parent: Reportman.Reporting.Forms
+  isExternal: true
+  href: Reportman.Reporting.Forms.DataProgress.html
+  name: DataProgress
+  nameWithType: DataProgress
+  fullName: Reportman.Reporting.Forms.DataProgress
 - uid: Reportman.Reporting.Forms
   commentId: N:Reportman.Reporting.Forms
   isExternal: true
@@ -181,14 +204,6 @@ references:
   nameWithType.vb: Object
   fullName.vb: Object
   name.vb: Object
-- uid: Reportman.Reporting.Forms.DataProgress
-  commentId: T:Reportman.Reporting.Forms.DataProgress
-  parent: Reportman.Reporting.Forms
-  isExternal: true
-  href: Reportman.Reporting.Forms.DataProgress.html
-  name: DataProgress
-  nameWithType: DataProgress
-  fullName: Reportman.Reporting.Forms.DataProgress
 - uid: System
   commentId: N:System
   isExternal: true

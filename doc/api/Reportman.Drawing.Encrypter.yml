@@ -12,9 +12,13 @@ items:
   nameWithType: Encrypter
   fullName: Reportman.Drawing.Encrypter
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Encrypter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: Provides text encryption and decryption helpers used by the library.
+  example: []
   syntax:
     content: public static class Encrypter
     content.vb: Public Module Encrypter

@@ -23,6 +23,8 @@ items:
   nameWithType: SqlParser
   fullName: Reportman.Reporting.SqlParser
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/SqlParser.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -52,6 +54,8 @@ items:
   nameWithType: SqlParser.TokenString()
   fullName: Reportman.Reporting.SqlParser.TokenString()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/SqlParser.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -72,6 +76,8 @@ items:
   nameWithType: SqlParser.SqlParser()
   fullName: Reportman.Reporting.SqlParser.SqlParser()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/SqlParser.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -93,6 +99,8 @@ items:
   nameWithType: SqlParser.NextToken()
   fullName: Reportman.Reporting.SqlParser.NextToken()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/SqlParser.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -113,6 +121,8 @@ items:
   nameWithType: SqlParser.IsAssignment()
   fullName: Reportman.Reporting.SqlParser.IsAssignment()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/SqlParser.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -133,6 +143,8 @@ items:
   nameWithType: SqlParser.Token
   fullName: Reportman.Reporting.SqlParser.Token
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/SqlParser.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -154,6 +166,8 @@ items:
   nameWithType: SqlParser.SourceLine
   fullName: Reportman.Reporting.SqlParser.SourceLine
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/SqlParser.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -175,6 +189,8 @@ items:
   nameWithType: SqlParser.SourcePos
   fullName: Reportman.Reporting.SqlParser.SourcePos
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/SqlParser.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -196,6 +212,8 @@ items:
   nameWithType: SqlParser.Expression
   fullName: Reportman.Reporting.SqlParser.Expression
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/SqlParser.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -217,6 +235,8 @@ items:
   nameWithType: SqlParser.AsInteger
   fullName: Reportman.Reporting.SqlParser.AsInteger
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/SqlParser.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -238,6 +258,8 @@ items:
   nameWithType: SqlParser.AsDouble
   fullName: Reportman.Reporting.SqlParser.AsDouble
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/SqlParser.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -259,6 +281,8 @@ items:
   nameWithType: SqlParser.AsDecimal
   fullName: Reportman.Reporting.SqlParser.AsDecimal
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/SqlParser.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

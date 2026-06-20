@@ -20,9 +20,16 @@ items:
   nameWithType: PDFFile.PDFAnnotation
   fullName: Reportman.Drawing.PDFFile.PDFAnnotation
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    Describes a single PDF annotation (typically a link), recording its target
+
+    content stream, page, position, size, and annotation dictionary text.
+  example: []
   syntax:
     content: public class PDFFile.PDFAnnotation
     content.vb: Public Class PDFFile.PDFAnnotation
@@ -47,6 +54,8 @@ items:
   nameWithType: PDFFile.PDFAnnotation.StreamNumber
   fullName: Reportman.Drawing.PDFFile.PDFAnnotation.StreamNumber
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -66,6 +75,8 @@ items:
   nameWithType: PDFFile.PDFAnnotation.PosX
   fullName: Reportman.Drawing.PDFFile.PDFAnnotation.PosX
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -85,6 +96,8 @@ items:
   nameWithType: PDFFile.PDFAnnotation.PosY
   fullName: Reportman.Drawing.PDFFile.PDFAnnotation.PosY
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -104,6 +117,8 @@ items:
   nameWithType: PDFFile.PDFAnnotation.Width
   fullName: Reportman.Drawing.PDFFile.PDFAnnotation.Width
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -123,6 +138,8 @@ items:
   nameWithType: PDFFile.PDFAnnotation.Height
   fullName: Reportman.Drawing.PDFFile.PDFAnnotation.Height
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -142,6 +159,8 @@ items:
   nameWithType: PDFFile.PDFAnnotation.Annotation
   fullName: Reportman.Drawing.PDFFile.PDFAnnotation.Annotation
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -161,6 +180,8 @@ items:
   nameWithType: PDFFile.PDFAnnotation.Page
   fullName: Reportman.Drawing.PDFFile.PDFAnnotation.Page
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -180,6 +201,8 @@ items:
   nameWithType: PDFFile.PDFAnnotation.PDFAnnotation()
   fullName: Reportman.Drawing.PDFFile.PDFAnnotation.PDFAnnotation()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

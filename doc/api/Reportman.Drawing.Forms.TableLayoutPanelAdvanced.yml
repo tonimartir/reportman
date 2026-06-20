@@ -14,9 +14,13 @@ items:
   nameWithType: TableLayoutPanelAdvanced
   fullName: Reportman.Drawing.Forms.TableLayoutPanelAdvanced
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TableLayoutAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: A TableLayoutPanel that lets the user interactively resize rows and columns by dragging the splitter regions between cells with the mouse.
+  example: []
   syntax:
     content: 'public class TableLayoutPanelAdvanced : TableLayoutPanel, IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable, IExtenderProvider'
     content.vb: Public Class TableLayoutPanelAdvanced Inherits TableLayoutPanel Implements IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable, IExtenderProvider
@@ -480,6 +484,8 @@ items:
   nameWithType: TableLayoutPanelAdvanced.TableLayoutPanelAdvanced()
   fullName: Reportman.Drawing.Forms.TableLayoutPanelAdvanced.TableLayoutPanelAdvanced()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TableLayoutAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -501,6 +507,8 @@ items:
   nameWithType: TableLayoutPanelAdvanced.SplitterSize
   fullName: Reportman.Drawing.Forms.TableLayoutPanelAdvanced.SplitterSize
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TableLayoutAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

@@ -15,9 +15,16 @@ items:
   nameWithType: VisualStyle
   fullName: Reportman.Drawing.Forms.VisualStyle
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    The overall visual rendering style used to paint the tab control (Visual Studio IDE
+
+    look, a flat Plain look, or a Chrome-browser-like look).
+  example: []
   syntax:
     content: public enum VisualStyle
     content.vb: Public Enum VisualStyle
@@ -32,6 +39,8 @@ items:
   nameWithType: VisualStyle.IDE
   fullName: Reportman.Drawing.Forms.VisualStyle.IDE
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -50,6 +59,8 @@ items:
   nameWithType: VisualStyle.Plain
   fullName: Reportman.Drawing.Forms.VisualStyle.Plain
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -68,6 +79,8 @@ items:
   nameWithType: VisualStyle.Chrome
   fullName: Reportman.Drawing.Forms.VisualStyle.Chrome
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

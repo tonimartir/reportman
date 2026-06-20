@@ -19,9 +19,16 @@ items:
   nameWithType: SubReportEvent
   fullName: Reportman.Reporting.SubReportEvent
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Subreport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
+  summary: >-
+    Notifications raised during report processing to inform a subreport and its sections
+
+    of state transitions such as report start, data/group/page changes and subreport start/end.
+  example: []
   syntax:
     content: public enum SubReportEvent
     content.vb: Public Enum SubReportEvent
@@ -36,6 +43,8 @@ items:
   nameWithType: SubReportEvent.Start
   fullName: Reportman.Reporting.SubReportEvent.Start
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Subreport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -54,6 +63,8 @@ items:
   nameWithType: SubReportEvent.DataChange
   fullName: Reportman.Reporting.SubReportEvent.DataChange
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Subreport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -72,6 +83,8 @@ items:
   nameWithType: SubReportEvent.GroupChange
   fullName: Reportman.Reporting.SubReportEvent.GroupChange
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Subreport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -90,6 +103,8 @@ items:
   nameWithType: SubReportEvent.PageChange
   fullName: Reportman.Reporting.SubReportEvent.PageChange
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Subreport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -108,6 +123,8 @@ items:
   nameWithType: SubReportEvent.InvalidateValue
   fullName: Reportman.Reporting.SubReportEvent.InvalidateValue
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Subreport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -126,6 +143,8 @@ items:
   nameWithType: SubReportEvent.SubReportStart
   fullName: Reportman.Reporting.SubReportEvent.SubReportStart
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Subreport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -144,6 +163,8 @@ items:
   nameWithType: SubReportEvent.SubReportEnd
   fullName: Reportman.Reporting.SubReportEvent.SubReportEnd
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Subreport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

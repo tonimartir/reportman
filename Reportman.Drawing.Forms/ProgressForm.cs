@@ -5,6 +5,10 @@ using System.Windows.Forms;
 
 namespace Reportman.Drawing.Forms
 {
+    /// <summary>
+    /// Modal dialog that runs a background task while displaying a progress bar and a
+    /// cancel button, closing automatically when the task completes.
+    /// </summary>
     public partial class ProgressForm : Form, ProgressForm.ITaskProgressShow
     {
         private Task TaskToExecute;
@@ -66,6 +70,10 @@ namespace Reportman.Drawing.Forms
                 }
             }), null);
         }
+        /// <summary>
+        /// Callback invoked when the progress dialog is created, handing the caller the
+        /// progress-reporting object so it can push progress updates.
+        /// </summary>
         public delegate void SetProgressCallback(ITaskProgressShow taskProgressObject);
 
 
@@ -92,6 +100,10 @@ namespace Reportman.Drawing.Forms
                 progressBar1.Style = ProgressBarStyle.Continuous;
             }
         }
+        /// <summary>
+        /// Provides a way for background work to report progress as a current/total pair,
+        /// implemented by the progress dialog.
+        /// </summary>
         public interface ITaskProgressShow
         {
             void ShowProgress(int current, int total);

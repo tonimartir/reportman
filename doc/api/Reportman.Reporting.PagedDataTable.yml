@@ -20,9 +20,16 @@ items:
   nameWithType: PagedDataTable
   fullName: Reportman.Reporting.PagedDataTable
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/PagedDataTable.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
+  summary: >-
+    A <xref href="System.Data.DataTable" data-throw-if-not-resolved="false"></xref> that loads rows incrementally from an <xref href="System.Data.IDataReader" data-throw-if-not-resolved="false"></xref>
+
+    in pages of <xref href="Reportman.Reporting.PagedDataTable.PageSize" data-throw-if-not-resolved="false"></xref> records, tracking end-of-data and raising a change event.
+  example: []
   syntax:
     content: 'public class PagedDataTable : DataTable, IComponent, IDisposable, IServiceProvider, IListSource, ISupportInitializeNotification, ISupportInitialize, ISerializable, IXmlSerializable'
     content.vb: Public Class PagedDataTable Inherits DataTable Implements IComponent, IDisposable, IServiceProvider, IListSource, ISupportInitializeNotification, ISupportInitialize, ISerializable, IXmlSerializable
@@ -175,6 +182,8 @@ items:
   nameWithType: PagedDataTable.UpdateColumns
   fullName: Reportman.Reporting.PagedDataTable.UpdateColumns
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/PagedDataTable.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -194,6 +203,8 @@ items:
   nameWithType: PagedDataTable.PageSize
   fullName: Reportman.Reporting.PagedDataTable.PageSize
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/PagedDataTable.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -213,6 +224,8 @@ items:
   nameWithType: PagedDataTable.PagedDataTable()
   fullName: Reportman.Reporting.PagedDataTable.PagedDataTable()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/PagedDataTable.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -234,6 +247,8 @@ items:
   nameWithType: PagedDataTable.Next()
   fullName: Reportman.Reporting.PagedDataTable.Next()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/PagedDataTable.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -254,6 +269,8 @@ items:
   nameWithType: PagedDataTable.Active
   fullName: Reportman.Reporting.PagedDataTable.Active
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/PagedDataTable.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -275,6 +292,8 @@ items:
   nameWithType: PagedDataTable.CurrentReader
   fullName: Reportman.Reporting.PagedDataTable.CurrentReader
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/PagedDataTable.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -296,6 +315,8 @@ items:
   nameWithType: PagedDataTable.Eof
   fullName: Reportman.Reporting.PagedDataTable.Eof
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/PagedDataTable.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -317,6 +338,8 @@ items:
   nameWithType: PagedDataTable.OnDataChange
   fullName: Reportman.Reporting.PagedDataTable.OnDataChange
   type: Event
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/PagedDataTable.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -326,6 +349,29 @@ items:
       type: Reportman.Reporting.PagedDataChange
     content.vb: Public Event OnDataChange As PagedDataChange
 references:
+- uid: System.Data.DataTable
+  commentId: T:System.Data.DataTable
+  parent: System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable
+  name: DataTable
+  nameWithType: DataTable
+  fullName: System.Data.DataTable
+- uid: System.Data.IDataReader
+  commentId: T:System.Data.IDataReader
+  parent: System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.idatareader
+  name: IDataReader
+  nameWithType: IDataReader
+  fullName: System.Data.IDataReader
+- uid: Reportman.Reporting.PagedDataTable.PageSize
+  commentId: F:Reportman.Reporting.PagedDataTable.PageSize
+  isExternal: true
+  href: Reportman.Reporting.PagedDataTable.html#Reportman_Reporting_PagedDataTable_PageSize
+  name: PageSize
+  nameWithType: PagedDataTable.PageSize
+  fullName: Reportman.Reporting.PagedDataTable.PageSize
 - uid: Reportman.Reporting
   commentId: N:Reportman.Reporting
   isExternal: true
@@ -372,14 +418,6 @@ references:
   name: MarshalByValueComponent
   nameWithType: MarshalByValueComponent
   fullName: System.ComponentModel.MarshalByValueComponent
-- uid: System.Data.DataTable
-  commentId: T:System.Data.DataTable
-  parent: System.Data
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.data.datatable
-  name: DataTable
-  nameWithType: DataTable
-  fullName: System.Data.DataTable
 - uid: System.ComponentModel.IComponent
   commentId: T:System.ComponentModel.IComponent
   parent: System.ComponentModel
@@ -3701,6 +3739,33 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
   - name: )
+- uid: System.Data
+  commentId: N:System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Data
+  nameWithType: System.Data
+  fullName: System.Data
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
 - uid: System
   commentId: N:System
   isExternal: true
@@ -3735,33 +3800,6 @@ references:
     name: ComponentModel
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.componentmodel
-- uid: System.Data
-  commentId: N:System.Data
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System.Data
-  nameWithType: System.Data
-  fullName: System.Data
-  spec.csharp:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Data
-    name: Data
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.data
-  spec.vb:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Data
-    name: Data
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.data
 - uid: System.Runtime.Serialization
   commentId: N:System.Runtime.Serialization
   isExternal: true
@@ -3882,14 +3920,6 @@ references:
   name: CurrentReader
   nameWithType: PagedDataTable.CurrentReader
   fullName: Reportman.Reporting.PagedDataTable.CurrentReader
-- uid: System.Data.IDataReader
-  commentId: T:System.Data.IDataReader
-  parent: System.Data
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.data.idatareader
-  name: IDataReader
-  nameWithType: IDataReader
-  fullName: System.Data.IDataReader
 - uid: Reportman.Reporting.PagedDataTable.Eof*
   commentId: Overload:Reportman.Reporting.PagedDataTable.Eof
   isExternal: true

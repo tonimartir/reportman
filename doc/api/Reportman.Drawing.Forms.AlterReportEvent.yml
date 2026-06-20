@@ -16,6 +16,8 @@ items:
   nameWithType: AlterReportEvent
   fullName: Reportman.Drawing.Forms.AlterReportEvent
   type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -41,6 +43,8 @@ items:
   nameWithType: AlterReportEvent.AlterReportEvent(object, nint)
   fullName: Reportman.Drawing.Forms.AlterReportEvent.AlterReportEvent(object, nint)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -67,6 +71,8 @@ items:
   nameWithType: AlterReportEvent.Invoke(IWin32Window)
   fullName: Reportman.Drawing.Forms.AlterReportEvent.Invoke(System.Windows.Forms.IWin32Window)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -90,6 +96,8 @@ items:
   nameWithType: AlterReportEvent.BeginInvoke(IWin32Window, AsyncCallback, object)
   fullName: Reportman.Drawing.Forms.AlterReportEvent.BeginInvoke(System.Windows.Forms.IWin32Window, System.AsyncCallback, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -120,6 +128,8 @@ items:
   nameWithType: AlterReportEvent.EndInvoke(IAsyncResult)
   fullName: Reportman.Drawing.Forms.AlterReportEvent.EndInvoke(System.IAsyncResult)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

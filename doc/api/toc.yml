@@ -79,6 +79,9 @@ items:
   - uid: Reportman.Drawing.FileHashes
     name: FileHashes
     type: Class
+  - uid: Reportman.Drawing.FontInfoFt
+    name: FontInfoFt
+    type: Class
   - uid: Reportman.Drawing.FontInfoProvider
     name: FontInfoProvider
     type: Class
@@ -93,6 +96,15 @@ items:
     type: Class
   - uid: Reportman.Drawing.HashGenerator
     name: HashGenerator
+    type: Class
+  - uid: Reportman.Drawing.HtmlFormatRun
+    name: HtmlFormatRun
+    type: Class
+  - uid: Reportman.Drawing.HtmlLayoutUtils
+    name: HtmlLayoutUtils
+    type: Class
+  - uid: Reportman.Drawing.HtmlTextParser
+    name: HtmlTextParser
     type: Class
   - uid: Reportman.Drawing.IBitmapInfoProvider
     name: IBitmapInfoProvider
@@ -124,11 +136,20 @@ items:
   - uid: Reportman.Drawing.Integers
     name: Integers
     type: Class
+  - uid: Reportman.Drawing.LineGlyphs
+    name: LineGlyphs
+    type: Class
   - uid: Reportman.Drawing.LineInfo
     name: LineInfo
     type: Struct
+  - uid: Reportman.Drawing.LineSubText
+    name: LineSubText
+    type: Class
   - uid: Reportman.Drawing.ListExtensions
     name: ListExtensions
+    type: Class
+  - uid: Reportman.Drawing.LogFontFt
+    name: LogFontFt
     type: Class
   - uid: Reportman.Drawing.Longs
     name: Longs
@@ -406,6 +427,13 @@ items:
   - uid: Reportman.Drawing.WMFOptimization
     name: WMFOptimization
     type: Enum
+- uid: Reportman.Drawing.CrossPlatform
+  name: Reportman.Drawing.CrossPlatform
+  type: Namespace
+  items:
+  - uid: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType
+    name: PrintOutPDFFreeType
+    type: Class
 - uid: Reportman.Drawing.Forms
   name: Reportman.Drawing.Forms
   type: Namespace
@@ -871,6 +899,12 @@ items:
   - uid: Reportman.Reporting.DatasetType
     name: DatasetType
     type: Enum
+  - uid: Reportman.Reporting.DbParameterInfo
+    name: DbParameterInfo
+    type: Class
+  - uid: Reportman.Reporting.DirectAgentExecutor
+    name: DirectAgentExecutor
+    type: Class
   - uid: Reportman.Reporting.DotNetDriverType
     name: DotNetDriverType
     type: Enum
@@ -903,6 +937,18 @@ items:
     type: Class
   - uid: Reportman.Reporting.ExternalReport
     name: ExternalReport
+    type: Class
+  - uid: Reportman.Reporting.HttpAgentCommand
+    name: HttpAgentCommand
+    type: Class
+  - uid: Reportman.Reporting.HttpAgentExecutor
+    name: HttpAgentExecutor
+    type: Class
+  - uid: Reportman.Reporting.HttpAgentParameter
+    name: HttpAgentParameter
+    type: Class
+  - uid: Reportman.Reporting.HttpAgentParameterCollection
+    name: HttpAgentParameterCollection
     type: Class
   - uid: Reportman.Reporting.IdenConstant
     name: IdenConstant
@@ -1015,8 +1061,20 @@ items:
   - uid: Reportman.Reporting.ReportWriter
     name: ReportWriter
     type: Class
+  - uid: Reportman.Reporting.ReportmanAgentClient
+    name: ReportmanAgentClient
+    type: Class
+  - uid: Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler
+    name: ReportmanAgentClient.ProgressEventHandler
+    type: Delegate
+  - uid: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler
+    name: ReportmanAgentClient.ResultEventHandler
+    type: Delegate
   - uid: Reportman.Reporting.Section
     name: Section
+    type: Class
+  - uid: Reportman.Reporting.SectionFillOrderHelper
+    name: SectionFillOrderHelper
     type: Class
   - uid: Reportman.Reporting.SectionType
     name: SectionType
@@ -1060,6 +1118,9 @@ items:
   - uid: Reportman.Reporting.Variant
     name: Variant
     type: Struct
+  - uid: Reportman.Reporting.VariantCoercion
+    name: VariantCoercion
+    type: Class
   - uid: Reportman.Reporting.VariantJsonConverter
     name: VariantJsonConverter
     type: Class
