@@ -82,8 +82,16 @@ namespace Reportman.Drawing
     /// PDF Conformance behaviour, modify default PDF Conformance
     /// </summary>
 	public enum PDFConformance { SetPDFDefault = 0, SettPDF_1_4 = 1, SetPDF_A_3 = 2 };
+    /// <summary>
+    /// Relationship of an embedded (associated) file to the PDF document, as defined by the
+    /// PDF/A-3 AFRelationship key (for example Data, Source, Alternative or Supplement).
+    /// </summary>
     public enum PDFAFRelationShip { Unspecified = 0, Alternative = 1, Data = 2, Source = 3, Supplement = 4 }
 
+    /// <summary>
+    /// A file embedded in the metafile (and later in the generated PDF), holding its content stream
+    /// together with its name, MIME type, description, dates and PDF/A association relationship.
+    /// </summary>
     public class EmbeddedFile : ICloneable, IDisposable
     {
         public string FileName;
@@ -446,6 +454,10 @@ namespace Reportman.Drawing
         /// <summary>Display format used in the display of the total page number</summary>
         public string DisplayFormat;
     }
+    /// <summary>
+    /// List of <see cref="TotalPage"/> references whose total-page placeholders are resolved
+    /// and updated once the report has finished and the final page count is known.
+    /// </summary>
     public class TotalPages : List<TotalPage>
     {
 
@@ -478,7 +490,7 @@ namespace Reportman.Drawing
     }
     /// <summary>
     /// Enumeration indicating the text alignment, that is how the text is drawn inside the defined box
-    /// <see cref="Variant">PrintItemText</see>
+    /// <see cref="PrintItemText"/>
     /// </summary>
     public enum TextAlignType
     {
@@ -494,7 +506,7 @@ namespace Reportman.Drawing
     };
     /// <summary>
     /// Enumeration indicating vertical text alignment, that is how the full text, after horizontal alignment is done, is drawn inside the defined box
-    /// <see cref="Variant">PrintItemText</see>
+    /// <see cref="PrintItemText"/>
     /// </summary>
     public enum TextAlignVerticalType
     {
@@ -511,6 +523,10 @@ namespace Reportman.Drawing
     /// </summary>
     public class MetaFile : IDisposable, ICloneable
     {
+        /// <summary>
+        /// On-disk format version of a metafile, controlling which features (PDF/A metadata,
+        /// embedded files, recalculated printer fonts) are written and how the file is parsed.
+        /// </summary>
         public enum MetaFileVersion { MetaVersion2_2, MetaVersion2_4, MetaVersion3_0, MetaVersion4_0, MetaVersion4_1 };
 
         private MemoryStream FSharedStream;

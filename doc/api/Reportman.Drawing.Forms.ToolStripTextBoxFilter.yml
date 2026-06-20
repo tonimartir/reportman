@@ -21,9 +21,16 @@ items:
   nameWithType: ToolStripTextBoxFilter
   fullName: Reportman.Drawing.Forms.ToolStripTextBoxFilter
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ToolStripTextBoxFilter.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    A ToolStrip-hosted label-and-textbox filter control that raises a debounced
+
+    <xref href="Reportman.Drawing.Forms.ToolStripTextBoxFilter.DelayedTextChanged" data-throw-if-not-resolved="false"></xref> event after the user stops typing for a configurable delay.
+  example: []
   syntax:
     content: 'public class ToolStripTextBoxFilter : ToolStripControlHost, IBindableComponent, IDropTarget, IComponent, IDisposable'
     content.vb: Public Class ToolStripTextBoxFilter Inherits ToolStripControlHost Implements IBindableComponent, IDropTarget, IComponent, IDisposable
@@ -251,6 +258,8 @@ items:
   nameWithType: ToolStripTextBoxFilter.ToolStripTextBoxFilter()
   fullName: Reportman.Drawing.Forms.ToolStripTextBoxFilter.ToolStripTextBoxFilter()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ToolStripTextBoxFilter.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -272,6 +281,8 @@ items:
   nameWithType: ToolStripTextBoxFilter.FocusFilter()
   fullName: Reportman.Drawing.Forms.ToolStripTextBoxFilter.FocusFilter()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ToolStripTextBoxFilter.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -290,6 +301,8 @@ items:
   nameWithType: ToolStripTextBoxFilter.GetTextBox()
   fullName: Reportman.Drawing.Forms.ToolStripTextBoxFilter.GetTextBox()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ToolStripTextBoxFilter.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -310,6 +323,8 @@ items:
   nameWithType: ToolStripTextBoxFilter.GetLabel()
   fullName: Reportman.Drawing.Forms.ToolStripTextBoxFilter.GetLabel()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ToolStripTextBoxFilter.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -330,6 +345,8 @@ items:
   nameWithType: ToolStripTextBoxFilter.LabelText
   fullName: Reportman.Drawing.Forms.ToolStripTextBoxFilter.LabelText
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ToolStripTextBoxFilter.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -351,6 +368,8 @@ items:
   nameWithType: ToolStripTextBoxFilter.TextBoxText
   fullName: Reportman.Drawing.Forms.ToolStripTextBoxFilter.TextBoxText
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ToolStripTextBoxFilter.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -372,6 +391,8 @@ items:
   nameWithType: ToolStripTextBoxFilter.TextChangeDelay
   fullName: Reportman.Drawing.Forms.ToolStripTextBoxFilter.TextChangeDelay
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ToolStripTextBoxFilter.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -393,6 +414,8 @@ items:
   nameWithType: ToolStripTextBoxFilter.TextBoxWidth
   fullName: Reportman.Drawing.Forms.ToolStripTextBoxFilter.TextBoxWidth
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ToolStripTextBoxFilter.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -414,6 +437,8 @@ items:
   nameWithType: ToolStripTextBoxFilter.DelayedTextChanged
   fullName: Reportman.Drawing.Forms.ToolStripTextBoxFilter.DelayedTextChanged
   type: Event
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ToolStripTextBoxFilter.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -423,6 +448,13 @@ items:
       type: System.EventHandler
     content.vb: Public Event DelayedTextChanged As EventHandler
 references:
+- uid: Reportman.Drawing.Forms.ToolStripTextBoxFilter.DelayedTextChanged
+  commentId: E:Reportman.Drawing.Forms.ToolStripTextBoxFilter.DelayedTextChanged
+  isExternal: true
+  href: Reportman.Drawing.Forms.ToolStripTextBoxFilter.html#Reportman_Drawing_Forms_ToolStripTextBoxFilter_DelayedTextChanged
+  name: DelayedTextChanged
+  nameWithType: ToolStripTextBoxFilter.DelayedTextChanged
+  fullName: Reportman.Drawing.Forms.ToolStripTextBoxFilter.DelayedTextChanged
 - uid: Reportman.Drawing.Forms
   commentId: N:Reportman.Drawing.Forms
   isExternal: true

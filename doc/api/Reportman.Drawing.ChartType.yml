@@ -32,9 +32,13 @@ items:
   nameWithType: ChartType
   fullName: Reportman.Drawing.ChartType
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: Enumerates the available chart rendering styles, such as line, bar, pie, area, gantt or radar.
+  example: []
   syntax:
     content: public enum ChartType
     content.vb: Public Enum ChartType
@@ -49,6 +53,8 @@ items:
   nameWithType: ChartType.Line
   fullName: Reportman.Drawing.ChartType.Line
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -67,6 +73,8 @@ items:
   nameWithType: ChartType.Bar
   fullName: Reportman.Drawing.ChartType.Bar
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -85,6 +93,8 @@ items:
   nameWithType: ChartType.Point
   fullName: Reportman.Drawing.ChartType.Point
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -103,6 +113,8 @@ items:
   nameWithType: ChartType.Horzbar
   fullName: Reportman.Drawing.ChartType.Horzbar
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -121,6 +133,8 @@ items:
   nameWithType: ChartType.Area
   fullName: Reportman.Drawing.ChartType.Area
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -139,6 +153,8 @@ items:
   nameWithType: ChartType.Pie
   fullName: Reportman.Drawing.ChartType.Pie
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -157,6 +173,8 @@ items:
   nameWithType: ChartType.Arrow
   fullName: Reportman.Drawing.ChartType.Arrow
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -175,6 +193,8 @@ items:
   nameWithType: ChartType.Bubble
   fullName: Reportman.Drawing.ChartType.Bubble
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -193,6 +213,8 @@ items:
   nameWithType: ChartType.Gantt
   fullName: Reportman.Drawing.ChartType.Gantt
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -211,6 +233,8 @@ items:
   nameWithType: ChartType.Splines
   fullName: Reportman.Drawing.ChartType.Splines
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -229,6 +253,8 @@ items:
   nameWithType: ChartType.CandleStick
   fullName: Reportman.Drawing.ChartType.CandleStick
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -247,6 +273,8 @@ items:
   nameWithType: ChartType.Pyramid
   fullName: Reportman.Drawing.ChartType.Pyramid
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -265,6 +293,8 @@ items:
   nameWithType: ChartType.Polar
   fullName: Reportman.Drawing.ChartType.Polar
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -283,6 +313,8 @@ items:
   nameWithType: ChartType.PointFigure
   fullName: Reportman.Drawing.ChartType.PointFigure
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -301,6 +333,8 @@ items:
   nameWithType: ChartType.Funnel
   fullName: Reportman.Drawing.ChartType.Funnel
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -319,6 +353,8 @@ items:
   nameWithType: ChartType.Kagi
   fullName: Reportman.Drawing.ChartType.Kagi
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -337,6 +373,8 @@ items:
   nameWithType: ChartType.Doughnut
   fullName: Reportman.Drawing.ChartType.Doughnut
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -355,6 +393,8 @@ items:
   nameWithType: ChartType.Radar
   fullName: Reportman.Drawing.ChartType.Radar
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -373,6 +413,8 @@ items:
   nameWithType: ChartType.Renko
   fullName: Reportman.Drawing.ChartType.Renko
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -391,6 +433,8 @@ items:
   nameWithType: ChartType.ErrorBar
   fullName: Reportman.Drawing.ChartType.ErrorBar
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

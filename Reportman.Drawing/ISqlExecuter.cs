@@ -2,13 +2,30 @@
 
 namespace Reportman.Drawing
 {
+    /// <summary>
+    /// Abstraction for executing an ADO.NET <see cref="IDbCommand"/> and creating new commands,
+    /// returning query results as a <see cref="DataTable"/>.
+    /// </summary>
     public interface IDbCommandExecuter
     {
         DataTable Open(IDbCommand ncommand);
         IDbCommand CreateCommand();
     }
+    /// <summary>
+    /// Callback reporting the progress of a long-running SQL operation as the number of
+    /// records processed so far out of the total.
+    /// </summary>
     public delegate void ISqlExecuterProgressEvent(int current, int total);
+    /// <summary>
+    /// Callback raised while a result set is being filled incrementally, giving access to the
+    /// partially populated table through <see cref="ISqlExecuterPartialFillArgs"/>.
+    /// </summary>
     public delegate void ISqlExecuterPartialFillEvent(object sender, ISqlExecuterPartialFillArgs args);
+    /// <summary>
+    /// Abstraction over a database connection used by the reporting engine to run SQL,
+    /// open result sets, manage transactions, batch inserts, and obtain generator values,
+    /// independent of the underlying data driver.
+    /// </summary>
     public interface ISqlExecuter
     {
         int ExecuteInmediate(string sql);
@@ -34,6 +51,10 @@ namespace Reportman.Drawing
         void Connect();
         void Disconnect();
     }
+    /// <summary>
+    /// Arguments for a partial-fill event, carrying the total expected record count and the
+    /// <see cref="DataTable"/> being populated.
+    /// </summary>
     public class ISqlExecuterPartialFillArgs
     {
         public int TotalCount;

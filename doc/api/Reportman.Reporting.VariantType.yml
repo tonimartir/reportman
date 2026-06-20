@@ -23,10 +23,12 @@ items:
   nameWithType: VariantType
   fullName: Reportman.Reporting.VariantType
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
-  summary: Variant internal type, used to store current type value for a <xref href="Reportman.Reporting.Variant?text=Variant" data-throw-if-not-resolved="false"></xref>
+  summary: Variant internal type, used to store current type value for a <xref href="Reportman.Reporting.Variant" data-throw-if-not-resolved="false"></xref>
   example: []
   syntax:
     content: public enum VariantType
@@ -42,6 +44,8 @@ items:
   nameWithType: VariantType.Null
   fullName: Reportman.Reporting.VariantType.Null
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -62,6 +66,8 @@ items:
   nameWithType: VariantType.Byte
   fullName: Reportman.Reporting.VariantType.Byte
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -82,6 +88,8 @@ items:
   nameWithType: VariantType.Boolean
   fullName: Reportman.Reporting.VariantType.Boolean
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -102,6 +110,8 @@ items:
   nameWithType: VariantType.Char
   fullName: Reportman.Reporting.VariantType.Char
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -122,6 +132,8 @@ items:
   nameWithType: VariantType.Integer
   fullName: Reportman.Reporting.VariantType.Integer
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -142,6 +154,8 @@ items:
   nameWithType: VariantType.String
   fullName: Reportman.Reporting.VariantType.String
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -162,6 +176,8 @@ items:
   nameWithType: VariantType.Double
   fullName: Reportman.Reporting.VariantType.Double
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -182,6 +198,8 @@ items:
   nameWithType: VariantType.Decimal
   fullName: Reportman.Reporting.VariantType.Decimal
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -202,6 +220,8 @@ items:
   nameWithType: VariantType.DateTime
   fullName: Reportman.Reporting.VariantType.DateTime
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -222,6 +242,8 @@ items:
   nameWithType: VariantType.Binary
   fullName: Reportman.Reporting.VariantType.Binary
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -242,6 +264,8 @@ items:
   nameWithType: VariantType.Long
   fullName: Reportman.Reporting.VariantType.Long
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

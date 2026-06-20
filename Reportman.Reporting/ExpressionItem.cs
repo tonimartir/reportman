@@ -7,6 +7,11 @@ using System.Text;
 
 namespace Reportman.Reporting
 {
+    /// <summary>
+    /// A report item that evaluates an expression and prints its formatted result, supporting
+    /// aggregates (sum, min, max, average, standard deviation), page-count variables, optional
+    /// export values, HTML content and splitting across multiple pages.
+    /// </summary>
     public class ExpressionItem : PrintItemText
     {
         private Doubles FValues;

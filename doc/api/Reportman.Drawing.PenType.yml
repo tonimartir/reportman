@@ -18,6 +18,8 @@ items:
   nameWithType: PenType
   fullName: Reportman.Drawing.PenType
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -37,6 +39,8 @@ items:
   nameWithType: PenType.Solid
   fullName: Reportman.Drawing.PenType.Solid
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -57,6 +61,8 @@ items:
   nameWithType: PenType.Dash
   fullName: Reportman.Drawing.PenType.Dash
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -77,6 +83,8 @@ items:
   nameWithType: PenType.Dot
   fullName: Reportman.Drawing.PenType.Dot
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -97,6 +105,8 @@ items:
   nameWithType: PenType.DashDot
   fullName: Reportman.Drawing.PenType.DashDot
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -117,6 +127,8 @@ items:
   nameWithType: PenType.DashDotDot
   fullName: Reportman.Drawing.PenType.DashDotDot
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -137,6 +149,8 @@ items:
   nameWithType: PenType.Clear
   fullName: Reportman.Drawing.PenType.Clear
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

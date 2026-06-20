@@ -15,9 +15,16 @@ items:
   nameWithType: StreamPosition
   fullName: Reportman.Drawing.StreamPosition
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    Pairs a stream with a byte offset, used to remember where a value must later be
+
+    patched back into the PDF output.
+  example: []
   syntax:
     content: public class StreamPosition
     content.vb: Public Class StreamPosition
@@ -42,6 +49,8 @@ items:
   nameWithType: StreamPosition.Stream
   fullName: Reportman.Drawing.StreamPosition.Stream
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -61,6 +70,8 @@ items:
   nameWithType: StreamPosition.Position
   fullName: Reportman.Drawing.StreamPosition.Position
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -80,6 +91,8 @@ items:
   nameWithType: StreamPosition.StreamPosition(Stream, long)
   fullName: Reportman.Drawing.StreamPosition.StreamPosition(System.IO.Stream, long)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

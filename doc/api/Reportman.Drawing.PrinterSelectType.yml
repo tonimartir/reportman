@@ -80,6 +80,8 @@ items:
   nameWithType: PrinterSelectType
   fullName: Reportman.Drawing.PrinterSelectType
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -108,6 +110,8 @@ items:
   nameWithType: PrinterSelectType.DefaultPrinter
   fullName: Reportman.Drawing.PrinterSelectType.DefaultPrinter
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -128,6 +132,8 @@ items:
   nameWithType: PrinterSelectType.ReportPrinter
   fullName: Reportman.Drawing.PrinterSelectType.ReportPrinter
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -148,6 +154,8 @@ items:
   nameWithType: PrinterSelectType.TicketPrinter
   fullName: Reportman.Drawing.PrinterSelectType.TicketPrinter
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -168,6 +176,8 @@ items:
   nameWithType: PrinterSelectType.Graphicprinter
   fullName: Reportman.Drawing.PrinterSelectType.Graphicprinter
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -188,6 +198,8 @@ items:
   nameWithType: PrinterSelectType.Characterprinter
   fullName: Reportman.Drawing.PrinterSelectType.Characterprinter
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -208,6 +220,8 @@ items:
   nameWithType: PrinterSelectType.ReportPrinter2
   fullName: Reportman.Drawing.PrinterSelectType.ReportPrinter2
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -228,6 +242,8 @@ items:
   nameWithType: PrinterSelectType.TicketPrinter2
   fullName: Reportman.Drawing.PrinterSelectType.TicketPrinter2
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -248,6 +264,8 @@ items:
   nameWithType: PrinterSelectType.UserPrinter1
   fullName: Reportman.Drawing.PrinterSelectType.UserPrinter1
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -268,6 +286,8 @@ items:
   nameWithType: PrinterSelectType.UserPrinter2
   fullName: Reportman.Drawing.PrinterSelectType.UserPrinter2
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -288,6 +308,8 @@ items:
   nameWithType: PrinterSelectType.UserPrinter3
   fullName: Reportman.Drawing.PrinterSelectType.UserPrinter3
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -308,6 +330,8 @@ items:
   nameWithType: PrinterSelectType.UserPrinter4
   fullName: Reportman.Drawing.PrinterSelectType.UserPrinter4
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -328,6 +352,8 @@ items:
   nameWithType: PrinterSelectType.UserPrinter5
   fullName: Reportman.Drawing.PrinterSelectType.UserPrinter5
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -348,6 +374,8 @@ items:
   nameWithType: PrinterSelectType.UserPrinter6
   fullName: Reportman.Drawing.PrinterSelectType.UserPrinter6
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -368,6 +396,8 @@ items:
   nameWithType: PrinterSelectType.UserPrinter7
   fullName: Reportman.Drawing.PrinterSelectType.UserPrinter7
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -388,6 +418,8 @@ items:
   nameWithType: PrinterSelectType.UserPrinter8
   fullName: Reportman.Drawing.PrinterSelectType.UserPrinter8
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -408,6 +440,8 @@ items:
   nameWithType: PrinterSelectType.UserPrinter9
   fullName: Reportman.Drawing.PrinterSelectType.UserPrinter9
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -428,6 +462,8 @@ items:
   nameWithType: PrinterSelectType.PlainPrinter
   fullName: Reportman.Drawing.PrinterSelectType.PlainPrinter
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -448,6 +484,8 @@ items:
   nameWithType: PrinterSelectType.PlainFullPrinter
   fullName: Reportman.Drawing.PrinterSelectType.PlainFullPrinter
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -468,6 +506,8 @@ items:
   nameWithType: PrinterSelectType.Printer1
   fullName: Reportman.Drawing.PrinterSelectType.Printer1
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -488,6 +528,8 @@ items:
   nameWithType: PrinterSelectType.Printer2
   fullName: Reportman.Drawing.PrinterSelectType.Printer2
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -506,6 +548,8 @@ items:
   nameWithType: PrinterSelectType.Printer3
   fullName: Reportman.Drawing.PrinterSelectType.Printer3
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -524,6 +568,8 @@ items:
   nameWithType: PrinterSelectType.Printer4
   fullName: Reportman.Drawing.PrinterSelectType.Printer4
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -542,6 +588,8 @@ items:
   nameWithType: PrinterSelectType.Printer5
   fullName: Reportman.Drawing.PrinterSelectType.Printer5
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -560,6 +608,8 @@ items:
   nameWithType: PrinterSelectType.Printer6
   fullName: Reportman.Drawing.PrinterSelectType.Printer6
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -578,6 +628,8 @@ items:
   nameWithType: PrinterSelectType.Printer7
   fullName: Reportman.Drawing.PrinterSelectType.Printer7
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -596,6 +648,8 @@ items:
   nameWithType: PrinterSelectType.Printer8
   fullName: Reportman.Drawing.PrinterSelectType.Printer8
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -614,6 +668,8 @@ items:
   nameWithType: PrinterSelectType.Printer9
   fullName: Reportman.Drawing.PrinterSelectType.Printer9
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -632,6 +688,8 @@ items:
   nameWithType: PrinterSelectType.Printer10
   fullName: Reportman.Drawing.PrinterSelectType.Printer10
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -650,6 +708,8 @@ items:
   nameWithType: PrinterSelectType.Printer11
   fullName: Reportman.Drawing.PrinterSelectType.Printer11
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -668,6 +728,8 @@ items:
   nameWithType: PrinterSelectType.Printer12
   fullName: Reportman.Drawing.PrinterSelectType.Printer12
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -686,6 +748,8 @@ items:
   nameWithType: PrinterSelectType.Printer13
   fullName: Reportman.Drawing.PrinterSelectType.Printer13
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -704,6 +768,8 @@ items:
   nameWithType: PrinterSelectType.Printer14
   fullName: Reportman.Drawing.PrinterSelectType.Printer14
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -722,6 +788,8 @@ items:
   nameWithType: PrinterSelectType.Printer15
   fullName: Reportman.Drawing.PrinterSelectType.Printer15
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -740,6 +808,8 @@ items:
   nameWithType: PrinterSelectType.Printer16
   fullName: Reportman.Drawing.PrinterSelectType.Printer16
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -758,6 +828,8 @@ items:
   nameWithType: PrinterSelectType.Printer17
   fullName: Reportman.Drawing.PrinterSelectType.Printer17
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -776,6 +848,8 @@ items:
   nameWithType: PrinterSelectType.Printer18
   fullName: Reportman.Drawing.PrinterSelectType.Printer18
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -794,6 +868,8 @@ items:
   nameWithType: PrinterSelectType.Printer19
   fullName: Reportman.Drawing.PrinterSelectType.Printer19
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -812,6 +888,8 @@ items:
   nameWithType: PrinterSelectType.Printer20
   fullName: Reportman.Drawing.PrinterSelectType.Printer20
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -830,6 +908,8 @@ items:
   nameWithType: PrinterSelectType.Printer21
   fullName: Reportman.Drawing.PrinterSelectType.Printer21
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -848,6 +928,8 @@ items:
   nameWithType: PrinterSelectType.Printer22
   fullName: Reportman.Drawing.PrinterSelectType.Printer22
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -866,6 +948,8 @@ items:
   nameWithType: PrinterSelectType.Printer23
   fullName: Reportman.Drawing.PrinterSelectType.Printer23
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -884,6 +968,8 @@ items:
   nameWithType: PrinterSelectType.Printer24
   fullName: Reportman.Drawing.PrinterSelectType.Printer24
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -902,6 +988,8 @@ items:
   nameWithType: PrinterSelectType.Printer25
   fullName: Reportman.Drawing.PrinterSelectType.Printer25
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -920,6 +1008,8 @@ items:
   nameWithType: PrinterSelectType.Printer26
   fullName: Reportman.Drawing.PrinterSelectType.Printer26
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -938,6 +1028,8 @@ items:
   nameWithType: PrinterSelectType.Printer27
   fullName: Reportman.Drawing.PrinterSelectType.Printer27
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -956,6 +1048,8 @@ items:
   nameWithType: PrinterSelectType.Printer28
   fullName: Reportman.Drawing.PrinterSelectType.Printer28
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -974,6 +1068,8 @@ items:
   nameWithType: PrinterSelectType.Printer29
   fullName: Reportman.Drawing.PrinterSelectType.Printer29
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -992,6 +1088,8 @@ items:
   nameWithType: PrinterSelectType.Printer30
   fullName: Reportman.Drawing.PrinterSelectType.Printer30
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1010,6 +1108,8 @@ items:
   nameWithType: PrinterSelectType.Printer31
   fullName: Reportman.Drawing.PrinterSelectType.Printer31
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1028,6 +1128,8 @@ items:
   nameWithType: PrinterSelectType.Printer32
   fullName: Reportman.Drawing.PrinterSelectType.Printer32
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1046,6 +1148,8 @@ items:
   nameWithType: PrinterSelectType.Printer33
   fullName: Reportman.Drawing.PrinterSelectType.Printer33
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1064,6 +1168,8 @@ items:
   nameWithType: PrinterSelectType.Printer34
   fullName: Reportman.Drawing.PrinterSelectType.Printer34
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1082,6 +1188,8 @@ items:
   nameWithType: PrinterSelectType.Printer35
   fullName: Reportman.Drawing.PrinterSelectType.Printer35
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1100,6 +1208,8 @@ items:
   nameWithType: PrinterSelectType.Printer36
   fullName: Reportman.Drawing.PrinterSelectType.Printer36
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1118,6 +1228,8 @@ items:
   nameWithType: PrinterSelectType.Printer37
   fullName: Reportman.Drawing.PrinterSelectType.Printer37
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1136,6 +1248,8 @@ items:
   nameWithType: PrinterSelectType.Printer38
   fullName: Reportman.Drawing.PrinterSelectType.Printer38
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1154,6 +1268,8 @@ items:
   nameWithType: PrinterSelectType.Printer39
   fullName: Reportman.Drawing.PrinterSelectType.Printer39
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1172,6 +1288,8 @@ items:
   nameWithType: PrinterSelectType.Printer40
   fullName: Reportman.Drawing.PrinterSelectType.Printer40
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1190,6 +1308,8 @@ items:
   nameWithType: PrinterSelectType.Printer41
   fullName: Reportman.Drawing.PrinterSelectType.Printer41
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1208,6 +1328,8 @@ items:
   nameWithType: PrinterSelectType.Printer42
   fullName: Reportman.Drawing.PrinterSelectType.Printer42
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1226,6 +1348,8 @@ items:
   nameWithType: PrinterSelectType.Printer43
   fullName: Reportman.Drawing.PrinterSelectType.Printer43
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1244,6 +1368,8 @@ items:
   nameWithType: PrinterSelectType.Printer44
   fullName: Reportman.Drawing.PrinterSelectType.Printer44
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1262,6 +1388,8 @@ items:
   nameWithType: PrinterSelectType.Printer45
   fullName: Reportman.Drawing.PrinterSelectType.Printer45
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1280,6 +1408,8 @@ items:
   nameWithType: PrinterSelectType.Printer46
   fullName: Reportman.Drawing.PrinterSelectType.Printer46
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1298,6 +1428,8 @@ items:
   nameWithType: PrinterSelectType.Printer47
   fullName: Reportman.Drawing.PrinterSelectType.Printer47
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1316,6 +1448,8 @@ items:
   nameWithType: PrinterSelectType.Printer48
   fullName: Reportman.Drawing.PrinterSelectType.Printer48
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1334,6 +1468,8 @@ items:
   nameWithType: PrinterSelectType.Printer49
   fullName: Reportman.Drawing.PrinterSelectType.Printer49
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1352,6 +1488,8 @@ items:
   nameWithType: PrinterSelectType.Printer50
   fullName: Reportman.Drawing.PrinterSelectType.Printer50
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

@@ -3,6 +3,10 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
+/// <summary>
+/// A Windows Forms <see cref="Button"/> that paints an additional image scaled to fit the button,
+/// preserving aspect ratio, with a configurable border and content alignment.
+/// </summary>
 [System.ComponentModel.DesignerCategory("")]
 public class ButtonAdvanced : Button
 {

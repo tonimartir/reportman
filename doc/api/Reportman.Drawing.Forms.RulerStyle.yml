@@ -14,9 +14,13 @@ items:
   nameWithType: RulerStyle
   fullName: Reportman.Drawing.Forms.RulerStyle
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/Ruler.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: 'Orientation of a <xref href="Reportman.Drawing.Forms.Ruler" data-throw-if-not-resolved="false"></xref> control: drawn horizontally or vertically.'
+  example: []
   syntax:
     content: public enum RulerStyle
     content.vb: Public Enum RulerStyle
@@ -31,6 +35,8 @@ items:
   nameWithType: RulerStyle.Horizontal
   fullName: Reportman.Drawing.Forms.RulerStyle.Horizontal
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/Ruler.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -49,6 +55,8 @@ items:
   nameWithType: RulerStyle.Vertical
   fullName: Reportman.Drawing.Forms.RulerStyle.Vertical
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/Ruler.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -57,6 +65,13 @@ items:
     return:
       type: Reportman.Drawing.Forms.RulerStyle
 references:
+- uid: Reportman.Drawing.Forms.Ruler
+  commentId: T:Reportman.Drawing.Forms.Ruler
+  isExternal: true
+  href: Reportman.Drawing.Forms.Ruler.html
+  name: Ruler
+  nameWithType: Ruler
+  fullName: Reportman.Drawing.Forms.Ruler
 - uid: Reportman.Drawing.Forms
   commentId: N:Reportman.Drawing.Forms
   isExternal: true

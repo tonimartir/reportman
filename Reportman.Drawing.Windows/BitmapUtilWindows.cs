@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Reportman.Drawing.Windows
 {
+    /// <summary>
+    /// Windows-specific bitmap helpers, including an extension method that resolves the default file
+    /// extension for a given <see cref="System.Drawing.Imaging.ImageFormat"/>.
+    /// </summary>
     public static class BitmapUtilWindows
     {
         public static string GetFileExtension(this System.Drawing.Imaging.ImageFormat imageFormat)

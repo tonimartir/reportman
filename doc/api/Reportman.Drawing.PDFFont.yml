@@ -27,9 +27,16 @@ items:
   nameWithType: PDFFont
   fullName: Reportman.Drawing.PDFFont
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    Describes a font as used by the rendering engine: the base PDF font type, platform-specific
+
+    font names, size, color and style flags (bold, italic, underline, strike-out, background).
+  example: []
   syntax:
     content: public class PDFFont
     content.vb: Public Class PDFFont
@@ -54,6 +61,8 @@ items:
   nameWithType: PDFFont.Name
   fullName: Reportman.Drawing.PDFFont.Name
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -73,6 +82,8 @@ items:
   nameWithType: PDFFont.WFontName
   fullName: Reportman.Drawing.PDFFont.WFontName
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -92,6 +103,8 @@ items:
   nameWithType: PDFFont.LFontName
   fullName: Reportman.Drawing.PDFFont.LFontName
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -111,6 +124,8 @@ items:
   nameWithType: PDFFont.Size
   fullName: Reportman.Drawing.PDFFont.Size
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -130,6 +145,8 @@ items:
   nameWithType: PDFFont.Color
   fullName: Reportman.Drawing.PDFFont.Color
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -149,6 +166,8 @@ items:
   nameWithType: PDFFont.Style
   fullName: Reportman.Drawing.PDFFont.Style
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -168,6 +187,8 @@ items:
   nameWithType: PDFFont.Italic
   fullName: Reportman.Drawing.PDFFont.Italic
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -187,6 +208,8 @@ items:
   nameWithType: PDFFont.Underline
   fullName: Reportman.Drawing.PDFFont.Underline
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -206,6 +229,8 @@ items:
   nameWithType: PDFFont.Bold
   fullName: Reportman.Drawing.PDFFont.Bold
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -225,6 +250,8 @@ items:
   nameWithType: PDFFont.StrikeOut
   fullName: Reportman.Drawing.PDFFont.StrikeOut
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -244,6 +271,8 @@ items:
   nameWithType: PDFFont.Transparent
   fullName: Reportman.Drawing.PDFFont.Transparent
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -263,6 +292,8 @@ items:
   nameWithType: PDFFont.BackColor
   fullName: Reportman.Drawing.PDFFont.BackColor
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -282,6 +313,8 @@ items:
   nameWithType: PDFFont.PDFFont()
   fullName: Reportman.Drawing.PDFFont.PDFFont()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -303,6 +336,8 @@ items:
   nameWithType: PDFFont.GetFontFamily()
   fullName: Reportman.Drawing.PDFFont.GetFontFamily()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -323,6 +358,8 @@ items:
   nameWithType: PDFFont.GetFontFamilyKey()
   fullName: Reportman.Drawing.PDFFont.GetFontFamilyKey()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

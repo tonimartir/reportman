@@ -18,9 +18,16 @@ items:
   nameWithType: TaskCompressResult
   fullName: Reportman.Drawing.TaskCompressResult
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    Result of an asynchronous compression task, reporting the source and destination streams,
+
+    whether the source was disposed, whether the operation was cancelled and the number of compressed bytes produced.
+  example: []
   syntax:
     content: public class TaskCompressResult
     content.vb: Public Class TaskCompressResult
@@ -45,6 +52,8 @@ items:
   nameWithType: TaskCompressResult.Source
   fullName: Reportman.Drawing.TaskCompressResult.Source
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -64,6 +73,8 @@ items:
   nameWithType: TaskCompressResult.Destination
   fullName: Reportman.Drawing.TaskCompressResult.Destination
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -83,6 +94,8 @@ items:
   nameWithType: TaskCompressResult.DisposedSource
   fullName: Reportman.Drawing.TaskCompressResult.DisposedSource
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -102,6 +115,8 @@ items:
   nameWithType: TaskCompressResult.Cancelled
   fullName: Reportman.Drawing.TaskCompressResult.Cancelled
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -121,6 +136,8 @@ items:
   nameWithType: TaskCompressResult.CompressedBytes
   fullName: Reportman.Drawing.TaskCompressResult.CompressedBytes
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -140,6 +157,8 @@ items:
   nameWithType: TaskCompressResult.TaskCompressResult()
   fullName: Reportman.Drawing.TaskCompressResult.TaskCompressResult()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

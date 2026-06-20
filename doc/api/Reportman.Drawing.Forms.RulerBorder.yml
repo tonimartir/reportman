@@ -14,9 +14,13 @@ items:
   nameWithType: RulerBorder
   fullName: Reportman.Drawing.Forms.RulerBorder
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/Ruler.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: 'Border drawing mode of a <xref href="Reportman.Drawing.Forms.Ruler" data-throw-if-not-resolved="false"></xref> control: a single-line border or no border.'
+  example: []
   syntax:
     content: public enum RulerBorder
     content.vb: Public Enum RulerBorder
@@ -31,6 +35,8 @@ items:
   nameWithType: RulerBorder.Single
   fullName: Reportman.Drawing.Forms.RulerBorder.Single
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/Ruler.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -49,6 +55,8 @@ items:
   nameWithType: RulerBorder.None
   fullName: Reportman.Drawing.Forms.RulerBorder.None
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/Ruler.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -57,6 +65,13 @@ items:
     return:
       type: Reportman.Drawing.Forms.RulerBorder
 references:
+- uid: Reportman.Drawing.Forms.Ruler
+  commentId: T:Reportman.Drawing.Forms.Ruler
+  isExternal: true
+  href: Reportman.Drawing.Forms.Ruler.html
+  name: Ruler
+  nameWithType: Ruler
+  fullName: Reportman.Drawing.Forms.Ruler
 - uid: Reportman.Drawing.Forms
   commentId: N:Reportman.Drawing.Forms
   isExternal: true

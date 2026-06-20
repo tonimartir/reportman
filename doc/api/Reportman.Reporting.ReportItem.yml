@@ -19,15 +19,17 @@ items:
   nameWithType: ReportItem
   fullName: Reportman.Reporting.ReportItem
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
   summary: >-
     Base classs for Report items providing common base functionality, and a relation to the owner (Report).
 
-    <xref href="Reportman.Reporting.Variant?text=Report" data-throw-if-not-resolved="false"></xref>
+    <xref href="Reportman.Reporting.ReportItem.Report" data-throw-if-not-resolved="false"></xref>
 
-    <xref href="Reportman.Reporting.Variant?text=Section" data-throw-if-not-resolved="false"></xref>
+    <xref href="Reportman.Reporting.Section" data-throw-if-not-resolved="false"></xref>
   example: []
   syntax:
     content: 'public class ReportItem : IDisposable'
@@ -62,6 +64,8 @@ items:
   nameWithType: ReportItem.ReportItem()
   fullName: Reportman.Reporting.ReportItem.ReportItem()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -85,6 +89,8 @@ items:
   nameWithType: ReportItem.SetReport(BaseReport)
   fullName: Reportman.Reporting.ReportItem.SetReport(Reportman.Reporting.BaseReport)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -106,6 +112,8 @@ items:
   nameWithType: ReportItem.GetClassName()
   fullName: Reportman.Reporting.ReportItem.GetClassName()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -129,6 +137,8 @@ items:
   nameWithType: ReportItem.Dispose()
   fullName: Reportman.Reporting.ReportItem.Dispose()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -151,6 +161,8 @@ items:
   nameWithType: ReportItem.Name
   fullName: Reportman.Reporting.ReportItem.Name
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -186,6 +198,8 @@ items:
   nameWithType: ReportItem.Report
   fullName: Reportman.Reporting.ReportItem.Report
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -235,6 +249,8 @@ items:
   nameWithType: ReportItem.ClassName
   fullName: Reportman.Reporting.ReportItem.ClassName
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -260,14 +276,22 @@ items:
     - type: System.Boolean
       value: false
 references:
-- uid: Reportman.Reporting.Variant
-  commentId: T:Reportman.Reporting.Variant
+- uid: Reportman.Reporting.ReportItem.Report
+  commentId: P:Reportman.Reporting.ReportItem.Report
+  parent: Reportman.Reporting.ReportItem
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html#Reportman_Reporting_ReportItem_Report
+  name: Report
+  nameWithType: ReportItem.Report
+  fullName: Reportman.Reporting.ReportItem.Report
+- uid: Reportman.Reporting.Section
+  commentId: T:Reportman.Reporting.Section
   parent: Reportman.Reporting
   isExternal: true
-  href: Reportman.Reporting.Variant.html
-  name: Variant
-  nameWithType: Variant
-  fullName: Reportman.Reporting.Variant
+  href: Reportman.Reporting.Section.html
+  name: Section
+  nameWithType: Section
+  fullName: Reportman.Reporting.Section
 - uid: Reportman.Reporting
   commentId: N:Reportman.Reporting
   isExternal: true
@@ -533,6 +557,14 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
   - name: )
+- uid: Reportman.Reporting.ReportItem
+  commentId: T:Reportman.Reporting.ReportItem
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.ReportItem.html
+  name: ReportItem
+  nameWithType: ReportItem
+  fullName: Reportman.Reporting.ReportItem
 - uid: System
   commentId: N:System
   isExternal: true

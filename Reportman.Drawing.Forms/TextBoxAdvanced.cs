@@ -7,7 +7,16 @@ using System.Windows.Forms;
 
 namespace Reportman.Drawing.Forms
 {
+    /// <summary>
+    /// The kind of data a <see cref="TextBoxAdvanced"/> accepts, used to restrict input to
+    /// free text, integers, numeric (decimal) or floating-point values.
+    /// </summary>
     public enum TextBoxDataType { Text, Integer, Numeric, Double };
+    /// <summary>
+    /// An enhanced Windows Forms text box that adds input validation by data type, an
+    /// auto-complete drop-down list (optionally including Google suggestions), a watermark,
+    /// barcode capture, uppercase-only mode and Enter-as-Tab navigation.
+    /// </summary>
     public class TextBoxAdvanced : TextBox, IMessageFilter
     {
         public List<AutoCompleteInfo> AutoCompleteListTop;

@@ -16,9 +16,16 @@ items:
   nameWithType: BarType
   fullName: Reportman.Drawing.BarType
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    Specifies how multiple bar series are combined: not combined, placed side by side,
+
+    stacked, or stacked to fill 100 percent.
+  example: []
   syntax:
     content: public enum BarType
     content.vb: Public Enum BarType
@@ -33,6 +40,8 @@ items:
   nameWithType: BarType.None
   fullName: Reportman.Drawing.BarType.None
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -51,6 +60,8 @@ items:
   nameWithType: BarType.Side
   fullName: Reportman.Drawing.BarType.Side
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -69,6 +80,8 @@ items:
   nameWithType: BarType.Stacked
   fullName: Reportman.Drawing.BarType.Stacked
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -87,6 +100,8 @@ items:
   nameWithType: BarType.Stacked100
   fullName: Reportman.Drawing.BarType.Stacked100
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

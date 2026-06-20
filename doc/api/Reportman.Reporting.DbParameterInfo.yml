@@ -1,0 +1,649 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.DbParameterInfo
+  commentId: T:Reportman.Reporting.DbParameterInfo
+  id: DbParameterInfo
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.DbParameterInfo.#ctor
+  - Reportman.Reporting.DbParameterInfo.#ctor(System.String,System.Object,System.Nullable{System.Int32})
+  - Reportman.Reporting.DbParameterInfo.DbType
+  - Reportman.Reporting.DbParameterInfo.FromDataParameter(System.Data.IDataParameter)
+  - Reportman.Reporting.DbParameterInfo.FromParam(Reportman.Reporting.Param)
+  - Reportman.Reporting.DbParameterInfo.Name
+  - Reportman.Reporting.DbParameterInfo.Value
+  langs:
+  - csharp
+  - vb
+  name: DbParameterInfo
+  nameWithType: DbParameterInfo
+  fullName: Reportman.Reporting.DbParameterInfo
+  type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DbParameterInfo.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    Represents a structured parameter for remote SQL execution via HTTP Agent.
+
+    Ensures type safety and prevents SQL injection.
+  example: []
+  syntax:
+    content: public class DbParameterInfo
+    content.vb: Public Class DbParameterInfo
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Reporting.DbParameterInfo.#ctor
+  commentId: M:Reportman.Reporting.DbParameterInfo.#ctor
+  id: '#ctor'
+  parent: Reportman.Reporting.DbParameterInfo
+  langs:
+  - csharp
+  - vb
+  name: DbParameterInfo()
+  nameWithType: DbParameterInfo.DbParameterInfo()
+  fullName: Reportman.Reporting.DbParameterInfo.DbParameterInfo()
+  type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DbParameterInfo.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public DbParameterInfo()
+    content.vb: Public Sub New()
+  overload: Reportman.Reporting.DbParameterInfo.#ctor*
+  nameWithType.vb: DbParameterInfo.New()
+  fullName.vb: Reportman.Reporting.DbParameterInfo.New()
+  name.vb: New()
+- uid: Reportman.Reporting.DbParameterInfo.#ctor(System.String,System.Object,System.Nullable{System.Int32})
+  commentId: M:Reportman.Reporting.DbParameterInfo.#ctor(System.String,System.Object,System.Nullable{System.Int32})
+  id: '#ctor(System.String,System.Object,System.Nullable{System.Int32})'
+  parent: Reportman.Reporting.DbParameterInfo
+  langs:
+  - csharp
+  - vb
+  name: DbParameterInfo(string, object, int?)
+  nameWithType: DbParameterInfo.DbParameterInfo(string, object, int?)
+  fullName: Reportman.Reporting.DbParameterInfo.DbParameterInfo(string, object, int?)
+  type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DbParameterInfo.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public DbParameterInfo(string name, object value, int? dbType = null)
+    parameters:
+    - id: name
+      type: System.String
+    - id: value
+      type: System.Object
+    - id: dbType
+      type: System.Nullable{System.Int32}
+    content.vb: Public Sub New(name As String, value As Object, dbType As Integer? = Nothing)
+  overload: Reportman.Reporting.DbParameterInfo.#ctor*
+  nameWithType.vb: DbParameterInfo.New(String, Object, Integer?)
+  fullName.vb: Reportman.Reporting.DbParameterInfo.New(String, Object, Integer?)
+  name.vb: New(String, Object, Integer?)
+- uid: Reportman.Reporting.DbParameterInfo.FromParam(Reportman.Reporting.Param)
+  commentId: M:Reportman.Reporting.DbParameterInfo.FromParam(Reportman.Reporting.Param)
+  id: FromParam(Reportman.Reporting.Param)
+  parent: Reportman.Reporting.DbParameterInfo
+  langs:
+  - csharp
+  - vb
+  name: FromParam(Param)
+  nameWithType: DbParameterInfo.FromParam(Param)
+  fullName: Reportman.Reporting.DbParameterInfo.FromParam(Reportman.Reporting.Param)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DbParameterInfo.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Creates a DbParameterInfo from a report Param.
+  example: []
+  syntax:
+    content: public static DbParameterInfo FromParam(Param param)
+    parameters:
+    - id: param
+      type: Reportman.Reporting.Param
+    return:
+      type: Reportman.Reporting.DbParameterInfo
+    content.vb: Public Shared Function FromParam(param As Param) As DbParameterInfo
+  overload: Reportman.Reporting.DbParameterInfo.FromParam*
+- uid: Reportman.Reporting.DbParameterInfo.FromDataParameter(System.Data.IDataParameter)
+  commentId: M:Reportman.Reporting.DbParameterInfo.FromDataParameter(System.Data.IDataParameter)
+  id: FromDataParameter(System.Data.IDataParameter)
+  parent: Reportman.Reporting.DbParameterInfo
+  langs:
+  - csharp
+  - vb
+  name: FromDataParameter(IDataParameter)
+  nameWithType: DbParameterInfo.FromDataParameter(IDataParameter)
+  fullName: Reportman.Reporting.DbParameterInfo.FromDataParameter(System.Data.IDataParameter)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DbParameterInfo.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Creates a DbParameterInfo from an IDataParameter.
+  example: []
+  syntax:
+    content: public static DbParameterInfo FromDataParameter(IDataParameter param)
+    parameters:
+    - id: param
+      type: System.Data.IDataParameter
+    return:
+      type: Reportman.Reporting.DbParameterInfo
+    content.vb: Public Shared Function FromDataParameter(param As IDataParameter) As DbParameterInfo
+  overload: Reportman.Reporting.DbParameterInfo.FromDataParameter*
+- uid: Reportman.Reporting.DbParameterInfo.Name
+  commentId: P:Reportman.Reporting.DbParameterInfo.Name
+  id: Name
+  parent: Reportman.Reporting.DbParameterInfo
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: DbParameterInfo.Name
+  fullName: Reportman.Reporting.DbParameterInfo.Name
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DbParameterInfo.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Parameter name (e.g., "id" or "@id").
+  example: []
+  syntax:
+    content: public string Name { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Name As String
+  overload: Reportman.Reporting.DbParameterInfo.Name*
+- uid: Reportman.Reporting.DbParameterInfo.Value
+  commentId: P:Reportman.Reporting.DbParameterInfo.Value
+  id: Value
+  parent: Reportman.Reporting.DbParameterInfo
+  langs:
+  - csharp
+  - vb
+  name: Value
+  nameWithType: DbParameterInfo.Value
+  fullName: Reportman.Reporting.DbParameterInfo.Value
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DbParameterInfo.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Parameter value. Passed as an object.
+  example: []
+  syntax:
+    content: public object Value { get; set; }
+    parameters: []
+    return:
+      type: System.Object
+    content.vb: Public Property Value As Object
+  overload: Reportman.Reporting.DbParameterInfo.Value*
+- uid: Reportman.Reporting.DbParameterInfo.DbType
+  commentId: P:Reportman.Reporting.DbParameterInfo.DbType
+  id: DbType
+  parent: Reportman.Reporting.DbParameterInfo
+  langs:
+  - csharp
+  - vb
+  name: DbType
+  nameWithType: DbParameterInfo.DbType
+  fullName: Reportman.Reporting.DbParameterInfo.DbType
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DbParameterInfo.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Optional hint for the provider (maps to System.Data.DbType integer).
+  example: []
+  syntax:
+    content: public int? DbType { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: Public Property DbType As Integer?
+  overload: Reportman.Reporting.DbParameterInfo.DbType*
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Reporting.DbParameterInfo.#ctor*
+  commentId: Overload:Reportman.Reporting.DbParameterInfo.#ctor
+  isExternal: true
+  href: Reportman.Reporting.DbParameterInfo.html#Reportman_Reporting_DbParameterInfo__ctor
+  name: DbParameterInfo
+  nameWithType: DbParameterInfo.DbParameterInfo
+  fullName: Reportman.Reporting.DbParameterInfo.DbParameterInfo
+  nameWithType.vb: DbParameterInfo.New
+  fullName.vb: Reportman.Reporting.DbParameterInfo.New
+  name.vb: New
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Nullable{System.Int32}
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int?
+  nameWithType: int?
+  fullName: int?
+  nameWithType.vb: Integer?
+  fullName.vb: Integer?
+  name.vb: Integer?
+  spec.csharp:
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  spec.vb:
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Reportman.Reporting.DbParameterInfo.FromParam*
+  commentId: Overload:Reportman.Reporting.DbParameterInfo.FromParam
+  isExternal: true
+  href: Reportman.Reporting.DbParameterInfo.html#Reportman_Reporting_DbParameterInfo_FromParam_Reportman_Reporting_Param_
+  name: FromParam
+  nameWithType: DbParameterInfo.FromParam
+  fullName: Reportman.Reporting.DbParameterInfo.FromParam
+- uid: Reportman.Reporting.Param
+  commentId: T:Reportman.Reporting.Param
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.Param.html
+  name: Param
+  nameWithType: Param
+  fullName: Reportman.Reporting.Param
+- uid: Reportman.Reporting.DbParameterInfo
+  commentId: T:Reportman.Reporting.DbParameterInfo
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.DbParameterInfo.html
+  name: DbParameterInfo
+  nameWithType: DbParameterInfo
+  fullName: Reportman.Reporting.DbParameterInfo
+- uid: Reportman.Reporting.DbParameterInfo.FromDataParameter*
+  commentId: Overload:Reportman.Reporting.DbParameterInfo.FromDataParameter
+  isExternal: true
+  href: Reportman.Reporting.DbParameterInfo.html#Reportman_Reporting_DbParameterInfo_FromDataParameter_System_Data_IDataParameter_
+  name: FromDataParameter
+  nameWithType: DbParameterInfo.FromDataParameter
+  fullName: Reportman.Reporting.DbParameterInfo.FromDataParameter
+- uid: System.Data.IDataParameter
+  commentId: T:System.Data.IDataParameter
+  parent: System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.idataparameter
+  name: IDataParameter
+  nameWithType: IDataParameter
+  fullName: System.Data.IDataParameter
+- uid: System.Data
+  commentId: N:System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Data
+  nameWithType: System.Data
+  fullName: System.Data
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+- uid: Reportman.Reporting.DbParameterInfo.Name*
+  commentId: Overload:Reportman.Reporting.DbParameterInfo.Name
+  isExternal: true
+  href: Reportman.Reporting.DbParameterInfo.html#Reportman_Reporting_DbParameterInfo_Name
+  name: Name
+  nameWithType: DbParameterInfo.Name
+  fullName: Reportman.Reporting.DbParameterInfo.Name
+- uid: Reportman.Reporting.DbParameterInfo.Value*
+  commentId: Overload:Reportman.Reporting.DbParameterInfo.Value
+  isExternal: true
+  href: Reportman.Reporting.DbParameterInfo.html#Reportman_Reporting_DbParameterInfo_Value
+  name: Value
+  nameWithType: DbParameterInfo.Value
+  fullName: Reportman.Reporting.DbParameterInfo.Value
+- uid: Reportman.Reporting.DbParameterInfo.DbType*
+  commentId: Overload:Reportman.Reporting.DbParameterInfo.DbType
+  isExternal: true
+  href: Reportman.Reporting.DbParameterInfo.html#Reportman_Reporting_DbParameterInfo_DbType
+  name: DbType
+  nameWithType: DbParameterInfo.DbType
+  fullName: Reportman.Reporting.DbParameterInfo.DbType

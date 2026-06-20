@@ -15,6 +15,8 @@ items:
   nameWithType: EvalIdentifiers
   fullName: Reportman.Reporting.EvalIdentifiers
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalIdentifiers.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -74,6 +76,8 @@ items:
   nameWithType: EvalIdentifiers.GetEnumerator()
   fullName: Reportman.Reporting.EvalIdentifiers.GetEnumerator()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalIdentifiers.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -100,6 +104,8 @@ items:
   nameWithType: EvalIdentifiers.EvalIdentifiers()
   fullName: Reportman.Reporting.EvalIdentifiers.EvalIdentifiers()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalIdentifiers.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -121,6 +127,8 @@ items:
   nameWithType: EvalIdentifiers.this[int]
   fullName: Reportman.Reporting.EvalIdentifiers.this[int]
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalIdentifiers.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

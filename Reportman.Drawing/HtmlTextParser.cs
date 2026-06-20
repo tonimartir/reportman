@@ -8,6 +8,11 @@ using Ganss.Xss;
 
 namespace Reportman.Drawing
 {
+    /// <summary>
+    /// A contiguous span of text together with the formatting (bold, italic, underline,
+    /// strike-out, font family, font size and color) that applies to it, produced when
+    /// parsing an HTML fragment into styled runs.
+    /// </summary>
     public class HtmlFormatRun
     {
         public string Text;
@@ -43,6 +48,11 @@ namespace Reportman.Drawing
         }
     }
 
+    /// <summary>
+    /// Parses a supported subset of HTML markup into a list of styled <see cref="HtmlFormatRun"/>
+    /// segments, sanitizing and normalizing the input and resolving inline tags such as
+    /// b/i/u/s, span and legacy font into bold, italic, font family, size and color attributes.
+    /// </summary>
     public static class HtmlTextParser
     {
         private static readonly Regex TagRegex = new Regex(@"<(/?)(\w+)([^>]*)>", RegexOptions.IgnoreCase | RegexOptions.Compiled);
@@ -577,12 +587,21 @@ namespace Reportman.Drawing
         }
     }
 
+    /// <summary>
+    /// Identifies a single line within a larger text by its start position and length,
+    /// as produced when splitting text on line breaks for layout.
+    /// </summary>
     public class LineSubText
     {
         public int Position;
         public int Length;
     }
 
+    /// <summary>
+    /// Holds the shaped glyph positions for a single line of text, indexed from a base
+    /// text offset, along with a cluster map that links each logical text cluster to the
+    /// glyphs that render it.
+    /// </summary>
     public class LineGlyphs
     {
         public int TextOffset;
@@ -622,6 +641,11 @@ namespace Reportman.Drawing
         }
     }
 
+    /// <summary>
+    /// Helper routines for laying out HTML text: splitting text into lines, locating
+    /// possible line-break positions, and breaking shaped glyph runs into chunks that fit
+    /// a given width for both left-to-right and right-to-left text.
+    /// </summary>
     public static class HtmlLayoutUtils
     {
         public static List<LineSubText> DividesIntoLines(string text)

@@ -16,9 +16,13 @@ items:
   nameWithType: ReportDataset.UpdateDataEvent
   fullName: Reportman.Reporting.ReportDataset.UpdateDataEvent
   type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
+  summary: Callback invoked after a record has been fetched, allowing the consumer to inspect or post-process the new row.
+  example: []
   syntax:
     content: public delegate void ReportDataset.UpdateDataEvent(object sender, DataRow xrow)
     parameters:
@@ -38,6 +42,8 @@ items:
   nameWithType: ReportDataset.UpdateDataEvent.UpdateDataEvent(object, nint)
   fullName: Reportman.Reporting.ReportDataset.UpdateDataEvent.UpdateDataEvent(object, nint)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -64,6 +70,8 @@ items:
   nameWithType: ReportDataset.UpdateDataEvent.Invoke(object, DataRow)
   fullName: Reportman.Reporting.ReportDataset.UpdateDataEvent.Invoke(object, System.Data.DataRow)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -90,6 +98,8 @@ items:
   nameWithType: ReportDataset.UpdateDataEvent.BeginInvoke(object, DataRow, AsyncCallback, object)
   fullName: Reportman.Reporting.ReportDataset.UpdateDataEvent.BeginInvoke(object, System.Data.DataRow, System.AsyncCallback, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -122,6 +132,8 @@ items:
   nameWithType: ReportDataset.UpdateDataEvent.EndInvoke(IAsyncResult)
   fullName: Reportman.Reporting.ReportDataset.UpdateDataEvent.EndInvoke(System.IAsyncResult)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

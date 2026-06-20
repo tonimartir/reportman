@@ -16,6 +16,8 @@ items:
   nameWithType: IdenVariable
   fullName: Reportman.Reporting.IdenVariable
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/IdenVariable.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -55,6 +57,8 @@ items:
   nameWithType: IdenVariable.FValue
   fullName: Reportman.Reporting.IdenVariable.FValue
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/IdenVariable.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -76,6 +80,8 @@ items:
   nameWithType: IdenVariable.IdenVariable(Evaluator)
   fullName: Reportman.Reporting.IdenVariable.IdenVariable(Reportman.Reporting.Evaluator)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/IdenVariable.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -103,6 +109,8 @@ items:
   nameWithType: IdenVariable.SetValue(Variant)
   fullName: Reportman.Reporting.IdenVariable.SetValue(Reportman.Reporting.Variant)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/IdenVariable.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -128,6 +136,8 @@ items:
   nameWithType: IdenVariable.GetValue()
   fullName: Reportman.Reporting.IdenVariable.GetValue()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/IdenVariable.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

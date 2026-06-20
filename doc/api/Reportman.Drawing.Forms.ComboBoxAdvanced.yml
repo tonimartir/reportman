@@ -20,9 +20,16 @@ items:
   nameWithType: ComboBoxAdvanced
   fullName: Reportman.Drawing.Forms.ComboBoxAdvanced
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    A ComboBox that supports owner-drawn items with images from an ImageList,
+
+    auto-complete entries, and optional Enter-acts-as-Tab navigation.
+  example: []
   syntax:
     content: 'public class ComboBoxAdvanced : ComboBox, IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable'
     content.vb: Public Class ComboBoxAdvanced Inherits ComboBox Implements IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable
@@ -515,6 +522,8 @@ items:
   nameWithType: ComboBoxAdvanced.AutoCompleteList
   fullName: Reportman.Drawing.Forms.ComboBoxAdvanced.AutoCompleteList
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -534,6 +543,8 @@ items:
   nameWithType: ComboBoxAdvanced.BeforeEnterTab
   fullName: Reportman.Drawing.Forms.ComboBoxAdvanced.BeforeEnterTab
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -553,6 +564,8 @@ items:
   nameWithType: ComboBoxAdvanced.ComboBoxAdvanced()
   fullName: Reportman.Drawing.Forms.ComboBoxAdvanced.ComboBoxAdvanced()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -574,6 +587,8 @@ items:
   nameWithType: ComboBoxAdvanced.OnDrawItem(DrawItemEventArgs)
   fullName: Reportman.Drawing.Forms.ComboBoxAdvanced.OnDrawItem(System.Windows.Forms.DrawItemEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -597,6 +612,8 @@ items:
   nameWithType: ComboBoxAdvanced.ProcessCmdKey(ref Message, Keys)
   fullName: Reportman.Drawing.Forms.ComboBoxAdvanced.ProcessCmdKey(ref System.Windows.Forms.Message, System.Windows.Forms.Keys)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -627,6 +644,8 @@ items:
   nameWithType: ComboBoxAdvanced.OnKeyDown(KeyEventArgs)
   fullName: Reportman.Drawing.Forms.ComboBoxAdvanced.OnKeyDown(System.Windows.Forms.KeyEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -650,6 +669,8 @@ items:
   nameWithType: ComboBoxAdvanced.ImageList
   fullName: Reportman.Drawing.Forms.ComboBoxAdvanced.ImageList
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -671,6 +692,8 @@ items:
   nameWithType: ComboBoxAdvanced.EnterAsTab
   fullName: Reportman.Drawing.Forms.ComboBoxAdvanced.EnterAsTab
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

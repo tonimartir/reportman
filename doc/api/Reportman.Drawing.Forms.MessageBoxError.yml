@@ -16,6 +16,8 @@ items:
   nameWithType: MessageBoxError
   fullName: Reportman.Drawing.Forms.MessageBoxError
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/MessageBoxError.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -586,6 +588,8 @@ items:
   nameWithType: MessageBoxError.MessageBoxError()
   fullName: Reportman.Drawing.Forms.MessageBoxError.MessageBoxError()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/MessageBoxError.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -607,6 +611,8 @@ items:
   nameWithType: MessageBoxError.Dispose(bool)
   fullName: Reportman.Drawing.Forms.MessageBoxError.Dispose(bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/MessageBoxError.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -634,6 +640,8 @@ items:
   nameWithType: MessageBoxError.ShowThreadExceptionDialog(Form, string, string, Exception, bool)
   fullName: Reportman.Drawing.Forms.MessageBoxError.ShowThreadExceptionDialog(System.Windows.Forms.Form, string, string, System.Exception, bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/MessageBoxError.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -668,6 +676,8 @@ items:
   nameWithType: MessageBoxError.ShowThreadExceptionDialog(Form, string, Exception)
   fullName: Reportman.Drawing.Forms.MessageBoxError.ShowThreadExceptionDialog(System.Windows.Forms.Form, string, System.Exception)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/MessageBoxError.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

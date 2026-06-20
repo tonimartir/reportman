@@ -1,0 +1,1762 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType
+  commentId: T:Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType
+  id: PrintOutPDFFreeType
+  parent: Reportman.Drawing.CrossPlatform
+  children:
+  - Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.#ctor
+  - Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.EncodeImageStreamAsBitmapStream(System.IO.MemoryStream)
+  - Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.GetBitmapInfo(System.IO.Stream)
+  - Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.GetBitmapInfoProvider
+  - Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.GetFontInfoProvider
+  langs:
+  - csharp
+  - vb
+  name: PrintOutPDFFreeType
+  nameWithType: PrintOutPDFFreeType
+  fullName: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType
+  type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/PrintOutPDFFreeType.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing.CrossPlatform
+  summary: >-
+    Cross-platform PDF render driver that uses FreeType for font metrics and SkiaSharp for image
+
+    handling, supplying its own bitmap-info and font-info providers for portable PDF generation.
+  example: []
+  syntax:
+    content: 'public class PrintOutPDFFreeType : PrintOutPDFBase, IDisposable, IBitmapInfoProvider'
+    content.vb: Public Class PrintOutPDFFreeType Inherits PrintOutPDFBase Implements IDisposable, IBitmapInfoProvider
+  inheritance:
+  - System.Object
+  - Reportman.Drawing.PrintOut
+  - Reportman.Drawing.PrintOutPDFBase
+  implements:
+  - System.IDisposable
+  - Reportman.Drawing.IBitmapInfoProvider
+  inheritedMembers:
+  - Reportman.Drawing.PrintOutPDFBase.CalculateOnly
+  - Reportman.Drawing.PrintOutPDFBase.Compressed
+  - Reportman.Drawing.PrintOutPDFBase.FileName
+  - Reportman.Drawing.PrintOutPDFBase.Dispose
+  - Reportman.Drawing.PrintOutPDFBase.NewDocument(Reportman.Drawing.MetaFile)
+  - Reportman.Drawing.PrintOutPDFBase.PreparePrint(Reportman.Drawing.MetaFile)
+  - Reportman.Drawing.PrintOutPDFBase.EndDocument(Reportman.Drawing.MetaFile)
+  - Reportman.Drawing.PrintOutPDFBase.NewPage(Reportman.Drawing.MetaFile,Reportman.Drawing.MetaPage)
+  - Reportman.Drawing.PrintOutPDFBase.DrawObject(Reportman.Drawing.MetaPage,Reportman.Drawing.MetaObject)
+  - Reportman.Drawing.PrintOutPDFBase.DrawPage(Reportman.Drawing.MetaFile,Reportman.Drawing.MetaPage)
+  - Reportman.Drawing.PrintOutPDFBase.Print(Reportman.Drawing.MetaFile)
+  - Reportman.Drawing.PrintOutPDFBase.WordExtent(System.String,System.Drawing.Point)
+  - Reportman.Drawing.PrintOutPDFBase.WordExtentLineInfo(System.String,System.Drawing.Point@,System.Boolean)
+  - Reportman.Drawing.PrintOutPDFBase.TextExtent(Reportman.Drawing.TextObjectStruct,System.Drawing.Point)
+  - Reportman.Drawing.PrintOutPDFBase.TextExtentLineInfo(Reportman.Drawing.TextObjectStruct,System.Drawing.Point)
+  - Reportman.Drawing.PrintOutPDFBase.TextExtentLineInfo(Reportman.Drawing.TextObjectStruct,System.Drawing.Point@)
+  - Reportman.Drawing.PrintOutPDFBase.GraphicExtent(System.IO.MemoryStream,System.Drawing.Point,System.Int32)
+  - Reportman.Drawing.PrintOutPDFBase.SetOrientation(Reportman.Drawing.OrientationType)
+  - Reportman.Drawing.PrintOutPDFBase.SetPageSize(Reportman.Drawing.PageSizeDetail)
+  - Reportman.Drawing.PrintOutPDFBase.GetPageSize(System.Int32@)
+  - Reportman.Drawing.PrintOutPDFBase.PDFStream
+  - Reportman.Drawing.PrintOutPDFBase.PDFConformance
+  - Reportman.Drawing.PrintOutPDFBase.ForceComplexShaping
+  - Reportman.Drawing.PrintOutPDFBase.LineInfo
+  - Reportman.Drawing.PrintOut.DefaultPrinterName
+  - Reportman.Drawing.PrintOut.ForcePrinterName
+  - Reportman.Drawing.PrintOut.Previewing
+  - Reportman.Drawing.PrintOut.PageSizeArray
+  - Reportman.Drawing.PrintOut.CurrentMetafile
+  - Reportman.Drawing.PrintOut.PRINTOUT_MAX_PAGES
+  - Reportman.Drawing.PrintOut.FromPage
+  - Reportman.Drawing.PrintOut.ToPage
+  - Reportman.Drawing.PrintOut.Copies
+  - Reportman.Drawing.PrintOut.FOrientation
+  - Reportman.Drawing.PrintOut.EmptyReportThrowException
+  - Reportman.Drawing.PrintOut.NoData
+  - Reportman.Drawing.PrintOut.DrawFound
+  - Reportman.Drawing.PrintOut.PageSizeName(System.Int32)
+  - Reportman.Drawing.PrintOut.EndPage(Reportman.Drawing.MetaFile)
+  - Reportman.Drawing.PrintOut.SelectPrinter(Reportman.Drawing.PrinterSelectType)
+  - Reportman.Drawing.PrintOut.DrawChart(Reportman.Drawing.Series,Reportman.Drawing.MetaFile,System.Int32,System.Int32,System.Object)
+  - Reportman.Drawing.PrintOut.ProcessNoDataToPrint
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.GetBitmapInfo(System.IO.Stream)
+  commentId: M:Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.GetBitmapInfo(System.IO.Stream)
+  id: GetBitmapInfo(System.IO.Stream)
+  parent: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType
+  langs:
+  - csharp
+  - vb
+  name: GetBitmapInfo(Stream)
+  nameWithType: PrintOutPDFFreeType.GetBitmapInfo(Stream)
+  fullName: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.GetBitmapInfo(System.IO.Stream)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/PrintOutPDFFreeType.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing.CrossPlatform
+  example: []
+  syntax:
+    content: public BitmapInfo GetBitmapInfo(Stream stream)
+    parameters:
+    - id: stream
+      type: System.IO.Stream
+    return:
+      type: Reportman.Drawing.BitmapInfo
+    content.vb: Public Function GetBitmapInfo(stream As Stream) As BitmapInfo
+  overload: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.GetBitmapInfo*
+  implements:
+  - Reportman.Drawing.IBitmapInfoProvider.GetBitmapInfo(System.IO.Stream)
+- uid: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.GetBitmapInfoProvider
+  commentId: M:Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.GetBitmapInfoProvider
+  id: GetBitmapInfoProvider
+  parent: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType
+  langs:
+  - csharp
+  - vb
+  name: GetBitmapInfoProvider()
+  nameWithType: PrintOutPDFFreeType.GetBitmapInfoProvider()
+  fullName: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.GetBitmapInfoProvider()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/PrintOutPDFFreeType.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing.CrossPlatform
+  example: []
+  syntax:
+    content: public override IBitmapInfoProvider GetBitmapInfoProvider()
+    return:
+      type: Reportman.Drawing.IBitmapInfoProvider
+    content.vb: Public Overrides Function GetBitmapInfoProvider() As IBitmapInfoProvider
+  overridden: Reportman.Drawing.PrintOutPDFBase.GetBitmapInfoProvider
+  overload: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.GetBitmapInfoProvider*
+- uid: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.GetFontInfoProvider
+  commentId: M:Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.GetFontInfoProvider
+  id: GetFontInfoProvider
+  parent: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType
+  langs:
+  - csharp
+  - vb
+  name: GetFontInfoProvider()
+  nameWithType: PrintOutPDFFreeType.GetFontInfoProvider()
+  fullName: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.GetFontInfoProvider()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/PrintOutPDFFreeType.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing.CrossPlatform
+  example: []
+  syntax:
+    content: public override FontInfoProvider GetFontInfoProvider()
+    return:
+      type: Reportman.Drawing.FontInfoProvider
+    content.vb: Public Overrides Function GetFontInfoProvider() As FontInfoProvider
+  overridden: Reportman.Drawing.PrintOutPDFBase.GetFontInfoProvider
+  overload: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.GetFontInfoProvider*
+- uid: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.EncodeImageStreamAsBitmapStream(System.IO.MemoryStream)
+  commentId: M:Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.EncodeImageStreamAsBitmapStream(System.IO.MemoryStream)
+  id: EncodeImageStreamAsBitmapStream(System.IO.MemoryStream)
+  parent: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType
+  langs:
+  - csharp
+  - vb
+  name: EncodeImageStreamAsBitmapStream(MemoryStream)
+  nameWithType: PrintOutPDFFreeType.EncodeImageStreamAsBitmapStream(MemoryStream)
+  fullName: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.EncodeImageStreamAsBitmapStream(System.IO.MemoryStream)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/PrintOutPDFFreeType.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing.CrossPlatform
+  example: []
+  syntax:
+    content: public MemoryStream EncodeImageStreamAsBitmapStream(MemoryStream stream)
+    parameters:
+    - id: stream
+      type: System.IO.MemoryStream
+    return:
+      type: System.IO.MemoryStream
+    content.vb: Public Function EncodeImageStreamAsBitmapStream(stream As MemoryStream) As MemoryStream
+  overload: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.EncodeImageStreamAsBitmapStream*
+  implements:
+  - Reportman.Drawing.IBitmapInfoProvider.EncodeImageStreamAsBitmapStream(System.IO.MemoryStream)
+- uid: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.#ctor
+  commentId: M:Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.#ctor
+  id: '#ctor'
+  parent: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType
+  langs:
+  - csharp
+  - vb
+  name: PrintOutPDFFreeType()
+  nameWithType: PrintOutPDFFreeType.PrintOutPDFFreeType()
+  fullName: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.PrintOutPDFFreeType()
+  type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/PrintOutPDFFreeType.cs
+  assemblies:
+  - Reportman.Drawing.CrossPlatform
+  namespace: Reportman.Drawing.CrossPlatform
+  syntax:
+    content: public PrintOutPDFFreeType()
+    content.vb: Public Sub New()
+  overload: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.#ctor*
+  nameWithType.vb: PrintOutPDFFreeType.New()
+  fullName.vb: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.New()
+  name.vb: New()
+references:
+- uid: Reportman.Drawing.CrossPlatform
+  commentId: N:Reportman.Drawing.CrossPlatform
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing.CrossPlatform
+  nameWithType: Reportman.Drawing.CrossPlatform
+  fullName: Reportman.Drawing.CrossPlatform
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.CrossPlatform
+    name: CrossPlatform
+    isExternal: true
+    href: Reportman.Drawing.CrossPlatform.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  - name: .
+  - uid: Reportman.Drawing.CrossPlatform
+    name: CrossPlatform
+    isExternal: true
+    href: Reportman.Drawing.CrossPlatform.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Reportman.Drawing.PrintOut
+  commentId: T:Reportman.Drawing.PrintOut
+  parent: Reportman.Drawing
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  name: PrintOut
+  nameWithType: PrintOut
+  fullName: Reportman.Drawing.PrintOut
+- uid: Reportman.Drawing.PrintOutPDFBase
+  commentId: T:Reportman.Drawing.PrintOutPDFBase
+  parent: Reportman.Drawing
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  name: PrintOutPDFBase
+  nameWithType: PrintOutPDFBase
+  fullName: Reportman.Drawing.PrintOutPDFBase
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: Reportman.Drawing.IBitmapInfoProvider
+  commentId: T:Reportman.Drawing.IBitmapInfoProvider
+  parent: Reportman.Drawing
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IBitmapInfoProvider.cs
+  name: IBitmapInfoProvider
+  nameWithType: IBitmapInfoProvider
+  fullName: Reportman.Drawing.IBitmapInfoProvider
+- uid: Reportman.Drawing.PrintOutPDFBase.CalculateOnly
+  commentId: F:Reportman.Drawing.PrintOutPDFBase.CalculateOnly
+  parent: Reportman.Drawing.PrintOutPDFBase
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  name: CalculateOnly
+  nameWithType: PrintOutPDFBase.CalculateOnly
+  fullName: Reportman.Drawing.PrintOutPDFBase.CalculateOnly
+- uid: Reportman.Drawing.PrintOutPDFBase.Compressed
+  commentId: F:Reportman.Drawing.PrintOutPDFBase.Compressed
+  parent: Reportman.Drawing.PrintOutPDFBase
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  name: Compressed
+  nameWithType: PrintOutPDFBase.Compressed
+  fullName: Reportman.Drawing.PrintOutPDFBase.Compressed
+- uid: Reportman.Drawing.PrintOutPDFBase.FileName
+  commentId: F:Reportman.Drawing.PrintOutPDFBase.FileName
+  parent: Reportman.Drawing.PrintOutPDFBase
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  name: FileName
+  nameWithType: PrintOutPDFBase.FileName
+  fullName: Reportman.Drawing.PrintOutPDFBase.FileName
+- uid: Reportman.Drawing.PrintOutPDFBase.Dispose
+  commentId: M:Reportman.Drawing.PrintOutPDFBase.Dispose
+  parent: Reportman.Drawing.PrintOutPDFBase
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  name: Dispose()
+  nameWithType: PrintOutPDFBase.Dispose()
+  fullName: Reportman.Drawing.PrintOutPDFBase.Dispose()
+  spec.csharp:
+  - uid: Reportman.Drawing.PrintOutPDFBase.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.PrintOutPDFBase.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - name: )
+- uid: Reportman.Drawing.PrintOutPDFBase.NewDocument(Reportman.Drawing.MetaFile)
+  commentId: M:Reportman.Drawing.PrintOutPDFBase.NewDocument(Reportman.Drawing.MetaFile)
+  parent: Reportman.Drawing.PrintOutPDFBase
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  name: NewDocument(MetaFile)
+  nameWithType: PrintOutPDFBase.NewDocument(MetaFile)
+  fullName: Reportman.Drawing.PrintOutPDFBase.NewDocument(Reportman.Drawing.MetaFile)
+  spec.csharp:
+  - uid: Reportman.Drawing.PrintOutPDFBase.NewDocument(Reportman.Drawing.MetaFile)
+    name: NewDocument
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - uid: Reportman.Drawing.MetaFile
+    name: MetaFile
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.PrintOutPDFBase.NewDocument(Reportman.Drawing.MetaFile)
+    name: NewDocument
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - uid: Reportman.Drawing.MetaFile
+    name: MetaFile
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
+  - name: )
+- uid: Reportman.Drawing.PrintOutPDFBase.PreparePrint(Reportman.Drawing.MetaFile)
+  commentId: M:Reportman.Drawing.PrintOutPDFBase.PreparePrint(Reportman.Drawing.MetaFile)
+  parent: Reportman.Drawing.PrintOutPDFBase
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  name: PreparePrint(MetaFile)
+  nameWithType: PrintOutPDFBase.PreparePrint(MetaFile)
+  fullName: Reportman.Drawing.PrintOutPDFBase.PreparePrint(Reportman.Drawing.MetaFile)
+  spec.csharp:
+  - uid: Reportman.Drawing.PrintOutPDFBase.PreparePrint(Reportman.Drawing.MetaFile)
+    name: PreparePrint
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - uid: Reportman.Drawing.MetaFile
+    name: MetaFile
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.PrintOutPDFBase.PreparePrint(Reportman.Drawing.MetaFile)
+    name: PreparePrint
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - uid: Reportman.Drawing.MetaFile
+    name: MetaFile
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
+  - name: )
+- uid: Reportman.Drawing.PrintOutPDFBase.EndDocument(Reportman.Drawing.MetaFile)
+  commentId: M:Reportman.Drawing.PrintOutPDFBase.EndDocument(Reportman.Drawing.MetaFile)
+  parent: Reportman.Drawing.PrintOutPDFBase
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  name: EndDocument(MetaFile)
+  nameWithType: PrintOutPDFBase.EndDocument(MetaFile)
+  fullName: Reportman.Drawing.PrintOutPDFBase.EndDocument(Reportman.Drawing.MetaFile)
+  spec.csharp:
+  - uid: Reportman.Drawing.PrintOutPDFBase.EndDocument(Reportman.Drawing.MetaFile)
+    name: EndDocument
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - uid: Reportman.Drawing.MetaFile
+    name: MetaFile
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.PrintOutPDFBase.EndDocument(Reportman.Drawing.MetaFile)
+    name: EndDocument
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - uid: Reportman.Drawing.MetaFile
+    name: MetaFile
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
+  - name: )
+- uid: Reportman.Drawing.PrintOutPDFBase.NewPage(Reportman.Drawing.MetaFile,Reportman.Drawing.MetaPage)
+  commentId: M:Reportman.Drawing.PrintOutPDFBase.NewPage(Reportman.Drawing.MetaFile,Reportman.Drawing.MetaPage)
+  parent: Reportman.Drawing.PrintOutPDFBase
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  name: NewPage(MetaFile, MetaPage)
+  nameWithType: PrintOutPDFBase.NewPage(MetaFile, MetaPage)
+  fullName: Reportman.Drawing.PrintOutPDFBase.NewPage(Reportman.Drawing.MetaFile, Reportman.Drawing.MetaPage)
+  spec.csharp:
+  - uid: Reportman.Drawing.PrintOutPDFBase.NewPage(Reportman.Drawing.MetaFile,Reportman.Drawing.MetaPage)
+    name: NewPage
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - uid: Reportman.Drawing.MetaFile
+    name: MetaFile
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.MetaPage
+    name: MetaPage
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.PrintOutPDFBase.NewPage(Reportman.Drawing.MetaFile,Reportman.Drawing.MetaPage)
+    name: NewPage
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - uid: Reportman.Drawing.MetaFile
+    name: MetaFile
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.MetaPage
+    name: MetaPage
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+  - name: )
+- uid: Reportman.Drawing.PrintOutPDFBase.DrawObject(Reportman.Drawing.MetaPage,Reportman.Drawing.MetaObject)
+  commentId: M:Reportman.Drawing.PrintOutPDFBase.DrawObject(Reportman.Drawing.MetaPage,Reportman.Drawing.MetaObject)
+  parent: Reportman.Drawing.PrintOutPDFBase
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  name: DrawObject(MetaPage, MetaObject)
+  nameWithType: PrintOutPDFBase.DrawObject(MetaPage, MetaObject)
+  fullName: Reportman.Drawing.PrintOutPDFBase.DrawObject(Reportman.Drawing.MetaPage, Reportman.Drawing.MetaObject)
+  spec.csharp:
+  - uid: Reportman.Drawing.PrintOutPDFBase.DrawObject(Reportman.Drawing.MetaPage,Reportman.Drawing.MetaObject)
+    name: DrawObject
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - uid: Reportman.Drawing.MetaPage
+    name: MetaPage
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.MetaObject
+    name: MetaObject
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.PrintOutPDFBase.DrawObject(Reportman.Drawing.MetaPage,Reportman.Drawing.MetaObject)
+    name: DrawObject
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - uid: Reportman.Drawing.MetaPage
+    name: MetaPage
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.MetaObject
+    name: MetaObject
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
+  - name: )
+- uid: Reportman.Drawing.PrintOutPDFBase.DrawPage(Reportman.Drawing.MetaFile,Reportman.Drawing.MetaPage)
+  commentId: M:Reportman.Drawing.PrintOutPDFBase.DrawPage(Reportman.Drawing.MetaFile,Reportman.Drawing.MetaPage)
+  parent: Reportman.Drawing.PrintOutPDFBase
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  name: DrawPage(MetaFile, MetaPage)
+  nameWithType: PrintOutPDFBase.DrawPage(MetaFile, MetaPage)
+  fullName: Reportman.Drawing.PrintOutPDFBase.DrawPage(Reportman.Drawing.MetaFile, Reportman.Drawing.MetaPage)
+  spec.csharp:
+  - uid: Reportman.Drawing.PrintOutPDFBase.DrawPage(Reportman.Drawing.MetaFile,Reportman.Drawing.MetaPage)
+    name: DrawPage
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - uid: Reportman.Drawing.MetaFile
+    name: MetaFile
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.MetaPage
+    name: MetaPage
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.PrintOutPDFBase.DrawPage(Reportman.Drawing.MetaFile,Reportman.Drawing.MetaPage)
+    name: DrawPage
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - uid: Reportman.Drawing.MetaFile
+    name: MetaFile
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.MetaPage
+    name: MetaPage
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+  - name: )
+- uid: Reportman.Drawing.PrintOutPDFBase.Print(Reportman.Drawing.MetaFile)
+  commentId: M:Reportman.Drawing.PrintOutPDFBase.Print(Reportman.Drawing.MetaFile)
+  parent: Reportman.Drawing.PrintOutPDFBase
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  name: Print(MetaFile)
+  nameWithType: PrintOutPDFBase.Print(MetaFile)
+  fullName: Reportman.Drawing.PrintOutPDFBase.Print(Reportman.Drawing.MetaFile)
+  spec.csharp:
+  - uid: Reportman.Drawing.PrintOutPDFBase.Print(Reportman.Drawing.MetaFile)
+    name: Print
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - uid: Reportman.Drawing.MetaFile
+    name: MetaFile
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.PrintOutPDFBase.Print(Reportman.Drawing.MetaFile)
+    name: Print
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - uid: Reportman.Drawing.MetaFile
+    name: MetaFile
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
+  - name: )
+- uid: Reportman.Drawing.PrintOutPDFBase.WordExtent(System.String,System.Drawing.Point)
+  commentId: M:Reportman.Drawing.PrintOutPDFBase.WordExtent(System.String,System.Drawing.Point)
+  parent: Reportman.Drawing.PrintOutPDFBase
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  name: WordExtent(string, Point)
+  nameWithType: PrintOutPDFBase.WordExtent(string, Point)
+  fullName: Reportman.Drawing.PrintOutPDFBase.WordExtent(string, System.Drawing.Point)
+  nameWithType.vb: PrintOutPDFBase.WordExtent(String, Point)
+  fullName.vb: Reportman.Drawing.PrintOutPDFBase.WordExtent(String, System.Drawing.Point)
+  name.vb: WordExtent(String, Point)
+  spec.csharp:
+  - uid: Reportman.Drawing.PrintOutPDFBase.WordExtent(System.String,System.Drawing.Point)
+    name: WordExtent
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.Point
+    name: Point
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.point
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.PrintOutPDFBase.WordExtent(System.String,System.Drawing.Point)
+    name: WordExtent
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.Point
+    name: Point
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.point
+  - name: )
+- uid: Reportman.Drawing.PrintOutPDFBase.WordExtentLineInfo(System.String,System.Drawing.Point@,System.Boolean)
+  commentId: M:Reportman.Drawing.PrintOutPDFBase.WordExtentLineInfo(System.String,System.Drawing.Point@,System.Boolean)
+  parent: Reportman.Drawing.PrintOutPDFBase
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  name: WordExtentLineInfo(string, ref Point, bool)
+  nameWithType: PrintOutPDFBase.WordExtentLineInfo(string, ref Point, bool)
+  fullName: Reportman.Drawing.PrintOutPDFBase.WordExtentLineInfo(string, ref System.Drawing.Point, bool)
+  nameWithType.vb: PrintOutPDFBase.WordExtentLineInfo(String, Point, Boolean)
+  fullName.vb: Reportman.Drawing.PrintOutPDFBase.WordExtentLineInfo(String, System.Drawing.Point, Boolean)
+  name.vb: WordExtentLineInfo(String, Point, Boolean)
+  spec.csharp:
+  - uid: Reportman.Drawing.PrintOutPDFBase.WordExtentLineInfo(System.String,System.Drawing.Point@,System.Boolean)
+    name: WordExtentLineInfo
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: ref
+  - name: " "
+  - uid: System.Drawing.Point
+    name: Point
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.point
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.PrintOutPDFBase.WordExtentLineInfo(System.String,System.Drawing.Point@,System.Boolean)
+    name: WordExtentLineInfo
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.Point
+    name: Point
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.point
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Reportman.Drawing.PrintOutPDFBase.TextExtent(Reportman.Drawing.TextObjectStruct,System.Drawing.Point)
+  commentId: M:Reportman.Drawing.PrintOutPDFBase.TextExtent(Reportman.Drawing.TextObjectStruct,System.Drawing.Point)
+  parent: Reportman.Drawing.PrintOutPDFBase
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  name: TextExtent(TextObjectStruct, Point)
+  nameWithType: PrintOutPDFBase.TextExtent(TextObjectStruct, Point)
+  fullName: Reportman.Drawing.PrintOutPDFBase.TextExtent(Reportman.Drawing.TextObjectStruct, System.Drawing.Point)
+  spec.csharp:
+  - uid: Reportman.Drawing.PrintOutPDFBase.TextExtent(Reportman.Drawing.TextObjectStruct,System.Drawing.Point)
+    name: TextExtent
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - uid: Reportman.Drawing.TextObjectStruct
+    name: TextObjectStruct
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.Point
+    name: Point
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.point
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.PrintOutPDFBase.TextExtent(Reportman.Drawing.TextObjectStruct,System.Drawing.Point)
+    name: TextExtent
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - uid: Reportman.Drawing.TextObjectStruct
+    name: TextObjectStruct
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.Point
+    name: Point
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.point
+  - name: )
+- uid: Reportman.Drawing.PrintOutPDFBase.TextExtentLineInfo(Reportman.Drawing.TextObjectStruct,System.Drawing.Point)
+  commentId: M:Reportman.Drawing.PrintOutPDFBase.TextExtentLineInfo(Reportman.Drawing.TextObjectStruct,System.Drawing.Point)
+  parent: Reportman.Drawing.PrintOutPDFBase
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  name: TextExtentLineInfo(TextObjectStruct, Point)
+  nameWithType: PrintOutPDFBase.TextExtentLineInfo(TextObjectStruct, Point)
+  fullName: Reportman.Drawing.PrintOutPDFBase.TextExtentLineInfo(Reportman.Drawing.TextObjectStruct, System.Drawing.Point)
+  spec.csharp:
+  - uid: Reportman.Drawing.PrintOutPDFBase.TextExtentLineInfo(Reportman.Drawing.TextObjectStruct,System.Drawing.Point)
+    name: TextExtentLineInfo
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - uid: Reportman.Drawing.TextObjectStruct
+    name: TextObjectStruct
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.Point
+    name: Point
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.point
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.PrintOutPDFBase.TextExtentLineInfo(Reportman.Drawing.TextObjectStruct,System.Drawing.Point)
+    name: TextExtentLineInfo
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - uid: Reportman.Drawing.TextObjectStruct
+    name: TextObjectStruct
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.Point
+    name: Point
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.point
+  - name: )
+- uid: Reportman.Drawing.PrintOutPDFBase.TextExtentLineInfo(Reportman.Drawing.TextObjectStruct,System.Drawing.Point@)
+  commentId: M:Reportman.Drawing.PrintOutPDFBase.TextExtentLineInfo(Reportman.Drawing.TextObjectStruct,System.Drawing.Point@)
+  parent: Reportman.Drawing.PrintOutPDFBase
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  name: TextExtentLineInfo(TextObjectStruct, ref Point)
+  nameWithType: PrintOutPDFBase.TextExtentLineInfo(TextObjectStruct, ref Point)
+  fullName: Reportman.Drawing.PrintOutPDFBase.TextExtentLineInfo(Reportman.Drawing.TextObjectStruct, ref System.Drawing.Point)
+  nameWithType.vb: PrintOutPDFBase.TextExtentLineInfo(TextObjectStruct, Point)
+  fullName.vb: Reportman.Drawing.PrintOutPDFBase.TextExtentLineInfo(Reportman.Drawing.TextObjectStruct, System.Drawing.Point)
+  name.vb: TextExtentLineInfo(TextObjectStruct, Point)
+  spec.csharp:
+  - uid: Reportman.Drawing.PrintOutPDFBase.TextExtentLineInfo(Reportman.Drawing.TextObjectStruct,System.Drawing.Point@)
+    name: TextExtentLineInfo
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - uid: Reportman.Drawing.TextObjectStruct
+    name: TextObjectStruct
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
+  - name: ','
+  - name: " "
+  - name: ref
+  - name: " "
+  - uid: System.Drawing.Point
+    name: Point
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.point
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.PrintOutPDFBase.TextExtentLineInfo(Reportman.Drawing.TextObjectStruct,System.Drawing.Point@)
+    name: TextExtentLineInfo
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - uid: Reportman.Drawing.TextObjectStruct
+    name: TextObjectStruct
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.Point
+    name: Point
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.point
+  - name: )
+- uid: Reportman.Drawing.PrintOutPDFBase.GraphicExtent(System.IO.MemoryStream,System.Drawing.Point,System.Int32)
+  commentId: M:Reportman.Drawing.PrintOutPDFBase.GraphicExtent(System.IO.MemoryStream,System.Drawing.Point,System.Int32)
+  parent: Reportman.Drawing.PrintOutPDFBase
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  name: GraphicExtent(MemoryStream, Point, int)
+  nameWithType: PrintOutPDFBase.GraphicExtent(MemoryStream, Point, int)
+  fullName: Reportman.Drawing.PrintOutPDFBase.GraphicExtent(System.IO.MemoryStream, System.Drawing.Point, int)
+  nameWithType.vb: PrintOutPDFBase.GraphicExtent(MemoryStream, Point, Integer)
+  fullName.vb: Reportman.Drawing.PrintOutPDFBase.GraphicExtent(System.IO.MemoryStream, System.Drawing.Point, Integer)
+  name.vb: GraphicExtent(MemoryStream, Point, Integer)
+  spec.csharp:
+  - uid: Reportman.Drawing.PrintOutPDFBase.GraphicExtent(System.IO.MemoryStream,System.Drawing.Point,System.Int32)
+    name: GraphicExtent
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - uid: System.IO.MemoryStream
+    name: MemoryStream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.memorystream
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.Point
+    name: Point
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.point
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.PrintOutPDFBase.GraphicExtent(System.IO.MemoryStream,System.Drawing.Point,System.Int32)
+    name: GraphicExtent
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - uid: System.IO.MemoryStream
+    name: MemoryStream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.memorystream
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.Point
+    name: Point
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.point
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Reportman.Drawing.PrintOutPDFBase.SetOrientation(Reportman.Drawing.OrientationType)
+  commentId: M:Reportman.Drawing.PrintOutPDFBase.SetOrientation(Reportman.Drawing.OrientationType)
+  parent: Reportman.Drawing.PrintOutPDFBase
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  name: SetOrientation(OrientationType)
+  nameWithType: PrintOutPDFBase.SetOrientation(OrientationType)
+  fullName: Reportman.Drawing.PrintOutPDFBase.SetOrientation(Reportman.Drawing.OrientationType)
+  spec.csharp:
+  - uid: Reportman.Drawing.PrintOutPDFBase.SetOrientation(Reportman.Drawing.OrientationType)
+    name: SetOrientation
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - uid: Reportman.Drawing.OrientationType
+    name: OrientationType
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.PrintOutPDFBase.SetOrientation(Reportman.Drawing.OrientationType)
+    name: SetOrientation
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - uid: Reportman.Drawing.OrientationType
+    name: OrientationType
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
+  - name: )
+- uid: Reportman.Drawing.PrintOutPDFBase.SetPageSize(Reportman.Drawing.PageSizeDetail)
+  commentId: M:Reportman.Drawing.PrintOutPDFBase.SetPageSize(Reportman.Drawing.PageSizeDetail)
+  parent: Reportman.Drawing.PrintOutPDFBase
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  name: SetPageSize(PageSizeDetail)
+  nameWithType: PrintOutPDFBase.SetPageSize(PageSizeDetail)
+  fullName: Reportman.Drawing.PrintOutPDFBase.SetPageSize(Reportman.Drawing.PageSizeDetail)
+  spec.csharp:
+  - uid: Reportman.Drawing.PrintOutPDFBase.SetPageSize(Reportman.Drawing.PageSizeDetail)
+    name: SetPageSize
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - uid: Reportman.Drawing.PageSizeDetail
+    name: PageSizeDetail
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.PrintOutPDFBase.SetPageSize(Reportman.Drawing.PageSizeDetail)
+    name: SetPageSize
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - uid: Reportman.Drawing.PageSizeDetail
+    name: PageSizeDetail
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
+  - name: )
+- uid: Reportman.Drawing.PrintOutPDFBase.GetPageSize(System.Int32@)
+  commentId: M:Reportman.Drawing.PrintOutPDFBase.GetPageSize(System.Int32@)
+  parent: Reportman.Drawing.PrintOutPDFBase
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  name: GetPageSize(out int)
+  nameWithType: PrintOutPDFBase.GetPageSize(out int)
+  fullName: Reportman.Drawing.PrintOutPDFBase.GetPageSize(out int)
+  nameWithType.vb: PrintOutPDFBase.GetPageSize(Integer)
+  fullName.vb: Reportman.Drawing.PrintOutPDFBase.GetPageSize(Integer)
+  name.vb: GetPageSize(Integer)
+  spec.csharp:
+  - uid: Reportman.Drawing.PrintOutPDFBase.GetPageSize(System.Int32@)
+    name: GetPageSize
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - name: out
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.PrintOutPDFBase.GetPageSize(System.Int32@)
+    name: GetPageSize
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Reportman.Drawing.PrintOutPDFBase.PDFStream
+  commentId: P:Reportman.Drawing.PrintOutPDFBase.PDFStream
+  parent: Reportman.Drawing.PrintOutPDFBase
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  name: PDFStream
+  nameWithType: PrintOutPDFBase.PDFStream
+  fullName: Reportman.Drawing.PrintOutPDFBase.PDFStream
+- uid: Reportman.Drawing.PrintOutPDFBase.PDFConformance
+  commentId: P:Reportman.Drawing.PrintOutPDFBase.PDFConformance
+  parent: Reportman.Drawing.PrintOutPDFBase
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  name: PDFConformance
+  nameWithType: PrintOutPDFBase.PDFConformance
+  fullName: Reportman.Drawing.PrintOutPDFBase.PDFConformance
+- uid: Reportman.Drawing.PrintOutPDFBase.ForceComplexShaping
+  commentId: P:Reportman.Drawing.PrintOutPDFBase.ForceComplexShaping
+  parent: Reportman.Drawing.PrintOutPDFBase
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  name: ForceComplexShaping
+  nameWithType: PrintOutPDFBase.ForceComplexShaping
+  fullName: Reportman.Drawing.PrintOutPDFBase.ForceComplexShaping
+- uid: Reportman.Drawing.PrintOutPDFBase.LineInfo
+  commentId: P:Reportman.Drawing.PrintOutPDFBase.LineInfo
+  parent: Reportman.Drawing.PrintOutPDFBase
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  name: LineInfo
+  nameWithType: PrintOutPDFBase.LineInfo
+  fullName: Reportman.Drawing.PrintOutPDFBase.LineInfo
+- uid: Reportman.Drawing.PrintOut.DefaultPrinterName
+  commentId: F:Reportman.Drawing.PrintOut.DefaultPrinterName
+  parent: Reportman.Drawing.PrintOut
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  name: DefaultPrinterName
+  nameWithType: PrintOut.DefaultPrinterName
+  fullName: Reportman.Drawing.PrintOut.DefaultPrinterName
+- uid: Reportman.Drawing.PrintOut.ForcePrinterName
+  commentId: F:Reportman.Drawing.PrintOut.ForcePrinterName
+  parent: Reportman.Drawing.PrintOut
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  name: ForcePrinterName
+  nameWithType: PrintOut.ForcePrinterName
+  fullName: Reportman.Drawing.PrintOut.ForcePrinterName
+- uid: Reportman.Drawing.PrintOut.Previewing
+  commentId: F:Reportman.Drawing.PrintOut.Previewing
+  parent: Reportman.Drawing.PrintOut
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  name: Previewing
+  nameWithType: PrintOut.Previewing
+  fullName: Reportman.Drawing.PrintOut.Previewing
+- uid: Reportman.Drawing.PrintOut.PageSizeArray
+  commentId: F:Reportman.Drawing.PrintOut.PageSizeArray
+  parent: Reportman.Drawing.PrintOut
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  name: PageSizeArray
+  nameWithType: PrintOut.PageSizeArray
+  fullName: Reportman.Drawing.PrintOut.PageSizeArray
+- uid: Reportman.Drawing.PrintOut.CurrentMetafile
+  commentId: F:Reportman.Drawing.PrintOut.CurrentMetafile
+  parent: Reportman.Drawing.PrintOut
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  name: CurrentMetafile
+  nameWithType: PrintOut.CurrentMetafile
+  fullName: Reportman.Drawing.PrintOut.CurrentMetafile
+- uid: Reportman.Drawing.PrintOut.PRINTOUT_MAX_PAGES
+  commentId: F:Reportman.Drawing.PrintOut.PRINTOUT_MAX_PAGES
+  parent: Reportman.Drawing.PrintOut
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  name: PRINTOUT_MAX_PAGES
+  nameWithType: PrintOut.PRINTOUT_MAX_PAGES
+  fullName: Reportman.Drawing.PrintOut.PRINTOUT_MAX_PAGES
+- uid: Reportman.Drawing.PrintOut.FromPage
+  commentId: F:Reportman.Drawing.PrintOut.FromPage
+  parent: Reportman.Drawing.PrintOut
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  name: FromPage
+  nameWithType: PrintOut.FromPage
+  fullName: Reportman.Drawing.PrintOut.FromPage
+- uid: Reportman.Drawing.PrintOut.ToPage
+  commentId: F:Reportman.Drawing.PrintOut.ToPage
+  parent: Reportman.Drawing.PrintOut
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  name: ToPage
+  nameWithType: PrintOut.ToPage
+  fullName: Reportman.Drawing.PrintOut.ToPage
+- uid: Reportman.Drawing.PrintOut.Copies
+  commentId: F:Reportman.Drawing.PrintOut.Copies
+  parent: Reportman.Drawing.PrintOut
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  name: Copies
+  nameWithType: PrintOut.Copies
+  fullName: Reportman.Drawing.PrintOut.Copies
+- uid: Reportman.Drawing.PrintOut.FOrientation
+  commentId: F:Reportman.Drawing.PrintOut.FOrientation
+  parent: Reportman.Drawing.PrintOut
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  name: FOrientation
+  nameWithType: PrintOut.FOrientation
+  fullName: Reportman.Drawing.PrintOut.FOrientation
+- uid: Reportman.Drawing.PrintOut.EmptyReportThrowException
+  commentId: F:Reportman.Drawing.PrintOut.EmptyReportThrowException
+  parent: Reportman.Drawing.PrintOut
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  name: EmptyReportThrowException
+  nameWithType: PrintOut.EmptyReportThrowException
+  fullName: Reportman.Drawing.PrintOut.EmptyReportThrowException
+- uid: Reportman.Drawing.PrintOut.NoData
+  commentId: F:Reportman.Drawing.PrintOut.NoData
+  parent: Reportman.Drawing.PrintOut
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  name: NoData
+  nameWithType: PrintOut.NoData
+  fullName: Reportman.Drawing.PrintOut.NoData
+- uid: Reportman.Drawing.PrintOut.DrawFound
+  commentId: F:Reportman.Drawing.PrintOut.DrawFound
+  parent: Reportman.Drawing.PrintOut
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  name: DrawFound
+  nameWithType: PrintOut.DrawFound
+  fullName: Reportman.Drawing.PrintOut.DrawFound
+- uid: Reportman.Drawing.PrintOut.PageSizeName(System.Int32)
+  commentId: M:Reportman.Drawing.PrintOut.PageSizeName(System.Int32)
+  parent: Reportman.Drawing.PrintOut
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  name: PageSizeName(int)
+  nameWithType: PrintOut.PageSizeName(int)
+  fullName: Reportman.Drawing.PrintOut.PageSizeName(int)
+  nameWithType.vb: PrintOut.PageSizeName(Integer)
+  fullName.vb: Reportman.Drawing.PrintOut.PageSizeName(Integer)
+  name.vb: PageSizeName(Integer)
+  spec.csharp:
+  - uid: Reportman.Drawing.PrintOut.PageSizeName(System.Int32)
+    name: PageSizeName
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.PrintOut.PageSizeName(System.Int32)
+    name: PageSizeName
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Reportman.Drawing.PrintOut.EndPage(Reportman.Drawing.MetaFile)
+  commentId: M:Reportman.Drawing.PrintOut.EndPage(Reportman.Drawing.MetaFile)
+  parent: Reportman.Drawing.PrintOut
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  name: EndPage(MetaFile)
+  nameWithType: PrintOut.EndPage(MetaFile)
+  fullName: Reportman.Drawing.PrintOut.EndPage(Reportman.Drawing.MetaFile)
+  spec.csharp:
+  - uid: Reportman.Drawing.PrintOut.EndPage(Reportman.Drawing.MetaFile)
+    name: EndPage
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  - name: (
+  - uid: Reportman.Drawing.MetaFile
+    name: MetaFile
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.PrintOut.EndPage(Reportman.Drawing.MetaFile)
+    name: EndPage
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  - name: (
+  - uid: Reportman.Drawing.MetaFile
+    name: MetaFile
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
+  - name: )
+- uid: Reportman.Drawing.PrintOut.SelectPrinter(Reportman.Drawing.PrinterSelectType)
+  commentId: M:Reportman.Drawing.PrintOut.SelectPrinter(Reportman.Drawing.PrinterSelectType)
+  parent: Reportman.Drawing.PrintOut
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  name: SelectPrinter(PrinterSelectType)
+  nameWithType: PrintOut.SelectPrinter(PrinterSelectType)
+  fullName: Reportman.Drawing.PrintOut.SelectPrinter(Reportman.Drawing.PrinterSelectType)
+  spec.csharp:
+  - uid: Reportman.Drawing.PrintOut.SelectPrinter(Reportman.Drawing.PrinterSelectType)
+    name: SelectPrinter
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  - name: (
+  - uid: Reportman.Drawing.PrinterSelectType
+    name: PrinterSelectType
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.PrintOut.SelectPrinter(Reportman.Drawing.PrinterSelectType)
+    name: SelectPrinter
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  - name: (
+  - uid: Reportman.Drawing.PrinterSelectType
+    name: PrinterSelectType
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
+  - name: )
+- uid: Reportman.Drawing.PrintOut.DrawChart(Reportman.Drawing.Series,Reportman.Drawing.MetaFile,System.Int32,System.Int32,System.Object)
+  commentId: M:Reportman.Drawing.PrintOut.DrawChart(Reportman.Drawing.Series,Reportman.Drawing.MetaFile,System.Int32,System.Int32,System.Object)
+  parent: Reportman.Drawing.PrintOut
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  name: DrawChart(Series, MetaFile, int, int, object)
+  nameWithType: PrintOut.DrawChart(Series, MetaFile, int, int, object)
+  fullName: Reportman.Drawing.PrintOut.DrawChart(Reportman.Drawing.Series, Reportman.Drawing.MetaFile, int, int, object)
+  nameWithType.vb: PrintOut.DrawChart(Series, MetaFile, Integer, Integer, Object)
+  fullName.vb: Reportman.Drawing.PrintOut.DrawChart(Reportman.Drawing.Series, Reportman.Drawing.MetaFile, Integer, Integer, Object)
+  name.vb: DrawChart(Series, MetaFile, Integer, Integer, Object)
+  spec.csharp:
+  - uid: Reportman.Drawing.PrintOut.DrawChart(Reportman.Drawing.Series,Reportman.Drawing.MetaFile,System.Int32,System.Int32,System.Object)
+    name: DrawChart
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  - name: (
+  - uid: Reportman.Drawing.Series
+    name: Series
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.MetaFile
+    name: MetaFile
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.PrintOut.DrawChart(Reportman.Drawing.Series,Reportman.Drawing.MetaFile,System.Int32,System.Int32,System.Object)
+    name: DrawChart
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  - name: (
+  - uid: Reportman.Drawing.Series
+    name: Series
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.MetaFile
+    name: MetaFile
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Reportman.Drawing.PrintOut.ProcessNoDataToPrint
+  commentId: M:Reportman.Drawing.PrintOut.ProcessNoDataToPrint
+  parent: Reportman.Drawing.PrintOut
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  name: ProcessNoDataToPrint()
+  nameWithType: PrintOut.ProcessNoDataToPrint()
+  fullName: Reportman.Drawing.PrintOut.ProcessNoDataToPrint()
+  spec.csharp:
+  - uid: Reportman.Drawing.PrintOut.ProcessNoDataToPrint
+    name: ProcessNoDataToPrint
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.PrintOut.ProcessNoDataToPrint
+    name: ProcessNoDataToPrint
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.GetBitmapInfo*
+  commentId: Overload:Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.GetBitmapInfo
+  isExternal: true
+  href: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.html#Reportman_Drawing_CrossPlatform_PrintOutPDFFreeType_GetBitmapInfo_System_IO_Stream_
+  name: GetBitmapInfo
+  nameWithType: PrintOutPDFFreeType.GetBitmapInfo
+  fullName: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.GetBitmapInfo
+- uid: Reportman.Drawing.IBitmapInfoProvider.GetBitmapInfo(System.IO.Stream)
+  commentId: M:Reportman.Drawing.IBitmapInfoProvider.GetBitmapInfo(System.IO.Stream)
+  parent: Reportman.Drawing.IBitmapInfoProvider
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IBitmapInfoProvider.cs
+  name: GetBitmapInfo(Stream)
+  nameWithType: IBitmapInfoProvider.GetBitmapInfo(Stream)
+  fullName: Reportman.Drawing.IBitmapInfoProvider.GetBitmapInfo(System.IO.Stream)
+  spec.csharp:
+  - uid: Reportman.Drawing.IBitmapInfoProvider.GetBitmapInfo(System.IO.Stream)
+    name: GetBitmapInfo
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IBitmapInfoProvider.cs
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.IBitmapInfoProvider.GetBitmapInfo(System.IO.Stream)
+    name: GetBitmapInfo
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IBitmapInfoProvider.cs
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: )
+- uid: System.IO.Stream
+  commentId: T:System.IO.Stream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  name: Stream
+  nameWithType: Stream
+  fullName: System.IO.Stream
+- uid: Reportman.Drawing.BitmapInfo
+  commentId: T:Reportman.Drawing.BitmapInfo
+  parent: Reportman.Drawing
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IBitmapInfoProvider.cs
+  name: BitmapInfo
+  nameWithType: BitmapInfo
+  fullName: Reportman.Drawing.BitmapInfo
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+- uid: Reportman.Drawing.PrintOutPDFBase.GetBitmapInfoProvider
+  commentId: M:Reportman.Drawing.PrintOutPDFBase.GetBitmapInfoProvider
+  parent: Reportman.Drawing.PrintOutPDFBase
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  name: GetBitmapInfoProvider()
+  nameWithType: PrintOutPDFBase.GetBitmapInfoProvider()
+  fullName: Reportman.Drawing.PrintOutPDFBase.GetBitmapInfoProvider()
+  spec.csharp:
+  - uid: Reportman.Drawing.PrintOutPDFBase.GetBitmapInfoProvider
+    name: GetBitmapInfoProvider
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.PrintOutPDFBase.GetBitmapInfoProvider
+    name: GetBitmapInfoProvider
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - name: )
+- uid: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.GetBitmapInfoProvider*
+  commentId: Overload:Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.GetBitmapInfoProvider
+  isExternal: true
+  href: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.html#Reportman_Drawing_CrossPlatform_PrintOutPDFFreeType_GetBitmapInfoProvider
+  name: GetBitmapInfoProvider
+  nameWithType: PrintOutPDFFreeType.GetBitmapInfoProvider
+  fullName: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.GetBitmapInfoProvider
+- uid: Reportman.Drawing.PrintOutPDFBase.GetFontInfoProvider
+  commentId: M:Reportman.Drawing.PrintOutPDFBase.GetFontInfoProvider
+  parent: Reportman.Drawing.PrintOutPDFBase
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  name: GetFontInfoProvider()
+  nameWithType: PrintOutPDFBase.GetFontInfoProvider()
+  fullName: Reportman.Drawing.PrintOutPDFBase.GetFontInfoProvider()
+  spec.csharp:
+  - uid: Reportman.Drawing.PrintOutPDFBase.GetFontInfoProvider
+    name: GetFontInfoProvider
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.PrintOutPDFBase.GetFontInfoProvider
+    name: GetFontInfoProvider
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  - name: (
+  - name: )
+- uid: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.GetFontInfoProvider*
+  commentId: Overload:Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.GetFontInfoProvider
+  isExternal: true
+  href: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.html#Reportman_Drawing_CrossPlatform_PrintOutPDFFreeType_GetFontInfoProvider
+  name: GetFontInfoProvider
+  nameWithType: PrintOutPDFFreeType.GetFontInfoProvider
+  fullName: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.GetFontInfoProvider
+- uid: Reportman.Drawing.FontInfoProvider
+  commentId: T:Reportman.Drawing.FontInfoProvider
+  parent: Reportman.Drawing
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  name: FontInfoProvider
+  nameWithType: FontInfoProvider
+  fullName: Reportman.Drawing.FontInfoProvider
+- uid: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.EncodeImageStreamAsBitmapStream*
+  commentId: Overload:Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.EncodeImageStreamAsBitmapStream
+  isExternal: true
+  href: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.html#Reportman_Drawing_CrossPlatform_PrintOutPDFFreeType_EncodeImageStreamAsBitmapStream_System_IO_MemoryStream_
+  name: EncodeImageStreamAsBitmapStream
+  nameWithType: PrintOutPDFFreeType.EncodeImageStreamAsBitmapStream
+  fullName: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.EncodeImageStreamAsBitmapStream
+- uid: Reportman.Drawing.IBitmapInfoProvider.EncodeImageStreamAsBitmapStream(System.IO.MemoryStream)
+  commentId: M:Reportman.Drawing.IBitmapInfoProvider.EncodeImageStreamAsBitmapStream(System.IO.MemoryStream)
+  parent: Reportman.Drawing.IBitmapInfoProvider
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IBitmapInfoProvider.cs
+  name: EncodeImageStreamAsBitmapStream(MemoryStream)
+  nameWithType: IBitmapInfoProvider.EncodeImageStreamAsBitmapStream(MemoryStream)
+  fullName: Reportman.Drawing.IBitmapInfoProvider.EncodeImageStreamAsBitmapStream(System.IO.MemoryStream)
+  spec.csharp:
+  - uid: Reportman.Drawing.IBitmapInfoProvider.EncodeImageStreamAsBitmapStream(System.IO.MemoryStream)
+    name: EncodeImageStreamAsBitmapStream
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IBitmapInfoProvider.cs
+  - name: (
+  - uid: System.IO.MemoryStream
+    name: MemoryStream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.memorystream
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.IBitmapInfoProvider.EncodeImageStreamAsBitmapStream(System.IO.MemoryStream)
+    name: EncodeImageStreamAsBitmapStream
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IBitmapInfoProvider.cs
+  - name: (
+  - uid: System.IO.MemoryStream
+    name: MemoryStream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.memorystream
+  - name: )
+- uid: System.IO.MemoryStream
+  commentId: T:System.IO.MemoryStream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.memorystream
+  name: MemoryStream
+  nameWithType: MemoryStream
+  fullName: System.IO.MemoryStream
+- uid: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.#ctor*
+  commentId: Overload:Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.#ctor
+  isExternal: true
+  href: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.html#Reportman_Drawing_CrossPlatform_PrintOutPDFFreeType__ctor
+  name: PrintOutPDFFreeType
+  nameWithType: PrintOutPDFFreeType.PrintOutPDFFreeType
+  fullName: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.PrintOutPDFFreeType
+  nameWithType.vb: PrintOutPDFFreeType.New
+  fullName.vb: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType.New
+  name.vb: New

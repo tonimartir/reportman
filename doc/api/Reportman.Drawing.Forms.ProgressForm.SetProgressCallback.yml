@@ -16,9 +16,16 @@ items:
   nameWithType: ProgressForm.SetProgressCallback
   fullName: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback
   type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ProgressForm.Designer.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    Callback invoked when the progress dialog is created, handing the caller the
+
+    progress-reporting object so it can push progress updates.
+  example: []
   syntax:
     content: public delegate void ProgressForm.SetProgressCallback(ProgressForm.ITaskProgressShow taskProgressObject)
     parameters:
@@ -36,6 +43,8 @@ items:
   nameWithType: ProgressForm.SetProgressCallback.SetProgressCallback(object, nint)
   fullName: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.SetProgressCallback(object, nint)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ProgressForm.Designer.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -62,6 +71,8 @@ items:
   nameWithType: ProgressForm.SetProgressCallback.Invoke(ProgressForm.ITaskProgressShow)
   fullName: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.Invoke(Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ProgressForm.Designer.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -83,6 +94,8 @@ items:
   nameWithType: ProgressForm.SetProgressCallback.BeginInvoke(ProgressForm.ITaskProgressShow, AsyncCallback, object)
   fullName: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.BeginInvoke(Reportman.Drawing.Forms.ProgressForm.ITaskProgressShow, System.AsyncCallback, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ProgressForm.Designer.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -113,6 +126,8 @@ items:
   nameWithType: ProgressForm.SetProgressCallback.EndInvoke(IAsyncResult)
   fullName: Reportman.Drawing.Forms.ProgressForm.SetProgressCallback.EndInvoke(System.IAsyncResult)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ProgressForm.Designer.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

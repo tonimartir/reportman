@@ -15,9 +15,13 @@ items:
   nameWithType: QRCodeEncoder.ENCODE_MODE
   fullName: Reportman.Drawing.QRCodeEncoder.ENCODE_MODE
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/QRCodeEncoder.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Drawing
+  summary: 'Data encoding mode used to pack the QR Code payload: alphanumeric, numeric, or raw 8-bit byte.'
+  example: []
   syntax:
     content: public enum QRCodeEncoder.ENCODE_MODE
     content.vb: Public Enum QRCodeEncoder.ENCODE_MODE
@@ -32,6 +36,8 @@ items:
   nameWithType: QRCodeEncoder.ENCODE_MODE.ALPHA_NUMERIC
   fullName: Reportman.Drawing.QRCodeEncoder.ENCODE_MODE.ALPHA_NUMERIC
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/QRCodeEncoder.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Drawing
@@ -50,6 +56,8 @@ items:
   nameWithType: QRCodeEncoder.ENCODE_MODE.NUMERIC
   fullName: Reportman.Drawing.QRCodeEncoder.ENCODE_MODE.NUMERIC
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/QRCodeEncoder.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Drawing
@@ -68,6 +76,8 @@ items:
   nameWithType: QRCodeEncoder.ENCODE_MODE.BYTE
   fullName: Reportman.Drawing.QRCodeEncoder.ENCODE_MODE.BYTE
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/QRCodeEncoder.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Drawing

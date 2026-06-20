@@ -14,9 +14,16 @@ items:
   nameWithType: PopupWindow
   fullName: Reportman.Drawing.Forms.PopupWindow
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    Borderless drop-down window that hosts an arbitrary child control (here the month
+
+    calendar) by wrapping it in a ToolStripControlHost.
+  example: []
   syntax:
     content: 'public class PopupWindow : ToolStripDropDown, IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable'
     content.vb: Public Class PopupWindow Inherits ToolStripDropDown Implements IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable
@@ -536,6 +543,8 @@ items:
   nameWithType: PopupWindow.PopupWindow(Control)
   fullName: Reportman.Drawing.Forms.PopupWindow.PopupWindow(System.Windows.Forms.Control)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -560,6 +569,8 @@ items:
   nameWithType: PopupWindow.ResizeToFit()
   fullName: Reportman.Drawing.Forms.PopupWindow.ResizeToFit()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

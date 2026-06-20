@@ -33,6 +33,7 @@ items:
   - Reportman.Reporting.DataInfo.GetFieldsInfo(System.IO.Stream)
   - Reportman.Reporting.DataInfo.GoFirstMem
   - Reportman.Reporting.DataInfo.GroupUnion
+  - Reportman.Reporting.DataInfo.HubSchemaId
   - Reportman.Reporting.DataInfo.MyBaseFields
   - Reportman.Reporting.DataInfo.MyBaseFilename
   - Reportman.Reporting.DataInfo.MyBaseIndexFields
@@ -40,6 +41,8 @@ items:
   - Reportman.Reporting.DataInfo.OpenOnStart
   - Reportman.Reporting.DataInfo.ParallelUnion
   - Reportman.Reporting.DataInfo.SQL
+  - Reportman.Reporting.DataInfo.SQLExplanation
+  - Reportman.Reporting.DataInfo.SQLExplanationError
   - Reportman.Reporting.DataInfo.SQLOverride
   - Reportman.Reporting.DataInfo.UpdateParams(Reportman.Reporting.ReportDataset,System.Data.IDbCommand)
   langs:
@@ -49,13 +52,15 @@ items:
   nameWithType: DataInfo
   fullName: Reportman.Reporting.DataInfo
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
   summary: >-
     DatabaInfo stores information about a dataset, a Report have a collection
 
-    of dataset definitions. Each dataset is related to one connection (DatabaseInfo)<xref href="Reportman.Reporting.Variant?text=Report" data-throw-if-not-resolved="false"></xref><xref href="Reportman.Reporting.Variant?text=DataInfos" data-throw-if-not-resolved="false"></xref>
+    of dataset definitions. Each dataset is related to one connection (DatabaseInfo)<xref href="Reportman.Reporting.Report" data-throw-if-not-resolved="false"></xref><xref href="Reportman.Reporting.DataInfos" data-throw-if-not-resolved="false"></xref>
   example: []
   syntax:
     content: 'public class DataInfo : ReportItem, IDisposable, ICloneable'
@@ -89,6 +94,8 @@ items:
   nameWithType: DataInfo.DataReader
   fullName: Reportman.Reporting.DataInfo.DataReader
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -110,6 +117,8 @@ items:
   nameWithType: DataInfo.Data
   fullName: Reportman.Reporting.DataInfo.Data
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -131,6 +140,8 @@ items:
   nameWithType: DataInfo.Command
   fullName: Reportman.Reporting.DataInfo.Command
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -152,6 +163,8 @@ items:
   nameWithType: DataInfo.SQLOverride
   fullName: Reportman.Reporting.DataInfo.SQLOverride
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -173,6 +186,8 @@ items:
   nameWithType: DataInfo.DataViewOverride
   fullName: Reportman.Reporting.DataInfo.DataViewOverride
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -192,6 +207,8 @@ items:
   nameWithType: DataInfo.Dispose()
   fullName: Reportman.Reporting.DataInfo.Dispose()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -215,6 +232,8 @@ items:
   nameWithType: DataInfo.GetClassName()
   fullName: Reportman.Reporting.DataInfo.GetClassName()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -239,6 +258,8 @@ items:
   nameWithType: DataInfo.Clone(Report)
   fullName: Reportman.Reporting.DataInfo.Clone(Reportman.Reporting.Report)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -266,6 +287,8 @@ items:
   nameWithType: DataInfo.Clone()
   fullName: Reportman.Reporting.DataInfo.Clone()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -291,6 +314,8 @@ items:
   nameWithType: DataInfo.DataInfo()
   fullName: Reportman.Reporting.DataInfo.DataInfo()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -314,6 +339,8 @@ items:
   nameWithType: DataInfo.GetDbItem()
   fullName: Reportman.Reporting.DataInfo.GetDbItem()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -337,6 +364,8 @@ items:
   nameWithType: DataInfo.GetFieldsInfo(Stream)
   fullName: Reportman.Reporting.DataInfo.GetFieldsInfo(System.IO.Stream)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -361,6 +390,8 @@ items:
   nameWithType: DataInfo.GoFirstMem()
   fullName: Reportman.Reporting.DataInfo.GoFirstMem()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -379,6 +410,8 @@ items:
   nameWithType: DataInfo.Connect()
   fullName: Reportman.Reporting.DataInfo.Connect()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -399,6 +432,8 @@ items:
   nameWithType: DataInfo.UpdateParams(ReportDataset, IDbCommand)
   fullName: Reportman.Reporting.DataInfo.UpdateParams(Reportman.Reporting.ReportDataset, System.Data.IDbCommand)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -432,6 +467,8 @@ items:
   nameWithType: DataInfo.DisConnect()
   fullName: Reportman.Reporting.DataInfo.DisConnect()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -452,6 +489,8 @@ items:
   nameWithType: DataInfo.DisConnectMem()
   fullName: Reportman.Reporting.DataInfo.DisConnectMem()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -470,6 +509,8 @@ items:
   nameWithType: DataInfo.Alias
   fullName: Reportman.Reporting.DataInfo.Alias
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -493,6 +534,8 @@ items:
   nameWithType: DataInfo.DatabaseAlias
   fullName: Reportman.Reporting.DataInfo.DatabaseAlias
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -516,6 +559,8 @@ items:
   nameWithType: DataInfo.SQL
   fullName: Reportman.Reporting.DataInfo.SQL
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -528,6 +573,75 @@ items:
       type: System.String
     content.vb: Public Property SQL As String
   overload: Reportman.Reporting.DataInfo.SQL*
+- uid: Reportman.Reporting.DataInfo.SQLExplanation
+  commentId: P:Reportman.Reporting.DataInfo.SQLExplanation
+  id: SQLExplanation
+  parent: Reportman.Reporting.DataInfo
+  langs:
+  - csharp
+  - vb
+  name: SQLExplanation
+  nameWithType: DataInfo.SQLExplanation
+  fullName: Reportman.Reporting.DataInfo.SQLExplanation
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public string SQLExplanation { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property SQLExplanation As String
+  overload: Reportman.Reporting.DataInfo.SQLExplanation*
+- uid: Reportman.Reporting.DataInfo.SQLExplanationError
+  commentId: P:Reportman.Reporting.DataInfo.SQLExplanationError
+  id: SQLExplanationError
+  parent: Reportman.Reporting.DataInfo
+  langs:
+  - csharp
+  - vb
+  name: SQLExplanationError
+  nameWithType: DataInfo.SQLExplanationError
+  fullName: Reportman.Reporting.DataInfo.SQLExplanationError
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public string SQLExplanationError { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property SQLExplanationError As String
+  overload: Reportman.Reporting.DataInfo.SQLExplanationError*
+- uid: Reportman.Reporting.DataInfo.HubSchemaId
+  commentId: P:Reportman.Reporting.DataInfo.HubSchemaId
+  id: HubSchemaId
+  parent: Reportman.Reporting.DataInfo
+  langs:
+  - csharp
+  - vb
+  name: HubSchemaId
+  nameWithType: DataInfo.HubSchemaId
+  fullName: Reportman.Reporting.DataInfo.HubSchemaId
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public long HubSchemaId { get; set; }
+    parameters: []
+    return:
+      type: System.Int64
+    content.vb: Public Property HubSchemaId As Long
+  overload: Reportman.Reporting.DataInfo.HubSchemaId*
 - uid: Reportman.Reporting.DataInfo.DataSource
   commentId: P:Reportman.Reporting.DataInfo.DataSource
   id: DataSource
@@ -539,6 +653,8 @@ items:
   nameWithType: DataInfo.DataSource
   fullName: Reportman.Reporting.DataInfo.DataSource
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -564,6 +680,8 @@ items:
   nameWithType: DataInfo.MyBaseFilename
   fullName: Reportman.Reporting.DataInfo.MyBaseFilename
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -587,6 +705,8 @@ items:
   nameWithType: DataInfo.MyBaseFields
   fullName: Reportman.Reporting.DataInfo.MyBaseFields
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -610,6 +730,8 @@ items:
   nameWithType: DataInfo.MyBaseIndexFields
   fullName: Reportman.Reporting.DataInfo.MyBaseIndexFields
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -633,6 +755,8 @@ items:
   nameWithType: DataInfo.MyBaseMasterFields
   fullName: Reportman.Reporting.DataInfo.MyBaseMasterFields
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -656,6 +780,8 @@ items:
   nameWithType: DataInfo.BDEIndexFields
   fullName: Reportman.Reporting.DataInfo.BDEIndexFields
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -679,6 +805,8 @@ items:
   nameWithType: DataInfo.BDEIndexName
   fullName: Reportman.Reporting.DataInfo.BDEIndexName
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -702,6 +830,8 @@ items:
   nameWithType: DataInfo.BDETable
   fullName: Reportman.Reporting.DataInfo.BDETable
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -725,6 +855,8 @@ items:
   nameWithType: DataInfo.BDEType
   fullName: Reportman.Reporting.DataInfo.BDEType
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -748,6 +880,8 @@ items:
   nameWithType: DataInfo.BDEFilter
   fullName: Reportman.Reporting.DataInfo.BDEFilter
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -771,6 +905,8 @@ items:
   nameWithType: DataInfo.BDEMasterFields
   fullName: Reportman.Reporting.DataInfo.BDEMasterFields
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -794,6 +930,8 @@ items:
   nameWithType: DataInfo.BDEFirstRange
   fullName: Reportman.Reporting.DataInfo.BDEFirstRange
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -817,6 +955,8 @@ items:
   nameWithType: DataInfo.BDELastRange
   fullName: Reportman.Reporting.DataInfo.BDELastRange
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -840,6 +980,8 @@ items:
   nameWithType: DataInfo.DataUnions
   fullName: Reportman.Reporting.DataInfo.DataUnions
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -863,6 +1005,8 @@ items:
   nameWithType: DataInfo.GroupUnion
   fullName: Reportman.Reporting.DataInfo.GroupUnion
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -886,6 +1030,8 @@ items:
   nameWithType: DataInfo.ParallelUnion
   fullName: Reportman.Reporting.DataInfo.ParallelUnion
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -909,6 +1055,8 @@ items:
   nameWithType: DataInfo.OpenOnStart
   fullName: Reportman.Reporting.DataInfo.OpenOnStart
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DataInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -922,14 +1070,22 @@ items:
     content.vb: Public Property OpenOnStart As Boolean
   overload: Reportman.Reporting.DataInfo.OpenOnStart*
 references:
-- uid: Reportman.Reporting.Variant
-  commentId: T:Reportman.Reporting.Variant
+- uid: Reportman.Reporting.Report
+  commentId: T:Reportman.Reporting.Report
   parent: Reportman.Reporting
   isExternal: true
-  href: Reportman.Reporting.Variant.html
-  name: Variant
-  nameWithType: Variant
-  fullName: Reportman.Reporting.Variant
+  href: Reportman.Reporting.Report.html
+  name: Report
+  nameWithType: Report
+  fullName: Reportman.Reporting.Report
+- uid: Reportman.Reporting.DataInfos
+  commentId: T:Reportman.Reporting.DataInfos
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.DataInfos.html
+  name: DataInfos
+  nameWithType: DataInfos
+  fullName: Reportman.Reporting.DataInfos
 - uid: Reportman.Reporting
   commentId: N:Reportman.Reporting
   isExternal: true
@@ -1429,14 +1585,6 @@ references:
   name: Clone
   nameWithType: DataInfo.Clone
   fullName: Reportman.Reporting.DataInfo.Clone
-- uid: Reportman.Reporting.Report
-  commentId: T:Reportman.Reporting.Report
-  parent: Reportman.Reporting
-  isExternal: true
-  href: Reportman.Reporting.Report.html
-  name: Report
-  nameWithType: Report
-  fullName: Reportman.Reporting.Report
 - uid: Reportman.Reporting.DataInfo
   commentId: T:Reportman.Reporting.DataInfo
   parent: Reportman.Reporting
@@ -1601,6 +1749,38 @@ references:
   name: SQL
   nameWithType: DataInfo.SQL
   fullName: Reportman.Reporting.DataInfo.SQL
+- uid: Reportman.Reporting.DataInfo.SQLExplanation*
+  commentId: Overload:Reportman.Reporting.DataInfo.SQLExplanation
+  isExternal: true
+  href: Reportman.Reporting.DataInfo.html#Reportman_Reporting_DataInfo_SQLExplanation
+  name: SQLExplanation
+  nameWithType: DataInfo.SQLExplanation
+  fullName: Reportman.Reporting.DataInfo.SQLExplanation
+- uid: Reportman.Reporting.DataInfo.SQLExplanationError*
+  commentId: Overload:Reportman.Reporting.DataInfo.SQLExplanationError
+  isExternal: true
+  href: Reportman.Reporting.DataInfo.html#Reportman_Reporting_DataInfo_SQLExplanationError
+  name: SQLExplanationError
+  nameWithType: DataInfo.SQLExplanationError
+  fullName: Reportman.Reporting.DataInfo.SQLExplanationError
+- uid: Reportman.Reporting.DataInfo.HubSchemaId*
+  commentId: Overload:Reportman.Reporting.DataInfo.HubSchemaId
+  isExternal: true
+  href: Reportman.Reporting.DataInfo.html#Reportman_Reporting_DataInfo_HubSchemaId
+  name: HubSchemaId
+  nameWithType: DataInfo.HubSchemaId
+  fullName: Reportman.Reporting.DataInfo.HubSchemaId
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
 - uid: Reportman.Reporting.DataInfo.DataSource*
   commentId: Overload:Reportman.Reporting.DataInfo.DataSource
   isExternal: true
@@ -1711,7 +1891,7 @@ references:
   commentId: T:Reportman.Drawing.Strings
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.Strings.html
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Strings.cs
   name: Strings
   nameWithType: Strings
   fullName: Reportman.Drawing.Strings

@@ -7,8 +7,16 @@ using System.Reflection;
 
 namespace Reportman.Drawing
 {
+    /// <summary>
+    /// Callback invoked during a file-copy/update operation to report progress for the current file
+    /// and allow the handler to request cancellation via the <c>docancel</c> reference parameter.
+    /// </summary>
     public delegate void CopyProgress(string filename, int file,
      int filecount, int position, int size, ref bool docancel);
+    /// <summary>
+    /// Helper for reading assembly and file version numbers and deciding whether one version
+    /// supersedes another, used to determine when files require upgrading.
+    /// </summary>
     public class VersionInfo
     {
 #if PocketPC
@@ -66,6 +74,10 @@ namespace Reportman.Drawing
             return VersionInfo.RequireUpgrade(oldversion, newversion);
         }
     }
+    /// <summary>
+    /// Applies file updates to a target directory, scanning source folders, detecting modified files
+    /// by hash or timestamp, optionally backing up existing files and reporting progress as content is written.
+    /// </summary>
     public class Updater
     {
         string FFilePath;

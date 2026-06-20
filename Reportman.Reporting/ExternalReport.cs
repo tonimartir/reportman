@@ -3,6 +3,11 @@ using System.IO;
 
 namespace Reportman.Reporting
 {
+    /// <summary>
+    /// Helper operations for moving subreports between report documents: exporting a single
+    /// subreport (with its related datasets and parameters) to a stream, deleting a subreport
+    /// and its dependencies, and importing the contents of one report into another.
+    /// </summary>
     public class ExternalReport
     {
         public static void ExportSubReport(SubReport subreport, System.IO.Stream destination, StreamVersion version = StreamVersion.V2)

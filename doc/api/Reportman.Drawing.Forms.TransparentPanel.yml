@@ -14,9 +14,16 @@ items:
   nameWithType: TransparentPanel
   fullName: Reportman.Drawing.Forms.TransparentPanel
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    A panel that paints its background as a semi-transparent dark overlay, used to dim
+
+    the area behind it.
+  example: []
   syntax:
     content: 'public class TransparentPanel : Panel, IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable'
     content.vb: Public Class TransparentPanel Inherits Panel Implements IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable
@@ -457,6 +464,8 @@ items:
   nameWithType: TransparentPanel.TransparentPanel()
   fullName: Reportman.Drawing.Forms.TransparentPanel.TransparentPanel()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -478,6 +487,8 @@ items:
   nameWithType: TransparentPanel.OnPaintBackground(PaintEventArgs)
   fullName: Reportman.Drawing.Forms.TransparentPanel.OnPaintBackground(System.Windows.Forms.PaintEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

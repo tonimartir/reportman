@@ -14,9 +14,16 @@ items:
   nameWithType: ColorHelper
   fullName: Reportman.Drawing.Forms.ColorHelper
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    Static color utilities for the tab control, deriving the IDE-style tab background
+
+    color from a given base control color (with special cases for Classic and XP themes).
+  example: []
   syntax:
     content: public class ColorHelper
     content.vb: Public Class ColorHelper
@@ -41,6 +48,8 @@ items:
   nameWithType: ColorHelper.TabBackgroundFromBaseColor(Color)
   fullName: Reportman.Drawing.Forms.ColorHelper.TabBackgroundFromBaseColor(System.Drawing.Color)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -64,6 +73,8 @@ items:
   nameWithType: ColorHelper.ColorHelper()
   fullName: Reportman.Drawing.Forms.ColorHelper.ColorHelper()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

@@ -15,6 +15,8 @@ items:
   nameWithType: PageSizeType
   fullName: Reportman.Reporting.PageSizeType
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -34,6 +36,8 @@ items:
   nameWithType: PageSizeType.Default
   fullName: Reportman.Reporting.PageSizeType.Default
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -54,6 +58,8 @@ items:
   nameWithType: PageSizeType.Custom
   fullName: Reportman.Reporting.PageSizeType.Custom
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -74,6 +80,8 @@ items:
   nameWithType: PageSizeType.User
   fullName: Reportman.Reporting.PageSizeType.User
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

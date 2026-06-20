@@ -16,9 +16,13 @@ items:
   nameWithType: ReportDataset.UpdateDataEventAsync
   fullName: Reportman.Reporting.ReportDataset.UpdateDataEventAsync
   type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
+  summary: Asynchronous callback invoked when a record is fetched, receiving the raw column values and target table for deferred processing.
+  example: []
   syntax:
     content: public delegate Task ReportDataset.UpdateDataEventAsync(object sender, DataRow xrow, object[] values, DataTable newtable)
     parameters:
@@ -44,6 +48,8 @@ items:
   nameWithType: ReportDataset.UpdateDataEventAsync.UpdateDataEventAsync(object, nint)
   fullName: Reportman.Reporting.ReportDataset.UpdateDataEventAsync.UpdateDataEventAsync(object, nint)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -70,6 +76,8 @@ items:
   nameWithType: ReportDataset.UpdateDataEventAsync.Invoke(object, DataRow, object[], DataTable)
   fullName: Reportman.Reporting.ReportDataset.UpdateDataEventAsync.Invoke(object, System.Data.DataRow, object[], System.Data.DataTable)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -102,6 +110,8 @@ items:
   nameWithType: ReportDataset.UpdateDataEventAsync.BeginInvoke(object, DataRow, object[], DataTable, AsyncCallback, object)
   fullName: Reportman.Reporting.ReportDataset.UpdateDataEventAsync.BeginInvoke(object, System.Data.DataRow, object[], System.Data.DataTable, System.AsyncCallback, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -138,6 +148,8 @@ items:
   nameWithType: ReportDataset.UpdateDataEventAsync.EndInvoke(IAsyncResult)
   fullName: Reportman.Reporting.ReportDataset.UpdateDataEventAsync.EndInvoke(System.IAsyncResult)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

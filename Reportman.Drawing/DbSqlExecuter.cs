@@ -7,6 +7,12 @@ using System.Data.Common;
 namespace Reportman.Drawing
 {
 
+    /// <summary>
+    /// ADO.NET-based <see cref="ISqlExecuter"/> implementation that queues SQL open/execute
+    /// and transaction operations and runs them against a generic <see cref="DbConnection"/>
+    /// (via a <see cref="DbProviderFactory"/>) when flushed, with support for parameterized
+    /// commands, insert blocks and partial (chunked) result-set filling.
+    /// </summary>
     public class DbSqlExecuter : ISqlExecuter
     {
         enum SQType { Execute, Open, StartTransaction, Commit, Rollback };

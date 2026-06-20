@@ -4,6 +4,10 @@ using System.Windows.Forms;
 
 namespace Reportman.Drawing.Forms
 {
+    /// <summary>
+    /// A simple modal dialog that prompts the user for a single value, either free text or a
+    /// date, returning the entered value through its static Execute helpers.
+    /// </summary>
     public partial class InputBox : Form
     {
         private bool dook;

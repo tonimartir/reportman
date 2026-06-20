@@ -16,9 +16,16 @@ items:
   nameWithType: CollectionChange
   fullName: Reportman.Drawing.Forms.CollectionChange
   type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    Callback signaling that an item is being or has been inserted or removed,
+
+    supplying the affected index and value.
+  example: []
   syntax:
     content: public delegate void CollectionChange(int index, object value)
     parameters:
@@ -38,6 +45,8 @@ items:
   nameWithType: CollectionChange.CollectionChange(object, nint)
   fullName: Reportman.Drawing.Forms.CollectionChange.CollectionChange(object, nint)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -64,6 +73,8 @@ items:
   nameWithType: CollectionChange.Invoke(int, object)
   fullName: Reportman.Drawing.Forms.CollectionChange.Invoke(int, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -90,6 +101,8 @@ items:
   nameWithType: CollectionChange.BeginInvoke(int, object, AsyncCallback, object)
   fullName: Reportman.Drawing.Forms.CollectionChange.BeginInvoke(int, object, System.AsyncCallback, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -122,6 +135,8 @@ items:
   nameWithType: CollectionChange.EndInvoke(IAsyncResult)
   fullName: Reportman.Drawing.Forms.CollectionChange.EndInvoke(System.IAsyncResult)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

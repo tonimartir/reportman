@@ -13,6 +13,8 @@ items:
   nameWithType: Variants
   fullName: Reportman.Reporting.Variants
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -103,6 +105,8 @@ items:
   nameWithType: Variants.Variants()
   fullName: Reportman.Reporting.Variants.Variants()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

@@ -11,6 +11,10 @@ using static ICSharpCode.SharpZipLib.Zip.ExtendedUnixData;
 
 namespace Reportman.Drawing.Windows
 {
+    /// <summary>
+    /// Windows GDI+ graphics utilities for the report engine: DPI scaling, grid drawing, text measurement,
+    /// font-style conversions, metafile/bitmap rendering and image codec, scaling and format helpers.
+    /// </summary>
     public class GraphicUtils
     {
         private static object flag = 2;

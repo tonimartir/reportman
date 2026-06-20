@@ -16,9 +16,16 @@ items:
   nameWithType: CancelEvent
   fullName: Reportman.Drawing.Forms.CancelEvent
   type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    Callback for tab page events that may be cancelled, supplying <xref href="Reportman.Drawing.Forms.CancelArgs" data-throw-if-not-resolved="false"></xref>
+
+    whose <code>Cancel</code> flag the handler can set to stop the action.
+  example: []
   syntax:
     content: public delegate void CancelEvent(object sender, CancelArgs args)
     parameters:
@@ -38,6 +45,8 @@ items:
   nameWithType: CancelEvent.CancelEvent(object, nint)
   fullName: Reportman.Drawing.Forms.CancelEvent.CancelEvent(object, nint)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -64,6 +73,8 @@ items:
   nameWithType: CancelEvent.Invoke(object, CancelArgs)
   fullName: Reportman.Drawing.Forms.CancelEvent.Invoke(object, Reportman.Drawing.Forms.CancelArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -90,6 +101,8 @@ items:
   nameWithType: CancelEvent.BeginInvoke(object, CancelArgs, AsyncCallback, object)
   fullName: Reportman.Drawing.Forms.CancelEvent.BeginInvoke(object, Reportman.Drawing.Forms.CancelArgs, System.AsyncCallback, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -122,6 +135,8 @@ items:
   nameWithType: CancelEvent.EndInvoke(IAsyncResult)
   fullName: Reportman.Drawing.Forms.CancelEvent.EndInvoke(System.IAsyncResult)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -133,6 +148,14 @@ items:
     content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
   overload: Reportman.Drawing.Forms.CancelEvent.EndInvoke*
 references:
+- uid: Reportman.Drawing.Forms.CancelArgs
+  commentId: T:Reportman.Drawing.Forms.CancelArgs
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.CancelArgs.html
+  name: CancelArgs
+  nameWithType: CancelArgs
+  fullName: Reportman.Drawing.Forms.CancelArgs
 - uid: Reportman.Drawing.Forms
   commentId: N:Reportman.Drawing.Forms
   isExternal: true
@@ -181,14 +204,6 @@ references:
   nameWithType.vb: Object
   fullName.vb: Object
   name.vb: Object
-- uid: Reportman.Drawing.Forms.CancelArgs
-  commentId: T:Reportman.Drawing.Forms.CancelArgs
-  parent: Reportman.Drawing.Forms
-  isExternal: true
-  href: Reportman.Drawing.Forms.CancelArgs.html
-  name: CancelArgs
-  nameWithType: CancelArgs
-  fullName: Reportman.Drawing.Forms.CancelArgs
 - uid: System
   commentId: N:System
   isExternal: true

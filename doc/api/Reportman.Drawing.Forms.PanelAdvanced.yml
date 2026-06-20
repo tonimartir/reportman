@@ -14,9 +14,16 @@ items:
   nameWithType: PanelAdvanced
   fullName: Reportman.Drawing.Forms.PanelAdvanced
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    A panel that defers its size-changed handling to the UI thread via BeginInvoke,
+
+    avoiding reentrancy issues during layout on Windows.
+  example: []
   syntax:
     content: 'public class PanelAdvanced : Panel, IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable'
     content.vb: Public Class PanelAdvanced Inherits Panel Implements IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable
@@ -459,6 +466,8 @@ items:
   nameWithType: PanelAdvanced.OnSizeChanged(EventArgs)
   fullName: Reportman.Drawing.Forms.PanelAdvanced.OnSizeChanged(System.EventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -482,6 +491,8 @@ items:
   nameWithType: PanelAdvanced.PanelAdvanced()
   fullName: Reportman.Drawing.Forms.PanelAdvanced.PanelAdvanced()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

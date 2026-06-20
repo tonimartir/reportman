@@ -26,6 +26,8 @@ items:
   nameWithType: DoubleUtil
   fullName: Reportman.Drawing.DoubleUtil
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DoubleUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -55,6 +57,8 @@ items:
   nameWithType: DoubleUtil.IsNumeric(string, NumberStyles)
   fullName: Reportman.Drawing.DoubleUtil.IsNumeric(string, System.Globalization.NumberStyles)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DoubleUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -88,6 +92,8 @@ items:
   nameWithType: DoubleUtil.IsNumericType(object)
   fullName: Reportman.Drawing.DoubleUtil.IsNumericType(object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DoubleUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -114,6 +120,8 @@ items:
   nameWithType: DoubleUtil.Truncate(decimal)
   fullName: Reportman.Drawing.DoubleUtil.Truncate(decimal)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DoubleUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -144,6 +152,8 @@ items:
   nameWithType: DoubleUtil.StandardDeviation(IEnumerable<double>)
   fullName: Reportman.Drawing.DoubleUtil.StandardDeviation(System.Collections.Generic.IEnumerable<double>)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DoubleUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -174,6 +184,8 @@ items:
   nameWithType: DoubleUtil.FormatCurrAdv(string, double)
   fullName: Reportman.Drawing.DoubleUtil.FormatCurrAdv(string, double)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DoubleUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -204,6 +216,8 @@ items:
   nameWithType: DoubleUtil.FormatStringDecimals(int)
   fullName: Reportman.Drawing.DoubleUtil.FormatStringDecimals(int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DoubleUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -234,6 +248,8 @@ items:
   nameWithType: DoubleUtil.Frac(decimal)
   fullName: Reportman.Drawing.DoubleUtil.Frac(decimal)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DoubleUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -264,6 +280,8 @@ items:
   nameWithType: DoubleUtil.Trunc(decimal)
   fullName: Reportman.Drawing.DoubleUtil.Trunc(decimal)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DoubleUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -294,6 +312,8 @@ items:
   nameWithType: DoubleUtil.RoundDecimalUp(decimal, decimal)
   fullName: Reportman.Drawing.DoubleUtil.RoundDecimalUp(decimal, decimal)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DoubleUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -324,6 +344,8 @@ items:
   nameWithType: DoubleUtil.CompareValue(decimal, decimal, decimal)
   fullName: Reportman.Drawing.DoubleUtil.CompareValue(decimal, decimal, decimal)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DoubleUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -356,6 +378,8 @@ items:
   nameWithType: DoubleUtil.NumberToText(decimal, bool, int)
   fullName: Reportman.Drawing.DoubleUtil.NumberToText(decimal, bool, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DoubleUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -388,6 +412,8 @@ items:
   nameWithType: DoubleUtil.DecimalToSqlLiteral(decimal)
   fullName: Reportman.Drawing.DoubleUtil.DecimalToSqlLiteral(decimal)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DoubleUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -418,6 +444,8 @@ items:
   nameWithType: DoubleUtil.DoubleToSqlLiteral(double)
   fullName: Reportman.Drawing.DoubleUtil.DoubleToSqlLiteral(double)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DoubleUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -448,6 +476,8 @@ items:
   nameWithType: DoubleUtil.DoubleUtil()
   fullName: Reportman.Drawing.DoubleUtil.DoubleUtil()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DoubleUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

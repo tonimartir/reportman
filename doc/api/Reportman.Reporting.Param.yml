@@ -45,9 +45,18 @@ items:
   nameWithType: Param
   fullName: Reportman.Reporting.Param
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
+  summary: >-
+    A report parameter prompted from the user, carrying its typed value, localized
+
+    descriptions/hints/error messages, validation rule and optional list, lookup or
+
+    search dataset that supplies selectable values.
+  example: []
   syntax:
     content: 'public class Param : ReportItem, IDisposable, ICloneable'
     content.vb: Public Class Param Inherits ReportItem Implements IDisposable, ICloneable
@@ -81,6 +90,8 @@ items:
   nameWithType: Param.ParamType
   fullName: Reportman.Reporting.Param.ParamType
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -100,6 +111,8 @@ items:
   nameWithType: Param.Alias
   fullName: Reportman.Reporting.Param.Alias
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -119,14 +132,28 @@ items:
   nameWithType: Param.Descriptions
   fullName: Reportman.Reporting.Param.Descriptions
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
   syntax:
-    content: public string Descriptions
+    content: >-
+      [JsonConverter(typeof(NewlineDelimitedStringConverter))]
+
+      public string Descriptions
     return:
       type: System.String
-    content.vb: Public Descriptions As String
+    content.vb: >-
+      <JsonConverter(GetType(NewlineDelimitedStringConverter))>
+
+      Public Descriptions As String
+  attributes:
+  - type: Newtonsoft.Json.JsonConverterAttribute
+    ctor: Newtonsoft.Json.JsonConverterAttribute.#ctor(System.Type)
+    arguments:
+    - type: System.Type
+      value: NewlineDelimitedStringConverter
 - uid: Reportman.Reporting.Param.Hints
   commentId: F:Reportman.Reporting.Param.Hints
   id: Hints
@@ -138,14 +165,28 @@ items:
   nameWithType: Param.Hints
   fullName: Reportman.Reporting.Param.Hints
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
   syntax:
-    content: public string Hints
+    content: >-
+      [JsonConverter(typeof(NewlineDelimitedStringConverter))]
+
+      public string Hints
     return:
       type: System.String
-    content.vb: Public Hints As String
+    content.vb: >-
+      <JsonConverter(GetType(NewlineDelimitedStringConverter))>
+
+      Public Hints As String
+  attributes:
+  - type: Newtonsoft.Json.JsonConverterAttribute
+    ctor: Newtonsoft.Json.JsonConverterAttribute.#ctor(System.Type)
+    arguments:
+    - type: System.Type
+      value: NewlineDelimitedStringConverter
 - uid: Reportman.Reporting.Param.ErrorMessages
   commentId: F:Reportman.Reporting.Param.ErrorMessages
   id: ErrorMessages
@@ -157,14 +198,28 @@ items:
   nameWithType: Param.ErrorMessages
   fullName: Reportman.Reporting.Param.ErrorMessages
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
   syntax:
-    content: public string ErrorMessages
+    content: >-
+      [JsonConverter(typeof(NewlineDelimitedStringConverter))]
+
+      public string ErrorMessages
     return:
       type: System.String
-    content.vb: Public ErrorMessages As String
+    content.vb: >-
+      <JsonConverter(GetType(NewlineDelimitedStringConverter))>
+
+      Public ErrorMessages As String
+  attributes:
+  - type: Newtonsoft.Json.JsonConverterAttribute
+    ctor: Newtonsoft.Json.JsonConverterAttribute.#ctor(System.Type)
+    arguments:
+    - type: System.Type
+      value: NewlineDelimitedStringConverter
 - uid: Reportman.Reporting.Param.Validation
   commentId: F:Reportman.Reporting.Param.Validation
   id: Validation
@@ -176,6 +231,8 @@ items:
   nameWithType: Param.Validation
   fullName: Reportman.Reporting.Param.Validation
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -195,6 +252,8 @@ items:
   nameWithType: Param.LookupDataset
   fullName: Reportman.Reporting.Param.LookupDataset
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -214,6 +273,8 @@ items:
   nameWithType: Param.SearchDataset
   fullName: Reportman.Reporting.Param.SearchDataset
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -233,6 +294,8 @@ items:
   nameWithType: Param.Search
   fullName: Reportman.Reporting.Param.Search
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -252,6 +315,8 @@ items:
   nameWithType: Param.SearchParam
   fullName: Reportman.Reporting.Param.SearchParam
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -271,6 +336,8 @@ items:
   nameWithType: Param.Items
   fullName: Reportman.Reporting.Param.Items
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -290,6 +357,8 @@ items:
   nameWithType: Param.Values
   fullName: Reportman.Reporting.Param.Values
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -309,6 +378,8 @@ items:
   nameWithType: Param.Selected
   fullName: Reportman.Reporting.Param.Selected
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -328,6 +399,8 @@ items:
   nameWithType: Param.Datasets
   fullName: Reportman.Reporting.Param.Datasets
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -347,6 +420,8 @@ items:
   nameWithType: Param.Visible
   fullName: Reportman.Reporting.Param.Visible
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -366,6 +441,8 @@ items:
   nameWithType: Param.IsReadOnly
   fullName: Reportman.Reporting.Param.IsReadOnly
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -385,6 +462,8 @@ items:
   nameWithType: Param.NeverVisible
   fullName: Reportman.Reporting.Param.NeverVisible
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -404,6 +483,8 @@ items:
   nameWithType: Param.AllowNulls
   fullName: Reportman.Reporting.Param.AllowNulls
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -423,6 +504,8 @@ items:
   nameWithType: Param.GetClassName()
   fullName: Reportman.Reporting.Param.GetClassName()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -447,6 +530,8 @@ items:
   nameWithType: Param.Param()
   fullName: Reportman.Reporting.Param.Param()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -468,6 +553,8 @@ items:
   nameWithType: Param.GetDbType()
   fullName: Reportman.Reporting.Param.GetDbType()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -488,6 +575,8 @@ items:
   nameWithType: Param.GetSubExpreValue()
   fullName: Reportman.Reporting.Param.GetSubExpreValue()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -508,6 +597,8 @@ items:
   nameWithType: Param.GetMultiValue()
   fullName: Reportman.Reporting.Param.GetMultiValue()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -528,6 +619,8 @@ items:
   nameWithType: Param.Clone()
   fullName: Reportman.Reporting.Param.Clone()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -551,6 +644,8 @@ items:
   nameWithType: Param.SelectAllValues()
   fullName: Reportman.Reporting.Param.SelectAllValues()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -569,6 +664,8 @@ items:
   nameWithType: Param.UpdateLookupValues()
   fullName: Reportman.Reporting.Param.UpdateLookupValues()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -587,6 +684,8 @@ items:
   nameWithType: Param.Value
   fullName: Reportman.Reporting.Param.Value
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -608,6 +707,8 @@ items:
   nameWithType: Param.Description
   fullName: Reportman.Reporting.Param.Description
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -629,6 +730,8 @@ items:
   nameWithType: Param.UserVisible
   fullName: Reportman.Reporting.Param.UserVisible
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -650,6 +753,8 @@ items:
   nameWithType: Param.Hint
   fullName: Reportman.Reporting.Param.Hint
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -671,6 +776,8 @@ items:
   nameWithType: Param.ErrorMessage
   fullName: Reportman.Reporting.Param.ErrorMessage
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -692,6 +799,8 @@ items:
   nameWithType: Param.LastValue
   fullName: Reportman.Reporting.Param.LastValue
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -713,6 +822,8 @@ items:
   nameWithType: Param.ListValue
   fullName: Reportman.Reporting.Param.ListValue
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1111,7 +1222,7 @@ references:
   commentId: T:Reportman.Drawing.Strings
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.Strings.html
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Strings.cs
   name: Strings
   nameWithType: Strings
   fullName: Reportman.Drawing.Strings

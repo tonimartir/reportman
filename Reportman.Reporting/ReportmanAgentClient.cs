@@ -11,6 +11,11 @@ using System.Threading.Tasks;
 
 namespace Reportman.Reporting
 {
+    /// <summary>
+    /// HTTP client for the Reportman AI agent service (api.reportman.es) that streams AI authoring
+    /// requests — SQL suggestion/translation, expression suggestion, and report modification — over
+    /// server-sent events, reporting incremental progress and returning the final JSON result.
+    /// </summary>
     public class ReportmanAgentClient
     {
     #if DEBUG
@@ -55,7 +60,15 @@ namespace Reportman.Reporting
 
         public event Action<string> LogMessage;
 
+        /// <summary>
+        /// Callback raised for each streamed progress event from the agent, carrying the actor, stage,
+        /// chunk type and content, token counts, progress identifier, and prefill percentage.
+        /// </summary>
         public delegate void ProgressEventHandler(object sender, string actor, string stage, string chunkType, string chunk, int inputTokens, int outputTokens, string progressId, int prefillPercent);
+        /// <summary>
+        /// Callback raised when an agent request completes, delivering the final result JSON document
+        /// or an error message if the request failed.
+        /// </summary>
         public delegate void ResultEventHandler(object sender, JsonDocument resultJson, string errorMessage);
 
         private void Log(string message)

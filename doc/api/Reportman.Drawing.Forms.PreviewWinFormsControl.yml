@@ -41,6 +41,8 @@ items:
   nameWithType: PreviewWinFormsControl
   fullName: Reportman.Drawing.Forms.PreviewWinFormsControl
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewWinFormsControl.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -505,6 +507,8 @@ items:
   nameWithType: PreviewWinFormsControl.ShowInTaskbar
   fullName: Reportman.Drawing.Forms.PreviewWinFormsControl.ShowInTaskbar
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewWinFormsControl.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -524,6 +528,8 @@ items:
   nameWithType: PreviewWinFormsControl.WindowMode
   fullName: Reportman.Drawing.Forms.PreviewWinFormsControl.WindowMode
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewWinFormsControl.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -543,6 +549,8 @@ items:
   nameWithType: PreviewWinFormsControl.OnClose
   fullName: Reportman.Drawing.Forms.PreviewWinFormsControl.OnClose
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewWinFormsControl.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -562,6 +570,8 @@ items:
   nameWithType: PreviewWinFormsControl.bsfirst
   fullName: Reportman.Drawing.Forms.PreviewWinFormsControl.bsfirst
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewWinFormsControl.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -581,6 +591,8 @@ items:
   nameWithType: PreviewWinFormsControl.bsprior
   fullName: Reportman.Drawing.Forms.PreviewWinFormsControl.bsprior
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewWinFormsControl.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -600,6 +612,8 @@ items:
   nameWithType: PreviewWinFormsControl.bsnext
   fullName: Reportman.Drawing.Forms.PreviewWinFormsControl.bsnext
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewWinFormsControl.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -619,6 +633,8 @@ items:
   nameWithType: PreviewWinFormsControl.bslast
   fullName: Reportman.Drawing.Forms.PreviewWinFormsControl.bslast
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewWinFormsControl.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -638,6 +654,8 @@ items:
   nameWithType: PreviewWinFormsControl.bssearch
   fullName: Reportman.Drawing.Forms.PreviewWinFormsControl.bssearch
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewWinFormsControl.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -657,6 +675,8 @@ items:
   nameWithType: PreviewWinFormsControl.BPageSetup
   fullName: Reportman.Drawing.Forms.PreviewWinFormsControl.BPageSetup
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewWinFormsControl.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -676,6 +696,8 @@ items:
   nameWithType: PreviewWinFormsControl.BParameters
   fullName: Reportman.Drawing.Forms.PreviewWinFormsControl.BParameters
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewWinFormsControl.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -695,6 +717,8 @@ items:
   nameWithType: PreviewWinFormsControl.BPrint
   fullName: Reportman.Drawing.Forms.PreviewWinFormsControl.BPrint
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewWinFormsControl.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -714,6 +738,8 @@ items:
   nameWithType: PreviewWinFormsControl.BSave
   fullName: Reportman.Drawing.Forms.PreviewWinFormsControl.BSave
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewWinFormsControl.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -733,6 +759,8 @@ items:
   nameWithType: PreviewWinFormsControl.BMail
   fullName: Reportman.Drawing.Forms.PreviewWinFormsControl.BMail
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewWinFormsControl.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -752,6 +780,8 @@ items:
   nameWithType: PreviewWinFormsControl.BScaleWide
   fullName: Reportman.Drawing.Forms.PreviewWinFormsControl.BScaleWide
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewWinFormsControl.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -771,6 +801,8 @@ items:
   nameWithType: PreviewWinFormsControl.BScaleFull
   fullName: Reportman.Drawing.Forms.PreviewWinFormsControl.BScaleFull
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewWinFormsControl.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -790,6 +822,8 @@ items:
   nameWithType: PreviewWinFormsControl.BZoomMinus
   fullName: Reportman.Drawing.Forms.PreviewWinFormsControl.BZoomMinus
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewWinFormsControl.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -809,6 +843,8 @@ items:
   nameWithType: PreviewWinFormsControl.BZoomPlus
   fullName: Reportman.Drawing.Forms.PreviewWinFormsControl.BZoomPlus
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewWinFormsControl.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -828,6 +864,8 @@ items:
   nameWithType: PreviewWinFormsControl.BExit
   fullName: Reportman.Drawing.Forms.PreviewWinFormsControl.BExit
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewWinFormsControl.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -847,6 +885,8 @@ items:
   nameWithType: PreviewWinFormsControl.BScaleEntire
   fullName: Reportman.Drawing.Forms.PreviewWinFormsControl.BScaleEntire
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewWinFormsControl.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -866,6 +906,8 @@ items:
   nameWithType: PreviewWinFormsControl.PreviewWinFormsControl()
   fullName: Reportman.Drawing.Forms.PreviewWinFormsControl.PreviewWinFormsControl()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewWinFormsControl.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -889,6 +931,8 @@ items:
   nameWithType: PreviewWinFormsControl.PreviewReport(PreviewMetaFile)
   fullName: Reportman.Drawing.Forms.PreviewWinFormsControl.PreviewReport(Reportman.Drawing.Forms.PreviewMetaFile)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewWinFormsControl.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -912,6 +956,8 @@ items:
   nameWithType: PreviewWinFormsControl.PreviewReport(MetaFile)
   fullName: Reportman.Drawing.Forms.PreviewWinFormsControl.PreviewReport(Reportman.Drawing.MetaFile)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewWinFormsControl.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -933,6 +979,8 @@ items:
   nameWithType: PreviewWinFormsControl.ExecuteKeyDown(object, KeyEventArgs)
   fullName: Reportman.Drawing.Forms.PreviewWinFormsControl.ExecuteKeyDown(object, System.Windows.Forms.KeyEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewWinFormsControl.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -959,6 +1007,8 @@ items:
   nameWithType: PreviewWinFormsControl.DoDispose()
   fullName: Reportman.Drawing.Forms.PreviewWinFormsControl.DoDispose()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewWinFormsControl.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -977,6 +1027,8 @@ items:
   nameWithType: PreviewWinFormsControl.Dispose()
   fullName: Reportman.Drawing.Forms.PreviewWinFormsControl.Dispose()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewWinFormsControl.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -995,6 +1047,8 @@ items:
   nameWithType: PreviewWinFormsControl.OnFontChanged(EventArgs)
   fullName: Reportman.Drawing.Forms.PreviewWinFormsControl.OnFontChanged(System.EventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewWinFormsControl.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1018,6 +1072,8 @@ items:
   nameWithType: PreviewWinFormsControl.Dispose(bool)
   fullName: Reportman.Drawing.Forms.PreviewWinFormsControl.Dispose(bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewWinFormsControl.designer.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1046,6 +1102,8 @@ items:
   nameWithType: PreviewWinFormsControl.LargeButtons
   fullName: Reportman.Drawing.Forms.PreviewWinFormsControl.LargeButtons
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewWinFormsControl.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1067,6 +1125,8 @@ items:
   nameWithType: PreviewWinFormsControl.MetaFileControl
   fullName: Reportman.Drawing.Forms.PreviewWinFormsControl.MetaFileControl
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewWinFormsControl.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

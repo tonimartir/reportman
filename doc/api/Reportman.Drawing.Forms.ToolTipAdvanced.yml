@@ -14,9 +14,16 @@ items:
   nameWithType: ToolTipAdvanced
   fullName: Reportman.Drawing.Forms.ToolTipAdvanced
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ToolTipAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    An owner-drawn <xref href="System.Windows.Forms.ToolTip" data-throw-if-not-resolved="false"></xref> that displays an image (instead of text) inside a
+
+    bordered tooltip, sizing the popup to the assigned <xref href="Reportman.Drawing.Forms.ToolTipAdvanced.Image" data-throw-if-not-resolved="false"></xref>.
+  example: []
   syntax:
     content: 'public class ToolTipAdvanced : ToolTip, IComponent, IDisposable, IExtenderProvider'
     content.vb: Public Class ToolTipAdvanced Inherits ToolTip Implements IComponent, IDisposable, IExtenderProvider
@@ -91,6 +98,8 @@ items:
   nameWithType: ToolTipAdvanced.ToolTipAdvanced()
   fullName: Reportman.Drawing.Forms.ToolTipAdvanced.ToolTipAdvanced()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ToolTipAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -112,6 +121,8 @@ items:
   nameWithType: ToolTipAdvanced.Image
   fullName: Reportman.Drawing.Forms.ToolTipAdvanced.Image
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ToolTipAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -123,6 +134,21 @@ items:
     content.vb: Public Property Image As Image
   overload: Reportman.Drawing.Forms.ToolTipAdvanced.Image*
 references:
+- uid: System.Windows.Forms.ToolTip
+  commentId: T:System.Windows.Forms.ToolTip
+  parent: System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip
+  name: ToolTip
+  nameWithType: ToolTip
+  fullName: System.Windows.Forms.ToolTip
+- uid: Reportman.Drawing.Forms.ToolTipAdvanced.Image
+  commentId: P:Reportman.Drawing.Forms.ToolTipAdvanced.Image
+  isExternal: true
+  href: Reportman.Drawing.Forms.ToolTipAdvanced.html#Reportman_Drawing_Forms_ToolTipAdvanced_Image
+  name: Image
+  nameWithType: ToolTipAdvanced.Image
+  fullName: Reportman.Drawing.Forms.ToolTipAdvanced.Image
 - uid: Reportman.Drawing.Forms
   commentId: N:Reportman.Drawing.Forms
   isExternal: true
@@ -187,14 +213,6 @@ references:
   name: Component
   nameWithType: Component
   fullName: System.ComponentModel.Component
-- uid: System.Windows.Forms.ToolTip
-  commentId: T:System.Windows.Forms.ToolTip
-  parent: System.Windows.Forms
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.tooltip
-  name: ToolTip
-  nameWithType: ToolTip
-  fullName: System.Windows.Forms.ToolTip
 - uid: System.ComponentModel.IComponent
   commentId: T:System.ComponentModel.IComponent
   parent: System.ComponentModel
@@ -1358,40 +1376,6 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
   - name: )
-- uid: System
-  commentId: N:System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System
-  nameWithType: System
-  fullName: System
-- uid: System.ComponentModel
-  commentId: N:System.ComponentModel
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System.ComponentModel
-  nameWithType: System.ComponentModel
-  fullName: System.ComponentModel
-  spec.csharp:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.ComponentModel
-    name: ComponentModel
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.componentmodel
-  spec.vb:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.ComponentModel
-    name: ComponentModel
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.componentmodel
 - uid: System.Windows.Forms
   commentId: N:System.Windows.Forms
   isExternal: true
@@ -1429,6 +1413,40 @@ references:
     name: Forms
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.windows.forms
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ComponentModel
+  commentId: N:System.ComponentModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.ComponentModel
+  nameWithType: System.ComponentModel
+  fullName: System.ComponentModel
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.ComponentModel
+    name: ComponentModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.ComponentModel
+    name: ComponentModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel
 - uid: Reportman.Drawing.Forms.ToolTipAdvanced.#ctor*
   commentId: Overload:Reportman.Drawing.Forms.ToolTipAdvanced.#ctor
   isExternal: true

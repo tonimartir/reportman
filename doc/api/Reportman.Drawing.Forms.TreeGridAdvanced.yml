@@ -41,9 +41,16 @@ items:
   nameWithType: TreeGridAdvanced
   fullName: Reportman.Drawing.Forms.TreeGridAdvanced
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    A <xref href="System.Windows.Forms.DataGridView" data-throw-if-not-resolved="false"></xref> that displays hierarchical, expandable/collapsible tree nodes,
+
+    with support for tree lines, node images, level-based expansion, text search and Excel export.
+  example: []
   syntax:
     content: 'public class TreeGridAdvanced : DataGridView, IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable, ISupportInitialize'
     content.vb: Public Class TreeGridAdvanced Inherits DataGridView Implements IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable, ISupportInitialize
@@ -849,6 +856,8 @@ items:
   nameWithType: TreeGridAdvanced.INDENT_MARGIN
   fullName: Reportman.Drawing.Forms.TreeGridAdvanced.INDENT_MARGIN
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -868,6 +877,8 @@ items:
   nameWithType: TreeGridAdvanced.DoubleBufferedPerformance
   fullName: Reportman.Drawing.Forms.TreeGridAdvanced.DoubleBufferedPerformance
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -887,6 +898,8 @@ items:
   nameWithType: TreeGridAdvanced.rowid_generator
   fullName: Reportman.Drawing.Forms.TreeGridAdvanced.rowid_generator
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -906,6 +919,8 @@ items:
   nameWithType: TreeGridAdvanced.paddings_list
   fullName: Reportman.Drawing.Forms.TreeGridAdvanced.paddings_list
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -925,6 +940,8 @@ items:
   nameWithType: TreeGridAdvanced.AllRows
   fullName: Reportman.Drawing.Forms.TreeGridAdvanced.AllRows
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -944,6 +961,8 @@ items:
   nameWithType: TreeGridAdvanced.MainNode
   fullName: Reportman.Drawing.Forms.TreeGridAdvanced.MainNode
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -963,6 +982,8 @@ items:
   nameWithType: TreeGridAdvanced.ShowLines
   fullName: Reportman.Drawing.Forms.TreeGridAdvanced.ShowLines
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -982,6 +1003,8 @@ items:
   nameWithType: TreeGridAdvanced.OnSortCompare(DataGridViewSortCompareEventArgs)
   fullName: Reportman.Drawing.Forms.TreeGridAdvanced.OnSortCompare(System.Windows.Forms.DataGridViewSortCompareEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1005,6 +1028,8 @@ items:
   nameWithType: TreeGridAdvanced.TreeGridAdvanced()
   fullName: Reportman.Drawing.Forms.TreeGridAdvanced.TreeGridAdvanced()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1026,6 +1051,8 @@ items:
   nameWithType: TreeGridAdvanced.ScaleColumns()
   fullName: Reportman.Drawing.Forms.TreeGridAdvanced.ScaleColumns()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1044,6 +1071,8 @@ items:
   nameWithType: TreeGridAdvanced.ClearNodes()
   fullName: Reportman.Drawing.Forms.TreeGridAdvanced.ClearNodes()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1062,6 +1091,8 @@ items:
   nameWithType: TreeGridAdvanced.Dispose(bool)
   fullName: Reportman.Drawing.Forms.TreeGridAdvanced.Dispose(bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1088,6 +1119,8 @@ items:
   nameWithType: TreeGridAdvanced.GetGraphics()
   fullName: Reportman.Drawing.Forms.TreeGridAdvanced.GetGraphics()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1108,6 +1141,8 @@ items:
   nameWithType: TreeGridAdvanced.SaveToExcel(string)
   fullName: Reportman.Drawing.Forms.TreeGridAdvanced.SaveToExcel(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1132,6 +1167,8 @@ items:
   nameWithType: TreeGridAdvanced.DrawNodes()
   fullName: Reportman.Drawing.Forms.TreeGridAdvanced.DrawNodes()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1150,6 +1187,8 @@ items:
   nameWithType: TreeGridAdvanced.FindNode(TreeGridRow)
   fullName: Reportman.Drawing.Forms.TreeGridAdvanced.FindNode(Reportman.Drawing.Forms.TreeGridRow)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1173,6 +1212,8 @@ items:
   nameWithType: TreeGridAdvanced.DrawLevel(int)
   fullName: Reportman.Drawing.Forms.TreeGridAdvanced.DrawLevel(int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1197,6 +1238,8 @@ items:
   nameWithType: TreeGridAdvanced.AddNode(TreeGridAdvancedNode, object[], bool)
   fullName: Reportman.Drawing.Forms.TreeGridAdvanced.AddNode(Reportman.Drawing.Forms.TreeGridAdvancedNode, object[], bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1227,6 +1270,8 @@ items:
   nameWithType: TreeGridAdvanced.AddNode(TreeGridAdvancedNode, TreeGridRow, bool)
   fullName: Reportman.Drawing.Forms.TreeGridAdvanced.AddNode(Reportman.Drawing.Forms.TreeGridAdvancedNode, Reportman.Drawing.Forms.TreeGridRow, bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1257,6 +1302,8 @@ items:
   nameWithType: TreeGridAdvanced.ExpandAll(bool)
   fullName: Reportman.Drawing.Forms.TreeGridAdvanced.ExpandAll(bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1281,6 +1328,8 @@ items:
   nameWithType: TreeGridAdvanced.RemoveBlankGroups(int)
   fullName: Reportman.Drawing.Forms.TreeGridAdvanced.RemoveBlankGroups(int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1305,6 +1354,8 @@ items:
   nameWithType: TreeGridAdvanced.ExpandToLevel(int, bool)
   fullName: Reportman.Drawing.Forms.TreeGridAdvanced.ExpandToLevel(int, bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1331,6 +1382,8 @@ items:
   nameWithType: TreeGridAdvanced.FindTextNode(TreeGridRow, string, int, int, bool)
   fullName: Reportman.Drawing.Forms.TreeGridAdvanced.FindTextNode(Reportman.Drawing.Forms.TreeGridRow, string, int, int, bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1365,6 +1418,8 @@ items:
   nameWithType: TreeGridAdvanced.FindText(string)
   fullName: Reportman.Drawing.Forms.TreeGridAdvanced.FindText(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1389,6 +1444,8 @@ items:
   nameWithType: TreeGridAdvanced.CopySelectionToClipBoard()
   fullName: Reportman.Drawing.Forms.TreeGridAdvanced.CopySelectionToClipBoard()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1407,6 +1464,8 @@ items:
   nameWithType: TreeGridAdvanced.INDENT_FIRST
   fullName: Reportman.Drawing.Forms.TreeGridAdvanced.INDENT_FIRST
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1428,6 +1487,8 @@ items:
   nameWithType: TreeGridAdvanced.INDENT_WIDTH
   fullName: Reportman.Drawing.Forms.TreeGridAdvanced.INDENT_WIDTH
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1449,6 +1510,8 @@ items:
   nameWithType: TreeGridAdvanced.MaxLevel
   fullName: Reportman.Drawing.Forms.TreeGridAdvanced.MaxLevel
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1470,6 +1533,8 @@ items:
   nameWithType: TreeGridAdvanced.ImageList
   fullName: Reportman.Drawing.Forms.TreeGridAdvanced.ImageList
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1481,6 +1546,14 @@ items:
     content.vb: Public Property ImageList As ImageList
   overload: Reportman.Drawing.Forms.TreeGridAdvanced.ImageList*
 references:
+- uid: System.Windows.Forms.DataGridView
+  commentId: T:System.Windows.Forms.DataGridView
+  parent: System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridview
+  name: DataGridView
+  nameWithType: DataGridView
+  fullName: System.Windows.Forms.DataGridView
 - uid: Reportman.Drawing.Forms
   commentId: N:Reportman.Drawing.Forms
   isExternal: true
@@ -1553,14 +1626,6 @@ references:
   name: Control
   nameWithType: Control
   fullName: System.Windows.Forms.Control
-- uid: System.Windows.Forms.DataGridView
-  commentId: T:System.Windows.Forms.DataGridView
-  parent: System.Windows.Forms
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridview
-  name: DataGridView
-  nameWithType: DataGridView
-  fullName: System.Windows.Forms.DataGridView
 - uid: System.Windows.Forms.IDropTarget
   commentId: T:System.Windows.Forms.IDropTarget
   parent: System.Windows.Forms
@@ -18297,40 +18362,6 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
   - name: )
-- uid: System
-  commentId: N:System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System
-  nameWithType: System
-  fullName: System
-- uid: System.ComponentModel
-  commentId: N:System.ComponentModel
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System.ComponentModel
-  nameWithType: System.ComponentModel
-  fullName: System.ComponentModel
-  spec.csharp:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.ComponentModel
-    name: ComponentModel
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.componentmodel
-  spec.vb:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.ComponentModel
-    name: ComponentModel
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.componentmodel
 - uid: System.Windows.Forms
   commentId: N:System.Windows.Forms
   isExternal: true
@@ -18368,6 +18399,40 @@ references:
     name: Forms
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.windows.forms
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ComponentModel
+  commentId: N:System.ComponentModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.ComponentModel
+  nameWithType: System.ComponentModel
+  fullName: System.ComponentModel
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.ComponentModel
+    name: ComponentModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.ComponentModel
+    name: ComponentModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel
 - uid: System.Windows.Forms.Control.Invoke``1(System.Func{``0})
   commentId: M:System.Windows.Forms.Control.Invoke``1(System.Func{``0})
   isExternal: true

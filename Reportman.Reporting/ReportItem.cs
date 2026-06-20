@@ -37,7 +37,7 @@ namespace Reportman.Reporting
     /// Enumeration indicating if the image should be shared, so only one instance of the image is stored
     /// while generating the report (ReportMetafile), if the image is repeated in the report, it's recommended
     /// to share it, so the image is stored only once, and not for each page (a internal reference is done).
-    /// <see cref="Variant">ImageItem</see>
+    /// <see cref="ImageItem"/>
     /// </summary>
     /// <remarks>
     /// When exporting the Report to Adobe PDF format, it's recommended to share images that are repeated
@@ -64,7 +64,7 @@ namespace Reportman.Reporting
     /// parent Section have properties like AutoExpand or AutoContract set, you can place a Rectangle 
     /// and set Align to AllClient, the rectangle will be adapted at run time to fill the section. You can also
     /// align to bottom or expand lines from top to bottom.
-    /// <see cref="Variant">PrintPosItem</see><see cref="Variant">Section</see>
+    /// <see cref="PrintPosItem"/><see cref="Section"/>
     /// </summary>
     public enum PrintItemAlign
     {
@@ -85,8 +85,8 @@ namespace Reportman.Reporting
     };
     /// <summary>
     /// Base classs for Report items providing common base functionality, and a relation to the owner (Report).
-    /// <see cref="Variant">Report</see>
-    /// <see cref="Variant">Section</see>
+    /// <see cref="Report"/>
+    /// <see cref="Section"/>
     /// </summary>
     //[TypeConverter(typeof(ReportItemTypeConverter))]
     public class ReportItem : IDisposable
@@ -859,6 +859,11 @@ namespace Reportman.Reporting
 
         }
         */
+    /// <summary>
+    /// Json.NET converter that serializes and deserializes <see cref="PrintPosItem"/> instances,
+    /// using the "className" discriminator to instantiate the correct concrete report item type
+    /// (shape, label, expression, image, barcode or chart).
+    /// </summary>
     public class PrintPosItemConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)

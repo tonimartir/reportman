@@ -24,9 +24,13 @@ items:
   nameWithType: AliasCollection
   fullName: Reportman.Reporting.AliasCollection
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatasetAlias.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
+  summary: Strongly typed collection of <xref href="Reportman.Reporting.AliasCollectionItem" data-throw-if-not-resolved="false"></xref> entries held by a DatasetAlias component.
+  example: []
   syntax:
     content: 'public class AliasCollection : CollectionBase, IList, ICollection, IEnumerable'
     content.vb: Public Class AliasCollection Inherits CollectionBase Implements IList, ICollection, IEnumerable
@@ -68,6 +72,8 @@ items:
   nameWithType: AliasCollection.Add(AliasCollectionItem)
   fullName: Reportman.Reporting.AliasCollection.Add(Reportman.Reporting.AliasCollectionItem)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatasetAlias.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -91,6 +97,8 @@ items:
   nameWithType: AliasCollection.IndexOf(AliasCollectionItem)
   fullName: Reportman.Reporting.AliasCollection.IndexOf(Reportman.Reporting.AliasCollectionItem)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatasetAlias.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -114,6 +122,8 @@ items:
   nameWithType: AliasCollection.Insert(int, AliasCollectionItem)
   fullName: Reportman.Reporting.AliasCollection.Insert(int, Reportman.Reporting.AliasCollectionItem)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatasetAlias.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -140,6 +150,8 @@ items:
   nameWithType: AliasCollection.Remove(AliasCollectionItem)
   fullName: Reportman.Reporting.AliasCollection.Remove(Reportman.Reporting.AliasCollectionItem)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatasetAlias.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -161,6 +173,8 @@ items:
   nameWithType: AliasCollection.Contains(AliasCollectionItem)
   fullName: Reportman.Reporting.AliasCollection.Contains(Reportman.Reporting.AliasCollectionItem)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatasetAlias.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -184,6 +198,8 @@ items:
   nameWithType: AliasCollection.OnInsert(int, object)
   fullName: Reportman.Reporting.AliasCollection.OnInsert(int, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatasetAlias.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -212,6 +228,8 @@ items:
   nameWithType: AliasCollection.OnRemove(int, object)
   fullName: Reportman.Reporting.AliasCollection.OnRemove(int, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatasetAlias.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -240,6 +258,8 @@ items:
   nameWithType: AliasCollection.OnSet(int, object, object)
   fullName: Reportman.Reporting.AliasCollection.OnSet(int, object, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatasetAlias.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -270,6 +290,8 @@ items:
   nameWithType: AliasCollection.OnValidate(object)
   fullName: Reportman.Reporting.AliasCollection.OnValidate(object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatasetAlias.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -296,6 +318,8 @@ items:
   nameWithType: AliasCollection.CopyTo(AliasCollectionItem[], int)
   fullName: Reportman.Reporting.AliasCollection.CopyTo(Reportman.Reporting.AliasCollectionItem[], int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatasetAlias.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -322,6 +346,8 @@ items:
   nameWithType: AliasCollection.AliasCollection()
   fullName: Reportman.Reporting.AliasCollection.AliasCollection()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatasetAlias.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -343,6 +369,8 @@ items:
   nameWithType: AliasCollection.this[int]
   fullName: Reportman.Reporting.AliasCollection.this[int]
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatasetAlias.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -359,6 +387,14 @@ items:
   fullName.vb: Reportman.Reporting.AliasCollection.this[](Integer)
   name.vb: this[](Integer)
 references:
+- uid: Reportman.Reporting.AliasCollectionItem
+  commentId: T:Reportman.Reporting.AliasCollectionItem
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.AliasCollectionItem.html
+  name: AliasCollectionItem
+  nameWithType: AliasCollectionItem
+  fullName: Reportman.Reporting.AliasCollectionItem
 - uid: Reportman.Reporting
   commentId: N:Reportman.Reporting
   isExternal: true
@@ -989,14 +1025,6 @@ references:
   name: Add
   nameWithType: AliasCollection.Add
   fullName: Reportman.Reporting.AliasCollection.Add
-- uid: Reportman.Reporting.AliasCollectionItem
-  commentId: T:Reportman.Reporting.AliasCollectionItem
-  parent: Reportman.Reporting
-  isExternal: true
-  href: Reportman.Reporting.AliasCollectionItem.html
-  name: AliasCollectionItem
-  nameWithType: AliasCollectionItem
-  fullName: Reportman.Reporting.AliasCollectionItem
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System

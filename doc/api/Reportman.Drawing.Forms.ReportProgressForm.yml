@@ -20,6 +20,8 @@ items:
   nameWithType: ReportProgressForm
   fullName: Reportman.Drawing.Forms.ReportProgressForm
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ReportProgressForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -590,6 +592,8 @@ items:
   nameWithType: ReportProgressForm.multithread
   fullName: Reportman.Drawing.Forms.ReportProgressForm.multithread
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ReportProgressForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -609,6 +613,8 @@ items:
   nameWithType: ReportProgressForm.metafile
   fullName: Reportman.Drawing.Forms.ReportProgressForm.metafile
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ReportProgressForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -628,6 +634,8 @@ items:
   nameWithType: ReportProgressForm.timerclose
   fullName: Reportman.Drawing.Forms.ReportProgressForm.timerclose
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ReportProgressForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -647,6 +655,8 @@ items:
   nameWithType: ReportProgressForm.SetMetaFile(MetaFile)
   fullName: Reportman.Drawing.Forms.ReportProgressForm.SetMetaFile(Reportman.Drawing.MetaFile)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ReportProgressForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -671,6 +681,8 @@ items:
   nameWithType: ReportProgressForm.ReportProgressForm()
   fullName: Reportman.Drawing.Forms.ReportProgressForm.ReportProgressForm()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ReportProgressForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -694,6 +706,8 @@ items:
   nameWithType: ReportProgressForm.WorkProgress(int, int, ref bool)
   fullName: Reportman.Drawing.Forms.ReportProgressForm.WorkProgress(int, int, ref bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ReportProgressForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -722,6 +736,8 @@ items:
   nameWithType: ReportProgressForm.Dispose(bool)
   fullName: Reportman.Drawing.Forms.ReportProgressForm.Dispose(bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ReportProgressForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -749,6 +765,8 @@ items:
   nameWithType: ReportProgressForm.CalculateReport(MetaFile, PrintOut)
   fullName: Reportman.Drawing.Forms.ReportProgressForm.CalculateReport(Reportman.Drawing.MetaFile, Reportman.Drawing.PrintOut)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ReportProgressForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -12438,7 +12456,7 @@ references:
   commentId: T:Reportman.Drawing.PrintOut
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.PrintOut.html
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   name: PrintOut
   nameWithType: PrintOut
   fullName: Reportman.Drawing.PrintOut

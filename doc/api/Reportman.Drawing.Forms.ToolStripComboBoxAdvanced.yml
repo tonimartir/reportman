@@ -14,9 +14,16 @@ items:
   nameWithType: ToolStripComboBoxAdvanced
   fullName: Reportman.Drawing.Forms.ToolStripComboBoxAdvanced
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    A ToolStripComboBox whose Size property is automatically scaled by the current
+
+    DPI factors so it renders consistently across display resolutions.
+  example: []
   syntax:
     content: 'public class ToolStripComboBoxAdvanced : ToolStripComboBox, IBindableComponent, IDropTarget, IComponent, IDisposable'
     content.vb: Public Class ToolStripComboBoxAdvanced Inherits ToolStripComboBox Implements IBindableComponent, IDropTarget, IComponent, IDisposable
@@ -283,6 +290,8 @@ items:
   nameWithType: ToolStripComboBoxAdvanced.ToolStripComboBoxAdvanced()
   fullName: Reportman.Drawing.Forms.ToolStripComboBoxAdvanced.ToolStripComboBoxAdvanced()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -304,6 +313,8 @@ items:
   nameWithType: ToolStripComboBoxAdvanced.Size
   fullName: Reportman.Drawing.Forms.ToolStripComboBoxAdvanced.Size
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

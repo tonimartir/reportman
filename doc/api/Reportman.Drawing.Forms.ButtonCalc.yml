@@ -18,9 +18,16 @@ items:
   nameWithType: ButtonCalc
   fullName: Reportman.Drawing.Forms.ButtonCalc
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    Owner-drawn calculator button: paints itself as a labelled ellipse, tracks selection
+
+    state and hit-testing, and carries the <xref href="Reportman.Drawing.Forms.ScreenKeyboard.Command" data-throw-if-not-resolved="false"></xref> it triggers.
+  example: []
   syntax:
     content: public class ButtonCalc
     content.vb: Public Class ButtonCalc
@@ -45,6 +52,8 @@ items:
   nameWithType: ButtonCalc.ButtonCalc(Control, Font, int, int, int, int, int, string, Color, ScreenKeyboard.Command)
   fullName: Reportman.Drawing.Forms.ButtonCalc.ButtonCalc(System.Windows.Forms.Control, System.Drawing.Font, int, int, int, int, int, string, System.Drawing.Color, Reportman.Drawing.Forms.ScreenKeyboard.Command)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -87,6 +96,8 @@ items:
   nameWithType: ButtonCalc.Render(Graphics)
   fullName: Reportman.Drawing.Forms.ButtonCalc.Render(System.Drawing.Graphics)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -108,6 +119,8 @@ items:
   nameWithType: ButtonCalc.IsHit(int, int)
   fullName: Reportman.Drawing.Forms.ButtonCalc.IsHit(int, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -136,6 +149,8 @@ items:
   nameWithType: ButtonCalc.IsTall
   fullName: Reportman.Drawing.Forms.ButtonCalc.IsTall
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -157,6 +172,8 @@ items:
   nameWithType: ButtonCalc.IsSelected
   fullName: Reportman.Drawing.Forms.ButtonCalc.IsSelected
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -178,6 +195,8 @@ items:
   nameWithType: ButtonCalc.Cmd
   fullName: Reportman.Drawing.Forms.ButtonCalc.Cmd
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -189,6 +208,34 @@ items:
     content.vb: Public ReadOnly Property Cmd As ScreenKeyboard.Command
   overload: Reportman.Drawing.Forms.ButtonCalc.Cmd*
 references:
+- uid: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  commentId: T:Reportman.Drawing.Forms.ScreenKeyboard.Command
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.ScreenKeyboard.html
+  name: ScreenKeyboard.Command
+  nameWithType: ScreenKeyboard.Command
+  fullName: Reportman.Drawing.Forms.ScreenKeyboard.Command
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.ScreenKeyboard
+    name: ScreenKeyboard
+    isExternal: true
+    href: Reportman.Drawing.Forms.ScreenKeyboard.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.ScreenKeyboard.Command
+    name: Command
+    isExternal: true
+    href: Reportman.Drawing.Forms.ScreenKeyboard.Command.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.ScreenKeyboard
+    name: ScreenKeyboard
+    isExternal: true
+    href: Reportman.Drawing.Forms.ScreenKeyboard.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.ScreenKeyboard.Command
+    name: Command
+    isExternal: true
+    href: Reportman.Drawing.Forms.ScreenKeyboard.Command.html
 - uid: Reportman.Drawing.Forms
   commentId: N:Reportman.Drawing.Forms
   isExternal: true
@@ -519,34 +566,6 @@ references:
   name: Color
   nameWithType: Color
   fullName: System.Drawing.Color
-- uid: Reportman.Drawing.Forms.ScreenKeyboard.Command
-  commentId: T:Reportman.Drawing.Forms.ScreenKeyboard.Command
-  parent: Reportman.Drawing.Forms
-  isExternal: true
-  href: Reportman.Drawing.Forms.ScreenKeyboard.html
-  name: ScreenKeyboard.Command
-  nameWithType: ScreenKeyboard.Command
-  fullName: Reportman.Drawing.Forms.ScreenKeyboard.Command
-  spec.csharp:
-  - uid: Reportman.Drawing.Forms.ScreenKeyboard
-    name: ScreenKeyboard
-    isExternal: true
-    href: Reportman.Drawing.Forms.ScreenKeyboard.html
-  - name: .
-  - uid: Reportman.Drawing.Forms.ScreenKeyboard.Command
-    name: Command
-    isExternal: true
-    href: Reportman.Drawing.Forms.ScreenKeyboard.Command.html
-  spec.vb:
-  - uid: Reportman.Drawing.Forms.ScreenKeyboard
-    name: ScreenKeyboard
-    isExternal: true
-    href: Reportman.Drawing.Forms.ScreenKeyboard.html
-  - name: .
-  - uid: Reportman.Drawing.Forms.ScreenKeyboard.Command
-    name: Command
-    isExternal: true
-    href: Reportman.Drawing.Forms.ScreenKeyboard.Command.html
 - uid: System.Windows.Forms
   commentId: N:System.Windows.Forms
   isExternal: true

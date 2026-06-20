@@ -24,9 +24,16 @@ items:
   nameWithType: ChangeObjectOperation
   fullName: Reportman.Reporting.ChangeObjectOperation
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
+  summary: >-
+    A single undoable change to a report component (add, remove, modify, rename or swap),
+
+    recording the affected component, its parent/index context and the list of property changes.
+  example: []
   syntax:
     content: public class ChangeObjectOperation
     content.vb: Public Class ChangeObjectOperation
@@ -51,6 +58,8 @@ items:
   nameWithType: ChangeObjectOperation.ChangeObjectOperation(OperationType, int)
   fullName: Reportman.Reporting.ChangeObjectOperation.ChangeObjectOperation(Reportman.Reporting.OperationType, int)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -77,6 +86,8 @@ items:
   nameWithType: ChangeObjectOperation.AddProperty(string, PropertyType, object, object)
   fullName: Reportman.Reporting.ChangeObjectOperation.AddProperty(string, Reportman.Reporting.PropertyType, object, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -107,6 +118,8 @@ items:
   nameWithType: ChangeObjectOperation.Operation
   fullName: Reportman.Reporting.ChangeObjectOperation.Operation
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -128,6 +141,8 @@ items:
   nameWithType: ChangeObjectOperation.GroupId
   fullName: Reportman.Reporting.ChangeObjectOperation.GroupId
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -149,6 +164,8 @@ items:
   nameWithType: ChangeObjectOperation.ComponentName
   fullName: Reportman.Reporting.ChangeObjectOperation.ComponentName
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -170,6 +187,8 @@ items:
   nameWithType: ChangeObjectOperation.ComponentClass
   fullName: Reportman.Reporting.ChangeObjectOperation.ComponentClass
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -191,6 +210,8 @@ items:
   nameWithType: ChangeObjectOperation.ParentName
   fullName: Reportman.Reporting.ChangeObjectOperation.ParentName
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -212,6 +233,8 @@ items:
   nameWithType: ChangeObjectOperation.OldItemIndex
   fullName: Reportman.Reporting.ChangeObjectOperation.OldItemIndex
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -233,6 +256,8 @@ items:
   nameWithType: ChangeObjectOperation.OldParentName
   fullName: Reportman.Reporting.ChangeObjectOperation.OldParentName
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -254,6 +279,8 @@ items:
   nameWithType: ChangeObjectOperation.Date
   fullName: Reportman.Reporting.ChangeObjectOperation.Date
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -275,6 +302,8 @@ items:
   nameWithType: ChangeObjectOperation.ExpandedProperties
   fullName: Reportman.Reporting.ChangeObjectOperation.ExpandedProperties
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -296,6 +325,8 @@ items:
   nameWithType: ChangeObjectOperation.Properties
   fullName: Reportman.Reporting.ChangeObjectOperation.Properties
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

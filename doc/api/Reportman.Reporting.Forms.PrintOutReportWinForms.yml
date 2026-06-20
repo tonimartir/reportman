@@ -18,6 +18,8 @@ items:
   nameWithType: PrintOutReportWinForms
   fullName: Reportman.Reporting.Forms.PrintOutReportWinForms
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -104,12 +106,14 @@ items:
   - Reportman.Drawing.PrintOutPrint.WhiteLinesPrinted
   - Reportman.Drawing.PrintOutNet.Scale
   - Reportman.Drawing.PrintOutNet.OptimizeWMF
+  - Reportman.Drawing.PrintOutNet.UsePDFFonts
   - Reportman.Drawing.PrintOutNet.HardMarginX
   - Reportman.Drawing.PrintOutNet.HardMarginY
   - Reportman.Drawing.PrintOutNet.UseHardMargin
   - Reportman.Drawing.PrintOutNet.Output
   - Reportman.Drawing.PrintOutNet.GraphicExtent(System.IO.MemoryStream,System.Drawing.Point,System.Int32)
   - Reportman.Drawing.PrintOutNet.TextExtent(Reportman.Drawing.TextObjectStruct,System.Drawing.Point)
+  - Reportman.Drawing.PrintOutNet.TextExtentLineInfo(Reportman.Drawing.TextObjectStruct,System.Drawing.Point@)
   - Reportman.Drawing.PrintOutNet.SetPageSize(Reportman.Drawing.PageSizeDetail)
   - Reportman.Drawing.PrintOutNet.FontFromObject(Reportman.Drawing.MetaPage,Reportman.Drawing.MetaObjectText)
   - Reportman.Drawing.PrintOutNet.FontFromStruct(Reportman.Drawing.TextObjectStruct)
@@ -117,7 +121,9 @@ items:
   - Reportman.Drawing.PrintOutNet.MetaObjectToStringFormat(Reportman.Drawing.MetaObjectText)
   - Reportman.Drawing.PrintOutNet.MetStructToStringFormat(Reportman.Drawing.TextObjectStruct)
   - Reportman.Drawing.PrintOutNet.DrawObject(System.Drawing.Graphics,Reportman.Drawing.MetaPage,Reportman.Drawing.MetaObject)
+  - Reportman.Drawing.PrintOutNet.TextRectHtml(System.Drawing.Graphics,System.Drawing.Rectangle,Reportman.Drawing.TextObjectStruct,System.Drawing.Font,System.Drawing.SolidBrush)
   - Reportman.Drawing.PrintOutNet.TextRectJustify(System.Drawing.Graphics,System.Drawing.Rectangle,Reportman.Drawing.TextObjectStruct,System.Drawing.Font,System.Drawing.SolidBrush)
+  - Reportman.Drawing.PrintOutNet.UseExactPDFText
   - Reportman.Drawing.PrintOut.DefaultPrinterName
   - Reportman.Drawing.PrintOut.ForcePrinterName
   - Reportman.Drawing.PrintOut.Previewing
@@ -152,6 +158,8 @@ items:
   nameWithType: PrintOutReportWinForms.PreviewParametersVisible
   fullName: Reportman.Reporting.Forms.PrintOutReportWinForms.PreviewParametersVisible
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -173,6 +181,8 @@ items:
   nameWithType: PrintOutReportWinForms.PreviewPageSetupVisible
   fullName: Reportman.Reporting.Forms.PrintOutReportWinForms.PreviewPageSetupVisible
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -194,6 +204,8 @@ items:
   nameWithType: PrintOutReportWinForms.Dispose()
   fullName: Reportman.Reporting.Forms.PrintOutReportWinForms.Dispose()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -215,6 +227,8 @@ items:
   nameWithType: PrintOutReportWinForms.PrintOutReportWinForms(Report)
   fullName: Reportman.Reporting.Forms.PrintOutReportWinForms.PrintOutReportWinForms(Reportman.Reporting.Report)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -242,6 +256,8 @@ items:
   nameWithType: PrintOutReportWinForms.SetReportEvents()
   fullName: Reportman.Reporting.Forms.PrintOutReportWinForms.SetReportEvents()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -263,6 +279,8 @@ items:
   nameWithType: PrintOutReportWinForms.Report
   fullName: Reportman.Reporting.Forms.PrintOutReportWinForms.Report
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -328,7 +346,7 @@ references:
   commentId: T:Reportman.Drawing.PrintOut
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.PrintOut.html
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   name: PrintOut
   nameWithType: PrintOut
   fullName: Reportman.Drawing.PrintOut
@@ -336,7 +354,7 @@ references:
   commentId: T:Reportman.Drawing.PrintOutNet
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.PrintOutNet.html
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   name: PrintOutNet
   nameWithType: PrintOutNet
   fullName: Reportman.Drawing.PrintOutNet
@@ -344,7 +362,7 @@ references:
   commentId: T:Reportman.Drawing.PrintOutPrint
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.PrintOutPrint.html
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   name: PrintOutPrint
   nameWithType: PrintOutPrint
   fullName: Reportman.Drawing.PrintOutPrint
@@ -368,6 +386,7 @@ references:
   commentId: F:Reportman.Drawing.Forms.PrintOutWinForms.OnMail
   parent: Reportman.Drawing.Forms.PrintOutWinForms
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   name: OnMail
   nameWithType: PrintOutWinForms.OnMail
   fullName: Reportman.Drawing.Forms.PrintOutWinForms.OnMail
@@ -375,6 +394,7 @@ references:
   commentId: F:Reportman.Drawing.Forms.PrintOutWinForms.UseGDIPlus
   parent: Reportman.Drawing.Forms.PrintOutWinForms
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   name: UseGDIPlus
   nameWithType: PrintOutWinForms.UseGDIPlus
   fullName: Reportman.Drawing.Forms.PrintOutWinForms.UseGDIPlus
@@ -382,6 +402,7 @@ references:
   commentId: F:Reportman.Drawing.Forms.PrintOutWinForms.LargeButtons
   parent: Reportman.Drawing.Forms.PrintOutWinForms
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   name: LargeButtons
   nameWithType: PrintOutWinForms.LargeButtons
   fullName: Reportman.Drawing.Forms.PrintOutWinForms.LargeButtons
@@ -389,6 +410,7 @@ references:
   commentId: F:Reportman.Drawing.Forms.PrintOutWinForms.ShowInTaskbar
   parent: Reportman.Drawing.Forms.PrintOutWinForms
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   name: ShowInTaskbar
   nameWithType: PrintOutWinForms.ShowInTaskbar
   fullName: Reportman.Drawing.Forms.PrintOutWinForms.ShowInTaskbar
@@ -396,6 +418,7 @@ references:
   commentId: F:Reportman.Drawing.Forms.PrintOutWinForms.MainForm
   parent: Reportman.Drawing.Forms.PrintOutWinForms
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   name: MainForm
   nameWithType: PrintOutWinForms.MainForm
   fullName: Reportman.Drawing.Forms.PrintOutWinForms.MainForm
@@ -403,6 +426,7 @@ references:
   commentId: F:Reportman.Drawing.Forms.PrintOutWinForms.ShowEmptyReportMessage
   parent: Reportman.Drawing.Forms.PrintOutWinForms
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   name: ShowEmptyReportMessage
   nameWithType: PrintOutWinForms.ShowEmptyReportMessage
   fullName: Reportman.Drawing.Forms.PrintOutWinForms.ShowEmptyReportMessage
@@ -410,6 +434,7 @@ references:
   commentId: F:Reportman.Drawing.Forms.PrintOutWinForms.ShowPrintDialog
   parent: Reportman.Drawing.Forms.PrintOutWinForms
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   name: ShowPrintDialog
   nameWithType: PrintOutWinForms.ShowPrintDialog
   fullName: Reportman.Drawing.Forms.PrintOutWinForms.ShowPrintDialog
@@ -417,6 +442,7 @@ references:
   commentId: F:Reportman.Drawing.Forms.PrintOutWinForms.WindowMode
   parent: Reportman.Drawing.Forms.PrintOutWinForms
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   name: WindowMode
   nameWithType: PrintOutWinForms.WindowMode
   fullName: Reportman.Drawing.Forms.PrintOutWinForms.WindowMode
@@ -424,6 +450,7 @@ references:
   commentId: F:Reportman.Drawing.Forms.PrintOutWinForms.FPreviewWindow
   parent: Reportman.Drawing.Forms.PrintOutWinForms
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   name: FPreviewWindow
   nameWithType: PrintOutWinForms.FPreviewWindow
   fullName: Reportman.Drawing.Forms.PrintOutWinForms.FPreviewWindow
@@ -431,6 +458,7 @@ references:
   commentId: F:Reportman.Drawing.Forms.PrintOutWinForms.previewmetafile
   parent: Reportman.Drawing.Forms.PrintOutWinForms
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   name: previewmetafile
   nameWithType: PrintOutWinForms.previewmetafile
   fullName: Reportman.Drawing.Forms.PrintOutWinForms.previewmetafile
@@ -438,6 +466,7 @@ references:
   commentId: F:Reportman.Drawing.Forms.PrintOutWinForms.MAX_SERIECOLORS
   parent: Reportman.Drawing.Forms.PrintOutWinForms
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   name: MAX_SERIECOLORS
   nameWithType: PrintOutWinForms.MAX_SERIECOLORS
   fullName: Reportman.Drawing.Forms.PrintOutWinForms.MAX_SERIECOLORS
@@ -445,6 +474,7 @@ references:
   commentId: M:Reportman.Drawing.Forms.PrintOutWinForms.ProcessNoDataToPrint
   parent: Reportman.Drawing.Forms.PrintOutWinForms
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   name: ProcessNoDataToPrint()
   nameWithType: PrintOutWinForms.ProcessNoDataToPrint()
   fullName: Reportman.Drawing.Forms.PrintOutWinForms.ProcessNoDataToPrint()
@@ -452,18 +482,21 @@ references:
   - uid: Reportman.Drawing.Forms.PrintOutWinForms.ProcessNoDataToPrint
     name: ProcessNoDataToPrint
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   - name: (
   - name: )
   spec.vb:
   - uid: Reportman.Drawing.Forms.PrintOutWinForms.ProcessNoDataToPrint
     name: ProcessNoDataToPrint
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   - name: (
   - name: )
 - uid: Reportman.Drawing.Forms.PrintOutWinForms.ExecutePrintDialog
   commentId: M:Reportman.Drawing.Forms.PrintOutWinForms.ExecutePrintDialog
   parent: Reportman.Drawing.Forms.PrintOutWinForms
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   name: ExecutePrintDialog()
   nameWithType: PrintOutWinForms.ExecutePrintDialog()
   fullName: Reportman.Drawing.Forms.PrintOutWinForms.ExecutePrintDialog()
@@ -471,19 +504,21 @@ references:
   - uid: Reportman.Drawing.Forms.PrintOutWinForms.ExecutePrintDialog
     name: ExecutePrintDialog
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   - name: (
   - name: )
   spec.vb:
   - uid: Reportman.Drawing.Forms.PrintOutWinForms.ExecutePrintDialog
     name: ExecutePrintDialog
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   - name: (
   - name: )
 - uid: Reportman.Drawing.Forms.PrintOutWinForms.SelectDefaultPrinter(System.Windows.Forms.Form)
   commentId: M:Reportman.Drawing.Forms.PrintOutWinForms.SelectDefaultPrinter(System.Windows.Forms.Form)
   parent: Reportman.Drawing.Forms.PrintOutWinForms
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.form
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   name: SelectDefaultPrinter(Form)
   nameWithType: PrintOutWinForms.SelectDefaultPrinter(Form)
   fullName: Reportman.Drawing.Forms.PrintOutWinForms.SelectDefaultPrinter(System.Windows.Forms.Form)
@@ -491,6 +526,7 @@ references:
   - uid: Reportman.Drawing.Forms.PrintOutWinForms.SelectDefaultPrinter(System.Windows.Forms.Form)
     name: SelectDefaultPrinter
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   - name: (
   - uid: System.Windows.Forms.Form
     name: Form
@@ -501,6 +537,7 @@ references:
   - uid: Reportman.Drawing.Forms.PrintOutWinForms.SelectDefaultPrinter(System.Windows.Forms.Form)
     name: SelectDefaultPrinter
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   - name: (
   - uid: System.Windows.Forms.Form
     name: Form
@@ -511,6 +548,7 @@ references:
   commentId: M:Reportman.Drawing.Forms.PrintOutWinForms.Print(Reportman.Drawing.MetaFile)
   parent: Reportman.Drawing.Forms.PrintOutWinForms
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   name: Print(MetaFile)
   nameWithType: PrintOutWinForms.Print(MetaFile)
   fullName: Reportman.Drawing.Forms.PrintOutWinForms.Print(Reportman.Drawing.MetaFile)
@@ -518,25 +556,29 @@ references:
   - uid: Reportman.Drawing.Forms.PrintOutWinForms.Print(Reportman.Drawing.MetaFile)
     name: Print
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   - name: (
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: )
   spec.vb:
   - uid: Reportman.Drawing.Forms.PrintOutWinForms.Print(Reportman.Drawing.MetaFile)
     name: Print
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   - name: (
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: )
 - uid: Reportman.Drawing.Forms.PrintOutWinForms.FormatFlatsToTextFormatFlags(System.Drawing.StringFormat)
   commentId: M:Reportman.Drawing.Forms.PrintOutWinForms.FormatFlatsToTextFormatFlags(System.Drawing.StringFormat)
   parent: Reportman.Drawing.Forms.PrintOutWinForms
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.drawing.stringformat
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   name: FormatFlatsToTextFormatFlags(StringFormat)
   nameWithType: PrintOutWinForms.FormatFlatsToTextFormatFlags(StringFormat)
   fullName: Reportman.Drawing.Forms.PrintOutWinForms.FormatFlatsToTextFormatFlags(System.Drawing.StringFormat)
@@ -544,6 +586,7 @@ references:
   - uid: Reportman.Drawing.Forms.PrintOutWinForms.FormatFlatsToTextFormatFlags(System.Drawing.StringFormat)
     name: FormatFlatsToTextFormatFlags
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   - name: (
   - uid: System.Drawing.StringFormat
     name: StringFormat
@@ -554,6 +597,7 @@ references:
   - uid: Reportman.Drawing.Forms.PrintOutWinForms.FormatFlatsToTextFormatFlags(System.Drawing.StringFormat)
     name: FormatFlatsToTextFormatFlags
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   - name: (
   - uid: System.Drawing.StringFormat
     name: StringFormat
@@ -564,7 +608,7 @@ references:
   commentId: M:Reportman.Drawing.Forms.PrintOutWinForms.DrawString(System.Drawing.Graphics,System.String,System.Drawing.Font,System.Drawing.Brush,System.Drawing.Rectangle,System.Drawing.StringFormat)
   parent: Reportman.Drawing.Forms.PrintOutWinForms
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.drawing.graphics
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   name: DrawString(Graphics, string, Font, Brush, Rectangle, StringFormat)
   nameWithType: PrintOutWinForms.DrawString(Graphics, string, Font, Brush, Rectangle, StringFormat)
   fullName: Reportman.Drawing.Forms.PrintOutWinForms.DrawString(System.Drawing.Graphics, string, System.Drawing.Font, System.Drawing.Brush, System.Drawing.Rectangle, System.Drawing.StringFormat)
@@ -575,6 +619,7 @@ references:
   - uid: Reportman.Drawing.Forms.PrintOutWinForms.DrawString(System.Drawing.Graphics,System.String,System.Drawing.Font,System.Drawing.Brush,System.Drawing.Rectangle,System.Drawing.StringFormat)
     name: DrawString
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   - name: (
   - uid: System.Drawing.Graphics
     name: Graphics
@@ -615,6 +660,7 @@ references:
   - uid: Reportman.Drawing.Forms.PrintOutWinForms.DrawString(System.Drawing.Graphics,System.String,System.Drawing.Font,System.Drawing.Brush,System.Drawing.Rectangle,System.Drawing.StringFormat)
     name: DrawString
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   - name: (
   - uid: System.Drawing.Graphics
     name: Graphics
@@ -655,7 +701,7 @@ references:
   commentId: M:Reportman.Drawing.Forms.PrintOutWinForms.DrawString(System.Drawing.Graphics,System.String,System.Drawing.Font,System.Drawing.Brush,System.Single,System.Single,System.Drawing.StringFormat)
   parent: Reportman.Drawing.Forms.PrintOutWinForms
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.drawing.graphics
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   name: DrawString(Graphics, string, Font, Brush, float, float, StringFormat)
   nameWithType: PrintOutWinForms.DrawString(Graphics, string, Font, Brush, float, float, StringFormat)
   fullName: Reportman.Drawing.Forms.PrintOutWinForms.DrawString(System.Drawing.Graphics, string, System.Drawing.Font, System.Drawing.Brush, float, float, System.Drawing.StringFormat)
@@ -666,6 +712,7 @@ references:
   - uid: Reportman.Drawing.Forms.PrintOutWinForms.DrawString(System.Drawing.Graphics,System.String,System.Drawing.Font,System.Drawing.Brush,System.Single,System.Single,System.Drawing.StringFormat)
     name: DrawString
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   - name: (
   - uid: System.Drawing.Graphics
     name: Graphics
@@ -712,6 +759,7 @@ references:
   - uid: Reportman.Drawing.Forms.PrintOutWinForms.DrawString(System.Drawing.Graphics,System.String,System.Drawing.Font,System.Drawing.Brush,System.Single,System.Single,System.Drawing.StringFormat)
     name: DrawString
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   - name: (
   - uid: System.Drawing.Graphics
     name: Graphics
@@ -758,7 +806,7 @@ references:
   commentId: M:Reportman.Drawing.Forms.PrintOutWinForms.MeasureString(System.Drawing.Graphics,System.String,System.Drawing.Font,System.Drawing.SizeF,System.Drawing.StringFormat,System.Int32@,System.Int32@)
   parent: Reportman.Drawing.Forms.PrintOutWinForms
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.drawing.graphics
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   name: MeasureString(Graphics, string, Font, SizeF, StringFormat, out int, out int)
   nameWithType: PrintOutWinForms.MeasureString(Graphics, string, Font, SizeF, StringFormat, out int, out int)
   fullName: Reportman.Drawing.Forms.PrintOutWinForms.MeasureString(System.Drawing.Graphics, string, System.Drawing.Font, System.Drawing.SizeF, System.Drawing.StringFormat, out int, out int)
@@ -769,6 +817,7 @@ references:
   - uid: Reportman.Drawing.Forms.PrintOutWinForms.MeasureString(System.Drawing.Graphics,System.String,System.Drawing.Font,System.Drawing.SizeF,System.Drawing.StringFormat,System.Int32@,System.Int32@)
     name: MeasureString
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   - name: (
   - uid: System.Drawing.Graphics
     name: Graphics
@@ -819,6 +868,7 @@ references:
   - uid: Reportman.Drawing.Forms.PrintOutWinForms.MeasureString(System.Drawing.Graphics,System.String,System.Drawing.Font,System.Drawing.SizeF,System.Drawing.StringFormat,System.Int32@,System.Int32@)
     name: MeasureString
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   - name: (
   - uid: System.Drawing.Graphics
     name: Graphics
@@ -865,6 +915,7 @@ references:
   commentId: M:Reportman.Drawing.Forms.PrintOutWinForms.AddFunctionToChart(System.Windows.Forms.DataVisualization.Charting.Chart,System.Windows.Forms.DataVisualization.Charting.Series,Reportman.Drawing.SeriesItem)
   parent: Reportman.Drawing.Forms.PrintOutWinForms
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   name: AddFunctionToChart(Chart, Series, SeriesItem)
   nameWithType: PrintOutWinForms.AddFunctionToChart(Chart, Series, SeriesItem)
   fullName: Reportman.Drawing.Forms.PrintOutWinForms.AddFunctionToChart(System.Windows.Forms.DataVisualization.Charting.Chart, System.Windows.Forms.DataVisualization.Charting.Series, Reportman.Drawing.SeriesItem)
@@ -872,6 +923,7 @@ references:
   - uid: Reportman.Drawing.Forms.PrintOutWinForms.AddFunctionToChart(System.Windows.Forms.DataVisualization.Charting.Chart,System.Windows.Forms.DataVisualization.Charting.Series,Reportman.Drawing.SeriesItem)
     name: AddFunctionToChart
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   - name: (
   - uid: System.Windows.Forms.DataVisualization.Charting.Chart
     name: Chart
@@ -886,11 +938,13 @@ references:
   - uid: Reportman.Drawing.SeriesItem
     name: SeriesItem
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   - name: )
   spec.vb:
   - uid: Reportman.Drawing.Forms.PrintOutWinForms.AddFunctionToChart(System.Windows.Forms.DataVisualization.Charting.Chart,System.Windows.Forms.DataVisualization.Charting.Series,Reportman.Drawing.SeriesItem)
     name: AddFunctionToChart
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   - name: (
   - uid: System.Windows.Forms.DataVisualization.Charting.Chart
     name: Chart
@@ -905,11 +959,13 @@ references:
   - uid: Reportman.Drawing.SeriesItem
     name: SeriesItem
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   - name: )
 - uid: Reportman.Drawing.Forms.PrintOutWinForms.DrawChartBitmap(Reportman.Drawing.Series)
   commentId: M:Reportman.Drawing.Forms.PrintOutWinForms.DrawChartBitmap(Reportman.Drawing.Series)
   parent: Reportman.Drawing.Forms.PrintOutWinForms
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   name: DrawChartBitmap(Series)
   nameWithType: PrintOutWinForms.DrawChartBitmap(Series)
   fullName: Reportman.Drawing.Forms.PrintOutWinForms.DrawChartBitmap(Reportman.Drawing.Series)
@@ -917,25 +973,29 @@ references:
   - uid: Reportman.Drawing.Forms.PrintOutWinForms.DrawChartBitmap(Reportman.Drawing.Series)
     name: DrawChartBitmap
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   - name: (
   - uid: Reportman.Drawing.Series
     name: Series
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   - name: )
   spec.vb:
   - uid: Reportman.Drawing.Forms.PrintOutWinForms.DrawChartBitmap(Reportman.Drawing.Series)
     name: DrawChartBitmap
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   - name: (
   - uid: Reportman.Drawing.Series
     name: Series
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   - name: )
 - uid: Reportman.Drawing.Forms.PrintOutWinForms.DrawChart(Reportman.Drawing.Series,Reportman.Drawing.MetaFile,System.Int32,System.Int32,System.Object)
   commentId: M:Reportman.Drawing.Forms.PrintOutWinForms.DrawChart(Reportman.Drawing.Series,Reportman.Drawing.MetaFile,System.Int32,System.Int32,System.Object)
   parent: Reportman.Drawing.Forms.PrintOutWinForms
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.int32
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   name: DrawChart(Series, MetaFile, int, int, object)
   nameWithType: PrintOutWinForms.DrawChart(Series, MetaFile, int, int, object)
   fullName: Reportman.Drawing.Forms.PrintOutWinForms.DrawChart(Reportman.Drawing.Series, Reportman.Drawing.MetaFile, int, int, object)
@@ -946,15 +1006,18 @@ references:
   - uid: Reportman.Drawing.Forms.PrintOutWinForms.DrawChart(Reportman.Drawing.Series,Reportman.Drawing.MetaFile,System.Int32,System.Int32,System.Object)
     name: DrawChart
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   - name: (
   - uid: Reportman.Drawing.Series
     name: Series
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   - name: ','
   - name: " "
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -978,15 +1041,18 @@ references:
   - uid: Reportman.Drawing.Forms.PrintOutWinForms.DrawChart(Reportman.Drawing.Series,Reportman.Drawing.MetaFile,System.Int32,System.Int32,System.Object)
     name: DrawChart
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   - name: (
   - uid: Reportman.Drawing.Series
     name: Series
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   - name: ','
   - name: " "
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -1010,6 +1076,7 @@ references:
   commentId: P:Reportman.Drawing.Forms.PrintOutWinForms.Preview
   parent: Reportman.Drawing.Forms.PrintOutWinForms
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   name: Preview
   nameWithType: PrintOutWinForms.Preview
   fullName: Reportman.Drawing.Forms.PrintOutWinForms.Preview
@@ -1017,6 +1084,7 @@ references:
   commentId: P:Reportman.Drawing.Forms.PrintOutWinForms.SystemPreview
   parent: Reportman.Drawing.Forms.PrintOutWinForms
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   name: SystemPreview
   nameWithType: PrintOutWinForms.SystemPreview
   fullName: Reportman.Drawing.Forms.PrintOutWinForms.SystemPreview
@@ -1024,6 +1092,7 @@ references:
   commentId: P:Reportman.Drawing.Forms.PrintOutWinForms.PreviewWindow
   parent: Reportman.Drawing.Forms.PrintOutWinForms
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   name: PreviewWindow
   nameWithType: PrintOutWinForms.PreviewWindow
   fullName: Reportman.Drawing.Forms.PrintOutWinForms.PreviewWindow
@@ -1031,6 +1100,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOutPrint.overridedriver
   parent: Reportman.Drawing.PrintOutPrint
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   name: overridedriver
   nameWithType: PrintOutPrint.overridedriver
   fullName: Reportman.Drawing.PrintOutPrint.overridedriver
@@ -1038,6 +1108,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOutPrint.UseStandardPrintController
   parent: Reportman.Drawing.PrintOutPrint
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   name: UseStandardPrintController
   nameWithType: PrintOutPrint.UseStandardPrintController
   fullName: Reportman.Drawing.PrintOutPrint.UseStandardPrintController
@@ -1045,6 +1116,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOutPrint.ShowPrintProgress
   parent: Reportman.Drawing.PrintOutPrint
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   name: ShowPrintProgress
   nameWithType: PrintOutPrint.ShowPrintProgress
   fullName: Reportman.Drawing.PrintOutPrint.ShowPrintProgress
@@ -1052,6 +1124,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOutPrint.DisableForwardOnly
   parent: Reportman.Drawing.PrintOutPrint
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   name: DisableForwardOnly
   nameWithType: PrintOutPrint.DisableForwardOnly
   fullName: Reportman.Drawing.PrintOutPrint.DisableForwardOnly
@@ -1059,6 +1132,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOutPrint.FPagesPrinted
   parent: Reportman.Drawing.PrintOutPrint
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   name: FPagesPrinted
   nameWithType: PrintOutPrint.FPagesPrinted
   fullName: Reportman.Drawing.PrintOutPrint.FPagesPrinted
@@ -1066,6 +1140,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOutPrint.FBlackLines
   parent: Reportman.Drawing.PrintOutPrint
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   name: FBlackLines
   nameWithType: PrintOutPrint.FBlackLines
   fullName: Reportman.Drawing.PrintOutPrint.FBlackLines
@@ -1073,6 +1148,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOutPrint.FWhiteLines
   parent: Reportman.Drawing.PrintOutPrint
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   name: FWhiteLines
   nameWithType: PrintOutPrint.FWhiteLines
   fullName: Reportman.Drawing.PrintOutPrint.FWhiteLines
@@ -1080,6 +1156,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOutPrint.doc
   parent: Reportman.Drawing.PrintOutPrint
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   name: doc
   nameWithType: PrintOutPrint.doc
   fullName: Reportman.Drawing.PrintOutPrint.doc
@@ -1087,6 +1164,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOutPrint.BrowsePaperSizes
   parent: Reportman.Drawing.PrintOutPrint
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   name: BrowsePaperSizes
   nameWithType: PrintOutPrint.BrowsePaperSizes
   fullName: Reportman.Drawing.PrintOutPrint.BrowsePaperSizes
@@ -1094,6 +1172,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOutPrint.AutoScalePrint
   parent: Reportman.Drawing.PrintOutPrint
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   name: AutoScalePrint
   nameWithType: PrintOutPrint.AutoScalePrint
   fullName: Reportman.Drawing.PrintOutPrint.AutoScalePrint
@@ -1101,6 +1180,7 @@ references:
   commentId: M:Reportman.Drawing.PrintOutPrint.NewDocument(Reportman.Drawing.MetaFile)
   parent: Reportman.Drawing.PrintOutPrint
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   name: NewDocument(MetaFile)
   nameWithType: PrintOutPrint.NewDocument(MetaFile)
   fullName: Reportman.Drawing.PrintOutPrint.NewDocument(Reportman.Drawing.MetaFile)
@@ -1108,24 +1188,29 @@ references:
   - uid: Reportman.Drawing.PrintOutPrint.NewDocument(Reportman.Drawing.MetaFile)
     name: NewDocument
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   - name: (
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: )
   spec.vb:
   - uid: Reportman.Drawing.PrintOutPrint.NewDocument(Reportman.Drawing.MetaFile)
     name: NewDocument
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   - name: (
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: )
 - uid: Reportman.Drawing.PrintOutPrint.SetOrientation(Reportman.Drawing.OrientationType)
   commentId: M:Reportman.Drawing.PrintOutPrint.SetOrientation(Reportman.Drawing.OrientationType)
   parent: Reportman.Drawing.PrintOutPrint
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   name: SetOrientation(OrientationType)
   nameWithType: PrintOutPrint.SetOrientation(OrientationType)
   fullName: Reportman.Drawing.PrintOutPrint.SetOrientation(Reportman.Drawing.OrientationType)
@@ -1133,25 +1218,29 @@ references:
   - uid: Reportman.Drawing.PrintOutPrint.SetOrientation(Reportman.Drawing.OrientationType)
     name: SetOrientation
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   - name: (
   - uid: Reportman.Drawing.OrientationType
     name: OrientationType
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: )
   spec.vb:
   - uid: Reportman.Drawing.PrintOutPrint.SetOrientation(Reportman.Drawing.OrientationType)
     name: SetOrientation
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   - name: (
   - uid: Reportman.Drawing.OrientationType
     name: OrientationType
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: )
 - uid: Reportman.Drawing.PrintOutPrint.GetPageSize(System.Int32@)
   commentId: M:Reportman.Drawing.PrintOutPrint.GetPageSize(System.Int32@)
   parent: Reportman.Drawing.PrintOutPrint
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.int32
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   name: GetPageSize(out int)
   nameWithType: PrintOutPrint.GetPageSize(out int)
   fullName: Reportman.Drawing.PrintOutPrint.GetPageSize(out int)
@@ -1162,6 +1251,7 @@ references:
   - uid: Reportman.Drawing.PrintOutPrint.GetPageSize(System.Int32@)
     name: GetPageSize
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   - name: (
   - name: out
   - name: " "
@@ -1174,6 +1264,7 @@ references:
   - uid: Reportman.Drawing.PrintOutPrint.GetPageSize(System.Int32@)
     name: GetPageSize
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   - name: (
   - uid: System.Int32
     name: Integer
@@ -1184,6 +1275,7 @@ references:
   commentId: M:Reportman.Drawing.PrintOutPrint.DrawPage(Reportman.Drawing.MetaFile,Reportman.Drawing.MetaPage)
   parent: Reportman.Drawing.PrintOutPrint
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   name: DrawPage(MetaFile, MetaPage)
   nameWithType: PrintOutPrint.DrawPage(MetaFile, MetaPage)
   fullName: Reportman.Drawing.PrintOutPrint.DrawPage(Reportman.Drawing.MetaFile, Reportman.Drawing.MetaPage)
@@ -1191,34 +1283,41 @@ references:
   - uid: Reportman.Drawing.PrintOutPrint.DrawPage(Reportman.Drawing.MetaFile,Reportman.Drawing.MetaPage)
     name: DrawPage
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   - name: (
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: ','
   - name: " "
   - uid: Reportman.Drawing.MetaPage
     name: MetaPage
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
   - name: )
   spec.vb:
   - uid: Reportman.Drawing.PrintOutPrint.DrawPage(Reportman.Drawing.MetaFile,Reportman.Drawing.MetaPage)
     name: DrawPage
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   - name: (
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: ','
   - name: " "
   - uid: Reportman.Drawing.MetaPage
     name: MetaPage
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
   - name: )
 - uid: Reportman.Drawing.PrintOutPrint.UpdateHardMargins
   commentId: M:Reportman.Drawing.PrintOutPrint.UpdateHardMargins
   parent: Reportman.Drawing.PrintOutPrint
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   name: UpdateHardMargins()
   nameWithType: PrintOutPrint.UpdateHardMargins()
   fullName: Reportman.Drawing.PrintOutPrint.UpdateHardMargins()
@@ -1226,18 +1325,21 @@ references:
   - uid: Reportman.Drawing.PrintOutPrint.UpdateHardMargins
     name: UpdateHardMargins
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   - name: (
   - name: )
   spec.vb:
   - uid: Reportman.Drawing.PrintOutPrint.UpdateHardMargins
     name: UpdateHardMargins
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   - name: (
   - name: )
 - uid: Reportman.Drawing.PrintOutPrint.PreparePrint(Reportman.Drawing.MetaFile)
   commentId: M:Reportman.Drawing.PrintOutPrint.PreparePrint(Reportman.Drawing.MetaFile)
   parent: Reportman.Drawing.PrintOutPrint
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   name: PreparePrint(MetaFile)
   nameWithType: PrintOutPrint.PreparePrint(MetaFile)
   fullName: Reportman.Drawing.PrintOutPrint.PreparePrint(Reportman.Drawing.MetaFile)
@@ -1245,25 +1347,29 @@ references:
   - uid: Reportman.Drawing.PrintOutPrint.PreparePrint(Reportman.Drawing.MetaFile)
     name: PreparePrint
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   - name: (
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: )
   spec.vb:
   - uid: Reportman.Drawing.PrintOutPrint.PreparePrint(Reportman.Drawing.MetaFile)
     name: PreparePrint
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   - name: (
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: )
 - uid: Reportman.Drawing.PrintOutPrint.PaperSizeToQtIndex(System.Drawing.Printing.PaperSize)
   commentId: M:Reportman.Drawing.PrintOutPrint.PaperSizeToQtIndex(System.Drawing.Printing.PaperSize)
   parent: Reportman.Drawing.PrintOutPrint
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.drawing.printing.papersize
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   name: PaperSizeToQtIndex(PaperSize)
   nameWithType: PrintOutPrint.PaperSizeToQtIndex(PaperSize)
   fullName: Reportman.Drawing.PrintOutPrint.PaperSizeToQtIndex(System.Drawing.Printing.PaperSize)
@@ -1271,6 +1377,7 @@ references:
   - uid: Reportman.Drawing.PrintOutPrint.PaperSizeToQtIndex(System.Drawing.Printing.PaperSize)
     name: PaperSizeToQtIndex
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   - name: (
   - uid: System.Drawing.Printing.PaperSize
     name: PaperSize
@@ -1281,6 +1388,7 @@ references:
   - uid: Reportman.Drawing.PrintOutPrint.PaperSizeToQtIndex(System.Drawing.Printing.PaperSize)
     name: PaperSizeToQtIndex
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   - name: (
   - uid: System.Drawing.Printing.PaperSize
     name: PaperSize
@@ -1291,7 +1399,7 @@ references:
   commentId: M:Reportman.Drawing.PrintOutPrint.PageIndexToPaperRawKind(System.Int32,System.Int32@,System.Int32@)
   parent: Reportman.Drawing.PrintOutPrint
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.int32
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   name: PageIndexToPaperRawKind(int, ref int, ref int)
   nameWithType: PrintOutPrint.PageIndexToPaperRawKind(int, ref int, ref int)
   fullName: Reportman.Drawing.PrintOutPrint.PageIndexToPaperRawKind(int, ref int, ref int)
@@ -1302,6 +1410,7 @@ references:
   - uid: Reportman.Drawing.PrintOutPrint.PageIndexToPaperRawKind(System.Int32,System.Int32@,System.Int32@)
     name: PageIndexToPaperRawKind
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   - name: (
   - uid: System.Int32
     name: int
@@ -1328,6 +1437,7 @@ references:
   - uid: Reportman.Drawing.PrintOutPrint.PageIndexToPaperRawKind(System.Int32,System.Int32@,System.Int32@)
     name: PageIndexToPaperRawKind
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   - name: (
   - uid: System.Int32
     name: Integer
@@ -1350,6 +1460,7 @@ references:
   commentId: M:Reportman.Drawing.PrintOutPrint.InitPrinter(Reportman.Drawing.MetaFile)
   parent: Reportman.Drawing.PrintOutPrint
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   name: InitPrinter(MetaFile)
   nameWithType: PrintOutPrint.InitPrinter(MetaFile)
   fullName: Reportman.Drawing.PrintOutPrint.InitPrinter(Reportman.Drawing.MetaFile)
@@ -1357,24 +1468,29 @@ references:
   - uid: Reportman.Drawing.PrintOutPrint.InitPrinter(Reportman.Drawing.MetaFile)
     name: InitPrinter
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   - name: (
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: )
   spec.vb:
   - uid: Reportman.Drawing.PrintOutPrint.InitPrinter(Reportman.Drawing.MetaFile)
     name: InitPrinter
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   - name: (
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: )
 - uid: Reportman.Drawing.PrintOutPrint.EndDocument(Reportman.Drawing.MetaFile)
   commentId: M:Reportman.Drawing.PrintOutPrint.EndDocument(Reportman.Drawing.MetaFile)
   parent: Reportman.Drawing.PrintOutPrint
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   name: EndDocument(MetaFile)
   nameWithType: PrintOutPrint.EndDocument(MetaFile)
   fullName: Reportman.Drawing.PrintOutPrint.EndDocument(Reportman.Drawing.MetaFile)
@@ -1382,25 +1498,29 @@ references:
   - uid: Reportman.Drawing.PrintOutPrint.EndDocument(Reportman.Drawing.MetaFile)
     name: EndDocument
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   - name: (
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: )
   spec.vb:
   - uid: Reportman.Drawing.PrintOutPrint.EndDocument(Reportman.Drawing.MetaFile)
     name: EndDocument
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   - name: (
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: )
 - uid: Reportman.Drawing.PrintOutPrint.PrinterExists(System.String)
   commentId: M:Reportman.Drawing.PrintOutPrint.PrinterExists(System.String)
   parent: Reportman.Drawing.PrintOutPrint
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   name: PrinterExists(string)
   nameWithType: PrintOutPrint.PrinterExists(string)
   fullName: Reportman.Drawing.PrintOutPrint.PrinterExists(string)
@@ -1411,6 +1531,7 @@ references:
   - uid: Reportman.Drawing.PrintOutPrint.PrinterExists(System.String)
     name: PrinterExists
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   - name: (
   - uid: System.String
     name: string
@@ -1421,6 +1542,7 @@ references:
   - uid: Reportman.Drawing.PrintOutPrint.PrinterExists(System.String)
     name: PrinterExists
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   - name: (
   - uid: System.String
     name: String
@@ -1431,6 +1553,7 @@ references:
   commentId: M:Reportman.Drawing.PrintOutPrint.SelectPrinter(Reportman.Drawing.PrinterSelectType)
   parent: Reportman.Drawing.PrintOutPrint
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   name: SelectPrinter(PrinterSelectType)
   nameWithType: PrintOutPrint.SelectPrinter(PrinterSelectType)
   fullName: Reportman.Drawing.PrintOutPrint.SelectPrinter(Reportman.Drawing.PrinterSelectType)
@@ -1438,25 +1561,29 @@ references:
   - uid: Reportman.Drawing.PrintOutPrint.SelectPrinter(Reportman.Drawing.PrinterSelectType)
     name: SelectPrinter
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   - name: (
   - uid: Reportman.Drawing.PrinterSelectType
     name: PrinterSelectType
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: )
   spec.vb:
   - uid: Reportman.Drawing.PrintOutPrint.SelectPrinter(Reportman.Drawing.PrinterSelectType)
     name: SelectPrinter
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   - name: (
   - uid: Reportman.Drawing.PrinterSelectType
     name: PrinterSelectType
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: )
 - uid: Reportman.Drawing.PrintOutPrint.PaperSizeFromPageIndex(System.Int32)
   commentId: M:Reportman.Drawing.PrintOutPrint.PaperSizeFromPageIndex(System.Int32)
   parent: Reportman.Drawing.PrintOutPrint
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.int32
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   name: PaperSizeFromPageIndex(int)
   nameWithType: PrintOutPrint.PaperSizeFromPageIndex(int)
   fullName: Reportman.Drawing.PrintOutPrint.PaperSizeFromPageIndex(int)
@@ -1467,6 +1594,7 @@ references:
   - uid: Reportman.Drawing.PrintOutPrint.PaperSizeFromPageIndex(System.Int32)
     name: PaperSizeFromPageIndex
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   - name: (
   - uid: System.Int32
     name: int
@@ -1477,6 +1605,7 @@ references:
   - uid: Reportman.Drawing.PrintOutPrint.PaperSizeFromPageIndex(System.Int32)
     name: PaperSizeFromPageIndex
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   - name: (
   - uid: System.Int32
     name: Integer
@@ -1487,6 +1616,7 @@ references:
   commentId: P:Reportman.Drawing.PrintOutPrint.OutputDevice
   parent: Reportman.Drawing.PrintOutPrint
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   name: OutputDevice
   nameWithType: PrintOutPrint.OutputDevice
   fullName: Reportman.Drawing.PrintOutPrint.OutputDevice
@@ -1494,6 +1624,7 @@ references:
   commentId: P:Reportman.Drawing.PrintOutPrint.PagesPrinted
   parent: Reportman.Drawing.PrintOutPrint
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   name: PagesPrinted
   nameWithType: PrintOutPrint.PagesPrinted
   fullName: Reportman.Drawing.PrintOutPrint.PagesPrinted
@@ -1501,6 +1632,7 @@ references:
   commentId: P:Reportman.Drawing.PrintOutPrint.BlackLinesPrinted
   parent: Reportman.Drawing.PrintOutPrint
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   name: BlackLinesPrinted
   nameWithType: PrintOutPrint.BlackLinesPrinted
   fullName: Reportman.Drawing.PrintOutPrint.BlackLinesPrinted
@@ -1508,6 +1640,7 @@ references:
   commentId: P:Reportman.Drawing.PrintOutPrint.WhiteLinesPrinted
   parent: Reportman.Drawing.PrintOutPrint
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
   name: WhiteLinesPrinted
   nameWithType: PrintOutPrint.WhiteLinesPrinted
   fullName: Reportman.Drawing.PrintOutPrint.WhiteLinesPrinted
@@ -1515,7 +1648,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOutNet.Scale
   parent: Reportman.Drawing.PrintOutNet
   isExternal: true
-  href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_Scale
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   name: Scale
   nameWithType: PrintOutNet.Scale
   fullName: Reportman.Drawing.PrintOutNet.Scale
@@ -1523,15 +1656,23 @@ references:
   commentId: F:Reportman.Drawing.PrintOutNet.OptimizeWMF
   parent: Reportman.Drawing.PrintOutNet
   isExternal: true
-  href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_OptimizeWMF
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   name: OptimizeWMF
   nameWithType: PrintOutNet.OptimizeWMF
   fullName: Reportman.Drawing.PrintOutNet.OptimizeWMF
+- uid: Reportman.Drawing.PrintOutNet.UsePDFFonts
+  commentId: F:Reportman.Drawing.PrintOutNet.UsePDFFonts
+  parent: Reportman.Drawing.PrintOutNet
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
+  name: UsePDFFonts
+  nameWithType: PrintOutNet.UsePDFFonts
+  fullName: Reportman.Drawing.PrintOutNet.UsePDFFonts
 - uid: Reportman.Drawing.PrintOutNet.HardMarginX
   commentId: F:Reportman.Drawing.PrintOutNet.HardMarginX
   parent: Reportman.Drawing.PrintOutNet
   isExternal: true
-  href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_HardMarginX
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   name: HardMarginX
   nameWithType: PrintOutNet.HardMarginX
   fullName: Reportman.Drawing.PrintOutNet.HardMarginX
@@ -1539,7 +1680,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOutNet.HardMarginY
   parent: Reportman.Drawing.PrintOutNet
   isExternal: true
-  href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_HardMarginY
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   name: HardMarginY
   nameWithType: PrintOutNet.HardMarginY
   fullName: Reportman.Drawing.PrintOutNet.HardMarginY
@@ -1547,7 +1688,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOutNet.UseHardMargin
   parent: Reportman.Drawing.PrintOutNet
   isExternal: true
-  href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_UseHardMargin
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   name: UseHardMargin
   nameWithType: PrintOutNet.UseHardMargin
   fullName: Reportman.Drawing.PrintOutNet.UseHardMargin
@@ -1555,7 +1696,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOutNet.Output
   parent: Reportman.Drawing.PrintOutNet
   isExternal: true
-  href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_Output
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   name: Output
   nameWithType: PrintOutNet.Output
   fullName: Reportman.Drawing.PrintOutNet.Output
@@ -1563,7 +1704,7 @@ references:
   commentId: M:Reportman.Drawing.PrintOutNet.GraphicExtent(System.IO.MemoryStream,System.Drawing.Point,System.Int32)
   parent: Reportman.Drawing.PrintOutNet
   isExternal: true
-  href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_GraphicExtent_System_IO_MemoryStream_System_Drawing_Point_System_Int32_
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   name: GraphicExtent(MemoryStream, Point, int)
   nameWithType: PrintOutNet.GraphicExtent(MemoryStream, Point, int)
   fullName: Reportman.Drawing.PrintOutNet.GraphicExtent(System.IO.MemoryStream, System.Drawing.Point, int)
@@ -1574,7 +1715,7 @@ references:
   - uid: Reportman.Drawing.PrintOutNet.GraphicExtent(System.IO.MemoryStream,System.Drawing.Point,System.Int32)
     name: GraphicExtent
     isExternal: true
-    href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_GraphicExtent_System_IO_MemoryStream_System_Drawing_Point_System_Int32_
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   - name: (
   - uid: System.IO.MemoryStream
     name: MemoryStream
@@ -1597,7 +1738,7 @@ references:
   - uid: Reportman.Drawing.PrintOutNet.GraphicExtent(System.IO.MemoryStream,System.Drawing.Point,System.Int32)
     name: GraphicExtent
     isExternal: true
-    href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_GraphicExtent_System_IO_MemoryStream_System_Drawing_Point_System_Int32_
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   - name: (
   - uid: System.IO.MemoryStream
     name: MemoryStream
@@ -1620,7 +1761,7 @@ references:
   commentId: M:Reportman.Drawing.PrintOutNet.TextExtent(Reportman.Drawing.TextObjectStruct,System.Drawing.Point)
   parent: Reportman.Drawing.PrintOutNet
   isExternal: true
-  href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_TextExtent_Reportman_Drawing_TextObjectStruct_System_Drawing_Point_
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   name: TextExtent(TextObjectStruct, Point)
   nameWithType: PrintOutNet.TextExtent(TextObjectStruct, Point)
   fullName: Reportman.Drawing.PrintOutNet.TextExtent(Reportman.Drawing.TextObjectStruct, System.Drawing.Point)
@@ -1628,11 +1769,12 @@ references:
   - uid: Reportman.Drawing.PrintOutNet.TextExtent(Reportman.Drawing.TextObjectStruct,System.Drawing.Point)
     name: TextExtent
     isExternal: true
-    href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_TextExtent_Reportman_Drawing_TextObjectStruct_System_Drawing_Point_
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   - name: (
   - uid: Reportman.Drawing.TextObjectStruct
     name: TextObjectStruct
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -1644,11 +1786,59 @@ references:
   - uid: Reportman.Drawing.PrintOutNet.TextExtent(Reportman.Drawing.TextObjectStruct,System.Drawing.Point)
     name: TextExtent
     isExternal: true
-    href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_TextExtent_Reportman_Drawing_TextObjectStruct_System_Drawing_Point_
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   - name: (
   - uid: Reportman.Drawing.TextObjectStruct
     name: TextObjectStruct
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.Point
+    name: Point
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.point
+  - name: )
+- uid: Reportman.Drawing.PrintOutNet.TextExtentLineInfo(Reportman.Drawing.TextObjectStruct,System.Drawing.Point@)
+  commentId: M:Reportman.Drawing.PrintOutNet.TextExtentLineInfo(Reportman.Drawing.TextObjectStruct,System.Drawing.Point@)
+  parent: Reportman.Drawing.PrintOutNet
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
+  name: TextExtentLineInfo(TextObjectStruct, ref Point)
+  nameWithType: PrintOutNet.TextExtentLineInfo(TextObjectStruct, ref Point)
+  fullName: Reportman.Drawing.PrintOutNet.TextExtentLineInfo(Reportman.Drawing.TextObjectStruct, ref System.Drawing.Point)
+  nameWithType.vb: PrintOutNet.TextExtentLineInfo(TextObjectStruct, Point)
+  fullName.vb: Reportman.Drawing.PrintOutNet.TextExtentLineInfo(Reportman.Drawing.TextObjectStruct, System.Drawing.Point)
+  name.vb: TextExtentLineInfo(TextObjectStruct, Point)
+  spec.csharp:
+  - uid: Reportman.Drawing.PrintOutNet.TextExtentLineInfo(Reportman.Drawing.TextObjectStruct,System.Drawing.Point@)
+    name: TextExtentLineInfo
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
+  - name: (
+  - uid: Reportman.Drawing.TextObjectStruct
+    name: TextObjectStruct
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
+  - name: ','
+  - name: " "
+  - name: ref
+  - name: " "
+  - uid: System.Drawing.Point
+    name: Point
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.point
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.PrintOutNet.TextExtentLineInfo(Reportman.Drawing.TextObjectStruct,System.Drawing.Point@)
+    name: TextExtentLineInfo
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
+  - name: (
+  - uid: Reportman.Drawing.TextObjectStruct
+    name: TextObjectStruct
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -1660,7 +1850,7 @@ references:
   commentId: M:Reportman.Drawing.PrintOutNet.SetPageSize(Reportman.Drawing.PageSizeDetail)
   parent: Reportman.Drawing.PrintOutNet
   isExternal: true
-  href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_SetPageSize_Reportman_Drawing_PageSizeDetail_
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   name: SetPageSize(PageSizeDetail)
   nameWithType: PrintOutNet.SetPageSize(PageSizeDetail)
   fullName: Reportman.Drawing.PrintOutNet.SetPageSize(Reportman.Drawing.PageSizeDetail)
@@ -1668,27 +1858,29 @@ references:
   - uid: Reportman.Drawing.PrintOutNet.SetPageSize(Reportman.Drawing.PageSizeDetail)
     name: SetPageSize
     isExternal: true
-    href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_SetPageSize_Reportman_Drawing_PageSizeDetail_
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   - name: (
   - uid: Reportman.Drawing.PageSizeDetail
     name: PageSizeDetail
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: )
   spec.vb:
   - uid: Reportman.Drawing.PrintOutNet.SetPageSize(Reportman.Drawing.PageSizeDetail)
     name: SetPageSize
     isExternal: true
-    href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_SetPageSize_Reportman_Drawing_PageSizeDetail_
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   - name: (
   - uid: Reportman.Drawing.PageSizeDetail
     name: PageSizeDetail
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: )
 - uid: Reportman.Drawing.PrintOutNet.FontFromObject(Reportman.Drawing.MetaPage,Reportman.Drawing.MetaObjectText)
   commentId: M:Reportman.Drawing.PrintOutNet.FontFromObject(Reportman.Drawing.MetaPage,Reportman.Drawing.MetaObjectText)
   parent: Reportman.Drawing.PrintOutNet
   isExternal: true
-  href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_FontFromObject_Reportman_Drawing_MetaPage_Reportman_Drawing_MetaObjectText_
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   name: FontFromObject(MetaPage, MetaObjectText)
   nameWithType: PrintOutNet.FontFromObject(MetaPage, MetaObjectText)
   fullName: Reportman.Drawing.PrintOutNet.FontFromObject(Reportman.Drawing.MetaPage, Reportman.Drawing.MetaObjectText)
@@ -1696,37 +1888,41 @@ references:
   - uid: Reportman.Drawing.PrintOutNet.FontFromObject(Reportman.Drawing.MetaPage,Reportman.Drawing.MetaObjectText)
     name: FontFromObject
     isExternal: true
-    href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_FontFromObject_Reportman_Drawing_MetaPage_Reportman_Drawing_MetaObjectText_
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   - name: (
   - uid: Reportman.Drawing.MetaPage
     name: MetaPage
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
   - name: ','
   - name: " "
   - uid: Reportman.Drawing.MetaObjectText
     name: MetaObjectText
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObjectText.cs
   - name: )
   spec.vb:
   - uid: Reportman.Drawing.PrintOutNet.FontFromObject(Reportman.Drawing.MetaPage,Reportman.Drawing.MetaObjectText)
     name: FontFromObject
     isExternal: true
-    href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_FontFromObject_Reportman_Drawing_MetaPage_Reportman_Drawing_MetaObjectText_
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   - name: (
   - uid: Reportman.Drawing.MetaPage
     name: MetaPage
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
   - name: ','
   - name: " "
   - uid: Reportman.Drawing.MetaObjectText
     name: MetaObjectText
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObjectText.cs
   - name: )
 - uid: Reportman.Drawing.PrintOutNet.FontFromStruct(Reportman.Drawing.TextObjectStruct)
   commentId: M:Reportman.Drawing.PrintOutNet.FontFromStruct(Reportman.Drawing.TextObjectStruct)
   parent: Reportman.Drawing.PrintOutNet
   isExternal: true
-  href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_FontFromStruct_Reportman_Drawing_TextObjectStruct_
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   name: FontFromStruct(TextObjectStruct)
   nameWithType: PrintOutNet.FontFromStruct(TextObjectStruct)
   fullName: Reportman.Drawing.PrintOutNet.FontFromStruct(Reportman.Drawing.TextObjectStruct)
@@ -1734,27 +1930,29 @@ references:
   - uid: Reportman.Drawing.PrintOutNet.FontFromStruct(Reportman.Drawing.TextObjectStruct)
     name: FontFromStruct
     isExternal: true
-    href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_FontFromStruct_Reportman_Drawing_TextObjectStruct_
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   - name: (
   - uid: Reportman.Drawing.TextObjectStruct
     name: TextObjectStruct
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
   - name: )
   spec.vb:
   - uid: Reportman.Drawing.PrintOutNet.FontFromStruct(Reportman.Drawing.TextObjectStruct)
     name: FontFromStruct
     isExternal: true
-    href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_FontFromStruct_Reportman_Drawing_TextObjectStruct_
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   - name: (
   - uid: Reportman.Drawing.TextObjectStruct
     name: TextObjectStruct
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
   - name: )
 - uid: Reportman.Drawing.PrintOutNet.IntAlignToStringFormat(System.Int32,System.Boolean,System.Boolean,System.Boolean)
   commentId: M:Reportman.Drawing.PrintOutNet.IntAlignToStringFormat(System.Int32,System.Boolean,System.Boolean,System.Boolean)
   parent: Reportman.Drawing.PrintOutNet
   isExternal: true
-  href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_IntAlignToStringFormat_System_Int32_System_Boolean_System_Boolean_System_Boolean_
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   name: IntAlignToStringFormat(int, bool, bool, bool)
   nameWithType: PrintOutNet.IntAlignToStringFormat(int, bool, bool, bool)
   fullName: Reportman.Drawing.PrintOutNet.IntAlignToStringFormat(int, bool, bool, bool)
@@ -1765,7 +1963,7 @@ references:
   - uid: Reportman.Drawing.PrintOutNet.IntAlignToStringFormat(System.Int32,System.Boolean,System.Boolean,System.Boolean)
     name: IntAlignToStringFormat
     isExternal: true
-    href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_IntAlignToStringFormat_System_Int32_System_Boolean_System_Boolean_System_Boolean_
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   - name: (
   - uid: System.Int32
     name: int
@@ -1794,7 +1992,7 @@ references:
   - uid: Reportman.Drawing.PrintOutNet.IntAlignToStringFormat(System.Int32,System.Boolean,System.Boolean,System.Boolean)
     name: IntAlignToStringFormat
     isExternal: true
-    href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_IntAlignToStringFormat_System_Int32_System_Boolean_System_Boolean_System_Boolean_
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   - name: (
   - uid: System.Int32
     name: Integer
@@ -1823,7 +2021,7 @@ references:
   commentId: M:Reportman.Drawing.PrintOutNet.MetaObjectToStringFormat(Reportman.Drawing.MetaObjectText)
   parent: Reportman.Drawing.PrintOutNet
   isExternal: true
-  href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_MetaObjectToStringFormat_Reportman_Drawing_MetaObjectText_
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   name: MetaObjectToStringFormat(MetaObjectText)
   nameWithType: PrintOutNet.MetaObjectToStringFormat(MetaObjectText)
   fullName: Reportman.Drawing.PrintOutNet.MetaObjectToStringFormat(Reportman.Drawing.MetaObjectText)
@@ -1831,27 +2029,29 @@ references:
   - uid: Reportman.Drawing.PrintOutNet.MetaObjectToStringFormat(Reportman.Drawing.MetaObjectText)
     name: MetaObjectToStringFormat
     isExternal: true
-    href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_MetaObjectToStringFormat_Reportman_Drawing_MetaObjectText_
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   - name: (
   - uid: Reportman.Drawing.MetaObjectText
     name: MetaObjectText
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObjectText.cs
   - name: )
   spec.vb:
   - uid: Reportman.Drawing.PrintOutNet.MetaObjectToStringFormat(Reportman.Drawing.MetaObjectText)
     name: MetaObjectToStringFormat
     isExternal: true
-    href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_MetaObjectToStringFormat_Reportman_Drawing_MetaObjectText_
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   - name: (
   - uid: Reportman.Drawing.MetaObjectText
     name: MetaObjectText
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObjectText.cs
   - name: )
 - uid: Reportman.Drawing.PrintOutNet.MetStructToStringFormat(Reportman.Drawing.TextObjectStruct)
   commentId: M:Reportman.Drawing.PrintOutNet.MetStructToStringFormat(Reportman.Drawing.TextObjectStruct)
   parent: Reportman.Drawing.PrintOutNet
   isExternal: true
-  href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_MetStructToStringFormat_Reportman_Drawing_TextObjectStruct_
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   name: MetStructToStringFormat(TextObjectStruct)
   nameWithType: PrintOutNet.MetStructToStringFormat(TextObjectStruct)
   fullName: Reportman.Drawing.PrintOutNet.MetStructToStringFormat(Reportman.Drawing.TextObjectStruct)
@@ -1859,27 +2059,29 @@ references:
   - uid: Reportman.Drawing.PrintOutNet.MetStructToStringFormat(Reportman.Drawing.TextObjectStruct)
     name: MetStructToStringFormat
     isExternal: true
-    href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_MetStructToStringFormat_Reportman_Drawing_TextObjectStruct_
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   - name: (
   - uid: Reportman.Drawing.TextObjectStruct
     name: TextObjectStruct
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
   - name: )
   spec.vb:
   - uid: Reportman.Drawing.PrintOutNet.MetStructToStringFormat(Reportman.Drawing.TextObjectStruct)
     name: MetStructToStringFormat
     isExternal: true
-    href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_MetStructToStringFormat_Reportman_Drawing_TextObjectStruct_
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   - name: (
   - uid: Reportman.Drawing.TextObjectStruct
     name: TextObjectStruct
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
   - name: )
 - uid: Reportman.Drawing.PrintOutNet.DrawObject(System.Drawing.Graphics,Reportman.Drawing.MetaPage,Reportman.Drawing.MetaObject)
   commentId: M:Reportman.Drawing.PrintOutNet.DrawObject(System.Drawing.Graphics,Reportman.Drawing.MetaPage,Reportman.Drawing.MetaObject)
   parent: Reportman.Drawing.PrintOutNet
   isExternal: true
-  href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_DrawObject_System_Drawing_Graphics_Reportman_Drawing_MetaPage_Reportman_Drawing_MetaObject_
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   name: DrawObject(Graphics, MetaPage, MetaObject)
   nameWithType: PrintOutNet.DrawObject(Graphics, MetaPage, MetaObject)
   fullName: Reportman.Drawing.PrintOutNet.DrawObject(System.Drawing.Graphics, Reportman.Drawing.MetaPage, Reportman.Drawing.MetaObject)
@@ -1887,7 +2089,7 @@ references:
   - uid: Reportman.Drawing.PrintOutNet.DrawObject(System.Drawing.Graphics,Reportman.Drawing.MetaPage,Reportman.Drawing.MetaObject)
     name: DrawObject
     isExternal: true
-    href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_DrawObject_System_Drawing_Graphics_Reportman_Drawing_MetaPage_Reportman_Drawing_MetaObject_
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   - name: (
   - uid: System.Drawing.Graphics
     name: Graphics
@@ -1898,17 +2100,19 @@ references:
   - uid: Reportman.Drawing.MetaPage
     name: MetaPage
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
   - name: ','
   - name: " "
   - uid: Reportman.Drawing.MetaObject
     name: MetaObject
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
   - name: )
   spec.vb:
   - uid: Reportman.Drawing.PrintOutNet.DrawObject(System.Drawing.Graphics,Reportman.Drawing.MetaPage,Reportman.Drawing.MetaObject)
     name: DrawObject
     isExternal: true
-    href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_DrawObject_System_Drawing_Graphics_Reportman_Drawing_MetaPage_Reportman_Drawing_MetaObject_
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   - name: (
   - uid: System.Drawing.Graphics
     name: Graphics
@@ -1919,17 +2123,97 @@ references:
   - uid: Reportman.Drawing.MetaPage
     name: MetaPage
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
   - name: ','
   - name: " "
   - uid: Reportman.Drawing.MetaObject
     name: MetaObject
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
+  - name: )
+- uid: Reportman.Drawing.PrintOutNet.TextRectHtml(System.Drawing.Graphics,System.Drawing.Rectangle,Reportman.Drawing.TextObjectStruct,System.Drawing.Font,System.Drawing.SolidBrush)
+  commentId: M:Reportman.Drawing.PrintOutNet.TextRectHtml(System.Drawing.Graphics,System.Drawing.Rectangle,Reportman.Drawing.TextObjectStruct,System.Drawing.Font,System.Drawing.SolidBrush)
+  parent: Reportman.Drawing.PrintOutNet
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
+  name: TextRectHtml(Graphics, Rectangle, TextObjectStruct, Font, SolidBrush)
+  nameWithType: PrintOutNet.TextRectHtml(Graphics, Rectangle, TextObjectStruct, Font, SolidBrush)
+  fullName: Reportman.Drawing.PrintOutNet.TextRectHtml(System.Drawing.Graphics, System.Drawing.Rectangle, Reportman.Drawing.TextObjectStruct, System.Drawing.Font, System.Drawing.SolidBrush)
+  spec.csharp:
+  - uid: Reportman.Drawing.PrintOutNet.TextRectHtml(System.Drawing.Graphics,System.Drawing.Rectangle,Reportman.Drawing.TextObjectStruct,System.Drawing.Font,System.Drawing.SolidBrush)
+    name: TextRectHtml
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
+  - name: (
+  - uid: System.Drawing.Graphics
+    name: Graphics
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.graphics
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.Rectangle
+    name: Rectangle
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.rectangle
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.TextObjectStruct
+    name: TextObjectStruct
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.Font
+    name: Font
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.font
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.SolidBrush
+    name: SolidBrush
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.solidbrush
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.PrintOutNet.TextRectHtml(System.Drawing.Graphics,System.Drawing.Rectangle,Reportman.Drawing.TextObjectStruct,System.Drawing.Font,System.Drawing.SolidBrush)
+    name: TextRectHtml
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
+  - name: (
+  - uid: System.Drawing.Graphics
+    name: Graphics
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.graphics
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.Rectangle
+    name: Rectangle
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.rectangle
+  - name: ','
+  - name: " "
+  - uid: Reportman.Drawing.TextObjectStruct
+    name: TextObjectStruct
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.Font
+    name: Font
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.font
+  - name: ','
+  - name: " "
+  - uid: System.Drawing.SolidBrush
+    name: SolidBrush
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.solidbrush
   - name: )
 - uid: Reportman.Drawing.PrintOutNet.TextRectJustify(System.Drawing.Graphics,System.Drawing.Rectangle,Reportman.Drawing.TextObjectStruct,System.Drawing.Font,System.Drawing.SolidBrush)
   commentId: M:Reportman.Drawing.PrintOutNet.TextRectJustify(System.Drawing.Graphics,System.Drawing.Rectangle,Reportman.Drawing.TextObjectStruct,System.Drawing.Font,System.Drawing.SolidBrush)
   parent: Reportman.Drawing.PrintOutNet
   isExternal: true
-  href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_TextRectJustify_System_Drawing_Graphics_System_Drawing_Rectangle_Reportman_Drawing_TextObjectStruct_System_Drawing_Font_System_Drawing_SolidBrush_
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   name: TextRectJustify(Graphics, Rectangle, TextObjectStruct, Font, SolidBrush)
   nameWithType: PrintOutNet.TextRectJustify(Graphics, Rectangle, TextObjectStruct, Font, SolidBrush)
   fullName: Reportman.Drawing.PrintOutNet.TextRectJustify(System.Drawing.Graphics, System.Drawing.Rectangle, Reportman.Drawing.TextObjectStruct, System.Drawing.Font, System.Drawing.SolidBrush)
@@ -1937,7 +2221,7 @@ references:
   - uid: Reportman.Drawing.PrintOutNet.TextRectJustify(System.Drawing.Graphics,System.Drawing.Rectangle,Reportman.Drawing.TextObjectStruct,System.Drawing.Font,System.Drawing.SolidBrush)
     name: TextRectJustify
     isExternal: true
-    href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_TextRectJustify_System_Drawing_Graphics_System_Drawing_Rectangle_Reportman_Drawing_TextObjectStruct_System_Drawing_Font_System_Drawing_SolidBrush_
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   - name: (
   - uid: System.Drawing.Graphics
     name: Graphics
@@ -1954,6 +2238,7 @@ references:
   - uid: Reportman.Drawing.TextObjectStruct
     name: TextObjectStruct
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Font
@@ -1971,7 +2256,7 @@ references:
   - uid: Reportman.Drawing.PrintOutNet.TextRectJustify(System.Drawing.Graphics,System.Drawing.Rectangle,Reportman.Drawing.TextObjectStruct,System.Drawing.Font,System.Drawing.SolidBrush)
     name: TextRectJustify
     isExternal: true
-    href: Reportman.Drawing.PrintOutNet.html#Reportman_Drawing_PrintOutNet_TextRectJustify_System_Drawing_Graphics_System_Drawing_Rectangle_Reportman_Drawing_TextObjectStruct_System_Drawing_Font_System_Drawing_SolidBrush_
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
   - name: (
   - uid: System.Drawing.Graphics
     name: Graphics
@@ -1988,6 +2273,7 @@ references:
   - uid: Reportman.Drawing.TextObjectStruct
     name: TextObjectStruct
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Font
@@ -2001,11 +2287,19 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.drawing.solidbrush
   - name: )
+- uid: Reportman.Drawing.PrintOutNet.UseExactPDFText
+  commentId: P:Reportman.Drawing.PrintOutNet.UseExactPDFText
+  parent: Reportman.Drawing.PrintOutNet
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
+  name: UseExactPDFText
+  nameWithType: PrintOutNet.UseExactPDFText
+  fullName: Reportman.Drawing.PrintOutNet.UseExactPDFText
 - uid: Reportman.Drawing.PrintOut.DefaultPrinterName
   commentId: F:Reportman.Drawing.PrintOut.DefaultPrinterName
   parent: Reportman.Drawing.PrintOut
   isExternal: true
-  href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_DefaultPrinterName
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   name: DefaultPrinterName
   nameWithType: PrintOut.DefaultPrinterName
   fullName: Reportman.Drawing.PrintOut.DefaultPrinterName
@@ -2013,7 +2307,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOut.ForcePrinterName
   parent: Reportman.Drawing.PrintOut
   isExternal: true
-  href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_ForcePrinterName
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   name: ForcePrinterName
   nameWithType: PrintOut.ForcePrinterName
   fullName: Reportman.Drawing.PrintOut.ForcePrinterName
@@ -2021,7 +2315,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOut.Previewing
   parent: Reportman.Drawing.PrintOut
   isExternal: true
-  href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_Previewing
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   name: Previewing
   nameWithType: PrintOut.Previewing
   fullName: Reportman.Drawing.PrintOut.Previewing
@@ -2029,7 +2323,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOut.PageSizeArray
   parent: Reportman.Drawing.PrintOut
   isExternal: true
-  href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_PageSizeArray
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   name: PageSizeArray
   nameWithType: PrintOut.PageSizeArray
   fullName: Reportman.Drawing.PrintOut.PageSizeArray
@@ -2037,7 +2331,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOut.CurrentMetafile
   parent: Reportman.Drawing.PrintOut
   isExternal: true
-  href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_CurrentMetafile
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   name: CurrentMetafile
   nameWithType: PrintOut.CurrentMetafile
   fullName: Reportman.Drawing.PrintOut.CurrentMetafile
@@ -2045,7 +2339,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOut.PRINTOUT_MAX_PAGES
   parent: Reportman.Drawing.PrintOut
   isExternal: true
-  href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_PRINTOUT_MAX_PAGES
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   name: PRINTOUT_MAX_PAGES
   nameWithType: PrintOut.PRINTOUT_MAX_PAGES
   fullName: Reportman.Drawing.PrintOut.PRINTOUT_MAX_PAGES
@@ -2053,7 +2347,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOut.FromPage
   parent: Reportman.Drawing.PrintOut
   isExternal: true
-  href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_FromPage
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   name: FromPage
   nameWithType: PrintOut.FromPage
   fullName: Reportman.Drawing.PrintOut.FromPage
@@ -2061,7 +2355,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOut.ToPage
   parent: Reportman.Drawing.PrintOut
   isExternal: true
-  href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_ToPage
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   name: ToPage
   nameWithType: PrintOut.ToPage
   fullName: Reportman.Drawing.PrintOut.ToPage
@@ -2069,7 +2363,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOut.Copies
   parent: Reportman.Drawing.PrintOut
   isExternal: true
-  href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_Copies
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   name: Copies
   nameWithType: PrintOut.Copies
   fullName: Reportman.Drawing.PrintOut.Copies
@@ -2077,7 +2371,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOut.FOrientation
   parent: Reportman.Drawing.PrintOut
   isExternal: true
-  href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_FOrientation
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   name: FOrientation
   nameWithType: PrintOut.FOrientation
   fullName: Reportman.Drawing.PrintOut.FOrientation
@@ -2085,7 +2379,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOut.EmptyReportThrowException
   parent: Reportman.Drawing.PrintOut
   isExternal: true
-  href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_EmptyReportThrowException
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   name: EmptyReportThrowException
   nameWithType: PrintOut.EmptyReportThrowException
   fullName: Reportman.Drawing.PrintOut.EmptyReportThrowException
@@ -2093,7 +2387,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOut.NoData
   parent: Reportman.Drawing.PrintOut
   isExternal: true
-  href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_NoData
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   name: NoData
   nameWithType: PrintOut.NoData
   fullName: Reportman.Drawing.PrintOut.NoData
@@ -2101,7 +2395,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOut.DrawFound
   parent: Reportman.Drawing.PrintOut
   isExternal: true
-  href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_DrawFound
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   name: DrawFound
   nameWithType: PrintOut.DrawFound
   fullName: Reportman.Drawing.PrintOut.DrawFound
@@ -2109,7 +2403,7 @@ references:
   commentId: M:Reportman.Drawing.PrintOut.PageSizeName(System.Int32)
   parent: Reportman.Drawing.PrintOut
   isExternal: true
-  href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_PageSizeName_System_Int32_
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   name: PageSizeName(int)
   nameWithType: PrintOut.PageSizeName(int)
   fullName: Reportman.Drawing.PrintOut.PageSizeName(int)
@@ -2120,7 +2414,7 @@ references:
   - uid: Reportman.Drawing.PrintOut.PageSizeName(System.Int32)
     name: PageSizeName
     isExternal: true
-    href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_PageSizeName_System_Int32_
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: (
   - uid: System.Int32
     name: int
@@ -2131,7 +2425,7 @@ references:
   - uid: Reportman.Drawing.PrintOut.PageSizeName(System.Int32)
     name: PageSizeName
     isExternal: true
-    href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_PageSizeName_System_Int32_
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: (
   - uid: System.Int32
     name: Integer
@@ -2184,7 +2478,7 @@ references:
   commentId: M:Reportman.Drawing.PrintOut.EndPage(Reportman.Drawing.MetaFile)
   parent: Reportman.Drawing.PrintOut
   isExternal: true
-  href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_EndPage_Reportman_Drawing_MetaFile_
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   name: EndPage(MetaFile)
   nameWithType: PrintOut.EndPage(MetaFile)
   fullName: Reportman.Drawing.PrintOut.EndPage(Reportman.Drawing.MetaFile)
@@ -2192,23 +2486,23 @@ references:
   - uid: Reportman.Drawing.PrintOut.EndPage(Reportman.Drawing.MetaFile)
     name: EndPage
     isExternal: true
-    href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_EndPage_Reportman_Drawing_MetaFile_
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: (
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
-    href: Reportman.Drawing.MetaFile.html
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: )
   spec.vb:
   - uid: Reportman.Drawing.PrintOut.EndPage(Reportman.Drawing.MetaFile)
     name: EndPage
     isExternal: true
-    href: Reportman.Drawing.PrintOut.html#Reportman_Drawing_PrintOut_EndPage_Reportman_Drawing_MetaFile_
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: (
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
-    href: Reportman.Drawing.MetaFile.html
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: )
 - uid: System.Object.GetType
   commentId: M:System.Object.GetType
@@ -2515,6 +2809,7 @@ references:
   commentId: M:Reportman.Drawing.Forms.PrintOutWinForms.Dispose
   parent: Reportman.Drawing.Forms.PrintOutWinForms
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   name: Dispose()
   nameWithType: PrintOutWinForms.Dispose()
   fullName: Reportman.Drawing.Forms.PrintOutWinForms.Dispose()
@@ -2522,12 +2817,14 @@ references:
   - uid: Reportman.Drawing.Forms.PrintOutWinForms.Dispose
     name: Dispose
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   - name: (
   - name: )
   spec.vb:
   - uid: Reportman.Drawing.Forms.PrintOutWinForms.Dispose
     name: Dispose
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   - name: (
   - name: )
 - uid: Reportman.Reporting.Forms.PrintOutReportWinForms.Dispose*
@@ -2586,6 +2883,7 @@ references:
   commentId: M:Reportman.Drawing.Forms.PrintOutWinForms.SetReportEvents
   parent: Reportman.Drawing.Forms.PrintOutWinForms
   isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   name: SetReportEvents()
   nameWithType: PrintOutWinForms.SetReportEvents()
   fullName: Reportman.Drawing.Forms.PrintOutWinForms.SetReportEvents()
@@ -2593,12 +2891,14 @@ references:
   - uid: Reportman.Drawing.Forms.PrintOutWinForms.SetReportEvents
     name: SetReportEvents
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   - name: (
   - name: )
   spec.vb:
   - uid: Reportman.Drawing.Forms.PrintOutWinForms.SetReportEvents
     name: SetReportEvents
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintOutWinForms.cs
   - name: (
   - name: )
 - uid: Reportman.Reporting.Forms.PrintOutReportWinForms.SetReportEvents*

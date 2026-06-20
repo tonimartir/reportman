@@ -28,6 +28,11 @@ using System.Threading;
 
 namespace Reportman.Reporting
 {
+    /// <summary>
+    /// Concrete report document derived from <see cref="BaseReport"/>; it drives the page-generation
+    /// lifecycle (BeginPrint/PrintNextPage) and rewires its child objects — params, database/data info,
+    /// subreports, sections and items — back to the report after deserialization.
+    /// </summary>
     public class Report : BaseReport
     {
         public Report()

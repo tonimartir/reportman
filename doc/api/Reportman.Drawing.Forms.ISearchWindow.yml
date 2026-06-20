@@ -18,9 +18,13 @@ items:
   nameWithType: ISearchWindow
   fullName: Reportman.Drawing.Forms.ISearchWindow
   type: Interface
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: Contract for a drop-down search/lookup window attached to a grid editor; implementers create the window control and respond to search-string changes, navigation keys and clicks.
+  example: []
   syntax:
     content: public interface ISearchWindow
     content.vb: Public Interface ISearchWindow
@@ -35,6 +39,8 @@ items:
   nameWithType: ISearchWindow.ChangeSearchString(string)
   fullName: Reportman.Drawing.Forms.ISearchWindow.ChangeSearchString(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -59,6 +65,8 @@ items:
   nameWithType: ISearchWindow.Deactivate()
   fullName: Reportman.Drawing.Forms.ISearchWindow.Deactivate()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -77,6 +85,8 @@ items:
   nameWithType: ISearchWindow.KeyOperation(SearchWindowKeyOperation)
   fullName: Reportman.Drawing.Forms.ISearchWindow.KeyOperation(Reportman.Drawing.Forms.SearchWindowKeyOperation)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -98,6 +108,8 @@ items:
   nameWithType: ISearchWindow.CreateWindow()
   fullName: Reportman.Drawing.Forms.ISearchWindow.CreateWindow()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -118,6 +130,8 @@ items:
   nameWithType: ISearchWindow.Click(Point)
   fullName: Reportman.Drawing.Forms.ISearchWindow.Click(System.Drawing.Point)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -141,6 +155,8 @@ items:
   nameWithType: ISearchWindow.Enabled
   fullName: Reportman.Drawing.Forms.ISearchWindow.Enabled
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

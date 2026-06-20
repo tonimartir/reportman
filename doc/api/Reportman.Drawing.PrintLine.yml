@@ -16,9 +16,16 @@ items:
   nameWithType: PrintLine
   fullName: Reportman.Drawing.PrintLine
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    One physical text row of a page being built by the text driver, holding the line contents,
+
+    its character-per-inch font step, and the positioned text fragments keyed by column.
+  example: []
   syntax:
     content: public class PrintLine
     content.vb: Public Class PrintLine
@@ -43,6 +50,8 @@ items:
   nameWithType: PrintLine.texts
   fullName: Reportman.Drawing.PrintLine.texts
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -62,6 +71,8 @@ items:
   nameWithType: PrintLine.FontStep
   fullName: Reportman.Drawing.PrintLine.FontStep
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -81,6 +92,8 @@ items:
   nameWithType: PrintLine.Value
   fullName: Reportman.Drawing.PrintLine.Value
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -100,6 +113,8 @@ items:
   nameWithType: PrintLine.PrintLine()
   fullName: Reportman.Drawing.PrintLine.PrintLine()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

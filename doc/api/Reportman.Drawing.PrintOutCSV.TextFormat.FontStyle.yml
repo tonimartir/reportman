@@ -16,9 +16,13 @@ items:
   nameWithType: PrintOutCSV.TextFormat.FontStyle
   fullName: Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutCSV.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: 'Bit flags describing font styling: bold, underline, italic, and strikethrough.'
+  example: []
   syntax:
     content: >-
       [Flags]
@@ -43,6 +47,8 @@ items:
   nameWithType: PrintOutCSV.TextFormat.FontStyle.Bold
   fullName: Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle.Bold
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutCSV.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -61,6 +67,8 @@ items:
   nameWithType: PrintOutCSV.TextFormat.FontStyle.Underline
   fullName: Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle.Underline
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutCSV.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -79,6 +87,8 @@ items:
   nameWithType: PrintOutCSV.TextFormat.FontStyle.Italic
   fullName: Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle.Italic
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutCSV.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -97,6 +107,8 @@ items:
   nameWithType: PrintOutCSV.TextFormat.FontStyle.Strikethrough
   fullName: Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle.Strikethrough
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutCSV.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

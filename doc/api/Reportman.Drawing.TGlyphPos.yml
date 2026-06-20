@@ -5,11 +5,19 @@ items:
   id: TGlyphPos
   parent: Reportman.Drawing
   children:
+  - Reportman.Drawing.TGlyphPos.Bold
   - Reportman.Drawing.TGlyphPos.CharCode
   - Reportman.Drawing.TGlyphPos.Cluster
+  - Reportman.Drawing.TGlyphPos.Color
   - Reportman.Drawing.TGlyphPos.FontFamily
+  - Reportman.Drawing.TGlyphPos.FontSize
   - Reportman.Drawing.TGlyphPos.GlyphIndex
+  - Reportman.Drawing.TGlyphPos.HasColor
+  - Reportman.Drawing.TGlyphPos.HasFontSize
+  - Reportman.Drawing.TGlyphPos.Italic
   - Reportman.Drawing.TGlyphPos.LineCluster
+  - Reportman.Drawing.TGlyphPos.StrikeOut
+  - Reportman.Drawing.TGlyphPos.Underline
   - Reportman.Drawing.TGlyphPos.XAdvance
   - Reportman.Drawing.TGlyphPos.XOffset
   - Reportman.Drawing.TGlyphPos.YAdvance
@@ -21,9 +29,16 @@ items:
   nameWithType: TGlyphPos
   fullName: Reportman.Drawing.TGlyphPos
   type: Struct
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    Describes the positioned glyph produced by text shaping, including its index, offsets,
+
+    advances, source character/cluster and the font styling (family, size, color, bold/italic) applied to it.
+  example: []
   syntax:
     content: public struct TGlyphPos
     content.vb: Public Structure TGlyphPos
@@ -45,6 +60,8 @@ items:
   nameWithType: TGlyphPos.GlyphIndex
   fullName: Reportman.Drawing.TGlyphPos.GlyphIndex
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -64,6 +81,8 @@ items:
   nameWithType: TGlyphPos.XOffset
   fullName: Reportman.Drawing.TGlyphPos.XOffset
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -83,6 +102,8 @@ items:
   nameWithType: TGlyphPos.YOffset
   fullName: Reportman.Drawing.TGlyphPos.YOffset
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -102,6 +123,8 @@ items:
   nameWithType: TGlyphPos.XAdvance
   fullName: Reportman.Drawing.TGlyphPos.XAdvance
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -121,6 +144,8 @@ items:
   nameWithType: TGlyphPos.YAdvance
   fullName: Reportman.Drawing.TGlyphPos.YAdvance
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -140,6 +165,8 @@ items:
   nameWithType: TGlyphPos.CharCode
   fullName: Reportman.Drawing.TGlyphPos.CharCode
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -159,6 +186,8 @@ items:
   nameWithType: TGlyphPos.Cluster
   fullName: Reportman.Drawing.TGlyphPos.Cluster
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -178,6 +207,8 @@ items:
   nameWithType: TGlyphPos.LineCluster
   fullName: Reportman.Drawing.TGlyphPos.LineCluster
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -197,6 +228,8 @@ items:
   nameWithType: TGlyphPos.FontFamily
   fullName: Reportman.Drawing.TGlyphPos.FontFamily
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -205,6 +238,174 @@ items:
     return:
       type: System.String
     content.vb: Public FontFamily As String
+- uid: Reportman.Drawing.TGlyphPos.Bold
+  commentId: F:Reportman.Drawing.TGlyphPos.Bold
+  id: Bold
+  parent: Reportman.Drawing.TGlyphPos
+  langs:
+  - csharp
+  - vb
+  name: Bold
+  nameWithType: TGlyphPos.Bold
+  fullName: Reportman.Drawing.TGlyphPos.Bold
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public bool Bold
+    return:
+      type: System.Boolean
+    content.vb: Public Bold As Boolean
+- uid: Reportman.Drawing.TGlyphPos.Italic
+  commentId: F:Reportman.Drawing.TGlyphPos.Italic
+  id: Italic
+  parent: Reportman.Drawing.TGlyphPos
+  langs:
+  - csharp
+  - vb
+  name: Italic
+  nameWithType: TGlyphPos.Italic
+  fullName: Reportman.Drawing.TGlyphPos.Italic
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public bool Italic
+    return:
+      type: System.Boolean
+    content.vb: Public Italic As Boolean
+- uid: Reportman.Drawing.TGlyphPos.Underline
+  commentId: F:Reportman.Drawing.TGlyphPos.Underline
+  id: Underline
+  parent: Reportman.Drawing.TGlyphPos
+  langs:
+  - csharp
+  - vb
+  name: Underline
+  nameWithType: TGlyphPos.Underline
+  fullName: Reportman.Drawing.TGlyphPos.Underline
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public bool Underline
+    return:
+      type: System.Boolean
+    content.vb: Public Underline As Boolean
+- uid: Reportman.Drawing.TGlyphPos.StrikeOut
+  commentId: F:Reportman.Drawing.TGlyphPos.StrikeOut
+  id: StrikeOut
+  parent: Reportman.Drawing.TGlyphPos
+  langs:
+  - csharp
+  - vb
+  name: StrikeOut
+  nameWithType: TGlyphPos.StrikeOut
+  fullName: Reportman.Drawing.TGlyphPos.StrikeOut
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public bool StrikeOut
+    return:
+      type: System.Boolean
+    content.vb: Public StrikeOut As Boolean
+- uid: Reportman.Drawing.TGlyphPos.FontSize
+  commentId: F:Reportman.Drawing.TGlyphPos.FontSize
+  id: FontSize
+  parent: Reportman.Drawing.TGlyphPos
+  langs:
+  - csharp
+  - vb
+  name: FontSize
+  nameWithType: TGlyphPos.FontSize
+  fullName: Reportman.Drawing.TGlyphPos.FontSize
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public float FontSize
+    return:
+      type: System.Single
+    content.vb: Public FontSize As Single
+- uid: Reportman.Drawing.TGlyphPos.HasFontSize
+  commentId: F:Reportman.Drawing.TGlyphPos.HasFontSize
+  id: HasFontSize
+  parent: Reportman.Drawing.TGlyphPos
+  langs:
+  - csharp
+  - vb
+  name: HasFontSize
+  nameWithType: TGlyphPos.HasFontSize
+  fullName: Reportman.Drawing.TGlyphPos.HasFontSize
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public bool HasFontSize
+    return:
+      type: System.Boolean
+    content.vb: Public HasFontSize As Boolean
+- uid: Reportman.Drawing.TGlyphPos.Color
+  commentId: F:Reportman.Drawing.TGlyphPos.Color
+  id: Color
+  parent: Reportman.Drawing.TGlyphPos
+  langs:
+  - csharp
+  - vb
+  name: Color
+  nameWithType: TGlyphPos.Color
+  fullName: Reportman.Drawing.TGlyphPos.Color
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int Color
+    return:
+      type: System.Int32
+    content.vb: Public Color As Integer
+- uid: Reportman.Drawing.TGlyphPos.HasColor
+  commentId: F:Reportman.Drawing.TGlyphPos.HasColor
+  id: HasColor
+  parent: Reportman.Drawing.TGlyphPos
+  langs:
+  - csharp
+  - vb
+  name: HasColor
+  nameWithType: TGlyphPos.HasColor
+  fullName: Reportman.Drawing.TGlyphPos.HasColor
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public bool HasColor
+    return:
+      type: System.Boolean
+    content.vb: Public HasColor As Boolean
 references:
 - uid: Reportman.Drawing
   commentId: N:Reportman.Drawing
@@ -483,3 +684,25 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single

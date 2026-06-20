@@ -16,9 +16,16 @@ items:
   nameWithType: DataProgress
   fullName: Reportman.Reporting.Forms.DataProgress
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataProgress.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Reporting.Forms
+  summary: >-
+    Modal Windows Forms dialog that runs a data operation and shows record-count progress,
+
+    allowing the user to cancel it.
+  example: []
   syntax:
     content: 'public class DataProgress : Form, IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable, IContainerControl'
     content.vb: Public Class DataProgress Inherits Form Implements IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable, IContainerControl
@@ -584,6 +591,8 @@ items:
   nameWithType: DataProgress.DataProgress()
   fullName: Reportman.Reporting.Forms.DataProgress.DataProgress()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataProgress.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Reporting.Forms
@@ -605,6 +614,8 @@ items:
   nameWithType: DataProgress.ExecuteProgress(DataProgressEventHandler)
   fullName: Reportman.Reporting.Forms.DataProgress.ExecuteProgress(Reportman.Reporting.Forms.DataProgressEventHandler)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataProgress.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Reporting.Forms
@@ -626,6 +637,8 @@ items:
   nameWithType: DataProgress.ShowProgress(object, int, int, ref bool)
   fullName: Reportman.Reporting.Forms.DataProgress.ShowProgress(object, int, int, ref bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataProgress.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Reporting.Forms
@@ -656,6 +669,8 @@ items:
   nameWithType: DataProgress.Dispose(bool)
   fullName: Reportman.Reporting.Forms.DataProgress.Dispose(bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataProgress.designer.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Reporting.Forms

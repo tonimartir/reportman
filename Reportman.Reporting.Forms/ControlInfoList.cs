@@ -88,6 +88,10 @@ namespace Reportman.Reporting.Forms
             return new ControlInfoEnumerator(this);
         }
         // Inner class implements IEnumerator interface:
+        /// <summary>
+        /// Forward-only enumerator that iterates over the ControlInfo entries of a
+        /// ControlInfoList.
+        /// </summary>
         public class ControlInfoEnumerator : IEnumerator
         {
             private int position = -1;

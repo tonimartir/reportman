@@ -17,9 +17,16 @@ items:
   nameWithType: ListBoxNonSelectable
   fullName: Reportman.Drawing.Forms.ListBoxNonSelectable
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    A double-buffered ListBox that does not activate or take focus when shown or clicked,
+
+    used as the floating suggestion list for the advanced auto-complete controls.
+  example: []
   syntax:
     content: 'public class ListBoxNonSelectable : ListBox, IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable'
     content.vb: Public Class ListBoxNonSelectable Inherits ListBox Implements IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable
@@ -511,6 +518,8 @@ items:
   nameWithType: ListBoxNonSelectable.ListBoxNonSelectable()
   fullName: Reportman.Drawing.Forms.ListBoxNonSelectable.ListBoxNonSelectable()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -532,6 +541,8 @@ items:
   nameWithType: ListBoxNonSelectable.OnPaintBackground(PaintEventArgs)
   fullName: Reportman.Drawing.Forms.ListBoxNonSelectable.OnPaintBackground(System.Windows.Forms.PaintEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -555,6 +566,8 @@ items:
   nameWithType: ListBoxNonSelectable.OnMouseDown(MouseEventArgs)
   fullName: Reportman.Drawing.Forms.ListBoxNonSelectable.OnMouseDown(System.Windows.Forms.MouseEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -578,6 +591,8 @@ items:
   nameWithType: ListBoxNonSelectable.OnMouseMove(MouseEventArgs)
   fullName: Reportman.Drawing.Forms.ListBoxNonSelectable.OnMouseMove(System.Windows.Forms.MouseEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -601,6 +616,8 @@ items:
   nameWithType: ListBoxNonSelectable.CreateParams
   fullName: Reportman.Drawing.Forms.ListBoxNonSelectable.CreateParams
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

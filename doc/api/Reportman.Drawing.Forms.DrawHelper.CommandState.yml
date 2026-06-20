@@ -15,9 +15,16 @@ items:
   nameWithType: DrawHelper.CommandState
   fullName: Reportman.Drawing.Forms.DrawHelper.CommandState
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    Visual state of a command/button being drawn: normal, hot-tracked (mouse over),
+
+    or pushed (pressed).
+  example: []
   syntax:
     content: public enum DrawHelper.CommandState
     content.vb: Public Enum DrawHelper.CommandState
@@ -32,6 +39,8 @@ items:
   nameWithType: DrawHelper.CommandState.Normal
   fullName: Reportman.Drawing.Forms.DrawHelper.CommandState.Normal
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -50,6 +59,8 @@ items:
   nameWithType: DrawHelper.CommandState.HotTrack
   fullName: Reportman.Drawing.Forms.DrawHelper.CommandState.HotTrack
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -68,6 +79,8 @@ items:
   nameWithType: DrawHelper.CommandState.Pushed
   fullName: Reportman.Drawing.Forms.DrawHelper.CommandState.Pushed
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

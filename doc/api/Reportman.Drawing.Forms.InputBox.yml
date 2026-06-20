@@ -17,9 +17,16 @@ items:
   nameWithType: InputBox
   fullName: Reportman.Drawing.Forms.InputBox
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/InputBox.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    A simple modal dialog that prompts the user for a single value, either free text or a
+
+    date, returning the entered value through its static Execute helpers.
+  example: []
   syntax:
     content: 'public class InputBox : Form, IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable, IContainerControl'
     content.vb: Public Class InputBox Inherits Form Implements IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable, IContainerControl
@@ -585,6 +592,8 @@ items:
   nameWithType: InputBox.InputBox()
   fullName: Reportman.Drawing.Forms.InputBox.InputBox()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/InputBox.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -606,6 +615,8 @@ items:
   nameWithType: InputBox.Execute(string, string, string)
   fullName: Reportman.Drawing.Forms.InputBox.Execute(string, string, string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/InputBox.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -636,6 +647,8 @@ items:
   nameWithType: InputBox.Execute(string, string, ref DateTime, string)
   fullName: Reportman.Drawing.Forms.InputBox.Execute(string, string, ref System.DateTime, string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/InputBox.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -668,6 +681,8 @@ items:
   nameWithType: InputBox.Execute(string, string, ref DateTime)
   fullName: Reportman.Drawing.Forms.InputBox.Execute(string, string, ref System.DateTime)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/InputBox.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -698,6 +713,8 @@ items:
   nameWithType: InputBox.Dispose(bool)
   fullName: Reportman.Drawing.Forms.InputBox.Dispose(bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/InputBox.designer.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

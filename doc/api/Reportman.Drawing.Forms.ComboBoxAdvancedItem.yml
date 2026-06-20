@@ -18,9 +18,16 @@ items:
   nameWithType: ComboBoxAdvancedItem
   fullName: Reportman.Drawing.Forms.ComboBoxAdvancedItem
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    An item for ComboBoxAdvanced that pairs display text with an ImageList image index
+
+    for owner-drawn rendering.
+  example: []
   syntax:
     content: public class ComboBoxAdvancedItem
     content.vb: Public Class ComboBoxAdvancedItem
@@ -44,6 +51,8 @@ items:
   nameWithType: ComboBoxAdvancedItem.ComboBoxAdvancedItem()
   fullName: Reportman.Drawing.Forms.ComboBoxAdvancedItem.ComboBoxAdvancedItem()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -65,6 +74,8 @@ items:
   nameWithType: ComboBoxAdvancedItem.ComboBoxAdvancedItem(string)
   fullName: Reportman.Drawing.Forms.ComboBoxAdvancedItem.ComboBoxAdvancedItem(string)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -89,6 +100,8 @@ items:
   nameWithType: ComboBoxAdvancedItem.ComboBoxAdvancedItem(string, int)
   fullName: Reportman.Drawing.Forms.ComboBoxAdvancedItem.ComboBoxAdvancedItem(string, int)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -115,6 +128,8 @@ items:
   nameWithType: ComboBoxAdvancedItem.ToString()
   fullName: Reportman.Drawing.Forms.ComboBoxAdvancedItem.ToString()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -137,6 +152,8 @@ items:
   nameWithType: ComboBoxAdvancedItem.Text
   fullName: Reportman.Drawing.Forms.ComboBoxAdvancedItem.Text
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -158,6 +175,8 @@ items:
   nameWithType: ComboBoxAdvancedItem.ImageIndex
   fullName: Reportman.Drawing.Forms.ComboBoxAdvancedItem.ImageIndex
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

@@ -13,9 +13,16 @@ items:
   nameWithType: PrintOutPDFWindows
   fullName: Reportman.Drawing.Windows.PrintOutPDFWindows
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPDFWindows.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
+  summary: >-
+    Placeholder for a Windows-specific PDF print-out driver; currently has no
+
+    implementation.
+  example: []
   syntax:
     content: public class PrintOutPDFWindows
     content.vb: Public Class PrintOutPDFWindows
@@ -40,6 +47,8 @@ items:
   nameWithType: PrintOutPDFWindows.PrintOutPDFWindows()
   fullName: Reportman.Drawing.Windows.PrintOutPDFWindows.PrintOutPDFWindows()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPDFWindows.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows

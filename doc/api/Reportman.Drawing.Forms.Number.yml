@@ -22,9 +22,16 @@ items:
   nameWithType: Number
   fullName: Reportman.Drawing.Forms.Number
   type: Struct
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    Value type wrapping a double and the basic arithmetic operations the calculator
+
+    performs on it (add, subtract, multiply, divide, equality).
+  example: []
   syntax:
     content: public struct Number
     content.vb: Public Structure Number
@@ -43,6 +50,8 @@ items:
   nameWithType: Number.Number(double)
   fullName: Reportman.Drawing.Forms.Number.Number(double)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -67,6 +76,8 @@ items:
   nameWithType: Number.Add(Number, Number)
   fullName: Reportman.Drawing.Forms.Number.Add(Reportman.Drawing.Forms.Number, Reportman.Drawing.Forms.Number)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -92,6 +103,8 @@ items:
   nameWithType: Number.Subtract(Number, Number)
   fullName: Reportman.Drawing.Forms.Number.Subtract(Reportman.Drawing.Forms.Number, Reportman.Drawing.Forms.Number)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -117,6 +130,8 @@ items:
   nameWithType: Number.Multiply(Number, Number)
   fullName: Reportman.Drawing.Forms.Number.Multiply(Reportman.Drawing.Forms.Number, Reportman.Drawing.Forms.Number)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -142,6 +157,8 @@ items:
   nameWithType: Number.Divide(Number, Number)
   fullName: Reportman.Drawing.Forms.Number.Divide(Reportman.Drawing.Forms.Number, Reportman.Drawing.Forms.Number)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -167,6 +184,8 @@ items:
   nameWithType: Number.operator ==(Number, Number)
   fullName: Reportman.Drawing.Forms.Number.operator ==(Reportman.Drawing.Forms.Number, Reportman.Drawing.Forms.Number)
   type: Operator
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -195,6 +214,8 @@ items:
   nameWithType: Number.operator !=(Number, Number)
   fullName: Reportman.Drawing.Forms.Number.operator !=(Reportman.Drawing.Forms.Number, Reportman.Drawing.Forms.Number)
   type: Operator
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -223,6 +244,8 @@ items:
   nameWithType: Number.Equals(object)
   fullName: Reportman.Drawing.Forms.Number.Equals(object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -251,6 +274,8 @@ items:
   nameWithType: Number.GetHashCode()
   fullName: Reportman.Drawing.Forms.Number.GetHashCode()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -273,6 +298,8 @@ items:
   nameWithType: Number.ToString()
   fullName: Reportman.Drawing.Forms.Number.ToString()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

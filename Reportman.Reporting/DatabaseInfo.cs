@@ -30,7 +30,7 @@ namespace Reportman.Reporting
 {
     /// <summary>
     /// A dataset definition could represent a table inside a database or
-    /// a sql query, in .Net version, it's always a Query. <see cref="Variant">DataInfo</see>
+    /// a sql query, in .Net version, it's always a Query. <see cref="DataInfo"/>
     /// </summary>
     public enum DatasetType
     {
@@ -42,7 +42,7 @@ namespace Reportman.Reporting
     /// <summary>
     /// The DriverType is part of a report database information definition, indicating the technology to be used
     /// to connect to the database, in .Net version you can choose DotNet or DotNet2 depending on the version you 
-    /// are using. <see cref="Variant">DatabaseInfo</see>
+    /// are using. <see cref="DatabaseInfo"/>
     /// </summary>
     public enum DriverType
     {
@@ -67,15 +67,15 @@ namespace Reportman.Reporting
         /// Not available in .Net</summary>
         ZEOS = 6,
         /// <summary>Driver used to connect to databases in .Net 1.x, because no abstraction is provided in .Net 1.x, 
-        /// you must select alse the driver (object instances) to be used. <see cref="Variant">DotNetDriverType</see>
+        /// you must select alse the driver (object instances) to be used. <see cref="DotNetDriverType"/>
         /// Available only in .Net 1.x, deprecated</summary>
         DotNet = 7,
         /// <summary>Driver used to connect to databases in .Net 2.x, it's used with ProviderFactory property inside
-        /// DatabaseInfo to perform the connection<see cref="Variant">DatabaseInfo</see>
+        /// DatabaseInfo to perform the connection<see cref="DatabaseInfo"/>
         /// Available only in .Net</summary>
         DotNet2 = 8,
         /// <summary>Driver used to connect to databases using Firedac Delphi/C++Buider drivers
-        /// DatabaseInfo to perform the connection<see cref="Variant">DatabaseInfo</see>
+        /// DatabaseInfo to perform the connection<see cref="DatabaseInfo"/>
         /// Not Available only in .Net</summary>
         Firedac = 9,
         /// <summary>Driver used to connect to databases via HTTP Agent API.
@@ -88,7 +88,7 @@ namespace Reportman.Reporting
     /// is .Net 1.x, in this versions of .Net there were no abstraction for Database access, so you must select
     /// and pre-link into your executable references to the database client library. 
     /// This type is not used in .Net 2.x because the functionality of database providers, 
-    /// configured in machine.config or application.config<see cref="Variant">DatabaseInfo</see>
+    /// configured in machine.config or application.config<see cref="DatabaseInfo"/>
     /// </summary>
     public enum DotNetDriverType
     {
@@ -118,7 +118,7 @@ namespace Reportman.Reporting
     /// <summary>
     /// DatabaseInfo stores information about database connectivity, a Report have a collection
     /// of connection definitions. Each connection can use diferent connectivity technology 
-    /// (database providers). <see cref="Variant">Report</see><see cref="Variant">DatabaseInfos</see>
+    /// (database providers). <see cref="Report"/><see cref="DatabaseInfos"/>
     /// </summary>
 	public class DatabaseInfo : ReportItem, ICloneable
     {

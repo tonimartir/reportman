@@ -22,6 +22,8 @@ items:
   nameWithType: EvalIdentifier
   fullName: Reportman.Reporting.EvalIdentifier
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalIdentifier.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -58,6 +60,8 @@ items:
   nameWithType: EvalIdentifier.Name
   fullName: Reportman.Reporting.EvalIdentifier.Name
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalIdentifier.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -79,6 +83,8 @@ items:
   nameWithType: EvalIdentifier.FModel
   fullName: Reportman.Reporting.EvalIdentifier.FModel
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalIdentifier.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -100,6 +106,8 @@ items:
   nameWithType: EvalIdentifier.FHelp
   fullName: Reportman.Reporting.EvalIdentifier.FHelp
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalIdentifier.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -121,6 +129,8 @@ items:
   nameWithType: EvalIdentifier.EvalObject
   fullName: Reportman.Reporting.EvalIdentifier.EvalObject
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalIdentifier.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -142,6 +152,8 @@ items:
   nameWithType: EvalIdentifier.EvalIdentifier(Evaluator)
   fullName: Reportman.Reporting.EvalIdentifier.EvalIdentifier(Reportman.Reporting.Evaluator)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalIdentifier.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -169,6 +181,8 @@ items:
   nameWithType: EvalIdentifier.GetValue()
   fullName: Reportman.Reporting.EvalIdentifier.GetValue()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalIdentifier.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -192,6 +206,8 @@ items:
   nameWithType: EvalIdentifier.SetValue(Variant)
   fullName: Reportman.Reporting.EvalIdentifier.SetValue(Reportman.Reporting.Variant)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalIdentifier.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -216,6 +232,8 @@ items:
   nameWithType: EvalIdentifier.Model
   fullName: Reportman.Reporting.EvalIdentifier.Model
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalIdentifier.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -242,6 +260,8 @@ items:
   nameWithType: EvalIdentifier.Help
   fullName: Reportman.Reporting.EvalIdentifier.Help
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalIdentifier.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -268,6 +288,8 @@ items:
   nameWithType: EvalIdentifier.Value
   fullName: Reportman.Reporting.EvalIdentifier.Value
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalIdentifier.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

@@ -3,6 +3,10 @@ using System.IO;
 
 namespace Reportman.Drawing
 {
+    /// <summary>
+    /// Installs an AppDomain assembly-resolve handler that locates the native System.Data.SQLite
+    /// assembly from the architecture-specific (Win32/Win64) subfolder next to the executing assembly.
+    /// </summary>
     public static class AssemblyResolver
     {
         public static void HandleUnresolvedAssemblies()

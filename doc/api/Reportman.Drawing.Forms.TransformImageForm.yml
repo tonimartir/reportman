@@ -16,9 +16,13 @@ items:
   nameWithType: TransformImageForm
   fullName: Reportman.Drawing.Forms.TransformImageForm
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TransformImageForm.Designer.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: A dialog for resizing and re-encoding an image, letting the user change dimensions (optionally keeping aspect ratio), pick the output format (PNG, JPEG or GIF) and JPEG quality, and returns the transformed image stream.
+  example: []
   syntax:
     content: 'public class TransformImageForm : Form, IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable, IContainerControl'
     content.vb: Public Class TransformImageForm Inherits Form Implements IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable, IContainerControl
@@ -584,6 +588,8 @@ items:
   nameWithType: TransformImageForm.TransformImageForm()
   fullName: Reportman.Drawing.Forms.TransformImageForm.TransformImageForm()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TransformImageForm.Designer.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -605,6 +611,8 @@ items:
   nameWithType: TransformImageForm.Inicializar(MemoryStream, int?)
   fullName: Reportman.Drawing.Forms.TransformImageForm.Inicializar(System.IO.MemoryStream, int?)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TransformImageForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -631,6 +639,8 @@ items:
   nameWithType: TransformImageForm.ShowTransformImage(MemoryStream, IWin32Window, int?)
   fullName: Reportman.Drawing.Forms.TransformImageForm.ShowTransformImage(System.IO.MemoryStream, System.Windows.Forms.IWin32Window, int?)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TransformImageForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -661,6 +671,8 @@ items:
   nameWithType: TransformImageForm.Dispose(bool)
   fullName: Reportman.Drawing.Forms.TransformImageForm.Dispose(bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TransformImageForm.Designer.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

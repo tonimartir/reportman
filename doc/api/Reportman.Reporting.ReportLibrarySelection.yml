@@ -17,9 +17,18 @@ items:
   nameWithType: ReportLibrarySelection
   fullName: Reportman.Reporting.ReportLibrarySelection
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportLibraryConfig.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
+  summary: >-
+    Identifies a specific report by name within a <xref href="Reportman.Reporting.ReportLibraryConfig" data-throw-if-not-resolved="false"></xref> and
+
+    holds its loaded stream, providing a convenience method to save a report back to
+
+    that library entry.
+  example: []
   syntax:
     content: public class ReportLibrarySelection
     content.vb: Public Class ReportLibrarySelection
@@ -44,6 +53,8 @@ items:
   nameWithType: ReportLibrarySelection.ReportLibrary
   fullName: Reportman.Reporting.ReportLibrarySelection.ReportLibrary
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportLibraryConfig.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -63,6 +74,8 @@ items:
   nameWithType: ReportLibrarySelection.ReportName
   fullName: Reportman.Reporting.ReportLibrarySelection.ReportName
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportLibraryConfig.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -82,6 +95,8 @@ items:
   nameWithType: ReportLibrarySelection.Stream
   fullName: Reportman.Reporting.ReportLibrarySelection.Stream
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportLibraryConfig.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -101,6 +116,8 @@ items:
   nameWithType: ReportLibrarySelection.Save(Report)
   fullName: Reportman.Reporting.ReportLibrarySelection.Save(Reportman.Reporting.Report)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportLibraryConfig.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -122,6 +139,8 @@ items:
   nameWithType: ReportLibrarySelection.ReportLibrarySelection()
   fullName: Reportman.Reporting.ReportLibrarySelection.ReportLibrarySelection()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportLibraryConfig.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -133,6 +152,14 @@ items:
   fullName.vb: Reportman.Reporting.ReportLibrarySelection.New()
   name.vb: New()
 references:
+- uid: Reportman.Reporting.ReportLibraryConfig
+  commentId: T:Reportman.Reporting.ReportLibraryConfig
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.ReportLibraryConfig.html
+  name: ReportLibraryConfig
+  nameWithType: ReportLibraryConfig
+  fullName: Reportman.Reporting.ReportLibraryConfig
 - uid: Reportman.Reporting
   commentId: N:Reportman.Reporting
   isExternal: true
@@ -397,14 +424,6 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Reportman.Reporting.ReportLibraryConfig
-  commentId: T:Reportman.Reporting.ReportLibraryConfig
-  parent: Reportman.Reporting
-  isExternal: true
-  href: Reportman.Reporting.ReportLibraryConfig.html
-  name: ReportLibraryConfig
-  nameWithType: ReportLibraryConfig
-  fullName: Reportman.Reporting.ReportLibraryConfig
 - uid: System.String
   commentId: T:System.String
   parent: System

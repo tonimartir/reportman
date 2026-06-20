@@ -20,9 +20,18 @@ items:
   nameWithType: PrintersConfiguration
   fullName: Reportman.Drawing.Forms.PrintersConfiguration
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintersConfiguration.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    Dialog for configuring the device, text-only driver and POS escape sequences
+
+    (cut paper, open drawer) of Report Manager's configurable printer slots, persisting
+
+    the settings to a per-user or system-wide reportman.ini file.
+  example: []
   syntax:
     content: 'public class PrintersConfiguration : Form, IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable, IContainerControl'
     content.vb: Public Class PrintersConfiguration Inherits Form Implements IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable, IContainerControl
@@ -588,6 +597,8 @@ items:
   nameWithType: PrintersConfiguration.printernames
   fullName: Reportman.Drawing.Forms.PrintersConfiguration.printernames
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintersConfiguration.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -607,6 +618,8 @@ items:
   nameWithType: PrintersConfiguration.StreamResult
   fullName: Reportman.Drawing.Forms.PrintersConfiguration.StreamResult
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintersConfiguration.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -626,6 +639,8 @@ items:
   nameWithType: PrintersConfiguration.configstream
   fullName: Reportman.Drawing.Forms.PrintersConfiguration.configstream
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintersConfiguration.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -645,6 +660,8 @@ items:
   nameWithType: PrintersConfiguration.Initialize()
   fullName: Reportman.Drawing.Forms.PrintersConfiguration.Initialize()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintersConfiguration.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -663,6 +680,8 @@ items:
   nameWithType: PrintersConfiguration.PrintersConfiguration()
   fullName: Reportman.Drawing.Forms.PrintersConfiguration.PrintersConfiguration()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintersConfiguration.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -684,6 +703,8 @@ items:
   nameWithType: PrintersConfiguration.ShowPrintersConfiguration(Form, Strings, Stream, EventPrinterNamesHandler)
   fullName: Reportman.Drawing.Forms.PrintersConfiguration.ShowPrintersConfiguration(System.Windows.Forms.Form, Reportman.Drawing.Strings, System.IO.Stream, Reportman.Drawing.Forms.EventPrinterNamesHandler)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintersConfiguration.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -713,6 +734,8 @@ items:
   nameWithType: PrintersConfiguration.ShowPrintersConfiguration(Form)
   fullName: Reportman.Drawing.Forms.PrintersConfiguration.ShowPrintersConfiguration(System.Windows.Forms.Form)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintersConfiguration.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -736,6 +759,8 @@ items:
   nameWithType: PrintersConfiguration.Dispose(bool)
   fullName: Reportman.Drawing.Forms.PrintersConfiguration.Dispose(bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PrintersConfiguration.designer.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -12294,7 +12319,7 @@ references:
   commentId: T:Reportman.Drawing.Strings
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.Strings.html
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Strings.cs
   name: Strings
   nameWithType: Strings
   fullName: Reportman.Drawing.Strings

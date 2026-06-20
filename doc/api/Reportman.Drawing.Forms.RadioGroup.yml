@@ -24,9 +24,16 @@ items:
   nameWithType: RadioGroup
   fullName: Reportman.Drawing.Forms.RadioGroup
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/RadioGroup.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    Group box that hosts a set of mutually exclusive radio buttons built from a caption
+
+    list, exposing the selected index and auto-laying out the buttons horizontally or vertically.
+  example: []
   syntax:
     content: 'public class RadioGroup : GroupBoxAdvanced, IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable'
     content.vb: Public Class RadioGroup Inherits GroupBoxAdvanced Implements IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable
@@ -444,6 +451,8 @@ items:
   nameWithType: RadioGroup.SelectedIndexChanged
   fullName: Reportman.Drawing.Forms.RadioGroup.SelectedIndexChanged
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/RadioGroup.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -463,6 +472,8 @@ items:
   nameWithType: RadioGroup.FHorizontal
   fullName: Reportman.Drawing.Forms.RadioGroup.FHorizontal
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/RadioGroup.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -482,6 +493,8 @@ items:
   nameWithType: RadioGroup.SetCaptions(Strings)
   fullName: Reportman.Drawing.Forms.RadioGroup.SetCaptions(Reportman.Drawing.Strings)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/RadioGroup.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -503,6 +516,8 @@ items:
   nameWithType: RadioGroup.RadioGroup()
   fullName: Reportman.Drawing.Forms.RadioGroup.RadioGroup()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/RadioGroup.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -524,6 +539,8 @@ items:
   nameWithType: RadioGroup.OnFontChanged(EventArgs)
   fullName: Reportman.Drawing.Forms.RadioGroup.OnFontChanged(System.EventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/RadioGroup.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -547,6 +564,8 @@ items:
   nameWithType: RadioGroup.OnParentChanged(EventArgs)
   fullName: Reportman.Drawing.Forms.RadioGroup.OnParentChanged(System.EventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/RadioGroup.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -570,6 +589,8 @@ items:
   nameWithType: RadioGroup.OnResize(EventArgs)
   fullName: Reportman.Drawing.Forms.RadioGroup.OnResize(System.EventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/RadioGroup.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -593,6 +614,8 @@ items:
   nameWithType: RadioGroup.OnPaint(PaintEventArgs)
   fullName: Reportman.Drawing.Forms.RadioGroup.OnPaint(System.Windows.Forms.PaintEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/RadioGroup.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -616,6 +639,8 @@ items:
   nameWithType: RadioGroup.Dispose(bool)
   fullName: Reportman.Drawing.Forms.RadioGroup.Dispose(bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/RadioGroup.designer.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -644,6 +669,8 @@ items:
   nameWithType: RadioGroup.SelectedIndex
   fullName: Reportman.Drawing.Forms.RadioGroup.SelectedIndex
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/RadioGroup.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -665,6 +692,8 @@ items:
   nameWithType: RadioGroup.AutoAdjustSize
   fullName: Reportman.Drawing.Forms.RadioGroup.AutoAdjustSize
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/RadioGroup.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -686,6 +715,8 @@ items:
   nameWithType: RadioGroup.Horizontal
   fullName: Reportman.Drawing.Forms.RadioGroup.Horizontal
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/RadioGroup.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -9606,7 +9637,7 @@ references:
   commentId: T:Reportman.Drawing.Strings
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.Strings.html
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Strings.cs
   name: Strings
   nameWithType: Strings
   fullName: Reportman.Drawing.Strings

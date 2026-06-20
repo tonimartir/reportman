@@ -14,9 +14,16 @@ items:
   nameWithType: TreeGridAdvancedColumn
   fullName: Reportman.Drawing.Forms.TreeGridAdvancedColumn
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    The tree column of a <xref href="Reportman.Drawing.Forms.TreeGridAdvanced" data-throw-if-not-resolved="false"></xref>: a text column whose cells render the
+
+    expand/collapse glyphs and indentation, and whose clicks toggle the node's expanded state.
+  example: []
   syntax:
     content: 'public class TreeGridAdvancedColumn : DataGridViewTextBoxColumn, ICloneable, IComponent, IDisposable'
     content.vb: Public Class TreeGridAdvancedColumn Inherits DataGridViewTextBoxColumn Implements ICloneable, IComponent, IDisposable
@@ -97,6 +104,8 @@ items:
   nameWithType: TreeGridAdvancedColumn.ClickNode(TreeGridRow)
   fullName: Reportman.Drawing.Forms.TreeGridAdvancedColumn.ClickNode(Reportman.Drawing.Forms.TreeGridRow)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -118,6 +127,8 @@ items:
   nameWithType: TreeGridAdvancedColumn.TreeGridAdvancedColumn()
   fullName: Reportman.Drawing.Forms.TreeGridAdvancedColumn.TreeGridAdvancedColumn()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TreeGridAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -129,6 +140,14 @@ items:
   fullName.vb: Reportman.Drawing.Forms.TreeGridAdvancedColumn.New()
   name.vb: New()
 references:
+- uid: Reportman.Drawing.Forms.TreeGridAdvanced
+  commentId: T:Reportman.Drawing.Forms.TreeGridAdvanced
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TreeGridAdvanced.html
+  name: TreeGridAdvanced
+  nameWithType: TreeGridAdvanced
+  fullName: Reportman.Drawing.Forms.TreeGridAdvanced
 - uid: Reportman.Drawing.Forms
   commentId: N:Reportman.Drawing.Forms
   isExternal: true

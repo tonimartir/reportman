@@ -14,6 +14,8 @@ items:
   nameWithType: PreviewWindowStyleType
   fullName: Reportman.Drawing.PreviewWindowStyleType
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -33,6 +35,8 @@ items:
   nameWithType: PreviewWindowStyleType.Normal
   fullName: Reportman.Drawing.PreviewWindowStyleType.Normal
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -53,6 +57,8 @@ items:
   nameWithType: PreviewWindowStyleType.Maximized
   fullName: Reportman.Drawing.PreviewWindowStyleType.Maximized
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

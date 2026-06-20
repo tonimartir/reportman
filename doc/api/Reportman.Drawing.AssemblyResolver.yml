@@ -13,9 +13,16 @@ items:
   nameWithType: AssemblyResolver
   fullName: Reportman.Drawing.AssemblyResolver
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/AssemblyResolver.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    Installs an AppDomain assembly-resolve handler that locates the native System.Data.SQLite
+
+    assembly from the architecture-specific (Win32/Win64) subfolder next to the executing assembly.
+  example: []
   syntax:
     content: public static class AssemblyResolver
     content.vb: Public Module AssemblyResolver
@@ -40,6 +47,8 @@ items:
   nameWithType: AssemblyResolver.HandleUnresolvedAssemblies()
   fullName: Reportman.Drawing.AssemblyResolver.HandleUnresolvedAssemblies()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/AssemblyResolver.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

@@ -16,6 +16,8 @@ items:
   nameWithType: PrinterFontsType
   fullName: Reportman.Drawing.PrinterFontsType
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -38,6 +40,8 @@ items:
   nameWithType: PrinterFontsType.Default
   fullName: Reportman.Drawing.PrinterFontsType.Default
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -58,6 +62,8 @@ items:
   nameWithType: PrinterFontsType.Always
   fullName: Reportman.Drawing.PrinterFontsType.Always
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -78,6 +84,8 @@ items:
   nameWithType: PrinterFontsType.Never
   fullName: Reportman.Drawing.PrinterFontsType.Never
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -98,6 +106,8 @@ items:
   nameWithType: PrinterFontsType.Recalculate
   fullName: Reportman.Drawing.PrinterFontsType.Recalculate
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

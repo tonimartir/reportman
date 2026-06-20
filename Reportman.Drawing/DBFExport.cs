@@ -6,7 +6,15 @@ using System.Text;
 
 namespace Reportman.Reporting
 {
+    /// <summary>
+    /// Progress callback invoked periodically during a long export, reporting the number of
+    /// records processed out of the total; set <c>docancel</c> to true to abort the operation.
+    /// </summary>
     public delegate void DataProgressEvent(object sender, int records, int count, ref bool docancel);
+    /// <summary>
+    /// Exports a <see cref="DataTable"/> to a dBASE IV (.DBF) file via an OLE DB connection,
+    /// creating the table and inserting rows while reporting progress and supporting cancellation.
+    /// </summary>
     public class DBFExport
     {
         public static DbConnection CreateConnection(string folder)

@@ -1,0 +1,719 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.LineGlyphs
+  commentId: T:Reportman.Drawing.LineGlyphs
+  id: LineGlyphs
+  parent: Reportman.Drawing
+  children:
+  - Reportman.Drawing.LineGlyphs.#ctor(System.Int32)
+  - Reportman.Drawing.LineGlyphs.AddGlyph(Reportman.Drawing.TGlyphPos,System.Int32)
+  - Reportman.Drawing.LineGlyphs.ClusterMap
+  - Reportman.Drawing.LineGlyphs.Glyphs
+  - Reportman.Drawing.LineGlyphs.MaxClusterText
+  - Reportman.Drawing.LineGlyphs.MinClusterText
+  - Reportman.Drawing.LineGlyphs.TextOffset
+  langs:
+  - csharp
+  - vb
+  name: LineGlyphs
+  nameWithType: LineGlyphs
+  fullName: Reportman.Drawing.LineGlyphs
+  type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/HtmlTextParser.cs
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  summary: >-
+    Holds the shaped glyph positions for a single line of text, indexed from a base
+
+    text offset, along with a cluster map that links each logical text cluster to the
+
+    glyphs that render it.
+  example: []
+  syntax:
+    content: public class LineGlyphs
+    content.vb: Public Class LineGlyphs
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Drawing.LineGlyphs.TextOffset
+  commentId: F:Reportman.Drawing.LineGlyphs.TextOffset
+  id: TextOffset
+  parent: Reportman.Drawing.LineGlyphs
+  langs:
+  - csharp
+  - vb
+  name: TextOffset
+  nameWithType: LineGlyphs.TextOffset
+  fullName: Reportman.Drawing.LineGlyphs.TextOffset
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/HtmlTextParser.cs
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int TextOffset
+    return:
+      type: System.Int32
+    content.vb: Public TextOffset As Integer
+- uid: Reportman.Drawing.LineGlyphs.Glyphs
+  commentId: F:Reportman.Drawing.LineGlyphs.Glyphs
+  id: Glyphs
+  parent: Reportman.Drawing.LineGlyphs
+  langs:
+  - csharp
+  - vb
+  name: Glyphs
+  nameWithType: LineGlyphs.Glyphs
+  fullName: Reportman.Drawing.LineGlyphs.Glyphs
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/HtmlTextParser.cs
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public List<TGlyphPos> Glyphs
+    return:
+      type: System.Collections.Generic.List{Reportman.Drawing.TGlyphPos}
+    content.vb: Public Glyphs As List(Of TGlyphPos)
+- uid: Reportman.Drawing.LineGlyphs.ClusterMap
+  commentId: F:Reportman.Drawing.LineGlyphs.ClusterMap
+  id: ClusterMap
+  parent: Reportman.Drawing.LineGlyphs
+  langs:
+  - csharp
+  - vb
+  name: ClusterMap
+  nameWithType: LineGlyphs.ClusterMap
+  fullName: Reportman.Drawing.LineGlyphs.ClusterMap
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/HtmlTextParser.cs
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public Dictionary<int, List<int>> ClusterMap
+    return:
+      type: System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.List{System.Int32}}
+    content.vb: Public ClusterMap As Dictionary(Of Integer, List(Of Integer))
+- uid: Reportman.Drawing.LineGlyphs.#ctor(System.Int32)
+  commentId: M:Reportman.Drawing.LineGlyphs.#ctor(System.Int32)
+  id: '#ctor(System.Int32)'
+  parent: Reportman.Drawing.LineGlyphs
+  langs:
+  - csharp
+  - vb
+  name: LineGlyphs(int)
+  nameWithType: LineGlyphs.LineGlyphs(int)
+  fullName: Reportman.Drawing.LineGlyphs.LineGlyphs(int)
+  type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/HtmlTextParser.cs
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public LineGlyphs(int textOffset)
+    parameters:
+    - id: textOffset
+      type: System.Int32
+    content.vb: Public Sub New(textOffset As Integer)
+  overload: Reportman.Drawing.LineGlyphs.#ctor*
+  nameWithType.vb: LineGlyphs.New(Integer)
+  fullName.vb: Reportman.Drawing.LineGlyphs.New(Integer)
+  name.vb: New(Integer)
+- uid: Reportman.Drawing.LineGlyphs.AddGlyph(Reportman.Drawing.TGlyphPos,System.Int32)
+  commentId: M:Reportman.Drawing.LineGlyphs.AddGlyph(Reportman.Drawing.TGlyphPos,System.Int32)
+  id: AddGlyph(Reportman.Drawing.TGlyphPos,System.Int32)
+  parent: Reportman.Drawing.LineGlyphs
+  langs:
+  - csharp
+  - vb
+  name: AddGlyph(TGlyphPos, int)
+  nameWithType: LineGlyphs.AddGlyph(TGlyphPos, int)
+  fullName: Reportman.Drawing.LineGlyphs.AddGlyph(Reportman.Drawing.TGlyphPos, int)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/HtmlTextParser.cs
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public void AddGlyph(TGlyphPos g, int logicalStart)
+    parameters:
+    - id: g
+      type: Reportman.Drawing.TGlyphPos
+    - id: logicalStart
+      type: System.Int32
+    content.vb: Public Sub AddGlyph(g As TGlyphPos, logicalStart As Integer)
+  overload: Reportman.Drawing.LineGlyphs.AddGlyph*
+  nameWithType.vb: LineGlyphs.AddGlyph(TGlyphPos, Integer)
+  fullName.vb: Reportman.Drawing.LineGlyphs.AddGlyph(Reportman.Drawing.TGlyphPos, Integer)
+  name.vb: AddGlyph(TGlyphPos, Integer)
+- uid: Reportman.Drawing.LineGlyphs.MinClusterText
+  commentId: P:Reportman.Drawing.LineGlyphs.MinClusterText
+  id: MinClusterText
+  parent: Reportman.Drawing.LineGlyphs
+  langs:
+  - csharp
+  - vb
+  name: MinClusterText
+  nameWithType: LineGlyphs.MinClusterText
+  fullName: Reportman.Drawing.LineGlyphs.MinClusterText
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/HtmlTextParser.cs
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int MinClusterText { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property MinClusterText As Integer
+  overload: Reportman.Drawing.LineGlyphs.MinClusterText*
+- uid: Reportman.Drawing.LineGlyphs.MaxClusterText
+  commentId: P:Reportman.Drawing.LineGlyphs.MaxClusterText
+  id: MaxClusterText
+  parent: Reportman.Drawing.LineGlyphs
+  langs:
+  - csharp
+  - vb
+  name: MaxClusterText
+  nameWithType: LineGlyphs.MaxClusterText
+  fullName: Reportman.Drawing.LineGlyphs.MaxClusterText
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/HtmlTextParser.cs
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: public int MaxClusterText { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property MaxClusterText As Integer
+  overload: Reportman.Drawing.LineGlyphs.MaxClusterText*
+references:
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Collections.Generic.List{Reportman.Drawing.TGlyphPos}
+  commentId: T:System.Collections.Generic.List{Reportman.Drawing.TGlyphPos}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<TGlyphPos>
+  nameWithType: List<TGlyphPos>
+  fullName: System.Collections.Generic.List<Reportman.Drawing.TGlyphPos>
+  nameWithType.vb: List(Of TGlyphPos)
+  fullName.vb: System.Collections.Generic.List(Of Reportman.Drawing.TGlyphPos)
+  name.vb: List(Of TGlyphPos)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Reportman.Drawing.TGlyphPos
+    name: TGlyphPos
+    isExternal: true
+    href: Reportman.Drawing.TGlyphPos.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Reportman.Drawing.TGlyphPos
+    name: TGlyphPos
+    isExternal: true
+    href: Reportman.Drawing.TGlyphPos.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.List{System.Int32}}
+  commentId: T:System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.List{System.Int32}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<int, List<int>>
+  nameWithType: Dictionary<int, List<int>>
+  fullName: System.Collections.Generic.Dictionary<int, System.Collections.Generic.List<int>>
+  nameWithType.vb: Dictionary(Of Integer, List(Of Integer))
+  fullName.vb: System.Collections.Generic.Dictionary(Of Integer, System.Collections.Generic.List(Of Integer))
+  name.vb: Dictionary(Of Integer, List(Of Integer))
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: Reportman.Drawing.LineGlyphs.#ctor*
+  commentId: Overload:Reportman.Drawing.LineGlyphs.#ctor
+  isExternal: true
+  href: Reportman.Drawing.LineGlyphs.html#Reportman_Drawing_LineGlyphs__ctor_System_Int32_
+  name: LineGlyphs
+  nameWithType: LineGlyphs.LineGlyphs
+  fullName: Reportman.Drawing.LineGlyphs.LineGlyphs
+  nameWithType.vb: LineGlyphs.New
+  fullName.vb: Reportman.Drawing.LineGlyphs.New
+  name.vb: New
+- uid: Reportman.Drawing.LineGlyphs.AddGlyph*
+  commentId: Overload:Reportman.Drawing.LineGlyphs.AddGlyph
+  isExternal: true
+  href: Reportman.Drawing.LineGlyphs.html#Reportman_Drawing_LineGlyphs_AddGlyph_Reportman_Drawing_TGlyphPos_System_Int32_
+  name: AddGlyph
+  nameWithType: LineGlyphs.AddGlyph
+  fullName: Reportman.Drawing.LineGlyphs.AddGlyph
+- uid: Reportman.Drawing.TGlyphPos
+  commentId: T:Reportman.Drawing.TGlyphPos
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.TGlyphPos.html
+  name: TGlyphPos
+  nameWithType: TGlyphPos
+  fullName: Reportman.Drawing.TGlyphPos
+- uid: Reportman.Drawing.LineGlyphs.MinClusterText*
+  commentId: Overload:Reportman.Drawing.LineGlyphs.MinClusterText
+  isExternal: true
+  href: Reportman.Drawing.LineGlyphs.html#Reportman_Drawing_LineGlyphs_MinClusterText
+  name: MinClusterText
+  nameWithType: LineGlyphs.MinClusterText
+  fullName: Reportman.Drawing.LineGlyphs.MinClusterText
+- uid: Reportman.Drawing.LineGlyphs.MaxClusterText*
+  commentId: Overload:Reportman.Drawing.LineGlyphs.MaxClusterText
+  isExternal: true
+  href: Reportman.Drawing.LineGlyphs.html#Reportman_Drawing_LineGlyphs_MaxClusterText
+  name: MaxClusterText
+  nameWithType: LineGlyphs.MaxClusterText
+  fullName: Reportman.Drawing.LineGlyphs.MaxClusterText

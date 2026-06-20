@@ -6,7 +6,14 @@ using System.Windows.Forms;
 
 namespace Reportman.Drawing.Forms
 {
+    /// <summary>
+    /// Generic callback for a simple control event carrying the sender and standard event arguments.
+    /// </summary>
     public delegate void StandardEvent(object sender, EventArgs args);
+    /// <summary>
+    /// Group box that hosts a set of mutually exclusive radio buttons built from a caption
+    /// list, exposing the selected index and auto-laying out the buttons horizontally or vertically.
+    /// </summary>
     public partial class RadioGroup : Reportman.Drawing.Forms.GroupBoxAdvanced
     {
         public EventHandler SelectedIndexChanged;

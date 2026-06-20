@@ -11,6 +11,7 @@ items:
   - Reportman.Reporting.DriverType.DotNet
   - Reportman.Reporting.DriverType.DotNet2
   - Reportman.Reporting.DriverType.Firedac
+  - Reportman.Reporting.DriverType.HttpAgent
   - Reportman.Reporting.DriverType.IBO
   - Reportman.Reporting.DriverType.IBX
   - Reportman.Reporting.DriverType.Mybase
@@ -22,6 +23,8 @@ items:
   nameWithType: DriverType
   fullName: Reportman.Reporting.DriverType
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -30,7 +33,7 @@ items:
 
     to connect to the database, in .Net version you can choose DotNet or DotNet2 depending on the version you 
 
-    are using. <xref href="Reportman.Reporting.Variant?text=DatabaseInfo" data-throw-if-not-resolved="false"></xref>
+    are using. <xref href="Reportman.Reporting.DatabaseInfo" data-throw-if-not-resolved="false"></xref>
   example: []
   syntax:
     content: public enum DriverType
@@ -46,6 +49,8 @@ items:
   nameWithType: DriverType.DBExpress
   fullName: Reportman.Reporting.DriverType.DBExpress
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -66,6 +71,8 @@ items:
   nameWithType: DriverType.Mybase
   fullName: Reportman.Reporting.DriverType.Mybase
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -87,6 +94,8 @@ items:
   nameWithType: DriverType.IBX
   fullName: Reportman.Reporting.DriverType.IBX
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -109,6 +118,8 @@ items:
   nameWithType: DriverType.BDE
   fullName: Reportman.Reporting.DriverType.BDE
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -131,6 +142,8 @@ items:
   nameWithType: DriverType.ADO
   fullName: Reportman.Reporting.DriverType.ADO
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -153,6 +166,8 @@ items:
   nameWithType: DriverType.IBO
   fullName: Reportman.Reporting.DriverType.IBO
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -175,6 +190,8 @@ items:
   nameWithType: DriverType.ZEOS
   fullName: Reportman.Reporting.DriverType.ZEOS
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -197,12 +214,14 @@ items:
   nameWithType: DriverType.DotNet
   fullName: Reportman.Reporting.DriverType.DotNet
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
   summary: >-
     Driver used to connect to databases in .Net 1.x, because no abstraction is provided in .Net 1.x, 
-                you must select alse the driver (object instances) to be used. <xref href="Reportman.Reporting.Variant?text=DotNetDriverType" data-throw-if-not-resolved="false"></xref>
+                you must select alse the driver (object instances) to be used. <xref href="Reportman.Reporting.DotNetDriverType" data-throw-if-not-resolved="false"></xref>
                 Available only in .Net 1.x, deprecated
   example: []
   syntax:
@@ -220,12 +239,14 @@ items:
   nameWithType: DriverType.DotNet2
   fullName: Reportman.Reporting.DriverType.DotNet2
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
   summary: >-
     Driver used to connect to databases in .Net 2.x, it's used with ProviderFactory property inside
-                DatabaseInfo to perform the connection<xref href="Reportman.Reporting.Variant?text=DatabaseInfo" data-throw-if-not-resolved="false"></xref>
+                DatabaseInfo to perform the connection<xref href="Reportman.Reporting.DatabaseInfo" data-throw-if-not-resolved="false"></xref>
                 Available only in .Net
   example: []
   syntax:
@@ -243,27 +264,54 @@ items:
   nameWithType: DriverType.Firedac
   fullName: Reportman.Reporting.DriverType.Firedac
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
   summary: >-
     Driver used to connect to databases using Firedac Delphi/C++Buider drivers
-                DatabaseInfo to perform the connection<xref href="Reportman.Reporting.Variant?text=DatabaseInfo" data-throw-if-not-resolved="false"></xref>
+                DatabaseInfo to perform the connection<xref href="Reportman.Reporting.DatabaseInfo" data-throw-if-not-resolved="false"></xref>
                 Not Available only in .Net
   example: []
   syntax:
     content: Firedac = 9
     return:
       type: Reportman.Reporting.DriverType
+- uid: Reportman.Reporting.DriverType.HttpAgent
+  commentId: F:Reportman.Reporting.DriverType.HttpAgent
+  id: HttpAgent
+  parent: Reportman.Reporting.DriverType
+  langs:
+  - csharp
+  - vb
+  name: HttpAgent
+  nameWithType: DriverType.HttpAgent
+  fullName: Reportman.Reporting.DriverType.HttpAgent
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    Driver used to connect to databases via HTTP Agent API.
+                Uses ApiKey or Bearer token authentication to execute SQL through a remote agent.
+                Available in .Net
+  example: []
+  syntax:
+    content: HttpAgent = 10
+    return:
+      type: Reportman.Reporting.DriverType
 references:
-- uid: Reportman.Reporting.Variant
-  commentId: T:Reportman.Reporting.Variant
+- uid: Reportman.Reporting.DatabaseInfo
+  commentId: T:Reportman.Reporting.DatabaseInfo
   parent: Reportman.Reporting
   isExternal: true
-  href: Reportman.Reporting.Variant.html
-  name: Variant
-  nameWithType: Variant
-  fullName: Reportman.Reporting.Variant
+  href: Reportman.Reporting.DatabaseInfo.html
+  name: DatabaseInfo
+  nameWithType: DatabaseInfo
+  fullName: Reportman.Reporting.DatabaseInfo
 - uid: Reportman.Reporting
   commentId: N:Reportman.Reporting
   isExternal: true
@@ -299,3 +347,11 @@ references:
   name: DriverType
   nameWithType: DriverType
   fullName: Reportman.Reporting.DriverType
+- uid: Reportman.Reporting.DotNetDriverType
+  commentId: T:Reportman.Reporting.DotNetDriverType
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.DotNetDriverType.html
+  name: DotNetDriverType
+  nameWithType: DotNetDriverType
+  fullName: Reportman.Reporting.DotNetDriverType

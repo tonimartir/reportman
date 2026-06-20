@@ -24,9 +24,16 @@ items:
   nameWithType: ShapeItem
   fullName: Reportman.Reporting.ShapeItem
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ShapeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
+  summary: >-
+    A report print item that draws a geometric shape (rectangle, ellipse, line, etc.) with a
+
+    configurable pen and brush, optionally deriving the fill color from an evaluated expression.
+  example: []
   syntax:
     content: 'public class ShapeItem : PrintPosItem, IDisposable'
     content.vb: Public Class ShapeItem Inherits PrintPosItem Implements IDisposable
@@ -85,6 +92,8 @@ items:
   nameWithType: ShapeItem.ShapeItem()
   fullName: Reportman.Reporting.ShapeItem.ShapeItem()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ShapeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -106,6 +115,8 @@ items:
   nameWithType: ShapeItem.GetClassName()
   fullName: Reportman.Reporting.ShapeItem.GetClassName()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ShapeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -130,6 +141,8 @@ items:
   nameWithType: ShapeItem.DoPrint(PrintOut, int, int, int, int, MetaFile, Point, ref bool)
   fullName: Reportman.Reporting.ShapeItem.DoPrint(Reportman.Drawing.PrintOut, int, int, int, int, Reportman.Drawing.MetaFile, System.Drawing.Point, ref bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ShapeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -179,6 +192,8 @@ items:
   nameWithType: ShapeItem.GetExtension(PrintOut, Point, bool)
   fullName: Reportman.Reporting.ShapeItem.GetExtension(Reportman.Drawing.PrintOut, System.Drawing.Point, bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ShapeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -215,6 +230,8 @@ items:
   nameWithType: ShapeItem.BrushStyle
   fullName: Reportman.Reporting.ShapeItem.BrushStyle
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ShapeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -236,6 +253,8 @@ items:
   nameWithType: ShapeItem.BrushColor
   fullName: Reportman.Reporting.ShapeItem.BrushColor
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ShapeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -257,6 +276,8 @@ items:
   nameWithType: ShapeItem.PenStyle
   fullName: Reportman.Reporting.ShapeItem.PenStyle
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ShapeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -278,6 +299,8 @@ items:
   nameWithType: ShapeItem.Color
   fullName: Reportman.Reporting.ShapeItem.Color
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ShapeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -299,6 +322,8 @@ items:
   nameWithType: ShapeItem.Shape
   fullName: Reportman.Reporting.ShapeItem.Shape
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ShapeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -320,6 +345,8 @@ items:
   nameWithType: ShapeItem.PenWidth
   fullName: Reportman.Reporting.ShapeItem.PenWidth
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ShapeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -341,6 +368,8 @@ items:
   nameWithType: ShapeItem.PenColor
   fullName: Reportman.Reporting.ShapeItem.PenColor
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ShapeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -362,6 +391,8 @@ items:
   nameWithType: ShapeItem.BrushColorExpression
   fullName: Reportman.Reporting.ShapeItem.BrushColorExpression
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ShapeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -476,11 +507,13 @@ references:
   - uid: Reportman.Drawing.MetaObject
     name: MetaObject
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
   - name: ','
   - name: " "
   - uid: Reportman.Drawing.MetaPage
     name: MetaPage
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
   - name: )
   spec.vb:
   - uid: Reportman.Reporting.PrintPosItem.FillAnnotation(Reportman.Drawing.MetaObject,Reportman.Drawing.MetaPage)
@@ -491,11 +524,13 @@ references:
   - uid: Reportman.Drawing.MetaObject
     name: MetaObject
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
   - name: ','
   - name: " "
   - uid: Reportman.Drawing.MetaPage
     name: MetaPage
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
   - name: )
 - uid: Reportman.Reporting.PrintPosItem.Hidden
   commentId: P:Reportman.Reporting.PrintPosItem.Hidden
@@ -672,6 +707,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -701,6 +737,7 @@ references:
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -725,6 +762,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -754,6 +792,7 @@ references:
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -1223,6 +1262,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -1252,6 +1292,7 @@ references:
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -1276,6 +1317,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -1305,6 +1347,7 @@ references:
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -1329,7 +1372,7 @@ references:
   commentId: T:Reportman.Drawing.PrintOut
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.PrintOut.html
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   name: PrintOut
   nameWithType: PrintOut
   fullName: Reportman.Drawing.PrintOut
@@ -1445,6 +1488,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -1467,6 +1511,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point

@@ -15,9 +15,16 @@ items:
   nameWithType: DataNeededEventArgs
   fullName: Reportman.Reporting.DataNeededEventArgs
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Evaluator.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
+  summary: >-
+    Arguments for the <xref href="Reportman.Reporting.DataNeededEvent" data-throw-if-not-resolved="false"></xref>, carrying the originating
+
+    <xref href="Reportman.Reporting.DataNeededEventArgs.Evaluator" data-throw-if-not-resolved="false"></xref> and the name of the dataset that needs to be provided.
+  example: []
   syntax:
     content: public class DataNeededEventArgs
     content.vb: Public Class DataNeededEventArgs
@@ -42,6 +49,8 @@ items:
   nameWithType: DataNeededEventArgs.Dataset
   fullName: Reportman.Reporting.DataNeededEventArgs.Dataset
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Evaluator.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -61,6 +70,8 @@ items:
   nameWithType: DataNeededEventArgs.Evaluator
   fullName: Reportman.Reporting.DataNeededEventArgs.Evaluator
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Evaluator.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -80,6 +91,8 @@ items:
   nameWithType: DataNeededEventArgs.DataNeededEventArgs(Evaluator, string)
   fullName: Reportman.Reporting.DataNeededEventArgs.DataNeededEventArgs(Reportman.Reporting.Evaluator, string)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Evaluator.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -96,6 +109,21 @@ items:
   fullName.vb: Reportman.Reporting.DataNeededEventArgs.New(Reportman.Reporting.Evaluator, String)
   name.vb: New(Evaluator, String)
 references:
+- uid: Reportman.Reporting.DataNeededEvent
+  commentId: T:Reportman.Reporting.DataNeededEvent
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.DataNeededEvent.html
+  name: DataNeededEvent
+  nameWithType: DataNeededEvent
+  fullName: Reportman.Reporting.DataNeededEvent
+- uid: Reportman.Reporting.DataNeededEventArgs.Evaluator
+  commentId: F:Reportman.Reporting.DataNeededEventArgs.Evaluator
+  isExternal: true
+  href: Reportman.Reporting.DataNeededEventArgs.html#Reportman_Reporting_DataNeededEventArgs_Evaluator
+  name: Evaluator
+  nameWithType: DataNeededEventArgs.Evaluator
+  fullName: Reportman.Reporting.DataNeededEventArgs.Evaluator
 - uid: Reportman.Reporting
   commentId: N:Reportman.Reporting
   isExternal: true

@@ -14,6 +14,8 @@ items:
   nameWithType: ProcessUtil
   fullName: Reportman.Drawing.ProcessUtil
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ProcessUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -43,6 +45,8 @@ items:
   nameWithType: ProcessUtil.ProcessUtil()
   fullName: Reportman.Drawing.ProcessUtil.ProcessUtil()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ProcessUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -64,6 +68,8 @@ items:
   nameWithType: ProcessUtil.Is64BitProcess
   fullName: Reportman.Drawing.ProcessUtil.Is64BitProcess
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ProcessUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

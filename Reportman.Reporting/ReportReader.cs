@@ -2875,6 +2875,10 @@ namespace Reportman.Reporting
             }
         }
     }
+    /// <summary>
+    /// Identifies the version of the report stream/serialization format, selecting between
+    /// the legacy layout (V1) and the current format (V2) when saving a report.
+    /// </summary>
     public enum StreamVersion { V1, V2 };
 
 }

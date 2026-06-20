@@ -15,6 +15,8 @@ items:
   nameWithType: TotalPage
   fullName: Reportman.Drawing.TotalPage
   type: Struct
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -46,6 +48,8 @@ items:
   nameWithType: TotalPage.PageIndex
   fullName: Reportman.Drawing.TotalPage.PageIndex
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -67,6 +71,8 @@ items:
   nameWithType: TotalPage.ObjectIndex
   fullName: Reportman.Drawing.TotalPage.ObjectIndex
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -88,6 +94,8 @@ items:
   nameWithType: TotalPage.DisplayFormat
   fullName: Reportman.Drawing.TotalPage.DisplayFormat
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

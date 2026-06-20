@@ -14,9 +14,16 @@ items:
   nameWithType: StreamVersion
   fullName: Reportman.Reporting.StreamVersion
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportReader.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
+  summary: >-
+    Identifies the version of the report stream/serialization format, selecting between
+
+    the legacy layout (V1) and the current format (V2) when saving a report.
+  example: []
   syntax:
     content: public enum StreamVersion
     content.vb: Public Enum StreamVersion
@@ -31,6 +38,8 @@ items:
   nameWithType: StreamVersion.V1
   fullName: Reportman.Reporting.StreamVersion.V1
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportReader.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -49,6 +58,8 @@ items:
   nameWithType: StreamVersion.V2
   fullName: Reportman.Reporting.StreamVersion.V2
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportReader.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

@@ -16,9 +16,18 @@ items:
   nameWithType: DataGridViewPrint
   fullName: Reportman.Reporting.Forms.DataGridViewPrint
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
+  summary: >-
+    Builds a Report from the contents of a Windows Forms <xref href="System.Windows.Forms.DataGridView" data-throw-if-not-resolved="false"></xref> (including
+
+    tree grids), mapping its columns, cell alignment, images, check boxes and row styling into
+
+    report sections so the grid can be printed or previewed.
+  example: []
   syntax:
     content: public class DataGridViewPrint
     content.vb: Public Class DataGridViewPrint
@@ -43,6 +52,8 @@ items:
   nameWithType: DataGridViewPrint.SetAlignFromCellFormat(DataGridViewContentAlignment, PrintItemText)
   fullName: Reportman.Reporting.Forms.DataGridViewPrint.SetAlignFromCellFormat(System.Windows.Forms.DataGridViewContentAlignment, Reportman.Reporting.PrintItemText)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -66,6 +77,8 @@ items:
   nameWithType: DataGridViewPrint.PrepareReport(Report, DataGridView, DataGridViewPrintOptions)
   fullName: Reportman.Reporting.Forms.DataGridViewPrint.PrepareReport(Reportman.Reporting.Report, System.Windows.Forms.DataGridView, Reportman.Reporting.Forms.DataGridViewPrintOptions)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -91,6 +104,8 @@ items:
   nameWithType: DataGridViewPrint.GetImageStreamFromObject(object)
   fullName: Reportman.Reporting.Forms.DataGridViewPrint.GetImageStreamFromObject(object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -117,6 +132,8 @@ items:
   nameWithType: DataGridViewPrint.DataGridViewPrint()
   fullName: Reportman.Reporting.Forms.DataGridViewPrint.DataGridViewPrint()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -128,6 +145,14 @@ items:
   fullName.vb: Reportman.Reporting.Forms.DataGridViewPrint.New()
   name.vb: New()
 references:
+- uid: System.Windows.Forms.DataGridView
+  commentId: T:System.Windows.Forms.DataGridView
+  parent: System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridview
+  name: DataGridView
+  nameWithType: DataGridView
+  fullName: System.Windows.Forms.DataGridView
 - uid: Reportman.Reporting.Forms
   commentId: N:Reportman.Reporting.Forms
   isExternal: true
@@ -395,36 +420,6 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
   - name: )
-- uid: System
-  commentId: N:System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System
-  nameWithType: System
-  fullName: System
-- uid: Reportman.Reporting.Forms.DataGridViewPrint.SetAlignFromCellFormat*
-  commentId: Overload:Reportman.Reporting.Forms.DataGridViewPrint.SetAlignFromCellFormat
-  isExternal: true
-  href: Reportman.Reporting.Forms.DataGridViewPrint.html#Reportman_Reporting_Forms_DataGridViewPrint_SetAlignFromCellFormat_System_Windows_Forms_DataGridViewContentAlignment_Reportman_Reporting_PrintItemText_
-  name: SetAlignFromCellFormat
-  nameWithType: DataGridViewPrint.SetAlignFromCellFormat
-  fullName: Reportman.Reporting.Forms.DataGridViewPrint.SetAlignFromCellFormat
-- uid: System.Windows.Forms.DataGridViewContentAlignment
-  commentId: T:System.Windows.Forms.DataGridViewContentAlignment
-  parent: System.Windows.Forms
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcontentalignment
-  name: DataGridViewContentAlignment
-  nameWithType: DataGridViewContentAlignment
-  fullName: System.Windows.Forms.DataGridViewContentAlignment
-- uid: Reportman.Reporting.PrintItemText
-  commentId: T:Reportman.Reporting.PrintItemText
-  parent: Reportman.Reporting
-  isExternal: true
-  href: Reportman.Reporting.PrintItemText.html
-  name: PrintItemText
-  nameWithType: PrintItemText
-  fullName: Reportman.Reporting.PrintItemText
 - uid: System.Windows.Forms
   commentId: N:System.Windows.Forms
   isExternal: true
@@ -462,6 +457,36 @@ references:
     name: Forms
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.windows.forms
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Reporting.Forms.DataGridViewPrint.SetAlignFromCellFormat*
+  commentId: Overload:Reportman.Reporting.Forms.DataGridViewPrint.SetAlignFromCellFormat
+  isExternal: true
+  href: Reportman.Reporting.Forms.DataGridViewPrint.html#Reportman_Reporting_Forms_DataGridViewPrint_SetAlignFromCellFormat_System_Windows_Forms_DataGridViewContentAlignment_Reportman_Reporting_PrintItemText_
+  name: SetAlignFromCellFormat
+  nameWithType: DataGridViewPrint.SetAlignFromCellFormat
+  fullName: Reportman.Reporting.Forms.DataGridViewPrint.SetAlignFromCellFormat
+- uid: System.Windows.Forms.DataGridViewContentAlignment
+  commentId: T:System.Windows.Forms.DataGridViewContentAlignment
+  parent: System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridviewcontentalignment
+  name: DataGridViewContentAlignment
+  nameWithType: DataGridViewContentAlignment
+  fullName: System.Windows.Forms.DataGridViewContentAlignment
+- uid: Reportman.Reporting.PrintItemText
+  commentId: T:Reportman.Reporting.PrintItemText
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.PrintItemText.html
+  name: PrintItemText
+  nameWithType: PrintItemText
+  fullName: Reportman.Reporting.PrintItemText
 - uid: Reportman.Reporting
   commentId: N:Reportman.Reporting
   isExternal: true
@@ -504,14 +529,6 @@ references:
   name: Report
   nameWithType: Report
   fullName: Reportman.Reporting.Report
-- uid: System.Windows.Forms.DataGridView
-  commentId: T:System.Windows.Forms.DataGridView
-  parent: System.Windows.Forms
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.datagridview
-  name: DataGridView
-  nameWithType: DataGridView
-  fullName: System.Windows.Forms.DataGridView
 - uid: Reportman.Reporting.Forms.DataGridViewPrintOptions
   commentId: T:Reportman.Reporting.Forms.DataGridViewPrintOptions
   parent: Reportman.Reporting.Forms

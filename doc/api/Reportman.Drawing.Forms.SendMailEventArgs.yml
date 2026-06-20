@@ -20,9 +20,16 @@ items:
   nameWithType: SendMailEventArgs
   fullName: Reportman.Drawing.Forms.SendMailEventArgs
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    Carries the message details (recipients, subject, body and attached report content)
+
+    passed to the OnMail event so the host can customize the e-mail before it is sent from the preview.
+  example: []
   syntax:
     content: public class SendMailEventArgs
     content.vb: Public Class SendMailEventArgs
@@ -47,6 +54,8 @@ items:
   nameWithType: SendMailEventArgs.Name
   fullName: Reportman.Drawing.Forms.SendMailEventArgs.Name
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -66,6 +75,8 @@ items:
   nameWithType: SendMailEventArgs.Filename
   fullName: Reportman.Drawing.Forms.SendMailEventArgs.Filename
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -85,6 +96,8 @@ items:
   nameWithType: SendMailEventArgs.Subject
   fullName: Reportman.Drawing.Forms.SendMailEventArgs.Subject
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -104,6 +117,8 @@ items:
   nameWithType: SendMailEventArgs.From
   fullName: Reportman.Drawing.Forms.SendMailEventArgs.From
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -123,6 +138,8 @@ items:
   nameWithType: SendMailEventArgs.To
   fullName: Reportman.Drawing.Forms.SendMailEventArgs.To
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -142,6 +159,8 @@ items:
   nameWithType: SendMailEventArgs.Body
   fullName: Reportman.Drawing.Forms.SendMailEventArgs.Body
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -161,6 +180,8 @@ items:
   nameWithType: SendMailEventArgs.Content
   fullName: Reportman.Drawing.Forms.SendMailEventArgs.Content
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -180,6 +201,8 @@ items:
   nameWithType: SendMailEventArgs.SendMailEventArgs()
   fullName: Reportman.Drawing.Forms.SendMailEventArgs.SendMailEventArgs()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/PreviewMetaFile.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

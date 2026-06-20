@@ -16,6 +16,8 @@ items:
   nameWithType: EvalException
   fullName: Reportman.Reporting.EvalException
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalException.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -58,6 +60,8 @@ items:
   nameWithType: EvalException.ElementName
   fullName: Reportman.Reporting.EvalException.ElementName
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalException.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -79,6 +83,8 @@ items:
   nameWithType: EvalException.EvalException(string, int, int, string)
   fullName: Reportman.Reporting.EvalException.EvalException(string, int, int, string)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalException.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -118,6 +124,8 @@ items:
   nameWithType: EvalException.SourceLine
   fullName: Reportman.Reporting.EvalException.SourceLine
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalException.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -141,6 +149,8 @@ items:
   nameWithType: EvalException.SourcePos
   fullName: Reportman.Reporting.EvalException.SourcePos
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalException.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

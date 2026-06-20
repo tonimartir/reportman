@@ -16,6 +16,8 @@ items:
   nameWithType: EvalIdentifiers.EvalIdentifierEnumerator
   fullName: Reportman.Reporting.EvalIdentifiers.EvalIdentifierEnumerator
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalIdentifiers.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -47,6 +49,8 @@ items:
   nameWithType: EvalIdentifiers.EvalIdentifierEnumerator.EvalIdentifierEnumerator(EvalIdentifiers)
   fullName: Reportman.Reporting.EvalIdentifiers.EvalIdentifierEnumerator.EvalIdentifierEnumerator(Reportman.Reporting.EvalIdentifiers)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalIdentifiers.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -74,6 +78,8 @@ items:
   nameWithType: EvalIdentifiers.EvalIdentifierEnumerator.MoveNext()
   fullName: Reportman.Reporting.EvalIdentifiers.EvalIdentifierEnumerator.MoveNext()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalIdentifiers.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -99,6 +105,8 @@ items:
   nameWithType: EvalIdentifiers.EvalIdentifierEnumerator.Reset()
   fullName: Reportman.Reporting.EvalIdentifiers.EvalIdentifierEnumerator.Reset()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalIdentifiers.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -121,6 +129,8 @@ items:
   nameWithType: EvalIdentifiers.EvalIdentifierEnumerator.Current
   fullName: Reportman.Reporting.EvalIdentifiers.EvalIdentifierEnumerator.Current
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalIdentifiers.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

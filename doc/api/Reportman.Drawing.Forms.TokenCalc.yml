@@ -21,9 +21,16 @@ items:
   nameWithType: TokenCalc
   fullName: Reportman.Drawing.Forms.TokenCalc
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    A single element of the calculator's expression: either a numeric operand or an
+
+    arithmetic operator, tracking its decimal-entry factor and whether it has been sealed.
+  example: []
   syntax:
     content: public class TokenCalc
     content.vb: Public Class TokenCalc
@@ -47,6 +54,8 @@ items:
   nameWithType: TokenCalc.TokenCalc(TokenCalc.TokenType)
   fullName: Reportman.Drawing.Forms.TokenCalc.TokenCalc(Reportman.Drawing.Forms.TokenCalc.TokenType)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -71,6 +80,8 @@ items:
   nameWithType: TokenCalc.IsOperator()
   fullName: Reportman.Drawing.Forms.TokenCalc.IsOperator()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -91,6 +102,8 @@ items:
   nameWithType: TokenCalc.IsNumber()
   fullName: Reportman.Drawing.Forms.TokenCalc.IsNumber()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -111,6 +124,8 @@ items:
   nameWithType: TokenCalc.IsLessThanOrEqualTo(TokenCalc)
   fullName: Reportman.Drawing.Forms.TokenCalc.IsLessThanOrEqualTo(Reportman.Drawing.Forms.TokenCalc)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -134,6 +149,8 @@ items:
   nameWithType: TokenCalc.ToString()
   fullName: Reportman.Drawing.Forms.TokenCalc.ToString()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -156,6 +173,8 @@ items:
   nameWithType: TokenCalc.Type
   fullName: Reportman.Drawing.Forms.TokenCalc.Type
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -177,6 +196,8 @@ items:
   nameWithType: TokenCalc.TokenNumber
   fullName: Reportman.Drawing.Forms.TokenCalc.TokenNumber
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -198,6 +219,8 @@ items:
   nameWithType: TokenCalc.DecimalFactor
   fullName: Reportman.Drawing.Forms.TokenCalc.DecimalFactor
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -219,6 +242,8 @@ items:
   nameWithType: TokenCalc.IsSealed
   fullName: Reportman.Drawing.Forms.TokenCalc.IsSealed
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

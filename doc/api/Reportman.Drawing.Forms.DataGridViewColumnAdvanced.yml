@@ -23,9 +23,13 @@ items:
   nameWithType: DataGridViewColumnAdvanced
   fullName: Reportman.Drawing.Forms.DataGridViewColumnAdvanced
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: 'A DataGridView column with extended editing behavior: typed input (<xref href="Reportman.Drawing.Forms.ColumnDataType" data-throw-if-not-resolved="false"></xref>), maximum input length, an optional image button, and a pluggable search window.'
+  example: []
   syntax:
     content: 'public class DataGridViewColumnAdvanced : DataGridViewColumn, ICloneable, IComponent, IDisposable'
     content.vb: Public Class DataGridViewColumnAdvanced Inherits DataGridViewColumn Implements ICloneable, IComponent, IDisposable
@@ -102,6 +106,8 @@ items:
   nameWithType: DataGridViewColumnAdvanced.ButtonClick
   fullName: Reportman.Drawing.Forms.DataGridViewColumnAdvanced.ButtonClick
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -121,6 +127,8 @@ items:
   nameWithType: DataGridViewColumnAdvanced.ImageButtonScale
   fullName: Reportman.Drawing.Forms.DataGridViewColumnAdvanced.ImageButtonScale
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -140,6 +148,8 @@ items:
   nameWithType: DataGridViewColumnAdvanced.SearchWindow
   fullName: Reportman.Drawing.Forms.DataGridViewColumnAdvanced.SearchWindow
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -159,6 +169,8 @@ items:
   nameWithType: DataGridViewColumnAdvanced.DataGridViewColumnAdvanced()
   fullName: Reportman.Drawing.Forms.DataGridViewColumnAdvanced.DataGridViewColumnAdvanced()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -180,6 +192,8 @@ items:
   nameWithType: DataGridViewColumnAdvanced.GetPreferredWidth(DataGridViewAutoSizeColumnMode, bool)
   fullName: Reportman.Drawing.Forms.DataGridViewColumnAdvanced.GetPreferredWidth(System.Windows.Forms.DataGridViewAutoSizeColumnMode, bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -210,6 +224,8 @@ items:
   nameWithType: DataGridViewColumnAdvanced.DataType
   fullName: Reportman.Drawing.Forms.DataGridViewColumnAdvanced.DataType
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -231,6 +247,8 @@ items:
   nameWithType: DataGridViewColumnAdvanced.ReadOnlyInput
   fullName: Reportman.Drawing.Forms.DataGridViewColumnAdvanced.ReadOnlyInput
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -252,6 +270,8 @@ items:
   nameWithType: DataGridViewColumnAdvanced.MaxInputLength
   fullName: Reportman.Drawing.Forms.DataGridViewColumnAdvanced.MaxInputLength
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -273,6 +293,8 @@ items:
   nameWithType: DataGridViewColumnAdvanced.ImageWidth
   fullName: Reportman.Drawing.Forms.DataGridViewColumnAdvanced.ImageWidth
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -294,6 +316,8 @@ items:
   nameWithType: DataGridViewColumnAdvanced.ImageButton
   fullName: Reportman.Drawing.Forms.DataGridViewColumnAdvanced.ImageButton
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -315,6 +339,8 @@ items:
   nameWithType: DataGridViewColumnAdvanced.CellTemplate
   fullName: Reportman.Drawing.Forms.DataGridViewColumnAdvanced.CellTemplate
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -328,6 +354,14 @@ items:
   overridden: System.Windows.Forms.DataGridViewColumn.CellTemplate
   overload: Reportman.Drawing.Forms.DataGridViewColumnAdvanced.CellTemplate*
 references:
+- uid: Reportman.Drawing.Forms.ColumnDataType
+  commentId: T:Reportman.Drawing.Forms.ColumnDataType
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.ColumnDataType.html
+  name: ColumnDataType
+  nameWithType: ColumnDataType
+  fullName: Reportman.Drawing.Forms.ColumnDataType
 - uid: Reportman.Drawing.Forms
   commentId: N:Reportman.Drawing.Forms
   isExternal: true
@@ -1397,14 +1431,6 @@ references:
   name: DataType
   nameWithType: DataGridViewColumnAdvanced.DataType
   fullName: Reportman.Drawing.Forms.DataGridViewColumnAdvanced.DataType
-- uid: Reportman.Drawing.Forms.ColumnDataType
-  commentId: T:Reportman.Drawing.Forms.ColumnDataType
-  parent: Reportman.Drawing.Forms
-  isExternal: true
-  href: Reportman.Drawing.Forms.ColumnDataType.html
-  name: ColumnDataType
-  nameWithType: ColumnDataType
-  fullName: Reportman.Drawing.Forms.ColumnDataType
 - uid: Reportman.Drawing.Forms.DataGridViewColumnAdvanced.ReadOnlyInput*
   commentId: Overload:Reportman.Drawing.Forms.DataGridViewColumnAdvanced.ReadOnlyInput
   isExternal: true

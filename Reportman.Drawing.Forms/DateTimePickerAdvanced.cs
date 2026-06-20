@@ -10,6 +10,11 @@ using System.Windows.Forms;
 
 namespace Reportman.Drawing.Forms
 {
+    /// <summary>
+    /// Masked date/time entry control that combines a formatted text box with a
+    /// drop-down month calendar, validating user input against configurable date and
+    /// time format strings and min/max date limits.
+    /// </summary>
     public partial class DateTimePickerAdvanced : UserControl
     {
         #region Variables, Properties and Events
@@ -422,6 +427,9 @@ namespace Reportman.Drawing.Forms
             }
         }
         //-----------------------------------------------------------------------------
+        /// <summary>
+        /// Callback signature for notifications that the control's date and/or time value has changed.
+        /// </summary>
         public delegate void ValueChangedEventHandler(Object sender, EventArgs e);
         /// <summary>
         /// Fired when the date and/or time value changes.
@@ -1204,6 +1212,10 @@ namespace Reportman.Drawing.Forms
         }
         #endregion
     }
+    /// <summary>
+    /// Outcome of validating an entered date/time value: whether it is valid, malformed,
+    /// or falls below the minimum or above the maximum allowed date.
+    /// </summary>
     public enum IsDateValidResult
     {
         Valid = 0,
@@ -1755,6 +1767,9 @@ namespace Reportman.Drawing.Forms
             return base.SegmentProcessChar();
         }
     }
+    /// <summary>
+    /// Button that paints itself as a combo-box style drop-down arrow, used to open the calendar popup.
+    /// </summary>
     public class DateDropButton : Button
     {
         protected override void OnPaint(PaintEventArgs pevent)
@@ -1763,6 +1778,10 @@ namespace Reportman.Drawing.Forms
             base.OnPaint(pevent);
         }
     }
+    /// <summary>
+    /// Borderless drop-down window that hosts an arbitrary child control (here the month
+    /// calendar) by wrapping it in a ToolStripControlHost.
+    /// </summary>
     public class PopupWindow : System.Windows.Forms.ToolStripDropDown
     {
         private System.Windows.Forms.Control _content;
@@ -1797,6 +1816,10 @@ namespace Reportman.Drawing.Forms
     }
 }
 
+/// <summary>
+/// MonthCalendar variant that disables the visual style theme so it renders with the
+/// classic (unthemed) appearance.
+/// </summary>
 public class MonthCalendarUnThemed : MonthCalendar
 {
     [DllImport("uxtheme.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]

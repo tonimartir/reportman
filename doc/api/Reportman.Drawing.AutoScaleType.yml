@@ -17,6 +17,8 @@ items:
   nameWithType: AutoScaleType
   fullName: Reportman.Drawing.AutoScaleType
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -36,6 +38,8 @@ items:
   nameWithType: AutoScaleType.Wide
   fullName: Reportman.Drawing.AutoScaleType.Wide
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -56,6 +60,8 @@ items:
   nameWithType: AutoScaleType.Real
   fullName: Reportman.Drawing.AutoScaleType.Real
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -76,6 +82,8 @@ items:
   nameWithType: AutoScaleType.EntirePage
   fullName: Reportman.Drawing.AutoScaleType.EntirePage
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -96,6 +104,8 @@ items:
   nameWithType: AutoScaleType.Custom
   fullName: Reportman.Drawing.AutoScaleType.Custom
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -116,6 +126,8 @@ items:
   nameWithType: AutoScaleType.Height
   fullName: Reportman.Drawing.AutoScaleType.Height
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

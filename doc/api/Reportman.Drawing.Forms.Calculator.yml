@@ -28,9 +28,18 @@ items:
   nameWithType: Calculator
   fullName: Reportman.Drawing.Forms.Calculator
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    Stack-based calculator engine that holds a list of operator/number tokens, applies digit,
+
+    operator and memory commands, evaluates the expression with operator precedence, and can
+
+    display a modal calculator dialog through <xref href="Reportman.Drawing.Forms.Calculator.ShowCalc(System.Decimal%2cSystem.Boolean%40%2cSystem.Boolean)" data-throw-if-not-resolved="false"></xref>.
+  example: []
   syntax:
     content: public class Calculator
     content.vb: Public Class Calculator
@@ -55,6 +64,8 @@ items:
   nameWithType: Calculator.Calculator()
   fullName: Reportman.Drawing.Forms.Calculator.Calculator()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -76,6 +87,8 @@ items:
   nameWithType: Calculator.DoMemorySet()
   fullName: Reportman.Drawing.Forms.Calculator.DoMemorySet()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -94,6 +107,8 @@ items:
   nameWithType: Calculator.DoMemoryClear()
   fullName: Reportman.Drawing.Forms.Calculator.DoMemoryClear()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -112,6 +127,8 @@ items:
   nameWithType: Calculator.DoMemoryRecall()
   fullName: Reportman.Drawing.Forms.Calculator.DoMemoryRecall()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -130,6 +147,8 @@ items:
   nameWithType: Calculator.DoDecimal()
   fullName: Reportman.Drawing.Forms.Calculator.DoDecimal()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -148,6 +167,8 @@ items:
   nameWithType: Calculator.DoDigit(int)
   fullName: Reportman.Drawing.Forms.Calculator.DoDigit(int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -172,6 +193,8 @@ items:
   nameWithType: Calculator.DoOperator(TokenCalc.TokenType)
   fullName: Reportman.Drawing.Forms.Calculator.DoOperator(Reportman.Drawing.Forms.TokenCalc.TokenType)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -193,6 +216,8 @@ items:
   nameWithType: Calculator.DoNegative()
   fullName: Reportman.Drawing.Forms.Calculator.DoNegative()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -211,6 +236,8 @@ items:
   nameWithType: Calculator.DoOneOver()
   fullName: Reportman.Drawing.Forms.Calculator.DoOneOver()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -229,6 +256,8 @@ items:
   nameWithType: Calculator.DoClearAll()
   fullName: Reportman.Drawing.Forms.Calculator.DoClearAll()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -247,6 +276,8 @@ items:
   nameWithType: Calculator.DoClearCurrentToken()
   fullName: Reportman.Drawing.Forms.Calculator.DoClearCurrentToken()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -265,6 +296,8 @@ items:
   nameWithType: Calculator.DoPercent()
   fullName: Reportman.Drawing.Forms.Calculator.DoPercent()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -283,6 +316,8 @@ items:
   nameWithType: Calculator.DoEvaluate()
   fullName: Reportman.Drawing.Forms.Calculator.DoEvaluate()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -301,6 +336,8 @@ items:
   nameWithType: Calculator.Render()
   fullName: Reportman.Drawing.Forms.Calculator.Render()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -321,6 +358,8 @@ items:
   nameWithType: Calculator.ShowCalc(decimal, ref bool, bool, string, IWin32Window)
   fullName: Reportman.Drawing.Forms.Calculator.ShowCalc(decimal, ref bool, bool, string, System.Windows.Forms.IWin32Window)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -355,6 +394,8 @@ items:
   nameWithType: Calculator.ShowCalc(decimal, ref bool, bool)
   fullName: Reportman.Drawing.Forms.Calculator.ShowCalc(decimal, ref bool, bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ScreenKeyboard.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -375,6 +416,64 @@ items:
   fullName.vb: Reportman.Drawing.Forms.Calculator.ShowCalc(Decimal, Boolean, Boolean)
   name.vb: ShowCalc(Decimal, Boolean, Boolean)
 references:
+- uid: Reportman.Drawing.Forms.Calculator.ShowCalc(System.Decimal,System.Boolean@,System.Boolean)
+  commentId: M:Reportman.Drawing.Forms.Calculator.ShowCalc(System.Decimal,System.Boolean@,System.Boolean)
+  isExternal: true
+  href: Reportman.Drawing.Forms.Calculator.html#Reportman_Drawing_Forms_Calculator_ShowCalc_System_Decimal_System_Boolean__System_Boolean_
+  name: ShowCalc(decimal, ref bool, bool)
+  nameWithType: Calculator.ShowCalc(decimal, ref bool, bool)
+  fullName: Reportman.Drawing.Forms.Calculator.ShowCalc(decimal, ref bool, bool)
+  nameWithType.vb: Calculator.ShowCalc(Decimal, Boolean, Boolean)
+  fullName.vb: Reportman.Drawing.Forms.Calculator.ShowCalc(Decimal, Boolean, Boolean)
+  name.vb: ShowCalc(Decimal, Boolean, Boolean)
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.Calculator.ShowCalc(System.Decimal,System.Boolean@,System.Boolean)
+    name: ShowCalc
+    isExternal: true
+    href: Reportman.Drawing.Forms.Calculator.html#Reportman_Drawing_Forms_Calculator_ShowCalc_System_Decimal_System_Boolean__System_Boolean_
+  - name: (
+  - uid: System.Decimal
+    name: decimal
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.decimal
+  - name: ','
+  - name: " "
+  - name: ref
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.Calculator.ShowCalc(System.Decimal,System.Boolean@,System.Boolean)
+    name: ShowCalc
+    isExternal: true
+    href: Reportman.Drawing.Forms.Calculator.html#Reportman_Drawing_Forms_Calculator_ShowCalc_System_Decimal_System_Boolean__System_Boolean_
+  - name: (
+  - uid: System.Decimal
+    name: Decimal
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.decimal
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
 - uid: Reportman.Drawing.Forms
   commentId: N:Reportman.Drawing.Forms
   isExternal: true

@@ -850,6 +850,10 @@ namespace Reportman.Drawing
         }
 
     }
+    /// <summary>
+    /// Low-level printer control operations sent to raw/ESC-POS style devices, covering paper
+    /// handling (cut, feed, tear-off), cash-drawer pulses, font styles, line spacing and pitch (cpi).
+    /// </summary>
     public enum PrinterRawOperation
     {
         CutPaper, OpenDrawer, LineFeed, CR, FF, TearOff, InitPrinter, Pulse, EndPrint, RedFont, BlackFont,

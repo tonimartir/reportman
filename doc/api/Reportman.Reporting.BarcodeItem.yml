@@ -33,9 +33,13 @@ items:
   nameWithType: BarcodeItem
   fullName: Reportman.Reporting.BarcodeItem
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
+  summary: A report print item that evaluates an expression and draws it as a barcode of the configured <xref href="Reportman.Reporting.BarcodeItem.BarType" data-throw-if-not-resolved="false"></xref>, emitting bar/space (or QR module) rectangles into the metafile with optional checksum, rotation and colors.
+  example: []
   syntax:
     content: 'public class BarcodeItem : PrintPosItem, IDisposable'
     content.vb: Public Class BarcodeItem Inherits PrintPosItem Implements IDisposable
@@ -94,6 +98,8 @@ items:
   nameWithType: BarcodeItem.Truncated
   fullName: Reportman.Reporting.BarcodeItem.Truncated
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -113,6 +119,8 @@ items:
   nameWithType: BarcodeItem.CurrentText
   fullName: Reportman.Reporting.BarcodeItem.CurrentText
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -132,6 +140,8 @@ items:
   nameWithType: BarcodeItem.BarcodeItem()
   fullName: Reportman.Reporting.BarcodeItem.BarcodeItem()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -153,6 +163,8 @@ items:
   nameWithType: BarcodeItem.GetClassName()
   fullName: Reportman.Reporting.BarcodeItem.GetClassName()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -177,6 +189,8 @@ items:
   nameWithType: BarcodeItem.SubReportChanged(SubReportEvent, string)
   fullName: Reportman.Reporting.BarcodeItem.SubReportChanged(Reportman.Reporting.SubReportEvent, string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -208,6 +222,8 @@ items:
   nameWithType: BarcodeItem.DoPrint(PrintOut, int, int, int, int, MetaFile, Point, ref bool)
   fullName: Reportman.Reporting.BarcodeItem.DoPrint(Reportman.Drawing.PrintOut, int, int, int, int, Reportman.Drawing.MetaFile, System.Drawing.Point, ref bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -257,6 +273,8 @@ items:
   nameWithType: BarcodeItem.CalculateBarcode()
   fullName: Reportman.Reporting.BarcodeItem.CalculateBarcode()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -277,6 +295,8 @@ items:
   nameWithType: BarcodeItem.DoLines(string, int, int, MetaFile)
   fullName: Reportman.Reporting.BarcodeItem.DoLines(string, int, int, Reportman.Drawing.MetaFile)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -307,6 +327,8 @@ items:
   nameWithType: BarcodeItem.Expression
   fullName: Reportman.Reporting.BarcodeItem.Expression
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -328,6 +350,8 @@ items:
   nameWithType: BarcodeItem.Modul
   fullName: Reportman.Reporting.BarcodeItem.Modul
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -349,6 +373,8 @@ items:
   nameWithType: BarcodeItem.Ratio
   fullName: Reportman.Reporting.BarcodeItem.Ratio
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -370,6 +396,8 @@ items:
   nameWithType: BarcodeItem.BarType
   fullName: Reportman.Reporting.BarcodeItem.BarType
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -391,6 +419,8 @@ items:
   nameWithType: BarcodeItem.Checksum
   fullName: Reportman.Reporting.BarcodeItem.Checksum
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -412,6 +442,8 @@ items:
   nameWithType: BarcodeItem.DisplayFormat
   fullName: Reportman.Reporting.BarcodeItem.DisplayFormat
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -433,6 +465,8 @@ items:
   nameWithType: BarcodeItem.Rotation
   fullName: Reportman.Reporting.BarcodeItem.Rotation
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -454,6 +488,8 @@ items:
   nameWithType: BarcodeItem.BColor
   fullName: Reportman.Reporting.BarcodeItem.BColor
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -475,6 +511,8 @@ items:
   nameWithType: BarcodeItem.BackColor
   fullName: Reportman.Reporting.BarcodeItem.BackColor
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -496,6 +534,8 @@ items:
   nameWithType: BarcodeItem.Transparent
   fullName: Reportman.Reporting.BarcodeItem.Transparent
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -517,6 +557,8 @@ items:
   nameWithType: BarcodeItem.NumColumns
   fullName: Reportman.Reporting.BarcodeItem.NumColumns
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -538,6 +580,8 @@ items:
   nameWithType: BarcodeItem.NumRows
   fullName: Reportman.Reporting.BarcodeItem.NumRows
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -559,6 +603,8 @@ items:
   nameWithType: BarcodeItem.ECCLevel
   fullName: Reportman.Reporting.BarcodeItem.ECCLevel
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -570,6 +616,13 @@ items:
     content.vb: Public Property ECCLevel As Integer
   overload: Reportman.Reporting.BarcodeItem.ECCLevel*
 references:
+- uid: Reportman.Reporting.BarcodeItem.BarType
+  commentId: P:Reportman.Reporting.BarcodeItem.BarType
+  isExternal: true
+  href: Reportman.Reporting.BarcodeItem.html#Reportman_Reporting_BarcodeItem_BarType
+  name: BarType
+  nameWithType: BarcodeItem.BarType
+  fullName: Reportman.Reporting.BarcodeItem.BarType
 - uid: Reportman.Reporting
   commentId: N:Reportman.Reporting
   isExternal: true
@@ -676,6 +729,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -698,6 +752,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -728,11 +783,13 @@ references:
   - uid: Reportman.Drawing.MetaObject
     name: MetaObject
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
   - name: ','
   - name: " "
   - uid: Reportman.Drawing.MetaPage
     name: MetaPage
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
   - name: )
   spec.vb:
   - uid: Reportman.Reporting.PrintPosItem.FillAnnotation(Reportman.Drawing.MetaObject,Reportman.Drawing.MetaPage)
@@ -743,11 +800,13 @@ references:
   - uid: Reportman.Drawing.MetaObject
     name: MetaObject
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
   - name: ','
   - name: " "
   - uid: Reportman.Drawing.MetaPage
     name: MetaPage
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
   - name: )
 - uid: Reportman.Reporting.PrintPosItem.Hidden
   commentId: P:Reportman.Reporting.PrintPosItem.Hidden
@@ -879,6 +938,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -908,6 +968,7 @@ references:
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -932,6 +993,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -961,6 +1023,7 @@ references:
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -1501,6 +1564,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -1530,6 +1594,7 @@ references:
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -1554,6 +1619,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -1583,6 +1649,7 @@ references:
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -1607,7 +1674,7 @@ references:
   commentId: T:Reportman.Drawing.PrintOut
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.PrintOut.html
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   name: PrintOut
   nameWithType: PrintOut
   fullName: Reportman.Drawing.PrintOut

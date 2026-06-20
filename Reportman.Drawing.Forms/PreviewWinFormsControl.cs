@@ -5,6 +5,10 @@ using System.Windows.Forms;
 
 namespace Reportman.Drawing.Forms
 {
+    /// <summary>
+    /// Selects how the report preview is hosted: a normal form, a modal form, or an
+    /// embedded window.
+    /// </summary>
     public enum PreviewWindowMode { Form, ModalForm, Window };
     /// <summary>
     /// Preview Window implementation for Windows.Forms

@@ -16,9 +16,16 @@ items:
   nameWithType: TabControlAdvanced.DoubleClickTabHandler
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler
   type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    Callback raised when a tab is double-clicked, supplying the originating control
+
+    and the tab page that was double-clicked.
+  example: []
   syntax:
     content: public delegate void TabControlAdvanced.DoubleClickTabHandler(TabControlAdvanced sender, TabPageAdvanced page)
     parameters:
@@ -38,6 +45,8 @@ items:
   nameWithType: TabControlAdvanced.DoubleClickTabHandler.DoubleClickTabHandler(object, nint)
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.DoubleClickTabHandler(object, nint)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -64,6 +73,8 @@ items:
   nameWithType: TabControlAdvanced.DoubleClickTabHandler.Invoke(TabControlAdvanced, TabPageAdvanced)
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.Invoke(Reportman.Drawing.Forms.TabControlAdvanced, Reportman.Drawing.Forms.TabPageAdvanced)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -87,6 +98,8 @@ items:
   nameWithType: TabControlAdvanced.DoubleClickTabHandler.BeginInvoke(TabControlAdvanced, TabPageAdvanced, AsyncCallback, object)
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.BeginInvoke(Reportman.Drawing.Forms.TabControlAdvanced, Reportman.Drawing.Forms.TabPageAdvanced, System.AsyncCallback, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -119,6 +132,8 @@ items:
   nameWithType: TabControlAdvanced.DoubleClickTabHandler.EndInvoke(IAsyncResult)
   fullName: Reportman.Drawing.Forms.TabControlAdvanced.DoubleClickTabHandler.EndInvoke(System.IAsyncResult)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

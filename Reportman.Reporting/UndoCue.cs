@@ -6,6 +6,10 @@ using Reportman.Drawing;
 
 namespace Reportman.Reporting
 {
+    /// <summary>
+    /// Undo/redo history for a report, holding queues of grouped change operations and
+    /// applying them to a <see cref="Report"/> to step backward or forward through edits.
+    /// </summary>
     public class UndoCue
     {
         public int GroupId { get; private set; } = 0;
@@ -587,6 +591,10 @@ namespace Reportman.Reporting
         }
     }
 
+    /// <summary>
+    /// A single undoable change to a report component (add, remove, modify, rename or swap),
+    /// recording the affected component, its parent/index context and the list of property changes.
+    /// </summary>
     public class ChangeObjectOperation
     {
         public ChangeObjectOperation(OperationType operation, int groupId)
@@ -613,6 +621,10 @@ namespace Reportman.Reporting
         }
     }
 
+    /// <summary>
+    /// Records the change of a single property within a <see cref="ChangeObjectOperation"/>,
+    /// keeping its name, type and the old and new values for undo and redo.
+    /// </summary>
     public class ChangeOperationItem
     {
         public ChangeOperationItem(string propertyName, PropertyType propertyType, object oldValue = null, object newValue = null)
@@ -629,6 +641,10 @@ namespace Reportman.Reporting
         public object NewValue { get; set; }
     }
 
+    /// <summary>
+    /// Identifies the data type of a property value tracked in an undo/redo operation,
+    /// used to convert the stored value back to the correct type when applied.
+    /// </summary>
     public enum PropertyType
     {
         Integer = 1,
@@ -641,6 +657,10 @@ namespace Reportman.Reporting
         StringArray = 8
     }
 
+    /// <summary>
+    /// The kind of edit recorded by a <see cref="ChangeObjectOperation"/>: adding, modifying,
+    /// removing, reordering (swap up/down) or renaming a report component.
+    /// </summary>
     public enum OperationType
     {
         Add,

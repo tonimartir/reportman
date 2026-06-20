@@ -25,6 +25,11 @@ using System.Text;
 
 namespace Reportman.Drawing
 {
+    /// <summary>
+    /// Render driver that paints a report metafile as plain or escape-coded text for line/dot-matrix
+    /// and receipt printers, mapping fonts to character-per-inch steps and emitting the printer
+    /// control codes (EPSON, IBM ProPrinter, HP-PCL, PLAIN, etc.) into a byte stream.
+    /// </summary>
     public class PrintOutText : PrintOut, IDisposable
     {
         SortedList<PrintStepType, PrintStepType> allowedsteps;
@@ -341,6 +346,10 @@ namespace Reportman.Drawing
             RecalcSize();
 
         }
+        /// <summary>
+        /// Controls whether OEM character-set conversion is applied to output text: use the printer
+        /// configuration default (<c>None</c>), or force it off (<c>False</c>) or on (<c>True</c>).
+        /// </summary>
         public enum OemConvertOverride { None, False, True };
 
         public OemConvertOverride OverrideOemConvert = OemConvertOverride.None;
@@ -1756,6 +1765,10 @@ namespace Reportman.Drawing
             rect = new Rectangle(arec.Left, arec.Top, arec.Width, linfos.Count * (int)Math.Round(System.Convert.ToDouble(Twips.TWIPS_PER_INCH) / (System.Convert.ToDouble(FLinesPerInch) / 100)));
         }
     }
+    /// <summary>
+    /// One physical text row of a page being built by the text driver, holding the line contents,
+    /// its character-per-inch font step, and the positioned text fragments keyed by column.
+    /// </summary>
     public class PrintLine
     {
         public SortedList<int, PosText> texts;
@@ -1768,6 +1781,10 @@ namespace Reportman.Drawing
             FontStep = PrintStepType.cpi10;
         }
     }
+    /// <summary>
+    /// A text fragment placed at a column on a print line, recording its position, length, and the
+    /// style attributes (bold, italic, underline, strikeout, red, regular) to apply when emitting it.
+    /// </summary>
     public struct PosText
     {
         public int Position;

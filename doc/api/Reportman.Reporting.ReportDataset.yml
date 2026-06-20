@@ -30,6 +30,8 @@ items:
   nameWithType: ReportDataset
   fullName: Reportman.Reporting.ReportDataset
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -202,6 +204,8 @@ items:
   nameWithType: ReportDataset.OnUpdateData
   fullName: Reportman.Reporting.ReportDataset.OnUpdateData
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -221,6 +225,8 @@ items:
   nameWithType: ReportDataset.OnUpdateDataAsync
   fullName: Reportman.Reporting.ReportDataset.OnUpdateDataAsync
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -240,6 +246,8 @@ items:
   nameWithType: ReportDataset.OnCreateTable
   fullName: Reportman.Reporting.ReportDataset.OnCreateTable
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -259,6 +267,8 @@ items:
   nameWithType: ReportDataset.ColumnSizes
   fullName: Reportman.Reporting.ReportDataset.ColumnSizes
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -278,6 +288,8 @@ items:
   nameWithType: ReportDataset.UpdateColumns
   fullName: Reportman.Reporting.ReportDataset.UpdateColumns
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -304,6 +316,8 @@ items:
   nameWithType: ReportDataset.ReportDataset()
   fullName: Reportman.Reporting.ReportDataset.ReportDataset()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -325,6 +339,8 @@ items:
   nameWithType: ReportDataset.First()
   fullName: Reportman.Reporting.ReportDataset.First()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -345,6 +361,8 @@ items:
   nameWithType: ReportDataset.Next()
   fullName: Reportman.Reporting.ReportDataset.Next()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -370,6 +388,8 @@ items:
   nameWithType: ReportDataset.Prior()
   fullName: Reportman.Reporting.ReportDataset.Prior()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -392,6 +412,8 @@ items:
   nameWithType: ReportDataset.CurrentRowCount
   fullName: Reportman.Reporting.ReportDataset.CurrentRowCount
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -413,6 +435,8 @@ items:
   nameWithType: ReportDataset.Active
   fullName: Reportman.Reporting.ReportDataset.Active
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -436,6 +460,8 @@ items:
   nameWithType: ReportDataset.CurrentRow
   fullName: Reportman.Reporting.ReportDataset.CurrentRow
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -459,6 +485,8 @@ items:
   nameWithType: ReportDataset.OtherRow
   fullName: Reportman.Reporting.ReportDataset.OtherRow
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -482,6 +510,8 @@ items:
   nameWithType: ReportDataset.CurrentReader
   fullName: Reportman.Reporting.ReportDataset.CurrentReader
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -508,6 +538,8 @@ items:
   nameWithType: ReportDataset.ViewFilter
   fullName: Reportman.Reporting.ReportDataset.ViewFilter
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -529,6 +561,8 @@ items:
   nameWithType: ReportDataset.CurrentView
   fullName: Reportman.Reporting.ReportDataset.CurrentView
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -555,6 +589,8 @@ items:
   nameWithType: ReportDataset.Eof
   fullName: Reportman.Reporting.ReportDataset.Eof
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -578,6 +614,8 @@ items:
   nameWithType: ReportDataset.OnDataChange
   fullName: Reportman.Reporting.ReportDataset.OnDataChange
   type: Event
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

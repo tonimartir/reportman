@@ -30,6 +30,8 @@ items:
   nameWithType: DataGridViewNumericUpDownCell
   fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownCell
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewNumericUpDownCell.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -160,6 +162,8 @@ items:
   nameWithType: DataGridViewNumericUpDownCell.DataGridViewNumericUpDownCell()
   fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownCell.DataGridViewNumericUpDownCell()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewNumericUpDownCell.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -183,6 +187,8 @@ items:
   nameWithType: DataGridViewNumericUpDownCell.Clone()
   fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownCell.Clone()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewNumericUpDownCell.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -206,6 +212,8 @@ items:
   nameWithType: DataGridViewNumericUpDownCell.DetachEditingControl()
   fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownCell.DetachEditingControl()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewNumericUpDownCell.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -227,6 +235,8 @@ items:
   nameWithType: DataGridViewNumericUpDownCell.GetErrorIconBounds(Graphics, DataGridViewCellStyle, int)
   fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownCell.GetErrorIconBounds(System.Drawing.Graphics, System.Windows.Forms.DataGridViewCellStyle, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewNumericUpDownCell.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -263,6 +273,8 @@ items:
   nameWithType: DataGridViewNumericUpDownCell.GetFormattedValue(object, int, ref DataGridViewCellStyle, TypeConverter, TypeConverter, DataGridViewDataErrorContexts)
   fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownCell.GetFormattedValue(object, int, ref System.Windows.Forms.DataGridViewCellStyle, System.ComponentModel.TypeConverter, System.ComponentModel.TypeConverter, System.Windows.Forms.DataGridViewDataErrorContexts)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewNumericUpDownCell.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -305,6 +317,8 @@ items:
   nameWithType: DataGridViewNumericUpDownCell.GetPreferredSize(Graphics, DataGridViewCellStyle, int, Size)
   fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownCell.GetPreferredSize(System.Drawing.Graphics, System.Windows.Forms.DataGridViewCellStyle, int, System.Drawing.Size)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewNumericUpDownCell.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -343,6 +357,8 @@ items:
   nameWithType: DataGridViewNumericUpDownCell.InitializeEditingControl(int, object, DataGridViewCellStyle)
   fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownCell.InitializeEditingControl(int, object, System.Windows.Forms.DataGridViewCellStyle)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewNumericUpDownCell.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -379,6 +395,8 @@ items:
   nameWithType: DataGridViewNumericUpDownCell.KeyEntersEditMode(KeyEventArgs)
   fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownCell.KeyEntersEditMode(System.Windows.Forms.KeyEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewNumericUpDownCell.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -410,6 +428,8 @@ items:
   nameWithType: DataGridViewNumericUpDownCell.Paint(Graphics, Rectangle, Rectangle, int, DataGridViewElementStates, object, object, string, DataGridViewCellStyle, DataGridViewAdvancedBorderStyle, DataGridViewPaintParts)
   fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownCell.Paint(System.Drawing.Graphics, System.Drawing.Rectangle, System.Drawing.Rectangle, int, System.Windows.Forms.DataGridViewElementStates, object, object, string, System.Windows.Forms.DataGridViewCellStyle, System.Windows.Forms.DataGridViewAdvancedBorderStyle, System.Windows.Forms.DataGridViewPaintParts)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewNumericUpDownCell.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -466,6 +486,8 @@ items:
   nameWithType: DataGridViewNumericUpDownCell.PositionEditingControl(bool, bool, Rectangle, Rectangle, DataGridViewCellStyle, bool, bool, bool, bool)
   fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownCell.PositionEditingControl(bool, bool, System.Drawing.Rectangle, System.Drawing.Rectangle, System.Windows.Forms.DataGridViewCellStyle, bool, bool, bool, bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewNumericUpDownCell.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -512,6 +534,8 @@ items:
   nameWithType: DataGridViewNumericUpDownCell.ToString()
   fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownCell.ToString()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewNumericUpDownCell.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -535,6 +559,8 @@ items:
   nameWithType: DataGridViewNumericUpDownCell.DecimalPlaces
   fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownCell.DecimalPlaces
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewNumericUpDownCell.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -558,6 +584,8 @@ items:
   nameWithType: DataGridViewNumericUpDownCell.EditType
   fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownCell.EditType
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewNumericUpDownCell.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -582,6 +610,8 @@ items:
   nameWithType: DataGridViewNumericUpDownCell.Increment
   fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownCell.Increment
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewNumericUpDownCell.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -605,6 +635,8 @@ items:
   nameWithType: DataGridViewNumericUpDownCell.Maximum
   fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownCell.Maximum
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewNumericUpDownCell.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -628,6 +660,8 @@ items:
   nameWithType: DataGridViewNumericUpDownCell.Minimum
   fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownCell.Minimum
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewNumericUpDownCell.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -651,6 +685,8 @@ items:
   nameWithType: DataGridViewNumericUpDownCell.ThousandsSeparator
   fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownCell.ThousandsSeparator
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewNumericUpDownCell.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -674,6 +710,8 @@ items:
   nameWithType: DataGridViewNumericUpDownCell.ValueType
   fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownCell.ValueType
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewNumericUpDownCell.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

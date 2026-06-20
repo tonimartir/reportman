@@ -32,7 +32,7 @@ using System.Threading;
 namespace Reportman.Reporting
 {
     /// <summary>
-    /// Variant internal type, used to store current type value for a <see cref="Variant">Variant</see>
+    /// Variant internal type, used to store current type value for a <see cref="Variant"/>
     /// </summary>
     public enum VariantType
     {
@@ -2106,11 +2106,11 @@ namespace Reportman.Reporting
         /// <param name="displayformat">
         /// The formatting string, depending on current value
         /// </param>
-        /// <param cref="paramtype">
+        /// <param name="paramtype">
         /// The variant will be formatted with a logic related to parameter type
         /// specified, unknown can be specified
         /// </param>
-        /// <param cref="printnulls">
+        /// <param name="printnulls">
         /// For numeric values the 0 will return an empty string
         /// </param>
         public string ToString(string displayformat, ParamType paramtype,
@@ -2446,6 +2446,10 @@ namespace Reportman.Reporting
     {
     }
 
+    /// <summary>
+    /// Newtonsoft.Json converter that serializes a <see cref="Variant"/> as a JSON object carrying
+    /// its VariantType and value, and reconstructs the Variant when reading.
+    /// </summary>
     public class VariantJsonConverter : Newtonsoft.Json.JsonConverter<Variant>
     {
         public override void WriteJson(Newtonsoft.Json.JsonWriter writer, Variant value, Newtonsoft.Json.JsonSerializer serializer)
@@ -2494,6 +2498,10 @@ namespace Reportman.Reporting
             return variant;
         }
     }
+    /// <summary>
+    /// System.Text.Json converter that serializes a <see cref="Variant"/> as a JSON object with
+    /// Type and Value properties, and reconstructs the typed Variant when reading.
+    /// </summary>
     public class VariantSystemTextJsonConverter : System.Text.Json.Serialization.JsonConverter<Variant>
     {
         public override Variant Read(ref System.Text.Json.Utf8JsonReader reader, Type typeToConvert, System.Text.Json.JsonSerializerOptions options)

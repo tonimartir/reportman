@@ -8,7 +8,7 @@ namespace Reportman.Reporting
 {
     /// <summary>
     /// DatabaInfo stores information about a dataset, a Report have a collection
-    /// of dataset definitions. Each dataset is related to one connection (DatabaseInfo)<see cref="Variant">Report</see><see cref="Variant">DataInfos</see>
+    /// of dataset definitions. Each dataset is related to one connection (DatabaseInfo)<see cref="Report"/><see cref="DataInfos"/>
     /// </summary>
     public class DataInfo : ReportItem, IDisposable, ICloneable
     {

@@ -15,9 +15,16 @@ items:
   nameWithType: VariantJsonConverter
   fullName: Reportman.Reporting.VariantJsonConverter
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
+  summary: >-
+    Newtonsoft.Json converter that serializes a <xref href="Reportman.Reporting.Variant" data-throw-if-not-resolved="false"></xref> as a JSON object carrying
+
+    its VariantType and value, and reconstructs the Variant when reading.
+  example: []
   syntax:
     content: 'public class VariantJsonConverter : JsonConverter<Variant>'
     content.vb: Public Class VariantJsonConverter Inherits JsonConverter(Of Variant)
@@ -49,6 +56,8 @@ items:
   nameWithType: VariantJsonConverter.WriteJson(JsonWriter, Variant, JsonSerializer)
   fullName: Reportman.Reporting.VariantJsonConverter.WriteJson(Newtonsoft.Json.JsonWriter, Reportman.Reporting.Variant, Newtonsoft.Json.JsonSerializer)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -76,6 +85,8 @@ items:
   nameWithType: VariantJsonConverter.ReadJson(JsonReader, Type, Variant, bool, JsonSerializer)
   fullName: Reportman.Reporting.VariantJsonConverter.ReadJson(Newtonsoft.Json.JsonReader, System.Type, Reportman.Reporting.Variant, bool, Newtonsoft.Json.JsonSerializer)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -112,6 +123,8 @@ items:
   nameWithType: VariantJsonConverter.VariantJsonConverter()
   fullName: Reportman.Reporting.VariantJsonConverter.VariantJsonConverter()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -123,6 +136,14 @@ items:
   fullName.vb: Reportman.Reporting.VariantJsonConverter.New()
   name.vb: New()
 references:
+- uid: Reportman.Reporting.Variant
+  commentId: T:Reportman.Reporting.Variant
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.Variant.html
+  name: Variant
+  nameWithType: Variant
+  fullName: Reportman.Reporting.Variant
 - uid: Reportman.Reporting
   commentId: N:Reportman.Reporting
   isExternal: true
@@ -837,14 +858,6 @@ references:
   name: JsonWriter
   nameWithType: JsonWriter
   fullName: Newtonsoft.Json.JsonWriter
-- uid: Reportman.Reporting.Variant
-  commentId: T:Reportman.Reporting.Variant
-  parent: Reportman.Reporting
-  isExternal: true
-  href: Reportman.Reporting.Variant.html
-  name: Variant
-  nameWithType: Variant
-  fullName: Reportman.Reporting.Variant
 - uid: Newtonsoft.Json.JsonSerializer
   commentId: T:Newtonsoft.Json.JsonSerializer
   parent: Newtonsoft.Json

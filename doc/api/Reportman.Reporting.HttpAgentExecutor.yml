@@ -1,0 +1,724 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.HttpAgentExecutor
+  commentId: T:Reportman.Reporting.HttpAgentExecutor
+  id: HttpAgentExecutor
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.HttpAgentExecutor.#ctor
+  - Reportman.Reporting.HttpAgentExecutor.#ctor(System.String,System.String,System.Int64)
+  - Reportman.Reporting.HttpAgentExecutor.ApiKey
+  - Reportman.Reporting.HttpAgentExecutor.BaseUrl
+  - Reportman.Reporting.HttpAgentExecutor.CreateCommand
+  - Reportman.Reporting.HttpAgentExecutor.HubDatabaseId
+  - Reportman.Reporting.HttpAgentExecutor.Open(System.Data.IDbCommand)
+  - Reportman.Reporting.HttpAgentExecutor.Token
+  langs:
+  - csharp
+  - vb
+  name: HttpAgentExecutor
+  nameWithType: HttpAgentExecutor
+  fullName: Reportman.Reporting.HttpAgentExecutor
+  type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    Executes SQL commands via HTTP Agent API.
+
+    Implements IDbCommandExecuter to integrate with the reporting engine.
+  example: []
+  syntax:
+    content: 'public class HttpAgentExecutor : IDbCommandExecuter'
+    content.vb: Public Class HttpAgentExecutor Implements IDbCommandExecuter
+  inheritance:
+  - System.Object
+  implements:
+  - Reportman.Drawing.IDbCommandExecuter
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Reporting.HttpAgentExecutor.#ctor
+  commentId: M:Reportman.Reporting.HttpAgentExecutor.#ctor
+  id: '#ctor'
+  parent: Reportman.Reporting.HttpAgentExecutor
+  langs:
+  - csharp
+  - vb
+  name: HttpAgentExecutor()
+  nameWithType: HttpAgentExecutor.HttpAgentExecutor()
+  fullName: Reportman.Reporting.HttpAgentExecutor.HttpAgentExecutor()
+  type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public HttpAgentExecutor()
+    content.vb: Public Sub New()
+  overload: Reportman.Reporting.HttpAgentExecutor.#ctor*
+  nameWithType.vb: HttpAgentExecutor.New()
+  fullName.vb: Reportman.Reporting.HttpAgentExecutor.New()
+  name.vb: New()
+- uid: Reportman.Reporting.HttpAgentExecutor.#ctor(System.String,System.String,System.Int64)
+  commentId: M:Reportman.Reporting.HttpAgentExecutor.#ctor(System.String,System.String,System.Int64)
+  id: '#ctor(System.String,System.String,System.Int64)'
+  parent: Reportman.Reporting.HttpAgentExecutor
+  langs:
+  - csharp
+  - vb
+  name: HttpAgentExecutor(string, string, long)
+  nameWithType: HttpAgentExecutor.HttpAgentExecutor(string, string, long)
+  fullName: Reportman.Reporting.HttpAgentExecutor.HttpAgentExecutor(string, string, long)
+  type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public HttpAgentExecutor(string baseUrl, string apiKey, long hubDatabaseId)
+    parameters:
+    - id: baseUrl
+      type: System.String
+    - id: apiKey
+      type: System.String
+    - id: hubDatabaseId
+      type: System.Int64
+    content.vb: Public Sub New(baseUrl As String, apiKey As String, hubDatabaseId As Long)
+  overload: Reportman.Reporting.HttpAgentExecutor.#ctor*
+  nameWithType.vb: HttpAgentExecutor.New(String, String, Long)
+  fullName.vb: Reportman.Reporting.HttpAgentExecutor.New(String, String, Long)
+  name.vb: New(String, String, Long)
+- uid: Reportman.Reporting.HttpAgentExecutor.CreateCommand
+  commentId: M:Reportman.Reporting.HttpAgentExecutor.CreateCommand
+  id: CreateCommand
+  parent: Reportman.Reporting.HttpAgentExecutor
+  langs:
+  - csharp
+  - vb
+  name: CreateCommand()
+  nameWithType: HttpAgentExecutor.CreateCommand()
+  fullName: Reportman.Reporting.HttpAgentExecutor.CreateCommand()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Creates a new HttpAgentCommand for building SQL queries.
+  example: []
+  syntax:
+    content: public IDbCommand CreateCommand()
+    return:
+      type: System.Data.IDbCommand
+    content.vb: Public Function CreateCommand() As IDbCommand
+  overload: Reportman.Reporting.HttpAgentExecutor.CreateCommand*
+  implements:
+  - Reportman.Drawing.IDbCommandExecuter.CreateCommand
+- uid: Reportman.Reporting.HttpAgentExecutor.Open(System.Data.IDbCommand)
+  commentId: M:Reportman.Reporting.HttpAgentExecutor.Open(System.Data.IDbCommand)
+  id: Open(System.Data.IDbCommand)
+  parent: Reportman.Reporting.HttpAgentExecutor
+  langs:
+  - csharp
+  - vb
+  name: Open(IDbCommand)
+  nameWithType: HttpAgentExecutor.Open(IDbCommand)
+  fullName: Reportman.Reporting.HttpAgentExecutor.Open(System.Data.IDbCommand)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Executes the command and returns the result as a DataTable.
+  example: []
+  syntax:
+    content: public DataTable Open(IDbCommand ncommand)
+    parameters:
+    - id: ncommand
+      type: System.Data.IDbCommand
+    return:
+      type: System.Data.DataTable
+    content.vb: Public Function Open(ncommand As IDbCommand) As DataTable
+  overload: Reportman.Reporting.HttpAgentExecutor.Open*
+  implements:
+  - Reportman.Drawing.IDbCommandExecuter.Open(System.Data.IDbCommand)
+- uid: Reportman.Reporting.HttpAgentExecutor.BaseUrl
+  commentId: P:Reportman.Reporting.HttpAgentExecutor.BaseUrl
+  id: BaseUrl
+  parent: Reportman.Reporting.HttpAgentExecutor
+  langs:
+  - csharp
+  - vb
+  name: BaseUrl
+  nameWithType: HttpAgentExecutor.BaseUrl
+  fullName: Reportman.Reporting.HttpAgentExecutor.BaseUrl
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Base URL for the API (e.g., "https://api.reportman.es")
+  example: []
+  syntax:
+    content: public string BaseUrl { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property BaseUrl As String
+  overload: Reportman.Reporting.HttpAgentExecutor.BaseUrl*
+- uid: Reportman.Reporting.HttpAgentExecutor.ApiKey
+  commentId: P:Reportman.Reporting.HttpAgentExecutor.ApiKey
+  id: ApiKey
+  parent: Reportman.Reporting.HttpAgentExecutor
+  langs:
+  - csharp
+  - vb
+  name: ApiKey
+  nameWithType: HttpAgentExecutor.ApiKey
+  fullName: Reportman.Reporting.HttpAgentExecutor.ApiKey
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: API Key for authentication (alternative to Token)
+  example: []
+  syntax:
+    content: public string ApiKey { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ApiKey As String
+  overload: Reportman.Reporting.HttpAgentExecutor.ApiKey*
+- uid: Reportman.Reporting.HttpAgentExecutor.Token
+  commentId: P:Reportman.Reporting.HttpAgentExecutor.Token
+  id: Token
+  parent: Reportman.Reporting.HttpAgentExecutor
+  langs:
+  - csharp
+  - vb
+  name: Token
+  nameWithType: HttpAgentExecutor.Token
+  fullName: Reportman.Reporting.HttpAgentExecutor.Token
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Bearer token for authentication (alternative to ApiKey)
+  example: []
+  syntax:
+    content: public string Token { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Token As String
+  overload: Reportman.Reporting.HttpAgentExecutor.Token*
+- uid: Reportman.Reporting.HttpAgentExecutor.HubDatabaseId
+  commentId: P:Reportman.Reporting.HttpAgentExecutor.HubDatabaseId
+  id: HubDatabaseId
+  parent: Reportman.Reporting.HttpAgentExecutor
+  langs:
+  - csharp
+  - vb
+  name: HubDatabaseId
+  nameWithType: HttpAgentExecutor.HubDatabaseId
+  fullName: Reportman.Reporting.HttpAgentExecutor.HubDatabaseId
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Hub Database Id - identifies the database on the remote agent
+  example: []
+  syntax:
+    content: public long HubDatabaseId { get; set; }
+    parameters: []
+    return:
+      type: System.Int64
+    content.vb: Public Property HubDatabaseId As Long
+  overload: Reportman.Reporting.HttpAgentExecutor.HubDatabaseId*
+references:
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Reportman.Drawing.IDbCommandExecuter
+  commentId: T:Reportman.Drawing.IDbCommandExecuter
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.IDbCommandExecuter.html
+  name: IDbCommandExecuter
+  nameWithType: IDbCommandExecuter
+  fullName: Reportman.Drawing.IDbCommandExecuter
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: Reportman.Reporting.HttpAgentExecutor.#ctor*
+  commentId: Overload:Reportman.Reporting.HttpAgentExecutor.#ctor
+  isExternal: true
+  href: Reportman.Reporting.HttpAgentExecutor.html#Reportman_Reporting_HttpAgentExecutor__ctor
+  name: HttpAgentExecutor
+  nameWithType: HttpAgentExecutor.HttpAgentExecutor
+  fullName: Reportman.Reporting.HttpAgentExecutor.HttpAgentExecutor
+  nameWithType.vb: HttpAgentExecutor.New
+  fullName.vb: Reportman.Reporting.HttpAgentExecutor.New
+  name.vb: New
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: Reportman.Reporting.HttpAgentExecutor.CreateCommand*
+  commentId: Overload:Reportman.Reporting.HttpAgentExecutor.CreateCommand
+  isExternal: true
+  href: Reportman.Reporting.HttpAgentExecutor.html#Reportman_Reporting_HttpAgentExecutor_CreateCommand
+  name: CreateCommand
+  nameWithType: HttpAgentExecutor.CreateCommand
+  fullName: Reportman.Reporting.HttpAgentExecutor.CreateCommand
+- uid: Reportman.Drawing.IDbCommandExecuter.CreateCommand
+  commentId: M:Reportman.Drawing.IDbCommandExecuter.CreateCommand
+  parent: Reportman.Drawing.IDbCommandExecuter
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
+  name: CreateCommand()
+  nameWithType: IDbCommandExecuter.CreateCommand()
+  fullName: Reportman.Drawing.IDbCommandExecuter.CreateCommand()
+  spec.csharp:
+  - uid: Reportman.Drawing.IDbCommandExecuter.CreateCommand
+    name: CreateCommand
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.IDbCommandExecuter.CreateCommand
+    name: CreateCommand
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
+  - name: (
+  - name: )
+- uid: System.Data.IDbCommand
+  commentId: T:System.Data.IDbCommand
+  parent: System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.idbcommand
+  name: IDbCommand
+  nameWithType: IDbCommand
+  fullName: System.Data.IDbCommand
+- uid: System.Data
+  commentId: N:System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Data
+  nameWithType: System.Data
+  fullName: System.Data
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+- uid: Reportman.Reporting.HttpAgentExecutor.Open*
+  commentId: Overload:Reportman.Reporting.HttpAgentExecutor.Open
+  isExternal: true
+  href: Reportman.Reporting.HttpAgentExecutor.html#Reportman_Reporting_HttpAgentExecutor_Open_System_Data_IDbCommand_
+  name: Open
+  nameWithType: HttpAgentExecutor.Open
+  fullName: Reportman.Reporting.HttpAgentExecutor.Open
+- uid: Reportman.Drawing.IDbCommandExecuter.Open(System.Data.IDbCommand)
+  commentId: M:Reportman.Drawing.IDbCommandExecuter.Open(System.Data.IDbCommand)
+  parent: Reportman.Drawing.IDbCommandExecuter
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
+  name: Open(IDbCommand)
+  nameWithType: IDbCommandExecuter.Open(IDbCommand)
+  fullName: Reportman.Drawing.IDbCommandExecuter.Open(System.Data.IDbCommand)
+  spec.csharp:
+  - uid: Reportman.Drawing.IDbCommandExecuter.Open(System.Data.IDbCommand)
+    name: Open
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
+  - name: (
+  - uid: System.Data.IDbCommand
+    name: IDbCommand
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.idbcommand
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.IDbCommandExecuter.Open(System.Data.IDbCommand)
+    name: Open
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
+  - name: (
+  - uid: System.Data.IDbCommand
+    name: IDbCommand
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.idbcommand
+  - name: )
+- uid: System.Data.DataTable
+  commentId: T:System.Data.DataTable
+  parent: System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable
+  name: DataTable
+  nameWithType: DataTable
+  fullName: System.Data.DataTable
+- uid: Reportman.Reporting.HttpAgentExecutor.BaseUrl*
+  commentId: Overload:Reportman.Reporting.HttpAgentExecutor.BaseUrl
+  isExternal: true
+  href: Reportman.Reporting.HttpAgentExecutor.html#Reportman_Reporting_HttpAgentExecutor_BaseUrl
+  name: BaseUrl
+  nameWithType: HttpAgentExecutor.BaseUrl
+  fullName: Reportman.Reporting.HttpAgentExecutor.BaseUrl
+- uid: Reportman.Reporting.HttpAgentExecutor.ApiKey*
+  commentId: Overload:Reportman.Reporting.HttpAgentExecutor.ApiKey
+  isExternal: true
+  href: Reportman.Reporting.HttpAgentExecutor.html#Reportman_Reporting_HttpAgentExecutor_ApiKey
+  name: ApiKey
+  nameWithType: HttpAgentExecutor.ApiKey
+  fullName: Reportman.Reporting.HttpAgentExecutor.ApiKey
+- uid: Reportman.Reporting.HttpAgentExecutor.Token*
+  commentId: Overload:Reportman.Reporting.HttpAgentExecutor.Token
+  isExternal: true
+  href: Reportman.Reporting.HttpAgentExecutor.html#Reportman_Reporting_HttpAgentExecutor_Token
+  name: Token
+  nameWithType: HttpAgentExecutor.Token
+  fullName: Reportman.Reporting.HttpAgentExecutor.Token
+- uid: Reportman.Reporting.HttpAgentExecutor.HubDatabaseId*
+  commentId: Overload:Reportman.Reporting.HttpAgentExecutor.HubDatabaseId
+  isExternal: true
+  href: Reportman.Reporting.HttpAgentExecutor.html#Reportman_Reporting_HttpAgentExecutor_HubDatabaseId
+  name: HubDatabaseId
+  nameWithType: HttpAgentExecutor.HubDatabaseId
+  fullName: Reportman.Reporting.HttpAgentExecutor.HubDatabaseId

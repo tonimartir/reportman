@@ -15,9 +15,16 @@ items:
   nameWithType: PrintOutText.OemConvertOverride
   fullName: Reportman.Drawing.PrintOutText.OemConvertOverride
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    Controls whether OEM character-set conversion is applied to output text: use the printer
+
+    configuration default (<code>None</code>), or force it off (<code>False</code>) or on (<code>True</code>).
+  example: []
   syntax:
     content: public enum PrintOutText.OemConvertOverride
     content.vb: Public Enum PrintOutText.OemConvertOverride
@@ -32,6 +39,8 @@ items:
   nameWithType: PrintOutText.OemConvertOverride.None
   fullName: Reportman.Drawing.PrintOutText.OemConvertOverride.None
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -50,6 +59,8 @@ items:
   nameWithType: PrintOutText.OemConvertOverride.False
   fullName: Reportman.Drawing.PrintOutText.OemConvertOverride.False
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -68,6 +79,8 @@ items:
   nameWithType: PrintOutText.OemConvertOverride.True
   fullName: Reportman.Drawing.PrintOutText.OemConvertOverride.True
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

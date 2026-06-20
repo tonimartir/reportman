@@ -14,13 +14,15 @@ items:
   nameWithType: DatasetType
   fullName: Reportman.Reporting.DatasetType
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
   summary: >-
     A dataset definition could represent a table inside a database or
 
-    a sql query, in .Net version, it's always a Query. <xref href="Reportman.Reporting.Variant?text=DataInfo" data-throw-if-not-resolved="false"></xref>
+    a sql query, in .Net version, it's always a Query. <xref href="Reportman.Reporting.DataInfo" data-throw-if-not-resolved="false"></xref>
   example: []
   syntax:
     content: public enum DatasetType
@@ -36,6 +38,8 @@ items:
   nameWithType: DatasetType.Query
   fullName: Reportman.Reporting.DatasetType.Query
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -56,6 +60,8 @@ items:
   nameWithType: DatasetType.Table
   fullName: Reportman.Reporting.DatasetType.Table
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -66,14 +72,14 @@ items:
     return:
       type: Reportman.Reporting.DatasetType
 references:
-- uid: Reportman.Reporting.Variant
-  commentId: T:Reportman.Reporting.Variant
+- uid: Reportman.Reporting.DataInfo
+  commentId: T:Reportman.Reporting.DataInfo
   parent: Reportman.Reporting
   isExternal: true
-  href: Reportman.Reporting.Variant.html
-  name: Variant
-  nameWithType: Variant
-  fullName: Reportman.Reporting.Variant
+  href: Reportman.Reporting.DataInfo.html
+  name: DataInfo
+  nameWithType: DataInfo
+  fullName: Reportman.Reporting.DataInfo
 - uid: Reportman.Reporting
   commentId: N:Reportman.Reporting
   isExternal: true

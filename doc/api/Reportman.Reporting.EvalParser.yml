@@ -23,6 +23,8 @@ items:
   nameWithType: EvalParser
   fullName: Reportman.Reporting.EvalParser
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalParser.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -52,6 +54,8 @@ items:
   nameWithType: EvalParser.TokenString()
   fullName: Reportman.Reporting.EvalParser.TokenString()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalParser.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -72,6 +76,8 @@ items:
   nameWithType: EvalParser.EvalParser()
   fullName: Reportman.Reporting.EvalParser.EvalParser()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalParser.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -93,6 +99,8 @@ items:
   nameWithType: EvalParser.NextToken()
   fullName: Reportman.Reporting.EvalParser.NextToken()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalParser.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -113,6 +121,8 @@ items:
   nameWithType: EvalParser.IsAssignment()
   fullName: Reportman.Reporting.EvalParser.IsAssignment()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalParser.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -133,6 +143,8 @@ items:
   nameWithType: EvalParser.Token
   fullName: Reportman.Reporting.EvalParser.Token
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalParser.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -154,6 +166,8 @@ items:
   nameWithType: EvalParser.SourceLine
   fullName: Reportman.Reporting.EvalParser.SourceLine
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalParser.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -175,6 +189,8 @@ items:
   nameWithType: EvalParser.SourcePos
   fullName: Reportman.Reporting.EvalParser.SourcePos
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalParser.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -196,6 +212,8 @@ items:
   nameWithType: EvalParser.Expression
   fullName: Reportman.Reporting.EvalParser.Expression
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalParser.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -217,6 +235,8 @@ items:
   nameWithType: EvalParser.AsInteger
   fullName: Reportman.Reporting.EvalParser.AsInteger
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalParser.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -238,6 +258,8 @@ items:
   nameWithType: EvalParser.AsDouble
   fullName: Reportman.Reporting.EvalParser.AsDouble
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalParser.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -259,6 +281,8 @@ items:
   nameWithType: EvalParser.AsDecimal
   fullName: Reportman.Reporting.EvalParser.AsDecimal
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/EvalParser.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

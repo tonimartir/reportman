@@ -4,6 +4,9 @@ using System.Windows.Forms;
 
 namespace Reportman.Drawing.Forms
 {
+    /// <summary>
+    /// A dialog for resizing and re-encoding an image, letting the user change dimensions (optionally keeping aspect ratio), pick the output format (PNG, JPEG or GIF) and JPEG quality, and returns the transformed image stream.
+    /// </summary>
     public partial class TransformImageForm : Form
     {
         public TransformImageForm()

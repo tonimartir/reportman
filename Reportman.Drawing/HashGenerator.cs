@@ -5,18 +5,27 @@ using System.Security.Cryptography;
 
 namespace Reportman.Drawing
 {
+    /// <summary>
+    /// Pairs a file's path (relative to a base folder) with its computed content hash.
+    /// </summary>
     public class FileHash
     {
         public string FullPath; // relativo a la carpeta base
         public string Hash;
     }
 
+    /// <summary>
+    /// A snapshot of file hashes for a folder tree, with the UTC timestamp at which it was generated.
+    /// </summary>
     public class FileHashes
     {
         public List<FileHash> Hashes = new List<FileHash>();
         public DateTime DateTimeCreatedUtc;
     }
 
+    /// <summary>
+    /// Computes SHA-256 hashes for every file under a folder and its subfolders.
+    /// </summary>
     public static class HashGenerator
     {
         /// <summary>

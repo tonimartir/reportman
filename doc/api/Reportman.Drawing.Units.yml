@@ -14,6 +14,8 @@ items:
   nameWithType: Units
   fullName: Reportman.Drawing.Units
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Units.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -33,6 +35,8 @@ items:
   nameWithType: Units.Inch
   fullName: Reportman.Drawing.Units.Inch
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Units.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -53,6 +57,8 @@ items:
   nameWithType: Units.Cms
   fullName: Reportman.Drawing.Units.Cms
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Units.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

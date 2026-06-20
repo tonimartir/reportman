@@ -20,9 +20,16 @@ items:
   nameWithType: DBFExport
   fullName: Reportman.Reporting.DBFExport
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DBFExport.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Reporting
+  summary: >-
+    Exports a <xref href="System.Data.DataTable" data-throw-if-not-resolved="false"></xref> to a dBASE IV (.DBF) file via an OLE DB connection,
+
+    creating the table and inserting rows while reporting progress and supporting cancellation.
+  example: []
   syntax:
     content: public class DBFExport
     content.vb: Public Class DBFExport
@@ -47,6 +54,8 @@ items:
   nameWithType: DBFExport.CreateConnection(string)
   fullName: Reportman.Reporting.DBFExport.CreateConnection(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DBFExport.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Reporting
@@ -73,6 +82,8 @@ items:
   nameWithType: DBFExport.TypeToDBFDbType(Type, int)
   fullName: Reportman.Reporting.DBFExport.TypeToDBFDbType(System.Type, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DBFExport.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Reporting
@@ -101,6 +112,8 @@ items:
   nameWithType: DBFExport.SaveToFile(DataTable, string, DbConnection)
   fullName: Reportman.Reporting.DBFExport.SaveToFile(System.Data.DataTable, string, System.Data.Common.DbConnection)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DBFExport.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Reporting
@@ -129,6 +142,8 @@ items:
   nameWithType: DBFExport.SaveToFile(DataTable, string, DbConnection, int)
   fullName: Reportman.Reporting.DBFExport.SaveToFile(System.Data.DataTable, string, System.Data.Common.DbConnection, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DBFExport.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Reporting
@@ -159,6 +174,8 @@ items:
   nameWithType: DBFExport.SaveToFile(DataTable, string, DbConnection, int, DataProgressEvent)
   fullName: Reportman.Reporting.DBFExport.SaveToFile(System.Data.DataTable, string, System.Data.Common.DbConnection, int, Reportman.Reporting.DataProgressEvent)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DBFExport.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Reporting
@@ -191,6 +208,8 @@ items:
   nameWithType: DBFExport.TypeToDBFSqlType(Type, int)
   fullName: Reportman.Reporting.DBFExport.TypeToDBFSqlType(System.Type, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DBFExport.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Reporting
@@ -219,6 +238,8 @@ items:
   nameWithType: DBFExport.SaveToFile(DataTable, string, DataProgressEvent)
   fullName: Reportman.Reporting.DBFExport.SaveToFile(System.Data.DataTable, string, Reportman.Reporting.DataProgressEvent)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DBFExport.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Reporting
@@ -247,6 +268,8 @@ items:
   nameWithType: DBFExport.DBFExport()
   fullName: Reportman.Reporting.DBFExport.DBFExport()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DBFExport.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Reporting
@@ -258,6 +281,14 @@ items:
   fullName.vb: Reportman.Reporting.DBFExport.New()
   name.vb: New()
 references:
+- uid: System.Data.DataTable
+  commentId: T:System.Data.DataTable
+  parent: System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable
+  name: DataTable
+  nameWithType: DataTable
+  fullName: System.Data.DataTable
 - uid: Reportman.Reporting
   commentId: N:Reportman.Reporting
   isExternal: true
@@ -515,6 +546,33 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
   - name: )
+- uid: System.Data
+  commentId: N:System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Data
+  nameWithType: System.Data
+  fullName: System.Data
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
 - uid: System
   commentId: N:System
   isExternal: true
@@ -619,33 +677,6 @@ references:
   name: DbType
   nameWithType: DbType
   fullName: System.Data.DbType
-- uid: System.Data
-  commentId: N:System.Data
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System.Data
-  nameWithType: System.Data
-  fullName: System.Data
-  spec.csharp:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Data
-    name: Data
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.data
-  spec.vb:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Data
-    name: Data
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.data
 - uid: Reportman.Reporting.DBFExport.SaveToFile*
   commentId: Overload:Reportman.Reporting.DBFExport.SaveToFile
   isExternal: true
@@ -653,14 +684,6 @@ references:
   name: SaveToFile
   nameWithType: DBFExport.SaveToFile
   fullName: Reportman.Reporting.DBFExport.SaveToFile
-- uid: System.Data.DataTable
-  commentId: T:System.Data.DataTable
-  parent: System.Data
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.data.datatable
-  name: DataTable
-  nameWithType: DataTable
-  fullName: System.Data.DataTable
 - uid: Reportman.Reporting.DataProgressEvent
   commentId: T:Reportman.Reporting.DataProgressEvent
   parent: Reportman.Reporting

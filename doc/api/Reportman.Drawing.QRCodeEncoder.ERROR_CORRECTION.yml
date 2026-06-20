@@ -16,9 +16,13 @@ items:
   nameWithType: QRCodeEncoder.ERROR_CORRECTION
   fullName: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/QRCodeEncoder.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Drawing
+  summary: QR Code error-correction level (L, M, Q, H), in increasing order of redundancy and recoverability.
+  example: []
   syntax:
     content: public enum QRCodeEncoder.ERROR_CORRECTION
     content.vb: Public Enum QRCodeEncoder.ERROR_CORRECTION
@@ -33,6 +37,8 @@ items:
   nameWithType: QRCodeEncoder.ERROR_CORRECTION.L
   fullName: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION.L
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/QRCodeEncoder.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Drawing
@@ -51,6 +57,8 @@ items:
   nameWithType: QRCodeEncoder.ERROR_CORRECTION.M
   fullName: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION.M
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/QRCodeEncoder.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Drawing
@@ -69,6 +77,8 @@ items:
   nameWithType: QRCodeEncoder.ERROR_CORRECTION.Q
   fullName: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION.Q
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/QRCodeEncoder.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Drawing
@@ -87,6 +97,8 @@ items:
   nameWithType: QRCodeEncoder.ERROR_CORRECTION.H
   fullName: Reportman.Drawing.QRCodeEncoder.ERROR_CORRECTION.H
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/QRCodeEncoder.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Drawing

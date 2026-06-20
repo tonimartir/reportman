@@ -54,9 +54,16 @@ items:
   nameWithType: PDFFile
   fullName: Reportman.Drawing.PDFFile
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    Builds a complete PDF document: manages object/cross-reference tables, pages,
+
+    embedded fonts, metadata, annotations, stream compression, and final assembly.
+  example: []
   syntax:
     content: 'public class PDFFile : IDisposable'
     content.vb: Public Class PDFFile Implements IDisposable
@@ -83,6 +90,8 @@ items:
   nameWithType: PDFFile.FileName
   fullName: Reportman.Drawing.PDFFile.FileName
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -102,6 +111,8 @@ items:
   nameWithType: PDFFile.ImageIndexes
   fullName: Reportman.Drawing.PDFFile.ImageIndexes
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -121,6 +132,8 @@ items:
   nameWithType: PDFFile.FObjectOffset
   fullName: Reportman.Drawing.PDFFile.FObjectOffset
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -140,6 +153,8 @@ items:
   nameWithType: PDFFile.Optimized
   fullName: Reportman.Drawing.PDFFile.Optimized
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -159,6 +174,8 @@ items:
   nameWithType: PDFFile.CompressionTasks
   fullName: Reportman.Drawing.PDFFile.CompressionTasks
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -178,6 +195,8 @@ items:
   nameWithType: PDFFile.POINTS_PER_INCH
   fullName: Reportman.Drawing.PDFFile.POINTS_PER_INCH
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -197,6 +216,8 @@ items:
   nameWithType: PDFFile.Compressed
   fullName: Reportman.Drawing.PDFFile.Compressed
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -216,6 +237,8 @@ items:
   nameWithType: PDFFile.OptimizeSize
   fullName: Reportman.Drawing.PDFFile.OptimizeSize
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -235,6 +258,8 @@ items:
   nameWithType: PDFFile.ImageCount
   fullName: Reportman.Drawing.PDFFile.ImageCount
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -254,6 +279,8 @@ items:
   nameWithType: PDFFile.CONS_PDFRES
   fullName: Reportman.Drawing.PDFFile.CONS_PDFRES
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -273,6 +300,8 @@ items:
   nameWithType: PDFFile.CONS_UNDERLINEPOS
   fullName: Reportman.Drawing.PDFFile.CONS_UNDERLINEPOS
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -292,6 +321,8 @@ items:
   nameWithType: PDFFile.CONS_STRIKEOUTPOS
   fullName: Reportman.Drawing.PDFFile.CONS_STRIKEOUTPOS
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -311,6 +342,8 @@ items:
   nameWithType: PDFFile.CONS_UNDERLINEWIDTH
   fullName: Reportman.Drawing.PDFFile.CONS_UNDERLINEWIDTH
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -330,6 +363,8 @@ items:
   nameWithType: PDFFile.PageHeight
   fullName: Reportman.Drawing.PDFFile.PageHeight
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -349,6 +384,8 @@ items:
   nameWithType: PDFFile.PageWidth
   fullName: Reportman.Drawing.PDFFile.PageWidth
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -368,6 +405,8 @@ items:
   nameWithType: PDFFile.DocTitle
   fullName: Reportman.Drawing.PDFFile.DocTitle
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -387,6 +426,8 @@ items:
   nameWithType: PDFFile.DocAuthor
   fullName: Reportman.Drawing.PDFFile.DocAuthor
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -406,6 +447,8 @@ items:
   nameWithType: PDFFile.DocCreator
   fullName: Reportman.Drawing.PDFFile.DocCreator
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -425,6 +468,8 @@ items:
   nameWithType: PDFFile.DocKeywords
   fullName: Reportman.Drawing.PDFFile.DocKeywords
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -444,6 +489,8 @@ items:
   nameWithType: PDFFile.DocSubject
   fullName: Reportman.Drawing.PDFFile.DocSubject
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -463,6 +510,8 @@ items:
   nameWithType: PDFFile.DocProducer
   fullName: Reportman.Drawing.PDFFile.DocProducer
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -482,6 +531,8 @@ items:
   nameWithType: PDFFile.DocXMPContent
   fullName: Reportman.Drawing.PDFFile.DocXMPContent
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -501,6 +552,8 @@ items:
   nameWithType: PDFFile.DocCreationDate
   fullName: Reportman.Drawing.PDFFile.DocCreationDate
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -520,6 +573,8 @@ items:
   nameWithType: PDFFile.DocModificationDate
   fullName: Reportman.Drawing.PDFFile.DocModificationDate
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -539,6 +594,8 @@ items:
   nameWithType: PDFFile.CalculateOnly
   fullName: Reportman.Drawing.PDFFile.CalculateOnly
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -560,6 +617,8 @@ items:
   nameWithType: PDFFile.Masks
   fullName: Reportman.Drawing.PDFFile.Masks
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -579,6 +638,8 @@ items:
   nameWithType: PDFFile.EmbeddedFiles
   fullName: Reportman.Drawing.PDFFile.EmbeddedFiles
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -598,6 +659,8 @@ items:
   nameWithType: PDFFile.Dispose()
   fullName: Reportman.Drawing.PDFFile.Dispose()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -619,6 +682,8 @@ items:
   nameWithType: PDFFile.PDFFile(FontInfoProvider, IBitmapInfoProvider)
   fullName: Reportman.Drawing.PDFFile.PDFFile(Reportman.Drawing.FontInfoProvider, Reportman.Drawing.IBitmapInfoProvider)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -645,6 +710,8 @@ items:
   nameWithType: PDFFile.NewAnnotation(int, int, int, int, string)
   fullName: Reportman.Drawing.PDFFile.NewAnnotation(int, int, int, int, string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -677,6 +744,8 @@ items:
   nameWithType: PDFFile.CheckPrinting()
   fullName: Reportman.Drawing.PDFFile.CheckPrinting()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -695,6 +764,8 @@ items:
   nameWithType: PDFFile.EncodePDFText(string)
   fullName: Reportman.Drawing.PDFFile.EncodePDFText(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -721,6 +792,8 @@ items:
   nameWithType: PDFFile.BeginDoc()
   fullName: Reportman.Drawing.PDFFile.BeginDoc()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -739,6 +812,8 @@ items:
   nameWithType: PDFFile.NewPage(int, int)
   fullName: Reportman.Drawing.PDFFile.NewPage(int, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -765,6 +840,8 @@ items:
   nameWithType: PDFFile.EndDoc()
   fullName: Reportman.Drawing.PDFFile.EndDoc()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -783,6 +860,8 @@ items:
   nameWithType: PDFFile.MainPDF
   fullName: Reportman.Drawing.PDFFile.MainPDF
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -804,6 +883,8 @@ items:
   nameWithType: PDFFile.BitmapStreams
   fullName: Reportman.Drawing.PDFFile.BitmapStreams
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -825,6 +906,8 @@ items:
   nameWithType: PDFFile.PDFConformance
   fullName: Reportman.Drawing.PDFFile.PDFConformance
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -846,6 +929,8 @@ items:
   nameWithType: PDFFile.Resolution
   fullName: Reportman.Drawing.PDFFile.Resolution
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -867,6 +952,8 @@ items:
   nameWithType: PDFFile.Printing
   fullName: Reportman.Drawing.PDFFile.Printing
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -888,6 +975,8 @@ items:
   nameWithType: PDFFile.STempStream
   fullName: Reportman.Drawing.PDFFile.STempStream
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -909,6 +998,8 @@ items:
   nameWithType: PDFFile.Canvas
   fullName: Reportman.Drawing.PDFFile.Canvas
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1541,7 +1632,7 @@ references:
   commentId: T:Reportman.Drawing.FontInfoProvider
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.FontInfoProvider.html
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
   name: FontInfoProvider
   nameWithType: FontInfoProvider
   fullName: Reportman.Drawing.FontInfoProvider
@@ -1549,7 +1640,7 @@ references:
   commentId: T:Reportman.Drawing.IBitmapInfoProvider
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.IBitmapInfoProvider.html
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IBitmapInfoProvider.cs
   name: IBitmapInfoProvider
   nameWithType: IBitmapInfoProvider
   fullName: Reportman.Drawing.IBitmapInfoProvider

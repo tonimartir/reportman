@@ -16,9 +16,13 @@ items:
   nameWithType: TabPageAdvanced.PropChangeHandler
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.PropChangeHandler
   type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: Handler signature for a tab page property change, receiving the page, the <xref href="Reportman.Drawing.Forms.TabPageAdvanced.Property" data-throw-if-not-resolved="false"></xref> that changed and its previous value.
+  example: []
   syntax:
     content: public delegate void TabPageAdvanced.PropChangeHandler(TabPageAdvanced page, TabPageAdvanced.Property prop, object oldValue)
     parameters:
@@ -40,6 +44,8 @@ items:
   nameWithType: TabPageAdvanced.PropChangeHandler.PropChangeHandler(object, nint)
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.PropChangeHandler.PropChangeHandler(object, nint)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -66,6 +72,8 @@ items:
   nameWithType: TabPageAdvanced.PropChangeHandler.Invoke(TabPageAdvanced, TabPageAdvanced.Property, object)
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.PropChangeHandler.Invoke(Reportman.Drawing.Forms.TabPageAdvanced, Reportman.Drawing.Forms.TabPageAdvanced.Property, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -94,6 +102,8 @@ items:
   nameWithType: TabPageAdvanced.PropChangeHandler.BeginInvoke(TabPageAdvanced, TabPageAdvanced.Property, object, AsyncCallback, object)
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.PropChangeHandler.BeginInvoke(Reportman.Drawing.Forms.TabPageAdvanced, Reportman.Drawing.Forms.TabPageAdvanced.Property, object, System.AsyncCallback, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -128,6 +138,8 @@ items:
   nameWithType: TabPageAdvanced.PropChangeHandler.EndInvoke(IAsyncResult)
   fullName: Reportman.Drawing.Forms.TabPageAdvanced.PropChangeHandler.EndInvoke(System.IAsyncResult)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabPageAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -139,6 +151,34 @@ items:
     content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
   overload: Reportman.Drawing.Forms.TabPageAdvanced.PropChangeHandler.EndInvoke*
 references:
+- uid: Reportman.Drawing.Forms.TabPageAdvanced.Property
+  commentId: T:Reportman.Drawing.Forms.TabPageAdvanced.Property
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabPageAdvanced.html
+  name: TabPageAdvanced.Property
+  nameWithType: TabPageAdvanced.Property
+  fullName: Reportman.Drawing.Forms.TabPageAdvanced.Property
+  spec.csharp:
+  - uid: Reportman.Drawing.Forms.TabPageAdvanced
+    name: TabPageAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabPageAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TabPageAdvanced.Property
+    name: Property
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabPageAdvanced.Property.html
+  spec.vb:
+  - uid: Reportman.Drawing.Forms.TabPageAdvanced
+    name: TabPageAdvanced
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabPageAdvanced.html
+  - name: .
+  - uid: Reportman.Drawing.Forms.TabPageAdvanced.Property
+    name: Property
+    isExternal: true
+    href: Reportman.Drawing.Forms.TabPageAdvanced.Property.html
 - uid: Reportman.Drawing.Forms
   commentId: N:Reportman.Drawing.Forms
   isExternal: true
@@ -184,34 +224,6 @@ references:
   name: TabPageAdvanced
   nameWithType: TabPageAdvanced
   fullName: Reportman.Drawing.Forms.TabPageAdvanced
-- uid: Reportman.Drawing.Forms.TabPageAdvanced.Property
-  commentId: T:Reportman.Drawing.Forms.TabPageAdvanced.Property
-  parent: Reportman.Drawing.Forms
-  isExternal: true
-  href: Reportman.Drawing.Forms.TabPageAdvanced.html
-  name: TabPageAdvanced.Property
-  nameWithType: TabPageAdvanced.Property
-  fullName: Reportman.Drawing.Forms.TabPageAdvanced.Property
-  spec.csharp:
-  - uid: Reportman.Drawing.Forms.TabPageAdvanced
-    name: TabPageAdvanced
-    isExternal: true
-    href: Reportman.Drawing.Forms.TabPageAdvanced.html
-  - name: .
-  - uid: Reportman.Drawing.Forms.TabPageAdvanced.Property
-    name: Property
-    isExternal: true
-    href: Reportman.Drawing.Forms.TabPageAdvanced.Property.html
-  spec.vb:
-  - uid: Reportman.Drawing.Forms.TabPageAdvanced
-    name: TabPageAdvanced
-    isExternal: true
-    href: Reportman.Drawing.Forms.TabPageAdvanced.html
-  - name: .
-  - uid: Reportman.Drawing.Forms.TabPageAdvanced.Property
-    name: Property
-    isExternal: true
-    href: Reportman.Drawing.Forms.TabPageAdvanced.Property.html
 - uid: System.Object
   commentId: T:System.Object
   parent: System

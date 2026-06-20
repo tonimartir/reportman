@@ -15,6 +15,8 @@ items:
   nameWithType: PDFConformance
   fullName: Reportman.Drawing.PDFConformance
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -34,6 +36,8 @@ items:
   nameWithType: PDFConformance.SetPDFDefault
   fullName: Reportman.Drawing.PDFConformance.SetPDFDefault
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -52,6 +56,8 @@ items:
   nameWithType: PDFConformance.SettPDF_1_4
   fullName: Reportman.Drawing.PDFConformance.SettPDF_1_4
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -70,6 +76,8 @@ items:
   nameWithType: PDFConformance.SetPDF_A_3
   fullName: Reportman.Drawing.PDFConformance.SetPDF_A_3
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

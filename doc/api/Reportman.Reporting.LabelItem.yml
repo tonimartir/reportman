@@ -18,9 +18,16 @@ items:
   nameWithType: LabelItem
   fullName: Reportman.Reporting.LabelItem
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/LabelItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
+  summary: >-
+    A report print item that renders a static, language-aware text label, selecting the
+
+    string for the report's current language and supporting optional HTML content.
+  example: []
   syntax:
     content: 'public class LabelItem : PrintItemText, IDisposable'
     content.vb: Public Class LabelItem Inherits PrintItemText Implements IDisposable
@@ -33,6 +40,7 @@ items:
   implements:
   - System.IDisposable
   inheritedMembers:
+  - Reportman.Reporting.PrintItemText.EvaluateHtmlExpressions(System.String)
   - Reportman.Reporting.PrintItemText.WFontName
   - Reportman.Reporting.PrintItemText.LFontName
   - Reportman.Reporting.PrintItemText.FontSize
@@ -43,6 +51,7 @@ items:
   - Reportman.Reporting.PrintItemText.Transparent
   - Reportman.Reporting.PrintItemText.CutText
   - Reportman.Reporting.PrintItemText.WordWrap
+  - Reportman.Reporting.PrintItemText.IsHtml
   - Reportman.Reporting.PrintItemText.WordBreak
   - Reportman.Reporting.PrintItemText.InterLine
   - Reportman.Reporting.PrintItemText.Alignment
@@ -101,6 +110,8 @@ items:
   nameWithType: LabelItem.LabelItem()
   fullName: Reportman.Reporting.LabelItem.LabelItem()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/LabelItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -122,6 +133,8 @@ items:
   nameWithType: LabelItem.GetClassName()
   fullName: Reportman.Reporting.LabelItem.GetClassName()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/LabelItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -146,6 +159,8 @@ items:
   nameWithType: LabelItem.DoPrint(PrintOut, int, int, int, int, MetaFile, Point, ref bool)
   fullName: Reportman.Reporting.LabelItem.DoPrint(Reportman.Drawing.PrintOut, int, int, int, int, Reportman.Drawing.MetaFile, System.Drawing.Point, ref bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/LabelItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -195,6 +210,8 @@ items:
   nameWithType: LabelItem.GetExtension(PrintOut, Point, bool)
   fullName: Reportman.Reporting.LabelItem.GetExtension(Reportman.Drawing.PrintOut, System.Drawing.Point, bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/LabelItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -231,6 +248,8 @@ items:
   nameWithType: LabelItem.AllStrings
   fullName: Reportman.Reporting.LabelItem.AllStrings
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/LabelItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -252,6 +271,8 @@ items:
   nameWithType: LabelItem.Text
   fullName: Reportman.Reporting.LabelItem.Text
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/LabelItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -358,6 +379,39 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
+- uid: Reportman.Reporting.PrintItemText.EvaluateHtmlExpressions(System.String)
+  commentId: M:Reportman.Reporting.PrintItemText.EvaluateHtmlExpressions(System.String)
+  parent: Reportman.Reporting.PrintItemText
+  isExternal: true
+  href: Reportman.Reporting.PrintItemText.html#Reportman_Reporting_PrintItemText_EvaluateHtmlExpressions_System_String_
+  name: EvaluateHtmlExpressions(string)
+  nameWithType: PrintItemText.EvaluateHtmlExpressions(string)
+  fullName: Reportman.Reporting.PrintItemText.EvaluateHtmlExpressions(string)
+  nameWithType.vb: PrintItemText.EvaluateHtmlExpressions(String)
+  fullName.vb: Reportman.Reporting.PrintItemText.EvaluateHtmlExpressions(String)
+  name.vb: EvaluateHtmlExpressions(String)
+  spec.csharp:
+  - uid: Reportman.Reporting.PrintItemText.EvaluateHtmlExpressions(System.String)
+    name: EvaluateHtmlExpressions
+    isExternal: true
+    href: Reportman.Reporting.PrintItemText.html#Reportman_Reporting_PrintItemText_EvaluateHtmlExpressions_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.PrintItemText.EvaluateHtmlExpressions(System.String)
+    name: EvaluateHtmlExpressions
+    isExternal: true
+    href: Reportman.Reporting.PrintItemText.html#Reportman_Reporting_PrintItemText_EvaluateHtmlExpressions_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
 - uid: Reportman.Reporting.PrintItemText.WFontName
   commentId: P:Reportman.Reporting.PrintItemText.WFontName
   parent: Reportman.Reporting.PrintItemText
@@ -438,6 +492,14 @@ references:
   name: WordWrap
   nameWithType: PrintItemText.WordWrap
   fullName: Reportman.Reporting.PrintItemText.WordWrap
+- uid: Reportman.Reporting.PrintItemText.IsHtml
+  commentId: P:Reportman.Reporting.PrintItemText.IsHtml
+  parent: Reportman.Reporting.PrintItemText
+  isExternal: true
+  href: Reportman.Reporting.PrintItemText.html#Reportman_Reporting_PrintItemText_IsHtml
+  name: IsHtml
+  nameWithType: PrintItemText.IsHtml
+  fullName: Reportman.Reporting.PrintItemText.IsHtml
 - uid: Reportman.Reporting.PrintItemText.WordBreak
   commentId: P:Reportman.Reporting.PrintItemText.WordBreak
   parent: Reportman.Reporting.PrintItemText
@@ -559,11 +621,13 @@ references:
   - uid: Reportman.Drawing.MetaObject
     name: MetaObject
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
   - name: ','
   - name: " "
   - uid: Reportman.Drawing.MetaPage
     name: MetaPage
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
   - name: )
   spec.vb:
   - uid: Reportman.Reporting.PrintPosItem.FillAnnotation(Reportman.Drawing.MetaObject,Reportman.Drawing.MetaPage)
@@ -574,11 +638,13 @@ references:
   - uid: Reportman.Drawing.MetaObject
     name: MetaObject
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
   - name: ','
   - name: " "
   - uid: Reportman.Drawing.MetaPage
     name: MetaPage
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
   - name: )
 - uid: Reportman.Reporting.PrintPosItem.Hidden
   commentId: P:Reportman.Reporting.PrintPosItem.Hidden
@@ -755,6 +821,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -784,6 +851,7 @@ references:
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -808,6 +876,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -837,6 +906,7 @@ references:
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -1306,6 +1376,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -1335,6 +1406,7 @@ references:
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -1359,6 +1431,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -1388,6 +1461,7 @@ references:
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -1412,7 +1486,7 @@ references:
   commentId: T:Reportman.Drawing.PrintOut
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.PrintOut.html
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   name: PrintOut
   nameWithType: PrintOut
   fullName: Reportman.Drawing.PrintOut
@@ -1528,6 +1602,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -1550,6 +1625,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -1581,7 +1657,7 @@ references:
   commentId: T:Reportman.Drawing.Strings
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.Strings.html
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Strings.cs
   name: Strings
   nameWithType: Strings
   fullName: Reportman.Drawing.Strings

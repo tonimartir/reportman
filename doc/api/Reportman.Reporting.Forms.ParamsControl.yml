@@ -19,6 +19,8 @@ items:
   nameWithType: ParamsControl
   fullName: Reportman.Reporting.Forms.ParamsControl
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/ParamsControl.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -459,6 +461,8 @@ items:
   nameWithType: ParamsControl.MaxLabelWidth
   fullName: Reportman.Reporting.Forms.ParamsControl.MaxLabelWidth
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/ParamsControl.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -480,6 +484,8 @@ items:
   nameWithType: ParamsControl.ControlWidth
   fullName: Reportman.Reporting.Forms.ParamsControl.ControlWidth
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/ParamsControl.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -501,6 +507,8 @@ items:
   nameWithType: ParamsControl.Dispose(bool)
   fullName: Reportman.Reporting.Forms.ParamsControl.Dispose(bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/ParamsControl.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -528,6 +536,8 @@ items:
   nameWithType: ParamsControl.ParamsControl()
   fullName: Reportman.Reporting.Forms.ParamsControl.ParamsControl()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/ParamsControl.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -551,6 +561,8 @@ items:
   nameWithType: ParamsControl.SetReport(Report)
   fullName: Reportman.Reporting.Forms.ParamsControl.SetReport(Reportman.Reporting.Report)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/ParamsControl.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -575,6 +587,8 @@ items:
   nameWithType: ParamsControl.FocusFirst()
   fullName: Reportman.Reporting.Forms.ParamsControl.FocusFirst()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/ParamsControl.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -595,6 +609,8 @@ items:
   nameWithType: ParamsControl.AcceptParams()
   fullName: Reportman.Reporting.Forms.ParamsControl.AcceptParams()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/ParamsControl.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms

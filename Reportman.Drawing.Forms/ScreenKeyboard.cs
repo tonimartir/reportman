@@ -7,6 +7,10 @@ using System.Windows.Forms;
 
 namespace Reportman.Drawing.Forms
 {
+    /// <summary>
+    /// On-screen calculator UserControl that renders a 5x5 grid of buttons and an edit line,
+    /// used to enter or compute decimal/password values via mouse or keyboard.
+    /// </summary>
     public partial class ScreenKeyboard : UserControl
     {
         public Form CustomParentForm;
@@ -34,6 +38,10 @@ namespace Reportman.Drawing.Forms
             Color.DarkRed
         };
 
+        /// <summary>
+        /// Identifies each calculator button action, including digits, operators, memory
+        /// functions and the OK/Enter command; values are ordered to match the button layout.
+        /// </summary>
         public enum Command
         {
             MemorySet = 0,
@@ -476,6 +484,10 @@ namespace Reportman.Drawing.Forms
     // that can be performed on it. Its value is stored internally 
     // as a double.
     //
+    /// <summary>
+    /// Value type wrapping a double and the basic arithmetic operations the calculator
+    /// performs on it (add, subtract, multiply, divide, equality).
+    /// </summary>
     public struct Number
     {
         double numValue;
@@ -540,6 +552,10 @@ namespace Reportman.Drawing.Forms
     // 
     // The following class implements a button control for the calculator
     //
+    /// <summary>
+    /// Owner-drawn calculator button: paints itself as a labelled ellipse, tracks selection
+    /// state and hit-testing, and carries the <see cref="ScreenKeyboard.Command"/> it triggers.
+    /// </summary>
     public class ButtonCalc
     {
         private Control MainControl;
@@ -655,6 +671,10 @@ namespace Reportman.Drawing.Forms
     //
     // The following class implements an Edit control.
     //
+    /// <summary>
+    /// Owner-drawn display line for the calculator that renders the current value, optionally
+    /// masking it as a password, and repaints itself when the text changes.
+    /// </summary>
     public class EditCalc
     {
         private Control MainControl;
@@ -729,6 +749,10 @@ namespace Reportman.Drawing.Forms
     // The following class describes a mathematical operation token.
     // 
     //
+    /// <summary>
+    /// A single element of the calculator's expression: either a numeric operand or an
+    /// arithmetic operator, tracking its decimal-entry factor and whether it has been sealed.
+    /// </summary>
     public class TokenCalc
     {
         private TokenCalc.TokenType TypeValue;
@@ -737,6 +761,10 @@ namespace Reportman.Drawing.Forms
         private bool IsSealedValue;
         static private char[] Symbols = { '+', '-', 'x', '/' };
 
+        /// <summary>
+        /// Kind of a <see cref="TokenCalc"/>: one of the four arithmetic operators, a numeric
+        /// value, or Nil to mark the absence of a token.
+        /// </summary>
         public enum TokenType
         {
             Nil = -1,
@@ -833,6 +861,11 @@ namespace Reportman.Drawing.Forms
 
     // TODO: Add description for class Calculator
     //
+    /// <summary>
+    /// Stack-based calculator engine that holds a list of operator/number tokens, applies digit,
+    /// operator and memory commands, evaluates the expression with operator precedence, and can
+    /// display a modal calculator dialog through <see cref="ShowCalc(decimal, ref bool, bool)"/>.
+    /// </summary>
     public class Calculator
     {
         private List<TokenCalc> TokenList = new List<TokenCalc>();

@@ -219,6 +219,10 @@ namespace Reportman.Reporting
 	
 	[TypeConverter(typeof(AliasCollectionItemConverter))]
 #endif
+    /// <summary>
+    /// A single dataset alias entry, pairing an (upper-cased) alias name with the
+    /// DataTable it refers to and tracking the current row used during evaluation.
+    /// </summary>
     public class AliasCollectionItem
     {
         string FAlias;
@@ -252,6 +256,9 @@ namespace Reportman.Reporting
         }
 
     }
+    /// <summary>
+    /// Strongly typed collection of <see cref="AliasCollectionItem"/> entries held by a DatasetAlias component.
+    /// </summary>
     public class AliasCollection : CollectionBase
     {
         public AliasCollectionItem this[int index]

@@ -20,6 +20,8 @@ items:
   nameWithType: DataGridViewNumericUpDownColumn
   fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewNumericUpDownCell.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -101,6 +103,8 @@ items:
   nameWithType: DataGridViewNumericUpDownColumn.DataGridViewNumericUpDownColumn()
   fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.DataGridViewNumericUpDownColumn()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewNumericUpDownCell.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -124,6 +128,8 @@ items:
   nameWithType: DataGridViewNumericUpDownColumn.ToString()
   fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.ToString()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewNumericUpDownCell.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -147,6 +153,8 @@ items:
   nameWithType: DataGridViewNumericUpDownColumn.CellTemplate
   fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.CellTemplate
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewNumericUpDownCell.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -183,6 +191,8 @@ items:
   nameWithType: DataGridViewNumericUpDownColumn.DecimalPlaces
   fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.DecimalPlaces
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewNumericUpDownCell.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -206,6 +216,8 @@ items:
   nameWithType: DataGridViewNumericUpDownColumn.Increment
   fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.Increment
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewNumericUpDownCell.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -229,6 +241,8 @@ items:
   nameWithType: DataGridViewNumericUpDownColumn.Maximum
   fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.Maximum
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewNumericUpDownCell.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -252,6 +266,8 @@ items:
   nameWithType: DataGridViewNumericUpDownColumn.Minimum
   fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.Minimum
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewNumericUpDownCell.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -275,6 +291,8 @@ items:
   nameWithType: DataGridViewNumericUpDownColumn.ThousandsSeparator
   fullName: Reportman.Drawing.Forms.DataGridViewNumericUpDownColumn.ThousandsSeparator
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewNumericUpDownCell.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

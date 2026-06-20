@@ -16,6 +16,8 @@ items:
   nameWithType: DataChange
   fullName: Reportman.Reporting.DataChange
   type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -38,6 +40,8 @@ items:
   nameWithType: DataChange.DataChange(object, nint)
   fullName: Reportman.Reporting.DataChange.DataChange(object, nint)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -64,6 +68,8 @@ items:
   nameWithType: DataChange.Invoke(ReportDataset)
   fullName: Reportman.Reporting.DataChange.Invoke(Reportman.Reporting.ReportDataset)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -85,6 +91,8 @@ items:
   nameWithType: DataChange.BeginInvoke(ReportDataset, AsyncCallback, object)
   fullName: Reportman.Reporting.DataChange.BeginInvoke(Reportman.Reporting.ReportDataset, System.AsyncCallback, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -115,6 +123,8 @@ items:
   nameWithType: DataChange.EndInvoke(IAsyncResult)
   fullName: Reportman.Reporting.DataChange.EndInvoke(System.IAsyncResult)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportDataset.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

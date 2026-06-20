@@ -73,6 +73,8 @@ items:
   nameWithType: DataGridViewAdvanced
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -870,6 +872,8 @@ items:
   nameWithType: DataGridViewAdvanced.DoubleBufferedPerformance
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.DoubleBufferedPerformance
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -889,6 +893,8 @@ items:
   nameWithType: DataGridViewAdvanced.DefaultCellBorderStyle
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.DefaultCellBorderStyle
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -908,6 +914,8 @@ items:
   nameWithType: DataGridViewAdvanced.OnSelectNextRowAfterEnterKey
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.OnSelectNextRowAfterEnterKey
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -927,6 +935,8 @@ items:
   nameWithType: DataGridViewAdvanced.DoubleClickKey
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.DoubleClickKey
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -946,6 +956,8 @@ items:
   nameWithType: DataGridViewAdvanced.NextColumnFocusEnter
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.NextColumnFocusEnter
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -965,6 +977,8 @@ items:
   nameWithType: DataGridViewAdvanced.DoubleClickControl
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.DoubleClickControl
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -984,6 +998,8 @@ items:
   nameWithType: DataGridViewAdvanced.DecimalKeyPadExceptions
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.DecimalKeyPadExceptions
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1003,6 +1019,8 @@ items:
   nameWithType: DataGridViewAdvanced.NewRowLeave
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.NewRowLeave
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1022,6 +1040,8 @@ items:
   nameWithType: DataGridViewAdvanced.DataGridViewAdvanced()
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.DataGridViewAdvanced()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1045,6 +1065,8 @@ items:
   nameWithType: DataGridViewAdvanced.OnParentChanged(EventArgs)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.OnParentChanged(System.EventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1068,6 +1090,8 @@ items:
   nameWithType: DataGridViewAdvanced.OnColumnWidthChanged(DataGridViewColumnEventArgs)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.OnColumnWidthChanged(System.Windows.Forms.DataGridViewColumnEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1091,6 +1115,8 @@ items:
   nameWithType: DataGridViewAdvanced.OnVisibleChanged(EventArgs)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.OnVisibleChanged(System.EventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1114,6 +1140,8 @@ items:
   nameWithType: DataGridViewAdvanced.ProcessDialogKey(Keys)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.ProcessDialogKey(System.Windows.Forms.Keys)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1142,6 +1170,8 @@ items:
   nameWithType: DataGridViewAdvanced.PreProcessMessage(ref Message)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.PreProcessMessage(ref System.Windows.Forms.Message)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1173,6 +1203,8 @@ items:
   nameWithType: DataGridViewAdvanced.ScaleColumns()
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.ScaleColumns()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1191,6 +1223,8 @@ items:
   nameWithType: DataGridViewAdvanced.Dispose(bool)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.Dispose(bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1219,6 +1253,8 @@ items:
   nameWithType: DataGridViewAdvanced.OnLostFocus(EventArgs)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.OnLostFocus(System.EventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1242,6 +1278,8 @@ items:
   nameWithType: DataGridViewAdvanced.OnDataError(bool, DataGridViewDataErrorEventArgs)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.OnDataError(bool, System.Windows.Forms.DataGridViewDataErrorEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1270,6 +1308,8 @@ items:
   nameWithType: DataGridViewAdvanced.GetCurrentDataRow()
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.GetCurrentDataRow()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1290,6 +1330,8 @@ items:
   nameWithType: DataGridViewAdvanced.GetCurrentDataColumn()
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.GetCurrentDataColumn()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1310,6 +1352,8 @@ items:
   nameWithType: DataGridViewAdvanced.GetCurrentColumn()
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.GetCurrentColumn()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1330,6 +1374,8 @@ items:
   nameWithType: DataGridViewAdvanced.GetDataColumn(string)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.GetDataColumn(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1356,6 +1402,8 @@ items:
   nameWithType: DataGridViewAdvanced.GetDataTable()
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.GetDataTable()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1376,6 +1424,8 @@ items:
   nameWithType: DataGridViewAdvanced.PopMenuOpening(object, CancelEventArgs)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.PopMenuOpening(object, System.ComponentModel.CancelEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1402,6 +1452,8 @@ items:
   nameWithType: DataGridViewAdvanced.CreateImagePopUp(DataGridViewColumn)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.CreateImagePopUp(System.Windows.Forms.DataGridViewColumn)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1425,6 +1477,8 @@ items:
   nameWithType: DataGridViewAdvanced.OpenImage()
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.OpenImage()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1443,6 +1497,8 @@ items:
   nameWithType: DataGridViewAdvanced.OnDoubleClick(EventArgs)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.OnDoubleClick(System.EventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1468,6 +1524,8 @@ items:
   nameWithType: DataGridViewAdvanced.OnMouseDown(MouseEventArgs)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.OnMouseDown(System.Windows.Forms.MouseEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1491,6 +1549,8 @@ items:
   nameWithType: DataGridViewAdvanced.OnCurrentCellDirtyStateChanged(EventArgs)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.OnCurrentCellDirtyStateChanged(System.EventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1514,6 +1574,8 @@ items:
   nameWithType: DataGridViewAdvanced.OnFontChanged(EventArgs)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.OnFontChanged(System.EventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1537,6 +1599,8 @@ items:
   nameWithType: DataGridViewAdvanced.InsertRowDataBound()
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.InsertRowDataBound()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1555,6 +1619,8 @@ items:
   nameWithType: DataGridViewAdvanced.DeleteDataBoundSelection(bool)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.DeleteDataBoundSelection(bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1579,6 +1645,8 @@ items:
   nameWithType: DataGridViewAdvanced.PasteFromClipBoardDataBound(bool)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.PasteFromClipBoardDataBound(bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1603,6 +1671,8 @@ items:
   nameWithType: DataGridViewAdvanced.OnRowLeave(DataGridViewCellEventArgs)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.OnRowLeave(System.Windows.Forms.DataGridViewCellEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1626,6 +1696,8 @@ items:
   nameWithType: DataGridViewAdvanced.PasteFromClipBoardDataBoundAdd(bool)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.PasteFromClipBoardDataBoundAdd(bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1650,6 +1722,8 @@ items:
   nameWithType: DataGridViewAdvanced.FinishEdit()
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.FinishEdit()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1670,6 +1744,8 @@ items:
   nameWithType: DataGridViewAdvanced.PasteFromClipBoardDataBoundNewRows()
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.PasteFromClipBoardDataBoundNewRows()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1688,6 +1764,8 @@ items:
   nameWithType: DataGridViewAdvanced.CopySelectionToClipBoard()
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.CopySelectionToClipBoard()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1706,6 +1784,8 @@ items:
   nameWithType: DataGridViewAdvanced.IndexOfDataRow(DataRow)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.IndexOfDataRow(System.Data.DataRow)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1729,6 +1809,8 @@ items:
   nameWithType: DataGridViewAdvanced.OnEditingControlShowing(DataGridViewEditingControlShowingEventArgs)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.OnEditingControlShowing(System.Windows.Forms.DataGridViewEditingControlShowingEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1752,6 +1834,8 @@ items:
   nameWithType: DataGridViewAdvanced.GetNextCell(DataGridView, int, int)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.GetNextCell(System.Windows.Forms.DataGridView, int, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1782,6 +1866,8 @@ items:
   nameWithType: DataGridViewAdvanced.GetNextCell(int, int)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.GetNextCell(int, int)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1810,6 +1896,8 @@ items:
   nameWithType: DataGridViewAdvanced.DoDoubleClick(Control)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.DoDoubleClick(System.Windows.Forms.Control)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1831,6 +1919,8 @@ items:
   nameWithType: DataGridViewAdvanced.SelectCellDataBound(DataRow, string)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.SelectCellDataBound(System.Data.DataRow, string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1857,6 +1947,8 @@ items:
   nameWithType: DataGridViewAdvanced.OnSortCompare(DataGridViewSortCompareEventArgs)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.OnSortCompare(System.Windows.Forms.DataGridViewSortCompareEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1880,6 +1972,8 @@ items:
   nameWithType: DataGridViewAdvanced.InvalidateRowDatabound(DataRow)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.InvalidateRowDatabound(System.Data.DataRow)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1901,6 +1995,8 @@ items:
   nameWithType: DataGridViewAdvanced.FindText(DataGridView, string)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.FindText(System.Windows.Forms.DataGridView, string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1927,6 +2023,8 @@ items:
   nameWithType: DataGridViewAdvanced.ScrollPageDown()
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.ScrollPageDown()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1945,6 +2043,8 @@ items:
   nameWithType: DataGridViewAdvanced.ScrollPageUp()
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.ScrollPageUp()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1963,6 +2063,8 @@ items:
   nameWithType: DataGridViewAdvanced.SaveToCSV(string, string, Encoding)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.SaveToCSV(string, string, System.Text.Encoding)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1991,6 +2093,8 @@ items:
   nameWithType: DataGridViewAdvanced.SaveToExcel(string)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.SaveToExcel(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -2015,6 +2119,8 @@ items:
   nameWithType: DataGridViewAdvanced.SaveToExcel(DataGridView, string, string, bool)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.SaveToExcel(System.Windows.Forms.DataGridView, string, string, bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -2047,6 +2153,8 @@ items:
   nameWithType: DataGridViewAdvanced.SaveToExcelOleAutomation(string)
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.SaveToExcelOleAutomation(string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -2071,6 +2179,8 @@ items:
   nameWithType: DataGridViewAdvanced.AllowUserToInsertRows
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.AllowUserToInsertRows
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -2094,6 +2204,8 @@ items:
   nameWithType: DataGridViewAdvanced.KeyPreview
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.KeyPreview
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -2117,6 +2229,8 @@ items:
   nameWithType: DataGridViewAdvanced.DoubleClicOpenImage
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.DoubleClicOpenImage
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -2140,6 +2254,8 @@ items:
   nameWithType: DataGridViewAdvanced.CreatePopUpForImage
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.CreatePopUpForImage
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -2163,6 +2279,8 @@ items:
   nameWithType: DataGridViewAdvanced.AdjustColumnsFontChange
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.AdjustColumnsFontChange
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -2186,6 +2304,8 @@ items:
   nameWithType: DataGridViewAdvanced.ValidateRowOnColumnChange
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.ValidateRowOnColumnChange
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -2209,6 +2329,8 @@ items:
   nameWithType: DataGridViewAdvanced.EnterAsTab
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.EnterAsTab
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -2235,6 +2357,8 @@ items:
   nameWithType: DataGridViewAdvanced.SkipReadOnly
   fullName: Reportman.Drawing.Forms.DataGridViewAdvanced.SkipReadOnly
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

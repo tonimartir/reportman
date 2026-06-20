@@ -7,6 +7,10 @@ using System.Linq;
 
 namespace Reportman.Drawing
 {
+    /// <summary>
+    /// Static helpers for inspecting and decoding raw image streams, reading JPEG dimensions and
+    /// converting BMP/DIB pixel data into the Adobe PDF compatible form used by the render drivers.
+    /// </summary>
     public static class BitmapUtil
     {
         /// <summary>

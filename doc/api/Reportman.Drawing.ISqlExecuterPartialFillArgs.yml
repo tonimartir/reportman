@@ -15,9 +15,16 @@ items:
   nameWithType: ISqlExecuterPartialFillArgs
   fullName: Reportman.Drawing.ISqlExecuterPartialFillArgs
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    Arguments for a partial-fill event, carrying the total expected record count and the
+
+    <xref href="System.Data.DataTable" data-throw-if-not-resolved="false"></xref> being populated.
+  example: []
   syntax:
     content: public class ISqlExecuterPartialFillArgs
     content.vb: Public Class ISqlExecuterPartialFillArgs
@@ -42,6 +49,8 @@ items:
   nameWithType: ISqlExecuterPartialFillArgs.TotalCount
   fullName: Reportman.Drawing.ISqlExecuterPartialFillArgs.TotalCount
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -61,6 +70,8 @@ items:
   nameWithType: ISqlExecuterPartialFillArgs.Table
   fullName: Reportman.Drawing.ISqlExecuterPartialFillArgs.Table
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -80,6 +91,8 @@ items:
   nameWithType: ISqlExecuterPartialFillArgs.ISqlExecuterPartialFillArgs(int, DataTable)
   fullName: Reportman.Drawing.ISqlExecuterPartialFillArgs.ISqlExecuterPartialFillArgs(int, System.Data.DataTable)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -96,6 +109,14 @@ items:
   fullName.vb: Reportman.Drawing.ISqlExecuterPartialFillArgs.New(Integer, System.Data.DataTable)
   name.vb: New(Integer, DataTable)
 references:
+- uid: System.Data.DataTable
+  commentId: T:System.Data.DataTable
+  parent: System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable
+  name: DataTable
+  nameWithType: DataTable
+  fullName: System.Data.DataTable
 - uid: Reportman.Drawing
   commentId: N:Reportman.Drawing
   isExternal: true
@@ -353,32 +374,6 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
   - name: (
   - name: )
-- uid: System
-  commentId: N:System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System
-  nameWithType: System
-  fullName: System
-- uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.int32
-  name: int
-  nameWithType: int
-  fullName: int
-  nameWithType.vb: Integer
-  fullName.vb: Integer
-  name.vb: Integer
-- uid: System.Data.DataTable
-  commentId: T:System.Data.DataTable
-  parent: System.Data
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.data.datatable
-  name: DataTable
-  nameWithType: DataTable
-  fullName: System.Data.DataTable
 - uid: System.Data
   commentId: N:System.Data
   isExternal: true
@@ -406,6 +401,24 @@ references:
     name: Data
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.data
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
 - uid: Reportman.Drawing.ISqlExecuterPartialFillArgs.#ctor*
   commentId: Overload:Reportman.Drawing.ISqlExecuterPartialFillArgs.#ctor
   isExternal: true

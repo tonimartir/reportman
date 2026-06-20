@@ -15,9 +15,16 @@ items:
   nameWithType: ToolStripAdvanced
   fullName: Reportman.Drawing.Forms.ToolStripAdvanced
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    A ToolStrip with DPI-scaled image sizing and a workaround that makes its buttons
+
+    respond on the first click even when the strip is not the active control.
+  example: []
   syntax:
     content: 'public class ToolStripAdvanced : ToolStrip, IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable'
     content.vb: Public Class ToolStripAdvanced Inherits ToolStrip Implements IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable
@@ -510,6 +517,8 @@ items:
   nameWithType: ToolStripAdvanced.WndProc(ref Message)
   fullName: Reportman.Drawing.Forms.ToolStripAdvanced.WndProc(ref System.Windows.Forms.Message)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -536,6 +545,8 @@ items:
   nameWithType: ToolStripAdvanced.ToolStripAdvanced()
   fullName: Reportman.Drawing.Forms.ToolStripAdvanced.ToolStripAdvanced()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -557,6 +568,8 @@ items:
   nameWithType: ToolStripAdvanced.ImageScalingSize
   fullName: Reportman.Drawing.Forms.ToolStripAdvanced.ImageScalingSize
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

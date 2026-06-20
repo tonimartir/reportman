@@ -16,9 +16,16 @@ items:
   nameWithType: ParamsConverter
   fullName: Reportman.Reporting.ParamsConverter
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Params.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
+  summary: >-
+    Newtonsoft.Json converter that serializes a <xref href="Reportman.Reporting.Params" data-throw-if-not-resolved="false"></xref> collection as a plain JSON array
+
+    of parameters and reconstructs it when reading.
+  example: []
   syntax:
     content: 'public class ParamsConverter : JsonConverter'
     content.vb: Public Class ParamsConverter Inherits JsonConverter
@@ -46,6 +53,8 @@ items:
   nameWithType: ParamsConverter.CanConvert(Type)
   fullName: Reportman.Reporting.ParamsConverter.CanConvert(System.Type)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Params.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -71,6 +80,8 @@ items:
   nameWithType: ParamsConverter.WriteJson(JsonWriter, object, JsonSerializer)
   fullName: Reportman.Reporting.ParamsConverter.WriteJson(Newtonsoft.Json.JsonWriter, object, Newtonsoft.Json.JsonSerializer)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Params.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -101,6 +112,8 @@ items:
   nameWithType: ParamsConverter.ReadJson(JsonReader, Type, object, JsonSerializer)
   fullName: Reportman.Reporting.ParamsConverter.ReadJson(Newtonsoft.Json.JsonReader, System.Type, object, Newtonsoft.Json.JsonSerializer)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Params.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -135,6 +148,8 @@ items:
   nameWithType: ParamsConverter.ParamsConverter()
   fullName: Reportman.Reporting.ParamsConverter.ParamsConverter()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Params.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -146,6 +161,14 @@ items:
   fullName.vb: Reportman.Reporting.ParamsConverter.New()
   name.vb: New()
 references:
+- uid: Reportman.Reporting.Params
+  commentId: T:Reportman.Reporting.Params
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.Params.html
+  name: Params
+  nameWithType: Params
+  fullName: Reportman.Reporting.Params
 - uid: Reportman.Reporting
   commentId: N:Reportman.Reporting
   isExternal: true

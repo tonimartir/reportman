@@ -7,6 +7,11 @@ using System.Windows.Forms;
 
 namespace Reportman.Drawing.Forms
 {
+    /// <summary>
+    /// A borderless form that replaces the standard window caption with custom-drawn chrome,
+    /// providing its own resize hit-testing, maximize/restore/minimize buttons hosted on a
+    /// tool strip, full-screen mode, and persistence of window bounds between sessions.
+    /// </summary>
     public partial class NoTitleForm : Form
     {
         ReSize resize = new ReSize();     // ReSize Class "/\" To Help Resize Form <None Style>
@@ -912,10 +917,18 @@ namespace Reportman.Drawing.Forms
             SwitchMaximizeMinimize();
         }
     }
+    /// <summary>
+    /// Marker interface implemented by tool strip items that allow a custom disabled
+    /// (grayed-out) appearance to be rendered for their image and text.
+    /// </summary>
     public interface IDisplayDisable
     {
         bool DisplayDisable();
     }
+    /// <summary>
+    /// A tool strip button that opts in to custom disabled-state rendering by implementing
+    /// <see cref="IDisplayDisable"/>.
+    /// </summary>
     public class ToolStripButtonAllowDisable : ToolStripButton, IDisplayDisable
     {
         public bool DisplayDisable()
@@ -923,6 +936,10 @@ namespace Reportman.Drawing.Forms
             return true;
         }
     }
+    /// <summary>
+    /// A tool strip drop-down button that opts in to custom disabled-state rendering by
+    /// implementing <see cref="IDisplayDisable"/>.
+    /// </summary>
     public class ToolStripDropDownButtonAllowDisable : ToolStripDropDownButton, IDisplayDisable
     {
         public bool DisplayDisable()

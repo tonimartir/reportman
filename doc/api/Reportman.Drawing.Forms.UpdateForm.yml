@@ -17,9 +17,16 @@ items:
   nameWithType: UpdateForm
   fullName: Reportman.Drawing.Forms.UpdateForm
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/UpdateForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    Modal dialog that copies a set of files to update an installation via an <xref href="Reportman.Drawing.Updater" data-throw-if-not-resolved="false"></xref>,
+
+    showing per-file and byte-level progress and optionally backing up replaced files.
+  example: []
   syntax:
     content: 'public class UpdateForm : Form, IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable, IContainerControl'
     content.vb: Public Class UpdateForm Inherits Form Implements IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable, IContainerControl
@@ -585,6 +592,8 @@ items:
   nameWithType: UpdateForm.UpdateForm()
   fullName: Reportman.Drawing.Forms.UpdateForm.UpdateForm()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/UpdateForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -606,6 +615,8 @@ items:
   nameWithType: UpdateForm.DoUpdate(string, DataTable, bool, bool)
   fullName: Reportman.Drawing.Forms.UpdateForm.DoUpdate(string, System.Data.DataTable, bool, bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/UpdateForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -636,6 +647,8 @@ items:
   nameWithType: UpdateForm.PerformUpdate()
   fullName: Reportman.Drawing.Forms.UpdateForm.PerformUpdate()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/UpdateForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -654,6 +667,8 @@ items:
   nameWithType: UpdateForm.CopyProgress(string, int, int, int, int, ref bool)
   fullName: Reportman.Drawing.Forms.UpdateForm.CopyProgress(string, int, int, int, int, ref bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/UpdateForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -688,6 +703,8 @@ items:
   nameWithType: UpdateForm.Dispose(bool)
   fullName: Reportman.Drawing.Forms.UpdateForm.Dispose(bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/UpdateForm.designer.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -706,6 +723,13 @@ items:
   fullName.vb: Reportman.Drawing.Forms.UpdateForm.Dispose(Boolean)
   name.vb: Dispose(Boolean)
 references:
+- uid: Reportman.Drawing.Updater
+  commentId: T:Reportman.Drawing.Updater
+  isExternal: true
+  href: Reportman.Drawing.Updater.html
+  name: Updater
+  nameWithType: Updater
+  fullName: Reportman.Drawing.Updater
 - uid: Reportman.Drawing.Forms
   commentId: N:Reportman.Drawing.Forms
   isExternal: true

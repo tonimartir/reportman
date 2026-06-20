@@ -16,6 +16,8 @@ items:
   nameWithType: ReportWriter
   fullName: Reportman.Reporting.ReportWriter
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportReader.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -45,6 +47,8 @@ items:
   nameWithType: ReportWriter.ReportWriter(BaseReport)
   fullName: Reportman.Reporting.ReportWriter.ReportWriter(Reportman.Reporting.BaseReport)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportReader.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -75,6 +79,8 @@ items:
   nameWithType: ReportWriter.WriteComponents(List<PrintPosItem>)
   fullName: Reportman.Reporting.ReportWriter.WriteComponents(System.Collections.Generic.List<Reportman.Reporting.PrintPosItem>)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportReader.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -101,6 +107,8 @@ items:
   nameWithType: ReportWriter.SaveToStream(Stream, StreamVersion)
   fullName: Reportman.Reporting.ReportWriter.SaveToStream(System.IO.Stream, Reportman.Reporting.StreamVersion)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportReader.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -127,6 +135,8 @@ items:
   nameWithType: ReportWriter.SaveToFile(string, StreamVersion)
   fullName: Reportman.Reporting.ReportWriter.SaveToFile(string, Reportman.Reporting.StreamVersion)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportReader.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

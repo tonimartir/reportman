@@ -6,6 +6,10 @@ using System.IO;
 
 namespace Reportman.Reporting
 {
+    /// <summary>
+    /// A positioned report item that prints an image, taken either from an embedded stream or from
+    /// an expression, honoring the draw style, resolution, rotation and image-sharing settings.
+    /// </summary>
     public class ImageItem : PrintPosItem, IDisposable
     {
         private const int DEF_DRAWWIDTH = 500;

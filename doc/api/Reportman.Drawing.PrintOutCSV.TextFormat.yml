@@ -18,9 +18,16 @@ items:
   nameWithType: PrintOutCSV.TextFormat
   fullName: Reportman.Drawing.PrintOutCSV.TextFormat
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutCSV.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    Captures the visual formatting (alignment, font size, family, style flags, and
+
+    color) of a text cell when exporting a metafile to a tabular array.
+  example: []
   syntax:
     content: public class PrintOutCSV.TextFormat
     content.vb: Public Class PrintOutCSV.TextFormat
@@ -45,6 +52,8 @@ items:
   nameWithType: PrintOutCSV.TextFormat.Alignment
   fullName: Reportman.Drawing.PrintOutCSV.TextFormat.Alignment
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutCSV.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -64,6 +73,8 @@ items:
   nameWithType: PrintOutCSV.TextFormat.FontSize
   fullName: Reportman.Drawing.PrintOutCSV.TextFormat.FontSize
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutCSV.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -83,6 +94,8 @@ items:
   nameWithType: PrintOutCSV.TextFormat.FamilyName
   fullName: Reportman.Drawing.PrintOutCSV.TextFormat.FamilyName
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutCSV.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -102,6 +115,8 @@ items:
   nameWithType: PrintOutCSV.TextFormat.Style
   fullName: Reportman.Drawing.PrintOutCSV.TextFormat.Style
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutCSV.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -121,6 +136,8 @@ items:
   nameWithType: PrintOutCSV.TextFormat.FontColor
   fullName: Reportman.Drawing.PrintOutCSV.TextFormat.FontColor
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutCSV.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -140,6 +157,8 @@ items:
   nameWithType: PrintOutCSV.TextFormat.TextFormat()
   fullName: Reportman.Drawing.PrintOutCSV.TextFormat.TextFormat()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutCSV.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

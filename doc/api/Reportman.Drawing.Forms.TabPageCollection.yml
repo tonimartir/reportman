@@ -21,9 +21,16 @@ items:
   nameWithType: TabPageCollection
   fullName: Reportman.Drawing.Forms.TabPageCollection
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    A strongly typed, event-raising collection of <xref href="Reportman.Drawing.Forms.TabPageAdvanced" data-throw-if-not-resolved="false"></xref> pages
+
+    belonging to a <xref href="Reportman.Drawing.Forms.TabControlAdvanced" data-throw-if-not-resolved="false"></xref>, with lookup by index or title.
+  example: []
   syntax:
     content: 'public class TabPageCollection : CollectionWithEvents, IList, ICollection, IEnumerable'
     content.vb: Public Class TabPageCollection Inherits CollectionWithEvents Implements IList, ICollection, IEnumerable
@@ -78,6 +85,8 @@ items:
   nameWithType: TabPageCollection.Add(TabPageAdvanced)
   fullName: Reportman.Drawing.Forms.TabPageCollection.Add(Reportman.Drawing.Forms.TabPageAdvanced)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -101,6 +110,8 @@ items:
   nameWithType: TabPageCollection.AddRange(TabPageAdvanced[])
   fullName: Reportman.Drawing.Forms.TabPageCollection.AddRange(Reportman.Drawing.Forms.TabPageAdvanced[])
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -125,6 +136,8 @@ items:
   nameWithType: TabPageCollection.Remove(TabPageAdvanced)
   fullName: Reportman.Drawing.Forms.TabPageCollection.Remove(Reportman.Drawing.Forms.TabPageAdvanced)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -146,6 +159,8 @@ items:
   nameWithType: TabPageCollection.Insert(int, TabPageAdvanced)
   fullName: Reportman.Drawing.Forms.TabPageCollection.Insert(int, Reportman.Drawing.Forms.TabPageAdvanced)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -172,6 +187,8 @@ items:
   nameWithType: TabPageCollection.Contains(TabPageAdvanced)
   fullName: Reportman.Drawing.Forms.TabPageCollection.Contains(Reportman.Drawing.Forms.TabPageAdvanced)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -195,6 +212,8 @@ items:
   nameWithType: TabPageCollection.IndexOf(TabPageAdvanced)
   fullName: Reportman.Drawing.Forms.TabPageCollection.IndexOf(Reportman.Drawing.Forms.TabPageAdvanced)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -218,6 +237,8 @@ items:
   nameWithType: TabPageCollection.TabPageCollection()
   fullName: Reportman.Drawing.Forms.TabPageCollection.TabPageCollection()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -239,6 +260,8 @@ items:
   nameWithType: TabPageCollection.this[int]
   fullName: Reportman.Drawing.Forms.TabPageCollection.this[int]
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -265,6 +288,8 @@ items:
   nameWithType: TabPageCollection.this[string]
   fullName: Reportman.Drawing.Forms.TabPageCollection.this[string]
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -281,6 +306,22 @@ items:
   fullName.vb: Reportman.Drawing.Forms.TabPageCollection.this[](String)
   name.vb: this[](String)
 references:
+- uid: Reportman.Drawing.Forms.TabPageAdvanced
+  commentId: T:Reportman.Drawing.Forms.TabPageAdvanced
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabPageAdvanced.html
+  name: TabPageAdvanced
+  nameWithType: TabPageAdvanced
+  fullName: Reportman.Drawing.Forms.TabPageAdvanced
+- uid: Reportman.Drawing.Forms.TabControlAdvanced
+  commentId: T:Reportman.Drawing.Forms.TabControlAdvanced
+  parent: Reportman.Drawing.Forms
+  isExternal: true
+  href: Reportman.Drawing.Forms.TabControlAdvanced.html
+  name: TabControlAdvanced
+  nameWithType: TabControlAdvanced
+  fullName: Reportman.Drawing.Forms.TabControlAdvanced
 - uid: Reportman.Drawing.Forms
   commentId: N:Reportman.Drawing.Forms
   isExternal: true
@@ -1235,14 +1276,6 @@ references:
   name: Add
   nameWithType: TabPageCollection.Add
   fullName: Reportman.Drawing.Forms.TabPageCollection.Add
-- uid: Reportman.Drawing.Forms.TabPageAdvanced
-  commentId: T:Reportman.Drawing.Forms.TabPageAdvanced
-  parent: Reportman.Drawing.Forms
-  isExternal: true
-  href: Reportman.Drawing.Forms.TabPageAdvanced.html
-  name: TabPageAdvanced
-  nameWithType: TabPageAdvanced
-  fullName: Reportman.Drawing.Forms.TabPageAdvanced
 - uid: Reportman.Drawing.Forms.TabPageCollection.AddRange*
   commentId: Overload:Reportman.Drawing.Forms.TabPageCollection.AddRange
   isExternal: true

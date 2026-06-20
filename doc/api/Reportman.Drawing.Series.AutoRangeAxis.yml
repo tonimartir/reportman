@@ -17,9 +17,16 @@ items:
   nameWithType: Series.AutoRangeAxis
   fullName: Reportman.Drawing.Series.AutoRangeAxis
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    Controls how a chart axis range is computed: from explicit bounds, or automatically
+
+    for both ends, only the upper bound, only the lower bound, or not at all.
+  example: []
   syntax:
     content: public enum Series.AutoRangeAxis
     content.vb: Public Enum Series.AutoRangeAxis
@@ -34,6 +41,8 @@ items:
   nameWithType: Series.AutoRangeAxis.Default
   fullName: Reportman.Drawing.Series.AutoRangeAxis.Default
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -52,6 +61,8 @@ items:
   nameWithType: Series.AutoRangeAxis.AutoBoth
   fullName: Reportman.Drawing.Series.AutoRangeAxis.AutoBoth
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -70,6 +81,8 @@ items:
   nameWithType: Series.AutoRangeAxis.AutoUpper
   fullName: Reportman.Drawing.Series.AutoRangeAxis.AutoUpper
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -88,6 +101,8 @@ items:
   nameWithType: Series.AutoRangeAxis.AutoLower
   fullName: Reportman.Drawing.Series.AutoRangeAxis.AutoLower
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -106,6 +121,8 @@ items:
   nameWithType: Series.AutoRangeAxis.None
   fullName: Reportman.Drawing.Series.AutoRangeAxis.None
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

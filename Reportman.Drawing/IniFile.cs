@@ -25,6 +25,11 @@ using System.IO;
 
 namespace Reportman.Drawing
 {
+    /// <summary>
+    /// Reads and writes classic INI configuration files, exposing typed accessors for
+    /// string, integer, decimal, boolean and date/time values grouped into named sections,
+    /// with support for loading from a file or stream and saving back.
+    /// </summary>
     public class IniFile
     {
         string fname;
@@ -295,6 +300,10 @@ namespace Reportman.Drawing
         }
     }
 
+    /// <summary>
+    /// A single section of an <see cref="IniFile"/>, holding its key/value pairs as a
+    /// sorted list keyed by value name.
+    /// </summary>
     public class IniSection
     {
         public SortedList<string, string> Values;

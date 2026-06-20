@@ -17,9 +17,13 @@ items:
   nameWithType: SearchWindowKeyOperation
   fullName: Reportman.Drawing.Forms.SearchWindowKeyOperation
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: Navigation keystrokes forwarded to a search window so it can move its selection or accept the current entry.
+  example: []
   syntax:
     content: public enum SearchWindowKeyOperation
     content.vb: Public Enum SearchWindowKeyOperation
@@ -34,6 +38,8 @@ items:
   nameWithType: SearchWindowKeyOperation.Up
   fullName: Reportman.Drawing.Forms.SearchWindowKeyOperation.Up
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -52,6 +58,8 @@ items:
   nameWithType: SearchWindowKeyOperation.Down
   fullName: Reportman.Drawing.Forms.SearchWindowKeyOperation.Down
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -70,6 +78,8 @@ items:
   nameWithType: SearchWindowKeyOperation.PageUp
   fullName: Reportman.Drawing.Forms.SearchWindowKeyOperation.PageUp
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -88,6 +98,8 @@ items:
   nameWithType: SearchWindowKeyOperation.PageDown
   fullName: Reportman.Drawing.Forms.SearchWindowKeyOperation.PageDown
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -106,6 +118,8 @@ items:
   nameWithType: SearchWindowKeyOperation.Return
   fullName: Reportman.Drawing.Forms.SearchWindowKeyOperation.Return
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataGridViewColumnAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

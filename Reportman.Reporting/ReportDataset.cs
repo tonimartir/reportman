@@ -41,8 +41,17 @@ namespace Reportman.Reporting
     /// </remarks>
     public class ReportDataset : DataTable
     {
+        /// <summary>
+        /// Callback invoked after a record has been fetched, allowing the consumer to inspect or post-process the new row.
+        /// </summary>
         public delegate void UpdateDataEvent(object sender, DataRow xrow);
+        /// <summary>
+        /// Asynchronous callback invoked when a record is fetched, receiving the raw column values and target table for deferred processing.
+        /// </summary>
         public delegate System.Threading.Tasks.Task UpdateDataEventAsync(object sender, DataRow xrow, object[] values, DataTable newtable);
+        /// <summary>
+        /// Callback invoked once the table schema is built; returns true to request that all rows be loaded into memory.
+        /// </summary>
         public delegate bool CreateTableEvent(object sender, DataTable xtable);
 
         public UpdateDataEvent OnUpdateData;

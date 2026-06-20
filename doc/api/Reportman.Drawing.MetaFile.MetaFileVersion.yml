@@ -9,6 +9,7 @@ items:
   - Reportman.Drawing.MetaFile.MetaFileVersion.MetaVersion2_4
   - Reportman.Drawing.MetaFile.MetaFileVersion.MetaVersion3_0
   - Reportman.Drawing.MetaFile.MetaFileVersion.MetaVersion4_0
+  - Reportman.Drawing.MetaFile.MetaFileVersion.MetaVersion4_1
   langs:
   - csharp
   - vb
@@ -16,9 +17,16 @@ items:
   nameWithType: MetaFile.MetaFileVersion
   fullName: Reportman.Drawing.MetaFile.MetaFileVersion
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    On-disk format version of a metafile, controlling which features (PDF/A metadata,
+
+    embedded files, recalculated printer fonts) are written and how the file is parsed.
+  example: []
   syntax:
     content: public enum MetaFile.MetaFileVersion
     content.vb: Public Enum MetaFile.MetaFileVersion
@@ -33,6 +41,8 @@ items:
   nameWithType: MetaFile.MetaFileVersion.MetaVersion2_2
   fullName: Reportman.Drawing.MetaFile.MetaFileVersion.MetaVersion2_2
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -51,6 +61,8 @@ items:
   nameWithType: MetaFile.MetaFileVersion.MetaVersion2_4
   fullName: Reportman.Drawing.MetaFile.MetaFileVersion.MetaVersion2_4
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -69,6 +81,8 @@ items:
   nameWithType: MetaFile.MetaFileVersion.MetaVersion3_0
   fullName: Reportman.Drawing.MetaFile.MetaFileVersion.MetaVersion3_0
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -87,11 +101,33 @@ items:
   nameWithType: MetaFile.MetaFileVersion.MetaVersion4_0
   fullName: Reportman.Drawing.MetaFile.MetaFileVersion.MetaVersion4_0
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
   syntax:
     content: MetaVersion4_0 = 3
+    return:
+      type: Reportman.Drawing.MetaFile.MetaFileVersion
+- uid: Reportman.Drawing.MetaFile.MetaFileVersion.MetaVersion4_1
+  commentId: F:Reportman.Drawing.MetaFile.MetaFileVersion.MetaVersion4_1
+  id: MetaVersion4_1
+  parent: Reportman.Drawing.MetaFile.MetaFileVersion
+  langs:
+  - csharp
+  - vb
+  name: MetaVersion4_1
+  nameWithType: MetaFile.MetaFileVersion.MetaVersion4_1
+  fullName: Reportman.Drawing.MetaFile.MetaFileVersion.MetaVersion4_1
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
+  assemblies:
+  - Reportman.Drawing
+  namespace: Reportman.Drawing
+  syntax:
+    content: MetaVersion4_1 = 4
     return:
       type: Reportman.Drawing.MetaFile.MetaFileVersion
 references:

@@ -18,9 +18,16 @@ items:
   nameWithType: MemStreams
   fullName: Reportman.Drawing.MemStreams
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    Growable list of in-memory streams that spills to temporary files once the
+
+    total buffered size exceeds a threshold, keeping memory use bounded.
+  example: []
   syntax:
     content: 'public class MemStreams : IDisposable'
     content.vb: Public Class MemStreams Implements IDisposable
@@ -47,6 +54,8 @@ items:
   nameWithType: MemStreams.MemStreams()
   fullName: Reportman.Drawing.MemStreams.MemStreams()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -68,6 +77,8 @@ items:
   nameWithType: MemStreams.Clear()
   fullName: Reportman.Drawing.MemStreams.Clear()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -86,6 +97,8 @@ items:
   nameWithType: MemStreams.Add(MemoryStream)
   fullName: Reportman.Drawing.MemStreams.Add(System.IO.MemoryStream)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -107,6 +120,8 @@ items:
   nameWithType: MemStreams.Dispose()
   fullName: Reportman.Drawing.MemStreams.Dispose()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -128,6 +143,8 @@ items:
   nameWithType: MemStreams.this[int]
   fullName: Reportman.Drawing.MemStreams.this[int]
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -154,6 +171,8 @@ items:
   nameWithType: MemStreams.Count
   fullName: Reportman.Drawing.MemStreams.Count
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

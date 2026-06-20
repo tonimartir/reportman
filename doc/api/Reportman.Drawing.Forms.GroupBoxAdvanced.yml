@@ -17,9 +17,16 @@ items:
   nameWithType: GroupBoxAdvanced
   fullName: Reportman.Drawing.Forms.GroupBoxAdvanced
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/GroupBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
+  summary: >-
+    A GroupBox subclass that supports customizable border and caption text colors,
+
+    drawing its frame and title with the configured BorderColor and TextColor.
+  example: []
   syntax:
     content: 'public class GroupBoxAdvanced : GroupBox, IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable'
     content.vb: Public Class GroupBoxAdvanced Inherits GroupBox Implements IDropTarget, ISynchronizeInvoke, IWin32Window, IBindableComponent, IComponent, IDisposable
@@ -439,6 +446,8 @@ items:
   nameWithType: GroupBoxAdvanced.GroupBoxAdvanced()
   fullName: Reportman.Drawing.Forms.GroupBoxAdvanced.GroupBoxAdvanced()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/GroupBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -460,6 +469,8 @@ items:
   nameWithType: GroupBoxAdvanced.OnPaint(PaintEventArgs)
   fullName: Reportman.Drawing.Forms.GroupBoxAdvanced.OnPaint(System.Windows.Forms.PaintEventArgs)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/GroupBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -483,6 +494,8 @@ items:
   nameWithType: GroupBoxAdvanced.Dispose(bool)
   fullName: Reportman.Drawing.Forms.GroupBoxAdvanced.Dispose(bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/GroupBoxAdvanced.designer.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -511,6 +524,8 @@ items:
   nameWithType: GroupBoxAdvanced.BorderColor
   fullName: Reportman.Drawing.Forms.GroupBoxAdvanced.BorderColor
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/GroupBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -532,6 +547,8 @@ items:
   nameWithType: GroupBoxAdvanced.TextColor
   fullName: Reportman.Drawing.Forms.GroupBoxAdvanced.TextColor
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/GroupBoxAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

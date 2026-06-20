@@ -2,6 +2,10 @@
 
 namespace Reportman.Reporting.Forms
 {
+    /// <summary>
+    /// Exports the contents of a Windows Forms DataGridView to a generated Report, producing
+    /// a .rep file and a PDF that mirror the grid's visible columns, headers and cell alignment.
+    /// </summary>
     public class GridExport
     {
         private static void SetAlignment(Reportman.Reporting.PrintItemText label, System.Windows.Forms.DataGridViewCellStyle cellstyle)

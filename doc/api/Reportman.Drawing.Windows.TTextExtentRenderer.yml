@@ -5,7 +5,7 @@ items:
   id: TTextExtentRenderer
   parent: Reportman.Drawing.Windows
   children:
-  - Reportman.Drawing.Windows.TTextExtentRenderer.#ctor(System.String)
+  - Reportman.Drawing.Windows.TTextExtentRenderer.#ctor(System.String,System.Collections.Generic.List{Reportman.Drawing.HtmlFormatRun})
   - Reportman.Drawing.Windows.TTextExtentRenderer.DrawGlyphRun(System.Object,System.Single,System.Single,SharpDX.Direct2D1.MeasuringMode,SharpDX.DirectWrite.GlyphRun,SharpDX.DirectWrite.GlyphRunDescription,SharpDX.ComObject)
   - Reportman.Drawing.Windows.TTextExtentRenderer.DrawInlineObject(System.Object,System.Single,System.Single,SharpDX.DirectWrite.InlineObject,System.Boolean,System.Boolean,SharpDX.ComObject)
   - Reportman.Drawing.Windows.TTextExtentRenderer.DrawStrikethrough(System.Object,System.Single,System.Single,SharpDX.DirectWrite.Strikethrough@,SharpDX.ComObject)
@@ -23,9 +23,18 @@ items:
   nameWithType: TTextExtentRenderer
   fullName: Reportman.Drawing.Windows.TTextExtentRenderer
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/DirectWriteRenderer.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
+  summary: >-
+    Custom DirectWrite text renderer that does not draw, but instead captures glyph
+
+    indices, advances, offsets and per-run formatting into glyph and line lists for
+
+    measuring text extents and feeding the metafile.
+  example: []
   syntax:
     content: 'public class TTextExtentRenderer : TextRendererBase, TextRenderer, PixelSnapping, IUnknown, ICallbackable, IDisposable'
     content.vb: Public Class TTextExtentRenderer Inherits TextRendererBase Implements TextRenderer, PixelSnapping, IUnknown, ICallbackable, IDisposable
@@ -67,6 +76,8 @@ items:
   nameWithType: TTextExtentRenderer._fontFace
   fullName: Reportman.Drawing.Windows.TTextExtentRenderer._fontFace
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/DirectWriteRenderer.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -75,30 +86,34 @@ items:
     return:
       type: SharpDX.DirectWrite.FontFace
     content.vb: Public _fontFace As FontFace
-- uid: Reportman.Drawing.Windows.TTextExtentRenderer.#ctor(System.String)
-  commentId: M:Reportman.Drawing.Windows.TTextExtentRenderer.#ctor(System.String)
-  id: '#ctor(System.String)'
+- uid: Reportman.Drawing.Windows.TTextExtentRenderer.#ctor(System.String,System.Collections.Generic.List{Reportman.Drawing.HtmlFormatRun})
+  commentId: M:Reportman.Drawing.Windows.TTextExtentRenderer.#ctor(System.String,System.Collections.Generic.List{Reportman.Drawing.HtmlFormatRun})
+  id: '#ctor(System.String,System.Collections.Generic.List{Reportman.Drawing.HtmlFormatRun})'
   parent: Reportman.Drawing.Windows.TTextExtentRenderer
   langs:
   - csharp
   - vb
-  name: TTextExtentRenderer(string)
-  nameWithType: TTextExtentRenderer.TTextExtentRenderer(string)
-  fullName: Reportman.Drawing.Windows.TTextExtentRenderer.TTextExtentRenderer(string)
+  name: TTextExtentRenderer(string, List<HtmlFormatRun>)
+  nameWithType: TTextExtentRenderer.TTextExtentRenderer(string, List<HtmlFormatRun>)
+  fullName: Reportman.Drawing.Windows.TTextExtentRenderer.TTextExtentRenderer(string, System.Collections.Generic.List<Reportman.Drawing.HtmlFormatRun>)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/DirectWriteRenderer.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
   syntax:
-    content: public TTextExtentRenderer(string originalText)
+    content: public TTextExtentRenderer(string originalText, List<HtmlFormatRun> htmlRuns = null)
     parameters:
     - id: originalText
       type: System.String
-    content.vb: Public Sub New(originalText As String)
+    - id: htmlRuns
+      type: System.Collections.Generic.List{Reportman.Drawing.HtmlFormatRun}
+    content.vb: Public Sub New(originalText As String, htmlRuns As List(Of HtmlFormatRun) = Nothing)
   overload: Reportman.Drawing.Windows.TTextExtentRenderer.#ctor*
-  nameWithType.vb: TTextExtentRenderer.New(String)
-  fullName.vb: Reportman.Drawing.Windows.TTextExtentRenderer.New(String)
-  name.vb: New(String)
+  nameWithType.vb: TTextExtentRenderer.New(String, List(Of HtmlFormatRun))
+  fullName.vb: Reportman.Drawing.Windows.TTextExtentRenderer.New(String, System.Collections.Generic.List(Of Reportman.Drawing.HtmlFormatRun))
+  name.vb: New(String, List(Of HtmlFormatRun))
 - uid: Reportman.Drawing.Windows.TTextExtentRenderer.DrawGlyphRun(System.Object,System.Single,System.Single,SharpDX.Direct2D1.MeasuringMode,SharpDX.DirectWrite.GlyphRun,SharpDX.DirectWrite.GlyphRunDescription,SharpDX.ComObject)
   commentId: M:Reportman.Drawing.Windows.TTextExtentRenderer.DrawGlyphRun(System.Object,System.Single,System.Single,SharpDX.Direct2D1.MeasuringMode,SharpDX.DirectWrite.GlyphRun,SharpDX.DirectWrite.GlyphRunDescription,SharpDX.ComObject)
   id: DrawGlyphRun(System.Object,System.Single,System.Single,SharpDX.Direct2D1.MeasuringMode,SharpDX.DirectWrite.GlyphRun,SharpDX.DirectWrite.GlyphRunDescription,SharpDX.ComObject)
@@ -110,6 +125,8 @@ items:
   nameWithType: TTextExtentRenderer.DrawGlyphRun(object, float, float, MeasuringMode, GlyphRun, GlyphRunDescription, ComObject)
   fullName: Reportman.Drawing.Windows.TTextExtentRenderer.DrawGlyphRun(object, float, float, SharpDX.Direct2D1.MeasuringMode, SharpDX.DirectWrite.GlyphRun, SharpDX.DirectWrite.GlyphRunDescription, SharpDX.ComObject)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/DirectWriteRenderer.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -150,6 +167,8 @@ items:
   nameWithType: TTextExtentRenderer.DrawUnderline(object, float, float, ref Underline, ComObject)
   fullName: Reportman.Drawing.Windows.TTextExtentRenderer.DrawUnderline(object, float, float, ref SharpDX.DirectWrite.Underline, SharpDX.ComObject)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/DirectWriteRenderer.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -186,6 +205,8 @@ items:
   nameWithType: TTextExtentRenderer.DrawStrikethrough(object, float, float, ref Strikethrough, ComObject)
   fullName: Reportman.Drawing.Windows.TTextExtentRenderer.DrawStrikethrough(object, float, float, ref SharpDX.DirectWrite.Strikethrough, SharpDX.ComObject)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/DirectWriteRenderer.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -222,6 +243,8 @@ items:
   nameWithType: TTextExtentRenderer.DrawInlineObject(object, float, float, InlineObject, bool, bool, ComObject)
   fullName: Reportman.Drawing.Windows.TTextExtentRenderer.DrawInlineObject(object, float, float, SharpDX.DirectWrite.InlineObject, bool, bool, SharpDX.ComObject)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/DirectWriteRenderer.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -262,6 +285,8 @@ items:
   nameWithType: TTextExtentRenderer.IsPixelSnappingDisabled(object)
   fullName: Reportman.Drawing.Windows.TTextExtentRenderer.IsPixelSnappingDisabled(object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/DirectWriteRenderer.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -290,6 +315,8 @@ items:
   nameWithType: TTextExtentRenderer.GetCurrentTransform(object)
   fullName: Reportman.Drawing.Windows.TTextExtentRenderer.GetCurrentTransform(object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/DirectWriteRenderer.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -318,6 +345,8 @@ items:
   nameWithType: TTextExtentRenderer.GetPixelsPerDip(object)
   fullName: Reportman.Drawing.Windows.TTextExtentRenderer.GetPixelsPerDip(object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/DirectWriteRenderer.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -346,6 +375,8 @@ items:
   nameWithType: TTextExtentRenderer.GlyphPositions
   fullName: Reportman.Drawing.Windows.TTextExtentRenderer.GlyphPositions
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/DirectWriteRenderer.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -367,6 +398,8 @@ items:
   nameWithType: TTextExtentRenderer.Lines
   fullName: Reportman.Drawing.Windows.TTextExtentRenderer.Lines
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/DirectWriteRenderer.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -903,7 +936,7 @@ references:
 - uid: Reportman.Drawing.Windows.TTextExtentRenderer.#ctor*
   commentId: Overload:Reportman.Drawing.Windows.TTextExtentRenderer.#ctor
   isExternal: true
-  href: Reportman.Drawing.Windows.TTextExtentRenderer.html#Reportman_Drawing_Windows_TTextExtentRenderer__ctor_System_String_
+  href: Reportman.Drawing.Windows.TTextExtentRenderer.html#Reportman_Drawing_Windows_TTextExtentRenderer__ctor_System_String_System_Collections_Generic_List_Reportman_Drawing_HtmlFormatRun__
   name: TTextExtentRenderer
   nameWithType: TTextExtentRenderer.TTextExtentRenderer
   fullName: Reportman.Drawing.Windows.TTextExtentRenderer.TTextExtentRenderer
@@ -921,6 +954,106 @@ references:
   nameWithType.vb: String
   fullName.vb: String
   name.vb: String
+- uid: System.Collections.Generic.List{Reportman.Drawing.HtmlFormatRun}
+  commentId: T:System.Collections.Generic.List{Reportman.Drawing.HtmlFormatRun}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<HtmlFormatRun>
+  nameWithType: List<HtmlFormatRun>
+  fullName: System.Collections.Generic.List<Reportman.Drawing.HtmlFormatRun>
+  nameWithType.vb: List(Of HtmlFormatRun)
+  fullName.vb: System.Collections.Generic.List(Of Reportman.Drawing.HtmlFormatRun)
+  name.vb: List(Of HtmlFormatRun)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Reportman.Drawing.HtmlFormatRun
+    name: HtmlFormatRun
+    isExternal: true
+    href: Reportman.Drawing.HtmlFormatRun.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Reportman.Drawing.HtmlFormatRun
+    name: HtmlFormatRun
+    isExternal: true
+    href: Reportman.Drawing.HtmlFormatRun.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
 - uid: SharpDX.DirectWrite.TextRendererBase.DrawGlyphRun(System.Object,System.Single,System.Single,SharpDX.Direct2D1.MeasuringMode,SharpDX.DirectWrite.GlyphRun,SharpDX.DirectWrite.GlyphRunDescription,SharpDX.ComObject)
   commentId: M:SharpDX.DirectWrite.TextRendererBase.DrawGlyphRun(System.Object,System.Single,System.Single,SharpDX.Direct2D1.MeasuringMode,SharpDX.DirectWrite.GlyphRun,SharpDX.DirectWrite.GlyphRunDescription,SharpDX.ComObject)
   parent: SharpDX.DirectWrite.TextRendererBase
@@ -1590,71 +1723,6 @@ references:
     isExternal: true
     href: Reportman.Drawing.TGlyphPos.html
   - name: )
-- uid: System.Collections.Generic.List`1
-  commentId: T:System.Collections.Generic.List`1
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
-  name: List<T>
-  nameWithType: List<T>
-  fullName: System.Collections.Generic.List<T>
-  nameWithType.vb: List(Of T)
-  fullName.vb: System.Collections.Generic.List(Of T)
-  name.vb: List(Of T)
-  spec.csharp:
-  - uid: System.Collections.Generic.List`1
-    name: List
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
-  - name: <
-  - name: T
-  - name: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.List`1
-    name: List
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
-  - name: (
-  - name: Of
-  - name: " "
-  - name: T
-  - name: )
-- uid: System.Collections.Generic
-  commentId: N:System.Collections.Generic
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system
-  name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
-  fullName: System.Collections.Generic
-  spec.csharp:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Collections
-    name: Collections
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections
-  - name: .
-  - uid: System.Collections.Generic
-    name: Generic
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
-  spec.vb:
-  - uid: System
-    name: System
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system
-  - name: .
-  - uid: System.Collections
-    name: Collections
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections
-  - name: .
-  - uid: System.Collections.Generic
-    name: Generic
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
 - uid: Reportman.Drawing.Windows.TTextExtentRenderer.Lines*
   commentId: Overload:Reportman.Drawing.Windows.TTextExtentRenderer.Lines
   isExternal: true

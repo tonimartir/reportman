@@ -5,8 +5,18 @@ using System.Windows.Forms;
 
 namespace Reportman.Drawing.Forms
 {
+    /// <summary>
+    /// Orientation of a <see cref="Ruler"/> control: drawn horizontally or vertically.
+    /// </summary>
     public enum RulerStyle { Horizontal, Vertical };
+    /// <summary>
+    /// Border drawing mode of a <see cref="Ruler"/> control: a single-line border or no border.
+    /// </summary>
     public enum RulerBorder { Single, None };
+    /// <summary>
+    /// A ruler control that draws a scaled measurement scale (in centimeters or inches) for use
+    /// alongside a report design surface, honoring orientation, scale, colors and DPI.
+    /// </summary>
     public class Ruler : Control
     {
         public Ruler()

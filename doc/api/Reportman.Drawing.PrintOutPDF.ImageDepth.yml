@@ -20,9 +20,16 @@ items:
   nameWithType: PrintOutPDF.ImageDepth
   fullName: Reportman.Drawing.PrintOutPDF.ImageDepth
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPDF.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing
+  summary: >-
+    Color depth and rendering mode used when embedding images into the PDF, ranging from
+
+    full color through grayscale to bitonal black-and-white and text-optimized variants.
+  example: []
   syntax:
     content: public enum PrintOutPDF.ImageDepth
     content.vb: Public Enum PrintOutPDF.ImageDepth
@@ -37,6 +44,8 @@ items:
   nameWithType: PrintOutPDF.ImageDepth.Color
   fullName: Reportman.Drawing.PrintOutPDF.ImageDepth.Color
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPDF.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing
@@ -55,6 +64,8 @@ items:
   nameWithType: PrintOutPDF.ImageDepth.GrayScale
   fullName: Reportman.Drawing.PrintOutPDF.ImageDepth.GrayScale
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPDF.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing
@@ -73,6 +84,8 @@ items:
   nameWithType: PrintOutPDF.ImageDepth.BW
   fullName: Reportman.Drawing.PrintOutPDF.ImageDepth.BW
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPDF.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing
@@ -91,6 +104,8 @@ items:
   nameWithType: PrintOutPDF.ImageDepth.Text
   fullName: Reportman.Drawing.PrintOutPDF.ImageDepth.Text
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPDF.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing
@@ -109,6 +124,8 @@ items:
   nameWithType: PrintOutPDF.ImageDepth.TextQuality
   fullName: Reportman.Drawing.PrintOutPDF.ImageDepth.TextQuality
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPDF.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing
@@ -127,6 +144,8 @@ items:
   nameWithType: PrintOutPDF.ImageDepth.BWImage
   fullName: Reportman.Drawing.PrintOutPDF.ImageDepth.BWImage
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPDF.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing
@@ -145,6 +164,8 @@ items:
   nameWithType: PrintOutPDF.ImageDepth.Color8bit
   fullName: Reportman.Drawing.PrintOutPDF.ImageDepth.Color8bit
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPDF.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing
@@ -163,6 +184,8 @@ items:
   nameWithType: PrintOutPDF.ImageDepth.Color4bit
   fullName: Reportman.Drawing.PrintOutPDF.ImageDepth.Color4bit
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPDF.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing

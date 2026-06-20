@@ -16,9 +16,16 @@ items:
   nameWithType: Aggregate
   fullName: Reportman.Reporting.Aggregate
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/LabelItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
+  summary: >-
+    Defines the scope over which an aggregate value is accumulated: none, per group,
+
+    per page, or across the whole report.
+  example: []
   syntax:
     content: public enum Aggregate
     content.vb: Public Enum Aggregate
@@ -33,6 +40,8 @@ items:
   nameWithType: Aggregate.None
   fullName: Reportman.Reporting.Aggregate.None
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/LabelItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -51,6 +60,8 @@ items:
   nameWithType: Aggregate.Group
   fullName: Reportman.Reporting.Aggregate.Group
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/LabelItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -69,6 +80,8 @@ items:
   nameWithType: Aggregate.Page
   fullName: Reportman.Reporting.Aggregate.Page
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/LabelItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -87,6 +100,8 @@ items:
   nameWithType: Aggregate.General
   fullName: Reportman.Reporting.Aggregate.General
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/LabelItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

@@ -6,8 +6,15 @@ using System.Windows.Forms;
 
 namespace Reportman.Drawing.Forms
 {
+    /// <summary>
+    /// A Windows Forms control that captures a hand-drawn signature by tracking mouse movement,
+    /// rendering it as a curve or straight-line path into a bitmap.
+    /// </summary>
     public partial class SignatureControl : UserControl
     {
+        /// <summary>
+        /// Determines how captured signature points are drawn: as a smoothed curve or as connected straight lines.
+        /// </summary>
         public enum SignatureStyle { Curve, Line };
         Bitmap nbitmap;
         System.Timers.Timer ntimer;

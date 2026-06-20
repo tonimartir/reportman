@@ -18,7 +18,7 @@ namespace Reportman.Drawing
     /// or printer dialogs (Windows Forms).
     /// So it's a step forward to the implementation of some Report processing drivers, useful for
     /// preview, becuase it can use bitmap as output
-    /// <see cref="Variant">PrintOutPrint</see>
+    /// <see cref="PrintOutPrint"/>
     /// </summary>
  	public class PrintOutNet : PrintOut, IDisposable
     {
@@ -36,7 +36,7 @@ namespace Reportman.Drawing
         private bool stock_RightToLeft;
         /// <summary>
         /// Optimization selection.
-        /// <see cref="Variant">WMFOptimization</see>
+        /// <see cref="WMFOptimization"/>
         /// </summary>
 		public WMFOptimization OptimizeWMF;
         /// <summary>
@@ -1637,7 +1637,7 @@ namespace Reportman.Drawing
     /// metafiles can enhace performance, specially if the pages are dense (lot of text items).
     /// The drawbacks of playing metafiles is that they must be stored into memory, so when you
     /// optimize performance you hit memory consumption.
-    /// <see cref="Variant">PrintOutNet</see>
+    /// <see cref="PrintOutNet"/>
     /// </summary>   
     public enum WMFOptimization : int
     {

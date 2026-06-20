@@ -16,6 +16,8 @@ items:
   nameWithType: CueHelper
   fullName: Reportman.Drawing.Forms.CueHelper
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/CueHelper.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -61,6 +63,8 @@ items:
   nameWithType: CueHelper.CanExtend(object)
   fullName: Reportman.Drawing.Forms.CueHelper.CanExtend(object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/CueHelper.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -90,6 +94,8 @@ items:
   nameWithType: CueHelper.GetCueBannerText(TextBox)
   fullName: Reportman.Drawing.Forms.CueHelper.GetCueBannerText(System.Windows.Forms.TextBox)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/CueHelper.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -113,6 +119,8 @@ items:
   nameWithType: CueHelper.SetCueBannerText(TextBox, string)
   fullName: Reportman.Drawing.Forms.CueHelper.SetCueBannerText(System.Windows.Forms.TextBox, string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/CueHelper.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -139,6 +147,8 @@ items:
   nameWithType: CueHelper.CueHelper()
   fullName: Reportman.Drawing.Forms.CueHelper.CueHelper()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/CueHelper.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

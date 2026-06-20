@@ -16,8 +16,14 @@ using System.Windows.Forms;
 
 namespace Reportman.Drawing.Forms
 {
+    /// <summary>
+    /// A single page within an advanced tab control, carrying its title, icon, hosted control and selection state, and raising change notifications; also supports animated processing and alerting icons.
+    /// </summary>
     public class TabPageAdvanced : PanelAdvanced
     {
+        /// <summary>
+        /// Identifies which property of a <see cref="TabPageAdvanced"/> changed, reported through the page's property-changed notification.
+        /// </summary>
         // Enumeration of property change events
         public enum Property
         {
@@ -34,6 +40,9 @@ namespace Reportman.Drawing.Forms
             TitleAlignment
         }
 
+        /// <summary>
+        /// Handler signature for a tab page property change, receiving the page, the <see cref="Property"/> that changed and its previous value.
+        /// </summary>
         // Declare the property change event signature
         public delegate void PropChangeHandler(TabPageAdvanced page, Property prop, object oldValue);
 

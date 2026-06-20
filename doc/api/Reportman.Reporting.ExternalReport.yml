@@ -16,9 +16,18 @@ items:
   nameWithType: ExternalReport
   fullName: Reportman.Reporting.ExternalReport
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExternalReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
+  summary: >-
+    Helper operations for moving subreports between report documents: exporting a single
+
+    subreport (with its related datasets and parameters) to a stream, deleting a subreport
+
+    and its dependencies, and importing the contents of one report into another.
+  example: []
   syntax:
     content: public class ExternalReport
     content.vb: Public Class ExternalReport
@@ -43,6 +52,8 @@ items:
   nameWithType: ExternalReport.ExportSubReport(SubReport, Stream, StreamVersion)
   fullName: Reportman.Reporting.ExternalReport.ExportSubReport(Reportman.Reporting.SubReport, System.IO.Stream, Reportman.Reporting.StreamVersion)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExternalReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -68,6 +79,8 @@ items:
   nameWithType: ExternalReport.DeleteSubReport(Report, SubReport)
   fullName: Reportman.Reporting.ExternalReport.DeleteSubReport(Reportman.Reporting.Report, Reportman.Reporting.SubReport)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExternalReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -91,6 +104,8 @@ items:
   nameWithType: ExternalReport.ImportReport(Report, Report)
   fullName: Reportman.Reporting.ExternalReport.ImportReport(Reportman.Reporting.Report, Reportman.Reporting.Report)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExternalReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -114,6 +129,8 @@ items:
   nameWithType: ExternalReport.ExternalReport()
   fullName: Reportman.Reporting.ExternalReport.ExternalReport()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ExternalReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

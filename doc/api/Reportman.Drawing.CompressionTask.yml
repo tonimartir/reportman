@@ -18,9 +18,16 @@ items:
   nameWithType: CompressionTask
   fullName: Reportman.Drawing.CompressionTask
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    Tracks an asynchronous stream-compression operation, holding its task, cancellation
+
+    source, and the output stream position where the compressed result will be written.
+  example: []
   syntax:
     content: public class CompressionTask
     content.vb: Public Class CompressionTask
@@ -45,6 +52,8 @@ items:
   nameWithType: CompressionTask.Task
   fullName: Reportman.Drawing.CompressionTask.Task
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -64,6 +73,8 @@ items:
   nameWithType: CompressionTask.CancelSource
   fullName: Reportman.Drawing.CompressionTask.CancelSource
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -83,6 +94,8 @@ items:
   nameWithType: CompressionTask.PositionStream
   fullName: Reportman.Drawing.CompressionTask.PositionStream
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -102,6 +115,8 @@ items:
   nameWithType: CompressionTask.StreamPosition
   fullName: Reportman.Drawing.CompressionTask.StreamPosition
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -121,6 +136,8 @@ items:
   nameWithType: CompressionTask.CompressionTask(Task<TaskCompressResult>, CancellationTokenSource, Stream, long)
   fullName: Reportman.Drawing.CompressionTask.CompressionTask(System.Threading.Tasks.Task<Reportman.Drawing.TaskCompressResult>, System.Threading.CancellationTokenSource, System.IO.Stream, long)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -151,6 +168,8 @@ items:
   nameWithType: CompressionTask.CancelTask()
   fullName: Reportman.Drawing.CompressionTask.CancelTask()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

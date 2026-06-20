@@ -14,12 +14,22 @@ items:
   nameWithType: IDbCommandExecuter
   fullName: Reportman.Drawing.IDbCommandExecuter
   type: Interface
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    Abstraction for executing an ADO.NET <xref href="System.Data.IDbCommand" data-throw-if-not-resolved="false"></xref> and creating new commands,
+
+    returning query results as a <xref href="System.Data.DataTable" data-throw-if-not-resolved="false"></xref>.
+  example: []
   syntax:
     content: public interface IDbCommandExecuter
     content.vb: Public Interface IDbCommandExecuter
+  derivedClasses:
+  - Reportman.Reporting.DirectAgentExecutor
+  - Reportman.Reporting.HttpAgentExecutor
 - uid: Reportman.Drawing.IDbCommandExecuter.Open(System.Data.IDbCommand)
   commentId: M:Reportman.Drawing.IDbCommandExecuter.Open(System.Data.IDbCommand)
   id: Open(System.Data.IDbCommand)
@@ -31,6 +41,8 @@ items:
   nameWithType: IDbCommandExecuter.Open(IDbCommand)
   fullName: Reportman.Drawing.IDbCommandExecuter.Open(System.Data.IDbCommand)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -54,6 +66,8 @@ items:
   nameWithType: IDbCommandExecuter.CreateCommand()
   fullName: Reportman.Drawing.IDbCommandExecuter.CreateCommand()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -64,6 +78,22 @@ items:
     content.vb: Function CreateCommand() As IDbCommand
   overload: Reportman.Drawing.IDbCommandExecuter.CreateCommand*
 references:
+- uid: System.Data.IDbCommand
+  commentId: T:System.Data.IDbCommand
+  parent: System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.idbcommand
+  name: IDbCommand
+  nameWithType: IDbCommand
+  fullName: System.Data.IDbCommand
+- uid: System.Data.DataTable
+  commentId: T:System.Data.DataTable
+  parent: System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable
+  name: DataTable
+  nameWithType: DataTable
+  fullName: System.Data.DataTable
 - uid: Reportman.Drawing
   commentId: N:Reportman.Drawing
   isExternal: true
@@ -91,29 +121,6 @@ references:
     name: Drawing
     isExternal: true
     href: Reportman.Drawing.html
-- uid: Reportman.Drawing.IDbCommandExecuter.Open*
-  commentId: Overload:Reportman.Drawing.IDbCommandExecuter.Open
-  isExternal: true
-  href: Reportman.Drawing.IDbCommandExecuter.html#Reportman_Drawing_IDbCommandExecuter_Open_System_Data_IDbCommand_
-  name: Open
-  nameWithType: IDbCommandExecuter.Open
-  fullName: Reportman.Drawing.IDbCommandExecuter.Open
-- uid: System.Data.IDbCommand
-  commentId: T:System.Data.IDbCommand
-  parent: System.Data
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.data.idbcommand
-  name: IDbCommand
-  nameWithType: IDbCommand
-  fullName: System.Data.IDbCommand
-- uid: System.Data.DataTable
-  commentId: T:System.Data.DataTable
-  parent: System.Data
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.data.datatable
-  name: DataTable
-  nameWithType: DataTable
-  fullName: System.Data.DataTable
 - uid: System.Data
   commentId: N:System.Data
   isExternal: true
@@ -141,6 +148,13 @@ references:
     name: Data
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.data
+- uid: Reportman.Drawing.IDbCommandExecuter.Open*
+  commentId: Overload:Reportman.Drawing.IDbCommandExecuter.Open
+  isExternal: true
+  href: Reportman.Drawing.IDbCommandExecuter.html#Reportman_Drawing_IDbCommandExecuter_Open_System_Data_IDbCommand_
+  name: Open
+  nameWithType: IDbCommandExecuter.Open
+  fullName: Reportman.Drawing.IDbCommandExecuter.Open
 - uid: Reportman.Drawing.IDbCommandExecuter.CreateCommand*
   commentId: Overload:Reportman.Drawing.IDbCommandExecuter.CreateCommand
   isExternal: true

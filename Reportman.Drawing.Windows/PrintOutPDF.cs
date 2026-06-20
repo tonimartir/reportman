@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace Reportman.Drawing
 {
+    /// <summary>
+    /// PDF render driver that uses GDI+/System.Drawing for font metrics and bitmap handling,
+    /// and provides helpers to encode images and build a PDF directly from a sequence of images.
+    /// </summary>
     public class PrintOutPDF : PrintOutPDFBase, IBitmapInfoProvider
     {
         public override FontInfoProvider GetFontInfoProvider()
@@ -166,6 +170,10 @@ namespace Reportman.Drawing
             nresult = Reportman.Drawing.StreamUtil.StreamToMemoryStream(npdf.PDFStream);
             return nresult;
         }
+        /// <summary>
+        /// Color depth and rendering mode used when embedding images into the PDF, ranging from
+        /// full color through grayscale to bitonal black-and-white and text-optimized variants.
+        /// </summary>
         public enum ImageDepth { Color, GrayScale, BW, Text, TextQuality, BWImage, Color8bit, Color4bit };
 
 

@@ -20,6 +20,8 @@ items:
   nameWithType: PrintStepType
   fullName: Reportman.Drawing.PrintStepType
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -42,6 +44,8 @@ items:
   nameWithType: PrintStepType.BySize
   fullName: Reportman.Drawing.PrintStepType.BySize
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -62,6 +66,8 @@ items:
   nameWithType: PrintStepType.cpi20
   fullName: Reportman.Drawing.PrintStepType.cpi20
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -82,6 +88,8 @@ items:
   nameWithType: PrintStepType.cpi17
   fullName: Reportman.Drawing.PrintStepType.cpi17
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -102,6 +110,8 @@ items:
   nameWithType: PrintStepType.cpi15
   fullName: Reportman.Drawing.PrintStepType.cpi15
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -122,6 +132,8 @@ items:
   nameWithType: PrintStepType.cpi12
   fullName: Reportman.Drawing.PrintStepType.cpi12
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -142,6 +154,8 @@ items:
   nameWithType: PrintStepType.cpi10
   fullName: Reportman.Drawing.PrintStepType.cpi10
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -162,6 +176,8 @@ items:
   nameWithType: PrintStepType.cpi6
   fullName: Reportman.Drawing.PrintStepType.cpi6
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -182,6 +198,8 @@ items:
   nameWithType: PrintStepType.cpi5
   fullName: Reportman.Drawing.PrintStepType.cpi5
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

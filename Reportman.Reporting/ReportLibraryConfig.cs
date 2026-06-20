@@ -5,6 +5,11 @@ using System.Data.Common;
 
 namespace Reportman.Reporting
 {
+    /// <summary>
+    /// Configuration for a report library connection: the database driver, connection
+    /// string and table/field mapping used to read and save report templates from a
+    /// database, including optional HttpAgent (remote agent) credentials.
+    /// </summary>
     public class ReportLibraryConfig
     {
         public ReportLibraryConfig()
@@ -187,6 +192,11 @@ namespace Reportman.Reporting
             return newStream;
         }
     }
+    /// <summary>
+    /// Identifies a specific report by name within a <see cref="ReportLibraryConfig"/> and
+    /// holds its loaded stream, providing a convenience method to save a report back to
+    /// that library entry.
+    /// </summary>
     public class ReportLibrarySelection
     {
         public ReportLibraryConfig ReportLibrary;
@@ -197,6 +207,10 @@ namespace Reportman.Reporting
             Stream = ReportLibrary.SaveReport(nreport, ReportName, StreamVersion.V2);
         }
     }
+    /// <summary>
+    /// A collection of <see cref="ReportLibraryConfig"/> entries that can be persisted to
+    /// and loaded from an INI file (repmandlib.ini), one section per connection.
+    /// </summary>
     public class ReportLibraryConfigCollection : List<ReportLibraryConfig>
     {
         public void LoadFromFile(string filename)

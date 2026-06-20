@@ -5,9 +5,16 @@ using System.Text;
 
 namespace Reportman.Drawing
 {
+    /// <summary>
+    /// Provides text encryption and decryption helpers used by the library.
+    /// </summary>
     public static class Encrypter
     {
 
+        /// <summary>
+        /// Simple Rijndael (AES) helper that encrypts and decrypts strings to and from Base64
+        /// using CBC mode and a password-derived key, with most cryptographic parameters fixed as constants.
+        /// </summary>
         public static class RijndaelSimple
         {
 

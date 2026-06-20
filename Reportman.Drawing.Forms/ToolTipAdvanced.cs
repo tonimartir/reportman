@@ -5,6 +5,10 @@ using System.Windows.Forms;
 
 namespace Reportman.Drawing.Forms
 {
+    /// <summary>
+    /// An owner-drawn <see cref="ToolTip"/> that displays an image (instead of text) inside a
+    /// bordered tooltip, sizing the popup to the assigned <see cref="Image"/>.
+    /// </summary>
     public class ToolTipAdvanced : ToolTip
     {
         Image FImage;

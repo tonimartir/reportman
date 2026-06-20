@@ -1,0 +1,1166 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.DirectAgentExecutor
+  commentId: T:Reportman.Reporting.DirectAgentExecutor
+  id: DirectAgentExecutor
+  parent: Reportman.Reporting
+  children:
+  - Reportman.Reporting.DirectAgentExecutor.#ctor
+  - Reportman.Reporting.DirectAgentExecutor.#ctor(System.String,System.String,System.Int64)
+  - Reportman.Reporting.DirectAgentExecutor.ApiKey
+  - Reportman.Reporting.DirectAgentExecutor.BaseUrl
+  - Reportman.Reporting.DirectAgentExecutor.ConnectionModeChanged
+  - Reportman.Reporting.DirectAgentExecutor.CreateCommand
+  - Reportman.Reporting.DirectAgentExecutor.Dispose
+  - Reportman.Reporting.DirectAgentExecutor.HubDatabaseId
+  - Reportman.Reporting.DirectAgentExecutor.LastConnectionMode
+  - Reportman.Reporting.DirectAgentExecutor.Open(System.Data.IDbCommand)
+  - Reportman.Reporting.DirectAgentExecutor.ResetChannelPool
+  - Reportman.Reporting.DirectAgentExecutor.Token
+  - Reportman.Reporting.DirectAgentExecutor.UseDirectChannel
+  langs:
+  - csharp
+  - vb
+  name: DirectAgentExecutor
+  nameWithType: DirectAgentExecutor
+  fullName: Reportman.Reporting.DirectAgentExecutor
+  type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DirectAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    <xref href="Reportman.Drawing.IDbCommandExecuter" data-throw-if-not-resolved="false"></xref> that tries the direct WebRTC
+
+    DataChannel transport first and falls back to <xref href="Reportman.Reporting.HttpAgentExecutor" data-throw-if-not-resolved="false"></xref>
+
+    transparently if the channel cannot be opened (corporate firewall,
+
+    STUN unreachable, Agent that doesn't speak the protocol …).
+
+
+    Pattern mirrors the proven path in
+
+    <code>ReportmanAI/Reportman.Hub.Client/HubApiClient.DataChannel.cs</code>:
+      - <xref href="Reportman.Reporting.DirectAgentExecutor.UseDirectChannel" data-throw-if-not-resolved="false"></xref> master switch (default true).
+      - 10-minute cooldown after a failed negotiation, so subsequent
+        queries don't re-pay the open-timeout (~5 s) on each one.
+      - Per-database pool reuses the warm channel across calls.
+      - Effective transport surfaced via <xref href="Reportman.Reporting.DirectAgentExecutor.LastConnectionMode" data-throw-if-not-resolved="false"></xref>
+        and the <xref href="Reportman.Reporting.DirectAgentExecutor.ConnectionModeChanged" data-throw-if-not-resolved="false"></xref> event so a UI chip can
+        bind to it without having to know about WebRTC.
+
+    .NET Framework (net48) builds compile this file out — Reportman.DataChannel
+
+    requires .NET 6+ (SIPSorcery). On net48 consumers get only the HTTP
+
+    path, identical to the Linux/FPC behaviour of the Delphi engine.
+  example: []
+  syntax:
+    content: 'public class DirectAgentExecutor : IDbCommandExecuter, IDisposable'
+    content.vb: Public Class DirectAgentExecutor Implements IDbCommandExecuter, IDisposable
+  inheritance:
+  - System.Object
+  implements:
+  - Reportman.Drawing.IDbCommandExecuter
+  - System.IDisposable
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Reporting.DirectAgentExecutor.#ctor
+  commentId: M:Reportman.Reporting.DirectAgentExecutor.#ctor
+  id: '#ctor'
+  parent: Reportman.Reporting.DirectAgentExecutor
+  langs:
+  - csharp
+  - vb
+  name: DirectAgentExecutor()
+  nameWithType: DirectAgentExecutor.DirectAgentExecutor()
+  fullName: Reportman.Reporting.DirectAgentExecutor.DirectAgentExecutor()
+  type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DirectAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public DirectAgentExecutor()
+    content.vb: Public Sub New()
+  overload: Reportman.Reporting.DirectAgentExecutor.#ctor*
+  nameWithType.vb: DirectAgentExecutor.New()
+  fullName.vb: Reportman.Reporting.DirectAgentExecutor.New()
+  name.vb: New()
+- uid: Reportman.Reporting.DirectAgentExecutor.#ctor(System.String,System.String,System.Int64)
+  commentId: M:Reportman.Reporting.DirectAgentExecutor.#ctor(System.String,System.String,System.Int64)
+  id: '#ctor(System.String,System.String,System.Int64)'
+  parent: Reportman.Reporting.DirectAgentExecutor
+  langs:
+  - csharp
+  - vb
+  name: DirectAgentExecutor(string, string, long)
+  nameWithType: DirectAgentExecutor.DirectAgentExecutor(string, string, long)
+  fullName: Reportman.Reporting.DirectAgentExecutor.DirectAgentExecutor(string, string, long)
+  type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DirectAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public DirectAgentExecutor(string baseUrl, string apiKey, long hubDatabaseId)
+    parameters:
+    - id: baseUrl
+      type: System.String
+    - id: apiKey
+      type: System.String
+    - id: hubDatabaseId
+      type: System.Int64
+    content.vb: Public Sub New(baseUrl As String, apiKey As String, hubDatabaseId As Long)
+  overload: Reportman.Reporting.DirectAgentExecutor.#ctor*
+  nameWithType.vb: DirectAgentExecutor.New(String, String, Long)
+  fullName.vb: Reportman.Reporting.DirectAgentExecutor.New(String, String, Long)
+  name.vb: New(String, String, Long)
+- uid: Reportman.Reporting.DirectAgentExecutor.CreateCommand
+  commentId: M:Reportman.Reporting.DirectAgentExecutor.CreateCommand
+  id: CreateCommand
+  parent: Reportman.Reporting.DirectAgentExecutor
+  langs:
+  - csharp
+  - vb
+  name: CreateCommand()
+  nameWithType: DirectAgentExecutor.CreateCommand()
+  fullName: Reportman.Reporting.DirectAgentExecutor.CreateCommand()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DirectAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    Delegates to the inner HTTP executor: both transports speak the
+
+    same <xref href="Reportman.Reporting.HttpAgentCommand" data-throw-if-not-resolved="false"></xref> for accumulated parameters,
+
+    so callers don't need to know which one will execute.
+  example: []
+  syntax:
+    content: public IDbCommand CreateCommand()
+    return:
+      type: System.Data.IDbCommand
+    content.vb: Public Function CreateCommand() As IDbCommand
+  overload: Reportman.Reporting.DirectAgentExecutor.CreateCommand*
+  implements:
+  - Reportman.Drawing.IDbCommandExecuter.CreateCommand
+- uid: Reportman.Reporting.DirectAgentExecutor.Open(System.Data.IDbCommand)
+  commentId: M:Reportman.Reporting.DirectAgentExecutor.Open(System.Data.IDbCommand)
+  id: Open(System.Data.IDbCommand)
+  parent: Reportman.Reporting.DirectAgentExecutor
+  langs:
+  - csharp
+  - vb
+  name: Open(IDbCommand)
+  nameWithType: DirectAgentExecutor.Open(IDbCommand)
+  fullName: Reportman.Reporting.DirectAgentExecutor.Open(System.Data.IDbCommand)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DirectAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    Try the direct channel first; on any failure (cooldown active,
+
+    negotiation failed, channel error mid-query) silently fall back
+
+    to the inner HTTP path. The caller never sees a "direct channel
+
+    broke" exception — it sees the data, just over HTTP. The chip is
+
+    the only visible difference.
+  example: []
+  syntax:
+    content: public DataTable Open(IDbCommand ncommand)
+    parameters:
+    - id: ncommand
+      type: System.Data.IDbCommand
+    return:
+      type: System.Data.DataTable
+    content.vb: Public Function Open(ncommand As IDbCommand) As DataTable
+  overload: Reportman.Reporting.DirectAgentExecutor.Open*
+  implements:
+  - Reportman.Drawing.IDbCommandExecuter.Open(System.Data.IDbCommand)
+- uid: Reportman.Reporting.DirectAgentExecutor.Dispose
+  commentId: M:Reportman.Reporting.DirectAgentExecutor.Dispose
+  id: Dispose
+  parent: Reportman.Reporting.DirectAgentExecutor
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: DirectAgentExecutor.Dispose()
+  fullName: Reportman.Reporting.DirectAgentExecutor.Dispose()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DirectAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  example: []
+  syntax:
+    content: public void Dispose()
+    content.vb: Public Sub Dispose()
+  overload: Reportman.Reporting.DirectAgentExecutor.Dispose*
+  implements:
+  - System.IDisposable.Dispose
+- uid: Reportman.Reporting.DirectAgentExecutor.ResetChannelPool
+  commentId: M:Reportman.Reporting.DirectAgentExecutor.ResetChannelPool
+  id: ResetChannelPool
+  parent: Reportman.Reporting.DirectAgentExecutor
+  langs:
+  - csharp
+  - vb
+  name: ResetChannelPool()
+  nameWithType: DirectAgentExecutor.ResetChannelPool()
+  fullName: Reportman.Reporting.DirectAgentExecutor.ResetChannelPool()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DirectAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    Drop every warm Direct Channel session and clear the negotiation
+
+    cooldowns. Call after the user edits a connection (ApiKey /
+
+    HubDatabaseId) so the next query renegotiates with the new
+
+    credentials instead of reusing a session opened with the old ones.
+
+    The warm pool keys sessions by HubDatabaseId, so an ApiKey change on
+
+    the same database would otherwise keep hitting the stale session
+
+    until the application is restarted. EvictAllAsync clears the pool
+
+    synchronously (only the teardown of the old sessions is async), so a
+
+    fire-and-forget call invalidates the cache immediately.
+  example: []
+  syntax:
+    content: public static void ResetChannelPool()
+    content.vb: Public Shared Sub ResetChannelPool()
+  overload: Reportman.Reporting.DirectAgentExecutor.ResetChannelPool*
+- uid: Reportman.Reporting.DirectAgentExecutor.BaseUrl
+  commentId: P:Reportman.Reporting.DirectAgentExecutor.BaseUrl
+  id: BaseUrl
+  parent: Reportman.Reporting.DirectAgentExecutor
+  langs:
+  - csharp
+  - vb
+  name: BaseUrl
+  nameWithType: DirectAgentExecutor.BaseUrl
+  fullName: Reportman.Reporting.DirectAgentExecutor.BaseUrl
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DirectAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: API base URL (same as <xref href="Reportman.Reporting.HttpAgentExecutor.BaseUrl" data-throw-if-not-resolved="false"></xref>).
+  example: []
+  syntax:
+    content: public string BaseUrl { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property BaseUrl As String
+  overload: Reportman.Reporting.DirectAgentExecutor.BaseUrl*
+- uid: Reportman.Reporting.DirectAgentExecutor.ApiKey
+  commentId: P:Reportman.Reporting.DirectAgentExecutor.ApiKey
+  id: ApiKey
+  parent: Reportman.Reporting.DirectAgentExecutor
+  langs:
+  - csharp
+  - vb
+  name: ApiKey
+  nameWithType: DirectAgentExecutor.ApiKey
+  fullName: Reportman.Reporting.DirectAgentExecutor.ApiKey
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DirectAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: ApiKey for the database alias when no user is logged in.
+  example: []
+  syntax:
+    content: public string ApiKey { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ApiKey As String
+  overload: Reportman.Reporting.DirectAgentExecutor.ApiKey*
+- uid: Reportman.Reporting.DirectAgentExecutor.Token
+  commentId: P:Reportman.Reporting.DirectAgentExecutor.Token
+  id: Token
+  parent: Reportman.Reporting.DirectAgentExecutor
+  langs:
+  - csharp
+  - vb
+  name: Token
+  nameWithType: DirectAgentExecutor.Token
+  fullName: Reportman.Reporting.DirectAgentExecutor.Token
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DirectAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Bearer JWT for logged-in user calls.
+  example: []
+  syntax:
+    content: public string Token { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Token As String
+  overload: Reportman.Reporting.DirectAgentExecutor.Token*
+- uid: Reportman.Reporting.DirectAgentExecutor.HubDatabaseId
+  commentId: P:Reportman.Reporting.DirectAgentExecutor.HubDatabaseId
+  id: HubDatabaseId
+  parent: Reportman.Reporting.DirectAgentExecutor
+  langs:
+  - csharp
+  - vb
+  name: HubDatabaseId
+  nameWithType: DirectAgentExecutor.HubDatabaseId
+  fullName: Reportman.Reporting.DirectAgentExecutor.HubDatabaseId
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DirectAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Identifier of the database on the Hub side.
+  example: []
+  syntax:
+    content: public long HubDatabaseId { get; set; }
+    parameters: []
+    return:
+      type: System.Int64
+    content.vb: Public Property HubDatabaseId As Long
+  overload: Reportman.Reporting.DirectAgentExecutor.HubDatabaseId*
+- uid: Reportman.Reporting.DirectAgentExecutor.UseDirectChannel
+  commentId: P:Reportman.Reporting.DirectAgentExecutor.UseDirectChannel
+  id: UseDirectChannel
+  parent: Reportman.Reporting.DirectAgentExecutor
+  langs:
+  - csharp
+  - vb
+  name: UseDirectChannel
+  nameWithType: DirectAgentExecutor.UseDirectChannel
+  fullName: Reportman.Reporting.DirectAgentExecutor.UseDirectChannel
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DirectAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    Global kill-switch. Setting this to <code>false</code> at runtime makes
+
+    every <xref href="Reportman.Reporting.DirectAgentExecutor.Open(System.Data.IDbCommand)" data-throw-if-not-resolved="false"></xref> call go straight to HTTP, no negotiation
+
+    attempt. Useful for diagnostics or forcibly-HTTP integration tests.
+  example: []
+  syntax:
+    content: public bool UseDirectChannel { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property UseDirectChannel As Boolean
+  overload: Reportman.Reporting.DirectAgentExecutor.UseDirectChannel*
+- uid: Reportman.Reporting.DirectAgentExecutor.LastConnectionMode
+  commentId: P:Reportman.Reporting.DirectAgentExecutor.LastConnectionMode
+  id: LastConnectionMode
+  parent: Reportman.Reporting.DirectAgentExecutor
+  langs:
+  - csharp
+  - vb
+  name: LastConnectionMode
+  nameWithType: DirectAgentExecutor.LastConnectionMode
+  fullName: Reportman.Reporting.DirectAgentExecutor.LastConnectionMode
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DirectAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: >-
+    Effective transport of the most recent <xref href="Reportman.Reporting.DirectAgentExecutor.Open(System.Data.IDbCommand)" data-throw-if-not-resolved="false"></xref>.
+
+    <xref href="Reportman.Hub.Client.DataChannel.ConnectionMode.Unknown" data-throw-if-not-resolved="false"></xref> before any call.
+  example: []
+  syntax:
+    content: public ConnectionMode LastConnectionMode { get; }
+    parameters: []
+    return:
+      type: Reportman.Hub.Client.DataChannel.ConnectionMode
+    content.vb: Public ReadOnly Property LastConnectionMode As ConnectionMode
+  overload: Reportman.Reporting.DirectAgentExecutor.LastConnectionMode*
+- uid: Reportman.Reporting.DirectAgentExecutor.ConnectionModeChanged
+  commentId: E:Reportman.Reporting.DirectAgentExecutor.ConnectionModeChanged
+  id: ConnectionModeChanged
+  parent: Reportman.Reporting.DirectAgentExecutor
+  langs:
+  - csharp
+  - vb
+  name: ConnectionModeChanged
+  nameWithType: DirectAgentExecutor.ConnectionModeChanged
+  fullName: Reportman.Reporting.DirectAgentExecutor.ConnectionModeChanged
+  type: Event
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DirectAgentExecutor.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  summary: Fired after every Open once the transport is decided.
+  example: []
+  syntax:
+    content: public event Action<ConnectionMode> ConnectionModeChanged
+    return:
+      type: System.Action{Reportman.Hub.Client.DataChannel.ConnectionMode}
+    content.vb: Public Event ConnectionModeChanged As Action(Of ConnectionMode)
+references:
+- uid: Reportman.Drawing.IDbCommandExecuter
+  commentId: T:Reportman.Drawing.IDbCommandExecuter
+  parent: Reportman.Drawing
+  isExternal: true
+  href: Reportman.Drawing.IDbCommandExecuter.html
+  name: IDbCommandExecuter
+  nameWithType: IDbCommandExecuter
+  fullName: Reportman.Drawing.IDbCommandExecuter
+- uid: Reportman.Reporting.HttpAgentExecutor
+  commentId: T:Reportman.Reporting.HttpAgentExecutor
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.HttpAgentExecutor.html
+  name: HttpAgentExecutor
+  nameWithType: HttpAgentExecutor
+  fullName: Reportman.Reporting.HttpAgentExecutor
+- uid: Reportman.Reporting.DirectAgentExecutor.UseDirectChannel
+  commentId: P:Reportman.Reporting.DirectAgentExecutor.UseDirectChannel
+  isExternal: true
+  href: Reportman.Reporting.DirectAgentExecutor.html#Reportman_Reporting_DirectAgentExecutor_UseDirectChannel
+  name: UseDirectChannel
+  nameWithType: DirectAgentExecutor.UseDirectChannel
+  fullName: Reportman.Reporting.DirectAgentExecutor.UseDirectChannel
+- uid: Reportman.Reporting.DirectAgentExecutor.LastConnectionMode
+  commentId: P:Reportman.Reporting.DirectAgentExecutor.LastConnectionMode
+  isExternal: true
+  href: Reportman.Reporting.DirectAgentExecutor.html#Reportman_Reporting_DirectAgentExecutor_LastConnectionMode
+  name: LastConnectionMode
+  nameWithType: DirectAgentExecutor.LastConnectionMode
+  fullName: Reportman.Reporting.DirectAgentExecutor.LastConnectionMode
+- uid: Reportman.Reporting.DirectAgentExecutor.ConnectionModeChanged
+  commentId: E:Reportman.Reporting.DirectAgentExecutor.ConnectionModeChanged
+  isExternal: true
+  href: Reportman.Reporting.DirectAgentExecutor.html#Reportman_Reporting_DirectAgentExecutor_ConnectionModeChanged
+  name: ConnectionModeChanged
+  nameWithType: DirectAgentExecutor.ConnectionModeChanged
+  fullName: Reportman.Reporting.DirectAgentExecutor.ConnectionModeChanged
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: Reportman.Drawing
+  commentId: N:Reportman.Drawing
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Drawing
+  nameWithType: Reportman.Drawing
+  fullName: Reportman.Drawing
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Drawing
+    name: Drawing
+    isExternal: true
+    href: Reportman.Drawing.html
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Reporting.DirectAgentExecutor.#ctor*
+  commentId: Overload:Reportman.Reporting.DirectAgentExecutor.#ctor
+  isExternal: true
+  href: Reportman.Reporting.DirectAgentExecutor.html#Reportman_Reporting_DirectAgentExecutor__ctor
+  name: DirectAgentExecutor
+  nameWithType: DirectAgentExecutor.DirectAgentExecutor
+  fullName: Reportman.Reporting.DirectAgentExecutor.DirectAgentExecutor
+  nameWithType.vb: DirectAgentExecutor.New
+  fullName.vb: Reportman.Reporting.DirectAgentExecutor.New
+  name.vb: New
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: Reportman.Reporting.HttpAgentCommand
+  commentId: T:Reportman.Reporting.HttpAgentCommand
+  isExternal: true
+  href: Reportman.Reporting.HttpAgentCommand.html
+  name: HttpAgentCommand
+  nameWithType: HttpAgentCommand
+  fullName: Reportman.Reporting.HttpAgentCommand
+- uid: Reportman.Reporting.DirectAgentExecutor.CreateCommand*
+  commentId: Overload:Reportman.Reporting.DirectAgentExecutor.CreateCommand
+  isExternal: true
+  href: Reportman.Reporting.DirectAgentExecutor.html#Reportman_Reporting_DirectAgentExecutor_CreateCommand
+  name: CreateCommand
+  nameWithType: DirectAgentExecutor.CreateCommand
+  fullName: Reportman.Reporting.DirectAgentExecutor.CreateCommand
+- uid: Reportman.Drawing.IDbCommandExecuter.CreateCommand
+  commentId: M:Reportman.Drawing.IDbCommandExecuter.CreateCommand
+  parent: Reportman.Drawing.IDbCommandExecuter
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
+  name: CreateCommand()
+  nameWithType: IDbCommandExecuter.CreateCommand()
+  fullName: Reportman.Drawing.IDbCommandExecuter.CreateCommand()
+  spec.csharp:
+  - uid: Reportman.Drawing.IDbCommandExecuter.CreateCommand
+    name: CreateCommand
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.IDbCommandExecuter.CreateCommand
+    name: CreateCommand
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
+  - name: (
+  - name: )
+- uid: System.Data.IDbCommand
+  commentId: T:System.Data.IDbCommand
+  parent: System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.idbcommand
+  name: IDbCommand
+  nameWithType: IDbCommand
+  fullName: System.Data.IDbCommand
+- uid: System.Data
+  commentId: N:System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Data
+  nameWithType: System.Data
+  fullName: System.Data
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Data
+    name: Data
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data
+- uid: Reportman.Reporting.DirectAgentExecutor.Open*
+  commentId: Overload:Reportman.Reporting.DirectAgentExecutor.Open
+  isExternal: true
+  href: Reportman.Reporting.DirectAgentExecutor.html#Reportman_Reporting_DirectAgentExecutor_Open_System_Data_IDbCommand_
+  name: Open
+  nameWithType: DirectAgentExecutor.Open
+  fullName: Reportman.Reporting.DirectAgentExecutor.Open
+- uid: Reportman.Drawing.IDbCommandExecuter.Open(System.Data.IDbCommand)
+  commentId: M:Reportman.Drawing.IDbCommandExecuter.Open(System.Data.IDbCommand)
+  parent: Reportman.Drawing.IDbCommandExecuter
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
+  name: Open(IDbCommand)
+  nameWithType: IDbCommandExecuter.Open(IDbCommand)
+  fullName: Reportman.Drawing.IDbCommandExecuter.Open(System.Data.IDbCommand)
+  spec.csharp:
+  - uid: Reportman.Drawing.IDbCommandExecuter.Open(System.Data.IDbCommand)
+    name: Open
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
+  - name: (
+  - uid: System.Data.IDbCommand
+    name: IDbCommand
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.idbcommand
+  - name: )
+  spec.vb:
+  - uid: Reportman.Drawing.IDbCommandExecuter.Open(System.Data.IDbCommand)
+    name: Open
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
+  - name: (
+  - uid: System.Data.IDbCommand
+    name: IDbCommand
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.idbcommand
+  - name: )
+- uid: System.Data.DataTable
+  commentId: T:System.Data.DataTable
+  parent: System.Data
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.data.datatable
+  name: DataTable
+  nameWithType: DataTable
+  fullName: System.Data.DataTable
+- uid: Reportman.Reporting.DirectAgentExecutor.Dispose*
+  commentId: Overload:Reportman.Reporting.DirectAgentExecutor.Dispose
+  isExternal: true
+  href: Reportman.Reporting.DirectAgentExecutor.html#Reportman_Reporting_DirectAgentExecutor_Dispose
+  name: Dispose
+  nameWithType: DirectAgentExecutor.Dispose
+  fullName: Reportman.Reporting.DirectAgentExecutor.Dispose
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
+  spec.csharp:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )
+- uid: Reportman.Reporting.DirectAgentExecutor.ResetChannelPool*
+  commentId: Overload:Reportman.Reporting.DirectAgentExecutor.ResetChannelPool
+  isExternal: true
+  href: Reportman.Reporting.DirectAgentExecutor.html#Reportman_Reporting_DirectAgentExecutor_ResetChannelPool
+  name: ResetChannelPool
+  nameWithType: DirectAgentExecutor.ResetChannelPool
+  fullName: Reportman.Reporting.DirectAgentExecutor.ResetChannelPool
+- uid: Reportman.Reporting.HttpAgentExecutor.BaseUrl
+  commentId: P:Reportman.Reporting.HttpAgentExecutor.BaseUrl
+  isExternal: true
+  href: Reportman.Reporting.HttpAgentExecutor.html#Reportman_Reporting_HttpAgentExecutor_BaseUrl
+  name: BaseUrl
+  nameWithType: HttpAgentExecutor.BaseUrl
+  fullName: Reportman.Reporting.HttpAgentExecutor.BaseUrl
+- uid: Reportman.Reporting.DirectAgentExecutor.BaseUrl*
+  commentId: Overload:Reportman.Reporting.DirectAgentExecutor.BaseUrl
+  isExternal: true
+  href: Reportman.Reporting.DirectAgentExecutor.html#Reportman_Reporting_DirectAgentExecutor_BaseUrl
+  name: BaseUrl
+  nameWithType: DirectAgentExecutor.BaseUrl
+  fullName: Reportman.Reporting.DirectAgentExecutor.BaseUrl
+- uid: Reportman.Reporting.DirectAgentExecutor.ApiKey*
+  commentId: Overload:Reportman.Reporting.DirectAgentExecutor.ApiKey
+  isExternal: true
+  href: Reportman.Reporting.DirectAgentExecutor.html#Reportman_Reporting_DirectAgentExecutor_ApiKey
+  name: ApiKey
+  nameWithType: DirectAgentExecutor.ApiKey
+  fullName: Reportman.Reporting.DirectAgentExecutor.ApiKey
+- uid: Reportman.Reporting.DirectAgentExecutor.Token*
+  commentId: Overload:Reportman.Reporting.DirectAgentExecutor.Token
+  isExternal: true
+  href: Reportman.Reporting.DirectAgentExecutor.html#Reportman_Reporting_DirectAgentExecutor_Token
+  name: Token
+  nameWithType: DirectAgentExecutor.Token
+  fullName: Reportman.Reporting.DirectAgentExecutor.Token
+- uid: Reportman.Reporting.DirectAgentExecutor.HubDatabaseId*
+  commentId: Overload:Reportman.Reporting.DirectAgentExecutor.HubDatabaseId
+  isExternal: true
+  href: Reportman.Reporting.DirectAgentExecutor.html#Reportman_Reporting_DirectAgentExecutor_HubDatabaseId
+  name: HubDatabaseId
+  nameWithType: DirectAgentExecutor.HubDatabaseId
+  fullName: Reportman.Reporting.DirectAgentExecutor.HubDatabaseId
+- uid: Reportman.Reporting.DirectAgentExecutor.Open(System.Data.IDbCommand)
+  commentId: M:Reportman.Reporting.DirectAgentExecutor.Open(System.Data.IDbCommand)
+  isExternal: true
+  href: Reportman.Reporting.DirectAgentExecutor.html#Reportman_Reporting_DirectAgentExecutor_Open_System_Data_IDbCommand_
+  name: Open(IDbCommand)
+  nameWithType: DirectAgentExecutor.Open(IDbCommand)
+  fullName: Reportman.Reporting.DirectAgentExecutor.Open(System.Data.IDbCommand)
+  spec.csharp:
+  - uid: Reportman.Reporting.DirectAgentExecutor.Open(System.Data.IDbCommand)
+    name: Open
+    isExternal: true
+    href: Reportman.Reporting.DirectAgentExecutor.html#Reportman_Reporting_DirectAgentExecutor_Open_System_Data_IDbCommand_
+  - name: (
+  - uid: System.Data.IDbCommand
+    name: IDbCommand
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.idbcommand
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.DirectAgentExecutor.Open(System.Data.IDbCommand)
+    name: Open
+    isExternal: true
+    href: Reportman.Reporting.DirectAgentExecutor.html#Reportman_Reporting_DirectAgentExecutor_Open_System_Data_IDbCommand_
+  - name: (
+  - uid: System.Data.IDbCommand
+    name: IDbCommand
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.data.idbcommand
+  - name: )
+- uid: Reportman.Reporting.DirectAgentExecutor.UseDirectChannel*
+  commentId: Overload:Reportman.Reporting.DirectAgentExecutor.UseDirectChannel
+  isExternal: true
+  href: Reportman.Reporting.DirectAgentExecutor.html#Reportman_Reporting_DirectAgentExecutor_UseDirectChannel
+  name: UseDirectChannel
+  nameWithType: DirectAgentExecutor.UseDirectChannel
+  fullName: Reportman.Reporting.DirectAgentExecutor.UseDirectChannel
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Reportman.Hub.Client.DataChannel.ConnectionMode.Unknown
+  commentId: F:Reportman.Hub.Client.DataChannel.ConnectionMode.Unknown
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.DataChannel/DirectChannelTypes.cs
+  name: Unknown
+  nameWithType: ConnectionMode.Unknown
+  fullName: Reportman.Hub.Client.DataChannel.ConnectionMode.Unknown
+- uid: Reportman.Reporting.DirectAgentExecutor.LastConnectionMode*
+  commentId: Overload:Reportman.Reporting.DirectAgentExecutor.LastConnectionMode
+  isExternal: true
+  href: Reportman.Reporting.DirectAgentExecutor.html#Reportman_Reporting_DirectAgentExecutor_LastConnectionMode
+  name: LastConnectionMode
+  nameWithType: DirectAgentExecutor.LastConnectionMode
+  fullName: Reportman.Reporting.DirectAgentExecutor.LastConnectionMode
+- uid: Reportman.Hub.Client.DataChannel.ConnectionMode
+  commentId: T:Reportman.Hub.Client.DataChannel.ConnectionMode
+  parent: Reportman.Hub.Client.DataChannel
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.DataChannel/DirectChannelTypes.cs
+  name: ConnectionMode
+  nameWithType: ConnectionMode
+  fullName: Reportman.Hub.Client.DataChannel.ConnectionMode
+- uid: Reportman.Hub.Client.DataChannel
+  commentId: N:Reportman.Hub.Client.DataChannel
+  isExternal: true
+  name: Reportman.Hub.Client.DataChannel
+  nameWithType: Reportman.Hub.Client.DataChannel
+  fullName: Reportman.Hub.Client.DataChannel
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+  - name: .
+  - uid: Reportman.Hub
+    name: Hub
+    isExternal: true
+  - name: .
+  - uid: Reportman.Hub.Client
+    name: Client
+    isExternal: true
+  - name: .
+  - uid: Reportman.Hub.Client.DataChannel
+    name: DataChannel
+    isExternal: true
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+  - name: .
+  - uid: Reportman.Hub
+    name: Hub
+    isExternal: true
+  - name: .
+  - uid: Reportman.Hub.Client
+    name: Client
+    isExternal: true
+  - name: .
+  - uid: Reportman.Hub.Client.DataChannel
+    name: DataChannel
+    isExternal: true
+- uid: System.Action{Reportman.Hub.Client.DataChannel.ConnectionMode}
+  commentId: T:System.Action{Reportman.Hub.Client.DataChannel.ConnectionMode}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<ConnectionMode>
+  nameWithType: Action<ConnectionMode>
+  fullName: System.Action<Reportman.Hub.Client.DataChannel.ConnectionMode>
+  nameWithType.vb: Action(Of ConnectionMode)
+  fullName.vb: System.Action(Of Reportman.Hub.Client.DataChannel.ConnectionMode)
+  name.vb: Action(Of ConnectionMode)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: Reportman.Hub.Client.DataChannel.ConnectionMode
+    name: ConnectionMode
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.DataChannel/DirectChannelTypes.cs
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Reportman.Hub.Client.DataChannel.ConnectionMode
+    name: ConnectionMode
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.DataChannel/DirectChannelTypes.cs
+  - name: )
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )

@@ -3,7 +3,15 @@ using System.Windows.Forms;
 
 namespace Reportman.Reporting.Forms
 {
+    /// <summary>
+    /// Callback executed by the <see cref="DataProgress"/> dialog to run the long-running data operation
+    /// whose progress the dialog displays.
+    /// </summary>
     public delegate void DataProgressEventHandler(object sender, DataProgress nform);
+    /// <summary>
+    /// Modal Windows Forms dialog that runs a data operation and shows record-count progress,
+    /// allowing the user to cancel it.
+    /// </summary>
     public partial class DataProgress : Form
     {
         bool cancelled;

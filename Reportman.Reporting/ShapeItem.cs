@@ -23,6 +23,10 @@ using System.Drawing;
 
 namespace Reportman.Reporting
 {
+    /// <summary>
+    /// A report print item that draws a geometric shape (rectangle, ellipse, line, etc.) with a
+    /// configurable pen and brush, optionally deriving the fill color from an evaluated expression.
+    /// </summary>
     public class ShapeItem : PrintPosItem
     {
         private const int DEF_DRAWWIDTH = 500;

@@ -8,7 +8,7 @@ Welcome to the Reportman API Documentation
 - [Reportman.Reporting](api/Reportman.Reporting.html)
 - [Reportman.Drawing.Windows](api/Reportman.Drawing.Windows.html)
 - [Reportman.Drawing.Forms](api/Reportman.Drawing.Forms.html)
-- [Reportman.Reportman.Reporting.Forms](api/Reportman.Reporting.Forms.html)
+- [Reportman.Reporting.Forms](api/Reportman.Reporting.Forms.html)
 - [Reportman.WPF](api/Reportman.WPF.html)
-- [Reportman.CrossPlatform](api/Reportman.CrossPlatform.html)
+- [Reportman.Drawing.CrossPlatform](api/Reportman.Drawing.CrossPlatform.html)
 

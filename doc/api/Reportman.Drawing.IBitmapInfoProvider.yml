@@ -14,12 +14,22 @@ items:
   nameWithType: IBitmapInfoProvider
   fullName: Reportman.Drawing.IBitmapInfoProvider
   type: Interface
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IBitmapInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: >-
+    Provides image inspection services for render drivers: reading the dimensions of an encoded
+
+    image and re-encoding an image stream into bitmap (BMP) format.
+  example: []
   syntax:
     content: public interface IBitmapInfoProvider
     content.vb: Public Interface IBitmapInfoProvider
+  derivedClasses:
+  - Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType
+  - Reportman.Drawing.PrintOutPDF
 - uid: Reportman.Drawing.IBitmapInfoProvider.GetBitmapInfo(System.IO.Stream)
   commentId: M:Reportman.Drawing.IBitmapInfoProvider.GetBitmapInfo(System.IO.Stream)
   id: GetBitmapInfo(System.IO.Stream)
@@ -31,6 +41,8 @@ items:
   nameWithType: IBitmapInfoProvider.GetBitmapInfo(Stream)
   fullName: Reportman.Drawing.IBitmapInfoProvider.GetBitmapInfo(System.IO.Stream)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IBitmapInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -54,6 +66,8 @@ items:
   nameWithType: IBitmapInfoProvider.EncodeImageStreamAsBitmapStream(MemoryStream)
   fullName: Reportman.Drawing.IBitmapInfoProvider.EncodeImageStreamAsBitmapStream(System.IO.MemoryStream)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IBitmapInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -113,7 +127,7 @@ references:
   commentId: T:Reportman.Drawing.BitmapInfo
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.BitmapInfo.html
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IBitmapInfoProvider.cs
   name: BitmapInfo
   nameWithType: BitmapInfo
   fullName: Reportman.Drawing.BitmapInfo

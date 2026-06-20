@@ -15,6 +15,8 @@ items:
   nameWithType: SkipType
   fullName: Reportman.Reporting.SkipType
   type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -34,6 +36,8 @@ items:
   nameWithType: SkipType.Default
   fullName: Reportman.Reporting.SkipType.Default
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -57,6 +61,8 @@ items:
   nameWithType: SkipType.Before
   fullName: Reportman.Reporting.SkipType.Before
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -80,6 +86,8 @@ items:
   nameWithType: SkipType.After
   fullName: Reportman.Reporting.SkipType.After
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

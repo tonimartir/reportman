@@ -4,6 +4,10 @@ using System.Windows.Forms;
 
 namespace Reportman.Drawing.Forms
 {
+    /// <summary>
+    /// Modal dialog that copies a set of files to update an installation via an <see cref="Updater"/>,
+    /// showing per-file and byte-level progress and optionally backing up replaced files.
+    /// </summary>
     public partial class UpdateForm : Form
     {
         private Updater update;

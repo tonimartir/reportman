@@ -19,6 +19,8 @@ items:
   nameWithType: MetaPages
   fullName: Reportman.Drawing.MetaPages
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -48,6 +50,8 @@ items:
   nameWithType: MetaPages.MetaPages(MetaFile)
   fullName: Reportman.Drawing.MetaPages.MetaPages(Reportman.Drawing.MetaFile)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -75,6 +79,8 @@ items:
   nameWithType: MetaPages.Clear()
   fullName: Reportman.Drawing.MetaPages.Clear()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -95,6 +101,8 @@ items:
   nameWithType: MetaPages.ClearCollection()
   fullName: Reportman.Drawing.MetaPages.ClearCollection()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -115,6 +123,8 @@ items:
   nameWithType: MetaPages.Add(MetaPage)
   fullName: Reportman.Drawing.MetaPages.Add(Reportman.Drawing.MetaPage)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -139,6 +149,8 @@ items:
   nameWithType: MetaPages.CurrentCount
   fullName: Reportman.Drawing.MetaPages.CurrentCount
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -162,6 +174,8 @@ items:
   nameWithType: MetaPages.this[int]
   fullName: Reportman.Drawing.MetaPages.this[int]
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -192,6 +206,8 @@ items:
   nameWithType: MetaPages.Count
   fullName: Reportman.Drawing.MetaPages.Count
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

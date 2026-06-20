@@ -2,6 +2,9 @@
 
 namespace Reportman.Drawing
 {
+    /// <summary>
+    /// Extension methods for <see cref="List{T}"/>, providing a helper to swap two elements by index.
+    /// </summary>
     public static class ListExtensions
     {
         public static void Swap<T>(this List<T> list, int index1, int index2)

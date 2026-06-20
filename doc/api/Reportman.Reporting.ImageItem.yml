@@ -10,11 +10,13 @@ items:
   - Reportman.Reporting.ImageItem.Dispose
   - Reportman.Reporting.ImageItem.DoPrint(Reportman.Drawing.PrintOut,System.Int32,System.Int32,System.Int32,System.Int32,Reportman.Drawing.MetaFile,System.Drawing.Point,System.Boolean@)
   - Reportman.Reporting.ImageItem.DrawStyle
+  - Reportman.Reporting.ImageItem.EmbeddedImageByteCount
   - Reportman.Reporting.ImageItem.Expression
   - Reportman.Reporting.ImageItem.GetClassName
   - Reportman.Reporting.ImageItem.GetExtension(Reportman.Drawing.PrintOut,System.Drawing.Point,System.Boolean)
   - Reportman.Reporting.ImageItem.GetMemoryStream
   - Reportman.Reporting.ImageItem.GetStream
+  - Reportman.Reporting.ImageItem.HasEmbeddedImageStream
   - Reportman.Reporting.ImageItem.Rotation
   - Reportman.Reporting.ImageItem.SharedImage
   - Reportman.Reporting.ImageItem.Stream
@@ -28,9 +30,16 @@ items:
   nameWithType: ImageItem
   fullName: Reportman.Reporting.ImageItem
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ImageItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
+  summary: >-
+    A positioned report item that prints an image, taken either from an embedded stream or from
+
+    an expression, honoring the draw style, resolution, rotation and image-sharing settings.
+  example: []
   syntax:
     content: 'public class ImageItem : PrintPosItem, IDisposable'
     content.vb: Public Class ImageItem Inherits PrintPosItem Implements IDisposable
@@ -87,6 +96,8 @@ items:
   nameWithType: ImageItem.Dispose()
   fullName: Reportman.Reporting.ImageItem.Dispose()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ImageItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -110,6 +121,8 @@ items:
   nameWithType: ImageItem.ImageItem()
   fullName: Reportman.Reporting.ImageItem.ImageItem()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ImageItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -131,6 +144,8 @@ items:
   nameWithType: ImageItem.GetClassName()
   fullName: Reportman.Reporting.ImageItem.GetClassName()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ImageItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -155,6 +170,8 @@ items:
   nameWithType: ImageItem.SubReportChanged(SubReportEvent, string)
   fullName: Reportman.Reporting.ImageItem.SubReportChanged(Reportman.Reporting.SubReportEvent, string)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ImageItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -186,6 +203,8 @@ items:
   nameWithType: ImageItem.GetMemoryStream()
   fullName: Reportman.Reporting.ImageItem.GetMemoryStream()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ImageItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -206,6 +225,8 @@ items:
   nameWithType: ImageItem.GetStream()
   fullName: Reportman.Reporting.ImageItem.GetStream()
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ImageItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -226,6 +247,8 @@ items:
   nameWithType: ImageItem.GetExtension(PrintOut, Point, bool)
   fullName: Reportman.Reporting.ImageItem.GetExtension(Reportman.Drawing.PrintOut, System.Drawing.Point, bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ImageItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -262,6 +285,8 @@ items:
   nameWithType: ImageItem.DoPrint(PrintOut, int, int, int, int, MetaFile, Point, ref bool)
   fullName: Reportman.Reporting.ImageItem.DoPrint(Reportman.Drawing.PrintOut, int, int, int, int, Reportman.Drawing.MetaFile, System.Drawing.Point, ref bool)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ImageItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -311,6 +336,8 @@ items:
   nameWithType: ImageItem.DrawStyle
   fullName: Reportman.Reporting.ImageItem.DrawStyle
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ImageItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -332,6 +359,8 @@ items:
   nameWithType: ImageItem.dpires
   fullName: Reportman.Reporting.ImageItem.dpires
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ImageItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -353,6 +382,8 @@ items:
   nameWithType: ImageItem.CopyMode
   fullName: Reportman.Reporting.ImageItem.CopyMode
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ImageItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -374,6 +405,8 @@ items:
   nameWithType: ImageItem.Rotation
   fullName: Reportman.Reporting.ImageItem.Rotation
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ImageItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -395,6 +428,8 @@ items:
   nameWithType: ImageItem.Expression
   fullName: Reportman.Reporting.ImageItem.Expression
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ImageItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -416,6 +451,8 @@ items:
   nameWithType: ImageItem.SharedImage
   fullName: Reportman.Reporting.ImageItem.SharedImage
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ImageItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -437,6 +474,8 @@ items:
   nameWithType: ImageItem.Stream
   fullName: Reportman.Reporting.ImageItem.Stream
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ImageItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -484,6 +523,8 @@ items:
   nameWithType: ImageItem.StreamBase64
   fullName: Reportman.Reporting.ImageItem.StreamBase64
   type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ImageItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -494,6 +535,52 @@ items:
       type: System.String
     content.vb: Public Property StreamBase64 As String
   overload: Reportman.Reporting.ImageItem.StreamBase64*
+- uid: Reportman.Reporting.ImageItem.HasEmbeddedImageStream
+  commentId: P:Reportman.Reporting.ImageItem.HasEmbeddedImageStream
+  id: HasEmbeddedImageStream
+  parent: Reportman.Reporting.ImageItem
+  langs:
+  - csharp
+  - vb
+  name: HasEmbeddedImageStream
+  nameWithType: ImageItem.HasEmbeddedImageStream
+  fullName: Reportman.Reporting.ImageItem.HasEmbeddedImageStream
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ImageItem.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public bool HasEmbeddedImageStream { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property HasEmbeddedImageStream As Boolean
+  overload: Reportman.Reporting.ImageItem.HasEmbeddedImageStream*
+- uid: Reportman.Reporting.ImageItem.EmbeddedImageByteCount
+  commentId: P:Reportman.Reporting.ImageItem.EmbeddedImageByteCount
+  id: EmbeddedImageByteCount
+  parent: Reportman.Reporting.ImageItem
+  langs:
+  - csharp
+  - vb
+  name: EmbeddedImageByteCount
+  nameWithType: ImageItem.EmbeddedImageByteCount
+  fullName: Reportman.Reporting.ImageItem.EmbeddedImageByteCount
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ImageItem.cs
+  assemblies:
+  - Reportman.Reporting
+  namespace: Reportman.Reporting
+  syntax:
+    content: public long EmbeddedImageByteCount { get; }
+    parameters: []
+    return:
+      type: System.Int64
+    content.vb: Public ReadOnly Property EmbeddedImageByteCount As Long
+  overload: Reportman.Reporting.ImageItem.EmbeddedImageByteCount*
 references:
 - uid: Reportman.Reporting
   commentId: N:Reportman.Reporting
@@ -598,11 +685,13 @@ references:
   - uid: Reportman.Drawing.MetaObject
     name: MetaObject
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
   - name: ','
   - name: " "
   - uid: Reportman.Drawing.MetaPage
     name: MetaPage
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
   - name: )
   spec.vb:
   - uid: Reportman.Reporting.PrintPosItem.FillAnnotation(Reportman.Drawing.MetaObject,Reportman.Drawing.MetaPage)
@@ -613,11 +702,13 @@ references:
   - uid: Reportman.Drawing.MetaObject
     name: MetaObject
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
   - name: ','
   - name: " "
   - uid: Reportman.Drawing.MetaPage
     name: MetaPage
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
   - name: )
 - uid: Reportman.Reporting.PrintPosItem.Hidden
   commentId: P:Reportman.Reporting.PrintPosItem.Hidden
@@ -749,6 +840,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -778,6 +870,7 @@ references:
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -802,6 +895,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -831,6 +925,7 @@ references:
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -1438,6 +1533,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -1460,6 +1556,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -1484,7 +1581,7 @@ references:
   commentId: T:Reportman.Drawing.PrintOut
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.PrintOut.html
+  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   name: PrintOut
   nameWithType: PrintOut
   fullName: Reportman.Drawing.PrintOut
@@ -1581,6 +1678,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -1610,6 +1708,7 @@ references:
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -1634,6 +1733,7 @@ references:
   - uid: Reportman.Drawing.PrintOut
     name: PrintOut
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -1663,6 +1763,7 @@ references:
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
   - name: ','
   - name: " "
   - uid: System.Drawing.Point
@@ -1785,3 +1886,28 @@ references:
   name: StreamBase64
   nameWithType: ImageItem.StreamBase64
   fullName: Reportman.Reporting.ImageItem.StreamBase64
+- uid: Reportman.Reporting.ImageItem.HasEmbeddedImageStream*
+  commentId: Overload:Reportman.Reporting.ImageItem.HasEmbeddedImageStream
+  isExternal: true
+  href: Reportman.Reporting.ImageItem.html#Reportman_Reporting_ImageItem_HasEmbeddedImageStream
+  name: HasEmbeddedImageStream
+  nameWithType: ImageItem.HasEmbeddedImageStream
+  fullName: Reportman.Reporting.ImageItem.HasEmbeddedImageStream
+- uid: Reportman.Reporting.ImageItem.EmbeddedImageByteCount*
+  commentId: Overload:Reportman.Reporting.ImageItem.EmbeddedImageByteCount
+  isExternal: true
+  href: Reportman.Reporting.ImageItem.html#Reportman_Reporting_ImageItem_EmbeddedImageByteCount
+  name: EmbeddedImageByteCount
+  nameWithType: ImageItem.EmbeddedImageByteCount
+  fullName: Reportman.Reporting.ImageItem.EmbeddedImageByteCount
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long

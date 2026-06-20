@@ -15,9 +15,13 @@ items:
   nameWithType: BitmapInfo
   fullName: Reportman.Drawing.BitmapInfo
   type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IBitmapInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
+  summary: Holds the pixel dimensions (width and height) of a decoded image.
+  example: []
   syntax:
     content: public class BitmapInfo
     content.vb: Public Class BitmapInfo
@@ -42,6 +46,8 @@ items:
   nameWithType: BitmapInfo.Width
   fullName: Reportman.Drawing.BitmapInfo.Width
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IBitmapInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -61,6 +67,8 @@ items:
   nameWithType: BitmapInfo.Height
   fullName: Reportman.Drawing.BitmapInfo.Height
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IBitmapInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -80,6 +88,8 @@ items:
   nameWithType: BitmapInfo.BitmapInfo()
   fullName: Reportman.Drawing.BitmapInfo.BitmapInfo()
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IBitmapInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

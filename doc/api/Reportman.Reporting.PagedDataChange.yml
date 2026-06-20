@@ -16,9 +16,16 @@ items:
   nameWithType: PagedDataChange
   fullName: Reportman.Reporting.PagedDataChange
   type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/PagedDataTable.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
+  summary: >-
+    Callback raised by a <xref href="Reportman.Reporting.PagedDataTable" data-throw-if-not-resolved="false"></xref> each time a new row is read and added,
+
+    allowing observers to react to incremental data loading.
+  example: []
   syntax:
     content: public delegate void PagedDataChange(PagedDataTable Data)
     parameters:
@@ -36,6 +43,8 @@ items:
   nameWithType: PagedDataChange.PagedDataChange(object, nint)
   fullName: Reportman.Reporting.PagedDataChange.PagedDataChange(object, nint)
   type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/PagedDataTable.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -62,6 +71,8 @@ items:
   nameWithType: PagedDataChange.Invoke(PagedDataTable)
   fullName: Reportman.Reporting.PagedDataChange.Invoke(Reportman.Reporting.PagedDataTable)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/PagedDataTable.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -83,6 +94,8 @@ items:
   nameWithType: PagedDataChange.BeginInvoke(PagedDataTable, AsyncCallback, object)
   fullName: Reportman.Reporting.PagedDataChange.BeginInvoke(Reportman.Reporting.PagedDataTable, System.AsyncCallback, object)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/PagedDataTable.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -113,6 +126,8 @@ items:
   nameWithType: PagedDataChange.EndInvoke(IAsyncResult)
   fullName: Reportman.Reporting.PagedDataChange.EndInvoke(System.IAsyncResult)
   type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/PagedDataTable.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -124,6 +139,14 @@ items:
     content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
   overload: Reportman.Reporting.PagedDataChange.EndInvoke*
 references:
+- uid: Reportman.Reporting.PagedDataTable
+  commentId: T:Reportman.Reporting.PagedDataTable
+  parent: Reportman.Reporting
+  isExternal: true
+  href: Reportman.Reporting.PagedDataTable.html
+  name: PagedDataTable
+  nameWithType: PagedDataTable
+  fullName: Reportman.Reporting.PagedDataTable
 - uid: Reportman.Reporting
   commentId: N:Reportman.Reporting
   isExternal: true
@@ -151,14 +174,6 @@ references:
     name: Reporting
     isExternal: true
     href: Reportman.Reporting.html
-- uid: Reportman.Reporting.PagedDataTable
-  commentId: T:Reportman.Reporting.PagedDataTable
-  parent: Reportman.Reporting
-  isExternal: true
-  href: Reportman.Reporting.PagedDataTable.html
-  name: PagedDataTable
-  nameWithType: PagedDataTable
-  fullName: Reportman.Reporting.PagedDataTable
 - uid: Reportman.Reporting.PagedDataChange.#ctor*
   commentId: Overload:Reportman.Reporting.PagedDataChange.#ctor
   isExternal: true

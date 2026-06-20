@@ -22,6 +22,8 @@ items:
   nameWithType: LineInfo
   fullName: Reportman.Drawing.LineInfo
   type: Struct
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -48,6 +50,8 @@ items:
   nameWithType: LineInfo.Position
   fullName: Reportman.Drawing.LineInfo.Position
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -67,6 +71,8 @@ items:
   nameWithType: LineInfo.Size
   fullName: Reportman.Drawing.LineInfo.Size
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -86,6 +92,8 @@ items:
   nameWithType: LineInfo.Width
   fullName: Reportman.Drawing.LineInfo.Width
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -105,6 +113,8 @@ items:
   nameWithType: LineInfo.Height
   fullName: Reportman.Drawing.LineInfo.Height
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -124,6 +134,8 @@ items:
   nameWithType: LineInfo.TopPos
   fullName: Reportman.Drawing.LineInfo.TopPos
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -143,6 +155,8 @@ items:
   nameWithType: LineInfo.Step
   fullName: Reportman.Drawing.LineInfo.Step
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -162,6 +176,8 @@ items:
   nameWithType: LineInfo.LastLine
   fullName: Reportman.Drawing.LineInfo.LastLine
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -181,6 +197,8 @@ items:
   nameWithType: LineInfo.LineHeight
   fullName: Reportman.Drawing.LineInfo.LineHeight
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -200,6 +218,8 @@ items:
   nameWithType: LineInfo.Glyphs
   fullName: Reportman.Drawing.LineInfo.Glyphs
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -219,6 +239,8 @@ items:
   nameWithType: LineInfo.Text
   fullName: Reportman.Drawing.LineInfo.Text
   type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
