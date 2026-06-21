@@ -24,7 +24,7 @@ items:
   fullName: Reportman.Reporting.HttpAgentParameter
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/HttpAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -58,7 +58,7 @@ items:
   fullName: Reportman.Reporting.HttpAgentParameter.HttpAgentParameter()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/HttpAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -81,7 +81,7 @@ items:
   fullName: Reportman.Reporting.HttpAgentParameter.DbType
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/HttpAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -107,7 +107,7 @@ items:
   fullName: Reportman.Reporting.HttpAgentParameter.Direction
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/HttpAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -133,7 +133,7 @@ items:
   fullName: Reportman.Reporting.HttpAgentParameter.IsNullable
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/HttpAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -159,7 +159,7 @@ items:
   fullName: Reportman.Reporting.HttpAgentParameter.ParameterName
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/HttpAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -185,7 +185,7 @@ items:
   fullName: Reportman.Reporting.HttpAgentParameter.SourceColumn
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/HttpAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -211,7 +211,7 @@ items:
   fullName: Reportman.Reporting.HttpAgentParameter.SourceVersion
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/HttpAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -237,7 +237,7 @@ items:
   fullName: Reportman.Reporting.HttpAgentParameter.Value
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/HttpAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -263,7 +263,7 @@ items:
   fullName: Reportman.Reporting.HttpAgentParameter.Precision
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/HttpAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -289,7 +289,7 @@ items:
   fullName: Reportman.Reporting.HttpAgentParameter.Scale
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/HttpAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -315,7 +315,7 @@ items:
   fullName: Reportman.Reporting.HttpAgentParameter.Size
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/HttpAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

@@ -1,0 +1,149 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.Design.Json
+  commentId: N:Reportman.Reporting.Design.Json
+  id: Reportman.Reporting.Design.Json
+  children:
+  - Reportman.Reporting.Design.Json.IReportBatchJsonAdapter
+  - Reportman.Reporting.Design.Json.ReportBatchJsonAdapter
+  - Reportman.Reporting.Design.Json.ReportBatchJsonApplyResponse
+  - Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse
+  - Reportman.Reporting.Design.Json.ReportBatchJsonIssue
+  - Reportman.Reporting.Design.Json.ReportBatchJsonOperation
+  - Reportman.Reporting.Design.Json.ReportBatchJsonProperty
+  - Reportman.Reporting.Design.Json.ReportBatchJsonRequest
+  - Reportman.Reporting.Design.Json.ReportBatchJsonValidationResponse
+  - Reportman.Reporting.Design.Json.ReportDocumentFormat
+  langs:
+  - csharp
+  - vb
+  name: Reportman.Reporting.Design.Json
+  nameWithType: Reportman.Reporting.Design.Json
+  fullName: Reportman.Reporting.Design.Json
+  type: Namespace
+  assemblies:
+  - Reportman.Reporting.Design.Json
+references:
+- uid: Reportman.Reporting.Design.Json.ReportBatchJsonAdapter
+  commentId: T:Reportman.Reporting.Design.Json.ReportBatchJsonAdapter
+  isExternal: true
+  href: Reportman.Reporting.Design.Json.ReportBatchJsonAdapter.html
+  name: ReportBatchJsonAdapter
+  nameWithType: ReportBatchJsonAdapter
+  fullName: Reportman.Reporting.Design.Json.ReportBatchJsonAdapter
+- uid: Reportman.Reporting.Design.Json.ReportBatchJsonRequest
+  commentId: T:Reportman.Reporting.Design.Json.ReportBatchJsonRequest
+  parent: Reportman.Reporting.Design.Json
+  isExternal: true
+  href: Reportman.Reporting.Design.Json.ReportBatchJsonRequest.html
+  name: ReportBatchJsonRequest
+  nameWithType: ReportBatchJsonRequest
+  fullName: Reportman.Reporting.Design.Json.ReportBatchJsonRequest
+- uid: Reportman.Reporting.Design.Json.ReportBatchJsonOperation
+  commentId: T:Reportman.Reporting.Design.Json.ReportBatchJsonOperation
+  isExternal: true
+  href: Reportman.Reporting.Design.Json.ReportBatchJsonOperation.html
+  name: ReportBatchJsonOperation
+  nameWithType: ReportBatchJsonOperation
+  fullName: Reportman.Reporting.Design.Json.ReportBatchJsonOperation
+- uid: Reportman.Reporting.Design.Json.ReportBatchJsonProperty
+  commentId: T:Reportman.Reporting.Design.Json.ReportBatchJsonProperty
+  isExternal: true
+  href: Reportman.Reporting.Design.Json.ReportBatchJsonProperty.html
+  name: ReportBatchJsonProperty
+  nameWithType: ReportBatchJsonProperty
+  fullName: Reportman.Reporting.Design.Json.ReportBatchJsonProperty
+- uid: Reportman.Reporting.Design.Json.ReportBatchJsonIssue
+  commentId: T:Reportman.Reporting.Design.Json.ReportBatchJsonIssue
+  isExternal: true
+  href: Reportman.Reporting.Design.Json.ReportBatchJsonIssue.html
+  name: ReportBatchJsonIssue
+  nameWithType: ReportBatchJsonIssue
+  fullName: Reportman.Reporting.Design.Json.ReportBatchJsonIssue
+- uid: Reportman.Reporting.Design.Json.ReportBatchJsonValidationResponse
+  commentId: T:Reportman.Reporting.Design.Json.ReportBatchJsonValidationResponse
+  parent: Reportman.Reporting.Design.Json
+  isExternal: true
+  href: Reportman.Reporting.Design.Json.ReportBatchJsonValidationResponse.html
+  name: ReportBatchJsonValidationResponse
+  nameWithType: ReportBatchJsonValidationResponse
+  fullName: Reportman.Reporting.Design.Json.ReportBatchJsonValidationResponse
+- uid: Reportman.Reporting.Design.Json.ReportBatchJsonApplyResponse
+  commentId: T:Reportman.Reporting.Design.Json.ReportBatchJsonApplyResponse
+  parent: Reportman.Reporting.Design.Json
+  isExternal: true
+  href: Reportman.Reporting.Design.Json.ReportBatchJsonApplyResponse.html
+  name: ReportBatchJsonApplyResponse
+  nameWithType: ReportBatchJsonApplyResponse
+  fullName: Reportman.Reporting.Design.Json.ReportBatchJsonApplyResponse
+- uid: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse
+  commentId: T:Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse
+  parent: Reportman.Reporting.Design.Json
+  isExternal: true
+  href: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.html
+  name: ReportBatchJsonDocumentApplyResponse
+  nameWithType: ReportBatchJsonDocumentApplyResponse
+  fullName: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse
+- uid: Reportman.Reporting.Design.Json.IReportBatchJsonAdapter
+  commentId: T:Reportman.Reporting.Design.Json.IReportBatchJsonAdapter
+  parent: Reportman.Reporting.Design.Json
+  isExternal: true
+  href: Reportman.Reporting.Design.Json.IReportBatchJsonAdapter.html
+  name: IReportBatchJsonAdapter
+  nameWithType: IReportBatchJsonAdapter
+  fullName: Reportman.Reporting.Design.Json.IReportBatchJsonAdapter
+- uid: Reportman.Reporting.Design.Json.ReportDocumentFormat
+  commentId: T:Reportman.Reporting.Design.Json.ReportDocumentFormat
+  parent: Reportman.Reporting.Design.Json
+  isExternal: true
+  href: Reportman.Reporting.Design.Json.ReportDocumentFormat.html
+  name: ReportDocumentFormat
+  nameWithType: ReportDocumentFormat
+  fullName: Reportman.Reporting.Design.Json.ReportDocumentFormat
+- uid: Reportman.Reporting.Design.Json
+  commentId: N:Reportman.Reporting.Design.Json
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting.Design.Json
+  nameWithType: Reportman.Reporting.Design.Json
+  fullName: Reportman.Reporting.Design.Json
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  - name: .
+  - uid: Reportman.Reporting.Design
+    name: Design
+    isExternal: true
+    href: Reportman.Reporting.Design.html
+  - name: .
+  - uid: Reportman.Reporting.Design.Json
+    name: Json
+    isExternal: true
+    href: Reportman.Reporting.Design.Json.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  - name: .
+  - uid: Reportman.Reporting.Design
+    name: Design
+    isExternal: true
+    href: Reportman.Reporting.Design.html
+  - name: .
+  - uid: Reportman.Reporting.Design.Json
+    name: Json
+    isExternal: true
+    href: Reportman.Reporting.Design.Json.html

@@ -41,7 +41,7 @@ items:
   fullName: Reportman.Drawing.MetaPage
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -74,7 +74,7 @@ items:
   fullName: Reportman.Drawing.MetaPage.Version
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -97,7 +97,7 @@ items:
   fullName: Reportman.Drawing.MetaPage.UpdatedPageSize
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -120,7 +120,7 @@ items:
   fullName: Reportman.Drawing.MetaPage.Objects
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -143,7 +143,7 @@ items:
   fullName: Reportman.Drawing.MetaPage.Orientation
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -166,7 +166,7 @@ items:
   fullName: Reportman.Drawing.MetaPage.PageDetail
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -189,7 +189,7 @@ items:
   fullName: Reportman.Drawing.MetaPage.stringlist
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -212,7 +212,7 @@ items:
   fullName: Reportman.Drawing.MetaPage.WindowsMetafile
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -237,7 +237,7 @@ items:
   fullName: Reportman.Drawing.MetaPage.WindowsMetafileScale
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -260,7 +260,7 @@ items:
   fullName: Reportman.Drawing.MetaPage.Dispose()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -284,7 +284,7 @@ items:
   fullName: Reportman.Drawing.MetaPage.MetaPage(Reportman.Drawing.MetaFile)
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -312,7 +312,7 @@ items:
   fullName: Reportman.Drawing.MetaPage.Clear()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -334,7 +334,7 @@ items:
   fullName: Reportman.Drawing.MetaPage.AddString(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -368,7 +368,7 @@ items:
   fullName: Reportman.Drawing.MetaPage.GetText(Reportman.Drawing.MetaObjectText)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -396,7 +396,7 @@ items:
   fullName: Reportman.Drawing.MetaPage.GetWFontNameText(Reportman.Drawing.MetaObjectText)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -424,7 +424,7 @@ items:
   fullName: Reportman.Drawing.MetaPage.GetAnnotationText(Reportman.Drawing.MetaObject)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -452,7 +452,7 @@ items:
   fullName: Reportman.Drawing.MetaPage.GetLFontNameText(Reportman.Drawing.MetaObjectText)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -480,7 +480,7 @@ items:
   fullName: Reportman.Drawing.MetaPage.GetStream(Reportman.Drawing.MetaObjectImage)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -508,7 +508,7 @@ items:
   fullName: Reportman.Drawing.MetaPage.AddStream(System.IO.MemoryStream, bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -543,7 +543,7 @@ items:
   fullName: Reportman.Drawing.MetaPage.SaveToStream(System.IO.Stream)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -569,7 +569,7 @@ items:
   fullName: Reportman.Drawing.MetaPage.LoadFromStream(System.IO.Stream)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -595,7 +595,7 @@ items:
   fullName: Reportman.Drawing.MetaPage.DrawText(int, int, int, int, string, string, string, short, short, int, int, bool, int, Reportman.Drawing.PDFFontType, Reportman.Drawing.TextAlignType, Reportman.Drawing.TextAlignVerticalType, bool, bool, bool, Reportman.Drawing.PrintStepType)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -661,7 +661,7 @@ items:
   fullName: Reportman.Drawing.MetaPage.DrawShape(int, int, int, int, Reportman.Drawing.ShapeType, Reportman.Drawing.BrushType, Reportman.Drawing.PenType, int, int, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -707,7 +707,7 @@ items:
   fullName: Reportman.Drawing.MetaPage.DrawImage(int, int, int, int, Reportman.Drawing.ImageDrawStyleType, int, System.IO.MemoryStream)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -747,7 +747,7 @@ items:
   fullName: Reportman.Drawing.MetaPage.MemStream
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -772,7 +772,7 @@ items:
   fullName: Reportman.Drawing.MetaPage.Pool
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -800,7 +800,7 @@ items:
   fullName: Reportman.Drawing.MetaPage.MetaFile
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -825,7 +825,7 @@ items:
   fullName: Reportman.Drawing.MetaPage.PhysicWidth
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -850,7 +850,7 @@ items:
   fullName: Reportman.Drawing.MetaPage.PhysicHeight
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaPage.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaPage.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1380,7 +1380,7 @@ references:
   commentId: T:Reportman.Drawing.MetaFile
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.MetaFile.html
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaFile.cs
   name: MetaFile
   nameWithType: MetaFile
   fullName: Reportman.Drawing.MetaFile

@@ -32,18 +32,35 @@ using System.Windows.Forms;
 
 namespace Reportman.Designer
 {
+    /// <summary>
+    /// Main WinForms designer control hosting the full report-authoring surface:
+    /// toolbar, structure/data/fields tabs, the section design canvas, the object
+    /// inspector, undo/redo, recent files and the optional AI copilot chat panel.
+    /// </summary>
     public partial class FrameMainDesigner : UserControl
     {
+        /// <summary>
+        /// Event arguments for a save request, letting the host report back whether
+        /// the report was actually saved via the <c>Saved</c> flag.
+        /// </summary>
         public class SaveReportArgs
         {
             public bool Saved;
         }
         public bool ConvertToDotNetOnExecute;
+        /// <summary>
+        /// Event arguments for an exit request, allowing the host to cancel the exit
+        /// or to suppress removal of the designer control from its parent.
+        /// </summary>
         public class ExitReportArgs
         {
             public bool RemoveControl = true;
             public bool Cancelled = false;
         }
+        /// <summary>
+        /// Event arguments for a preview request, carrying the laid-out report
+        /// metafile that the host should display.
+        /// </summary>
         public class PreviewReportArgs
         {
             public PreviewReportArgs(MetaFile meta)
@@ -52,8 +69,20 @@ namespace Reportman.Designer
             }
             public MetaFile MetaFile;
         }
+        /// <summary>
+        /// Callback raised when the user requests a save, letting the host perform
+        /// custom save logic and report the outcome through <see cref="SaveReportArgs"/>.
+        /// </summary>
         public delegate void SaveReportEvent(object sender, SaveReportArgs args);
+        /// <summary>
+        /// Callback raised when the user requests to exit the designer, letting the
+        /// host cancel or control disposal through <see cref="ExitReportArgs"/>.
+        /// </summary>
         public delegate void ExitReportEventHandler(object sender, ExitReportArgs args);
+        /// <summary>
+        /// Callback raised when the user requests a preview, supplying the report
+        /// metafile to render through <see cref="PreviewReportArgs"/>.
+        /// </summary>
         public delegate void PreviewReportEvent(object sender, PreviewReportArgs args);
         private const string LibraryEntrySeparator = "->";
         private const int RecentFileCaptionWidth = 40;
@@ -75,6 +104,11 @@ namespace Reportman.Designer
         private AIChatPanelControl FAIChatControl;
         private Splitter FAIChatSplitter;
         private int FAIChatPanelWidth = DefaultAIChatPanelWidth;
+        /// <summary>
+        /// Controls which save/open toolbar actions the designer exposes: full
+        /// open-and-save, save-only (no open/new), or self-managed saving where the
+        /// standard save drop-down is suppressed.
+        /// </summary>
         public enum EditModeType { OpenSave, Save, SelfSave }
         EditModeType FEditMode;
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), Browsable(false)]

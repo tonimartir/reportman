@@ -1,0 +1,581 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.Design.ReportStructureContextNode
+  commentId: T:Reportman.Reporting.Design.ReportStructureContextNode
+  id: ReportStructureContextNode
+  parent: Reportman.Reporting.Design
+  children:
+  - Reportman.Reporting.Design.ReportStructureContextNode.#ctor
+  - Reportman.Reporting.Design.ReportStructureContextNode.Children
+  - Reportman.Reporting.Design.ReportStructureContextNode.ClassName
+  - Reportman.Reporting.Design.ReportStructureContextNode.Name
+  - Reportman.Reporting.Design.ReportStructureContextNode.ParentName
+  langs:
+  - csharp
+  - vb
+  name: ReportStructureContextNode
+  nameWithType: ReportStructureContextNode
+  fullName: Reportman.Reporting.Design.ReportStructureContextNode
+  type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Design/ReportStructureContextBuilder.cs
+  assemblies:
+  - Reportman.Reporting.Design
+  namespace: Reportman.Reporting.Design
+  summary: >-
+    A single node in the tree that mirrors a report's structure, holding the
+
+    element's name, class name and parent name plus its child nodes.
+  example: []
+  syntax:
+    content: public class ReportStructureContextNode
+    content.vb: Public Class ReportStructureContextNode
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Reporting.Design.ReportStructureContextNode.#ctor
+  commentId: M:Reportman.Reporting.Design.ReportStructureContextNode.#ctor
+  id: '#ctor'
+  parent: Reportman.Reporting.Design.ReportStructureContextNode
+  langs:
+  - csharp
+  - vb
+  name: ReportStructureContextNode()
+  nameWithType: ReportStructureContextNode.ReportStructureContextNode()
+  fullName: Reportman.Reporting.Design.ReportStructureContextNode.ReportStructureContextNode()
+  type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Design/ReportStructureContextBuilder.cs
+  assemblies:
+  - Reportman.Reporting.Design
+  namespace: Reportman.Reporting.Design
+  syntax:
+    content: public ReportStructureContextNode()
+    content.vb: Public Sub New()
+  overload: Reportman.Reporting.Design.ReportStructureContextNode.#ctor*
+  nameWithType.vb: ReportStructureContextNode.New()
+  fullName.vb: Reportman.Reporting.Design.ReportStructureContextNode.New()
+  name.vb: New()
+- uid: Reportman.Reporting.Design.ReportStructureContextNode.Name
+  commentId: P:Reportman.Reporting.Design.ReportStructureContextNode.Name
+  id: Name
+  parent: Reportman.Reporting.Design.ReportStructureContextNode
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: ReportStructureContextNode.Name
+  fullName: Reportman.Reporting.Design.ReportStructureContextNode.Name
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Design/ReportStructureContextBuilder.cs
+  assemblies:
+  - Reportman.Reporting.Design
+  namespace: Reportman.Reporting.Design
+  syntax:
+    content: public string Name { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Name As String
+  overload: Reportman.Reporting.Design.ReportStructureContextNode.Name*
+- uid: Reportman.Reporting.Design.ReportStructureContextNode.ClassName
+  commentId: P:Reportman.Reporting.Design.ReportStructureContextNode.ClassName
+  id: ClassName
+  parent: Reportman.Reporting.Design.ReportStructureContextNode
+  langs:
+  - csharp
+  - vb
+  name: ClassName
+  nameWithType: ReportStructureContextNode.ClassName
+  fullName: Reportman.Reporting.Design.ReportStructureContextNode.ClassName
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Design/ReportStructureContextBuilder.cs
+  assemblies:
+  - Reportman.Reporting.Design
+  namespace: Reportman.Reporting.Design
+  syntax:
+    content: public string ClassName { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ClassName As String
+  overload: Reportman.Reporting.Design.ReportStructureContextNode.ClassName*
+- uid: Reportman.Reporting.Design.ReportStructureContextNode.ParentName
+  commentId: P:Reportman.Reporting.Design.ReportStructureContextNode.ParentName
+  id: ParentName
+  parent: Reportman.Reporting.Design.ReportStructureContextNode
+  langs:
+  - csharp
+  - vb
+  name: ParentName
+  nameWithType: ReportStructureContextNode.ParentName
+  fullName: Reportman.Reporting.Design.ReportStructureContextNode.ParentName
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Design/ReportStructureContextBuilder.cs
+  assemblies:
+  - Reportman.Reporting.Design
+  namespace: Reportman.Reporting.Design
+  syntax:
+    content: public string ParentName { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ParentName As String
+  overload: Reportman.Reporting.Design.ReportStructureContextNode.ParentName*
+- uid: Reportman.Reporting.Design.ReportStructureContextNode.Children
+  commentId: P:Reportman.Reporting.Design.ReportStructureContextNode.Children
+  id: Children
+  parent: Reportman.Reporting.Design.ReportStructureContextNode
+  langs:
+  - csharp
+  - vb
+  name: Children
+  nameWithType: ReportStructureContextNode.Children
+  fullName: Reportman.Reporting.Design.ReportStructureContextNode.Children
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Design/ReportStructureContextBuilder.cs
+  assemblies:
+  - Reportman.Reporting.Design
+  namespace: Reportman.Reporting.Design
+  syntax:
+    content: public List<ReportStructureContextNode> Children { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{Reportman.Reporting.Design.ReportStructureContextNode}
+    content.vb: Public ReadOnly Property Children As List(Of ReportStructureContextNode)
+  overload: Reportman.Reporting.Design.ReportStructureContextNode.Children*
+references:
+- uid: Reportman.Reporting.Design
+  commentId: N:Reportman.Reporting.Design
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting.Design
+  nameWithType: Reportman.Reporting.Design
+  fullName: Reportman.Reporting.Design
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  - name: .
+  - uid: Reportman.Reporting.Design
+    name: Design
+    isExternal: true
+    href: Reportman.Reporting.Design.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  - name: .
+  - uid: Reportman.Reporting.Design
+    name: Design
+    isExternal: true
+    href: Reportman.Reporting.Design.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Reporting.Design.ReportStructureContextNode.#ctor*
+  commentId: Overload:Reportman.Reporting.Design.ReportStructureContextNode.#ctor
+  isExternal: true
+  href: Reportman.Reporting.Design.ReportStructureContextNode.html#Reportman_Reporting_Design_ReportStructureContextNode__ctor
+  name: ReportStructureContextNode
+  nameWithType: ReportStructureContextNode.ReportStructureContextNode
+  fullName: Reportman.Reporting.Design.ReportStructureContextNode.ReportStructureContextNode
+  nameWithType.vb: ReportStructureContextNode.New
+  fullName.vb: Reportman.Reporting.Design.ReportStructureContextNode.New
+  name.vb: New
+- uid: Reportman.Reporting.Design.ReportStructureContextNode.Name*
+  commentId: Overload:Reportman.Reporting.Design.ReportStructureContextNode.Name
+  isExternal: true
+  href: Reportman.Reporting.Design.ReportStructureContextNode.html#Reportman_Reporting_Design_ReportStructureContextNode_Name
+  name: Name
+  nameWithType: ReportStructureContextNode.Name
+  fullName: Reportman.Reporting.Design.ReportStructureContextNode.Name
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Reportman.Reporting.Design.ReportStructureContextNode.ClassName*
+  commentId: Overload:Reportman.Reporting.Design.ReportStructureContextNode.ClassName
+  isExternal: true
+  href: Reportman.Reporting.Design.ReportStructureContextNode.html#Reportman_Reporting_Design_ReportStructureContextNode_ClassName
+  name: ClassName
+  nameWithType: ReportStructureContextNode.ClassName
+  fullName: Reportman.Reporting.Design.ReportStructureContextNode.ClassName
+- uid: Reportman.Reporting.Design.ReportStructureContextNode.ParentName*
+  commentId: Overload:Reportman.Reporting.Design.ReportStructureContextNode.ParentName
+  isExternal: true
+  href: Reportman.Reporting.Design.ReportStructureContextNode.html#Reportman_Reporting_Design_ReportStructureContextNode_ParentName
+  name: ParentName
+  nameWithType: ReportStructureContextNode.ParentName
+  fullName: Reportman.Reporting.Design.ReportStructureContextNode.ParentName
+- uid: Reportman.Reporting.Design.ReportStructureContextNode.Children*
+  commentId: Overload:Reportman.Reporting.Design.ReportStructureContextNode.Children
+  isExternal: true
+  href: Reportman.Reporting.Design.ReportStructureContextNode.html#Reportman_Reporting_Design_ReportStructureContextNode_Children
+  name: Children
+  nameWithType: ReportStructureContextNode.Children
+  fullName: Reportman.Reporting.Design.ReportStructureContextNode.Children
+- uid: System.Collections.Generic.List{Reportman.Reporting.Design.ReportStructureContextNode}
+  commentId: T:System.Collections.Generic.List{Reportman.Reporting.Design.ReportStructureContextNode}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<ReportStructureContextNode>
+  nameWithType: List<ReportStructureContextNode>
+  fullName: System.Collections.Generic.List<Reportman.Reporting.Design.ReportStructureContextNode>
+  nameWithType.vb: List(Of ReportStructureContextNode)
+  fullName.vb: System.Collections.Generic.List(Of Reportman.Reporting.Design.ReportStructureContextNode)
+  name.vb: List(Of ReportStructureContextNode)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Reportman.Reporting.Design.ReportStructureContextNode
+    name: ReportStructureContextNode
+    isExternal: true
+    href: Reportman.Reporting.Design.ReportStructureContextNode.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Reportman.Reporting.Design.ReportStructureContextNode
+    name: ReportStructureContextNode
+    isExternal: true
+    href: Reportman.Reporting.Design.ReportStructureContextNode.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic

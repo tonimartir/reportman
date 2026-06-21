@@ -41,7 +41,7 @@ items:
   fullName: Reportman.Drawing.Forms.NoTitleForm
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/NoTitleForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -613,7 +613,7 @@ items:
   fullName: Reportman.Drawing.Forms.NoTitleForm.AllowWindowEffects
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/NoTitleForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -634,7 +634,7 @@ items:
   fullName: Reportman.Drawing.Forms.NoTitleForm.WM_NCLBUTTONDOWN
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/NoTitleForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -655,7 +655,7 @@ items:
   fullName: Reportman.Drawing.Forms.NoTitleForm.WM_NCLBUTTONUP
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/NoTitleForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -676,7 +676,7 @@ items:
   fullName: Reportman.Drawing.Forms.NoTitleForm.HT_CAPTION
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/NoTitleForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -697,7 +697,7 @@ items:
   fullName: Reportman.Drawing.Forms.NoTitleForm.NoTitleForm()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/NoTitleForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -720,7 +720,7 @@ items:
   fullName: Reportman.Drawing.Forms.NoTitleForm.OnLoad(System.EventArgs)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/NoTitleForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -745,7 +745,7 @@ items:
   fullName: Reportman.Drawing.Forms.NoTitleForm.OnFormWindowStateChanged(System.EventArgs)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/NoTitleForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -768,7 +768,7 @@ items:
   fullName: Reportman.Drawing.Forms.NoTitleForm.AfterAdjustWindowToNormal()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/NoTitleForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -788,7 +788,7 @@ items:
   fullName: Reportman.Drawing.Forms.NoTitleForm.SetFullScreen(bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/NoTitleForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -814,7 +814,7 @@ items:
   fullName: Reportman.Drawing.Forms.NoTitleForm.SwitchMaximizeMinimize()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/NoTitleForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -834,7 +834,7 @@ items:
   fullName: Reportman.Drawing.Forms.NoTitleForm.OnResize(System.EventArgs)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/NoTitleForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -859,7 +859,7 @@ items:
   fullName: Reportman.Drawing.Forms.NoTitleForm.OnPaint(System.Windows.Forms.PaintEventArgs)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/NoTitleForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -884,7 +884,7 @@ items:
   fullName: Reportman.Drawing.Forms.NoTitleForm.WndProc(ref System.Windows.Forms.Message)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/NoTitleForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -912,7 +912,7 @@ items:
   fullName: Reportman.Drawing.Forms.NoTitleForm.AddToolStripButtons(System.Windows.Forms.ToolStrip, bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/NoTitleForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -940,7 +940,7 @@ items:
   fullName: Reportman.Drawing.Forms.NoTitleForm.SaveBounds()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/NoTitleForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -960,7 +960,7 @@ items:
   fullName: Reportman.Drawing.Forms.NoTitleForm.RestoreSavedBounds()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/NoTitleForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -980,7 +980,7 @@ items:
   fullName: Reportman.Drawing.Forms.NoTitleForm.SendMessage(nint, int, int, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/NoTitleForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1014,7 +1014,7 @@ items:
   fullName: Reportman.Drawing.Forms.NoTitleForm.ReleaseCapture()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/NoTitleForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1036,7 +1036,7 @@ items:
   fullName: Reportman.Drawing.Forms.NoTitleForm.Dispose(bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.designer.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/NoTitleForm.designer.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1066,7 +1066,7 @@ items:
   fullName: Reportman.Drawing.Forms.NoTitleForm.CreateParams
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/NoTitleForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1091,7 +1091,7 @@ items:
   fullName: Reportman.Drawing.Forms.NoTitleForm.ShowTitle
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/NoTitleForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1114,7 +1114,7 @@ items:
   fullName: Reportman.Drawing.Forms.NoTitleForm.GripSize
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/NoTitleForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1137,7 +1137,7 @@ items:
   fullName: Reportman.Drawing.Forms.NoTitleForm.CaptionHeight
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/NoTitleForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1160,7 +1160,7 @@ items:
   fullName: Reportman.Drawing.Forms.NoTitleForm.BorderSize
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/NoTitleForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1183,7 +1183,7 @@ items:
   fullName: Reportman.Drawing.Forms.NoTitleForm.DrawBorder
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/NoTitleForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1206,7 +1206,7 @@ items:
   fullName: Reportman.Drawing.Forms.NoTitleForm.DrawGrip
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/NoTitleForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1229,7 +1229,7 @@ items:
   fullName: Reportman.Drawing.Forms.NoTitleForm.DrawTitle
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/NoTitleForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -1252,7 +1252,7 @@ items:
   fullName: Reportman.Drawing.Forms.NoTitleForm.BorderColor
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/NoTitleForm.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/NoTitleForm.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

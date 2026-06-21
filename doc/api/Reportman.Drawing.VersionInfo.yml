@@ -19,7 +19,7 @@ items:
   fullName: Reportman.Drawing.VersionInfo
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Updater.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Updater.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -53,7 +53,7 @@ items:
   fullName: Reportman.Drawing.VersionInfo.GetAssemblyVersion(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Updater.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Updater.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -81,7 +81,7 @@ items:
   fullName: Reportman.Drawing.VersionInfo.GetFileVersion(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Updater.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Updater.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -109,7 +109,7 @@ items:
   fullName: Reportman.Drawing.VersionInfo.GetAssemblyVersion()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Updater.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Updater.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -131,7 +131,7 @@ items:
   fullName: Reportman.Drawing.VersionInfo.RequireUpgrade(System.Version, System.Version)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Updater.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Updater.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -158,7 +158,7 @@ items:
   fullName: Reportman.Drawing.VersionInfo.RequireUpgrade(string, string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Updater.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Updater.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -188,7 +188,7 @@ items:
   fullName: Reportman.Drawing.VersionInfo.VersionInfo()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Updater.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Updater.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

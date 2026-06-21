@@ -30,7 +30,7 @@ items:
   fullName: Reportman.Drawing.TGlyphPos
   type: Struct
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -61,7 +61,7 @@ items:
   fullName: Reportman.Drawing.TGlyphPos.GlyphIndex
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -82,7 +82,7 @@ items:
   fullName: Reportman.Drawing.TGlyphPos.XOffset
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -103,7 +103,7 @@ items:
   fullName: Reportman.Drawing.TGlyphPos.YOffset
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -124,7 +124,7 @@ items:
   fullName: Reportman.Drawing.TGlyphPos.XAdvance
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -145,7 +145,7 @@ items:
   fullName: Reportman.Drawing.TGlyphPos.YAdvance
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -166,7 +166,7 @@ items:
   fullName: Reportman.Drawing.TGlyphPos.CharCode
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -187,7 +187,7 @@ items:
   fullName: Reportman.Drawing.TGlyphPos.Cluster
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -208,7 +208,7 @@ items:
   fullName: Reportman.Drawing.TGlyphPos.LineCluster
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -229,7 +229,7 @@ items:
   fullName: Reportman.Drawing.TGlyphPos.FontFamily
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -250,7 +250,7 @@ items:
   fullName: Reportman.Drawing.TGlyphPos.Bold
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -271,7 +271,7 @@ items:
   fullName: Reportman.Drawing.TGlyphPos.Italic
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -292,7 +292,7 @@ items:
   fullName: Reportman.Drawing.TGlyphPos.Underline
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -313,7 +313,7 @@ items:
   fullName: Reportman.Drawing.TGlyphPos.StrikeOut
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -334,7 +334,7 @@ items:
   fullName: Reportman.Drawing.TGlyphPos.FontSize
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -355,7 +355,7 @@ items:
   fullName: Reportman.Drawing.TGlyphPos.HasFontSize
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -376,7 +376,7 @@ items:
   fullName: Reportman.Drawing.TGlyphPos.Color
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -397,7 +397,7 @@ items:
   fullName: Reportman.Drawing.TGlyphPos.HasColor
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

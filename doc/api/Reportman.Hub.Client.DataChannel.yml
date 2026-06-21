@@ -1,0 +1,106 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Hub.Client.DataChannel
+  commentId: N:Reportman.Hub.Client.DataChannel
+  id: Reportman.Hub.Client.DataChannel
+  children:
+  - Reportman.Hub.Client.DataChannel.ConnectionMode
+  - Reportman.Hub.Client.DataChannel.QueryPhase
+  - Reportman.Hub.Client.DataChannel.QueryProgress
+  - Reportman.Hub.Client.DataChannel.WebRtcChannelPool
+  - Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession
+  langs:
+  - csharp
+  - vb
+  name: Reportman.Hub.Client.DataChannel
+  nameWithType: Reportman.Hub.Client.DataChannel
+  fullName: Reportman.Hub.Client.DataChannel
+  type: Namespace
+  assemblies:
+  - Reportman.DataChannel
+references:
+- uid: Reportman.Hub.Client.DataChannel.ConnectionMode
+  commentId: T:Reportman.Hub.Client.DataChannel.ConnectionMode
+  parent: Reportman.Hub.Client.DataChannel
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.ConnectionMode.html
+  name: ConnectionMode
+  nameWithType: ConnectionMode
+  fullName: Reportman.Hub.Client.DataChannel.ConnectionMode
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress
+  commentId: T:Reportman.Hub.Client.DataChannel.QueryProgress
+  parent: Reportman.Hub.Client.DataChannel
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.QueryProgress.html
+  name: QueryProgress
+  nameWithType: QueryProgress
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress
+- uid: Reportman.Hub.Client.DataChannel.QueryPhase
+  commentId: T:Reportman.Hub.Client.DataChannel.QueryPhase
+  parent: Reportman.Hub.Client.DataChannel
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.QueryPhase.html
+  name: QueryPhase
+  nameWithType: QueryPhase
+  fullName: Reportman.Hub.Client.DataChannel.QueryPhase
+- uid: Reportman.Hub.Client.DataChannel.WebRtcChannelPool
+  commentId: T:Reportman.Hub.Client.DataChannel.WebRtcChannelPool
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.html
+  name: WebRtcChannelPool
+  nameWithType: WebRtcChannelPool
+  fullName: Reportman.Hub.Client.DataChannel.WebRtcChannelPool
+- uid: Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession
+  commentId: T:Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession.html
+  name: WebRtcDataChannelSession
+  nameWithType: WebRtcDataChannelSession
+  fullName: Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession
+- uid: Reportman.Hub.Client.DataChannel
+  commentId: N:Reportman.Hub.Client.DataChannel
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Hub.Client.DataChannel
+  nameWithType: Reportman.Hub.Client.DataChannel
+  fullName: Reportman.Hub.Client.DataChannel
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Hub
+    name: Hub
+    isExternal: true
+    href: Reportman.Hub.html
+  - name: .
+  - uid: Reportman.Hub.Client
+    name: Client
+    isExternal: true
+    href: Reportman.Hub.Client.html
+  - name: .
+  - uid: Reportman.Hub.Client.DataChannel
+    name: DataChannel
+    isExternal: true
+    href: Reportman.Hub.Client.DataChannel.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Hub
+    name: Hub
+    isExternal: true
+    href: Reportman.Hub.html
+  - name: .
+  - uid: Reportman.Hub.Client
+    name: Client
+    isExternal: true
+    href: Reportman.Hub.Client.html
+  - name: .
+  - uid: Reportman.Hub.Client.DataChannel
+    name: DataChannel
+    isExternal: true
+    href: Reportman.Hub.Client.DataChannel.html

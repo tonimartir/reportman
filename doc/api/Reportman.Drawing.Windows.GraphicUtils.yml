@@ -56,7 +56,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -90,7 +90,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.DefaultDPI
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -111,7 +111,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.GetMimeType(System.Drawing.Image)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -136,7 +136,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.LengthenLine(System.Drawing.PointF, ref System.Drawing.PointF, float)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -166,7 +166,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.GetRoundedLine(System.Drawing.PointF[], float)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -196,7 +196,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.ScreenDPIY()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -218,7 +218,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.ScreenDPIX()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -240,7 +240,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.ScreenDPI()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -262,7 +262,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.GetImageGrid(int, int, int, int, System.Drawing.Color, System.Drawing.Color, bool, double)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -320,7 +320,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.GetBitmapGrid(int, int, int, int, System.Drawing.Color, System.Drawing.Color, bool, double)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -378,7 +378,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.CreateWindowsMetafile(int, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -408,7 +408,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.GetMetafileGrid(int, int, int, int, System.Drawing.Color, System.Drawing.Color, bool, double)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -466,7 +466,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.DrawGrid(System.Drawing.Graphics, int, int, int, int, System.Drawing.Color, bool, int, int, double)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -522,7 +522,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.MeasureDisplayStringWidth(System.Drawing.Graphics, string, System.Drawing.Font)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -560,7 +560,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.WriteWindowsMetaFile(System.Drawing.Imaging.Metafile, System.IO.Stream, float)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -595,7 +595,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.GetImageCodecs()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -620,7 +620,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.GetAvgFontSizeTwips(string, float, System.Drawing.FontStyle)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -652,7 +652,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.TextToBitmap(int, string, string, float)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -693,7 +693,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.WriteWindowsMetaFileCodec(System.Drawing.Imaging.Metafile, System.IO.Stream, float, string, out string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -734,7 +734,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.GetInvertedBlackWhite(System.Drawing.Color)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -759,7 +759,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.StringFontStyleFromInteger(int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -787,7 +787,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.IntegerFromStringFontStyle(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -815,7 +815,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.StringFromFontStyle(System.Drawing.FontStyle)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -840,7 +840,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.RemapImageTransparentColor(System.Drawing.Image, System.Drawing.Color)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -867,7 +867,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.ImageToStream(System.Drawing.Image)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -892,7 +892,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.ImageToByteArray(System.Drawing.Image)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -917,7 +917,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.ScaleToDPI(int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -945,7 +945,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.ScaleBitmapDPI(System.Drawing.Image)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -970,7 +970,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.ScaledBitmapRatio(System.Drawing.Image, int, int, bool, bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -1006,7 +1006,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.ScaledBitmapRatio(System.Drawing.Image, int, int, bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -1047,7 +1047,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.ImageFromStream(System.IO.Stream)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -1076,7 +1076,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.GetRotateFlipTypeByExifOrientationData(int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -1104,7 +1104,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.IntegerFromFontStyle(System.Drawing.FontStyle)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -1129,7 +1129,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.GetEncoderInfo(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -1157,7 +1157,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.ExifRotate(System.Drawing.Image)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -1182,7 +1182,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.GetImageCodecFromExtension(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -1213,7 +1213,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.GetImageCodec(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -1245,7 +1245,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.FontStyleFromInteger(int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -1276,7 +1276,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.ConvertToBitonal(System.Drawing.Bitmap, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -1306,7 +1306,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.SimpleThresholdBW(byte[], int, int, int, int, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -1344,7 +1344,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.GraphicUtils()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -1367,7 +1367,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.DPIScale
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -1390,7 +1390,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.DPIScaleX
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -1413,7 +1413,7 @@ items:
   fullName: Reportman.Drawing.Windows.GraphicUtils.DPIScaleY
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing.Windows
@@ -2079,7 +2079,7 @@ references:
   commentId: T:Reportman.Drawing.Strings
   parent: Reportman.Drawing
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Strings.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Strings.cs
   name: Strings
   nameWithType: Strings
   fullName: Reportman.Drawing.Strings

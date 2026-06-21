@@ -1,0 +1,294 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Designer.EllipsisClick
+  commentId: T:Reportman.Designer.EllipsisClick
+  id: EllipsisClick
+  parent: Reportman.Designer
+  children:
+  - Reportman.Designer.EllipsisClick.#ctor(System.Object,System.IntPtr)
+  - Reportman.Designer.EllipsisClick.BeginInvoke(Reportman.Designer.EllipsisEditingControl,System.String@,System.AsyncCallback,System.Object)
+  - Reportman.Designer.EllipsisClick.EndInvoke(System.String@,System.IAsyncResult)
+  - Reportman.Designer.EllipsisClick.Invoke(Reportman.Designer.EllipsisEditingControl,System.String@)
+  langs:
+  - csharp
+  - vb
+  name: EllipsisClick
+  nameWithType: EllipsisClick
+  fullName: Reportman.Designer.EllipsisClick
+  type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EllipsisEditingControl.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: >-
+    Callback raised when the ellipsis button of an <xref href="Reportman.Designer.EllipsisEditingControl" data-throw-if-not-resolved="false"></xref> is clicked;
+
+    the handler may replace <code class="paramref">text</code> and returns true if the value was changed.
+  example: []
+  syntax:
+    content: public delegate bool EllipsisClick(EllipsisEditingControl sender, ref string text)
+    parameters:
+    - id: sender
+      type: Reportman.Designer.EllipsisEditingControl
+    - id: text
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Delegate Function EllipsisClick(sender As EllipsisEditingControl, text As String) As Boolean
+- uid: Reportman.Designer.EllipsisClick.#ctor(System.Object,System.IntPtr)
+  commentId: M:Reportman.Designer.EllipsisClick.#ctor(System.Object,System.IntPtr)
+  id: '#ctor(System.Object,System.IntPtr)'
+  parent: Reportman.Designer.EllipsisClick
+  langs:
+  - csharp
+  - vb
+  name: EllipsisClick(object, nint)
+  nameWithType: EllipsisClick.EllipsisClick(object, nint)
+  fullName: Reportman.Designer.EllipsisClick.EllipsisClick(object, nint)
+  type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EllipsisEditingControl.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public EllipsisClick(object @object, nint method)
+    parameters:
+    - id: object
+      type: System.Object
+    - id: method
+      type: System.IntPtr
+    content.vb: Public Sub New([object] As Object, method As IntPtr)
+  overload: Reportman.Designer.EllipsisClick.#ctor*
+  nameWithType.vb: EllipsisClick.New(Object, IntPtr)
+  fullName.vb: Reportman.Designer.EllipsisClick.New(Object, System.IntPtr)
+  name.vb: New(Object, IntPtr)
+- uid: Reportman.Designer.EllipsisClick.Invoke(Reportman.Designer.EllipsisEditingControl,System.String@)
+  commentId: M:Reportman.Designer.EllipsisClick.Invoke(Reportman.Designer.EllipsisEditingControl,System.String@)
+  id: Invoke(Reportman.Designer.EllipsisEditingControl,System.String@)
+  parent: Reportman.Designer.EllipsisClick
+  langs:
+  - csharp
+  - vb
+  name: Invoke(EllipsisEditingControl, ref string)
+  nameWithType: EllipsisClick.Invoke(EllipsisEditingControl, ref string)
+  fullName: Reportman.Designer.EllipsisClick.Invoke(Reportman.Designer.EllipsisEditingControl, ref string)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EllipsisEditingControl.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public virtual bool Invoke(EllipsisEditingControl sender, ref string text)
+    parameters:
+    - id: sender
+      type: Reportman.Designer.EllipsisEditingControl
+    - id: text
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Overridable Function Invoke(sender As EllipsisEditingControl, text As String) As Boolean
+  overload: Reportman.Designer.EllipsisClick.Invoke*
+  nameWithType.vb: EllipsisClick.Invoke(EllipsisEditingControl, String)
+  fullName.vb: Reportman.Designer.EllipsisClick.Invoke(Reportman.Designer.EllipsisEditingControl, String)
+  name.vb: Invoke(EllipsisEditingControl, String)
+- uid: Reportman.Designer.EllipsisClick.BeginInvoke(Reportman.Designer.EllipsisEditingControl,System.String@,System.AsyncCallback,System.Object)
+  commentId: M:Reportman.Designer.EllipsisClick.BeginInvoke(Reportman.Designer.EllipsisEditingControl,System.String@,System.AsyncCallback,System.Object)
+  id: BeginInvoke(Reportman.Designer.EllipsisEditingControl,System.String@,System.AsyncCallback,System.Object)
+  parent: Reportman.Designer.EllipsisClick
+  langs:
+  - csharp
+  - vb
+  name: BeginInvoke(EllipsisEditingControl, ref string, AsyncCallback, object)
+  nameWithType: EllipsisClick.BeginInvoke(EllipsisEditingControl, ref string, AsyncCallback, object)
+  fullName: Reportman.Designer.EllipsisClick.BeginInvoke(Reportman.Designer.EllipsisEditingControl, ref string, System.AsyncCallback, object)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EllipsisEditingControl.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public virtual IAsyncResult BeginInvoke(EllipsisEditingControl sender, ref string text, AsyncCallback callback, object @object)
+    parameters:
+    - id: sender
+      type: Reportman.Designer.EllipsisEditingControl
+    - id: text
+      type: System.String
+    - id: callback
+      type: System.AsyncCallback
+    - id: object
+      type: System.Object
+    return:
+      type: System.IAsyncResult
+    content.vb: Public Overridable Function BeginInvoke(sender As EllipsisEditingControl, text As String, callback As AsyncCallback, [object] As Object) As IAsyncResult
+  overload: Reportman.Designer.EllipsisClick.BeginInvoke*
+  nameWithType.vb: EllipsisClick.BeginInvoke(EllipsisEditingControl, String, AsyncCallback, Object)
+  fullName.vb: Reportman.Designer.EllipsisClick.BeginInvoke(Reportman.Designer.EllipsisEditingControl, String, System.AsyncCallback, Object)
+  name.vb: BeginInvoke(EllipsisEditingControl, String, AsyncCallback, Object)
+- uid: Reportman.Designer.EllipsisClick.EndInvoke(System.String@,System.IAsyncResult)
+  commentId: M:Reportman.Designer.EllipsisClick.EndInvoke(System.String@,System.IAsyncResult)
+  id: EndInvoke(System.String@,System.IAsyncResult)
+  parent: Reportman.Designer.EllipsisClick
+  langs:
+  - csharp
+  - vb
+  name: EndInvoke(ref string, IAsyncResult)
+  nameWithType: EllipsisClick.EndInvoke(ref string, IAsyncResult)
+  fullName: Reportman.Designer.EllipsisClick.EndInvoke(ref string, System.IAsyncResult)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EllipsisEditingControl.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public virtual bool EndInvoke(ref string text, IAsyncResult result)
+    parameters:
+    - id: text
+      type: System.String
+    - id: result
+      type: System.IAsyncResult
+    return:
+      type: System.Boolean
+    content.vb: Public Overridable Function EndInvoke(text As String, result As IAsyncResult) As Boolean
+  overload: Reportman.Designer.EllipsisClick.EndInvoke*
+  nameWithType.vb: EllipsisClick.EndInvoke(String, IAsyncResult)
+  fullName.vb: Reportman.Designer.EllipsisClick.EndInvoke(String, System.IAsyncResult)
+  name.vb: EndInvoke(String, IAsyncResult)
+references:
+- uid: Reportman.Designer.EllipsisEditingControl
+  commentId: T:Reportman.Designer.EllipsisEditingControl
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.EllipsisEditingControl.html
+  name: EllipsisEditingControl
+  nameWithType: EllipsisEditingControl
+  fullName: Reportman.Designer.EllipsisEditingControl
+- uid: Reportman.Designer
+  commentId: N:Reportman.Designer
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Designer
+  nameWithType: Reportman.Designer
+  fullName: Reportman.Designer
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Designer.EllipsisClick.#ctor*
+  commentId: Overload:Reportman.Designer.EllipsisClick.#ctor
+  isExternal: true
+  href: Reportman.Designer.EllipsisClick.html#Reportman_Designer_EllipsisClick__ctor_System_Object_System_IntPtr_
+  name: EllipsisClick
+  nameWithType: EllipsisClick.EllipsisClick
+  fullName: Reportman.Designer.EllipsisClick.EllipsisClick
+  nameWithType.vb: EllipsisClick.New
+  fullName.vb: Reportman.Designer.EllipsisClick.New
+  name.vb: New
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: Reportman.Designer.EllipsisClick.Invoke*
+  commentId: Overload:Reportman.Designer.EllipsisClick.Invoke
+  isExternal: true
+  href: Reportman.Designer.EllipsisClick.html#Reportman_Designer_EllipsisClick_Invoke_Reportman_Designer_EllipsisEditingControl_System_String__
+  name: Invoke
+  nameWithType: EllipsisClick.Invoke
+  fullName: Reportman.Designer.EllipsisClick.Invoke
+- uid: Reportman.Designer.EllipsisClick.BeginInvoke*
+  commentId: Overload:Reportman.Designer.EllipsisClick.BeginInvoke
+  isExternal: true
+  href: Reportman.Designer.EllipsisClick.html#Reportman_Designer_EllipsisClick_BeginInvoke_Reportman_Designer_EllipsisEditingControl_System_String__System_AsyncCallback_System_Object_
+  name: BeginInvoke
+  nameWithType: EllipsisClick.BeginInvoke
+  fullName: Reportman.Designer.EllipsisClick.BeginInvoke
+- uid: System.AsyncCallback
+  commentId: T:System.AsyncCallback
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.asynccallback
+  name: AsyncCallback
+  nameWithType: AsyncCallback
+  fullName: System.AsyncCallback
+- uid: System.IAsyncResult
+  commentId: T:System.IAsyncResult
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncresult
+  name: IAsyncResult
+  nameWithType: IAsyncResult
+  fullName: System.IAsyncResult
+- uid: Reportman.Designer.EllipsisClick.EndInvoke*
+  commentId: Overload:Reportman.Designer.EllipsisClick.EndInvoke
+  isExternal: true
+  href: Reportman.Designer.EllipsisClick.html#Reportman_Designer_EllipsisClick_EndInvoke_System_String__System_IAsyncResult_
+  name: EndInvoke
+  nameWithType: EllipsisClick.EndInvoke
+  fullName: Reportman.Designer.EllipsisClick.EndInvoke

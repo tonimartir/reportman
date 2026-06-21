@@ -36,7 +36,7 @@ items:
   fullName: Reportman.Drawing.Translator
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Translator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Translator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -88,7 +88,7 @@ items:
   fullName: Reportman.Drawing.Translator.ResourceAssembly
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Translator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Translator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -109,7 +109,7 @@ items:
   fullName: Reportman.Drawing.Translator.Translator(System.ComponentModel.IContainer)
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Translator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Translator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -147,7 +147,7 @@ items:
   fullName: Reportman.Drawing.Translator.Translator()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Translator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Translator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -172,7 +172,7 @@ items:
   fullName: Reportman.Drawing.Translator.Dispose(bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Translator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Translator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -201,7 +201,7 @@ items:
   fullName: Reportman.Drawing.Translator.FindAssemblyResource(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Translator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Translator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -229,7 +229,7 @@ items:
   fullName: Reportman.Drawing.Translator.FindResource(bool, ref bool, string, System.Reflection.Assembly)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Translator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Translator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -263,7 +263,7 @@ items:
   fullName: Reportman.Drawing.Translator.FindResource()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Translator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Translator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -285,7 +285,7 @@ items:
   fullName: Reportman.Drawing.Translator.FileExists()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Translator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Translator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -310,7 +310,7 @@ items:
   fullName: Reportman.Drawing.Translator.UpdateContent()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Translator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Translator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -332,7 +332,7 @@ items:
   fullName: Reportman.Drawing.Translator.AddString(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Translator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Translator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -363,7 +363,7 @@ items:
   fullName: Reportman.Drawing.Translator.LoadFromStream(System.IO.Stream)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Translator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Translator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -388,7 +388,7 @@ items:
   fullName: Reportman.Drawing.Translator.LoadFromFile(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Translator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Translator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -416,7 +416,7 @@ items:
   fullName: Reportman.Drawing.Translator.TranslateStr(int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Translator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Translator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -458,7 +458,7 @@ items:
   fullName: Reportman.Drawing.Translator.SaveFileJsonDefault(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Translator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Translator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -484,7 +484,7 @@ items:
   fullName: Reportman.Drawing.Translator.SaveFileJson(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Translator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Translator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -510,7 +510,7 @@ items:
   fullName: Reportman.Drawing.Translator.SetDefaultTranslatorPath(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Translator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Translator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -544,7 +544,7 @@ items:
   fullName: Reportman.Drawing.Translator.GetLanguageDescriptions(System.Collections.IList)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Translator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Translator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -569,7 +569,7 @@ items:
   fullName: Reportman.Drawing.Translator.LookForResource
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Translator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Translator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -592,7 +592,7 @@ items:
   fullName: Reportman.Drawing.Translator.Active
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Translator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Translator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -620,7 +620,7 @@ items:
   fullName: Reportman.Drawing.Translator.AutoLocale
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Translator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Translator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -648,7 +648,7 @@ items:
   fullName: Reportman.Drawing.Translator.Filename
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Translator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Translator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -680,7 +680,7 @@ items:
   fullName: Reportman.Drawing.Translator.Count
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Translator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Translator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -705,7 +705,7 @@ items:
   fullName: Reportman.Drawing.Translator.this[int]
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Translator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Translator.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

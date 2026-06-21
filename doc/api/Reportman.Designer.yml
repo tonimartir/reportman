@@ -1,0 +1,864 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Designer
+  commentId: N:Reportman.Designer
+  id: Reportman.Designer
+  children:
+  - Reportman.Designer.AIChatPanelControl
+  - Reportman.Designer.AICopilotManager
+  - Reportman.Designer.AILoginForm
+  - Reportman.Designer.AILoginFrameControl
+  - Reportman.Designer.AISchemaSelectorControl
+  - Reportman.Designer.AISelectionControl
+  - Reportman.Designer.AssetsManager
+  - Reportman.Designer.BandInfo
+  - Reportman.Designer.ConnectionEditor
+  - Reportman.Designer.ConnectionEditor.ConnResult
+  - Reportman.Designer.ConnectionParamsControl
+  - Reportman.Designer.DbxConnections
+  - Reportman.Designer.DesignerSelfTest
+  - Reportman.Designer.EditSubReport
+  - Reportman.Designer.EllipsisClick
+  - Reportman.Designer.EllipsisEditingControl
+  - Reportman.Designer.ExpressionChatPanelControl
+  - Reportman.Designer.ExpressionChatPanelControl.ValidateExpressionHandler
+  - Reportman.Designer.ExpressionDlg
+  - Reportman.Designer.ExpressionEditorControl
+  - Reportman.Designer.FieldInfo
+  - Reportman.Designer.FrameDataDef
+  - Reportman.Designer.FrameFields
+  - Reportman.Designer.FrameMainDesigner
+  - Reportman.Designer.FrameMainDesigner.EditModeType
+  - Reportman.Designer.FrameMainDesigner.ExitReportArgs
+  - Reportman.Designer.FrameMainDesigner.ExitReportEventHandler
+  - Reportman.Designer.FrameMainDesigner.PreviewReportArgs
+  - Reportman.Designer.FrameMainDesigner.PreviewReportEvent
+  - Reportman.Designer.FrameMainDesigner.SaveReportArgs
+  - Reportman.Designer.FrameMainDesigner.SaveReportEvent
+  - Reportman.Designer.FrameStructure
+  - Reportman.Designer.GridOptions
+  - Reportman.Designer.HttpAgentParams
+  - Reportman.Designer.HubDatabaseConverter
+  - Reportman.Designer.HubDatabaseRef
+  - Reportman.Designer.LibraryConfig
+  - Reportman.Designer.LibraryConfigForm
+  - Reportman.Designer.MainForm
+  - Reportman.Designer.MonacoEditorControl
+  - Reportman.Designer.NewReportWizard
+  - Reportman.Designer.ObjectInspectorCell
+  - Reportman.Designer.ObjectInspectorCellType
+  - Reportman.Designer.ObjectInspectorColumn
+  - Reportman.Designer.OpenFromLibrary
+  - Reportman.Designer.OpenFromLibrary.AfterSelectEvent
+  - Reportman.Designer.OpenFromLibrary.AfterSelectEventArgs
+  - Reportman.Designer.OpenFromLibrary.BeforeSelectEvent
+  - Reportman.Designer.OpenFromLibrary.BeforeSelectEventArgs
+  - Reportman.Designer.OpenFromLibrary.SelectionModeType
+  - Reportman.Designer.OpenFromLibraryForm
+  - Reportman.Designer.PropertyChanged
+  - Reportman.Designer.ResizeAction
+  - Reportman.Designer.ResizeEventGetBounds
+  - Reportman.Designer.ResizeEventSetBounds
+  - Reportman.Designer.RpAuthManager
+  - Reportman.Designer.RpProfile
+  - Reportman.Designer.RuntimeResize
+  - Reportman.Designer.SQLEditor
+  - Reportman.Designer.SQLEditorControl
+  - Reportman.Designer.SelectedItemPalette
+  - Reportman.Designer.SqlChatPanelControl
+  - Reportman.Designer.SqlSchemaContextChangedEventArgs
+  - Reportman.Designer.WebMarkdownControl
+  langs:
+  - csharp
+  - vb
+  name: Reportman.Designer
+  nameWithType: Reportman.Designer
+  fullName: Reportman.Designer
+  type: Namespace
+  assemblies:
+  - Reportman.Designer
+references:
+- uid: Reportman.Designer.AIChatPanelControl
+  commentId: T:Reportman.Designer.AIChatPanelControl
+  isExternal: true
+  href: Reportman.Designer.AIChatPanelControl.html
+  name: AIChatPanelControl
+  nameWithType: AIChatPanelControl
+  fullName: Reportman.Designer.AIChatPanelControl
+- uid: Reportman.Designer.AICopilotManager
+  commentId: T:Reportman.Designer.AICopilotManager
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.AICopilotManager.html
+  name: AICopilotManager
+  nameWithType: AICopilotManager
+  fullName: Reportman.Designer.AICopilotManager
+- uid: Reportman.Designer.AILoginForm
+  commentId: T:Reportman.Designer.AILoginForm
+  isExternal: true
+  href: Reportman.Designer.AILoginForm.html
+  name: AILoginForm
+  nameWithType: AILoginForm
+  fullName: Reportman.Designer.AILoginForm
+- uid: Reportman.Designer.AILoginFrameControl
+  commentId: T:Reportman.Designer.AILoginFrameControl
+  isExternal: true
+  href: Reportman.Designer.AILoginFrameControl.html
+  name: AILoginFrameControl
+  nameWithType: AILoginFrameControl
+  fullName: Reportman.Designer.AILoginFrameControl
+- uid: Reportman.Designer.AISchemaSelectorControl
+  commentId: T:Reportman.Designer.AISchemaSelectorControl
+  isExternal: true
+  href: Reportman.Designer.AISchemaSelectorControl.html
+  name: AISchemaSelectorControl
+  nameWithType: AISchemaSelectorControl
+  fullName: Reportman.Designer.AISchemaSelectorControl
+- uid: Reportman.Designer.AISelectionControl
+  commentId: T:Reportman.Designer.AISelectionControl
+  isExternal: true
+  href: Reportman.Designer.AISelectionControl.html
+  name: AISelectionControl
+  nameWithType: AISelectionControl
+  fullName: Reportman.Designer.AISelectionControl
+- uid: Reportman.Designer.AssetsManager
+  commentId: T:Reportman.Designer.AssetsManager
+  isExternal: true
+  href: Reportman.Designer.AssetsManager.html
+  name: AssetsManager
+  nameWithType: AssetsManager
+  fullName: Reportman.Designer.AssetsManager
+- uid: Reportman.Designer.ConnectionEditor
+  commentId: T:Reportman.Designer.ConnectionEditor
+  isExternal: true
+  href: Reportman.Designer.ConnectionEditor.html
+  name: ConnectionEditor
+  nameWithType: ConnectionEditor
+  fullName: Reportman.Designer.ConnectionEditor
+- uid: Reportman.Designer.ConnectionEditor.ConnResult
+  commentId: T:Reportman.Designer.ConnectionEditor.ConnResult
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.ConnectionEditor.html
+  name: ConnectionEditor.ConnResult
+  nameWithType: ConnectionEditor.ConnResult
+  fullName: Reportman.Designer.ConnectionEditor.ConnResult
+  spec.csharp:
+  - uid: Reportman.Designer.ConnectionEditor
+    name: ConnectionEditor
+    isExternal: true
+    href: Reportman.Designer.ConnectionEditor.html
+  - name: .
+  - uid: Reportman.Designer.ConnectionEditor.ConnResult
+    name: ConnResult
+    isExternal: true
+    href: Reportman.Designer.ConnectionEditor.ConnResult.html
+  spec.vb:
+  - uid: Reportman.Designer.ConnectionEditor
+    name: ConnectionEditor
+    isExternal: true
+    href: Reportman.Designer.ConnectionEditor.html
+  - name: .
+  - uid: Reportman.Designer.ConnectionEditor.ConnResult
+    name: ConnResult
+    isExternal: true
+    href: Reportman.Designer.ConnectionEditor.ConnResult.html
+- uid: Reportman.Designer.ConnectionParamsControl
+  commentId: T:Reportman.Designer.ConnectionParamsControl
+  isExternal: true
+  href: Reportman.Designer.ConnectionParamsControl.html
+  name: ConnectionParamsControl
+  nameWithType: ConnectionParamsControl
+  fullName: Reportman.Designer.ConnectionParamsControl
+- uid: Reportman.Designer.DbxConnections
+  commentId: T:Reportman.Designer.DbxConnections
+  isExternal: true
+  href: Reportman.Designer.DbxConnections.html
+  name: DbxConnections
+  nameWithType: DbxConnections
+  fullName: Reportman.Designer.DbxConnections
+- uid: Reportman.Designer.DesignerSelfTest
+  commentId: T:Reportman.Designer.DesignerSelfTest
+  isExternal: true
+  href: Reportman.Designer.DesignerSelfTest.html
+  name: DesignerSelfTest
+  nameWithType: DesignerSelfTest
+  fullName: Reportman.Designer.DesignerSelfTest
+- uid: Reportman.Designer.EditSubReport
+  commentId: T:Reportman.Designer.EditSubReport
+  isExternal: true
+  href: Reportman.Designer.EditSubReport.html
+  name: EditSubReport
+  nameWithType: EditSubReport
+  fullName: Reportman.Designer.EditSubReport
+- uid: Reportman.Designer.SelectedItemPalette
+  commentId: T:Reportman.Designer.SelectedItemPalette
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.SelectedItemPalette.html
+  name: SelectedItemPalette
+  nameWithType: SelectedItemPalette
+  fullName: Reportman.Designer.SelectedItemPalette
+- uid: Reportman.Designer.BandInfo
+  commentId: T:Reportman.Designer.BandInfo
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.BandInfo.html
+  name: BandInfo
+  nameWithType: BandInfo
+  fullName: Reportman.Designer.BandInfo
+- uid: Reportman.Designer.EllipsisClick
+  commentId: T:Reportman.Designer.EllipsisClick
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.EllipsisClick.html
+  name: EllipsisClick
+  nameWithType: EllipsisClick
+  fullName: Reportman.Designer.EllipsisClick
+- uid: Reportman.Designer.EllipsisEditingControl
+  commentId: T:Reportman.Designer.EllipsisEditingControl
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.EllipsisEditingControl.html
+  name: EllipsisEditingControl
+  nameWithType: EllipsisEditingControl
+  fullName: Reportman.Designer.EllipsisEditingControl
+- uid: Reportman.Designer.ExpressionChatPanelControl
+  commentId: T:Reportman.Designer.ExpressionChatPanelControl
+  isExternal: true
+  href: Reportman.Designer.ExpressionChatPanelControl.html
+  name: ExpressionChatPanelControl
+  nameWithType: ExpressionChatPanelControl
+  fullName: Reportman.Designer.ExpressionChatPanelControl
+- uid: Reportman.Designer.ExpressionChatPanelControl.ValidateExpressionHandler
+  commentId: T:Reportman.Designer.ExpressionChatPanelControl.ValidateExpressionHandler
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.ExpressionChatPanelControl.html
+  name: ExpressionChatPanelControl.ValidateExpressionHandler
+  nameWithType: ExpressionChatPanelControl.ValidateExpressionHandler
+  fullName: Reportman.Designer.ExpressionChatPanelControl.ValidateExpressionHandler
+  spec.csharp:
+  - uid: Reportman.Designer.ExpressionChatPanelControl
+    name: ExpressionChatPanelControl
+    isExternal: true
+    href: Reportman.Designer.ExpressionChatPanelControl.html
+  - name: .
+  - uid: Reportman.Designer.ExpressionChatPanelControl.ValidateExpressionHandler
+    name: ValidateExpressionHandler
+    isExternal: true
+    href: Reportman.Designer.ExpressionChatPanelControl.ValidateExpressionHandler.html
+  spec.vb:
+  - uid: Reportman.Designer.ExpressionChatPanelControl
+    name: ExpressionChatPanelControl
+    isExternal: true
+    href: Reportman.Designer.ExpressionChatPanelControl.html
+  - name: .
+  - uid: Reportman.Designer.ExpressionChatPanelControl.ValidateExpressionHandler
+    name: ValidateExpressionHandler
+    isExternal: true
+    href: Reportman.Designer.ExpressionChatPanelControl.ValidateExpressionHandler.html
+- uid: Reportman.Designer.ExpressionDlg
+  commentId: T:Reportman.Designer.ExpressionDlg
+  isExternal: true
+  href: Reportman.Designer.ExpressionDlg.html
+  name: ExpressionDlg
+  nameWithType: ExpressionDlg
+  fullName: Reportman.Designer.ExpressionDlg
+- uid: Reportman.Designer.ExpressionEditorControl
+  commentId: T:Reportman.Designer.ExpressionEditorControl
+  isExternal: true
+  href: Reportman.Designer.ExpressionEditorControl.html
+  name: ExpressionEditorControl
+  nameWithType: ExpressionEditorControl
+  fullName: Reportman.Designer.ExpressionEditorControl
+- uid: Reportman.Designer.FrameDataDef
+  commentId: T:Reportman.Designer.FrameDataDef
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.FrameDataDef.html
+  name: FrameDataDef
+  nameWithType: FrameDataDef
+  fullName: Reportman.Designer.FrameDataDef
+- uid: Reportman.Designer.FrameFields
+  commentId: T:Reportman.Designer.FrameFields
+  isExternal: true
+  href: Reportman.Designer.FrameFields.html
+  name: FrameFields
+  nameWithType: FrameFields
+  fullName: Reportman.Designer.FrameFields
+- uid: Reportman.Designer.FieldInfo
+  commentId: T:Reportman.Designer.FieldInfo
+  isExternal: true
+  href: Reportman.Designer.FieldInfo.html
+  name: FieldInfo
+  nameWithType: FieldInfo
+  fullName: Reportman.Designer.FieldInfo
+- uid: Reportman.Designer.FrameMainDesigner
+  commentId: T:Reportman.Designer.FrameMainDesigner
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.FrameMainDesigner.html
+  name: FrameMainDesigner
+  nameWithType: FrameMainDesigner
+  fullName: Reportman.Designer.FrameMainDesigner
+- uid: Reportman.Designer.FrameMainDesigner.SaveReportArgs
+  commentId: T:Reportman.Designer.FrameMainDesigner.SaveReportArgs
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.FrameMainDesigner.html
+  name: FrameMainDesigner.SaveReportArgs
+  nameWithType: FrameMainDesigner.SaveReportArgs
+  fullName: Reportman.Designer.FrameMainDesigner.SaveReportArgs
+  spec.csharp:
+  - uid: Reportman.Designer.FrameMainDesigner
+    name: FrameMainDesigner
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.html
+  - name: .
+  - uid: Reportman.Designer.FrameMainDesigner.SaveReportArgs
+    name: SaveReportArgs
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.SaveReportArgs.html
+  spec.vb:
+  - uid: Reportman.Designer.FrameMainDesigner
+    name: FrameMainDesigner
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.html
+  - name: .
+  - uid: Reportman.Designer.FrameMainDesigner.SaveReportArgs
+    name: SaveReportArgs
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.SaveReportArgs.html
+- uid: Reportman.Designer.FrameMainDesigner.ExitReportArgs
+  commentId: T:Reportman.Designer.FrameMainDesigner.ExitReportArgs
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.FrameMainDesigner.html
+  name: FrameMainDesigner.ExitReportArgs
+  nameWithType: FrameMainDesigner.ExitReportArgs
+  fullName: Reportman.Designer.FrameMainDesigner.ExitReportArgs
+  spec.csharp:
+  - uid: Reportman.Designer.FrameMainDesigner
+    name: FrameMainDesigner
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.html
+  - name: .
+  - uid: Reportman.Designer.FrameMainDesigner.ExitReportArgs
+    name: ExitReportArgs
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.ExitReportArgs.html
+  spec.vb:
+  - uid: Reportman.Designer.FrameMainDesigner
+    name: FrameMainDesigner
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.html
+  - name: .
+  - uid: Reportman.Designer.FrameMainDesigner.ExitReportArgs
+    name: ExitReportArgs
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.ExitReportArgs.html
+- uid: Reportman.Designer.FrameMainDesigner.PreviewReportArgs
+  commentId: T:Reportman.Designer.FrameMainDesigner.PreviewReportArgs
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.FrameMainDesigner.html
+  name: FrameMainDesigner.PreviewReportArgs
+  nameWithType: FrameMainDesigner.PreviewReportArgs
+  fullName: Reportman.Designer.FrameMainDesigner.PreviewReportArgs
+  spec.csharp:
+  - uid: Reportman.Designer.FrameMainDesigner
+    name: FrameMainDesigner
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.html
+  - name: .
+  - uid: Reportman.Designer.FrameMainDesigner.PreviewReportArgs
+    name: PreviewReportArgs
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.PreviewReportArgs.html
+  spec.vb:
+  - uid: Reportman.Designer.FrameMainDesigner
+    name: FrameMainDesigner
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.html
+  - name: .
+  - uid: Reportman.Designer.FrameMainDesigner.PreviewReportArgs
+    name: PreviewReportArgs
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.PreviewReportArgs.html
+- uid: Reportman.Designer.FrameMainDesigner.SaveReportEvent
+  commentId: T:Reportman.Designer.FrameMainDesigner.SaveReportEvent
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.FrameMainDesigner.html
+  name: FrameMainDesigner.SaveReportEvent
+  nameWithType: FrameMainDesigner.SaveReportEvent
+  fullName: Reportman.Designer.FrameMainDesigner.SaveReportEvent
+  spec.csharp:
+  - uid: Reportman.Designer.FrameMainDesigner
+    name: FrameMainDesigner
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.html
+  - name: .
+  - uid: Reportman.Designer.FrameMainDesigner.SaveReportEvent
+    name: SaveReportEvent
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.SaveReportEvent.html
+  spec.vb:
+  - uid: Reportman.Designer.FrameMainDesigner
+    name: FrameMainDesigner
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.html
+  - name: .
+  - uid: Reportman.Designer.FrameMainDesigner.SaveReportEvent
+    name: SaveReportEvent
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.SaveReportEvent.html
+- uid: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler
+  commentId: T:Reportman.Designer.FrameMainDesigner.ExitReportEventHandler
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.FrameMainDesigner.html
+  name: FrameMainDesigner.ExitReportEventHandler
+  nameWithType: FrameMainDesigner.ExitReportEventHandler
+  fullName: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler
+  spec.csharp:
+  - uid: Reportman.Designer.FrameMainDesigner
+    name: FrameMainDesigner
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.html
+  - name: .
+  - uid: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler
+    name: ExitReportEventHandler
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.html
+  spec.vb:
+  - uid: Reportman.Designer.FrameMainDesigner
+    name: FrameMainDesigner
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.html
+  - name: .
+  - uid: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler
+    name: ExitReportEventHandler
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.html
+- uid: Reportman.Designer.FrameMainDesigner.PreviewReportEvent
+  commentId: T:Reportman.Designer.FrameMainDesigner.PreviewReportEvent
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.FrameMainDesigner.html
+  name: FrameMainDesigner.PreviewReportEvent
+  nameWithType: FrameMainDesigner.PreviewReportEvent
+  fullName: Reportman.Designer.FrameMainDesigner.PreviewReportEvent
+  spec.csharp:
+  - uid: Reportman.Designer.FrameMainDesigner
+    name: FrameMainDesigner
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.html
+  - name: .
+  - uid: Reportman.Designer.FrameMainDesigner.PreviewReportEvent
+    name: PreviewReportEvent
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.PreviewReportEvent.html
+  spec.vb:
+  - uid: Reportman.Designer.FrameMainDesigner
+    name: FrameMainDesigner
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.html
+  - name: .
+  - uid: Reportman.Designer.FrameMainDesigner.PreviewReportEvent
+    name: PreviewReportEvent
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.PreviewReportEvent.html
+- uid: Reportman.Designer.FrameMainDesigner.EditModeType
+  commentId: T:Reportman.Designer.FrameMainDesigner.EditModeType
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.FrameMainDesigner.html
+  name: FrameMainDesigner.EditModeType
+  nameWithType: FrameMainDesigner.EditModeType
+  fullName: Reportman.Designer.FrameMainDesigner.EditModeType
+  spec.csharp:
+  - uid: Reportman.Designer.FrameMainDesigner
+    name: FrameMainDesigner
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.html
+  - name: .
+  - uid: Reportman.Designer.FrameMainDesigner.EditModeType
+    name: EditModeType
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.EditModeType.html
+  spec.vb:
+  - uid: Reportman.Designer.FrameMainDesigner
+    name: FrameMainDesigner
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.html
+  - name: .
+  - uid: Reportman.Designer.FrameMainDesigner.EditModeType
+    name: EditModeType
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.EditModeType.html
+- uid: Reportman.Designer.FrameStructure
+  commentId: T:Reportman.Designer.FrameStructure
+  isExternal: true
+  href: Reportman.Designer.FrameStructure.html
+  name: FrameStructure
+  nameWithType: FrameStructure
+  fullName: Reportman.Designer.FrameStructure
+- uid: Reportman.Designer.GridOptions
+  commentId: T:Reportman.Designer.GridOptions
+  isExternal: true
+  href: Reportman.Designer.GridOptions.html
+  name: GridOptions
+  nameWithType: GridOptions
+  fullName: Reportman.Designer.GridOptions
+- uid: Reportman.Designer.HubDatabaseRef
+  commentId: T:Reportman.Designer.HubDatabaseRef
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.HubDatabaseRef.html
+  name: HubDatabaseRef
+  nameWithType: HubDatabaseRef
+  fullName: Reportman.Designer.HubDatabaseRef
+- uid: Reportman.Designer.HubDatabaseConverter
+  commentId: T:Reportman.Designer.HubDatabaseConverter
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.HubDatabaseConverter.html
+  name: HubDatabaseConverter
+  nameWithType: HubDatabaseConverter
+  fullName: Reportman.Designer.HubDatabaseConverter
+- uid: Reportman.Designer.HttpAgentParams
+  commentId: T:Reportman.Designer.HttpAgentParams
+  isExternal: true
+  href: Reportman.Designer.HttpAgentParams.html
+  name: HttpAgentParams
+  nameWithType: HttpAgentParams
+  fullName: Reportman.Designer.HttpAgentParams
+- uid: Reportman.Designer.PropertyChanged
+  commentId: T:Reportman.Designer.PropertyChanged
+  isExternal: true
+  href: Reportman.Designer.PropertyChanged.html
+  name: PropertyChanged
+  nameWithType: PropertyChanged
+  fullName: Reportman.Designer.PropertyChanged
+- uid: Reportman.Designer.LibraryConfig
+  commentId: T:Reportman.Designer.LibraryConfig
+  isExternal: true
+  href: Reportman.Designer.LibraryConfig.html
+  name: LibraryConfig
+  nameWithType: LibraryConfig
+  fullName: Reportman.Designer.LibraryConfig
+- uid: Reportman.Designer.LibraryConfigForm
+  commentId: T:Reportman.Designer.LibraryConfigForm
+  isExternal: true
+  href: Reportman.Designer.LibraryConfigForm.html
+  name: LibraryConfigForm
+  nameWithType: LibraryConfigForm
+  fullName: Reportman.Designer.LibraryConfigForm
+- uid: Reportman.Designer.MainForm
+  commentId: T:Reportman.Designer.MainForm
+  isExternal: true
+  href: Reportman.Designer.MainForm.html
+  name: MainForm
+  nameWithType: MainForm
+  fullName: Reportman.Designer.MainForm
+- uid: Reportman.Designer.MonacoEditorControl
+  commentId: T:Reportman.Designer.MonacoEditorControl
+  isExternal: true
+  href: Reportman.Designer.MonacoEditorControl.html
+  name: MonacoEditorControl
+  nameWithType: MonacoEditorControl
+  fullName: Reportman.Designer.MonacoEditorControl
+- uid: Reportman.Designer.NewReportWizard
+  commentId: T:Reportman.Designer.NewReportWizard
+  isExternal: true
+  href: Reportman.Designer.NewReportWizard.html
+  name: NewReportWizard
+  nameWithType: NewReportWizard
+  fullName: Reportman.Designer.NewReportWizard
+- uid: Reportman.Designer.ObjectInspectorCellType
+  commentId: T:Reportman.Designer.ObjectInspectorCellType
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.ObjectInspectorCellType.html
+  name: ObjectInspectorCellType
+  nameWithType: ObjectInspectorCellType
+  fullName: Reportman.Designer.ObjectInspectorCellType
+- uid: Reportman.Designer.ObjectInspectorColumn
+  commentId: T:Reportman.Designer.ObjectInspectorColumn
+  isExternal: true
+  href: Reportman.Designer.ObjectInspectorColumn.html
+  name: ObjectInspectorColumn
+  nameWithType: ObjectInspectorColumn
+  fullName: Reportman.Designer.ObjectInspectorColumn
+- uid: Reportman.Designer.ObjectInspectorCell
+  commentId: T:Reportman.Designer.ObjectInspectorCell
+  isExternal: true
+  href: Reportman.Designer.ObjectInspectorCell.html
+  name: ObjectInspectorCell
+  nameWithType: ObjectInspectorCell
+  fullName: Reportman.Designer.ObjectInspectorCell
+- uid: Reportman.Designer.OpenFromLibrary
+  commentId: T:Reportman.Designer.OpenFromLibrary
+  isExternal: true
+  href: Reportman.Designer.OpenFromLibrary.html
+  name: OpenFromLibrary
+  nameWithType: OpenFromLibrary
+  fullName: Reportman.Designer.OpenFromLibrary
+- uid: Reportman.Designer.OpenFromLibrary.BeforeSelectEventArgs
+  commentId: T:Reportman.Designer.OpenFromLibrary.BeforeSelectEventArgs
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.OpenFromLibrary.html
+  name: OpenFromLibrary.BeforeSelectEventArgs
+  nameWithType: OpenFromLibrary.BeforeSelectEventArgs
+  fullName: Reportman.Designer.OpenFromLibrary.BeforeSelectEventArgs
+  spec.csharp:
+  - uid: Reportman.Designer.OpenFromLibrary
+    name: OpenFromLibrary
+    isExternal: true
+    href: Reportman.Designer.OpenFromLibrary.html
+  - name: .
+  - uid: Reportman.Designer.OpenFromLibrary.BeforeSelectEventArgs
+    name: BeforeSelectEventArgs
+    isExternal: true
+    href: Reportman.Designer.OpenFromLibrary.BeforeSelectEventArgs.html
+  spec.vb:
+  - uid: Reportman.Designer.OpenFromLibrary
+    name: OpenFromLibrary
+    isExternal: true
+    href: Reportman.Designer.OpenFromLibrary.html
+  - name: .
+  - uid: Reportman.Designer.OpenFromLibrary.BeforeSelectEventArgs
+    name: BeforeSelectEventArgs
+    isExternal: true
+    href: Reportman.Designer.OpenFromLibrary.BeforeSelectEventArgs.html
+- uid: Reportman.Designer.OpenFromLibrary.AfterSelectEventArgs
+  commentId: T:Reportman.Designer.OpenFromLibrary.AfterSelectEventArgs
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.OpenFromLibrary.html
+  name: OpenFromLibrary.AfterSelectEventArgs
+  nameWithType: OpenFromLibrary.AfterSelectEventArgs
+  fullName: Reportman.Designer.OpenFromLibrary.AfterSelectEventArgs
+  spec.csharp:
+  - uid: Reportman.Designer.OpenFromLibrary
+    name: OpenFromLibrary
+    isExternal: true
+    href: Reportman.Designer.OpenFromLibrary.html
+  - name: .
+  - uid: Reportman.Designer.OpenFromLibrary.AfterSelectEventArgs
+    name: AfterSelectEventArgs
+    isExternal: true
+    href: Reportman.Designer.OpenFromLibrary.AfterSelectEventArgs.html
+  spec.vb:
+  - uid: Reportman.Designer.OpenFromLibrary
+    name: OpenFromLibrary
+    isExternal: true
+    href: Reportman.Designer.OpenFromLibrary.html
+  - name: .
+  - uid: Reportman.Designer.OpenFromLibrary.AfterSelectEventArgs
+    name: AfterSelectEventArgs
+    isExternal: true
+    href: Reportman.Designer.OpenFromLibrary.AfterSelectEventArgs.html
+- uid: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent
+  commentId: T:Reportman.Designer.OpenFromLibrary.BeforeSelectEvent
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.OpenFromLibrary.html
+  name: OpenFromLibrary.BeforeSelectEvent
+  nameWithType: OpenFromLibrary.BeforeSelectEvent
+  fullName: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent
+  spec.csharp:
+  - uid: Reportman.Designer.OpenFromLibrary
+    name: OpenFromLibrary
+    isExternal: true
+    href: Reportman.Designer.OpenFromLibrary.html
+  - name: .
+  - uid: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent
+    name: BeforeSelectEvent
+    isExternal: true
+    href: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.html
+  spec.vb:
+  - uid: Reportman.Designer.OpenFromLibrary
+    name: OpenFromLibrary
+    isExternal: true
+    href: Reportman.Designer.OpenFromLibrary.html
+  - name: .
+  - uid: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent
+    name: BeforeSelectEvent
+    isExternal: true
+    href: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.html
+- uid: Reportman.Designer.OpenFromLibrary.AfterSelectEvent
+  commentId: T:Reportman.Designer.OpenFromLibrary.AfterSelectEvent
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.OpenFromLibrary.html
+  name: OpenFromLibrary.AfterSelectEvent
+  nameWithType: OpenFromLibrary.AfterSelectEvent
+  fullName: Reportman.Designer.OpenFromLibrary.AfterSelectEvent
+  spec.csharp:
+  - uid: Reportman.Designer.OpenFromLibrary
+    name: OpenFromLibrary
+    isExternal: true
+    href: Reportman.Designer.OpenFromLibrary.html
+  - name: .
+  - uid: Reportman.Designer.OpenFromLibrary.AfterSelectEvent
+    name: AfterSelectEvent
+    isExternal: true
+    href: Reportman.Designer.OpenFromLibrary.AfterSelectEvent.html
+  spec.vb:
+  - uid: Reportman.Designer.OpenFromLibrary
+    name: OpenFromLibrary
+    isExternal: true
+    href: Reportman.Designer.OpenFromLibrary.html
+  - name: .
+  - uid: Reportman.Designer.OpenFromLibrary.AfterSelectEvent
+    name: AfterSelectEvent
+    isExternal: true
+    href: Reportman.Designer.OpenFromLibrary.AfterSelectEvent.html
+- uid: Reportman.Designer.OpenFromLibrary.SelectionModeType
+  commentId: T:Reportman.Designer.OpenFromLibrary.SelectionModeType
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.OpenFromLibrary.html
+  name: OpenFromLibrary.SelectionModeType
+  nameWithType: OpenFromLibrary.SelectionModeType
+  fullName: Reportman.Designer.OpenFromLibrary.SelectionModeType
+  spec.csharp:
+  - uid: Reportman.Designer.OpenFromLibrary
+    name: OpenFromLibrary
+    isExternal: true
+    href: Reportman.Designer.OpenFromLibrary.html
+  - name: .
+  - uid: Reportman.Designer.OpenFromLibrary.SelectionModeType
+    name: SelectionModeType
+    isExternal: true
+    href: Reportman.Designer.OpenFromLibrary.SelectionModeType.html
+  spec.vb:
+  - uid: Reportman.Designer.OpenFromLibrary
+    name: OpenFromLibrary
+    isExternal: true
+    href: Reportman.Designer.OpenFromLibrary.html
+  - name: .
+  - uid: Reportman.Designer.OpenFromLibrary.SelectionModeType
+    name: SelectionModeType
+    isExternal: true
+    href: Reportman.Designer.OpenFromLibrary.SelectionModeType.html
+- uid: Reportman.Designer.OpenFromLibraryForm
+  commentId: T:Reportman.Designer.OpenFromLibraryForm
+  isExternal: true
+  href: Reportman.Designer.OpenFromLibraryForm.html
+  name: OpenFromLibraryForm
+  nameWithType: OpenFromLibraryForm
+  fullName: Reportman.Designer.OpenFromLibraryForm
+- uid: Reportman.Designer.RpAuthManager
+  commentId: T:Reportman.Designer.RpAuthManager
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.RpAuthManager.html
+  name: RpAuthManager
+  nameWithType: RpAuthManager
+  fullName: Reportman.Designer.RpAuthManager
+- uid: Reportman.Designer.RpProfile
+  commentId: T:Reportman.Designer.RpProfile
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.RpProfile.html
+  name: RpProfile
+  nameWithType: RpProfile
+  fullName: Reportman.Designer.RpProfile
+- uid: Reportman.Designer.RuntimeResize
+  commentId: T:Reportman.Designer.RuntimeResize
+  isExternal: true
+  href: Reportman.Designer.RuntimeResize.html
+  name: RuntimeResize
+  nameWithType: RuntimeResize
+  fullName: Reportman.Designer.RuntimeResize
+- uid: Reportman.Designer.ResizeAction
+  commentId: T:Reportman.Designer.ResizeAction
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.ResizeAction.html
+  name: ResizeAction
+  nameWithType: ResizeAction
+  fullName: Reportman.Designer.ResizeAction
+- uid: Reportman.Designer.ResizeEventGetBounds
+  commentId: T:Reportman.Designer.ResizeEventGetBounds
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.ResizeEventGetBounds.html
+  name: ResizeEventGetBounds
+  nameWithType: ResizeEventGetBounds
+  fullName: Reportman.Designer.ResizeEventGetBounds
+- uid: Reportman.Designer.ResizeEventSetBounds
+  commentId: T:Reportman.Designer.ResizeEventSetBounds
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.ResizeEventSetBounds.html
+  name: ResizeEventSetBounds
+  nameWithType: ResizeEventSetBounds
+  fullName: Reportman.Designer.ResizeEventSetBounds
+- uid: Reportman.Designer.SqlSchemaContextChangedEventArgs
+  commentId: T:Reportman.Designer.SqlSchemaContextChangedEventArgs
+  isExternal: true
+  href: Reportman.Designer.SqlSchemaContextChangedEventArgs.html
+  name: SqlSchemaContextChangedEventArgs
+  nameWithType: SqlSchemaContextChangedEventArgs
+  fullName: Reportman.Designer.SqlSchemaContextChangedEventArgs
+- uid: Reportman.Designer.SqlChatPanelControl
+  commentId: T:Reportman.Designer.SqlChatPanelControl
+  isExternal: true
+  href: Reportman.Designer.SqlChatPanelControl.html
+  name: SqlChatPanelControl
+  nameWithType: SqlChatPanelControl
+  fullName: Reportman.Designer.SqlChatPanelControl
+- uid: Reportman.Designer.SQLEditor
+  commentId: T:Reportman.Designer.SQLEditor
+  isExternal: true
+  href: Reportman.Designer.SQLEditor.html
+  name: SQLEditor
+  nameWithType: SQLEditor
+  fullName: Reportman.Designer.SQLEditor
+- uid: Reportman.Designer.SQLEditorControl
+  commentId: T:Reportman.Designer.SQLEditorControl
+  isExternal: true
+  href: Reportman.Designer.SQLEditorControl.html
+  name: SQLEditorControl
+  nameWithType: SQLEditorControl
+  fullName: Reportman.Designer.SQLEditorControl
+- uid: Reportman.Designer.WebMarkdownControl
+  commentId: T:Reportman.Designer.WebMarkdownControl
+  isExternal: true
+  href: Reportman.Designer.WebMarkdownControl.html
+  name: WebMarkdownControl
+  nameWithType: WebMarkdownControl
+  fullName: Reportman.Designer.WebMarkdownControl
+- uid: Reportman.Designer
+  commentId: N:Reportman.Designer
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Designer
+  nameWithType: Reportman.Designer
+  fullName: Reportman.Designer
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html

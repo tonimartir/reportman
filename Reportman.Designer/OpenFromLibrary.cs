@@ -9,6 +9,11 @@ using System.Windows.Forms;
 
 namespace Reportman.Designer
 {
+    /// <summary>
+    /// User control that browses a report library stored in a database, presenting
+    /// reports and their folder groups as a tree and supporting selection, creation,
+    /// renaming, deletion, reordering, and import/export of reports.
+    /// </summary>
     public partial class OpenFromLibrary : UserControl
     {
         ReportLibraryConfig LibraryConfig;
@@ -16,21 +21,41 @@ namespace Reportman.Designer
         DataTable treports;
         DataTable tgroups;
         DataView vgroups;
+        /// <summary>
+        /// Carries the report name and group code of the node about to be selected,
+        /// and lets a handler cancel the selection by setting <see cref="Cancel"/>.
+        /// </summary>
         public class BeforeSelectEventArgs
         {
             public string ReportName = "";
             public int GroupCode = 0;
             public bool Cancel;
         }
+        /// <summary>
+        /// Carries the report name and group code of the tree node that has just
+        /// been selected.
+        /// </summary>
         public class AfterSelectEventArgs
         {
             public string ReportName = "";
             public int GroupCode = 0;
         }
+        /// <summary>
+        /// Callback raised before a tree node is selected, allowing the handler to
+        /// inspect or cancel the pending selection.
+        /// </summary>
         public delegate void BeforeSelectEvent(object sender, BeforeSelectEventArgs args);
+        /// <summary>
+        /// Callback raised after a tree node has been selected, reporting the
+        /// selected report name and group code.
+        /// </summary>
         public delegate void AfterSelectEvent(object sender, AfterSelectEventArgs args);
         public BeforeSelectEvent OnBeforeSelect;
         public AfterSelectEvent OnAfterSelect;
+        /// <summary>
+        /// Determines which operations the library browser exposes: read-only
+        /// selection, selection combined with editing, or pure editing of the library.
+        /// </summary>
         public enum SelectionModeType { Selection, SelectionEdit, Edit }
         SelectionModeType FSelectionMode;
         string SelectedReport = "";

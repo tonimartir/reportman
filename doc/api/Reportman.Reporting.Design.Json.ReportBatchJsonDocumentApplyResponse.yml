@@ -1,0 +1,535 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse
+  commentId: T:Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse
+  id: ReportBatchJsonDocumentApplyResponse
+  parent: Reportman.Reporting.Design.Json
+  children:
+  - Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.#ctor
+  - Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.Format
+  - Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.ReportDocument
+  - Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.ReportJson
+  langs:
+  - csharp
+  - vb
+  name: ReportBatchJsonDocumentApplyResponse
+  nameWithType: ReportBatchJsonDocumentApplyResponse
+  fullName: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse
+  type: Class
+  assemblies:
+  - Reportman.Reporting.Design.Json
+  namespace: Reportman.Reporting.Design.Json
+  summary: >-
+    Apply result that also returns the resulting report document, serialized in the given
+
+    <xref href="Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.Format" data-throw-if-not-resolved="false"></xref>; <xref href="Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.ReportJson" data-throw-if-not-resolved="false"></xref> is an alias for the document text.
+  example: []
+  syntax:
+    content: 'public class ReportBatchJsonDocumentApplyResponse : ReportBatchJsonApplyResponse'
+    content.vb: Public Class ReportBatchJsonDocumentApplyResponse Inherits ReportBatchJsonApplyResponse
+  inheritance:
+  - System.Object
+  - Reportman.Reporting.Design.Json.ReportBatchJsonValidationResponse
+  - Reportman.Reporting.Design.Json.ReportBatchJsonApplyResponse
+  inheritedMembers:
+  - Reportman.Reporting.Design.Json.ReportBatchJsonApplyResponse.UndoGroupId
+  - Reportman.Reporting.Design.Json.ReportBatchJsonApplyResponse.AppliedOperations
+  - Reportman.Reporting.Design.Json.ReportBatchJsonValidationResponse.Version
+  - Reportman.Reporting.Design.Json.ReportBatchJsonValidationResponse.Issues
+  - Reportman.Reporting.Design.Json.ReportBatchJsonValidationResponse.IsValid
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.#ctor
+  commentId: M:Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.#ctor
+  id: '#ctor'
+  parent: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse
+  langs:
+  - csharp
+  - vb
+  name: ReportBatchJsonDocumentApplyResponse()
+  nameWithType: ReportBatchJsonDocumentApplyResponse.ReportBatchJsonDocumentApplyResponse()
+  fullName: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.ReportBatchJsonDocumentApplyResponse()
+  type: Constructor
+  assemblies:
+  - Reportman.Reporting.Design.Json
+  namespace: Reportman.Reporting.Design.Json
+  syntax:
+    content: public ReportBatchJsonDocumentApplyResponse()
+    content.vb: Public Sub New()
+  overload: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.#ctor*
+  nameWithType.vb: ReportBatchJsonDocumentApplyResponse.New()
+  fullName.vb: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.New()
+  name.vb: New()
+- uid: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.Format
+  commentId: P:Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.Format
+  id: Format
+  parent: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse
+  langs:
+  - csharp
+  - vb
+  name: Format
+  nameWithType: ReportBatchJsonDocumentApplyResponse.Format
+  fullName: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.Format
+  type: Property
+  assemblies:
+  - Reportman.Reporting.Design.Json
+  namespace: Reportman.Reporting.Design.Json
+  syntax:
+    content: public ReportDocumentFormat Format { get; set; }
+    parameters: []
+    return:
+      type: Reportman.Reporting.Design.Json.ReportDocumentFormat
+    content.vb: Public Property Format As ReportDocumentFormat
+  overload: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.Format*
+- uid: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.ReportDocument
+  commentId: P:Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.ReportDocument
+  id: ReportDocument
+  parent: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse
+  langs:
+  - csharp
+  - vb
+  name: ReportDocument
+  nameWithType: ReportBatchJsonDocumentApplyResponse.ReportDocument
+  fullName: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.ReportDocument
+  type: Property
+  assemblies:
+  - Reportman.Reporting.Design.Json
+  namespace: Reportman.Reporting.Design.Json
+  syntax:
+    content: public string ReportDocument { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ReportDocument As String
+  overload: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.ReportDocument*
+- uid: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.ReportJson
+  commentId: P:Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.ReportJson
+  id: ReportJson
+  parent: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse
+  langs:
+  - csharp
+  - vb
+  name: ReportJson
+  nameWithType: ReportBatchJsonDocumentApplyResponse.ReportJson
+  fullName: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.ReportJson
+  type: Property
+  assemblies:
+  - Reportman.Reporting.Design.Json
+  namespace: Reportman.Reporting.Design.Json
+  syntax:
+    content: public string ReportJson { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ReportJson As String
+  overload: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.ReportJson*
+references:
+- uid: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.Format
+  commentId: P:Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.Format
+  isExternal: true
+  href: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.html#Reportman_Reporting_Design_Json_ReportBatchJsonDocumentApplyResponse_Format
+  name: Format
+  nameWithType: ReportBatchJsonDocumentApplyResponse.Format
+  fullName: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.Format
+- uid: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.ReportJson
+  commentId: P:Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.ReportJson
+  isExternal: true
+  href: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.html#Reportman_Reporting_Design_Json_ReportBatchJsonDocumentApplyResponse_ReportJson
+  name: ReportJson
+  nameWithType: ReportBatchJsonDocumentApplyResponse.ReportJson
+  fullName: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.ReportJson
+- uid: Reportman.Reporting.Design.Json
+  commentId: N:Reportman.Reporting.Design.Json
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting.Design.Json
+  nameWithType: Reportman.Reporting.Design.Json
+  fullName: Reportman.Reporting.Design.Json
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  - name: .
+  - uid: Reportman.Reporting.Design
+    name: Design
+    isExternal: true
+    href: Reportman.Reporting.Design.html
+  - name: .
+  - uid: Reportman.Reporting.Design.Json
+    name: Json
+    isExternal: true
+    href: Reportman.Reporting.Design.Json.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  - name: .
+  - uid: Reportman.Reporting.Design
+    name: Design
+    isExternal: true
+    href: Reportman.Reporting.Design.html
+  - name: .
+  - uid: Reportman.Reporting.Design.Json
+    name: Json
+    isExternal: true
+    href: Reportman.Reporting.Design.Json.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Reportman.Reporting.Design.Json.ReportBatchJsonValidationResponse
+  commentId: T:Reportman.Reporting.Design.Json.ReportBatchJsonValidationResponse
+  parent: Reportman.Reporting.Design.Json
+  isExternal: true
+  href: Reportman.Reporting.Design.Json.ReportBatchJsonValidationResponse.html
+  name: ReportBatchJsonValidationResponse
+  nameWithType: ReportBatchJsonValidationResponse
+  fullName: Reportman.Reporting.Design.Json.ReportBatchJsonValidationResponse
+- uid: Reportman.Reporting.Design.Json.ReportBatchJsonApplyResponse
+  commentId: T:Reportman.Reporting.Design.Json.ReportBatchJsonApplyResponse
+  parent: Reportman.Reporting.Design.Json
+  isExternal: true
+  href: Reportman.Reporting.Design.Json.ReportBatchJsonApplyResponse.html
+  name: ReportBatchJsonApplyResponse
+  nameWithType: ReportBatchJsonApplyResponse
+  fullName: Reportman.Reporting.Design.Json.ReportBatchJsonApplyResponse
+- uid: Reportman.Reporting.Design.Json.ReportBatchJsonApplyResponse.UndoGroupId
+  commentId: P:Reportman.Reporting.Design.Json.ReportBatchJsonApplyResponse.UndoGroupId
+  parent: Reportman.Reporting.Design.Json.ReportBatchJsonApplyResponse
+  isExternal: true
+  href: Reportman.Reporting.Design.Json.ReportBatchJsonApplyResponse.html#Reportman_Reporting_Design_Json_ReportBatchJsonApplyResponse_UndoGroupId
+  name: UndoGroupId
+  nameWithType: ReportBatchJsonApplyResponse.UndoGroupId
+  fullName: Reportman.Reporting.Design.Json.ReportBatchJsonApplyResponse.UndoGroupId
+- uid: Reportman.Reporting.Design.Json.ReportBatchJsonApplyResponse.AppliedOperations
+  commentId: P:Reportman.Reporting.Design.Json.ReportBatchJsonApplyResponse.AppliedOperations
+  parent: Reportman.Reporting.Design.Json.ReportBatchJsonApplyResponse
+  isExternal: true
+  href: Reportman.Reporting.Design.Json.ReportBatchJsonApplyResponse.html#Reportman_Reporting_Design_Json_ReportBatchJsonApplyResponse_AppliedOperations
+  name: AppliedOperations
+  nameWithType: ReportBatchJsonApplyResponse.AppliedOperations
+  fullName: Reportman.Reporting.Design.Json.ReportBatchJsonApplyResponse.AppliedOperations
+- uid: Reportman.Reporting.Design.Json.ReportBatchJsonValidationResponse.Version
+  commentId: P:Reportman.Reporting.Design.Json.ReportBatchJsonValidationResponse.Version
+  parent: Reportman.Reporting.Design.Json.ReportBatchJsonValidationResponse
+  isExternal: true
+  href: Reportman.Reporting.Design.Json.ReportBatchJsonValidationResponse.html#Reportman_Reporting_Design_Json_ReportBatchJsonValidationResponse_Version
+  name: Version
+  nameWithType: ReportBatchJsonValidationResponse.Version
+  fullName: Reportman.Reporting.Design.Json.ReportBatchJsonValidationResponse.Version
+- uid: Reportman.Reporting.Design.Json.ReportBatchJsonValidationResponse.Issues
+  commentId: P:Reportman.Reporting.Design.Json.ReportBatchJsonValidationResponse.Issues
+  parent: Reportman.Reporting.Design.Json.ReportBatchJsonValidationResponse
+  isExternal: true
+  href: Reportman.Reporting.Design.Json.ReportBatchJsonValidationResponse.html#Reportman_Reporting_Design_Json_ReportBatchJsonValidationResponse_Issues
+  name: Issues
+  nameWithType: ReportBatchJsonValidationResponse.Issues
+  fullName: Reportman.Reporting.Design.Json.ReportBatchJsonValidationResponse.Issues
+- uid: Reportman.Reporting.Design.Json.ReportBatchJsonValidationResponse.IsValid
+  commentId: P:Reportman.Reporting.Design.Json.ReportBatchJsonValidationResponse.IsValid
+  parent: Reportman.Reporting.Design.Json.ReportBatchJsonValidationResponse
+  isExternal: true
+  href: Reportman.Reporting.Design.Json.ReportBatchJsonValidationResponse.html#Reportman_Reporting_Design_Json_ReportBatchJsonValidationResponse_IsValid
+  name: IsValid
+  nameWithType: ReportBatchJsonValidationResponse.IsValid
+  fullName: Reportman.Reporting.Design.Json.ReportBatchJsonValidationResponse.IsValid
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.#ctor*
+  commentId: Overload:Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.#ctor
+  isExternal: true
+  href: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.html#Reportman_Reporting_Design_Json_ReportBatchJsonDocumentApplyResponse__ctor
+  name: ReportBatchJsonDocumentApplyResponse
+  nameWithType: ReportBatchJsonDocumentApplyResponse.ReportBatchJsonDocumentApplyResponse
+  fullName: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.ReportBatchJsonDocumentApplyResponse
+  nameWithType.vb: ReportBatchJsonDocumentApplyResponse.New
+  fullName.vb: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.New
+  name.vb: New
+- uid: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.Format*
+  commentId: Overload:Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.Format
+  isExternal: true
+  href: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.html#Reportman_Reporting_Design_Json_ReportBatchJsonDocumentApplyResponse_Format
+  name: Format
+  nameWithType: ReportBatchJsonDocumentApplyResponse.Format
+  fullName: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.Format
+- uid: Reportman.Reporting.Design.Json.ReportDocumentFormat
+  commentId: T:Reportman.Reporting.Design.Json.ReportDocumentFormat
+  parent: Reportman.Reporting.Design.Json
+  isExternal: true
+  href: Reportman.Reporting.Design.Json.ReportDocumentFormat.html
+  name: ReportDocumentFormat
+  nameWithType: ReportDocumentFormat
+  fullName: Reportman.Reporting.Design.Json.ReportDocumentFormat
+- uid: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.ReportDocument*
+  commentId: Overload:Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.ReportDocument
+  isExternal: true
+  href: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.html#Reportman_Reporting_Design_Json_ReportBatchJsonDocumentApplyResponse_ReportDocument
+  name: ReportDocument
+  nameWithType: ReportBatchJsonDocumentApplyResponse.ReportDocument
+  fullName: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.ReportDocument
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.ReportJson*
+  commentId: Overload:Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.ReportJson
+  isExternal: true
+  href: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.html#Reportman_Reporting_Design_Json_ReportBatchJsonDocumentApplyResponse_ReportJson
+  name: ReportJson
+  nameWithType: ReportBatchJsonDocumentApplyResponse.ReportJson
+  fullName: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse.ReportJson

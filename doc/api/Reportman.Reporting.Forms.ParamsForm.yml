@@ -17,7 +17,7 @@ items:
   fullName: Reportman.Reporting.Forms.ParamsForm
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/ParamsForm.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Forms/ParamsForm.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -605,7 +605,7 @@ items:
   fullName: Reportman.Reporting.Forms.ParamsForm.Dispose(bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/ParamsForm.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Forms/ParamsForm.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -634,7 +634,7 @@ items:
   fullName: Reportman.Reporting.Forms.ParamsForm.ParamsForm()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/ParamsForm.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Forms/ParamsForm.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -659,7 +659,7 @@ items:
   fullName: Reportman.Reporting.Forms.ParamsForm.ShowParams(Reportman.Reporting.Report, System.Windows.Forms.IWin32Window)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/ParamsForm.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Forms/ParamsForm.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -690,7 +690,7 @@ items:
   fullName: Reportman.Reporting.Forms.ParamsForm.ShowParams(Reportman.Reporting.Report, string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/ParamsForm.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Forms/ParamsForm.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -12322,7 +12322,7 @@ references:
   commentId: T:Reportman.Reporting.Report
   parent: Reportman.Reporting
   isExternal: true
-  href: Reportman.Reporting.Report.html
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Report.cs
   name: Report
   nameWithType: Report
   fullName: Reportman.Reporting.Report

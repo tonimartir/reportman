@@ -7,6 +7,10 @@ using System.Windows.Forms;
 
 namespace Reportman.Designer
 {
+    /// <summary>
+    /// User control that displays a report's datasets and variables in a tree view,
+    /// letting the user drag fields out as expressions for use in the designer.
+    /// </summary>
     public partial class FrameFields : UserControl
     {
         public event EventHandler OnReportChange;
@@ -192,6 +196,10 @@ namespace Reportman.Designer
         {
         }
     }
+    /// <summary>
+    /// Describes a single field shown in the fields tree, carrying its owning dataset,
+    /// field name, .NET data type and display size.
+    /// </summary>
     public class FieldInfo
     {
         public DataInfo ninfo;

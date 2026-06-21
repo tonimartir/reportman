@@ -76,7 +76,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -110,7 +110,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.LFarray
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -131,7 +131,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.CRLFarray
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -152,7 +152,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.DEFAULT_BUFFER_SIZE
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -175,7 +175,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.GetFiles(string, string, System.IO.SearchOption)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -207,7 +207,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.FileInUse(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -240,7 +240,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.SWriteLine(System.IO.Stream, string, bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -275,7 +275,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.StreamToMemoryStream(System.IO.Stream, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -323,7 +323,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.StreamToMemoryStreamAsync(System.IO.Stream, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -371,7 +371,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.StreamToMemoryStream(System.IO.Stream)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -398,7 +398,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.FileToMemoryStream(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -428,7 +428,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.FileToMemoryStreamAsync(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -458,7 +458,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.WriteTo(System.IO.Stream, System.IO.Stream, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -488,7 +488,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.MemoryStreamToFile(System.IO.MemoryStream, string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -518,7 +518,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.StreamToFile(System.IO.Stream, string, bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -550,7 +550,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.StreamToFileAsync(System.IO.Stream, string, bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -582,7 +582,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.WriteStringToUTF8Stream(string, System.IO.Stream)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -614,7 +614,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.WriteStringToStream(string, System.IO.Stream, System.Text.Encoding)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -648,7 +648,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.WriteCharArrayToStream(char[], int, System.IO.Stream)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -682,7 +682,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.StreamToHex(System.IO.Stream)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -709,7 +709,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.IntToByteArray(int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -739,7 +739,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.Int64ToByteArray(long)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -769,7 +769,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.ShortToByteArray(int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -799,7 +799,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.BoolToByteArray(bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -829,7 +829,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.StringToByteArray(string, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -866,7 +866,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.StringToByteArray(string, int, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -900,7 +900,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.StringToByteArray(string, int, bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -934,7 +934,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.ByteToByteArray(byte)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -964,7 +964,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.ByteArrayToInt(byte[], int, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -998,7 +998,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.ByteArrayToInt64(byte[], int, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1032,7 +1032,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.ByteArrayToUInt(byte[], int, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1066,7 +1066,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.ByteArrayToUShort(byte[], int, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1100,7 +1100,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.ByteArrayToInt(byte[], int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1132,7 +1132,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.ByteArrayToShort(byte[], int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1164,7 +1164,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.ByteArrayToShort(byte[], int, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1198,7 +1198,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.ByteArrayToLong(byte[], int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1230,7 +1230,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.CompareArrayContent(byte[], byte[])
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1262,7 +1262,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.LongToByteArray(long)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1292,7 +1292,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.ByteArrayToLong(byte[], int, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1326,7 +1326,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.ByteArrayToString(byte[], int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1358,7 +1358,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.ByteArrayToString(byte[], int, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1392,7 +1392,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.ByteArrayToString(byte[], int, bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1426,7 +1426,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.ByteArrayToStream(byte[])
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1456,7 +1456,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.IsCompressed(System.IO.MemoryStream)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1483,7 +1483,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.IsCompressed(byte[])
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1513,7 +1513,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.DeCompressStream(System.IO.MemoryStream, System.IO.MemoryStream)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1540,7 +1540,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.DecompressStreamGZipAsync(System.IO.Stream, System.IO.Stream)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1567,7 +1567,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.DeCompressBufferGZipAsync(byte[], int, int, System.IO.Stream)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1603,7 +1603,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.DeCompressBuffer(byte[], int, System.IO.Stream, Reportman.Drawing.ProgressEvent)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1637,7 +1637,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.DeCompressBuffer(byte[], int, System.IO.Stream)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1669,7 +1669,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.DeCompressBufferAsync(byte[], int, System.IO.Stream)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1703,7 +1703,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.DeCompressBufferAsync(byte[], int, System.IO.Stream, Reportman.Drawing.ProgressEvent)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1741,7 +1741,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.CompressStream(System.IO.Stream, System.IO.MemoryStream)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1768,7 +1768,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.CompressStreamAsync(System.IO.MemoryStream, System.IO.MemoryStream)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1797,7 +1797,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.CompressStreamGZip(System.IO.MemoryStream, System.IO.MemoryStream)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1824,7 +1824,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.CompressStreamGZipAsync(System.IO.MemoryStream, System.IO.MemoryStream)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1853,7 +1853,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.CompressStream(System.IO.MemoryStream, System.IO.MemoryStream, bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1885,7 +1885,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.CompressFile(string, string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1913,7 +1913,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.DeCompressFile(string, string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1941,7 +1941,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.CompressStreamAsync(System.IO.MemoryStream, System.IO.MemoryStream, bool, bool, System.Threading.CancellationTokenSource)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1977,7 +1977,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.DeCompressBufferGZip(byte[], int, int, System.IO.Stream)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -2011,7 +2011,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.DecompressStreamGZip(System.IO.Stream, System.IO.Stream)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -2036,7 +2036,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.CompressStreamTask(System.IO.MemoryStream, System.IO.MemoryStream, bool, bool, System.Threading.CancellationTokenSource)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -2072,7 +2072,7 @@ items:
   fullName: Reportman.Drawing.StreamUtil.StreamUtil()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StreamUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StreamUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

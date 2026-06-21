@@ -195,8 +195,9 @@ references:
   fullName: Reportman.Drawing.Forms.FormUtils
 - uid: Reportman.Drawing.Forms.CustomPaintControl
   commentId: T:Reportman.Drawing.Forms.CustomPaintControl
+  parent: Reportman.Drawing.Forms
   isExternal: true
-  href: Reportman.Drawing.Forms.CustomPaintControl.html
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   name: CustomPaintControl
   nameWithType: CustomPaintControl
   fullName: Reportman.Drawing.Forms.CustomPaintControl
@@ -209,8 +210,9 @@ references:
   fullName: Reportman.Drawing.Forms.UnSelectableButton
 - uid: Reportman.Drawing.Forms.ToolStripAdvanced
   commentId: T:Reportman.Drawing.Forms.ToolStripAdvanced
+  parent: Reportman.Drawing.Forms
   isExternal: true
-  href: Reportman.Drawing.Forms.ToolStripAdvanced.html
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/ComboBoxAdvanced.cs
   name: ToolStripAdvanced
   nameWithType: ToolStripAdvanced
   fullName: Reportman.Drawing.Forms.ToolStripAdvanced

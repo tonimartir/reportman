@@ -21,7 +21,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDF.ImageDepth
   type: Enum
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPDF.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/PrintOutPDF.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing
@@ -45,7 +45,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDF.ImageDepth.Color
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPDF.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/PrintOutPDF.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing
@@ -65,7 +65,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDF.ImageDepth.GrayScale
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPDF.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/PrintOutPDF.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing
@@ -85,7 +85,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDF.ImageDepth.BW
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPDF.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/PrintOutPDF.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing
@@ -105,7 +105,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDF.ImageDepth.Text
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPDF.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/PrintOutPDF.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing
@@ -125,7 +125,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDF.ImageDepth.TextQuality
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPDF.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/PrintOutPDF.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing
@@ -145,7 +145,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDF.ImageDepth.BWImage
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPDF.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/PrintOutPDF.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing
@@ -165,7 +165,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDF.ImageDepth.Color8bit
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPDF.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/PrintOutPDF.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing
@@ -185,7 +185,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDF.ImageDepth.Color4bit
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPDF.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/PrintOutPDF.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing

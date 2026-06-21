@@ -1,0 +1,510 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.Templates.ReportTemplateFactory
+  commentId: T:Reportman.Reporting.Templates.ReportTemplateFactory
+  id: ReportTemplateFactory
+  parent: Reportman.Reporting.Templates
+  children:
+  - Reportman.Reporting.Templates.ReportTemplateFactory.CreateBlankReport
+  - Reportman.Reporting.Templates.ReportTemplateFactory.CreateGroupedReport
+  - Reportman.Reporting.Templates.ReportTemplateFactory.CreateGroupedReportUsingDesign
+  - Reportman.Reporting.Templates.ReportTemplateFactory.CreateGroupedReportUsingDesignForDesigner
+  - Reportman.Reporting.Templates.ReportTemplateFactory.GroupedTemplatesAreEquivalent
+  langs:
+  - csharp
+  - vb
+  name: ReportTemplateFactory
+  nameWithType: ReportTemplateFactory
+  fullName: Reportman.Reporting.Templates.ReportTemplateFactory
+  type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Templates/ReportTemplateFactory.cs
+  assemblies:
+  - Reportman.Reporting.Templates
+  namespace: Reportman.Reporting.Templates
+  summary: >-
+    Builds ready-made report templates in code, such as a blank report and a grouped sales
+
+    report, including a design-driven variant constructed through batch edit operations for
+
+    verifying that both construction paths produce equivalent reports.
+  example: []
+  syntax:
+    content: public static class ReportTemplateFactory
+    content.vb: Public Module ReportTemplateFactory
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Reporting.Templates.ReportTemplateFactory.CreateBlankReport
+  commentId: M:Reportman.Reporting.Templates.ReportTemplateFactory.CreateBlankReport
+  id: CreateBlankReport
+  parent: Reportman.Reporting.Templates.ReportTemplateFactory
+  langs:
+  - csharp
+  - vb
+  name: CreateBlankReport()
+  nameWithType: ReportTemplateFactory.CreateBlankReport()
+  fullName: Reportman.Reporting.Templates.ReportTemplateFactory.CreateBlankReport()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Templates/ReportTemplateFactory.cs
+  assemblies:
+  - Reportman.Reporting.Templates
+  namespace: Reportman.Reporting.Templates
+  syntax:
+    content: public static Report CreateBlankReport()
+    return:
+      type: Reportman.Reporting.Report
+    content.vb: Public Shared Function CreateBlankReport() As Report
+  overload: Reportman.Reporting.Templates.ReportTemplateFactory.CreateBlankReport*
+- uid: Reportman.Reporting.Templates.ReportTemplateFactory.CreateGroupedReport
+  commentId: M:Reportman.Reporting.Templates.ReportTemplateFactory.CreateGroupedReport
+  id: CreateGroupedReport
+  parent: Reportman.Reporting.Templates.ReportTemplateFactory
+  langs:
+  - csharp
+  - vb
+  name: CreateGroupedReport()
+  nameWithType: ReportTemplateFactory.CreateGroupedReport()
+  fullName: Reportman.Reporting.Templates.ReportTemplateFactory.CreateGroupedReport()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Templates/ReportTemplateFactory.cs
+  assemblies:
+  - Reportman.Reporting.Templates
+  namespace: Reportman.Reporting.Templates
+  syntax:
+    content: public static Report CreateGroupedReport()
+    return:
+      type: Reportman.Reporting.Report
+    content.vb: Public Shared Function CreateGroupedReport() As Report
+  overload: Reportman.Reporting.Templates.ReportTemplateFactory.CreateGroupedReport*
+- uid: Reportman.Reporting.Templates.ReportTemplateFactory.CreateGroupedReportUsingDesign
+  commentId: M:Reportman.Reporting.Templates.ReportTemplateFactory.CreateGroupedReportUsingDesign
+  id: CreateGroupedReportUsingDesign
+  parent: Reportman.Reporting.Templates.ReportTemplateFactory
+  langs:
+  - csharp
+  - vb
+  name: CreateGroupedReportUsingDesign()
+  nameWithType: ReportTemplateFactory.CreateGroupedReportUsingDesign()
+  fullName: Reportman.Reporting.Templates.ReportTemplateFactory.CreateGroupedReportUsingDesign()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Templates/ReportTemplateFactory.cs
+  assemblies:
+  - Reportman.Reporting.Templates
+  namespace: Reportman.Reporting.Templates
+  syntax:
+    content: public static Report CreateGroupedReportUsingDesign()
+    return:
+      type: Reportman.Reporting.Report
+    content.vb: Public Shared Function CreateGroupedReportUsingDesign() As Report
+  overload: Reportman.Reporting.Templates.ReportTemplateFactory.CreateGroupedReportUsingDesign*
+- uid: Reportman.Reporting.Templates.ReportTemplateFactory.CreateGroupedReportUsingDesignForDesigner
+  commentId: M:Reportman.Reporting.Templates.ReportTemplateFactory.CreateGroupedReportUsingDesignForDesigner
+  id: CreateGroupedReportUsingDesignForDesigner
+  parent: Reportman.Reporting.Templates.ReportTemplateFactory
+  langs:
+  - csharp
+  - vb
+  name: CreateGroupedReportUsingDesignForDesigner()
+  nameWithType: ReportTemplateFactory.CreateGroupedReportUsingDesignForDesigner()
+  fullName: Reportman.Reporting.Templates.ReportTemplateFactory.CreateGroupedReportUsingDesignForDesigner()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Templates/ReportTemplateFactory.cs
+  assemblies:
+  - Reportman.Reporting.Templates
+  namespace: Reportman.Reporting.Templates
+  syntax:
+    content: public static Report CreateGroupedReportUsingDesignForDesigner()
+    return:
+      type: Reportman.Reporting.Report
+    content.vb: Public Shared Function CreateGroupedReportUsingDesignForDesigner() As Report
+  overload: Reportman.Reporting.Templates.ReportTemplateFactory.CreateGroupedReportUsingDesignForDesigner*
+- uid: Reportman.Reporting.Templates.ReportTemplateFactory.GroupedTemplatesAreEquivalent
+  commentId: M:Reportman.Reporting.Templates.ReportTemplateFactory.GroupedTemplatesAreEquivalent
+  id: GroupedTemplatesAreEquivalent
+  parent: Reportman.Reporting.Templates.ReportTemplateFactory
+  langs:
+  - csharp
+  - vb
+  name: GroupedTemplatesAreEquivalent()
+  nameWithType: ReportTemplateFactory.GroupedTemplatesAreEquivalent()
+  fullName: Reportman.Reporting.Templates.ReportTemplateFactory.GroupedTemplatesAreEquivalent()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Templates/ReportTemplateFactory.cs
+  assemblies:
+  - Reportman.Reporting.Templates
+  namespace: Reportman.Reporting.Templates
+  syntax:
+    content: public static bool GroupedTemplatesAreEquivalent()
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function GroupedTemplatesAreEquivalent() As Boolean
+  overload: Reportman.Reporting.Templates.ReportTemplateFactory.GroupedTemplatesAreEquivalent*
+references:
+- uid: Reportman.Reporting.Templates
+  commentId: N:Reportman.Reporting.Templates
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting.Templates
+  nameWithType: Reportman.Reporting.Templates
+  fullName: Reportman.Reporting.Templates
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  - name: .
+  - uid: Reportman.Reporting.Templates
+    name: Templates
+    isExternal: true
+    href: Reportman.Reporting.Templates.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  - name: .
+  - uid: Reportman.Reporting.Templates
+    name: Templates
+    isExternal: true
+    href: Reportman.Reporting.Templates.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Reporting.Templates.ReportTemplateFactory.CreateBlankReport*
+  commentId: Overload:Reportman.Reporting.Templates.ReportTemplateFactory.CreateBlankReport
+  isExternal: true
+  href: Reportman.Reporting.Templates.ReportTemplateFactory.html#Reportman_Reporting_Templates_ReportTemplateFactory_CreateBlankReport
+  name: CreateBlankReport
+  nameWithType: ReportTemplateFactory.CreateBlankReport
+  fullName: Reportman.Reporting.Templates.ReportTemplateFactory.CreateBlankReport
+- uid: Reportman.Reporting.Report
+  commentId: T:Reportman.Reporting.Report
+  parent: Reportman.Reporting
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Report.cs
+  name: Report
+  nameWithType: Report
+  fullName: Reportman.Reporting.Report
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: Reportman.Reporting.Templates.ReportTemplateFactory.CreateGroupedReport*
+  commentId: Overload:Reportman.Reporting.Templates.ReportTemplateFactory.CreateGroupedReport
+  isExternal: true
+  href: Reportman.Reporting.Templates.ReportTemplateFactory.html#Reportman_Reporting_Templates_ReportTemplateFactory_CreateGroupedReport
+  name: CreateGroupedReport
+  nameWithType: ReportTemplateFactory.CreateGroupedReport
+  fullName: Reportman.Reporting.Templates.ReportTemplateFactory.CreateGroupedReport
+- uid: Reportman.Reporting.Templates.ReportTemplateFactory.CreateGroupedReportUsingDesign*
+  commentId: Overload:Reportman.Reporting.Templates.ReportTemplateFactory.CreateGroupedReportUsingDesign
+  isExternal: true
+  href: Reportman.Reporting.Templates.ReportTemplateFactory.html#Reportman_Reporting_Templates_ReportTemplateFactory_CreateGroupedReportUsingDesign
+  name: CreateGroupedReportUsingDesign
+  nameWithType: ReportTemplateFactory.CreateGroupedReportUsingDesign
+  fullName: Reportman.Reporting.Templates.ReportTemplateFactory.CreateGroupedReportUsingDesign
+- uid: Reportman.Reporting.Templates.ReportTemplateFactory.CreateGroupedReportUsingDesignForDesigner*
+  commentId: Overload:Reportman.Reporting.Templates.ReportTemplateFactory.CreateGroupedReportUsingDesignForDesigner
+  isExternal: true
+  href: Reportman.Reporting.Templates.ReportTemplateFactory.html#Reportman_Reporting_Templates_ReportTemplateFactory_CreateGroupedReportUsingDesignForDesigner
+  name: CreateGroupedReportUsingDesignForDesigner
+  nameWithType: ReportTemplateFactory.CreateGroupedReportUsingDesignForDesigner
+  fullName: Reportman.Reporting.Templates.ReportTemplateFactory.CreateGroupedReportUsingDesignForDesigner
+- uid: Reportman.Reporting.Templates.ReportTemplateFactory.GroupedTemplatesAreEquivalent*
+  commentId: Overload:Reportman.Reporting.Templates.ReportTemplateFactory.GroupedTemplatesAreEquivalent
+  isExternal: true
+  href: Reportman.Reporting.Templates.ReportTemplateFactory.html#Reportman_Reporting_Templates_ReportTemplateFactory_GroupedTemplatesAreEquivalent
+  name: GroupedTemplatesAreEquivalent
+  nameWithType: ReportTemplateFactory.GroupedTemplatesAreEquivalent
+  fullName: Reportman.Reporting.Templates.ReportTemplateFactory.GroupedTemplatesAreEquivalent
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean

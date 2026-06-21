@@ -3,6 +3,11 @@ using System.Windows.Forms;
 
 namespace Reportman.Designer
 {
+    /// <summary>
+    /// Singleton that tracks the AI copilot's busy ("thinking") state, guards report
+    /// modifications while inference is running, and wraps AI-driven changes so they can
+    /// be grouped into the designer's undo/redo history.
+    /// </summary>
     public class AICopilotManager
     {
         private static AICopilotManager _instance;

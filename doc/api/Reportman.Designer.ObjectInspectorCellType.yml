@@ -1,0 +1,359 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Designer.ObjectInspectorCellType
+  commentId: T:Reportman.Designer.ObjectInspectorCellType
+  id: ObjectInspectorCellType
+  parent: Reportman.Designer
+  children:
+  - Reportman.Designer.ObjectInspectorCellType.Boolean
+  - Reportman.Designer.ObjectInspectorCellType.Color
+  - Reportman.Designer.ObjectInspectorCellType.ConnectionString
+  - Reportman.Designer.ObjectInspectorCellType.Decimal
+  - Reportman.Designer.ObjectInspectorCellType.DropDown
+  - Reportman.Designer.ObjectInspectorCellType.DropDownList
+  - Reportman.Designer.ObjectInspectorCellType.Expression
+  - Reportman.Designer.ObjectInspectorCellType.FontName
+  - Reportman.Designer.ObjectInspectorCellType.FontStyle
+  - Reportman.Designer.ObjectInspectorCellType.Image
+  - Reportman.Designer.ObjectInspectorCellType.Integer
+  - Reportman.Designer.ObjectInspectorCellType.MultilineText
+  - Reportman.Designer.ObjectInspectorCellType.SQL
+  - Reportman.Designer.ObjectInspectorCellType.Text
+  langs:
+  - csharp
+  - vb
+  name: ObjectInspectorCellType
+  nameWithType: ObjectInspectorCellType
+  fullName: Reportman.Designer.ObjectInspectorCellType
+  type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/ObjectInspectorColumn.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: >-
+    Identifies the editor and formatting an object-inspector cell uses for a
+
+    property value, such as plain text, expression, numeric, color, image,
+
+    font, SQL or connection-string editing.
+  example: []
+  syntax:
+    content: public enum ObjectInspectorCellType
+    content.vb: Public Enum ObjectInspectorCellType
+- uid: Reportman.Designer.ObjectInspectorCellType.Text
+  commentId: F:Reportman.Designer.ObjectInspectorCellType.Text
+  id: Text
+  parent: Reportman.Designer.ObjectInspectorCellType
+  langs:
+  - csharp
+  - vb
+  name: Text
+  nameWithType: ObjectInspectorCellType.Text
+  fullName: Reportman.Designer.ObjectInspectorCellType.Text
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/ObjectInspectorColumn.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: Text = 0
+    return:
+      type: Reportman.Designer.ObjectInspectorCellType
+- uid: Reportman.Designer.ObjectInspectorCellType.Expression
+  commentId: F:Reportman.Designer.ObjectInspectorCellType.Expression
+  id: Expression
+  parent: Reportman.Designer.ObjectInspectorCellType
+  langs:
+  - csharp
+  - vb
+  name: Expression
+  nameWithType: ObjectInspectorCellType.Expression
+  fullName: Reportman.Designer.ObjectInspectorCellType.Expression
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/ObjectInspectorColumn.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: Expression = 1
+    return:
+      type: Reportman.Designer.ObjectInspectorCellType
+- uid: Reportman.Designer.ObjectInspectorCellType.Integer
+  commentId: F:Reportman.Designer.ObjectInspectorCellType.Integer
+  id: Integer
+  parent: Reportman.Designer.ObjectInspectorCellType
+  langs:
+  - csharp
+  - vb
+  name: Integer
+  nameWithType: ObjectInspectorCellType.Integer
+  fullName: Reportman.Designer.ObjectInspectorCellType.Integer
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/ObjectInspectorColumn.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: Integer = 2
+    return:
+      type: Reportman.Designer.ObjectInspectorCellType
+- uid: Reportman.Designer.ObjectInspectorCellType.Decimal
+  commentId: F:Reportman.Designer.ObjectInspectorCellType.Decimal
+  id: Decimal
+  parent: Reportman.Designer.ObjectInspectorCellType
+  langs:
+  - csharp
+  - vb
+  name: Decimal
+  nameWithType: ObjectInspectorCellType.Decimal
+  fullName: Reportman.Designer.ObjectInspectorCellType.Decimal
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/ObjectInspectorColumn.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: Decimal = 3
+    return:
+      type: Reportman.Designer.ObjectInspectorCellType
+- uid: Reportman.Designer.ObjectInspectorCellType.Boolean
+  commentId: F:Reportman.Designer.ObjectInspectorCellType.Boolean
+  id: Boolean
+  parent: Reportman.Designer.ObjectInspectorCellType
+  langs:
+  - csharp
+  - vb
+  name: Boolean
+  nameWithType: ObjectInspectorCellType.Boolean
+  fullName: Reportman.Designer.ObjectInspectorCellType.Boolean
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/ObjectInspectorColumn.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: Boolean = 4
+    return:
+      type: Reportman.Designer.ObjectInspectorCellType
+- uid: Reportman.Designer.ObjectInspectorCellType.DropDown
+  commentId: F:Reportman.Designer.ObjectInspectorCellType.DropDown
+  id: DropDown
+  parent: Reportman.Designer.ObjectInspectorCellType
+  langs:
+  - csharp
+  - vb
+  name: DropDown
+  nameWithType: ObjectInspectorCellType.DropDown
+  fullName: Reportman.Designer.ObjectInspectorCellType.DropDown
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/ObjectInspectorColumn.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: DropDown = 5
+    return:
+      type: Reportman.Designer.ObjectInspectorCellType
+- uid: Reportman.Designer.ObjectInspectorCellType.DropDownList
+  commentId: F:Reportman.Designer.ObjectInspectorCellType.DropDownList
+  id: DropDownList
+  parent: Reportman.Designer.ObjectInspectorCellType
+  langs:
+  - csharp
+  - vb
+  name: DropDownList
+  nameWithType: ObjectInspectorCellType.DropDownList
+  fullName: Reportman.Designer.ObjectInspectorCellType.DropDownList
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/ObjectInspectorColumn.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: DropDownList = 6
+    return:
+      type: Reportman.Designer.ObjectInspectorCellType
+- uid: Reportman.Designer.ObjectInspectorCellType.Color
+  commentId: F:Reportman.Designer.ObjectInspectorCellType.Color
+  id: Color
+  parent: Reportman.Designer.ObjectInspectorCellType
+  langs:
+  - csharp
+  - vb
+  name: Color
+  nameWithType: ObjectInspectorCellType.Color
+  fullName: Reportman.Designer.ObjectInspectorCellType.Color
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/ObjectInspectorColumn.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: Color = 7
+    return:
+      type: Reportman.Designer.ObjectInspectorCellType
+- uid: Reportman.Designer.ObjectInspectorCellType.Image
+  commentId: F:Reportman.Designer.ObjectInspectorCellType.Image
+  id: Image
+  parent: Reportman.Designer.ObjectInspectorCellType
+  langs:
+  - csharp
+  - vb
+  name: Image
+  nameWithType: ObjectInspectorCellType.Image
+  fullName: Reportman.Designer.ObjectInspectorCellType.Image
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/ObjectInspectorColumn.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: Image = 8
+    return:
+      type: Reportman.Designer.ObjectInspectorCellType
+- uid: Reportman.Designer.ObjectInspectorCellType.FontName
+  commentId: F:Reportman.Designer.ObjectInspectorCellType.FontName
+  id: FontName
+  parent: Reportman.Designer.ObjectInspectorCellType
+  langs:
+  - csharp
+  - vb
+  name: FontName
+  nameWithType: ObjectInspectorCellType.FontName
+  fullName: Reportman.Designer.ObjectInspectorCellType.FontName
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/ObjectInspectorColumn.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: FontName = 9
+    return:
+      type: Reportman.Designer.ObjectInspectorCellType
+- uid: Reportman.Designer.ObjectInspectorCellType.FontStyle
+  commentId: F:Reportman.Designer.ObjectInspectorCellType.FontStyle
+  id: FontStyle
+  parent: Reportman.Designer.ObjectInspectorCellType
+  langs:
+  - csharp
+  - vb
+  name: FontStyle
+  nameWithType: ObjectInspectorCellType.FontStyle
+  fullName: Reportman.Designer.ObjectInspectorCellType.FontStyle
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/ObjectInspectorColumn.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: FontStyle = 10
+    return:
+      type: Reportman.Designer.ObjectInspectorCellType
+- uid: Reportman.Designer.ObjectInspectorCellType.SQL
+  commentId: F:Reportman.Designer.ObjectInspectorCellType.SQL
+  id: SQL
+  parent: Reportman.Designer.ObjectInspectorCellType
+  langs:
+  - csharp
+  - vb
+  name: SQL
+  nameWithType: ObjectInspectorCellType.SQL
+  fullName: Reportman.Designer.ObjectInspectorCellType.SQL
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/ObjectInspectorColumn.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: SQL = 11
+    return:
+      type: Reportman.Designer.ObjectInspectorCellType
+- uid: Reportman.Designer.ObjectInspectorCellType.ConnectionString
+  commentId: F:Reportman.Designer.ObjectInspectorCellType.ConnectionString
+  id: ConnectionString
+  parent: Reportman.Designer.ObjectInspectorCellType
+  langs:
+  - csharp
+  - vb
+  name: ConnectionString
+  nameWithType: ObjectInspectorCellType.ConnectionString
+  fullName: Reportman.Designer.ObjectInspectorCellType.ConnectionString
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/ObjectInspectorColumn.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: ConnectionString = 12
+    return:
+      type: Reportman.Designer.ObjectInspectorCellType
+- uid: Reportman.Designer.ObjectInspectorCellType.MultilineText
+  commentId: F:Reportman.Designer.ObjectInspectorCellType.MultilineText
+  id: MultilineText
+  parent: Reportman.Designer.ObjectInspectorCellType
+  langs:
+  - csharp
+  - vb
+  name: MultilineText
+  nameWithType: ObjectInspectorCellType.MultilineText
+  fullName: Reportman.Designer.ObjectInspectorCellType.MultilineText
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/ObjectInspectorColumn.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: MultilineText = 13
+    return:
+      type: Reportman.Designer.ObjectInspectorCellType
+references:
+- uid: Reportman.Designer
+  commentId: N:Reportman.Designer
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Designer
+  nameWithType: Reportman.Designer
+  fullName: Reportman.Designer
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+- uid: Reportman.Designer.ObjectInspectorCellType
+  commentId: T:Reportman.Designer.ObjectInspectorCellType
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.ObjectInspectorCellType.html
+  name: ObjectInspectorCellType
+  nameWithType: ObjectInspectorCellType
+  fullName: Reportman.Designer.ObjectInspectorCellType

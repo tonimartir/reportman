@@ -58,6 +58,10 @@ public sealed record QueryProgress
     public static QueryProgress Done() => new() { Phase = QueryPhase.Done };
 }
 
+/// <summary>
+/// The sequential stages a single SQL operation passes through, from connecting and
+/// preparing through fetching, transfer and decoding to completion.
+/// </summary>
 public enum QueryPhase
 {
     Idle,

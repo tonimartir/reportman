@@ -1,0 +1,971 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Designer.BandInfo
+  commentId: T:Reportman.Designer.BandInfo
+  id: BandInfo
+  parent: Reportman.Designer
+  children:
+  - Reportman.Designer.BandInfo.#ctor
+  - Reportman.Designer.BandInfo.BandBitmap
+  - Reportman.Designer.BandInfo.BandPosX
+  - Reportman.Designer.BandInfo.BandPosY
+  - Reportman.Designer.BandInfo.BitmapHeight
+  - Reportman.Designer.BandInfo.BitmapWidth
+  - Reportman.Designer.BandInfo.Dispose
+  - Reportman.Designer.BandInfo.Height
+  - Reportman.Designer.BandInfo.PosX
+  - Reportman.Designer.BandInfo.PosY
+  - Reportman.Designer.BandInfo.RightBitmap
+  - Reportman.Designer.BandInfo.RulerBitmap
+  - Reportman.Designer.BandInfo.RulerBitmapHeight
+  - Reportman.Designer.BandInfo.RulerBitmapWidth
+  - Reportman.Designer.BandInfo.Section
+  - Reportman.Designer.BandInfo.SectionBitmap
+  - Reportman.Designer.BandInfo.SubReport
+  - Reportman.Designer.BandInfo.TitleCaption
+  - Reportman.Designer.BandInfo.TitleHeight
+  - Reportman.Designer.BandInfo.TotalWidth
+  - Reportman.Designer.BandInfo.Width
+  - Reportman.Designer.BandInfo.oldposition
+  - Reportman.Designer.BandInfo.oldpositiony
+  langs:
+  - csharp
+  - vb
+  name: BandInfo
+  nameWithType: BandInfo
+  fullName: Reportman.Designer.BandInfo
+  type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EditSubReport.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: >-
+    Holds the layout state and cached bitmaps for a single section band drawn on the
+
+    design surface, including its position, size, title and the rendered section, ruler
+
+    and band images.
+  example: []
+  syntax:
+    content: 'public class BandInfo : IDisposable'
+    content.vb: Public Class BandInfo Implements IDisposable
+  inheritance:
+  - System.Object
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Designer.BandInfo.SubReport
+  commentId: F:Reportman.Designer.BandInfo.SubReport
+  id: SubReport
+  parent: Reportman.Designer.BandInfo
+  langs:
+  - csharp
+  - vb
+  name: SubReport
+  nameWithType: BandInfo.SubReport
+  fullName: Reportman.Designer.BandInfo.SubReport
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EditSubReport.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public SubReport SubReport
+    return:
+      type: Reportman.Reporting.SubReport
+    content.vb: Public SubReport As SubReport
+- uid: Reportman.Designer.BandInfo.Section
+  commentId: F:Reportman.Designer.BandInfo.Section
+  id: Section
+  parent: Reportman.Designer.BandInfo
+  langs:
+  - csharp
+  - vb
+  name: Section
+  nameWithType: BandInfo.Section
+  fullName: Reportman.Designer.BandInfo.Section
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EditSubReport.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public Section Section
+    return:
+      type: Reportman.Reporting.Section
+    content.vb: Public Section As Section
+- uid: Reportman.Designer.BandInfo.SectionBitmap
+  commentId: F:Reportman.Designer.BandInfo.SectionBitmap
+  id: SectionBitmap
+  parent: Reportman.Designer.BandInfo
+  langs:
+  - csharp
+  - vb
+  name: SectionBitmap
+  nameWithType: BandInfo.SectionBitmap
+  fullName: Reportman.Designer.BandInfo.SectionBitmap
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EditSubReport.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public Image SectionBitmap
+    return:
+      type: System.Drawing.Image
+    content.vb: Public SectionBitmap As Image
+- uid: Reportman.Designer.BandInfo.RulerBitmap
+  commentId: F:Reportman.Designer.BandInfo.RulerBitmap
+  id: RulerBitmap
+  parent: Reportman.Designer.BandInfo
+  langs:
+  - csharp
+  - vb
+  name: RulerBitmap
+  nameWithType: BandInfo.RulerBitmap
+  fullName: Reportman.Designer.BandInfo.RulerBitmap
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EditSubReport.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public Bitmap RulerBitmap
+    return:
+      type: System.Drawing.Bitmap
+    content.vb: Public RulerBitmap As Bitmap
+- uid: Reportman.Designer.BandInfo.BandBitmap
+  commentId: F:Reportman.Designer.BandInfo.BandBitmap
+  id: BandBitmap
+  parent: Reportman.Designer.BandInfo
+  langs:
+  - csharp
+  - vb
+  name: BandBitmap
+  nameWithType: BandInfo.BandBitmap
+  fullName: Reportman.Designer.BandInfo.BandBitmap
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EditSubReport.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public Bitmap BandBitmap
+    return:
+      type: System.Drawing.Bitmap
+    content.vb: Public BandBitmap As Bitmap
+- uid: Reportman.Designer.BandInfo.RightBitmap
+  commentId: F:Reportman.Designer.BandInfo.RightBitmap
+  id: RightBitmap
+  parent: Reportman.Designer.BandInfo
+  langs:
+  - csharp
+  - vb
+  name: RightBitmap
+  nameWithType: BandInfo.RightBitmap
+  fullName: Reportman.Designer.BandInfo.RightBitmap
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EditSubReport.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public Bitmap RightBitmap
+    return:
+      type: System.Drawing.Bitmap
+    content.vb: Public RightBitmap As Bitmap
+- uid: Reportman.Designer.BandInfo.BitmapWidth
+  commentId: F:Reportman.Designer.BandInfo.BitmapWidth
+  id: BitmapWidth
+  parent: Reportman.Designer.BandInfo
+  langs:
+  - csharp
+  - vb
+  name: BitmapWidth
+  nameWithType: BandInfo.BitmapWidth
+  fullName: Reportman.Designer.BandInfo.BitmapWidth
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EditSubReport.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public int BitmapWidth
+    return:
+      type: System.Int32
+    content.vb: Public BitmapWidth As Integer
+- uid: Reportman.Designer.BandInfo.BitmapHeight
+  commentId: F:Reportman.Designer.BandInfo.BitmapHeight
+  id: BitmapHeight
+  parent: Reportman.Designer.BandInfo
+  langs:
+  - csharp
+  - vb
+  name: BitmapHeight
+  nameWithType: BandInfo.BitmapHeight
+  fullName: Reportman.Designer.BandInfo.BitmapHeight
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EditSubReport.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public int BitmapHeight
+    return:
+      type: System.Int32
+    content.vb: Public BitmapHeight As Integer
+- uid: Reportman.Designer.BandInfo.RulerBitmapWidth
+  commentId: F:Reportman.Designer.BandInfo.RulerBitmapWidth
+  id: RulerBitmapWidth
+  parent: Reportman.Designer.BandInfo
+  langs:
+  - csharp
+  - vb
+  name: RulerBitmapWidth
+  nameWithType: BandInfo.RulerBitmapWidth
+  fullName: Reportman.Designer.BandInfo.RulerBitmapWidth
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EditSubReport.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public int RulerBitmapWidth
+    return:
+      type: System.Int32
+    content.vb: Public RulerBitmapWidth As Integer
+- uid: Reportman.Designer.BandInfo.RulerBitmapHeight
+  commentId: F:Reportman.Designer.BandInfo.RulerBitmapHeight
+  id: RulerBitmapHeight
+  parent: Reportman.Designer.BandInfo
+  langs:
+  - csharp
+  - vb
+  name: RulerBitmapHeight
+  nameWithType: BandInfo.RulerBitmapHeight
+  fullName: Reportman.Designer.BandInfo.RulerBitmapHeight
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EditSubReport.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public int RulerBitmapHeight
+    return:
+      type: System.Int32
+    content.vb: Public RulerBitmapHeight As Integer
+- uid: Reportman.Designer.BandInfo.BandPosY
+  commentId: F:Reportman.Designer.BandInfo.BandPosY
+  id: BandPosY
+  parent: Reportman.Designer.BandInfo
+  langs:
+  - csharp
+  - vb
+  name: BandPosY
+  nameWithType: BandInfo.BandPosY
+  fullName: Reportman.Designer.BandInfo.BandPosY
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EditSubReport.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public int BandPosY
+    return:
+      type: System.Int32
+    content.vb: Public BandPosY As Integer
+- uid: Reportman.Designer.BandInfo.BandPosX
+  commentId: F:Reportman.Designer.BandInfo.BandPosX
+  id: BandPosX
+  parent: Reportman.Designer.BandInfo
+  langs:
+  - csharp
+  - vb
+  name: BandPosX
+  nameWithType: BandInfo.BandPosX
+  fullName: Reportman.Designer.BandInfo.BandPosX
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EditSubReport.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public int BandPosX
+    return:
+      type: System.Int32
+    content.vb: Public BandPosX As Integer
+- uid: Reportman.Designer.BandInfo.PosY
+  commentId: F:Reportman.Designer.BandInfo.PosY
+  id: PosY
+  parent: Reportman.Designer.BandInfo
+  langs:
+  - csharp
+  - vb
+  name: PosY
+  nameWithType: BandInfo.PosY
+  fullName: Reportman.Designer.BandInfo.PosY
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EditSubReport.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public int PosY
+    return:
+      type: System.Int32
+    content.vb: Public PosY As Integer
+- uid: Reportman.Designer.BandInfo.PosX
+  commentId: F:Reportman.Designer.BandInfo.PosX
+  id: PosX
+  parent: Reportman.Designer.BandInfo
+  langs:
+  - csharp
+  - vb
+  name: PosX
+  nameWithType: BandInfo.PosX
+  fullName: Reportman.Designer.BandInfo.PosX
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EditSubReport.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public int PosX
+    return:
+      type: System.Int32
+    content.vb: Public PosX As Integer
+- uid: Reportman.Designer.BandInfo.Height
+  commentId: F:Reportman.Designer.BandInfo.Height
+  id: Height
+  parent: Reportman.Designer.BandInfo
+  langs:
+  - csharp
+  - vb
+  name: Height
+  nameWithType: BandInfo.Height
+  fullName: Reportman.Designer.BandInfo.Height
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EditSubReport.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public int Height
+    return:
+      type: System.Int32
+    content.vb: Public Height As Integer
+- uid: Reportman.Designer.BandInfo.Width
+  commentId: F:Reportman.Designer.BandInfo.Width
+  id: Width
+  parent: Reportman.Designer.BandInfo
+  langs:
+  - csharp
+  - vb
+  name: Width
+  nameWithType: BandInfo.Width
+  fullName: Reportman.Designer.BandInfo.Width
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EditSubReport.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public int Width
+    return:
+      type: System.Int32
+    content.vb: Public Width As Integer
+- uid: Reportman.Designer.BandInfo.TitleHeight
+  commentId: F:Reportman.Designer.BandInfo.TitleHeight
+  id: TitleHeight
+  parent: Reportman.Designer.BandInfo
+  langs:
+  - csharp
+  - vb
+  name: TitleHeight
+  nameWithType: BandInfo.TitleHeight
+  fullName: Reportman.Designer.BandInfo.TitleHeight
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EditSubReport.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public int TitleHeight
+    return:
+      type: System.Int32
+    content.vb: Public TitleHeight As Integer
+- uid: Reportman.Designer.BandInfo.TotalWidth
+  commentId: F:Reportman.Designer.BandInfo.TotalWidth
+  id: TotalWidth
+  parent: Reportman.Designer.BandInfo
+  langs:
+  - csharp
+  - vb
+  name: TotalWidth
+  nameWithType: BandInfo.TotalWidth
+  fullName: Reportman.Designer.BandInfo.TotalWidth
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EditSubReport.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public int TotalWidth
+    return:
+      type: System.Int32
+    content.vb: Public TotalWidth As Integer
+- uid: Reportman.Designer.BandInfo.oldposition
+  commentId: F:Reportman.Designer.BandInfo.oldposition
+  id: oldposition
+  parent: Reportman.Designer.BandInfo
+  langs:
+  - csharp
+  - vb
+  name: oldposition
+  nameWithType: BandInfo.oldposition
+  fullName: Reportman.Designer.BandInfo.oldposition
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EditSubReport.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public int oldposition
+    return:
+      type: System.Int32
+    content.vb: Public oldposition As Integer
+- uid: Reportman.Designer.BandInfo.oldpositiony
+  commentId: F:Reportman.Designer.BandInfo.oldpositiony
+  id: oldpositiony
+  parent: Reportman.Designer.BandInfo
+  langs:
+  - csharp
+  - vb
+  name: oldpositiony
+  nameWithType: BandInfo.oldpositiony
+  fullName: Reportman.Designer.BandInfo.oldpositiony
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EditSubReport.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public int oldpositiony
+    return:
+      type: System.Int32
+    content.vb: Public oldpositiony As Integer
+- uid: Reportman.Designer.BandInfo.TitleCaption
+  commentId: F:Reportman.Designer.BandInfo.TitleCaption
+  id: TitleCaption
+  parent: Reportman.Designer.BandInfo
+  langs:
+  - csharp
+  - vb
+  name: TitleCaption
+  nameWithType: BandInfo.TitleCaption
+  fullName: Reportman.Designer.BandInfo.TitleCaption
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EditSubReport.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public string TitleCaption
+    return:
+      type: System.String
+    content.vb: Public TitleCaption As String
+- uid: Reportman.Designer.BandInfo.#ctor
+  commentId: M:Reportman.Designer.BandInfo.#ctor
+  id: '#ctor'
+  parent: Reportman.Designer.BandInfo
+  langs:
+  - csharp
+  - vb
+  name: BandInfo()
+  nameWithType: BandInfo.BandInfo()
+  fullName: Reportman.Designer.BandInfo.BandInfo()
+  type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EditSubReport.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public BandInfo()
+    content.vb: Public Sub New()
+  overload: Reportman.Designer.BandInfo.#ctor*
+  nameWithType.vb: BandInfo.New()
+  fullName.vb: Reportman.Designer.BandInfo.New()
+  name.vb: New()
+- uid: Reportman.Designer.BandInfo.Dispose
+  commentId: M:Reportman.Designer.BandInfo.Dispose
+  id: Dispose
+  parent: Reportman.Designer.BandInfo
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: BandInfo.Dispose()
+  fullName: Reportman.Designer.BandInfo.Dispose()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EditSubReport.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  example: []
+  syntax:
+    content: public void Dispose()
+    content.vb: Public Sub Dispose()
+  overload: Reportman.Designer.BandInfo.Dispose*
+  implements:
+  - System.IDisposable.Dispose
+references:
+- uid: Reportman.Designer
+  commentId: N:Reportman.Designer
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Designer
+  nameWithType: Reportman.Designer
+  fullName: Reportman.Designer
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Reporting.SubReport
+  commentId: T:Reportman.Reporting.SubReport
+  parent: Reportman.Reporting
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Subreport.cs
+  name: SubReport
+  nameWithType: SubReport
+  fullName: Reportman.Reporting.SubReport
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: Reportman.Reporting.Section
+  commentId: T:Reportman.Reporting.Section
+  parent: Reportman.Reporting
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Section.cs
+  name: Section
+  nameWithType: Section
+  fullName: Reportman.Reporting.Section
+- uid: System.Drawing.Image
+  commentId: T:System.Drawing.Image
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.image
+  name: Image
+  nameWithType: Image
+  fullName: System.Drawing.Image
+- uid: System.Drawing
+  commentId: N:System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Drawing
+  nameWithType: System.Drawing
+  fullName: System.Drawing
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+- uid: System.Drawing.Bitmap
+  commentId: T:System.Drawing.Bitmap
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.bitmap
+  name: Bitmap
+  nameWithType: Bitmap
+  fullName: System.Drawing.Bitmap
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Reportman.Designer.BandInfo.#ctor*
+  commentId: Overload:Reportman.Designer.BandInfo.#ctor
+  isExternal: true
+  href: Reportman.Designer.BandInfo.html#Reportman_Designer_BandInfo__ctor
+  name: BandInfo
+  nameWithType: BandInfo.BandInfo
+  fullName: Reportman.Designer.BandInfo.BandInfo
+  nameWithType.vb: BandInfo.New
+  fullName.vb: Reportman.Designer.BandInfo.New
+  name.vb: New
+- uid: Reportman.Designer.BandInfo.Dispose*
+  commentId: Overload:Reportman.Designer.BandInfo.Dispose
+  isExternal: true
+  href: Reportman.Designer.BandInfo.html#Reportman_Designer_BandInfo_Dispose
+  name: Dispose
+  nameWithType: BandInfo.Dispose
+  fullName: Reportman.Designer.BandInfo.Dispose
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
+  spec.csharp:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )

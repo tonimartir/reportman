@@ -89,7 +89,7 @@ items:
   fullName: Reportman.Reporting.Variant
   type: Struct
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -179,7 +179,7 @@ items:
   fullName: Reportman.Reporting.Variant.IsInteger()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -207,7 +207,7 @@ items:
   fullName: Reportman.Reporting.Variant.IsBoolean()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -232,7 +232,7 @@ items:
   fullName: Reportman.Reporting.Variant.IsDateTime()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -257,7 +257,7 @@ items:
   fullName: Reportman.Reporting.Variant.IsString()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -282,7 +282,7 @@ items:
   fullName: Reportman.Reporting.Variant.IsNumber()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -310,7 +310,7 @@ items:
   fullName: Reportman.Reporting.Variant.GetTypeString()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -365,7 +365,7 @@ items:
   fullName: Reportman.Reporting.Variant.implicit operator Reportman.Reporting.Variant(bool)
   type: Operator
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -395,7 +395,7 @@ items:
   fullName: Reportman.Reporting.Variant.implicit operator Reportman.Reporting.Variant(int)
   type: Operator
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -425,7 +425,7 @@ items:
   fullName: Reportman.Reporting.Variant.implicit operator Reportman.Reporting.Variant(long)
   type: Operator
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -455,7 +455,7 @@ items:
   fullName: Reportman.Reporting.Variant.implicit operator Reportman.Reporting.Variant(decimal)
   type: Operator
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -485,7 +485,7 @@ items:
   fullName: Reportman.Reporting.Variant.implicit operator Reportman.Reporting.Variant(double)
   type: Operator
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -515,7 +515,7 @@ items:
   fullName: Reportman.Reporting.Variant.implicit operator Reportman.Reporting.Variant(string)
   type: Operator
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -545,7 +545,7 @@ items:
   fullName: Reportman.Reporting.Variant.implicit operator Reportman.Reporting.Variant(System.DateTime)
   type: Operator
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -575,7 +575,7 @@ items:
   fullName: Reportman.Reporting.Variant.SetStream(System.IO.MemoryStream)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -600,7 +600,7 @@ items:
   fullName: Reportman.Reporting.Variant.GetStream()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -624,7 +624,7 @@ items:
   fullName: Reportman.Reporting.Variant.implicit operator Reportman.Reporting.Variant(char)
   type: Operator
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -654,7 +654,7 @@ items:
   fullName: Reportman.Reporting.Variant.implicit operator Reportman.Reporting.Variant(byte)
   type: Operator
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -684,7 +684,7 @@ items:
   fullName: Reportman.Reporting.Variant.implicit operator bool(Reportman.Reporting.Variant)
   type: Operator
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -714,7 +714,7 @@ items:
   fullName: Reportman.Reporting.Variant.implicit operator int(Reportman.Reporting.Variant)
   type: Operator
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -744,7 +744,7 @@ items:
   fullName: Reportman.Reporting.Variant.implicit operator long(Reportman.Reporting.Variant)
   type: Operator
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -774,7 +774,7 @@ items:
   fullName: Reportman.Reporting.Variant.implicit operator byte(Reportman.Reporting.Variant)
   type: Operator
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -804,7 +804,7 @@ items:
   fullName: Reportman.Reporting.Variant.implicit operator char(Reportman.Reporting.Variant)
   type: Operator
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -834,7 +834,7 @@ items:
   fullName: Reportman.Reporting.Variant.implicit operator short(Reportman.Reporting.Variant)
   type: Operator
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -864,7 +864,7 @@ items:
   fullName: Reportman.Reporting.Variant.implicit operator decimal(Reportman.Reporting.Variant)
   type: Operator
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -894,7 +894,7 @@ items:
   fullName: Reportman.Reporting.Variant.implicit operator double(Reportman.Reporting.Variant)
   type: Operator
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -924,7 +924,7 @@ items:
   fullName: Reportman.Reporting.Variant.implicit operator System.DateTime(Reportman.Reporting.Variant)
   type: Operator
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -954,7 +954,7 @@ items:
   fullName: Reportman.Reporting.Variant.implicit operator string(Reportman.Reporting.Variant)
   type: Operator
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -984,7 +984,7 @@ items:
   fullName: Reportman.Reporting.Variant.ToString()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1009,7 +1009,7 @@ items:
   fullName: Reportman.Reporting.Variant.GetTypeCode()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1035,7 +1035,7 @@ items:
   fullName: Reportman.Reporting.Variant.GetDbType()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1059,7 +1059,7 @@ items:
   fullName: Reportman.Reporting.Variant.CompareTo(Reportman.Reporting.Variant)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1086,7 +1086,7 @@ items:
   fullName: Reportman.Reporting.Variant.operator |(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
   type: Operator
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1118,7 +1118,7 @@ items:
   fullName: Reportman.Reporting.Variant.operator &(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
   type: Operator
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1150,7 +1150,7 @@ items:
   fullName: Reportman.Reporting.Variant.operator +(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
   type: Operator
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1182,7 +1182,7 @@ items:
   fullName: Reportman.Reporting.Variant.operator -(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
   type: Operator
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1214,7 +1214,7 @@ items:
   fullName: Reportman.Reporting.Variant.operator -(Reportman.Reporting.Variant)
   type: Operator
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1244,7 +1244,7 @@ items:
   fullName: Reportman.Reporting.Variant.operator *(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
   type: Operator
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1276,7 +1276,7 @@ items:
   fullName: Reportman.Reporting.Variant.operator /(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
   type: Operator
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1308,7 +1308,7 @@ items:
   fullName: Reportman.Reporting.Variant.operator ==(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
   type: Operator
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1341,7 +1341,7 @@ items:
   fullName: Reportman.Reporting.Variant.Equals(object)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1372,7 +1372,7 @@ items:
   fullName: Reportman.Reporting.Variant.GetHashCode()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1397,7 +1397,7 @@ items:
   fullName: Reportman.Reporting.Variant.operator !=(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
   type: Operator
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1429,7 +1429,7 @@ items:
   fullName: Reportman.Reporting.Variant.operator <(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
   type: Operator
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1461,7 +1461,7 @@ items:
   fullName: Reportman.Reporting.Variant.operator >(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
   type: Operator
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1493,7 +1493,7 @@ items:
   fullName: Reportman.Reporting.Variant.operator <=(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
   type: Operator
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1525,7 +1525,7 @@ items:
   fullName: Reportman.Reporting.Variant.operator >=(Reportman.Reporting.Variant, Reportman.Reporting.Variant)
   type: Operator
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1557,7 +1557,7 @@ items:
   fullName: Reportman.Reporting.Variant.AssignFromObject(object)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1589,7 +1589,7 @@ items:
   fullName: Reportman.Reporting.Variant.AsObject()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1617,7 +1617,7 @@ items:
   fullName: Reportman.Reporting.Variant.VariantFromObject(object)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1647,7 +1647,7 @@ items:
   fullName: Reportman.Reporting.Variant.ToString(string, Reportman.Reporting.ParamType, bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1687,7 +1687,7 @@ items:
   fullName: Reportman.Reporting.Variant.ToBoolean(System.IFormatProvider)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1716,7 +1716,7 @@ items:
   fullName: Reportman.Reporting.Variant.ToDouble(System.IFormatProvider)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1745,7 +1745,7 @@ items:
   fullName: Reportman.Reporting.Variant.ToByte(System.IFormatProvider)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1774,7 +1774,7 @@ items:
   fullName: Reportman.Reporting.Variant.ToSByte(System.IFormatProvider)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1803,7 +1803,7 @@ items:
   fullName: Reportman.Reporting.Variant.ToChar(System.IFormatProvider)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1832,7 +1832,7 @@ items:
   fullName: Reportman.Reporting.Variant.ToInt16(System.IFormatProvider)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1861,7 +1861,7 @@ items:
   fullName: Reportman.Reporting.Variant.ToUInt16(System.IFormatProvider)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1890,7 +1890,7 @@ items:
   fullName: Reportman.Reporting.Variant.ToInt32(System.IFormatProvider)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1919,7 +1919,7 @@ items:
   fullName: Reportman.Reporting.Variant.ToUInt32(System.IFormatProvider)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1948,7 +1948,7 @@ items:
   fullName: Reportman.Reporting.Variant.ToInt64(System.IFormatProvider)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1977,7 +1977,7 @@ items:
   fullName: Reportman.Reporting.Variant.ToUInt64(System.IFormatProvider)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2006,7 +2006,7 @@ items:
   fullName: Reportman.Reporting.Variant.ToSingle(System.IFormatProvider)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2035,7 +2035,7 @@ items:
   fullName: Reportman.Reporting.Variant.ToString(System.IFormatProvider)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2064,7 +2064,7 @@ items:
   fullName: Reportman.Reporting.Variant.ToDecimal(System.IFormatProvider)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2093,7 +2093,7 @@ items:
   fullName: Reportman.Reporting.Variant.ToDateTime(System.IFormatProvider)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2122,7 +2122,7 @@ items:
   fullName: Reportman.Reporting.Variant.ToType(System.Type, System.IFormatProvider)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2153,7 +2153,7 @@ items:
   fullName: Reportman.Reporting.Variant.CompareTo(object)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2186,7 +2186,7 @@ items:
   fullName: Reportman.Reporting.Variant.Abs()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2210,7 +2210,7 @@ items:
   fullName: Reportman.Reporting.Variant.IsNull
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2236,7 +2236,7 @@ items:
   fullName: Reportman.Reporting.Variant.VarType
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2265,7 +2265,7 @@ items:
   fullName: Reportman.Reporting.Variant.AsString
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2290,7 +2290,7 @@ items:
   fullName: Reportman.Reporting.Variant.AsDouble
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2315,7 +2315,7 @@ items:
   fullName: Reportman.Reporting.Variant.AsDecimal
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2340,7 +2340,7 @@ items:
   fullName: Reportman.Reporting.Variant.AsInteger
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2365,7 +2365,7 @@ items:
   fullName: Reportman.Reporting.Variant.AsDateTime
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2390,7 +2390,7 @@ items:
   fullName: Reportman.Reporting.Variant.AsLong
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

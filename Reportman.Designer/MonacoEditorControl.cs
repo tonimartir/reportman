@@ -12,6 +12,11 @@ using Reportman.Reporting;
 
 namespace Reportman.Designer
 {
+    /// <summary>
+    /// SQL editor control that hosts the Monaco editor in a WebView2 and optionally
+    /// provides AI-driven SQL autocompletion through the Reportman agent, including
+    /// schema selection and inline/list completion suggestions.
+    /// </summary>
     public class MonacoEditorControl : UserControl
     {
         private const int AutoCompleteDebounceDelayMs = 1000;

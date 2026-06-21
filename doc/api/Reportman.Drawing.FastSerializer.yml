@@ -21,7 +21,7 @@ items:
   fullName: Reportman.Drawing.FastSerializer
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FastSerializer.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FastSerializer.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -57,7 +57,7 @@ items:
   fullName: Reportman.Drawing.FastSerializer.SerializeDataSetToStream(System.Data.DataSet, System.IO.Stream)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FastSerializer.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FastSerializer.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -82,7 +82,7 @@ items:
   fullName: Reportman.Drawing.FastSerializer.SerializeDataSet(System.Data.DataSet)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FastSerializer.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FastSerializer.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -107,7 +107,7 @@ items:
   fullName: Reportman.Drawing.FastSerializer.ReadString(byte[], ref int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FastSerializer.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FastSerializer.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -137,7 +137,7 @@ items:
   fullName: Reportman.Drawing.FastSerializer.IsFastSerialized(byte[])
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FastSerializer.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FastSerializer.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -165,7 +165,7 @@ items:
   fullName: Reportman.Drawing.FastSerializer.DeSerializeDataSet(byte[])
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FastSerializer.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FastSerializer.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -193,7 +193,7 @@ items:
   fullName: Reportman.Drawing.FastSerializer.ReadString(System.IO.BinaryReader)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FastSerializer.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FastSerializer.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -218,7 +218,7 @@ items:
   fullName: Reportman.Drawing.FastSerializer.DeSerializeDataSet(System.IO.Stream)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FastSerializer.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FastSerializer.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -243,7 +243,7 @@ items:
   fullName: Reportman.Drawing.FastSerializer.FastSerializer()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FastSerializer.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FastSerializer.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

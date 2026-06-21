@@ -1,0 +1,281 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Designer.FrameMainDesigner.SaveReportEvent
+  commentId: T:Reportman.Designer.FrameMainDesigner.SaveReportEvent
+  id: FrameMainDesigner.SaveReportEvent
+  parent: Reportman.Designer
+  children:
+  - Reportman.Designer.FrameMainDesigner.SaveReportEvent.#ctor(System.Object,System.IntPtr)
+  - Reportman.Designer.FrameMainDesigner.SaveReportEvent.BeginInvoke(System.Object,Reportman.Designer.FrameMainDesigner.SaveReportArgs,System.AsyncCallback,System.Object)
+  - Reportman.Designer.FrameMainDesigner.SaveReportEvent.EndInvoke(System.IAsyncResult)
+  - Reportman.Designer.FrameMainDesigner.SaveReportEvent.Invoke(System.Object,Reportman.Designer.FrameMainDesigner.SaveReportArgs)
+  langs:
+  - csharp
+  - vb
+  name: FrameMainDesigner.SaveReportEvent
+  nameWithType: FrameMainDesigner.SaveReportEvent
+  fullName: Reportman.Designer.FrameMainDesigner.SaveReportEvent
+  type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/FrameMainDesigner.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: >-
+    Callback raised when the user requests a save, letting the host perform
+
+    custom save logic and report the outcome through <xref href="Reportman.Designer.FrameMainDesigner.SaveReportArgs" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public delegate void FrameMainDesigner.SaveReportEvent(object sender, FrameMainDesigner.SaveReportArgs args)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: Reportman.Designer.FrameMainDesigner.SaveReportArgs
+    content.vb: Public Delegate Sub FrameMainDesigner.SaveReportEvent(sender As Object, args As FrameMainDesigner.SaveReportArgs)
+- uid: Reportman.Designer.FrameMainDesigner.SaveReportEvent.#ctor(System.Object,System.IntPtr)
+  commentId: M:Reportman.Designer.FrameMainDesigner.SaveReportEvent.#ctor(System.Object,System.IntPtr)
+  id: '#ctor(System.Object,System.IntPtr)'
+  parent: Reportman.Designer.FrameMainDesigner.SaveReportEvent
+  langs:
+  - csharp
+  - vb
+  name: SaveReportEvent(object, nint)
+  nameWithType: FrameMainDesigner.SaveReportEvent.SaveReportEvent(object, nint)
+  fullName: Reportman.Designer.FrameMainDesigner.SaveReportEvent.SaveReportEvent(object, nint)
+  type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/FrameMainDesigner.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public SaveReportEvent(object @object, nint method)
+    parameters:
+    - id: object
+      type: System.Object
+    - id: method
+      type: System.IntPtr
+    content.vb: Public Sub New([object] As Object, method As IntPtr)
+  overload: Reportman.Designer.FrameMainDesigner.SaveReportEvent.#ctor*
+  nameWithType.vb: FrameMainDesigner.SaveReportEvent.New(Object, IntPtr)
+  fullName.vb: Reportman.Designer.FrameMainDesigner.SaveReportEvent.New(Object, System.IntPtr)
+  name.vb: New(Object, IntPtr)
+- uid: Reportman.Designer.FrameMainDesigner.SaveReportEvent.Invoke(System.Object,Reportman.Designer.FrameMainDesigner.SaveReportArgs)
+  commentId: M:Reportman.Designer.FrameMainDesigner.SaveReportEvent.Invoke(System.Object,Reportman.Designer.FrameMainDesigner.SaveReportArgs)
+  id: Invoke(System.Object,Reportman.Designer.FrameMainDesigner.SaveReportArgs)
+  parent: Reportman.Designer.FrameMainDesigner.SaveReportEvent
+  langs:
+  - csharp
+  - vb
+  name: Invoke(object, SaveReportArgs)
+  nameWithType: FrameMainDesigner.SaveReportEvent.Invoke(object, FrameMainDesigner.SaveReportArgs)
+  fullName: Reportman.Designer.FrameMainDesigner.SaveReportEvent.Invoke(object, Reportman.Designer.FrameMainDesigner.SaveReportArgs)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/FrameMainDesigner.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public virtual void Invoke(object sender, FrameMainDesigner.SaveReportArgs args)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: Reportman.Designer.FrameMainDesigner.SaveReportArgs
+    content.vb: Public Overridable Sub Invoke(sender As Object, args As FrameMainDesigner.SaveReportArgs)
+  overload: Reportman.Designer.FrameMainDesigner.SaveReportEvent.Invoke*
+  nameWithType.vb: FrameMainDesigner.SaveReportEvent.Invoke(Object, FrameMainDesigner.SaveReportArgs)
+  fullName.vb: Reportman.Designer.FrameMainDesigner.SaveReportEvent.Invoke(Object, Reportman.Designer.FrameMainDesigner.SaveReportArgs)
+  name.vb: Invoke(Object, SaveReportArgs)
+- uid: Reportman.Designer.FrameMainDesigner.SaveReportEvent.BeginInvoke(System.Object,Reportman.Designer.FrameMainDesigner.SaveReportArgs,System.AsyncCallback,System.Object)
+  commentId: M:Reportman.Designer.FrameMainDesigner.SaveReportEvent.BeginInvoke(System.Object,Reportman.Designer.FrameMainDesigner.SaveReportArgs,System.AsyncCallback,System.Object)
+  id: BeginInvoke(System.Object,Reportman.Designer.FrameMainDesigner.SaveReportArgs,System.AsyncCallback,System.Object)
+  parent: Reportman.Designer.FrameMainDesigner.SaveReportEvent
+  langs:
+  - csharp
+  - vb
+  name: BeginInvoke(object, SaveReportArgs, AsyncCallback, object)
+  nameWithType: FrameMainDesigner.SaveReportEvent.BeginInvoke(object, FrameMainDesigner.SaveReportArgs, AsyncCallback, object)
+  fullName: Reportman.Designer.FrameMainDesigner.SaveReportEvent.BeginInvoke(object, Reportman.Designer.FrameMainDesigner.SaveReportArgs, System.AsyncCallback, object)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/FrameMainDesigner.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public virtual IAsyncResult BeginInvoke(object sender, FrameMainDesigner.SaveReportArgs args, AsyncCallback callback, object @object)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: Reportman.Designer.FrameMainDesigner.SaveReportArgs
+    - id: callback
+      type: System.AsyncCallback
+    - id: object
+      type: System.Object
+    return:
+      type: System.IAsyncResult
+    content.vb: Public Overridable Function BeginInvoke(sender As Object, args As FrameMainDesigner.SaveReportArgs, callback As AsyncCallback, [object] As Object) As IAsyncResult
+  overload: Reportman.Designer.FrameMainDesigner.SaveReportEvent.BeginInvoke*
+  nameWithType.vb: FrameMainDesigner.SaveReportEvent.BeginInvoke(Object, FrameMainDesigner.SaveReportArgs, AsyncCallback, Object)
+  fullName.vb: Reportman.Designer.FrameMainDesigner.SaveReportEvent.BeginInvoke(Object, Reportman.Designer.FrameMainDesigner.SaveReportArgs, System.AsyncCallback, Object)
+  name.vb: BeginInvoke(Object, SaveReportArgs, AsyncCallback, Object)
+- uid: Reportman.Designer.FrameMainDesigner.SaveReportEvent.EndInvoke(System.IAsyncResult)
+  commentId: M:Reportman.Designer.FrameMainDesigner.SaveReportEvent.EndInvoke(System.IAsyncResult)
+  id: EndInvoke(System.IAsyncResult)
+  parent: Reportman.Designer.FrameMainDesigner.SaveReportEvent
+  langs:
+  - csharp
+  - vb
+  name: EndInvoke(IAsyncResult)
+  nameWithType: FrameMainDesigner.SaveReportEvent.EndInvoke(IAsyncResult)
+  fullName: Reportman.Designer.FrameMainDesigner.SaveReportEvent.EndInvoke(System.IAsyncResult)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/FrameMainDesigner.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public virtual void EndInvoke(IAsyncResult result)
+    parameters:
+    - id: result
+      type: System.IAsyncResult
+    content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
+  overload: Reportman.Designer.FrameMainDesigner.SaveReportEvent.EndInvoke*
+references:
+- uid: Reportman.Designer.FrameMainDesigner.SaveReportArgs
+  commentId: T:Reportman.Designer.FrameMainDesigner.SaveReportArgs
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.FrameMainDesigner.html
+  name: FrameMainDesigner.SaveReportArgs
+  nameWithType: FrameMainDesigner.SaveReportArgs
+  fullName: Reportman.Designer.FrameMainDesigner.SaveReportArgs
+  spec.csharp:
+  - uid: Reportman.Designer.FrameMainDesigner
+    name: FrameMainDesigner
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.html
+  - name: .
+  - uid: Reportman.Designer.FrameMainDesigner.SaveReportArgs
+    name: SaveReportArgs
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.SaveReportArgs.html
+  spec.vb:
+  - uid: Reportman.Designer.FrameMainDesigner
+    name: FrameMainDesigner
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.html
+  - name: .
+  - uid: Reportman.Designer.FrameMainDesigner.SaveReportArgs
+    name: SaveReportArgs
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.SaveReportArgs.html
+- uid: Reportman.Designer
+  commentId: N:Reportman.Designer
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Designer
+  nameWithType: Reportman.Designer
+  fullName: Reportman.Designer
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Designer.FrameMainDesigner.SaveReportEvent.#ctor*
+  commentId: Overload:Reportman.Designer.FrameMainDesigner.SaveReportEvent.#ctor
+  isExternal: true
+  href: Reportman.Designer.FrameMainDesigner.SaveReportEvent.html#Reportman_Designer_FrameMainDesigner_SaveReportEvent__ctor_System_Object_System_IntPtr_
+  name: SaveReportEvent
+  nameWithType: FrameMainDesigner.SaveReportEvent.SaveReportEvent
+  fullName: Reportman.Designer.FrameMainDesigner.SaveReportEvent.SaveReportEvent
+  nameWithType.vb: FrameMainDesigner.SaveReportEvent.New
+  fullName.vb: Reportman.Designer.FrameMainDesigner.SaveReportEvent.New
+  name.vb: New
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: Reportman.Designer.FrameMainDesigner.SaveReportEvent.Invoke*
+  commentId: Overload:Reportman.Designer.FrameMainDesigner.SaveReportEvent.Invoke
+  isExternal: true
+  href: Reportman.Designer.FrameMainDesigner.SaveReportEvent.html#Reportman_Designer_FrameMainDesigner_SaveReportEvent_Invoke_System_Object_Reportman_Designer_FrameMainDesigner_SaveReportArgs_
+  name: Invoke
+  nameWithType: FrameMainDesigner.SaveReportEvent.Invoke
+  fullName: Reportman.Designer.FrameMainDesigner.SaveReportEvent.Invoke
+- uid: Reportman.Designer.FrameMainDesigner.SaveReportEvent.BeginInvoke*
+  commentId: Overload:Reportman.Designer.FrameMainDesigner.SaveReportEvent.BeginInvoke
+  isExternal: true
+  href: Reportman.Designer.FrameMainDesigner.SaveReportEvent.html#Reportman_Designer_FrameMainDesigner_SaveReportEvent_BeginInvoke_System_Object_Reportman_Designer_FrameMainDesigner_SaveReportArgs_System_AsyncCallback_System_Object_
+  name: BeginInvoke
+  nameWithType: FrameMainDesigner.SaveReportEvent.BeginInvoke
+  fullName: Reportman.Designer.FrameMainDesigner.SaveReportEvent.BeginInvoke
+- uid: System.AsyncCallback
+  commentId: T:System.AsyncCallback
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.asynccallback
+  name: AsyncCallback
+  nameWithType: AsyncCallback
+  fullName: System.AsyncCallback
+- uid: System.IAsyncResult
+  commentId: T:System.IAsyncResult
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncresult
+  name: IAsyncResult
+  nameWithType: IAsyncResult
+  fullName: System.IAsyncResult
+- uid: Reportman.Designer.FrameMainDesigner.SaveReportEvent.EndInvoke*
+  commentId: Overload:Reportman.Designer.FrameMainDesigner.SaveReportEvent.EndInvoke
+  isExternal: true
+  href: Reportman.Designer.FrameMainDesigner.SaveReportEvent.html#Reportman_Designer_FrameMainDesigner_SaveReportEvent_EndInvoke_System_IAsyncResult_
+  name: EndInvoke
+  nameWithType: FrameMainDesigner.SaveReportEvent.EndInvoke
+  fullName: Reportman.Designer.FrameMainDesigner.SaveReportEvent.EndInvoke

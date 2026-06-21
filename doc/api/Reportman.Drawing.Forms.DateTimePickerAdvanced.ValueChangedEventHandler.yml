@@ -17,7 +17,7 @@ items:
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.ValueChangedEventHandler
   type: Delegate
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -43,7 +43,7 @@ items:
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.ValueChangedEventHandler.ValueChangedEventHandler(object, nint)
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -71,7 +71,7 @@ items:
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.ValueChangedEventHandler.Invoke(object, System.EventArgs)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -99,7 +99,7 @@ items:
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.ValueChangedEventHandler.BeginInvoke(object, System.EventArgs, System.AsyncCallback, object)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -133,7 +133,7 @@ items:
   fullName: Reportman.Drawing.Forms.DateTimePickerAdvanced.ValueChangedEventHandler.EndInvoke(System.IAsyncResult)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/DateTimePickerAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

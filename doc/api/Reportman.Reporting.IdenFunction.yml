@@ -18,7 +18,7 @@ items:
   fullName: Reportman.Reporting.IdenFunction
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/IdenFunction.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/IdenFunction.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -60,7 +60,7 @@ items:
   fullName: Reportman.Reporting.IdenFunction.Params
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/IdenFunction.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/IdenFunction.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -83,7 +83,7 @@ items:
   fullName: Reportman.Reporting.IdenFunction.IdenFunction(Reportman.Reporting.Evaluator)
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/IdenFunction.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/IdenFunction.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -112,7 +112,7 @@ items:
   fullName: Reportman.Reporting.IdenFunction.SetParamCount(int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/IdenFunction.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/IdenFunction.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -141,7 +141,7 @@ items:
   fullName: Reportman.Reporting.IdenFunction.SetValue(Reportman.Reporting.Variant)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/IdenFunction.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/IdenFunction.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -168,7 +168,7 @@ items:
   fullName: Reportman.Reporting.IdenFunction.ParamCount
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/IdenFunction.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/IdenFunction.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

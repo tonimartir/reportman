@@ -17,7 +17,7 @@ items:
   fullName: Reportman.Reporting.ParamsConverter
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Params.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Params.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -54,7 +54,7 @@ items:
   fullName: Reportman.Reporting.ParamsConverter.CanConvert(System.Type)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Params.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Params.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -81,7 +81,7 @@ items:
   fullName: Reportman.Reporting.ParamsConverter.WriteJson(Newtonsoft.Json.JsonWriter, object, Newtonsoft.Json.JsonSerializer)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Params.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Params.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -113,7 +113,7 @@ items:
   fullName: Reportman.Reporting.ParamsConverter.ReadJson(Newtonsoft.Json.JsonReader, System.Type, object, Newtonsoft.Json.JsonSerializer)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Params.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Params.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -149,7 +149,7 @@ items:
   fullName: Reportman.Reporting.ParamsConverter.ParamsConverter()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Params.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Params.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

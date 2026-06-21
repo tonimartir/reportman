@@ -1,0 +1,778 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.Design.ReportBatchEditor
+  commentId: T:Reportman.Reporting.Design.ReportBatchEditor
+  id: ReportBatchEditor
+  parent: Reportman.Reporting.Design
+  children:
+  - Reportman.Reporting.Design.ReportBatchEditor.#ctor
+  - Reportman.Reporting.Design.ReportBatchEditor.Apply(Reportman.Reporting.Report,System.Collections.Generic.IReadOnlyList{Reportman.Reporting.Design.ReportBatchOperation})
+  - Reportman.Reporting.Design.ReportBatchEditor.Validate(Reportman.Reporting.Report,System.Collections.Generic.IReadOnlyList{Reportman.Reporting.Design.ReportBatchOperation})
+  langs:
+  - csharp
+  - vb
+  name: ReportBatchEditor
+  nameWithType: ReportBatchEditor
+  fullName: Reportman.Reporting.Design.ReportBatchEditor
+  type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Design/ReportBatchEditor.cs
+  assemblies:
+  - Reportman.Reporting.Design
+  namespace: Reportman.Reporting.Design
+  summary: >-
+    Validates and applies batches of structural report operations (add, remove, modify,
+
+    reorder and z-order changes) against a report, enforcing layout rules and recording
+
+    the changes in the report's undo history.
+  example: []
+  syntax:
+    content: 'public class ReportBatchEditor : IReportBatchEditor, IReportBatchValidator'
+    content.vb: Public Class ReportBatchEditor Implements IReportBatchEditor, IReportBatchValidator
+  inheritance:
+  - System.Object
+  implements:
+  - Reportman.Reporting.Design.IReportBatchEditor
+  - Reportman.Reporting.Design.IReportBatchValidator
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Reporting.Design.ReportBatchEditor.Validate(Reportman.Reporting.Report,System.Collections.Generic.IReadOnlyList{Reportman.Reporting.Design.ReportBatchOperation})
+  commentId: M:Reportman.Reporting.Design.ReportBatchEditor.Validate(Reportman.Reporting.Report,System.Collections.Generic.IReadOnlyList{Reportman.Reporting.Design.ReportBatchOperation})
+  id: Validate(Reportman.Reporting.Report,System.Collections.Generic.IReadOnlyList{Reportman.Reporting.Design.ReportBatchOperation})
+  parent: Reportman.Reporting.Design.ReportBatchEditor
+  langs:
+  - csharp
+  - vb
+  name: Validate(Report, IReadOnlyList<ReportBatchOperation>)
+  nameWithType: ReportBatchEditor.Validate(Report, IReadOnlyList<ReportBatchOperation>)
+  fullName: Reportman.Reporting.Design.ReportBatchEditor.Validate(Reportman.Reporting.Report, System.Collections.Generic.IReadOnlyList<Reportman.Reporting.Design.ReportBatchOperation>)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Design/ReportBatchEditor.cs
+  assemblies:
+  - Reportman.Reporting.Design
+  namespace: Reportman.Reporting.Design
+  example: []
+  syntax:
+    content: public ReportBatchValidationResult Validate(Report report, IReadOnlyList<ReportBatchOperation> operations)
+    parameters:
+    - id: report
+      type: Reportman.Reporting.Report
+    - id: operations
+      type: System.Collections.Generic.IReadOnlyList{Reportman.Reporting.Design.ReportBatchOperation}
+    return:
+      type: Reportman.Reporting.Design.ReportBatchValidationResult
+    content.vb: Public Function Validate(report As Report, operations As IReadOnlyList(Of ReportBatchOperation)) As ReportBatchValidationResult
+  overload: Reportman.Reporting.Design.ReportBatchEditor.Validate*
+  implements:
+  - Reportman.Reporting.Design.IReportBatchEditor.Validate(Reportman.Reporting.Report,System.Collections.Generic.IReadOnlyList{Reportman.Reporting.Design.ReportBatchOperation})
+  - Reportman.Reporting.Design.IReportBatchValidator.Validate(Reportman.Reporting.Report,System.Collections.Generic.IReadOnlyList{Reportman.Reporting.Design.ReportBatchOperation})
+  nameWithType.vb: ReportBatchEditor.Validate(Report, IReadOnlyList(Of ReportBatchOperation))
+  fullName.vb: Reportman.Reporting.Design.ReportBatchEditor.Validate(Reportman.Reporting.Report, System.Collections.Generic.IReadOnlyList(Of Reportman.Reporting.Design.ReportBatchOperation))
+  name.vb: Validate(Report, IReadOnlyList(Of ReportBatchOperation))
+- uid: Reportman.Reporting.Design.ReportBatchEditor.Apply(Reportman.Reporting.Report,System.Collections.Generic.IReadOnlyList{Reportman.Reporting.Design.ReportBatchOperation})
+  commentId: M:Reportman.Reporting.Design.ReportBatchEditor.Apply(Reportman.Reporting.Report,System.Collections.Generic.IReadOnlyList{Reportman.Reporting.Design.ReportBatchOperation})
+  id: Apply(Reportman.Reporting.Report,System.Collections.Generic.IReadOnlyList{Reportman.Reporting.Design.ReportBatchOperation})
+  parent: Reportman.Reporting.Design.ReportBatchEditor
+  langs:
+  - csharp
+  - vb
+  name: Apply(Report, IReadOnlyList<ReportBatchOperation>)
+  nameWithType: ReportBatchEditor.Apply(Report, IReadOnlyList<ReportBatchOperation>)
+  fullName: Reportman.Reporting.Design.ReportBatchEditor.Apply(Reportman.Reporting.Report, System.Collections.Generic.IReadOnlyList<Reportman.Reporting.Design.ReportBatchOperation>)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Design/ReportBatchEditor.cs
+  assemblies:
+  - Reportman.Reporting.Design
+  namespace: Reportman.Reporting.Design
+  example: []
+  syntax:
+    content: public ReportBatchApplyResult Apply(Report report, IReadOnlyList<ReportBatchOperation> operations)
+    parameters:
+    - id: report
+      type: Reportman.Reporting.Report
+    - id: operations
+      type: System.Collections.Generic.IReadOnlyList{Reportman.Reporting.Design.ReportBatchOperation}
+    return:
+      type: Reportman.Reporting.Design.ReportBatchApplyResult
+    content.vb: Public Function Apply(report As Report, operations As IReadOnlyList(Of ReportBatchOperation)) As ReportBatchApplyResult
+  overload: Reportman.Reporting.Design.ReportBatchEditor.Apply*
+  implements:
+  - Reportman.Reporting.Design.IReportBatchEditor.Apply(Reportman.Reporting.Report,System.Collections.Generic.IReadOnlyList{Reportman.Reporting.Design.ReportBatchOperation})
+  nameWithType.vb: ReportBatchEditor.Apply(Report, IReadOnlyList(Of ReportBatchOperation))
+  fullName.vb: Reportman.Reporting.Design.ReportBatchEditor.Apply(Reportman.Reporting.Report, System.Collections.Generic.IReadOnlyList(Of Reportman.Reporting.Design.ReportBatchOperation))
+  name.vb: Apply(Report, IReadOnlyList(Of ReportBatchOperation))
+- uid: Reportman.Reporting.Design.ReportBatchEditor.#ctor
+  commentId: M:Reportman.Reporting.Design.ReportBatchEditor.#ctor
+  id: '#ctor'
+  parent: Reportman.Reporting.Design.ReportBatchEditor
+  langs:
+  - csharp
+  - vb
+  name: ReportBatchEditor()
+  nameWithType: ReportBatchEditor.ReportBatchEditor()
+  fullName: Reportman.Reporting.Design.ReportBatchEditor.ReportBatchEditor()
+  type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Design/ReportBatchEditor.cs
+  assemblies:
+  - Reportman.Reporting.Design
+  namespace: Reportman.Reporting.Design
+  syntax:
+    content: public ReportBatchEditor()
+    content.vb: Public Sub New()
+  overload: Reportman.Reporting.Design.ReportBatchEditor.#ctor*
+  nameWithType.vb: ReportBatchEditor.New()
+  fullName.vb: Reportman.Reporting.Design.ReportBatchEditor.New()
+  name.vb: New()
+references:
+- uid: Reportman.Reporting.Design
+  commentId: N:Reportman.Reporting.Design
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting.Design
+  nameWithType: Reportman.Reporting.Design
+  fullName: Reportman.Reporting.Design
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  - name: .
+  - uid: Reportman.Reporting.Design
+    name: Design
+    isExternal: true
+    href: Reportman.Reporting.Design.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  - name: .
+  - uid: Reportman.Reporting.Design
+    name: Design
+    isExternal: true
+    href: Reportman.Reporting.Design.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Reportman.Reporting.Design.IReportBatchEditor
+  commentId: T:Reportman.Reporting.Design.IReportBatchEditor
+  parent: Reportman.Reporting.Design
+  isExternal: true
+  href: Reportman.Reporting.Design.IReportBatchEditor.html
+  name: IReportBatchEditor
+  nameWithType: IReportBatchEditor
+  fullName: Reportman.Reporting.Design.IReportBatchEditor
+- uid: Reportman.Reporting.Design.IReportBatchValidator
+  commentId: T:Reportman.Reporting.Design.IReportBatchValidator
+  parent: Reportman.Reporting.Design
+  isExternal: true
+  href: Reportman.Reporting.Design.IReportBatchValidator.html
+  name: IReportBatchValidator
+  nameWithType: IReportBatchValidator
+  fullName: Reportman.Reporting.Design.IReportBatchValidator
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Reporting.Design.ReportBatchEditor.Validate*
+  commentId: Overload:Reportman.Reporting.Design.ReportBatchEditor.Validate
+  isExternal: true
+  href: Reportman.Reporting.Design.ReportBatchEditor.html#Reportman_Reporting_Design_ReportBatchEditor_Validate_Reportman_Reporting_Report_System_Collections_Generic_IReadOnlyList_Reportman_Reporting_Design_ReportBatchOperation__
+  name: Validate
+  nameWithType: ReportBatchEditor.Validate
+  fullName: Reportman.Reporting.Design.ReportBatchEditor.Validate
+- uid: Reportman.Reporting.Design.IReportBatchEditor.Validate(Reportman.Reporting.Report,System.Collections.Generic.IReadOnlyList{Reportman.Reporting.Design.ReportBatchOperation})
+  commentId: M:Reportman.Reporting.Design.IReportBatchEditor.Validate(Reportman.Reporting.Report,System.Collections.Generic.IReadOnlyList{Reportman.Reporting.Design.ReportBatchOperation})
+  parent: Reportman.Reporting.Design.IReportBatchEditor
+  isExternal: true
+  href: Reportman.Reporting.Design.IReportBatchEditor.html#Reportman_Reporting_Design_IReportBatchEditor_Validate_Reportman_Reporting_Report_System_Collections_Generic_IReadOnlyList_Reportman_Reporting_Design_ReportBatchOperation__
+  name: Validate(Report, IReadOnlyList<ReportBatchOperation>)
+  nameWithType: IReportBatchEditor.Validate(Report, IReadOnlyList<ReportBatchOperation>)
+  fullName: Reportman.Reporting.Design.IReportBatchEditor.Validate(Reportman.Reporting.Report, System.Collections.Generic.IReadOnlyList<Reportman.Reporting.Design.ReportBatchOperation>)
+  nameWithType.vb: IReportBatchEditor.Validate(Report, IReadOnlyList(Of ReportBatchOperation))
+  fullName.vb: Reportman.Reporting.Design.IReportBatchEditor.Validate(Reportman.Reporting.Report, System.Collections.Generic.IReadOnlyList(Of Reportman.Reporting.Design.ReportBatchOperation))
+  name.vb: Validate(Report, IReadOnlyList(Of ReportBatchOperation))
+  spec.csharp:
+  - uid: Reportman.Reporting.Design.IReportBatchEditor.Validate(Reportman.Reporting.Report,System.Collections.Generic.IReadOnlyList{Reportman.Reporting.Design.ReportBatchOperation})
+    name: Validate
+    isExternal: true
+    href: Reportman.Reporting.Design.IReportBatchEditor.html#Reportman_Reporting_Design_IReportBatchEditor_Validate_Reportman_Reporting_Report_System_Collections_Generic_IReadOnlyList_Reportman_Reporting_Design_ReportBatchOperation__
+  - name: (
+  - uid: Reportman.Reporting.Report
+    name: Report
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Report.cs
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: Reportman.Reporting.Design.ReportBatchOperation
+    name: ReportBatchOperation
+    isExternal: true
+    href: Reportman.Reporting.Design.ReportBatchOperation.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.Design.IReportBatchEditor.Validate(Reportman.Reporting.Report,System.Collections.Generic.IReadOnlyList{Reportman.Reporting.Design.ReportBatchOperation})
+    name: Validate
+    isExternal: true
+    href: Reportman.Reporting.Design.IReportBatchEditor.html#Reportman_Reporting_Design_IReportBatchEditor_Validate_Reportman_Reporting_Report_System_Collections_Generic_IReadOnlyList_Reportman_Reporting_Design_ReportBatchOperation__
+  - name: (
+  - uid: Reportman.Reporting.Report
+    name: Report
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Report.cs
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Reportman.Reporting.Design.ReportBatchOperation
+    name: ReportBatchOperation
+    isExternal: true
+    href: Reportman.Reporting.Design.ReportBatchOperation.html
+  - name: )
+  - name: )
+- uid: Reportman.Reporting.Design.IReportBatchValidator.Validate(Reportman.Reporting.Report,System.Collections.Generic.IReadOnlyList{Reportman.Reporting.Design.ReportBatchOperation})
+  commentId: M:Reportman.Reporting.Design.IReportBatchValidator.Validate(Reportman.Reporting.Report,System.Collections.Generic.IReadOnlyList{Reportman.Reporting.Design.ReportBatchOperation})
+  parent: Reportman.Reporting.Design.IReportBatchValidator
+  isExternal: true
+  href: Reportman.Reporting.Design.IReportBatchValidator.html#Reportman_Reporting_Design_IReportBatchValidator_Validate_Reportman_Reporting_Report_System_Collections_Generic_IReadOnlyList_Reportman_Reporting_Design_ReportBatchOperation__
+  name: Validate(Report, IReadOnlyList<ReportBatchOperation>)
+  nameWithType: IReportBatchValidator.Validate(Report, IReadOnlyList<ReportBatchOperation>)
+  fullName: Reportman.Reporting.Design.IReportBatchValidator.Validate(Reportman.Reporting.Report, System.Collections.Generic.IReadOnlyList<Reportman.Reporting.Design.ReportBatchOperation>)
+  nameWithType.vb: IReportBatchValidator.Validate(Report, IReadOnlyList(Of ReportBatchOperation))
+  fullName.vb: Reportman.Reporting.Design.IReportBatchValidator.Validate(Reportman.Reporting.Report, System.Collections.Generic.IReadOnlyList(Of Reportman.Reporting.Design.ReportBatchOperation))
+  name.vb: Validate(Report, IReadOnlyList(Of ReportBatchOperation))
+  spec.csharp:
+  - uid: Reportman.Reporting.Design.IReportBatchValidator.Validate(Reportman.Reporting.Report,System.Collections.Generic.IReadOnlyList{Reportman.Reporting.Design.ReportBatchOperation})
+    name: Validate
+    isExternal: true
+    href: Reportman.Reporting.Design.IReportBatchValidator.html#Reportman_Reporting_Design_IReportBatchValidator_Validate_Reportman_Reporting_Report_System_Collections_Generic_IReadOnlyList_Reportman_Reporting_Design_ReportBatchOperation__
+  - name: (
+  - uid: Reportman.Reporting.Report
+    name: Report
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Report.cs
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: Reportman.Reporting.Design.ReportBatchOperation
+    name: ReportBatchOperation
+    isExternal: true
+    href: Reportman.Reporting.Design.ReportBatchOperation.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.Design.IReportBatchValidator.Validate(Reportman.Reporting.Report,System.Collections.Generic.IReadOnlyList{Reportman.Reporting.Design.ReportBatchOperation})
+    name: Validate
+    isExternal: true
+    href: Reportman.Reporting.Design.IReportBatchValidator.html#Reportman_Reporting_Design_IReportBatchValidator_Validate_Reportman_Reporting_Report_System_Collections_Generic_IReadOnlyList_Reportman_Reporting_Design_ReportBatchOperation__
+  - name: (
+  - uid: Reportman.Reporting.Report
+    name: Report
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Report.cs
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Reportman.Reporting.Design.ReportBatchOperation
+    name: ReportBatchOperation
+    isExternal: true
+    href: Reportman.Reporting.Design.ReportBatchOperation.html
+  - name: )
+  - name: )
+- uid: Reportman.Reporting.Report
+  commentId: T:Reportman.Reporting.Report
+  parent: Reportman.Reporting
+  isExternal: true
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Report.cs
+  name: Report
+  nameWithType: Report
+  fullName: Reportman.Reporting.Report
+- uid: System.Collections.Generic.IReadOnlyList{Reportman.Reporting.Design.ReportBatchOperation}
+  commentId: T:System.Collections.Generic.IReadOnlyList{Reportman.Reporting.Design.ReportBatchOperation}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<ReportBatchOperation>
+  nameWithType: IReadOnlyList<ReportBatchOperation>
+  fullName: System.Collections.Generic.IReadOnlyList<Reportman.Reporting.Design.ReportBatchOperation>
+  nameWithType.vb: IReadOnlyList(Of ReportBatchOperation)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of Reportman.Reporting.Design.ReportBatchOperation)
+  name.vb: IReadOnlyList(Of ReportBatchOperation)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: Reportman.Reporting.Design.ReportBatchOperation
+    name: ReportBatchOperation
+    isExternal: true
+    href: Reportman.Reporting.Design.ReportBatchOperation.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Reportman.Reporting.Design.ReportBatchOperation
+    name: ReportBatchOperation
+    isExternal: true
+    href: Reportman.Reporting.Design.ReportBatchOperation.html
+  - name: )
+- uid: Reportman.Reporting.Design.ReportBatchValidationResult
+  commentId: T:Reportman.Reporting.Design.ReportBatchValidationResult
+  parent: Reportman.Reporting.Design
+  isExternal: true
+  href: Reportman.Reporting.Design.ReportBatchValidationResult.html
+  name: ReportBatchValidationResult
+  nameWithType: ReportBatchValidationResult
+  fullName: Reportman.Reporting.Design.ReportBatchValidationResult
+- uid: Reportman.Reporting
+  commentId: N:Reportman.Reporting
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting
+  nameWithType: Reportman.Reporting
+  fullName: Reportman.Reporting
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Reportman.Reporting.Design.ReportBatchEditor.Apply*
+  commentId: Overload:Reportman.Reporting.Design.ReportBatchEditor.Apply
+  isExternal: true
+  href: Reportman.Reporting.Design.ReportBatchEditor.html#Reportman_Reporting_Design_ReportBatchEditor_Apply_Reportman_Reporting_Report_System_Collections_Generic_IReadOnlyList_Reportman_Reporting_Design_ReportBatchOperation__
+  name: Apply
+  nameWithType: ReportBatchEditor.Apply
+  fullName: Reportman.Reporting.Design.ReportBatchEditor.Apply
+- uid: Reportman.Reporting.Design.IReportBatchEditor.Apply(Reportman.Reporting.Report,System.Collections.Generic.IReadOnlyList{Reportman.Reporting.Design.ReportBatchOperation})
+  commentId: M:Reportman.Reporting.Design.IReportBatchEditor.Apply(Reportman.Reporting.Report,System.Collections.Generic.IReadOnlyList{Reportman.Reporting.Design.ReportBatchOperation})
+  parent: Reportman.Reporting.Design.IReportBatchEditor
+  isExternal: true
+  href: Reportman.Reporting.Design.IReportBatchEditor.html#Reportman_Reporting_Design_IReportBatchEditor_Apply_Reportman_Reporting_Report_System_Collections_Generic_IReadOnlyList_Reportman_Reporting_Design_ReportBatchOperation__
+  name: Apply(Report, IReadOnlyList<ReportBatchOperation>)
+  nameWithType: IReportBatchEditor.Apply(Report, IReadOnlyList<ReportBatchOperation>)
+  fullName: Reportman.Reporting.Design.IReportBatchEditor.Apply(Reportman.Reporting.Report, System.Collections.Generic.IReadOnlyList<Reportman.Reporting.Design.ReportBatchOperation>)
+  nameWithType.vb: IReportBatchEditor.Apply(Report, IReadOnlyList(Of ReportBatchOperation))
+  fullName.vb: Reportman.Reporting.Design.IReportBatchEditor.Apply(Reportman.Reporting.Report, System.Collections.Generic.IReadOnlyList(Of Reportman.Reporting.Design.ReportBatchOperation))
+  name.vb: Apply(Report, IReadOnlyList(Of ReportBatchOperation))
+  spec.csharp:
+  - uid: Reportman.Reporting.Design.IReportBatchEditor.Apply(Reportman.Reporting.Report,System.Collections.Generic.IReadOnlyList{Reportman.Reporting.Design.ReportBatchOperation})
+    name: Apply
+    isExternal: true
+    href: Reportman.Reporting.Design.IReportBatchEditor.html#Reportman_Reporting_Design_IReportBatchEditor_Apply_Reportman_Reporting_Report_System_Collections_Generic_IReadOnlyList_Reportman_Reporting_Design_ReportBatchOperation__
+  - name: (
+  - uid: Reportman.Reporting.Report
+    name: Report
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Report.cs
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: Reportman.Reporting.Design.ReportBatchOperation
+    name: ReportBatchOperation
+    isExternal: true
+    href: Reportman.Reporting.Design.ReportBatchOperation.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: Reportman.Reporting.Design.IReportBatchEditor.Apply(Reportman.Reporting.Report,System.Collections.Generic.IReadOnlyList{Reportman.Reporting.Design.ReportBatchOperation})
+    name: Apply
+    isExternal: true
+    href: Reportman.Reporting.Design.IReportBatchEditor.html#Reportman_Reporting_Design_IReportBatchEditor_Apply_Reportman_Reporting_Report_System_Collections_Generic_IReadOnlyList_Reportman_Reporting_Design_ReportBatchOperation__
+  - name: (
+  - uid: Reportman.Reporting.Report
+    name: Report
+    isExternal: true
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Report.cs
+  - name: ','
+  - name: " "
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Reportman.Reporting.Design.ReportBatchOperation
+    name: ReportBatchOperation
+    isExternal: true
+    href: Reportman.Reporting.Design.ReportBatchOperation.html
+  - name: )
+  - name: )
+- uid: Reportman.Reporting.Design.ReportBatchApplyResult
+  commentId: T:Reportman.Reporting.Design.ReportBatchApplyResult
+  parent: Reportman.Reporting.Design
+  isExternal: true
+  href: Reportman.Reporting.Design.ReportBatchApplyResult.html
+  name: ReportBatchApplyResult
+  nameWithType: ReportBatchApplyResult
+  fullName: Reportman.Reporting.Design.ReportBatchApplyResult
+- uid: Reportman.Reporting.Design.ReportBatchEditor.#ctor*
+  commentId: Overload:Reportman.Reporting.Design.ReportBatchEditor.#ctor
+  isExternal: true
+  href: Reportman.Reporting.Design.ReportBatchEditor.html#Reportman_Reporting_Design_ReportBatchEditor__ctor
+  name: ReportBatchEditor
+  nameWithType: ReportBatchEditor.ReportBatchEditor
+  fullName: Reportman.Reporting.Design.ReportBatchEditor.ReportBatchEditor
+  nameWithType.vb: ReportBatchEditor.New
+  fullName.vb: Reportman.Reporting.Design.ReportBatchEditor.New
+  name.vb: New

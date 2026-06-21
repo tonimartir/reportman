@@ -1,0 +1,210 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Designer.SelectedItemPalette
+  commentId: T:Reportman.Designer.SelectedItemPalette
+  id: SelectedItemPalette
+  parent: Reportman.Designer
+  children:
+  - Reportman.Designer.SelectedItemPalette.Arrow
+  - Reportman.Designer.SelectedItemPalette.Barcode
+  - Reportman.Designer.SelectedItemPalette.Chart
+  - Reportman.Designer.SelectedItemPalette.Expression
+  - Reportman.Designer.SelectedItemPalette.Image
+  - Reportman.Designer.SelectedItemPalette.Label
+  - Reportman.Designer.SelectedItemPalette.Shape
+  langs:
+  - csharp
+  - vb
+  name: SelectedItemPalette
+  nameWithType: SelectedItemPalette
+  fullName: Reportman.Designer.SelectedItemPalette
+  type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EditSubReport.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: >-
+    Identifies the currently active design palette tool, determining whether the mouse
+
+    selects existing items (Arrow) or inserts a new item of the given kind.
+  example: []
+  syntax:
+    content: public enum SelectedItemPalette
+    content.vb: Public Enum SelectedItemPalette
+- uid: Reportman.Designer.SelectedItemPalette.Arrow
+  commentId: F:Reportman.Designer.SelectedItemPalette.Arrow
+  id: Arrow
+  parent: Reportman.Designer.SelectedItemPalette
+  langs:
+  - csharp
+  - vb
+  name: Arrow
+  nameWithType: SelectedItemPalette.Arrow
+  fullName: Reportman.Designer.SelectedItemPalette.Arrow
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EditSubReport.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: Arrow = 0
+    return:
+      type: Reportman.Designer.SelectedItemPalette
+- uid: Reportman.Designer.SelectedItemPalette.Label
+  commentId: F:Reportman.Designer.SelectedItemPalette.Label
+  id: Label
+  parent: Reportman.Designer.SelectedItemPalette
+  langs:
+  - csharp
+  - vb
+  name: Label
+  nameWithType: SelectedItemPalette.Label
+  fullName: Reportman.Designer.SelectedItemPalette.Label
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EditSubReport.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: Label = 1
+    return:
+      type: Reportman.Designer.SelectedItemPalette
+- uid: Reportman.Designer.SelectedItemPalette.Expression
+  commentId: F:Reportman.Designer.SelectedItemPalette.Expression
+  id: Expression
+  parent: Reportman.Designer.SelectedItemPalette
+  langs:
+  - csharp
+  - vb
+  name: Expression
+  nameWithType: SelectedItemPalette.Expression
+  fullName: Reportman.Designer.SelectedItemPalette.Expression
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EditSubReport.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: Expression = 2
+    return:
+      type: Reportman.Designer.SelectedItemPalette
+- uid: Reportman.Designer.SelectedItemPalette.Shape
+  commentId: F:Reportman.Designer.SelectedItemPalette.Shape
+  id: Shape
+  parent: Reportman.Designer.SelectedItemPalette
+  langs:
+  - csharp
+  - vb
+  name: Shape
+  nameWithType: SelectedItemPalette.Shape
+  fullName: Reportman.Designer.SelectedItemPalette.Shape
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EditSubReport.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: Shape = 3
+    return:
+      type: Reportman.Designer.SelectedItemPalette
+- uid: Reportman.Designer.SelectedItemPalette.Image
+  commentId: F:Reportman.Designer.SelectedItemPalette.Image
+  id: Image
+  parent: Reportman.Designer.SelectedItemPalette
+  langs:
+  - csharp
+  - vb
+  name: Image
+  nameWithType: SelectedItemPalette.Image
+  fullName: Reportman.Designer.SelectedItemPalette.Image
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EditSubReport.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: Image = 4
+    return:
+      type: Reportman.Designer.SelectedItemPalette
+- uid: Reportman.Designer.SelectedItemPalette.Chart
+  commentId: F:Reportman.Designer.SelectedItemPalette.Chart
+  id: Chart
+  parent: Reportman.Designer.SelectedItemPalette
+  langs:
+  - csharp
+  - vb
+  name: Chart
+  nameWithType: SelectedItemPalette.Chart
+  fullName: Reportman.Designer.SelectedItemPalette.Chart
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EditSubReport.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: Chart = 5
+    return:
+      type: Reportman.Designer.SelectedItemPalette
+- uid: Reportman.Designer.SelectedItemPalette.Barcode
+  commentId: F:Reportman.Designer.SelectedItemPalette.Barcode
+  id: Barcode
+  parent: Reportman.Designer.SelectedItemPalette
+  langs:
+  - csharp
+  - vb
+  name: Barcode
+  nameWithType: SelectedItemPalette.Barcode
+  fullName: Reportman.Designer.SelectedItemPalette.Barcode
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/EditSubReport.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: Barcode = 6
+    return:
+      type: Reportman.Designer.SelectedItemPalette
+references:
+- uid: Reportman.Designer
+  commentId: N:Reportman.Designer
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Designer
+  nameWithType: Reportman.Designer
+  fullName: Reportman.Designer
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+- uid: Reportman.Designer.SelectedItemPalette
+  commentId: T:Reportman.Designer.SelectedItemPalette
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.SelectedItemPalette.html
+  name: SelectedItemPalette
+  nameWithType: SelectedItemPalette
+  fullName: Reportman.Designer.SelectedItemPalette

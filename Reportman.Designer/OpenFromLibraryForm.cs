@@ -5,6 +5,11 @@ using System.Windows.Forms;
 
 namespace Reportman.Designer
 {
+    /// <summary>
+    /// Dialog that lets the user pick a configured report library from a combo box
+    /// and then choose a report from it, returning the selection along with the
+    /// loaded report stream.
+    /// </summary>
     public partial class OpenFromLibraryForm : Form
     {
         ReportLibraryConfigCollection libs;

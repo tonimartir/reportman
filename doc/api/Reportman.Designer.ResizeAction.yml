@@ -1,0 +1,102 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Designer.ResizeAction
+  commentId: T:Reportman.Designer.ResizeAction
+  id: ResizeAction
+  parent: Reportman.Designer
+  children:
+  - Reportman.Designer.ResizeAction.Move
+  - Reportman.Designer.ResizeAction.Resize
+  langs:
+  - csharp
+  - vb
+  name: ResizeAction
+  nameWithType: ResizeAction
+  fullName: Reportman.Designer.ResizeAction
+  type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RuntimeResize.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: Action to do
+  example: []
+  syntax:
+    content: public enum ResizeAction
+    content.vb: Public Enum ResizeAction
+- uid: Reportman.Designer.ResizeAction.Resize
+  commentId: F:Reportman.Designer.ResizeAction.Resize
+  id: Resize
+  parent: Reportman.Designer.ResizeAction
+  langs:
+  - csharp
+  - vb
+  name: Resize
+  nameWithType: ResizeAction.Resize
+  fullName: Reportman.Designer.ResizeAction.Resize
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RuntimeResize.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: Resize = 0
+    return:
+      type: Reportman.Designer.ResizeAction
+- uid: Reportman.Designer.ResizeAction.Move
+  commentId: F:Reportman.Designer.ResizeAction.Move
+  id: Move
+  parent: Reportman.Designer.ResizeAction
+  langs:
+  - csharp
+  - vb
+  name: Move
+  nameWithType: ResizeAction.Move
+  fullName: Reportman.Designer.ResizeAction.Move
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RuntimeResize.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: Move = 1
+    return:
+      type: Reportman.Designer.ResizeAction
+references:
+- uid: Reportman.Designer
+  commentId: N:Reportman.Designer
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Designer
+  nameWithType: Reportman.Designer
+  fullName: Reportman.Designer
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+- uid: Reportman.Designer.ResizeAction
+  commentId: T:Reportman.Designer.ResizeAction
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.ResizeAction.html
+  name: ResizeAction
+  nameWithType: ResizeAction
+  fullName: Reportman.Designer.ResizeAction

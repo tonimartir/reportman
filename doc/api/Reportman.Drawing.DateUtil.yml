@@ -29,7 +29,7 @@ items:
   fullName: Reportman.Drawing.DateUtil
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/DateUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -60,7 +60,7 @@ items:
   fullName: Reportman.Drawing.DateUtil.FIRST_DELPHI_DAY
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/DateUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -81,7 +81,7 @@ items:
   fullName: Reportman.Drawing.DateUtil.DelphiDateToDateTime(double)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/DateUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -111,7 +111,7 @@ items:
   fullName: Reportman.Drawing.DateUtil.DateTimeToDelphiDateTime(System.DateTime)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/DateUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -144,7 +144,7 @@ items:
   fullName: Reportman.Drawing.DateUtil.DateTimeToFbLiteralHour(System.DateTime)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/DateUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -172,7 +172,7 @@ items:
   fullName: Reportman.Drawing.DateUtil.DateTimeToDelphiDate(System.DateTime)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/DateUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -202,7 +202,7 @@ items:
   fullName: Reportman.Drawing.DateUtil.DateToSqlLiteral(System.DateTime)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/DateUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -233,7 +233,7 @@ items:
   fullName: Reportman.Drawing.DateUtil.DelphiDateTimeToTimeSpan(double)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/DateUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -263,7 +263,7 @@ items:
   fullName: Reportman.Drawing.DateUtil.DateToISO8601(System.DateTime, bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/DateUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -293,7 +293,7 @@ items:
   fullName: Reportman.Drawing.DateUtil.IsDateTime(string, out System.DateTime)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/DateUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -323,7 +323,7 @@ items:
   fullName: Reportman.Drawing.DateUtil.NextSaturday(System.DateTime)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/DateUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -351,7 +351,7 @@ items:
   fullName: Reportman.Drawing.DateUtil.NextFriDay(System.DateTime)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/DateUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -379,7 +379,7 @@ items:
   fullName: Reportman.Drawing.DateUtil.NextDayOfMonth(System.DateTime, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/DateUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -409,7 +409,7 @@ items:
   fullName: Reportman.Drawing.DateUtil.LastDayOfMonth(System.DateTime)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/DateUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -437,7 +437,7 @@ items:
   fullName: Reportman.Drawing.DateUtil.AddWorkableDays(System.DateTime, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/DateUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -467,7 +467,7 @@ items:
   fullName: Reportman.Drawing.DateUtil.DateTimeToUnixTimestamp(System.DateTime)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/DateUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -495,7 +495,7 @@ items:
   fullName: Reportman.Drawing.DateUtil.DateUtil()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/DateUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/DateUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

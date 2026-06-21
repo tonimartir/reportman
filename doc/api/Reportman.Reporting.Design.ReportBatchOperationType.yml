@@ -1,0 +1,227 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.Design.ReportBatchOperationType
+  commentId: T:Reportman.Reporting.Design.ReportBatchOperationType
+  id: ReportBatchOperationType
+  parent: Reportman.Reporting.Design
+  children:
+  - Reportman.Reporting.Design.ReportBatchOperationType.AddObject
+  - Reportman.Reporting.Design.ReportBatchOperationType.BringToFrontItem
+  - Reportman.Reporting.Design.ReportBatchOperationType.CreateNewReport
+  - Reportman.Reporting.Design.ReportBatchOperationType.ModifyProperties
+  - Reportman.Reporting.Design.ReportBatchOperationType.RemoveObject
+  - Reportman.Reporting.Design.ReportBatchOperationType.ReorderObject
+  - Reportman.Reporting.Design.ReportBatchOperationType.SendToBackItem
+  langs:
+  - csharp
+  - vb
+  name: ReportBatchOperationType
+  nameWithType: ReportBatchOperationType
+  fullName: Reportman.Reporting.Design.ReportBatchOperationType
+  type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Design/ReportBatchContracts.cs
+  assemblies:
+  - Reportman.Reporting.Design
+  namespace: Reportman.Reporting.Design
+  summary: >-
+    Identifies the kind of editing action a <xref href="Reportman.Reporting.Design.ReportBatchOperation" data-throw-if-not-resolved="false"></xref> performs,
+
+    such as creating a report, adding or removing objects, modifying properties, or reordering.
+  example: []
+  syntax:
+    content: public enum ReportBatchOperationType
+    content.vb: Public Enum ReportBatchOperationType
+- uid: Reportman.Reporting.Design.ReportBatchOperationType.CreateNewReport
+  commentId: F:Reportman.Reporting.Design.ReportBatchOperationType.CreateNewReport
+  id: CreateNewReport
+  parent: Reportman.Reporting.Design.ReportBatchOperationType
+  langs:
+  - csharp
+  - vb
+  name: CreateNewReport
+  nameWithType: ReportBatchOperationType.CreateNewReport
+  fullName: Reportman.Reporting.Design.ReportBatchOperationType.CreateNewReport
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Design/ReportBatchContracts.cs
+  assemblies:
+  - Reportman.Reporting.Design
+  namespace: Reportman.Reporting.Design
+  syntax:
+    content: CreateNewReport = 0
+    return:
+      type: Reportman.Reporting.Design.ReportBatchOperationType
+- uid: Reportman.Reporting.Design.ReportBatchOperationType.AddObject
+  commentId: F:Reportman.Reporting.Design.ReportBatchOperationType.AddObject
+  id: AddObject
+  parent: Reportman.Reporting.Design.ReportBatchOperationType
+  langs:
+  - csharp
+  - vb
+  name: AddObject
+  nameWithType: ReportBatchOperationType.AddObject
+  fullName: Reportman.Reporting.Design.ReportBatchOperationType.AddObject
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Design/ReportBatchContracts.cs
+  assemblies:
+  - Reportman.Reporting.Design
+  namespace: Reportman.Reporting.Design
+  syntax:
+    content: AddObject = 1
+    return:
+      type: Reportman.Reporting.Design.ReportBatchOperationType
+- uid: Reportman.Reporting.Design.ReportBatchOperationType.RemoveObject
+  commentId: F:Reportman.Reporting.Design.ReportBatchOperationType.RemoveObject
+  id: RemoveObject
+  parent: Reportman.Reporting.Design.ReportBatchOperationType
+  langs:
+  - csharp
+  - vb
+  name: RemoveObject
+  nameWithType: ReportBatchOperationType.RemoveObject
+  fullName: Reportman.Reporting.Design.ReportBatchOperationType.RemoveObject
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Design/ReportBatchContracts.cs
+  assemblies:
+  - Reportman.Reporting.Design
+  namespace: Reportman.Reporting.Design
+  syntax:
+    content: RemoveObject = 2
+    return:
+      type: Reportman.Reporting.Design.ReportBatchOperationType
+- uid: Reportman.Reporting.Design.ReportBatchOperationType.ModifyProperties
+  commentId: F:Reportman.Reporting.Design.ReportBatchOperationType.ModifyProperties
+  id: ModifyProperties
+  parent: Reportman.Reporting.Design.ReportBatchOperationType
+  langs:
+  - csharp
+  - vb
+  name: ModifyProperties
+  nameWithType: ReportBatchOperationType.ModifyProperties
+  fullName: Reportman.Reporting.Design.ReportBatchOperationType.ModifyProperties
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Design/ReportBatchContracts.cs
+  assemblies:
+  - Reportman.Reporting.Design
+  namespace: Reportman.Reporting.Design
+  syntax:
+    content: ModifyProperties = 3
+    return:
+      type: Reportman.Reporting.Design.ReportBatchOperationType
+- uid: Reportman.Reporting.Design.ReportBatchOperationType.ReorderObject
+  commentId: F:Reportman.Reporting.Design.ReportBatchOperationType.ReorderObject
+  id: ReorderObject
+  parent: Reportman.Reporting.Design.ReportBatchOperationType
+  langs:
+  - csharp
+  - vb
+  name: ReorderObject
+  nameWithType: ReportBatchOperationType.ReorderObject
+  fullName: Reportman.Reporting.Design.ReportBatchOperationType.ReorderObject
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Design/ReportBatchContracts.cs
+  assemblies:
+  - Reportman.Reporting.Design
+  namespace: Reportman.Reporting.Design
+  syntax:
+    content: ReorderObject = 4
+    return:
+      type: Reportman.Reporting.Design.ReportBatchOperationType
+- uid: Reportman.Reporting.Design.ReportBatchOperationType.SendToBackItem
+  commentId: F:Reportman.Reporting.Design.ReportBatchOperationType.SendToBackItem
+  id: SendToBackItem
+  parent: Reportman.Reporting.Design.ReportBatchOperationType
+  langs:
+  - csharp
+  - vb
+  name: SendToBackItem
+  nameWithType: ReportBatchOperationType.SendToBackItem
+  fullName: Reportman.Reporting.Design.ReportBatchOperationType.SendToBackItem
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Design/ReportBatchContracts.cs
+  assemblies:
+  - Reportman.Reporting.Design
+  namespace: Reportman.Reporting.Design
+  syntax:
+    content: SendToBackItem = 5
+    return:
+      type: Reportman.Reporting.Design.ReportBatchOperationType
+- uid: Reportman.Reporting.Design.ReportBatchOperationType.BringToFrontItem
+  commentId: F:Reportman.Reporting.Design.ReportBatchOperationType.BringToFrontItem
+  id: BringToFrontItem
+  parent: Reportman.Reporting.Design.ReportBatchOperationType
+  langs:
+  - csharp
+  - vb
+  name: BringToFrontItem
+  nameWithType: ReportBatchOperationType.BringToFrontItem
+  fullName: Reportman.Reporting.Design.ReportBatchOperationType.BringToFrontItem
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Design/ReportBatchContracts.cs
+  assemblies:
+  - Reportman.Reporting.Design
+  namespace: Reportman.Reporting.Design
+  syntax:
+    content: BringToFrontItem = 6
+    return:
+      type: Reportman.Reporting.Design.ReportBatchOperationType
+references:
+- uid: Reportman.Reporting.Design.ReportBatchOperation
+  commentId: T:Reportman.Reporting.Design.ReportBatchOperation
+  isExternal: true
+  href: Reportman.Reporting.Design.ReportBatchOperation.html
+  name: ReportBatchOperation
+  nameWithType: ReportBatchOperation
+  fullName: Reportman.Reporting.Design.ReportBatchOperation
+- uid: Reportman.Reporting.Design
+  commentId: N:Reportman.Reporting.Design
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting.Design
+  nameWithType: Reportman.Reporting.Design
+  fullName: Reportman.Reporting.Design
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  - name: .
+  - uid: Reportman.Reporting.Design
+    name: Design
+    isExternal: true
+    href: Reportman.Reporting.Design.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  - name: .
+  - uid: Reportman.Reporting.Design
+    name: Design
+    isExternal: true
+    href: Reportman.Reporting.Design.html
+- uid: Reportman.Reporting.Design.ReportBatchOperationType
+  commentId: T:Reportman.Reporting.Design.ReportBatchOperationType
+  parent: Reportman.Reporting.Design
+  isExternal: true
+  href: Reportman.Reporting.Design.ReportBatchOperationType.html
+  name: ReportBatchOperationType
+  nameWithType: ReportBatchOperationType
+  fullName: Reportman.Reporting.Design.ReportBatchOperationType

@@ -5,6 +5,10 @@ using System.Windows.Forms;
 
 namespace Reportman.Designer
 {
+    /// <summary>
+    /// Dialog for editing a report's design grid settings, including spacing, color,
+    /// line style, and whether the grid is enabled and visible.
+    /// </summary>
     public partial class GridOptions : Form
     {
         public GridOptions()

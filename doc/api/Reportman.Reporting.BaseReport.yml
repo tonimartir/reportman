@@ -189,7 +189,7 @@ items:
   fullName: Reportman.Reporting.BaseReport
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -230,7 +230,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.UndoCue
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -253,7 +253,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.InitialPageDetail
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -274,7 +274,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.MAX_PAGENUM
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -297,7 +297,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.FDataAlias
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -323,7 +323,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.AbortingThread
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -346,7 +346,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.FDriver
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -369,7 +369,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.ChartingDriver
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -392,7 +392,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.ErrorProcessing
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -415,7 +415,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.LastErrorProcessing
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -438,7 +438,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.ExecuteSubReportIndexes
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -481,7 +481,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.PendingSections
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -507,7 +507,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.EvalIdens
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -533,7 +533,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.FGroupHeaders
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -556,7 +556,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.GHeaders
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -579,7 +579,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.GFooters
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -602,7 +602,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.mmlast
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -625,7 +625,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.mmfirst
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -648,7 +648,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.FCompose
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -671,7 +671,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.LastPage
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -697,7 +697,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.section
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -720,7 +720,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.subreport
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -743,7 +743,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.printing
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -766,7 +766,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.FRecordCount
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -789,7 +789,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.CurrentSubReportIndex
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -812,7 +812,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.CurrentSectionIndex
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -835,7 +835,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.oldprintedsectionext
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -858,7 +858,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.oldsubreport
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -881,7 +881,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.havepagefooters
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -904,7 +904,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.sectionextevaluated
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -927,7 +927,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.oldprintedsection
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -950,7 +950,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.pageposx
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -973,7 +973,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.pageposy
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -996,7 +996,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.pagespacex
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1019,7 +1019,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.pagefooters
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1042,7 +1042,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.asection
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1065,7 +1065,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.pagefooterpos
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1088,7 +1088,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.sectionext
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1111,7 +1111,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.FExecuting
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1134,7 +1134,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.AsyncExecution
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1162,7 +1162,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.AsyncPriority
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1185,7 +1185,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.PrintedSomething
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1208,7 +1208,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.PageNum
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1231,7 +1231,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.PageNumGroup
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1254,7 +1254,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.InternalPageWidth
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1277,7 +1277,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.InternalPageHeight
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1300,7 +1300,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.FreeSpace
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1323,7 +1323,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.Modified
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1363,7 +1363,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.Components
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1403,7 +1403,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.EmbeddedFiles
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1424,7 +1424,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.PDFConformance
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1445,7 +1445,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.PDFCompressed
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1466,7 +1466,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.Evaluator
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1504,7 +1504,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.CurrentOrientation
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1525,7 +1525,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.UpdatePageSize
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1546,7 +1546,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.UsedDataReaders
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1567,7 +1567,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.CheckProgress(bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1596,7 +1596,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.AddComponent(Reportman.Reporting.ReportItem)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1619,7 +1619,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.AlignSectionsTo(int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1645,7 +1645,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.RemoveComponent(Reportman.Reporting.ReportItem)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1668,7 +1668,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.BaseReport()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1691,7 +1691,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.LoadFromCommand(System.Data.IDbCommand)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1714,7 +1714,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.LoadFromDataReader(System.Data.IDataReader)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1737,7 +1737,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.LoadFromStream(System.IO.Stream, bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1765,7 +1765,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.ConvertToDotNet()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1787,7 +1787,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.LoadFromStream(System.IO.Stream, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1815,7 +1815,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.LoadFromFile(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1841,7 +1841,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.SaveToStream(System.IO.Stream, Reportman.Reporting.StreamVersion)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1866,7 +1866,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.SaveToFile(string, Reportman.Reporting.StreamVersion)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1894,7 +1894,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.AddTotalPagesItem(int, int, string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1924,7 +1924,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.RequestPage(int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1952,7 +1952,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.FillGlobalHeaders()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1972,7 +1972,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.EndPrint()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -1992,7 +1992,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.InitEvaluator()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2012,7 +2012,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.InitializeParams()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2032,7 +2032,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.PrintAll(Reportman.Drawing.PrintOut)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2055,7 +2055,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.UpdateParamsBeforeOpen(int, bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2083,7 +2083,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.UpdateParamsAfterOpen(int, bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2111,7 +2111,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.PrepareParamsBeforeOpen()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2131,7 +2131,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.PrepareParamsAfterOpen()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2151,7 +2151,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.CheckIfDataAvailable()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2171,7 +2171,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.DeActivateDatasets()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2191,7 +2191,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.SubreportMustBeExecuted(Reportman.Reporting.SubReport)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2216,7 +2216,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.ActivateDatasets()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2236,7 +2236,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.CreateNew()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2256,7 +2256,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.AddSubReport()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2278,7 +2278,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.DeleteSubReport(Reportman.Reporting.SubReport)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2301,7 +2301,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.PrintNextPage()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2323,7 +2323,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.BeginPrint(Reportman.Drawing.PrintOut)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2346,7 +2346,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.DoUpdatePageSize(Reportman.Drawing.MetaPage, Reportman.Drawing.PageSizeDetail)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2371,7 +2371,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.AddReportItemsToEvaluator(Reportman.Reporting.Evaluator)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2394,7 +2394,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.CheckParameters()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2416,7 +2416,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.GenerateNewName(Reportman.Reporting.ReportItem)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2442,7 +2442,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.EnsureComponentNames()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2469,7 +2469,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.FindNewName(Reportman.Reporting.ReportItem)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2497,7 +2497,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.GetReportVariables()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2525,7 +2525,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.Dispose()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2548,7 +2548,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.NewComponentByClassName(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2576,7 +2576,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.DeleteItem(Reportman.Reporting.ReportItem, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2604,7 +2604,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.GetParentSection(Reportman.Reporting.PrintPosItem)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2629,7 +2629,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.GetParentSubReport(Reportman.Reporting.Section)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2654,7 +2654,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.DeleteComponentPrintPosItem(Reportman.Reporting.Section, Reportman.Reporting.PrintPosItem, int, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2686,7 +2686,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.DeleteComponents(Reportman.Reporting.Section, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2714,7 +2714,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.DeleteComponent(Reportman.Reporting.ReportItem)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2737,7 +2737,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.UpdateReferences()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2757,7 +2757,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.MetaFile
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2802,7 +2802,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.Compose
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2842,7 +2842,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.RecordCount
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2884,7 +2884,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.Driver
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2926,7 +2926,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.Language
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2951,7 +2951,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.WFontName
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -2976,7 +2976,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.LFontName
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3001,7 +3001,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.GridVisible
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3026,7 +3026,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.GridLines
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3054,7 +3054,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.GridEnabled
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3082,7 +3082,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.GridColor
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3107,7 +3107,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.GridWidth
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3132,7 +3132,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.GridHeight
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3157,7 +3157,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.PageOrientation
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3182,7 +3182,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.PageSize
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3207,7 +3207,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.PageSizeIndex
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3232,7 +3232,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.PageHeight
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3257,7 +3257,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.PageWidth
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3282,7 +3282,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.CustomPageHeight
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3307,7 +3307,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.CustomPageWidth
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3332,7 +3332,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.PageBackColor
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3357,7 +3357,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.AutoScale
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3382,7 +3382,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.PreviewWindow
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3407,7 +3407,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.LeftMargin
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3432,7 +3432,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.TopMargin
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3457,7 +3457,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.RightMargin
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3482,7 +3482,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.BottomMargin
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3507,7 +3507,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.PrinterSelect
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3532,7 +3532,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.SubReports
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3557,7 +3557,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.Params
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3582,7 +3582,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.DataInfo
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3607,7 +3607,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.DatabaseInfo
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3632,7 +3632,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.Copies
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3657,7 +3657,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.CollateCopies
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3682,7 +3682,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.TwoPass
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3714,7 +3714,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.PrinterFonts
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3737,7 +3737,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.PrintOnlyIfDataAvailable
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3760,7 +3760,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.StreamFormat
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3783,7 +3783,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.ActionBefore
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3806,7 +3806,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.ActionAfter
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3829,7 +3829,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.PreviewAbout
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3852,7 +3852,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.Type1Font
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3875,7 +3875,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.FontSize
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3898,7 +3898,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.FontRotation
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3921,7 +3921,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.FontStyle
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3944,7 +3944,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.FontColor
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3967,7 +3967,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.BackColor
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -3990,7 +3990,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.Transparent
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -4013,7 +4013,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.CutText
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -4036,7 +4036,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.Alignment
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -4059,7 +4059,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.VAlignment
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -4082,7 +4082,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.WordWrap
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -4105,7 +4105,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.SingleLine
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -4128,7 +4128,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.MultiPage
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -4151,7 +4151,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.PrintStep
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -4174,7 +4174,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.PaperSource
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -4197,7 +4197,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.Duplex
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -4220,7 +4220,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.ForcePaperName
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -4243,7 +4243,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.LinesPerInch
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -4266,7 +4266,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.DocAuthor
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -4289,7 +4289,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.DocTitle
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -4312,7 +4312,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.DocSubject
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -4335,7 +4335,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.DocProducer
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -4358,7 +4358,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.DocCreator
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -4381,7 +4381,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.DocCreationDate
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -4404,7 +4404,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.DocModificationDate
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -4427,7 +4427,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.DocKeywords
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -4450,7 +4450,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.DocXMPContent
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -4473,7 +4473,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.PreviewMargins
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -4496,7 +4496,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.OnProgress
   type: Event
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -4519,7 +4519,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.OnWorkProgress
   type: Event
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -4542,7 +4542,7 @@ items:
   fullName: Reportman.Reporting.BaseReport.OnWorkAsyncError
   type: Event
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -4596,7 +4596,7 @@ references:
   commentId: T:Reportman.Reporting.ReportItem
   parent: Reportman.Reporting
   isExternal: true
-  href: Reportman.Reporting.ReportItem.html
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportItem.cs
   name: ReportItem
   nameWithType: ReportItem
   fullName: Reportman.Reporting.ReportItem
@@ -4987,7 +4987,7 @@ references:
   commentId: T:Reportman.Drawing.PrintOut
   parent: Reportman.Drawing
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   name: PrintOut
   nameWithType: PrintOut
   fullName: Reportman.Drawing.PrintOut
@@ -5133,7 +5133,7 @@ references:
   commentId: T:Reportman.Reporting.Section
   parent: Reportman.Reporting
   isExternal: true
-  href: Reportman.Reporting.Section.html
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Section.cs
   name: Section
   nameWithType: Section
   fullName: Reportman.Reporting.Section
@@ -5141,7 +5141,7 @@ references:
   commentId: T:Reportman.Reporting.SubReport
   parent: Reportman.Reporting
   isExternal: true
-  href: Reportman.Reporting.SubReport.html
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Subreport.cs
   name: SubReport
   nameWithType: SubReport
   fullName: Reportman.Reporting.SubReport
@@ -5737,7 +5737,7 @@ references:
   commentId: T:Reportman.Drawing.Strings
   parent: Reportman.Drawing
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Strings.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Strings.cs
   name: Strings
   nameWithType: Strings
   fullName: Reportman.Drawing.Strings
@@ -5795,7 +5795,7 @@ references:
   commentId: T:Reportman.Reporting.PrintPosItem
   parent: Reportman.Reporting
   isExternal: true
-  href: Reportman.Reporting.PrintPosItem.html
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportItem.cs
   name: PrintPosItem
   nameWithType: PrintPosItem
   fullName: Reportman.Reporting.PrintPosItem
@@ -5845,7 +5845,7 @@ references:
   commentId: T:Reportman.Drawing.MetaFile
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.MetaFile.html
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaFile.cs
   name: MetaFile
   nameWithType: MetaFile
   fullName: Reportman.Drawing.MetaFile

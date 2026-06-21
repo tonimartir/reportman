@@ -1,0 +1,1328 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Designer.RpAuthManager
+  commentId: T:Reportman.Designer.RpAuthManager
+  id: RpAuthManager
+  parent: Reportman.Designer
+  children:
+  - Reportman.Designer.RpAuthManager.AIEnabled
+  - Reportman.Designer.RpAuthManager.AILanguage
+  - Reportman.Designer.RpAuthManager.AuthChanged
+  - Reportman.Designer.RpAuthManager.CheckStatusAsync
+  - Reportman.Designer.RpAuthManager.GetApiKeySchemasAsync(System.String)
+  - Reportman.Designer.RpAuthManager.GetCreditsRatio
+  - Reportman.Designer.RpAuthManager.GetUserAgentsAsync
+  - Reportman.Designer.RpAuthManager.GetUserSchemasAsync
+  - Reportman.Designer.RpAuthManager.HUB_API_URL
+  - Reportman.Designer.RpAuthManager.InstallId
+  - Reportman.Designer.RpAuthManager.Instance
+  - Reportman.Designer.RpAuthManager.IsLoggedIn
+  - Reportman.Designer.RpAuthManager.Log(System.String)
+  - Reportman.Designer.RpAuthManager.LogMessage
+  - Reportman.Designer.RpAuthManager.LoginGoogleAsync
+  - Reportman.Designer.RpAuthManager.LoginMicrosoftAsync
+  - Reportman.Designer.RpAuthManager.LoginWithCodeAsync(System.String,System.String)
+  - Reportman.Designer.RpAuthManager.Logout
+  - Reportman.Designer.RpAuthManager.Profile
+  - Reportman.Designer.RpAuthManager.RefreshStatusInBackground
+  - Reportman.Designer.RpAuthManager.RequestLoginCodeAsync(System.String)
+  - Reportman.Designer.RpAuthManager.Token
+  - Reportman.Designer.RpAuthManager.UsesFreeCredits
+  langs:
+  - csharp
+  - vb
+  name: RpAuthManager
+  nameWithType: RpAuthManager
+  fullName: Reportman.Designer.RpAuthManager
+  type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: >-
+    Port of Delphi's TRpAuthManager: singleton managing authentication,
+
+    profile, tiers, OAuth flows (Google/Microsoft), email OTP, and config persistence.
+
+    Config is saved to %LOCALAPPDATA%\Reportman\reportman_auth.ini (shared with Delphi).
+  example: []
+  syntax:
+    content: public class RpAuthManager
+    content.vb: Public Class RpAuthManager
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Designer.RpAuthManager.HUB_API_URL
+  commentId: F:Reportman.Designer.RpAuthManager.HUB_API_URL
+  id: HUB_API_URL
+  parent: Reportman.Designer.RpAuthManager
+  langs:
+  - csharp
+  - vb
+  name: HUB_API_URL
+  nameWithType: RpAuthManager.HUB_API_URL
+  fullName: Reportman.Designer.RpAuthManager.HUB_API_URL
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public const string HUB_API_URL = "https://api.reportman.es:7006"
+    return:
+      type: System.String
+    content.vb: Public Const HUB_API_URL As String = "https://api.reportman.es:7006"
+- uid: Reportman.Designer.RpAuthManager.Log(System.String)
+  commentId: M:Reportman.Designer.RpAuthManager.Log(System.String)
+  id: Log(System.String)
+  parent: Reportman.Designer.RpAuthManager
+  langs:
+  - csharp
+  - vb
+  name: Log(string)
+  nameWithType: RpAuthManager.Log(string)
+  fullName: Reportman.Designer.RpAuthManager.Log(string)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public void Log(string msg)
+    parameters:
+    - id: msg
+      type: System.String
+    content.vb: Public Sub Log(msg As String)
+  overload: Reportman.Designer.RpAuthManager.Log*
+  nameWithType.vb: RpAuthManager.Log(String)
+  fullName.vb: Reportman.Designer.RpAuthManager.Log(String)
+  name.vb: Log(String)
+- uid: Reportman.Designer.RpAuthManager.RequestLoginCodeAsync(System.String)
+  commentId: M:Reportman.Designer.RpAuthManager.RequestLoginCodeAsync(System.String)
+  id: RequestLoginCodeAsync(System.String)
+  parent: Reportman.Designer.RpAuthManager
+  langs:
+  - csharp
+  - vb
+  name: RequestLoginCodeAsync(string)
+  nameWithType: RpAuthManager.RequestLoginCodeAsync(string)
+  fullName: Reportman.Designer.RpAuthManager.RequestLoginCodeAsync(string)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: POST /api/LoginResend/send { email }
+  example: []
+  syntax:
+    content: public Task<bool> RequestLoginCodeAsync(string email)
+    parameters:
+    - id: email
+      type: System.String
+    return:
+      type: System.Threading.Tasks.Task{System.Boolean}
+    content.vb: Public Function RequestLoginCodeAsync(email As String) As Task(Of Boolean)
+  overload: Reportman.Designer.RpAuthManager.RequestLoginCodeAsync*
+  nameWithType.vb: RpAuthManager.RequestLoginCodeAsync(String)
+  fullName.vb: Reportman.Designer.RpAuthManager.RequestLoginCodeAsync(String)
+  name.vb: RequestLoginCodeAsync(String)
+- uid: Reportman.Designer.RpAuthManager.LoginWithCodeAsync(System.String,System.String)
+  commentId: M:Reportman.Designer.RpAuthManager.LoginWithCodeAsync(System.String,System.String)
+  id: LoginWithCodeAsync(System.String,System.String)
+  parent: Reportman.Designer.RpAuthManager
+  langs:
+  - csharp
+  - vb
+  name: LoginWithCodeAsync(string, string)
+  nameWithType: RpAuthManager.LoginWithCodeAsync(string, string)
+  fullName: Reportman.Designer.RpAuthManager.LoginWithCodeAsync(string, string)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: POST /api/Login/email { email, emailCode, installId }
+  example: []
+  syntax:
+    content: public Task<bool> LoginWithCodeAsync(string email, string code)
+    parameters:
+    - id: email
+      type: System.String
+    - id: code
+      type: System.String
+    return:
+      type: System.Threading.Tasks.Task{System.Boolean}
+    content.vb: Public Function LoginWithCodeAsync(email As String, code As String) As Task(Of Boolean)
+  overload: Reportman.Designer.RpAuthManager.LoginWithCodeAsync*
+  nameWithType.vb: RpAuthManager.LoginWithCodeAsync(String, String)
+  fullName.vb: Reportman.Designer.RpAuthManager.LoginWithCodeAsync(String, String)
+  name.vb: LoginWithCodeAsync(String, String)
+- uid: Reportman.Designer.RpAuthManager.LoginGoogleAsync
+  commentId: M:Reportman.Designer.RpAuthManager.LoginGoogleAsync
+  id: LoginGoogleAsync
+  parent: Reportman.Designer.RpAuthManager
+  langs:
+  - csharp
+  - vb
+  name: LoginGoogleAsync()
+  nameWithType: RpAuthManager.LoginGoogleAsync()
+  fullName: Reportman.Designer.RpAuthManager.LoginGoogleAsync()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: >-
+    Opens browser for Google OAuth, listens on localhost for callback,
+
+    exchanges code via POST /api/Login/google.
+  example: []
+  syntax:
+    content: public Task<bool> LoginGoogleAsync()
+    return:
+      type: System.Threading.Tasks.Task{System.Boolean}
+    content.vb: Public Function LoginGoogleAsync() As Task(Of Boolean)
+  overload: Reportman.Designer.RpAuthManager.LoginGoogleAsync*
+- uid: Reportman.Designer.RpAuthManager.LoginMicrosoftAsync
+  commentId: M:Reportman.Designer.RpAuthManager.LoginMicrosoftAsync
+  id: LoginMicrosoftAsync
+  parent: Reportman.Designer.RpAuthManager
+  langs:
+  - csharp
+  - vb
+  name: LoginMicrosoftAsync()
+  nameWithType: RpAuthManager.LoginMicrosoftAsync()
+  fullName: Reportman.Designer.RpAuthManager.LoginMicrosoftAsync()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public Task<bool> LoginMicrosoftAsync()
+    return:
+      type: System.Threading.Tasks.Task{System.Boolean}
+    content.vb: Public Function LoginMicrosoftAsync() As Task(Of Boolean)
+  overload: Reportman.Designer.RpAuthManager.LoginMicrosoftAsync*
+- uid: Reportman.Designer.RpAuthManager.CheckStatusAsync
+  commentId: M:Reportman.Designer.RpAuthManager.CheckStatusAsync
+  id: CheckStatusAsync
+  parent: Reportman.Designer.RpAuthManager
+  langs:
+  - csharp
+  - vb
+  name: CheckStatusAsync()
+  nameWithType: RpAuthManager.CheckStatusAsync()
+  fullName: Reportman.Designer.RpAuthManager.CheckStatusAsync()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public Task CheckStatusAsync()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Function CheckStatusAsync() As Task
+  overload: Reportman.Designer.RpAuthManager.CheckStatusAsync*
+- uid: Reportman.Designer.RpAuthManager.Logout
+  commentId: M:Reportman.Designer.RpAuthManager.Logout
+  id: Logout
+  parent: Reportman.Designer.RpAuthManager
+  langs:
+  - csharp
+  - vb
+  name: Logout()
+  nameWithType: RpAuthManager.Logout()
+  fullName: Reportman.Designer.RpAuthManager.Logout()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public void Logout()
+    content.vb: Public Sub Logout()
+  overload: Reportman.Designer.RpAuthManager.Logout*
+- uid: Reportman.Designer.RpAuthManager.GetCreditsRatio
+  commentId: M:Reportman.Designer.RpAuthManager.GetCreditsRatio
+  id: GetCreditsRatio
+  parent: Reportman.Designer.RpAuthManager
+  langs:
+  - csharp
+  - vb
+  name: GetCreditsRatio()
+  nameWithType: RpAuthManager.GetCreditsRatio()
+  fullName: Reportman.Designer.RpAuthManager.GetCreditsRatio()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public double GetCreditsRatio()
+    return:
+      type: System.Double
+    content.vb: Public Function GetCreditsRatio() As Double
+  overload: Reportman.Designer.RpAuthManager.GetCreditsRatio*
+- uid: Reportman.Designer.RpAuthManager.GetUserSchemasAsync
+  commentId: M:Reportman.Designer.RpAuthManager.GetUserSchemasAsync
+  id: GetUserSchemasAsync
+  parent: Reportman.Designer.RpAuthManager
+  langs:
+  - csharp
+  - vb
+  name: GetUserSchemasAsync()
+  nameWithType: RpAuthManager.GetUserSchemasAsync()
+  fullName: Reportman.Designer.RpAuthManager.GetUserSchemasAsync()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: >-
+    GET /api/agent/databases → { databases: [...], aiEndpoints: [...] }
+
+    Returns schemas as list of "DisplayName=hubDatabaseId|hubSchemaId"
+  example: []
+  syntax:
+    content: public Task<List<string>> GetUserSchemasAsync()
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.List{System.String}}
+    content.vb: Public Function GetUserSchemasAsync() As Task(Of List(Of String))
+  overload: Reportman.Designer.RpAuthManager.GetUserSchemasAsync*
+- uid: Reportman.Designer.RpAuthManager.GetApiKeySchemasAsync(System.String)
+  commentId: M:Reportman.Designer.RpAuthManager.GetApiKeySchemasAsync(System.String)
+  id: GetApiKeySchemasAsync(System.String)
+  parent: Reportman.Designer.RpAuthManager
+  langs:
+  - csharp
+  - vb
+  name: GetApiKeySchemasAsync(string)
+  nameWithType: RpAuthManager.GetApiKeySchemasAsync(string)
+  fullName: Reportman.Designer.RpAuthManager.GetApiKeySchemasAsync(string)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: >-
+    GET /api/agent/databases using a Reportman Agent ApiKey.
+
+    Returns schemas as list of "DisplayName=hubDatabaseId|hubSchemaId"
+  example: []
+  syntax:
+    content: public Task<List<string>> GetApiKeySchemasAsync(string apiKey)
+    parameters:
+    - id: apiKey
+      type: System.String
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.List{System.String}}
+    content.vb: Public Function GetApiKeySchemasAsync(apiKey As String) As Task(Of List(Of String))
+  overload: Reportman.Designer.RpAuthManager.GetApiKeySchemasAsync*
+  nameWithType.vb: RpAuthManager.GetApiKeySchemasAsync(String)
+  fullName.vb: Reportman.Designer.RpAuthManager.GetApiKeySchemasAsync(String)
+  name.vb: GetApiKeySchemasAsync(String)
+- uid: Reportman.Designer.RpAuthManager.GetUserAgentsAsync
+  commentId: M:Reportman.Designer.RpAuthManager.GetUserAgentsAsync
+  id: GetUserAgentsAsync
+  parent: Reportman.Designer.RpAuthManager
+  langs:
+  - csharp
+  - vb
+  name: GetUserAgentsAsync()
+  nameWithType: RpAuthManager.GetUserAgentsAsync()
+  fullName: Reportman.Designer.RpAuthManager.GetUserAgentsAsync()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: >-
+    GET /api/agent/databases → { aiEndpoints: [...] }
+
+    Returns agents as list of "Name (AgentName)=id|secret|isOnline"
+  example: []
+  syntax:
+    content: public Task<List<string>> GetUserAgentsAsync()
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.List{System.String}}
+    content.vb: Public Function GetUserAgentsAsync() As Task(Of List(Of String))
+  overload: Reportman.Designer.RpAuthManager.GetUserAgentsAsync*
+- uid: Reportman.Designer.RpAuthManager.RefreshStatusInBackground
+  commentId: M:Reportman.Designer.RpAuthManager.RefreshStatusInBackground
+  id: RefreshStatusInBackground
+  parent: Reportman.Designer.RpAuthManager
+  langs:
+  - csharp
+  - vb
+  name: RefreshStatusInBackground()
+  nameWithType: RpAuthManager.RefreshStatusInBackground()
+  fullName: Reportman.Designer.RpAuthManager.RefreshStatusInBackground()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: Runs CheckStatusAsync on a background thread, then fires AuthChanged on completion.
+  example: []
+  syntax:
+    content: public void RefreshStatusInBackground()
+    content.vb: Public Sub RefreshStatusInBackground()
+  overload: Reportman.Designer.RpAuthManager.RefreshStatusInBackground*
+- uid: Reportman.Designer.RpAuthManager.Token
+  commentId: P:Reportman.Designer.RpAuthManager.Token
+  id: Token
+  parent: Reportman.Designer.RpAuthManager
+  langs:
+  - csharp
+  - vb
+  name: Token
+  nameWithType: RpAuthManager.Token
+  fullName: Reportman.Designer.RpAuthManager.Token
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public string Token { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property Token As String
+  overload: Reportman.Designer.RpAuthManager.Token*
+- uid: Reportman.Designer.RpAuthManager.InstallId
+  commentId: P:Reportman.Designer.RpAuthManager.InstallId
+  id: InstallId
+  parent: Reportman.Designer.RpAuthManager
+  langs:
+  - csharp
+  - vb
+  name: InstallId
+  nameWithType: RpAuthManager.InstallId
+  fullName: Reportman.Designer.RpAuthManager.InstallId
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public string InstallId { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property InstallId As String
+  overload: Reportman.Designer.RpAuthManager.InstallId*
+- uid: Reportman.Designer.RpAuthManager.Profile
+  commentId: P:Reportman.Designer.RpAuthManager.Profile
+  id: Profile
+  parent: Reportman.Designer.RpAuthManager
+  langs:
+  - csharp
+  - vb
+  name: Profile
+  nameWithType: RpAuthManager.Profile
+  fullName: Reportman.Designer.RpAuthManager.Profile
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public RpProfile Profile { get; }
+    parameters: []
+    return:
+      type: Reportman.Designer.RpProfile
+    content.vb: Public ReadOnly Property Profile As RpProfile
+  overload: Reportman.Designer.RpAuthManager.Profile*
+- uid: Reportman.Designer.RpAuthManager.IsLoggedIn
+  commentId: P:Reportman.Designer.RpAuthManager.IsLoggedIn
+  id: IsLoggedIn
+  parent: Reportman.Designer.RpAuthManager
+  langs:
+  - csharp
+  - vb
+  name: IsLoggedIn
+  nameWithType: RpAuthManager.IsLoggedIn
+  fullName: Reportman.Designer.RpAuthManager.IsLoggedIn
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public bool IsLoggedIn { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsLoggedIn As Boolean
+  overload: Reportman.Designer.RpAuthManager.IsLoggedIn*
+- uid: Reportman.Designer.RpAuthManager.AIEnabled
+  commentId: P:Reportman.Designer.RpAuthManager.AIEnabled
+  id: AIEnabled
+  parent: Reportman.Designer.RpAuthManager
+  langs:
+  - csharp
+  - vb
+  name: AIEnabled
+  nameWithType: RpAuthManager.AIEnabled
+  fullName: Reportman.Designer.RpAuthManager.AIEnabled
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public bool AIEnabled { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property AIEnabled As Boolean
+  overload: Reportman.Designer.RpAuthManager.AIEnabled*
+- uid: Reportman.Designer.RpAuthManager.AILanguage
+  commentId: P:Reportman.Designer.RpAuthManager.AILanguage
+  id: AILanguage
+  parent: Reportman.Designer.RpAuthManager
+  langs:
+  - csharp
+  - vb
+  name: AILanguage
+  nameWithType: RpAuthManager.AILanguage
+  fullName: Reportman.Designer.RpAuthManager.AILanguage
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public string AILanguage { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property AILanguage As String
+  overload: Reportman.Designer.RpAuthManager.AILanguage*
+- uid: Reportman.Designer.RpAuthManager.Instance
+  commentId: P:Reportman.Designer.RpAuthManager.Instance
+  id: Instance
+  parent: Reportman.Designer.RpAuthManager
+  langs:
+  - csharp
+  - vb
+  name: Instance
+  nameWithType: RpAuthManager.Instance
+  fullName: Reportman.Designer.RpAuthManager.Instance
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public static RpAuthManager Instance { get; }
+    parameters: []
+    return:
+      type: Reportman.Designer.RpAuthManager
+    content.vb: Public Shared ReadOnly Property Instance As RpAuthManager
+  overload: Reportman.Designer.RpAuthManager.Instance*
+- uid: Reportman.Designer.RpAuthManager.UsesFreeCredits
+  commentId: P:Reportman.Designer.RpAuthManager.UsesFreeCredits
+  id: UsesFreeCredits
+  parent: Reportman.Designer.RpAuthManager
+  langs:
+  - csharp
+  - vb
+  name: UsesFreeCredits
+  nameWithType: RpAuthManager.UsesFreeCredits
+  fullName: Reportman.Designer.RpAuthManager.UsesFreeCredits
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public bool UsesFreeCredits { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property UsesFreeCredits As Boolean
+  overload: Reportman.Designer.RpAuthManager.UsesFreeCredits*
+- uid: Reportman.Designer.RpAuthManager.AuthChanged
+  commentId: E:Reportman.Designer.RpAuthManager.AuthChanged
+  id: AuthChanged
+  parent: Reportman.Designer.RpAuthManager
+  langs:
+  - csharp
+  - vb
+  name: AuthChanged
+  nameWithType: RpAuthManager.AuthChanged
+  fullName: Reportman.Designer.RpAuthManager.AuthChanged
+  type: Event
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public event Action<bool> AuthChanged
+    return:
+      type: System.Action{System.Boolean}
+    content.vb: Public Event AuthChanged As Action(Of Boolean)
+- uid: Reportman.Designer.RpAuthManager.LogMessage
+  commentId: E:Reportman.Designer.RpAuthManager.LogMessage
+  id: LogMessage
+  parent: Reportman.Designer.RpAuthManager
+  langs:
+  - csharp
+  - vb
+  name: LogMessage
+  nameWithType: RpAuthManager.LogMessage
+  fullName: Reportman.Designer.RpAuthManager.LogMessage
+  type: Event
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public event Action<string> LogMessage
+    return:
+      type: System.Action{System.String}
+    content.vb: Public Event LogMessage As Action(Of String)
+references:
+- uid: Reportman.Designer
+  commentId: N:Reportman.Designer
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Designer
+  nameWithType: Reportman.Designer
+  fullName: Reportman.Designer
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Reportman.Designer.RpAuthManager.Log*
+  commentId: Overload:Reportman.Designer.RpAuthManager.Log
+  isExternal: true
+  href: Reportman.Designer.RpAuthManager.html#Reportman_Designer_RpAuthManager_Log_System_String_
+  name: Log
+  nameWithType: RpAuthManager.Log
+  fullName: Reportman.Designer.RpAuthManager.Log
+- uid: Reportman.Designer.RpAuthManager.RequestLoginCodeAsync*
+  commentId: Overload:Reportman.Designer.RpAuthManager.RequestLoginCodeAsync
+  isExternal: true
+  href: Reportman.Designer.RpAuthManager.html#Reportman_Designer_RpAuthManager_RequestLoginCodeAsync_System_String_
+  name: RequestLoginCodeAsync
+  nameWithType: RpAuthManager.RequestLoginCodeAsync
+  fullName: Reportman.Designer.RpAuthManager.RequestLoginCodeAsync
+- uid: System.Threading.Tasks.Task{System.Boolean}
+  commentId: T:System.Threading.Tasks.Task{System.Boolean}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<bool>
+  nameWithType: Task<bool>
+  fullName: System.Threading.Tasks.Task<bool>
+  nameWithType.vb: Task(Of Boolean)
+  fullName.vb: System.Threading.Tasks.Task(Of Boolean)
+  name.vb: Task(Of Boolean)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: Reportman.Designer.RpAuthManager.LoginWithCodeAsync*
+  commentId: Overload:Reportman.Designer.RpAuthManager.LoginWithCodeAsync
+  isExternal: true
+  href: Reportman.Designer.RpAuthManager.html#Reportman_Designer_RpAuthManager_LoginWithCodeAsync_System_String_System_String_
+  name: LoginWithCodeAsync
+  nameWithType: RpAuthManager.LoginWithCodeAsync
+  fullName: Reportman.Designer.RpAuthManager.LoginWithCodeAsync
+- uid: Reportman.Designer.RpAuthManager.LoginGoogleAsync*
+  commentId: Overload:Reportman.Designer.RpAuthManager.LoginGoogleAsync
+  isExternal: true
+  href: Reportman.Designer.RpAuthManager.html#Reportman_Designer_RpAuthManager_LoginGoogleAsync
+  name: LoginGoogleAsync
+  nameWithType: RpAuthManager.LoginGoogleAsync
+  fullName: Reportman.Designer.RpAuthManager.LoginGoogleAsync
+- uid: Reportman.Designer.RpAuthManager.LoginMicrosoftAsync*
+  commentId: Overload:Reportman.Designer.RpAuthManager.LoginMicrosoftAsync
+  isExternal: true
+  href: Reportman.Designer.RpAuthManager.html#Reportman_Designer_RpAuthManager_LoginMicrosoftAsync
+  name: LoginMicrosoftAsync
+  nameWithType: RpAuthManager.LoginMicrosoftAsync
+  fullName: Reportman.Designer.RpAuthManager.LoginMicrosoftAsync
+- uid: Reportman.Designer.RpAuthManager.CheckStatusAsync*
+  commentId: Overload:Reportman.Designer.RpAuthManager.CheckStatusAsync
+  isExternal: true
+  href: Reportman.Designer.RpAuthManager.html#Reportman_Designer_RpAuthManager_CheckStatusAsync
+  name: CheckStatusAsync
+  nameWithType: RpAuthManager.CheckStatusAsync
+  fullName: Reportman.Designer.RpAuthManager.CheckStatusAsync
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: Reportman.Designer.RpAuthManager.Logout*
+  commentId: Overload:Reportman.Designer.RpAuthManager.Logout
+  isExternal: true
+  href: Reportman.Designer.RpAuthManager.html#Reportman_Designer_RpAuthManager_Logout
+  name: Logout
+  nameWithType: RpAuthManager.Logout
+  fullName: Reportman.Designer.RpAuthManager.Logout
+- uid: Reportman.Designer.RpAuthManager.GetCreditsRatio*
+  commentId: Overload:Reportman.Designer.RpAuthManager.GetCreditsRatio
+  isExternal: true
+  href: Reportman.Designer.RpAuthManager.html#Reportman_Designer_RpAuthManager_GetCreditsRatio
+  name: GetCreditsRatio
+  nameWithType: RpAuthManager.GetCreditsRatio
+  fullName: Reportman.Designer.RpAuthManager.GetCreditsRatio
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.double
+  name: double
+  nameWithType: double
+  fullName: double
+  nameWithType.vb: Double
+  fullName.vb: Double
+  name.vb: Double
+- uid: Reportman.Designer.RpAuthManager.GetUserSchemasAsync*
+  commentId: Overload:Reportman.Designer.RpAuthManager.GetUserSchemasAsync
+  isExternal: true
+  href: Reportman.Designer.RpAuthManager.html#Reportman_Designer_RpAuthManager_GetUserSchemasAsync
+  name: GetUserSchemasAsync
+  nameWithType: RpAuthManager.GetUserSchemasAsync
+  fullName: Reportman.Designer.RpAuthManager.GetUserSchemasAsync
+- uid: System.Threading.Tasks.Task{System.Collections.Generic.List{System.String}}
+  commentId: T:System.Threading.Tasks.Task{System.Collections.Generic.List{System.String}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<List<string>>
+  nameWithType: Task<List<string>>
+  fullName: System.Threading.Tasks.Task<System.Collections.Generic.List<string>>
+  nameWithType.vb: Task(Of List(Of String))
+  fullName.vb: System.Threading.Tasks.Task(Of System.Collections.Generic.List(Of String))
+  name.vb: Task(Of List(Of String))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  - name: )
+- uid: Reportman.Designer.RpAuthManager.GetApiKeySchemasAsync*
+  commentId: Overload:Reportman.Designer.RpAuthManager.GetApiKeySchemasAsync
+  isExternal: true
+  href: Reportman.Designer.RpAuthManager.html#Reportman_Designer_RpAuthManager_GetApiKeySchemasAsync_System_String_
+  name: GetApiKeySchemasAsync
+  nameWithType: RpAuthManager.GetApiKeySchemasAsync
+  fullName: Reportman.Designer.RpAuthManager.GetApiKeySchemasAsync
+- uid: Reportman.Designer.RpAuthManager.GetUserAgentsAsync*
+  commentId: Overload:Reportman.Designer.RpAuthManager.GetUserAgentsAsync
+  isExternal: true
+  href: Reportman.Designer.RpAuthManager.html#Reportman_Designer_RpAuthManager_GetUserAgentsAsync
+  name: GetUserAgentsAsync
+  nameWithType: RpAuthManager.GetUserAgentsAsync
+  fullName: Reportman.Designer.RpAuthManager.GetUserAgentsAsync
+- uid: Reportman.Designer.RpAuthManager.RefreshStatusInBackground*
+  commentId: Overload:Reportman.Designer.RpAuthManager.RefreshStatusInBackground
+  isExternal: true
+  href: Reportman.Designer.RpAuthManager.html#Reportman_Designer_RpAuthManager_RefreshStatusInBackground
+  name: RefreshStatusInBackground
+  nameWithType: RpAuthManager.RefreshStatusInBackground
+  fullName: Reportman.Designer.RpAuthManager.RefreshStatusInBackground
+- uid: Reportman.Designer.RpAuthManager.Token*
+  commentId: Overload:Reportman.Designer.RpAuthManager.Token
+  isExternal: true
+  href: Reportman.Designer.RpAuthManager.html#Reportman_Designer_RpAuthManager_Token
+  name: Token
+  nameWithType: RpAuthManager.Token
+  fullName: Reportman.Designer.RpAuthManager.Token
+- uid: Reportman.Designer.RpAuthManager.InstallId*
+  commentId: Overload:Reportman.Designer.RpAuthManager.InstallId
+  isExternal: true
+  href: Reportman.Designer.RpAuthManager.html#Reportman_Designer_RpAuthManager_InstallId
+  name: InstallId
+  nameWithType: RpAuthManager.InstallId
+  fullName: Reportman.Designer.RpAuthManager.InstallId
+- uid: Reportman.Designer.RpAuthManager.Profile*
+  commentId: Overload:Reportman.Designer.RpAuthManager.Profile
+  isExternal: true
+  href: Reportman.Designer.RpAuthManager.html#Reportman_Designer_RpAuthManager_Profile
+  name: Profile
+  nameWithType: RpAuthManager.Profile
+  fullName: Reportman.Designer.RpAuthManager.Profile
+- uid: Reportman.Designer.RpProfile
+  commentId: T:Reportman.Designer.RpProfile
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.RpProfile.html
+  name: RpProfile
+  nameWithType: RpProfile
+  fullName: Reportman.Designer.RpProfile
+- uid: Reportman.Designer.RpAuthManager.IsLoggedIn*
+  commentId: Overload:Reportman.Designer.RpAuthManager.IsLoggedIn
+  isExternal: true
+  href: Reportman.Designer.RpAuthManager.html#Reportman_Designer_RpAuthManager_IsLoggedIn
+  name: IsLoggedIn
+  nameWithType: RpAuthManager.IsLoggedIn
+  fullName: Reportman.Designer.RpAuthManager.IsLoggedIn
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Reportman.Designer.RpAuthManager.AIEnabled*
+  commentId: Overload:Reportman.Designer.RpAuthManager.AIEnabled
+  isExternal: true
+  href: Reportman.Designer.RpAuthManager.html#Reportman_Designer_RpAuthManager_AIEnabled
+  name: AIEnabled
+  nameWithType: RpAuthManager.AIEnabled
+  fullName: Reportman.Designer.RpAuthManager.AIEnabled
+- uid: Reportman.Designer.RpAuthManager.AILanguage*
+  commentId: Overload:Reportman.Designer.RpAuthManager.AILanguage
+  isExternal: true
+  href: Reportman.Designer.RpAuthManager.html#Reportman_Designer_RpAuthManager_AILanguage
+  name: AILanguage
+  nameWithType: RpAuthManager.AILanguage
+  fullName: Reportman.Designer.RpAuthManager.AILanguage
+- uid: Reportman.Designer.RpAuthManager.Instance*
+  commentId: Overload:Reportman.Designer.RpAuthManager.Instance
+  isExternal: true
+  href: Reportman.Designer.RpAuthManager.html#Reportman_Designer_RpAuthManager_Instance
+  name: Instance
+  nameWithType: RpAuthManager.Instance
+  fullName: Reportman.Designer.RpAuthManager.Instance
+- uid: Reportman.Designer.RpAuthManager
+  commentId: T:Reportman.Designer.RpAuthManager
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.RpAuthManager.html
+  name: RpAuthManager
+  nameWithType: RpAuthManager
+  fullName: Reportman.Designer.RpAuthManager
+- uid: Reportman.Designer.RpAuthManager.UsesFreeCredits*
+  commentId: Overload:Reportman.Designer.RpAuthManager.UsesFreeCredits
+  isExternal: true
+  href: Reportman.Designer.RpAuthManager.html#Reportman_Designer_RpAuthManager_UsesFreeCredits
+  name: UsesFreeCredits
+  nameWithType: RpAuthManager.UsesFreeCredits
+  fullName: Reportman.Designer.RpAuthManager.UsesFreeCredits
+- uid: System.Action{System.Boolean}
+  commentId: T:System.Action{System.Boolean}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<bool>
+  nameWithType: Action<bool>
+  fullName: System.Action<bool>
+  nameWithType.vb: Action(Of Boolean)
+  fullName.vb: System.Action(Of Boolean)
+  name.vb: Action(Of Boolean)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Action{System.String}
+  commentId: T:System.Action{System.String}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<string>
+  nameWithType: Action<string>
+  fullName: System.Action<string>
+  nameWithType.vb: Action(Of String)
+  fullName.vb: System.Action(Of String)
+  name.vb: Action(Of String)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )

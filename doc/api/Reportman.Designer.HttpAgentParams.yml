@@ -1,0 +1,590 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Designer.HttpAgentParams
+  commentId: T:Reportman.Designer.HttpAgentParams
+  id: HttpAgentParams
+  parent: Reportman.Designer
+  children:
+  - Reportman.Designer.HttpAgentParams.#ctor
+  - Reportman.Designer.HttpAgentParams.ApiKey
+  - Reportman.Designer.HttpAgentParams.BaseUrl
+  - Reportman.Designer.HttpAgentParams.Database
+  - Reportman.Designer.HttpAgentParams.LastList
+  langs:
+  - csharp
+  - vb
+  name: HttpAgentParams
+  nameWithType: HttpAgentParams
+  fullName: Reportman.Designer.HttpAgentParams
+  type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/HttpAgentParams.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: >-
+    Object bound to the connection assistant PropertyGrid when the HTTP Agent
+
+    "driver" is selected: the API key plus a live Hub-database selector.
+  example: []
+  syntax:
+    content: public sealed class HttpAgentParams
+    content.vb: Public NotInheritable Class HttpAgentParams
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Designer.HttpAgentParams.#ctor
+  commentId: M:Reportman.Designer.HttpAgentParams.#ctor
+  id: '#ctor'
+  parent: Reportman.Designer.HttpAgentParams
+  langs:
+  - csharp
+  - vb
+  name: HttpAgentParams()
+  nameWithType: HttpAgentParams.HttpAgentParams()
+  fullName: Reportman.Designer.HttpAgentParams.HttpAgentParams()
+  type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/HttpAgentParams.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public HttpAgentParams()
+    content.vb: Public Sub New()
+  overload: Reportman.Designer.HttpAgentParams.#ctor*
+  nameWithType.vb: HttpAgentParams.New()
+  fullName.vb: Reportman.Designer.HttpAgentParams.New()
+  name.vb: New()
+- uid: Reportman.Designer.HttpAgentParams.ApiKey
+  commentId: P:Reportman.Designer.HttpAgentParams.ApiKey
+  id: ApiKey
+  parent: Reportman.Designer.HttpAgentParams
+  langs:
+  - csharp
+  - vb
+  name: ApiKey
+  nameWithType: HttpAgentParams.ApiKey
+  fullName: Reportman.Designer.HttpAgentParams.ApiKey
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/HttpAgentParams.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public string ApiKey { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ApiKey As String
+  overload: Reportman.Designer.HttpAgentParams.ApiKey*
+- uid: Reportman.Designer.HttpAgentParams.BaseUrl
+  commentId: P:Reportman.Designer.HttpAgentParams.BaseUrl
+  id: BaseUrl
+  parent: Reportman.Designer.HttpAgentParams
+  langs:
+  - csharp
+  - vb
+  name: BaseUrl
+  nameWithType: HttpAgentParams.BaseUrl
+  fullName: Reportman.Designer.HttpAgentParams.BaseUrl
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/HttpAgentParams.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: >-
+      [Browsable(false)]
+
+      public string BaseUrl { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <Browsable(False)>
+
+      Public Property BaseUrl As String
+  overload: Reportman.Designer.HttpAgentParams.BaseUrl*
+  attributes:
+  - type: System.ComponentModel.BrowsableAttribute
+    ctor: System.ComponentModel.BrowsableAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+- uid: Reportman.Designer.HttpAgentParams.Database
+  commentId: P:Reportman.Designer.HttpAgentParams.Database
+  id: Database
+  parent: Reportman.Designer.HttpAgentParams
+  langs:
+  - csharp
+  - vb
+  name: Database
+  nameWithType: HttpAgentParams.Database
+  fullName: Reportman.Designer.HttpAgentParams.Database
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/HttpAgentParams.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: >-
+      [TypeConverter(typeof(HubDatabaseConverter))]
+
+      public HubDatabaseRef Database { get; set; }
+    parameters: []
+    return:
+      type: Reportman.Designer.HubDatabaseRef
+    content.vb: >-
+      <TypeConverter(GetType(HubDatabaseConverter))>
+
+      Public Property Database As HubDatabaseRef
+  overload: Reportman.Designer.HttpAgentParams.Database*
+  attributes:
+  - type: System.ComponentModel.TypeConverterAttribute
+    ctor: System.ComponentModel.TypeConverterAttribute.#ctor(System.Type)
+    arguments:
+    - type: System.Type
+      value: Reportman.Designer.HubDatabaseConverter
+- uid: Reportman.Designer.HttpAgentParams.LastList
+  commentId: P:Reportman.Designer.HttpAgentParams.LastList
+  id: LastList
+  parent: Reportman.Designer.HttpAgentParams
+  langs:
+  - csharp
+  - vb
+  name: LastList
+  nameWithType: HttpAgentParams.LastList
+  fullName: Reportman.Designer.HttpAgentParams.LastList
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/HttpAgentParams.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: >-
+      [Browsable(false)]
+
+      public List<HubDatabaseRef> LastList { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{Reportman.Designer.HubDatabaseRef}
+    content.vb: >-
+      <Browsable(False)>
+
+      Public Property LastList As List(Of HubDatabaseRef)
+  overload: Reportman.Designer.HttpAgentParams.LastList*
+  attributes:
+  - type: System.ComponentModel.BrowsableAttribute
+    ctor: System.ComponentModel.BrowsableAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+references:
+- uid: Reportman.Designer
+  commentId: N:Reportman.Designer
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Designer
+  nameWithType: Reportman.Designer
+  fullName: Reportman.Designer
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Designer.HttpAgentParams.#ctor*
+  commentId: Overload:Reportman.Designer.HttpAgentParams.#ctor
+  isExternal: true
+  href: Reportman.Designer.HttpAgentParams.html#Reportman_Designer_HttpAgentParams__ctor
+  name: HttpAgentParams
+  nameWithType: HttpAgentParams.HttpAgentParams
+  fullName: Reportman.Designer.HttpAgentParams.HttpAgentParams
+  nameWithType.vb: HttpAgentParams.New
+  fullName.vb: Reportman.Designer.HttpAgentParams.New
+  name.vb: New
+- uid: Reportman.Designer.HttpAgentParams.ApiKey*
+  commentId: Overload:Reportman.Designer.HttpAgentParams.ApiKey
+  isExternal: true
+  href: Reportman.Designer.HttpAgentParams.html#Reportman_Designer_HttpAgentParams_ApiKey
+  name: ApiKey
+  nameWithType: HttpAgentParams.ApiKey
+  fullName: Reportman.Designer.HttpAgentParams.ApiKey
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Reportman.Designer.HttpAgentParams.BaseUrl*
+  commentId: Overload:Reportman.Designer.HttpAgentParams.BaseUrl
+  isExternal: true
+  href: Reportman.Designer.HttpAgentParams.html#Reportman_Designer_HttpAgentParams_BaseUrl
+  name: BaseUrl
+  nameWithType: HttpAgentParams.BaseUrl
+  fullName: Reportman.Designer.HttpAgentParams.BaseUrl
+- uid: Reportman.Designer.HttpAgentParams.Database*
+  commentId: Overload:Reportman.Designer.HttpAgentParams.Database
+  isExternal: true
+  href: Reportman.Designer.HttpAgentParams.html#Reportman_Designer_HttpAgentParams_Database
+  name: Database
+  nameWithType: HttpAgentParams.Database
+  fullName: Reportman.Designer.HttpAgentParams.Database
+- uid: Reportman.Designer.HubDatabaseRef
+  commentId: T:Reportman.Designer.HubDatabaseRef
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.HubDatabaseRef.html
+  name: HubDatabaseRef
+  nameWithType: HubDatabaseRef
+  fullName: Reportman.Designer.HubDatabaseRef
+- uid: Reportman.Designer.HttpAgentParams.LastList*
+  commentId: Overload:Reportman.Designer.HttpAgentParams.LastList
+  isExternal: true
+  href: Reportman.Designer.HttpAgentParams.html#Reportman_Designer_HttpAgentParams_LastList
+  name: LastList
+  nameWithType: HttpAgentParams.LastList
+  fullName: Reportman.Designer.HttpAgentParams.LastList
+- uid: System.Collections.Generic.List{Reportman.Designer.HubDatabaseRef}
+  commentId: T:System.Collections.Generic.List{Reportman.Designer.HubDatabaseRef}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<HubDatabaseRef>
+  nameWithType: List<HubDatabaseRef>
+  fullName: System.Collections.Generic.List<Reportman.Designer.HubDatabaseRef>
+  nameWithType.vb: List(Of HubDatabaseRef)
+  fullName.vb: System.Collections.Generic.List(Of Reportman.Designer.HubDatabaseRef)
+  name.vb: List(Of HubDatabaseRef)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Reportman.Designer.HubDatabaseRef
+    name: HubDatabaseRef
+    isExternal: true
+    href: Reportman.Designer.HubDatabaseRef.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Reportman.Designer.HubDatabaseRef
+    name: HubDatabaseRef
+    isExternal: true
+    href: Reportman.Designer.HubDatabaseRef.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic

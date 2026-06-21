@@ -16,7 +16,7 @@ items:
   fullName: Reportman.Reporting.VariantSystemTextJsonConverter
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -57,7 +57,7 @@ items:
   fullName: Reportman.Reporting.VariantSystemTextJsonConverter.Read(ref System.Text.Json.Utf8JsonReader, System.Type, System.Text.Json.JsonSerializerOptions)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -91,7 +91,7 @@ items:
   fullName: Reportman.Reporting.VariantSystemTextJsonConverter.Write(System.Text.Json.Utf8JsonWriter, Reportman.Reporting.Variant, System.Text.Json.JsonSerializerOptions)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -120,7 +120,7 @@ items:
   fullName: Reportman.Reporting.VariantSystemTextJsonConverter.VariantSystemTextJsonConverter()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

@@ -21,7 +21,7 @@ items:
   fullName: Reportman.Reporting.HttpAgentExecutor
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/HttpAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -57,7 +57,7 @@ items:
   fullName: Reportman.Reporting.HttpAgentExecutor.HttpAgentExecutor()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/HttpAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -80,7 +80,7 @@ items:
   fullName: Reportman.Reporting.HttpAgentExecutor.HttpAgentExecutor(string, string, long)
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/HttpAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -110,7 +110,7 @@ items:
   fullName: Reportman.Reporting.HttpAgentExecutor.CreateCommand()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/HttpAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -136,7 +136,7 @@ items:
   fullName: Reportman.Reporting.HttpAgentExecutor.Open(System.Data.IDbCommand)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/HttpAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -165,7 +165,7 @@ items:
   fullName: Reportman.Reporting.HttpAgentExecutor.BaseUrl
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/HttpAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -190,7 +190,7 @@ items:
   fullName: Reportman.Reporting.HttpAgentExecutor.ApiKey
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/HttpAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -215,7 +215,7 @@ items:
   fullName: Reportman.Reporting.HttpAgentExecutor.Token
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/HttpAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -240,7 +240,7 @@ items:
   fullName: Reportman.Reporting.HttpAgentExecutor.HubDatabaseId
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/HttpAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/HttpAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -596,7 +596,7 @@ references:
   commentId: M:Reportman.Drawing.IDbCommandExecuter.CreateCommand
   parent: Reportman.Drawing.IDbCommandExecuter
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/ISqlExecuter.cs
   name: CreateCommand()
   nameWithType: IDbCommandExecuter.CreateCommand()
   fullName: Reportman.Drawing.IDbCommandExecuter.CreateCommand()
@@ -604,14 +604,14 @@ references:
   - uid: Reportman.Drawing.IDbCommandExecuter.CreateCommand
     name: CreateCommand
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/ISqlExecuter.cs
   - name: (
   - name: )
   spec.vb:
   - uid: Reportman.Drawing.IDbCommandExecuter.CreateCommand
     name: CreateCommand
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/ISqlExecuter.cs
   - name: (
   - name: )
 - uid: System.Data.IDbCommand
@@ -660,7 +660,7 @@ references:
   commentId: M:Reportman.Drawing.IDbCommandExecuter.Open(System.Data.IDbCommand)
   parent: Reportman.Drawing.IDbCommandExecuter
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/ISqlExecuter.cs
   name: Open(IDbCommand)
   nameWithType: IDbCommandExecuter.Open(IDbCommand)
   fullName: Reportman.Drawing.IDbCommandExecuter.Open(System.Data.IDbCommand)
@@ -668,7 +668,7 @@ references:
   - uid: Reportman.Drawing.IDbCommandExecuter.Open(System.Data.IDbCommand)
     name: Open
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/ISqlExecuter.cs
   - name: (
   - uid: System.Data.IDbCommand
     name: IDbCommand
@@ -679,7 +679,7 @@ references:
   - uid: Reportman.Drawing.IDbCommandExecuter.Open(System.Data.IDbCommand)
     name: Open
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/ISqlExecuter.cs
   - name: (
   - uid: System.Data.IDbCommand
     name: IDbCommand

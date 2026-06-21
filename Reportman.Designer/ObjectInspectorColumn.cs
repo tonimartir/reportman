@@ -9,12 +9,21 @@ using System.Windows.Forms;
 
 namespace Reportman.Designer
 {
+    /// <summary>
+    /// Identifies the editor and formatting an object-inspector cell uses for a
+    /// property value, such as plain text, expression, numeric, color, image,
+    /// font, SQL or connection-string editing.
+    /// </summary>
     public enum ObjectInspectorCellType
     {
         Text, Expression, Integer, Decimal, Boolean, DropDown, DropDownList, Color, Image, FontName, FontStyle, SQL,
         ConnectionString, MultilineText
     };
 
+    /// <summary>
+    /// Grid column for the designer's object inspector that hosts
+    /// <see cref="ObjectInspectorCell"/> instances as its cell template.
+    /// </summary>
     public class ObjectInspectorColumn : DataGridViewColumn
     {
         public FrameMainDesigner FrameMain;
@@ -36,6 +45,12 @@ namespace Reportman.Designer
         }
     }
 
+    /// <summary>
+    /// Object-inspector grid cell that selects, paints and parses the
+    /// appropriate editing control for each property value according to its
+    /// <see cref="ObjectInspectorCellType"/> (combo box, color/image picker,
+    /// numeric editor, checkbox or ellipsis dialog launcher).
+    /// </summary>
     public class ObjectInspectorCell : DataGridViewTextBoxCell
     {
         DataGridViewComboBoxEditingControl ComboBoxPicker;

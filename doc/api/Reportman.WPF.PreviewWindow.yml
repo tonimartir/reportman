@@ -17,7 +17,7 @@ items:
   fullName: Reportman.WPF.PreviewWindow
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.WPF/PreviewWindow.xaml
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.WPF/PreviewWindow.xaml
   assemblies:
   - Reportman.WPF
   namespace: Reportman.WPF
@@ -655,7 +655,7 @@ items:
   fullName: Reportman.WPF.PreviewWindow.PreviewWindow()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.WPF/PreviewWindow.xaml.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.WPF/PreviewWindow.xaml.cs
   assemblies:
   - Reportman.WPF
   namespace: Reportman.WPF
@@ -678,7 +678,7 @@ items:
   fullName: Reportman.WPF.PreviewWindow.PreviewMetaFile(Reportman.Drawing.MetaFile)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.WPF/PreviewWindow.xaml.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.WPF/PreviewWindow.xaml.cs
   assemblies:
   - Reportman.WPF
   namespace: Reportman.WPF
@@ -701,7 +701,7 @@ items:
   fullName: Reportman.WPF.PreviewWindow.PreviewDocument(System.Windows.Documents.FixedDocument)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.WPF/PreviewWindow.xaml.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.WPF/PreviewWindow.xaml.cs
   assemblies:
   - Reportman.WPF
   namespace: Reportman.WPF
@@ -724,7 +724,7 @@ items:
   fullName: Reportman.WPF.PreviewWindow.InitializeComponent()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.WPF/PreviewWindow.xaml
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.WPF/PreviewWindow.xaml
   assemblies:
   - Reportman.WPF
   namespace: Reportman.WPF
@@ -10232,7 +10232,7 @@ references:
   commentId: T:Reportman.Drawing.MetaFile
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.MetaFile.html
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaFile.cs
   name: MetaFile
   nameWithType: MetaFile
   fullName: Reportman.Drawing.MetaFile

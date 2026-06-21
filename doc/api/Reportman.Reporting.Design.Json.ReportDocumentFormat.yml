@@ -1,0 +1,119 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.Design.Json.ReportDocumentFormat
+  commentId: T:Reportman.Reporting.Design.Json.ReportDocumentFormat
+  id: ReportDocumentFormat
+  parent: Reportman.Reporting.Design.Json
+  children:
+  - Reportman.Reporting.Design.Json.ReportDocumentFormat.Json
+  - Reportman.Reporting.Design.Json.ReportDocumentFormat.Xml
+  langs:
+  - csharp
+  - vb
+  name: ReportDocumentFormat
+  nameWithType: ReportDocumentFormat
+  fullName: Reportman.Reporting.Design.Json.ReportDocumentFormat
+  type: Enum
+  assemblies:
+  - Reportman.Reporting.Design.Json
+  namespace: Reportman.Reporting.Design.Json
+  summary: >-
+    Identifies the serialization format used to read or write a report document,
+
+    either JSON or XML.
+  example: []
+  syntax:
+    content: public enum ReportDocumentFormat
+    content.vb: Public Enum ReportDocumentFormat
+- uid: Reportman.Reporting.Design.Json.ReportDocumentFormat.Json
+  commentId: F:Reportman.Reporting.Design.Json.ReportDocumentFormat.Json
+  id: Json
+  parent: Reportman.Reporting.Design.Json.ReportDocumentFormat
+  langs:
+  - csharp
+  - vb
+  name: Json
+  nameWithType: ReportDocumentFormat.Json
+  fullName: Reportman.Reporting.Design.Json.ReportDocumentFormat.Json
+  type: Field
+  assemblies:
+  - Reportman.Reporting.Design.Json
+  namespace: Reportman.Reporting.Design.Json
+  syntax:
+    content: Json = 0
+    return:
+      type: Reportman.Reporting.Design.Json.ReportDocumentFormat
+- uid: Reportman.Reporting.Design.Json.ReportDocumentFormat.Xml
+  commentId: F:Reportman.Reporting.Design.Json.ReportDocumentFormat.Xml
+  id: Xml
+  parent: Reportman.Reporting.Design.Json.ReportDocumentFormat
+  langs:
+  - csharp
+  - vb
+  name: Xml
+  nameWithType: ReportDocumentFormat.Xml
+  fullName: Reportman.Reporting.Design.Json.ReportDocumentFormat.Xml
+  type: Field
+  assemblies:
+  - Reportman.Reporting.Design.Json
+  namespace: Reportman.Reporting.Design.Json
+  syntax:
+    content: Xml = 1
+    return:
+      type: Reportman.Reporting.Design.Json.ReportDocumentFormat
+references:
+- uid: Reportman.Reporting.Design.Json
+  commentId: N:Reportman.Reporting.Design.Json
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting.Design.Json
+  nameWithType: Reportman.Reporting.Design.Json
+  fullName: Reportman.Reporting.Design.Json
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  - name: .
+  - uid: Reportman.Reporting.Design
+    name: Design
+    isExternal: true
+    href: Reportman.Reporting.Design.html
+  - name: .
+  - uid: Reportman.Reporting.Design.Json
+    name: Json
+    isExternal: true
+    href: Reportman.Reporting.Design.Json.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  - name: .
+  - uid: Reportman.Reporting.Design
+    name: Design
+    isExternal: true
+    href: Reportman.Reporting.Design.html
+  - name: .
+  - uid: Reportman.Reporting.Design.Json
+    name: Json
+    isExternal: true
+    href: Reportman.Reporting.Design.Json.html
+- uid: Reportman.Reporting.Design.Json.ReportDocumentFormat
+  commentId: T:Reportman.Reporting.Design.Json.ReportDocumentFormat
+  parent: Reportman.Reporting.Design.Json
+  isExternal: true
+  href: Reportman.Reporting.Design.Json.ReportDocumentFormat.html
+  name: ReportDocumentFormat
+  nameWithType: ReportDocumentFormat
+  fullName: Reportman.Reporting.Design.Json.ReportDocumentFormat

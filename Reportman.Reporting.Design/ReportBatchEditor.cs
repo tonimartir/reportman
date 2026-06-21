@@ -10,6 +10,11 @@ using System.Linq;
 
 namespace Reportman.Reporting.Design
 {
+    /// <summary>
+    /// Validates and applies batches of structural report operations (add, remove, modify,
+    /// reorder and z-order changes) against a report, enforcing layout rules and recording
+    /// the changes in the report's undo history.
+    /// </summary>
     public class ReportBatchEditor : IReportBatchEditor, IReportBatchValidator
     {
         private const decimal TwipsPerPixel96Dpi = 15m;

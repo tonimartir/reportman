@@ -32,7 +32,7 @@ items:
   fullName: Reportman.Reporting.PrintItem
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -75,7 +75,7 @@ items:
   fullName: Reportman.Reporting.PrintItem.PrintWidth
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -98,7 +98,7 @@ items:
   fullName: Reportman.Reporting.PrintItem.PrintHeight
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -121,7 +121,7 @@ items:
   fullName: Reportman.Reporting.PrintItem.Visible
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -144,7 +144,7 @@ items:
   fullName: Reportman.Reporting.PrintItem.LastExtent
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -167,7 +167,7 @@ items:
   fullName: Reportman.Reporting.PrintItem.SelectionIndex
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -190,7 +190,7 @@ items:
   fullName: Reportman.Reporting.PrintItem.SelectionRectangle
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -211,7 +211,7 @@ items:
   fullName: Reportman.Reporting.PrintItem.PrintItem()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -236,7 +236,7 @@ items:
   fullName: Reportman.Reporting.PrintItem.EvaluatePrintCondition()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -261,7 +261,7 @@ items:
   fullName: Reportman.Reporting.PrintItem.SubReportChanged(Reportman.Reporting.SubReportEvent, string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -293,7 +293,7 @@ items:
   fullName: Reportman.Reporting.PrintItem.GetExtension(Reportman.Drawing.PrintOut, System.Drawing.Point, bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -330,7 +330,7 @@ items:
   fullName: Reportman.Reporting.PrintItem.DoPrint(Reportman.Drawing.PrintOut, int, int, int, int, Reportman.Drawing.MetaFile, System.Drawing.Point, ref bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -380,7 +380,7 @@ items:
   fullName: Reportman.Reporting.PrintItem.Print(Reportman.Drawing.PrintOut, int, int, int, int, Reportman.Drawing.MetaFile, System.Drawing.Point, ref bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -430,7 +430,7 @@ items:
   fullName: Reportman.Reporting.PrintItem.ExecuteBeforePrint()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -455,7 +455,7 @@ items:
   fullName: Reportman.Reporting.PrintItem.ExecuteAfterPrint()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -480,7 +480,7 @@ items:
   fullName: Reportman.Reporting.PrintItem.Width
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -505,7 +505,7 @@ items:
   fullName: Reportman.Reporting.PrintItem.Height
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -530,7 +530,7 @@ items:
   fullName: Reportman.Reporting.PrintItem.DoBeforePrint
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -555,7 +555,7 @@ items:
   fullName: Reportman.Reporting.PrintItem.DoAfterPrint
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -580,7 +580,7 @@ items:
   fullName: Reportman.Reporting.PrintItem.PrintCondition
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -638,7 +638,7 @@ references:
   commentId: T:Reportman.Reporting.ReportItem
   parent: Reportman.Reporting
   isExternal: true
-  href: Reportman.Reporting.ReportItem.html
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportItem.cs
   name: ReportItem
   nameWithType: ReportItem
   fullName: Reportman.Reporting.ReportItem
@@ -1093,7 +1093,7 @@ references:
   commentId: T:Reportman.Drawing.PrintOut
   parent: Reportman.Drawing
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   name: PrintOut
   nameWithType: PrintOut
   fullName: Reportman.Drawing.PrintOut
@@ -1135,7 +1135,7 @@ references:
   commentId: T:Reportman.Drawing.MetaFile
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.MetaFile.html
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaFile.cs
   name: MetaFile
   nameWithType: MetaFile
   fullName: Reportman.Drawing.MetaFile

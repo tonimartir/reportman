@@ -1,0 +1,146 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Designer.OpenFromLibrary.SelectionModeType
+  commentId: T:Reportman.Designer.OpenFromLibrary.SelectionModeType
+  id: OpenFromLibrary.SelectionModeType
+  parent: Reportman.Designer
+  children:
+  - Reportman.Designer.OpenFromLibrary.SelectionModeType.Edit
+  - Reportman.Designer.OpenFromLibrary.SelectionModeType.Selection
+  - Reportman.Designer.OpenFromLibrary.SelectionModeType.SelectionEdit
+  langs:
+  - csharp
+  - vb
+  name: OpenFromLibrary.SelectionModeType
+  nameWithType: OpenFromLibrary.SelectionModeType
+  fullName: Reportman.Designer.OpenFromLibrary.SelectionModeType
+  type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/OpenFromLibrary.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: >-
+    Determines which operations the library browser exposes: read-only
+
+    selection, selection combined with editing, or pure editing of the library.
+  example: []
+  syntax:
+    content: public enum OpenFromLibrary.SelectionModeType
+    content.vb: Public Enum OpenFromLibrary.SelectionModeType
+- uid: Reportman.Designer.OpenFromLibrary.SelectionModeType.Selection
+  commentId: F:Reportman.Designer.OpenFromLibrary.SelectionModeType.Selection
+  id: Selection
+  parent: Reportman.Designer.OpenFromLibrary.SelectionModeType
+  langs:
+  - csharp
+  - vb
+  name: Selection
+  nameWithType: OpenFromLibrary.SelectionModeType.Selection
+  fullName: Reportman.Designer.OpenFromLibrary.SelectionModeType.Selection
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/OpenFromLibrary.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: Selection = 0
+    return:
+      type: Reportman.Designer.OpenFromLibrary.SelectionModeType
+- uid: Reportman.Designer.OpenFromLibrary.SelectionModeType.SelectionEdit
+  commentId: F:Reportman.Designer.OpenFromLibrary.SelectionModeType.SelectionEdit
+  id: SelectionEdit
+  parent: Reportman.Designer.OpenFromLibrary.SelectionModeType
+  langs:
+  - csharp
+  - vb
+  name: SelectionEdit
+  nameWithType: OpenFromLibrary.SelectionModeType.SelectionEdit
+  fullName: Reportman.Designer.OpenFromLibrary.SelectionModeType.SelectionEdit
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/OpenFromLibrary.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: SelectionEdit = 1
+    return:
+      type: Reportman.Designer.OpenFromLibrary.SelectionModeType
+- uid: Reportman.Designer.OpenFromLibrary.SelectionModeType.Edit
+  commentId: F:Reportman.Designer.OpenFromLibrary.SelectionModeType.Edit
+  id: Edit
+  parent: Reportman.Designer.OpenFromLibrary.SelectionModeType
+  langs:
+  - csharp
+  - vb
+  name: Edit
+  nameWithType: OpenFromLibrary.SelectionModeType.Edit
+  fullName: Reportman.Designer.OpenFromLibrary.SelectionModeType.Edit
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/OpenFromLibrary.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: Edit = 2
+    return:
+      type: Reportman.Designer.OpenFromLibrary.SelectionModeType
+references:
+- uid: Reportman.Designer
+  commentId: N:Reportman.Designer
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Designer
+  nameWithType: Reportman.Designer
+  fullName: Reportman.Designer
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+- uid: Reportman.Designer.OpenFromLibrary.SelectionModeType
+  commentId: T:Reportman.Designer.OpenFromLibrary.SelectionModeType
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.OpenFromLibrary.html
+  name: OpenFromLibrary.SelectionModeType
+  nameWithType: OpenFromLibrary.SelectionModeType
+  fullName: Reportman.Designer.OpenFromLibrary.SelectionModeType
+  spec.csharp:
+  - uid: Reportman.Designer.OpenFromLibrary
+    name: OpenFromLibrary
+    isExternal: true
+    href: Reportman.Designer.OpenFromLibrary.html
+  - name: .
+  - uid: Reportman.Designer.OpenFromLibrary.SelectionModeType
+    name: SelectionModeType
+    isExternal: true
+    href: Reportman.Designer.OpenFromLibrary.SelectionModeType.html
+  spec.vb:
+  - uid: Reportman.Designer.OpenFromLibrary
+    name: OpenFromLibrary
+    isExternal: true
+    href: Reportman.Designer.OpenFromLibrary.html
+  - name: .
+  - uid: Reportman.Designer.OpenFromLibrary.SelectionModeType
+    name: SelectionModeType
+    isExternal: true
+    href: Reportman.Designer.OpenFromLibrary.SelectionModeType.html

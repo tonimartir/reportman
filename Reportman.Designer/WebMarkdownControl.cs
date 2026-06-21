@@ -10,6 +10,11 @@ using Microsoft.Web.WebView2.WinForms;
 
 namespace Reportman.Designer
 {
+    /// <summary>
+    /// WebView2-hosted control that renders chat conversations and log output as
+    /// Markdown, supporting incremental streaming of assistant messages and log
+    /// chunks into the embedded page.
+    /// </summary>
     public class WebMarkdownControl : UserControl
     {
         private static readonly object EnvironmentLock = new object();

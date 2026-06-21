@@ -1,0 +1,148 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Designer.FrameMainDesigner.EditModeType
+  commentId: T:Reportman.Designer.FrameMainDesigner.EditModeType
+  id: FrameMainDesigner.EditModeType
+  parent: Reportman.Designer
+  children:
+  - Reportman.Designer.FrameMainDesigner.EditModeType.OpenSave
+  - Reportman.Designer.FrameMainDesigner.EditModeType.Save
+  - Reportman.Designer.FrameMainDesigner.EditModeType.SelfSave
+  langs:
+  - csharp
+  - vb
+  name: FrameMainDesigner.EditModeType
+  nameWithType: FrameMainDesigner.EditModeType
+  fullName: Reportman.Designer.FrameMainDesigner.EditModeType
+  type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/FrameMainDesigner.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: >-
+    Controls which save/open toolbar actions the designer exposes: full
+
+    open-and-save, save-only (no open/new), or self-managed saving where the
+
+    standard save drop-down is suppressed.
+  example: []
+  syntax:
+    content: public enum FrameMainDesigner.EditModeType
+    content.vb: Public Enum FrameMainDesigner.EditModeType
+- uid: Reportman.Designer.FrameMainDesigner.EditModeType.OpenSave
+  commentId: F:Reportman.Designer.FrameMainDesigner.EditModeType.OpenSave
+  id: OpenSave
+  parent: Reportman.Designer.FrameMainDesigner.EditModeType
+  langs:
+  - csharp
+  - vb
+  name: OpenSave
+  nameWithType: FrameMainDesigner.EditModeType.OpenSave
+  fullName: Reportman.Designer.FrameMainDesigner.EditModeType.OpenSave
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/FrameMainDesigner.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: OpenSave = 0
+    return:
+      type: Reportman.Designer.FrameMainDesigner.EditModeType
+- uid: Reportman.Designer.FrameMainDesigner.EditModeType.Save
+  commentId: F:Reportman.Designer.FrameMainDesigner.EditModeType.Save
+  id: Save
+  parent: Reportman.Designer.FrameMainDesigner.EditModeType
+  langs:
+  - csharp
+  - vb
+  name: Save
+  nameWithType: FrameMainDesigner.EditModeType.Save
+  fullName: Reportman.Designer.FrameMainDesigner.EditModeType.Save
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/FrameMainDesigner.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: Save = 1
+    return:
+      type: Reportman.Designer.FrameMainDesigner.EditModeType
+- uid: Reportman.Designer.FrameMainDesigner.EditModeType.SelfSave
+  commentId: F:Reportman.Designer.FrameMainDesigner.EditModeType.SelfSave
+  id: SelfSave
+  parent: Reportman.Designer.FrameMainDesigner.EditModeType
+  langs:
+  - csharp
+  - vb
+  name: SelfSave
+  nameWithType: FrameMainDesigner.EditModeType.SelfSave
+  fullName: Reportman.Designer.FrameMainDesigner.EditModeType.SelfSave
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/FrameMainDesigner.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: SelfSave = 2
+    return:
+      type: Reportman.Designer.FrameMainDesigner.EditModeType
+references:
+- uid: Reportman.Designer
+  commentId: N:Reportman.Designer
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Designer
+  nameWithType: Reportman.Designer
+  fullName: Reportman.Designer
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+- uid: Reportman.Designer.FrameMainDesigner.EditModeType
+  commentId: T:Reportman.Designer.FrameMainDesigner.EditModeType
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.FrameMainDesigner.html
+  name: FrameMainDesigner.EditModeType
+  nameWithType: FrameMainDesigner.EditModeType
+  fullName: Reportman.Designer.FrameMainDesigner.EditModeType
+  spec.csharp:
+  - uid: Reportman.Designer.FrameMainDesigner
+    name: FrameMainDesigner
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.html
+  - name: .
+  - uid: Reportman.Designer.FrameMainDesigner.EditModeType
+    name: EditModeType
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.EditModeType.html
+  spec.vb:
+  - uid: Reportman.Designer.FrameMainDesigner
+    name: FrameMainDesigner
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.html
+  - name: .
+  - uid: Reportman.Designer.FrameMainDesigner.EditModeType
+    name: EditModeType
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.EditModeType.html

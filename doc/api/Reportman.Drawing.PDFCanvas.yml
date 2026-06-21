@@ -63,7 +63,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -97,7 +97,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.ENDSTREAM
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -118,7 +118,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.FInfoProvider
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -139,7 +139,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.FBitmapInfoProvider
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -160,7 +160,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.PDFConformance
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -181,7 +181,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.File
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -202,7 +202,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.Resolution
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -223,7 +223,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.ForceComplexShaping
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -255,7 +255,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.PenColor
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -276,7 +276,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.PenStyle
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -297,7 +297,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.PenWidth
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -318,7 +318,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.BrushColor
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -339,7 +339,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.BrushStyle
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -360,7 +360,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.OldBrushColor
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -381,7 +381,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.OldPenColor
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -402,7 +402,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.SavedPenColor
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -423,7 +423,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.SavedBrushColor
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -444,7 +444,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.PDFCanvas(Reportman.Drawing.FontInfoProvider, Reportman.Drawing.IBitmapInfoProvider)
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -472,7 +472,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.UnitsToTextX(double)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -500,7 +500,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.UnitsToTextY(double)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -528,7 +528,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.NumberToText(double)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -556,7 +556,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.EOL()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -578,7 +578,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.Line(int, int, int, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -610,7 +610,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.WritePenColor(int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -636,7 +636,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.WriteBrushColor(int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -662,7 +662,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.GetTTFontData()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -684,7 +684,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.UpdateFonts()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -706,7 +706,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.Ellipse(int, int, int, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -738,7 +738,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.RoundedRectangle(int, int, int, int, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -772,7 +772,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.Rectangle(int, int, int, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -804,7 +804,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.SaveGraph()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -824,7 +824,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.RestoreGraph()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -844,7 +844,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.DoReverseString(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -872,7 +872,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.Type1FontTopdfFontName(Reportman.Drawing.PDFFontType, bool, bool, string, int, Reportman.Drawing.PDFConformanceType)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -910,7 +910,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.TextOut(int, int, string, int, int, bool, Reportman.Drawing.LineInfo, bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -950,7 +950,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.WideCharToHex(char)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -978,7 +978,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.IntToHex(int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1006,7 +1006,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.PDFCompatibleTextWithKerning(string, Reportman.Drawing.TTFontData, Reportman.Drawing.PDFFont)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1038,7 +1038,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.PDFCompatibleTextShaping(string, Reportman.Drawing.TTFontData, Reportman.Drawing.PDFFont, bool, double, double, int, Reportman.Drawing.LineInfo)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1080,7 +1080,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.PDFCompatibleText(string, Reportman.Drawing.TTFontData, Reportman.Drawing.PDFFont)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1112,7 +1112,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.Translate(int, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1140,7 +1140,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.Rotate(double)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1166,7 +1166,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.TextRect(System.Drawing.Rectangle, string, int, bool, bool, int, bool, bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1206,7 +1206,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.DrawImage(System.Drawing.Rectangle, System.IO.MemoryStream, int, bool, bool, long)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1242,7 +1242,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.TextExtent(string, ref System.Drawing.Rectangle, bool, bool, bool, bool, bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1282,7 +1282,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.TextExtentSimple(string, ref System.Drawing.Rectangle, bool, bool, bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1316,7 +1316,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.InfoProvider
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1339,7 +1339,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.BitmapInfoProvider
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1362,7 +1362,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.LineInfo
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1385,7 +1385,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.Font
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1408,7 +1408,7 @@ items:
   fullName: Reportman.Drawing.PDFCanvas.FontData
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1699,7 +1699,7 @@ references:
   commentId: T:Reportman.Drawing.FontInfoProvider
   parent: Reportman.Drawing
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   name: FontInfoProvider
   nameWithType: FontInfoProvider
   fullName: Reportman.Drawing.FontInfoProvider
@@ -1707,7 +1707,7 @@ references:
   commentId: T:Reportman.Drawing.IBitmapInfoProvider
   parent: Reportman.Drawing
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IBitmapInfoProvider.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/IBitmapInfoProvider.cs
   name: IBitmapInfoProvider
   nameWithType: IBitmapInfoProvider
   fullName: Reportman.Drawing.IBitmapInfoProvider
@@ -1830,7 +1830,7 @@ references:
   commentId: T:Reportman.Drawing.TTFontData
   parent: Reportman.Drawing
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   name: TTFontData
   nameWithType: TTFontData
   fullName: Reportman.Drawing.TTFontData
@@ -1949,7 +1949,7 @@ references:
   commentId: T:Reportman.Drawing.PDFFont
   parent: Reportman.Drawing
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   name: PDFFont
   nameWithType: PDFFont
   fullName: Reportman.Drawing.PDFFont
@@ -2103,7 +2103,7 @@ references:
   - uid: Reportman.Drawing.LineInfo
     name: LineInfo
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   - name: '>'
   spec.vb:
   - uid: System.Collections.Generic.List`1
@@ -2116,7 +2116,7 @@ references:
   - uid: Reportman.Drawing.LineInfo
     name: LineInfo
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   - name: )
 - uid: System.Collections.Generic.List`1
   commentId: T:System.Collections.Generic.List`1

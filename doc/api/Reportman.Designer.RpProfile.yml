@@ -1,0 +1,738 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Designer.RpProfile
+  commentId: T:Reportman.Designer.RpProfile
+  id: RpProfile
+  parent: Reportman.Designer
+  children:
+  - Reportman.Designer.RpProfile.#ctor
+  - Reportman.Designer.RpProfile.AccountType
+  - Reportman.Designer.RpProfile.AvatarUrl
+  - Reportman.Designer.RpProfile.Credits
+  - Reportman.Designer.RpProfile.DailyConsumed
+  - Reportman.Designer.RpProfile.DailyMax
+  - Reportman.Designer.RpProfile.Email
+  - Reportman.Designer.RpProfile.FreeInitial
+  - Reportman.Designer.RpProfile.FreeRemaining
+  - Reportman.Designer.RpProfile.TierId
+  - Reportman.Designer.RpProfile.TierName
+  - Reportman.Designer.RpProfile.UserId
+  - Reportman.Designer.RpProfile.UserName
+  langs:
+  - csharp
+  - vb
+  name: RpProfile
+  nameWithType: RpProfile
+  fullName: Reportman.Designer.RpProfile
+  type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: Profile data from the Hub API. Matches Delphi's TRpProfile record.
+  example: []
+  syntax:
+    content: public class RpProfile
+    content.vb: Public Class RpProfile
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Designer.RpProfile.#ctor
+  commentId: M:Reportman.Designer.RpProfile.#ctor
+  id: '#ctor'
+  parent: Reportman.Designer.RpProfile
+  langs:
+  - csharp
+  - vb
+  name: RpProfile()
+  nameWithType: RpProfile.RpProfile()
+  fullName: Reportman.Designer.RpProfile.RpProfile()
+  type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public RpProfile()
+    content.vb: Public Sub New()
+  overload: Reportman.Designer.RpProfile.#ctor*
+  nameWithType.vb: RpProfile.New()
+  fullName.vb: Reportman.Designer.RpProfile.New()
+  name.vb: New()
+- uid: Reportman.Designer.RpProfile.UserId
+  commentId: P:Reportman.Designer.RpProfile.UserId
+  id: UserId
+  parent: Reportman.Designer.RpProfile
+  langs:
+  - csharp
+  - vb
+  name: UserId
+  nameWithType: RpProfile.UserId
+  fullName: Reportman.Designer.RpProfile.UserId
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public long UserId { get; set; }
+    parameters: []
+    return:
+      type: System.Int64
+    content.vb: Public Property UserId As Long
+  overload: Reportman.Designer.RpProfile.UserId*
+- uid: Reportman.Designer.RpProfile.Email
+  commentId: P:Reportman.Designer.RpProfile.Email
+  id: Email
+  parent: Reportman.Designer.RpProfile
+  langs:
+  - csharp
+  - vb
+  name: Email
+  nameWithType: RpProfile.Email
+  fullName: Reportman.Designer.RpProfile.Email
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public string Email { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Email As String
+  overload: Reportman.Designer.RpProfile.Email*
+- uid: Reportman.Designer.RpProfile.UserName
+  commentId: P:Reportman.Designer.RpProfile.UserName
+  id: UserName
+  parent: Reportman.Designer.RpProfile
+  langs:
+  - csharp
+  - vb
+  name: UserName
+  nameWithType: RpProfile.UserName
+  fullName: Reportman.Designer.RpProfile.UserName
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public string UserName { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property UserName As String
+  overload: Reportman.Designer.RpProfile.UserName*
+- uid: Reportman.Designer.RpProfile.AvatarUrl
+  commentId: P:Reportman.Designer.RpProfile.AvatarUrl
+  id: AvatarUrl
+  parent: Reportman.Designer.RpProfile
+  langs:
+  - csharp
+  - vb
+  name: AvatarUrl
+  nameWithType: RpProfile.AvatarUrl
+  fullName: Reportman.Designer.RpProfile.AvatarUrl
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public string AvatarUrl { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property AvatarUrl As String
+  overload: Reportman.Designer.RpProfile.AvatarUrl*
+- uid: Reportman.Designer.RpProfile.AccountType
+  commentId: P:Reportman.Designer.RpProfile.AccountType
+  id: AccountType
+  parent: Reportman.Designer.RpProfile
+  langs:
+  - csharp
+  - vb
+  name: AccountType
+  nameWithType: RpProfile.AccountType
+  fullName: Reportman.Designer.RpProfile.AccountType
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public int AccountType { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property AccountType As Integer
+  overload: Reportman.Designer.RpProfile.AccountType*
+- uid: Reportman.Designer.RpProfile.TierId
+  commentId: P:Reportman.Designer.RpProfile.TierId
+  id: TierId
+  parent: Reportman.Designer.RpProfile
+  langs:
+  - csharp
+  - vb
+  name: TierId
+  nameWithType: RpProfile.TierId
+  fullName: Reportman.Designer.RpProfile.TierId
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public long TierId { get; set; }
+    parameters: []
+    return:
+      type: System.Int64
+    content.vb: Public Property TierId As Long
+  overload: Reportman.Designer.RpProfile.TierId*
+- uid: Reportman.Designer.RpProfile.TierName
+  commentId: P:Reportman.Designer.RpProfile.TierName
+  id: TierName
+  parent: Reportman.Designer.RpProfile
+  langs:
+  - csharp
+  - vb
+  name: TierName
+  nameWithType: RpProfile.TierName
+  fullName: Reportman.Designer.RpProfile.TierName
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public string TierName { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property TierName As String
+  overload: Reportman.Designer.RpProfile.TierName*
+- uid: Reportman.Designer.RpProfile.DailyMax
+  commentId: P:Reportman.Designer.RpProfile.DailyMax
+  id: DailyMax
+  parent: Reportman.Designer.RpProfile
+  langs:
+  - csharp
+  - vb
+  name: DailyMax
+  nameWithType: RpProfile.DailyMax
+  fullName: Reportman.Designer.RpProfile.DailyMax
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public long DailyMax { get; set; }
+    parameters: []
+    return:
+      type: System.Int64
+    content.vb: Public Property DailyMax As Long
+  overload: Reportman.Designer.RpProfile.DailyMax*
+- uid: Reportman.Designer.RpProfile.DailyConsumed
+  commentId: P:Reportman.Designer.RpProfile.DailyConsumed
+  id: DailyConsumed
+  parent: Reportman.Designer.RpProfile
+  langs:
+  - csharp
+  - vb
+  name: DailyConsumed
+  nameWithType: RpProfile.DailyConsumed
+  fullName: Reportman.Designer.RpProfile.DailyConsumed
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public long DailyConsumed { get; set; }
+    parameters: []
+    return:
+      type: System.Int64
+    content.vb: Public Property DailyConsumed As Long
+  overload: Reportman.Designer.RpProfile.DailyConsumed*
+- uid: Reportman.Designer.RpProfile.FreeInitial
+  commentId: P:Reportman.Designer.RpProfile.FreeInitial
+  id: FreeInitial
+  parent: Reportman.Designer.RpProfile
+  langs:
+  - csharp
+  - vb
+  name: FreeInitial
+  nameWithType: RpProfile.FreeInitial
+  fullName: Reportman.Designer.RpProfile.FreeInitial
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public long FreeInitial { get; set; }
+    parameters: []
+    return:
+      type: System.Int64
+    content.vb: Public Property FreeInitial As Long
+  overload: Reportman.Designer.RpProfile.FreeInitial*
+- uid: Reportman.Designer.RpProfile.FreeRemaining
+  commentId: P:Reportman.Designer.RpProfile.FreeRemaining
+  id: FreeRemaining
+  parent: Reportman.Designer.RpProfile
+  langs:
+  - csharp
+  - vb
+  name: FreeRemaining
+  nameWithType: RpProfile.FreeRemaining
+  fullName: Reportman.Designer.RpProfile.FreeRemaining
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public long FreeRemaining { get; set; }
+    parameters: []
+    return:
+      type: System.Int64
+    content.vb: Public Property FreeRemaining As Long
+  overload: Reportman.Designer.RpProfile.FreeRemaining*
+- uid: Reportman.Designer.RpProfile.Credits
+  commentId: P:Reportman.Designer.RpProfile.Credits
+  id: Credits
+  parent: Reportman.Designer.RpProfile
+  langs:
+  - csharp
+  - vb
+  name: Credits
+  nameWithType: RpProfile.Credits
+  fullName: Reportman.Designer.RpProfile.Credits
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RpAuthManager.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public long Credits { get; set; }
+    parameters: []
+    return:
+      type: System.Int64
+    content.vb: Public Property Credits As Long
+  overload: Reportman.Designer.RpProfile.Credits*
+references:
+- uid: Reportman.Designer
+  commentId: N:Reportman.Designer
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Designer
+  nameWithType: Reportman.Designer
+  fullName: Reportman.Designer
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Designer.RpProfile.#ctor*
+  commentId: Overload:Reportman.Designer.RpProfile.#ctor
+  isExternal: true
+  href: Reportman.Designer.RpProfile.html#Reportman_Designer_RpProfile__ctor
+  name: RpProfile
+  nameWithType: RpProfile.RpProfile
+  fullName: Reportman.Designer.RpProfile.RpProfile
+  nameWithType.vb: RpProfile.New
+  fullName.vb: Reportman.Designer.RpProfile.New
+  name.vb: New
+- uid: Reportman.Designer.RpProfile.UserId*
+  commentId: Overload:Reportman.Designer.RpProfile.UserId
+  isExternal: true
+  href: Reportman.Designer.RpProfile.html#Reportman_Designer_RpProfile_UserId
+  name: UserId
+  nameWithType: RpProfile.UserId
+  fullName: Reportman.Designer.RpProfile.UserId
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: Reportman.Designer.RpProfile.Email*
+  commentId: Overload:Reportman.Designer.RpProfile.Email
+  isExternal: true
+  href: Reportman.Designer.RpProfile.html#Reportman_Designer_RpProfile_Email
+  name: Email
+  nameWithType: RpProfile.Email
+  fullName: Reportman.Designer.RpProfile.Email
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Reportman.Designer.RpProfile.UserName*
+  commentId: Overload:Reportman.Designer.RpProfile.UserName
+  isExternal: true
+  href: Reportman.Designer.RpProfile.html#Reportman_Designer_RpProfile_UserName
+  name: UserName
+  nameWithType: RpProfile.UserName
+  fullName: Reportman.Designer.RpProfile.UserName
+- uid: Reportman.Designer.RpProfile.AvatarUrl*
+  commentId: Overload:Reportman.Designer.RpProfile.AvatarUrl
+  isExternal: true
+  href: Reportman.Designer.RpProfile.html#Reportman_Designer_RpProfile_AvatarUrl
+  name: AvatarUrl
+  nameWithType: RpProfile.AvatarUrl
+  fullName: Reportman.Designer.RpProfile.AvatarUrl
+- uid: Reportman.Designer.RpProfile.AccountType*
+  commentId: Overload:Reportman.Designer.RpProfile.AccountType
+  isExternal: true
+  href: Reportman.Designer.RpProfile.html#Reportman_Designer_RpProfile_AccountType
+  name: AccountType
+  nameWithType: RpProfile.AccountType
+  fullName: Reportman.Designer.RpProfile.AccountType
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Reportman.Designer.RpProfile.TierId*
+  commentId: Overload:Reportman.Designer.RpProfile.TierId
+  isExternal: true
+  href: Reportman.Designer.RpProfile.html#Reportman_Designer_RpProfile_TierId
+  name: TierId
+  nameWithType: RpProfile.TierId
+  fullName: Reportman.Designer.RpProfile.TierId
+- uid: Reportman.Designer.RpProfile.TierName*
+  commentId: Overload:Reportman.Designer.RpProfile.TierName
+  isExternal: true
+  href: Reportman.Designer.RpProfile.html#Reportman_Designer_RpProfile_TierName
+  name: TierName
+  nameWithType: RpProfile.TierName
+  fullName: Reportman.Designer.RpProfile.TierName
+- uid: Reportman.Designer.RpProfile.DailyMax*
+  commentId: Overload:Reportman.Designer.RpProfile.DailyMax
+  isExternal: true
+  href: Reportman.Designer.RpProfile.html#Reportman_Designer_RpProfile_DailyMax
+  name: DailyMax
+  nameWithType: RpProfile.DailyMax
+  fullName: Reportman.Designer.RpProfile.DailyMax
+- uid: Reportman.Designer.RpProfile.DailyConsumed*
+  commentId: Overload:Reportman.Designer.RpProfile.DailyConsumed
+  isExternal: true
+  href: Reportman.Designer.RpProfile.html#Reportman_Designer_RpProfile_DailyConsumed
+  name: DailyConsumed
+  nameWithType: RpProfile.DailyConsumed
+  fullName: Reportman.Designer.RpProfile.DailyConsumed
+- uid: Reportman.Designer.RpProfile.FreeInitial*
+  commentId: Overload:Reportman.Designer.RpProfile.FreeInitial
+  isExternal: true
+  href: Reportman.Designer.RpProfile.html#Reportman_Designer_RpProfile_FreeInitial
+  name: FreeInitial
+  nameWithType: RpProfile.FreeInitial
+  fullName: Reportman.Designer.RpProfile.FreeInitial
+- uid: Reportman.Designer.RpProfile.FreeRemaining*
+  commentId: Overload:Reportman.Designer.RpProfile.FreeRemaining
+  isExternal: true
+  href: Reportman.Designer.RpProfile.html#Reportman_Designer_RpProfile_FreeRemaining
+  name: FreeRemaining
+  nameWithType: RpProfile.FreeRemaining
+  fullName: Reportman.Designer.RpProfile.FreeRemaining
+- uid: Reportman.Designer.RpProfile.Credits*
+  commentId: Overload:Reportman.Designer.RpProfile.Credits
+  isExternal: true
+  href: Reportman.Designer.RpProfile.html#Reportman_Designer_RpProfile_Credits
+  name: Credits
+  nameWithType: RpProfile.Credits
+  fullName: Reportman.Designer.RpProfile.Credits

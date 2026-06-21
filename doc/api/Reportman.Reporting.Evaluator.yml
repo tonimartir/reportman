@@ -30,7 +30,7 @@ items:
   fullName: Reportman.Reporting.Evaluator
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Evaluator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Evaluator.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -80,7 +80,7 @@ items:
   fullName: Reportman.Reporting.Evaluator.Language
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Evaluator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Evaluator.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -103,7 +103,7 @@ items:
   fullName: Reportman.Reporting.Evaluator.CheckSyntax(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Evaluator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Evaluator.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -131,7 +131,7 @@ items:
   fullName: Reportman.Reporting.Evaluator.AddVariable(string, Reportman.Reporting.EvalIdentifier)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Evaluator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Evaluator.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -163,7 +163,7 @@ items:
   fullName: Reportman.Reporting.Evaluator.AddIden(string, Reportman.Reporting.EvalIdentifier)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Evaluator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Evaluator.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -195,7 +195,7 @@ items:
   fullName: Reportman.Reporting.Evaluator.NewVariable(string, Reportman.Reporting.Variant)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Evaluator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Evaluator.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -230,7 +230,7 @@ items:
   fullName: Reportman.Reporting.Evaluator.SearchIdentifier(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Evaluator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Evaluator.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -262,7 +262,7 @@ items:
   fullName: Reportman.Reporting.Evaluator.GetStreamFromExpression(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Evaluator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Evaluator.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -297,7 +297,7 @@ items:
   fullName: Reportman.Reporting.Evaluator.EvaluateText(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Evaluator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Evaluator.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -325,7 +325,7 @@ items:
   fullName: Reportman.Reporting.Evaluator.Evaluate()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Evaluator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Evaluator.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -347,7 +347,7 @@ items:
   fullName: Reportman.Reporting.Evaluator.Evaluator(System.ComponentModel.IContainer)
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Evaluator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Evaluator.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -373,7 +373,7 @@ items:
   fullName: Reportman.Reporting.Evaluator.Evaluator()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Evaluator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Evaluator.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -396,7 +396,7 @@ items:
   fullName: Reportman.Reporting.Evaluator.Dispose(bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Evaluator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Evaluator.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -425,7 +425,7 @@ items:
   fullName: Reportman.Reporting.Evaluator.Identifiers
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Evaluator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Evaluator.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -448,7 +448,7 @@ items:
   fullName: Reportman.Reporting.Evaluator.AliasList
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Evaluator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Evaluator.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -473,7 +473,7 @@ items:
   fullName: Reportman.Reporting.Evaluator.Result
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Evaluator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Evaluator.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -498,7 +498,7 @@ items:
   fullName: Reportman.Reporting.Evaluator.Expression
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Evaluator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Evaluator.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -521,7 +521,7 @@ items:
   fullName: Reportman.Reporting.Evaluator.OnDatasetNeeded
   type: Event
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Evaluator.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Evaluator.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

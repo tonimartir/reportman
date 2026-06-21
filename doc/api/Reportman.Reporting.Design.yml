@@ -1,0 +1,164 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.Design
+  commentId: N:Reportman.Reporting.Design
+  id: Reportman.Reporting.Design
+  children:
+  - Reportman.Reporting.Design.CompactReportSerializer
+  - Reportman.Reporting.Design.IReportBatchEditor
+  - Reportman.Reporting.Design.IReportBatchValidator
+  - Reportman.Reporting.Design.ReportBatchApplyResult
+  - Reportman.Reporting.Design.ReportBatchEditor
+  - Reportman.Reporting.Design.ReportBatchIssue
+  - Reportman.Reporting.Design.ReportBatchOperation
+  - Reportman.Reporting.Design.ReportBatchOperationType
+  - Reportman.Reporting.Design.ReportBatchProperty
+  - Reportman.Reporting.Design.ReportBatchValidationResult
+  - Reportman.Reporting.Design.ReportStructureContext
+  - Reportman.Reporting.Design.ReportStructureContextBuilder
+  - Reportman.Reporting.Design.ReportStructureContextNode
+  langs:
+  - csharp
+  - vb
+  name: Reportman.Reporting.Design
+  nameWithType: Reportman.Reporting.Design
+  fullName: Reportman.Reporting.Design
+  type: Namespace
+  assemblies:
+  - Reportman.Reporting.Design
+references:
+- uid: Reportman.Reporting.Design.CompactReportSerializer
+  commentId: T:Reportman.Reporting.Design.CompactReportSerializer
+  isExternal: true
+  href: Reportman.Reporting.Design.CompactReportSerializer.html
+  name: CompactReportSerializer
+  nameWithType: CompactReportSerializer
+  fullName: Reportman.Reporting.Design.CompactReportSerializer
+- uid: Reportman.Reporting.Design.ReportBatchOperationType
+  commentId: T:Reportman.Reporting.Design.ReportBatchOperationType
+  parent: Reportman.Reporting.Design
+  isExternal: true
+  href: Reportman.Reporting.Design.ReportBatchOperationType.html
+  name: ReportBatchOperationType
+  nameWithType: ReportBatchOperationType
+  fullName: Reportman.Reporting.Design.ReportBatchOperationType
+- uid: Reportman.Reporting.Design.ReportBatchProperty
+  commentId: T:Reportman.Reporting.Design.ReportBatchProperty
+  isExternal: true
+  href: Reportman.Reporting.Design.ReportBatchProperty.html
+  name: ReportBatchProperty
+  nameWithType: ReportBatchProperty
+  fullName: Reportman.Reporting.Design.ReportBatchProperty
+- uid: Reportman.Reporting.Design.ReportBatchOperation
+  commentId: T:Reportman.Reporting.Design.ReportBatchOperation
+  isExternal: true
+  href: Reportman.Reporting.Design.ReportBatchOperation.html
+  name: ReportBatchOperation
+  nameWithType: ReportBatchOperation
+  fullName: Reportman.Reporting.Design.ReportBatchOperation
+- uid: Reportman.Reporting.Design.ReportBatchIssue
+  commentId: T:Reportman.Reporting.Design.ReportBatchIssue
+  isExternal: true
+  href: Reportman.Reporting.Design.ReportBatchIssue.html
+  name: ReportBatchIssue
+  nameWithType: ReportBatchIssue
+  fullName: Reportman.Reporting.Design.ReportBatchIssue
+- uid: Reportman.Reporting.Design.ReportBatchValidationResult
+  commentId: T:Reportman.Reporting.Design.ReportBatchValidationResult
+  parent: Reportman.Reporting.Design
+  isExternal: true
+  href: Reportman.Reporting.Design.ReportBatchValidationResult.html
+  name: ReportBatchValidationResult
+  nameWithType: ReportBatchValidationResult
+  fullName: Reportman.Reporting.Design.ReportBatchValidationResult
+- uid: Reportman.Reporting.Design.ReportBatchApplyResult
+  commentId: T:Reportman.Reporting.Design.ReportBatchApplyResult
+  parent: Reportman.Reporting.Design
+  isExternal: true
+  href: Reportman.Reporting.Design.ReportBatchApplyResult.html
+  name: ReportBatchApplyResult
+  nameWithType: ReportBatchApplyResult
+  fullName: Reportman.Reporting.Design.ReportBatchApplyResult
+- uid: Reportman.Reporting.Design.IReportBatchValidator
+  commentId: T:Reportman.Reporting.Design.IReportBatchValidator
+  parent: Reportman.Reporting.Design
+  isExternal: true
+  href: Reportman.Reporting.Design.IReportBatchValidator.html
+  name: IReportBatchValidator
+  nameWithType: IReportBatchValidator
+  fullName: Reportman.Reporting.Design.IReportBatchValidator
+- uid: Reportman.Reporting.Design.IReportBatchEditor
+  commentId: T:Reportman.Reporting.Design.IReportBatchEditor
+  parent: Reportman.Reporting.Design
+  isExternal: true
+  href: Reportman.Reporting.Design.IReportBatchEditor.html
+  name: IReportBatchEditor
+  nameWithType: IReportBatchEditor
+  fullName: Reportman.Reporting.Design.IReportBatchEditor
+- uid: Reportman.Reporting.Design.ReportBatchEditor
+  commentId: T:Reportman.Reporting.Design.ReportBatchEditor
+  isExternal: true
+  href: Reportman.Reporting.Design.ReportBatchEditor.html
+  name: ReportBatchEditor
+  nameWithType: ReportBatchEditor
+  fullName: Reportman.Reporting.Design.ReportBatchEditor
+- uid: Reportman.Reporting.Design.ReportStructureContextNode
+  commentId: T:Reportman.Reporting.Design.ReportStructureContextNode
+  parent: Reportman.Reporting.Design
+  isExternal: true
+  href: Reportman.Reporting.Design.ReportStructureContextNode.html
+  name: ReportStructureContextNode
+  nameWithType: ReportStructureContextNode
+  fullName: Reportman.Reporting.Design.ReportStructureContextNode
+- uid: Reportman.Reporting.Design.ReportStructureContext
+  commentId: T:Reportman.Reporting.Design.ReportStructureContext
+  parent: Reportman.Reporting.Design
+  isExternal: true
+  href: Reportman.Reporting.Design.ReportStructureContext.html
+  name: ReportStructureContext
+  nameWithType: ReportStructureContext
+  fullName: Reportman.Reporting.Design.ReportStructureContext
+- uid: Reportman.Reporting.Design.ReportStructureContextBuilder
+  commentId: T:Reportman.Reporting.Design.ReportStructureContextBuilder
+  isExternal: true
+  href: Reportman.Reporting.Design.ReportStructureContextBuilder.html
+  name: ReportStructureContextBuilder
+  nameWithType: ReportStructureContextBuilder
+  fullName: Reportman.Reporting.Design.ReportStructureContextBuilder
+- uid: Reportman.Reporting.Design
+  commentId: N:Reportman.Reporting.Design
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting.Design
+  nameWithType: Reportman.Reporting.Design
+  fullName: Reportman.Reporting.Design
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  - name: .
+  - uid: Reportman.Reporting.Design
+    name: Design
+    isExternal: true
+    href: Reportman.Reporting.Design.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  - name: .
+  - uid: Reportman.Reporting.Design
+    name: Design
+    isExternal: true
+    href: Reportman.Reporting.Design.html

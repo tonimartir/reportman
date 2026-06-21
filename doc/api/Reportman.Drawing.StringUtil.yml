@@ -53,7 +53,7 @@ items:
   fullName: Reportman.Drawing.StringUtil
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -84,7 +84,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.SendStringToHost(string, string, System.Text.Encoding, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -116,7 +116,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.EscapeXML(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -144,7 +144,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.SendBytesToHost(string, byte[], int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -174,7 +174,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.SanitizeSubject(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -203,7 +203,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.SafeSubstring(string, int, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -235,7 +235,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.CheckBankAccount20(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -263,7 +263,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.ConvertLineBreaks(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -291,7 +291,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.ConvertToHtml(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -319,7 +319,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.UpperCaseSpecial(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -347,7 +347,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.PadStringRightN(string, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -377,7 +377,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.PadStringLeftN(string, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -407,7 +407,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.VerifyHash(string, string, string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -439,7 +439,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.ComputeHash(string, string, byte[])
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -471,7 +471,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.PadDecimalLeftN(decimal, int, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -503,7 +503,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.PadDecimalLeftS(decimal, int, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -535,7 +535,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.StripHTML(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -563,7 +563,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.GetSizeAsString(long)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -595,7 +595,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.GetSizeAsSmallString(long)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -627,7 +627,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.CountOfChar(char, string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -662,7 +662,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.QuoteStr(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -697,7 +697,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.DoubleQuoteStr(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -732,7 +732,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.DoubleQuoteStrJson(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -760,7 +760,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.CustomQuoteStr(string, char)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -797,7 +797,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.RepeatChar(char, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -829,7 +829,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.ByteToHex(byte)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -859,7 +859,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.IsAlpha(char)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -889,7 +889,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.IsDigit(char)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -919,7 +919,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.IsAllDigits(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -949,7 +949,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.ContainsAllWords(string, System.Collections.Generic.IEnumerable<string>)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -979,7 +979,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.HexToBytes(string, byte[])
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1011,7 +1011,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.Decode(string, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1041,7 +1041,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.Encode(string, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1071,7 +1071,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.ComprovarNif(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1099,7 +1099,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.ValidaCuentaBancaria(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1127,7 +1127,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.ComprobarMail(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1155,7 +1155,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.RemoveDiacritics(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1183,7 +1183,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.NormalizeToNFC(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1211,7 +1211,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.NormalizeLineBreaks(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1239,7 +1239,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.ValidateStringRegularExpresion(string, string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1269,7 +1269,7 @@ items:
   fullName: Reportman.Drawing.StringUtil.EAN13CalculateCheckDigit(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringUtil.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringUtil.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

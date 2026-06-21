@@ -21,7 +21,7 @@ items:
   fullName: Reportman.Drawing.PosText
   type: Struct
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutText.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -52,7 +52,7 @@ items:
   fullName: Reportman.Drawing.PosText.Position
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutText.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -73,7 +73,7 @@ items:
   fullName: Reportman.Drawing.PosText.nSize
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutText.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -94,7 +94,7 @@ items:
   fullName: Reportman.Drawing.PosText.underline
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutText.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -115,7 +115,7 @@ items:
   fullName: Reportman.Drawing.PosText.italic
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutText.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -136,7 +136,7 @@ items:
   fullName: Reportman.Drawing.PosText.red
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutText.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -157,7 +157,7 @@ items:
   fullName: Reportman.Drawing.PosText.bold
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutText.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -178,7 +178,7 @@ items:
   fullName: Reportman.Drawing.PosText.strokeout
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutText.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -199,7 +199,7 @@ items:
   fullName: Reportman.Drawing.PosText.regular
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutText.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutText.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

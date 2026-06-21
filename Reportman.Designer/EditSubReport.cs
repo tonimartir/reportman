@@ -32,6 +32,11 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Reportman.Designer
 {
+    /// <summary>
+    /// Design-surface control that renders a subreport's sections (bands) and their
+    /// print items, handling selection, drag-and-drop, resizing and band repositioning
+    /// for the visual report designer.
+    /// </summary>
     public partial class EditSubReport : UserControl
     {
         List<BandInfo> Bands;
@@ -2723,8 +2728,17 @@ namespace Reportman.Designer
             }
         }
     }
+    /// <summary>
+    /// Identifies the currently active design palette tool, determining whether the mouse
+    /// selects existing items (Arrow) or inserts a new item of the given kind.
+    /// </summary>
     public enum SelectedItemPalette { Arrow, Label, Expression, Shape, Image, Chart, Barcode };
 
+    /// <summary>
+    /// Holds the layout state and cached bitmaps for a single section band drawn on the
+    /// design surface, including its position, size, title and the rendered section, ruler
+    /// and band images.
+    /// </summary>
     public class BandInfo : IDisposable
     {
         public BandInfo()

@@ -16,7 +16,7 @@ items:
   fullName: Reportman.Reporting.ReportException
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -60,7 +60,7 @@ items:
   fullName: Reportman.Reporting.ReportException.PropertyName
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -83,7 +83,7 @@ items:
   fullName: Reportman.Reporting.ReportException.Item
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -106,7 +106,7 @@ items:
   fullName: Reportman.Reporting.ReportException.ReportException(string, Reportman.Reporting.ReportItem, string)
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BaseReport.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BaseReport.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -552,7 +552,7 @@ references:
   commentId: T:Reportman.Reporting.ReportItem
   parent: Reportman.Reporting
   isExternal: true
-  href: Reportman.Reporting.ReportItem.html
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportItem.cs
   name: ReportItem
   nameWithType: ReportItem
   fullName: Reportman.Reporting.ReportItem

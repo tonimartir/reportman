@@ -20,7 +20,7 @@ items:
   fullName: Reportman.Drawing.StringExtensions
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringExtensions.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringExtensions.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -52,7 +52,7 @@ items:
   fullName: Reportman.Drawing.StringExtensions.Split(string, char, char, bool, bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringExtensions.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringExtensions.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -89,7 +89,7 @@ items:
   fullName: Reportman.Drawing.StringExtensions.Split(string, char, char, bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringExtensions.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringExtensions.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -124,7 +124,7 @@ items:
   fullName: Reportman.Drawing.StringExtensions.Escape(string, string, char)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringExtensions.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringExtensions.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -157,7 +157,7 @@ items:
   fullName: Reportman.Drawing.StringExtensions.Unescape(string, char)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringExtensions.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringExtensions.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -188,7 +188,7 @@ items:
   fullName: Reportman.Drawing.StringExtensions.RemoveDiacritics(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringExtensions.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringExtensions.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -217,7 +217,7 @@ items:
   fullName: Reportman.Drawing.StringExtensions.QuoteStr(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringExtensions.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringExtensions.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -246,7 +246,7 @@ items:
   fullName: Reportman.Drawing.StringExtensions.DoubleQuoteStr(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/StringExtensions.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/StringExtensions.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

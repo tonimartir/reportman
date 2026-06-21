@@ -1,0 +1,24 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.Templates
+  commentId: N:Reportman.Reporting.Templates
+  id: Reportman.Reporting.Templates
+  children:
+  - Reportman.Reporting.Templates.ReportTemplateFactory
+  langs:
+  - csharp
+  - vb
+  name: Reportman.Reporting.Templates
+  nameWithType: Reportman.Reporting.Templates
+  fullName: Reportman.Reporting.Templates
+  type: Namespace
+  assemblies:
+  - Reportman.Reporting.Templates
+references:
+- uid: Reportman.Reporting.Templates.ReportTemplateFactory
+  commentId: T:Reportman.Reporting.Templates.ReportTemplateFactory
+  isExternal: true
+  href: Reportman.Reporting.Templates.ReportTemplateFactory.html
+  name: ReportTemplateFactory
+  nameWithType: ReportTemplateFactory
+  fullName: Reportman.Reporting.Templates.ReportTemplateFactory

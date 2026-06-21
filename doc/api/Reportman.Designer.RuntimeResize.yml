@@ -1,0 +1,847 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Designer.RuntimeResize
+  commentId: T:Reportman.Designer.RuntimeResize
+  id: RuntimeResize
+  parent: Reportman.Designer
+  children:
+  - Reportman.Designer.RuntimeResize.#ctor
+  - Reportman.Designer.RuntimeResize.Action
+  - Reportman.Designer.RuntimeResize.BringToFront
+  - Reportman.Designer.RuntimeResize.Dispose
+  - Reportman.Designer.RuntimeResize.GridEnabled
+  - Reportman.Designer.RuntimeResize.GridHeight
+  - Reportman.Designer.RuntimeResize.GridOffsetX
+  - Reportman.Designer.RuntimeResize.GridOffsetY
+  - Reportman.Designer.RuntimeResize.GridScale
+  - Reportman.Designer.RuntimeResize.GridWidth
+  - Reportman.Designer.RuntimeResize.OnGetBounds
+  - Reportman.Designer.RuntimeResize.OnNewBounds
+  - Reportman.Designer.RuntimeResize.OnSetBounds
+  - Reportman.Designer.RuntimeResize.Parent
+  - Reportman.Designer.RuntimeResize.SetBounds(System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean)
+  - Reportman.Designer.RuntimeResize.UpdatePos
+  langs:
+  - csharp
+  - vb
+  name: RuntimeResize
+  nameWithType: RuntimeResize
+  fullName: Reportman.Designer.RuntimeResize
+  type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RuntimeResize.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: Utility for resizing any item
+  example: []
+  syntax:
+    content: 'public class RuntimeResize : IDisposable'
+    content.vb: Public Class RuntimeResize Implements IDisposable
+  inheritance:
+  - System.Object
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Designer.RuntimeResize.Action
+  commentId: F:Reportman.Designer.RuntimeResize.Action
+  id: Action
+  parent: Reportman.Designer.RuntimeResize
+  langs:
+  - csharp
+  - vb
+  name: Action
+  nameWithType: RuntimeResize.Action
+  fullName: Reportman.Designer.RuntimeResize.Action
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RuntimeResize.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public ResizeAction Action
+    return:
+      type: Reportman.Designer.ResizeAction
+    content.vb: Public Action As ResizeAction
+- uid: Reportman.Designer.RuntimeResize.OnGetBounds
+  commentId: F:Reportman.Designer.RuntimeResize.OnGetBounds
+  id: OnGetBounds
+  parent: Reportman.Designer.RuntimeResize
+  langs:
+  - csharp
+  - vb
+  name: OnGetBounds
+  nameWithType: RuntimeResize.OnGetBounds
+  fullName: Reportman.Designer.RuntimeResize.OnGetBounds
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RuntimeResize.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public ResizeEventGetBounds OnGetBounds
+    return:
+      type: Reportman.Designer.ResizeEventGetBounds
+    content.vb: Public OnGetBounds As ResizeEventGetBounds
+- uid: Reportman.Designer.RuntimeResize.OnSetBounds
+  commentId: F:Reportman.Designer.RuntimeResize.OnSetBounds
+  id: OnSetBounds
+  parent: Reportman.Designer.RuntimeResize
+  langs:
+  - csharp
+  - vb
+  name: OnSetBounds
+  nameWithType: RuntimeResize.OnSetBounds
+  fullName: Reportman.Designer.RuntimeResize.OnSetBounds
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RuntimeResize.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public ResizeEventSetBounds OnSetBounds
+    return:
+      type: Reportman.Designer.ResizeEventSetBounds
+    content.vb: Public OnSetBounds As ResizeEventSetBounds
+- uid: Reportman.Designer.RuntimeResize.OnNewBounds
+  commentId: F:Reportman.Designer.RuntimeResize.OnNewBounds
+  id: OnNewBounds
+  parent: Reportman.Designer.RuntimeResize
+  langs:
+  - csharp
+  - vb
+  name: OnNewBounds
+  nameWithType: RuntimeResize.OnNewBounds
+  fullName: Reportman.Designer.RuntimeResize.OnNewBounds
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RuntimeResize.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public ResizeEventSetBounds OnNewBounds
+    return:
+      type: Reportman.Designer.ResizeEventSetBounds
+    content.vb: Public OnNewBounds As ResizeEventSetBounds
+- uid: Reportman.Designer.RuntimeResize.GridEnabled
+  commentId: F:Reportman.Designer.RuntimeResize.GridEnabled
+  id: GridEnabled
+  parent: Reportman.Designer.RuntimeResize
+  langs:
+  - csharp
+  - vb
+  name: GridEnabled
+  nameWithType: RuntimeResize.GridEnabled
+  fullName: Reportman.Designer.RuntimeResize.GridEnabled
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RuntimeResize.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public bool GridEnabled
+    return:
+      type: System.Boolean
+    content.vb: Public GridEnabled As Boolean
+- uid: Reportman.Designer.RuntimeResize.GridWidth
+  commentId: F:Reportman.Designer.RuntimeResize.GridWidth
+  id: GridWidth
+  parent: Reportman.Designer.RuntimeResize
+  langs:
+  - csharp
+  - vb
+  name: GridWidth
+  nameWithType: RuntimeResize.GridWidth
+  fullName: Reportman.Designer.RuntimeResize.GridWidth
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RuntimeResize.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public int GridWidth
+    return:
+      type: System.Int32
+    content.vb: Public GridWidth As Integer
+- uid: Reportman.Designer.RuntimeResize.GridHeight
+  commentId: F:Reportman.Designer.RuntimeResize.GridHeight
+  id: GridHeight
+  parent: Reportman.Designer.RuntimeResize
+  langs:
+  - csharp
+  - vb
+  name: GridHeight
+  nameWithType: RuntimeResize.GridHeight
+  fullName: Reportman.Designer.RuntimeResize.GridHeight
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RuntimeResize.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public int GridHeight
+    return:
+      type: System.Int32
+    content.vb: Public GridHeight As Integer
+- uid: Reportman.Designer.RuntimeResize.GridOffsetX
+  commentId: F:Reportman.Designer.RuntimeResize.GridOffsetX
+  id: GridOffsetX
+  parent: Reportman.Designer.RuntimeResize
+  langs:
+  - csharp
+  - vb
+  name: GridOffsetX
+  nameWithType: RuntimeResize.GridOffsetX
+  fullName: Reportman.Designer.RuntimeResize.GridOffsetX
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RuntimeResize.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public int GridOffsetX
+    return:
+      type: System.Int32
+    content.vb: Public GridOffsetX As Integer
+- uid: Reportman.Designer.RuntimeResize.GridOffsetY
+  commentId: F:Reportman.Designer.RuntimeResize.GridOffsetY
+  id: GridOffsetY
+  parent: Reportman.Designer.RuntimeResize
+  langs:
+  - csharp
+  - vb
+  name: GridOffsetY
+  nameWithType: RuntimeResize.GridOffsetY
+  fullName: Reportman.Designer.RuntimeResize.GridOffsetY
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RuntimeResize.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public int GridOffsetY
+    return:
+      type: System.Int32
+    content.vb: Public GridOffsetY As Integer
+- uid: Reportman.Designer.RuntimeResize.GridScale
+  commentId: F:Reportman.Designer.RuntimeResize.GridScale
+  id: GridScale
+  parent: Reportman.Designer.RuntimeResize
+  langs:
+  - csharp
+  - vb
+  name: GridScale
+  nameWithType: RuntimeResize.GridScale
+  fullName: Reportman.Designer.RuntimeResize.GridScale
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RuntimeResize.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public double GridScale
+    return:
+      type: System.Double
+    content.vb: Public GridScale As Double
+- uid: Reportman.Designer.RuntimeResize.#ctor
+  commentId: M:Reportman.Designer.RuntimeResize.#ctor
+  id: '#ctor'
+  parent: Reportman.Designer.RuntimeResize
+  langs:
+  - csharp
+  - vb
+  name: RuntimeResize()
+  nameWithType: RuntimeResize.RuntimeResize()
+  fullName: Reportman.Designer.RuntimeResize.RuntimeResize()
+  type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RuntimeResize.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public RuntimeResize()
+    content.vb: Public Sub New()
+  overload: Reportman.Designer.RuntimeResize.#ctor*
+  nameWithType.vb: RuntimeResize.New()
+  fullName.vb: Reportman.Designer.RuntimeResize.New()
+  name.vb: New()
+- uid: Reportman.Designer.RuntimeResize.Dispose
+  commentId: M:Reportman.Designer.RuntimeResize.Dispose
+  id: Dispose
+  parent: Reportman.Designer.RuntimeResize
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: RuntimeResize.Dispose()
+  fullName: Reportman.Designer.RuntimeResize.Dispose()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RuntimeResize.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  example: []
+  syntax:
+    content: public void Dispose()
+    content.vb: Public Sub Dispose()
+  overload: Reportman.Designer.RuntimeResize.Dispose*
+  implements:
+  - System.IDisposable.Dispose
+- uid: Reportman.Designer.RuntimeResize.SetBounds(System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean)
+  commentId: M:Reportman.Designer.RuntimeResize.SetBounds(System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean)
+  id: SetBounds(System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean)
+  parent: Reportman.Designer.RuntimeResize
+  langs:
+  - csharp
+  - vb
+  name: SetBounds(int, int, int, int, bool)
+  nameWithType: RuntimeResize.SetBounds(int, int, int, int, bool)
+  fullName: Reportman.Designer.RuntimeResize.SetBounds(int, int, int, int, bool)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RuntimeResize.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public void SetBounds(int Left, int Top, int Width, int Height, bool finish)
+    parameters:
+    - id: Left
+      type: System.Int32
+    - id: Top
+      type: System.Int32
+    - id: Width
+      type: System.Int32
+    - id: Height
+      type: System.Int32
+    - id: finish
+      type: System.Boolean
+    content.vb: Public Sub SetBounds(Left As Integer, Top As Integer, Width As Integer, Height As Integer, finish As Boolean)
+  overload: Reportman.Designer.RuntimeResize.SetBounds*
+  nameWithType.vb: RuntimeResize.SetBounds(Integer, Integer, Integer, Integer, Boolean)
+  fullName.vb: Reportman.Designer.RuntimeResize.SetBounds(Integer, Integer, Integer, Integer, Boolean)
+  name.vb: SetBounds(Integer, Integer, Integer, Integer, Boolean)
+- uid: Reportman.Designer.RuntimeResize.UpdatePos
+  commentId: M:Reportman.Designer.RuntimeResize.UpdatePos
+  id: UpdatePos
+  parent: Reportman.Designer.RuntimeResize
+  langs:
+  - csharp
+  - vb
+  name: UpdatePos()
+  nameWithType: RuntimeResize.UpdatePos()
+  fullName: Reportman.Designer.RuntimeResize.UpdatePos()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RuntimeResize.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public void UpdatePos()
+    content.vb: Public Sub UpdatePos()
+  overload: Reportman.Designer.RuntimeResize.UpdatePos*
+- uid: Reportman.Designer.RuntimeResize.BringToFront
+  commentId: M:Reportman.Designer.RuntimeResize.BringToFront
+  id: BringToFront
+  parent: Reportman.Designer.RuntimeResize
+  langs:
+  - csharp
+  - vb
+  name: BringToFront()
+  nameWithType: RuntimeResize.BringToFront()
+  fullName: Reportman.Designer.RuntimeResize.BringToFront()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RuntimeResize.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public void BringToFront()
+    content.vb: Public Sub BringToFront()
+  overload: Reportman.Designer.RuntimeResize.BringToFront*
+- uid: Reportman.Designer.RuntimeResize.Parent
+  commentId: P:Reportman.Designer.RuntimeResize.Parent
+  id: Parent
+  parent: Reportman.Designer.RuntimeResize
+  langs:
+  - csharp
+  - vb
+  name: Parent
+  nameWithType: RuntimeResize.Parent
+  fullName: Reportman.Designer.RuntimeResize.Parent
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RuntimeResize.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public Control Parent { get; set; }
+    parameters: []
+    return:
+      type: System.Windows.Forms.Control
+    content.vb: Public Property Parent As Control
+  overload: Reportman.Designer.RuntimeResize.Parent*
+references:
+- uid: Reportman.Designer
+  commentId: N:Reportman.Designer
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Designer
+  nameWithType: Reportman.Designer
+  fullName: Reportman.Designer
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Designer.ResizeAction
+  commentId: T:Reportman.Designer.ResizeAction
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.ResizeAction.html
+  name: ResizeAction
+  nameWithType: ResizeAction
+  fullName: Reportman.Designer.ResizeAction
+- uid: Reportman.Designer.ResizeEventGetBounds
+  commentId: T:Reportman.Designer.ResizeEventGetBounds
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.ResizeEventGetBounds.html
+  name: ResizeEventGetBounds
+  nameWithType: ResizeEventGetBounds
+  fullName: Reportman.Designer.ResizeEventGetBounds
+- uid: Reportman.Designer.ResizeEventSetBounds
+  commentId: T:Reportman.Designer.ResizeEventSetBounds
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.ResizeEventSetBounds.html
+  name: ResizeEventSetBounds
+  nameWithType: ResizeEventSetBounds
+  fullName: Reportman.Designer.ResizeEventSetBounds
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.double
+  name: double
+  nameWithType: double
+  fullName: double
+  nameWithType.vb: Double
+  fullName.vb: Double
+  name.vb: Double
+- uid: Reportman.Designer.RuntimeResize.#ctor*
+  commentId: Overload:Reportman.Designer.RuntimeResize.#ctor
+  isExternal: true
+  href: Reportman.Designer.RuntimeResize.html#Reportman_Designer_RuntimeResize__ctor
+  name: RuntimeResize
+  nameWithType: RuntimeResize.RuntimeResize
+  fullName: Reportman.Designer.RuntimeResize.RuntimeResize
+  nameWithType.vb: RuntimeResize.New
+  fullName.vb: Reportman.Designer.RuntimeResize.New
+  name.vb: New
+- uid: Reportman.Designer.RuntimeResize.Dispose*
+  commentId: Overload:Reportman.Designer.RuntimeResize.Dispose
+  isExternal: true
+  href: Reportman.Designer.RuntimeResize.html#Reportman_Designer_RuntimeResize_Dispose
+  name: Dispose
+  nameWithType: RuntimeResize.Dispose
+  fullName: Reportman.Designer.RuntimeResize.Dispose
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
+  spec.csharp:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )
+- uid: Reportman.Designer.RuntimeResize.SetBounds*
+  commentId: Overload:Reportman.Designer.RuntimeResize.SetBounds
+  isExternal: true
+  href: Reportman.Designer.RuntimeResize.html#Reportman_Designer_RuntimeResize_SetBounds_System_Int32_System_Int32_System_Int32_System_Int32_System_Boolean_
+  name: SetBounds
+  nameWithType: RuntimeResize.SetBounds
+  fullName: Reportman.Designer.RuntimeResize.SetBounds
+- uid: Reportman.Designer.RuntimeResize.UpdatePos*
+  commentId: Overload:Reportman.Designer.RuntimeResize.UpdatePos
+  isExternal: true
+  href: Reportman.Designer.RuntimeResize.html#Reportman_Designer_RuntimeResize_UpdatePos
+  name: UpdatePos
+  nameWithType: RuntimeResize.UpdatePos
+  fullName: Reportman.Designer.RuntimeResize.UpdatePos
+- uid: Reportman.Designer.RuntimeResize.BringToFront*
+  commentId: Overload:Reportman.Designer.RuntimeResize.BringToFront
+  isExternal: true
+  href: Reportman.Designer.RuntimeResize.html#Reportman_Designer_RuntimeResize_BringToFront
+  name: BringToFront
+  nameWithType: RuntimeResize.BringToFront
+  fullName: Reportman.Designer.RuntimeResize.BringToFront
+- uid: Reportman.Designer.RuntimeResize.Parent*
+  commentId: Overload:Reportman.Designer.RuntimeResize.Parent
+  isExternal: true
+  href: Reportman.Designer.RuntimeResize.html#Reportman_Designer_RuntimeResize_Parent
+  name: Parent
+  nameWithType: RuntimeResize.Parent
+  fullName: Reportman.Designer.RuntimeResize.Parent
+- uid: System.Windows.Forms.Control
+  commentId: T:System.Windows.Forms.Control
+  parent: System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.windows.forms.control
+  name: Control
+  nameWithType: Control
+  fullName: System.Windows.Forms.Control
+- uid: System.Windows.Forms
+  commentId: N:System.Windows.Forms
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Windows.Forms
+  nameWithType: System.Windows.Forms
+  fullName: System.Windows.Forms
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Windows
+    name: Windows
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows
+  - name: .
+  - uid: System.Windows.Forms
+    name: Forms
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Windows
+    name: Windows
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows
+  - name: .
+  - uid: System.Windows.Forms
+    name: Forms
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.windows.forms

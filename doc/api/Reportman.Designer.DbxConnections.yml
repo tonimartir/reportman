@@ -1,0 +1,837 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Designer.DbxConnections
+  commentId: T:Reportman.Designer.DbxConnections
+  id: DbxConnections
+  parent: Reportman.Designer
+  children:
+  - Reportman.Designer.DbxConnections.AGENT_DRIVER_NAME
+  - Reportman.Designer.DbxConnections.Candidates
+  - Reportman.Designer.DbxConnections.GetConnectionNames
+  - Reportman.Designer.DbxConnections.GetPath
+  - Reportman.Designer.DbxConnections.IsAgentConnection(System.String)
+  - Reportman.Designer.DbxConnections.OverridePath
+  - Reportman.Designer.DbxConnections.ReadAgent(System.String,System.String@,System.Int64@,System.String@)
+  - Reportman.Designer.DbxConnections.ResolveExistingPath
+  - Reportman.Designer.DbxConnections.ResolveWritePath
+  - Reportman.Designer.DbxConnections.WriteAgent(System.String,System.String,System.Int64,System.String)
+  langs:
+  - csharp
+  - vb
+  name: DbxConnections
+  nameWithType: DbxConnections
+  fullName: Reportman.Designer.DbxConnections
+  type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/DbxConnections.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: >-
+    Reads/writes the shared <code>dbxconnections.ini</code> used by both the Delphi and
+
+    the .Net designers to store connection definitions. For HTTP Agent connections
+
+    it keeps the sensitive data (API key, selected Hub database) here instead of in
+
+    the report, exactly like Delphi. Path resolution and section/key names are kept
+
+    compatible with Delphi (see Reportman.Reporting.DatabaseInfo dbx config reader).
+  example: []
+  syntax:
+    content: public static class DbxConnections
+    content.vb: Public Module DbxConnections
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Designer.DbxConnections.AGENT_DRIVER_NAME
+  commentId: F:Reportman.Designer.DbxConnections.AGENT_DRIVER_NAME
+  id: AGENT_DRIVER_NAME
+  parent: Reportman.Designer.DbxConnections
+  langs:
+  - csharp
+  - vb
+  name: AGENT_DRIVER_NAME
+  nameWithType: DbxConnections.AGENT_DRIVER_NAME
+  fullName: Reportman.Designer.DbxConnections.AGENT_DRIVER_NAME
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/DbxConnections.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: Driver name written for agent connections (same literal Delphi uses).
+  example: []
+  syntax:
+    content: public const string AGENT_DRIVER_NAME = "Reportman AI Agent"
+    return:
+      type: System.String
+    content.vb: Public Const AGENT_DRIVER_NAME As String = "Reportman AI Agent"
+- uid: Reportman.Designer.DbxConnections.OverridePath
+  commentId: F:Reportman.Designer.DbxConnections.OverridePath
+  id: OverridePath
+  parent: Reportman.Designer.DbxConnections
+  langs:
+  - csharp
+  - vb
+  name: OverridePath
+  nameWithType: DbxConnections.OverridePath
+  fullName: Reportman.Designer.DbxConnections.OverridePath
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/DbxConnections.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: Test-only override of the file path (used by the wizard self-test so the shared file is not touched).
+  example: []
+  syntax:
+    content: public static string OverridePath
+    return:
+      type: System.String
+    content.vb: Public Shared OverridePath As String
+- uid: Reportman.Designer.DbxConnections.Candidates
+  commentId: M:Reportman.Designer.DbxConnections.Candidates
+  id: Candidates
+  parent: Reportman.Designer.DbxConnections
+  langs:
+  - csharp
+  - vb
+  name: Candidates()
+  nameWithType: DbxConnections.Candidates()
+  fullName: Reportman.Designer.DbxConnections.Candidates()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/DbxConnections.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: Candidate paths in the same order as DatabaseInfo's dbx config reader.
+  example: []
+  syntax:
+    content: public static IEnumerable<string> Candidates()
+    return:
+      type: System.Collections.Generic.IEnumerable{System.String}
+    content.vb: Public Shared Function Candidates() As IEnumerable(Of String)
+  overload: Reportman.Designer.DbxConnections.Candidates*
+- uid: Reportman.Designer.DbxConnections.ResolveExistingPath
+  commentId: M:Reportman.Designer.DbxConnections.ResolveExistingPath
+  id: ResolveExistingPath
+  parent: Reportman.Designer.DbxConnections
+  langs:
+  - csharp
+  - vb
+  name: ResolveExistingPath()
+  nameWithType: DbxConnections.ResolveExistingPath()
+  fullName: Reportman.Designer.DbxConnections.ResolveExistingPath()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/DbxConnections.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: First existing dbxconnections.ini, or "" if none exists yet.
+  example: []
+  syntax:
+    content: public static string ResolveExistingPath()
+    return:
+      type: System.String
+    content.vb: Public Shared Function ResolveExistingPath() As String
+  overload: Reportman.Designer.DbxConnections.ResolveExistingPath*
+- uid: Reportman.Designer.DbxConnections.ResolveWritePath
+  commentId: M:Reportman.Designer.DbxConnections.ResolveWritePath
+  id: ResolveWritePath
+  parent: Reportman.Designer.DbxConnections
+  langs:
+  - csharp
+  - vb
+  name: ResolveWritePath()
+  nameWithType: DbxConnections.ResolveWritePath()
+  fullName: Reportman.Designer.DbxConnections.ResolveWritePath()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/DbxConnections.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: 'Path to write to: the existing file if any, otherwise the preferred default.'
+  example: []
+  syntax:
+    content: public static string ResolveWritePath()
+    return:
+      type: System.String
+    content.vb: Public Shared Function ResolveWritePath() As String
+  overload: Reportman.Designer.DbxConnections.ResolveWritePath*
+- uid: Reportman.Designer.DbxConnections.GetPath
+  commentId: M:Reportman.Designer.DbxConnections.GetPath
+  id: GetPath
+  parent: Reportman.Designer.DbxConnections
+  langs:
+  - csharp
+  - vb
+  name: GetPath()
+  nameWithType: DbxConnections.GetPath()
+  fullName: Reportman.Designer.DbxConnections.GetPath()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/DbxConnections.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: Path shown to the user (existing or the one that would be created).
+  example: []
+  syntax:
+    content: public static string GetPath()
+    return:
+      type: System.String
+    content.vb: Public Shared Function GetPath() As String
+  overload: Reportman.Designer.DbxConnections.GetPath*
+- uid: Reportman.Designer.DbxConnections.GetConnectionNames
+  commentId: M:Reportman.Designer.DbxConnections.GetConnectionNames
+  id: GetConnectionNames
+  parent: Reportman.Designer.DbxConnections
+  langs:
+  - csharp
+  - vb
+  name: GetConnectionNames()
+  nameWithType: DbxConnections.GetConnectionNames()
+  fullName: Reportman.Designer.DbxConnections.GetConnectionNames()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/DbxConnections.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: All connection (section) names in the file.
+  example: []
+  syntax:
+    content: public static List<string> GetConnectionNames()
+    return:
+      type: System.Collections.Generic.List{System.String}
+    content.vb: Public Shared Function GetConnectionNames() As List(Of String)
+  overload: Reportman.Designer.DbxConnections.GetConnectionNames*
+- uid: Reportman.Designer.DbxConnections.IsAgentConnection(System.String)
+  commentId: M:Reportman.Designer.DbxConnections.IsAgentConnection(System.String)
+  id: IsAgentConnection(System.String)
+  parent: Reportman.Designer.DbxConnections
+  langs:
+  - csharp
+  - vb
+  name: IsAgentConnection(string)
+  nameWithType: DbxConnections.IsAgentConnection(string)
+  fullName: Reportman.Designer.DbxConnections.IsAgentConnection(string)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/DbxConnections.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: True if the section's DriverName is a Reportman agent driver.
+  example: []
+  syntax:
+    content: public static bool IsAgentConnection(string alias)
+    parameters:
+    - id: alias
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function IsAgentConnection([alias] As String) As Boolean
+  overload: Reportman.Designer.DbxConnections.IsAgentConnection*
+  nameWithType.vb: DbxConnections.IsAgentConnection(String)
+  fullName.vb: Reportman.Designer.DbxConnections.IsAgentConnection(String)
+  name.vb: IsAgentConnection(String)
+- uid: Reportman.Designer.DbxConnections.ReadAgent(System.String,System.String@,System.Int64@,System.String@)
+  commentId: M:Reportman.Designer.DbxConnections.ReadAgent(System.String,System.String@,System.Int64@,System.String@)
+  id: ReadAgent(System.String,System.String@,System.Int64@,System.String@)
+  parent: Reportman.Designer.DbxConnections
+  langs:
+  - csharp
+  - vb
+  name: ReadAgent(string, out string, out long, out string)
+  nameWithType: DbxConnections.ReadAgent(string, out string, out long, out string)
+  fullName: Reportman.Designer.DbxConnections.ReadAgent(string, out string, out long, out string)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/DbxConnections.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: Read the HTTP Agent parameters stored for a connection alias.
+  example: []
+  syntax:
+    content: public static void ReadAgent(string alias, out string apiKey, out long hubDatabaseId, out string baseUrl)
+    parameters:
+    - id: alias
+      type: System.String
+    - id: apiKey
+      type: System.String
+    - id: hubDatabaseId
+      type: System.Int64
+    - id: baseUrl
+      type: System.String
+    content.vb: Public Shared Sub ReadAgent([alias] As String, apiKey As String, hubDatabaseId As Long, baseUrl As String)
+  overload: Reportman.Designer.DbxConnections.ReadAgent*
+  nameWithType.vb: DbxConnections.ReadAgent(String, String, Long, String)
+  fullName.vb: Reportman.Designer.DbxConnections.ReadAgent(String, String, Long, String)
+  name.vb: ReadAgent(String, String, Long, String)
+- uid: Reportman.Designer.DbxConnections.WriteAgent(System.String,System.String,System.Int64,System.String)
+  commentId: M:Reportman.Designer.DbxConnections.WriteAgent(System.String,System.String,System.Int64,System.String)
+  id: WriteAgent(System.String,System.String,System.Int64,System.String)
+  parent: Reportman.Designer.DbxConnections
+  langs:
+  - csharp
+  - vb
+  name: WriteAgent(string, string, long, string)
+  nameWithType: DbxConnections.WriteAgent(string, string, long, string)
+  fullName: Reportman.Designer.DbxConnections.WriteAgent(string, string, long, string)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/DbxConnections.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: >-
+    Write/update the HTTP Agent parameters for a connection alias, preserving all
+
+    other sections and lines (so a shared Delphi/.Net file stays intact).
+  example: []
+  syntax:
+    content: public static void WriteAgent(string alias, string apiKey, long hubDatabaseId, string baseUrl)
+    parameters:
+    - id: alias
+      type: System.String
+    - id: apiKey
+      type: System.String
+    - id: hubDatabaseId
+      type: System.Int64
+    - id: baseUrl
+      type: System.String
+    content.vb: Public Shared Sub WriteAgent([alias] As String, apiKey As String, hubDatabaseId As Long, baseUrl As String)
+  overload: Reportman.Designer.DbxConnections.WriteAgent*
+  nameWithType.vb: DbxConnections.WriteAgent(String, String, Long, String)
+  fullName.vb: Reportman.Designer.DbxConnections.WriteAgent(String, String, Long, String)
+  name.vb: WriteAgent(String, String, Long, String)
+references:
+- uid: Reportman.Designer
+  commentId: N:Reportman.Designer
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Designer
+  nameWithType: Reportman.Designer
+  fullName: Reportman.Designer
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Reportman.Designer.DbxConnections.Candidates*
+  commentId: Overload:Reportman.Designer.DbxConnections.Candidates
+  isExternal: true
+  href: Reportman.Designer.DbxConnections.html#Reportman_Designer_DbxConnections_Candidates
+  name: Candidates
+  nameWithType: DbxConnections.Candidates
+  fullName: Reportman.Designer.DbxConnections.Candidates
+- uid: System.Collections.Generic.IEnumerable{System.String}
+  commentId: T:System.Collections.Generic.IEnumerable{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<string>
+  nameWithType: IEnumerable<string>
+  fullName: System.Collections.Generic.IEnumerable<string>
+  nameWithType.vb: IEnumerable(Of String)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of String)
+  name.vb: IEnumerable(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Reportman.Designer.DbxConnections.ResolveExistingPath*
+  commentId: Overload:Reportman.Designer.DbxConnections.ResolveExistingPath
+  isExternal: true
+  href: Reportman.Designer.DbxConnections.html#Reportman_Designer_DbxConnections_ResolveExistingPath
+  name: ResolveExistingPath
+  nameWithType: DbxConnections.ResolveExistingPath
+  fullName: Reportman.Designer.DbxConnections.ResolveExistingPath
+- uid: Reportman.Designer.DbxConnections.ResolveWritePath*
+  commentId: Overload:Reportman.Designer.DbxConnections.ResolveWritePath
+  isExternal: true
+  href: Reportman.Designer.DbxConnections.html#Reportman_Designer_DbxConnections_ResolveWritePath
+  name: ResolveWritePath
+  nameWithType: DbxConnections.ResolveWritePath
+  fullName: Reportman.Designer.DbxConnections.ResolveWritePath
+- uid: Reportman.Designer.DbxConnections.GetPath*
+  commentId: Overload:Reportman.Designer.DbxConnections.GetPath
+  isExternal: true
+  href: Reportman.Designer.DbxConnections.html#Reportman_Designer_DbxConnections_GetPath
+  name: GetPath
+  nameWithType: DbxConnections.GetPath
+  fullName: Reportman.Designer.DbxConnections.GetPath
+- uid: Reportman.Designer.DbxConnections.GetConnectionNames*
+  commentId: Overload:Reportman.Designer.DbxConnections.GetConnectionNames
+  isExternal: true
+  href: Reportman.Designer.DbxConnections.html#Reportman_Designer_DbxConnections_GetConnectionNames
+  name: GetConnectionNames
+  nameWithType: DbxConnections.GetConnectionNames
+  fullName: Reportman.Designer.DbxConnections.GetConnectionNames
+- uid: System.Collections.Generic.List{System.String}
+  commentId: T:System.Collections.Generic.List{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<string>
+  nameWithType: List<string>
+  fullName: System.Collections.Generic.List<string>
+  nameWithType.vb: List(Of String)
+  fullName.vb: System.Collections.Generic.List(Of String)
+  name.vb: List(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Reportman.Designer.DbxConnections.IsAgentConnection*
+  commentId: Overload:Reportman.Designer.DbxConnections.IsAgentConnection
+  isExternal: true
+  href: Reportman.Designer.DbxConnections.html#Reportman_Designer_DbxConnections_IsAgentConnection_System_String_
+  name: IsAgentConnection
+  nameWithType: DbxConnections.IsAgentConnection
+  fullName: Reportman.Designer.DbxConnections.IsAgentConnection
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Reportman.Designer.DbxConnections.ReadAgent*
+  commentId: Overload:Reportman.Designer.DbxConnections.ReadAgent
+  isExternal: true
+  href: Reportman.Designer.DbxConnections.html#Reportman_Designer_DbxConnections_ReadAgent_System_String_System_String__System_Int64__System_String__
+  name: ReadAgent
+  nameWithType: DbxConnections.ReadAgent
+  fullName: Reportman.Designer.DbxConnections.ReadAgent
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: Reportman.Designer.DbxConnections.WriteAgent*
+  commentId: Overload:Reportman.Designer.DbxConnections.WriteAgent
+  isExternal: true
+  href: Reportman.Designer.DbxConnections.html#Reportman_Designer_DbxConnections_WriteAgent_System_String_System_String_System_Int64_System_String_
+  name: WriteAgent
+  nameWithType: DbxConnections.WriteAgent
+  fullName: Reportman.Designer.DbxConnections.WriteAgent

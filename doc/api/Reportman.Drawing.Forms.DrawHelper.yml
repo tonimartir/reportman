@@ -24,7 +24,7 @@ items:
   fullName: Reportman.Drawing.Forms.DrawHelper
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -58,7 +58,7 @@ items:
   fullName: Reportman.Drawing.Forms.DrawHelper._halfToneBrush
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -79,7 +79,7 @@ items:
   fullName: Reportman.Drawing.Forms.DrawHelper.DrawReverseString(System.Drawing.Graphics, string, System.Drawing.Font, System.Drawing.Rectangle, System.Drawing.Brush, System.Drawing.StringFormat)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -115,7 +115,7 @@ items:
   fullName: Reportman.Drawing.Forms.DrawHelper.DrawPlainRaised(System.Drawing.Graphics, System.Drawing.Rectangle, System.Drawing.Color)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -142,7 +142,7 @@ items:
   fullName: Reportman.Drawing.Forms.DrawHelper.DrawPlainSunken(System.Drawing.Graphics, System.Drawing.Rectangle, System.Drawing.Color)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -169,7 +169,7 @@ items:
   fullName: Reportman.Drawing.Forms.DrawHelper.DrawPlainRaisedBorder(System.Drawing.Graphics, System.Drawing.Rectangle, System.Drawing.Color, System.Drawing.Color, System.Drawing.Color, System.Drawing.Color)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -202,7 +202,7 @@ items:
   fullName: Reportman.Drawing.Forms.DrawHelper.DrawPlainRaisedBorderTopOrBottom(System.Drawing.Graphics, System.Drawing.Rectangle, System.Drawing.Color, System.Drawing.Color, System.Drawing.Color, System.Drawing.Color, bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -240,7 +240,7 @@ items:
   fullName: Reportman.Drawing.Forms.DrawHelper.DrawPlainSunkenBorder(System.Drawing.Graphics, System.Drawing.Rectangle, System.Drawing.Color, System.Drawing.Color, System.Drawing.Color, System.Drawing.Color)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -273,7 +273,7 @@ items:
   fullName: Reportman.Drawing.Forms.DrawHelper.DrawPlainSunkenBorderTopOrBottom(System.Drawing.Graphics, System.Drawing.Rectangle, System.Drawing.Color, System.Drawing.Color, System.Drawing.Color, System.Drawing.Color, bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -311,7 +311,7 @@ items:
   fullName: Reportman.Drawing.Forms.DrawHelper.DrawButtonCommand(System.Drawing.Graphics, Reportman.Drawing.Forms.VisualStyle, Reportman.Drawing.Forms.Direction, System.Drawing.Rectangle, Reportman.Drawing.Forms.DrawHelper.CommandState, System.Drawing.Color, System.Drawing.Color, System.Drawing.Color)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -348,7 +348,7 @@ items:
   fullName: Reportman.Drawing.Forms.DrawHelper.DrawSeparatorCommand(System.Drawing.Graphics, Reportman.Drawing.Forms.VisualStyle, Reportman.Drawing.Forms.Direction, System.Drawing.Rectangle, System.Drawing.Color)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms
@@ -379,7 +379,7 @@ items:
   fullName: Reportman.Drawing.Forms.DrawHelper.DrawHelper()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/TabControlAdvanced.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/TabControlAdvanced.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Drawing.Forms

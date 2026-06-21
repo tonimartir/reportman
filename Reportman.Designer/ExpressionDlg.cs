@@ -9,6 +9,10 @@ using System.Windows.Forms;
 
 namespace Reportman.Designer
 {
+    /// <summary>
+    /// Dialog for editing a report expression, providing a categorized helper of fields, functions,
+    /// variables and operators, syntax checking and evaluation, alongside an AI expression chat panel.
+    /// </summary>
     public partial class ExpressionDlg : UserControl
     {
         private const string ExpressionChatInitialMessage = "Ask for help rewriting, simplifying or validating the current expression. Click 'Apply' to replace the expression.";

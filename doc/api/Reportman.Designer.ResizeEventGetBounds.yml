@@ -1,0 +1,275 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Designer.ResizeEventGetBounds
+  commentId: T:Reportman.Designer.ResizeEventGetBounds
+  id: ResizeEventGetBounds
+  parent: Reportman.Designer
+  children:
+  - Reportman.Designer.ResizeEventGetBounds.#ctor(System.Object,System.IntPtr)
+  - Reportman.Designer.ResizeEventGetBounds.BeginInvoke(System.AsyncCallback,System.Object)
+  - Reportman.Designer.ResizeEventGetBounds.EndInvoke(System.IAsyncResult)
+  - Reportman.Designer.ResizeEventGetBounds.Invoke
+  langs:
+  - csharp
+  - vb
+  name: ResizeEventGetBounds
+  nameWithType: ResizeEventGetBounds
+  fullName: Reportman.Designer.ResizeEventGetBounds
+  type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RuntimeResize.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: Event to retrieve original object bounds
+  example: []
+  syntax:
+    content: public delegate Rectangle ResizeEventGetBounds()
+    return:
+      type: System.Drawing.Rectangle
+      description: ''
+    content.vb: Public Delegate Function ResizeEventGetBounds() As Rectangle
+- uid: Reportman.Designer.ResizeEventGetBounds.#ctor(System.Object,System.IntPtr)
+  commentId: M:Reportman.Designer.ResizeEventGetBounds.#ctor(System.Object,System.IntPtr)
+  id: '#ctor(System.Object,System.IntPtr)'
+  parent: Reportman.Designer.ResizeEventGetBounds
+  langs:
+  - csharp
+  - vb
+  name: ResizeEventGetBounds(object, nint)
+  nameWithType: ResizeEventGetBounds.ResizeEventGetBounds(object, nint)
+  fullName: Reportman.Designer.ResizeEventGetBounds.ResizeEventGetBounds(object, nint)
+  type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RuntimeResize.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public ResizeEventGetBounds(object @object, nint method)
+    parameters:
+    - id: object
+      type: System.Object
+    - id: method
+      type: System.IntPtr
+    content.vb: Public Sub New([object] As Object, method As IntPtr)
+  overload: Reportman.Designer.ResizeEventGetBounds.#ctor*
+  nameWithType.vb: ResizeEventGetBounds.New(Object, IntPtr)
+  fullName.vb: Reportman.Designer.ResizeEventGetBounds.New(Object, System.IntPtr)
+  name.vb: New(Object, IntPtr)
+- uid: Reportman.Designer.ResizeEventGetBounds.Invoke
+  commentId: M:Reportman.Designer.ResizeEventGetBounds.Invoke
+  id: Invoke
+  parent: Reportman.Designer.ResizeEventGetBounds
+  langs:
+  - csharp
+  - vb
+  name: Invoke()
+  nameWithType: ResizeEventGetBounds.Invoke()
+  fullName: Reportman.Designer.ResizeEventGetBounds.Invoke()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RuntimeResize.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public virtual Rectangle Invoke()
+    return:
+      type: System.Drawing.Rectangle
+    content.vb: Public Overridable Function Invoke() As Rectangle
+  overload: Reportman.Designer.ResizeEventGetBounds.Invoke*
+- uid: Reportman.Designer.ResizeEventGetBounds.BeginInvoke(System.AsyncCallback,System.Object)
+  commentId: M:Reportman.Designer.ResizeEventGetBounds.BeginInvoke(System.AsyncCallback,System.Object)
+  id: BeginInvoke(System.AsyncCallback,System.Object)
+  parent: Reportman.Designer.ResizeEventGetBounds
+  langs:
+  - csharp
+  - vb
+  name: BeginInvoke(AsyncCallback, object)
+  nameWithType: ResizeEventGetBounds.BeginInvoke(AsyncCallback, object)
+  fullName: Reportman.Designer.ResizeEventGetBounds.BeginInvoke(System.AsyncCallback, object)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RuntimeResize.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public virtual IAsyncResult BeginInvoke(AsyncCallback callback, object @object)
+    parameters:
+    - id: callback
+      type: System.AsyncCallback
+    - id: object
+      type: System.Object
+    return:
+      type: System.IAsyncResult
+    content.vb: Public Overridable Function BeginInvoke(callback As AsyncCallback, [object] As Object) As IAsyncResult
+  overload: Reportman.Designer.ResizeEventGetBounds.BeginInvoke*
+  nameWithType.vb: ResizeEventGetBounds.BeginInvoke(AsyncCallback, Object)
+  fullName.vb: Reportman.Designer.ResizeEventGetBounds.BeginInvoke(System.AsyncCallback, Object)
+  name.vb: BeginInvoke(AsyncCallback, Object)
+- uid: Reportman.Designer.ResizeEventGetBounds.EndInvoke(System.IAsyncResult)
+  commentId: M:Reportman.Designer.ResizeEventGetBounds.EndInvoke(System.IAsyncResult)
+  id: EndInvoke(System.IAsyncResult)
+  parent: Reportman.Designer.ResizeEventGetBounds
+  langs:
+  - csharp
+  - vb
+  name: EndInvoke(IAsyncResult)
+  nameWithType: ResizeEventGetBounds.EndInvoke(IAsyncResult)
+  fullName: Reportman.Designer.ResizeEventGetBounds.EndInvoke(System.IAsyncResult)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/RuntimeResize.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public virtual Rectangle EndInvoke(IAsyncResult result)
+    parameters:
+    - id: result
+      type: System.IAsyncResult
+    return:
+      type: System.Drawing.Rectangle
+    content.vb: Public Overridable Function EndInvoke(result As IAsyncResult) As Rectangle
+  overload: Reportman.Designer.ResizeEventGetBounds.EndInvoke*
+references:
+- uid: Reportman.Designer
+  commentId: N:Reportman.Designer
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Designer
+  nameWithType: Reportman.Designer
+  fullName: Reportman.Designer
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+- uid: System.Drawing.Rectangle
+  commentId: T:System.Drawing.Rectangle
+  parent: System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.drawing.rectangle
+  name: Rectangle
+  nameWithType: Rectangle
+  fullName: System.Drawing.Rectangle
+- uid: System.Drawing
+  commentId: N:System.Drawing
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Drawing
+  nameWithType: System.Drawing
+  fullName: System.Drawing
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Drawing
+    name: Drawing
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing
+- uid: Reportman.Designer.ResizeEventGetBounds.#ctor*
+  commentId: Overload:Reportman.Designer.ResizeEventGetBounds.#ctor
+  isExternal: true
+  href: Reportman.Designer.ResizeEventGetBounds.html#Reportman_Designer_ResizeEventGetBounds__ctor_System_Object_System_IntPtr_
+  name: ResizeEventGetBounds
+  nameWithType: ResizeEventGetBounds.ResizeEventGetBounds
+  fullName: Reportman.Designer.ResizeEventGetBounds.ResizeEventGetBounds
+  nameWithType.vb: ResizeEventGetBounds.New
+  fullName.vb: Reportman.Designer.ResizeEventGetBounds.New
+  name.vb: New
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Designer.ResizeEventGetBounds.Invoke*
+  commentId: Overload:Reportman.Designer.ResizeEventGetBounds.Invoke
+  isExternal: true
+  href: Reportman.Designer.ResizeEventGetBounds.html#Reportman_Designer_ResizeEventGetBounds_Invoke
+  name: Invoke
+  nameWithType: ResizeEventGetBounds.Invoke
+  fullName: Reportman.Designer.ResizeEventGetBounds.Invoke
+- uid: Reportman.Designer.ResizeEventGetBounds.BeginInvoke*
+  commentId: Overload:Reportman.Designer.ResizeEventGetBounds.BeginInvoke
+  isExternal: true
+  href: Reportman.Designer.ResizeEventGetBounds.html#Reportman_Designer_ResizeEventGetBounds_BeginInvoke_System_AsyncCallback_System_Object_
+  name: BeginInvoke
+  nameWithType: ResizeEventGetBounds.BeginInvoke
+  fullName: Reportman.Designer.ResizeEventGetBounds.BeginInvoke
+- uid: System.AsyncCallback
+  commentId: T:System.AsyncCallback
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.asynccallback
+  name: AsyncCallback
+  nameWithType: AsyncCallback
+  fullName: System.AsyncCallback
+- uid: System.IAsyncResult
+  commentId: T:System.IAsyncResult
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncresult
+  name: IAsyncResult
+  nameWithType: IAsyncResult
+  fullName: System.IAsyncResult
+- uid: Reportman.Designer.ResizeEventGetBounds.EndInvoke*
+  commentId: Overload:Reportman.Designer.ResizeEventGetBounds.EndInvoke
+  isExternal: true
+  href: Reportman.Designer.ResizeEventGetBounds.html#Reportman_Designer_ResizeEventGetBounds_EndInvoke_System_IAsyncResult_
+  name: EndInvoke
+  nameWithType: ResizeEventGetBounds.EndInvoke
+  fullName: Reportman.Designer.ResizeEventGetBounds.EndInvoke

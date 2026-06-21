@@ -21,7 +21,7 @@ items:
   fullName: Reportman.Reporting.PropertyType
   type: Enum
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -45,7 +45,7 @@ items:
   fullName: Reportman.Reporting.PropertyType.Integer
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -65,7 +65,7 @@ items:
   fullName: Reportman.Reporting.PropertyType.Number
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -85,7 +85,7 @@ items:
   fullName: Reportman.Reporting.PropertyType.String
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -105,7 +105,7 @@ items:
   fullName: Reportman.Reporting.PropertyType.Date
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -125,7 +125,7 @@ items:
   fullName: Reportman.Reporting.PropertyType.Binary
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -145,7 +145,7 @@ items:
   fullName: Reportman.Reporting.PropertyType.Boolean
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -165,7 +165,7 @@ items:
   fullName: Reportman.Reporting.PropertyType.Variant
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -185,7 +185,7 @@ items:
   fullName: Reportman.Reporting.PropertyType.StringArray
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

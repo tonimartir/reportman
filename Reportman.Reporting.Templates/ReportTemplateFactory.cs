@@ -5,6 +5,11 @@ using Reportman.Reporting.Design;
 
 namespace Reportman.Reporting.Templates
 {
+    /// <summary>
+    /// Builds ready-made report templates in code, such as a blank report and a grouped sales
+    /// report, including a design-driven variant constructed through batch edit operations for
+    /// verifying that both construction paths produce equivalent reports.
+    /// </summary>
     public static class ReportTemplateFactory
     {
         private const string GroupName = "GROUP_CITY";
