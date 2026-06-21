@@ -11,7 +11,13 @@
             "Reportman.Drawing.Forms.dll",
             "Reportman.Reporting.Forms.dll",
             "Reportman.WPF.dll",
-            "Reportman.Drawing.CrossPlatform.dll"
+            "Reportman.Drawing.CrossPlatform.dll",
+            "Reportman.Designer.dll",
+            "Reportman.DataChannel.dll",
+            "Reportman.Drawing.Excel.dll",
+            "Reportman.Reporting.Design.dll",
+            "Reportman.Reporting.Design.Json.dll",
+            "Reportman.Reporting.Templates.dll"
           ],
           "exclude": ["*Test*.dll"]
         }

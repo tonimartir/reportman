@@ -26,7 +26,7 @@ items:
   fullName: Reportman.Reporting.DirectAgentExecutor
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DirectAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DirectAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -85,7 +85,7 @@ items:
   fullName: Reportman.Reporting.DirectAgentExecutor.DirectAgentExecutor()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DirectAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DirectAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -108,7 +108,7 @@ items:
   fullName: Reportman.Reporting.DirectAgentExecutor.DirectAgentExecutor(string, string, long)
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DirectAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DirectAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -138,7 +138,7 @@ items:
   fullName: Reportman.Reporting.DirectAgentExecutor.CreateCommand()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DirectAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DirectAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -169,7 +169,7 @@ items:
   fullName: Reportman.Reporting.DirectAgentExecutor.Open(System.Data.IDbCommand)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DirectAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DirectAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -207,7 +207,7 @@ items:
   fullName: Reportman.Reporting.DirectAgentExecutor.Dispose()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DirectAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DirectAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -230,7 +230,7 @@ items:
   fullName: Reportman.Reporting.DirectAgentExecutor.ResetChannelPool()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DirectAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DirectAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -269,7 +269,7 @@ items:
   fullName: Reportman.Reporting.DirectAgentExecutor.BaseUrl
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DirectAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DirectAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -294,7 +294,7 @@ items:
   fullName: Reportman.Reporting.DirectAgentExecutor.ApiKey
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DirectAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DirectAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -319,7 +319,7 @@ items:
   fullName: Reportman.Reporting.DirectAgentExecutor.Token
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DirectAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DirectAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -344,7 +344,7 @@ items:
   fullName: Reportman.Reporting.DirectAgentExecutor.HubDatabaseId
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DirectAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DirectAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -369,7 +369,7 @@ items:
   fullName: Reportman.Reporting.DirectAgentExecutor.UseDirectChannel
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DirectAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DirectAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -399,7 +399,7 @@ items:
   fullName: Reportman.Reporting.DirectAgentExecutor.LastConnectionMode
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DirectAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DirectAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -427,7 +427,7 @@ items:
   fullName: Reportman.Reporting.DirectAgentExecutor.ConnectionModeChanged
   type: Event
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DirectAgentExecutor.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DirectAgentExecutor.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -825,7 +825,7 @@ references:
   commentId: M:Reportman.Drawing.IDbCommandExecuter.CreateCommand
   parent: Reportman.Drawing.IDbCommandExecuter
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/ISqlExecuter.cs
   name: CreateCommand()
   nameWithType: IDbCommandExecuter.CreateCommand()
   fullName: Reportman.Drawing.IDbCommandExecuter.CreateCommand()
@@ -833,14 +833,14 @@ references:
   - uid: Reportman.Drawing.IDbCommandExecuter.CreateCommand
     name: CreateCommand
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/ISqlExecuter.cs
   - name: (
   - name: )
   spec.vb:
   - uid: Reportman.Drawing.IDbCommandExecuter.CreateCommand
     name: CreateCommand
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/ISqlExecuter.cs
   - name: (
   - name: )
 - uid: System.Data.IDbCommand
@@ -889,7 +889,7 @@ references:
   commentId: M:Reportman.Drawing.IDbCommandExecuter.Open(System.Data.IDbCommand)
   parent: Reportman.Drawing.IDbCommandExecuter
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/ISqlExecuter.cs
   name: Open(IDbCommand)
   nameWithType: IDbCommandExecuter.Open(IDbCommand)
   fullName: Reportman.Drawing.IDbCommandExecuter.Open(System.Data.IDbCommand)
@@ -897,7 +897,7 @@ references:
   - uid: Reportman.Drawing.IDbCommandExecuter.Open(System.Data.IDbCommand)
     name: Open
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/ISqlExecuter.cs
   - name: (
   - uid: System.Data.IDbCommand
     name: IDbCommand
@@ -908,7 +908,7 @@ references:
   - uid: Reportman.Drawing.IDbCommandExecuter.Open(System.Data.IDbCommand)
     name: Open
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/ISqlExecuter.cs
   - name: (
   - uid: System.Data.IDbCommand
     name: IDbCommand
@@ -1044,7 +1044,7 @@ references:
 - uid: Reportman.Hub.Client.DataChannel.ConnectionMode.Unknown
   commentId: F:Reportman.Hub.Client.DataChannel.ConnectionMode.Unknown
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.DataChannel/DirectChannelTypes.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
   name: Unknown
   nameWithType: ConnectionMode.Unknown
   fullName: Reportman.Hub.Client.DataChannel.ConnectionMode.Unknown
@@ -1059,13 +1059,14 @@ references:
   commentId: T:Reportman.Hub.Client.DataChannel.ConnectionMode
   parent: Reportman.Hub.Client.DataChannel
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.DataChannel/DirectChannelTypes.cs
+  href: Reportman.Hub.Client.DataChannel.ConnectionMode.html
   name: ConnectionMode
   nameWithType: ConnectionMode
   fullName: Reportman.Hub.Client.DataChannel.ConnectionMode
 - uid: Reportman.Hub.Client.DataChannel
   commentId: N:Reportman.Hub.Client.DataChannel
   isExternal: true
+  href: Reportman.html
   name: Reportman.Hub.Client.DataChannel
   nameWithType: Reportman.Hub.Client.DataChannel
   fullName: Reportman.Hub.Client.DataChannel
@@ -1073,34 +1074,42 @@ references:
   - uid: Reportman
     name: Reportman
     isExternal: true
+    href: Reportman.html
   - name: .
   - uid: Reportman.Hub
     name: Hub
     isExternal: true
+    href: Reportman.Hub.html
   - name: .
   - uid: Reportman.Hub.Client
     name: Client
     isExternal: true
+    href: Reportman.Hub.Client.html
   - name: .
   - uid: Reportman.Hub.Client.DataChannel
     name: DataChannel
     isExternal: true
+    href: Reportman.Hub.Client.DataChannel.html
   spec.vb:
   - uid: Reportman
     name: Reportman
     isExternal: true
+    href: Reportman.html
   - name: .
   - uid: Reportman.Hub
     name: Hub
     isExternal: true
+    href: Reportman.Hub.html
   - name: .
   - uid: Reportman.Hub.Client
     name: Client
     isExternal: true
+    href: Reportman.Hub.Client.html
   - name: .
   - uid: Reportman.Hub.Client.DataChannel
     name: DataChannel
     isExternal: true
+    href: Reportman.Hub.Client.DataChannel.html
 - uid: System.Action{Reportman.Hub.Client.DataChannel.ConnectionMode}
   commentId: T:System.Action{Reportman.Hub.Client.DataChannel.ConnectionMode}
   parent: System
@@ -1121,7 +1130,7 @@ references:
   - uid: Reportman.Hub.Client.DataChannel.ConnectionMode
     name: ConnectionMode
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.DataChannel/DirectChannelTypes.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
   - name: '>'
   spec.vb:
   - uid: System.Action`1
@@ -1134,7 +1143,7 @@ references:
   - uid: Reportman.Hub.Client.DataChannel.ConnectionMode
     name: ConnectionMode
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.DataChannel/DirectChannelTypes.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
   - name: )
 - uid: System.Action`1
   commentId: T:System.Action`1

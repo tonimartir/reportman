@@ -27,7 +27,7 @@ items:
   fullName: Reportman.Reporting.Forms.DataGridViewPrintOptions
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -63,7 +63,7 @@ items:
   fullName: Reportman.Reporting.Forms.DataGridViewPrintOptions.AdjustWidth
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -84,7 +84,7 @@ items:
   fullName: Reportman.Reporting.Forms.DataGridViewPrintOptions.SelectedColumns
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -105,7 +105,7 @@ items:
   fullName: Reportman.Reporting.Forms.DataGridViewPrintOptions.PaperSize
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -126,7 +126,7 @@ items:
   fullName: Reportman.Reporting.Forms.DataGridViewPrintOptions.LandsCape
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -147,7 +147,7 @@ items:
   fullName: Reportman.Reporting.Forms.DataGridViewPrintOptions.PrintSelected
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -168,7 +168,7 @@ items:
   fullName: Reportman.Reporting.Forms.DataGridViewPrintOptions.WordWrap
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -189,7 +189,7 @@ items:
   fullName: Reportman.Reporting.Forms.DataGridViewPrintOptions.Report
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -210,7 +210,7 @@ items:
   fullName: Reportman.Reporting.Forms.DataGridViewPrintOptions.Preview
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -231,7 +231,7 @@ items:
   fullName: Reportman.Reporting.Forms.DataGridViewPrintOptions.DrawTreeLines
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -252,7 +252,7 @@ items:
   fullName: Reportman.Reporting.Forms.DataGridViewPrintOptions.DrawBackGroundColors
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -273,7 +273,7 @@ items:
   fullName: Reportman.Reporting.Forms.DataGridViewPrintOptions.HorizontalLines
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -294,7 +294,7 @@ items:
   fullName: Reportman.Reporting.Forms.DataGridViewPrintOptions.VerticalLines
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -315,7 +315,7 @@ items:
   fullName: Reportman.Reporting.Forms.DataGridViewPrintOptions.DataGridViewPrintOptions()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -338,7 +338,7 @@ items:
   fullName: Reportman.Reporting.Forms.DataGridViewPrintOptions.PaperWidth()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting.Forms/PrintOutReportWinForms.cs
   assemblies:
   - Reportman.Reporting.Forms
   namespace: Reportman.Reporting.Forms
@@ -835,7 +835,7 @@ references:
   commentId: T:Reportman.Reporting.Report
   parent: Reportman.Reporting
   isExternal: true
-  href: Reportman.Reporting.Report.html
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Report.cs
   name: Report
   nameWithType: Report
   fullName: Reportman.Reporting.Report

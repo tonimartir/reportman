@@ -27,7 +27,7 @@ items:
   fullName: Reportman.Drawing.FontInfoFt
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -66,7 +66,7 @@ items:
   fullName: Reportman.Drawing.FontInfoFt.flag
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -87,7 +87,7 @@ items:
   fullName: Reportman.Drawing.FontInfoFt.CheckFreeType(FreeTypeSharp.FT_Error)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -110,7 +110,7 @@ items:
   fullName: Reportman.Drawing.FontInfoFt.StringToBytePtr(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -138,7 +138,7 @@ items:
   fullName: Reportman.Drawing.FontInfoFt.FillFontData(Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -165,7 +165,7 @@ items:
   fullName: Reportman.Drawing.FontInfoFt.GetCharWidth(Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData, char)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -199,7 +199,7 @@ items:
   fullName: Reportman.Drawing.FontInfoFt.GetKerning(Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData, char, char)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -235,7 +235,7 @@ items:
   fullName: Reportman.Drawing.FontInfoFt.GetFontStream(Reportman.Drawing.TTFontData)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -262,7 +262,7 @@ items:
   fullName: Reportman.Drawing.FontInfoFt.FontInfoFt()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -285,7 +285,7 @@ items:
   fullName: Reportman.Drawing.FontInfoFt.Dispose()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -308,7 +308,7 @@ items:
   fullName: Reportman.Drawing.FontInfoFt.GetFontPath()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -330,7 +330,7 @@ items:
   fullName: Reportman.Drawing.FontInfoFt.GetFontDirectories()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -352,7 +352,7 @@ items:
   fullName: Reportman.Drawing.FontInfoFt.GetGlyphWidth(Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData, int, char)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -388,7 +388,7 @@ items:
   fullName: Reportman.Drawing.FontInfoFt.TextExtent(string, ref System.Drawing.Rectangle, Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData, bool, bool, double, bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -432,7 +432,7 @@ items:
   fullName: Reportman.Drawing.FontInfoFt.TextExtentHtml(string, ref System.Drawing.Rectangle, Reportman.Drawing.TTFontData, Reportman.Drawing.PDFFont, bool, bool, double, bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -467,7 +467,7 @@ references:
   commentId: T:Reportman.Drawing.FontInfoProvider
   parent: Reportman.Drawing
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   name: FontInfoProvider
   nameWithType: FontInfoProvider
   fullName: Reportman.Drawing.FontInfoProvider
@@ -806,7 +806,7 @@ references:
   commentId: M:Reportman.Drawing.FontInfoProvider.FillFontData(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData)
   parent: Reportman.Drawing.FontInfoProvider
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   name: FillFontData(PDFFont, TTFontData)
   nameWithType: FontInfoProvider.FillFontData(PDFFont, TTFontData)
   fullName: Reportman.Drawing.FontInfoProvider.FillFontData(Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData)
@@ -814,35 +814,35 @@ references:
   - uid: Reportman.Drawing.FontInfoProvider.FillFontData(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData)
     name: FillFontData
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: (
   - uid: Reportman.Drawing.PDFFont
     name: PDFFont
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: ','
   - name: " "
   - uid: Reportman.Drawing.TTFontData
     name: TTFontData
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: )
   spec.vb:
   - uid: Reportman.Drawing.FontInfoProvider.FillFontData(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData)
     name: FillFontData
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: (
   - uid: Reportman.Drawing.PDFFont
     name: PDFFont
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: ','
   - name: " "
   - uid: Reportman.Drawing.TTFontData
     name: TTFontData
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: )
 - uid: Reportman.Drawing.FontInfoFt.FillFontData*
   commentId: Overload:Reportman.Drawing.FontInfoFt.FillFontData
@@ -855,7 +855,7 @@ references:
   commentId: T:Reportman.Drawing.PDFFont
   parent: Reportman.Drawing
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   name: PDFFont
   nameWithType: PDFFont
   fullName: Reportman.Drawing.PDFFont
@@ -863,7 +863,7 @@ references:
   commentId: T:Reportman.Drawing.TTFontData
   parent: Reportman.Drawing
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   name: TTFontData
   nameWithType: TTFontData
   fullName: Reportman.Drawing.TTFontData
@@ -871,7 +871,7 @@ references:
   commentId: M:Reportman.Drawing.FontInfoProvider.GetCharWidth(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Char)
   parent: Reportman.Drawing.FontInfoProvider
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   name: GetCharWidth(PDFFont, TTFontData, char)
   nameWithType: FontInfoProvider.GetCharWidth(PDFFont, TTFontData, char)
   fullName: Reportman.Drawing.FontInfoProvider.GetCharWidth(Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData, char)
@@ -882,18 +882,18 @@ references:
   - uid: Reportman.Drawing.FontInfoProvider.GetCharWidth(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Char)
     name: GetCharWidth
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: (
   - uid: Reportman.Drawing.PDFFont
     name: PDFFont
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: ','
   - name: " "
   - uid: Reportman.Drawing.TTFontData
     name: TTFontData
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: ','
   - name: " "
   - uid: System.Char
@@ -905,18 +905,18 @@ references:
   - uid: Reportman.Drawing.FontInfoProvider.GetCharWidth(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Char)
     name: GetCharWidth
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: (
   - uid: Reportman.Drawing.PDFFont
     name: PDFFont
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: ','
   - name: " "
   - uid: Reportman.Drawing.TTFontData
     name: TTFontData
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: ','
   - name: " "
   - uid: System.Char
@@ -957,7 +957,7 @@ references:
   commentId: M:Reportman.Drawing.FontInfoProvider.GetKerning(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Char,System.Char)
   parent: Reportman.Drawing.FontInfoProvider
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   name: GetKerning(PDFFont, TTFontData, char, char)
   nameWithType: FontInfoProvider.GetKerning(PDFFont, TTFontData, char, char)
   fullName: Reportman.Drawing.FontInfoProvider.GetKerning(Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData, char, char)
@@ -968,18 +968,18 @@ references:
   - uid: Reportman.Drawing.FontInfoProvider.GetKerning(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Char,System.Char)
     name: GetKerning
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: (
   - uid: Reportman.Drawing.PDFFont
     name: PDFFont
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: ','
   - name: " "
   - uid: Reportman.Drawing.TTFontData
     name: TTFontData
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: ','
   - name: " "
   - uid: System.Char
@@ -997,18 +997,18 @@ references:
   - uid: Reportman.Drawing.FontInfoProvider.GetKerning(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Char,System.Char)
     name: GetKerning
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: (
   - uid: Reportman.Drawing.PDFFont
     name: PDFFont
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: ','
   - name: " "
   - uid: Reportman.Drawing.TTFontData
     name: TTFontData
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: ','
   - name: " "
   - uid: System.Char
@@ -1044,7 +1044,7 @@ references:
   commentId: M:Reportman.Drawing.FontInfoProvider.GetFontStream(Reportman.Drawing.TTFontData)
   parent: Reportman.Drawing.FontInfoProvider
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   name: GetFontStream(TTFontData)
   nameWithType: FontInfoProvider.GetFontStream(TTFontData)
   fullName: Reportman.Drawing.FontInfoProvider.GetFontStream(Reportman.Drawing.TTFontData)
@@ -1052,23 +1052,23 @@ references:
   - uid: Reportman.Drawing.FontInfoProvider.GetFontStream(Reportman.Drawing.TTFontData)
     name: GetFontStream
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: (
   - uid: Reportman.Drawing.TTFontData
     name: TTFontData
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: )
   spec.vb:
   - uid: Reportman.Drawing.FontInfoProvider.GetFontStream(Reportman.Drawing.TTFontData)
     name: GetFontStream
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: (
   - uid: Reportman.Drawing.TTFontData
     name: TTFontData
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: )
 - uid: Reportman.Drawing.FontInfoFt.GetFontStream*
   commentId: Overload:Reportman.Drawing.FontInfoFt.GetFontStream
@@ -1169,7 +1169,7 @@ references:
   commentId: T:Reportman.Drawing.Strings
   parent: Reportman.Drawing
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Strings.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Strings.cs
   name: Strings
   nameWithType: Strings
   fullName: Reportman.Drawing.Strings
@@ -1177,7 +1177,7 @@ references:
   commentId: M:Reportman.Drawing.FontInfoProvider.GetGlyphWidth(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Int32,System.Char)
   parent: Reportman.Drawing.FontInfoProvider
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   name: GetGlyphWidth(PDFFont, TTFontData, int, char)
   nameWithType: FontInfoProvider.GetGlyphWidth(PDFFont, TTFontData, int, char)
   fullName: Reportman.Drawing.FontInfoProvider.GetGlyphWidth(Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData, int, char)
@@ -1188,18 +1188,18 @@ references:
   - uid: Reportman.Drawing.FontInfoProvider.GetGlyphWidth(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Int32,System.Char)
     name: GetGlyphWidth
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: (
   - uid: Reportman.Drawing.PDFFont
     name: PDFFont
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: ','
   - name: " "
   - uid: Reportman.Drawing.TTFontData
     name: TTFontData
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -1217,18 +1217,18 @@ references:
   - uid: Reportman.Drawing.FontInfoProvider.GetGlyphWidth(Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Int32,System.Char)
     name: GetGlyphWidth
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: (
   - uid: Reportman.Drawing.PDFFont
     name: PDFFont
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: ','
   - name: " "
   - uid: Reportman.Drawing.TTFontData
     name: TTFontData
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -1253,7 +1253,7 @@ references:
   commentId: M:Reportman.Drawing.FontInfoProvider.TextExtent(System.String,System.Drawing.Rectangle@,Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Boolean,System.Boolean,System.Double,System.Boolean)
   parent: Reportman.Drawing.FontInfoProvider
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   name: TextExtent(string, ref Rectangle, PDFFont, TTFontData, bool, bool, double, bool)
   nameWithType: FontInfoProvider.TextExtent(string, ref Rectangle, PDFFont, TTFontData, bool, bool, double, bool)
   fullName: Reportman.Drawing.FontInfoProvider.TextExtent(string, ref System.Drawing.Rectangle, Reportman.Drawing.PDFFont, Reportman.Drawing.TTFontData, bool, bool, double, bool)
@@ -1264,7 +1264,7 @@ references:
   - uid: Reportman.Drawing.FontInfoProvider.TextExtent(System.String,System.Drawing.Rectangle@,Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Boolean,System.Boolean,System.Double,System.Boolean)
     name: TextExtent
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: (
   - uid: System.String
     name: string
@@ -1283,13 +1283,13 @@ references:
   - uid: Reportman.Drawing.PDFFont
     name: PDFFont
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: ','
   - name: " "
   - uid: Reportman.Drawing.TTFontData
     name: TTFontData
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: ','
   - name: " "
   - uid: System.Boolean
@@ -1319,7 +1319,7 @@ references:
   - uid: Reportman.Drawing.FontInfoProvider.TextExtent(System.String,System.Drawing.Rectangle@,Reportman.Drawing.PDFFont,Reportman.Drawing.TTFontData,System.Boolean,System.Boolean,System.Double,System.Boolean)
     name: TextExtent
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: (
   - uid: System.String
     name: String
@@ -1336,13 +1336,13 @@ references:
   - uid: Reportman.Drawing.PDFFont
     name: PDFFont
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: ','
   - name: " "
   - uid: Reportman.Drawing.TTFontData
     name: TTFontData
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   - name: ','
   - name: " "
   - uid: System.Boolean
@@ -1414,7 +1414,7 @@ references:
   - uid: Reportman.Drawing.LineInfo
     name: LineInfo
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   - name: '>'
   spec.vb:
   - uid: System.Collections.Generic.List`1
@@ -1427,7 +1427,7 @@ references:
   - uid: Reportman.Drawing.LineInfo
     name: LineInfo
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   - name: )
 - uid: System.Drawing
   commentId: N:System.Drawing

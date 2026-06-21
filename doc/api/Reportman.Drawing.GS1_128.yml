@@ -90,7 +90,7 @@ items:
   fullName: Reportman.Drawing.GS1_128
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -121,7 +121,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ExpirationDate
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -142,7 +142,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.SellByDate
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -163,7 +163,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.SSCC
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -184,7 +184,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.SSCC_Company
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -205,7 +205,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.SSCC_Number
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -226,7 +226,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ProductCode
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -247,7 +247,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ProductionDateTime
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -268,7 +268,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ProductionDate
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -289,7 +289,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.PackagingDate
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -310,7 +310,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ProductVariant
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -331,7 +331,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.SerialNumber
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -352,7 +352,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.HIBCC
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -373,7 +373,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.LotNumber
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -394,7 +394,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.SecondSerialNumber
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -415,7 +415,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.Quantity
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -436,7 +436,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ProductVolume
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -457,7 +457,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ContainerGrossWeight
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -478,7 +478,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.CustomerPurchaseNumber
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -499,7 +499,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.BatchNumber
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -520,7 +520,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.Mutual
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -541,7 +541,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.InternalCode
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -562,7 +562,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ProductNetWeightKg
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -583,7 +583,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ProductLengthMeters
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -604,7 +604,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ProductWidthMeters
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -625,7 +625,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ProductDepthMeters
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -646,7 +646,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ProductAreaMeters2
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -667,7 +667,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ProductNetVolumeLiters
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -688,7 +688,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ProductNetVolumeMeters3
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -709,7 +709,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ProductNetWeightPounds
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -730,7 +730,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ProductLengthInch
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -751,7 +751,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ProductLengthFeet
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -772,7 +772,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ProductLengthYard
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -793,7 +793,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ProductWidthInch
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -814,7 +814,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ProductWidthFeet
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -835,7 +835,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ProductWidthYard
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -856,7 +856,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ProductDepthInch
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -877,7 +877,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ProductDepthFeet
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -898,7 +898,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ProductDepthYard
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -919,7 +919,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ContainerGrossWeightKg
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -940,7 +940,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ContainerLengthMeters
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -961,7 +961,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ContainerWidthMeters
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -982,7 +982,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ContainerDepthMeters
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1003,7 +1003,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ContainerAreaMeters2
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1024,7 +1024,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ContainerGrossVolumeLiters
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1045,7 +1045,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ContainerGrossVolumeMeters3
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1066,7 +1066,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ContainerGrossWeightPounds
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1087,7 +1087,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ContainerLengthInch
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1108,7 +1108,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ContainerLengthFeet
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1129,7 +1129,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ContainerLengthYard
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1150,7 +1150,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ContainerWidthInch
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1171,7 +1171,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ContainerWidthFeet
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1192,7 +1192,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ContainerWidthYard
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1213,7 +1213,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ContainerDepthInch
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1234,7 +1234,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ContainerDepthFeet
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1255,7 +1255,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ContainerDepthYard
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1276,7 +1276,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ProductAreaInch2
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1297,7 +1297,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ProductAreaFeet2
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1318,7 +1318,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ProductAreaYard2
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1339,7 +1339,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ContainerAreaInch2
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1360,7 +1360,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ContainerAreaFeet2
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1381,7 +1381,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ContainerAreaYard2
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1402,7 +1402,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.NetWeightTroyOunces
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1423,7 +1423,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.NetWeightOunces
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1444,7 +1444,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ProductVolumeQuarts
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1465,7 +1465,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ProductVolumeGallons
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1486,7 +1486,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ContainerVolumeQuarts
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1507,7 +1507,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ContainerVolumeGallons
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1528,7 +1528,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ProductVolumeInch3
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1549,7 +1549,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ProductVolumeFeet3
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1570,7 +1570,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ProductVolumeYard3
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1591,7 +1591,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ContainerVolumeInch3
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1612,7 +1612,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ContainerVolumeFeet3
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1633,7 +1633,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.ContainerVolumeYard3
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1654,7 +1654,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.DecodeNumber(string, ref int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1684,7 +1684,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.Advance(string, ref int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1714,7 +1714,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.Decode(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -1740,7 +1740,7 @@ items:
   fullName: Reportman.Drawing.GS1_128.GS1_128()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GS1_128.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GS1_128.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

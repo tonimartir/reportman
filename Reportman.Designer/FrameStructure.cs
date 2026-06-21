@@ -28,6 +28,11 @@ using System.Windows.Forms;
 
 namespace Reportman.Designer
 {
+    /// <summary>
+    /// Designer control that shows the report's structure as a tree of
+    /// subreports and sections, and lets the user add, delete, reorder, import
+    /// and export those elements.
+    /// </summary>
     public partial class FrameStructure : UserControl
     {
         public event EventHandler OnReportChange;
@@ -243,7 +248,7 @@ namespace Reportman.Designer
                     return;
                 if (sub.Alias != null && sub.Alias.Length > 0)
                 {
-                    var resultado = MessageBox.Show("¿Eliminar parámetros y datos relacionados?",
+                    var resultado = MessageBox.Show("ï¿½Eliminar parï¿½metros y datos relacionados?",
                         Translator.TranslateStr(729), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                     if (resultado == DialogResult.Cancel)
                         return;

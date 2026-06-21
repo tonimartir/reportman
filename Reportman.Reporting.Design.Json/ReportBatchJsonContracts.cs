@@ -3,12 +3,21 @@ using System.Text.Json;
 
 namespace Reportman.Reporting.Design.Json
 {
+    /// <summary>
+    /// JSON-serializable envelope for a batch of report edit operations, carrying a
+    /// schema version and the ordered list of operations to apply.
+    /// </summary>
     public class ReportBatchJsonRequest
     {
         public int Version { get; set; } = 1;
         public List<ReportBatchJsonOperation> Operations { get; set; } = new List<ReportBatchJsonOperation>();
     }
 
+    /// <summary>
+    /// A single JSON-serializable report edit operation (add, modify, move, delete, etc.),
+    /// including its target, properties, and the optional high-level semantic V1 fields the
+    /// AI designer uses before they are expanded into low-level operations.
+    /// </summary>
     public class ReportBatchJsonOperation
     {
         public string OperationId { get; set; }
@@ -39,12 +48,20 @@ namespace Reportman.Reporting.Design.Json
         public List<ReportBatchJsonProperty> GroupFooterProperties { get; set; }
     }
 
+    /// <summary>
+    /// A single property assignment within an operation, pairing the property name with its
+    /// raw JSON value to be applied to the target report object.
+    /// </summary>
     public class ReportBatchJsonProperty
     {
         public string PropertyName { get; set; }
         public JsonElement Value { get; set; }
     }
 
+    /// <summary>
+    /// A validation problem reported for a batch request, identifying the offending operation
+    /// (by index and id) along with a diagnostic code and human-readable message.
+    /// </summary>
     public class ReportBatchJsonIssue
     {
         public string Code { get; set; }
@@ -53,6 +70,10 @@ namespace Reportman.Reporting.Design.Json
         public string OperationId { get; set; }
     }
 
+    /// <summary>
+    /// Result of validating a batch request, exposing any issues found and an
+    /// <see cref="IsValid"/> flag that is true when no issues were reported.
+    /// </summary>
     public class ReportBatchJsonValidationResponse
     {
         public int Version { get; set; } = 1;
@@ -64,12 +85,20 @@ namespace Reportman.Reporting.Design.Json
         }
     }
 
+    /// <summary>
+    /// Result of applying a batch request, extending the validation response with the undo
+    /// group identifier and the number of operations that were applied.
+    /// </summary>
     public class ReportBatchJsonApplyResponse : ReportBatchJsonValidationResponse
     {
         public int UndoGroupId { get; set; }
         public int AppliedOperations { get; set; }
     }
 
+    /// <summary>
+    /// Apply result that also returns the resulting report document, serialized in the given
+    /// <see cref="Format"/>; <see cref="ReportJson"/> is an alias for the document text.
+    /// </summary>
     public class ReportBatchJsonDocumentApplyResponse : ReportBatchJsonApplyResponse
     {
         public ReportDocumentFormat Format { get; set; }
@@ -81,6 +110,11 @@ namespace Reportman.Reporting.Design.Json
         }
     }
 
+    /// <summary>
+    /// Bridges JSON batch contracts and the in-memory report model: implementers deserialize
+    /// requests and reports, validate and apply batches of operations, and serialize reports
+    /// and result objects back to JSON in the supported document formats.
+    /// </summary>
     public interface IReportBatchJsonAdapter
     {
         ReportBatchJsonRequest DeserializeRequest(string json);

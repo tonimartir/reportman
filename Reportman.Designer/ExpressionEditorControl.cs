@@ -6,6 +6,10 @@ using Reportman.Reporting;
 
 namespace Reportman.Designer
 {
+    /// <summary>
+    /// Monaco-based editor for report expressions with an optional AI suggestion toggle that
+    /// requests completions from the agent after a debounced pause in typing.
+    /// </summary>
     public class ExpressionEditorControl : UserControl
     {
         private Panel _topPanel;

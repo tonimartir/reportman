@@ -1,0 +1,1374 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress
+  commentId: T:Reportman.Hub.Client.DataChannel.QueryProgress
+  id: QueryProgress
+  parent: Reportman.Hub.Client.DataChannel
+  children:
+  - Reportman.Hub.Client.DataChannel.QueryProgress.#ctor
+  - Reportman.Hub.Client.DataChannel.QueryProgress.BytesReceived
+  - Reportman.Hub.Client.DataChannel.QueryProgress.BytesTotal
+  - Reportman.Hub.Client.DataChannel.QueryProgress.ColumnCount
+  - Reportman.Hub.Client.DataChannel.QueryProgress.Compressing(System.Int32)
+  - Reportman.Hub.Client.DataChannel.QueryProgress.Connecting(System.String)
+  - Reportman.Hub.Client.DataChannel.QueryProgress.Decompressing(System.Int32)
+  - Reportman.Hub.Client.DataChannel.QueryProgress.Delivering(System.Int32,System.Int64,System.Int64)
+  - Reportman.Hub.Client.DataChannel.QueryProgress.Deserializing(System.Int32)
+  - Reportman.Hub.Client.DataChannel.QueryProgress.Done
+  - Reportman.Hub.Client.DataChannel.QueryProgress.ElapsedSec
+  - Reportman.Hub.Client.DataChannel.QueryProgress.Equals(Reportman.Hub.Client.DataChannel.QueryProgress)
+  - Reportman.Hub.Client.DataChannel.QueryProgress.Equals(System.Object)
+  - Reportman.Hub.Client.DataChannel.QueryProgress.Executing(System.Int32)
+  - Reportman.Hub.Client.DataChannel.QueryProgress.Fetching(System.Int32,System.Int32,System.Int32)
+  - Reportman.Hub.Client.DataChannel.QueryProgress.GetHashCode
+  - Reportman.Hub.Client.DataChannel.QueryProgress.Idle
+  - Reportman.Hub.Client.DataChannel.QueryProgress.Note
+  - Reportman.Hub.Client.DataChannel.QueryProgress.Phase
+  - Reportman.Hub.Client.DataChannel.QueryProgress.Preparing(System.Int32)
+  - Reportman.Hub.Client.DataChannel.QueryProgress.RowsRead
+  - Reportman.Hub.Client.DataChannel.QueryProgress.Serializing(System.Int32)
+  - Reportman.Hub.Client.DataChannel.QueryProgress.ToString
+  - Reportman.Hub.Client.DataChannel.QueryProgress.op_Equality(Reportman.Hub.Client.DataChannel.QueryProgress,Reportman.Hub.Client.DataChannel.QueryProgress)
+  - Reportman.Hub.Client.DataChannel.QueryProgress.op_Inequality(Reportman.Hub.Client.DataChannel.QueryProgress,Reportman.Hub.Client.DataChannel.QueryProgress)
+  langs:
+  - csharp
+  - vb
+  name: QueryProgress
+  nameWithType: QueryProgress
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress
+  type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  summary: >-
+    Snapshot of the current phase of an in-flight SQL operation, suitable
+
+    for binding to UI text near the busy indicator. The Agent emits its own
+
+    1Hz pulse over the DataChannel; this struct mirrors that into a single
+
+    observable shape.
+  example: []
+  syntax:
+    content: 'public sealed record QueryProgress : IEquatable<QueryProgress>'
+    content.vb: Public NotInheritable Class QueryProgress Implements IEquatable(Of QueryProgress)
+  inheritance:
+  - System.Object
+  implements:
+  - System.IEquatable{Reportman.Hub.Client.DataChannel.QueryProgress}
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.Idle
+  commentId: F:Reportman.Hub.Client.DataChannel.QueryProgress.Idle
+  id: Idle
+  parent: Reportman.Hub.Client.DataChannel.QueryProgress
+  langs:
+  - csharp
+  - vb
+  name: Idle
+  nameWithType: QueryProgress.Idle
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.Idle
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  syntax:
+    content: public static readonly QueryProgress Idle
+    return:
+      type: Reportman.Hub.Client.DataChannel.QueryProgress
+    content.vb: Public Shared ReadOnly Idle As QueryProgress
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.Connecting(System.String)
+  commentId: M:Reportman.Hub.Client.DataChannel.QueryProgress.Connecting(System.String)
+  id: Connecting(System.String)
+  parent: Reportman.Hub.Client.DataChannel.QueryProgress
+  langs:
+  - csharp
+  - vb
+  name: Connecting(string?)
+  nameWithType: QueryProgress.Connecting(string?)
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.Connecting(string?)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  syntax:
+    content: public static QueryProgress Connecting(string? note = null)
+    parameters:
+    - id: note
+      type: System.String
+    return:
+      type: Reportman.Hub.Client.DataChannel.QueryProgress
+    content.vb: Public Shared Function Connecting(note As String = Nothing) As QueryProgress
+  overload: Reportman.Hub.Client.DataChannel.QueryProgress.Connecting*
+  nameWithType.vb: QueryProgress.Connecting(String)
+  fullName.vb: Reportman.Hub.Client.DataChannel.QueryProgress.Connecting(String)
+  name.vb: Connecting(String)
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.Preparing(System.Int32)
+  commentId: M:Reportman.Hub.Client.DataChannel.QueryProgress.Preparing(System.Int32)
+  id: Preparing(System.Int32)
+  parent: Reportman.Hub.Client.DataChannel.QueryProgress
+  langs:
+  - csharp
+  - vb
+  name: Preparing(int)
+  nameWithType: QueryProgress.Preparing(int)
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.Preparing(int)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  syntax:
+    content: public static QueryProgress Preparing(int elapsedSec)
+    parameters:
+    - id: elapsedSec
+      type: System.Int32
+    return:
+      type: Reportman.Hub.Client.DataChannel.QueryProgress
+    content.vb: Public Shared Function Preparing(elapsedSec As Integer) As QueryProgress
+  overload: Reportman.Hub.Client.DataChannel.QueryProgress.Preparing*
+  nameWithType.vb: QueryProgress.Preparing(Integer)
+  fullName.vb: Reportman.Hub.Client.DataChannel.QueryProgress.Preparing(Integer)
+  name.vb: Preparing(Integer)
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.Executing(System.Int32)
+  commentId: M:Reportman.Hub.Client.DataChannel.QueryProgress.Executing(System.Int32)
+  id: Executing(System.Int32)
+  parent: Reportman.Hub.Client.DataChannel.QueryProgress
+  langs:
+  - csharp
+  - vb
+  name: Executing(int)
+  nameWithType: QueryProgress.Executing(int)
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.Executing(int)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  syntax:
+    content: public static QueryProgress Executing(int elapsedSec)
+    parameters:
+    - id: elapsedSec
+      type: System.Int32
+    return:
+      type: Reportman.Hub.Client.DataChannel.QueryProgress
+    content.vb: Public Shared Function Executing(elapsedSec As Integer) As QueryProgress
+  overload: Reportman.Hub.Client.DataChannel.QueryProgress.Executing*
+  nameWithType.vb: QueryProgress.Executing(Integer)
+  fullName.vb: Reportman.Hub.Client.DataChannel.QueryProgress.Executing(Integer)
+  name.vb: Executing(Integer)
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.Fetching(System.Int32,System.Int32,System.Int32)
+  commentId: M:Reportman.Hub.Client.DataChannel.QueryProgress.Fetching(System.Int32,System.Int32,System.Int32)
+  id: Fetching(System.Int32,System.Int32,System.Int32)
+  parent: Reportman.Hub.Client.DataChannel.QueryProgress
+  langs:
+  - csharp
+  - vb
+  name: Fetching(int, int, int)
+  nameWithType: QueryProgress.Fetching(int, int, int)
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.Fetching(int, int, int)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  syntax:
+    content: public static QueryProgress Fetching(int elapsedSec, int rows, int cols)
+    parameters:
+    - id: elapsedSec
+      type: System.Int32
+    - id: rows
+      type: System.Int32
+    - id: cols
+      type: System.Int32
+    return:
+      type: Reportman.Hub.Client.DataChannel.QueryProgress
+    content.vb: Public Shared Function Fetching(elapsedSec As Integer, rows As Integer, cols As Integer) As QueryProgress
+  overload: Reportman.Hub.Client.DataChannel.QueryProgress.Fetching*
+  nameWithType.vb: QueryProgress.Fetching(Integer, Integer, Integer)
+  fullName.vb: Reportman.Hub.Client.DataChannel.QueryProgress.Fetching(Integer, Integer, Integer)
+  name.vb: Fetching(Integer, Integer, Integer)
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.Serializing(System.Int32)
+  commentId: M:Reportman.Hub.Client.DataChannel.QueryProgress.Serializing(System.Int32)
+  id: Serializing(System.Int32)
+  parent: Reportman.Hub.Client.DataChannel.QueryProgress
+  langs:
+  - csharp
+  - vb
+  name: Serializing(int)
+  nameWithType: QueryProgress.Serializing(int)
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.Serializing(int)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  syntax:
+    content: public static QueryProgress Serializing(int elapsedSec)
+    parameters:
+    - id: elapsedSec
+      type: System.Int32
+    return:
+      type: Reportman.Hub.Client.DataChannel.QueryProgress
+    content.vb: Public Shared Function Serializing(elapsedSec As Integer) As QueryProgress
+  overload: Reportman.Hub.Client.DataChannel.QueryProgress.Serializing*
+  nameWithType.vb: QueryProgress.Serializing(Integer)
+  fullName.vb: Reportman.Hub.Client.DataChannel.QueryProgress.Serializing(Integer)
+  name.vb: Serializing(Integer)
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.Compressing(System.Int32)
+  commentId: M:Reportman.Hub.Client.DataChannel.QueryProgress.Compressing(System.Int32)
+  id: Compressing(System.Int32)
+  parent: Reportman.Hub.Client.DataChannel.QueryProgress
+  langs:
+  - csharp
+  - vb
+  name: Compressing(int)
+  nameWithType: QueryProgress.Compressing(int)
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.Compressing(int)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  syntax:
+    content: public static QueryProgress Compressing(int elapsedSec)
+    parameters:
+    - id: elapsedSec
+      type: System.Int32
+    return:
+      type: Reportman.Hub.Client.DataChannel.QueryProgress
+    content.vb: Public Shared Function Compressing(elapsedSec As Integer) As QueryProgress
+  overload: Reportman.Hub.Client.DataChannel.QueryProgress.Compressing*
+  nameWithType.vb: QueryProgress.Compressing(Integer)
+  fullName.vb: Reportman.Hub.Client.DataChannel.QueryProgress.Compressing(Integer)
+  name.vb: Compressing(Integer)
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.Delivering(System.Int32,System.Int64,System.Int64)
+  commentId: M:Reportman.Hub.Client.DataChannel.QueryProgress.Delivering(System.Int32,System.Int64,System.Int64)
+  id: Delivering(System.Int32,System.Int64,System.Int64)
+  parent: Reportman.Hub.Client.DataChannel.QueryProgress
+  langs:
+  - csharp
+  - vb
+  name: Delivering(int, long, long)
+  nameWithType: QueryProgress.Delivering(int, long, long)
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.Delivering(int, long, long)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  syntax:
+    content: public static QueryProgress Delivering(int elapsedSec, long bytes, long total)
+    parameters:
+    - id: elapsedSec
+      type: System.Int32
+    - id: bytes
+      type: System.Int64
+    - id: total
+      type: System.Int64
+    return:
+      type: Reportman.Hub.Client.DataChannel.QueryProgress
+    content.vb: Public Shared Function Delivering(elapsedSec As Integer, bytes As Long, total As Long) As QueryProgress
+  overload: Reportman.Hub.Client.DataChannel.QueryProgress.Delivering*
+  nameWithType.vb: QueryProgress.Delivering(Integer, Long, Long)
+  fullName.vb: Reportman.Hub.Client.DataChannel.QueryProgress.Delivering(Integer, Long, Long)
+  name.vb: Delivering(Integer, Long, Long)
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.Decompressing(System.Int32)
+  commentId: M:Reportman.Hub.Client.DataChannel.QueryProgress.Decompressing(System.Int32)
+  id: Decompressing(System.Int32)
+  parent: Reportman.Hub.Client.DataChannel.QueryProgress
+  langs:
+  - csharp
+  - vb
+  name: Decompressing(int)
+  nameWithType: QueryProgress.Decompressing(int)
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.Decompressing(int)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  syntax:
+    content: public static QueryProgress Decompressing(int elapsedSec)
+    parameters:
+    - id: elapsedSec
+      type: System.Int32
+    return:
+      type: Reportman.Hub.Client.DataChannel.QueryProgress
+    content.vb: Public Shared Function Decompressing(elapsedSec As Integer) As QueryProgress
+  overload: Reportman.Hub.Client.DataChannel.QueryProgress.Decompressing*
+  nameWithType.vb: QueryProgress.Decompressing(Integer)
+  fullName.vb: Reportman.Hub.Client.DataChannel.QueryProgress.Decompressing(Integer)
+  name.vb: Decompressing(Integer)
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.Deserializing(System.Int32)
+  commentId: M:Reportman.Hub.Client.DataChannel.QueryProgress.Deserializing(System.Int32)
+  id: Deserializing(System.Int32)
+  parent: Reportman.Hub.Client.DataChannel.QueryProgress
+  langs:
+  - csharp
+  - vb
+  name: Deserializing(int)
+  nameWithType: QueryProgress.Deserializing(int)
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.Deserializing(int)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  syntax:
+    content: public static QueryProgress Deserializing(int elapsedSec)
+    parameters:
+    - id: elapsedSec
+      type: System.Int32
+    return:
+      type: Reportman.Hub.Client.DataChannel.QueryProgress
+    content.vb: Public Shared Function Deserializing(elapsedSec As Integer) As QueryProgress
+  overload: Reportman.Hub.Client.DataChannel.QueryProgress.Deserializing*
+  nameWithType.vb: QueryProgress.Deserializing(Integer)
+  fullName.vb: Reportman.Hub.Client.DataChannel.QueryProgress.Deserializing(Integer)
+  name.vb: Deserializing(Integer)
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.Done
+  commentId: M:Reportman.Hub.Client.DataChannel.QueryProgress.Done
+  id: Done
+  parent: Reportman.Hub.Client.DataChannel.QueryProgress
+  langs:
+  - csharp
+  - vb
+  name: Done()
+  nameWithType: QueryProgress.Done()
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.Done()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  syntax:
+    content: public static QueryProgress Done()
+    return:
+      type: Reportman.Hub.Client.DataChannel.QueryProgress
+    content.vb: Public Shared Function Done() As QueryProgress
+  overload: Reportman.Hub.Client.DataChannel.QueryProgress.Done*
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.ToString
+  commentId: M:Reportman.Hub.Client.DataChannel.QueryProgress.ToString
+  id: ToString
+  parent: Reportman.Hub.Client.DataChannel.QueryProgress
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: QueryProgress.ToString()
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.ToString()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.Object.ToString
+  overload: Reportman.Hub.Client.DataChannel.QueryProgress.ToString*
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.op_Inequality(Reportman.Hub.Client.DataChannel.QueryProgress,Reportman.Hub.Client.DataChannel.QueryProgress)
+  commentId: M:Reportman.Hub.Client.DataChannel.QueryProgress.op_Inequality(Reportman.Hub.Client.DataChannel.QueryProgress,Reportman.Hub.Client.DataChannel.QueryProgress)
+  id: op_Inequality(Reportman.Hub.Client.DataChannel.QueryProgress,Reportman.Hub.Client.DataChannel.QueryProgress)
+  parent: Reportman.Hub.Client.DataChannel.QueryProgress
+  langs:
+  - csharp
+  - vb
+  name: operator !=(QueryProgress?, QueryProgress?)
+  nameWithType: QueryProgress.operator !=(QueryProgress?, QueryProgress?)
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.operator !=(Reportman.Hub.Client.DataChannel.QueryProgress?, Reportman.Hub.Client.DataChannel.QueryProgress?)
+  type: Operator
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  syntax:
+    content: public static bool operator !=(QueryProgress? left, QueryProgress? right)
+    parameters:
+    - id: left
+      type: Reportman.Hub.Client.DataChannel.QueryProgress
+    - id: right
+      type: Reportman.Hub.Client.DataChannel.QueryProgress
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator <>(left As QueryProgress, right As QueryProgress) As Boolean
+  overload: Reportman.Hub.Client.DataChannel.QueryProgress.op_Inequality*
+  nameWithType.vb: QueryProgress.<>(QueryProgress, QueryProgress)
+  fullName.vb: Reportman.Hub.Client.DataChannel.QueryProgress.<>(Reportman.Hub.Client.DataChannel.QueryProgress, Reportman.Hub.Client.DataChannel.QueryProgress)
+  name.vb: <>(QueryProgress, QueryProgress)
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.op_Equality(Reportman.Hub.Client.DataChannel.QueryProgress,Reportman.Hub.Client.DataChannel.QueryProgress)
+  commentId: M:Reportman.Hub.Client.DataChannel.QueryProgress.op_Equality(Reportman.Hub.Client.DataChannel.QueryProgress,Reportman.Hub.Client.DataChannel.QueryProgress)
+  id: op_Equality(Reportman.Hub.Client.DataChannel.QueryProgress,Reportman.Hub.Client.DataChannel.QueryProgress)
+  parent: Reportman.Hub.Client.DataChannel.QueryProgress
+  langs:
+  - csharp
+  - vb
+  name: operator ==(QueryProgress?, QueryProgress?)
+  nameWithType: QueryProgress.operator ==(QueryProgress?, QueryProgress?)
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.operator ==(Reportman.Hub.Client.DataChannel.QueryProgress?, Reportman.Hub.Client.DataChannel.QueryProgress?)
+  type: Operator
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  syntax:
+    content: public static bool operator ==(QueryProgress? left, QueryProgress? right)
+    parameters:
+    - id: left
+      type: Reportman.Hub.Client.DataChannel.QueryProgress
+    - id: right
+      type: Reportman.Hub.Client.DataChannel.QueryProgress
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator =(left As QueryProgress, right As QueryProgress) As Boolean
+  overload: Reportman.Hub.Client.DataChannel.QueryProgress.op_Equality*
+  nameWithType.vb: QueryProgress.=(QueryProgress, QueryProgress)
+  fullName.vb: Reportman.Hub.Client.DataChannel.QueryProgress.=(Reportman.Hub.Client.DataChannel.QueryProgress, Reportman.Hub.Client.DataChannel.QueryProgress)
+  name.vb: =(QueryProgress, QueryProgress)
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.GetHashCode
+  commentId: M:Reportman.Hub.Client.DataChannel.QueryProgress.GetHashCode
+  id: GetHashCode
+  parent: Reportman.Hub.Client.DataChannel.QueryProgress
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode()
+  nameWithType: QueryProgress.GetHashCode()
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.GetHashCode()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  example: []
+  syntax:
+    content: public override int GetHashCode()
+    return:
+      type: System.Int32
+    content.vb: Public Overrides Function GetHashCode() As Integer
+  overridden: System.Object.GetHashCode
+  overload: Reportman.Hub.Client.DataChannel.QueryProgress.GetHashCode*
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.Equals(System.Object)
+  commentId: M:Reportman.Hub.Client.DataChannel.QueryProgress.Equals(System.Object)
+  id: Equals(System.Object)
+  parent: Reportman.Hub.Client.DataChannel.QueryProgress
+  langs:
+  - csharp
+  - vb
+  name: Equals(object?)
+  nameWithType: QueryProgress.Equals(object?)
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.Equals(object?)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  example: []
+  syntax:
+    content: public override bool Equals(object? obj)
+    parameters:
+    - id: obj
+      type: System.Object
+    return:
+      type: System.Boolean
+    content.vb: Public Overrides Function Equals(obj As Object) As Boolean
+  overridden: System.Object.Equals(System.Object)
+  overload: Reportman.Hub.Client.DataChannel.QueryProgress.Equals*
+  nameWithType.vb: QueryProgress.Equals(Object)
+  fullName.vb: Reportman.Hub.Client.DataChannel.QueryProgress.Equals(Object)
+  name.vb: Equals(Object)
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.Equals(Reportman.Hub.Client.DataChannel.QueryProgress)
+  commentId: M:Reportman.Hub.Client.DataChannel.QueryProgress.Equals(Reportman.Hub.Client.DataChannel.QueryProgress)
+  id: Equals(Reportman.Hub.Client.DataChannel.QueryProgress)
+  parent: Reportman.Hub.Client.DataChannel.QueryProgress
+  langs:
+  - csharp
+  - vb
+  name: Equals(QueryProgress?)
+  nameWithType: QueryProgress.Equals(QueryProgress?)
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.Equals(Reportman.Hub.Client.DataChannel.QueryProgress?)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  example: []
+  syntax:
+    content: public bool Equals(QueryProgress? other)
+    parameters:
+    - id: other
+      type: Reportman.Hub.Client.DataChannel.QueryProgress
+    return:
+      type: System.Boolean
+    content.vb: Public Function Equals(other As QueryProgress) As Boolean
+  overload: Reportman.Hub.Client.DataChannel.QueryProgress.Equals*
+  implements:
+  - System.IEquatable{Reportman.Hub.Client.DataChannel.QueryProgress}.Equals(Reportman.Hub.Client.DataChannel.QueryProgress)
+  nameWithType.vb: QueryProgress.Equals(QueryProgress)
+  fullName.vb: Reportman.Hub.Client.DataChannel.QueryProgress.Equals(Reportman.Hub.Client.DataChannel.QueryProgress)
+  name.vb: Equals(QueryProgress)
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.#ctor
+  commentId: M:Reportman.Hub.Client.DataChannel.QueryProgress.#ctor
+  id: '#ctor'
+  parent: Reportman.Hub.Client.DataChannel.QueryProgress
+  langs:
+  - csharp
+  - vb
+  name: QueryProgress()
+  nameWithType: QueryProgress.QueryProgress()
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.QueryProgress()
+  type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  syntax:
+    content: public QueryProgress()
+    content.vb: Public Sub New()
+  overload: Reportman.Hub.Client.DataChannel.QueryProgress.#ctor*
+  nameWithType.vb: QueryProgress.New()
+  fullName.vb: Reportman.Hub.Client.DataChannel.QueryProgress.New()
+  name.vb: New()
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.Phase
+  commentId: P:Reportman.Hub.Client.DataChannel.QueryProgress.Phase
+  id: Phase
+  parent: Reportman.Hub.Client.DataChannel.QueryProgress
+  langs:
+  - csharp
+  - vb
+  name: Phase
+  nameWithType: QueryProgress.Phase
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.Phase
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  syntax:
+    content: public QueryPhase Phase { get; init; }
+    parameters: []
+    return:
+      type: Reportman.Hub.Client.DataChannel.QueryPhase
+    content.vb: Public Property Phase As QueryPhase
+  overload: Reportman.Hub.Client.DataChannel.QueryProgress.Phase*
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.ElapsedSec
+  commentId: P:Reportman.Hub.Client.DataChannel.QueryProgress.ElapsedSec
+  id: ElapsedSec
+  parent: Reportman.Hub.Client.DataChannel.QueryProgress
+  langs:
+  - csharp
+  - vb
+  name: ElapsedSec
+  nameWithType: QueryProgress.ElapsedSec
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.ElapsedSec
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  summary: >-
+    Seconds elapsed since the Agent received the request. Increases
+
+    monotonically across all phases of a single query. Used to surface
+
+    "Preparing 23 s" so the user knows the query is still alive even
+
+    during long Plan/Execute phases with no row progress yet.
+  example: []
+  syntax:
+    content: public int ElapsedSec { get; init; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property ElapsedSec As Integer
+  overload: Reportman.Hub.Client.DataChannel.QueryProgress.ElapsedSec*
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.RowsRead
+  commentId: P:Reportman.Hub.Client.DataChannel.QueryProgress.RowsRead
+  id: RowsRead
+  parent: Reportman.Hub.Client.DataChannel.QueryProgress
+  langs:
+  - csharp
+  - vb
+  name: RowsRead
+  nameWithType: QueryProgress.RowsRead
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.RowsRead
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  summary: Live row count while <xref href="Reportman.Hub.Client.DataChannel.QueryPhase.Fetching" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public int RowsRead { get; init; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property RowsRead As Integer
+  overload: Reportman.Hub.Client.DataChannel.QueryProgress.RowsRead*
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.ColumnCount
+  commentId: P:Reportman.Hub.Client.DataChannel.QueryProgress.ColumnCount
+  id: ColumnCount
+  parent: Reportman.Hub.Client.DataChannel.QueryProgress
+  langs:
+  - csharp
+  - vb
+  name: ColumnCount
+  nameWithType: QueryProgress.ColumnCount
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.ColumnCount
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  syntax:
+    content: public int ColumnCount { get; init; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property ColumnCount As Integer
+  overload: Reportman.Hub.Client.DataChannel.QueryProgress.ColumnCount*
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.BytesReceived
+  commentId: P:Reportman.Hub.Client.DataChannel.QueryProgress.BytesReceived
+  id: BytesReceived
+  parent: Reportman.Hub.Client.DataChannel.QueryProgress
+  langs:
+  - csharp
+  - vb
+  name: BytesReceived
+  nameWithType: QueryProgress.BytesReceived
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.BytesReceived
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  summary: Bytes received / total during <xref href="Reportman.Hub.Client.DataChannel.QueryPhase.Delivering" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public long BytesReceived { get; init; }
+    parameters: []
+    return:
+      type: System.Int64
+    content.vb: Public Property BytesReceived As Long
+  overload: Reportman.Hub.Client.DataChannel.QueryProgress.BytesReceived*
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.BytesTotal
+  commentId: P:Reportman.Hub.Client.DataChannel.QueryProgress.BytesTotal
+  id: BytesTotal
+  parent: Reportman.Hub.Client.DataChannel.QueryProgress
+  langs:
+  - csharp
+  - vb
+  name: BytesTotal
+  nameWithType: QueryProgress.BytesTotal
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.BytesTotal
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  syntax:
+    content: public long BytesTotal { get; init; }
+    parameters: []
+    return:
+      type: System.Int64
+    content.vb: Public Property BytesTotal As Long
+  overload: Reportman.Hub.Client.DataChannel.QueryProgress.BytesTotal*
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.Note
+  commentId: P:Reportman.Hub.Client.DataChannel.QueryProgress.Note
+  id: Note
+  parent: Reportman.Hub.Client.DataChannel.QueryProgress
+  langs:
+  - csharp
+  - vb
+  name: Note
+  nameWithType: QueryProgress.Note
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.Note
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  summary: Free-form short status localized at the consumer site.
+  example: []
+  syntax:
+    content: public string? Note { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Note As String
+  overload: Reportman.Hub.Client.DataChannel.QueryProgress.Note*
+references:
+- uid: Reportman.Hub.Client.DataChannel
+  commentId: N:Reportman.Hub.Client.DataChannel
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Hub.Client.DataChannel
+  nameWithType: Reportman.Hub.Client.DataChannel
+  fullName: Reportman.Hub.Client.DataChannel
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Hub
+    name: Hub
+    isExternal: true
+    href: Reportman.Hub.html
+  - name: .
+  - uid: Reportman.Hub.Client
+    name: Client
+    isExternal: true
+    href: Reportman.Hub.Client.html
+  - name: .
+  - uid: Reportman.Hub.Client.DataChannel
+    name: DataChannel
+    isExternal: true
+    href: Reportman.Hub.Client.DataChannel.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Hub
+    name: Hub
+    isExternal: true
+    href: Reportman.Hub.html
+  - name: .
+  - uid: Reportman.Hub.Client
+    name: Client
+    isExternal: true
+    href: Reportman.Hub.Client.html
+  - name: .
+  - uid: Reportman.Hub.Client.DataChannel
+    name: DataChannel
+    isExternal: true
+    href: Reportman.Hub.Client.DataChannel.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IEquatable{Reportman.Hub.Client.DataChannel.QueryProgress}
+  commentId: T:System.IEquatable{Reportman.Hub.Client.DataChannel.QueryProgress}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<QueryProgress>
+  nameWithType: IEquatable<QueryProgress>
+  fullName: System.IEquatable<Reportman.Hub.Client.DataChannel.QueryProgress>
+  nameWithType.vb: IEquatable(Of QueryProgress)
+  fullName.vb: System.IEquatable(Of Reportman.Hub.Client.DataChannel.QueryProgress)
+  name.vb: IEquatable(Of QueryProgress)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: Reportman.Hub.Client.DataChannel.QueryProgress
+    name: QueryProgress
+    isExternal: true
+    href: Reportman.Hub.Client.DataChannel.QueryProgress.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Reportman.Hub.Client.DataChannel.QueryProgress
+    name: QueryProgress
+    isExternal: true
+    href: Reportman.Hub.Client.DataChannel.QueryProgress.html
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress
+  commentId: T:Reportman.Hub.Client.DataChannel.QueryProgress
+  parent: Reportman.Hub.Client.DataChannel
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.QueryProgress.html
+  name: QueryProgress
+  nameWithType: QueryProgress
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.Connecting*
+  commentId: Overload:Reportman.Hub.Client.DataChannel.QueryProgress.Connecting
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.QueryProgress.html#Reportman_Hub_Client_DataChannel_QueryProgress_Connecting_System_String_
+  name: Connecting
+  nameWithType: QueryProgress.Connecting
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.Connecting
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.Preparing*
+  commentId: Overload:Reportman.Hub.Client.DataChannel.QueryProgress.Preparing
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.QueryProgress.html#Reportman_Hub_Client_DataChannel_QueryProgress_Preparing_System_Int32_
+  name: Preparing
+  nameWithType: QueryProgress.Preparing
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.Preparing
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.Executing*
+  commentId: Overload:Reportman.Hub.Client.DataChannel.QueryProgress.Executing
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.QueryProgress.html#Reportman_Hub_Client_DataChannel_QueryProgress_Executing_System_Int32_
+  name: Executing
+  nameWithType: QueryProgress.Executing
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.Executing
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.Fetching*
+  commentId: Overload:Reportman.Hub.Client.DataChannel.QueryProgress.Fetching
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.QueryProgress.html#Reportman_Hub_Client_DataChannel_QueryProgress_Fetching_System_Int32_System_Int32_System_Int32_
+  name: Fetching
+  nameWithType: QueryProgress.Fetching
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.Fetching
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.Serializing*
+  commentId: Overload:Reportman.Hub.Client.DataChannel.QueryProgress.Serializing
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.QueryProgress.html#Reportman_Hub_Client_DataChannel_QueryProgress_Serializing_System_Int32_
+  name: Serializing
+  nameWithType: QueryProgress.Serializing
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.Serializing
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.Compressing*
+  commentId: Overload:Reportman.Hub.Client.DataChannel.QueryProgress.Compressing
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.QueryProgress.html#Reportman_Hub_Client_DataChannel_QueryProgress_Compressing_System_Int32_
+  name: Compressing
+  nameWithType: QueryProgress.Compressing
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.Compressing
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.Delivering*
+  commentId: Overload:Reportman.Hub.Client.DataChannel.QueryProgress.Delivering
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.QueryProgress.html#Reportman_Hub_Client_DataChannel_QueryProgress_Delivering_System_Int32_System_Int64_System_Int64_
+  name: Delivering
+  nameWithType: QueryProgress.Delivering
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.Delivering
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.Decompressing*
+  commentId: Overload:Reportman.Hub.Client.DataChannel.QueryProgress.Decompressing
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.QueryProgress.html#Reportman_Hub_Client_DataChannel_QueryProgress_Decompressing_System_Int32_
+  name: Decompressing
+  nameWithType: QueryProgress.Decompressing
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.Decompressing
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.Deserializing*
+  commentId: Overload:Reportman.Hub.Client.DataChannel.QueryProgress.Deserializing
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.QueryProgress.html#Reportman_Hub_Client_DataChannel_QueryProgress_Deserializing_System_Int32_
+  name: Deserializing
+  nameWithType: QueryProgress.Deserializing
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.Deserializing
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.Done*
+  commentId: Overload:Reportman.Hub.Client.DataChannel.QueryProgress.Done
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.QueryProgress.html#Reportman_Hub_Client_DataChannel_QueryProgress_Done
+  name: Done
+  nameWithType: QueryProgress.Done
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.Done
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.ToString*
+  commentId: Overload:Reportman.Hub.Client.DataChannel.QueryProgress.ToString
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.QueryProgress.html#Reportman_Hub_Client_DataChannel_QueryProgress_ToString
+  name: ToString
+  nameWithType: QueryProgress.ToString
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.ToString
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.op_Inequality*
+  commentId: Overload:Reportman.Hub.Client.DataChannel.QueryProgress.op_Inequality
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.QueryProgress.html#Reportman_Hub_Client_DataChannel_QueryProgress_op_Inequality_Reportman_Hub_Client_DataChannel_QueryProgress_Reportman_Hub_Client_DataChannel_QueryProgress_
+  name: operator !=
+  nameWithType: QueryProgress.operator !=
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.operator !=
+  nameWithType.vb: QueryProgress.<>
+  fullName.vb: Reportman.Hub.Client.DataChannel.QueryProgress.<>
+  name.vb: <>
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: Reportman.Hub.Client.DataChannel.QueryProgress.op_Inequality*
+    name: '!='
+    isExternal: true
+    href: Reportman.Hub.Client.DataChannel.QueryProgress.html#Reportman_Hub_Client_DataChannel_QueryProgress_op_Inequality_Reportman_Hub_Client_DataChannel_QueryProgress_Reportman_Hub_Client_DataChannel_QueryProgress_
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.op_Equality*
+  commentId: Overload:Reportman.Hub.Client.DataChannel.QueryProgress.op_Equality
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.QueryProgress.html#Reportman_Hub_Client_DataChannel_QueryProgress_op_Equality_Reportman_Hub_Client_DataChannel_QueryProgress_Reportman_Hub_Client_DataChannel_QueryProgress_
+  name: operator ==
+  nameWithType: QueryProgress.operator ==
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.operator ==
+  nameWithType.vb: QueryProgress.=
+  fullName.vb: Reportman.Hub.Client.DataChannel.QueryProgress.=
+  name.vb: =
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: Reportman.Hub.Client.DataChannel.QueryProgress.op_Equality*
+    name: ==
+    isExternal: true
+    href: Reportman.Hub.Client.DataChannel.QueryProgress.html#Reportman_Hub_Client_DataChannel_QueryProgress_op_Equality_Reportman_Hub_Client_DataChannel_QueryProgress_Reportman_Hub_Client_DataChannel_QueryProgress_
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.GetHashCode*
+  commentId: Overload:Reportman.Hub.Client.DataChannel.QueryProgress.GetHashCode
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.QueryProgress.html#Reportman_Hub_Client_DataChannel_QueryProgress_GetHashCode
+  name: GetHashCode
+  nameWithType: QueryProgress.GetHashCode
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.GetHashCode
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.Equals*
+  commentId: Overload:Reportman.Hub.Client.DataChannel.QueryProgress.Equals
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.QueryProgress.html#Reportman_Hub_Client_DataChannel_QueryProgress_Equals_System_Object_
+  name: Equals
+  nameWithType: QueryProgress.Equals
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.Equals
+- uid: System.IEquatable{Reportman.Hub.Client.DataChannel.QueryProgress}.Equals(Reportman.Hub.Client.DataChannel.QueryProgress)
+  commentId: M:System.IEquatable{Reportman.Hub.Client.DataChannel.QueryProgress}.Equals(Reportman.Hub.Client.DataChannel.QueryProgress)
+  parent: System.IEquatable{Reportman.Hub.Client.DataChannel.QueryProgress}
+  definition: System.IEquatable`1.Equals(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(QueryProgress)
+  nameWithType: IEquatable<QueryProgress>.Equals(QueryProgress)
+  fullName: System.IEquatable<Reportman.Hub.Client.DataChannel.QueryProgress>.Equals(Reportman.Hub.Client.DataChannel.QueryProgress)
+  nameWithType.vb: IEquatable(Of QueryProgress).Equals(QueryProgress)
+  fullName.vb: System.IEquatable(Of Reportman.Hub.Client.DataChannel.QueryProgress).Equals(Reportman.Hub.Client.DataChannel.QueryProgress)
+  spec.csharp:
+  - uid: System.IEquatable{Reportman.Hub.Client.DataChannel.QueryProgress}.Equals(Reportman.Hub.Client.DataChannel.QueryProgress)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: Reportman.Hub.Client.DataChannel.QueryProgress
+    name: QueryProgress
+    isExternal: true
+    href: Reportman.Hub.Client.DataChannel.QueryProgress.html
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable{Reportman.Hub.Client.DataChannel.QueryProgress}.Equals(Reportman.Hub.Client.DataChannel.QueryProgress)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: Reportman.Hub.Client.DataChannel.QueryProgress
+    name: QueryProgress
+    isExternal: true
+    href: Reportman.Hub.Client.DataChannel.QueryProgress.html
+  - name: )
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.#ctor*
+  commentId: Overload:Reportman.Hub.Client.DataChannel.QueryProgress.#ctor
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.QueryProgress.html#Reportman_Hub_Client_DataChannel_QueryProgress__ctor
+  name: QueryProgress
+  nameWithType: QueryProgress.QueryProgress
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.QueryProgress
+  nameWithType.vb: QueryProgress.New
+  fullName.vb: Reportman.Hub.Client.DataChannel.QueryProgress.New
+  name.vb: New
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.Phase*
+  commentId: Overload:Reportman.Hub.Client.DataChannel.QueryProgress.Phase
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.QueryProgress.html#Reportman_Hub_Client_DataChannel_QueryProgress_Phase
+  name: Phase
+  nameWithType: QueryProgress.Phase
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.Phase
+- uid: Reportman.Hub.Client.DataChannel.QueryPhase
+  commentId: T:Reportman.Hub.Client.DataChannel.QueryPhase
+  parent: Reportman.Hub.Client.DataChannel
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.QueryPhase.html
+  name: QueryPhase
+  nameWithType: QueryPhase
+  fullName: Reportman.Hub.Client.DataChannel.QueryPhase
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.ElapsedSec*
+  commentId: Overload:Reportman.Hub.Client.DataChannel.QueryProgress.ElapsedSec
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.QueryProgress.html#Reportman_Hub_Client_DataChannel_QueryProgress_ElapsedSec
+  name: ElapsedSec
+  nameWithType: QueryProgress.ElapsedSec
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.ElapsedSec
+- uid: Reportman.Hub.Client.DataChannel.QueryPhase.Fetching
+  commentId: F:Reportman.Hub.Client.DataChannel.QueryPhase.Fetching
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.QueryPhase.html#Reportman_Hub_Client_DataChannel_QueryPhase_Fetching
+  name: Fetching
+  nameWithType: QueryPhase.Fetching
+  fullName: Reportman.Hub.Client.DataChannel.QueryPhase.Fetching
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.RowsRead*
+  commentId: Overload:Reportman.Hub.Client.DataChannel.QueryProgress.RowsRead
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.QueryProgress.html#Reportman_Hub_Client_DataChannel_QueryProgress_RowsRead
+  name: RowsRead
+  nameWithType: QueryProgress.RowsRead
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.RowsRead
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.ColumnCount*
+  commentId: Overload:Reportman.Hub.Client.DataChannel.QueryProgress.ColumnCount
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.QueryProgress.html#Reportman_Hub_Client_DataChannel_QueryProgress_ColumnCount
+  name: ColumnCount
+  nameWithType: QueryProgress.ColumnCount
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.ColumnCount
+- uid: Reportman.Hub.Client.DataChannel.QueryPhase.Delivering
+  commentId: F:Reportman.Hub.Client.DataChannel.QueryPhase.Delivering
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.QueryPhase.html#Reportman_Hub_Client_DataChannel_QueryPhase_Delivering
+  name: Delivering
+  nameWithType: QueryPhase.Delivering
+  fullName: Reportman.Hub.Client.DataChannel.QueryPhase.Delivering
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.BytesReceived*
+  commentId: Overload:Reportman.Hub.Client.DataChannel.QueryProgress.BytesReceived
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.QueryProgress.html#Reportman_Hub_Client_DataChannel_QueryProgress_BytesReceived
+  name: BytesReceived
+  nameWithType: QueryProgress.BytesReceived
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.BytesReceived
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.BytesTotal*
+  commentId: Overload:Reportman.Hub.Client.DataChannel.QueryProgress.BytesTotal
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.QueryProgress.html#Reportman_Hub_Client_DataChannel_QueryProgress_BytesTotal
+  name: BytesTotal
+  nameWithType: QueryProgress.BytesTotal
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.BytesTotal
+- uid: Reportman.Hub.Client.DataChannel.QueryProgress.Note*
+  commentId: Overload:Reportman.Hub.Client.DataChannel.QueryProgress.Note
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.QueryProgress.html#Reportman_Hub_Client_DataChannel_QueryProgress_Note
+  name: Note
+  nameWithType: QueryProgress.Note
+  fullName: Reportman.Hub.Client.DataChannel.QueryProgress.Note

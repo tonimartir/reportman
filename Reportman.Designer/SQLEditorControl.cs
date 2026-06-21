@@ -6,6 +6,11 @@ using Reportman.Reporting;
 
 namespace Reportman.Designer
 {
+    /// <summary>
+    /// Composite control that pairs a Monaco-based SQL editor with an AI schema selector
+    /// and audit log, debouncing edits to request AI-powered SQL autocomplete from the
+    /// Reportman agent.
+    /// </summary>
     public class SQLEditorControl : UserControl
     {
         private TabControl _tabControl;

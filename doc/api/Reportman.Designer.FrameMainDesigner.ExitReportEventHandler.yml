@@ -1,0 +1,281 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler
+  commentId: T:Reportman.Designer.FrameMainDesigner.ExitReportEventHandler
+  id: FrameMainDesigner.ExitReportEventHandler
+  parent: Reportman.Designer
+  children:
+  - Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.#ctor(System.Object,System.IntPtr)
+  - Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.BeginInvoke(System.Object,Reportman.Designer.FrameMainDesigner.ExitReportArgs,System.AsyncCallback,System.Object)
+  - Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.EndInvoke(System.IAsyncResult)
+  - Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.Invoke(System.Object,Reportman.Designer.FrameMainDesigner.ExitReportArgs)
+  langs:
+  - csharp
+  - vb
+  name: FrameMainDesigner.ExitReportEventHandler
+  nameWithType: FrameMainDesigner.ExitReportEventHandler
+  fullName: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler
+  type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/FrameMainDesigner.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: >-
+    Callback raised when the user requests to exit the designer, letting the
+
+    host cancel or control disposal through <xref href="Reportman.Designer.FrameMainDesigner.ExitReportArgs" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public delegate void FrameMainDesigner.ExitReportEventHandler(object sender, FrameMainDesigner.ExitReportArgs args)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: Reportman.Designer.FrameMainDesigner.ExitReportArgs
+    content.vb: Public Delegate Sub FrameMainDesigner.ExitReportEventHandler(sender As Object, args As FrameMainDesigner.ExitReportArgs)
+- uid: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.#ctor(System.Object,System.IntPtr)
+  commentId: M:Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.#ctor(System.Object,System.IntPtr)
+  id: '#ctor(System.Object,System.IntPtr)'
+  parent: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler
+  langs:
+  - csharp
+  - vb
+  name: ExitReportEventHandler(object, nint)
+  nameWithType: FrameMainDesigner.ExitReportEventHandler.ExitReportEventHandler(object, nint)
+  fullName: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.ExitReportEventHandler(object, nint)
+  type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/FrameMainDesigner.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public ExitReportEventHandler(object @object, nint method)
+    parameters:
+    - id: object
+      type: System.Object
+    - id: method
+      type: System.IntPtr
+    content.vb: Public Sub New([object] As Object, method As IntPtr)
+  overload: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.#ctor*
+  nameWithType.vb: FrameMainDesigner.ExitReportEventHandler.New(Object, IntPtr)
+  fullName.vb: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.New(Object, System.IntPtr)
+  name.vb: New(Object, IntPtr)
+- uid: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.Invoke(System.Object,Reportman.Designer.FrameMainDesigner.ExitReportArgs)
+  commentId: M:Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.Invoke(System.Object,Reportman.Designer.FrameMainDesigner.ExitReportArgs)
+  id: Invoke(System.Object,Reportman.Designer.FrameMainDesigner.ExitReportArgs)
+  parent: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler
+  langs:
+  - csharp
+  - vb
+  name: Invoke(object, ExitReportArgs)
+  nameWithType: FrameMainDesigner.ExitReportEventHandler.Invoke(object, FrameMainDesigner.ExitReportArgs)
+  fullName: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.Invoke(object, Reportman.Designer.FrameMainDesigner.ExitReportArgs)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/FrameMainDesigner.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public virtual void Invoke(object sender, FrameMainDesigner.ExitReportArgs args)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: Reportman.Designer.FrameMainDesigner.ExitReportArgs
+    content.vb: Public Overridable Sub Invoke(sender As Object, args As FrameMainDesigner.ExitReportArgs)
+  overload: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.Invoke*
+  nameWithType.vb: FrameMainDesigner.ExitReportEventHandler.Invoke(Object, FrameMainDesigner.ExitReportArgs)
+  fullName.vb: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.Invoke(Object, Reportman.Designer.FrameMainDesigner.ExitReportArgs)
+  name.vb: Invoke(Object, ExitReportArgs)
+- uid: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.BeginInvoke(System.Object,Reportman.Designer.FrameMainDesigner.ExitReportArgs,System.AsyncCallback,System.Object)
+  commentId: M:Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.BeginInvoke(System.Object,Reportman.Designer.FrameMainDesigner.ExitReportArgs,System.AsyncCallback,System.Object)
+  id: BeginInvoke(System.Object,Reportman.Designer.FrameMainDesigner.ExitReportArgs,System.AsyncCallback,System.Object)
+  parent: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler
+  langs:
+  - csharp
+  - vb
+  name: BeginInvoke(object, ExitReportArgs, AsyncCallback, object)
+  nameWithType: FrameMainDesigner.ExitReportEventHandler.BeginInvoke(object, FrameMainDesigner.ExitReportArgs, AsyncCallback, object)
+  fullName: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.BeginInvoke(object, Reportman.Designer.FrameMainDesigner.ExitReportArgs, System.AsyncCallback, object)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/FrameMainDesigner.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public virtual IAsyncResult BeginInvoke(object sender, FrameMainDesigner.ExitReportArgs args, AsyncCallback callback, object @object)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: Reportman.Designer.FrameMainDesigner.ExitReportArgs
+    - id: callback
+      type: System.AsyncCallback
+    - id: object
+      type: System.Object
+    return:
+      type: System.IAsyncResult
+    content.vb: Public Overridable Function BeginInvoke(sender As Object, args As FrameMainDesigner.ExitReportArgs, callback As AsyncCallback, [object] As Object) As IAsyncResult
+  overload: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.BeginInvoke*
+  nameWithType.vb: FrameMainDesigner.ExitReportEventHandler.BeginInvoke(Object, FrameMainDesigner.ExitReportArgs, AsyncCallback, Object)
+  fullName.vb: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.BeginInvoke(Object, Reportman.Designer.FrameMainDesigner.ExitReportArgs, System.AsyncCallback, Object)
+  name.vb: BeginInvoke(Object, ExitReportArgs, AsyncCallback, Object)
+- uid: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.EndInvoke(System.IAsyncResult)
+  commentId: M:Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.EndInvoke(System.IAsyncResult)
+  id: EndInvoke(System.IAsyncResult)
+  parent: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler
+  langs:
+  - csharp
+  - vb
+  name: EndInvoke(IAsyncResult)
+  nameWithType: FrameMainDesigner.ExitReportEventHandler.EndInvoke(IAsyncResult)
+  fullName: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.EndInvoke(System.IAsyncResult)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/FrameMainDesigner.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public virtual void EndInvoke(IAsyncResult result)
+    parameters:
+    - id: result
+      type: System.IAsyncResult
+    content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
+  overload: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.EndInvoke*
+references:
+- uid: Reportman.Designer.FrameMainDesigner.ExitReportArgs
+  commentId: T:Reportman.Designer.FrameMainDesigner.ExitReportArgs
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.FrameMainDesigner.html
+  name: FrameMainDesigner.ExitReportArgs
+  nameWithType: FrameMainDesigner.ExitReportArgs
+  fullName: Reportman.Designer.FrameMainDesigner.ExitReportArgs
+  spec.csharp:
+  - uid: Reportman.Designer.FrameMainDesigner
+    name: FrameMainDesigner
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.html
+  - name: .
+  - uid: Reportman.Designer.FrameMainDesigner.ExitReportArgs
+    name: ExitReportArgs
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.ExitReportArgs.html
+  spec.vb:
+  - uid: Reportman.Designer.FrameMainDesigner
+    name: FrameMainDesigner
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.html
+  - name: .
+  - uid: Reportman.Designer.FrameMainDesigner.ExitReportArgs
+    name: ExitReportArgs
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.ExitReportArgs.html
+- uid: Reportman.Designer
+  commentId: N:Reportman.Designer
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Designer
+  nameWithType: Reportman.Designer
+  fullName: Reportman.Designer
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.#ctor*
+  commentId: Overload:Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.#ctor
+  isExternal: true
+  href: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.html#Reportman_Designer_FrameMainDesigner_ExitReportEventHandler__ctor_System_Object_System_IntPtr_
+  name: ExitReportEventHandler
+  nameWithType: FrameMainDesigner.ExitReportEventHandler.ExitReportEventHandler
+  fullName: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.ExitReportEventHandler
+  nameWithType.vb: FrameMainDesigner.ExitReportEventHandler.New
+  fullName.vb: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.New
+  name.vb: New
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.Invoke*
+  commentId: Overload:Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.Invoke
+  isExternal: true
+  href: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.html#Reportman_Designer_FrameMainDesigner_ExitReportEventHandler_Invoke_System_Object_Reportman_Designer_FrameMainDesigner_ExitReportArgs_
+  name: Invoke
+  nameWithType: FrameMainDesigner.ExitReportEventHandler.Invoke
+  fullName: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.Invoke
+- uid: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.BeginInvoke*
+  commentId: Overload:Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.BeginInvoke
+  isExternal: true
+  href: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.html#Reportman_Designer_FrameMainDesigner_ExitReportEventHandler_BeginInvoke_System_Object_Reportman_Designer_FrameMainDesigner_ExitReportArgs_System_AsyncCallback_System_Object_
+  name: BeginInvoke
+  nameWithType: FrameMainDesigner.ExitReportEventHandler.BeginInvoke
+  fullName: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.BeginInvoke
+- uid: System.AsyncCallback
+  commentId: T:System.AsyncCallback
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.asynccallback
+  name: AsyncCallback
+  nameWithType: AsyncCallback
+  fullName: System.AsyncCallback
+- uid: System.IAsyncResult
+  commentId: T:System.IAsyncResult
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncresult
+  name: IAsyncResult
+  nameWithType: IAsyncResult
+  fullName: System.IAsyncResult
+- uid: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.EndInvoke*
+  commentId: Overload:Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.EndInvoke
+  isExternal: true
+  href: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.html#Reportman_Designer_FrameMainDesigner_ExitReportEventHandler_EndInvoke_System_IAsyncResult_
+  name: EndInvoke
+  nameWithType: FrameMainDesigner.ExitReportEventHandler.EndInvoke
+  fullName: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler.EndInvoke

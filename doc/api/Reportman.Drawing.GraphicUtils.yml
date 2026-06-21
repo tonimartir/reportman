@@ -27,7 +27,7 @@ items:
   fullName: Reportman.Drawing.GraphicUtils
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -61,7 +61,7 @@ items:
   fullName: Reportman.Drawing.GraphicUtils.flag
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -82,7 +82,7 @@ items:
   fullName: Reportman.Drawing.GraphicUtils.DefaultDPI
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -103,7 +103,7 @@ items:
   fullName: Reportman.Drawing.GraphicUtils.ColorNames
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -124,7 +124,7 @@ items:
   fullName: Reportman.Drawing.GraphicUtils.FontStyleIsBold(int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -152,7 +152,7 @@ items:
   fullName: Reportman.Drawing.GraphicUtils.FontStyleIsItalic(int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -180,7 +180,7 @@ items:
   fullName: Reportman.Drawing.GraphicUtils.FontStyleIsUnderline(int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -208,7 +208,7 @@ items:
   fullName: Reportman.Drawing.GraphicUtils.FontStyleIsStrikeOut(int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -236,7 +236,7 @@ items:
   fullName: Reportman.Drawing.GraphicUtils.ColorFromInteger(int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -268,7 +268,7 @@ items:
   fullName: Reportman.Drawing.GraphicUtils.IntegerFromColor(System.Drawing.Color)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -297,7 +297,7 @@ items:
   fullName: Reportman.Drawing.GraphicUtils.IntegerFromColorA(System.Drawing.Color)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -322,7 +322,7 @@ items:
   fullName: Reportman.Drawing.GraphicUtils.ColorFromHtml(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -351,7 +351,7 @@ items:
   fullName: Reportman.Drawing.GraphicUtils.ColorFromString(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -379,7 +379,7 @@ items:
   fullName: Reportman.Drawing.GraphicUtils.ColorFromIntegerA(int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -411,7 +411,7 @@ items:
   fullName: Reportman.Drawing.GraphicUtils.GraphicUtils()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/GraphicUtils.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/GraphicUtils.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

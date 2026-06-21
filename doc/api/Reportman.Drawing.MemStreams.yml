@@ -19,7 +19,7 @@ items:
   fullName: Reportman.Drawing.MemStreams
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -55,7 +55,7 @@ items:
   fullName: Reportman.Drawing.MemStreams.MemStreams()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -78,7 +78,7 @@ items:
   fullName: Reportman.Drawing.MemStreams.Clear()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -98,7 +98,7 @@ items:
   fullName: Reportman.Drawing.MemStreams.Add(System.IO.MemoryStream)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -121,7 +121,7 @@ items:
   fullName: Reportman.Drawing.MemStreams.Dispose()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -144,7 +144,7 @@ items:
   fullName: Reportman.Drawing.MemStreams.this[int]
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -172,7 +172,7 @@ items:
   fullName: Reportman.Drawing.MemStreams.Count
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

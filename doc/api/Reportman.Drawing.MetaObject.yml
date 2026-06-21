@@ -34,7 +34,7 @@ items:
   fullName: Reportman.Drawing.MetaObject
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaObject.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -71,7 +71,7 @@ items:
   fullName: Reportman.Drawing.MetaObject.Id
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaObject.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -94,7 +94,7 @@ items:
   fullName: Reportman.Drawing.MetaObject.RECORD_SIZE_4
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaObject.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -117,7 +117,7 @@ items:
   fullName: Reportman.Drawing.MetaObject.RECORD_SIZE_3
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaObject.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -138,7 +138,7 @@ items:
   fullName: Reportman.Drawing.MetaObject.RECORD_OFFSET_3
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaObject.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -159,7 +159,7 @@ items:
   fullName: Reportman.Drawing.MetaObject.RECORD_OFFSET_4
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaObject.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -180,7 +180,7 @@ items:
   fullName: Reportman.Drawing.MetaObject.emptybuf
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaObject.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -203,7 +203,7 @@ items:
   fullName: Reportman.Drawing.MetaObject.Top
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaObject.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -226,7 +226,7 @@ items:
   fullName: Reportman.Drawing.MetaObject.Left
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaObject.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -249,7 +249,7 @@ items:
   fullName: Reportman.Drawing.MetaObject.Width
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaObject.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -272,7 +272,7 @@ items:
   fullName: Reportman.Drawing.MetaObject.Height
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaObject.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -295,7 +295,7 @@ items:
   fullName: Reportman.Drawing.MetaObject.AnnotationP
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaObject.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -318,7 +318,7 @@ items:
   fullName: Reportman.Drawing.MetaObject.AnnotationS
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaObject.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -341,7 +341,7 @@ items:
   fullName: Reportman.Drawing.MetaObject.MetaType
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaObject.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -364,7 +364,7 @@ items:
   fullName: Reportman.Drawing.MetaObject.CreateFromBuf(byte[], int, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaObject.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -401,7 +401,7 @@ items:
   fullName: Reportman.Drawing.MetaObject.GetRECORD_OFFSET(int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaObject.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -429,7 +429,7 @@ items:
   fullName: Reportman.Drawing.MetaObject.GetRECORD_SIZE(int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaObject.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -457,7 +457,7 @@ items:
   fullName: Reportman.Drawing.MetaObject.GetIntHorizAlignment(Reportman.Drawing.TextAlignType)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaObject.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -482,7 +482,7 @@ items:
   fullName: Reportman.Drawing.MetaObject.GetIntVertAlignment(Reportman.Drawing.TextAlignVerticalType)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaObject.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -507,7 +507,7 @@ items:
   fullName: Reportman.Drawing.MetaObject.FillFromBuf(byte[], int, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaObject.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -541,7 +541,7 @@ items:
   fullName: Reportman.Drawing.MetaObject.SaveToStream(System.IO.Stream, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaObject.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -572,7 +572,7 @@ items:
   fullName: Reportman.Drawing.MetaObject.MetaObject()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaObject.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaObject.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

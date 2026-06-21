@@ -30,7 +30,7 @@ items:
   fullName: Reportman.Reporting.ReportmanAgentClient
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportmanAgentClient.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportmanAgentClient.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -66,7 +66,7 @@ items:
   fullName: Reportman.Reporting.ReportmanAgentClient.DefaultBaseUrl
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportmanAgentClient.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportmanAgentClient.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -87,7 +87,7 @@ items:
   fullName: Reportman.Reporting.ReportmanAgentClient.ReportmanAgentClient()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportmanAgentClient.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportmanAgentClient.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -110,7 +110,7 @@ items:
   fullName: Reportman.Reporting.ReportmanAgentClient.SuggestSqlAsync(string, int, string, object, Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler, System.Threading.CancellationToken)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportmanAgentClient.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportmanAgentClient.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -148,7 +148,7 @@ items:
   fullName: Reportman.Reporting.ReportmanAgentClient.TranslateToSqlAsync(string, string, string, string, object, Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler, System.Threading.CancellationToken)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportmanAgentClient.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportmanAgentClient.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -188,7 +188,7 @@ items:
   fullName: Reportman.Reporting.ReportmanAgentClient.ModifyReportAsync(string, string, string, string, string, object, Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler, System.Threading.CancellationToken)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportmanAgentClient.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportmanAgentClient.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -230,7 +230,7 @@ items:
   fullName: Reportman.Reporting.ReportmanAgentClient.SuggestExpressionAsync(string, string, bool, int, string, string, object, Reportman.Reporting.ReportmanAgentClient.ProgressEventHandler, System.Threading.CancellationToken)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportmanAgentClient.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportmanAgentClient.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -274,7 +274,7 @@ items:
   fullName: Reportman.Reporting.ReportmanAgentClient.BaseUrl
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportmanAgentClient.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportmanAgentClient.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -297,7 +297,7 @@ items:
   fullName: Reportman.Reporting.ReportmanAgentClient.ApiKey
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportmanAgentClient.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportmanAgentClient.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -320,7 +320,7 @@ items:
   fullName: Reportman.Reporting.ReportmanAgentClient.Token
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportmanAgentClient.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportmanAgentClient.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -343,7 +343,7 @@ items:
   fullName: Reportman.Reporting.ReportmanAgentClient.InstallId
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportmanAgentClient.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportmanAgentClient.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -366,7 +366,7 @@ items:
   fullName: Reportman.Reporting.ReportmanAgentClient.HubDatabaseId
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportmanAgentClient.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportmanAgentClient.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -389,7 +389,7 @@ items:
   fullName: Reportman.Reporting.ReportmanAgentClient.HubSchemaId
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportmanAgentClient.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportmanAgentClient.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -412,7 +412,7 @@ items:
   fullName: Reportman.Reporting.ReportmanAgentClient.RuntimeDb
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportmanAgentClient.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportmanAgentClient.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -435,7 +435,7 @@ items:
   fullName: Reportman.Reporting.ReportmanAgentClient.AITier
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportmanAgentClient.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportmanAgentClient.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -458,7 +458,7 @@ items:
   fullName: Reportman.Reporting.ReportmanAgentClient.AgentSecret
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportmanAgentClient.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportmanAgentClient.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -481,7 +481,7 @@ items:
   fullName: Reportman.Reporting.ReportmanAgentClient.AgentAiId
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportmanAgentClient.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportmanAgentClient.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -504,7 +504,7 @@ items:
   fullName: Reportman.Reporting.ReportmanAgentClient.LogMessage
   type: Event
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportmanAgentClient.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportmanAgentClient.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

@@ -46,7 +46,7 @@ items:
   fullName: Reportman.Reporting.Param
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -91,7 +91,7 @@ items:
   fullName: Reportman.Reporting.Param.ParamType
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -112,7 +112,7 @@ items:
   fullName: Reportman.Reporting.Param.Alias
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -133,7 +133,7 @@ items:
   fullName: Reportman.Reporting.Param.Descriptions
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -166,7 +166,7 @@ items:
   fullName: Reportman.Reporting.Param.Hints
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -199,7 +199,7 @@ items:
   fullName: Reportman.Reporting.Param.ErrorMessages
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -232,7 +232,7 @@ items:
   fullName: Reportman.Reporting.Param.Validation
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -253,7 +253,7 @@ items:
   fullName: Reportman.Reporting.Param.LookupDataset
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -274,7 +274,7 @@ items:
   fullName: Reportman.Reporting.Param.SearchDataset
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -295,7 +295,7 @@ items:
   fullName: Reportman.Reporting.Param.Search
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -316,7 +316,7 @@ items:
   fullName: Reportman.Reporting.Param.SearchParam
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -337,7 +337,7 @@ items:
   fullName: Reportman.Reporting.Param.Items
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -358,7 +358,7 @@ items:
   fullName: Reportman.Reporting.Param.Values
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -379,7 +379,7 @@ items:
   fullName: Reportman.Reporting.Param.Selected
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -400,7 +400,7 @@ items:
   fullName: Reportman.Reporting.Param.Datasets
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -421,7 +421,7 @@ items:
   fullName: Reportman.Reporting.Param.Visible
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -442,7 +442,7 @@ items:
   fullName: Reportman.Reporting.Param.IsReadOnly
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -463,7 +463,7 @@ items:
   fullName: Reportman.Reporting.Param.NeverVisible
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -484,7 +484,7 @@ items:
   fullName: Reportman.Reporting.Param.AllowNulls
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -505,7 +505,7 @@ items:
   fullName: Reportman.Reporting.Param.GetClassName()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -531,7 +531,7 @@ items:
   fullName: Reportman.Reporting.Param.Param()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -554,7 +554,7 @@ items:
   fullName: Reportman.Reporting.Param.GetDbType()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -576,7 +576,7 @@ items:
   fullName: Reportman.Reporting.Param.GetSubExpreValue()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -598,7 +598,7 @@ items:
   fullName: Reportman.Reporting.Param.GetMultiValue()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -620,7 +620,7 @@ items:
   fullName: Reportman.Reporting.Param.Clone()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -645,7 +645,7 @@ items:
   fullName: Reportman.Reporting.Param.SelectAllValues()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -665,7 +665,7 @@ items:
   fullName: Reportman.Reporting.Param.UpdateLookupValues()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -685,7 +685,7 @@ items:
   fullName: Reportman.Reporting.Param.Value
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -708,7 +708,7 @@ items:
   fullName: Reportman.Reporting.Param.Description
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -731,7 +731,7 @@ items:
   fullName: Reportman.Reporting.Param.UserVisible
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -754,7 +754,7 @@ items:
   fullName: Reportman.Reporting.Param.Hint
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -777,7 +777,7 @@ items:
   fullName: Reportman.Reporting.Param.ErrorMessage
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -800,7 +800,7 @@ items:
   fullName: Reportman.Reporting.Param.LastValue
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -823,7 +823,7 @@ items:
   fullName: Reportman.Reporting.Param.ListValue
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Param.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Param.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -877,7 +877,7 @@ references:
   commentId: T:Reportman.Reporting.ReportItem
   parent: Reportman.Reporting
   isExternal: true
-  href: Reportman.Reporting.ReportItem.html
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportItem.cs
   name: ReportItem
   nameWithType: ReportItem
   fullName: Reportman.Reporting.ReportItem
@@ -1222,7 +1222,7 @@ references:
   commentId: T:Reportman.Drawing.Strings
   parent: Reportman.Drawing
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Strings.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Strings.cs
   name: Strings
   nameWithType: Strings
   fullName: Reportman.Drawing.Strings

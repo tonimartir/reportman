@@ -4,7 +4,15 @@ using System.Windows.Forms;
 
 namespace Reportman.Designer
 {
+    /// <summary>
+    /// Callback raised when the ellipsis button of an <see cref="EllipsisEditingControl"/> is clicked;
+    /// the handler may replace <paramref name="text"/> and returns true if the value was changed.
+    /// </summary>
     public delegate bool EllipsisClick(EllipsisEditingControl sender, ref string text);
+    /// <summary>
+    /// A DataGridView in-cell editing control that pairs a text box with an ellipsis button,
+    /// letting the user edit a cell value directly or open an external picker via the button.
+    /// </summary>
     public partial class EllipsisEditingControl : UserControl, IDataGridViewEditingControl
     {
         public DataGridView m_dataGridView = null;

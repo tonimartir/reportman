@@ -98,6 +98,7 @@ items:
   - Reportman.Drawing.PrintOutCSV.TextFormat
   - Reportman.Drawing.PrintOutCSV.TextFormat.AlignmentType
   - Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle
+  - Reportman.Drawing.PrintOutClosedExcel
   - Reportman.Drawing.PrintOutExcel
   - Reportman.Drawing.PrintOutNet
   - Reportman.Drawing.PrintOutPDF
@@ -301,7 +302,7 @@ references:
   commentId: T:Reportman.Drawing.PDFFont
   parent: Reportman.Drawing
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   name: PDFFont
   nameWithType: PDFFont
   fullName: Reportman.Drawing.PDFFont
@@ -317,7 +318,7 @@ references:
   commentId: T:Reportman.Drawing.TTFontData
   parent: Reportman.Drawing
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   name: TTFontData
   nameWithType: TTFontData
   fullName: Reportman.Drawing.TTFontData
@@ -325,7 +326,7 @@ references:
   commentId: T:Reportman.Drawing.FontInfoProvider
   parent: Reportman.Drawing
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   name: FontInfoProvider
   nameWithType: FontInfoProvider
   fullName: Reportman.Drawing.FontInfoProvider
@@ -405,7 +406,7 @@ references:
   commentId: T:Reportman.Drawing.IBitmapInfoProvider
   parent: Reportman.Drawing
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IBitmapInfoProvider.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/IBitmapInfoProvider.cs
   name: IBitmapInfoProvider
   nameWithType: IBitmapInfoProvider
   fullName: Reportman.Drawing.IBitmapInfoProvider
@@ -413,7 +414,7 @@ references:
   commentId: T:Reportman.Drawing.BitmapInfo
   parent: Reportman.Drawing
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IBitmapInfoProvider.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/IBitmapInfoProvider.cs
   name: BitmapInfo
   nameWithType: BitmapInfo
   fullName: Reportman.Drawing.BitmapInfo
@@ -459,7 +460,7 @@ references:
   commentId: T:Reportman.Drawing.ISqlExecuter
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.ISqlExecuter.html
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/ISqlExecuter.cs
   name: ISqlExecuter
   nameWithType: ISqlExecuter
   fullName: Reportman.Drawing.ISqlExecuter
@@ -706,7 +707,7 @@ references:
   commentId: T:Reportman.Drawing.MetaFile
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.MetaFile.html
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaFile.cs
   name: MetaFile
   nameWithType: MetaFile
   fullName: Reportman.Drawing.MetaFile
@@ -929,7 +930,7 @@ references:
   commentId: T:Reportman.Drawing.PrintOut
   parent: Reportman.Drawing
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   name: PrintOut
   nameWithType: PrintOut
   fullName: Reportman.Drawing.PrintOut
@@ -1055,7 +1056,7 @@ references:
   commentId: T:Reportman.Drawing.PrintOutPDFBase
   parent: Reportman.Drawing
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutPDFBase.cs
   name: PrintOutPDFBase
   nameWithType: PrintOutPDFBase
   fullName: Reportman.Drawing.PrintOutPDFBase
@@ -1225,7 +1226,7 @@ references:
   commentId: T:Reportman.Drawing.Strings
   parent: Reportman.Drawing
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Strings.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Strings.cs
   name: Strings
   nameWithType: Strings
   fullName: Reportman.Drawing.Strings
@@ -1309,6 +1310,13 @@ references:
   name: Updater
   nameWithType: Updater
   fullName: Reportman.Drawing.Updater
+- uid: Reportman.Drawing.PrintOutClosedExcel
+  commentId: T:Reportman.Drawing.PrintOutClosedExcel
+  isExternal: true
+  href: Reportman.Drawing.PrintOutClosedExcel.html
+  name: PrintOutClosedExcel
+  nameWithType: PrintOutClosedExcel
+  fullName: Reportman.Drawing.PrintOutClosedExcel
 - uid: Reportman.Drawing.MAPI
   commentId: T:Reportman.Drawing.MAPI
   isExternal: true
@@ -1342,7 +1350,7 @@ references:
   commentId: T:Reportman.Drawing.PrintOutNet
   parent: Reportman.Drawing
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/PrintOutNet.cs
   name: PrintOutNet
   nameWithType: PrintOutNet
   fullName: Reportman.Drawing.PrintOutNet
@@ -1350,7 +1358,7 @@ references:
   commentId: T:Reportman.Drawing.WMFOptimization
   parent: Reportman.Drawing
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutNet.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/PrintOutNet.cs
   name: WMFOptimization
   nameWithType: WMFOptimization
   fullName: Reportman.Drawing.WMFOptimization
@@ -1393,7 +1401,7 @@ references:
   commentId: T:Reportman.Drawing.PrintOutPrint
   parent: Reportman.Drawing
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutPrint.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/PrintOutPrint.cs
   name: PrintOutPrint
   nameWithType: PrintOutPrint
   fullName: Reportman.Drawing.PrintOutPrint

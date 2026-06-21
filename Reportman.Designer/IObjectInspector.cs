@@ -15,6 +15,10 @@ namespace Reportman.Designer
         PropertyChanged OnPropertyChange { get; set; }
         void FinishEdit();
     }
+    /// <summary>
+    /// Callback raised when an inspected object's property is edited, reporting the
+    /// property name and its new value.
+    /// </summary>
     public delegate void PropertyChanged(string propertyName, object value);
 
 }

@@ -21,7 +21,7 @@ items:
   fullName: Reportman.Reporting.TokenType
   type: Enum
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/TokenType.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/TokenType.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -42,7 +42,7 @@ items:
   fullName: Reportman.Reporting.TokenType.Eof
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/TokenType.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/TokenType.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -64,7 +64,7 @@ items:
   fullName: Reportman.Reporting.TokenType.Symbol
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/TokenType.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/TokenType.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -86,7 +86,7 @@ items:
   fullName: Reportman.Reporting.TokenType.String
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/TokenType.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/TokenType.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -108,7 +108,7 @@ items:
   fullName: Reportman.Reporting.TokenType.Integer
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/TokenType.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/TokenType.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -130,7 +130,7 @@ items:
   fullName: Reportman.Reporting.TokenType.Double
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/TokenType.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/TokenType.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -152,7 +152,7 @@ items:
   fullName: Reportman.Reporting.TokenType.Decimal
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/TokenType.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/TokenType.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -174,7 +174,7 @@ items:
   fullName: Reportman.Reporting.TokenType.Operator
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/TokenType.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/TokenType.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -196,7 +196,7 @@ items:
   fullName: Reportman.Reporting.TokenType.Comment
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/TokenType.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/TokenType.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

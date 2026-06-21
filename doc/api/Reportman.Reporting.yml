@@ -241,7 +241,7 @@ references:
   commentId: T:Reportman.Reporting.DataInfo
   parent: Reportman.Reporting
   isExternal: true
-  href: Reportman.Reporting.DataInfo.html
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DataInfo.cs
   name: DataInfo
   nameWithType: DataInfo
   fullName: Reportman.Reporting.DataInfo
@@ -556,7 +556,7 @@ references:
   commentId: T:Reportman.Reporting.Report
   parent: Reportman.Reporting
   isExternal: true
-  href: Reportman.Reporting.Report.html
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Report.cs
   name: Report
   nameWithType: Report
   fullName: Reportman.Reporting.Report
@@ -680,7 +680,7 @@ references:
   commentId: T:Reportman.Reporting.ReportItem
   parent: Reportman.Reporting
   isExternal: true
-  href: Reportman.Reporting.ReportItem.html
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportItem.cs
   name: ReportItem
   nameWithType: ReportItem
   fullName: Reportman.Reporting.ReportItem
@@ -688,7 +688,7 @@ references:
   commentId: T:Reportman.Reporting.PrintItem
   parent: Reportman.Reporting
   isExternal: true
-  href: Reportman.Reporting.PrintItem.html
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportItem.cs
   name: PrintItem
   nameWithType: PrintItem
   fullName: Reportman.Reporting.PrintItem
@@ -731,7 +731,7 @@ references:
   commentId: T:Reportman.Reporting.PrintPosItem
   parent: Reportman.Reporting
   isExternal: true
-  href: Reportman.Reporting.PrintPosItem.html
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportItem.cs
   name: PrintPosItem
   nameWithType: PrintPosItem
   fullName: Reportman.Reporting.PrintPosItem
@@ -755,21 +755,23 @@ references:
   commentId: T:Reportman.Reporting.ReportLibraryConfig
   parent: Reportman.Reporting
   isExternal: true
-  href: Reportman.Reporting.ReportLibraryConfig.html
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportLibraryConfig.cs
   name: ReportLibraryConfig
   nameWithType: ReportLibraryConfig
   fullName: Reportman.Reporting.ReportLibraryConfig
 - uid: Reportman.Reporting.ReportLibrarySelection
   commentId: T:Reportman.Reporting.ReportLibrarySelection
+  parent: Reportman.Reporting
   isExternal: true
-  href: Reportman.Reporting.ReportLibrarySelection.html
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportLibraryConfig.cs
   name: ReportLibrarySelection
   nameWithType: ReportLibrarySelection
   fullName: Reportman.Reporting.ReportLibrarySelection
 - uid: Reportman.Reporting.ReportLibraryConfigCollection
   commentId: T:Reportman.Reporting.ReportLibraryConfigCollection
+  parent: Reportman.Reporting
   isExternal: true
-  href: Reportman.Reporting.ReportLibraryConfigCollection.html
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportLibraryConfig.cs
   name: ReportLibraryConfigCollection
   nameWithType: ReportLibraryConfigCollection
   fullName: Reportman.Reporting.ReportLibraryConfigCollection
@@ -892,7 +894,7 @@ references:
   commentId: T:Reportman.Reporting.Section
   parent: Reportman.Reporting
   isExternal: true
-  href: Reportman.Reporting.Section.html
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Section.cs
   name: Section
   nameWithType: Section
   fullName: Reportman.Reporting.Section
@@ -930,7 +932,7 @@ references:
   commentId: T:Reportman.Reporting.SubReport
   parent: Reportman.Reporting
   isExternal: true
-  href: Reportman.Reporting.SubReport.html
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Subreport.cs
   name: SubReport
   nameWithType: SubReport
   fullName: Reportman.Reporting.SubReport

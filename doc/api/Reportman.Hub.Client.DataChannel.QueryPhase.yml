@@ -1,0 +1,314 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Hub.Client.DataChannel.QueryPhase
+  commentId: T:Reportman.Hub.Client.DataChannel.QueryPhase
+  id: QueryPhase
+  parent: Reportman.Hub.Client.DataChannel
+  children:
+  - Reportman.Hub.Client.DataChannel.QueryPhase.Compressing
+  - Reportman.Hub.Client.DataChannel.QueryPhase.Connecting
+  - Reportman.Hub.Client.DataChannel.QueryPhase.Decompressing
+  - Reportman.Hub.Client.DataChannel.QueryPhase.Delivering
+  - Reportman.Hub.Client.DataChannel.QueryPhase.Deserializing
+  - Reportman.Hub.Client.DataChannel.QueryPhase.Done
+  - Reportman.Hub.Client.DataChannel.QueryPhase.Executing
+  - Reportman.Hub.Client.DataChannel.QueryPhase.Fetching
+  - Reportman.Hub.Client.DataChannel.QueryPhase.Idle
+  - Reportman.Hub.Client.DataChannel.QueryPhase.Preparing
+  - Reportman.Hub.Client.DataChannel.QueryPhase.Serializing
+  langs:
+  - csharp
+  - vb
+  name: QueryPhase
+  nameWithType: QueryPhase
+  fullName: Reportman.Hub.Client.DataChannel.QueryPhase
+  type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  summary: >-
+    The sequential stages a single SQL operation passes through, from connecting and
+
+    preparing through fetching, transfer and decoding to completion.
+  example: []
+  syntax:
+    content: public enum QueryPhase
+    content.vb: Public Enum QueryPhase
+- uid: Reportman.Hub.Client.DataChannel.QueryPhase.Idle
+  commentId: F:Reportman.Hub.Client.DataChannel.QueryPhase.Idle
+  id: Idle
+  parent: Reportman.Hub.Client.DataChannel.QueryPhase
+  langs:
+  - csharp
+  - vb
+  name: Idle
+  nameWithType: QueryPhase.Idle
+  fullName: Reportman.Hub.Client.DataChannel.QueryPhase.Idle
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  syntax:
+    content: Idle = 0
+    return:
+      type: Reportman.Hub.Client.DataChannel.QueryPhase
+- uid: Reportman.Hub.Client.DataChannel.QueryPhase.Connecting
+  commentId: F:Reportman.Hub.Client.DataChannel.QueryPhase.Connecting
+  id: Connecting
+  parent: Reportman.Hub.Client.DataChannel.QueryPhase
+  langs:
+  - csharp
+  - vb
+  name: Connecting
+  nameWithType: QueryPhase.Connecting
+  fullName: Reportman.Hub.Client.DataChannel.QueryPhase.Connecting
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  syntax:
+    content: Connecting = 1
+    return:
+      type: Reportman.Hub.Client.DataChannel.QueryPhase
+- uid: Reportman.Hub.Client.DataChannel.QueryPhase.Preparing
+  commentId: F:Reportman.Hub.Client.DataChannel.QueryPhase.Preparing
+  id: Preparing
+  parent: Reportman.Hub.Client.DataChannel.QueryPhase
+  langs:
+  - csharp
+  - vb
+  name: Preparing
+  nameWithType: QueryPhase.Preparing
+  fullName: Reportman.Hub.Client.DataChannel.QueryPhase.Preparing
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  syntax:
+    content: Preparing = 2
+    return:
+      type: Reportman.Hub.Client.DataChannel.QueryPhase
+- uid: Reportman.Hub.Client.DataChannel.QueryPhase.Executing
+  commentId: F:Reportman.Hub.Client.DataChannel.QueryPhase.Executing
+  id: Executing
+  parent: Reportman.Hub.Client.DataChannel.QueryPhase
+  langs:
+  - csharp
+  - vb
+  name: Executing
+  nameWithType: QueryPhase.Executing
+  fullName: Reportman.Hub.Client.DataChannel.QueryPhase.Executing
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  syntax:
+    content: Executing = 3
+    return:
+      type: Reportman.Hub.Client.DataChannel.QueryPhase
+- uid: Reportman.Hub.Client.DataChannel.QueryPhase.Fetching
+  commentId: F:Reportman.Hub.Client.DataChannel.QueryPhase.Fetching
+  id: Fetching
+  parent: Reportman.Hub.Client.DataChannel.QueryPhase
+  langs:
+  - csharp
+  - vb
+  name: Fetching
+  nameWithType: QueryPhase.Fetching
+  fullName: Reportman.Hub.Client.DataChannel.QueryPhase.Fetching
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  syntax:
+    content: Fetching = 4
+    return:
+      type: Reportman.Hub.Client.DataChannel.QueryPhase
+- uid: Reportman.Hub.Client.DataChannel.QueryPhase.Serializing
+  commentId: F:Reportman.Hub.Client.DataChannel.QueryPhase.Serializing
+  id: Serializing
+  parent: Reportman.Hub.Client.DataChannel.QueryPhase
+  langs:
+  - csharp
+  - vb
+  name: Serializing
+  nameWithType: QueryPhase.Serializing
+  fullName: Reportman.Hub.Client.DataChannel.QueryPhase.Serializing
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  syntax:
+    content: Serializing = 5
+    return:
+      type: Reportman.Hub.Client.DataChannel.QueryPhase
+- uid: Reportman.Hub.Client.DataChannel.QueryPhase.Compressing
+  commentId: F:Reportman.Hub.Client.DataChannel.QueryPhase.Compressing
+  id: Compressing
+  parent: Reportman.Hub.Client.DataChannel.QueryPhase
+  langs:
+  - csharp
+  - vb
+  name: Compressing
+  nameWithType: QueryPhase.Compressing
+  fullName: Reportman.Hub.Client.DataChannel.QueryPhase.Compressing
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  syntax:
+    content: Compressing = 6
+    return:
+      type: Reportman.Hub.Client.DataChannel.QueryPhase
+- uid: Reportman.Hub.Client.DataChannel.QueryPhase.Delivering
+  commentId: F:Reportman.Hub.Client.DataChannel.QueryPhase.Delivering
+  id: Delivering
+  parent: Reportman.Hub.Client.DataChannel.QueryPhase
+  langs:
+  - csharp
+  - vb
+  name: Delivering
+  nameWithType: QueryPhase.Delivering
+  fullName: Reportman.Hub.Client.DataChannel.QueryPhase.Delivering
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  syntax:
+    content: Delivering = 7
+    return:
+      type: Reportman.Hub.Client.DataChannel.QueryPhase
+- uid: Reportman.Hub.Client.DataChannel.QueryPhase.Decompressing
+  commentId: F:Reportman.Hub.Client.DataChannel.QueryPhase.Decompressing
+  id: Decompressing
+  parent: Reportman.Hub.Client.DataChannel.QueryPhase
+  langs:
+  - csharp
+  - vb
+  name: Decompressing
+  nameWithType: QueryPhase.Decompressing
+  fullName: Reportman.Hub.Client.DataChannel.QueryPhase.Decompressing
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  syntax:
+    content: Decompressing = 8
+    return:
+      type: Reportman.Hub.Client.DataChannel.QueryPhase
+- uid: Reportman.Hub.Client.DataChannel.QueryPhase.Deserializing
+  commentId: F:Reportman.Hub.Client.DataChannel.QueryPhase.Deserializing
+  id: Deserializing
+  parent: Reportman.Hub.Client.DataChannel.QueryPhase
+  langs:
+  - csharp
+  - vb
+  name: Deserializing
+  nameWithType: QueryPhase.Deserializing
+  fullName: Reportman.Hub.Client.DataChannel.QueryPhase.Deserializing
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  syntax:
+    content: Deserializing = 9
+    return:
+      type: Reportman.Hub.Client.DataChannel.QueryPhase
+- uid: Reportman.Hub.Client.DataChannel.QueryPhase.Done
+  commentId: F:Reportman.Hub.Client.DataChannel.QueryPhase.Done
+  id: Done
+  parent: Reportman.Hub.Client.DataChannel.QueryPhase
+  langs:
+  - csharp
+  - vb
+  name: Done
+  nameWithType: QueryPhase.Done
+  fullName: Reportman.Hub.Client.DataChannel.QueryPhase.Done
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  syntax:
+    content: Done = 10
+    return:
+      type: Reportman.Hub.Client.DataChannel.QueryPhase
+references:
+- uid: Reportman.Hub.Client.DataChannel
+  commentId: N:Reportman.Hub.Client.DataChannel
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Hub.Client.DataChannel
+  nameWithType: Reportman.Hub.Client.DataChannel
+  fullName: Reportman.Hub.Client.DataChannel
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Hub
+    name: Hub
+    isExternal: true
+    href: Reportman.Hub.html
+  - name: .
+  - uid: Reportman.Hub.Client
+    name: Client
+    isExternal: true
+    href: Reportman.Hub.Client.html
+  - name: .
+  - uid: Reportman.Hub.Client.DataChannel
+    name: DataChannel
+    isExternal: true
+    href: Reportman.Hub.Client.DataChannel.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Hub
+    name: Hub
+    isExternal: true
+    href: Reportman.Hub.html
+  - name: .
+  - uid: Reportman.Hub.Client
+    name: Client
+    isExternal: true
+    href: Reportman.Hub.Client.html
+  - name: .
+  - uid: Reportman.Hub.Client.DataChannel
+    name: DataChannel
+    isExternal: true
+    href: Reportman.Hub.Client.DataChannel.html
+- uid: Reportman.Hub.Client.DataChannel.QueryPhase
+  commentId: T:Reportman.Hub.Client.DataChannel.QueryPhase
+  parent: Reportman.Hub.Client.DataChannel
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.QueryPhase.html
+  name: QueryPhase
+  nameWithType: QueryPhase
+  fullName: Reportman.Hub.Client.DataChannel.QueryPhase

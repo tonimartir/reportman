@@ -3,6 +3,10 @@ using Reportman.Reporting;
 
 namespace Reportman.Reporting.Design
 {
+    /// <summary>
+    /// A single node in the tree that mirrors a report's structure, holding the
+    /// element's name, class name and parent name plus its child nodes.
+    /// </summary>
     public class ReportStructureContextNode
     {
         public string Name { get; set; }
@@ -11,11 +15,19 @@ namespace Reportman.Reporting.Design
         public List<ReportStructureContextNode> Children { get; } = new List<ReportStructureContextNode>();
     }
 
+    /// <summary>
+    /// Container for a report's structure tree, exposing the root node from which
+    /// the full hierarchy of params, datasets, subreports and sections is reachable.
+    /// </summary>
     public class ReportStructureContext
     {
         public ReportStructureContextNode Root { get; set; }
     }
 
+    /// <summary>
+    /// Builds a <see cref="ReportStructureContext"/> tree from a report, walking its
+    /// params, database and data infos, subreports, sections and components.
+    /// </summary>
     public static class ReportStructureContextBuilder
     {
         public static ReportStructureContext Build(Report report)

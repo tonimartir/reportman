@@ -8,6 +8,10 @@ using System.Windows.Forms;
 
 namespace Reportman.Designer
 {
+    /// <summary>
+    /// Tree-based editor control for a report's data definitions, letting the user add,
+    /// remove, reorder and connect database connections, datasets and parameters.
+    /// </summary>
     public partial class FrameDataDef : UserControl
     {
         public event EventHandler OnReportChange;

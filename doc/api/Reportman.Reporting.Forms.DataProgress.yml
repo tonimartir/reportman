@@ -17,7 +17,7 @@ items:
   fullName: Reportman.Reporting.Forms.DataProgress
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataProgress.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/DataProgress.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Reporting.Forms
@@ -592,7 +592,7 @@ items:
   fullName: Reportman.Reporting.Forms.DataProgress.DataProgress()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataProgress.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/DataProgress.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Reporting.Forms
@@ -615,7 +615,7 @@ items:
   fullName: Reportman.Reporting.Forms.DataProgress.ExecuteProgress(Reportman.Reporting.Forms.DataProgressEventHandler)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataProgress.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/DataProgress.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Reporting.Forms
@@ -638,7 +638,7 @@ items:
   fullName: Reportman.Reporting.Forms.DataProgress.ShowProgress(object, int, int, ref bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataProgress.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/DataProgress.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Reporting.Forms
@@ -670,7 +670,7 @@ items:
   fullName: Reportman.Reporting.Forms.DataProgress.Dispose(bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Forms/DataProgress.designer.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Forms/DataProgress.designer.cs
   assemblies:
   - Reportman.Drawing.Forms
   namespace: Reportman.Reporting.Forms

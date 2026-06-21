@@ -1,0 +1,281 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Designer.FrameMainDesigner.PreviewReportEvent
+  commentId: T:Reportman.Designer.FrameMainDesigner.PreviewReportEvent
+  id: FrameMainDesigner.PreviewReportEvent
+  parent: Reportman.Designer
+  children:
+  - Reportman.Designer.FrameMainDesigner.PreviewReportEvent.#ctor(System.Object,System.IntPtr)
+  - Reportman.Designer.FrameMainDesigner.PreviewReportEvent.BeginInvoke(System.Object,Reportman.Designer.FrameMainDesigner.PreviewReportArgs,System.AsyncCallback,System.Object)
+  - Reportman.Designer.FrameMainDesigner.PreviewReportEvent.EndInvoke(System.IAsyncResult)
+  - Reportman.Designer.FrameMainDesigner.PreviewReportEvent.Invoke(System.Object,Reportman.Designer.FrameMainDesigner.PreviewReportArgs)
+  langs:
+  - csharp
+  - vb
+  name: FrameMainDesigner.PreviewReportEvent
+  nameWithType: FrameMainDesigner.PreviewReportEvent
+  fullName: Reportman.Designer.FrameMainDesigner.PreviewReportEvent
+  type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/FrameMainDesigner.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: >-
+    Callback raised when the user requests a preview, supplying the report
+
+    metafile to render through <xref href="Reportman.Designer.FrameMainDesigner.PreviewReportArgs" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public delegate void FrameMainDesigner.PreviewReportEvent(object sender, FrameMainDesigner.PreviewReportArgs args)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: Reportman.Designer.FrameMainDesigner.PreviewReportArgs
+    content.vb: Public Delegate Sub FrameMainDesigner.PreviewReportEvent(sender As Object, args As FrameMainDesigner.PreviewReportArgs)
+- uid: Reportman.Designer.FrameMainDesigner.PreviewReportEvent.#ctor(System.Object,System.IntPtr)
+  commentId: M:Reportman.Designer.FrameMainDesigner.PreviewReportEvent.#ctor(System.Object,System.IntPtr)
+  id: '#ctor(System.Object,System.IntPtr)'
+  parent: Reportman.Designer.FrameMainDesigner.PreviewReportEvent
+  langs:
+  - csharp
+  - vb
+  name: PreviewReportEvent(object, nint)
+  nameWithType: FrameMainDesigner.PreviewReportEvent.PreviewReportEvent(object, nint)
+  fullName: Reportman.Designer.FrameMainDesigner.PreviewReportEvent.PreviewReportEvent(object, nint)
+  type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/FrameMainDesigner.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public PreviewReportEvent(object @object, nint method)
+    parameters:
+    - id: object
+      type: System.Object
+    - id: method
+      type: System.IntPtr
+    content.vb: Public Sub New([object] As Object, method As IntPtr)
+  overload: Reportman.Designer.FrameMainDesigner.PreviewReportEvent.#ctor*
+  nameWithType.vb: FrameMainDesigner.PreviewReportEvent.New(Object, IntPtr)
+  fullName.vb: Reportman.Designer.FrameMainDesigner.PreviewReportEvent.New(Object, System.IntPtr)
+  name.vb: New(Object, IntPtr)
+- uid: Reportman.Designer.FrameMainDesigner.PreviewReportEvent.Invoke(System.Object,Reportman.Designer.FrameMainDesigner.PreviewReportArgs)
+  commentId: M:Reportman.Designer.FrameMainDesigner.PreviewReportEvent.Invoke(System.Object,Reportman.Designer.FrameMainDesigner.PreviewReportArgs)
+  id: Invoke(System.Object,Reportman.Designer.FrameMainDesigner.PreviewReportArgs)
+  parent: Reportman.Designer.FrameMainDesigner.PreviewReportEvent
+  langs:
+  - csharp
+  - vb
+  name: Invoke(object, PreviewReportArgs)
+  nameWithType: FrameMainDesigner.PreviewReportEvent.Invoke(object, FrameMainDesigner.PreviewReportArgs)
+  fullName: Reportman.Designer.FrameMainDesigner.PreviewReportEvent.Invoke(object, Reportman.Designer.FrameMainDesigner.PreviewReportArgs)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/FrameMainDesigner.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public virtual void Invoke(object sender, FrameMainDesigner.PreviewReportArgs args)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: Reportman.Designer.FrameMainDesigner.PreviewReportArgs
+    content.vb: Public Overridable Sub Invoke(sender As Object, args As FrameMainDesigner.PreviewReportArgs)
+  overload: Reportman.Designer.FrameMainDesigner.PreviewReportEvent.Invoke*
+  nameWithType.vb: FrameMainDesigner.PreviewReportEvent.Invoke(Object, FrameMainDesigner.PreviewReportArgs)
+  fullName.vb: Reportman.Designer.FrameMainDesigner.PreviewReportEvent.Invoke(Object, Reportman.Designer.FrameMainDesigner.PreviewReportArgs)
+  name.vb: Invoke(Object, PreviewReportArgs)
+- uid: Reportman.Designer.FrameMainDesigner.PreviewReportEvent.BeginInvoke(System.Object,Reportman.Designer.FrameMainDesigner.PreviewReportArgs,System.AsyncCallback,System.Object)
+  commentId: M:Reportman.Designer.FrameMainDesigner.PreviewReportEvent.BeginInvoke(System.Object,Reportman.Designer.FrameMainDesigner.PreviewReportArgs,System.AsyncCallback,System.Object)
+  id: BeginInvoke(System.Object,Reportman.Designer.FrameMainDesigner.PreviewReportArgs,System.AsyncCallback,System.Object)
+  parent: Reportman.Designer.FrameMainDesigner.PreviewReportEvent
+  langs:
+  - csharp
+  - vb
+  name: BeginInvoke(object, PreviewReportArgs, AsyncCallback, object)
+  nameWithType: FrameMainDesigner.PreviewReportEvent.BeginInvoke(object, FrameMainDesigner.PreviewReportArgs, AsyncCallback, object)
+  fullName: Reportman.Designer.FrameMainDesigner.PreviewReportEvent.BeginInvoke(object, Reportman.Designer.FrameMainDesigner.PreviewReportArgs, System.AsyncCallback, object)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/FrameMainDesigner.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public virtual IAsyncResult BeginInvoke(object sender, FrameMainDesigner.PreviewReportArgs args, AsyncCallback callback, object @object)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: Reportman.Designer.FrameMainDesigner.PreviewReportArgs
+    - id: callback
+      type: System.AsyncCallback
+    - id: object
+      type: System.Object
+    return:
+      type: System.IAsyncResult
+    content.vb: Public Overridable Function BeginInvoke(sender As Object, args As FrameMainDesigner.PreviewReportArgs, callback As AsyncCallback, [object] As Object) As IAsyncResult
+  overload: Reportman.Designer.FrameMainDesigner.PreviewReportEvent.BeginInvoke*
+  nameWithType.vb: FrameMainDesigner.PreviewReportEvent.BeginInvoke(Object, FrameMainDesigner.PreviewReportArgs, AsyncCallback, Object)
+  fullName.vb: Reportman.Designer.FrameMainDesigner.PreviewReportEvent.BeginInvoke(Object, Reportman.Designer.FrameMainDesigner.PreviewReportArgs, System.AsyncCallback, Object)
+  name.vb: BeginInvoke(Object, PreviewReportArgs, AsyncCallback, Object)
+- uid: Reportman.Designer.FrameMainDesigner.PreviewReportEvent.EndInvoke(System.IAsyncResult)
+  commentId: M:Reportman.Designer.FrameMainDesigner.PreviewReportEvent.EndInvoke(System.IAsyncResult)
+  id: EndInvoke(System.IAsyncResult)
+  parent: Reportman.Designer.FrameMainDesigner.PreviewReportEvent
+  langs:
+  - csharp
+  - vb
+  name: EndInvoke(IAsyncResult)
+  nameWithType: FrameMainDesigner.PreviewReportEvent.EndInvoke(IAsyncResult)
+  fullName: Reportman.Designer.FrameMainDesigner.PreviewReportEvent.EndInvoke(System.IAsyncResult)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/FrameMainDesigner.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public virtual void EndInvoke(IAsyncResult result)
+    parameters:
+    - id: result
+      type: System.IAsyncResult
+    content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
+  overload: Reportman.Designer.FrameMainDesigner.PreviewReportEvent.EndInvoke*
+references:
+- uid: Reportman.Designer.FrameMainDesigner.PreviewReportArgs
+  commentId: T:Reportman.Designer.FrameMainDesigner.PreviewReportArgs
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.FrameMainDesigner.html
+  name: FrameMainDesigner.PreviewReportArgs
+  nameWithType: FrameMainDesigner.PreviewReportArgs
+  fullName: Reportman.Designer.FrameMainDesigner.PreviewReportArgs
+  spec.csharp:
+  - uid: Reportman.Designer.FrameMainDesigner
+    name: FrameMainDesigner
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.html
+  - name: .
+  - uid: Reportman.Designer.FrameMainDesigner.PreviewReportArgs
+    name: PreviewReportArgs
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.PreviewReportArgs.html
+  spec.vb:
+  - uid: Reportman.Designer.FrameMainDesigner
+    name: FrameMainDesigner
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.html
+  - name: .
+  - uid: Reportman.Designer.FrameMainDesigner.PreviewReportArgs
+    name: PreviewReportArgs
+    isExternal: true
+    href: Reportman.Designer.FrameMainDesigner.PreviewReportArgs.html
+- uid: Reportman.Designer
+  commentId: N:Reportman.Designer
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Designer
+  nameWithType: Reportman.Designer
+  fullName: Reportman.Designer
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Designer.FrameMainDesigner.PreviewReportEvent.#ctor*
+  commentId: Overload:Reportman.Designer.FrameMainDesigner.PreviewReportEvent.#ctor
+  isExternal: true
+  href: Reportman.Designer.FrameMainDesigner.PreviewReportEvent.html#Reportman_Designer_FrameMainDesigner_PreviewReportEvent__ctor_System_Object_System_IntPtr_
+  name: PreviewReportEvent
+  nameWithType: FrameMainDesigner.PreviewReportEvent.PreviewReportEvent
+  fullName: Reportman.Designer.FrameMainDesigner.PreviewReportEvent.PreviewReportEvent
+  nameWithType.vb: FrameMainDesigner.PreviewReportEvent.New
+  fullName.vb: Reportman.Designer.FrameMainDesigner.PreviewReportEvent.New
+  name.vb: New
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: Reportman.Designer.FrameMainDesigner.PreviewReportEvent.Invoke*
+  commentId: Overload:Reportman.Designer.FrameMainDesigner.PreviewReportEvent.Invoke
+  isExternal: true
+  href: Reportman.Designer.FrameMainDesigner.PreviewReportEvent.html#Reportman_Designer_FrameMainDesigner_PreviewReportEvent_Invoke_System_Object_Reportman_Designer_FrameMainDesigner_PreviewReportArgs_
+  name: Invoke
+  nameWithType: FrameMainDesigner.PreviewReportEvent.Invoke
+  fullName: Reportman.Designer.FrameMainDesigner.PreviewReportEvent.Invoke
+- uid: Reportman.Designer.FrameMainDesigner.PreviewReportEvent.BeginInvoke*
+  commentId: Overload:Reportman.Designer.FrameMainDesigner.PreviewReportEvent.BeginInvoke
+  isExternal: true
+  href: Reportman.Designer.FrameMainDesigner.PreviewReportEvent.html#Reportman_Designer_FrameMainDesigner_PreviewReportEvent_BeginInvoke_System_Object_Reportman_Designer_FrameMainDesigner_PreviewReportArgs_System_AsyncCallback_System_Object_
+  name: BeginInvoke
+  nameWithType: FrameMainDesigner.PreviewReportEvent.BeginInvoke
+  fullName: Reportman.Designer.FrameMainDesigner.PreviewReportEvent.BeginInvoke
+- uid: System.AsyncCallback
+  commentId: T:System.AsyncCallback
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.asynccallback
+  name: AsyncCallback
+  nameWithType: AsyncCallback
+  fullName: System.AsyncCallback
+- uid: System.IAsyncResult
+  commentId: T:System.IAsyncResult
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncresult
+  name: IAsyncResult
+  nameWithType: IAsyncResult
+  fullName: System.IAsyncResult
+- uid: Reportman.Designer.FrameMainDesigner.PreviewReportEvent.EndInvoke*
+  commentId: Overload:Reportman.Designer.FrameMainDesigner.PreviewReportEvent.EndInvoke
+  isExternal: true
+  href: Reportman.Designer.FrameMainDesigner.PreviewReportEvent.html#Reportman_Designer_FrameMainDesigner_PreviewReportEvent_EndInvoke_System_IAsyncResult_
+  name: EndInvoke
+  nameWithType: FrameMainDesigner.PreviewReportEvent.EndInvoke
+  fullName: Reportman.Designer.FrameMainDesigner.PreviewReportEvent.EndInvoke

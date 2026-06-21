@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 
 namespace Reportman.Drawing.Excel
 {
+    /// <summary>
+    /// Helper utilities for exporting tabular report data to Excel, writing each
+    /// <see cref="System.Data.DataTable"/> as a worksheet in an XLSX workbook.
+    /// </summary>
     public static class Helper
     {
         public static MemoryStream DataTablesToExcel(List<DataTable> dataTables)

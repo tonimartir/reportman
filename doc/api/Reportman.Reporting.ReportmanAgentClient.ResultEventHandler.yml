@@ -17,7 +17,7 @@ items:
   fullName: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler
   type: Delegate
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportmanAgentClient.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportmanAgentClient.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -48,7 +48,7 @@ items:
   fullName: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.ResultEventHandler(object, nint)
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportmanAgentClient.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportmanAgentClient.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -76,7 +76,7 @@ items:
   fullName: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.Invoke(object, System.Text.Json.JsonDocument, string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportmanAgentClient.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportmanAgentClient.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -106,7 +106,7 @@ items:
   fullName: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.BeginInvoke(object, System.Text.Json.JsonDocument, string, System.AsyncCallback, object)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportmanAgentClient.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportmanAgentClient.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -142,7 +142,7 @@ items:
   fullName: Reportman.Reporting.ReportmanAgentClient.ResultEventHandler.EndInvoke(System.IAsyncResult)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/ReportmanAgentClient.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportmanAgentClient.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

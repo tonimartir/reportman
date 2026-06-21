@@ -1,0 +1,521 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Reporting.Design.Json.ReportBatchJsonRequest
+  commentId: T:Reportman.Reporting.Design.Json.ReportBatchJsonRequest
+  id: ReportBatchJsonRequest
+  parent: Reportman.Reporting.Design.Json
+  children:
+  - Reportman.Reporting.Design.Json.ReportBatchJsonRequest.#ctor
+  - Reportman.Reporting.Design.Json.ReportBatchJsonRequest.Operations
+  - Reportman.Reporting.Design.Json.ReportBatchJsonRequest.Version
+  langs:
+  - csharp
+  - vb
+  name: ReportBatchJsonRequest
+  nameWithType: ReportBatchJsonRequest
+  fullName: Reportman.Reporting.Design.Json.ReportBatchJsonRequest
+  type: Class
+  assemblies:
+  - Reportman.Reporting.Design.Json
+  namespace: Reportman.Reporting.Design.Json
+  summary: >-
+    JSON-serializable envelope for a batch of report edit operations, carrying a
+
+    schema version and the ordered list of operations to apply.
+  example: []
+  syntax:
+    content: public class ReportBatchJsonRequest
+    content.vb: Public Class ReportBatchJsonRequest
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Reporting.Design.Json.ReportBatchJsonRequest.#ctor
+  commentId: M:Reportman.Reporting.Design.Json.ReportBatchJsonRequest.#ctor
+  id: '#ctor'
+  parent: Reportman.Reporting.Design.Json.ReportBatchJsonRequest
+  langs:
+  - csharp
+  - vb
+  name: ReportBatchJsonRequest()
+  nameWithType: ReportBatchJsonRequest.ReportBatchJsonRequest()
+  fullName: Reportman.Reporting.Design.Json.ReportBatchJsonRequest.ReportBatchJsonRequest()
+  type: Constructor
+  assemblies:
+  - Reportman.Reporting.Design.Json
+  namespace: Reportman.Reporting.Design.Json
+  syntax:
+    content: public ReportBatchJsonRequest()
+    content.vb: Public Sub New()
+  overload: Reportman.Reporting.Design.Json.ReportBatchJsonRequest.#ctor*
+  nameWithType.vb: ReportBatchJsonRequest.New()
+  fullName.vb: Reportman.Reporting.Design.Json.ReportBatchJsonRequest.New()
+  name.vb: New()
+- uid: Reportman.Reporting.Design.Json.ReportBatchJsonRequest.Version
+  commentId: P:Reportman.Reporting.Design.Json.ReportBatchJsonRequest.Version
+  id: Version
+  parent: Reportman.Reporting.Design.Json.ReportBatchJsonRequest
+  langs:
+  - csharp
+  - vb
+  name: Version
+  nameWithType: ReportBatchJsonRequest.Version
+  fullName: Reportman.Reporting.Design.Json.ReportBatchJsonRequest.Version
+  type: Property
+  assemblies:
+  - Reportman.Reporting.Design.Json
+  namespace: Reportman.Reporting.Design.Json
+  syntax:
+    content: public int Version { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Version As Integer
+  overload: Reportman.Reporting.Design.Json.ReportBatchJsonRequest.Version*
+- uid: Reportman.Reporting.Design.Json.ReportBatchJsonRequest.Operations
+  commentId: P:Reportman.Reporting.Design.Json.ReportBatchJsonRequest.Operations
+  id: Operations
+  parent: Reportman.Reporting.Design.Json.ReportBatchJsonRequest
+  langs:
+  - csharp
+  - vb
+  name: Operations
+  nameWithType: ReportBatchJsonRequest.Operations
+  fullName: Reportman.Reporting.Design.Json.ReportBatchJsonRequest.Operations
+  type: Property
+  assemblies:
+  - Reportman.Reporting.Design.Json
+  namespace: Reportman.Reporting.Design.Json
+  syntax:
+    content: public List<ReportBatchJsonOperation> Operations { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{Reportman.Reporting.Design.Json.ReportBatchJsonOperation}
+    content.vb: Public Property Operations As List(Of ReportBatchJsonOperation)
+  overload: Reportman.Reporting.Design.Json.ReportBatchJsonRequest.Operations*
+references:
+- uid: Reportman.Reporting.Design.Json
+  commentId: N:Reportman.Reporting.Design.Json
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Reporting.Design.Json
+  nameWithType: Reportman.Reporting.Design.Json
+  fullName: Reportman.Reporting.Design.Json
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  - name: .
+  - uid: Reportman.Reporting.Design
+    name: Design
+    isExternal: true
+    href: Reportman.Reporting.Design.html
+  - name: .
+  - uid: Reportman.Reporting.Design.Json
+    name: Json
+    isExternal: true
+    href: Reportman.Reporting.Design.Json.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Reporting
+    name: Reporting
+    isExternal: true
+    href: Reportman.Reporting.html
+  - name: .
+  - uid: Reportman.Reporting.Design
+    name: Design
+    isExternal: true
+    href: Reportman.Reporting.Design.html
+  - name: .
+  - uid: Reportman.Reporting.Design.Json
+    name: Json
+    isExternal: true
+    href: Reportman.Reporting.Design.Json.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Reporting.Design.Json.ReportBatchJsonRequest.#ctor*
+  commentId: Overload:Reportman.Reporting.Design.Json.ReportBatchJsonRequest.#ctor
+  isExternal: true
+  href: Reportman.Reporting.Design.Json.ReportBatchJsonRequest.html#Reportman_Reporting_Design_Json_ReportBatchJsonRequest__ctor
+  name: ReportBatchJsonRequest
+  nameWithType: ReportBatchJsonRequest.ReportBatchJsonRequest
+  fullName: Reportman.Reporting.Design.Json.ReportBatchJsonRequest.ReportBatchJsonRequest
+  nameWithType.vb: ReportBatchJsonRequest.New
+  fullName.vb: Reportman.Reporting.Design.Json.ReportBatchJsonRequest.New
+  name.vb: New
+- uid: Reportman.Reporting.Design.Json.ReportBatchJsonRequest.Version*
+  commentId: Overload:Reportman.Reporting.Design.Json.ReportBatchJsonRequest.Version
+  isExternal: true
+  href: Reportman.Reporting.Design.Json.ReportBatchJsonRequest.html#Reportman_Reporting_Design_Json_ReportBatchJsonRequest_Version
+  name: Version
+  nameWithType: ReportBatchJsonRequest.Version
+  fullName: Reportman.Reporting.Design.Json.ReportBatchJsonRequest.Version
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Reportman.Reporting.Design.Json.ReportBatchJsonRequest.Operations*
+  commentId: Overload:Reportman.Reporting.Design.Json.ReportBatchJsonRequest.Operations
+  isExternal: true
+  href: Reportman.Reporting.Design.Json.ReportBatchJsonRequest.html#Reportman_Reporting_Design_Json_ReportBatchJsonRequest_Operations
+  name: Operations
+  nameWithType: ReportBatchJsonRequest.Operations
+  fullName: Reportman.Reporting.Design.Json.ReportBatchJsonRequest.Operations
+- uid: System.Collections.Generic.List{Reportman.Reporting.Design.Json.ReportBatchJsonOperation}
+  commentId: T:System.Collections.Generic.List{Reportman.Reporting.Design.Json.ReportBatchJsonOperation}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<ReportBatchJsonOperation>
+  nameWithType: List<ReportBatchJsonOperation>
+  fullName: System.Collections.Generic.List<Reportman.Reporting.Design.Json.ReportBatchJsonOperation>
+  nameWithType.vb: List(Of ReportBatchJsonOperation)
+  fullName.vb: System.Collections.Generic.List(Of Reportman.Reporting.Design.Json.ReportBatchJsonOperation)
+  name.vb: List(Of ReportBatchJsonOperation)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Reportman.Reporting.Design.Json.ReportBatchJsonOperation
+    name: ReportBatchJsonOperation
+    isExternal: true
+    href: Reportman.Reporting.Design.Json.ReportBatchJsonOperation.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Reportman.Reporting.Design.Json.ReportBatchJsonOperation
+    name: ReportBatchJsonOperation
+    isExternal: true
+    href: Reportman.Reporting.Design.Json.ReportBatchJsonOperation.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic

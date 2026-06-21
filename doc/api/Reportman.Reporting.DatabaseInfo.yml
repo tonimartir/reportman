@@ -46,7 +46,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -91,7 +91,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo.FIREBIRD_PROVIDER2
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -112,7 +112,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo.MYSQL_PROVIDER
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -133,7 +133,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo.SQLITE_PROVIDER
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -154,7 +154,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo.Transaction
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -177,7 +177,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo.SqlExecuter
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -198,7 +198,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo.TransIsolation
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -224,7 +224,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo.CustomProviderFactories
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -245,7 +245,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo.GetDriverDescriptions()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -267,7 +267,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo.GetClassName()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -293,7 +293,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo.Clone()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -320,7 +320,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo.Clone(Reportman.Reporting.Report)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -349,7 +349,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo.DatabaseInfo()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -374,7 +374,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo.ResolveHttpAgentConnectionParamsFromConfig()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -394,7 +394,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo.DisConnect()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -416,7 +416,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo.Connect()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -438,7 +438,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo.GetDataReaderFromSQL(string, string, Reportman.Reporting.Params, bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -479,7 +479,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo.CurrentTransaction
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -521,7 +521,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo.Connection
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -568,7 +568,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo.Alias
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -593,7 +593,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo.Driver
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -618,7 +618,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo.ProviderFactory
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -643,7 +643,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo.ReportTable
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -668,7 +668,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo.ReportSearchField
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -693,7 +693,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo.ReportField
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -718,7 +718,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo.ReportGroupsTable
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -743,7 +743,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo.ConnectionString
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -768,7 +768,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo.ConfigFile
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -793,7 +793,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo.LoadParams
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -818,7 +818,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo.DotNetDriver
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -843,7 +843,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo.HttpAgentBaseUrl
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -868,7 +868,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo.HttpAgentApiKey
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -893,7 +893,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo.HttpAgentToken
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -918,7 +918,7 @@ items:
   fullName: Reportman.Reporting.DatabaseInfo.HttpAgentHubDatabaseId
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatabaseInfo.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatabaseInfo.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -936,7 +936,7 @@ references:
   commentId: T:Reportman.Reporting.Report
   parent: Reportman.Reporting
   isExternal: true
-  href: Reportman.Reporting.Report.html
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Report.cs
   name: Report
   nameWithType: Report
   fullName: Reportman.Reporting.Report
@@ -990,7 +990,7 @@ references:
   commentId: T:Reportman.Reporting.ReportItem
   parent: Reportman.Reporting
   isExternal: true
-  href: Reportman.Reporting.ReportItem.html
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportItem.cs
   name: ReportItem
   nameWithType: ReportItem
   fullName: Reportman.Reporting.ReportItem

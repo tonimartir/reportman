@@ -1,0 +1,24 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Drawing.Excel
+  commentId: N:Reportman.Drawing.Excel
+  id: Reportman.Drawing.Excel
+  children:
+  - Reportman.Drawing.Excel.Helper
+  langs:
+  - csharp
+  - vb
+  name: Reportman.Drawing.Excel
+  nameWithType: Reportman.Drawing.Excel
+  fullName: Reportman.Drawing.Excel
+  type: Namespace
+  assemblies:
+  - Reportman.Drawing.Excel
+references:
+- uid: Reportman.Drawing.Excel.Helper
+  commentId: T:Reportman.Drawing.Excel.Helper
+  isExternal: true
+  href: Reportman.Drawing.Excel.Helper.html
+  name: Helper
+  nameWithType: Helper
+  fullName: Reportman.Drawing.Excel.Helper

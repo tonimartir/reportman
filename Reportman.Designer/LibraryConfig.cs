@@ -7,6 +7,11 @@ using System.Windows.Forms;
 
 namespace Reportman.Designer
 {
+    /// <summary>
+    /// Designer control for editing the report library configuration: the
+    /// database driver, provider factory, connection string and the table and
+    /// field names used to store and look up reports.
+    /// </summary>
     public partial class LibraryConfig : UserControl
     {
         public ReportLibraryConfigCollection config = new ReportLibraryConfigCollection();

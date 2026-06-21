@@ -17,7 +17,7 @@ items:
   fullName: Reportman.Drawing.HtmlLayoutUtils
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/HtmlTextParser.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/HtmlTextParser.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -53,7 +53,7 @@ items:
   fullName: Reportman.Drawing.HtmlLayoutUtils.DividesIntoLines(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/HtmlTextParser.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/HtmlTextParser.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -81,7 +81,7 @@ items:
   fullName: Reportman.Drawing.HtmlLayoutUtils.FillPossibleLineBreaksString(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/HtmlTextParser.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/HtmlTextParser.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -109,7 +109,7 @@ items:
   fullName: Reportman.Drawing.HtmlLayoutUtils.BreakChunksLTR(System.Collections.Generic.List<Reportman.Drawing.TGlyphPos>, ref double, double, System.Collections.Generic.HashSet<int>, string, bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/HtmlTextParser.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/HtmlTextParser.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -147,7 +147,7 @@ items:
   fullName: Reportman.Drawing.HtmlLayoutUtils.BreakChunksRTL(System.Collections.Generic.List<Reportman.Drawing.TGlyphPos>, ref double, double, System.Collections.Generic.HashSet<int>, string, bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/HtmlTextParser.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/HtmlTextParser.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

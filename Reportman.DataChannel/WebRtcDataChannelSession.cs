@@ -22,7 +22,7 @@ namespace Reportman.Hub.Client.DataChannel;
 ///      fetching / data / done messages, return the deserialized payload.
 ///   6. Close the DC + peer + signaling WS; the session dies with the SQL.
 ///
-/// If anything fails before <see cref="DataChannelReadyAsync"/> returns true,
+/// If anything fails before <c>DataChannelReadyAsync</c> returns true,
 /// the caller falls back to the existing HTTP path.
 /// </summary>
 public sealed class WebRtcDataChannelSession : IAsyncDisposable

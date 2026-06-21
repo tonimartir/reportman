@@ -10,6 +10,11 @@ using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace Reportman.Reporting.Design.Json
 {
+    /// <summary>
+    /// Bridges the JSON wire format for batch report operations to the in-memory editor: it
+    /// deserializes batch requests and report documents (JSON or XML), maps them to editor
+    /// operations, applies or validates them against a report, and serializes the results back to JSON.
+    /// </summary>
     public class ReportBatchJsonAdapter : IReportBatchJsonAdapter
     {
         private static readonly JsonSerializerOptions SerializerOptions = CreateSerializerOptions();

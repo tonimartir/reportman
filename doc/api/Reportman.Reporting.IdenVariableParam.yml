@@ -16,7 +16,7 @@ items:
   fullName: Reportman.Reporting.IdenVariableParam
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/IdenVariableParam.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/IdenVariableParam.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -60,7 +60,7 @@ items:
   fullName: Reportman.Reporting.IdenVariableParam.IdenVariableParam(Reportman.Reporting.Evaluator, Reportman.Reporting.Param)
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/IdenVariableParam.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/IdenVariableParam.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -91,7 +91,7 @@ items:
   fullName: Reportman.Reporting.IdenVariableParam.SetValue(Reportman.Reporting.Variant)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/IdenVariableParam.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/IdenVariableParam.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -118,7 +118,7 @@ items:
   fullName: Reportman.Reporting.IdenVariableParam.GetValue()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/IdenVariableParam.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/IdenVariableParam.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

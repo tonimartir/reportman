@@ -1,0 +1,221 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Hub.Client.DataChannel.ConnectionMode
+  commentId: T:Reportman.Hub.Client.DataChannel.ConnectionMode
+  id: ConnectionMode
+  parent: Reportman.Hub.Client.DataChannel
+  children:
+  - Reportman.Hub.Client.DataChannel.ConnectionMode.Api
+  - Reportman.Hub.Client.DataChannel.ConnectionMode.Connecting
+  - Reportman.Hub.Client.DataChannel.ConnectionMode.HolePunched
+  - Reportman.Hub.Client.DataChannel.ConnectionMode.P2P
+  - Reportman.Hub.Client.DataChannel.ConnectionMode.Relay
+  - Reportman.Hub.Client.DataChannel.ConnectionMode.Unknown
+  langs:
+  - csharp
+  - vb
+  name: ConnectionMode
+  nameWithType: ConnectionMode
+  fullName: Reportman.Hub.Client.DataChannel.ConnectionMode
+  type: Enum
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  summary: >-
+    Effective transport for the most recent SQL operation.
+
+    Surfaced to the UI as a chip next to the busy indicator.
+  example: []
+  syntax:
+    content: public enum ConnectionMode
+    content.vb: Public Enum ConnectionMode
+- uid: Reportman.Hub.Client.DataChannel.ConnectionMode.Unknown
+  commentId: F:Reportman.Hub.Client.DataChannel.ConnectionMode.Unknown
+  id: Unknown
+  parent: Reportman.Hub.Client.DataChannel.ConnectionMode
+  langs:
+  - csharp
+  - vb
+  name: Unknown
+  nameWithType: ConnectionMode.Unknown
+  fullName: Reportman.Hub.Client.DataChannel.ConnectionMode.Unknown
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  summary: No SQL has run yet, or last mode unknown.
+  example: []
+  syntax:
+    content: Unknown = 0
+    return:
+      type: Reportman.Hub.Client.DataChannel.ConnectionMode
+- uid: Reportman.Hub.Client.DataChannel.ConnectionMode.Connecting
+  commentId: F:Reportman.Hub.Client.DataChannel.ConnectionMode.Connecting
+  id: Connecting
+  parent: Reportman.Hub.Client.DataChannel.ConnectionMode
+  langs:
+  - csharp
+  - vb
+  name: Connecting
+  nameWithType: ConnectionMode.Connecting
+  fullName: Reportman.Hub.Client.DataChannel.ConnectionMode.Connecting
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  summary: Negotiating the channel; SDP/ICE in flight.
+  example: []
+  syntax:
+    content: Connecting = 1
+    return:
+      type: Reportman.Hub.Client.DataChannel.ConnectionMode
+- uid: Reportman.Hub.Client.DataChannel.ConnectionMode.P2P
+  commentId: F:Reportman.Hub.Client.DataChannel.ConnectionMode.P2P
+  id: P2P
+  parent: Reportman.Hub.Client.DataChannel.ConnectionMode
+  langs:
+  - csharp
+  - vb
+  name: P2P
+  nameWithType: ConnectionMode.P2P
+  fullName: Reportman.Hub.Client.DataChannel.ConnectionMode.P2P
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  summary: LAN direct (ICE candidate type = host).
+  example: []
+  syntax:
+    content: P2P = 2
+    return:
+      type: Reportman.Hub.Client.DataChannel.ConnectionMode
+- uid: Reportman.Hub.Client.DataChannel.ConnectionMode.HolePunched
+  commentId: F:Reportman.Hub.Client.DataChannel.ConnectionMode.HolePunched
+  id: HolePunched
+  parent: Reportman.Hub.Client.DataChannel.ConnectionMode
+  langs:
+  - csharp
+  - vb
+  name: HolePunched
+  nameWithType: ConnectionMode.HolePunched
+  fullName: Reportman.Hub.Client.DataChannel.ConnectionMode.HolePunched
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  summary: NAT hole-punched (srflx / prflx via STUN).
+  example: []
+  syntax:
+    content: HolePunched = 3
+    return:
+      type: Reportman.Hub.Client.DataChannel.ConnectionMode
+- uid: Reportman.Hub.Client.DataChannel.ConnectionMode.Relay
+  commentId: F:Reportman.Hub.Client.DataChannel.ConnectionMode.Relay
+  id: Relay
+  parent: Reportman.Hub.Client.DataChannel.ConnectionMode
+  langs:
+  - csharp
+  - vb
+  name: Relay
+  nameWithType: ConnectionMode.Relay
+  fullName: Reportman.Hub.Client.DataChannel.ConnectionMode.Relay
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  summary: Relayed through TURN.
+  example: []
+  syntax:
+    content: Relay = 4
+    return:
+      type: Reportman.Hub.Client.DataChannel.ConnectionMode
+- uid: Reportman.Hub.Client.DataChannel.ConnectionMode.Api
+  commentId: F:Reportman.Hub.Client.DataChannel.ConnectionMode.Api
+  id: Api
+  parent: Reportman.Hub.Client.DataChannel.ConnectionMode
+  langs:
+  - csharp
+  - vb
+  name: Api
+  nameWithType: ConnectionMode.Api
+  fullName: Reportman.Hub.Client.DataChannel.ConnectionMode.Api
+  type: Field
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/DirectChannelTypes.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  summary: Fallback to the existing HTTP/API path.
+  example: []
+  syntax:
+    content: Api = 5
+    return:
+      type: Reportman.Hub.Client.DataChannel.ConnectionMode
+references:
+- uid: Reportman.Hub.Client.DataChannel
+  commentId: N:Reportman.Hub.Client.DataChannel
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Hub.Client.DataChannel
+  nameWithType: Reportman.Hub.Client.DataChannel
+  fullName: Reportman.Hub.Client.DataChannel
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Hub
+    name: Hub
+    isExternal: true
+    href: Reportman.Hub.html
+  - name: .
+  - uid: Reportman.Hub.Client
+    name: Client
+    isExternal: true
+    href: Reportman.Hub.Client.html
+  - name: .
+  - uid: Reportman.Hub.Client.DataChannel
+    name: DataChannel
+    isExternal: true
+    href: Reportman.Hub.Client.DataChannel.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Hub
+    name: Hub
+    isExternal: true
+    href: Reportman.Hub.html
+  - name: .
+  - uid: Reportman.Hub.Client
+    name: Client
+    isExternal: true
+    href: Reportman.Hub.Client.html
+  - name: .
+  - uid: Reportman.Hub.Client.DataChannel
+    name: DataChannel
+    isExternal: true
+    href: Reportman.Hub.Client.DataChannel.html
+- uid: Reportman.Hub.Client.DataChannel.ConnectionMode
+  commentId: T:Reportman.Hub.Client.DataChannel.ConnectionMode
+  parent: Reportman.Hub.Client.DataChannel
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.ConnectionMode.html
+  name: ConnectionMode
+  nameWithType: ConnectionMode
+  fullName: Reportman.Hub.Client.DataChannel.ConnectionMode

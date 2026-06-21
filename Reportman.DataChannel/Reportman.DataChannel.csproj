@@ -9,6 +9,7 @@
     <Nullable>enable</Nullable>
     <RootNamespace>Reportman.Hub.Client.DataChannel</RootNamespace>
     <AssemblyName>Reportman.DataChannel</AssemblyName>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageId>Reportman.DataChannel</PackageId>
     <Description>
       WebRTC DataChannel transport (Direct Client↔Agent) for the Reportman

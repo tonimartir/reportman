@@ -1,0 +1,478 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Designer.SqlSchemaContextChangedEventArgs
+  commentId: T:Reportman.Designer.SqlSchemaContextChangedEventArgs
+  id: SqlSchemaContextChangedEventArgs
+  parent: Reportman.Designer
+  children:
+  - Reportman.Designer.SqlSchemaContextChangedEventArgs.#ctor(System.Int64,System.Int64,System.String)
+  - Reportman.Designer.SqlSchemaContextChangedEventArgs.ApiKey
+  - Reportman.Designer.SqlSchemaContextChangedEventArgs.HubDatabaseId
+  - Reportman.Designer.SqlSchemaContextChangedEventArgs.HubSchemaId
+  langs:
+  - csharp
+  - vb
+  name: SqlSchemaContextChangedEventArgs
+  nameWithType: SqlSchemaContextChangedEventArgs
+  fullName: Reportman.Designer.SqlSchemaContextChangedEventArgs
+  type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/SqlChatPanelControl.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: >-
+    Event data raised when the active Hub database, schema or API key bound to
+
+    the SQL chat panel changes, carrying the effective identifiers used for
+
+    subsequent AI requests.
+  example: []
+  syntax:
+    content: 'public class SqlSchemaContextChangedEventArgs : EventArgs'
+    content.vb: Public Class SqlSchemaContextChangedEventArgs Inherits EventArgs
+  inheritance:
+  - System.Object
+  - System.EventArgs
+  inheritedMembers:
+  - System.EventArgs.Empty
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Designer.SqlSchemaContextChangedEventArgs.#ctor(System.Int64,System.Int64,System.String)
+  commentId: M:Reportman.Designer.SqlSchemaContextChangedEventArgs.#ctor(System.Int64,System.Int64,System.String)
+  id: '#ctor(System.Int64,System.Int64,System.String)'
+  parent: Reportman.Designer.SqlSchemaContextChangedEventArgs
+  langs:
+  - csharp
+  - vb
+  name: SqlSchemaContextChangedEventArgs(long, long, string)
+  nameWithType: SqlSchemaContextChangedEventArgs.SqlSchemaContextChangedEventArgs(long, long, string)
+  fullName: Reportman.Designer.SqlSchemaContextChangedEventArgs.SqlSchemaContextChangedEventArgs(long, long, string)
+  type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/SqlChatPanelControl.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public SqlSchemaContextChangedEventArgs(long hubDatabaseId, long hubSchemaId, string apiKey)
+    parameters:
+    - id: hubDatabaseId
+      type: System.Int64
+    - id: hubSchemaId
+      type: System.Int64
+    - id: apiKey
+      type: System.String
+    content.vb: Public Sub New(hubDatabaseId As Long, hubSchemaId As Long, apiKey As String)
+  overload: Reportman.Designer.SqlSchemaContextChangedEventArgs.#ctor*
+  nameWithType.vb: SqlSchemaContextChangedEventArgs.New(Long, Long, String)
+  fullName.vb: Reportman.Designer.SqlSchemaContextChangedEventArgs.New(Long, Long, String)
+  name.vb: New(Long, Long, String)
+- uid: Reportman.Designer.SqlSchemaContextChangedEventArgs.HubDatabaseId
+  commentId: P:Reportman.Designer.SqlSchemaContextChangedEventArgs.HubDatabaseId
+  id: HubDatabaseId
+  parent: Reportman.Designer.SqlSchemaContextChangedEventArgs
+  langs:
+  - csharp
+  - vb
+  name: HubDatabaseId
+  nameWithType: SqlSchemaContextChangedEventArgs.HubDatabaseId
+  fullName: Reportman.Designer.SqlSchemaContextChangedEventArgs.HubDatabaseId
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/SqlChatPanelControl.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public long HubDatabaseId { get; }
+    parameters: []
+    return:
+      type: System.Int64
+    content.vb: Public ReadOnly Property HubDatabaseId As Long
+  overload: Reportman.Designer.SqlSchemaContextChangedEventArgs.HubDatabaseId*
+- uid: Reportman.Designer.SqlSchemaContextChangedEventArgs.HubSchemaId
+  commentId: P:Reportman.Designer.SqlSchemaContextChangedEventArgs.HubSchemaId
+  id: HubSchemaId
+  parent: Reportman.Designer.SqlSchemaContextChangedEventArgs
+  langs:
+  - csharp
+  - vb
+  name: HubSchemaId
+  nameWithType: SqlSchemaContextChangedEventArgs.HubSchemaId
+  fullName: Reportman.Designer.SqlSchemaContextChangedEventArgs.HubSchemaId
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/SqlChatPanelControl.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public long HubSchemaId { get; }
+    parameters: []
+    return:
+      type: System.Int64
+    content.vb: Public ReadOnly Property HubSchemaId As Long
+  overload: Reportman.Designer.SqlSchemaContextChangedEventArgs.HubSchemaId*
+- uid: Reportman.Designer.SqlSchemaContextChangedEventArgs.ApiKey
+  commentId: P:Reportman.Designer.SqlSchemaContextChangedEventArgs.ApiKey
+  id: ApiKey
+  parent: Reportman.Designer.SqlSchemaContextChangedEventArgs
+  langs:
+  - csharp
+  - vb
+  name: ApiKey
+  nameWithType: SqlSchemaContextChangedEventArgs.ApiKey
+  fullName: Reportman.Designer.SqlSchemaContextChangedEventArgs.ApiKey
+  type: Property
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/SqlChatPanelControl.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public string ApiKey { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property ApiKey As String
+  overload: Reportman.Designer.SqlSchemaContextChangedEventArgs.ApiKey*
+references:
+- uid: Reportman.Designer
+  commentId: N:Reportman.Designer
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Designer
+  nameWithType: Reportman.Designer
+  fullName: Reportman.Designer
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.EventArgs
+  commentId: T:System.EventArgs
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  name: EventArgs
+  nameWithType: EventArgs
+  fullName: System.EventArgs
+- uid: System.EventArgs.Empty
+  commentId: F:System.EventArgs.Empty
+  parent: System.EventArgs
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.eventargs.empty
+  name: Empty
+  nameWithType: EventArgs.Empty
+  fullName: System.EventArgs.Empty
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Designer.SqlSchemaContextChangedEventArgs.#ctor*
+  commentId: Overload:Reportman.Designer.SqlSchemaContextChangedEventArgs.#ctor
+  isExternal: true
+  href: Reportman.Designer.SqlSchemaContextChangedEventArgs.html#Reportman_Designer_SqlSchemaContextChangedEventArgs__ctor_System_Int64_System_Int64_System_String_
+  name: SqlSchemaContextChangedEventArgs
+  nameWithType: SqlSchemaContextChangedEventArgs.SqlSchemaContextChangedEventArgs
+  fullName: Reportman.Designer.SqlSchemaContextChangedEventArgs.SqlSchemaContextChangedEventArgs
+  nameWithType.vb: SqlSchemaContextChangedEventArgs.New
+  fullName.vb: Reportman.Designer.SqlSchemaContextChangedEventArgs.New
+  name.vb: New
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Reportman.Designer.SqlSchemaContextChangedEventArgs.HubDatabaseId*
+  commentId: Overload:Reportman.Designer.SqlSchemaContextChangedEventArgs.HubDatabaseId
+  isExternal: true
+  href: Reportman.Designer.SqlSchemaContextChangedEventArgs.html#Reportman_Designer_SqlSchemaContextChangedEventArgs_HubDatabaseId
+  name: HubDatabaseId
+  nameWithType: SqlSchemaContextChangedEventArgs.HubDatabaseId
+  fullName: Reportman.Designer.SqlSchemaContextChangedEventArgs.HubDatabaseId
+- uid: Reportman.Designer.SqlSchemaContextChangedEventArgs.HubSchemaId*
+  commentId: Overload:Reportman.Designer.SqlSchemaContextChangedEventArgs.HubSchemaId
+  isExternal: true
+  href: Reportman.Designer.SqlSchemaContextChangedEventArgs.html#Reportman_Designer_SqlSchemaContextChangedEventArgs_HubSchemaId
+  name: HubSchemaId
+  nameWithType: SqlSchemaContextChangedEventArgs.HubSchemaId
+  fullName: Reportman.Designer.SqlSchemaContextChangedEventArgs.HubSchemaId
+- uid: Reportman.Designer.SqlSchemaContextChangedEventArgs.ApiKey*
+  commentId: Overload:Reportman.Designer.SqlSchemaContextChangedEventArgs.ApiKey
+  isExternal: true
+  href: Reportman.Designer.SqlSchemaContextChangedEventArgs.html#Reportman_Designer_SqlSchemaContextChangedEventArgs_ApiKey
+  name: ApiKey
+  nameWithType: SqlSchemaContextChangedEventArgs.ApiKey
+  fullName: Reportman.Designer.SqlSchemaContextChangedEventArgs.ApiKey

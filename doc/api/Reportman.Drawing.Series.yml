@@ -35,7 +35,7 @@ items:
   fullName: Reportman.Drawing.Series
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -69,7 +69,7 @@ items:
   fullName: Reportman.Drawing.Series.AutoRange
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -90,7 +90,7 @@ items:
   fullName: Reportman.Drawing.Series.LowValue
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -111,7 +111,7 @@ items:
   fullName: Reportman.Drawing.Series.HighValue
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -132,7 +132,7 @@ items:
   fullName: Reportman.Drawing.Series.Logaritmic
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -153,7 +153,7 @@ items:
   fullName: Reportman.Drawing.Series.LogBase
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -174,7 +174,7 @@ items:
   fullName: Reportman.Drawing.Series.Inverted
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -195,7 +195,7 @@ items:
   fullName: Reportman.Drawing.Series.FontSize
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -216,7 +216,7 @@ items:
   fullName: Reportman.Drawing.Series.Resolution
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -237,7 +237,7 @@ items:
   fullName: Reportman.Drawing.Series.ShowLegend
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -258,7 +258,7 @@ items:
   fullName: Reportman.Drawing.Series.HorzFontRotation
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -279,7 +279,7 @@ items:
   fullName: Reportman.Drawing.Series.VertFontRotation
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -300,7 +300,7 @@ items:
   fullName: Reportman.Drawing.Series.VertFontSize
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -321,7 +321,7 @@ items:
   fullName: Reportman.Drawing.Series.HorzFontSize
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -342,7 +342,7 @@ items:
   fullName: Reportman.Drawing.Series.ShowHint
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -363,7 +363,7 @@ items:
   fullName: Reportman.Drawing.Series.PrintWidth
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -384,7 +384,7 @@ items:
   fullName: Reportman.Drawing.Series.PrintHeight
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -405,7 +405,7 @@ items:
   fullName: Reportman.Drawing.Series.Effect3D
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -426,7 +426,7 @@ items:
   fullName: Reportman.Drawing.Series.MarkStyle
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -447,7 +447,7 @@ items:
   fullName: Reportman.Drawing.Series.MultiBar
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -468,7 +468,7 @@ items:
   fullName: Reportman.Drawing.Series.SeriesItems
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -489,7 +489,7 @@ items:
   fullName: Reportman.Drawing.Series.Series()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -512,7 +512,7 @@ items:
   fullName: Reportman.Drawing.Series.Clear()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Series.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

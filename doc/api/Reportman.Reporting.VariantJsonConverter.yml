@@ -16,7 +16,7 @@ items:
   fullName: Reportman.Reporting.VariantJsonConverter
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -57,7 +57,7 @@ items:
   fullName: Reportman.Reporting.VariantJsonConverter.WriteJson(Newtonsoft.Json.JsonWriter, Reportman.Reporting.Variant, Newtonsoft.Json.JsonSerializer)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -86,7 +86,7 @@ items:
   fullName: Reportman.Reporting.VariantJsonConverter.ReadJson(Newtonsoft.Json.JsonReader, System.Type, Reportman.Reporting.Variant, bool, Newtonsoft.Json.JsonSerializer)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -124,7 +124,7 @@ items:
   fullName: Reportman.Reporting.VariantJsonConverter.VariantJsonConverter()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Variant.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Variant.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

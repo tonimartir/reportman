@@ -20,7 +20,7 @@ items:
   fullName: Reportman.Drawing.ExcelFileFormat
   type: Enum
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutExcel.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/PrintOutExcel.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing
@@ -44,7 +44,7 @@ items:
   fullName: Reportman.Drawing.ExcelFileFormat.Auto
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutExcel.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/PrintOutExcel.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing
@@ -64,7 +64,7 @@ items:
   fullName: Reportman.Drawing.ExcelFileFormat.Normal
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutExcel.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/PrintOutExcel.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing
@@ -84,7 +84,7 @@ items:
   fullName: Reportman.Drawing.ExcelFileFormat.Excel97
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutExcel.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/PrintOutExcel.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing
@@ -104,7 +104,7 @@ items:
   fullName: Reportman.Drawing.ExcelFileFormat.Csv
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutExcel.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/PrintOutExcel.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing
@@ -124,7 +124,7 @@ items:
   fullName: Reportman.Drawing.ExcelFileFormat.Txt
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutExcel.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/PrintOutExcel.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing
@@ -144,7 +144,7 @@ items:
   fullName: Reportman.Drawing.ExcelFileFormat.Prn
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutExcel.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/PrintOutExcel.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing
@@ -164,7 +164,7 @@ items:
   fullName: Reportman.Drawing.ExcelFileFormat.Excel2007
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.Windows/PrintOutExcel.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.Windows/PrintOutExcel.cs
   assemblies:
   - Reportman.Drawing.Windows
   namespace: Reportman.Drawing

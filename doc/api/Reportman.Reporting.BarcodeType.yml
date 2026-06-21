@@ -31,7 +31,7 @@ items:
   fullName: Reportman.Reporting.BarcodeType
   type: Enum
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -52,7 +52,7 @@ items:
   fullName: Reportman.Reporting.BarcodeType.Code_2_5_interleaved
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -72,7 +72,7 @@ items:
   fullName: Reportman.Reporting.BarcodeType.Code_2_5_industrial
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -92,7 +92,7 @@ items:
   fullName: Reportman.Reporting.BarcodeType.Code_2_5_matrix
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -112,7 +112,7 @@ items:
   fullName: Reportman.Reporting.BarcodeType.Code39
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -132,7 +132,7 @@ items:
   fullName: Reportman.Reporting.BarcodeType.Code39Extended
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -152,7 +152,7 @@ items:
   fullName: Reportman.Reporting.BarcodeType.Code128A
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -172,7 +172,7 @@ items:
   fullName: Reportman.Reporting.BarcodeType.Code128B
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -192,7 +192,7 @@ items:
   fullName: Reportman.Reporting.BarcodeType.Code128C
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -212,7 +212,7 @@ items:
   fullName: Reportman.Reporting.BarcodeType.Code128
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -232,7 +232,7 @@ items:
   fullName: Reportman.Reporting.BarcodeType.Code93
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -252,7 +252,7 @@ items:
   fullName: Reportman.Reporting.BarcodeType.Code93Extended
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -272,7 +272,7 @@ items:
   fullName: Reportman.Reporting.BarcodeType.CodeMSI
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -292,7 +292,7 @@ items:
   fullName: Reportman.Reporting.BarcodeType.CodePostNet
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -312,7 +312,7 @@ items:
   fullName: Reportman.Reporting.BarcodeType.CodeCodabar
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -332,7 +332,7 @@ items:
   fullName: Reportman.Reporting.BarcodeType.CodeEAN8
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -352,7 +352,7 @@ items:
   fullName: Reportman.Reporting.BarcodeType.CodeEAN13
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -372,7 +372,7 @@ items:
   fullName: Reportman.Reporting.BarcodeType.CodePDF417
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -392,7 +392,7 @@ items:
   fullName: Reportman.Reporting.BarcodeType.CodeQR
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/BarcodeItem.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/BarcodeItem.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

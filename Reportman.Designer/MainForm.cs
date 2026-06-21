@@ -3,6 +3,10 @@ using System.Windows.Forms;
 
 namespace Reportman.Designer
 {
+    /// <summary>
+    /// Top-level window of the Reportman designer application; hosts the main designer frame,
+    /// opens a report passed on the command line, and prompts to save unsaved changes on close.
+    /// </summary>
     public partial class MainForm : Form
     {
         public FrameMainDesigner maindesigner;

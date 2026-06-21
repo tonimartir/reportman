@@ -40,7 +40,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDFBase
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutPDFBase.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -95,7 +95,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDFBase.CalculateOnly
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutPDFBase.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -118,7 +118,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDFBase.Compressed
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutPDFBase.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -141,7 +141,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDFBase.FileName
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutPDFBase.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -164,7 +164,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDFBase.PrintOutPDFBase()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutPDFBase.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -189,7 +189,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDFBase.GetFontInfoProvider()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutPDFBase.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -211,7 +211,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDFBase.GetBitmapInfoProvider()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutPDFBase.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -233,7 +233,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDFBase.Dispose()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutPDFBase.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -258,7 +258,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDFBase.NewDocument(Reportman.Drawing.MetaFile)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutPDFBase.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -285,7 +285,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDFBase.PreparePrint(Reportman.Drawing.MetaFile)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutPDFBase.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -318,7 +318,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDFBase.EndDocument(Reportman.Drawing.MetaFile)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutPDFBase.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -345,7 +345,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDFBase.NewPage(Reportman.Drawing.MetaFile, Reportman.Drawing.MetaPage)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutPDFBase.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -373,7 +373,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDFBase.DrawObject(Reportman.Drawing.MetaPage, Reportman.Drawing.MetaObject)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutPDFBase.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -402,7 +402,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDFBase.DrawPage(Reportman.Drawing.MetaFile, Reportman.Drawing.MetaPage)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutPDFBase.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -432,7 +432,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDFBase.Print(Reportman.Drawing.MetaFile)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutPDFBase.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -461,7 +461,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDFBase.WordExtent(string, System.Drawing.Point)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutPDFBase.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -493,7 +493,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDFBase.WordExtentLineInfo(string, ref System.Drawing.Point, bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutPDFBase.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -532,7 +532,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDFBase.TextExtent(Reportman.Drawing.TextObjectStruct, System.Drawing.Point)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutPDFBase.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -562,7 +562,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDFBase.TextExtentLineInfo(Reportman.Drawing.TextObjectStruct, System.Drawing.Point)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutPDFBase.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -591,7 +591,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDFBase.TextExtentLineInfo(Reportman.Drawing.TextObjectStruct, ref System.Drawing.Point)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutPDFBase.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -624,7 +624,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDFBase.GraphicExtent(System.IO.MemoryStream, System.Drawing.Point, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutPDFBase.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -663,7 +663,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDFBase.SetOrientation(Reportman.Drawing.OrientationType)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutPDFBase.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -690,7 +690,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDFBase.SetPageSize(Reportman.Drawing.PageSizeDetail)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutPDFBase.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -720,7 +720,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDFBase.GetPageSize(out int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutPDFBase.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -753,7 +753,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDFBase.PDFStream
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutPDFBase.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -778,7 +778,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDFBase.PDFConformance
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutPDFBase.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -801,7 +801,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDFBase.ForceComplexShaping
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutPDFBase.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -833,7 +833,7 @@ items:
   fullName: Reportman.Drawing.PrintOutPDFBase.LineInfo
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOutPDFBase.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOutPDFBase.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -887,7 +887,7 @@ references:
   commentId: T:Reportman.Drawing.PrintOut
   parent: Reportman.Drawing
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   name: PrintOut
   nameWithType: PrintOut
   fullName: Reportman.Drawing.PrintOut
@@ -903,7 +903,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOut.DefaultPrinterName
   parent: Reportman.Drawing.PrintOut
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   name: DefaultPrinterName
   nameWithType: PrintOut.DefaultPrinterName
   fullName: Reportman.Drawing.PrintOut.DefaultPrinterName
@@ -911,7 +911,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOut.ForcePrinterName
   parent: Reportman.Drawing.PrintOut
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   name: ForcePrinterName
   nameWithType: PrintOut.ForcePrinterName
   fullName: Reportman.Drawing.PrintOut.ForcePrinterName
@@ -919,7 +919,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOut.Previewing
   parent: Reportman.Drawing.PrintOut
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   name: Previewing
   nameWithType: PrintOut.Previewing
   fullName: Reportman.Drawing.PrintOut.Previewing
@@ -927,7 +927,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOut.PageSizeArray
   parent: Reportman.Drawing.PrintOut
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   name: PageSizeArray
   nameWithType: PrintOut.PageSizeArray
   fullName: Reportman.Drawing.PrintOut.PageSizeArray
@@ -935,7 +935,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOut.CurrentMetafile
   parent: Reportman.Drawing.PrintOut
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   name: CurrentMetafile
   nameWithType: PrintOut.CurrentMetafile
   fullName: Reportman.Drawing.PrintOut.CurrentMetafile
@@ -943,7 +943,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOut.PRINTOUT_MAX_PAGES
   parent: Reportman.Drawing.PrintOut
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   name: PRINTOUT_MAX_PAGES
   nameWithType: PrintOut.PRINTOUT_MAX_PAGES
   fullName: Reportman.Drawing.PrintOut.PRINTOUT_MAX_PAGES
@@ -951,7 +951,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOut.FromPage
   parent: Reportman.Drawing.PrintOut
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   name: FromPage
   nameWithType: PrintOut.FromPage
   fullName: Reportman.Drawing.PrintOut.FromPage
@@ -959,7 +959,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOut.ToPage
   parent: Reportman.Drawing.PrintOut
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   name: ToPage
   nameWithType: PrintOut.ToPage
   fullName: Reportman.Drawing.PrintOut.ToPage
@@ -967,7 +967,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOut.Copies
   parent: Reportman.Drawing.PrintOut
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   name: Copies
   nameWithType: PrintOut.Copies
   fullName: Reportman.Drawing.PrintOut.Copies
@@ -975,7 +975,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOut.FOrientation
   parent: Reportman.Drawing.PrintOut
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   name: FOrientation
   nameWithType: PrintOut.FOrientation
   fullName: Reportman.Drawing.PrintOut.FOrientation
@@ -983,7 +983,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOut.EmptyReportThrowException
   parent: Reportman.Drawing.PrintOut
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   name: EmptyReportThrowException
   nameWithType: PrintOut.EmptyReportThrowException
   fullName: Reportman.Drawing.PrintOut.EmptyReportThrowException
@@ -991,7 +991,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOut.NoData
   parent: Reportman.Drawing.PrintOut
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   name: NoData
   nameWithType: PrintOut.NoData
   fullName: Reportman.Drawing.PrintOut.NoData
@@ -999,7 +999,7 @@ references:
   commentId: F:Reportman.Drawing.PrintOut.DrawFound
   parent: Reportman.Drawing.PrintOut
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   name: DrawFound
   nameWithType: PrintOut.DrawFound
   fullName: Reportman.Drawing.PrintOut.DrawFound
@@ -1007,7 +1007,7 @@ references:
   commentId: M:Reportman.Drawing.PrintOut.PageSizeName(System.Int32)
   parent: Reportman.Drawing.PrintOut
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   name: PageSizeName(int)
   nameWithType: PrintOut.PageSizeName(int)
   fullName: Reportman.Drawing.PrintOut.PageSizeName(int)
@@ -1018,7 +1018,7 @@ references:
   - uid: Reportman.Drawing.PrintOut.PageSizeName(System.Int32)
     name: PageSizeName
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   - name: (
   - uid: System.Int32
     name: int
@@ -1029,7 +1029,7 @@ references:
   - uid: Reportman.Drawing.PrintOut.PageSizeName(System.Int32)
     name: PageSizeName
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   - name: (
   - uid: System.Int32
     name: Integer
@@ -1040,7 +1040,7 @@ references:
   commentId: M:Reportman.Drawing.PrintOut.EndPage(Reportman.Drawing.MetaFile)
   parent: Reportman.Drawing.PrintOut
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   name: EndPage(MetaFile)
   nameWithType: PrintOut.EndPage(MetaFile)
   fullName: Reportman.Drawing.PrintOut.EndPage(Reportman.Drawing.MetaFile)
@@ -1048,29 +1048,29 @@ references:
   - uid: Reportman.Drawing.PrintOut.EndPage(Reportman.Drawing.MetaFile)
     name: EndPage
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   - name: (
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaFile.cs
   - name: )
   spec.vb:
   - uid: Reportman.Drawing.PrintOut.EndPage(Reportman.Drawing.MetaFile)
     name: EndPage
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   - name: (
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaFile.cs
   - name: )
 - uid: Reportman.Drawing.PrintOut.SelectPrinter(Reportman.Drawing.PrinterSelectType)
   commentId: M:Reportman.Drawing.PrintOut.SelectPrinter(Reportman.Drawing.PrinterSelectType)
   parent: Reportman.Drawing.PrintOut
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   name: SelectPrinter(PrinterSelectType)
   nameWithType: PrintOut.SelectPrinter(PrinterSelectType)
   fullName: Reportman.Drawing.PrintOut.SelectPrinter(Reportman.Drawing.PrinterSelectType)
@@ -1078,29 +1078,29 @@ references:
   - uid: Reportman.Drawing.PrintOut.SelectPrinter(Reportman.Drawing.PrinterSelectType)
     name: SelectPrinter
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   - name: (
   - uid: Reportman.Drawing.PrinterSelectType
     name: PrinterSelectType
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaFile.cs
   - name: )
   spec.vb:
   - uid: Reportman.Drawing.PrintOut.SelectPrinter(Reportman.Drawing.PrinterSelectType)
     name: SelectPrinter
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   - name: (
   - uid: Reportman.Drawing.PrinterSelectType
     name: PrinterSelectType
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaFile.cs
   - name: )
 - uid: Reportman.Drawing.PrintOut.DrawChart(Reportman.Drawing.Series,Reportman.Drawing.MetaFile,System.Int32,System.Int32,System.Object)
   commentId: M:Reportman.Drawing.PrintOut.DrawChart(Reportman.Drawing.Series,Reportman.Drawing.MetaFile,System.Int32,System.Int32,System.Object)
   parent: Reportman.Drawing.PrintOut
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   name: DrawChart(Series, MetaFile, int, int, object)
   nameWithType: PrintOut.DrawChart(Series, MetaFile, int, int, object)
   fullName: Reportman.Drawing.PrintOut.DrawChart(Reportman.Drawing.Series, Reportman.Drawing.MetaFile, int, int, object)
@@ -1111,18 +1111,18 @@ references:
   - uid: Reportman.Drawing.PrintOut.DrawChart(Reportman.Drawing.Series,Reportman.Drawing.MetaFile,System.Int32,System.Int32,System.Object)
     name: DrawChart
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   - name: (
   - uid: Reportman.Drawing.Series
     name: Series
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Series.cs
   - name: ','
   - name: " "
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaFile.cs
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -1146,18 +1146,18 @@ references:
   - uid: Reportman.Drawing.PrintOut.DrawChart(Reportman.Drawing.Series,Reportman.Drawing.MetaFile,System.Int32,System.Int32,System.Object)
     name: DrawChart
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   - name: (
   - uid: Reportman.Drawing.Series
     name: Series
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Series.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Series.cs
   - name: ','
   - name: " "
   - uid: Reportman.Drawing.MetaFile
     name: MetaFile
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/MetaFile.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaFile.cs
   - name: ','
   - name: " "
   - uid: System.Int32
@@ -1181,7 +1181,7 @@ references:
   commentId: M:Reportman.Drawing.PrintOut.ProcessNoDataToPrint
   parent: Reportman.Drawing.PrintOut
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   name: ProcessNoDataToPrint()
   nameWithType: PrintOut.ProcessNoDataToPrint()
   fullName: Reportman.Drawing.PrintOut.ProcessNoDataToPrint()
@@ -1189,14 +1189,14 @@ references:
   - uid: Reportman.Drawing.PrintOut.ProcessNoDataToPrint
     name: ProcessNoDataToPrint
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   - name: (
   - name: )
   spec.vb:
   - uid: Reportman.Drawing.PrintOut.ProcessNoDataToPrint
     name: ProcessNoDataToPrint
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   - name: (
   - name: )
 - uid: System.Object.GetType
@@ -1468,7 +1468,7 @@ references:
   commentId: T:Reportman.Drawing.FontInfoProvider
   parent: Reportman.Drawing
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/FontInfoProvider.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/FontInfoProvider.cs
   name: FontInfoProvider
   nameWithType: FontInfoProvider
   fullName: Reportman.Drawing.FontInfoProvider
@@ -1483,7 +1483,7 @@ references:
   commentId: T:Reportman.Drawing.IBitmapInfoProvider
   parent: Reportman.Drawing
   isExternal: true
-  href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/IBitmapInfoProvider.cs
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/IBitmapInfoProvider.cs
   name: IBitmapInfoProvider
   nameWithType: IBitmapInfoProvider
   fullName: Reportman.Drawing.IBitmapInfoProvider
@@ -1579,7 +1579,7 @@ references:
   commentId: T:Reportman.Drawing.MetaFile
   parent: Reportman.Drawing
   isExternal: true
-  href: Reportman.Drawing.MetaFile.html
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/MetaFile.cs
   name: MetaFile
   nameWithType: MetaFile
   fullName: Reportman.Drawing.MetaFile
@@ -1884,7 +1884,7 @@ references:
   - uid: Reportman.Drawing.LineInfo
     name: LineInfo
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   - name: '>'
   spec.vb:
   - uid: System.Collections.Generic.List`1
@@ -1897,7 +1897,7 @@ references:
   - uid: Reportman.Drawing.LineInfo
     name: LineInfo
     isExternal: true
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PDFCanvas.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PDFCanvas.cs
   - name: )
 - uid: System.Collections.Generic.List`1
   commentId: T:System.Collections.Generic.List`1

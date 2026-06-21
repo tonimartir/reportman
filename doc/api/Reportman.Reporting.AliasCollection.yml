@@ -25,7 +25,7 @@ items:
   fullName: Reportman.Reporting.AliasCollection
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatasetAlias.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatasetAlias.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -73,7 +73,7 @@ items:
   fullName: Reportman.Reporting.AliasCollection.Add(Reportman.Reporting.AliasCollectionItem)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatasetAlias.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatasetAlias.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -98,7 +98,7 @@ items:
   fullName: Reportman.Reporting.AliasCollection.IndexOf(Reportman.Reporting.AliasCollectionItem)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatasetAlias.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatasetAlias.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -123,7 +123,7 @@ items:
   fullName: Reportman.Reporting.AliasCollection.Insert(int, Reportman.Reporting.AliasCollectionItem)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatasetAlias.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatasetAlias.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -151,7 +151,7 @@ items:
   fullName: Reportman.Reporting.AliasCollection.Remove(Reportman.Reporting.AliasCollectionItem)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatasetAlias.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatasetAlias.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -174,7 +174,7 @@ items:
   fullName: Reportman.Reporting.AliasCollection.Contains(Reportman.Reporting.AliasCollectionItem)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatasetAlias.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatasetAlias.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -199,7 +199,7 @@ items:
   fullName: Reportman.Reporting.AliasCollection.OnInsert(int, object)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatasetAlias.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatasetAlias.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -229,7 +229,7 @@ items:
   fullName: Reportman.Reporting.AliasCollection.OnRemove(int, object)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatasetAlias.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatasetAlias.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -259,7 +259,7 @@ items:
   fullName: Reportman.Reporting.AliasCollection.OnSet(int, object, object)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatasetAlias.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatasetAlias.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -291,7 +291,7 @@ items:
   fullName: Reportman.Reporting.AliasCollection.OnValidate(object)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatasetAlias.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatasetAlias.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -319,7 +319,7 @@ items:
   fullName: Reportman.Reporting.AliasCollection.CopyTo(Reportman.Reporting.AliasCollectionItem[], int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatasetAlias.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatasetAlias.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -347,7 +347,7 @@ items:
   fullName: Reportman.Reporting.AliasCollection.AliasCollection()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatasetAlias.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatasetAlias.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -370,7 +370,7 @@ items:
   fullName: Reportman.Reporting.AliasCollection.this[int]
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/DatasetAlias.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/DatasetAlias.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting

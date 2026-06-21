@@ -1,5 +1,201 @@
 ### YamlMime:TableOfContent
 items:
+- uid: Reportman.Designer
+  name: Reportman.Designer
+  type: Namespace
+  items:
+  - uid: Reportman.Designer.AIChatPanelControl
+    name: AIChatPanelControl
+    type: Class
+  - uid: Reportman.Designer.AICopilotManager
+    name: AICopilotManager
+    type: Class
+  - uid: Reportman.Designer.AILoginForm
+    name: AILoginForm
+    type: Class
+  - uid: Reportman.Designer.AILoginFrameControl
+    name: AILoginFrameControl
+    type: Class
+  - uid: Reportman.Designer.AISchemaSelectorControl
+    name: AISchemaSelectorControl
+    type: Class
+  - uid: Reportman.Designer.AISelectionControl
+    name: AISelectionControl
+    type: Class
+  - uid: Reportman.Designer.AssetsManager
+    name: AssetsManager
+    type: Class
+  - uid: Reportman.Designer.BandInfo
+    name: BandInfo
+    type: Class
+  - uid: Reportman.Designer.ConnectionEditor
+    name: ConnectionEditor
+    type: Class
+  - uid: Reportman.Designer.ConnectionEditor.ConnResult
+    name: ConnectionEditor.ConnResult
+    type: Struct
+  - uid: Reportman.Designer.ConnectionParamsControl
+    name: ConnectionParamsControl
+    type: Class
+  - uid: Reportman.Designer.DbxConnections
+    name: DbxConnections
+    type: Class
+  - uid: Reportman.Designer.DesignerSelfTest
+    name: DesignerSelfTest
+    type: Class
+  - uid: Reportman.Designer.EditSubReport
+    name: EditSubReport
+    type: Class
+  - uid: Reportman.Designer.EllipsisClick
+    name: EllipsisClick
+    type: Delegate
+  - uid: Reportman.Designer.EllipsisEditingControl
+    name: EllipsisEditingControl
+    type: Class
+  - uid: Reportman.Designer.ExpressionChatPanelControl
+    name: ExpressionChatPanelControl
+    type: Class
+  - uid: Reportman.Designer.ExpressionChatPanelControl.ValidateExpressionHandler
+    name: ExpressionChatPanelControl.ValidateExpressionHandler
+    type: Delegate
+  - uid: Reportman.Designer.ExpressionDlg
+    name: ExpressionDlg
+    type: Class
+  - uid: Reportman.Designer.ExpressionEditorControl
+    name: ExpressionEditorControl
+    type: Class
+  - uid: Reportman.Designer.FieldInfo
+    name: FieldInfo
+    type: Class
+  - uid: Reportman.Designer.FrameDataDef
+    name: FrameDataDef
+    type: Class
+  - uid: Reportman.Designer.FrameFields
+    name: FrameFields
+    type: Class
+  - uid: Reportman.Designer.FrameMainDesigner
+    name: FrameMainDesigner
+    type: Class
+  - uid: Reportman.Designer.FrameMainDesigner.EditModeType
+    name: FrameMainDesigner.EditModeType
+    type: Enum
+  - uid: Reportman.Designer.FrameMainDesigner.ExitReportArgs
+    name: FrameMainDesigner.ExitReportArgs
+    type: Class
+  - uid: Reportman.Designer.FrameMainDesigner.ExitReportEventHandler
+    name: FrameMainDesigner.ExitReportEventHandler
+    type: Delegate
+  - uid: Reportman.Designer.FrameMainDesigner.PreviewReportArgs
+    name: FrameMainDesigner.PreviewReportArgs
+    type: Class
+  - uid: Reportman.Designer.FrameMainDesigner.PreviewReportEvent
+    name: FrameMainDesigner.PreviewReportEvent
+    type: Delegate
+  - uid: Reportman.Designer.FrameMainDesigner.SaveReportArgs
+    name: FrameMainDesigner.SaveReportArgs
+    type: Class
+  - uid: Reportman.Designer.FrameMainDesigner.SaveReportEvent
+    name: FrameMainDesigner.SaveReportEvent
+    type: Delegate
+  - uid: Reportman.Designer.FrameStructure
+    name: FrameStructure
+    type: Class
+  - uid: Reportman.Designer.GridOptions
+    name: GridOptions
+    type: Class
+  - uid: Reportman.Designer.HttpAgentParams
+    name: HttpAgentParams
+    type: Class
+  - uid: Reportman.Designer.HubDatabaseConverter
+    name: HubDatabaseConverter
+    type: Class
+  - uid: Reportman.Designer.HubDatabaseRef
+    name: HubDatabaseRef
+    type: Class
+  - uid: Reportman.Designer.LibraryConfig
+    name: LibraryConfig
+    type: Class
+  - uid: Reportman.Designer.LibraryConfigForm
+    name: LibraryConfigForm
+    type: Class
+  - uid: Reportman.Designer.MainForm
+    name: MainForm
+    type: Class
+  - uid: Reportman.Designer.MonacoEditorControl
+    name: MonacoEditorControl
+    type: Class
+  - uid: Reportman.Designer.NewReportWizard
+    name: NewReportWizard
+    type: Class
+  - uid: Reportman.Designer.ObjectInspectorCell
+    name: ObjectInspectorCell
+    type: Class
+  - uid: Reportman.Designer.ObjectInspectorCellType
+    name: ObjectInspectorCellType
+    type: Enum
+  - uid: Reportman.Designer.ObjectInspectorColumn
+    name: ObjectInspectorColumn
+    type: Class
+  - uid: Reportman.Designer.OpenFromLibrary
+    name: OpenFromLibrary
+    type: Class
+  - uid: Reportman.Designer.OpenFromLibrary.AfterSelectEvent
+    name: OpenFromLibrary.AfterSelectEvent
+    type: Delegate
+  - uid: Reportman.Designer.OpenFromLibrary.AfterSelectEventArgs
+    name: OpenFromLibrary.AfterSelectEventArgs
+    type: Class
+  - uid: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent
+    name: OpenFromLibrary.BeforeSelectEvent
+    type: Delegate
+  - uid: Reportman.Designer.OpenFromLibrary.BeforeSelectEventArgs
+    name: OpenFromLibrary.BeforeSelectEventArgs
+    type: Class
+  - uid: Reportman.Designer.OpenFromLibrary.SelectionModeType
+    name: OpenFromLibrary.SelectionModeType
+    type: Enum
+  - uid: Reportman.Designer.OpenFromLibraryForm
+    name: OpenFromLibraryForm
+    type: Class
+  - uid: Reportman.Designer.PropertyChanged
+    name: PropertyChanged
+    type: Delegate
+  - uid: Reportman.Designer.ResizeAction
+    name: ResizeAction
+    type: Enum
+  - uid: Reportman.Designer.ResizeEventGetBounds
+    name: ResizeEventGetBounds
+    type: Delegate
+  - uid: Reportman.Designer.ResizeEventSetBounds
+    name: ResizeEventSetBounds
+    type: Delegate
+  - uid: Reportman.Designer.RpAuthManager
+    name: RpAuthManager
+    type: Class
+  - uid: Reportman.Designer.RpProfile
+    name: RpProfile
+    type: Class
+  - uid: Reportman.Designer.RuntimeResize
+    name: RuntimeResize
+    type: Class
+  - uid: Reportman.Designer.SQLEditor
+    name: SQLEditor
+    type: Class
+  - uid: Reportman.Designer.SQLEditorControl
+    name: SQLEditorControl
+    type: Class
+  - uid: Reportman.Designer.SelectedItemPalette
+    name: SelectedItemPalette
+    type: Enum
+  - uid: Reportman.Designer.SqlChatPanelControl
+    name: SqlChatPanelControl
+    type: Class
+  - uid: Reportman.Designer.SqlSchemaContextChangedEventArgs
+    name: SqlSchemaContextChangedEventArgs
+    type: Class
+  - uid: Reportman.Designer.WebMarkdownControl
+    name: WebMarkdownControl
+    type: Class
 - uid: Reportman.Drawing
   name: Reportman.Drawing
   type: Namespace
@@ -286,6 +482,9 @@ items:
   - uid: Reportman.Drawing.PrintOutCSV.TextFormat.FontStyle
     name: PrintOutCSV.TextFormat.FontStyle
     type: Enum
+  - uid: Reportman.Drawing.PrintOutClosedExcel
+    name: PrintOutClosedExcel
+    type: Class
   - uid: Reportman.Drawing.PrintOutExcel
     name: PrintOutExcel
     type: Class
@@ -433,6 +632,13 @@ items:
   items:
   - uid: Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType
     name: PrintOutPDFFreeType
+    type: Class
+- uid: Reportman.Drawing.Excel
+  name: Reportman.Drawing.Excel
+  type: Namespace
+  items:
+  - uid: Reportman.Drawing.Excel.Helper
+    name: Helper
     type: Class
 - uid: Reportman.Drawing.Forms
   name: Reportman.Drawing.Forms
@@ -829,6 +1035,25 @@ items:
   - uid: Reportman.Drawing.Windows.TTextExtentRenderer
     name: TTextExtentRenderer
     type: Class
+- uid: Reportman.Hub.Client.DataChannel
+  name: Reportman.Hub.Client.DataChannel
+  type: Namespace
+  items:
+  - uid: Reportman.Hub.Client.DataChannel.ConnectionMode
+    name: ConnectionMode
+    type: Enum
+  - uid: Reportman.Hub.Client.DataChannel.QueryPhase
+    name: QueryPhase
+    type: Enum
+  - uid: Reportman.Hub.Client.DataChannel.QueryProgress
+    name: QueryProgress
+    type: Class
+  - uid: Reportman.Hub.Client.DataChannel.WebRtcChannelPool
+    name: WebRtcChannelPool
+    type: Class
+  - uid: Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession
+    name: WebRtcDataChannelSession
+    type: Class
 - uid: Reportman.Reporting
   name: Reportman.Reporting
   type: Namespace
@@ -1133,6 +1358,83 @@ items:
   - uid: Reportman.Reporting.Variants
     name: Variants
     type: Class
+- uid: Reportman.Reporting.Design
+  name: Reportman.Reporting.Design
+  type: Namespace
+  items:
+  - uid: Reportman.Reporting.Design.CompactReportSerializer
+    name: CompactReportSerializer
+    type: Class
+  - uid: Reportman.Reporting.Design.IReportBatchEditor
+    name: IReportBatchEditor
+    type: Interface
+  - uid: Reportman.Reporting.Design.IReportBatchValidator
+    name: IReportBatchValidator
+    type: Interface
+  - uid: Reportman.Reporting.Design.ReportBatchApplyResult
+    name: ReportBatchApplyResult
+    type: Class
+  - uid: Reportman.Reporting.Design.ReportBatchEditor
+    name: ReportBatchEditor
+    type: Class
+  - uid: Reportman.Reporting.Design.ReportBatchIssue
+    name: ReportBatchIssue
+    type: Class
+  - uid: Reportman.Reporting.Design.ReportBatchOperation
+    name: ReportBatchOperation
+    type: Class
+  - uid: Reportman.Reporting.Design.ReportBatchOperationType
+    name: ReportBatchOperationType
+    type: Enum
+  - uid: Reportman.Reporting.Design.ReportBatchProperty
+    name: ReportBatchProperty
+    type: Class
+  - uid: Reportman.Reporting.Design.ReportBatchValidationResult
+    name: ReportBatchValidationResult
+    type: Class
+  - uid: Reportman.Reporting.Design.ReportStructureContext
+    name: ReportStructureContext
+    type: Class
+  - uid: Reportman.Reporting.Design.ReportStructureContextBuilder
+    name: ReportStructureContextBuilder
+    type: Class
+  - uid: Reportman.Reporting.Design.ReportStructureContextNode
+    name: ReportStructureContextNode
+    type: Class
+- uid: Reportman.Reporting.Design.Json
+  name: Reportman.Reporting.Design.Json
+  type: Namespace
+  items:
+  - uid: Reportman.Reporting.Design.Json.IReportBatchJsonAdapter
+    name: IReportBatchJsonAdapter
+    type: Interface
+  - uid: Reportman.Reporting.Design.Json.ReportBatchJsonAdapter
+    name: ReportBatchJsonAdapter
+    type: Class
+  - uid: Reportman.Reporting.Design.Json.ReportBatchJsonApplyResponse
+    name: ReportBatchJsonApplyResponse
+    type: Class
+  - uid: Reportman.Reporting.Design.Json.ReportBatchJsonDocumentApplyResponse
+    name: ReportBatchJsonDocumentApplyResponse
+    type: Class
+  - uid: Reportman.Reporting.Design.Json.ReportBatchJsonIssue
+    name: ReportBatchJsonIssue
+    type: Class
+  - uid: Reportman.Reporting.Design.Json.ReportBatchJsonOperation
+    name: ReportBatchJsonOperation
+    type: Class
+  - uid: Reportman.Reporting.Design.Json.ReportBatchJsonProperty
+    name: ReportBatchJsonProperty
+    type: Class
+  - uid: Reportman.Reporting.Design.Json.ReportBatchJsonRequest
+    name: ReportBatchJsonRequest
+    type: Class
+  - uid: Reportman.Reporting.Design.Json.ReportBatchJsonValidationResponse
+    name: ReportBatchJsonValidationResponse
+    type: Class
+  - uid: Reportman.Reporting.Design.Json.ReportDocumentFormat
+    name: ReportDocumentFormat
+    type: Enum
 - uid: Reportman.Reporting.Forms
   name: Reportman.Reporting.Forms
   type: Namespace
@@ -1172,6 +1474,13 @@ items:
     type: Class
   - uid: Reportman.Reporting.Forms.SearchForm
     name: SearchForm
+    type: Class
+- uid: Reportman.Reporting.Templates
+  name: Reportman.Reporting.Templates
+  type: Namespace
+  items:
+  - uid: Reportman.Reporting.Templates.ReportTemplateFactory
+    name: ReportTemplateFactory
     type: Class
 - uid: Reportman.WPF
   name: Reportman.WPF

@@ -6,6 +6,11 @@ using System.Runtime.InteropServices;
 
 namespace Reportman.Designer
 {
+    /// <summary>
+    /// Extracts embedded web assets (the Monaco editor and Web Markdown bundles) into the
+    /// local application data folder on first use or version change, and preloads the
+    /// WebView2 loader native library.
+    /// </summary>
     public static class AssetsManager
     {
         private const string MonacoAssetsVersion = "3";

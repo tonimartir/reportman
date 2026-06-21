@@ -13,6 +13,11 @@ using Reportman.Hub.Client.DataChannel;
 
 namespace Reportman.Designer
 {
+    /// <summary>
+    /// Event data raised when the active Hub database, schema or API key bound to
+    /// the SQL chat panel changes, carrying the effective identifiers used for
+    /// subsequent AI requests.
+    /// </summary>
     public class SqlSchemaContextChangedEventArgs : EventArgs
     {
         public SqlSchemaContextChangedEventArgs(long hubDatabaseId, long hubSchemaId, string apiKey)
@@ -27,6 +32,11 @@ namespace Reportman.Designer
         public string ApiKey { get; private set; }
     }
 
+    /// <summary>
+    /// Designer panel that lets the user chat with the Reportman AI agent to
+    /// generate SQL from natural language, streaming the response and exposing
+    /// the suggested SQL for the caller to apply.
+    /// </summary>
     public class SqlChatPanelControl : UserControl
     {
         private AILoginFrameControl _loginControl;

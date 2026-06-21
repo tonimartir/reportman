@@ -10,8 +10,16 @@ using Reportman.Reporting;
 
 namespace Reportman.Designer
 {
+    /// <summary>
+    /// Side panel that lets the user chat with the AI agent to generate, fix or explain a report
+    /// expression, streaming the response and offering to apply the suggested expression.
+    /// </summary>
     public class ExpressionChatPanelControl : UserControl
     {
+        /// <summary>
+        /// Callback used to validate a generated expression locally; returns true when valid,
+        /// otherwise sets <paramref name="errorMessage"/> describing why validation failed.
+        /// </summary>
         public delegate bool ValidateExpressionHandler(string expression, out string errorMessage);
 
         private AILoginFrameControl _loginControl;

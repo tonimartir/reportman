@@ -24,7 +24,7 @@ items:
   fullName: Reportman.Reporting.UndoCue
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -58,7 +58,7 @@ items:
   fullName: Reportman.Reporting.UndoCue.AddOperation(Reportman.Reporting.ChangeObjectOperation, Reportman.Reporting.BaseReport)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -83,7 +83,7 @@ items:
   fullName: Reportman.Reporting.UndoCue.RemoveOperationsOlderThan(System.DateTime)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -120,7 +120,7 @@ items:
   fullName: Reportman.Reporting.UndoCue.GetGroupId()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -142,7 +142,7 @@ items:
   fullName: Reportman.Reporting.UndoCue.EnsureGroupIdIsSynchronized()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -162,7 +162,7 @@ items:
   fullName: Reportman.Reporting.UndoCue.Undo(Reportman.Reporting.Report)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -187,7 +187,7 @@ items:
   fullName: Reportman.Reporting.UndoCue.Redo(Reportman.Reporting.Report)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -212,7 +212,7 @@ items:
   fullName: Reportman.Reporting.UndoCue.ApplyPropertiesToObject(Reportman.Reporting.ChangeObjectOperation, Reportman.Reporting.ReportItem, bool)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -242,7 +242,7 @@ items:
   fullName: Reportman.Reporting.UndoCue.UndoCue()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -265,7 +265,7 @@ items:
   fullName: Reportman.Reporting.UndoCue.GroupId
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -288,7 +288,7 @@ items:
   fullName: Reportman.Reporting.UndoCue.UndoOperations
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -311,7 +311,7 @@ items:
   fullName: Reportman.Reporting.UndoCue.RedoOperations
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/UndoCue.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/UndoCue.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -327,7 +327,7 @@ references:
   commentId: T:Reportman.Reporting.Report
   parent: Reportman.Reporting
   isExternal: true
-  href: Reportman.Reporting.Report.html
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Report.cs
   name: Report
   nameWithType: Report
   fullName: Reportman.Reporting.Report
@@ -695,7 +695,7 @@ references:
   - uid: Reportman.Reporting.ChangeObjectOperation
     name: ChangeObjectOperation
     isExternal: true
-    href: Reportman.Reporting.ChangeObjectOperation.html
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/UndoCue.cs
   - name: '>'
   spec.vb:
   - uid: System.Collections.Generic.List`1
@@ -708,7 +708,7 @@ references:
   - uid: Reportman.Reporting.ChangeObjectOperation
     name: ChangeObjectOperation
     isExternal: true
-    href: Reportman.Reporting.ChangeObjectOperation.html
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/UndoCue.cs
   - name: )
 - uid: System.Collections.Generic.List`1
   commentId: T:System.Collections.Generic.List`1
@@ -793,7 +793,7 @@ references:
   commentId: T:Reportman.Reporting.ReportItem
   parent: Reportman.Reporting
   isExternal: true
-  href: Reportman.Reporting.ReportItem.html
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/ReportItem.cs
   name: ReportItem
   nameWithType: ReportItem
   fullName: Reportman.Reporting.ReportItem

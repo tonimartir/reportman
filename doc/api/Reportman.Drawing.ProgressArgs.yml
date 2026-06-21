@@ -17,7 +17,7 @@ items:
   fullName: Reportman.Drawing.ProgressArgs
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ProgressArgs.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/ProgressArgs.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -51,7 +51,7 @@ items:
   fullName: Reportman.Drawing.ProgressArgs.Cancel
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ProgressArgs.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/ProgressArgs.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -72,7 +72,7 @@ items:
   fullName: Reportman.Drawing.ProgressArgs.ProgressArgs(long, long)
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ProgressArgs.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/ProgressArgs.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -100,7 +100,7 @@ items:
   fullName: Reportman.Drawing.ProgressArgs.Count
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ProgressArgs.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/ProgressArgs.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -123,7 +123,7 @@ items:
   fullName: Reportman.Drawing.ProgressArgs.Total
   type: Property
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ProgressArgs.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/ProgressArgs.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

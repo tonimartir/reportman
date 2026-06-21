@@ -17,7 +17,7 @@ items:
   fullName: Reportman.Drawing.ProgressEvent
   type: Delegate
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ProgressArgs.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/ProgressArgs.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -46,7 +46,7 @@ items:
   fullName: Reportman.Drawing.ProgressEvent.ProgressEvent(object, nint)
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ProgressArgs.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/ProgressArgs.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -74,7 +74,7 @@ items:
   fullName: Reportman.Drawing.ProgressEvent.Invoke(object, Reportman.Drawing.ProgressArgs)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ProgressArgs.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/ProgressArgs.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -102,7 +102,7 @@ items:
   fullName: Reportman.Drawing.ProgressEvent.BeginInvoke(object, Reportman.Drawing.ProgressArgs, System.AsyncCallback, object)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ProgressArgs.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/ProgressArgs.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -136,7 +136,7 @@ items:
   fullName: Reportman.Drawing.ProgressEvent.EndInvoke(System.IAsyncResult)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ProgressArgs.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/ProgressArgs.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

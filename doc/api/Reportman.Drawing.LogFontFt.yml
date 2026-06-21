@@ -47,7 +47,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -81,7 +81,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.fixedpitch
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -102,7 +102,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.postcriptname
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -123,7 +123,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.familyname
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -144,7 +144,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.stylename
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -165,7 +165,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.italic
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -186,7 +186,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.bold
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -207,7 +207,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.filename
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -228,7 +228,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.ascent
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -249,7 +249,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.descent
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -270,7 +270,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.height
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -291,7 +291,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.weight
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -312,7 +312,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.MaxWidth
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -333,7 +333,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.avCharWidth
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -354,7 +354,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.Capheight
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -375,7 +375,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.ItalicAngle
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -396,7 +396,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.leading
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -417,7 +417,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.BBox
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -438,7 +438,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.fullinfo
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -459,7 +459,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.StemV
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -480,7 +480,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.ftface
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -501,7 +501,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.faceinit
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -522,7 +522,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.havekerning
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -543,7 +543,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.type1
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -564,7 +564,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.widthmult
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -585,7 +585,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.convfactor
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -606,7 +606,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.heightmult
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -627,7 +627,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.keyname
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -648,7 +648,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.ftlibrary
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -669,7 +669,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.kerningfile
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -690,7 +690,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.FontFaces
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -711,7 +711,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.iface
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -732,7 +732,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.LogFontFt()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -755,7 +755,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.Dispose()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing
@@ -775,7 +775,7 @@ items:
   fullName: Reportman.Drawing.LogFontFt.OpenFont()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing.CrossPlatform/FontInfoFt.cs
   assemblies:
   - Reportman.Drawing.CrossPlatform
   namespace: Reportman.Drawing

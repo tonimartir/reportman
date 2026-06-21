@@ -6,6 +6,10 @@ using System.Windows.Forms;
 
 namespace Reportman.Designer
 {
+    /// <summary>
+    /// Dialog for editing a data source's SQL query using a Monaco editor with schema-aware
+    /// autocomplete, a natural-language-to-SQL chat panel, and a preview of the query results.
+    /// </summary>
     public partial class SQLEditor : UserControl
     {
         Report Report;

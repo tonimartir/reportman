@@ -42,7 +42,7 @@ items:
   fullName: Reportman.Drawing.PrinterRawOperation
   type: Enum
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -66,7 +66,7 @@ items:
   fullName: Reportman.Drawing.PrinterRawOperation.CutPaper
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -86,7 +86,7 @@ items:
   fullName: Reportman.Drawing.PrinterRawOperation.OpenDrawer
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -106,7 +106,7 @@ items:
   fullName: Reportman.Drawing.PrinterRawOperation.LineFeed
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -126,7 +126,7 @@ items:
   fullName: Reportman.Drawing.PrinterRawOperation.CR
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -146,7 +146,7 @@ items:
   fullName: Reportman.Drawing.PrinterRawOperation.FF
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -166,7 +166,7 @@ items:
   fullName: Reportman.Drawing.PrinterRawOperation.TearOff
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -186,7 +186,7 @@ items:
   fullName: Reportman.Drawing.PrinterRawOperation.InitPrinter
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -206,7 +206,7 @@ items:
   fullName: Reportman.Drawing.PrinterRawOperation.Pulse
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -226,7 +226,7 @@ items:
   fullName: Reportman.Drawing.PrinterRawOperation.EndPrint
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -246,7 +246,7 @@ items:
   fullName: Reportman.Drawing.PrinterRawOperation.RedFont
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -266,7 +266,7 @@ items:
   fullName: Reportman.Drawing.PrinterRawOperation.BlackFont
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -286,7 +286,7 @@ items:
   fullName: Reportman.Drawing.PrinterRawOperation.Normal
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -306,7 +306,7 @@ items:
   fullName: Reportman.Drawing.PrinterRawOperation.Bold
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -326,7 +326,7 @@ items:
   fullName: Reportman.Drawing.PrinterRawOperation.Underline
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -346,7 +346,7 @@ items:
   fullName: Reportman.Drawing.PrinterRawOperation.Italic
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -366,7 +366,7 @@ items:
   fullName: Reportman.Drawing.PrinterRawOperation.StrikeOut
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -386,7 +386,7 @@ items:
   fullName: Reportman.Drawing.PrinterRawOperation.LineSpace6
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -406,7 +406,7 @@ items:
   fullName: Reportman.Drawing.PrinterRawOperation.LineSpace8
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -426,7 +426,7 @@ items:
   fullName: Reportman.Drawing.PrinterRawOperation.LineSpace7_72
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -446,7 +446,7 @@ items:
   fullName: Reportman.Drawing.PrinterRawOperation.LineSpacen_216
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -466,7 +466,7 @@ items:
   fullName: Reportman.Drawing.PrinterRawOperation.LineSpacen_180
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -486,7 +486,7 @@ items:
   fullName: Reportman.Drawing.PrinterRawOperation.Linespacen_60
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -506,7 +506,7 @@ items:
   fullName: Reportman.Drawing.PrinterRawOperation.cpi20
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -526,7 +526,7 @@ items:
   fullName: Reportman.Drawing.PrinterRawOperation.cpi17
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -546,7 +546,7 @@ items:
   fullName: Reportman.Drawing.PrinterRawOperation.cpi15
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -566,7 +566,7 @@ items:
   fullName: Reportman.Drawing.PrinterRawOperation.cpi12
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -586,7 +586,7 @@ items:
   fullName: Reportman.Drawing.PrinterRawOperation.cpi10
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -606,7 +606,7 @@ items:
   fullName: Reportman.Drawing.PrinterRawOperation.cpi6
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -626,7 +626,7 @@ items:
   fullName: Reportman.Drawing.PrinterRawOperation.cpi5
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/PrintOut.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/PrintOut.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

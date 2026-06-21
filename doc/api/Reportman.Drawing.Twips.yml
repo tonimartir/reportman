@@ -30,7 +30,7 @@ items:
   fullName: Reportman.Drawing.Twips
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Twips.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Twips.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -64,7 +64,7 @@ items:
   fullName: Reportman.Drawing.Twips.TWIPS_PER_INCH
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Twips.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Twips.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -87,7 +87,7 @@ items:
   fullName: Reportman.Drawing.Twips.CMS_PER_INCH
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Twips.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Twips.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -110,7 +110,7 @@ items:
   fullName: Reportman.Drawing.Twips.TWIPS_PER_CM
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Twips.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Twips.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -133,7 +133,7 @@ items:
   fullName: Reportman.Drawing.Twips.AlignToGridTwips(int, int, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Twips.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Twips.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -165,7 +165,7 @@ items:
   fullName: Reportman.Drawing.Twips.AlignToGridTwips(System.Drawing.Point, int, int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Twips.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Twips.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -197,7 +197,7 @@ items:
   fullName: Reportman.Drawing.Twips.TwipsToCms(decimal)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Twips.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Twips.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -227,7 +227,7 @@ items:
   fullName: Reportman.Drawing.Twips.TwipsToInch(decimal)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Twips.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Twips.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -257,7 +257,7 @@ items:
   fullName: Reportman.Drawing.Twips.CmsToTwips(decimal)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Twips.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Twips.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -287,7 +287,7 @@ items:
   fullName: Reportman.Drawing.Twips.InchToTwips(decimal)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Twips.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Twips.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -317,7 +317,7 @@ items:
   fullName: Reportman.Drawing.Twips.TranslateUnit(Reportman.Drawing.Units)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Twips.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Twips.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -346,7 +346,7 @@ items:
   fullName: Reportman.Drawing.Twips.DefaultUnitString()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Twips.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Twips.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -370,7 +370,7 @@ items:
   fullName: Reportman.Drawing.Twips.DefaultUnit()
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Twips.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Twips.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -394,7 +394,7 @@ items:
   fullName: Reportman.Drawing.Twips.TextFromTwips(int)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Twips.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Twips.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -424,7 +424,7 @@ items:
   fullName: Reportman.Drawing.Twips.TwipsFromText(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Twips.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Twips.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -454,7 +454,7 @@ items:
   fullName: Reportman.Drawing.Twips.UnitsFromTwips(decimal)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Twips.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Twips.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -484,7 +484,7 @@ items:
   fullName: Reportman.Drawing.Twips.TwipsFromUnits(decimal)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Twips.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Twips.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -514,7 +514,7 @@ items:
   fullName: Reportman.Drawing.Twips.Twips()
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/Twips.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/Twips.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

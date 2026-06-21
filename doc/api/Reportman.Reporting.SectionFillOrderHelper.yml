@@ -20,7 +20,7 @@ items:
   fullName: Reportman.Reporting.SectionFillOrderHelper
   type: Class
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -51,7 +51,7 @@ items:
   fullName: Reportman.Reporting.SectionFillOrderHelper.Down
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -72,7 +72,7 @@ items:
   fullName: Reportman.Reporting.SectionFillOrderHelper.AcrossThenDown
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -93,7 +93,7 @@ items:
   fullName: Reportman.Reporting.SectionFillOrderHelper.DownThenAcross
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -114,7 +114,7 @@ items:
   fullName: Reportman.Reporting.SectionFillOrderHelper.GetFillOrder(Reportman.Reporting.Section)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -139,7 +139,7 @@ items:
   fullName: Reportman.Reporting.SectionFillOrderHelper.ApplyFillOrder(Reportman.Reporting.Section, string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -167,7 +167,7 @@ items:
   fullName: Reportman.Reporting.SectionFillOrderHelper.NormalizeFillOrder(string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -195,7 +195,7 @@ items:
   fullName: Reportman.Reporting.SectionFillOrderHelper.TryNormalizeFillOrder(string, out string)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Reporting/Section.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Section.cs
   assemblies:
   - Reportman.Reporting
   namespace: Reportman.Reporting
@@ -500,7 +500,7 @@ references:
   commentId: T:Reportman.Reporting.Section
   parent: Reportman.Reporting
   isExternal: true
-  href: Reportman.Reporting.Section.html
+  href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Reporting/Section.cs
   name: Section
   nameWithType: Section
   fullName: Reportman.Reporting.Section

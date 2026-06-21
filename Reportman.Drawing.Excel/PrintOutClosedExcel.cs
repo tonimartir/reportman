@@ -5,6 +5,11 @@ using System.IO;
 
 namespace Reportman.Drawing
 {
+    /// <summary>
+    /// Print-out driver that exports a rendered report metafile to an XLSX
+    /// workbook using ClosedXML, mapping text and image objects onto worksheet
+    /// cells by their page position with optional single-sheet output.
+    /// </summary>
     public class PrintOutClosedExcel : PrintOut, IDisposable
     {
         DateTime mmfirst;

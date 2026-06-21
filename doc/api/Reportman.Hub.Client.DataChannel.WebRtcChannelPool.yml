@@ -1,0 +1,1021 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Hub.Client.DataChannel.WebRtcChannelPool
+  commentId: T:Reportman.Hub.Client.DataChannel.WebRtcChannelPool
+  id: WebRtcChannelPool
+  parent: Reportman.Hub.Client.DataChannel
+  children:
+  - Reportman.Hub.Client.DataChannel.WebRtcChannelPool.#ctor
+  - Reportman.Hub.Client.DataChannel.WebRtcChannelPool.#ctor(System.TimeSpan,System.TimeSpan,System.TimeSpan)
+  - Reportman.Hub.Client.DataChannel.WebRtcChannelPool.DisposeAsync
+  - Reportman.Hub.Client.DataChannel.WebRtcChannelPool.EvictAllAsync
+  - Reportman.Hub.Client.DataChannel.WebRtcChannelPool.GetOrOpenAsync(System.Int64,System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession}},System.Threading.CancellationToken)
+  langs:
+  - csharp
+  - vb
+  name: WebRtcChannelPool
+  nameWithType: WebRtcChannelPool
+  fullName: Reportman.Hub.Client.DataChannel.WebRtcChannelPool
+  type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/WebRtcChannelPool.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  summary: >-
+    Caches one open <xref href="Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession" data-throw-if-not-resolved="false"></xref> per Hub database so
+
+    successive SQL queries on the same database reuse the negotiated peer
+
+    connection. Without the pool every query pays the full ~1–3s setup cost
+
+    (STUN gather + signaling + ICE checks + DTLS + SCTP). With the pool the
+
+    first query is unchanged, all subsequent queries cost ~50–100 ms (just
+
+    one DataChannel message round-trip).
+
+
+    Lifecycle of a pooled session (three concurrent timers — none of them
+
+    holds the channel open "forever"):
+
+      - <b>Idle timeout</b> (default 60 s): closes when no <code>ExecuteAsync</code>
+        has been issued for that long. Matches typical residential NAT UDP
+        binding TTL — past this point the warm channel wouldn't be useful
+        even if we kept it.
+      - <b>Max lifetime</b> (default 10 min): absolute cap regardless of use.
+        Prevents stale DTLS state and rotates the channel periodically.
+      - <b>Keepalive ping</b> (default every 25 s): sends a tiny "ping"
+        message on the DataChannel. The Agent ack'es with "pong"; the
+        outbound UDP packet alone refreshes the NAT mapping so the channel
+        keeps working past the router's idle binding TTL.
+
+    Also evicts when the channel is observed dead (DTLS failure, Agent
+
+    closed it, peer state change). The next caller gets a freshly negotiated
+
+    session transparently.
+  example: []
+  syntax:
+    content: 'public sealed class WebRtcChannelPool : IAsyncDisposable'
+    content.vb: Public NotInheritable Class WebRtcChannelPool Implements IAsyncDisposable
+  inheritance:
+  - System.Object
+  implements:
+  - System.IAsyncDisposable
+  inheritedMembers:
+  - System.Object.GetType
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.#ctor
+  commentId: M:Reportman.Hub.Client.DataChannel.WebRtcChannelPool.#ctor
+  id: '#ctor'
+  parent: Reportman.Hub.Client.DataChannel.WebRtcChannelPool
+  langs:
+  - csharp
+  - vb
+  name: WebRtcChannelPool()
+  nameWithType: WebRtcChannelPool.WebRtcChannelPool()
+  fullName: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.WebRtcChannelPool()
+  type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/WebRtcChannelPool.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  syntax:
+    content: public WebRtcChannelPool()
+    content.vb: Public Sub New()
+  overload: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.#ctor*
+  nameWithType.vb: WebRtcChannelPool.New()
+  fullName.vb: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.New()
+  name.vb: New()
+- uid: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.#ctor(System.TimeSpan,System.TimeSpan,System.TimeSpan)
+  commentId: M:Reportman.Hub.Client.DataChannel.WebRtcChannelPool.#ctor(System.TimeSpan,System.TimeSpan,System.TimeSpan)
+  id: '#ctor(System.TimeSpan,System.TimeSpan,System.TimeSpan)'
+  parent: Reportman.Hub.Client.DataChannel.WebRtcChannelPool
+  langs:
+  - csharp
+  - vb
+  name: WebRtcChannelPool(TimeSpan, TimeSpan, TimeSpan)
+  nameWithType: WebRtcChannelPool.WebRtcChannelPool(TimeSpan, TimeSpan, TimeSpan)
+  fullName: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.WebRtcChannelPool(System.TimeSpan, System.TimeSpan, System.TimeSpan)
+  type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/WebRtcChannelPool.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  syntax:
+    content: public WebRtcChannelPool(TimeSpan idleTimeout, TimeSpan maxLifetime, TimeSpan keepaliveInterval)
+    parameters:
+    - id: idleTimeout
+      type: System.TimeSpan
+    - id: maxLifetime
+      type: System.TimeSpan
+    - id: keepaliveInterval
+      type: System.TimeSpan
+    content.vb: Public Sub New(idleTimeout As TimeSpan, maxLifetime As TimeSpan, keepaliveInterval As TimeSpan)
+  overload: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.#ctor*
+  nameWithType.vb: WebRtcChannelPool.New(TimeSpan, TimeSpan, TimeSpan)
+  fullName.vb: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.New(System.TimeSpan, System.TimeSpan, System.TimeSpan)
+  name.vb: New(TimeSpan, TimeSpan, TimeSpan)
+- uid: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.GetOrOpenAsync(System.Int64,System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession}},System.Threading.CancellationToken)
+  commentId: M:Reportman.Hub.Client.DataChannel.WebRtcChannelPool.GetOrOpenAsync(System.Int64,System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession}},System.Threading.CancellationToken)
+  id: GetOrOpenAsync(System.Int64,System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession}},System.Threading.CancellationToken)
+  parent: Reportman.Hub.Client.DataChannel.WebRtcChannelPool
+  langs:
+  - csharp
+  - vb
+  name: GetOrOpenAsync(long, Func<CancellationToken, Task<WebRtcDataChannelSession?>>, CancellationToken)
+  nameWithType: WebRtcChannelPool.GetOrOpenAsync(long, Func<CancellationToken, Task<WebRtcDataChannelSession?>>, CancellationToken)
+  fullName: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.GetOrOpenAsync(long, System.Func<System.Threading.CancellationToken, System.Threading.Tasks.Task<Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession?>>, System.Threading.CancellationToken)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/WebRtcChannelPool.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  summary: >-
+    Returns a live session for <code class="paramref">hubDatabaseId</code>, either
+
+    from cache or by negotiating a new one via the supplied opener. The
+
+    opener is the same delegate the caller used to call
+
+    <xref href="Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession.TryOpenAsync(System.Net.Http.HttpClient%2cSystem.Uri%2cSystem.String%2cSystem.Object%2cSystem.Action%7bReportman.Hub.Client.DataChannel.QueryProgress%7d%2cSystem.Threading.CancellationToken)" data-throw-if-not-resolved="false"></xref> — passing it
+
+    keeps this class free of HttpClient/Uri/bearer plumbing details.
+
+    Returns <code>null</code> when opening fails (caller falls back to HTTP).
+  example: []
+  syntax:
+    content: public Task<WebRtcDataChannelSession?> GetOrOpenAsync(long hubDatabaseId, Func<CancellationToken, Task<WebRtcDataChannelSession?>> opener, CancellationToken ct)
+    parameters:
+    - id: hubDatabaseId
+      type: System.Int64
+    - id: opener
+      type: System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession}}
+    - id: ct
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.Task{Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession}
+    content.vb: Public Function GetOrOpenAsync(hubDatabaseId As Long, opener As Func(Of CancellationToken, Task(Of WebRtcDataChannelSession)), ct As CancellationToken) As Task(Of WebRtcDataChannelSession)
+  overload: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.GetOrOpenAsync*
+  nameWithType.vb: WebRtcChannelPool.GetOrOpenAsync(Long, Func(Of CancellationToken, Task(Of WebRtcDataChannelSession)), CancellationToken)
+  fullName.vb: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.GetOrOpenAsync(Long, System.Func(Of System.Threading.CancellationToken, System.Threading.Tasks.Task(Of Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession)), System.Threading.CancellationToken)
+  name.vb: GetOrOpenAsync(Long, Func(Of CancellationToken, Task(Of WebRtcDataChannelSession)), CancellationToken)
+- uid: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.EvictAllAsync
+  commentId: M:Reportman.Hub.Client.DataChannel.WebRtcChannelPool.EvictAllAsync
+  id: EvictAllAsync
+  parent: Reportman.Hub.Client.DataChannel.WebRtcChannelPool
+  langs:
+  - csharp
+  - vb
+  name: EvictAllAsync()
+  nameWithType: WebRtcChannelPool.EvictAllAsync()
+  fullName: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.EvictAllAsync()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/WebRtcChannelPool.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  summary: >-
+    Closes every cached session but keeps the pool itself usable. Call on
+
+    logout / identity change — pooled sessions hold JWTs tied to the
+
+    previous identity and shouldn't be reused under a new one. Subsequent
+
+    <xref href="Reportman.Hub.Client.DataChannel.WebRtcChannelPool.GetOrOpenAsync(System.Int64%2cSystem.Func%7bSystem.Threading.CancellationToken%2cSystem.Threading.Tasks.Task%7bReportman.Hub.Client.DataChannel.WebRtcDataChannelSession%7d%7d%2cSystem.Threading.CancellationToken)" data-throw-if-not-resolved="false"></xref> calls will negotiate fresh sessions.
+  example: []
+  syntax:
+    content: public Task EvictAllAsync()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Function EvictAllAsync() As Task
+  overload: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.EvictAllAsync*
+- uid: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.DisposeAsync
+  commentId: M:Reportman.Hub.Client.DataChannel.WebRtcChannelPool.DisposeAsync
+  id: DisposeAsync
+  parent: Reportman.Hub.Client.DataChannel.WebRtcChannelPool
+  langs:
+  - csharp
+  - vb
+  name: DisposeAsync()
+  nameWithType: WebRtcChannelPool.DisposeAsync()
+  fullName: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.DisposeAsync()
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.DataChannel/WebRtcChannelPool.cs
+  assemblies:
+  - Reportman.DataChannel
+  namespace: Reportman.Hub.Client.DataChannel
+  example: []
+  syntax:
+    content: public ValueTask DisposeAsync()
+    return:
+      type: System.Threading.Tasks.ValueTask
+    content.vb: Public Function DisposeAsync() As ValueTask
+  overload: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.DisposeAsync*
+  implements:
+  - System.IAsyncDisposable.DisposeAsync
+references:
+- uid: Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession
+  commentId: T:Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession.html
+  name: WebRtcDataChannelSession
+  nameWithType: WebRtcDataChannelSession
+  fullName: Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession
+- uid: Reportman.Hub.Client.DataChannel
+  commentId: N:Reportman.Hub.Client.DataChannel
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Hub.Client.DataChannel
+  nameWithType: Reportman.Hub.Client.DataChannel
+  fullName: Reportman.Hub.Client.DataChannel
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Hub
+    name: Hub
+    isExternal: true
+    href: Reportman.Hub.html
+  - name: .
+  - uid: Reportman.Hub.Client
+    name: Client
+    isExternal: true
+    href: Reportman.Hub.Client.html
+  - name: .
+  - uid: Reportman.Hub.Client.DataChannel
+    name: DataChannel
+    isExternal: true
+    href: Reportman.Hub.Client.DataChannel.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Hub
+    name: Hub
+    isExternal: true
+    href: Reportman.Hub.html
+  - name: .
+  - uid: Reportman.Hub.Client
+    name: Client
+    isExternal: true
+    href: Reportman.Hub.Client.html
+  - name: .
+  - uid: Reportman.Hub.Client.DataChannel
+    name: DataChannel
+    isExternal: true
+    href: Reportman.Hub.Client.DataChannel.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IAsyncDisposable
+  commentId: T:System.IAsyncDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncdisposable
+  name: IAsyncDisposable
+  nameWithType: IAsyncDisposable
+  fullName: System.IAsyncDisposable
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.#ctor*
+  commentId: Overload:Reportman.Hub.Client.DataChannel.WebRtcChannelPool.#ctor
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.html#Reportman_Hub_Client_DataChannel_WebRtcChannelPool__ctor
+  name: WebRtcChannelPool
+  nameWithType: WebRtcChannelPool.WebRtcChannelPool
+  fullName: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.WebRtcChannelPool
+  nameWithType.vb: WebRtcChannelPool.New
+  fullName.vb: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.New
+  name.vb: New
+- uid: System.TimeSpan
+  commentId: T:System.TimeSpan
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.timespan
+  name: TimeSpan
+  nameWithType: TimeSpan
+  fullName: System.TimeSpan
+- uid: Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession.TryOpenAsync(System.Net.Http.HttpClient,System.Uri,System.String,System.Object,System.Action{Reportman.Hub.Client.DataChannel.QueryProgress},System.Threading.CancellationToken)
+  commentId: M:Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession.TryOpenAsync(System.Net.Http.HttpClient,System.Uri,System.String,System.Object,System.Action{Reportman.Hub.Client.DataChannel.QueryProgress},System.Threading.CancellationToken)
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession.html#Reportman_Hub_Client_DataChannel_WebRtcDataChannelSession_TryOpenAsync_System_Net_Http_HttpClient_System_Uri_System_String_System_Object_System_Action_Reportman_Hub_Client_DataChannel_QueryProgress__System_Threading_CancellationToken_
+  name: TryOpenAsync(HttpClient, Uri, string, object, Action<QueryProgress>, CancellationToken)
+  nameWithType: WebRtcDataChannelSession.TryOpenAsync(HttpClient, Uri, string, object, Action<QueryProgress>, CancellationToken)
+  fullName: Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession.TryOpenAsync(System.Net.Http.HttpClient, System.Uri, string, object, System.Action<Reportman.Hub.Client.DataChannel.QueryProgress>, System.Threading.CancellationToken)
+  nameWithType.vb: WebRtcDataChannelSession.TryOpenAsync(HttpClient, Uri, String, Object, Action(Of QueryProgress), CancellationToken)
+  fullName.vb: Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession.TryOpenAsync(System.Net.Http.HttpClient, System.Uri, String, Object, System.Action(Of Reportman.Hub.Client.DataChannel.QueryProgress), System.Threading.CancellationToken)
+  name.vb: TryOpenAsync(HttpClient, Uri, String, Object, Action(Of QueryProgress), CancellationToken)
+  spec.csharp:
+  - uid: Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession.TryOpenAsync(System.Net.Http.HttpClient,System.Uri,System.String,System.Object,System.Action{Reportman.Hub.Client.DataChannel.QueryProgress},System.Threading.CancellationToken)
+    name: TryOpenAsync
+    isExternal: true
+    href: Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession.html#Reportman_Hub_Client_DataChannel_WebRtcDataChannelSession_TryOpenAsync_System_Net_Http_HttpClient_System_Uri_System_String_System_Object_System_Action_Reportman_Hub_Client_DataChannel_QueryProgress__System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Net.Http.HttpClient
+    name: HttpClient
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net.http.httpclient
+  - name: ','
+  - name: " "
+  - uid: System.Uri
+    name: Uri
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: Reportman.Hub.Client.DataChannel.QueryProgress
+    name: QueryProgress
+    isExternal: true
+    href: Reportman.Hub.Client.DataChannel.QueryProgress.html
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession.TryOpenAsync(System.Net.Http.HttpClient,System.Uri,System.String,System.Object,System.Action{Reportman.Hub.Client.DataChannel.QueryProgress},System.Threading.CancellationToken)
+    name: TryOpenAsync
+    isExternal: true
+    href: Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession.html#Reportman_Hub_Client_DataChannel_WebRtcDataChannelSession_TryOpenAsync_System_Net_Http_HttpClient_System_Uri_System_String_System_Object_System_Action_Reportman_Hub_Client_DataChannel_QueryProgress__System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Net.Http.HttpClient
+    name: HttpClient
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.net.http.httpclient
+  - name: ','
+  - name: " "
+  - uid: System.Uri
+    name: Uri
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Reportman.Hub.Client.DataChannel.QueryProgress
+    name: QueryProgress
+    isExternal: true
+    href: Reportman.Hub.Client.DataChannel.QueryProgress.html
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+- uid: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.GetOrOpenAsync*
+  commentId: Overload:Reportman.Hub.Client.DataChannel.WebRtcChannelPool.GetOrOpenAsync
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.html#Reportman_Hub_Client_DataChannel_WebRtcChannelPool_GetOrOpenAsync_System_Int64_System_Func_System_Threading_CancellationToken_System_Threading_Tasks_Task_Reportman_Hub_Client_DataChannel_WebRtcDataChannelSession___System_Threading_CancellationToken_
+  name: GetOrOpenAsync
+  nameWithType: WebRtcChannelPool.GetOrOpenAsync
+  fullName: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.GetOrOpenAsync
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession}}
+  commentId: T:System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession}}
+  parent: System
+  definition: System.Func`2
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<CancellationToken, Task<WebRtcDataChannelSession>>
+  nameWithType: Func<CancellationToken, Task<WebRtcDataChannelSession>>
+  fullName: System.Func<System.Threading.CancellationToken, System.Threading.Tasks.Task<Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession>>
+  nameWithType.vb: Func(Of CancellationToken, Task(Of WebRtcDataChannelSession))
+  fullName.vb: System.Func(Of System.Threading.CancellationToken, System.Threading.Tasks.Task(Of Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession))
+  name.vb: Func(Of CancellationToken, Task(Of WebRtcDataChannelSession))
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: ','
+  - name: " "
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession
+    name: WebRtcDataChannelSession
+    isExternal: true
+    href: Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession.html
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: ','
+  - name: " "
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession
+    name: WebRtcDataChannelSession
+    isExternal: true
+    href: Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession.html
+  - name: )
+  - name: )
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading.Tasks.Task{Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession}
+  commentId: T:System.Threading.Tasks.Task{Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<WebRtcDataChannelSession>
+  nameWithType: Task<WebRtcDataChannelSession>
+  fullName: System.Threading.Tasks.Task<Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession>
+  nameWithType.vb: Task(Of WebRtcDataChannelSession)
+  fullName.vb: System.Threading.Tasks.Task(Of Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession)
+  name.vb: Task(Of WebRtcDataChannelSession)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession
+    name: WebRtcDataChannelSession
+    isExternal: true
+    href: Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession
+    name: WebRtcDataChannelSession
+    isExternal: true
+    href: Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession.html
+  - name: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.GetOrOpenAsync(System.Int64,System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession}},System.Threading.CancellationToken)
+  commentId: M:Reportman.Hub.Client.DataChannel.WebRtcChannelPool.GetOrOpenAsync(System.Int64,System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession}},System.Threading.CancellationToken)
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.html#Reportman_Hub_Client_DataChannel_WebRtcChannelPool_GetOrOpenAsync_System_Int64_System_Func_System_Threading_CancellationToken_System_Threading_Tasks_Task_Reportman_Hub_Client_DataChannel_WebRtcDataChannelSession___System_Threading_CancellationToken_
+  name: GetOrOpenAsync(long, Func<CancellationToken, Task<WebRtcDataChannelSession>>, CancellationToken)
+  nameWithType: WebRtcChannelPool.GetOrOpenAsync(long, Func<CancellationToken, Task<WebRtcDataChannelSession>>, CancellationToken)
+  fullName: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.GetOrOpenAsync(long, System.Func<System.Threading.CancellationToken, System.Threading.Tasks.Task<Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession>>, System.Threading.CancellationToken)
+  nameWithType.vb: WebRtcChannelPool.GetOrOpenAsync(Long, Func(Of CancellationToken, Task(Of WebRtcDataChannelSession)), CancellationToken)
+  fullName.vb: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.GetOrOpenAsync(Long, System.Func(Of System.Threading.CancellationToken, System.Threading.Tasks.Task(Of Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession)), System.Threading.CancellationToken)
+  name.vb: GetOrOpenAsync(Long, Func(Of CancellationToken, Task(Of WebRtcDataChannelSession)), CancellationToken)
+  spec.csharp:
+  - uid: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.GetOrOpenAsync(System.Int64,System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession}},System.Threading.CancellationToken)
+    name: GetOrOpenAsync
+    isExternal: true
+    href: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.html#Reportman_Hub_Client_DataChannel_WebRtcChannelPool_GetOrOpenAsync_System_Int64_System_Func_System_Threading_CancellationToken_System_Threading_Tasks_Task_Reportman_Hub_Client_DataChannel_WebRtcDataChannelSession___System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Int64
+    name: long
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int64
+  - name: ','
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: ','
+  - name: " "
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession
+    name: WebRtcDataChannelSession
+    isExternal: true
+    href: Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession.html
+  - name: '>'
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+  spec.vb:
+  - uid: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.GetOrOpenAsync(System.Int64,System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession}},System.Threading.CancellationToken)
+    name: GetOrOpenAsync
+    isExternal: true
+    href: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.html#Reportman_Hub_Client_DataChannel_WebRtcChannelPool_GetOrOpenAsync_System_Int64_System_Func_System_Threading_CancellationToken_System_Threading_Tasks_Task_Reportman_Hub_Client_DataChannel_WebRtcDataChannelSession___System_Threading_CancellationToken_
+  - name: (
+  - uid: System.Int64
+    name: Long
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int64
+  - name: ','
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: ','
+  - name: " "
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession
+    name: WebRtcDataChannelSession
+    isExternal: true
+    href: Reportman.Hub.Client.DataChannel.WebRtcDataChannelSession.html
+  - name: )
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken
+  - name: )
+- uid: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.EvictAllAsync*
+  commentId: Overload:Reportman.Hub.Client.DataChannel.WebRtcChannelPool.EvictAllAsync
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.html#Reportman_Hub_Client_DataChannel_WebRtcChannelPool_EvictAllAsync
+  name: EvictAllAsync
+  nameWithType: WebRtcChannelPool.EvictAllAsync
+  fullName: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.EvictAllAsync
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.DisposeAsync*
+  commentId: Overload:Reportman.Hub.Client.DataChannel.WebRtcChannelPool.DisposeAsync
+  isExternal: true
+  href: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.html#Reportman_Hub_Client_DataChannel_WebRtcChannelPool_DisposeAsync
+  name: DisposeAsync
+  nameWithType: WebRtcChannelPool.DisposeAsync
+  fullName: Reportman.Hub.Client.DataChannel.WebRtcChannelPool.DisposeAsync
+- uid: System.IAsyncDisposable.DisposeAsync
+  commentId: M:System.IAsyncDisposable.DisposeAsync
+  parent: System.IAsyncDisposable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncdisposable.disposeasync
+  name: DisposeAsync()
+  nameWithType: IAsyncDisposable.DisposeAsync()
+  fullName: System.IAsyncDisposable.DisposeAsync()
+  spec.csharp:
+  - uid: System.IAsyncDisposable.DisposeAsync
+    name: DisposeAsync
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iasyncdisposable.disposeasync
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.IAsyncDisposable.DisposeAsync
+    name: DisposeAsync
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iasyncdisposable.disposeasync
+  - name: (
+  - name: )
+- uid: System.Threading.Tasks.ValueTask
+  commentId: T:System.Threading.Tasks.ValueTask
+  parent: System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask
+  name: ValueTask
+  nameWithType: ValueTask
+  fullName: System.Threading.Tasks.ValueTask

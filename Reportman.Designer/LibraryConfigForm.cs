@@ -4,6 +4,10 @@ using System.Windows.Forms;
 
 namespace Reportman.Designer
 {
+    /// <summary>
+    /// Modal dialog that hosts the report library configuration control, persisting the
+    /// settings when the user confirms with OK.
+    /// </summary>
     public partial class LibraryConfigForm : Form
     {
         public LibraryConfigForm()

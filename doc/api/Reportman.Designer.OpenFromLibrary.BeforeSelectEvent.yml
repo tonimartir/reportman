@@ -1,0 +1,281 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent
+  commentId: T:Reportman.Designer.OpenFromLibrary.BeforeSelectEvent
+  id: OpenFromLibrary.BeforeSelectEvent
+  parent: Reportman.Designer
+  children:
+  - Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.#ctor(System.Object,System.IntPtr)
+  - Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.BeginInvoke(System.Object,Reportman.Designer.OpenFromLibrary.BeforeSelectEventArgs,System.AsyncCallback,System.Object)
+  - Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.EndInvoke(System.IAsyncResult)
+  - Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.Invoke(System.Object,Reportman.Designer.OpenFromLibrary.BeforeSelectEventArgs)
+  langs:
+  - csharp
+  - vb
+  name: OpenFromLibrary.BeforeSelectEvent
+  nameWithType: OpenFromLibrary.BeforeSelectEvent
+  fullName: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent
+  type: Delegate
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/OpenFromLibrary.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: >-
+    Callback raised before a tree node is selected, allowing the handler to
+
+    inspect or cancel the pending selection.
+  example: []
+  syntax:
+    content: public delegate void OpenFromLibrary.BeforeSelectEvent(object sender, OpenFromLibrary.BeforeSelectEventArgs args)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: Reportman.Designer.OpenFromLibrary.BeforeSelectEventArgs
+    content.vb: Public Delegate Sub OpenFromLibrary.BeforeSelectEvent(sender As Object, args As OpenFromLibrary.BeforeSelectEventArgs)
+- uid: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.#ctor(System.Object,System.IntPtr)
+  commentId: M:Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.#ctor(System.Object,System.IntPtr)
+  id: '#ctor(System.Object,System.IntPtr)'
+  parent: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent
+  langs:
+  - csharp
+  - vb
+  name: BeforeSelectEvent(object, nint)
+  nameWithType: OpenFromLibrary.BeforeSelectEvent.BeforeSelectEvent(object, nint)
+  fullName: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.BeforeSelectEvent(object, nint)
+  type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/OpenFromLibrary.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public BeforeSelectEvent(object @object, nint method)
+    parameters:
+    - id: object
+      type: System.Object
+    - id: method
+      type: System.IntPtr
+    content.vb: Public Sub New([object] As Object, method As IntPtr)
+  overload: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.#ctor*
+  nameWithType.vb: OpenFromLibrary.BeforeSelectEvent.New(Object, IntPtr)
+  fullName.vb: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.New(Object, System.IntPtr)
+  name.vb: New(Object, IntPtr)
+- uid: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.Invoke(System.Object,Reportman.Designer.OpenFromLibrary.BeforeSelectEventArgs)
+  commentId: M:Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.Invoke(System.Object,Reportman.Designer.OpenFromLibrary.BeforeSelectEventArgs)
+  id: Invoke(System.Object,Reportman.Designer.OpenFromLibrary.BeforeSelectEventArgs)
+  parent: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent
+  langs:
+  - csharp
+  - vb
+  name: Invoke(object, BeforeSelectEventArgs)
+  nameWithType: OpenFromLibrary.BeforeSelectEvent.Invoke(object, OpenFromLibrary.BeforeSelectEventArgs)
+  fullName: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.Invoke(object, Reportman.Designer.OpenFromLibrary.BeforeSelectEventArgs)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/OpenFromLibrary.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public virtual void Invoke(object sender, OpenFromLibrary.BeforeSelectEventArgs args)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: Reportman.Designer.OpenFromLibrary.BeforeSelectEventArgs
+    content.vb: Public Overridable Sub Invoke(sender As Object, args As OpenFromLibrary.BeforeSelectEventArgs)
+  overload: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.Invoke*
+  nameWithType.vb: OpenFromLibrary.BeforeSelectEvent.Invoke(Object, OpenFromLibrary.BeforeSelectEventArgs)
+  fullName.vb: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.Invoke(Object, Reportman.Designer.OpenFromLibrary.BeforeSelectEventArgs)
+  name.vb: Invoke(Object, BeforeSelectEventArgs)
+- uid: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.BeginInvoke(System.Object,Reportman.Designer.OpenFromLibrary.BeforeSelectEventArgs,System.AsyncCallback,System.Object)
+  commentId: M:Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.BeginInvoke(System.Object,Reportman.Designer.OpenFromLibrary.BeforeSelectEventArgs,System.AsyncCallback,System.Object)
+  id: BeginInvoke(System.Object,Reportman.Designer.OpenFromLibrary.BeforeSelectEventArgs,System.AsyncCallback,System.Object)
+  parent: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent
+  langs:
+  - csharp
+  - vb
+  name: BeginInvoke(object, BeforeSelectEventArgs, AsyncCallback, object)
+  nameWithType: OpenFromLibrary.BeforeSelectEvent.BeginInvoke(object, OpenFromLibrary.BeforeSelectEventArgs, AsyncCallback, object)
+  fullName: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.BeginInvoke(object, Reportman.Designer.OpenFromLibrary.BeforeSelectEventArgs, System.AsyncCallback, object)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/OpenFromLibrary.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public virtual IAsyncResult BeginInvoke(object sender, OpenFromLibrary.BeforeSelectEventArgs args, AsyncCallback callback, object @object)
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: args
+      type: Reportman.Designer.OpenFromLibrary.BeforeSelectEventArgs
+    - id: callback
+      type: System.AsyncCallback
+    - id: object
+      type: System.Object
+    return:
+      type: System.IAsyncResult
+    content.vb: Public Overridable Function BeginInvoke(sender As Object, args As OpenFromLibrary.BeforeSelectEventArgs, callback As AsyncCallback, [object] As Object) As IAsyncResult
+  overload: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.BeginInvoke*
+  nameWithType.vb: OpenFromLibrary.BeforeSelectEvent.BeginInvoke(Object, OpenFromLibrary.BeforeSelectEventArgs, AsyncCallback, Object)
+  fullName.vb: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.BeginInvoke(Object, Reportman.Designer.OpenFromLibrary.BeforeSelectEventArgs, System.AsyncCallback, Object)
+  name.vb: BeginInvoke(Object, BeforeSelectEventArgs, AsyncCallback, Object)
+- uid: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.EndInvoke(System.IAsyncResult)
+  commentId: M:Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.EndInvoke(System.IAsyncResult)
+  id: EndInvoke(System.IAsyncResult)
+  parent: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent
+  langs:
+  - csharp
+  - vb
+  name: EndInvoke(IAsyncResult)
+  nameWithType: OpenFromLibrary.BeforeSelectEvent.EndInvoke(IAsyncResult)
+  fullName: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.EndInvoke(System.IAsyncResult)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/OpenFromLibrary.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public virtual void EndInvoke(IAsyncResult result)
+    parameters:
+    - id: result
+      type: System.IAsyncResult
+    content.vb: Public Overridable Sub EndInvoke(result As IAsyncResult)
+  overload: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.EndInvoke*
+references:
+- uid: Reportman.Designer
+  commentId: N:Reportman.Designer
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Designer
+  nameWithType: Reportman.Designer
+  fullName: Reportman.Designer
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Reportman.Designer.OpenFromLibrary.BeforeSelectEventArgs
+  commentId: T:Reportman.Designer.OpenFromLibrary.BeforeSelectEventArgs
+  parent: Reportman.Designer
+  isExternal: true
+  href: Reportman.Designer.OpenFromLibrary.html
+  name: OpenFromLibrary.BeforeSelectEventArgs
+  nameWithType: OpenFromLibrary.BeforeSelectEventArgs
+  fullName: Reportman.Designer.OpenFromLibrary.BeforeSelectEventArgs
+  spec.csharp:
+  - uid: Reportman.Designer.OpenFromLibrary
+    name: OpenFromLibrary
+    isExternal: true
+    href: Reportman.Designer.OpenFromLibrary.html
+  - name: .
+  - uid: Reportman.Designer.OpenFromLibrary.BeforeSelectEventArgs
+    name: BeforeSelectEventArgs
+    isExternal: true
+    href: Reportman.Designer.OpenFromLibrary.BeforeSelectEventArgs.html
+  spec.vb:
+  - uid: Reportman.Designer.OpenFromLibrary
+    name: OpenFromLibrary
+    isExternal: true
+    href: Reportman.Designer.OpenFromLibrary.html
+  - name: .
+  - uid: Reportman.Designer.OpenFromLibrary.BeforeSelectEventArgs
+    name: BeforeSelectEventArgs
+    isExternal: true
+    href: Reportman.Designer.OpenFromLibrary.BeforeSelectEventArgs.html
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.#ctor*
+  commentId: Overload:Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.#ctor
+  isExternal: true
+  href: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.html#Reportman_Designer_OpenFromLibrary_BeforeSelectEvent__ctor_System_Object_System_IntPtr_
+  name: BeforeSelectEvent
+  nameWithType: OpenFromLibrary.BeforeSelectEvent.BeforeSelectEvent
+  fullName: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.BeforeSelectEvent
+  nameWithType.vb: OpenFromLibrary.BeforeSelectEvent.New
+  fullName.vb: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.New
+  name.vb: New
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: nint
+  nameWithType: nint
+  fullName: nint
+  nameWithType.vb: IntPtr
+  fullName.vb: System.IntPtr
+  name.vb: IntPtr
+- uid: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.Invoke*
+  commentId: Overload:Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.Invoke
+  isExternal: true
+  href: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.html#Reportman_Designer_OpenFromLibrary_BeforeSelectEvent_Invoke_System_Object_Reportman_Designer_OpenFromLibrary_BeforeSelectEventArgs_
+  name: Invoke
+  nameWithType: OpenFromLibrary.BeforeSelectEvent.Invoke
+  fullName: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.Invoke
+- uid: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.BeginInvoke*
+  commentId: Overload:Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.BeginInvoke
+  isExternal: true
+  href: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.html#Reportman_Designer_OpenFromLibrary_BeforeSelectEvent_BeginInvoke_System_Object_Reportman_Designer_OpenFromLibrary_BeforeSelectEventArgs_System_AsyncCallback_System_Object_
+  name: BeginInvoke
+  nameWithType: OpenFromLibrary.BeforeSelectEvent.BeginInvoke
+  fullName: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.BeginInvoke
+- uid: System.AsyncCallback
+  commentId: T:System.AsyncCallback
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.asynccallback
+  name: AsyncCallback
+  nameWithType: AsyncCallback
+  fullName: System.AsyncCallback
+- uid: System.IAsyncResult
+  commentId: T:System.IAsyncResult
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iasyncresult
+  name: IAsyncResult
+  nameWithType: IAsyncResult
+  fullName: System.IAsyncResult
+- uid: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.EndInvoke*
+  commentId: Overload:Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.EndInvoke
+  isExternal: true
+  href: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.html#Reportman_Designer_OpenFromLibrary_BeforeSelectEvent_EndInvoke_System_IAsyncResult_
+  name: EndInvoke
+  nameWithType: OpenFromLibrary.BeforeSelectEvent.EndInvoke
+  fullName: Reportman.Designer.OpenFromLibrary.BeforeSelectEvent.EndInvoke

@@ -1,0 +1,2053 @@
+### YamlMime:ManagedReference
+items:
+- uid: Reportman.Designer.HubDatabaseConverter
+  commentId: T:Reportman.Designer.HubDatabaseConverter
+  id: HubDatabaseConverter
+  parent: Reportman.Designer
+  children:
+  - Reportman.Designer.HubDatabaseConverter.#ctor
+  - Reportman.Designer.HubDatabaseConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)
+  - Reportman.Designer.HubDatabaseConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)
+  - Reportman.Designer.HubDatabaseConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)
+  - Reportman.Designer.HubDatabaseConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)
+  - Reportman.Designer.HubDatabaseConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)
+  - Reportman.Designer.HubDatabaseConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)
+  - Reportman.Designer.HubDatabaseConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)
+  langs:
+  - csharp
+  - vb
+  name: HubDatabaseConverter
+  nameWithType: HubDatabaseConverter
+  fullName: Reportman.Designer.HubDatabaseConverter
+  type: Class
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/HttpAgentParams.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  summary: >-
+    TypeConverter for the Hub database property: provides the dropdown values by
+
+    querying the agent with the current API key when the list is expanded.
+  example: []
+  syntax:
+    content: 'public sealed class HubDatabaseConverter : TypeConverter'
+    content.vb: Public NotInheritable Class HubDatabaseConverter Inherits TypeConverter
+  inheritance:
+  - System.Object
+  - System.ComponentModel.TypeConverter
+  inheritedMembers:
+  - System.ComponentModel.TypeConverter.CanConvertFrom(System.Type)
+  - System.ComponentModel.TypeConverter.CanConvertTo(System.Type)
+  - System.ComponentModel.TypeConverter.ConvertFrom(System.Object)
+  - System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.String)
+  - System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.ComponentModel.ITypeDescriptorContext,System.String)
+  - System.ComponentModel.TypeConverter.ConvertFromString(System.String)
+  - System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.String)
+  - System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.String)
+  - System.ComponentModel.TypeConverter.ConvertTo(System.Object,System.Type)
+  - System.ComponentModel.TypeConverter.ConvertToInvariantString(System.Object)
+  - System.ComponentModel.TypeConverter.ConvertToInvariantString(System.ComponentModel.ITypeDescriptorContext,System.Object)
+  - System.ComponentModel.TypeConverter.ConvertToString(System.Object)
+  - System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Object)
+  - System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)
+  - System.ComponentModel.TypeConverter.CreateInstance(System.Collections.IDictionary)
+  - System.ComponentModel.TypeConverter.CreateInstance(System.ComponentModel.ITypeDescriptorContext,System.Collections.IDictionary)
+  - System.ComponentModel.TypeConverter.GetCreateInstanceSupported
+  - System.ComponentModel.TypeConverter.GetCreateInstanceSupported(System.ComponentModel.ITypeDescriptorContext)
+  - System.ComponentModel.TypeConverter.GetProperties(System.Object)
+  - System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object)
+  - System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])
+  - System.ComponentModel.TypeConverter.GetPropertiesSupported
+  - System.ComponentModel.TypeConverter.GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext)
+  - System.ComponentModel.TypeConverter.GetStandardValues
+  - System.ComponentModel.TypeConverter.GetStandardValuesExclusive
+  - System.ComponentModel.TypeConverter.GetStandardValuesSupported
+  - System.ComponentModel.TypeConverter.IsValid(System.Object)
+  - System.ComponentModel.TypeConverter.IsValid(System.ComponentModel.ITypeDescriptorContext,System.Object)
+  - System.Object.GetType
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+- uid: Reportman.Designer.HubDatabaseConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)
+  commentId: M:Reportman.Designer.HubDatabaseConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)
+  id: GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)
+  parent: Reportman.Designer.HubDatabaseConverter
+  langs:
+  - csharp
+  - vb
+  name: GetStandardValuesSupported(ITypeDescriptorContext)
+  nameWithType: HubDatabaseConverter.GetStandardValuesSupported(ITypeDescriptorContext)
+  fullName: Reportman.Designer.HubDatabaseConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/HttpAgentParams.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  example: []
+  syntax:
+    content: public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
+    parameters:
+    - id: context
+      type: System.ComponentModel.ITypeDescriptorContext
+    return:
+      type: System.Boolean
+    content.vb: Public Overrides Function GetStandardValuesSupported(context As ITypeDescriptorContext) As Boolean
+  overridden: System.ComponentModel.TypeConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)
+  overload: Reportman.Designer.HubDatabaseConverter.GetStandardValuesSupported*
+- uid: Reportman.Designer.HubDatabaseConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)
+  commentId: M:Reportman.Designer.HubDatabaseConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)
+  id: GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)
+  parent: Reportman.Designer.HubDatabaseConverter
+  langs:
+  - csharp
+  - vb
+  name: GetStandardValuesExclusive(ITypeDescriptorContext)
+  nameWithType: HubDatabaseConverter.GetStandardValuesExclusive(ITypeDescriptorContext)
+  fullName: Reportman.Designer.HubDatabaseConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/HttpAgentParams.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  example: []
+  syntax:
+    content: public override bool GetStandardValuesExclusive(ITypeDescriptorContext context)
+    parameters:
+    - id: context
+      type: System.ComponentModel.ITypeDescriptorContext
+    return:
+      type: System.Boolean
+    content.vb: Public Overrides Function GetStandardValuesExclusive(context As ITypeDescriptorContext) As Boolean
+  overridden: System.ComponentModel.TypeConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)
+  overload: Reportman.Designer.HubDatabaseConverter.GetStandardValuesExclusive*
+- uid: Reportman.Designer.HubDatabaseConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)
+  commentId: M:Reportman.Designer.HubDatabaseConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)
+  id: GetStandardValues(System.ComponentModel.ITypeDescriptorContext)
+  parent: Reportman.Designer.HubDatabaseConverter
+  langs:
+  - csharp
+  - vb
+  name: GetStandardValues(ITypeDescriptorContext)
+  nameWithType: HubDatabaseConverter.GetStandardValues(ITypeDescriptorContext)
+  fullName: Reportman.Designer.HubDatabaseConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/HttpAgentParams.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  example: []
+  syntax:
+    content: public override TypeConverter.StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
+    parameters:
+    - id: context
+      type: System.ComponentModel.ITypeDescriptorContext
+    return:
+      type: System.ComponentModel.TypeConverter.StandardValuesCollection
+    content.vb: Public Overrides Function GetStandardValues(context As ITypeDescriptorContext) As TypeConverter.StandardValuesCollection
+  overridden: System.ComponentModel.TypeConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)
+  overload: Reportman.Designer.HubDatabaseConverter.GetStandardValues*
+- uid: Reportman.Designer.HubDatabaseConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)
+  commentId: M:Reportman.Designer.HubDatabaseConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)
+  id: CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)
+  parent: Reportman.Designer.HubDatabaseConverter
+  langs:
+  - csharp
+  - vb
+  name: CanConvertFrom(ITypeDescriptorContext, Type)
+  nameWithType: HubDatabaseConverter.CanConvertFrom(ITypeDescriptorContext, Type)
+  fullName: Reportman.Designer.HubDatabaseConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext, System.Type)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/HttpAgentParams.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  example: []
+  syntax:
+    content: public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
+    parameters:
+    - id: context
+      type: System.ComponentModel.ITypeDescriptorContext
+    - id: sourceType
+      type: System.Type
+    return:
+      type: System.Boolean
+    content.vb: Public Overrides Function CanConvertFrom(context As ITypeDescriptorContext, sourceType As Type) As Boolean
+  overridden: System.ComponentModel.TypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)
+  overload: Reportman.Designer.HubDatabaseConverter.CanConvertFrom*
+- uid: Reportman.Designer.HubDatabaseConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)
+  commentId: M:Reportman.Designer.HubDatabaseConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)
+  id: CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)
+  parent: Reportman.Designer.HubDatabaseConverter
+  langs:
+  - csharp
+  - vb
+  name: CanConvertTo(ITypeDescriptorContext, Type)
+  nameWithType: HubDatabaseConverter.CanConvertTo(ITypeDescriptorContext, Type)
+  fullName: Reportman.Designer.HubDatabaseConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext, System.Type)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/HttpAgentParams.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  example: []
+  syntax:
+    content: public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+    parameters:
+    - id: context
+      type: System.ComponentModel.ITypeDescriptorContext
+    - id: destinationType
+      type: System.Type
+    return:
+      type: System.Boolean
+    content.vb: Public Overrides Function CanConvertTo(context As ITypeDescriptorContext, destinationType As Type) As Boolean
+  overridden: System.ComponentModel.TypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)
+  overload: Reportman.Designer.HubDatabaseConverter.CanConvertTo*
+- uid: Reportman.Designer.HubDatabaseConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)
+  commentId: M:Reportman.Designer.HubDatabaseConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)
+  id: ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)
+  parent: Reportman.Designer.HubDatabaseConverter
+  langs:
+  - csharp
+  - vb
+  name: ConvertTo(ITypeDescriptorContext, CultureInfo, object, Type)
+  nameWithType: HubDatabaseConverter.ConvertTo(ITypeDescriptorContext, CultureInfo, object, Type)
+  fullName: Reportman.Designer.HubDatabaseConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext, System.Globalization.CultureInfo, object, System.Type)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/HttpAgentParams.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  example: []
+  syntax:
+    content: public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+    parameters:
+    - id: context
+      type: System.ComponentModel.ITypeDescriptorContext
+    - id: culture
+      type: System.Globalization.CultureInfo
+    - id: value
+      type: System.Object
+    - id: destinationType
+      type: System.Type
+    return:
+      type: System.Object
+    content.vb: Public Overrides Function ConvertTo(context As ITypeDescriptorContext, culture As CultureInfo, value As Object, destinationType As Type) As Object
+  overridden: System.ComponentModel.TypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)
+  overload: Reportman.Designer.HubDatabaseConverter.ConvertTo*
+  nameWithType.vb: HubDatabaseConverter.ConvertTo(ITypeDescriptorContext, CultureInfo, Object, Type)
+  fullName.vb: Reportman.Designer.HubDatabaseConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext, System.Globalization.CultureInfo, Object, System.Type)
+  name.vb: ConvertTo(ITypeDescriptorContext, CultureInfo, Object, Type)
+- uid: Reportman.Designer.HubDatabaseConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)
+  commentId: M:Reportman.Designer.HubDatabaseConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)
+  id: ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)
+  parent: Reportman.Designer.HubDatabaseConverter
+  langs:
+  - csharp
+  - vb
+  name: ConvertFrom(ITypeDescriptorContext, CultureInfo, object)
+  nameWithType: HubDatabaseConverter.ConvertFrom(ITypeDescriptorContext, CultureInfo, object)
+  fullName: Reportman.Designer.HubDatabaseConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext, System.Globalization.CultureInfo, object)
+  type: Method
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/HttpAgentParams.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  example: []
+  syntax:
+    content: public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+    parameters:
+    - id: context
+      type: System.ComponentModel.ITypeDescriptorContext
+    - id: culture
+      type: System.Globalization.CultureInfo
+    - id: value
+      type: System.Object
+    return:
+      type: System.Object
+    content.vb: Public Overrides Function ConvertFrom(context As ITypeDescriptorContext, culture As CultureInfo, value As Object) As Object
+  overridden: System.ComponentModel.TypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)
+  overload: Reportman.Designer.HubDatabaseConverter.ConvertFrom*
+  nameWithType.vb: HubDatabaseConverter.ConvertFrom(ITypeDescriptorContext, CultureInfo, Object)
+  fullName.vb: Reportman.Designer.HubDatabaseConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext, System.Globalization.CultureInfo, Object)
+  name.vb: ConvertFrom(ITypeDescriptorContext, CultureInfo, Object)
+- uid: Reportman.Designer.HubDatabaseConverter.#ctor
+  commentId: M:Reportman.Designer.HubDatabaseConverter.#ctor
+  id: '#ctor'
+  parent: Reportman.Designer.HubDatabaseConverter
+  langs:
+  - csharp
+  - vb
+  name: HubDatabaseConverter()
+  nameWithType: HubDatabaseConverter.HubDatabaseConverter()
+  fullName: Reportman.Designer.HubDatabaseConverter.HubDatabaseConverter()
+  type: Constructor
+  source:
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Designer/HttpAgentParams.cs
+  assemblies:
+  - Reportman.Designer
+  namespace: Reportman.Designer
+  syntax:
+    content: public HubDatabaseConverter()
+    content.vb: Public Sub New()
+  overload: Reportman.Designer.HubDatabaseConverter.#ctor*
+  nameWithType.vb: HubDatabaseConverter.New()
+  fullName.vb: Reportman.Designer.HubDatabaseConverter.New()
+  name.vb: New()
+references:
+- uid: Reportman.Designer
+  commentId: N:Reportman.Designer
+  isExternal: true
+  href: Reportman.html
+  name: Reportman.Designer
+  nameWithType: Reportman.Designer
+  fullName: Reportman.Designer
+  spec.csharp:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+  spec.vb:
+  - uid: Reportman
+    name: Reportman
+    isExternal: true
+    href: Reportman.html
+  - name: .
+  - uid: Reportman.Designer
+    name: Designer
+    isExternal: true
+    href: Reportman.Designer.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.ComponentModel.TypeConverter
+  commentId: T:System.ComponentModel.TypeConverter
+  parent: System.ComponentModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter
+  name: TypeConverter
+  nameWithType: TypeConverter
+  fullName: System.ComponentModel.TypeConverter
+- uid: System.ComponentModel.TypeConverter.CanConvertFrom(System.Type)
+  commentId: M:System.ComponentModel.TypeConverter.CanConvertFrom(System.Type)
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.canconvertfrom#system-componentmodel-typeconverter-canconvertfrom(system-type)
+  name: CanConvertFrom(Type)
+  nameWithType: TypeConverter.CanConvertFrom(Type)
+  fullName: System.ComponentModel.TypeConverter.CanConvertFrom(System.Type)
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.CanConvertFrom(System.Type)
+    name: CanConvertFrom
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.canconvertfrom#system-componentmodel-typeconverter-canconvertfrom(system-type)
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.CanConvertFrom(System.Type)
+    name: CanConvertFrom
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.canconvertfrom#system-componentmodel-typeconverter-canconvertfrom(system-type)
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+- uid: System.ComponentModel.TypeConverter.CanConvertTo(System.Type)
+  commentId: M:System.ComponentModel.TypeConverter.CanConvertTo(System.Type)
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.canconvertto#system-componentmodel-typeconverter-canconvertto(system-type)
+  name: CanConvertTo(Type)
+  nameWithType: TypeConverter.CanConvertTo(Type)
+  fullName: System.ComponentModel.TypeConverter.CanConvertTo(System.Type)
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.CanConvertTo(System.Type)
+    name: CanConvertTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.canconvertto#system-componentmodel-typeconverter-canconvertto(system-type)
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.CanConvertTo(System.Type)
+    name: CanConvertTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.canconvertto#system-componentmodel-typeconverter-canconvertto(system-type)
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+- uid: System.ComponentModel.TypeConverter.ConvertFrom(System.Object)
+  commentId: M:System.ComponentModel.TypeConverter.ConvertFrom(System.Object)
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.convertfrom#system-componentmodel-typeconverter-convertfrom(system-object)
+  name: ConvertFrom(object)
+  nameWithType: TypeConverter.ConvertFrom(object)
+  fullName: System.ComponentModel.TypeConverter.ConvertFrom(object)
+  nameWithType.vb: TypeConverter.ConvertFrom(Object)
+  fullName.vb: System.ComponentModel.TypeConverter.ConvertFrom(Object)
+  name.vb: ConvertFrom(Object)
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.ConvertFrom(System.Object)
+    name: ConvertFrom
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.convertfrom#system-componentmodel-typeconverter-convertfrom(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.ConvertFrom(System.Object)
+    name: ConvertFrom
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.convertfrom#system-componentmodel-typeconverter-convertfrom(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.String)
+  commentId: M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.String)
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.convertfrominvariantstring#system-componentmodel-typeconverter-convertfrominvariantstring(system-string)
+  name: ConvertFromInvariantString(string)
+  nameWithType: TypeConverter.ConvertFromInvariantString(string)
+  fullName: System.ComponentModel.TypeConverter.ConvertFromInvariantString(string)
+  nameWithType.vb: TypeConverter.ConvertFromInvariantString(String)
+  fullName.vb: System.ComponentModel.TypeConverter.ConvertFromInvariantString(String)
+  name.vb: ConvertFromInvariantString(String)
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.String)
+    name: ConvertFromInvariantString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.convertfrominvariantstring#system-componentmodel-typeconverter-convertfrominvariantstring(system-string)
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.String)
+    name: ConvertFromInvariantString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.convertfrominvariantstring#system-componentmodel-typeconverter-convertfrominvariantstring(system-string)
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.ComponentModel.ITypeDescriptorContext,System.String)
+  commentId: M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.ComponentModel.ITypeDescriptorContext,System.String)
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.convertfrominvariantstring#system-componentmodel-typeconverter-convertfrominvariantstring(system-componentmodel-itypedescriptorcontext-system-string)
+  name: ConvertFromInvariantString(ITypeDescriptorContext, string)
+  nameWithType: TypeConverter.ConvertFromInvariantString(ITypeDescriptorContext, string)
+  fullName: System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.ComponentModel.ITypeDescriptorContext, string)
+  nameWithType.vb: TypeConverter.ConvertFromInvariantString(ITypeDescriptorContext, String)
+  fullName.vb: System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.ComponentModel.ITypeDescriptorContext, String)
+  name.vb: ConvertFromInvariantString(ITypeDescriptorContext, String)
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.ComponentModel.ITypeDescriptorContext,System.String)
+    name: ConvertFromInvariantString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.convertfrominvariantstring#system-componentmodel-typeconverter-convertfrominvariantstring(system-componentmodel-itypedescriptorcontext-system-string)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.ComponentModel.ITypeDescriptorContext,System.String)
+    name: ConvertFromInvariantString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.convertfrominvariantstring#system-componentmodel-typeconverter-convertfrominvariantstring(system-componentmodel-itypedescriptorcontext-system-string)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.ComponentModel.TypeConverter.ConvertFromString(System.String)
+  commentId: M:System.ComponentModel.TypeConverter.ConvertFromString(System.String)
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.convertfromstring#system-componentmodel-typeconverter-convertfromstring(system-string)
+  name: ConvertFromString(string)
+  nameWithType: TypeConverter.ConvertFromString(string)
+  fullName: System.ComponentModel.TypeConverter.ConvertFromString(string)
+  nameWithType.vb: TypeConverter.ConvertFromString(String)
+  fullName.vb: System.ComponentModel.TypeConverter.ConvertFromString(String)
+  name.vb: ConvertFromString(String)
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.ConvertFromString(System.String)
+    name: ConvertFromString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.convertfromstring#system-componentmodel-typeconverter-convertfromstring(system-string)
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.ConvertFromString(System.String)
+    name: ConvertFromString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.convertfromstring#system-componentmodel-typeconverter-convertfromstring(system-string)
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.String)
+  commentId: M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.String)
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.convertfromstring#system-componentmodel-typeconverter-convertfromstring(system-componentmodel-itypedescriptorcontext-system-string)
+  name: ConvertFromString(ITypeDescriptorContext, string)
+  nameWithType: TypeConverter.ConvertFromString(ITypeDescriptorContext, string)
+  fullName: System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext, string)
+  nameWithType.vb: TypeConverter.ConvertFromString(ITypeDescriptorContext, String)
+  fullName.vb: System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext, String)
+  name.vb: ConvertFromString(ITypeDescriptorContext, String)
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.String)
+    name: ConvertFromString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.convertfromstring#system-componentmodel-typeconverter-convertfromstring(system-componentmodel-itypedescriptorcontext-system-string)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.String)
+    name: ConvertFromString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.convertfromstring#system-componentmodel-typeconverter-convertfromstring(system-componentmodel-itypedescriptorcontext-system-string)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.String)
+  commentId: M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.String)
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.convertfromstring#system-componentmodel-typeconverter-convertfromstring(system-componentmodel-itypedescriptorcontext-system-globalization-cultureinfo-system-string)
+  name: ConvertFromString(ITypeDescriptorContext, CultureInfo, string)
+  nameWithType: TypeConverter.ConvertFromString(ITypeDescriptorContext, CultureInfo, string)
+  fullName: System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext, System.Globalization.CultureInfo, string)
+  nameWithType.vb: TypeConverter.ConvertFromString(ITypeDescriptorContext, CultureInfo, String)
+  fullName.vb: System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext, System.Globalization.CultureInfo, String)
+  name.vb: ConvertFromString(ITypeDescriptorContext, CultureInfo, String)
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.String)
+    name: ConvertFromString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.convertfromstring#system-componentmodel-typeconverter-convertfromstring(system-componentmodel-itypedescriptorcontext-system-globalization-cultureinfo-system-string)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: ','
+  - name: " "
+  - uid: System.Globalization.CultureInfo
+    name: CultureInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.String)
+    name: ConvertFromString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.convertfromstring#system-componentmodel-typeconverter-convertfromstring(system-componentmodel-itypedescriptorcontext-system-globalization-cultureinfo-system-string)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: ','
+  - name: " "
+  - uid: System.Globalization.CultureInfo
+    name: CultureInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.ComponentModel.TypeConverter.ConvertTo(System.Object,System.Type)
+  commentId: M:System.ComponentModel.TypeConverter.ConvertTo(System.Object,System.Type)
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.convertto#system-componentmodel-typeconverter-convertto(system-object-system-type)
+  name: ConvertTo(object, Type)
+  nameWithType: TypeConverter.ConvertTo(object, Type)
+  fullName: System.ComponentModel.TypeConverter.ConvertTo(object, System.Type)
+  nameWithType.vb: TypeConverter.ConvertTo(Object, Type)
+  fullName.vb: System.ComponentModel.TypeConverter.ConvertTo(Object, System.Type)
+  name.vb: ConvertTo(Object, Type)
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.ConvertTo(System.Object,System.Type)
+    name: ConvertTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.convertto#system-componentmodel-typeconverter-convertto(system-object-system-type)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.ConvertTo(System.Object,System.Type)
+    name: ConvertTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.convertto#system-componentmodel-typeconverter-convertto(system-object-system-type)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+- uid: System.ComponentModel.TypeConverter.ConvertToInvariantString(System.Object)
+  commentId: M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.Object)
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.converttoinvariantstring#system-componentmodel-typeconverter-converttoinvariantstring(system-object)
+  name: ConvertToInvariantString(object)
+  nameWithType: TypeConverter.ConvertToInvariantString(object)
+  fullName: System.ComponentModel.TypeConverter.ConvertToInvariantString(object)
+  nameWithType.vb: TypeConverter.ConvertToInvariantString(Object)
+  fullName.vb: System.ComponentModel.TypeConverter.ConvertToInvariantString(Object)
+  name.vb: ConvertToInvariantString(Object)
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.ConvertToInvariantString(System.Object)
+    name: ConvertToInvariantString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.converttoinvariantstring#system-componentmodel-typeconverter-converttoinvariantstring(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.ConvertToInvariantString(System.Object)
+    name: ConvertToInvariantString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.converttoinvariantstring#system-componentmodel-typeconverter-converttoinvariantstring(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ComponentModel.TypeConverter.ConvertToInvariantString(System.ComponentModel.ITypeDescriptorContext,System.Object)
+  commentId: M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.ComponentModel.ITypeDescriptorContext,System.Object)
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.converttoinvariantstring#system-componentmodel-typeconverter-converttoinvariantstring(system-componentmodel-itypedescriptorcontext-system-object)
+  name: ConvertToInvariantString(ITypeDescriptorContext, object)
+  nameWithType: TypeConverter.ConvertToInvariantString(ITypeDescriptorContext, object)
+  fullName: System.ComponentModel.TypeConverter.ConvertToInvariantString(System.ComponentModel.ITypeDescriptorContext, object)
+  nameWithType.vb: TypeConverter.ConvertToInvariantString(ITypeDescriptorContext, Object)
+  fullName.vb: System.ComponentModel.TypeConverter.ConvertToInvariantString(System.ComponentModel.ITypeDescriptorContext, Object)
+  name.vb: ConvertToInvariantString(ITypeDescriptorContext, Object)
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.ConvertToInvariantString(System.ComponentModel.ITypeDescriptorContext,System.Object)
+    name: ConvertToInvariantString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.converttoinvariantstring#system-componentmodel-typeconverter-converttoinvariantstring(system-componentmodel-itypedescriptorcontext-system-object)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.ConvertToInvariantString(System.ComponentModel.ITypeDescriptorContext,System.Object)
+    name: ConvertToInvariantString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.converttoinvariantstring#system-componentmodel-typeconverter-converttoinvariantstring(system-componentmodel-itypedescriptorcontext-system-object)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ComponentModel.TypeConverter.ConvertToString(System.Object)
+  commentId: M:System.ComponentModel.TypeConverter.ConvertToString(System.Object)
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.converttostring#system-componentmodel-typeconverter-converttostring(system-object)
+  name: ConvertToString(object)
+  nameWithType: TypeConverter.ConvertToString(object)
+  fullName: System.ComponentModel.TypeConverter.ConvertToString(object)
+  nameWithType.vb: TypeConverter.ConvertToString(Object)
+  fullName.vb: System.ComponentModel.TypeConverter.ConvertToString(Object)
+  name.vb: ConvertToString(Object)
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.ConvertToString(System.Object)
+    name: ConvertToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.converttostring#system-componentmodel-typeconverter-converttostring(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.ConvertToString(System.Object)
+    name: ConvertToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.converttostring#system-componentmodel-typeconverter-converttostring(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Object)
+  commentId: M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Object)
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.converttostring#system-componentmodel-typeconverter-converttostring(system-componentmodel-itypedescriptorcontext-system-object)
+  name: ConvertToString(ITypeDescriptorContext, object)
+  nameWithType: TypeConverter.ConvertToString(ITypeDescriptorContext, object)
+  fullName: System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext, object)
+  nameWithType.vb: TypeConverter.ConvertToString(ITypeDescriptorContext, Object)
+  fullName.vb: System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext, Object)
+  name.vb: ConvertToString(ITypeDescriptorContext, Object)
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Object)
+    name: ConvertToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.converttostring#system-componentmodel-typeconverter-converttostring(system-componentmodel-itypedescriptorcontext-system-object)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Object)
+    name: ConvertToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.converttostring#system-componentmodel-typeconverter-converttostring(system-componentmodel-itypedescriptorcontext-system-object)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)
+  commentId: M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.converttostring#system-componentmodel-typeconverter-converttostring(system-componentmodel-itypedescriptorcontext-system-globalization-cultureinfo-system-object)
+  name: ConvertToString(ITypeDescriptorContext, CultureInfo, object)
+  nameWithType: TypeConverter.ConvertToString(ITypeDescriptorContext, CultureInfo, object)
+  fullName: System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext, System.Globalization.CultureInfo, object)
+  nameWithType.vb: TypeConverter.ConvertToString(ITypeDescriptorContext, CultureInfo, Object)
+  fullName.vb: System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext, System.Globalization.CultureInfo, Object)
+  name.vb: ConvertToString(ITypeDescriptorContext, CultureInfo, Object)
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)
+    name: ConvertToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.converttostring#system-componentmodel-typeconverter-converttostring(system-componentmodel-itypedescriptorcontext-system-globalization-cultureinfo-system-object)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: ','
+  - name: " "
+  - uid: System.Globalization.CultureInfo
+    name: CultureInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)
+    name: ConvertToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.converttostring#system-componentmodel-typeconverter-converttostring(system-componentmodel-itypedescriptorcontext-system-globalization-cultureinfo-system-object)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: ','
+  - name: " "
+  - uid: System.Globalization.CultureInfo
+    name: CultureInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ComponentModel.TypeConverter.CreateInstance(System.Collections.IDictionary)
+  commentId: M:System.ComponentModel.TypeConverter.CreateInstance(System.Collections.IDictionary)
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.createinstance#system-componentmodel-typeconverter-createinstance(system-collections-idictionary)
+  name: CreateInstance(IDictionary)
+  nameWithType: TypeConverter.CreateInstance(IDictionary)
+  fullName: System.ComponentModel.TypeConverter.CreateInstance(System.Collections.IDictionary)
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.CreateInstance(System.Collections.IDictionary)
+    name: CreateInstance
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.createinstance#system-componentmodel-typeconverter-createinstance(system-collections-idictionary)
+  - name: (
+  - uid: System.Collections.IDictionary
+    name: IDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.idictionary
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.CreateInstance(System.Collections.IDictionary)
+    name: CreateInstance
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.createinstance#system-componentmodel-typeconverter-createinstance(system-collections-idictionary)
+  - name: (
+  - uid: System.Collections.IDictionary
+    name: IDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.idictionary
+  - name: )
+- uid: System.ComponentModel.TypeConverter.CreateInstance(System.ComponentModel.ITypeDescriptorContext,System.Collections.IDictionary)
+  commentId: M:System.ComponentModel.TypeConverter.CreateInstance(System.ComponentModel.ITypeDescriptorContext,System.Collections.IDictionary)
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.createinstance#system-componentmodel-typeconverter-createinstance(system-componentmodel-itypedescriptorcontext-system-collections-idictionary)
+  name: CreateInstance(ITypeDescriptorContext, IDictionary)
+  nameWithType: TypeConverter.CreateInstance(ITypeDescriptorContext, IDictionary)
+  fullName: System.ComponentModel.TypeConverter.CreateInstance(System.ComponentModel.ITypeDescriptorContext, System.Collections.IDictionary)
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.CreateInstance(System.ComponentModel.ITypeDescriptorContext,System.Collections.IDictionary)
+    name: CreateInstance
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.createinstance#system-componentmodel-typeconverter-createinstance(system-componentmodel-itypedescriptorcontext-system-collections-idictionary)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: ','
+  - name: " "
+  - uid: System.Collections.IDictionary
+    name: IDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.idictionary
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.CreateInstance(System.ComponentModel.ITypeDescriptorContext,System.Collections.IDictionary)
+    name: CreateInstance
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.createinstance#system-componentmodel-typeconverter-createinstance(system-componentmodel-itypedescriptorcontext-system-collections-idictionary)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: ','
+  - name: " "
+  - uid: System.Collections.IDictionary
+    name: IDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.idictionary
+  - name: )
+- uid: System.ComponentModel.TypeConverter.GetCreateInstanceSupported
+  commentId: M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getcreateinstancesupported#system-componentmodel-typeconverter-getcreateinstancesupported
+  name: GetCreateInstanceSupported()
+  nameWithType: TypeConverter.GetCreateInstanceSupported()
+  fullName: System.ComponentModel.TypeConverter.GetCreateInstanceSupported()
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.GetCreateInstanceSupported
+    name: GetCreateInstanceSupported
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getcreateinstancesupported#system-componentmodel-typeconverter-getcreateinstancesupported
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.GetCreateInstanceSupported
+    name: GetCreateInstanceSupported
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getcreateinstancesupported#system-componentmodel-typeconverter-getcreateinstancesupported
+  - name: (
+  - name: )
+- uid: System.ComponentModel.TypeConverter.GetCreateInstanceSupported(System.ComponentModel.ITypeDescriptorContext)
+  commentId: M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported(System.ComponentModel.ITypeDescriptorContext)
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getcreateinstancesupported#system-componentmodel-typeconverter-getcreateinstancesupported(system-componentmodel-itypedescriptorcontext)
+  name: GetCreateInstanceSupported(ITypeDescriptorContext)
+  nameWithType: TypeConverter.GetCreateInstanceSupported(ITypeDescriptorContext)
+  fullName: System.ComponentModel.TypeConverter.GetCreateInstanceSupported(System.ComponentModel.ITypeDescriptorContext)
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.GetCreateInstanceSupported(System.ComponentModel.ITypeDescriptorContext)
+    name: GetCreateInstanceSupported
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getcreateinstancesupported#system-componentmodel-typeconverter-getcreateinstancesupported(system-componentmodel-itypedescriptorcontext)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.GetCreateInstanceSupported(System.ComponentModel.ITypeDescriptorContext)
+    name: GetCreateInstanceSupported
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getcreateinstancesupported#system-componentmodel-typeconverter-getcreateinstancesupported(system-componentmodel-itypedescriptorcontext)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: )
+- uid: System.ComponentModel.TypeConverter.GetProperties(System.Object)
+  commentId: M:System.ComponentModel.TypeConverter.GetProperties(System.Object)
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getproperties#system-componentmodel-typeconverter-getproperties(system-object)
+  name: GetProperties(object)
+  nameWithType: TypeConverter.GetProperties(object)
+  fullName: System.ComponentModel.TypeConverter.GetProperties(object)
+  nameWithType.vb: TypeConverter.GetProperties(Object)
+  fullName.vb: System.ComponentModel.TypeConverter.GetProperties(Object)
+  name.vb: GetProperties(Object)
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.GetProperties(System.Object)
+    name: GetProperties
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getproperties#system-componentmodel-typeconverter-getproperties(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.GetProperties(System.Object)
+    name: GetProperties
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getproperties#system-componentmodel-typeconverter-getproperties(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object)
+  commentId: M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object)
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getproperties#system-componentmodel-typeconverter-getproperties(system-componentmodel-itypedescriptorcontext-system-object)
+  name: GetProperties(ITypeDescriptorContext, object)
+  nameWithType: TypeConverter.GetProperties(ITypeDescriptorContext, object)
+  fullName: System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext, object)
+  nameWithType.vb: TypeConverter.GetProperties(ITypeDescriptorContext, Object)
+  fullName.vb: System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext, Object)
+  name.vb: GetProperties(ITypeDescriptorContext, Object)
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object)
+    name: GetProperties
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getproperties#system-componentmodel-typeconverter-getproperties(system-componentmodel-itypedescriptorcontext-system-object)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object)
+    name: GetProperties
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getproperties#system-componentmodel-typeconverter-getproperties(system-componentmodel-itypedescriptorcontext-system-object)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])
+  commentId: M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getproperties#system-componentmodel-typeconverter-getproperties(system-componentmodel-itypedescriptorcontext-system-object-system-attribute())
+  name: GetProperties(ITypeDescriptorContext, object, Attribute[])
+  nameWithType: TypeConverter.GetProperties(ITypeDescriptorContext, object, Attribute[])
+  fullName: System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext, object, System.Attribute[])
+  nameWithType.vb: TypeConverter.GetProperties(ITypeDescriptorContext, Object, Attribute())
+  fullName.vb: System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext, Object, System.Attribute())
+  name.vb: GetProperties(ITypeDescriptorContext, Object, Attribute())
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])
+    name: GetProperties
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getproperties#system-componentmodel-typeconverter-getproperties(system-componentmodel-itypedescriptorcontext-system-object-system-attribute())
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Attribute
+    name: Attribute
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.attribute
+  - name: '['
+  - name: ']'
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])
+    name: GetProperties
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getproperties#system-componentmodel-typeconverter-getproperties(system-componentmodel-itypedescriptorcontext-system-object-system-attribute())
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Attribute
+    name: Attribute
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.attribute
+  - name: (
+  - name: )
+  - name: )
+- uid: System.ComponentModel.TypeConverter.GetPropertiesSupported
+  commentId: M:System.ComponentModel.TypeConverter.GetPropertiesSupported
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getpropertiessupported#system-componentmodel-typeconverter-getpropertiessupported
+  name: GetPropertiesSupported()
+  nameWithType: TypeConverter.GetPropertiesSupported()
+  fullName: System.ComponentModel.TypeConverter.GetPropertiesSupported()
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.GetPropertiesSupported
+    name: GetPropertiesSupported
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getpropertiessupported#system-componentmodel-typeconverter-getpropertiessupported
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.GetPropertiesSupported
+    name: GetPropertiesSupported
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getpropertiessupported#system-componentmodel-typeconverter-getpropertiessupported
+  - name: (
+  - name: )
+- uid: System.ComponentModel.TypeConverter.GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext)
+  commentId: M:System.ComponentModel.TypeConverter.GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext)
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getpropertiessupported#system-componentmodel-typeconverter-getpropertiessupported(system-componentmodel-itypedescriptorcontext)
+  name: GetPropertiesSupported(ITypeDescriptorContext)
+  nameWithType: TypeConverter.GetPropertiesSupported(ITypeDescriptorContext)
+  fullName: System.ComponentModel.TypeConverter.GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext)
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext)
+    name: GetPropertiesSupported
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getpropertiessupported#system-componentmodel-typeconverter-getpropertiessupported(system-componentmodel-itypedescriptorcontext)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext)
+    name: GetPropertiesSupported
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getpropertiessupported#system-componentmodel-typeconverter-getpropertiessupported(system-componentmodel-itypedescriptorcontext)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: )
+- uid: System.ComponentModel.TypeConverter.GetStandardValues
+  commentId: M:System.ComponentModel.TypeConverter.GetStandardValues
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getstandardvalues#system-componentmodel-typeconverter-getstandardvalues
+  name: GetStandardValues()
+  nameWithType: TypeConverter.GetStandardValues()
+  fullName: System.ComponentModel.TypeConverter.GetStandardValues()
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.GetStandardValues
+    name: GetStandardValues
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getstandardvalues#system-componentmodel-typeconverter-getstandardvalues
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.GetStandardValues
+    name: GetStandardValues
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getstandardvalues#system-componentmodel-typeconverter-getstandardvalues
+  - name: (
+  - name: )
+- uid: System.ComponentModel.TypeConverter.GetStandardValuesExclusive
+  commentId: M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getstandardvaluesexclusive#system-componentmodel-typeconverter-getstandardvaluesexclusive
+  name: GetStandardValuesExclusive()
+  nameWithType: TypeConverter.GetStandardValuesExclusive()
+  fullName: System.ComponentModel.TypeConverter.GetStandardValuesExclusive()
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.GetStandardValuesExclusive
+    name: GetStandardValuesExclusive
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getstandardvaluesexclusive#system-componentmodel-typeconverter-getstandardvaluesexclusive
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.GetStandardValuesExclusive
+    name: GetStandardValuesExclusive
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getstandardvaluesexclusive#system-componentmodel-typeconverter-getstandardvaluesexclusive
+  - name: (
+  - name: )
+- uid: System.ComponentModel.TypeConverter.GetStandardValuesSupported
+  commentId: M:System.ComponentModel.TypeConverter.GetStandardValuesSupported
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getstandardvaluessupported#system-componentmodel-typeconverter-getstandardvaluessupported
+  name: GetStandardValuesSupported()
+  nameWithType: TypeConverter.GetStandardValuesSupported()
+  fullName: System.ComponentModel.TypeConverter.GetStandardValuesSupported()
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.GetStandardValuesSupported
+    name: GetStandardValuesSupported
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getstandardvaluessupported#system-componentmodel-typeconverter-getstandardvaluessupported
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.GetStandardValuesSupported
+    name: GetStandardValuesSupported
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getstandardvaluessupported#system-componentmodel-typeconverter-getstandardvaluessupported
+  - name: (
+  - name: )
+- uid: System.ComponentModel.TypeConverter.IsValid(System.Object)
+  commentId: M:System.ComponentModel.TypeConverter.IsValid(System.Object)
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.isvalid#system-componentmodel-typeconverter-isvalid(system-object)
+  name: IsValid(object)
+  nameWithType: TypeConverter.IsValid(object)
+  fullName: System.ComponentModel.TypeConverter.IsValid(object)
+  nameWithType.vb: TypeConverter.IsValid(Object)
+  fullName.vb: System.ComponentModel.TypeConverter.IsValid(Object)
+  name.vb: IsValid(Object)
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.IsValid(System.Object)
+    name: IsValid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.isvalid#system-componentmodel-typeconverter-isvalid(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.IsValid(System.Object)
+    name: IsValid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.isvalid#system-componentmodel-typeconverter-isvalid(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ComponentModel.TypeConverter.IsValid(System.ComponentModel.ITypeDescriptorContext,System.Object)
+  commentId: M:System.ComponentModel.TypeConverter.IsValid(System.ComponentModel.ITypeDescriptorContext,System.Object)
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.isvalid#system-componentmodel-typeconverter-isvalid(system-componentmodel-itypedescriptorcontext-system-object)
+  name: IsValid(ITypeDescriptorContext, object)
+  nameWithType: TypeConverter.IsValid(ITypeDescriptorContext, object)
+  fullName: System.ComponentModel.TypeConverter.IsValid(System.ComponentModel.ITypeDescriptorContext, object)
+  nameWithType.vb: TypeConverter.IsValid(ITypeDescriptorContext, Object)
+  fullName.vb: System.ComponentModel.TypeConverter.IsValid(System.ComponentModel.ITypeDescriptorContext, Object)
+  name.vb: IsValid(ITypeDescriptorContext, Object)
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.IsValid(System.ComponentModel.ITypeDescriptorContext,System.Object)
+    name: IsValid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.isvalid#system-componentmodel-typeconverter-isvalid(system-componentmodel-itypedescriptorcontext-system-object)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.IsValid(System.ComponentModel.ITypeDescriptorContext,System.Object)
+    name: IsValid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.isvalid#system-componentmodel-typeconverter-isvalid(system-componentmodel-itypedescriptorcontext-system-object)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ComponentModel
+  commentId: N:System.ComponentModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.ComponentModel
+  nameWithType: System.ComponentModel
+  fullName: System.ComponentModel
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.ComponentModel
+    name: ComponentModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.ComponentModel
+    name: ComponentModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel
+- uid: System.ComponentModel.TypeConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)
+  commentId: M:System.ComponentModel.TypeConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getstandardvaluessupported#system-componentmodel-typeconverter-getstandardvaluessupported(system-componentmodel-itypedescriptorcontext)
+  name: GetStandardValuesSupported(ITypeDescriptorContext)
+  nameWithType: TypeConverter.GetStandardValuesSupported(ITypeDescriptorContext)
+  fullName: System.ComponentModel.TypeConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)
+    name: GetStandardValuesSupported
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getstandardvaluessupported#system-componentmodel-typeconverter-getstandardvaluessupported(system-componentmodel-itypedescriptorcontext)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)
+    name: GetStandardValuesSupported
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getstandardvaluessupported#system-componentmodel-typeconverter-getstandardvaluessupported(system-componentmodel-itypedescriptorcontext)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: )
+- uid: Reportman.Designer.HubDatabaseConverter.GetStandardValuesSupported*
+  commentId: Overload:Reportman.Designer.HubDatabaseConverter.GetStandardValuesSupported
+  isExternal: true
+  href: Reportman.Designer.HubDatabaseConverter.html#Reportman_Designer_HubDatabaseConverter_GetStandardValuesSupported_System_ComponentModel_ITypeDescriptorContext_
+  name: GetStandardValuesSupported
+  nameWithType: HubDatabaseConverter.GetStandardValuesSupported
+  fullName: Reportman.Designer.HubDatabaseConverter.GetStandardValuesSupported
+- uid: System.ComponentModel.ITypeDescriptorContext
+  commentId: T:System.ComponentModel.ITypeDescriptorContext
+  parent: System.ComponentModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  name: ITypeDescriptorContext
+  nameWithType: ITypeDescriptorContext
+  fullName: System.ComponentModel.ITypeDescriptorContext
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.ComponentModel.TypeConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)
+  commentId: M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getstandardvaluesexclusive#system-componentmodel-typeconverter-getstandardvaluesexclusive(system-componentmodel-itypedescriptorcontext)
+  name: GetStandardValuesExclusive(ITypeDescriptorContext)
+  nameWithType: TypeConverter.GetStandardValuesExclusive(ITypeDescriptorContext)
+  fullName: System.ComponentModel.TypeConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)
+    name: GetStandardValuesExclusive
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getstandardvaluesexclusive#system-componentmodel-typeconverter-getstandardvaluesexclusive(system-componentmodel-itypedescriptorcontext)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)
+    name: GetStandardValuesExclusive
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getstandardvaluesexclusive#system-componentmodel-typeconverter-getstandardvaluesexclusive(system-componentmodel-itypedescriptorcontext)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: )
+- uid: Reportman.Designer.HubDatabaseConverter.GetStandardValuesExclusive*
+  commentId: Overload:Reportman.Designer.HubDatabaseConverter.GetStandardValuesExclusive
+  isExternal: true
+  href: Reportman.Designer.HubDatabaseConverter.html#Reportman_Designer_HubDatabaseConverter_GetStandardValuesExclusive_System_ComponentModel_ITypeDescriptorContext_
+  name: GetStandardValuesExclusive
+  nameWithType: HubDatabaseConverter.GetStandardValuesExclusive
+  fullName: Reportman.Designer.HubDatabaseConverter.GetStandardValuesExclusive
+- uid: System.ComponentModel.TypeConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)
+  commentId: M:System.ComponentModel.TypeConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getstandardvalues#system-componentmodel-typeconverter-getstandardvalues(system-componentmodel-itypedescriptorcontext)
+  name: GetStandardValues(ITypeDescriptorContext)
+  nameWithType: TypeConverter.GetStandardValues(ITypeDescriptorContext)
+  fullName: System.ComponentModel.TypeConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)
+    name: GetStandardValues
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getstandardvalues#system-componentmodel-typeconverter-getstandardvalues(system-componentmodel-itypedescriptorcontext)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)
+    name: GetStandardValues
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.getstandardvalues#system-componentmodel-typeconverter-getstandardvalues(system-componentmodel-itypedescriptorcontext)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: )
+- uid: Reportman.Designer.HubDatabaseConverter.GetStandardValues*
+  commentId: Overload:Reportman.Designer.HubDatabaseConverter.GetStandardValues
+  isExternal: true
+  href: Reportman.Designer.HubDatabaseConverter.html#Reportman_Designer_HubDatabaseConverter_GetStandardValues_System_ComponentModel_ITypeDescriptorContext_
+  name: GetStandardValues
+  nameWithType: HubDatabaseConverter.GetStandardValues
+  fullName: Reportman.Designer.HubDatabaseConverter.GetStandardValues
+- uid: System.ComponentModel.TypeConverter.StandardValuesCollection
+  commentId: T:System.ComponentModel.TypeConverter.StandardValuesCollection
+  parent: System.ComponentModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter
+  name: TypeConverter.StandardValuesCollection
+  nameWithType: TypeConverter.StandardValuesCollection
+  fullName: System.ComponentModel.TypeConverter.StandardValuesCollection
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter
+    name: TypeConverter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter
+  - name: .
+  - uid: System.ComponentModel.TypeConverter.StandardValuesCollection
+    name: StandardValuesCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.standardvaluescollection
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter
+    name: TypeConverter
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter
+  - name: .
+  - uid: System.ComponentModel.TypeConverter.StandardValuesCollection
+    name: StandardValuesCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.standardvaluescollection
+- uid: System.ComponentModel.TypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)
+  commentId: M:System.ComponentModel.TypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.canconvertfrom#system-componentmodel-typeconverter-canconvertfrom(system-componentmodel-itypedescriptorcontext-system-type)
+  name: CanConvertFrom(ITypeDescriptorContext, Type)
+  nameWithType: TypeConverter.CanConvertFrom(ITypeDescriptorContext, Type)
+  fullName: System.ComponentModel.TypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext, System.Type)
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)
+    name: CanConvertFrom
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.canconvertfrom#system-componentmodel-typeconverter-canconvertfrom(system-componentmodel-itypedescriptorcontext-system-type)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: ','
+  - name: " "
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)
+    name: CanConvertFrom
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.canconvertfrom#system-componentmodel-typeconverter-canconvertfrom(system-componentmodel-itypedescriptorcontext-system-type)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: ','
+  - name: " "
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+- uid: Reportman.Designer.HubDatabaseConverter.CanConvertFrom*
+  commentId: Overload:Reportman.Designer.HubDatabaseConverter.CanConvertFrom
+  isExternal: true
+  href: Reportman.Designer.HubDatabaseConverter.html#Reportman_Designer_HubDatabaseConverter_CanConvertFrom_System_ComponentModel_ITypeDescriptorContext_System_Type_
+  name: CanConvertFrom
+  nameWithType: HubDatabaseConverter.CanConvertFrom
+  fullName: Reportman.Designer.HubDatabaseConverter.CanConvertFrom
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.type
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: System.ComponentModel.TypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)
+  commentId: M:System.ComponentModel.TypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.canconvertto#system-componentmodel-typeconverter-canconvertto(system-componentmodel-itypedescriptorcontext-system-type)
+  name: CanConvertTo(ITypeDescriptorContext, Type)
+  nameWithType: TypeConverter.CanConvertTo(ITypeDescriptorContext, Type)
+  fullName: System.ComponentModel.TypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext, System.Type)
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)
+    name: CanConvertTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.canconvertto#system-componentmodel-typeconverter-canconvertto(system-componentmodel-itypedescriptorcontext-system-type)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: ','
+  - name: " "
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)
+    name: CanConvertTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.canconvertto#system-componentmodel-typeconverter-canconvertto(system-componentmodel-itypedescriptorcontext-system-type)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: ','
+  - name: " "
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+- uid: Reportman.Designer.HubDatabaseConverter.CanConvertTo*
+  commentId: Overload:Reportman.Designer.HubDatabaseConverter.CanConvertTo
+  isExternal: true
+  href: Reportman.Designer.HubDatabaseConverter.html#Reportman_Designer_HubDatabaseConverter_CanConvertTo_System_ComponentModel_ITypeDescriptorContext_System_Type_
+  name: CanConvertTo
+  nameWithType: HubDatabaseConverter.CanConvertTo
+  fullName: Reportman.Designer.HubDatabaseConverter.CanConvertTo
+- uid: System.ComponentModel.TypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)
+  commentId: M:System.ComponentModel.TypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.convertto#system-componentmodel-typeconverter-convertto(system-componentmodel-itypedescriptorcontext-system-globalization-cultureinfo-system-object-system-type)
+  name: ConvertTo(ITypeDescriptorContext, CultureInfo, object, Type)
+  nameWithType: TypeConverter.ConvertTo(ITypeDescriptorContext, CultureInfo, object, Type)
+  fullName: System.ComponentModel.TypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext, System.Globalization.CultureInfo, object, System.Type)
+  nameWithType.vb: TypeConverter.ConvertTo(ITypeDescriptorContext, CultureInfo, Object, Type)
+  fullName.vb: System.ComponentModel.TypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext, System.Globalization.CultureInfo, Object, System.Type)
+  name.vb: ConvertTo(ITypeDescriptorContext, CultureInfo, Object, Type)
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)
+    name: ConvertTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.convertto#system-componentmodel-typeconverter-convertto(system-componentmodel-itypedescriptorcontext-system-globalization-cultureinfo-system-object-system-type)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: ','
+  - name: " "
+  - uid: System.Globalization.CultureInfo
+    name: CultureInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)
+    name: ConvertTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.convertto#system-componentmodel-typeconverter-convertto(system-componentmodel-itypedescriptorcontext-system-globalization-cultureinfo-system-object-system-type)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: ','
+  - name: " "
+  - uid: System.Globalization.CultureInfo
+    name: CultureInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+- uid: Reportman.Designer.HubDatabaseConverter.ConvertTo*
+  commentId: Overload:Reportman.Designer.HubDatabaseConverter.ConvertTo
+  isExternal: true
+  href: Reportman.Designer.HubDatabaseConverter.html#Reportman_Designer_HubDatabaseConverter_ConvertTo_System_ComponentModel_ITypeDescriptorContext_System_Globalization_CultureInfo_System_Object_System_Type_
+  name: ConvertTo
+  nameWithType: HubDatabaseConverter.ConvertTo
+  fullName: Reportman.Designer.HubDatabaseConverter.ConvertTo
+- uid: System.Globalization.CultureInfo
+  commentId: T:System.Globalization.CultureInfo
+  parent: System.Globalization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo
+  name: CultureInfo
+  nameWithType: CultureInfo
+  fullName: System.Globalization.CultureInfo
+- uid: System.Globalization
+  commentId: N:System.Globalization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Globalization
+  nameWithType: System.Globalization
+  fullName: System.Globalization
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Globalization
+    name: Globalization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.globalization
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Globalization
+    name: Globalization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.globalization
+- uid: System.ComponentModel.TypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)
+  commentId: M:System.ComponentModel.TypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)
+  parent: System.ComponentModel.TypeConverter
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.convertfrom#system-componentmodel-typeconverter-convertfrom(system-componentmodel-itypedescriptorcontext-system-globalization-cultureinfo-system-object)
+  name: ConvertFrom(ITypeDescriptorContext, CultureInfo, object)
+  nameWithType: TypeConverter.ConvertFrom(ITypeDescriptorContext, CultureInfo, object)
+  fullName: System.ComponentModel.TypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext, System.Globalization.CultureInfo, object)
+  nameWithType.vb: TypeConverter.ConvertFrom(ITypeDescriptorContext, CultureInfo, Object)
+  fullName.vb: System.ComponentModel.TypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext, System.Globalization.CultureInfo, Object)
+  name.vb: ConvertFrom(ITypeDescriptorContext, CultureInfo, Object)
+  spec.csharp:
+  - uid: System.ComponentModel.TypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)
+    name: ConvertFrom
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.convertfrom#system-componentmodel-typeconverter-convertfrom(system-componentmodel-itypedescriptorcontext-system-globalization-cultureinfo-system-object)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: ','
+  - name: " "
+  - uid: System.Globalization.CultureInfo
+    name: CultureInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ComponentModel.TypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)
+    name: ConvertFrom
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.typeconverter.convertfrom#system-componentmodel-typeconverter-convertfrom(system-componentmodel-itypedescriptorcontext-system-globalization-cultureinfo-system-object)
+  - name: (
+  - uid: System.ComponentModel.ITypeDescriptorContext
+    name: ITypeDescriptorContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.componentmodel.itypedescriptorcontext
+  - name: ','
+  - name: " "
+  - uid: System.Globalization.CultureInfo
+    name: CultureInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Reportman.Designer.HubDatabaseConverter.ConvertFrom*
+  commentId: Overload:Reportman.Designer.HubDatabaseConverter.ConvertFrom
+  isExternal: true
+  href: Reportman.Designer.HubDatabaseConverter.html#Reportman_Designer_HubDatabaseConverter_ConvertFrom_System_ComponentModel_ITypeDescriptorContext_System_Globalization_CultureInfo_System_Object_
+  name: ConvertFrom
+  nameWithType: HubDatabaseConverter.ConvertFrom
+  fullName: Reportman.Designer.HubDatabaseConverter.ConvertFrom
+- uid: Reportman.Designer.HubDatabaseConverter.#ctor*
+  commentId: Overload:Reportman.Designer.HubDatabaseConverter.#ctor
+  isExternal: true
+  href: Reportman.Designer.HubDatabaseConverter.html#Reportman_Designer_HubDatabaseConverter__ctor
+  name: HubDatabaseConverter
+  nameWithType: HubDatabaseConverter.HubDatabaseConverter
+  fullName: Reportman.Designer.HubDatabaseConverter.HubDatabaseConverter
+  nameWithType.vb: HubDatabaseConverter.New
+  fullName.vb: Reportman.Designer.HubDatabaseConverter.New
+  name.vb: New

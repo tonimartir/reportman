@@ -17,7 +17,7 @@ items:
   fullName: Reportman.Drawing.ISqlExecuterPartialFillEvent
   type: Delegate
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -46,7 +46,7 @@ items:
   fullName: Reportman.Drawing.ISqlExecuterPartialFillEvent.ISqlExecuterPartialFillEvent(object, nint)
   type: Constructor
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -74,7 +74,7 @@ items:
   fullName: Reportman.Drawing.ISqlExecuterPartialFillEvent.Invoke(object, Reportman.Drawing.ISqlExecuterPartialFillArgs)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -102,7 +102,7 @@ items:
   fullName: Reportman.Drawing.ISqlExecuterPartialFillEvent.BeginInvoke(object, Reportman.Drawing.ISqlExecuterPartialFillArgs, System.AsyncCallback, object)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -136,7 +136,7 @@ items:
   fullName: Reportman.Drawing.ISqlExecuterPartialFillEvent.EndInvoke(System.IAsyncResult)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/ISqlExecuter.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/ISqlExecuter.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing

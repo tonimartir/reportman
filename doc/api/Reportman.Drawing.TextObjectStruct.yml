@@ -28,7 +28,7 @@ items:
   fullName: Reportman.Drawing.TextObjectStruct
   type: Struct
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/TextObjectStruct.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -59,7 +59,7 @@ items:
   fullName: Reportman.Drawing.TextObjectStruct.Text
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/TextObjectStruct.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -82,7 +82,7 @@ items:
   fullName: Reportman.Drawing.TextObjectStruct.LFontName
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/TextObjectStruct.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -105,7 +105,7 @@ items:
   fullName: Reportman.Drawing.TextObjectStruct.WFontName
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/TextObjectStruct.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -128,7 +128,7 @@ items:
   fullName: Reportman.Drawing.TextObjectStruct.FontSize
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/TextObjectStruct.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -151,7 +151,7 @@ items:
   fullName: Reportman.Drawing.TextObjectStruct.FontRotation
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/TextObjectStruct.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -174,7 +174,7 @@ items:
   fullName: Reportman.Drawing.TextObjectStruct.FontStyle
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/TextObjectStruct.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -197,7 +197,7 @@ items:
   fullName: Reportman.Drawing.TextObjectStruct.FontColor
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/TextObjectStruct.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -220,7 +220,7 @@ items:
   fullName: Reportman.Drawing.TextObjectStruct.Type1Font
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/TextObjectStruct.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -243,7 +243,7 @@ items:
   fullName: Reportman.Drawing.TextObjectStruct.CutText
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/TextObjectStruct.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -266,7 +266,7 @@ items:
   fullName: Reportman.Drawing.TextObjectStruct.Alignment
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/TextObjectStruct.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -289,7 +289,7 @@ items:
   fullName: Reportman.Drawing.TextObjectStruct.WordWrap
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/TextObjectStruct.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -312,7 +312,7 @@ items:
   fullName: Reportman.Drawing.TextObjectStruct.RightToLeft
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/TextObjectStruct.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -335,7 +335,7 @@ items:
   fullName: Reportman.Drawing.TextObjectStruct.PrintStep
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/TextObjectStruct.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -358,7 +358,7 @@ items:
   fullName: Reportman.Drawing.TextObjectStruct.IsHtml
   type: Field
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/TextObjectStruct.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
@@ -381,7 +381,7 @@ items:
   fullName: Reportman.Drawing.TextObjectStruct.FromMetaObjectText(Reportman.Drawing.MetaPage, Reportman.Drawing.MetaObjectText)
   type: Method
   source:
-    href: https://github.com/tonimartir/reportman/blob/94d1f15e451fa281ed5d1346c641c4098c60d404/Reportman.Drawing/TextObjectStruct.cs
+    href: https://github.com/tonimartir/reportman/blob/2308c64c7bfc797dd7c65c5fcad03fe750e2c96e/Reportman.Drawing/TextObjectStruct.cs
   assemblies:
   - Reportman.Drawing
   namespace: Reportman.Drawing
