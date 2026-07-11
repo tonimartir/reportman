@@ -67,11 +67,13 @@ namespace Reportman.Drawing
 
                 byte[] keyBytes = password.GetBytes(keySize / 8);
 
-                RijndaelManaged symmetricKey = new RijndaelManaged()
-                {
-
-                    Mode = CipherMode.CBC
-                };
+                // Aes.Create() is byte-for-byte compatible with the previous
+                // RijndaelManaged usage: RijndaelManaged used the default 128-bit
+                // block size (never changed here), which is exactly AES. Same CBC
+                // mode, default PKCS7 padding, 128-bit key and 128-bit IV, so
+                // existing ciphertext keeps decrypting identically.
+                Aes symmetricKey = Aes.Create();
+                symmetricKey.Mode = CipherMode.CBC;
 
                 ICryptoTransform encryptor = symmetricKey.CreateEncryptor(keyBytes,
 
@@ -148,11 +150,13 @@ namespace Reportman.Drawing
 
                 byte[] keyBytes = password.GetBytes(keySize / 8);
 
-                RijndaelManaged symmetricKey = new RijndaelManaged()
-                {
-
-                    Mode = CipherMode.CBC
-                };
+                // Aes.Create() is byte-for-byte compatible with the previous
+                // RijndaelManaged usage: RijndaelManaged used the default 128-bit
+                // block size (never changed here), which is exactly AES. Same CBC
+                // mode, default PKCS7 padding, 128-bit key and 128-bit IV, so
+                // existing ciphertext keeps decrypting identically.
+                Aes symmetricKey = Aes.Create();
+                symmetricKey.Mode = CipherMode.CBC;
 
                 ICryptoTransform decryptor = symmetricKey.CreateDecryptor(keyBytes,
 

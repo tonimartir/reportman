@@ -13,7 +13,8 @@
     <!-- Only pack projects that explicitly set IsPackable=true -->
     <IsPackable>false</IsPackable>
     <Nullable>disable</Nullable>
-    <NoWarn>$(NoWarn);CA1416;CS8632;CS8981</NoWarn>
+    <NoWarn>$(NoWarn);CA1416;CS8632;CS8981;MSB3277</NoWarn>
+    <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(IsPackable)' == 'true'">
