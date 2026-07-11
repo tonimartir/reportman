@@ -179,7 +179,7 @@ namespace Reportman.Drawing.Forms
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.ReportProgress_Load);
-            this.Closing += new System.ComponentModel.CancelEventHandler(this.ReportProgress_Closing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ReportProgress_Closing);
             this.ResumeLayout(false);
 
         }
@@ -197,7 +197,7 @@ namespace Reportman.Drawing.Forms
             Text = Translator.TranslateStr(1390);
         }
 
-        private void ReportProgress_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void ReportProgress_Closing(object sender, System.Windows.Forms.FormClosingEventArgs e)
         {
             if (!multithread)
             {

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -35,6 +35,7 @@ namespace Reportman.Drawing.Forms
         /// </summary>
         public List<AutoCompleteInfo> AutoCompleteListTop;
         static SortedList<char, char> validnumeric;
+        private static readonly System.Net.Http.HttpClient httpClient = new System.Net.Http.HttpClient();
         static SortedList<char, char> validinteger;
         static SortedList<char, char> validdouble;
         private Control ComboParentForm; // Or use type "Form" 
@@ -750,75 +751,68 @@ namespace Reportman.Drawing.Forms
             base.OnTextChanged(e);
         }
         char[] separators = { '-', ' ' };
-        private void Webclient_DownloadDataCompleted(object sender, System.Net.DownloadStringCompletedEventArgs e)
+        private async void SearchGoogleTerms()
         {
-            System.Net.WebClient nwebclient = (System.Net.WebClient)sender;
-            nwebclient.Dispose();
-            if (e.Error != null)
-                return;
-            if (Text.Trim().Length == 0)
-            {
-                HideDropDown();
-                return;
-            }
-            System.Xml.XmlDocument xmldoc = new System.Xml.XmlDocument();
-            xmldoc.LoadXml(e.Result);
-
-
-
-            listBoxChild.BeginUpdate();
-            try
-            {
-                listBoxChild.Items.Clear();
-
-                string SearchText = StringUtil.RemoveDiacritics(Text.Trim().ToUpper());
-                List<AutoCompleteInfo> matchestop = GetMatchesTop(SearchText);
-                if (matchestop.Count != 0)
-                {
-                    foreach (AutoCompleteInfo compinfo in matchestop)
-                    {
-                        listBoxChild.Items.Add(compinfo);
-                    }
-                }
-                foreach (System.Xml.XmlNode node in xmldoc.ChildNodes)
-                {
-
-                    foreach (System.Xml.XmlNode completenode in node.ChildNodes)
-                    {
-                        foreach (System.Xml.XmlNode suggestionnode in completenode.ChildNodes)
-                        {
-                            listBoxChild.Items.Add(new GoogleSuggestion(suggestionnode.Attributes["data"].Value.ToString()));
-                        }
-
-                    }
-
-                }
-                int exact_match = -1;
-                List<string> matches = GetMatches(SearchText, ref exact_match);
-                if (matches.Count != 0)
-                {
-                    listBoxChild.Items.AddRange(matches.ToArray());
-                    if (exact_match >= 0)
-                        listBoxChild.SelectedIndex = exact_match;
-                }
-            }
-            finally
-            {
-                listBoxChild.EndUpdate();
-            }
-            UpdateListPosition();
-        }
-        private void SearchGoogleTerms()
-        {
-            System.Net.WebClient webclient = new System.Net.WebClient();
-            webclient.DownloadStringCompleted += Webclient_DownloadDataCompleted;
             string SearchText = Text.Trim();
             if (SearchText.Length > 0)
             {
                 string tosearch = System.Uri.EscapeDataString(SearchText);
                 string searchuri = "http://suggestqueries.google.com/complete/search?q=" + tosearch + "&client=toolbar&hl=es";
-                //webclient.CancelAsync();
-                webclient.DownloadStringAsync(new Uri(searchuri));
+                try
+                {
+                    string result = await httpClient.GetStringAsync(searchuri);
+                    
+                    if (Text.Trim().Length == 0)
+                    {
+                        HideDropDown();
+                        return;
+                    }
+                    System.Xml.XmlDocument xmldoc = new System.Xml.XmlDocument();
+                    xmldoc.LoadXml(result);
+
+                    listBoxChild.BeginUpdate();
+                    try
+                    {
+                        listBoxChild.Items.Clear();
+
+                        string SearchTextUpper = StringUtil.RemoveDiacritics(Text.Trim().ToUpper());
+                        List<AutoCompleteInfo> matchestop = GetMatchesTop(SearchTextUpper);
+                        if (matchestop.Count != 0)
+                        {
+                            foreach (AutoCompleteInfo compinfo in matchestop)
+                            {
+                                listBoxChild.Items.Add(compinfo);
+                            }
+                        }
+                        foreach (System.Xml.XmlNode node in xmldoc.ChildNodes)
+                        {
+                            foreach (System.Xml.XmlNode completenode in node.ChildNodes)
+                            {
+                                foreach (System.Xml.XmlNode suggestionnode in completenode.ChildNodes)
+                                {
+                                    listBoxChild.Items.Add(new GoogleSuggestion(suggestionnode.Attributes["data"].Value.ToString()));
+                                }
+                            }
+                        }
+                        int exact_match = -1;
+                        List<string> matches = GetMatches(SearchTextUpper, ref exact_match);
+                        if (matches.Count != 0)
+                        {
+                            listBoxChild.Items.AddRange(matches.ToArray());
+                            if (exact_match >= 0)
+                                listBoxChild.SelectedIndex = exact_match;
+                        }
+                    }
+                    finally
+                    {
+                        listBoxChild.EndUpdate();
+                    }
+                    UpdateListPosition();
+                }
+                catch (Exception)
+                {
+                    // Ignore transient network/Google suggestion errors
+                }
             }
             else
                 HideDropDown();

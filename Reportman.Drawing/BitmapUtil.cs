@@ -31,7 +31,7 @@ namespace Reportman.Drawing
             byte marker;
             bool aresult = false;
             // Checks it's a jpeg image
-            readed = astream.Read(c1, 0, 1);
+            readed = ReadFull(astream, c1, 0, 1);
             if (readed < 1)
             {
                 astream.Seek(0, System.IO.SeekOrigin.Begin);
@@ -42,7 +42,7 @@ namespace Reportman.Drawing
                 astream.Seek(0, System.IO.SeekOrigin.Begin);
                 return aresult;
             }
-            readed = astream.Read(c2, 0, 1);
+            readed = ReadFull(astream, c2, 0, 1);
             if (readed < 1)
             {
                 astream.Seek(0, System.IO.SeekOrigin.Begin);
@@ -130,7 +130,7 @@ namespace Reportman.Drawing
                 BitmapInfoHeader infoheader = new BitmapInfoHeader();
                 BitmapCoreHeader coreheader = new BitmapCoreHeader();
                 // Read the file header
-                readed = astream.Read(buf, 0, 14);
+                readed = ReadFull(astream, buf, 0, 14);
                 if (readed != 14)
                 {
                     astream.Seek(0, System.IO.SeekOrigin.Begin);
@@ -150,7 +150,7 @@ namespace Reportman.Drawing
                 fileheader.bfSize = StreamUtil.ByteArrayToUInt(buf, 2, 4);
                 fileheader.bfOffBits = StreamUtil.ByteArrayToUInt(buf, 10, 4);
                 // Read the size of bitmap info
-                readed = astream.Read(buf, 0, 4);
+                readed = ReadFull(astream, buf, 0, 4);
                 if (readed != 4)
                 {
                     astream.Seek(0, System.IO.SeekOrigin.Begin);
@@ -166,7 +166,7 @@ namespace Reportman.Drawing
                     iscoreheader = true;
                 else
                     buf = new byte[bsize + 1];
-                readed = astream.Read(buf, 0, (int)(bsize - 4));
+                readed = ReadFull(astream, buf, 0, (int)(bsize - 4));
                 if (readed != (int)(bsize - 4))
                 {
                     astream.Seek(0, System.IO.SeekOrigin.Begin);
@@ -244,7 +244,7 @@ namespace Reportman.Drawing
                     {
                         usedcolors = numcolors;
                         bufcolors = new byte[usedcolors * 3];
-                        readed = astream.Read(bufcolors, 0, usedcolors * 3);
+                        readed = ReadFull(astream, bufcolors, 0, usedcolors * 3);
                         if (readed != (usedcolors * 3))
                         {
                             throw new UnNamedException("Invalid bitmap palette");
@@ -268,7 +268,7 @@ namespace Reportman.Drawing
                         if (usedcolors == 0)
                             usedcolors = numcolors;
                         bufcolors = new byte[usedcolors * 4];
-                        readed = astream.Read(bufcolors, 0, usedcolors * 4);
+                        readed = ReadFull(astream, bufcolors, 0, usedcolors * 4);
                         if (readed != (usedcolors * 4))
                         {
                             throw new UnNamedException("Invalid bitmap palette");
@@ -343,7 +343,7 @@ namespace Reportman.Drawing
 
                     for (y = height - 1; y >= 0; y--)
                     {
-                        astream.Read(buf, 0, scanwidth);
+                        ReadFull(astream, buf, 0, scanwidth);
                         MemBits.Seek(y * origwidth, System.IO.SeekOrigin.Begin);
                         MemBits.Write(buf, 0, origwidth);
                         if (createIndexedSMap)
@@ -396,7 +396,7 @@ namespace Reportman.Drawing
                         bufdestMask = new byte[width * height];
                     for (y = height - 1; y >= 0; y--)
                     {
-                        readed = astream.Read(buf, 0, scanwidth);
+                        readed = ReadFull(astream, buf, 0, scanwidth);
                         if (readed != scanwidth)
                             throw new UnNamedException("Bad bitmap stream");
                         MemBits.Seek((width * 3) * y, System.IO.SeekOrigin.Begin);
@@ -516,18 +516,37 @@ namespace Reportman.Drawing
         private const byte M_SOS = 0xDA;        // (begins compressed data) }
         private const byte M_COM = 0xFE;        // Comment }
 
+        // Reads up to 'count' bytes into 'buffer', looping because Stream.Read may
+        // return fewer bytes than requested even when the stream is not yet
+        // exhausted (network/compressed streams). Returns the total bytes read; a
+        // value below 'count' means the stream ended early, preserving the existing
+        // "readed != count" truncation checks. A manual loop is used instead of
+        // Stream.ReadExactly because this assembly also targets net48/net6.
+        private static int ReadFull(Stream s, byte[] buffer, int offset, int count)
+        {
+            int total = 0;
+            while (total < count)
+            {
+                int r = s.Read(buffer, offset + total, count - total);
+                if (r <= 0)
+                    break;
+                total += r;
+            }
+            return total;
+        }
+
         private static byte NextMarker(Stream astream)
         {
             byte[] c1 = new byte[2];
             int readed;
 
             // Find 0xFF byte; count and skip any non-FFs. }
-            readed = astream.Read(c1, 0, 1);
+            readed = ReadFull(astream, c1, 0, 1);
             if (readed < 1)
                 throw new UnNamedException("Invalid JPEG");
             while (c1[0] != 0xFF)
             {
-                readed = astream.Read(c1, 0, 1);
+                readed = ReadFull(astream, c1, 0, 1);
                 if (readed < 1)
                     throw new UnNamedException("Invalid JPEG");
             }
@@ -535,7 +554,7 @@ namespace Reportman.Drawing
             // are legal as pad bytes, so don't count them in discarded_bytes. }
             do
             {
-                readed = astream.Read(c1, 0, 1);
+                readed = ReadFull(astream, c1, 0, 1);
                 if (readed < 1)
                     throw new UnNamedException("Invalid JPEG");
             } while (c1[0] == 0xFF);
@@ -548,7 +567,7 @@ namespace Reportman.Drawing
             byte[] c1 = new byte[2];
 
             //{ Get the marker parameter length count }
-            readed = astream.Read(c1, 0, 2);
+            readed = ReadFull(astream, c1, 0, 2);
             if (readed < 2)
                 throw new UnNamedException("Invalid JPEG");
             alength = ((int)c1[1]) + (((int)c1[0]) << 8);
@@ -558,7 +577,7 @@ namespace Reportman.Drawing
             alength = alength - 2;
             // Skip over the remaining bytes }
             byte[] abuf = new byte[alength];
-            readed = astream.Read(abuf, 0, alength);
+            readed = ReadFull(astream, abuf, 0, alength);
             if (readed < alength)
                 throw new UnNamedException("Invalid JPEG");
         }
@@ -568,21 +587,21 @@ namespace Reportman.Drawing
             int alength, readed;
             byte[] c1 = new byte[2];
             //{ Get the marker parameter length count }
-            readed = astream.Read(c1, 0, 2);
+            readed = ReadFull(astream, c1, 0, 2);
             if (readed < 2)
                 throw new UnNamedException("Invalid JPEG");
             // data_precission skiped
-            readed = astream.Read(c1, 0, 1);
+            readed = ReadFull(astream, c1, 0, 1);
             if (readed < 1)
                 throw new UnNamedException("Invalid JPEG");
             // Height
-            readed = astream.Read(c1, 0, 2);
+            readed = ReadFull(astream, c1, 0, 2);
             if (readed < 2)
                 throw new UnNamedException("Invalid JPEG");
             alength = ((int)c1[1]) + (((int)c1[0]) << 8);
             height = alength;
             // Width
-            readed = astream.Read(c1, 0, 2);
+            readed = ReadFull(astream, c1, 0, 2);
             if (readed < 2)
                 throw new UnNamedException("Invalid JPEG");
             alength = ((int)c1[1]) + (((int)c1[0]) << 8);
