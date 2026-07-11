@@ -15,13 +15,28 @@ namespace Reportman.Designer
     /// </summary>
     public partial class EllipsisEditingControl : UserControl, IDataGridViewEditingControl
     {
+        /// <summary>
+        /// The <see cref="DataGridView"/> that owns this editing control.
+        /// </summary>
         public DataGridView m_dataGridView = null;
         int m_rowIndex = 0;
         bool m_valueChanged = false;
         string m_prevText = null;
+        /// <summary>
+        /// Arbitrary caller-supplied data associated with this editing control.
+        /// </summary>
         public object Data;
+        /// <summary>
+        /// Raised when the ellipsis button is clicked, letting a handler change the cell text.
+        /// </summary>
         public event EllipsisClick ButtonClick;
+        /// <summary>
+        /// Indicates whether a <see cref="ButtonClick"/> handler has been assigned to this control.
+        /// </summary>
         public bool AssignedEvent = false;
+        /// <summary>
+        /// Gets or sets the text shown in the editing control's text box.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), Browsable(false)]
         public override string Text
         {
@@ -34,6 +49,9 @@ namespace Reportman.Designer
                 textcontrol.Text = value;
             }
         }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EllipsisEditingControl"/> class and wires up its text box events.
+        /// </summary>
         public EllipsisEditingControl()
         {
             InitializeComponent();
@@ -75,11 +93,18 @@ namespace Reportman.Designer
 
         #region IDataGridViewEditingControl Members
 
+        /// <summary>
+        /// Applies the given cell style to the editing control. This implementation does nothing.
+        /// </summary>
+        /// <param name="dataGridViewCellStyle">The cell style that would be applied.</param>
         public void ApplyCellStyleToEditingControl(DataGridViewCellStyle dataGridViewCellStyle)
         {
             // Do nothing
         }
 
+        /// <summary>
+        /// Gets the cursor shown when the mouse is over the editing control (an I-beam).
+        /// </summary>
         public Cursor EditingControlCursor
         {
             get
@@ -89,6 +114,9 @@ namespace Reportman.Designer
         }
 
 
+        /// <summary>
+        /// Gets the cursor used for the editing panel (an I-beam).
+        /// </summary>
         public Cursor EditingPanelCursor
         {
             get
@@ -96,6 +124,9 @@ namespace Reportman.Designer
                 return Cursors.IBeam;
             }
         }
+        /// <summary>
+        /// Gets or sets the <see cref="DataGridView"/> that contains the cell being edited.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), Browsable(false)]
         public DataGridView EditingControlDataGridView
         {
@@ -108,6 +139,9 @@ namespace Reportman.Designer
                 m_dataGridView = value;
             }
         }
+        /// <summary>
+        /// Gets or sets the formatted value of the cell being edited (the text box contents).
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), Browsable(false)]
         public object EditingControlFormattedValue
         {
@@ -120,6 +154,9 @@ namespace Reportman.Designer
                 this.textcontrol.Text = value.ToString();
             }
         }
+        /// <summary>
+        /// Gets or sets the index of the owning cell's row.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), Browsable(false)]
         public int EditingControlRowIndex
         {
@@ -132,6 +169,9 @@ namespace Reportman.Designer
                 m_rowIndex = value;
             }
         }
+        /// <summary>
+        /// Gets or sets a value indicating whether the value of the editing control has changed.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), Browsable(false)]
         public bool EditingControlValueChanged
         {
@@ -145,6 +185,12 @@ namespace Reportman.Designer
             }
         }
 
+        /// <summary>
+        /// Determines whether the specified key should be handled by the editing control rather than the grid.
+        /// </summary>
+        /// <param name="keyData">The key that was pressed.</param>
+        /// <param name="dataGridViewWantsInputKey">true if the grid wants to process the key; otherwise, false.</param>
+        /// <returns>true if the editing control should process the key; otherwise, false.</returns>
         public bool EditingControlWantsInputKey(Keys keyData, bool dataGridViewWantsInputKey)
         {
             switch (keyData)
@@ -171,11 +217,20 @@ namespace Reportman.Designer
             }
         }
 
+        /// <summary>
+        /// Retrieves the formatted value of the editing control for the given error context.
+        /// </summary>
+        /// <param name="context">The context in which the value is requested.</param>
+        /// <returns>The current text of the editing control.</returns>
         public object GetEditingControlFormattedValue(DataGridViewDataErrorContexts context)
         {
             return this.textcontrol.Text;
         }
 
+        /// <summary>
+        /// Prepares the editing control for editing by loading the current cell value and optionally selecting all text.
+        /// </summary>
+        /// <param name="selectAll">true to select all of the control's contents; otherwise, false.</param>
         public void PrepareEditingControlForEdit(bool selectAll)
         {
             if (this.m_dataGridView.CurrentCell.Value == null)
@@ -187,6 +242,9 @@ namespace Reportman.Designer
             m_prevText = this.textcontrol.Text;
         }
 
+        /// <summary>
+        /// Gets a value indicating whether the control should be repositioned when its value changes. Always false.
+        /// </summary>
         public bool RepositionEditingControlOnValueChange
         {
             get

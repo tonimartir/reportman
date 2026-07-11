@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -40,45 +40,79 @@ namespace Reportman.Drawing
     /// </summary>
     unsafe public class  LogFontFt
     {
+        /// <summary>True when the font is fixed-pitch (monospaced).</summary>
         public bool fixedpitch;
+        /// <summary>PostScript name of the font (family name with spaces removed).</summary>
         public string postcriptname;
+        /// <summary>Font family name as reported by FreeType.</summary>
         public string familyname;
+        /// <summary>Font style name (for example "Bold" or "Italic").</summary>
         public string stylename;
+        /// <summary>True when the font carries the italic style flag.</summary>
         public bool italic;
+        /// <summary>True when the font carries the bold style flag.</summary>
         public bool bold;
+        /// <summary>Full path of the font file on disk.</summary>
         public string filename;
+        /// <summary>Ascent metric scaled to 1000 units per em.</summary>
         public int ascent;
+        /// <summary>Descent metric scaled to 1000 units per em (negative below the baseline).</summary>
         public int descent;
+        /// <summary>Line height metric scaled to 1000 units per em.</summary>
         public int height;
+        /// <summary>Font weight value.</summary>
         public int weight;
+        /// <summary>Maximum glyph advance width scaled to 1000 units per em.</summary>
         public int MaxWidth;
+        /// <summary>Average character width scaled to 1000 units per em.</summary>
         public int avCharWidth;
+        /// <summary>Cap height scaled to 1000 units per em.</summary>
         public int Capheight;
+        /// <summary>Italic angle of the font in degrees.</summary>
         public double ItalicAngle;
+        /// <summary>Leading (line gap) scaled to 1000 units per em.</summary>
         public int leading;
+        /// <summary>Font bounding box scaled to 1000 units per em.</summary>
         public Rectangle BBox;
+        /// <summary>True once the full metric information for the font has been loaded.</summary>
         public bool fullinfo;
+        /// <summary>Vertical stem width used for PDF font descriptors.</summary>
         public double StemV;
+        /// <summary>Native FreeType face handle, valid after <see cref="OpenFont"/> has run.</summary>
         public FT_FaceRec_* ftface;
+        /// <summary>True once the FreeType face has been opened.</summary>
         public bool faceinit;
+        /// <summary>True when the font provides kerning information.</summary>
         public bool havekerning;
+        /// <summary>True when the font is a Type 1 (non-SFNT) font.</summary>
         public bool type1;
+        /// <summary>Multiplier applied to raw glyph widths.</summary>
         public double widthmult = 1;
+        /// <summary>Conversion factor from font design units to 1000 units per em (1000 / unitsPerEM).</summary>
         public double convfactor = 1;
+        /// <summary>Multiplier applied to raw height values.</summary>
         public double heightmult = 1;
+        /// <summary>Unique key that identifies this font by family, bold and italic flags.</summary>
         public string keyname;
+        /// <summary>Native FreeType library handle used to open the face.</summary>
         public FT_LibraryRec_* ftlibrary;
+        /// <summary>Path of the associated kerning/AFM file, or an empty string when none.</summary>
         public string kerningfile;
+        /// <summary>Shared cache mapping a font key name to its FreeType face index.</summary>
         public static SortedList<string,int> FontFaces = new SortedList<string,int>();
+        /// <summary>Index of the face within the font file.</summary>
         public int iface;
+        /// <summary>Initializes a new instance with an empty kerning file and a zero face index.</summary>
         public LogFontFt()
         {
             kerningfile = "";
             iface = 0;
         }
+        /// <summary>Releases resources held by the font. Currently a no-op because faces are shared and cached.</summary>
         public void Dispose()
         {
         }
+        /// <summary>Lazily opens the FreeType face for this font, reusing a cached face when available and attaching the AFM kerning file for Type 1 fonts.</summary>
         public void OpenFont()
         {
             if (faceinit)
@@ -142,6 +176,7 @@ namespace Reportman.Drawing
     public unsafe class FontInfoFt:FontInfoProvider,IDisposable
     {
         LogFontFt  currentfont;
+        /// <summary>Shared monitor object used to serialize access to the FreeType library and font caches.</summary>
         public static object flag = 12345;
         static bool libraryinitialized;
         static SortedList<string,LogFontFt> fontlist = new SortedList<string,LogFontFt>();
@@ -165,6 +200,8 @@ namespace Reportman.Drawing
             // Convertir a string con codificación UTF-8
             return Encoding.UTF8.GetString(ptr, length);
         }
+        /// <summary>Throws an <see cref="Exception"/> describing the FreeType error when <paramref name="nerror"/> is non-zero; otherwise returns silently.</summary>
+        /// <param name="nerror">The status code returned by a FreeType call.</param>
         public static void CheckFreeType(FT_Error nerror)
         {
             if (nerror == 0)
@@ -178,6 +215,9 @@ namespace Reportman.Drawing
             else
                 throw new Exception("Freetype function call error: "+nerror.ToString());
         }
+        /// <summary>Encodes a string as a null-terminated UTF-8 byte sequence and returns a pointer to it for passing to native FreeType calls.</summary>
+        /// <param name="str">The string to encode.</param>
+        /// <returns>A pointer to the null-terminated UTF-8 bytes.</returns>
         public static byte* StringToBytePtr(string str)
         {
             byte[] bytes = Encoding.UTF8.GetBytes(str + "\0"); // Agregar terminador nulo
@@ -509,6 +549,9 @@ namespace Reportman.Drawing
                     }
             fontlist.Add(fontname, currentfont);
         }
+		/// <summary>Selects the font matching <paramref name="pdfFont"/> and populates <paramref name="data"/> with its metrics, embedded font stream and glyph-width cache, applying OS/2 table overrides to match GDI/DirectWrite line spacing.</summary>
+		/// <param name="pdfFont">The logical font whose family, bold and italic attributes drive font selection.</param>
+		/// <param name="data">The metric container to fill.</param>
 		public override void FillFontData(PDFFont pdfFont, TTFontData data)
         {
             InitLibrary();
@@ -642,6 +685,11 @@ namespace Reportman.Drawing
             }
 
         }
+        /// <summary>Returns the advance width of <paramref name="charCode"/> scaled to 1000 units per em, caching the result on <paramref name="data"/>.</summary>
+        /// <param name="pdfFont">The logical font the character belongs to.</param>
+        /// <param name="data">The metric container that caches glyph widths.</param>
+        /// <param name="charCode">The character to measure.</param>
+        /// <returns>The advance width of the character.</returns>
         public override double GetCharWidth(PDFFont pdfFont, TTFontData data,
 				 char charCode)
         {
@@ -745,6 +793,12 @@ namespace Reportman.Drawing
 
             return newwidth;
         }
+        /// <summary>Returns the kerning adjustment between two adjacent characters scaled to 1000 units per em, or 0 when the font has no kerning, caching the result on <paramref name="data"/>.</summary>
+        /// <param name="pdfFont">The logical font the characters belong to.</param>
+        /// <param name="data">The metric container that caches kerning pairs.</param>
+        /// <param name="leftChar">The left character of the pair.</param>
+        /// <param name="rightChar">The right character of the pair.</param>
+        /// <returns>The kerning adjustment for the pair.</returns>
         public override int GetKerning(PDFFont pdfFont, TTFontData data,
 				 char leftChar, char rightChar)
         {
@@ -799,6 +853,9 @@ namespace Reportman.Drawing
             }
             return nresult;
         }
+        /// <summary>Builds a subsetted TrueType font stream containing only the glyphs used in <paramref name="data"/>.</summary>
+        /// <param name="data">The metric container holding the used glyphs and the source font bytes.</param>
+        /// <returns>A memory stream with the subsetted font.</returns>
         public override MemoryStream GetFontStream(TTFontData data)
         {
             Dictionary<int, int[]> glyps = new Dictionary<int, int[]>();
@@ -815,14 +872,18 @@ namespace Reportman.Drawing
             return new MemoryStream(nresult);
         }
 
+        /// <summary>Initializes a new provider, initializing the FreeType library and enumerating the system fonts.</summary>
         public FontInfoFt()
         {
             InitLibrary();
         }
+        /// <summary>Releases resources held by the provider. Currently a no-op because FreeType faces are shared and cached statically.</summary>
         public void Dispose()
         {
 
         }
+        /// <summary>Returns the path of the Windows system FONTS directory ending with a directory separator.</summary>
+        /// <returns>The system fonts directory path.</returns>
         static public string GetFontPath()
         {
             string systemPath = Environment.GetFolderPath(Environment.SpecialFolder.System);
@@ -834,6 +895,8 @@ namespace Reportman.Drawing
         }
 
 
+        /// <summary>Returns the list of font directories to scan for the current platform (macOS, Unix via fontconfig, or Windows system and user font folders).</summary>
+        /// <returns>The font directories to enumerate.</returns>
         public static Strings GetFontDirectories()
         {
             Strings dirs = new Strings();
@@ -891,6 +954,12 @@ namespace Reportman.Drawing
             return dirs;
         }
 
+        /// <summary>Returns the advance width of a specific glyph index scaled to 1000 units per em, mapping newly discovered ligature or contextual glyphs to a Private Use Area character so they are subsetted.</summary>
+        /// <param name="pdfFont">The logical font the glyph belongs to.</param>
+        /// <param name="fontData">The metric container that caches glyph widths.</param>
+        /// <param name="glyph">The glyph index to measure.</param>
+        /// <param name="charC">The base character associated with the glyph.</param>
+        /// <returns>The advance width of the glyph.</returns>
         public override double GetGlyphWidth(PDFFont pdfFont, TTFontData fontData, int glyph, char charC)
         {
             double baseWidth = GetCharWidth(pdfFont, fontData, charC);
@@ -942,6 +1011,16 @@ namespace Reportman.Drawing
             return awidth;
         }
 
+        /// <summary>Lays out text (plain or HTML) into lines, updating <paramref name="Rect"/> with the measured width and height, by delegating to <see cref="TextExtentHtml"/>.</summary>
+        /// <param name="Text">The text to lay out.</param>
+        /// <param name="Rect">On input the available width; on output the measured bounding rectangle.</param>
+        /// <param name="pdfFont">The base font used for layout.</param>
+        /// <param name="fontData">The metric container for the base font.</param>
+        /// <param name="wordwrap">True to wrap words at the available width.</param>
+        /// <param name="singleline">True to lay the text out on a single line.</param>
+        /// <param name="FontSize">The font size in points.</param>
+        /// <param name="isHtml">True when <paramref name="Text"/> contains HTML markup.</param>
+        /// <returns>The laid-out lines with their glyphs and positions.</returns>
         public override List<LineInfo> TextExtent(string Text, ref System.Drawing.Rectangle Rect, PDFFont pdfFont, TTFontData fontData, bool wordwrap, bool singleline, double FontSize, bool isHtml)
         {
             if (!isHtml)
@@ -1060,6 +1139,16 @@ namespace Reportman.Drawing
             public bool IsRightToLeft;
         }
 
+        /// <summary>Performs BiDi- and script-aware text layout using HarfBuzz shaping and ICU bidirectional analysis, supporting HTML formatting runs, per-segment fonts, word wrapping and font fallback, and updates <paramref name="Rect"/> with the measured extent.</summary>
+        /// <param name="Text">The text to lay out, optionally containing HTML markup.</param>
+        /// <param name="Rect">On input the available width; on output the measured bounding rectangle.</param>
+        /// <param name="adata">The metric container for the base font.</param>
+        /// <param name="pdfFont">The base font used for layout.</param>
+        /// <param name="wordwrap">True to wrap words at the available width.</param>
+        /// <param name="singleline">True to lay the text out on a single line.</param>
+        /// <param name="FontSize">The font size in points.</param>
+        /// <param name="isHtml">True when <paramref name="Text"/> contains HTML markup.</param>
+        /// <returns>The laid-out lines with their visually ordered glyphs and positions.</returns>
         public List<LineInfo> TextExtentHtml(
             string Text,
             ref System.Drawing.Rectangle Rect,

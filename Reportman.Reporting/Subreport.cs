@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -32,8 +32,20 @@ namespace Reportman.Reporting
     /// </summary>
     public enum SubReportEvent
     {
-        Start, DataChange, GroupChange, PageChange,
-        InvalidateValue, SubReportStart, SubReportEnd
+        /// <summary>The report has started processing.</summary>
+        Start,
+        /// <summary>The current data record has changed.</summary>
+        DataChange,
+        /// <summary>A group break has occurred.</summary>
+        GroupChange,
+        /// <summary>A new page has started.</summary>
+        PageChange,
+        /// <summary>Cached expression values must be recalculated.</summary>
+        InvalidateValue,
+        /// <summary>A subreport has started printing.</summary>
+        SubReportStart,
+        /// <summary>A subreport has finished printing.</summary>
+        SubReportEnd
     };
     /// <summary>
     /// A subreport bound to a data alias, holding the ordered collection of sections
@@ -42,21 +54,58 @@ namespace Reportman.Reporting
     /// </summary>
     public class SubReport : ReportItem
     {
+        /// <summary>
+        /// Gets or sets a value indicating whether the current record is the last record of the dataset.
+        /// </summary>
         public bool LastRecord;
+        /// <summary>
+        /// Gets or sets the index of the group that is currently breaking, or zero when no group change is active.
+        /// </summary>
         public int CurrentGroupIndex;
+        /// <summary>
+        /// Gets or sets the ordered collection of sections (page headers/footers, group headers/footers and details) that make up this subreport.
+        /// </summary>
         public Sections Sections;
+        /// <summary>
+        /// Gets or sets the name of the dataset alias this subreport is bound to; an empty string means it is not bound to any data.
+        /// </summary>
         public string Alias;
+        /// <summary>
+        /// Gets or sets the subreport that contains this one when it is nested inside another subreport's section.
+        /// </summary>
         [System.Text.Json.Serialization.JsonIgnore]
         [Newtonsoft.Json.JsonIgnore]
         public SubReport ParentSubReport;
+        /// <summary>
+        /// Gets or sets the section of the parent subreport that owns this nested subreport.
+        /// </summary>
         [System.Text.Json.Serialization.JsonIgnore]
         [Newtonsoft.Json.JsonIgnore]
         public Section ParentSection;
+        /// <summary>
+        /// Gets or sets a value indicating whether the subreport is printed only when its dataset has at least one record.
+        /// </summary>
         public bool PrintOnlyIfDataAvailable;
+        /// <summary>
+        /// Gets or sets a value indicating whether the bound dataset is reopened each time the subreport is printed.
+        /// </summary>
         public bool ReOpenOnPrint;
+        /// <summary>
+        /// Gets or sets the name of the parent subreport, used to resolve <see cref="ParentSubReport"/> when the report is linked.
+        /// </summary>
         public string ParentSub;
+        /// <summary>
+        /// Gets or sets the name of the parent section, used to resolve <see cref="ParentSection"/> when the report is linked.
+        /// </summary>
         public string ParentSec;
+        /// <summary>
+        /// Gets or sets the name of the group currently being processed.
+        /// </summary>
         public string CurrentGroupName;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SubReport"/> class with an empty section
+        /// collection and default printing options.
+        /// </summary>
         public SubReport()
             : base()
         {
@@ -67,6 +116,12 @@ namespace Reportman.Reporting
             ParentSub = "";
             ParentSec = "";
         }
+        /// <summary>
+        /// Propagates a subreport event to every section and print item, refreshing group values
+        /// and page-count tracking as required by the event.
+        /// </summary>
+        /// <param name="aevent">The event describing the state transition being processed.</param>
+        /// <param name="newgroup">The name of the group associated with a group change, or an empty string otherwise.</param>
         public void SubReportChanged(SubReportEvent aevent, string newgroup)
         {
             int i, j;
@@ -125,6 +180,9 @@ namespace Reportman.Reporting
 
             }
         }
+        /// <summary>
+        /// Gets the index of the first page header section, or -1 when the subreport has no page header.
+        /// </summary>
         public int FirstPageHeader
         {
             get
@@ -132,6 +190,9 @@ namespace Reportman.Reporting
                 return FirstSectionThatIs(SectionType.PageHeader);
             }
         }
+        /// <summary>
+        /// Gets the index of the last page header section, or -1 when the subreport has no page header.
+        /// </summary>
         public int LastPageHeader
         {
             get
@@ -139,6 +200,11 @@ namespace Reportman.Reporting
                 return LastSectionThatIs(SectionType.PageHeader);
             }
         }
+        /// <summary>
+        /// Counts the sections of the given type contained in the subreport.
+        /// </summary>
+        /// <param name="atype">The section type to count.</param>
+        /// <returns>The number of sections of the requested type.</returns>
         public int NumberOfSectionsOfType(SectionType atype)
         {
             int index = FirstSectionThatIs(atype);
@@ -154,6 +220,11 @@ namespace Reportman.Reporting
             }
             return count;
         }
+        /// <summary>
+        /// Returns the group break index of the group header with the given name.
+        /// </summary>
+        /// <param name="groupname">The name of the group to locate.</param>
+        /// <returns>The group index relative to the first detail section, or -1 when the group is not found.</returns>
         public int GroupIndex(string groupname)
         {
             int index;
@@ -176,6 +247,9 @@ namespace Reportman.Reporting
             }
             return aresult;
         }
+        /// <summary>
+        /// Gets the number of page header sections in the subreport.
+        /// </summary>
         public int PageHeaderCount
         {
             get
@@ -183,6 +257,9 @@ namespace Reportman.Reporting
                 return NumberOfSectionsOfType(SectionType.PageHeader);
             }
         }
+        /// <summary>
+        /// Gets the number of page footer sections in the subreport.
+        /// </summary>
         public int PageFooterCount
         {
             get
@@ -190,6 +267,9 @@ namespace Reportman.Reporting
                 return NumberOfSectionsOfType(SectionType.PageFooter);
             }
         }
+        /// <summary>
+        /// Gets the index of the first page footer section, or -1 when the subreport has no page footer.
+        /// </summary>
         public int FirstPageFooter
         {
             get
@@ -197,6 +277,9 @@ namespace Reportman.Reporting
                 return FirstSectionThatIs(SectionType.PageFooter);
             }
         }
+        /// <summary>
+        /// Gets the index of the last page footer section, or -1 when the subreport has no page footer.
+        /// </summary>
         public int LastPageFooter
         {
             get
@@ -204,6 +287,9 @@ namespace Reportman.Reporting
                 return LastSectionThatIs(SectionType.PageFooter);
             }
         }
+        /// <summary>
+        /// Gets the index of the first detail section, or -1 when the subreport has no detail section.
+        /// </summary>
         public int FirstDetail
         {
             get
@@ -211,6 +297,9 @@ namespace Reportman.Reporting
                 return FirstSectionThatIs(SectionType.Detail);
             }
         }
+        /// <summary>
+        /// Gets the number of detail sections in the subreport.
+        /// </summary>
         public int DetailCount
         {
             get
@@ -221,6 +310,9 @@ namespace Reportman.Reporting
                     return (LastSectionThatIs(SectionType.Detail) - FirstSectionThatIs(SectionType.Detail)) + 1;
             }
         }
+        /// <summary>
+        /// Gets the index of the last detail section, or -1 when the subreport has no detail section.
+        /// </summary>
         public int LastDetail
         {
             get
@@ -228,6 +320,9 @@ namespace Reportman.Reporting
                 return LastSectionThatIs(SectionType.Detail);
             }
         }
+        /// <summary>
+        /// Gets the number of group header sections (groups) defined in the subreport.
+        /// </summary>
         public int GroupCount
         {
             get
@@ -235,6 +330,11 @@ namespace Reportman.Reporting
                 return NumberOfSectionsOfType(SectionType.GroupHeader);
             }
         }
+        /// <summary>
+        /// Finds the index of the first section of the given type.
+        /// </summary>
+        /// <param name="atype">The section type to search for.</param>
+        /// <returns>The index of the first matching section, or -1 when none is found.</returns>
         public int FirstSectionThatIs(SectionType atype)
         {
             int i;
@@ -251,6 +351,11 @@ namespace Reportman.Reporting
             }
             return aresult;
         }
+        /// <summary>
+        /// Finds the index of the last section of the given type.
+        /// </summary>
+        /// <param name="atype">The section type to search for.</param>
+        /// <returns>The index of the last matching section, or -1 when none is found.</returns>
         public int LastSectionThatIs(SectionType atype)
         {
             int i;
@@ -266,6 +371,11 @@ namespace Reportman.Reporting
             }
             return aresult;
         }
+        /// <summary>
+        /// Raises a group change for each enclosing group from the given index down to the detail
+        /// sections, initializing the page-count tracking of the affected group sections.
+        /// </summary>
+        /// <param name="groupindex">The number of enclosing groups to initialize.</param>
         public void InitGroups(int groupindex)
         {
             int i, afirstdetail;
@@ -277,6 +387,11 @@ namespace Reportman.Reporting
                 i++;
             }
         }
+        /// <summary>
+        /// Determines whether the subreport has data to print, taking into account its alias and
+        /// the <see cref="PrintOnlyIfDataAvailable"/> option.
+        /// </summary>
+        /// <returns>true when the subreport should be printed; otherwise, false.</returns>
         public bool IsDataAvailable()
         {
             if (Alias.Length == 0)
@@ -296,6 +411,10 @@ namespace Reportman.Reporting
             }
             return aresult;
         }
+        /// <summary>
+        /// Evaluates the group change expressions to detect a group break for the current record.
+        /// </summary>
+        /// <returns>The index of the outermost group that changed, or zero when no group changed.</returns>
         public int GroupChanged()
         {
             int i, afirstdetail, agroupcount;
@@ -369,6 +488,10 @@ namespace Reportman.Reporting
                 i++;
             }
         }
+        /// <summary>
+        /// Returns the Report Manager class identifier used when serializing the subreport.
+        /// </summary>
+        /// <returns>The class name string.</returns>
         protected override string GetClassName()
         {
             return "TRPSUBREPORT";
@@ -474,6 +597,11 @@ namespace Reportman.Reporting
             Sections.Add(sec);
             return sec;
         }
+        /// <summary>
+        /// Returns the group index of the first section whose group name matches the given name.
+        /// </summary>
+        /// <param name="groupname">The name of the group to locate.</param>
+        /// <returns>The group index relative to the first detail section, or -1 when not found.</returns>
         public int IndexOfGroup(string groupname)
         {
             int aresult = -1;

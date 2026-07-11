@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -81,12 +81,32 @@ namespace Reportman.Drawing
     /// <summary>
     /// PDF Conformance behaviour, modify default PDF Conformance
     /// </summary>
-	public enum PDFConformance { SetPDFDefault = 0, SettPDF_1_4 = 1, SetPDF_A_3 = 2 };
+    public enum PDFConformance
+    {
+        /// <summary>Keep the current default PDF conformance without changing it</summary>
+        SetPDFDefault = 0,
+        /// <summary>Force writing the document as a plain PDF 1.4 file</summary>
+        SettPDF_1_4 = 1,
+        /// <summary>Force writing the document as a PDF/A-3 conformant file</summary>
+        SetPDF_A_3 = 2
+    };
     /// <summary>
     /// Relationship of an embedded (associated) file to the PDF document, as defined by the
     /// PDF/A-3 AFRelationship key (for example Data, Source, Alternative or Supplement).
     /// </summary>
-    public enum PDFAFRelationShip { Unspecified = 0, Alternative = 1, Data = 2, Source = 3, Supplement = 4 }
+    public enum PDFAFRelationShip
+    {
+        /// <summary>No relationship is specified between the embedded file and the document</summary>
+        Unspecified = 0,
+        /// <summary>The embedded file is an alternative representation of the document content</summary>
+        Alternative = 1,
+        /// <summary>The embedded file holds the source data used to generate the document</summary>
+        Data = 2,
+        /// <summary>The embedded file is the original source of the document content</summary>
+        Source = 3,
+        /// <summary>The embedded file provides additional supplemental content for the document</summary>
+        Supplement = 4
+    }
 
     /// <summary>
     /// A file embedded in the metafile (and later in the generated PDF), holding its content stream
@@ -94,14 +114,26 @@ namespace Reportman.Drawing
     /// </summary>
     public class EmbeddedFile : ICloneable, IDisposable
     {
+        /// <summary>Name of the embedded file as it will appear in the PDF file specification</summary>
         public string FileName;
+        /// <summary>In-memory content of the embedded file</summary>
         public MemoryStream Stream;
+        /// <summary>MIME type (PDF Subtype) describing the content of the embedded file</summary>
         public string MimeType;
+        /// <summary>PDF object number assigned to this embedded file while the PDF is being written</summary>
         public long ResourceNumber;
+        /// <summary>Human readable description of the embedded file</summary>
         public string Description;
+        /// <summary>Relationship of the embedded file to the PDF document (PDF/A-3 AFRelationship)</summary>
         public PDFAFRelationShip AFRelationShip;
+        /// <summary>Creation date of the embedded file, in PDF date string format</summary>
         public string CreationDate;
+        /// <summary>Last modification date of the embedded file, in PDF date string format</summary>
         public string ModificationDate;
+        /// <summary>
+        /// Returns the name of the current <see cref="AFRelationShip"/> value as the string
+        /// expected by the PDF AFRelationship key (for example "Data" or "Source").
+        /// </summary>
         public string AFRelationShipToString()
         {
             string Result = "Unspecified";
@@ -125,6 +157,10 @@ namespace Reportman.Drawing
             }
             return Result;
         }
+        /// <summary>
+        /// Creates a deep copy of this embedded file, duplicating its content stream.
+        /// </summary>
+        /// <returns>A new <see cref="EmbeddedFile"/> with the same metadata and a copy of the stream</returns>
         public object Clone()
         {
             EmbeddedFile efile = new EmbeddedFile();
@@ -144,6 +180,9 @@ namespace Reportman.Drawing
             }
             return efile;
         }
+        /// <summary>
+        /// Releases the memory stream holding the embedded file content.
+        /// </summary>
         public void Dispose()
         {
             if (Stream != null)
@@ -389,12 +428,106 @@ namespace Reportman.Drawing
         PlainPrinter,
         /// <summary>Plain Full Printer, by default PLAIN text driver without form feed will be used</summary>
         PlainFullPrinter,
-        /// <summary>Other printers</summary>
-        Printer1, Printer2, Printer3, Printer4, Printer5, Printer6, Printer7, Printer8, Printer9, Printer10,
-        Printer11, Printer12, Printer13, Printer14, Printer15, Printer16, Printer17, Printer18, Printer19, Printer20,
-        Printer21, Printer22, Printer23, Printer24, Printer25, Printer26, Printer27, Printer28, Printer29, Printer30,
-        Printer31, Printer32, Printer33, Printer34, Printer35, Printer36, Printer37, Printer38, Printer39, Printer40,
-        Printer41, Printer42, Printer43, Printer44, Printer45, Printer46, Printer47, Printer48, Printer49, Printer50
+        /// <summary>Other user predefined printer 1</summary>
+        Printer1,
+        /// <summary>Other user predefined printer 2</summary>
+        Printer2,
+        /// <summary>Other user predefined printer 3</summary>
+        Printer3,
+        /// <summary>Other user predefined printer 4</summary>
+        Printer4,
+        /// <summary>Other user predefined printer 5</summary>
+        Printer5,
+        /// <summary>Other user predefined printer 6</summary>
+        Printer6,
+        /// <summary>Other user predefined printer 7</summary>
+        Printer7,
+        /// <summary>Other user predefined printer 8</summary>
+        Printer8,
+        /// <summary>Other user predefined printer 9</summary>
+        Printer9,
+        /// <summary>Other user predefined printer 10</summary>
+        Printer10,
+        /// <summary>Other user predefined printer 11</summary>
+        Printer11,
+        /// <summary>Other user predefined printer 12</summary>
+        Printer12,
+        /// <summary>Other user predefined printer 13</summary>
+        Printer13,
+        /// <summary>Other user predefined printer 14</summary>
+        Printer14,
+        /// <summary>Other user predefined printer 15</summary>
+        Printer15,
+        /// <summary>Other user predefined printer 16</summary>
+        Printer16,
+        /// <summary>Other user predefined printer 17</summary>
+        Printer17,
+        /// <summary>Other user predefined printer 18</summary>
+        Printer18,
+        /// <summary>Other user predefined printer 19</summary>
+        Printer19,
+        /// <summary>Other user predefined printer 20</summary>
+        Printer20,
+        /// <summary>Other user predefined printer 21</summary>
+        Printer21,
+        /// <summary>Other user predefined printer 22</summary>
+        Printer22,
+        /// <summary>Other user predefined printer 23</summary>
+        Printer23,
+        /// <summary>Other user predefined printer 24</summary>
+        Printer24,
+        /// <summary>Other user predefined printer 25</summary>
+        Printer25,
+        /// <summary>Other user predefined printer 26</summary>
+        Printer26,
+        /// <summary>Other user predefined printer 27</summary>
+        Printer27,
+        /// <summary>Other user predefined printer 28</summary>
+        Printer28,
+        /// <summary>Other user predefined printer 29</summary>
+        Printer29,
+        /// <summary>Other user predefined printer 30</summary>
+        Printer30,
+        /// <summary>Other user predefined printer 31</summary>
+        Printer31,
+        /// <summary>Other user predefined printer 32</summary>
+        Printer32,
+        /// <summary>Other user predefined printer 33</summary>
+        Printer33,
+        /// <summary>Other user predefined printer 34</summary>
+        Printer34,
+        /// <summary>Other user predefined printer 35</summary>
+        Printer35,
+        /// <summary>Other user predefined printer 36</summary>
+        Printer36,
+        /// <summary>Other user predefined printer 37</summary>
+        Printer37,
+        /// <summary>Other user predefined printer 38</summary>
+        Printer38,
+        /// <summary>Other user predefined printer 39</summary>
+        Printer39,
+        /// <summary>Other user predefined printer 40</summary>
+        Printer40,
+        /// <summary>Other user predefined printer 41</summary>
+        Printer41,
+        /// <summary>Other user predefined printer 42</summary>
+        Printer42,
+        /// <summary>Other user predefined printer 43</summary>
+        Printer43,
+        /// <summary>Other user predefined printer 44</summary>
+        Printer44,
+        /// <summary>Other user predefined printer 45</summary>
+        Printer45,
+        /// <summary>Other user predefined printer 46</summary>
+        Printer46,
+        /// <summary>Other user predefined printer 47</summary>
+        Printer47,
+        /// <summary>Other user predefined printer 48</summary>
+        Printer48,
+        /// <summary>Other user predefined printer 49</summary>
+        Printer49,
+        /// <summary>Other user predefined printer 50</summary>
+        Printer50
     };
     /// <summary>
     /// Page orientation
@@ -490,7 +623,7 @@ namespace Reportman.Drawing
     }
     /// <summary>
     /// Enumeration indicating the text alignment, that is how the text is drawn inside the defined box
-    /// <see cref="PrintItemText"/>
+    /// of a text print item.
     /// </summary>
     public enum TextAlignType
     {
@@ -506,7 +639,7 @@ namespace Reportman.Drawing
     };
     /// <summary>
     /// Enumeration indicating vertical text alignment, that is how the full text, after horizontal alignment is done, is drawn inside the defined box
-    /// <see cref="PrintItemText"/>
+    /// of a text print item.
     /// </summary>
     public enum TextAlignVerticalType
     {
@@ -527,7 +660,19 @@ namespace Reportman.Drawing
         /// On-disk format version of a metafile, controlling which features (PDF/A metadata,
         /// embedded files, recalculated printer fonts) are written and how the file is parsed.
         /// </summary>
-        public enum MetaFileVersion { MetaVersion2_2, MetaVersion2_4, MetaVersion3_0, MetaVersion4_0, MetaVersion4_1 };
+        public enum MetaFileVersion
+        {
+            /// <summary>Legacy metafile format (signature RPMETAFILE07)</summary>
+            MetaVersion2_2,
+            /// <summary>Metafile format 2.4, the current default (signature RPMETAFILE09)</summary>
+            MetaVersion2_4,
+            /// <summary>Metafile format 3.0, adds PDF/A metadata and embedded files (signature RPMETAFILE30)</summary>
+            MetaVersion3_0,
+            /// <summary>Metafile format 4.0 (signature RPMETAFILE40)</summary>
+            MetaVersion4_0,
+            /// <summary>Metafile format 4.1, adds the recalculated printer fonts field (signature RPMETAFILE41)</summary>
+            MetaVersion4_1
+        };
 
         private MemoryStream FSharedStream;
         private byte[] sign2_4 ={(byte)'R',(byte)'P',(byte)'M',(byte)'E',(byte)'T',(byte)'A',
@@ -721,6 +866,9 @@ namespace Reportman.Drawing
         private FileStream finternalfile;
         private bool AbortingThread;
         private MetaFileVersion FVersion = MetaFileVersion.MetaVersion2_4;
+        /// <summary>
+        /// Gets or sets the on-disk format version used when writing this metafile.
+        /// </summary>
         public MetaFileVersion Version
         {
             get
@@ -738,7 +886,6 @@ namespace Reportman.Drawing
         private Stream FIntStream;
         private int facount;
         private bool FFinished;
-        private bool HasAnnotations;
         /// <summary>Maximum number of pages that can contain a MetaFile (32000)</summary>
 		public const int MAX_NUMBER_PAGES = 32000;
         /// <summary>ForwardOnly is set to true when there is no need to store processed pages in memory
@@ -796,6 +943,10 @@ namespace Reportman.Drawing
         /// <summary>True if the hard margins should be visible in preview</summary>
         public bool PreviewMargins;
         private PDFConformanceType FPDFConformance = PDFConformanceType.PDF_1_4;
+        /// <summary>
+        /// Gets or sets the PDF conformance level of the document. Selecting PDF/A-3 raises
+        /// the metafile version to 3.0 so that metadata and embedded files can be stored.
+        /// </summary>
         public PDFConformanceType PDFConformance
         {
             get
@@ -814,17 +965,28 @@ namespace Reportman.Drawing
                 FPDFConformance = value;
             }
         }
+        /// <summary>True if the generated PDF stream content should be compressed</summary>
         public bool PDFCompressed;
+        /// <summary>Files embedded in the metafile and later attached to the generated PDF</summary>
         public List<EmbeddedFile> EmbeddedFiles = new List<EmbeddedFile>();
         // Metadata
+        /// <summary>Document author stored in the PDF metadata</summary>
         public string DocAuthor;
+        /// <summary>Document title stored in the PDF metadata</summary>
         public string DocTitle;
+        /// <summary>Document subject stored in the PDF metadata</summary>
         public string DocSubject;
+        /// <summary>Producer application stored in the PDF metadata</summary>
         public string DocProducer;
+        /// <summary>Creator application stored in the PDF metadata</summary>
         public string DocCreator;
+        /// <summary>Document keywords stored in the PDF metadata</summary>
         public string DocKeywords;
+        /// <summary>Raw XMP metadata content embedded in the PDF</summary>
         public string DocXMPContent;
+        /// <summary>Document creation date stored in the PDF metadata</summary>
         public string DocCreationDate;
+        /// <summary>Document last modification date stored in the PDF metadata</summary>
         public string DocModificationDate;
 
 
@@ -854,6 +1016,10 @@ namespace Reportman.Drawing
 		public bool AsyncReading;
         /// <summary>Default printer fonts selection</summary>
         public PrinterFontsType PrinterFonts;
+        /// <summary>
+        /// Creates a deep copy of the metafile by serializing it to memory and loading it back.
+        /// </summary>
+        /// <returns>A new <see cref="MetaFile"/> holding an independent copy of the content</returns>
         public object Clone()
         {
             MetaFile newmetafile = new MetaFile();
@@ -908,6 +1074,17 @@ namespace Reportman.Drawing
             ObjectsFound = new SortedList();
             PagesFound = new SortedList();
         }
+        /// <summary>
+        /// Adds a new embedded file to the metafile, copying the supplied stream content. Adding an
+        /// embedded file raises the metafile version to 3.0 so the file can be stored and later attached to the PDF.
+        /// </summary>
+        /// <param name="fileName">Name of the embedded file</param>
+        /// <param name="mimeType">MIME type (PDF Subtype) of the embedded file</param>
+        /// <param name="AFRelationShip">Relationship of the embedded file to the PDF document</param>
+        /// <param name="description">Human readable description of the embedded file</param>
+        /// <param name="creationDate">Creation date in PDF date string format</param>
+        /// <param name="modificationDate">Last modification date in PDF date string format</param>
+        /// <param name="stream">Stream containing the content to embed; it is copied, not referenced</param>
         public void NewEmbeddedFile(string fileName, string mimeType, PDFAFRelationShip AFRelationShip,
           string description, string creationDate, string modificationDate, MemoryStream stream)
         {
@@ -994,6 +1171,17 @@ namespace Reportman.Drawing
             if (astream.Read(buf, 0, count) < count)
                 throw new Exception(Translator.TranslateStr(521));
         }
+        static private void ReadBufExact(Stream astream, byte[] buf, int offset, int count)
+        {
+            int total = 0;
+            while (total < count)
+            {
+                int readed = astream.Read(buf, offset + total, count - total);
+                if (readed <= 0)
+                    throw new Exception(Translator.TranslateStr(521));
+                total += readed;
+            }
+        }
         /// <summary>
         /// Load a MetaFile from a stream
         /// </summary>
@@ -1030,6 +1218,12 @@ namespace Reportman.Drawing
                 fstream.Close();
             }
         }
+        /// <summary>
+        /// Writes a string to the stream as a 4-byte length prefix followed by its UTF-8 bytes.
+        /// A null string is written as an empty string.
+        /// </summary>
+        /// <param name="astring">String to write</param>
+        /// <param name="deststream">Destination stream</param>
         public void WriteStringToStream(string astring, Stream deststream)
         {
             if (astring == null)
@@ -1042,17 +1236,23 @@ namespace Reportman.Drawing
             deststream.Write(bytes, 0, bytes.Length);
         }
 
+        /// <summary>
+        /// Reads a string previously written with <see cref="WriteStringToStream"/>, that is a
+        /// 4-byte length prefix followed by that many UTF-8 bytes.
+        /// </summary>
+        /// <param name="stream">Source stream</param>
+        /// <returns>The decoded string, or an empty string when the length is zero</returns>
         public string ReadStringFromStream(Stream stream)
         {
             byte[] buf4 = new byte[4];
-            stream.Read(buf4, 0, 4);
+            ReadBufExact(stream, buf4, 0, 4);
             int i = StreamUtil.ByteArrayToInt(buf4, 4);
             if (i == 0)
             {
                 return "";
             }
             byte[] buf = new byte[i];
-            stream.Read(buf, 0, i);
+            ReadBufExact(stream, buf, 0, i);
             return Encoding.UTF8.GetString(buf);
         }
         private void IntSaveToStream(Stream astream)
@@ -1270,9 +1470,9 @@ namespace Reportman.Drawing
                 {
                     // PDF Compressed
                     byte[] conformanceByte = new byte[1];
-                    astream.Read(conformanceByte, 0, 1);
+                    ReadBufExact(astream, conformanceByte, 0, 1);
                     PDFConformance = (PDFConformanceType)conformanceByte[0];
-                    astream.Read(conformanceByte, 0, 1);
+                    ReadBufExact(astream, conformanceByte, 0, 1);
                     PDFCompressed = conformanceByte[0] == 1;
                     DocAuthor = ReadStringFromStream(astream);
                     DocCreator = ReadStringFromStream(astream);
@@ -1301,10 +1501,10 @@ namespace Reportman.Drawing
                         efile.MimeType = ReadStringFromStream(astream);
                         efile.Description = ReadStringFromStream(astream);
                         efile.ModificationDate = ReadStringFromStream(astream);
-                        astream.Read(conformanceByte, 0, 1);
+                        ReadBufExact(astream, conformanceByte, 0, 1);
                         efile.AFRelationShip = (PDFAFRelationShip)conformanceByte[0];
                         byte[] ssizeArray = new byte[8];
-                        astream.Read(ssizeArray, 0, ssizeArray.Length);
+                        ReadBufExact(astream, ssizeArray, 0, ssizeArray.Length);
                         Int64 ssize = StreamUtil.ByteArrayToInt64(ssizeArray, 0, 8);
                         if (ssize < 0)
                             throw new Exception("Error reading file stream");
@@ -1330,7 +1530,7 @@ namespace Reportman.Drawing
                     }
                     if (FVersion >= MetaFileVersion.MetaVersion4_1)
                     {
-                        astream.Read(conformanceByte, 0, 1);
+                        ReadBufExact(astream, conformanceByte, 0, 1);
                         PrinterFonts = (PrinterFontsType)conformanceByte[0];
                     }
 
@@ -1880,6 +2080,10 @@ namespace Reportman.Drawing
                     PagesFound.Add(i.ToString("00000000"), apage);
             }
         }
+        /// <summary>
+        /// Appends the pages of every metafile in the given list to this metafile.
+        /// </summary>
+        /// <param name="nlist">Metafiles whose pages are appended in order</param>
         public void AddMetaFiles(List<MetaFile> nlist)
         {
             foreach (MetaFile nf in nlist)

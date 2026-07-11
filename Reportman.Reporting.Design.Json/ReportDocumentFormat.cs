@@ -6,7 +6,13 @@ namespace Reportman.Reporting.Design.Json
     /// </summary>
     public enum ReportDocumentFormat
     {
+        /// <summary>
+        /// The report document is serialized in JSON format.
+        /// </summary>
         Json,
+        /// <summary>
+        /// The report document is serialized in XML format.
+        /// </summary>
         Xml
     }
 }

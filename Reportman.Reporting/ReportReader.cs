@@ -255,6 +255,12 @@ namespace Reportman.Reporting
                 stream.Close();
             }
         }
+        /// <summary>
+        /// Parses a string containing XML-formatted section and component definitions and
+        /// returns the resulting list of <see cref="PrintPosItem"/> components.
+        /// </summary>
+        /// <param name="contents">The XML string to parse.</param>
+        /// <returns>A list of <see cref="PrintPosItem"/> instances reconstructed from the XML.</returns>
         public List<PrintPosItem> ReadFromString(string contents)
         {
             List<PrintPosItem> nresult = new List<PrintPosItem>();
@@ -2726,6 +2732,12 @@ namespace Reportman.Reporting
             StreamUtil.SWriteLine(astream, "</SECTION>");
 
         }
+        /// <summary>
+        /// Serializes a list of <see cref="PrintPosItem"/> components into an XML string
+        /// wrapped inside a <c>&lt;SECTION&gt;</c> element.
+        /// </summary>
+        /// <param name="nitems">The components to serialize.</param>
+        /// <returns>An XML string representing the supplied components.</returns>
         public static string WriteComponents(List<PrintPosItem> nitems)
         {
             string nresult = "";

@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -124,9 +124,9 @@ namespace Reportman.Reporting
         /// <summary>
         /// Constructor to launch a report exception
         /// </summary>
-        /// <param name="amessage"></param>
-        /// <param name="element"></param>
-        /// <param name="propname"></param>
+        /// <param name="amessage">Message describing the error condition.</param>
+        /// <param name="elementName">Name of the report item that caused the problem.</param>
+        /// <param name="propname">Name of the property related to the error, when applicable.</param>
         public ReportNamedException(string amessage, string elementName, string propname)
             : base(amessage)
         {
@@ -144,6 +144,9 @@ namespace Reportman.Reporting
         /// </summary>
         public UndoCue UndoCue;
 
+        /// <summary>
+        /// Page size details captured for the first page of the report.
+        /// </summary>
         public PageSizeDetail InitialPageDetail;
 
         /// <summary>
@@ -248,6 +251,10 @@ namespace Reportman.Reporting
 		protected bool FCompose;
 
 
+        /// <summary>
+        /// True when the report is being composed as part of a group of reports,
+        /// so its total page counters are not reset between subreports.
+        /// </summary>
         [System.Text.Json.Serialization.JsonIgnore]
         [Newtonsoft.Json.JsonIgnore]
         public bool Compose
@@ -600,32 +607,104 @@ namespace Reportman.Reporting
         /// </summary>
         public bool TwoPass { get; set; }
 
+        /// <summary>
+        /// Selects how fonts are handled when printing, using printer resident fonts when applicable.
+        /// </summary>
         public PrinterFontsType PrinterFonts { get; set; }
+        /// <summary>
+        /// When true, the report is only generated if at least one of its datasets contains data.
+        /// </summary>
         public bool PrintOnlyIfDataAvailable { get; set; }
 
+        /// <summary>
+        /// Format used when serializing the report to a stream or file.
+        /// </summary>
         public StreamFormatType StreamFormat { get; set; }
 
+        /// <summary>
+        /// True if an action must be executed before the report is printed.
+        /// </summary>
         public bool ActionBefore { get; set; }
+        /// <summary>
+        /// True if an action must be executed after the report is printed.
+        /// </summary>
         public bool ActionAfter { get; set; }
+        /// <summary>
+        /// True if the about box may be shown from the preview window.
+        /// </summary>
         public bool PreviewAbout { get; set; }
+        /// <summary>
+        /// Default PDF (Type1) font used for new text items while designing the report.
+        /// </summary>
         public PDFFontType Type1Font { get; set; }
+        /// <summary>
+        /// Default font size in points for new text items while designing the report.
+        /// </summary>
         public short FontSize { get; set; }
+        /// <summary>
+        /// Default font rotation in tenths of a degree for new text items.
+        /// </summary>
         public short FontRotation { get; set; }
+        /// <summary>
+        /// Default font style flags (bold, italic, underline) for new text items.
+        /// </summary>
         public int FontStyle { get; set; }
+        /// <summary>
+        /// Default font color for new text items.
+        /// </summary>
         public int FontColor { get; set; }
+        /// <summary>
+        /// Default background color for new text items.
+        /// </summary>
         public int BackColor { get; set; }
+        /// <summary>
+        /// Default transparency for new text items; when true the background is not painted.
+        /// </summary>
         public bool Transparent { get; set; }
+        /// <summary>
+        /// Default value indicating whether text that does not fit is cut for new text items.
+        /// </summary>
         public bool CutText { get; set; }
+        /// <summary>
+        /// Default horizontal text alignment for new text items.
+        /// </summary>
         public TextAlignType Alignment { get; set; }
+        /// <summary>
+        /// Default vertical text alignment for new text items.
+        /// </summary>
         public TextAlignVerticalType VAlignment { get; set; }
+        /// <summary>
+        /// Default word wrapping setting for new text items.
+        /// </summary>
         public bool WordWrap { get; set; }
+        /// <summary>
+        /// Default value indicating whether new text items are restricted to a single line.
+        /// </summary>
         public bool SingleLine { get; set; }
+        /// <summary>
+        /// Default value indicating whether new text items may span multiple pages.
+        /// </summary>
         public bool MultiPage { get; set; }
+        /// <summary>
+        /// Default print step (character pitch) for new text items.
+        /// </summary>
         public PrintStepType PrintStep { get; set; }
+        /// <summary>
+        /// Default paper source (bin) index requested from the printer.
+        /// </summary>
         public int PaperSource { get; set; }
+        /// <summary>
+        /// Default duplex printing mode requested from the printer.
+        /// </summary>
         public int Duplex { get; set; }
+        /// <summary>
+        /// Name of the paper form to force on the printer, when specified.
+        /// </summary>
         public string ForcePaperName { get; set; }
         private short FLinesPerInch;
+        /// <summary>
+        /// Number of lines per inch used to align sections, propagated to the metafile.
+        /// </summary>
         public short LinesPerInch
         {
             get
@@ -638,24 +717,72 @@ namespace Reportman.Reporting
                 FMetaFile.LinesPerInch = FLinesPerInch;
             }
         }
+        /// <summary>
+        /// Files embedded into the generated document, such as PDF attachments.
+        /// </summary>
         public List<EmbeddedFile> EmbeddedFiles = new List<EmbeddedFile>();
+        /// <summary>
+        /// PDF conformance level used when exporting to PDF.
+        /// </summary>
         public PDFConformanceType PDFConformance = PDFConformanceType.PDF_1_4;
+        /// <summary>
+        /// True to compress the generated PDF streams.
+        /// </summary>
         public bool PDFCompressed;
         // Metadata
+        /// <summary>
+        /// Document author stored in the generated document metadata.
+        /// </summary>
         public string DocAuthor { get; set; }
+        /// <summary>
+        /// Document title stored in the generated document metadata.
+        /// </summary>
         public string DocTitle { get; set; }
+        /// <summary>
+        /// Document subject stored in the generated document metadata.
+        /// </summary>
         public string DocSubject { get; set; }
+        /// <summary>
+        /// Document producer stored in the generated document metadata.
+        /// </summary>
         public string DocProducer { get; set; }
+        /// <summary>
+        /// Document creator stored in the generated document metadata.
+        /// </summary>
         public string DocCreator { get; set; }
+        /// <summary>
+        /// Document creation date stored in the generated document metadata.
+        /// </summary>
         public string DocCreationDate { get; set; }
+        /// <summary>
+        /// Document modification date stored in the generated document metadata.
+        /// </summary>
         public string DocModificationDate { get; set; }
+        /// <summary>
+        /// Document keywords stored in the generated document metadata.
+        /// </summary>
         public string DocKeywords { get; set; }
+        /// <summary>
+        /// XMP metadata content embedded in the generated document.
+        /// </summary>
         public string DocXMPContent { get; set; }
+        /// <summary>
+        /// True to show the page margins in the preview window.
+        /// </summary>
         public bool PreviewMargins { get; set; }
+        /// <summary>
+        /// Expression evaluator used to resolve report expressions and identifiers.
+        /// </summary>
         [System.Text.Json.Serialization.JsonIgnore]
         [Newtonsoft.Json.JsonIgnore]
         public Evaluator Evaluator;
+        /// <summary>
+        /// Page orientation currently applied while processing the report.
+        /// </summary>
         public OrientationType CurrentOrientation;
+        /// <summary>
+        /// True when the page size must be recalculated for the current page.
+        /// </summary>
         public bool UpdatePageSize;
         /// <summary>
         /// Internal progress procedure
@@ -684,6 +811,10 @@ namespace Reportman.Reporting
                     throw new UnNamedException(Translator.TranslateStr(503));
             }
         }
+        /// <summary>
+        /// Registers a report item in the components collection, indexed by its uppercase name.
+        /// </summary>
+        /// <param name="it">Report item to add.</param>
         public void AddComponent(ReportItem it)
         {
             if (it.Name.Length > 0)
@@ -696,6 +827,11 @@ namespace Reportman.Reporting
                     Components.Add(it.Name.ToUpper(), it);
             }
         }
+        /// <summary>
+        /// Rounds the top margin and every section height so they align to the grid
+        /// defined by the given number of lines per inch.
+        /// </summary>
+        /// <param name="linesPerInch">Number of lines per inch used as the alignment step.</param>
         public void AlignSectionsTo(int linesPerInch)
         {
             double lineHeightDouble = Math.Round((double)Twips.TWIPS_PER_INCH / ((double)linesPerInch));
@@ -713,6 +849,10 @@ namespace Reportman.Reporting
                 }
             }
         }
+        /// <summary>
+        /// Removes a report item from the components collection.
+        /// </summary>
+        /// <param name="it">Report item to remove.</param>
         public void RemoveComponent(ReportItem it)
         {
             int index = Components.IndexOfKey(it.Name);
@@ -738,6 +878,9 @@ namespace Reportman.Reporting
             EndPrint();
         }
 
+        /// <summary>
+        /// Initializes a new report with default margins, grid, fonts, collections and evaluator.
+        /// </summary>
         protected BaseReport()
         {
             FMetaFile = new MetaFile();
@@ -839,6 +982,10 @@ namespace Reportman.Reporting
 
             InitEvaluator();
         }
+        /// <summary>
+        /// Loads a report from the first row returned by the given database command.
+        /// </summary>
+        /// <param name="selecommand">Command whose first column of the first row holds the report bytes.</param>
         public void LoadFromCommand(IDbCommand selecommand)
         {
             using (IDataReader reader = selecommand.ExecuteReader())
@@ -851,6 +998,10 @@ namespace Reportman.Reporting
                     throw new Exception("No rows in command");
             }
         }
+        /// <summary>
+        /// Loads a report from the first column of the current row of a data reader.
+        /// </summary>
+        /// <param name="areader">Data reader positioned on the row that holds the report bytes.</param>
         public void LoadFromDataReader(IDataReader areader)
         {
             int blength = System.Convert.ToInt32(areader.GetBytes(0, 0, null, 0, 0));
@@ -870,6 +1021,11 @@ namespace Reportman.Reporting
 #endif
             }
         }
+        /// <summary>
+        /// Loads a report from a stream, optionally converting it to the .Net data drivers.
+        /// </summary>
+        /// <param name="astream">Stream containing the report definition.</param>
+        /// <param name="convertToDotNet">When true, converts data drivers and SQL parameters to the .Net format after loading.</param>
         public void LoadFromStream(Stream astream, bool convertToDotNet = true)
         {
             ReportReader areader = new ReportReader(this);
@@ -880,7 +1036,6 @@ namespace Reportman.Reporting
         /// <summary>
         /// Converts a report to dot net, changing data driver type and parameters in sql sentences
         /// </summary>
-        /// <param name="nreport"></param>
         public void ConvertToDotNet()
         {
             int index;
@@ -897,28 +1052,54 @@ namespace Reportman.Reporting
                 return;
             ReportReader.ConvertToDotNet((Report)this, DriverType.DotNet2, "");
         }
+        /// <summary>
+        /// Loads a report from a stream using the given read buffer size.
+        /// </summary>
+        /// <param name="astream">Stream containing the report definition.</param>
+        /// <param name="bufsize">Buffer size in bytes used while reading the stream.</param>
         public void LoadFromStream(Stream astream, int bufsize)
         {
             ReportReader areader = new ReportReader(this);
             areader.LoadFromStream(astream, bufsize);
         }
+        /// <summary>
+        /// Loads a report from a file on disk.
+        /// </summary>
+        /// <param name="filename">Path of the report file to load.</param>
         public void LoadFromFile(string filename)
         {
             ReportReader areader = new ReportReader(this);
             areader.LoadFromFile(filename);
 
         }
+        /// <summary>
+        /// Saves the report definition to a stream using the given stream version.
+        /// </summary>
+        /// <param name="astream">Destination stream.</param>
+        /// <param name="version">Stream format version to write.</param>
         public void SaveToStream(Stream astream, StreamVersion version = StreamVersion.V2)
         {
             ReportWriter areader = new ReportWriter(this);
             areader.SaveToStream(astream, version);
         }
+        /// <summary>
+        /// Saves the report definition to a file using the given stream version.
+        /// </summary>
+        /// <param name="filename">Destination file path.</param>
+        /// <param name="version">Stream format version to write.</param>
         public void SaveToFile(string filename, StreamVersion version = StreamVersion.V2)
         {
             ReportWriter areader = new ReportWriter(this);
             areader.SaveToFile(filename, version);
 
         }
+        /// <summary>
+        /// Registers a metafile object that must display the total number of pages once the
+        /// report has finished processing.
+        /// </summary>
+        /// <param name="apageindex">Index of the page that contains the object.</param>
+        /// <param name="aobjectindex">Index of the object within the page.</param>
+        /// <param name="adisplayformat">Display format applied to the total pages value.</param>
         public void AddTotalPagesItem(int apageindex, int aobjectindex,
                         string adisplayformat)
         {
@@ -928,6 +1109,12 @@ namespace Reportman.Reporting
             aobject.DisplayFormat = adisplayformat;
             FTotalPages.Add(aobject);
         }
+        /// <summary>
+        /// Ensures the requested page has been generated, processing pages synchronously or
+        /// asynchronously as needed, and returns whether the last page has been reached.
+        /// </summary>
+        /// <param name="pageindex">Zero based index of the page to generate.</param>
+        /// <returns>True if the report has reached its last page.</returns>
         public bool RequestPage(int pageindex)
         {
             if (pageindex == int.MaxValue)
@@ -1023,6 +1210,9 @@ namespace Reportman.Reporting
             }
         }
 
+        /// <summary>
+        /// Rebuilds the lists of global page headers and footers from every subreport.
+        /// </summary>
         protected void FillGlobalHeaders()
         {
             GHeaders.Clear();
@@ -1046,6 +1236,10 @@ namespace Reportman.Reporting
                 }
             }
         }
+        /// <summary>
+        /// Finishes report processing, deactivating datasets, updating total pages and
+        /// releasing the metafile.
+        /// </summary>
         public void EndPrint()
         {
             DeActivateDatasets();
@@ -1060,6 +1254,9 @@ namespace Reportman.Reporting
             }
             LastPage = true;
         }
+        /// <summary>
+        /// Creates a fresh expression evaluator and wires its dataset needed event and language.
+        /// </summary>
         public void InitEvaluator()
         {
             Evaluator = new Evaluator();
@@ -1092,6 +1289,9 @@ namespace Reportman.Reporting
             }
         }
 
+        /// <summary>
+        /// Registers report items in the evaluator and computes the initial value of every parameter.
+        /// </summary>
         public void InitializeParams()
         {
             AddReportItemsToEvaluator(Evaluator);
@@ -1539,6 +1739,10 @@ namespace Reportman.Reporting
             return true;
         }
 
+        /// <summary>
+        /// Generates the whole report into the given driver, from the first to the last page.
+        /// </summary>
+        /// <param name="Driver">Print driver that receives the generated document.</param>
         public void PrintAll(PrintOut Driver)
         {
             BeginPrint(Driver);
@@ -1559,6 +1763,11 @@ namespace Reportman.Reporting
                 EndPrint();
             }
         }
+        /// <summary>
+        /// Evaluates the parameters that must be resolved before opening the dataset at the given index.
+        /// </summary>
+        /// <param name="index">Index of the dataset in the data info collection.</param>
+        /// <param name="doeval">When true, parameter expressions are evaluated through the evaluator.</param>
         public void UpdateParamsBeforeOpen(int index, bool doeval)
         {
             int i, aindex;
@@ -1610,6 +1819,11 @@ namespace Reportman.Reporting
                     }
             }
         }
+        /// <summary>
+        /// Evaluates the parameters that must be resolved after opening the dataset at the given index.
+        /// </summary>
+        /// <param name="index">Index of the dataset in the data info collection.</param>
+        /// <param name="doeval">When true, parameter expressions are evaluated through the evaluator.</param>
         protected void UpdateParamsAfterOpen(int index, bool doeval)
         {
             int i, aindex;
@@ -1638,11 +1852,18 @@ namespace Reportman.Reporting
                     }
             }
         }
+        /// <summary>
+        /// Prepares the before open parameters for every dataset without evaluating expressions.
+        /// </summary>
         protected void PrepareParamsBeforeOpen()
         {
             for (int i = 0; i < DataInfo.Count; i++)
                 UpdateParamsBeforeOpen(i, false);
         }
+        /// <summary>
+        /// Prepares the after open parameters for every dataset and evaluates parameters that
+        /// are not bound to any dataset.
+        /// </summary>
         protected void PrepareParamsAfterOpen()
         {
             for (int i = 0; i < DataInfo.Count; i++)
@@ -1670,6 +1891,10 @@ namespace Reportman.Reporting
                 }
             }
         }
+        /// <summary>
+        /// When PrintOnlyIfDataAvailable is set, aborts the report if none of the subreport
+        /// datasets contain rows, throwing a no data to print exception.
+        /// </summary>
         protected void CheckIfDataAvailable()
         {
             if (!PrintOnlyIfDataAvailable)
@@ -1702,6 +1927,9 @@ namespace Reportman.Reporting
             }
 
         }
+        /// <summary>
+        /// Disconnects every dataset and database connection used by the report.
+        /// </summary>
         protected void DeActivateDatasets()
         {
             int i;
@@ -1715,6 +1943,12 @@ namespace Reportman.Reporting
                 DatabaseInfo[i].DisConnect();
             }
         }
+        /// <summary>
+        /// Determines whether the given subreport must be executed according to the
+        /// ExecuteSubReportIndexes filter.
+        /// </summary>
+        /// <param name="nsubreport">Subreport to test.</param>
+        /// <returns>True if the subreport must be executed.</returns>
         public bool SubreportMustBeExecuted(SubReport nsubreport)
         {
             if (ExecuteSubReportIndexes == null)
@@ -1734,7 +1968,14 @@ namespace Reportman.Reporting
             }
             return false;
         }
+        /// <summary>
+        /// Names of the data readers that have been used during the current report execution.
+        /// </summary>
         public SortedList<string, string> UsedDataReaders = new SortedList<string, string>();
+        /// <summary>
+        /// Opens the datasets that must be active on report start, honoring the subreport
+        /// execution filter, and validates that every subreport alias resolves to a dataset.
+        /// </summary>
         protected void ActivateDatasets()
         {
             UsedDataReaders.Clear();
@@ -1796,11 +2037,18 @@ namespace Reportman.Reporting
                 throw;
             }
         }
+        /// <summary>
+        /// Resets the report to a single empty subreport.
+        /// </summary>
         public void CreateNew()
         {
             SubReports.Clear();
             AddSubReport();
         }
+        /// <summary>
+        /// Creates a new subreport with a detail section, adds it to the report and returns it.
+        /// </summary>
+        /// <returns>The newly created subreport.</returns>
         public SubReport AddSubReport()
         {
             SubReport subrep = new SubReport();
@@ -1810,6 +2058,10 @@ namespace Reportman.Reporting
             SubReports.Add(subrep);
             return subrep;
         }
+        /// <summary>
+        /// Removes a subreport together with its sections and disposes it.
+        /// </summary>
+        /// <param name="sub">Subreport to delete.</param>
         public void DeleteSubReport(SubReport sub)
         {
             SubReports.Remove(sub);
@@ -1822,9 +2074,18 @@ namespace Reportman.Reporting
             Components.Remove(sub.Name);
             sub.Dispose();
         }
+        /// <summary>
+        /// Generates the next page of the report. Returns true when the report has finished.
+        /// </summary>
+        /// <returns>True if there are no more pages to generate.</returns>
         abstract public bool PrintNextPage();
 
 
+        /// <summary>
+        /// Starts report printing on the given driver, clearing total page information unless
+        /// the report is being composed.
+        /// </summary>
+        /// <param name="driver">Print driver that will receive the report.</param>
         virtual public void BeginPrint(PrintOut driver)
         {
             if (!FCompose)
@@ -1832,6 +2093,12 @@ namespace Reportman.Reporting
                 FTotalPages.Clear();
             }
         }
+        /// <summary>
+        /// Applies the given page size details to a metafile page and, when required, queries
+        /// the driver for the effective page dimensions.
+        /// </summary>
+        /// <param name="MetaFilepage">Metafile page whose size is being updated.</param>
+        /// <param name="detail">Page size details to apply.</param>
         public void DoUpdatePageSize(MetaPage MetaFilepage, PageSizeDetail detail)
         {
             Point apagesize;
@@ -2557,6 +2824,11 @@ end;
                 return Report.GetSQLValueOp(Params[0].AsString, Params[1].AsString);
             }
         }
+        /// <summary>
+        /// Registers report parameters, expression and chart identifiers and the built in
+        /// report identifiers into the given evaluator.
+        /// </summary>
+        /// <param name="eval">Evaluator that receives the identifiers.</param>
         public void AddReportItemsToEvaluator(Evaluator eval)
         {
             int i;
@@ -2595,6 +2867,11 @@ end;
             }
 
         }
+        /// <summary>
+        /// Evaluates the validation expression of every parameter and returns the alias of the
+        /// first parameter that fails validation, or an empty string when all are valid.
+        /// </summary>
+        /// <returns>Alias of the first invalid parameter, or an empty string if none fails.</returns>
         public string CheckParameters()
         {
             string aresult = "";
@@ -2750,7 +3027,10 @@ end;
             }
             return aresult;
         }
-        public void Dispose()
+        /// <summary>
+        /// Releases the metafile owned by the report.
+        /// </summary>
+        public override void Dispose()
         {
             if (MetaFile != null)
             {
@@ -2758,6 +3038,11 @@ end;
                 MetaFile = null;
             }
         }
+        /// <summary>
+        /// Creates a new report item instance matching the given report class name.
+        /// </summary>
+        /// <param name="className">Report class name, for example TRPLABEL or TRPSHAPE.</param>
+        /// <returns>A new report item of the requested class.</returns>
         public static ReportItem NewComponentByClassName(string className)
         {
             ReportItem newItem = null;
@@ -2826,6 +3111,12 @@ end;
 
             return newItem;
         }
+        /// <summary>
+        /// Deletes a report item, dispatching to the specific delete method for its class and
+        /// recording the operation in the given undo group.
+        /// </summary>
+        /// <param name="item">Report item to delete.</param>
+        /// <param name="groupId">Undo group identifier, or zero to skip undo tracking.</param>
         public void DeleteItem(ReportItem item, int groupId)
         {
             switch (item.ClassName)
@@ -2867,6 +3158,11 @@ end;
                     break;
             }
         }
+        /// <summary>
+        /// Returns the section that contains the given print position item.
+        /// </summary>
+        /// <param name="item">Item whose parent section is requested.</param>
+        /// <returns>The section that owns the item.</returns>
         public Section GetParentSection(PrintPosItem item)
         {
             foreach (SubReport subreport in SubReports)
@@ -2884,6 +3180,11 @@ end;
             }
             throw new Exception("Component " + item.Name + " not found in report");
         }
+        /// <summary>
+        /// Returns the subreport that contains the given section.
+        /// </summary>
+        /// <param name="section">Section whose parent subreport is requested.</param>
+        /// <returns>The subreport that owns the section.</returns>
         public SubReport GetParentSubReport(Section section)
         {
             foreach (SubReport subreport in SubReports)
@@ -2899,6 +3200,14 @@ end;
             throw new Exception("Section " + section.Name + " not found in report");
         }
 
+        /// <summary>
+        /// Removes a print position item from a section, recording its properties in the given
+        /// undo group before deleting it.
+        /// </summary>
+        /// <param name="section">Section that contains the item.</param>
+        /// <param name="compo">Print position item to delete.</param>
+        /// <param name="index">Index of the item within the section components.</param>
+        /// <param name="groupId">Undo group identifier, or zero to skip undo tracking.</param>
         public void DeleteComponentPrintPosItem(Section section, PrintPosItem compo, int index, int groupId)
         {
             if (groupId != 0)
@@ -3014,6 +3323,11 @@ end;
                     break;
             }
         }
+        /// <summary>
+        /// Removes every print position item from the given section.
+        /// </summary>
+        /// <param name="section">Section to empty.</param>
+        /// <param name="groupId">Undo group identifier, or zero to skip undo tracking.</param>
         public void DeleteComponents(Section section, int groupId)
         {
             while (section.Components.Count > 0)
@@ -3134,6 +3448,10 @@ end;
             Params.RemoveAt(index);
         }
 
+        /// <summary>
+        /// Removes a report item from the components index by its name.
+        /// </summary>
+        /// <param name="item">Report item to remove from the index.</param>
         public void DeleteComponent(ReportItem item)
         {
             if (Components.ContainsKey(item.Name.ToUpper()))
@@ -3378,6 +3696,10 @@ end;
             op.AddProperty("ratio", PropertyType.Number, null, item.Ratio);
             op.AddProperty("truncated", PropertyType.Boolean, null, item.Truncated);
         }
+        /// <summary>
+        /// Removes duplicate datasets and connections and rebinds every section to its parent
+        /// subreport and child subreport references.
+        /// </summary>
         public void UpdateReferences()
         {
             {

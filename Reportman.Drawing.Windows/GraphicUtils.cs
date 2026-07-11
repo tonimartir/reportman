@@ -29,10 +29,16 @@ namespace Reportman.Drawing.Windows
         private static Color gridcolor;
         private static Color gridbackcolor;
         private static bool gridlines;
+        /// <summary>
+        /// Reference DPI (96) used as the baseline for all DPI scale calculations.
+        /// </summary>
         public static int DefaultDPI = 96;
         private static float fdpiscale = 0.0f;
         private static float fdpiscalex = 0.0f;
         private static float fdpiscaley = 0.0f;
+        /// <summary>
+        /// Gets the ratio between the current screen DPI and <see cref="DefaultDPI"/>, cached after first use.
+        /// </summary>
         public static float DPIScale
         {
             get
@@ -44,16 +50,29 @@ namespace Reportman.Drawing.Windows
             }
 
         }
+        /// <summary>
+        /// Returns the MIME type for the raw format of the given image, or "image/unknown" when the format is not recognized.
+        /// </summary>
+        /// <param name="i">Image whose format is inspected.</param>
+        /// <returns>The MIME type string.</returns>
         public static string GetMimeType(Image i)
         {
             var imgguid = i.RawFormat.Guid;
             foreach (ImageCodecInfo codec in ImageCodecInfo.GetImageDecoders())
             {
                 if (codec.FormatID == imgguid)
-                    return codec.MimeType;
+                    return codec.MimeType ?? "image/unknown";
             }
             return "image/unknown";
         }
+        /// <summary>
+        /// Extends the line defined by <paramref name="startPoint"/> and <paramref name="endPoint"/> by
+        /// <paramref name="pixelCount"/> pixels, moving <paramref name="endPoint"/> along the line direction.
+        /// A negative <paramref name="pixelCount"/> shortens the line.
+        /// </summary>
+        /// <param name="startPoint">Fixed start point of the line.</param>
+        /// <param name="endPoint">End point that is moved; passed by reference.</param>
+        /// <param name="pixelCount">Number of pixels to extend (positive) or shorten (negative) the line.</param>
         public static void LengthenLine(PointF startPoint, ref PointF endPoint, float pixelCount)
         {
             if (startPoint.Equals(endPoint))
@@ -88,6 +107,13 @@ namespace Reportman.Drawing.Windows
                 endPoint.Y = startPoint.Y + Convert.ToSingle(dy);
             }
         }
+        /// <summary>
+        /// Builds a graphics path that connects the given points with straight segments joined by
+        /// rounded (bezier) corners of the specified radius.
+        /// </summary>
+        /// <param name="points">Ordered points that define the poly-line.</param>
+        /// <param name="cornerRadius">Radius of the rounded corners.</param>
+        /// <returns>A graphics path with rounded corners.</returns>
         public static System.Drawing.Drawing2D.GraphicsPath GetRoundedLine(PointF[] points, float cornerRadius)
         {
             System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
@@ -116,6 +142,9 @@ namespace Reportman.Drawing.Windows
             }
             return path;
         }
+        /// <summary>
+        /// Gets the horizontal ratio between the current screen DPI and <see cref="DefaultDPI"/>, cached after first use.
+        /// </summary>
         public static float DPIScaleX
         {
             get
@@ -127,6 +156,9 @@ namespace Reportman.Drawing.Windows
             }
 
         }
+        /// <summary>
+        /// Gets the vertical ratio between the current screen DPI and <see cref="DefaultDPI"/>, cached after first use.
+        /// </summary>
         public static float DPIScaleY
         {
             get
@@ -139,6 +171,10 @@ namespace Reportman.Drawing.Windows
 
         }
         static int ndpiy = 0;
+        /// <summary>
+        /// Returns the vertical screen resolution in dots per inch, measured once and cached.
+        /// </summary>
+        /// <returns>Vertical screen DPI.</returns>
         public static int ScreenDPIY()
         {
             if (ndpiy == 0)
@@ -154,11 +190,19 @@ namespace Reportman.Drawing.Windows
             }
             return ndpiy;
         }
+        /// <summary>
+        /// Returns the horizontal screen resolution in dots per inch.
+        /// </summary>
+        /// <returns>Horizontal screen DPI.</returns>
         public static int ScreenDPIX()
         {
             return ScreenDPI();
         }
         static int ndpi = 0;
+        /// <summary>
+        /// Returns the screen resolution in dots per inch, measured once and cached.
+        /// </summary>
+        /// <returns>Screen DPI.</returns>
         public static int ScreenDPI()
         {
             if (ndpi == 0)
@@ -241,7 +285,7 @@ namespace Reportman.Drawing.Windows
                                 (GColor != gridcolor) || (BackColor != gridbackcolor))
                         forceredraw = true;
                 }
-                if (!forceredraw)
+                if (!forceredraw && gridbitmap != null)
                     return gridbitmap;
                 if (gridbitmap != null)
                     gridbitmap.Dispose();
@@ -267,9 +311,14 @@ namespace Reportman.Drawing.Windows
             }
             return gridbitmap;
         }
+        /// <summary>
+        /// Creates an empty Windows Metafile with the given width and height in pixels.
+        /// </summary>
+        /// <param name="Width">Metafile width in pixels.</param>
+        /// <param name="Height">Metafile height in pixels.</param>
+        /// <returns>A new metafile ready for drawing.</returns>
         public static System.Drawing.Imaging.Metafile CreateWindowsMetafile(int Width, int Height)
         {
-            System.Drawing.Imaging.Metafile nmeta = null;
             Monitor.Enter(flag);
             try
             {
@@ -279,14 +328,13 @@ namespace Reportman.Drawing.Windows
                 }
                 using (Graphics metagr = Graphics.FromImage(smallbit))
                 {
-                    nmeta = new System.Drawing.Imaging.Metafile(metagr.GetHdc(), new Rectangle(0, 0, Width, Height), MetafileFrameUnit.Pixel);
+                    return new System.Drawing.Imaging.Metafile(metagr.GetHdc(), new Rectangle(0, 0, Width, Height), MetafileFrameUnit.Pixel);
                 }
             }
             finally
             {
                 Monitor.Exit(flag);
             }
-            return nmeta;
         }
         /// <summary>
         /// Obtain a metafile to perform fast drawing of a grid, 
@@ -332,7 +380,7 @@ namespace Reportman.Drawing.Windows
                                 (GColor != gridcolor) || (BackColor != gridbackcolor))
                         forceredraw = true;
                 }
-                if (!forceredraw)
+                if (!forceredraw && gridmetafile != null)
                     return gridmetafile;
                 if (gridmetafile != null)
                     gridmetafile.Dispose();
@@ -548,11 +596,18 @@ namespace Reportman.Drawing.Windows
             alist.Add("WMF");
             foreach (ImageCodecInfo codec in codecs)
             {
-                aext = codec.FormatDescription;
+                aext = codec.FormatDescription ?? "";
                 alist.Add(aext);
             }
             return alist;
         }
+        /// <summary>
+        /// Returns the average character width and line height, in twips, for the given font family, size and style.
+        /// </summary>
+        /// <param name="FontFamily">Font family name.</param>
+        /// <param name="FontSize">Font size in points.</param>
+        /// <param name="FStyle">Font style flags.</param>
+        /// <returns>A size whose width is the average character width and whose height is the line height, in twips.</returns>
         public static Size GetAvgFontSizeTwips(string FontFamily, float FontSize, FontStyle FStyle)
         {
             Size nresult = new Size(0, 0);
@@ -656,11 +711,11 @@ namespace Reportman.Drawing.Windows
                 string aext;
                 foreach (ImageCodecInfo lcodec in codecs)
                 {
-                    aext = lcodec.FormatDescription;
+                    aext = lcodec.FormatDescription ?? "";
                     if (aext == codecstring)
                     {
                         codec = lcodec;
-                        mimetype = lcodec.MimeType;
+                        mimetype = lcodec.MimeType ?? "";
                         break;
                     }
                 }
@@ -681,6 +736,8 @@ namespace Reportman.Drawing.Windows
                 g.Dispose();
                 if (!isbitmap)
                 {
+                    if (codec == null)
+                        throw new Exception("Codec not found:" + codecstring);
                     output.Save(destination, codec, null);
                 }
                 else
@@ -691,6 +748,11 @@ namespace Reportman.Drawing.Windows
                 output.Dispose();
             }
         }
+        /// <summary>
+        /// Returns black or white, whichever provides better contrast against the given color.
+        /// </summary>
+        /// <param name="c">Reference color.</param>
+        /// <returns><see cref="Color.Black"/> for light colors, <see cref="Color.White"/> for dark colors.</returns>
         public static Color GetInvertedBlackWhite(Color c)
         {
             if (((int)c.R + (int)c.G + (int)c.B) > ((int)255 * 3 / 2))
@@ -699,10 +761,20 @@ namespace Reportman.Drawing.Windows
                 return Color.White;
         }
 
+        /// <summary>
+        /// Converts an integer font-style bitmask to its localized bracketed string representation.
+        /// </summary>
+        /// <param name="intstyle">Bitmask of style flags (1=Bold, 2=Italic, 4=Underline, 8=Strikeout).</param>
+        /// <returns>Localized bracketed style string, for example "[Bold,Italic]".</returns>
         public static string StringFontStyleFromInteger(int intstyle)
         {
             return StringFromFontStyle(FontStyleFromInteger(intstyle));
         }
+        /// <summary>
+        /// Parses a localized bracketed font-style string and returns the equivalent integer bitmask.
+        /// </summary>
+        /// <param name="sfontstyle">Localized bracketed style string to parse.</param>
+        /// <returns>Bitmask of style flags (1=Bold, 2=Italic, 4=Underline, 8=Strikeout).</returns>
         public static int IntegerFromStringFontStyle(string sfontstyle)
         {
             int astyle = 0;
@@ -716,6 +788,11 @@ namespace Reportman.Drawing.Windows
                 astyle = astyle + 8;
             return astyle;
         }
+        /// <summary>
+        /// Returns a localized bracketed string describing the flags set in the given font style.
+        /// </summary>
+        /// <param name="astyle">Font style flags.</param>
+        /// <returns>Localized bracketed style string, for example "[Bold,Italic]".</returns>
         public static string StringFromFontStyle(FontStyle astyle)
         {
             string sfontstyle = "[";
@@ -746,6 +823,12 @@ namespace Reportman.Drawing.Windows
             sfontstyle = sfontstyle + "]";
             return sfontstyle;
         }
+        /// <summary>
+        /// Returns a copy of the image with the given color made transparent.
+        /// </summary>
+        /// <param name="img">Source image.</param>
+        /// <param name="OldColor">Color to render transparent.</param>
+        /// <returns>A new bitmap with the specified color made transparent.</returns>
         public static Image RemapImageTransparentColor(Image img, Color OldColor)
         {
 
@@ -753,6 +836,11 @@ namespace Reportman.Drawing.Windows
             nbitmap.MakeTransparent(OldColor);
             return nbitmap;
         }
+        /// <summary>
+        /// Saves the image to a new BMP-encoded memory stream positioned at the beginning.
+        /// </summary>
+        /// <param name="nimage">Image to encode.</param>
+        /// <returns>A memory stream containing the BMP-encoded image, rewound to position zero.</returns>
         public static MemoryStream ImageToStream(Image nimage)
         {
             MemoryStream nstream = new MemoryStream();
@@ -760,6 +848,11 @@ namespace Reportman.Drawing.Windows
             nstream.Seek(0, SeekOrigin.Begin);
             return nstream;
         }
+        /// <summary>
+        /// Returns the image encoded as a BMP byte array.
+        /// </summary>
+        /// <param name="nimage">Image to encode.</param>
+        /// <returns>The BMP-encoded image bytes.</returns>
         public static byte[] ImageToByteArray(Image nimage)
         {
             byte[] narray;
@@ -774,10 +867,20 @@ namespace Reportman.Drawing.Windows
         {
             return false;
         }*/
+        /// <summary>
+        /// Scales a pixel count by the current DPI scale factor.
+        /// </summary>
+        /// <param name="pixels">Pixel count at the reference DPI.</param>
+        /// <returns>The pixel count scaled to the current screen DPI.</returns>
         public static int ScaleToDPI(int pixels)
         {
             return Convert.ToInt32(pixels * DPIScale);
         }
+        /// <summary>
+        /// Returns the image scaled by the current DPI scale factor, or the original image when no scaling is needed.
+        /// </summary>
+        /// <param name="image">Image to scale.</param>
+        /// <returns>The scaled image, or the original image when the DPI scale is 1.</returns>
         public static System.Drawing.Image ScaleBitmapDPI(Image image)
         {
             if (DPIScale == 1.0)
@@ -785,6 +888,15 @@ namespace Reportman.Drawing.Windows
             else
                 return ScaledBitmapRatio(image, Convert.ToInt32(image.Width * DPIScale), Convert.ToInt32(image.Height * DPIScale), true, true);
         }
+        /// <summary>
+        /// Scales the image to fit within the given width and height while preserving its aspect ratio.
+        /// </summary>
+        /// <param name="image">Image to scale.</param>
+        /// <param name="width">Maximum width in pixels.</param>
+        /// <param name="height">Maximum height in pixels.</param>
+        /// <param name="highquality">When true, uses high-quality interpolation.</param>
+        /// <param name="allowexpand">When true, allows the image to be enlarged beyond its original size.</param>
+        /// <returns>The scaled image, or the original image when no scaling is required.</returns>
         public static System.Drawing.Image ScaledBitmapRatio(Image image, int width, int height, bool highquality, bool allowexpand)
         {
             if (!allowexpand)
@@ -863,7 +975,7 @@ namespace Reportman.Drawing.Windows
             Image FBitmap = Image.FromStream(mstream);
             foreach (var prop in FBitmap.PropertyItems)
             {
-                if (prop.Id == 0x112)
+                if (prop.Id == 0x112 && prop.Value != null)
                 {
                     int orientation = prop.Value[0];
                     RotateFlipType flipType = GetRotateFlipTypeByExifOrientationData(orientation);
@@ -874,6 +986,11 @@ namespace Reportman.Drawing.Windows
             }
             return FBitmap;
         }
+        /// <summary>
+        /// Maps an EXIF orientation value (1-8) to the corresponding <see cref="RotateFlipType"/>.
+        /// </summary>
+        /// <param name="orientation">EXIF orientation value, from 1 to 8.</param>
+        /// <returns>The rotate/flip transform that normalizes an image with the given orientation.</returns>
         public static RotateFlipType GetRotateFlipTypeByExifOrientationData(int orientation)
         {
             switch (orientation)
@@ -897,6 +1014,11 @@ namespace Reportman.Drawing.Windows
                     return RotateFlipType.Rotate270FlipNone;
             }
         }
+        /// <summary>
+        /// Returns an integer bitmask representing the flags set in the given font style.
+        /// </summary>
+        /// <param name="astyle">Font style flags.</param>
+        /// <returns>Bitmask of style flags (1=Bold, 2=Italic, 4=Underline, 8=Strikeout).</returns>
         public static int IntegerFromFontStyle(FontStyle astyle)
         {
             int intfontstyle = 0;
@@ -910,6 +1032,11 @@ namespace Reportman.Drawing.Windows
                 intfontstyle = intfontstyle + 8;
             return intfontstyle;
         }
+        /// <summary>
+        /// Returns the image encoder whose MIME type matches the given string, or null if no encoder matches.
+        /// </summary>
+        /// <param name="mimeType">MIME type to match, for example "image/jpeg".</param>
+        /// <returns>The matching encoder, or null when none is found.</returns>
         public static ImageCodecInfo GetEncoderInfo(String mimeType)
         {
             int j;
@@ -923,12 +1050,20 @@ namespace Reportman.Drawing.Windows
             return null;
         }
         private const int exifOrientationID = 0x112; //274
+        /// <summary>
+        /// Rotates the image in place according to its EXIF orientation tag, removes the tag, and
+        /// returns true if the image was rotated; returns false when no rotation was needed.
+        /// </summary>
+        /// <param name="img">Image to rotate; modified in place.</param>
+        /// <returns>True if the image was rotated, otherwise false.</returns>
         public static bool ExifRotate(Image img)
         {
             if (!img.PropertyIdList.Contains(exifOrientationID))
                 return false;
 
             var prop = img.GetPropertyItem(exifOrientationID);
+            if (prop == null || prop.Value == null)
+                return false;
             int val = BitConverter.ToUInt16(prop.Value, 0);
             var rot = RotateFlipType.RotateNoneFlipNone;
 
@@ -954,10 +1089,10 @@ namespace Reportman.Drawing.Windows
             }
         }
         /// <summary>
-        /// Retuns a codec with the mime type or null if not found
+        /// Returns the image codec whose filename extension matches the given extension.
         /// </summary>
-        /// <param name="mimeType">Codec string, example "image/jpeg"</param>
-        /// <returns></returns>
+        /// <param name="extension">File extension to match, for example "JPG".</param>
+        /// <returns>The matching image codec.</returns>
         public static System.Drawing.Imaging.ImageCodecInfo GetImageCodecFromExtension(string extension)
         {
             System.Drawing.Imaging.ImageCodecInfo[] codecs
@@ -966,7 +1101,7 @@ namespace Reportman.Drawing.Windows
 
             foreach (System.Drawing.Imaging.ImageCodecInfo codec in codecs)
             {
-                if (codec.FilenameExtension.ToUpper().Contains("*" + extension.ToUpper()))
+                if (codec.FilenameExtension != null && codec.FilenameExtension.ToUpper().Contains("*" + extension.ToUpper()))
                 {
                     return codec;
                 }
@@ -997,10 +1132,10 @@ namespace Reportman.Drawing.Windows
             return null;
         }
         /// <summary>
-        /// Create a FontStyle from  integer
+        /// Creates a FontStyle from an integer bitmask.
         /// </summary>
-        /// <param name="astyle"></param>
-        /// <returns></returns>
+        /// <param name="intfontstyle">Bitmask of style flags (1=Bold, 2=Italic, 4=Underline, 8=Strikeout).</param>
+        /// <returns>The corresponding FontStyle value.</returns>
         public static FontStyle FontStyleFromInteger(int intfontstyle)
         {
             FontStyle astyle = new FontStyle();
@@ -1016,9 +1151,15 @@ namespace Reportman.Drawing.Windows
         }
  
 
+        /// <summary>
+        /// Converts a bitmap to a 1-bit-per-pixel black-and-white image using the given brightness threshold.
+        /// </summary>
+        /// <param name="original">Source bitmap to convert.</param>
+        /// <param name="threshold">Brightness threshold (sum of R, G and B) above which a pixel becomes white.</param>
+        /// <returns>A new 1bpp indexed bitmap.</returns>
         public static System.Drawing.Bitmap ConvertToBitonal(System.Drawing.Bitmap original, int threshold)
         {
-            System.Drawing.Bitmap source = null;
+            System.Drawing.Bitmap source;
 
             if (original.PixelFormat == System.Drawing.Imaging.PixelFormat.Format1bppIndexed)
                 return (System.Drawing.Bitmap)original.Clone();
@@ -1082,6 +1223,16 @@ namespace Reportman.Drawing.Windows
             // Return
             return destination;
         }
+        /// <summary>
+        /// Applies a brightness threshold to 32bpp ARGB source pixel data and returns a packed 1bpp black-and-white buffer.
+        /// </summary>
+        /// <param name="sourceBuffer">Source pixel data in 32bpp ARGB layout.</param>
+        /// <param name="width">Image width in pixels.</param>
+        /// <param name="height">Image height in pixels.</param>
+        /// <param name="srcStride">Row stride of the source buffer in bytes.</param>
+        /// <param name="dstStride">Row stride of the destination buffer in bytes.</param>
+        /// <param name="threshold">Brightness threshold (sum of R, G and B) above which a pixel becomes white.</param>
+        /// <returns>A packed 1bpp black-and-white pixel buffer.</returns>
         public static byte[] SimpleThresholdBW(byte[] sourceBuffer, int width, int height, int srcStride, int dstStride, int threshold)
         {
             byte[] destinationBuffer = new byte[dstStride * height];

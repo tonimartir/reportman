@@ -28,8 +28,8 @@ namespace Reportman.Hub.Client.DataChannel;
 public sealed class WebRtcDataChannelSession : IAsyncDisposable
 {
     /// <summary>
-    /// DataChannel open watchdog. STUN gather is fast (<500 ms locally,
-    /// <1.5 s over the public internet) and DTLS another ~500 ms — 5 s is
+    /// DataChannel open watchdog. STUN gather is fast (less than 500 ms locally,
+    /// less than 1.5 s over the public internet) and DTLS another ~500 ms — 5 s is
     /// the practical upper bound for any legitimate path including NAT
     /// hole-punching and TURN relay. 10 s was too generous and made
     /// UDP-blocked corporate networks feel sluggish before the per-database
@@ -105,6 +105,9 @@ public sealed class WebRtcDataChannelSession : IAsyncDisposable
 
     private int _disposed; // 0 = alive, 1 = disposed (Interlocked guard).
 
+    /// <summary>
+    /// Gets the negotiated connection mode (e.g., direct P2P or relayed through TURN).
+    /// </summary>
     public ConnectionMode Mode => _mode;
 
     /// <summary>
@@ -984,6 +987,10 @@ public sealed class WebRtcDataChannelSession : IAsyncDisposable
 
     // --------------- Disposal ---------------
 
+    /// <summary>
+    /// Performs asynchronous cleanup of the WebRTC peer connection, closing the data channel, peer connection, and signaling websocket.
+    /// </summary>
+    /// <returns>A ValueTask representing the completion of the disposal operation.</returns>
     public async ValueTask DisposeAsync()
     {
         // Idempotent — the pool may call Dispose from multiple eviction paths

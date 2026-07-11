@@ -22,6 +22,9 @@ namespace Reportman.Designer
         private ReportmanAgentClient _agentClient;
         private CancellationTokenSource _currentInferenceCts;
 
+        /// <summary>
+        /// Initializes a new instance of the ExpressionEditorControl class, building the UI layout and loading components.
+        /// </summary>
         public ExpressionEditorControl()
         {
             InitializeComponent();
@@ -117,6 +120,9 @@ namespace Reportman.Designer
             }
         }
         
+        /// <summary>
+        /// Gets or sets the report expression text currently loaded in the Monaco editor.
+        /// </summary>
         [System.ComponentModel.Browsable(false)]
         [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public string Expression

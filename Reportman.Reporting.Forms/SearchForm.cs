@@ -1,4 +1,4 @@
-#region Copyright
+ï»¿#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -32,12 +32,12 @@ namespace Reportman.Reporting.Forms
     public class SearchForm : Form
     {
         /// <summary>
-        /// Variable del diseñador requerida.
+        /// Variable del diseÃ±ador requerida.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Limpiar los recursos que se estén utilizando.
+        /// Limpiar los recursos que se estÃ©n utilizando.
         /// </summary>
         /// <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
         protected override void Dispose(bool disposing)
@@ -49,11 +49,11 @@ namespace Reportman.Reporting.Forms
             base.Dispose(disposing);
         }
 
-        #region Código generado por el Diseñador de Windows Forms
+        #region CÃ³digo generado por el DiseÃ±ador de Windows Forms
 
         /// <summary>
-        /// Método necesario para admitir el Diseñador. No se puede modificar
-        /// el contenido del método con el editor de código.
+        /// MÃ©todo necesario para admitir el DiseÃ±ador. No se puede modificar
+        /// el contenido del mÃ©todo con el editor de cÃ³digo.
         /// </summary>
         private void InitializeComponent()
         {

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -45,9 +45,21 @@ namespace Reportman.Designer
         private long _selectedHubSchemaId;
         private string _selectedSchemaApiKey = "";
         
+        /// <summary>
+        /// Raised whenever the SQL text in the editor changes as a result of user edits in the browser.
+        /// </summary>
         public event EventHandler SqlContentChanged;
+
+        /// <summary>
+        /// Raised when the effective schema context (Hub database, schema and API key) changes,
+        /// for example after the user selects a different schema in the selector.
+        /// </summary>
         public event EventHandler<SqlSchemaContextChangedEventArgs> SchemaContextChanged;
-        
+
+        /// <summary>
+        /// Initializes a new instance of the control, creating the Reportman agent client
+        /// and subscribing to authentication change notifications.
+        /// </summary>
         public MonacoEditorControl()
         {
             _agentClient = new ReportmanAgentClient();
@@ -55,6 +67,11 @@ namespace Reportman.Designer
             RpAuthManager.Instance.AuthChanged += AuthManager_AuthChanged;
         }
 
+        /// <summary>
+        /// Releases the resources used by the control, unsubscribing from authentication events
+        /// and disposing the debounce, inference and semaphore resources.
+        /// </summary>
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -236,6 +236,7 @@ namespace Reportman.Reporting.Forms
         /// </summary>
         /// <param name="areport">Report containing the dataset</param>
         /// <param name="datasetName">Dataset Name</param>
+        /// <param name="ParentForm">The parent window that owns this dialog.</param>
 		public static void ShowData(Report areport, string datasetName, IWin32Window ParentForm)
         {
             int index;

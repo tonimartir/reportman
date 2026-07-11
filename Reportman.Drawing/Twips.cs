@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 
 namespace Reportman.Drawing
@@ -21,12 +21,25 @@ namespace Reportman.Drawing
         /// One centimeter measures 1440/2.54 twips
         /// </summary>
         public const decimal TWIPS_PER_CM = TWIPS_PER_INCH / CMS_PER_INCH;
+        /// <summary>
+        /// Snaps an integer coordinate value to the nearest grid step.
+        /// </summary>
+        /// <param name="nx">The horizontal coordinate to align.</param>
+        /// <param name="gridx">The horizontal grid snapping interval.</param>
+        /// <param name="gridy">The vertical grid snapping interval.</param>
+        /// <returns>The snapped coordinate value.</returns>
         public static int AlignToGridTwips(int nx, int gridx, int gridy)
         {
             nx = ((nx + gridx / 2) / gridx) * gridx;
             return nx;
         }
-        // Method overload for MoveControls (for snap to grid)
+        /// <summary>
+        /// Snaps a Point coordinate to the nearest grid steps.
+        /// </summary>
+        /// <param name="npoint">The Point to align.</param>
+        /// <param name="gridx">The horizontal grid snapping interval.</param>
+        /// <param name="gridy">The vertical grid snapping interval.</param>
+        /// <returns>A new Point snapped to the grid coordinates.</returns>
         public static System.Drawing.Point AlignToGridTwips(System.Drawing.Point npoint, int gridx, int gridy)
         {
             npoint = new System.Drawing.Point(((npoint.X + gridx / 2) / gridx) * gridx, ((npoint.Y + gridy / 2) / gridy) * gridy);

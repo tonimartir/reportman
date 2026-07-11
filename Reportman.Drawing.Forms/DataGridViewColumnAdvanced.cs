@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -13,7 +13,31 @@ namespace Reportman.Drawing.Forms
     /// <summary>
     /// Identifies the kind of value a grid column edits, selecting the appropriate editor and formatting (text, numeric, date/time, boolean, combo box or password).
     /// </summary>
-    public enum ColumnDataType { Text, Integer, Numeric, Double, Date, DateTime, Time, ComboBox, ComboBoxList, Boolean, Password };
+    public enum ColumnDataType
+    {
+        /// <summary>Free-form text value.</summary>
+        Text,
+        /// <summary>Whole-number integer value.</summary>
+        Integer,
+        /// <summary>Fixed-point numeric (decimal) value.</summary>
+        Numeric,
+        /// <summary>Floating-point value.</summary>
+        Double,
+        /// <summary>Date-only value.</summary>
+        Date,
+        /// <summary>Combined date and time value.</summary>
+        DateTime,
+        /// <summary>Time-of-day value.</summary>
+        Time,
+        /// <summary>Editable combo box selection.</summary>
+        ComboBox,
+        /// <summary>Non-editable drop-down list selection.</summary>
+        ComboBoxList,
+        /// <summary>Boolean (true/false) value.</summary>
+        Boolean,
+        /// <summary>Text value displayed masked as a password.</summary>
+        Password
+    };
     /// <summary>
     /// Callback invoked when a column's editor button is clicked; returns true if it changed <c>value</c> so the cell should be updated.
     /// </summary>
@@ -26,8 +50,17 @@ namespace Reportman.Drawing.Forms
         private ColumnDataType FDataType;
         private int FMaxInputLength;
         private Image FImageButton;
+        /// <summary>
+        /// Handler invoked when the column's image button is clicked; it may change the cell value.
+        /// </summary>
         public DataColumnButtonClickEvent ButtonClick;
+        /// <summary>
+        /// Scale factor applied to the image button when it is drawn.
+        /// </summary>
         public float ImageButtonScale = 1.0f;
+        /// <summary>
+        /// Gets or sets the kind of value this column edits, which selects the editor and formatting.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public ColumnDataType DataType
         {
@@ -41,6 +74,9 @@ namespace Reportman.Drawing.Forms
             }
         }
         bool FReadOnlyInput;
+        /// <summary>
+        /// Gets or sets whether text input in this column's editor is read-only.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
 
         public bool ReadOnlyInput
@@ -52,7 +88,13 @@ namespace Reportman.Drawing.Forms
 
             }
         }
+        /// <summary>
+        /// Optional search/lookup window attached to this column's editor.
+        /// </summary>
         public ISearchWindow SearchWindow;
+        /// <summary>
+        /// Gets or sets the maximum number of characters allowed in the editor; negative values are clamped to zero.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
 
         public int MaxInputLength
@@ -69,6 +111,9 @@ namespace Reportman.Drawing.Forms
             }
 
         }
+        /// <summary>
+        /// Gets the width, in pixels, reserved for a column's image button, scaled to the current display DPI.
+        /// </summary>
         public static int ImageWidth
         {
             get
@@ -76,6 +121,9 @@ namespace Reportman.Drawing.Forms
                 return Convert.ToInt32(20 * Reportman.Drawing.Windows.GraphicUtils.DPIScaleY);
             }
         }
+        /// <summary>
+        /// Gets or sets the image shown on the in-cell button, or null for no button.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Image ImageButton
         {
@@ -85,6 +133,9 @@ namespace Reportman.Drawing.Forms
                 FImageButton = value;
             }
         }
+        /// <summary>
+        /// Initializes a new column that uses a <see cref="DataGridViewCellAdvanced"/> cell template and the text data type.
+        /// </summary>
         public DataGridViewColumnAdvanced()
             : base(new DataGridViewCellAdvanced())
         {
@@ -92,11 +143,17 @@ namespace Reportman.Drawing.Forms
 
         }
 
+        /// <summary>
+        /// Returns the preferred width of the column for the given auto-size mode.
+        /// </summary>
         public override int GetPreferredWidth(DataGridViewAutoSizeColumnMode autoSizeColumnMode, bool fixedHeight)
         {
             int nwidth = base.GetPreferredWidth(autoSizeColumnMode, fixedHeight); ;
             return nwidth;
         }
+        /// <summary>
+        /// Gets or sets the template used to create the cells of this column.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override DataGridViewCell CellTemplate
         {
@@ -124,6 +181,9 @@ namespace Reportman.Drawing.Forms
         //NumericUpDownPickerControl NumericPicker;
         //private EventHandler ButtonClicEvent;
         //private EventHandler ClickFontStyleEvent;
+        /// <summary>
+        /// Initializes a new advanced grid cell.
+        /// </summary>
         public DataGridViewCellAdvanced()
             : base()
         {
@@ -147,6 +207,9 @@ namespace Reportman.Drawing.Forms
             }
             return ncol;
         }
+        /// <summary>
+        /// Gets the type of the editing control (<see cref="AdvancedEditingControl"/>) hosted when the cell is edited.
+        /// </summary>
         public override Type EditType
         {
             get
@@ -183,10 +246,16 @@ namespace Reportman.Drawing.Forms
                 return ntype;
             }
         }
+        /// <summary>
+        /// Paints the cell using the base text-box cell rendering.
+        /// </summary>
         protected override void Paint(Graphics graphics, Rectangle clipBounds, Rectangle cellBounds, int rowIndex, DataGridViewElementStates cellState, object value, object formattedValue, string errorText, DataGridViewCellStyle cellStyle, DataGridViewAdvancedBorderStyle advancedBorderStyle, DataGridViewPaintParts paintParts)
         {
             base.Paint(graphics, clipBounds, cellBounds, rowIndex, cellState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts);
         }
+        /// <summary>
+        /// Returns the display text for the cell, masking the value with bullet characters when the column's data type is <see cref="ColumnDataType.Password"/>.
+        /// </summary>
         protected override object GetFormattedValue(object value, int rowIndex, ref DataGridViewCellStyle cellStyle, System.ComponentModel.TypeConverter valueTypeConverter, System.ComponentModel.TypeConverter formattedValueTypeConverter, DataGridViewDataErrorContexts context)
         {
             DataGridViewColumnAdvanced ncol = (DataGridViewColumnAdvanced)GetColumn();
@@ -213,6 +282,9 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public partial class AdvancedEditingControl : UserControl, IDataGridViewEditingControl
     {
+        /// <summary>
+        /// Pool of reusable picture-box controls shared across editor instances to avoid repeated allocation.
+        /// </summary>
         public static List<PictureBox> CachedPictureBoxControls = new List<PictureBox>();
         private TextBoxAdvanced textcontrol;
         private DateTimePickerNullable datecontrol1;
@@ -224,6 +296,9 @@ namespace Reportman.Drawing.Forms
         private bool disabledchange;
         private int FMaxInputLength;
         private bool FReadOnlyInput;
+        /// <summary>
+        /// Gets or sets whether the hosted text editor is read-only.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
 
         public bool ReadOnlyInput
@@ -239,22 +314,43 @@ namespace Reportman.Drawing.Forms
             }
         }
         ISearchWindow SearchWindow;
+        /// <summary>
+        /// When true, editors use the advanced date/time picker instead of the classic nullable picker.
+        /// </summary>
         public static bool NewDatePicker = false;
 
+        /// <summary>
+        /// Forwards a key-down event from the hosted control to the editor's key-down handling.
+        /// </summary>
         public void DoKeyDown(object sender, KeyEventArgs args)
         {
             OnKeyDown(args);
         }
+        /// <summary>
+        /// Forwards a key-press event from the hosted control to the editor's key-press handling.
+        /// </summary>
         public void DoKeyPress(object sender, KeyPressEventArgs args)
         {
             OnKeyPress(args);
         }
+        /// <summary>
+        /// Forwards a key-up event from the hosted control to the editor's key-up handling.
+        /// </summary>
         public void DoKeyUp(object sender, KeyEventArgs args)
         {
             OnKeyUp(args);
         }
+        /// <summary>
+        /// Scale factor applied to the image button when it is drawn.
+        /// </summary>
         public float ImageButtonScale = 1.0f;
+        /// <summary>
+        /// Image displayed on the editor's image button.
+        /// </summary>
         public Image FImageButton;
+        /// <summary>
+        /// Gets or sets the image shown on the editor's button.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Image ImageButton
         {
@@ -269,8 +365,14 @@ namespace Reportman.Drawing.Forms
         int m_rowIndex = 0;
         bool m_valueChanged = false;
         //string m_prevText = null;
+        /// <summary>
+        /// The control currently hosting input (a text box or a date/time picker).
+        /// </summary>
         public Control MainControl;
         object prevvalue;
+        /// <summary>
+        /// Gets or sets the text of the hosted text editor.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new string Text
         {
@@ -283,6 +385,9 @@ namespace Reportman.Drawing.Forms
                 textcontrol.Text = value;
             }
         }
+        /// <summary>
+        /// Initializes a new editing control.
+        /// </summary>
         public AdvancedEditingControl()
         {
 
@@ -291,6 +396,9 @@ namespace Reportman.Drawing.Forms
         {
             NotifyChange();
         }
+        /// <summary>
+        /// Notifies the grid of any pending value change so the current edit is committed.
+        /// </summary>
         public void SaveCurrentValue()
         {
             NotifyChange();
@@ -422,6 +530,9 @@ namespace Reportman.Drawing.Forms
                     break;
             }
         }
+        /// <summary>
+        /// Gets or sets the current editor value, converting between the cell value and the hosted control.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
 
         public object NewValue
@@ -577,10 +688,16 @@ namespace Reportman.Drawing.Forms
                 prevvalue = GetValue();
             }
         }
+        /// <summary>
+        /// Applies the specified cell style to the editing control. This implementation performs no styling.
+        /// </summary>
         public void ApplyCellStyleToEditingControl(DataGridViewCellStyle dataGridViewCellStyle)
         {
             // Do nothing
         }
+        /// <summary>
+        /// Gets the cursor used over the editing control.
+        /// </summary>
         public Cursor EditingControlCursor
         {
             get
@@ -588,6 +705,9 @@ namespace Reportman.Drawing.Forms
                 return Cursors.IBeam;
             }
         }
+        /// <summary>
+        /// Gets the cursor used over the editing panel.
+        /// </summary>
         public Cursor EditingPanelCursor
         {
             get
@@ -595,6 +715,9 @@ namespace Reportman.Drawing.Forms
                 return Cursors.IBeam;
             }
         }
+        /// <summary>
+        /// Gets or sets the grid that owns this editing control.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), Browsable(false)]
         public DataGridView EditingControlDataGridView
         {
@@ -607,6 +730,9 @@ namespace Reportman.Drawing.Forms
                 m_dataGridView = value;
             }
         }
+        /// <summary>
+        /// Gets or sets the formatted value of the editing control.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public object EditingControlFormattedValue
         {
@@ -619,6 +745,9 @@ namespace Reportman.Drawing.Forms
                 SetNewValue(value);
             }
         }
+        /// <summary>
+        /// Gets or sets the index of the row being edited.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), Browsable(false)]
         public int EditingControlRowIndex
         {
@@ -631,6 +760,9 @@ namespace Reportman.Drawing.Forms
                 m_rowIndex = value;
             }
         }
+        /// <summary>
+        /// Gets or sets whether the value of the editing control has changed.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), Browsable(false)]
         public bool EditingControlValueChanged
         {
@@ -643,6 +775,9 @@ namespace Reportman.Drawing.Forms
                 m_valueChanged = value;
             }
         }
+        /// <summary>
+        /// Determines whether the editing control processes the given key or lets the grid handle it.
+        /// </summary>
         public bool EditingControlWantsInputKey(Keys keyData, bool dataGridViewWantsInputKey)
         {
             if (FDataType == ColumnDataType.Date)
@@ -697,6 +832,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Returns the current editor value formatted as display text for the given error context.
+        /// </summary>
         public object GetEditingControlFormattedValue(DataGridViewDataErrorContexts context)
         {
             object nvalue = GetValue();
@@ -735,6 +873,9 @@ namespace Reportman.Drawing.Forms
             }
             return fvalue;
         }
+        /// <summary>
+        /// Creates or reuses the hosted input control appropriate for the current data type.
+        /// </summary>
         public void CreateMainControl()
         {
             /*if (controldatatype != FDataType)
@@ -922,6 +1063,9 @@ namespace Reportman.Drawing.Forms
             if (!disabledchange)
                 m_dataGridView.NotifyCurrentCellDirty(true);
         }
+        /// <summary>
+        /// Sets the bounds of the control and repositions the hosted input controls.
+        /// </summary>
         protected override void SetBoundsCore(int x, int y, int width, int height, BoundsSpecified specified)
         {
             base.SetBoundsCore(x, y, width, height, specified);
@@ -1030,6 +1174,9 @@ namespace Reportman.Drawing.Forms
             }
             MainControl = null;*/
         }
+        /// <summary>
+        /// Prepares the editor before editing begins, configuring the data type, image button, search window and initial value.
+        /// </summary>
         public void PrepareEditingControlForEdit(bool selectAll)
         {
             DataGridViewColumnAdvanced ncol = GetColumn();
@@ -1102,6 +1249,9 @@ namespace Reportman.Drawing.Forms
             ImageButtonScale = ncol.ImageButtonScale;
             ImageButton = ncol.ImageButton;
         }
+        /// <summary>
+        /// Gets whether the grid should reposition the editing control when its value changes; always false.
+        /// </summary>
         public bool RepositionEditingControlOnValueChange
         {
             get
@@ -1109,6 +1259,9 @@ namespace Reportman.Drawing.Forms
                 return false;
             }
         }
+        /// <summary>
+        /// Gets whether the hosted control (or the editor itself) has input focus.
+        /// </summary>
         public override bool Focused
         {
             get
@@ -1119,6 +1272,9 @@ namespace Reportman.Drawing.Forms
                     return base.Focused;
             }
         }
+        /// <summary>
+        /// Releases the resources used by the editing control and its hosted controls.
+        /// </summary>
         protected override void Dispose(bool disposing)
         {
             if (textcontrol != null)
@@ -1138,7 +1294,19 @@ namespace Reportman.Drawing.Forms
     /// <summary>
     /// Navigation keystrokes forwarded to a search window so it can move its selection or accept the current entry.
     /// </summary>
-    public enum SearchWindowKeyOperation { Up, Down, PageUp, PageDown, Return };
+    public enum SearchWindowKeyOperation
+    {
+        /// <summary>Move the selection up one item.</summary>
+        Up,
+        /// <summary>Move the selection down one item.</summary>
+        Down,
+        /// <summary>Move the selection up one page.</summary>
+        PageUp,
+        /// <summary>Move the selection down one page.</summary>
+        PageDown,
+        /// <summary>Accept the currently selected entry.</summary>
+        Return
+    };
     /// <summary>
     /// Callback raised when a search window should be shown, carrying the control to display in <see cref="ShowSearchWindowArgs"/>.
     /// </summary>
@@ -1148,7 +1316,13 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public class ShowSearchWindowArgs
     {
+        /// <summary>
+        /// The control that hosts the search window UI.
+        /// </summary>
         public Control Window;
+        /// <summary>
+        /// Initializes new arguments with the control that hosts the search window.
+        /// </summary>
         public ShowSearchWindowArgs(Control ncontrol)
         {
             Window = ncontrol;
@@ -1159,12 +1333,30 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public interface ISearchWindow
     {
+        /// <summary>
+        /// Updates the search window with a new search string.
+        /// </summary>
         void ChangeSearchString(string newvalue);
+        /// <summary>
+        /// Hides the search window and cancels the current search.
+        /// </summary>
         void Deactivate();
+        /// <summary>
+        /// Applies a navigation keystroke to the search window.
+        /// </summary>
         void KeyOperation(SearchWindowKeyOperation key_operation);
+        /// <summary>
+        /// Creates and returns the control that displays the search window.
+        /// </summary>
         Control CreateWindow();
+        /// <summary>
+        /// Handles a click at the given client point; returns true if the click was consumed.
+        /// </summary>
         bool Click(Point clientpoint);
         // Property declaration:
+        /// <summary>
+        /// Gets or sets whether the search window is active.
+        /// </summary>
         bool Enabled
         {
             get;

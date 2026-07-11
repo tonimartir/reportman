@@ -12,21 +12,58 @@ namespace Reportman.Reporting
     /// </summary>
     public class ReportLibraryConfig
     {
+        /// <summary>
+        /// Initializes a new report library configuration with default table/field mappings
+        /// and sorting disabled.
+        /// </summary>
         public ReportLibraryConfig()
         {
             AllowSorting = false;
         }
+        /// <summary>
+        /// Gets or sets the name of the database table that stores report templates.
+        /// </summary>
         public string ReportTable { get; set; } = "REPMAN_REPORTS";
+        /// <summary>
+        /// Gets or sets the name of the column that holds the report template binary data.
+        /// </summary>
         public string ReportField { get; set; } = "REPORT";
+        /// <summary>
+        /// Gets or sets the name of the column used to look up a report by name.
+        /// </summary>
         public string ReportSearchField { get; set; } = "REPORT_NAME";
+        /// <summary>
+        /// Gets or sets the name of the database table that stores report groups.
+        /// </summary>
         public string ReportGroupsTable { get; set; } = "REPMAN_GROUPS";
+        /// <summary>
+        /// Gets or sets a value indicating whether reports can be sorted in the library.
+        /// </summary>
         public bool AllowSorting { get; set; }
+        /// <summary>
+        /// Gets or sets the ADO/ADO.NET connection string used to reach the report library database.
+        /// </summary>
         public string ADOConnectionString { get; set; } = "";
+        /// <summary>
+        /// Gets or sets a value indicating whether report parameters are loaded when opening a report.
+        /// </summary>
         public bool LoadParams { get; set; } = true;
+        /// <summary>
+        /// Gets or sets a value indicating whether driver-specific parameters are loaded when opening a report.
+        /// </summary>
         public bool LoadDriverParams { get; set; } = true;
+        /// <summary>
+        /// Gets or sets a value indicating whether the user is prompted for credentials when connecting.
+        /// </summary>
         public bool LoginPrompt { get; set; } = false;
+        /// <summary>
+        /// Gets or sets the display name (alias) that identifies this connection in the library.
+        /// </summary>
         public string Alias { get; set; } = "";
 
+        /// <summary>
+        /// Gets or sets the driver as an integer index, wrapping the <see cref="Driver"/> enumeration value.
+        /// </summary>
         public int DriverIndex
         {
             get
@@ -38,10 +75,16 @@ namespace Reportman.Reporting
                 Driver = (DriverType)value;
             }
         }
+        /// <summary>
+        /// Gets or sets the database driver used by this report library connection.
+        /// </summary>
         public DriverType Driver
         {
             get; set;
         } = DriverType.DotNet2;
+        /// <summary>
+        /// Gets or sets the invariant name of the ADO.NET provider factory used to create connections.
+        /// </summary>
         public string ProviderName { get; set; } = "";
         /// <summary>
         /// Base URL for HttpAgent API (e.g., "https://api.reportman.es")
@@ -59,11 +102,23 @@ namespace Reportman.Reporting
         /// Bearer token for HttpAgent driver authentication (alternative to ApiKey)
         /// </summary>
         public string Token { get; set; } = "";
+        /// <summary>
+        /// The active database connection, or null when no connection is currently open.
+        /// </summary>
         public DbConnection CurrentConnection;
+        /// <summary>
+        /// Returns the connection alias as its string representation.
+        /// </summary>
+        /// <returns>The value of <see cref="Alias"/>.</returns>
         public override string ToString()
         {
             return Alias;
         }
+        /// <summary>
+        /// Gets the full path of the report library configuration file (repmandlib.ini) in the
+        /// current user's application data folder.
+        /// </summary>
+        /// <returns>The absolute path to the configuration file.</returns>
         public static string GetConfigFilename()
         {
             string configPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData, Environment.SpecialFolderOption.Create);
@@ -71,6 +126,11 @@ namespace Reportman.Reporting
 
             return configPath;
         }
+        /// <summary>
+        /// Resolves the ADO.NET provider factory for this connection, honoring any registered
+        /// custom factories and the configured <see cref="Driver"/> and <see cref="ProviderName"/>.
+        /// </summary>
+        /// <returns>The provider factory used to create connections and commands.</returns>
         public DbProviderFactory GetFactory()
         {
             // Search for custom provided factories
@@ -98,6 +158,12 @@ namespace Reportman.Reporting
             }
         }
 
+        /// <summary>
+        /// Reads a report template from the library database by name, opening a temporary
+        /// connection when none is currently active.
+        /// </summary>
+        /// <param name="reportName">The name of the report to read.</param>
+        /// <returns>A memory stream containing the report template bytes.</returns>
         public System.IO.MemoryStream ReadReport(string reportName)
         {
             System.IO.MemoryStream result = null;
@@ -144,6 +210,14 @@ namespace Reportman.Reporting
             }
             return result;
         }
+        /// <summary>
+        /// Serializes a report and stores it back into the library database under the given name,
+        /// using a transaction and opening a temporary connection when none is currently active.
+        /// </summary>
+        /// <param name="nreport">The report to save.</param>
+        /// <param name="reportName">The name of the report entry to update.</param>
+        /// <param name="version">The stream serialization version to use.</param>
+        /// <returns>A memory stream containing the serialized report bytes.</returns>
         public System.IO.MemoryStream SaveReport(Report nreport, string reportName, StreamVersion version)
         {
             string sqltext = "UPDATE " + ReportTable + " SET " + ReportField + "=@REPORT" +
@@ -199,9 +273,23 @@ namespace Reportman.Reporting
     /// </summary>
     public class ReportLibrarySelection
     {
+        /// <summary>
+        /// The report library configuration that owns the selected report.
+        /// </summary>
         public ReportLibraryConfig ReportLibrary;
+        /// <summary>
+        /// The name of the selected report within the library.
+        /// </summary>
         public string ReportName;
+        /// <summary>
+        /// The loaded report template stream, or null when no report has been read yet.
+        /// </summary>
         public System.IO.MemoryStream Stream;
+        /// <summary>
+        /// Saves the given report back to the selected library entry and stores the resulting
+        /// serialized bytes in <see cref="Stream"/>.
+        /// </summary>
+        /// <param name="nreport">The report to save.</param>
         public void Save(Report nreport)
         {
             Stream = ReportLibrary.SaveReport(nreport, ReportName, StreamVersion.V2);
@@ -213,6 +301,10 @@ namespace Reportman.Reporting
     /// </summary>
     public class ReportLibraryConfigCollection : List<ReportLibraryConfig>
     {
+        /// <summary>
+        /// Clears the collection and loads all report library connections from the given INI file.
+        /// </summary>
+        /// <param name="filename">The path of the INI file to read.</param>
         public void LoadFromFile(string filename)
         {
             IniFile inif = new IniFile(filename);
@@ -242,6 +334,10 @@ namespace Reportman.Reporting
                 aitem.Token = inif.ReadString(conname, "TOKEN", "");
             }
         }
+        /// <summary>
+        /// Writes all report library connections in this collection to the given INI file.
+        /// </summary>
+        /// <param name="filename">The path of the INI file to write.</param>
         public void SaveToFile(string filename)
         {
             IniFile inif = new IniFile(filename);

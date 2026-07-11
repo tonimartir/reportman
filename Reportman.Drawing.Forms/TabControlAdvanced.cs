@@ -29,8 +29,18 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public class CancelArgs
     {
+        /// <summary>
+        /// When set to true by a handler, cancels the pending tab page operation.
+        /// </summary>
         public bool Cancel = false;
+        /// <summary>
+        /// The tab page affected by the operation.
+        /// </summary>
         public TabPageAdvanced Page;
+        /// <summary>
+        /// Initializes a new instance for the given tab page, with cancellation not requested.
+        /// </summary>
+        /// <param name="npage">The tab page the operation applies to.</param>
         public CancelArgs(TabPageAdvanced npage)
         {
             Page = npage;
@@ -48,8 +58,17 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public enum VisualStyle
     {
+        /// <summary>
+        /// Visual Studio IDE-style tabs.
+        /// </summary>
         IDE = 0,
+        /// <summary>
+        /// Flat, plain-style tabs with a simple border.
+        /// </summary>
         Plain = 1,
+        /// <summary>
+        /// Chrome-browser-like rounded tabs.
+        /// </summary>
         Chrome
     }
     /// <summary>
@@ -57,7 +76,13 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public enum Direction
     {
+        /// <summary>
+        /// Vertical orientation.
+        /// </summary>
         Vertical = 0,
+        /// <summary>
+        /// Horizontal orientation.
+        /// </summary>
         Horizontal = 1
     }
 
@@ -66,10 +91,25 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public enum Edge
     {
+        /// <summary>
+        /// The top edge.
+        /// </summary>
         Top,
+        /// <summary>
+        /// The left edge.
+        /// </summary>
         Left,
+        /// <summary>
+        /// The bottom edge.
+        /// </summary>
         Bottom,
+        /// <summary>
+        /// The right edge.
+        /// </summary>
         Right,
+        /// <summary>
+        /// No edge.
+        /// </summary>
         None
     }
     /// <summary>
@@ -83,6 +123,9 @@ namespace Reportman.Drawing.Forms
         //      {
         //         InitializeComponent();
         //      }
+        /// <summary>
+        /// Gets the embedded finish-flag image resource used to mark a completed page.
+        /// </summary>
         public static Image FinishFlag
         {
             get
@@ -90,6 +133,9 @@ namespace Reportman.Drawing.Forms
                 return Properties.Resources.flag_finish;
             }
         }
+        /// <summary>
+        /// Gets the embedded progress-wheel image resource used to indicate a page is working.
+        /// </summary>
         public static Image ProgresWheel
         {
             get
@@ -104,11 +150,29 @@ namespace Reportman.Drawing.Forms
         /// </summary>
         public enum VisualAppearance
         {
+            /// <summary>
+            /// Multi-document (MDI-like) appearance.
+            /// </summary>
             MultiDocument = 0,
+            /// <summary>
+            /// Multi-form appearance.
+            /// </summary>
             MultiForm = 1,
+            /// <summary>
+            /// Compact multi-box appearance.
+            /// </summary>
             MultiBox = 2
         }
+        /// <summary>
+        /// Background color used to highlight a tab page that is alerting for attention.
+        /// </summary>
         public Color AlertingColor = Color.FromArgb(200, 150, 150);
+        /// <summary>
+        /// Walks up the parent chain of the given page and returns the owning
+        /// <see cref="TabControlAdvanced"/>, or null if the page is not hosted in one.
+        /// </summary>
+        /// <param name="npage">The tab page whose owning control is sought.</param>
+        /// <returns>The owning tab control, or null if none is found.</returns>
         public static TabControlAdvanced GetTabControlAdvanced(TabPageAdvanced npage)
         {
             Control ncontrol = npage.Parent;
@@ -135,90 +199,205 @@ namespace Reportman.Drawing.Forms
         /// </summary>
         public enum HideTabsModes
         {
+            /// <summary>
+            /// The tabs area is always shown.
+            /// </summary>
             ShowAlways,
+            /// <summary>
+            /// The tabs area is always hidden.
+            /// </summary>
             HideAlways,
+            /// <summary>
+            /// The tabs area is hidden based on logic, such as when only one page exists.
+            /// </summary>
             HideUsingLogic,
+            /// <summary>
+            /// The tabs area is hidden while the mouse is not over the control.
+            /// </summary>
             HideWithoutMouse
         }
 
         // Indexes into the menu images strip
+        /// <summary>
+        /// Indexes into the internal image strip used for the tab control's buttons.
+        /// </summary>
         protected enum ImageStrip
         {
+            /// <summary>
+            /// Enabled left scroll arrow image.
+            /// </summary>
             LeftEnabled = 0,
+            /// <summary>
+            /// Disabled left scroll arrow image.
+            /// </summary>
             LeftDisabled = 1,
+            /// <summary>
+            /// Enabled right scroll arrow image.
+            /// </summary>
             RightEnabled = 2,
+            /// <summary>
+            /// Disabled right scroll arrow image.
+            /// </summary>
             RightDisabled = 3,
+            /// <summary>
+            /// Close button image.
+            /// </summary>
             Close = 4,
+            /// <summary>
+            /// Error image shown when a page image cannot be resolved.
+            /// </summary>
             Error = 5,
+            /// <summary>
+            /// Drop-down button image.
+            /// </summary>
             DropDown = 6
         }
 
         // Enumeration of Indexes into positioning constants array
+        /// <summary>
+        /// Indexes into the per-style array of sizing and positioning constants.
+        /// </summary>
         protected enum PositionIndex
         {
+            /// <summary>
+            /// Size of the border above the tabs.
+            /// </summary>
             BorderTop = 0,
+            /// <summary>
+            /// Size of the border to the left of a tab.
+            /// </summary>
             BorderLeft = 1,
+            /// <summary>
+            /// Size of the border below a tab.
+            /// </summary>
             BorderBottom = 2,
+            /// <summary>
+            /// Size of the border to the right of a tab.
+            /// </summary>
             BorderRight = 3,
+            /// <summary>
+            /// Gap above the tab image.
+            /// </summary>
             ImageGapTop = 4,
+            /// <summary>
+            /// Gap to the left of the tab image.
+            /// </summary>
             ImageGapLeft = 5,
+            /// <summary>
+            /// Gap below the tab image.
+            /// </summary>
             ImageGapBottom = 6,
+            /// <summary>
+            /// Gap to the right of the tab image.
+            /// </summary>
             ImageGapRight = 7,
+            /// <summary>
+            /// Vertical offset applied to the tab text.
+            /// </summary>
             TextOffset = 8,
+            /// <summary>
+            /// Gap to the left of the tab text.
+            /// </summary>
             TextGapLeft = 9,
+            /// <summary>
+            /// Gap below the tabs area.
+            /// </summary>
             TabsBottomGap = 10,
+            /// <summary>
+            /// Vertical offset applied to the tabs area buttons.
+            /// </summary>
             ButtonOffset = 11,
         }
 
         // Helper class for handling multiline calculations
+        /// <summary>
+        /// Associates a tab's display rectangle with its page index while laying out
+        /// multiline tabs.
+        /// </summary>
         protected class MultiRect
         {
+            /// <summary>
+            /// The display rectangle of the tab.
+            /// </summary>
             protected Rectangle _rect;
+            /// <summary>
+            /// The index of the associated tab page.
+            /// </summary>
             protected int _index;
 
+            /// <summary>
+            /// Initializes a new instance with the given rectangle and page index.
+            /// </summary>
+            /// <param name="rect">The tab display rectangle.</param>
+            /// <param name="index">The index of the associated tab page.</param>
             public MultiRect(Rectangle rect, int index)
             {
                 _rect = rect;
                 _index = index;
             }
 
+            /// <summary>
+            /// Gets the index of the associated tab page.
+            /// </summary>
             public int Index
             {
                 get { return _index; }
             }
 
+            /// <summary>
+            /// Gets or sets the display rectangle of the tab.
+            /// </summary>
             public Rectangle Rect
             {
                 get { return _rect; }
                 set { _rect = value; }
             }
 
+            /// <summary>
+            /// Gets or sets the left position of the tab rectangle.
+            /// </summary>
             public int X
             {
                 get { return _rect.X; }
                 set { _rect.X = value; }
             }
 
+            /// <summary>
+            /// Gets or sets the top position of the tab rectangle.
+            /// </summary>
             public int Y
             {
                 get { return _rect.Y; }
                 set { _rect.Y = value; }
             }
 
+            /// <summary>
+            /// Gets or sets the width of the tab rectangle.
+            /// </summary>
             public int Width
             {
                 get { return _rect.Width; }
                 set { _rect.Width = value; }
             }
 
+            /// <summary>
+            /// Gets or sets the height of the tab rectangle.
+            /// </summary>
             public int Height
             {
                 get { return _rect.Height; }
                 set { _rect.Height = value; }
             }
         }
+        /// <summary>
+        /// Double-buffered panel that hosts the control or form of the currently selected
+        /// tab page and keeps its children sized to match.
+        /// </summary>
         protected class HostPanel : Panel
         {
+            /// <summary>
+            /// Initializes a new instance with double buffering enabled to prevent flicker.
+            /// </summary>
             public HostPanel()
             {
                 // Prevent flicker with double buffering and all painting inside WM_PAINT
@@ -227,6 +406,10 @@ namespace Reportman.Drawing.Forms
                 SetStyle(ControlStyles.UserPaint, true);
             }
 
+            /// <summary>
+            /// Resizes each hosted child control to match the panel size.
+            /// </summary>
+            /// <param name="e">The event data.</param>
             protected override void OnResize(EventArgs e)
             {
                 // Update size of each child to match ourself
@@ -239,6 +422,10 @@ namespace Reportman.Drawing.Forms
 
 
         // Class constants for sizing/positioning each style
+        /// <summary>
+        /// Per-style table of sizing and positioning constants, indexed by style and by
+        /// <see cref="PositionIndex"/>.
+        /// </summary>
         protected static int[,] _position = {
                                                 {3, 1, 1, 1, 1, 2, 1, 1, 2, 1, 3, 2},	// IDE
                                                 {6, 2, 2, 3, 3, 1, 1, 0, 1, 1, 2, 0},   // Plain
@@ -252,20 +439,65 @@ namespace Reportman.Drawing.Forms
         };
 
         // Class constants
+        /// <summary>
+        /// Width in pixels of the plain-style border.
+        /// </summary>
         protected static int _plainBorder = 3;
+        /// <summary>
+        /// Width in pixels of a doubled plain-style border.
+        /// </summary>
         protected static int _plainBorderDouble = 6;
+        /// <summary>
+        /// Inset in pixels from the start (left) of the tabs area before the first tab.
+        /// </summary>
         protected static int _tabsAreaStartInset = 5;
+        /// <summary>
+        /// Inset in pixels from the end (right) of the tabs area after the last tab.
+        /// </summary>
         protected static int _tabsAreaEndInset = 5;
+        /// <summary>
+        /// Alpha factor used when blending colors in the IDE appearance.
+        /// </summary>
         protected static float _alphaIDE = 1.5F;
+        /// <summary>
+        /// Gap in pixels between the tabs area buttons.
+        /// </summary>
         protected static int _buttonGap = 3;
+        /// <summary>
+        /// Current (DPI-scaled) width in pixels of a tabs area button.
+        /// </summary>
         protected static int _buttonWidth = 14;
+        /// <summary>
+        /// Current (DPI-scaled) height in pixels of a tabs area button.
+        /// </summary>
         protected static int _buttonHeight = 14;
+        /// <summary>
+        /// Unscaled width in pixels of a tabs area button.
+        /// </summary>
         protected static int _unScaledButtonWidth = 14;
+        /// <summary>
+        /// Original (DPI-scaled) width in pixels of a tabs area button.
+        /// </summary>
         protected static int _originalButtonWidth = 14;
+        /// <summary>
+        /// Original (DPI-scaled) height in pixels of a tabs area button.
+        /// </summary>
         protected static int _originalButtonHeight = 14;
+        /// <summary>
+        /// DPI-scaled width in pixels of a button image.
+        /// </summary>
         protected static int _imageButtonWidth = 12;
+        /// <summary>
+        /// DPI-scaled height in pixels of a button image.
+        /// </summary>
         protected static int _imageButtonHeight = 12;
+        /// <summary>
+        /// Vertical adjustment in pixels applied to tabs in the multi-box appearance.
+        /// </summary>
         protected static int _multiBoxAdjust = 2;
+        /// <summary>
+        /// Off-screen rectangle used to represent a tab that is not currently displayed.
+        /// </summary>
         protected readonly Rectangle _nullPosition = new Rectangle(-999, -999, 0, 0);
 
         static TabControlAdvanced()
@@ -298,12 +530,21 @@ namespace Reportman.Drawing.Forms
         }
 
         // Class state
+        /// <summary>
+        /// Shared image list holding the built-in button images (arrows, close, drop-down).
+        /// </summary>
         protected static ImageList _internalImages;
 
         // Instance fields - size/positioning
+        /// <summary>
+        /// Height in pixels of the tab text for the current font.
+        /// </summary>
         protected int _textHeight;
         int _imageWidth;
         int _imageHeight;
+        /// <summary>
+        /// Gets or sets the width in pixels used to draw tab images.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int ImageWidth
         {
@@ -318,6 +559,9 @@ namespace Reportman.Drawing.Forms
             }
         }
         bool _autoShrinkPages;
+        /// <summary>
+        /// Gets or sets whether tab pages are shrunk so they all fit within the control width.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AutoShrinkPages
         {
@@ -331,6 +575,9 @@ namespace Reportman.Drawing.Forms
                 Recalculate();
             }
         }
+        /// <summary>
+        /// Gets the creation parameters used when the control window is created.
+        /// </summary>
         protected override CreateParams CreateParams
         {
             get
@@ -343,6 +590,10 @@ namespace Reportman.Drawing.Forms
                 return cp;
             }
         }
+        /// <summary>
+        /// Gets or sets whether clicking an empty part of the tabs area starts moving the
+        /// hosting form.
+        /// </summary>
 #if DON6
         public bool EmptyMoveForm = true;
 #else
@@ -350,6 +601,10 @@ namespace Reportman.Drawing.Forms
 #endif
 
         bool _autoHidePaging;
+        /// <summary>
+        /// Gets or sets whether the scrolling arrows are hidden automatically when paging
+        /// is not required.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AutoHidePaging
         {
@@ -364,6 +619,10 @@ namespace Reportman.Drawing.Forms
             }
         }
         int _autoShrinkMinimum;
+        /// <summary>
+        /// Gets or sets the minimum tab width in pixels below which pages are not shrunk
+        /// any further.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int AutoShrinkMinimum
         {
@@ -377,7 +636,13 @@ namespace Reportman.Drawing.Forms
                 Recalculate();
             }
         }
+        /// <summary>
+        /// Additional margin in pixels added around the tab image.
+        /// </summary>
         public int ImageMargin = 0;
+        /// <summary>
+        /// Gets or sets the height in pixels used to draw tab images.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int ImageHeight
         {
@@ -392,79 +657,289 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Extra spacing in pixels added above the image so it aligns with taller text.
+        /// </summary>
         protected int _imageGapTopExtra;
+        /// <summary>
+        /// Extra spacing in pixels added below the image so it aligns with taller text.
+        /// </summary>
         protected int _imageGapBottomExtra;
+        /// <summary>
+        /// Rectangle occupied by the hosted page control.
+        /// </summary>
         protected Rectangle _pageRect;
+        /// <summary>
+        /// Rectangle covering the whole area available to pages.
+        /// </summary>
         protected Rectangle _pageAreaRect;
+        /// <summary>
+        /// Rectangle covering the whole tabs area.
+        /// </summary>
         protected Rectangle _tabsAreaRect;
 
         // Instance fields - state
-        protected int _ctrlTopOffset;			// How far from top edge embedded controls should offset
-        protected int _ctrlLeftOffset;			// How far from left edge embedded controls should offset
-        protected int _ctrlRightOffset;			// How far from right edgeembedded controls should offset
-        protected int _ctrlBottomOffset;	    // How far from bottom edge embedded controls should offset
-        protected int _styleIndex;				// Index into position array
-        protected int _pageSelected;			// index of currently selected page (-1 is none)
-        protected int _startPage;				// index of first page to draw, used when scrolling pages
-        protected int _hotTrackPage;			// which page is currently displayed as being tracked
-        protected bool _hotTrackPageHightlightClose;			// close is displayed
-        protected int _topYPos;                 // Y position of first line in multiline mode
-        protected int _bottomYPos;              // Y position of last line in multiline mode
-        protected int _leaveTimeout;            // How long from leaving to timeout occuring
-        protected bool _dragFromControl;        // Must drag away from whole control before drag events generated
-        protected bool _mouseOver;              // Mouse currently over the control (or child pages)
-        protected bool _multiline;              // should tabs that cannot fit on a line create new lines
-        protected bool _multilineFullWidth;     // when in multiline mode, all lines are extended to end 
-        protected bool _shrinkPagesToFit;		// pages are shrunk so they all fit in control width
-        protected bool _changed;				// Flag for use when updating contents of collection
-        protected bool _positionAtTop;			// display tabs at top or bottom of the control
-        protected bool _showClose;				// should the close button be displayed
-        protected bool _showDropDown;				// should the dropdown tabs be displayed
-        protected bool _showCloseIndividual;				// should the close button be displayed
-        protected bool _showArrows;				// should then scroll arrow be displayed
-        protected bool _insetPlain;				// Show the inset border for controls
-        protected bool _insetBorderPagesOnly;   // Remove the border entirely for Plain mode
-        protected bool _selectedTextOnly;	    // Only draw text for selected tab
-        protected bool _rightScroll;			// Should the right scroll button be enabled
-        protected bool _leftScroll;				// Should the left scroll button be enabled
-        protected bool _dimUnselected;			// should unselected pages be drawn slightly dimmed
-        protected bool _boldSelected;			// should selected page use a bold font
-        protected bool _hotTrack;				// should mouve moving over text hot track it
-        protected bool _hoverSelect;			// select a page when he mouse hovers over it
-        protected bool _recalculate;			// flag to indicate recalculation is needed before painting
-        protected bool _leftMouseDown;			// Is the left mouse button down
-        protected bool _leftMouseDownDrag;		// Has a drag operation begun
-        protected bool _ignoreDownDrag;         // When pressed the left button cannot generate two drags
-        protected bool _defaultColor;			// Is the background color the default one?
-        protected bool _defaultFont;            // Is the Font the default one?
-        protected bool _recordFocus;			// Record the control with focus when leaving a page
-        protected bool _idePixelArea;           // Place a one pixel border at top/bottom of tabs area
-        protected bool _idePixelBorder;         // Place a one pixel border around control
-        protected ContextMenuStrip _contextMenu;       // Context menu to show on right mouse up
-        protected Point _leftMouseDownPos;		// Initial mouse down position for left mouse button
-        protected Color _hotTextColor;			// color for use when drawing text as hot
-        protected Color _textColor;				// color for use when text not hot
-        protected Color _textInactiveColor;	    // color for use when text not hot and not the active tab
-        protected Color _backIDE;				// background drawing color when in IDE appearance
-        protected Color _buttonActiveColor;		// color for drawing buttons images when active
-        protected Color _buttonInactiveColor;	// color for drawing buttons images when inactive
-        protected Color _backLight;				// light variation of the back color
-        protected Color _backLightLight;		// lightlight variation of the back color
-        protected Color _backDark;				// dark variation of the back color
-        protected Color _backDarkDark;			// darkdark variation of the back color
-        protected VisualStyle _style;			// which style of use 
-        protected HideTabsModes _hideTabsMode;  // Decide when to hide/show tabs area
-        protected System.Windows.Forms.Timer _overTimer;             // Time when mouse has left control
-        protected HostPanel _hostPanel;         // Hosts the page instance control/form
-        protected VisualAppearance _appearance;	// which appearance style
-        protected ImageList _imageList;			// collection of images for use is tabs
-        protected ArrayList _tabRects;			// display rectangles for associated page
-        protected TabPageCollection _tabPages;	// collection of pages
+        /// <summary>
+        /// How far from the top edge embedded controls should be offset.
+        /// </summary>
+        protected int _ctrlTopOffset;
+        /// <summary>
+        /// How far from the left edge embedded controls should be offset.
+        /// </summary>
+        protected int _ctrlLeftOffset;
+        /// <summary>
+        /// How far from the right edge embedded controls should be offset.
+        /// </summary>
+        protected int _ctrlRightOffset;
+        /// <summary>
+        /// How far from the bottom edge embedded controls should be offset.
+        /// </summary>
+        protected int _ctrlBottomOffset;
+        /// <summary>
+        /// Index into the position constants array for the current style.
+        /// </summary>
+        protected int _styleIndex;
+        /// <summary>
+        /// Index of the currently selected page (-1 when none).
+        /// </summary>
+        protected int _pageSelected;
+        /// <summary>
+        /// Index of the first page to draw, used when scrolling pages.
+        /// </summary>
+        protected int _startPage;
+        /// <summary>
+        /// Index of the page currently displayed as being hot tracked.
+        /// </summary>
+        protected int _hotTrackPage;
+        /// <summary>
+        /// Whether the close indicator is highlighted on the hot-tracked page.
+        /// </summary>
+        protected bool _hotTrackPageHightlightClose;
+        /// <summary>
+        /// Y position of the first line in multiline mode.
+        /// </summary>
+        protected int _topYPos;
+        /// <summary>
+        /// Y position of the last line in multiline mode.
+        /// </summary>
+        protected int _bottomYPos;
+        /// <summary>
+        /// Delay in milliseconds from the mouse leaving until the timeout occurs.
+        /// </summary>
+        protected int _leaveTimeout;
+        /// <summary>
+        /// Whether the mouse must leave the whole control before drag events are generated.
+        /// </summary>
+        protected bool _dragFromControl;
+        /// <summary>
+        /// Whether the mouse is currently over the control or its child pages.
+        /// </summary>
+        protected bool _mouseOver;
+        /// <summary>
+        /// Whether tabs that cannot fit on one line create new lines.
+        /// </summary>
+        protected bool _multiline;
+        /// <summary>
+        /// Whether, in multiline mode, all lines are extended to the end.
+        /// </summary>
+        protected bool _multilineFullWidth;
+        /// <summary>
+        /// Whether pages are shrunk so they all fit within the control width.
+        /// </summary>
+        protected bool _shrinkPagesToFit;
+        /// <summary>
+        /// Flag used while updating the contents of the page collection.
+        /// </summary>
+        protected bool _changed;
+        /// <summary>
+        /// Whether the tabs are displayed at the top or bottom of the control.
+        /// </summary>
+        protected bool _positionAtTop;
+        /// <summary>
+        /// Whether the close button is displayed.
+        /// </summary>
+        protected bool _showClose;
+        /// <summary>
+        /// Whether the drop-down tabs button is displayed.
+        /// </summary>
+        protected bool _showDropDown;
+        /// <summary>
+        /// Whether an individual close button is displayed on each page.
+        /// </summary>
+        protected bool _showCloseIndividual;
+        /// <summary>
+        /// Whether the scroll arrow buttons are displayed.
+        /// </summary>
+        protected bool _showArrows;
+        /// <summary>
+        /// Whether the inset border is shown for controls.
+        /// </summary>
+        protected bool _insetPlain;
+        /// <summary>
+        /// Whether the border is drawn only around pages in Plain mode.
+        /// </summary>
+        protected bool _insetBorderPagesOnly;
+        /// <summary>
+        /// Whether text is drawn only for the selected tab.
+        /// </summary>
+        protected bool _selectedTextOnly;
+        /// <summary>
+        /// Whether the right scroll button should be enabled.
+        /// </summary>
+        protected bool _rightScroll;
+        /// <summary>
+        /// Whether the left scroll button should be enabled.
+        /// </summary>
+        protected bool _leftScroll;
+        /// <summary>
+        /// Whether unselected pages are drawn slightly dimmed.
+        /// </summary>
+        protected bool _dimUnselected;
+        /// <summary>
+        /// Whether the selected page uses a bold font.
+        /// </summary>
+        protected bool _boldSelected;
+        /// <summary>
+        /// Whether moving the mouse over tab text hot tracks it.
+        /// </summary>
+        protected bool _hotTrack;
+        /// <summary>
+        /// Whether a page is selected when the mouse hovers over it.
+        /// </summary>
+        protected bool _hoverSelect;
+        /// <summary>
+        /// Flag indicating a recalculation is needed before painting.
+        /// </summary>
+        protected bool _recalculate;
+        /// <summary>
+        /// Whether the left mouse button is currently down.
+        /// </summary>
+        protected bool _leftMouseDown;
+        /// <summary>
+        /// Whether a drag operation has begun.
+        /// </summary>
+        protected bool _leftMouseDownDrag;
+        /// <summary>
+        /// Prevents a single left button press from generating two drags.
+        /// </summary>
+        protected bool _ignoreDownDrag;
+        /// <summary>
+        /// Whether the background color is the default one.
+        /// </summary>
+        protected bool _defaultColor;
+        /// <summary>
+        /// Whether the font is the default one.
+        /// </summary>
+        protected bool _defaultFont;
+        /// <summary>
+        /// Whether to record the control with focus when leaving a page.
+        /// </summary>
+        protected bool _recordFocus;
+        /// <summary>
+        /// Whether to place a one pixel border at the top and bottom of the tabs area.
+        /// </summary>
+        protected bool _idePixelArea;
+        /// <summary>
+        /// Whether to place a one pixel border around the whole control.
+        /// </summary>
+        protected bool _idePixelBorder;
+        /// <summary>
+        /// Context menu shown on a right mouse up over the tabs area.
+        /// </summary>
+        protected ContextMenuStrip _contextMenu;
+        /// <summary>
+        /// Initial mouse down position for the left mouse button.
+        /// </summary>
+        protected Point _leftMouseDownPos;
+        /// <summary>
+        /// Color used when drawing text as hot.
+        /// </summary>
+        protected Color _hotTextColor;
+        /// <summary>
+        /// Color used when drawing text that is not hot.
+        /// </summary>
+        protected Color _textColor;
+        /// <summary>
+        /// Color used when drawing text that is neither hot nor on the active tab.
+        /// </summary>
+        protected Color _textInactiveColor;
+        /// <summary>
+        /// Background drawing color used in the IDE appearance.
+        /// </summary>
+        protected Color _backIDE;
+        /// <summary>
+        /// Color used to draw button images when active.
+        /// </summary>
+        protected Color _buttonActiveColor;
+        /// <summary>
+        /// Color used to draw button images when inactive.
+        /// </summary>
+        protected Color _buttonInactiveColor;
+        /// <summary>
+        /// Light variation of the back color.
+        /// </summary>
+        protected Color _backLight;
+        /// <summary>
+        /// Light-light variation of the back color.
+        /// </summary>
+        protected Color _backLightLight;
+        /// <summary>
+        /// Dark variation of the back color.
+        /// </summary>
+        protected Color _backDark;
+        /// <summary>
+        /// Dark-dark variation of the back color.
+        /// </summary>
+        protected Color _backDarkDark;
+        /// <summary>
+        /// The visual style used to paint the tabs.
+        /// </summary>
+        protected VisualStyle _style;
+        /// <summary>
+        /// Mode that decides when to hide or show the tabs area.
+        /// </summary>
+        protected HideTabsModes _hideTabsMode;
+        /// <summary>
+        /// Timer measuring how long the mouse has left the control.
+        /// </summary>
+        protected System.Windows.Forms.Timer _overTimer;
+        /// <summary>
+        /// Panel that hosts the current page's control or form.
+        /// </summary>
+        protected HostPanel _hostPanel;
+        /// <summary>
+        /// The current appearance style.
+        /// </summary>
+        protected VisualAppearance _appearance;
+        /// <summary>
+        /// Collection of images used in the tabs.
+        /// </summary>
+        protected ImageList _imageList;
+        /// <summary>
+        /// Display rectangles for each associated page.
+        /// </summary>
+        protected ArrayList _tabRects;
+        /// <summary>
+        /// Collection of tab pages.
+        /// </summary>
+        protected TabPageCollection _tabPages;
 
         // Instance fields - buttons
+        /// <summary>
+        /// The close button shown in the tabs area.
+        /// </summary>
         protected InertButton _closeButton;
+        /// <summary>
+        /// The drop-down button shown in the tabs area.
+        /// </summary>
         protected InertButton _dropDownButton;
+        /// <summary>
+        /// The left scroll arrow button shown in the tabs area.
+        /// </summary>
         protected InertButton _leftArrow;
+        /// <summary>
+        /// The right scroll arrow button shown in the tabs area.
+        /// </summary>
         protected InertButton _rightArrow;
 
         /// <summary>
@@ -474,19 +949,56 @@ namespace Reportman.Drawing.Forms
         public delegate void DoubleClickTabHandler(TabControlAdvanced sender, TabPageAdvanced page);
 
         // Exposed events
+        /// <summary>
+        /// Raised when the close button is pressed; handlers may cancel the close.
+        /// </summary>
         public event CancelEvent ClosePressed;
+        /// <summary>
+        /// Raised before the selected page changes; handlers may cancel the change.
+        /// </summary>
         public event CancelEvent SelectionChanging;
+        /// <summary>
+        /// Raised after the selected page has changed.
+        /// </summary>
         public event EventHandler SelectionChanged;
+        /// <summary>
+        /// Raised when a hosted page gains focus.
+        /// </summary>
         public event EventHandler PageGotFocus;
+        /// <summary>
+        /// Raised when a hosted page loses focus.
+        /// </summary>
         public event EventHandler PageLostFocus;
+        /// <summary>
+        /// Raised before the context popup menu is displayed; handlers may cancel it.
+        /// </summary>
         public event CancelEventHandler PopupMenuDisplay;
+        /// <summary>
+        /// Raised when a tab page drag operation starts.
+        /// </summary>
         public event MouseEventHandler PageDragStart;
+        /// <summary>
+        /// Raised as a tab page drag operation moves.
+        /// </summary>
         public event MouseEventHandler PageDragMove;
+        /// <summary>
+        /// Raised when a tab page drag operation ends.
+        /// </summary>
         public event MouseEventHandler PageDragEnd;
+        /// <summary>
+        /// Raised when a tab page drag operation is quit without completing.
+        /// </summary>
         public event MouseEventHandler PageDragQuit;
+        /// <summary>
+        /// Raised when a tab is double-clicked.
+        /// </summary>
         public event DoubleClickTabHandler DoubleClickTab;
 
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TabControlAdvanced"/> control with
+        /// its default appearance, colors, buttons, and event hookups.
+        /// </summary>
         public TabControlAdvanced()
         {
 
@@ -614,6 +1126,9 @@ namespace Reportman.Drawing.Forms
         }
 
 
+        /// <summary>
+        /// Gets the collection of tab pages hosted by the control.
+        /// </summary>
         [Category("Appearance")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public virtual TabPageCollection TabPages
@@ -621,6 +1136,9 @@ namespace Reportman.Drawing.Forms
             get { return _tabPages; }
         }
 
+        /// <summary>
+        /// Gets or sets the font used to draw the tab text.
+        /// </summary>
         [Category("Appearance")]
         public override Font Font
         {
@@ -648,6 +1166,9 @@ namespace Reportman.Drawing.Forms
             return !_defaultFont;
         }
 
+        /// <summary>
+        /// Gets or sets the foreground color used to draw the tab text.
+        /// </summary>
         [Category("Appearance")]
         public override Color ForeColor
         {
@@ -670,6 +1191,10 @@ namespace Reportman.Drawing.Forms
             return _textColor != TabControlAdvanced.DefaultForeColor;
         }
 
+        /// <summary>
+        /// Gets or sets the background color of the control, from which the tab shading
+        /// colors are derived.
+        /// </summary>
         [Category("Appearance")]
         public override Color BackColor
         {
@@ -694,6 +1219,9 @@ namespace Reportman.Drawing.Forms
             return this.BackColor != SystemColors.Control;
         }
 
+        /// <summary>
+        /// Gets or sets the color used to draw the tabs area button images when active.
+        /// </summary>
         [Category("Appearance")]
         public virtual Color ButtonActiveColor
         {
@@ -714,11 +1242,17 @@ namespace Reportman.Drawing.Forms
             return _buttonActiveColor != Color.FromArgb(128, this.ForeColor);
         }
 
+        /// <summary>
+        /// Resets <see cref="ButtonActiveColor"/> to its default value.
+        /// </summary>
         public void ResetButtonActiveColor()
         {
             ButtonActiveColor = Color.FromArgb(128, this.ForeColor);
         }
 
+        /// <summary>
+        /// Gets or sets the color used to draw the tabs area button images when inactive.
+        /// </summary>
         [Category("Appearance")]
         public virtual Color ButtonInactiveColor
         {
@@ -739,11 +1273,17 @@ namespace Reportman.Drawing.Forms
             return _buttonInactiveColor != Color.FromArgb(128, this.ForeColor);
         }
 
+        /// <summary>
+        /// Resets <see cref="ButtonInactiveColor"/> to its default value.
+        /// </summary>
         public void ResetButtonInactiveColor()
         {
             ButtonInactiveColor = Color.FromArgb(128, this.ForeColor);
         }
 
+        /// <summary>
+        /// Gets or sets the high-level appearance preset of the tab control.
+        /// </summary>
         [Category("Appearance")]
         [DefaultValue(typeof(VisualAppearance), "MultiForm")]
         public virtual VisualAppearance Appearance
@@ -762,11 +1302,17 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Resets <see cref="Appearance"/> to its default value.
+        /// </summary>
         public void ResetAppearance()
         {
             Appearance = VisualAppearance.MultiForm;
         }
 
+        /// <summary>
+        /// Gets or sets the visual rendering style used to paint the tabs.
+        /// </summary>
         [Category("Appearance")]
         [DefaultValue(typeof(VisualStyle), "IDE")]
         public virtual VisualStyle Style
@@ -788,11 +1334,17 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Resets <see cref="Style"/> to its default value.
+        /// </summary>
         public void ResetStyle()
         {
             Style = VisualStyle.IDE;
         }
 
+        /// <summary>
+        /// Gets or sets the context menu shown when the tabs area is right-clicked.
+        /// </summary>
         [Category("Behavour")]
         public virtual ContextMenuStrip ContextPopupMenu
         {
@@ -800,16 +1352,26 @@ namespace Reportman.Drawing.Forms
             set { _contextMenu = value; }
         }
 
+        /// <summary>
+        /// Determines whether <see cref="ContextPopupMenu"/> should be serialized by the designer.
+        /// </summary>
+        /// <returns>True if a context menu is assigned.</returns>
         protected bool ShouldSerializeContextPopupMenu()
         {
             return _contextMenu != null;
         }
 
+        /// <summary>
+        /// Resets <see cref="ContextPopupMenu"/> to its default value of none.
+        /// </summary>
         public void ResetContextPopupMenu()
         {
             ContextPopupMenu = null;
         }
 
+        /// <summary>
+        /// Gets or sets whether moving the mouse over a tab hot tracks it.
+        /// </summary>
         [Category("Appearance")]
         [DefaultValue(false)]
         public virtual bool HotTrack
@@ -835,6 +1397,9 @@ namespace Reportman.Drawing.Forms
         private bool _allowTabReordering = false;
         private bool _reorderingtab;
         private static int _MouseOffsetTriggerReorder;
+        /// <summary>
+        /// Gets or sets whether the user can reorder tabs by dragging them.
+        /// </summary>
         [Category("Appearance")]
         [DefaultValue(false)]
         public virtual bool AllowTabReordering
@@ -849,16 +1414,25 @@ namespace Reportman.Drawing.Forms
                 }
             }
         }
+        /// <summary>
+        /// When true, the last tab may also be reordered and included in shrink calculations.
+        /// </summary>
         [Category("Appearance")]
         [DefaultValue(false)]
         public bool AllowLastTabReordering = false;
 
 
+        /// <summary>
+        /// Resets <see cref="HotTrack"/> to its default value.
+        /// </summary>
         public void ResetHotTrack()
         {
             HotTrack = false;
         }
 
+        /// <summary>
+        /// Gets or sets the color used to draw tab text when it is hot tracked.
+        /// </summary>
         [Category("Appearance")]
         public virtual Color HotTextColor
         {
@@ -881,11 +1455,17 @@ namespace Reportman.Drawing.Forms
             return _hotTextColor != SystemColors.ActiveCaption;
         }
 
+        /// <summary>
+        /// Resets <see cref="HotTextColor"/> to its default value.
+        /// </summary>
         public void ResetHotTextColor()
         {
             HotTextColor = SystemColors.ActiveCaption;
         }
 
+        /// <summary>
+        /// Gets or sets the color used to draw tab text when not hot tracked.
+        /// </summary>
         [Category("Appearance")]
         public virtual Color TextColor
         {
@@ -908,11 +1488,17 @@ namespace Reportman.Drawing.Forms
             return _textColor != TabControlAdvanced.DefaultForeColor;
         }
 
+        /// <summary>
+        /// Resets <see cref="TextColor"/> to its default value.
+        /// </summary>
         public void ResetTextColor()
         {
             TextColor = TabControlAdvanced.DefaultForeColor;
         }
 
+        /// <summary>
+        /// Gets or sets the color used to draw tab text on inactive (unselected) tabs.
+        /// </summary>
         [Category("Appearance")]
         public virtual Color TextInactiveColor
         {
@@ -935,17 +1521,26 @@ namespace Reportman.Drawing.Forms
             return _textInactiveColor != Color.FromArgb(128, TabControlAdvanced.DefaultForeColor);
         }
 
+        /// <summary>
+        /// Resets <see cref="TextInactiveColor"/> to its default value.
+        /// </summary>
         public void TextTextInactiveColor()
         {
             TextInactiveColor = Color.FromArgb(128, TabControlAdvanced.DefaultForeColor);
         }
 
+        /// <summary>
+        /// Gets the rectangle occupied by the tabs area.
+        /// </summary>
         [Browsable(false)]
         public virtual Rectangle TabsAreaRect
         {
             get { return _tabsAreaRect; }
         }
 
+        /// <summary>
+        /// Gets or sets the image list from which tab images are drawn.
+        /// </summary>
         [Category("Appearance")]
         public virtual ImageList ImageList
         {
@@ -968,11 +1563,17 @@ namespace Reportman.Drawing.Forms
             return _imageList != null;
         }
 
+        /// <summary>
+        /// Resets <see cref="ImageList"/> to its default value of none.
+        /// </summary>
         public void ResetImageList()
         {
             ImageList = null;
         }
 
+        /// <summary>
+        /// Gets or sets whether the tabs are positioned at the top of the control.
+        /// </summary>
         [Category("Appearance")]
         public virtual bool PositionTop
         {
@@ -990,6 +1591,10 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Determines whether <see cref="PositionTop"/> should be serialized by the designer.
+        /// </summary>
+        /// <returns>True if the value differs from the appearance default.</returns>
         protected bool ShouldSerializePositionTop()
         {
             switch (_appearance)
@@ -1003,6 +1608,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Resets <see cref="PositionTop"/> to the default for the current appearance.
+        /// </summary>
         public void ResetPositionTop()
         {
             switch (_appearance)
@@ -1018,6 +1626,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets whether the shared close button is shown in the tabs area.
+        /// </summary>
         [Category("Appearance")]
         public virtual bool ShowClose
         {
@@ -1037,6 +1648,9 @@ namespace Reportman.Drawing.Forms
         [Category("Appearance")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
 
+        /// <summary>
+        /// Gets or sets whether the drop-down tabs button is shown in the tabs area.
+        /// </summary>
         public virtual bool ShowDropDown
         {
             get { return _showDropDown; }
@@ -1055,6 +1669,9 @@ namespace Reportman.Drawing.Forms
         [Category("Appearance")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
 
+        /// <summary>
+        /// Gets or sets whether each closable page shows its own individual close button.
+        /// </summary>
         public virtual bool ShowCloseIndividual
         {
             get { return _showCloseIndividual; }
@@ -1071,6 +1688,10 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Determines whether <see cref="ShowClose"/> should be serialized by the designer.
+        /// </summary>
+        /// <returns>True if the value differs from the appearance default.</returns>
         protected bool ShouldSerializeShowClose()
         {
             switch (_appearance)
@@ -1084,6 +1705,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Resets <see cref="ShowClose"/> to the default for the current appearance.
+        /// </summary>
         public void ResetShowClose()
         {
             switch (_appearance)
@@ -1099,6 +1723,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets whether the left and right scroll arrow buttons are shown.
+        /// </summary>
         [Category("Appearance")]
         public virtual bool ShowArrows
         {
@@ -1116,6 +1743,10 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Determines whether <see cref="ShowArrows"/> should be serialized by the designer.
+        /// </summary>
+        /// <returns>True if the value differs from the appearance default.</returns>
         protected bool ShouldSerializeShowArrows()
         {
             switch (_appearance)
@@ -1129,6 +1760,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Resets <see cref="ShowArrows"/> to the default for the current appearance.
+        /// </summary>
         public void ResetShowArrows()
         {
             switch (_appearance)
@@ -1144,6 +1778,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets whether pages are shrunk so they all fit within the control width.
+        /// </summary>
         [Category("Appearance")]
         public virtual bool ShrinkPagesToFit
         {
@@ -1161,6 +1798,10 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Determines whether <see cref="ShrinkPagesToFit"/> should be serialized by the designer.
+        /// </summary>
+        /// <returns>True if the value differs from the appearance default.</returns>
         protected bool ShouldSerializeShrinkPagesToFit()
         {
             switch (_appearance)
@@ -1174,6 +1815,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Resets <see cref="ShrinkPagesToFit"/> to the default for the current appearance.
+        /// </summary>
         public void ResetShrinkPagesToFit()
         {
             switch (_appearance)
@@ -1189,6 +1833,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets whether the selected page's tab text is drawn in bold.
+        /// </summary>
         [Category("Appearance")]
         public virtual bool BoldSelectedPage
         {
@@ -1206,6 +1853,10 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Determines whether <see cref="BoldSelectedPage"/> should be serialized by the designer.
+        /// </summary>
+        /// <returns>True if the value differs from the appearance default.</returns>
         protected bool ShouldSerializeBoldSelectedPage()
         {
             switch (_appearance)
@@ -1219,6 +1870,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Resets <see cref="BoldSelectedPage"/> to the default for the current appearance.
+        /// </summary>
         public void ResetBoldSelectedPage()
         {
             switch (_appearance)
@@ -1234,6 +1888,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets whether, in multiline mode, every line is stretched to the full width.
+        /// </summary>
         [Category("Appearance")]
         [DefaultValue(false)]
         public virtual bool MultilineFullWidth
@@ -1252,11 +1909,17 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Resets <see cref="MultilineFullWidth"/> to its default value.
+        /// </summary>
         public void ResetMultilineFullWidth()
         {
             MultilineFullWidth = false;
         }
 
+        /// <summary>
+        /// Gets or sets whether tabs that do not fit on one line wrap onto multiple lines.
+        /// </summary>
         [Category("Appearance")]
         [DefaultValue(false)]
         public virtual bool Multiline
@@ -1275,11 +1938,17 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Resets <see cref="Multiline"/> to its default value.
+        /// </summary>
         public void ResetMultiline()
         {
             Multiline = false;
         }
 
+        /// <summary>
+        /// Gets or sets how far from the left edge hosted controls are offset.
+        /// </summary>
         [Category("Appearance")]
         [DefaultValue(0)]
         public virtual int ControlLeftOffset
@@ -1298,11 +1967,17 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Resets <see cref="ControlLeftOffset"/> to its default value.
+        /// </summary>
         public void ResetControlLeftOffset()
         {
             ControlLeftOffset = 0;
         }
 
+        /// <summary>
+        /// Gets or sets how far from the top edge hosted controls are offset.
+        /// </summary>
         [Category("Appearance")]
         [DefaultValue(0)]
         public virtual int ControlTopOffset
@@ -1321,11 +1996,17 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Resets <see cref="ControlTopOffset"/> to its default value.
+        /// </summary>
         public void ResetControlTopOffset()
         {
             ControlTopOffset = 0;
         }
 
+        /// <summary>
+        /// Gets or sets how far from the right edge hosted controls are offset.
+        /// </summary>
         [Category("Appearance")]
         [DefaultValue(0)]
         public virtual int ControlRightOffset
@@ -1344,11 +2025,17 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Resets <see cref="ControlRightOffset"/> to its default value.
+        /// </summary>
         public void ResetControlRightOffset()
         {
             ControlRightOffset = 0;
         }
 
+        /// <summary>
+        /// Gets or sets how far from the bottom edge hosted controls are offset.
+        /// </summary>
         [Category("Appearance")]
         [DefaultValue(0)]
         public virtual int ControlBottomOffset
@@ -1367,11 +2054,17 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Resets <see cref="ControlBottomOffset"/> to its default value.
+        /// </summary>
         public void ResetControlBottomOffset()
         {
             ControlBottomOffset = 0;
         }
 
+        /// <summary>
+        /// Gets or sets whether the inset border is shown around pages in Plain style.
+        /// </summary>
         [Category("Appearance")]
         [DefaultValue(true)]
         public virtual bool InsetPlain
@@ -1390,11 +2083,17 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Resets <see cref="InsetPlain"/> to its default value.
+        /// </summary>
         public void ResetInsetPlain()
         {
             InsetPlain = true;
         }
 
+        /// <summary>
+        /// Gets or sets whether, in Plain style, the border is drawn around pages only.
+        /// </summary>
         [Category("Appearance")]
         [DefaultValue(false)]
         public virtual bool InsetBorderPagesOnly
@@ -1413,11 +2112,17 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Resets <see cref="InsetBorderPagesOnly"/> to its default value.
+        /// </summary>
         public void ResetInsetBorderPagesOnly()
         {
             InsetBorderPagesOnly = true;
         }
 
+        /// <summary>
+        /// Gets or sets whether a one-pixel border is drawn around the whole control in IDE style.
+        /// </summary>
         [Category("Appearance")]
         public virtual bool IDEPixelBorder
         {
@@ -1435,6 +2140,10 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Determines whether <see cref="IDEPixelBorder"/> should be serialized by the designer.
+        /// </summary>
+        /// <returns>True if the value differs from the appearance default.</returns>
         protected bool ShouldSerializeIDEPixelBorder()
         {
             switch (_appearance)
@@ -1448,6 +2157,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Resets <see cref="IDEPixelBorder"/> to the default for the current appearance.
+        /// </summary>
         public void ResetIDEPixelBorder()
         {
             switch (_appearance)
@@ -1463,6 +2175,10 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets whether a one-pixel border is drawn at the top or bottom of the
+        /// tabs area in IDE style.
+        /// </summary>
         [Category("Appearance")]
         [DefaultValue(true)]
         public virtual bool IDEPixelArea
@@ -1481,11 +2197,17 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Resets <see cref="IDEPixelArea"/> to its default value.
+        /// </summary>
         public void ResetIDEPixelArea()
         {
             IDEPixelArea = true;
         }
 
+        /// <summary>
+        /// Gets or sets whether tab text is drawn only for the selected tab.
+        /// </summary>
         [Category("Appearance")]
         [DefaultValue(false)]
         public virtual bool SelectedTextOnly
@@ -1504,11 +2226,17 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Resets <see cref="SelectedTextOnly"/> to its default value.
+        /// </summary>
         public void ResetSelectedTextOnly()
         {
             SelectedTextOnly = false;
         }
 
+        /// <summary>
+        /// Gets or sets the delay in milliseconds before the control reacts to the mouse leaving.
+        /// </summary>
         [Category("Behavour")]
         [DefaultValue(200)]
         public int MouseLeaveTimeout
@@ -1525,11 +2253,17 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Resets <see cref="MouseLeaveTimeout"/> to its default value.
+        /// </summary>
         public void ResetMouseLeaveTimeout()
         {
             _leaveTimeout = 200;
         }
 
+        /// <summary>
+        /// Gets or sets whether the mouse must leave the whole control before a page drag begins.
+        /// </summary>
         [Category("Behavour")]
         [DefaultValue(true)]
         public bool DragFromControl
@@ -1538,11 +2272,17 @@ namespace Reportman.Drawing.Forms
             set { _dragFromControl = value; }
         }
 
+        /// <summary>
+        /// Resets <see cref="DragFromControl"/> to its default value.
+        /// </summary>
         public void ResetDragFromControl()
         {
             DragFromControl = true;
         }
 
+        /// <summary>
+        /// Gets or sets the mode that decides when the tabs area is hidden or shown.
+        /// </summary>
         [Category("Appearance")]
         [DefaultValue(false)]
         public virtual HideTabsModes HideTabsMode
@@ -1561,16 +2301,26 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Determines whether <see cref="HideTabsMode"/> should be serialized by the designer.
+        /// </summary>
+        /// <returns>True if the mode is not the default.</returns>
         protected bool ShouldSerializeHideTabsMode()
         {
             return HideTabsMode != HideTabsModes.ShowAlways;
         }
 
+        /// <summary>
+        /// Resets <see cref="HideTabsMode"/> to its default value.
+        /// </summary>
         public void ResetHideTabsMode()
         {
             HideTabsMode = HideTabsModes.ShowAlways;
         }
 
+        /// <summary>
+        /// Gets or sets whether a page is selected when the mouse hovers over its tab.
+        /// </summary>
         [Category("Appearance")]
         [DefaultValue(false)]
         public virtual bool HoverSelect
@@ -1589,11 +2339,17 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Resets <see cref="HoverSelect"/> to its default value.
+        /// </summary>
         public void ResetHoverSelect()
         {
             HoverSelect = false;
         }
 
+        /// <summary>
+        /// Gets or sets whether the control with focus is remembered when leaving a page.
+        /// </summary>
         [Category("Behavour")]
         [DefaultValue(true)]
         public virtual bool RecordFocus
@@ -1607,11 +2363,18 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Resets <see cref="RecordFocus"/> to its default value.
+        /// </summary>
         public void ResetRecordFocus()
         {
             RecordFocus = true;
         }
 
+        /// <summary>
+        /// Gets or sets the index of the selected page; setting it raises the selection
+        /// changing and changed events.
+        /// </summary>
         [Browsable(false)]
         [DefaultValue(-1)]
         public virtual int SelectedIndex
@@ -1660,6 +2423,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets the currently selected tab page, or null when none is selected.
+        /// </summary>
         [Browsable(false)]
         [DefaultValue(null)]
         public virtual TabPageAdvanced SelectedTab
@@ -1688,11 +2454,19 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Scrolls the tabs so that the given page becomes visible.
+        /// </summary>
+        /// <param name="page">The page to bring into view.</param>
         public virtual void MakePageVisible(TabPageAdvanced page)
         {
             MakePageVisible(_tabPages.IndexOf(page));
         }
 
+        /// <summary>
+        /// Scrolls the tabs so that the page at the given index becomes visible.
+        /// </summary>
+        /// <param name="index">The index of the page to bring into view.</param>
         public virtual void MakePageVisible(int index)
         {
             // Only relevant if we do not shrink all pages to fit and not in multiline
@@ -1755,6 +2529,11 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Selects the next tab page whose title contains the given mnemonic key.
+        /// </summary>
+        /// <param name="key">The mnemonic character.</param>
+        /// <returns>True if a matching page was found and selected.</returns>
         protected override bool ProcessMnemonic(char key)
         {
             int total = _tabPages.Count;
@@ -1784,6 +2563,10 @@ namespace Reportman.Drawing.Forms
             return false;
         }
 
+        /// <summary>
+        /// Recalculates and repaints the control when it is resized.
+        /// </summary>
+        /// <param name="e">The event data.</param>
         protected override void OnResize(EventArgs e)
         {
             Recalculate();
@@ -1792,6 +2575,10 @@ namespace Reportman.Drawing.Forms
             base.OnResize(e);
         }
 
+        /// <summary>
+        /// Recalculates and repaints the control when its size changes.
+        /// </summary>
+        /// <param name="e">The event data.</param>
         protected override void OnSizeChanged(EventArgs e)
         {
             Recalculate();
@@ -1800,6 +2587,10 @@ namespace Reportman.Drawing.Forms
             base.OnSizeChanged(e);
         }
 
+        /// <summary>
+        /// Raises the <see cref="PopupMenuDisplay"/> event.
+        /// </summary>
+        /// <param name="e">The cancelable event data.</param>
         public virtual void OnPopupMenuDisplay(CancelEventArgs e)
         {
             // Has anyone registered for the event?
@@ -1807,6 +2598,11 @@ namespace Reportman.Drawing.Forms
                 PopupMenuDisplay(this, e);
         }
 
+        /// <summary>
+        /// Raises the <see cref="SelectionChanging"/> event.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="args">The cancelable event data.</param>
         public virtual void OnSelectionChanging(object sender, CancelArgs args)
         {
             // Has anyone registered for the event?
@@ -1814,6 +2610,10 @@ namespace Reportman.Drawing.Forms
                 SelectionChanging(this, args);
         }
 
+        /// <summary>
+        /// Raises the <see cref="SelectionChanged"/> event.
+        /// </summary>
+        /// <param name="e">The event data.</param>
         public virtual void OnSelectionChanged(EventArgs e)
         {
             if (SelectedTab != null)
@@ -1826,6 +2626,10 @@ namespace Reportman.Drawing.Forms
                 SelectionChanged(this, e);
         }
 
+        /// <summary>
+        /// Raises the <see cref="ClosePressed"/> event.
+        /// </summary>
+        /// <param name="e">The cancelable event data.</param>
         public virtual void OnClosePressed(CancelArgs e)
         {
             if (_reorderingtab)
@@ -1835,6 +2639,10 @@ namespace Reportman.Drawing.Forms
                 ClosePressed(this, e);
         }
 
+        /// <summary>
+        /// Raises the <see cref="PageGotFocus"/> event.
+        /// </summary>
+        /// <param name="e">The event data.</param>
         public virtual void OnPageGotFocus(EventArgs e)
         {
             // Has anyone registered for the event?
@@ -1842,6 +2650,10 @@ namespace Reportman.Drawing.Forms
                 PageGotFocus(this, e);
         }
 
+        /// <summary>
+        /// Raises the <see cref="PageLostFocus"/> event.
+        /// </summary>
+        /// <param name="e">The event data.</param>
         public virtual void OnPageLostFocus(EventArgs e)
         {
             // Has anyone registered for the event?
@@ -1849,6 +2661,10 @@ namespace Reportman.Drawing.Forms
                 PageLostFocus(this, e);
         }
 
+        /// <summary>
+        /// Raises the <see cref="PageDragStart"/> event.
+        /// </summary>
+        /// <param name="e">The mouse event data.</param>
         public virtual void OnPageDragStart(MouseEventArgs e)
         {
             // Has anyone registered for the event?
@@ -1856,6 +2672,10 @@ namespace Reportman.Drawing.Forms
                 PageDragStart(this, e);
         }
 
+        /// <summary>
+        /// Raises the <see cref="PageDragMove"/> event.
+        /// </summary>
+        /// <param name="e">The mouse event data.</param>
         public virtual void OnPageDragMove(MouseEventArgs e)
         {
             // Has anyone registered for the event?
@@ -1863,6 +2683,10 @@ namespace Reportman.Drawing.Forms
                 PageDragMove(this, e);
         }
 
+        /// <summary>
+        /// Raises the <see cref="PageDragEnd"/> event.
+        /// </summary>
+        /// <param name="e">The mouse event data.</param>
         public virtual void OnPageDragEnd(MouseEventArgs e)
         {
             // Has anyone registered for the event?
@@ -1870,6 +2694,10 @@ namespace Reportman.Drawing.Forms
                 PageDragEnd(this, e);
         }
 
+        /// <summary>
+        /// Raises the <see cref="PageDragQuit"/> event.
+        /// </summary>
+        /// <param name="e">The mouse event data.</param>
         public virtual void OnPageDragQuit(MouseEventArgs e)
         {
             // Has anyone registered for the event?
@@ -1877,6 +2705,10 @@ namespace Reportman.Drawing.Forms
                 PageDragQuit(this, e);
         }
 
+        /// <summary>
+        /// Raises the <see cref="DoubleClickTab"/> event for the given page.
+        /// </summary>
+        /// <param name="page">The tab page that was double-clicked.</param>
         public virtual void OnDoubleClickTab(TabPageAdvanced page)
         {
             // Has anyone registered for the event?
@@ -1884,11 +2716,21 @@ namespace Reportman.Drawing.Forms
                 DoubleClickTab(this, page);
         }
 
+        /// <summary>
+        /// Handles the shared close button by requesting the selected page be closed.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         protected virtual void OnCloseButton(object sender, EventArgs e)
         {
             OnClosePressed(new CancelArgs(SelectedTab));
         }
         ContextMenuStrip dropmenu;
+        /// <summary>
+        /// Handles the drop-down button by showing a menu that lists all tab pages.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         protected virtual void OnDropDownButton(object sender, EventArgs e)
         {
             if (TabPages.Count == 0)
@@ -1920,6 +2762,11 @@ namespace Reportman.Drawing.Forms
                 SelectedTab = ntab;
         }
 
+        /// <summary>
+        /// Scrolls the tabs one page to the left.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         protected virtual void OnLeftArrow(object sender, EventArgs e)
         {
             // Set starting page back one
@@ -1929,6 +2776,11 @@ namespace Reportman.Drawing.Forms
             Invalidate();
         }
 
+        /// <summary>
+        /// Scrolls the tabs one page to the right.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         protected virtual void OnRightArrow(object sender, EventArgs e)
         {
             // Set starting page forward one
@@ -1938,6 +2790,11 @@ namespace Reportman.Drawing.Forms
             Invalidate();
         }
 
+        /// <summary>
+        /// Stores the given font and recalculates the text height and image spacing derived
+        /// from it.
+        /// </summary>
+        /// <param name="newFont">The font to apply.</param>
         protected virtual void DefineFont(Font newFont)
         {
             // Use base class for storage of value
@@ -1965,6 +2822,11 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Stores the given background color and derives the light, dark, and IDE shading
+        /// colors from it.
+        /// </summary>
+        /// <param name="newColor">The background color to apply.</param>
         protected virtual void DefineBackColor(Color newColor)
         {
             base.BackColor = newColor;
@@ -1982,6 +2844,10 @@ namespace Reportman.Drawing.Forms
 #endif
         }
 
+        /// <summary>
+        /// Builds the color-remapping attributes and applies them to the tabs area buttons
+        /// so their images use the active and inactive colors.
+        /// </summary>
         protected virtual void DefineButtonImages()
         {
             ImageAttributes ia = new ImageAttributes();
@@ -2005,6 +2871,10 @@ namespace Reportman.Drawing.Forms
             _dropDownButton.ImageAttributes = ia;
         }
 
+        /// <summary>
+        /// Applies the default property values for the given appearance preset.
+        /// </summary>
+        /// <param name="appearance">The appearance preset to apply.</param>
         protected virtual void SetAppearance(VisualAppearance appearance)
         {
             switch (appearance)
@@ -2050,6 +2920,10 @@ namespace Reportman.Drawing.Forms
             SetStyleIndex();
         }
 
+        /// <summary>
+        /// Updates the index into the position constants array based on the current
+        /// appearance and style.
+        /// </summary>
         protected virtual void SetStyleIndex()
         {
             switch (_appearance)
@@ -2065,6 +2939,11 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Determines whether the tabs area should currently be hidden, based on
+        /// <see cref="HideTabsMode"/>.
+        /// </summary>
+        /// <returns>True if the tabs area should be hidden.</returns>
         protected virtual bool HideTabsCalculation()
         {
             bool hideTabs = false;
@@ -2088,6 +2967,10 @@ namespace Reportman.Drawing.Forms
             return hideTabs;
         }
 
+        /// <summary>
+        /// Recalculates the tabs area, page area, tab rectangles, and button positions for
+        /// the current size, style, and page set.
+        /// </summary>
         protected virtual void Recalculate()
         {
             // Reset the need for a recalculation
@@ -2271,6 +3154,14 @@ namespace Reportman.Drawing.Forms
             RecalculateButtons();
         }
 
+        /// <summary>
+        /// Lays out tab rectangles across multiple lines, wrapping tabs that do not fit and
+        /// keeping the selected line adjacent to the page area.
+        /// </summary>
+        /// <param name="xStartPos">The left position where tabs start.</param>
+        /// <param name="xEndPos">The right position where tabs must end.</param>
+        /// <param name="tabPosition">The starting position and minimum size of a tab.</param>
+        /// <param name="tabButtonHeight">The height of a tab row.</param>
         protected virtual void RecalculateMultilineTabs(int xStartPos, int xEndPos,
                                                         Rectangle tabPosition, int tabButtonHeight)
         {
@@ -2513,6 +3404,13 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Lays out tab rectangles on a single line, allocating available width and optionally
+        /// shrinking pages so they fit.
+        /// </summary>
+        /// <param name="xWidth">The available width for tabs.</param>
+        /// <param name="xStartPos">The left position where tabs start.</param>
+        /// <param name="tabPosition">The starting position and minimum size of a tab.</param>
         protected virtual void RecalculateSinglelineTabs(int xWidth, int xStartPos, Rectangle tabPosition)
         {
             using (Graphics g = this.CreateGraphics())
@@ -2661,6 +3559,10 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Positions and shows or hides the close, drop-down, and scroll arrow buttons within
+        /// the tabs area.
+        /// </summary>
         protected virtual void RecalculateButtons()
         {
             int buttonTopGap = 0;
@@ -2766,6 +3668,11 @@ namespace Reportman.Drawing.Forms
                 _closeButton.BackColor = _leftArrow.BackColor = _rightArrow.BackColor = _dropDownButton.BackColor = _backIDE;
         }
 
+        /// <summary>
+        /// Returns the maximum X position at which tabs may be drawn, accounting for the
+        /// visible buttons.
+        /// </summary>
+        /// <returns>The rightmost drawing position for tabs.</returns>
         protected virtual int GetMaximumDrawPos()
         {
             int xEndPos = _tabsAreaRect.Right - _tabsAreaEndInset;
@@ -2783,6 +3690,12 @@ namespace Reportman.Drawing.Forms
             return xEndPos;
         }
 
+        /// <summary>
+        /// Calculates the total pixel width a tab needs to draw its border, image, and text.
+        /// </summary>
+        /// <param name="g">The graphics used to measure text.</param>
+        /// <param name="page">The tab page being measured.</param>
+        /// <returns>The required tab width in pixels.</returns>
         protected virtual int GetTabPageSpace(Graphics g, TabPageAdvanced page)
         {
             // Find the fixed elements of required space
@@ -2835,10 +3748,19 @@ namespace Reportman.Drawing.Forms
             return width;
         }
 
+        /// <summary>
+        /// Suppresses the default background painting, which is handled during
+        /// <see cref="OnPaint"/>.
+        /// </summary>
+        /// <param name="e">The paint event data.</param>
         protected override void OnPaintBackground(PaintEventArgs e)
         {
         }
 
+        /// <summary>
+        /// Paints the tabs area, borders, and each tab page.
+        /// </summary>
+        /// <param name="e">The paint event data.</param>
         protected override void OnPaint(PaintEventArgs e)
         {
             // Does the state need recalculating before paint can occur?
@@ -3130,6 +4052,11 @@ namespace Reportman.Drawing.Forms
         }
 
 
+        /// <summary>
+        /// Returns the rectangle to which tab drawing is clipped so tabs are not painted
+        /// under the buttons.
+        /// </summary>
+        /// <returns>The clipping rectangle for tab drawing.</returns>
         protected virtual Rectangle ClippingRectangle()
         {
             // Calculate how much to reduce width by for clipping rectangle
@@ -3142,6 +4069,10 @@ namespace Reportman.Drawing.Forms
                                  _tabsAreaRect.Height);
         }
 
+        /// <summary>
+        /// Restricts drawing on the given graphics to the tab clipping rectangle.
+        /// </summary>
+        /// <param name="g">The graphics whose clip region is set.</param>
         protected virtual void ClipDrawingTabs(Graphics g)
         {
             Rectangle clipRect = ClippingRectangle();
@@ -3150,6 +4081,13 @@ namespace Reportman.Drawing.Forms
             g.Clip = new Region(clipRect);
         }
 
+        /// <summary>
+        /// Draws a single tab, including its border, image, and text.
+        /// </summary>
+        /// <param name="page">The tab page to draw.</param>
+        /// <param name="g">The graphics to draw on.</param>
+        /// <param name="highlightText">Whether the text should be drawn as hot.</param>
+        /// <param name="highlightClose">Whether the close indicator should be highlighted.</param>
         protected virtual void DrawTab(TabPageAdvanced page, Graphics g, bool highlightText, bool highlightClose)
         {
             Rectangle rectTab = (Rectangle)_tabRects[_tabPages.IndexOf(page)];
@@ -3178,6 +4116,15 @@ namespace Reportman.Drawing.Forms
             DrawTabText(rectTab, page, g, highlightText, highlightClose, xMax, xDraw);
         }
 
+        /// <summary>
+        /// Draws the icon or image for a tab, advancing the drawing position past it.
+        /// </summary>
+        /// <param name="rectTab">The tab rectangle.</param>
+        /// <param name="page">The tab page being drawn.</param>
+        /// <param name="g">The graphics to draw on.</param>
+        /// <param name="xMax">The maximum X position available for drawing.</param>
+        /// <param name="xDraw">The current X position; advanced past the drawn image.</param>
+        /// <param name="highlightText">Whether the tab is currently highlighted.</param>
         protected virtual void DrawTabImage(Rectangle rectTab,
                                             TabPageAdvanced page,
                                             Graphics g,
@@ -3300,6 +4247,16 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Draws the text for a tab, along with the individual close indicator when enabled.
+        /// </summary>
+        /// <param name="rectTab">The tab rectangle.</param>
+        /// <param name="page">The tab page being drawn.</param>
+        /// <param name="g">The graphics to draw on.</param>
+        /// <param name="highlightText">Whether the text should be drawn as hot.</param>
+        /// <param name="highlightClose">Whether the close indicator should be highlighted.</param>
+        /// <param name="xMax">The maximum X position available for drawing.</param>
+        /// <param name="xDraw">The X position at which to start drawing text.</param>
         protected virtual void DrawTabText(Rectangle rectTab,
                                            TabPageAdvanced page,
                                            Graphics g,
@@ -3427,6 +4384,13 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Draws the border of a tab using the appropriate routine for the current
+        /// appearance and style.
+        /// </summary>
+        /// <param name="rectTab">The tab rectangle, which may be adjusted.</param>
+        /// <param name="page">The tab page being drawn.</param>
+        /// <param name="g">The graphics to draw on.</param>
         protected virtual void DrawTabBorder(ref Rectangle rectTab, TabPageAdvanced page, Graphics g)
         {
             if (_appearance == VisualAppearance.MultiBox)
@@ -3455,6 +4419,12 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Draws the tab border for the multi-box appearance.
+        /// </summary>
+        /// <param name="page">The tab page being drawn.</param>
+        /// <param name="g">The graphics to draw on.</param>
+        /// <param name="rectPage">The tab rectangle.</param>
         protected virtual void DrawMultiBoxBorder(TabPageAdvanced page, Graphics g, Rectangle rectPage)
         {
             if (page.Selected)
@@ -3515,6 +4485,12 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Draws the tab border for the Plain visual style.
+        /// </summary>
+        /// <param name="page">The tab page being drawn.</param>
+        /// <param name="g">The graphics to draw on.</param>
+        /// <param name="rectPage">The tab rectangle.</param>
         protected virtual void DrawPlainTabBorder(TabPageAdvanced page, Graphics g, Rectangle rectPage)
         {
             using (Pen light = new Pen(_backLightLight),
@@ -3582,6 +4558,12 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Draws the rounded tab border for the Chrome visual style.
+        /// </summary>
+        /// <param name="page">The tab page being drawn.</param>
+        /// <param name="g">The graphics to draw on.</param>
+        /// <param name="rectPage">The tab rectangle.</param>
         protected virtual void DrawChromeTabBorder(TabPageAdvanced page, Graphics g, Rectangle rectPage)
         {
             using (Pen lightlight = new Pen(_backLightLight),
@@ -3771,6 +4753,13 @@ namespace Reportman.Drawing.Forms
                 }*/
             }
         }
+        /// <summary>
+        /// Draws the tab border for the IDE visual style, including the separator between
+        /// unselected tabs.
+        /// </summary>
+        /// <param name="page">The tab page being drawn.</param>
+        /// <param name="g">The graphics to draw on.</param>
+        /// <param name="rectPage">The tab rectangle.</param>
         protected virtual void DrawIDETabBorder(TabPageAdvanced page, Graphics g, Rectangle rectPage)
         {
             using (Pen lightlight = new Pen(_backLightLight),
@@ -3855,6 +4844,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Handles the pages collection being cleared by deselecting and removing all pages.
+        /// </summary>
         protected virtual void OnClearingPages()
         {
             // Is a page currently selected?
@@ -3876,6 +4868,10 @@ namespace Reportman.Drawing.Forms
             _tabRects.Clear();
         }
 
+        /// <summary>
+        /// Handles the pages collection having been cleared by recalculating and raising
+        /// the selection events.
+        /// </summary>
         protected virtual void OnClearedPages()
         {
             // Must recalculate after the pages have been removed and
@@ -3892,6 +4888,11 @@ namespace Reportman.Drawing.Forms
             Invalidate();
         }
 
+        /// <summary>
+        /// Handles a page being inserted by adjusting the selected index if needed.
+        /// </summary>
+        /// <param name="index">The index at which the page is being inserted.</param>
+        /// <param name="value">The page being inserted.</param>
         protected virtual void OnInsertingPage(int index, object value)
         {
             // If a page currently selected?
@@ -3903,6 +4904,12 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Handles a page having been inserted by hosting its control, optionally selecting
+        /// it, and recalculating.
+        /// </summary>
+        /// <param name="index">The index at which the page was inserted.</param>
+        /// <param name="value">The page that was inserted.</param>
         protected virtual void OnInsertedPage(int index, object value)
         {
             bool selectPage = false;
@@ -3959,6 +4966,11 @@ namespace Reportman.Drawing.Forms
             Invalidate();
         }
 
+        /// <summary>
+        /// Handles a page being removed by unhosting its control and deselecting it when needed.
+        /// </summary>
+        /// <param name="index">The index of the page being removed.</param>
+        /// <param name="value">The page being removed.</param>
         protected virtual void OnRemovingPage(int index, object value)
         {
             TabPageAdvanced page = value as TabPageAdvanced;
@@ -3981,6 +4993,11 @@ namespace Reportman.Drawing.Forms
                 DeselectPage(page);
             }
         }
+        /// <summary>
+        /// Requests that the given page be closed by raising <see cref="ClosePressed"/>.
+        /// </summary>
+        /// <param name="npage">The page to close.</param>
+        /// <returns>True if the page was removed from the collection.</returns>
         public bool Close(TabPageAdvanced npage)
         {
             if (ClosePressed != null)
@@ -3989,6 +5006,12 @@ namespace Reportman.Drawing.Forms
             }
             return (this.TabPages.IndexOf(npage) < 0);
         }
+        /// <summary>
+        /// Handles a page having been removed by adjusting the start and selected indexes and
+        /// recalculating.
+        /// </summary>
+        /// <param name="index">The index from which the page was removed.</param>
+        /// <param name="value">The page that was removed.</param>
         protected virtual void OnRemovedPage(int index, object value)
         {
             if (_hotTrackPage == index)
@@ -4046,6 +5069,11 @@ namespace Reportman.Drawing.Forms
             Invalidate();
         }
 
+        /// <summary>
+        /// Hosts the page's control or form on the host panel and hooks up the events needed
+        /// to track focus and mouse activity.
+        /// </summary>
+        /// <param name="page">The page to add.</param>
         protected virtual void AddTabPage(TabPageAdvanced page)
         {
             // Has not been shown for the first time yet
@@ -4135,9 +5163,14 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Unhosts the page's control or form and unhooks the events hooked up in
+        /// <see cref="AddTabPage"/>.
+        /// </summary>
+        /// <param name="page">The page to remove.</param>
         protected virtual void RemoveTabPage(TabPageAdvanced page)
         {
-            // Remove user supplied control 
+            // Remove user supplied control
             if (page.Control != null)
             {
                 RecursiveMonitor(page.Control, false);
@@ -4189,6 +5222,11 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Gives focus to a hosted control when it is clicked and does not already have focus.
+        /// </summary>
+        /// <param name="sender">The clicked control.</param>
+        /// <param name="e">The mouse event data.</param>
         protected virtual void OnPageMouseDown(object sender, MouseEventArgs e)
         {
             Control c = sender as Control;
@@ -4199,6 +5237,12 @@ namespace Reportman.Drawing.Forms
                 c.Focus();
         }
 
+        /// <summary>
+        /// Recursively hooks or unhooks focus and mouse event handlers on all descendants of
+        /// the given control.
+        /// </summary>
+        /// <param name="top">The root control whose descendants are processed.</param>
+        /// <param name="monitor">True to hook handlers, false to unhook them.</param>
         protected virtual void RecursiveMonitor(Control top, bool monitor)
         {
             foreach (Control c in top.Controls)
@@ -4224,16 +5268,31 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Handles a hosted page gaining focus by raising <see cref="PageGotFocus"/>.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         protected virtual void OnPageEnter(object sender, EventArgs e)
         {
             OnPageGotFocus(e);
         }
 
+        /// <summary>
+        /// Handles a hosted page losing focus by raising <see cref="PageLostFocus"/>.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         protected virtual void OnPageLeave(object sender, EventArgs e)
         {
             OnPageLostFocus(e);
         }
 
+        /// <summary>
+        /// Handles the mouse entering a hosted page and updates the mouse-over state.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         protected virtual void OnPageMouseEnter(object sender, EventArgs e)
         {
             _mouseOver = true;
@@ -4246,11 +5305,21 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Handles the mouse leaving a hosted page by starting the leave timer.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         protected virtual void OnPageMouseLeave(object sender, EventArgs e)
         {
             _overTimer.Start();
         }
 
+        /// <summary>
+        /// Handles the leave timer tick, clearing the mouse-over state and updating the display.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         protected virtual void OnMouseTick(object sender, EventArgs e)
         {
             _mouseOver = false;
@@ -4263,6 +5332,13 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Responds to a change in a tab page property, updating hosting, layout, or selection
+        /// as appropriate.
+        /// </summary>
+        /// <param name="page">The page whose property changed.</param>
+        /// <param name="prop">The property that changed.</param>
+        /// <param name="oldValue">The previous value of the property.</param>
         protected virtual void OnPagePropertyChanged(TabPageAdvanced page, TabPageAdvanced.Property prop, object oldValue)
         {
             switch (prop)
@@ -4320,6 +5396,11 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Recursively searches the given control tree for the control that currently has focus.
+        /// </summary>
+        /// <param name="root">The root control to search from.</param>
+        /// <returns>The focused control, or null if none has focus.</returns>
         protected virtual Control FindFocus(Control root)
         {
             // Does the root control has focus?
@@ -4338,6 +5419,10 @@ namespace Reportman.Drawing.Forms
             return null;
         }
 
+        /// <summary>
+        /// Deselects and hides the given page, optionally recording which control had focus.
+        /// </summary>
+        /// <param name="page">The page to deselect.</param>
         protected virtual void DeselectPage(TabPageAdvanced page)
         {
             page.Selected = false;
@@ -4372,6 +5457,10 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Selects the given page and brings its control or form to the front.
+        /// </summary>
+        /// <param name="page">The page to select.</param>
         protected virtual void SelectPage(TabPageAdvanced page)
         {
             page.Selected = true;
@@ -4383,6 +5472,12 @@ namespace Reportman.Drawing.Forms
                 HandleShowingTabPage(page, page);
         }
 
+        /// <summary>
+        /// Shows the control for a page, working around auto-scaling issues on first display
+        /// and restoring focus.
+        /// </summary>
+        /// <param name="page">The page being shown.</param>
+        /// <param name="c">The control or form to show.</param>
         protected virtual void HandleShowingTabPage(TabPageAdvanced page, Control c)
         {
             // First time this page has been displayed?
@@ -4419,6 +5514,11 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Moves the selection to the given page, raising the selection changing and changed
+        /// events and updating the layout.
+        /// </summary>
+        /// <param name="page">The page to select.</param>
         protected virtual void MovePageSelection(TabPageAdvanced page)
         {
             int pageIndex = _tabPages.IndexOf(page);
@@ -4476,6 +5576,14 @@ namespace Reportman.Drawing.Forms
                 InternalMouseDown(mousePos);
         }
 
+        /// <summary>
+        /// Determines whether a double-click at the given position belongs to the specified
+        /// button, invoking its action when appropriate.
+        /// </summary>
+        /// <param name="hWnd">The window handle that received the double-click.</param>
+        /// <param name="mousePos">The mouse position of the double-click.</param>
+        /// <param name="check">The button control to test.</param>
+        /// <returns>True if the double-click was over the button.</returns>
         protected virtual bool ControlWantDoubleClick(IntPtr hWnd, Point mousePos, Control check)
         {
             // Cannot have double click if control not visible
@@ -4509,6 +5617,14 @@ namespace Reportman.Drawing.Forms
             return false;
         }
 
+        /// <summary>
+        /// Determines whether a mouse click at the given position belongs to the specified
+        /// button, invoking its action when appropriate.
+        /// </summary>
+        /// <param name="hWnd">The window handle that received the click.</param>
+        /// <param name="mousePos">The mouse position of the click.</param>
+        /// <param name="check">The button control to test.</param>
+        /// <returns>True if the click was over the enabled button.</returns>
         protected virtual bool ControlMouseTest(IntPtr hWnd, Point mousePos, Control check)
         {
             // Is the mouse down for the left arrow window and is it valid to click?
@@ -4530,6 +5646,10 @@ namespace Reportman.Drawing.Forms
             return false;
         }
 
+        /// <summary>
+        /// Handles a double-click on the control.
+        /// </summary>
+        /// <param name="e">The event data.</param>
         protected override void OnDoubleClick(EventArgs e)
         {
             /* Point pos = TabControlAdvanced.MousePosition;
@@ -4562,6 +5682,11 @@ namespace Reportman.Drawing.Forms
 
 
 
+        /// <summary>
+        /// Handles the mouse button being released, completing page close, drag, reorder, or
+        /// context menu actions.
+        /// </summary>
+        /// <param name="e">The mouse event data.</param>
         protected override void OnMouseUp(MouseEventArgs e)
         {
             Capture = false;
@@ -4650,6 +5775,10 @@ namespace Reportman.Drawing.Forms
             base.OnMouseUp(e);
         }
 
+        /// <summary>
+        /// Handles the mouse button being pressed on the control.
+        /// </summary>
+        /// <param name="e">The mouse event data.</param>
         protected override void OnMouseDown(MouseEventArgs e)
         {
             // Only select a button or page when using left mouse button
@@ -4659,6 +5788,11 @@ namespace Reportman.Drawing.Forms
         }
         bool moving = false;
         Point toolbarorigin;
+        /// <summary>
+        /// Handles a mouse-down at the given position, selecting the clicked tab or beginning
+        /// a form move on an empty area.
+        /// </summary>
+        /// <param name="mousePos">The mouse position in client coordinates.</param>
         protected virtual void InternalMouseDown(Point mousePos)
         {
             moving = false;
@@ -4851,6 +5985,11 @@ namespace Reportman.Drawing.Forms
                 }
             }
         }
+        /// <summary>
+        /// Handles a double-click, raising <see cref="DoubleClickTab"/> for a tab or toggling
+        /// the hosting title-less form's maximize state.
+        /// </summary>
+        /// <param name="e">The mouse event data.</param>
         protected override void OnMouseDoubleClick(MouseEventArgs e)
         {
             Point pos = this.PointToScreen(new Point(e.X, e.Y));
@@ -4896,15 +6035,41 @@ namespace Reportman.Drawing.Forms
             }
             base.OnMouseDoubleClick(e);
         }
+        /// <summary>
+        /// Windows message code for a non-client left mouse button down.
+        /// </summary>
         public const int WM_NCLBUTTONDOWN = 0xA1;
+        /// <summary>
+        /// Windows message code for a non-client left mouse button up.
+        /// </summary>
         public const int WM_NCLBUTTONUP = 0xA2;
+        /// <summary>
+        /// Hit-test code identifying the window caption area.
+        /// </summary>
         public const int HT_CAPTION = 0x2;
 
+        /// <summary>
+        /// Sends the specified Windows message to the given window (P/Invoke to user32).
+        /// </summary>
+        /// <param name="hWnd">The target window handle.</param>
+        /// <param name="Msg">The message identifier.</param>
+        /// <param name="wParam">The first message parameter.</param>
+        /// <param name="lParam">The second message parameter.</param>
+        /// <returns>The message-dependent result.</returns>
         [DllImportAttribute("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        /// <summary>
+        /// Releases the mouse capture from the current window (P/Invoke to user32).
+        /// </summary>
+        /// <returns>True if the capture was released successfully.</returns>
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
+        /// <summary>
+        /// Handles mouse movement, driving form dragging, tab reordering, page dragging, and
+        /// hot tracking.
+        /// </summary>
+        /// <param name="e">The mouse event data.</param>
         protected override void OnMouseMove(MouseEventArgs e)
         {
 
@@ -5103,6 +6268,10 @@ namespace Reportman.Drawing.Forms
             base.OnMouseMove(e);
         }
 
+        /// <summary>
+        /// Handles the mouse entering the control and updates the mouse-over state.
+        /// </summary>
+        /// <param name="e">The event data.</param>
         protected override void OnMouseEnter(EventArgs e)
         {
             _mouseOver = true;
@@ -5111,6 +6280,11 @@ namespace Reportman.Drawing.Forms
             base.OnMouseEnter(e);
         }
 
+        /// <summary>
+        /// Handles the mouse leaving the control, clearing hot tracking and starting the
+        /// leave timer.
+        /// </summary>
+        /// <param name="e">The event data.</param>
         protected override void OnMouseLeave(EventArgs e)
         {
             if (_hotTrack)
@@ -5149,6 +6323,12 @@ namespace Reportman.Drawing.Forms
             base.OnMouseLeave(e);
         }
 
+        /// <summary>
+        /// Handles a system user-preference change by re-applying the default menu font when
+        /// in use.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The preference changed event data.</param>
         protected virtual void OnPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)
         {
             // Are we using the default menu or a user defined value?
@@ -5161,6 +6341,11 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Handles a system color change by re-applying the default background color when
+        /// in use.
+        /// </summary>
+        /// <param name="e">The event data.</param>
         protected override void OnSystemColorsChanged(EventArgs e)
         {
             // If still using the Default color when we were created
@@ -5182,6 +6367,11 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public class TabPageCollection : CollectionWithEvents
     {
+        /// <summary>
+        /// Adds a page to the collection.
+        /// </summary>
+        /// <param name="value">The page to add.</param>
+        /// <returns>The added page.</returns>
         public TabPageAdvanced Add(TabPageAdvanced value)
         {
             // Use base class to process actual collection operation
@@ -5190,6 +6380,10 @@ namespace Reportman.Drawing.Forms
             return value;
         }
 
+        /// <summary>
+        /// Adds a range of pages to the collection.
+        /// </summary>
+        /// <param name="values">The pages to add.</param>
         public void AddRange(TabPageAdvanced[] values)
         {
             // Use existing method to add each array entry
@@ -5198,30 +6392,54 @@ namespace Reportman.Drawing.Forms
         }
 
 
+        /// <summary>
+        /// Removes the given page from the collection.
+        /// </summary>
+        /// <param name="value">The page to remove.</param>
         public void Remove(TabPageAdvanced value)
         {
             // Use base class to process actual collection operation
             base.List.Remove(value as object);
         }
 
+        /// <summary>
+        /// Inserts a page into the collection at the given index.
+        /// </summary>
+        /// <param name="index">The zero-based index at which to insert.</param>
+        /// <param name="value">The page to insert.</param>
         public void Insert(int index, TabPageAdvanced value)
         {
             // Use base class to process actual collection operation
             base.List.Insert(index, value as object);
         }
 
+        /// <summary>
+        /// Determines whether the collection contains the given page.
+        /// </summary>
+        /// <param name="value">The page to locate.</param>
+        /// <returns>True if the page is present.</returns>
         public bool Contains(TabPageAdvanced value)
         {
             // Use base class to process actual collection operation
             return base.List.Contains(value as object);
         }
 
+        /// <summary>
+        /// Gets the page at the given index.
+        /// </summary>
+        /// <param name="index">The zero-based index of the page.</param>
+        /// <returns>The page at that index.</returns>
         public TabPageAdvanced this[int index]
         {
             // Use base class to process actual collection operation
             get { return (base.List[index] as TabPageAdvanced); }
         }
 
+        /// <summary>
+        /// Gets the first page whose title matches the given value, or null if none matches.
+        /// </summary>
+        /// <param name="title">The title to search for.</param>
+        /// <returns>The matching page, or null.</returns>
         public TabPageAdvanced this[string title]
         {
             get
@@ -5235,6 +6453,11 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Returns the zero-based index of the given page in the collection.
+        /// </summary>
+        /// <param name="value">The page to locate.</param>
+        /// <returns>The index of the page, or -1 if not found.</returns>
         public int IndexOf(TabPageAdvanced value)
         {
             // Find the 0 based index of the requested entry
@@ -5251,36 +6474,91 @@ namespace Reportman.Drawing.Forms
     public class InertButton : Control
     {
         // Instance fields
+        /// <summary>
+        /// Width in pixels of the button border.
+        /// </summary>
         protected int _borderWidth;
+        /// <summary>
+        /// Whether the mouse is currently over the button.
+        /// </summary>
         protected bool _mouseOver;
+        /// <summary>
+        /// Whether the button currently has the mouse captured (is being pressed).
+        /// </summary>
         protected bool _mouseCapture;
+        /// <summary>
+        /// Whether the button uses a popup-style (raised on hover) border.
+        /// </summary>
         protected bool _popupStyle;
+        /// <summary>
+        /// Index into the image list of the image drawn when enabled.
+        /// </summary>
         protected int _imageIndexEnabled;
+        /// <summary>
+        /// Index into the image list of the image drawn when disabled.
+        /// </summary>
         protected int _imageIndexDisabled;
+        /// <summary>
+        /// Image list from which the button image is drawn.
+        /// </summary>
         protected ImageList _imageList;
+        /// <summary>
+        /// Optional attributes used to modify the drawn image.
+        /// </summary>
         protected ImageAttributes _imageAttr;
+        /// <summary>
+        /// The mouse button that initiated the current press.
+        /// </summary>
         protected MouseButtons _mouseButton;
 
+        /// <summary>
+        /// Initializes a new instance with no image.
+        /// </summary>
         public InertButton()
         {
             InternalConstruct(null, -1, -1, null);
         }
 
+        /// <summary>
+        /// Initializes a new instance with an enabled image from the given image list.
+        /// </summary>
+        /// <param name="imageList">The image list to draw from.</param>
+        /// <param name="imageIndexEnabled">The index of the enabled image.</param>
         public InertButton(ImageList imageList, int imageIndexEnabled)
         {
             InternalConstruct(imageList, imageIndexEnabled, -1, null);
         }
 
+        /// <summary>
+        /// Initializes a new instance with enabled and disabled images from the given image list.
+        /// </summary>
+        /// <param name="imageList">The image list to draw from.</param>
+        /// <param name="imageIndexEnabled">The index of the enabled image.</param>
+        /// <param name="imageIndexDisabled">The index of the disabled image.</param>
         public InertButton(ImageList imageList, int imageIndexEnabled, int imageIndexDisabled)
         {
             InternalConstruct(imageList, imageIndexEnabled, imageIndexDisabled, null);
         }
 
+        /// <summary>
+        /// Initializes a new instance with enabled and disabled images and image attributes.
+        /// </summary>
+        /// <param name="imageList">The image list to draw from.</param>
+        /// <param name="imageIndexEnabled">The index of the enabled image.</param>
+        /// <param name="imageIndexDisabled">The index of the disabled image.</param>
+        /// <param name="imageAttr">Attributes used to modify the drawn image.</param>
         public InertButton(ImageList imageList, int imageIndexEnabled, int imageIndexDisabled, ImageAttributes imageAttr)
         {
             InternalConstruct(imageList, imageIndexEnabled, imageIndexDisabled, imageAttr);
         }
 
+        /// <summary>
+        /// Applies the given image settings and configures the button's control styles.
+        /// </summary>
+        /// <param name="imageList">The image list to draw from.</param>
+        /// <param name="imageIndexEnabled">The index of the enabled image.</param>
+        /// <param name="imageIndexDisabled">The index of the disabled image.</param>
+        /// <param name="imageAttr">Attributes used to modify the drawn image.</param>
         public void InternalConstruct(ImageList imageList,
                                       int imageIndexEnabled,
                                       int imageIndexDisabled,
@@ -5312,6 +6590,9 @@ namespace Reportman.Drawing.Forms
             SetStyle(ControlStyles.Selectable, false);
         }
 
+        /// <summary>
+        /// Gets or sets the image list from which the button image is drawn.
+        /// </summary>
         [Category("Appearance")]
         [DefaultValue(null)]
         public ImageList ImageList
@@ -5328,6 +6609,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets the index of the image drawn when the button is enabled.
+        /// </summary>
         [Category("Appearance")]
         [DefaultValue(-1)]
         public int ImageIndexEnabled
@@ -5344,6 +6628,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets the index of the image drawn when the button is disabled.
+        /// </summary>
         [Category("Appearance")]
         [DefaultValue(-1)]
         public int ImageIndexDisabled
@@ -5360,6 +6647,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets the attributes used to modify the drawn button image.
+        /// </summary>
         [Category("Appearance")]
         [DefaultValue(null)]
         public ImageAttributes ImageAttributes
@@ -5376,6 +6666,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets the width in pixels of the button border.
+        /// </summary>
         [Category("Appearance")]
         [DefaultValue(2)]
         public int BorderWidth
@@ -5392,6 +6685,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets whether the button uses a popup-style border that is raised on hover.
+        /// </summary>
         [Category("Appearance")]
         [DefaultValue(true)]
         public bool PopupStyle
@@ -5408,6 +6704,10 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Enters the pressed state and remembers the pressing button.
+        /// </summary>
+        /// <param name="e">The mouse event data.</param>
         protected override void OnMouseDown(MouseEventArgs e)
         {
             if (!_mouseCapture)
@@ -5426,6 +6726,10 @@ namespace Reportman.Drawing.Forms
             base.OnMouseDown(e);
         }
 
+        /// <summary>
+        /// Leaves the pressed state when the originally pressed button is released.
+        /// </summary>
+        /// <param name="e">The mouse event data.</param>
         protected override void OnMouseUp(MouseEventArgs e)
         {
 
@@ -5448,6 +6752,10 @@ namespace Reportman.Drawing.Forms
             base.OnMouseUp(e);
         }
 
+        /// <summary>
+        /// Updates the mouse-over state as the pointer moves in or out of the button.
+        /// </summary>
+        /// <param name="e">The mouse event data.</param>
         protected override void OnMouseMove(MouseEventArgs e)
         {
             // Is mouse point inside our client rectangle
@@ -5466,6 +6774,10 @@ namespace Reportman.Drawing.Forms
             base.OnMouseMove(e);
         }
 
+        /// <summary>
+        /// Sets the mouse-over state when the pointer enters the button.
+        /// </summary>
+        /// <param name="e">The event data.</param>
         protected override void OnMouseEnter(EventArgs e)
         {
             // Update state to reflect mouse over the button area
@@ -5477,6 +6789,10 @@ namespace Reportman.Drawing.Forms
             base.OnMouseEnter(e);
         }
 
+        /// <summary>
+        /// Clears the mouse-over state when the pointer leaves the button.
+        /// </summary>
+        /// <param name="e">The event data.</param>
         protected override void OnMouseLeave(EventArgs e)
         {
             // Update state to reflect mouse not over the button area
@@ -5488,6 +6804,11 @@ namespace Reportman.Drawing.Forms
             base.OnMouseLeave(e);
         }
 
+        /// <summary>
+        /// Paints the button image (enabled, disabled, or grayed) and its border for the
+        /// current state.
+        /// </summary>
+        /// <param name="e">The paint event data.</param>
         protected override void OnPaint(PaintEventArgs e)
         {
             // Do we have an image list for use?
@@ -5599,6 +6920,14 @@ namespace Reportman.Drawing.Forms
 
             base.OnPaint(e);
         }
+        /// <summary>
+        /// Sets the bounds of the button.
+        /// </summary>
+        /// <param name="x">The new left position.</param>
+        /// <param name="y">The new top position.</param>
+        /// <param name="width">The new width.</param>
+        /// <param name="height">The new height.</param>
+        /// <param name="specified">Which bounds values are being set.</param>
         protected override void SetBoundsCore(int x, int y, int width, int height, BoundsSpecified specified)
         {
             base.SetBoundsCore(x, y, width, height, specified);
@@ -5623,20 +6952,46 @@ namespace Reportman.Drawing.Forms
     public class CollectionWithEvents : CollectionBase
     {
         // Collection change events
+        /// <summary>
+        /// Raised before the collection is cleared.
+        /// </summary>
         public event CollectionClear Clearing;
+        /// <summary>
+        /// Raised after the collection has been cleared.
+        /// </summary>
         public event CollectionClear Cleared;
+        /// <summary>
+        /// Raised before an item is inserted.
+        /// </summary>
         public event CollectionChange Inserting;
+        /// <summary>
+        /// Raised after an item has been inserted.
+        /// </summary>
         public event CollectionChange Inserted;
+        /// <summary>
+        /// Raised before an item is removed.
+        /// </summary>
         public event CollectionChange Removing;
+        /// <summary>
+        /// Raised after an item has been removed.
+        /// </summary>
         public event CollectionChange Removed;
 
         // Overrides for generating events
+        /// <summary>
+        /// Raises the <see cref="Clearing"/> event before the collection is cleared.
+        /// </summary>
         protected override void OnClear()
         {
             // Any attached event handlers?
             if (Clearing != null)
                 Clearing();
         }
+        /// <summary>
+        /// Swaps the two items at the given indexes.
+        /// </summary>
+        /// <param name="index1">The index of the first item.</param>
+        /// <param name="index2">The index of the second item.</param>
         public void Switch(int index1, int index2)
         {
             // Use existing method to add each array entry
@@ -5644,6 +6999,9 @@ namespace Reportman.Drawing.Forms
             List[index1] = List[index2];
             List[index2] = old;
         }
+        /// <summary>
+        /// Raises the <see cref="Cleared"/> event after the collection has been cleared.
+        /// </summary>
         protected override void OnClearComplete()
         {
             // Any attached event handlers?
@@ -5651,6 +7009,11 @@ namespace Reportman.Drawing.Forms
                 Cleared();
         }
 
+        /// <summary>
+        /// Raises the <see cref="Inserting"/> event before an item is inserted.
+        /// </summary>
+        /// <param name="index">The index at which the item is being inserted.</param>
+        /// <param name="value">The item being inserted.</param>
         protected override void OnInsert(int index, object value)
         {
             // Any attached event handlers?
@@ -5658,6 +7021,11 @@ namespace Reportman.Drawing.Forms
                 Inserting(index, value);
         }
 
+        /// <summary>
+        /// Raises the <see cref="Inserted"/> event after an item has been inserted.
+        /// </summary>
+        /// <param name="index">The index at which the item was inserted.</param>
+        /// <param name="value">The item that was inserted.</param>
         protected override void OnInsertComplete(int index, object value)
         {
             // Any attached event handlers?
@@ -5665,6 +7033,11 @@ namespace Reportman.Drawing.Forms
                 Inserted(index, value);
         }
 
+        /// <summary>
+        /// Raises the <see cref="Removing"/> event before an item is removed.
+        /// </summary>
+        /// <param name="index">The index from which the item is being removed.</param>
+        /// <param name="value">The item being removed.</param>
         protected override void OnRemove(int index, object value)
         {
             // Any attached event handlers?
@@ -5672,6 +7045,11 @@ namespace Reportman.Drawing.Forms
                 Removing(index, value);
         }
 
+        /// <summary>
+        /// Raises the <see cref="Removed"/> event after an item has been removed.
+        /// </summary>
+        /// <param name="index">The index from which the item was removed.</param>
+        /// <param name="value">The item that was removed.</param>
         protected override void OnRemoveComplete(int index, object value)
         {
             // Any attached event handlers?
@@ -5679,6 +7057,11 @@ namespace Reportman.Drawing.Forms
                 Removed(index, value);
         }
 
+        /// <summary>
+        /// Returns the zero-based index of the given item.
+        /// </summary>
+        /// <param name="value">The item to locate.</param>
+        /// <returns>The index of the item, or -1 if not found.</returns>
         protected int IndexOf(object value)
         {
             // Find the 0 based index of the requested entry
@@ -5697,13 +7080,34 @@ namespace Reportman.Drawing.Forms
         /// </summary>
         public enum CommandState
         {
+            /// <summary>
+            /// The command is in its normal state.
+            /// </summary>
             Normal,
+            /// <summary>
+            /// The command is hot-tracked (the mouse is over it).
+            /// </summary>
             HotTrack,
+            /// <summary>
+            /// The command is pushed (pressed).
+            /// </summary>
             Pushed
         }
 
+        /// <summary>
+        /// Cached handle to a halftone brush used for drawing.
+        /// </summary>
         protected static IntPtr _halfToneBrush = IntPtr.Zero;
 
+        /// <summary>
+        /// Draws a string rotated 180 degrees within the given rectangle.
+        /// </summary>
+        /// <param name="g">The graphics to draw on.</param>
+        /// <param name="drawText">The text to draw.</param>
+        /// <param name="drawFont">The font to use.</param>
+        /// <param name="drawRect">The rectangle to draw within.</param>
+        /// <param name="drawBrush">The brush to draw with.</param>
+        /// <param name="drawFormat">The string format to use.</param>
         public static void DrawReverseString(Graphics g,
                                              String drawText,
                                              Font drawFont,
@@ -5727,6 +7131,12 @@ namespace Reportman.Drawing.Forms
             g.EndContainer(container);
         }
 
+        /// <summary>
+        /// Draws a plain raised rectangle using light and dark shades of the base color.
+        /// </summary>
+        /// <param name="g">The graphics to draw on.</param>
+        /// <param name="boxRect">The rectangle to draw.</param>
+        /// <param name="baseColor">The base color from which shades are derived.</param>
         public static void DrawPlainRaised(Graphics g,
                                            Rectangle boxRect,
                                            Color baseColor)
@@ -5741,6 +7151,12 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Draws a plain sunken rectangle using light and dark shades of the base color.
+        /// </summary>
+        /// <param name="g">The graphics to draw on.</param>
+        /// <param name="boxRect">The rectangle to draw.</param>
+        /// <param name="baseColor">The base color from which shades are derived.</param>
         public static void DrawPlainSunken(Graphics g,
                                            Rectangle boxRect,
                                            Color baseColor)
@@ -5755,6 +7171,15 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Draws a plain raised border around the given rectangle using the supplied shades.
+        /// </summary>
+        /// <param name="g">The graphics to draw on.</param>
+        /// <param name="rect">The rectangle to draw the border around.</param>
+        /// <param name="lightLight">The lightest shade.</param>
+        /// <param name="baseColor">The base color.</param>
+        /// <param name="dark">The dark shade.</param>
+        /// <param name="darkDark">The darkest shade.</param>
         public static void DrawPlainRaisedBorder(Graphics g,
                                                  Rectangle rect,
                                                  Color lightLight,
@@ -5797,6 +7222,16 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Draws only the top or bottom of a plain raised border using the supplied shades.
+        /// </summary>
+        /// <param name="g">The graphics to draw on.</param>
+        /// <param name="rect">The rectangle to draw the border on.</param>
+        /// <param name="lightLight">The lightest shade.</param>
+        /// <param name="baseColor">The base color.</param>
+        /// <param name="dark">The dark shade.</param>
+        /// <param name="darkDark">The darkest shade.</param>
+        /// <param name="drawTop">True to draw the top border, false to draw the bottom.</param>
         public static void DrawPlainRaisedBorderTopOrBottom(Graphics g,
                                                             Rectangle rect,
                                                             Color lightLight,
@@ -5835,6 +7270,15 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Draws a plain sunken border around the given rectangle using the supplied shades.
+        /// </summary>
+        /// <param name="g">The graphics to draw on.</param>
+        /// <param name="rect">The rectangle to draw the border around.</param>
+        /// <param name="lightLight">The lightest shade.</param>
+        /// <param name="baseColor">The base color.</param>
+        /// <param name="dark">The dark shade.</param>
+        /// <param name="darkDark">The darkest shade.</param>
         public static void DrawPlainSunkenBorder(Graphics g,
                                                  Rectangle rect,
                                                  Color lightLight,
@@ -5877,6 +7321,16 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Draws only the top or bottom of a plain sunken border using the supplied shades.
+        /// </summary>
+        /// <param name="g">The graphics to draw on.</param>
+        /// <param name="rect">The rectangle to draw the border on.</param>
+        /// <param name="lightLight">The lightest shade.</param>
+        /// <param name="baseColor">The base color.</param>
+        /// <param name="dark">The dark shade.</param>
+        /// <param name="darkDark">The darkest shade.</param>
+        /// <param name="drawTop">True to draw the top border, false to draw the bottom.</param>
         public static void DrawPlainSunkenBorderTopOrBottom(Graphics g,
                                                             Rectangle rect,
                                                             Color lightLight,
@@ -5915,6 +7369,17 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Draws a command button background for the given style and command state.
+        /// </summary>
+        /// <param name="g">The graphics to draw on.</param>
+        /// <param name="style">The visual style to draw in.</param>
+        /// <param name="direction">The command orientation.</param>
+        /// <param name="drawRect">The rectangle to draw within.</param>
+        /// <param name="state">The command state.</param>
+        /// <param name="baseColor">The base background color.</param>
+        /// <param name="trackLight">The fill color used when hot-tracked.</param>
+        /// <param name="trackBorder">The border color used when hot-tracked.</param>
         public static void DrawButtonCommand(Graphics g,
                                              VisualStyle style,
                                              Direction direction,
@@ -5994,6 +7459,14 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Draws a separator line for the given style and orientation.
+        /// </summary>
+        /// <param name="g">The graphics to draw on.</param>
+        /// <param name="style">The visual style to draw in.</param>
+        /// <param name="direction">The separator orientation.</param>
+        /// <param name="drawRect">The rectangle to draw within.</param>
+        /// <param name="baseColor">The base color from which the line color is derived.</param>
         public static void DrawSeparatorCommand(Graphics g,
                                                 VisualStyle style,
                                                 Direction direction,
@@ -6085,6 +7558,11 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public class ControlHelper
     {
+        /// <summary>
+        /// Removes all child controls from the given control, using a temporary active button
+        /// to avoid the form Close bug.
+        /// </summary>
+        /// <param name="control">The control whose children are removed.</param>
         public static void RemoveAll(Control control)
         {
             if ((control != null) && (control.Controls.Count > 0))
@@ -6117,6 +7595,12 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Removes the given control from a collection, using a temporary active button to
+        /// avoid the form Close bug.
+        /// </summary>
+        /// <param name="coll">The collection to remove from.</param>
+        /// <param name="item">The control to remove.</param>
         public static void Remove(Control.ControlCollection coll, Control item)
         {
             if ((coll != null) && (item != null))
@@ -6149,6 +7633,11 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Removes the control at the given index from a collection.
+        /// </summary>
+        /// <param name="coll">The collection to remove from.</param>
+        /// <param name="index">The index of the control to remove.</param>
         public static void RemoveAt(Control.ControlCollection coll, int index)
         {
             if (coll != null)
@@ -6160,6 +7649,12 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Detaches a hosted form from its container, using a temporary active button to
+        /// avoid the form Close bug.
+        /// </summary>
+        /// <param name="source">The control used to locate the container.</param>
+        /// <param name="form">The form to detach.</param>
         public static void RemoveForm(Control source, Form form)
         {
             ContainerControl container = source.FindForm() as ContainerControl;
@@ -6190,6 +7685,12 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public class ColorHelper
     {
+        /// <summary>
+        /// Derives the IDE-style tab background color from the given base control color,
+        /// with special cases for the Classic and XP theme colors.
+        /// </summary>
+        /// <param name="backColor">The base control color.</param>
+        /// <returns>The derived tab background color.</returns>
         public static Color TabBackgroundFromBaseColor(Color backColor)
         {
             Color backIDE;

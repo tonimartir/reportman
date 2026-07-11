@@ -1,4 +1,4 @@
-﻿namespace Reportman.Drawing.Forms
+namespace Reportman.Drawing.Forms
 {
     partial class DateTimePickerAdvanced
     {
@@ -79,7 +79,13 @@
         #endregion
 
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        /// <summary>
+        /// Text box displaying the selected date/time string.
+        /// </summary>
         protected System.Windows.Forms.TextBox txtDate;
+        /// <summary>
+        /// Dropdown button that displays the month/calendar popup.
+        /// </summary>
         protected Reportman.Drawing.Forms.DateDropButton btnCalendar;
     }
 }

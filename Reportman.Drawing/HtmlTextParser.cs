@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,21 +15,34 @@ namespace Reportman.Drawing
     /// </summary>
     public class HtmlFormatRun
     {
+        /// <summary>The text content covered by this formatting run.</summary>
         public string Text;
+        /// <summary>Whether the text in this run is rendered bold.</summary>
         public bool Bold;
+        /// <summary>Whether the text in this run is rendered italic.</summary>
         public bool Italic;
+        /// <summary>Whether the text in this run is underlined.</summary>
         public bool Underline;
+        /// <summary>Whether the text in this run has a strike-through line.</summary>
         public bool StrikeOut;
+        /// <summary>The font family applied to this run.</summary>
         public string FontFamily;
+        /// <summary>The font size, in points, applied to this run; only meaningful when <see cref="HasFontSize"/> is true.</summary>
         public float FontSize;
-        
-        // Indicate if the size was explicitly set (so we know when to override the default)
+
+        /// <summary>
+        /// Whether an explicit font size was set for this run, so the caller knows when to
+        /// override the default size.
+        /// </summary>
         public bool HasFontSize;
-        
-        // Text color
+
+        /// <summary>The text color as a BGR integer (Win32/TColor layout); only meaningful when <see cref="HasColor"/> is true.</summary>
         public int Color;
+        /// <summary>Whether an explicit text color was set for this run.</summary>
         public bool HasColor;
 
+        /// <summary>Creates a copy of this run carrying the same text and formatting attributes.</summary>
+        /// <returns>A new <see cref="HtmlFormatRun"/> with identical values.</returns>
         public HtmlFormatRun Clone()
         {
             return new HtmlFormatRun
@@ -87,6 +100,15 @@ namespace Reportman.Drawing
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
         }
 
+        /// <summary>
+        /// Parses an HTML fragment into an ordered list of styled runs, sanitizing the input and
+        /// resolving inline tags (b/i/u/s, span, legacy font) into per-run bold, italic, underline,
+        /// strike-out, font family, size and color attributes. Consecutive runs sharing the same
+        /// style are merged.
+        /// </summary>
+        /// <param name="htmlText">The HTML fragment to parse.</param>
+        /// <param name="defaultFontFamily">The font family applied to text that carries no explicit font.</param>
+        /// <returns>The styled runs in document order; an empty list when the input is null or empty.</returns>
         public static List<HtmlFormatRun> Parse(string htmlText, string defaultFontFamily = "")
         {
             var runs = new List<HtmlFormatRun>();
@@ -593,7 +615,9 @@ namespace Reportman.Drawing
     /// </summary>
     public class LineSubText
     {
+        /// <summary>The zero-based start index of the line within the source text.</summary>
         public int Position;
+        /// <summary>The number of characters in the line, excluding any trailing line break.</summary>
         public int Length;
     }
 
@@ -604,15 +628,23 @@ namespace Reportman.Drawing
     /// </summary>
     public class LineGlyphs
     {
+        /// <summary>The index in the source text at which this line's glyphs begin.</summary>
         public int TextOffset;
+        /// <summary>The shaped glyph positions that make up this line.</summary>
         public List<TGlyphPos> Glyphs = new List<TGlyphPos>();
+        /// <summary>Maps each logical text cluster index to the list of glyph indices that render it.</summary>
         public Dictionary<int, List<int>> ClusterMap = new Dictionary<int, List<int>>();
 
+        /// <summary>Initializes a new instance for a line whose glyphs start at the given text offset.</summary>
+        /// <param name="textOffset">The index in the source text where this line begins.</param>
         public LineGlyphs(int textOffset)
         {
             TextOffset = textOffset;
         }
 
+        /// <summary>Appends a shaped glyph to the line and records it in the cluster map by its cluster index.</summary>
+        /// <param name="g">The shaped glyph position to add.</param>
+        /// <param name="logicalStart">The logical start index of the glyph in the source text.</param>
         public void AddGlyph(TGlyphPos g, int logicalStart)
         {
             Glyphs.Add(g);
@@ -623,6 +655,7 @@ namespace Reportman.Drawing
             ClusterMap[cluster].Add(idx);
         }
 
+        /// <summary>The smallest logical cluster index among the line's glyphs, or 0 when the line has no glyphs.</summary>
         public int MinClusterText
         {
             get
@@ -631,6 +664,7 @@ namespace Reportman.Drawing
                 return Glyphs.Min(g => g.LineCluster);
             }
         }
+        /// <summary>The largest logical cluster index among the line's glyphs, or 0 when the line has no glyphs.</summary>
         public int MaxClusterText
         {
             get
@@ -648,6 +682,9 @@ namespace Reportman.Drawing
     /// </summary>
     public static class HtmlLayoutUtils
     {
+        /// <summary>Splits the text into lines on newline characters, excluding a trailing carriage return from each line's length.</summary>
+        /// <param name="text">The text to divide into lines.</param>
+        /// <returns>One <see cref="LineSubText"/> per line, each giving the line's start position and length.</returns>
         public static List<LineSubText> DividesIntoLines(string text)
         {
             var result = new List<LineSubText>();
@@ -668,6 +705,9 @@ namespace Reportman.Drawing
             return result;
         }
 
+        /// <summary>Finds the character positions in the line where a soft line break is allowed (after spaces and hyphens).</summary>
+        /// <param name="line">The line of text to inspect.</param>
+        /// <returns>The set of character indices at which the line may be broken.</returns>
         public static HashSet<int> FillPossibleLineBreaksString(string line)
         {
             var breaks = new HashSet<int>();
@@ -679,11 +719,23 @@ namespace Reportman.Drawing
             return breaks;
         }
 
+        /// <summary>
+        /// Breaks a left-to-right run of shaped glyphs into chunks that each fit within the
+        /// remaining width, preferring word boundaries and only splitting mid-word when a single
+        /// run is the sole content on its line.
+        /// </summary>
+        /// <param name="positions">The shaped glyph positions to break, in logical order.</param>
+        /// <param name="remaining">The width still available on the current line; updated to the full line width after each break.</param>
+        /// <param name="lineWidthLimit">The full width of a line, used once the current line is flushed.</param>
+        /// <param name="possibleBreaks">Character indices where a break is allowed, or null to rely on spaces and newlines.</param>
+        /// <param name="line">The source text, used to test characters at glyph cluster positions.</param>
+        /// <param name="lineHasContent">Whether the current line already holds content, so an unbreakable run is pushed to the next line instead of split.</param>
+        /// <returns>The glyph chunks in order; an empty chunk signals the caller to flush the current line first.</returns>
         public static List<List<TGlyphPos>> BreakChunksLTR(
-            List<TGlyphPos> positions, 
-            ref double remaining, 
-            double lineWidthLimit, 
-            HashSet<int> possibleBreaks, 
+            List<TGlyphPos> positions,
+            ref double remaining,
+            double lineWidthLimit,
+            HashSet<int> possibleBreaks,
             string line,
             bool lineHasContent = false)
         {
@@ -767,11 +819,23 @@ namespace Reportman.Drawing
             return chunks;
         }
 
+        /// <summary>
+        /// Breaks a right-to-left run of shaped glyphs into chunks that each fit within the
+        /// remaining width, walking from the end of the run and preferring word boundaries, only
+        /// splitting mid-word when a single run is the sole content on its line.
+        /// </summary>
+        /// <param name="positions">The shaped glyph positions to break, in logical order.</param>
+        /// <param name="remaining">The width still available on the current line; updated to the full line width after each break.</param>
+        /// <param name="lineWidthLimit">The full width of a line, used once the current line is flushed.</param>
+        /// <param name="possibleBreaks">Character indices where a break is allowed, or null to rely on spaces and newlines.</param>
+        /// <param name="line">The source text, used to test characters at glyph cluster positions.</param>
+        /// <param name="lineHasContent">Whether the current line already holds content, so an unbreakable run is pushed to the next line instead of split.</param>
+        /// <returns>The glyph chunks in order; an empty chunk signals the caller to flush the current line first.</returns>
         public static List<List<TGlyphPos>> BreakChunksRTL(
-            List<TGlyphPos> positions, 
-            ref double remaining, 
-            double lineWidthLimit, 
-            HashSet<int> possibleBreaks, 
+            List<TGlyphPos> positions,
+            ref double remaining,
+            double lineWidthLimit,
+            HashSet<int> possibleBreaks,
             string line,
             bool lineHasContent = false)
         {

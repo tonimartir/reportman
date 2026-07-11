@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -35,15 +35,45 @@ namespace Reportman.Drawing
     /// </summary>
     public struct LineInfo
     {
+        /// <summary>
+        /// Index in the source text where this line starts.
+        /// </summary>
         public int Position;
+        /// <summary>
+        /// Number of characters that belong to this line.
+        /// </summary>
         public int Size;
+        /// <summary>
+        /// Width of the line in resolution units.
+        /// </summary>
         public int Width;
+        /// <summary>
+        /// Height of the line (line spacing) in resolution units.
+        /// </summary>
         public int Height;
+        /// <summary>
+        /// Vertical offset of the line top relative to the text block, in resolution units.
+        /// </summary>
         public int TopPos;
+        /// <summary>
+        /// Print step (characters-per-inch) used to measure this line.
+        /// </summary>
         public PrintStepType Step;
+        /// <summary>
+        /// True when this is the last line of a paragraph, disabling justification.
+        /// </summary>
         public bool LastLine;
+        /// <summary>
+        /// Height of the line as a floating-point value.
+        /// </summary>
         public double LineHeight;
+        /// <summary>
+        /// Shaped glyph positions for the line, or null when only line metrics were computed.
+        /// </summary>
         public List<TGlyphPos> Glyphs;
+        /// <summary>
+        /// Text content of the line.
+        /// </summary>
         public string Text;
     }
     struct PageInfo
@@ -102,11 +132,17 @@ namespace Reportman.Drawing
         SortedList<int, long> FFileSizes = new SortedList<int, long>();
         const int FIRST_ALLOCATION_OBJECTS = 50;
         int FCount;
+        /// <summary>
+        /// Initializes an empty stream list with an initial capacity.
+        /// </summary>
         public MemStreams()
         {
             FCount = 0;
             FItems = new MemoryStream[FIRST_ALLOCATION_OBJECTS];
         }
+        /// <summary>
+        /// Removes all streams, deleting any temporary spill files and resetting the buffered size.
+        /// </summary>
         public void Clear()
         {
             for (int i = 0; i < FCount; i++)
@@ -131,6 +167,9 @@ namespace Reportman.Drawing
                 FTempFiles.Remove(idx);
             }
         }
+        /// <summary>
+        /// Gets or sets the stream at the given index, reloading it from a temporary file when it has been spilled to disk.
+        /// </summary>
         public MemoryStream this[int index]
         {
             get
@@ -152,7 +191,13 @@ namespace Reportman.Drawing
                 TotalSize = TotalSize - value.Length;
             }
         }
+        /// <summary>
+        /// Gets the number of streams in the list.
+        /// </summary>
         public int Count { get { return FCount; } }
+        /// <summary>
+        /// Appends a stream, spilling it to a temporary file when the total buffered size exceeds the memory threshold.
+        /// </summary>
         public void Add(MemoryStream obj)
         {
             TotalSize = TotalSize + obj.Length;
@@ -175,6 +220,9 @@ namespace Reportman.Drawing
             }
             FCount++;
         }
+        /// <summary>
+        /// Deletes all temporary spill files created by the list.
+        /// </summary>
         public void Dispose()
         {
             while (FTempFiles.Count > 0)
@@ -187,6 +235,11 @@ namespace Reportman.Drawing
     /// </summary>
     public class PDFCanvas
     {
+        /// <summary>
+        /// Initializes the canvas with the font metrics and bitmap encoding providers it will use while drawing.
+        /// </summary>
+        /// <param name="fontInfoProvider">Provider of font metrics and glyph data.</param>
+        /// <param name="bitmapInfoProvider">Provider that encodes images into PDF-compatible bitmap streams.</param>
         public PDFCanvas(FontInfoProvider fontInfoProvider,IBitmapInfoProvider bitmapInfoProvider)
         {
             FInfoProvider = fontInfoProvider;
@@ -199,23 +252,47 @@ namespace Reportman.Drawing
             FResolution = Twips.TWIPS_PER_INCH;
             Lines = new List<LineInfo>();
         }
+        /// <summary>
+        /// PDF content-stream marker that terminates a stream object.
+        /// </summary>
         public static string ENDSTREAM = "" + (char)10 + "endstream";
+        /// <summary>
+        /// Backing field for the font metrics provider.
+        /// </summary>
         public FontInfoProvider FInfoProvider;
+        /// <summary>
+        /// Gets the font metrics and glyph provider used while drawing text.
+        /// </summary>
         public FontInfoProvider InfoProvider
         {
             get { return FInfoProvider;}
         }
+        /// <summary>
+        /// Backing field for the bitmap encoding provider.
+        /// </summary>
         public IBitmapInfoProvider FBitmapInfoProvider;
+        /// <summary>
+        /// Gets the provider that encodes images into PDF-compatible bitmap streams.
+        /// </summary>
         public IBitmapInfoProvider BitmapInfoProvider
         {
             get { return FBitmapInfoProvider; }
         }
+        /// <summary>
+        /// PDF conformance level (for example PDF 1.4 or PDF/A-3) that governs the generated output.
+        /// </summary>
         public PDFConformanceType PDFConformance;
         private PDFFont FFont;
+        /// <summary>
+        /// The PDF document this canvas writes its content stream into.
+        /// </summary>
         public PDFFile File;
         private int FResolution;
         private List<LineInfo> Lines;
         private SortedList FFontData;
+        /// <summary>
+        /// Device resolution in twips per inch used to convert layout units to PDF points.
+        /// </summary>
         public int Resolution;
         /// <summary>
         /// When true, TextExtent always routes to the complex shaper (InfoProvider.TextExtent —
@@ -225,6 +302,9 @@ namespace Reportman.Drawing
         /// (e.g. glyph-indexed ExtTextOutW rendering) must set this to true before measuring.
         /// </summary>
         public bool ForceComplexShaping = false;
+        /// <summary>
+        /// Gets the per-line measurement results produced by the most recent simple text-extent pass.
+        /// </summary>
         public List<LineInfo> LineInfo
         {
             get
@@ -232,25 +312,63 @@ namespace Reportman.Drawing
                 return Lines;
             }
         }
+        /// <summary>
+        /// Gets the current font used for text output.
+        /// </summary>
         public PDFFont Font { get { return FFont; } }
+        /// <summary>
+        /// Current pen (line) color as a packed RGB value.
+        /// </summary>
         public int PenColor;
+        /// <summary>
+        /// Current pen dash style (0 solid, 1 dash, 2 dot, 3 dash-dot, 4 dash-dot-dot, 5 clear).
+        /// </summary>
         public int PenStyle;
+        /// <summary>
+        /// Current pen width in resolution units.
+        /// </summary>
         public int PenWidth;
+        /// <summary>
+        /// Current brush (fill) color as a packed RGB value.
+        /// </summary>
         public int BrushColor;
+        /// <summary>
+        /// Current brush style (for example 1 for clear/none and 2 for solid).
+        /// </summary>
         public int BrushStyle;
 
+        /// <summary>
+        /// Last brush color written to the content stream, used to avoid redundant color operators.
+        /// </summary>
         public int OldBrushColor;
+        /// <summary>
+        /// Last pen color written to the content stream, used to avoid redundant color operators.
+        /// </summary>
         public int OldPenColor;
+        /// <summary>
+        /// Pen color saved by <see cref="SaveGraph"/> and restored by <see cref="RestoreGraph"/>.
+        /// </summary>
         public int SavedPenColor;
+        /// <summary>
+        /// Brush color saved by <see cref="SaveGraph"/> and restored by <see cref="RestoreGraph"/>.
+        /// </summary>
         public int SavedBrushColor;
 
 
+        /// <summary>
+        /// Gets the cache of TrueType font data keyed by font family and style.
+        /// </summary>
         public SortedList FontData
         {
             get { return FFontData; }
         }
 
         private bool translatedy;
+        /// <summary>
+        /// Converts a horizontal layout coordinate to a PDF-point string using the current resolution.
+        /// </summary>
+        /// <param name="Value">Horizontal coordinate in resolution units.</param>
+        /// <returns>The coordinate formatted as PDF points with a dot decimal separator.</returns>
         public string UnitsToTextX(double Value)
         {
             double nvalue = ((double)(Value) / FResolution) * PDFFile.CONS_PDFRES;
@@ -262,6 +380,11 @@ namespace Reportman.Drawing
 #endif
             return aresult.Replace(decseparator, ".");
         }
+        /// <summary>
+        /// Converts a vertical layout coordinate to a PDF-point string, flipping the Y axis to the PDF bottom-left origin.
+        /// </summary>
+        /// <param name="Value">Vertical coordinate in resolution units.</param>
+        /// <returns>The coordinate formatted as PDF points with a dot decimal separator.</returns>
         public string UnitsToTextY(double Value)
         {
             double nvalue;
@@ -292,6 +415,11 @@ namespace Reportman.Drawing
 #endif
             return aresult.Replace(decseparator, ".");
         }
+        /// <summary>
+        /// Formats a number with two decimals and a dot decimal separator for use in PDF operators.
+        /// </summary>
+        /// <param name="Value">The value to format.</param>
+        /// <returns>The value formatted with a dot decimal separator.</returns>
         public static string NumberToText(double Value)
         {
             string aresult = Value.ToString("##0.00");
@@ -323,6 +451,10 @@ namespace Reportman.Drawing
         {
             StreamUtil.SWriteLine(nstream, value, PDFConformance == PDFConformanceType.PDF_1_4);
         }
+        /// <summary>
+        /// Returns the end-of-line sequence appropriate for the current PDF conformance level.
+        /// </summary>
+        /// <returns>The end-of-line character sequence.</returns>
         public string EOL()
         {
             return PDFConformance == PDFConformanceType.PDF_1_4 ? "" + (char)10 + (char)13 : "" + (char)10;
@@ -355,6 +487,13 @@ namespace Reportman.Drawing
                     break;
             }
         }
+        /// <summary>
+        /// Draws a straight line between two points using the current pen color, width and dash style.
+        /// </summary>
+        /// <param name="x1">Start X coordinate in resolution units.</param>
+        /// <param name="y1">Start Y coordinate in resolution units.</param>
+        /// <param name="x2">End X coordinate in resolution units.</param>
+        /// <param name="y2">End Y coordinate in resolution units.</param>
         public void Line(int x1, int y1, int x2, int y2)
         {
             if (PenStyle == 5)
@@ -373,6 +512,10 @@ namespace Reportman.Drawing
             SWriteLine(File.STempStream, "S");
 
         }
+        /// <summary>
+        /// Emits a stroke-color operator, skipping it when optimization is on and the color is unchanged.
+        /// </summary>
+        /// <param name="NewColor">Packed RGB pen color to set.</param>
         public void WritePenColor(int NewColor)
         {
             bool dowrite = true;
@@ -386,6 +529,10 @@ namespace Reportman.Drawing
                 OldPenColor = NewColor;
             }
         }
+        /// <summary>
+        /// Emits a fill-color operator, skipping it when optimization is on and the color is unchanged.
+        /// </summary>
+        /// <param name="NewColor">Packed RGB brush color to set.</param>
         public void WriteBrushColor(int NewColor)
         {
             bool dowrite = true;
@@ -399,6 +546,11 @@ namespace Reportman.Drawing
                 OldBrushColor = NewColor;
             }
         }
+        /// <summary>
+        /// Returns the embedded/linked TrueType font data for the current font, or null when the font
+        /// does not require embedding; throws for PDF/A-3 when no font provider is available.
+        /// </summary>
+        /// <returns>The font data, or null when no embedded font data applies.</returns>
         public TTFontData GetTTFontData()
         {
             if (PDFConformance == PDFConformanceType.PDF_1_4)
@@ -414,6 +566,10 @@ namespace Reportman.Drawing
             }
             return UpdateFonts();
         }
+        /// <summary>
+        /// Ensures the current font's TrueType data is present in the font cache, creating and filling it on first use.
+        /// </summary>
+        /// <returns>The cached font data for the current font, or null when the font does not require embedding.</returns>
         public TTFontData UpdateFonts()
         {
             string searchname;
@@ -443,6 +599,13 @@ namespace Reportman.Drawing
             }
             return adata;
         }
+        /// <summary>
+        /// Draws an ellipse inscribed in the given bounding box using four Bezier curves, honoring the current pen and brush.
+        /// </summary>
+        /// <param name="X1">Left edge of the bounding box in resolution units.</param>
+        /// <param name="Y1">Top edge of the bounding box in resolution units.</param>
+        /// <param name="X2">Right edge of the bounding box in resolution units.</param>
+        /// <param name="Y2">Bottom edge of the bounding box in resolution units.</param>
         public void Ellipse(int X1, int Y1, int X2, int Y2)
         {
             int LineWidth;
@@ -490,6 +653,14 @@ namespace Reportman.Drawing
                 // BsSolid
                 SWriteLine(File.STempStream, opfill);
         }
+        /// <summary>
+        /// Draws a rectangle with rounded corners, honoring the current pen and brush.
+        /// </summary>
+        /// <param name="x1">Left edge in resolution units.</param>
+        /// <param name="y1">Top edge in resolution units.</param>
+        /// <param name="x2">Right edge in resolution units.</param>
+        /// <param name="y2">Bottom edge in resolution units.</param>
+        /// <param name="radius">Corner radius in resolution units.</param>
         public void RoundedRectangle(int x1, int y1, int x2, int y2, int radius)
         {
             int LineWidth;
@@ -536,6 +707,13 @@ namespace Reportman.Drawing
                 // BsSolid
                 SWriteLine(File.STempStream, opfill);
         }
+        /// <summary>
+        /// Draws a rectangle, honoring the current pen and brush.
+        /// </summary>
+        /// <param name="x1">Left edge in resolution units.</param>
+        /// <param name="y1">Top edge in resolution units.</param>
+        /// <param name="x2">Right edge in resolution units.</param>
+        /// <param name="y2">Bottom edge in resolution units.</param>
         public void Rectangle(int x1, int y1, int x2, int y2)
         {
             int LineWidth;
@@ -563,12 +741,18 @@ namespace Reportman.Drawing
                 // BsSolid
                 SWriteLine(File.STempStream, opfill);
         }
+        /// <summary>
+        /// Pushes the current graphics state (q operator) and remembers the current pen and brush colors.
+        /// </summary>
         public void SaveGraph()
         {
             SWriteLine(File.STempStream, "q");
             SavedPenColor = OldPenColor;
             SavedBrushColor = OldBrushColor;
         }
+        /// <summary>
+        /// Pops the graphics state (Q operator) and restores the pen and brush colors saved by <see cref="SaveGraph"/>.
+        /// </summary>
         public void RestoreGraph()
         {
             SWriteLine(File.STempStream, "Q");
@@ -576,6 +760,11 @@ namespace Reportman.Drawing
             OldPenColor = SavedPenColor;
             OldBrushColor = SavedBrushColor;
         }
+        /// <summary>
+        /// Returns the input string with its character order reversed.
+        /// </summary>
+        /// <param name="astring">The string to reverse.</param>
+        /// <returns>The reversed string.</returns>
         public static string DoReverseString(string astring)
         {
             string aresult = "";
@@ -583,6 +772,17 @@ namespace Reportman.Drawing
                 aresult = astring[i] + aresult;
             return aresult;
         }
+        /// <summary>
+        /// Maps a font to the internal PDF font resource name: the family key plus style for embedded/linked
+        /// fonts, or the standard Type1 base-14 font index for the built-in fonts.
+        /// </summary>
+        /// <param name="Type1Font">The PDF font type being resolved.</param>
+        /// <param name="oblique">Whether the italic/oblique variant is requested.</param>
+        /// <param name="bold">Whether the bold variant is requested.</param>
+        /// <param name="WFontName">Windows font family key, used for embedded and linked fonts.</param>
+        /// <param name="FontStyle">Numeric style flags used for embedded and linked fonts.</param>
+        /// <param name="PDFConformance">Active PDF conformance level.</param>
+        /// <returns>The PDF font resource name suffix.</returns>
         public static string Type1FontTopdfFontName(PDFFontType Type1Font, bool oblique,
             bool bold, string WFontName, int FontStyle, PDFConformanceType PDFConformance)
         {
@@ -630,6 +830,18 @@ namespace Reportman.Drawing
             return aresult;
         }
 
+        /// <summary>
+        /// Writes a single line of text at the given position, choosing plain or per-glyph (shaped) output
+        /// and drawing underline/strikeout decorations as needed.
+        /// </summary>
+        /// <param name="X">Horizontal baseline start in resolution units.</param>
+        /// <param name="Y">Vertical baseline position in resolution units.</param>
+        /// <param name="Text">The text to render.</param>
+        /// <param name="LineWidth">Width of the line, used to size element-level underline and strikeout.</param>
+        /// <param name="Rotation">Rotation in tenths of a degree; zero for horizontal text.</param>
+        /// <param name="RightToLeft">Whether the text is right-to-left, forcing shaped output.</param>
+        /// <param name="lInfo">Measurement data for the line, including shaped glyphs when available.</param>
+        /// <param name="isHtml">Whether the text carries per-glyph HTML styling.</param>
         public void TextOut(int X, int Y, string Text, int LineWidth,
          int Rotation, bool RightToLeft, LineInfo lInfo, bool isHtml = false)
         {
@@ -876,10 +1088,20 @@ namespace Reportman.Drawing
                 }
             }
         }
+        /// <summary>
+        /// Returns the four-digit hexadecimal code of a character.
+        /// </summary>
+        /// <param name="achar">The character to encode.</param>
+        /// <returns>The character code as a four-digit uppercase hexadecimal string.</returns>
         public static string WideCharToHex(char achar)
         {
             return IntToHex((int)achar); ;
         }
+        /// <summary>
+        /// Formats an integer as a four-digit, zero-padded uppercase hexadecimal string.
+        /// </summary>
+        /// <param name="nvalue">The value to format.</param>
+        /// <returns>The value as a four-digit uppercase hexadecimal string.</returns>
         public static string IntToHex(int nvalue)
         {
             StringBuilder nresult = new StringBuilder(nvalue.ToString("X"));
@@ -887,6 +1109,14 @@ namespace Reportman.Drawing
                 nresult.Insert(0, "0");
             return nresult.ToString();
         }
+        /// <summary>
+        /// Builds a PDF TJ text array for the string, inserting kerning adjustments between glyphs and
+        /// producing either hexadecimal glyph codes (Unicode fonts) or escaped literal text.
+        /// </summary>
+        /// <param name="astring">The text to encode.</param>
+        /// <param name="adata">Font data providing glyph indices and Unicode flag.</param>
+        /// <param name="pdffont">The PDF font being used.</param>
+        /// <returns>The PDF text array operand including kerning values.</returns>
         public string PDFCompatibleTextWithKerning(string astring, TTFontData adata, PDFFont pdffont)
         {
             int i;
@@ -945,6 +1175,19 @@ namespace Reportman.Drawing
             }
             return aresult;
         }
+        /// <summary>
+        /// Emits per-glyph PDF text operators from shaped glyph data, positioning each glyph with its own
+        /// text matrix and switching font and color as inline styling changes, then restoring the original font.
+        /// </summary>
+        /// <param name="astring">The source text (used for context; glyphs drive the actual output).</param>
+        /// <param name="adata">Font data for the current font.</param>
+        /// <param name="pdffont">The PDF font being used.</param>
+        /// <param name="RightToLeft">Whether the text is right-to-left.</param>
+        /// <param name="posX">Baseline X origin in resolution units.</param>
+        /// <param name="posY">Baseline Y origin in resolution units.</param>
+        /// <param name="FontSize">Base font size in points.</param>
+        /// <param name="lInfo">Line measurement data containing the shaped glyphs to emit.</param>
+        /// <returns>The PDF content-stream fragment that draws the shaped glyphs.</returns>
         public string PDFCompatibleTextShaping(
             string astring,
             TTFontData adata,
@@ -1053,6 +1296,14 @@ namespace Reportman.Drawing
 
             return result;
         }
+        /// <summary>
+        /// Encodes a string as a PDF text operand: a hexadecimal glyph string for Unicode fonts, or an
+        /// escaped literal string for single-byte fonts.
+        /// </summary>
+        /// <param name="astring">The text to encode.</param>
+        /// <param name="adata">Font data providing glyph indices and the Unicode flag; may be null.</param>
+        /// <param name="pdffont">The PDF font being used.</param>
+        /// <returns>The PDF text operand for the string.</returns>
         public static string PDFCompatibleText(string astring, TTFontData adata, PDFFont pdffont)
         {
             int i;
@@ -1344,6 +1595,11 @@ namespace Reportman.Drawing
         const int AlignmentFlags_AlignVCenter = 32;
         const int AlignmentFlags_AlignLeft = 1;
         const int AlignmentFlags_AlignRight = 2;
+        /// <summary>
+        /// Applies a translation to the coordinate system (cm operator) and switches Y conversion to translated mode.
+        /// </summary>
+        /// <param name="X">Horizontal translation in resolution units.</param>
+        /// <param name="Y">Vertical translation in resolution units.</param>
         public void Translate(int X, int Y)
         {
             string transstring = "1 0 0 1 " +
@@ -1353,6 +1609,10 @@ namespace Reportman.Drawing
 
             SWriteLine(File.STempStream, transstring + " cm");
         }
+        /// <summary>
+        /// Applies a rotation to the coordinate system (cm operator).
+        /// </summary>
+        /// <param name="radiants">Rotation angle in radians.</param>
         public void Rotate(double radiants)
         {
             string rotstring = NumberToText(Math.Cos(radiants)) + " " +
@@ -1361,6 +1621,18 @@ namespace Reportman.Drawing
                 NumberToText(Math.Cos(radiants)) + " 0 0";
             SWriteLine(File.STempStream, rotstring + " cm");
         }
+        /// <summary>
+        /// Lays out and draws text within a rectangle, handling word wrap, horizontal and vertical alignment,
+        /// justification, optional clipping, rotation, right-to-left, and HTML styling.
+        /// </summary>
+        /// <param name="arect">Bounding rectangle in resolution units.</param>
+        /// <param name="Text">The text to draw.</param>
+        /// <param name="Alignment">Bit flags controlling single-line, horizontal and vertical alignment, and justification.</param>
+        /// <param name="Clipping">Whether output is clipped to the rectangle.</param>
+        /// <param name="wordbreak">Whether text wraps on word boundaries.</param>
+        /// <param name="Rotation">Rotation in tenths of a degree; zero for horizontal text.</param>
+        /// <param name="RightToLeft">Whether the text is right-to-left.</param>
+        /// <param name="isHtml">Whether the text carries per-glyph HTML styling.</param>
         public void TextRect(Rectangle arect, string Text, int Alignment, bool Clipping,
             bool wordbreak, int Rotation, bool RightToLeft, bool isHtml = false)
         {
@@ -1590,6 +1862,16 @@ namespace Reportman.Drawing
                 }
             }
         }
+        /// <summary>
+        /// Draws an image inside a rectangle, decoding JPEG/bitmap/GIF sources, optionally tiling and clipping,
+        /// and registering the image (and any soft mask) as a reusable PDF XObject.
+        /// </summary>
+        /// <param name="rec">Destination rectangle in resolution units.</param>
+        /// <param name="abitmap">Source image stream.</param>
+        /// <param name="dpires">Source image resolution in DPI, or zero to stretch to the rectangle.</param>
+        /// <param name="tile">Whether the image is tiled to fill the rectangle.</param>
+        /// <param name="clip">Whether output is clipped to the rectangle.</param>
+        /// <param name="internal_imageindex">Caller-supplied key used to reuse an already-embedded image, or negative for a new image.</param>
         public void DrawImage(Rectangle rec, MemoryStream abitmap, int dpires,
             bool tile, bool clip, long internal_imageindex)
         {
@@ -2027,6 +2309,18 @@ namespace Reportman.Drawing
             {
             }
         }
+        /// <summary>
+        /// Measures text within a rectangle and returns per-line information, routing to the complex shaper
+        /// (for RTL, HTML, FreeType, or when forced) or to the fast simple pass otherwise.
+        /// </summary>
+        /// <param name="Text">The text to measure.</param>
+        /// <param name="rect">On input the layout rectangle; on output the measured extent.</param>
+        /// <param name="wordbreak">Whether text wraps on word boundaries.</param>
+        /// <param name="singleline">Whether the text is treated as a single line.</param>
+        /// <param name="dolineinfo">Whether to populate the per-line information list.</param>
+        /// <param name="RightToLeft">Whether the text is right-to-left.</param>
+        /// <param name="isHtml">Whether the text carries HTML styling.</param>
+        /// <returns>The list of measured lines.</returns>
         public List<LineInfo> TextExtent(string Text, ref Rectangle rect, bool wordbreak, bool singleline, bool dolineinfo,bool RightToLeft, bool isHtml = false)
         {
             List<LineInfo> result;
@@ -2054,6 +2348,15 @@ namespace Reportman.Drawing
             return result;
         }
 
+        /// <summary>
+        /// Fast text measurement using built-in font width tables, computing line breaks and per-line metrics
+        /// without glyph shaping and updating the rectangle with the measured extent.
+        /// </summary>
+        /// <param name="Text">The text to measure.</param>
+        /// <param name="rect">On input the layout rectangle; on output the measured extent.</param>
+        /// <param name="wordbreak">Whether text wraps on word boundaries.</param>
+        /// <param name="singleline">Whether the text is treated as a single line.</param>
+        /// <param name="dolineinfo">Whether to populate the per-line information list.</param>
         public void TextExtentSimple(string Text, ref Rectangle rect, bool wordbreak, bool singleline, bool dolineinfo)
         {
             if (singleline)
@@ -2505,12 +2808,33 @@ namespace Reportman.Drawing
         /// </summary>
         public class PDFAnnotation
         {
+            /// <summary>
+            /// PDF object number assigned to this annotation when it is written.
+            /// </summary>
             public long StreamNumber;
+            /// <summary>
+            /// Horizontal position of the annotation in resolution units.
+            /// </summary>
             public int PosX;
+            /// <summary>
+            /// Vertical position of the annotation in resolution units.
+            /// </summary>
             public int PosY;
+            /// <summary>
+            /// Width of the annotation rectangle in resolution units.
+            /// </summary>
             public int Width;
+            /// <summary>
+            /// Height of the annotation rectangle in resolution units.
+            /// </summary>
             public int Height;
+            /// <summary>
+            /// Annotation payload; a "URL:" prefix marks a link, otherwise plain text content.
+            /// </summary>
             public string Annotation;
+            /// <summary>
+            /// One-based page number the annotation belongs to.
+            /// </summary>
             public int Page;
         }
 
@@ -2527,6 +2851,9 @@ namespace Reportman.Drawing
         private MemoryStream FSTempStream;
         private MemoryStream FTempStream;
         private Stream FMainPDF;
+        /// <summary>
+        /// Output file path; when empty the document is built in memory instead of on disk.
+        /// </summary>
         public string FileName = "";
         private PDFCanvas FCanvas;
         private bool FPrinting;
@@ -2535,39 +2862,105 @@ namespace Reportman.Drawing
         private PageInfos FPageInfos;
         private int FResolution;
         private Longs FObjectOffsets;
+        /// <summary>
+        /// Maps caller-supplied image keys to the PDF image index used to reuse already-embedded images.
+        /// </summary>
         public SortedList ImageIndexes;
+        /// <summary>
+        /// Running byte offset of the last written object, used to build the cross-reference table.
+        /// </summary>
         public long FObjectOffset;
+        /// <summary>
+        /// When true, redundant color operators are suppressed to reduce output size.
+        /// </summary>
         public bool Optimized;
         private int FPage;
         private long FParentNum;
         private Strings FFontList;
         private MemStreams FBitmapStreams;
+        /// <summary>
+        /// Pending asynchronous stream-compression tasks whose results are patched back on completion.
+        /// </summary>
         public List<CompressionTask> CompressionTasks;
+        /// <summary>
+        /// Number of PDF points per inch (72).
+        /// </summary>
         public const int POINTS_PER_INCH = 72;
+        /// <summary>
+        /// When true, content and image streams are written using Flate compression.
+        /// </summary>
         public bool Compressed;
+        /// <summary>
+        /// When true, compression favors smaller output over speed.
+        /// </summary>
         public bool OptimizeSize = true;
+        /// <summary>
+        /// Number of images embedded so far in the document.
+        /// </summary>
         public int ImageCount;
+        /// <summary>
+        /// PDF coordinate resolution in points per inch.
+        /// </summary>
         public const int CONS_PDFRES = POINTS_PER_INCH;
+        /// <summary>
+        /// Vertical position factor for the underline, relative to the font size.
+        /// </summary>
         public const double CONS_UNDERLINEPOS = 1.1;
+        /// <summary>
+        /// Vertical position factor for the strikeout, relative to the font size.
+        /// </summary>
         public const double CONS_STRIKEOUTPOS = 0.7;
+        /// <summary>
+        /// Underline and strikeout stroke width factor, relative to the font size.
+        /// </summary>
         public const double CONS_UNDERLINEWIDTH = 0.1;
         private const string CONS_UNICODEPREDIX = "";
+        /// <summary>
+        /// Gets the stream that receives the final assembled PDF output.
+        /// </summary>
         public Stream MainPDF { get { return FMainPDF; } }
+        /// <summary>
+        /// Height of the current page in resolution units.
+        /// </summary>
         public int PageHeight;
+        /// <summary>
+        /// Width of the current page in resolution units.
+        /// </summary>
         public int PageWidth;
+        /// <summary>
+        /// Gets the collection of embedded image (and mask) streams awaiting output.
+        /// </summary>
         public MemStreams BitmapStreams { get { return FBitmapStreams; } }
+        /// <summary>
+        /// Document information dictionary metadata: title, author, creator, keywords, subject and producer.
+        /// </summary>
         public string DocTitle, DocAuthor, DocCreator, DocKeywords, DocSubject, DocProducer;
+        /// <summary>
+        /// XMP metadata packet content used for PDF/A output.
+        /// </summary>
         public string DocXMPContent;
+        /// <summary>
+        /// Document creation date in PDF date format.
+        /// </summary>
         public string DocCreationDate;
+        /// <summary>
+        /// Document modification date in PDF date format.
+        /// </summary>
         public string DocModificationDate;
 
         /// <summary>
         /// The pdf is not generated but all size calculations are done
         /// </summary>
         public bool CalculateOnly;
+        /// <summary>
+        /// Maps an image index to the output-stream position where its soft-mask object reference is patched in.
+        /// </summary>
         public SortedList<int, StreamPosition> Masks = new SortedList<int, StreamPosition>();
         PDFConformanceType FPDFConformance;
 
+        /// <summary>
+        /// Gets or sets the PDF conformance level, propagating the change to the underlying canvas.
+        /// </summary>
         public PDFConformanceType PDFConformance
         {
             get
@@ -2581,8 +2974,14 @@ namespace Reportman.Drawing
             }
 
         }
+        /// <summary>
+        /// Files to embed in the document (used for PDF/A-3 attachments).
+        /// </summary>
         public List<EmbeddedFile> EmbeddedFiles = new List<EmbeddedFile>();
         private SortedList<int, List<PDFAnnotation>> PageAnnotations = new SortedList<int, List<PDFAnnotation>>();
+        /// <summary>
+        /// Releases the output, temporary and bitmap streams and cancels any pending compression tasks.
+        /// </summary>
         virtual public void Dispose()
         {
 #if REPMAN_DOTNET1
@@ -2619,6 +3018,11 @@ namespace Reportman.Drawing
             CompressionTasks.Clear();
 #endif
         }
+        /// <summary>
+        /// Initializes a PDF document with its font and bitmap providers, default metadata, page size and buffers.
+        /// </summary>
+        /// <param name="infoProvider">Provider of font metrics and glyph data.</param>
+        /// <param name="bitmapInfoProvider">Provider that encodes images into PDF-compatible bitmap streams.</param>
         public PDFFile(FontInfoProvider infoProvider, IBitmapInfoProvider bitmapInfoProvider)
         {
             Optimized = false;
@@ -2646,6 +3050,14 @@ namespace Reportman.Drawing
             FFontList = new Strings();
             FOutlinesNum = 0;
         }
+        /// <summary>
+        /// Adds an annotation (link or note) at the given position on the current page.
+        /// </summary>
+        /// <param name="posx">Horizontal position in resolution units.</param>
+        /// <param name="posy">Vertical position in resolution units.</param>
+        /// <param name="width">Annotation width in resolution units.</param>
+        /// <param name="height">Annotation height in resolution units.</param>
+        /// <param name="annotation">Annotation payload; a "URL:" prefix marks a link, otherwise plain text.</param>
         public void NewAnnotation(int posx, int posy, int width, int height, string annotation)
         {
             var ann = new PDFAnnotation();
@@ -2662,24 +3074,39 @@ namespace Reportman.Drawing
             PageAnnotations[FPage].Add(ann);
         }
 
+        /// <summary>
+        /// Throws when the document is not currently between <see cref="BeginDoc"/> and <see cref="EndDoc"/>.
+        /// </summary>
         public void CheckPrinting()
         {
             if (!FPrinting)
                 throw new Exception("Not printing (PDFFile.CheckPrinting)");
         }
+        /// <summary>
+        /// Gets or sets the device resolution in twips per inch, propagating the value to the canvas.
+        /// </summary>
         public int Resolution
         {
             get { return FResolution; }
             set { FResolution = value; FCanvas.Resolution = value; }
         }
+        /// <summary>
+        /// Gets a value indicating whether the document is currently being generated.
+        /// </summary>
         public bool Printing
         {
             get { return FPrinting; }
         }
+        /// <summary>
+        /// Gets the temporary stream that accumulates the current page's content-stream operators.
+        /// </summary>
         public MemoryStream STempStream
         {
             get { return FSTempStream; }
         }
+        /// <summary>
+        /// Gets the drawing canvas that emits content-stream operators into this document.
+        /// </summary>
         public PDFCanvas Canvas
         {
             get { return FCanvas; }
@@ -3133,6 +3560,12 @@ namespace Reportman.Drawing
             FTempStream.Seek(0, SeekOrigin.Begin);
             FTempStream.WriteTo(FMainPDF);
         }
+        /// <summary>
+        /// Encodes a string as a PDF string literal: an escaped parenthesized literal for pure ASCII text,
+        /// or a UTF-16BE hexadecimal string with BOM otherwise.
+        /// </summary>
+        /// <param name="text">The text to encode; null is treated as empty.</param>
+        /// <returns>The PDF string literal.</returns>
         public static string EncodePDFText(string text)
         {
             // Verificar si todos los caracteres son ASCII
@@ -3190,6 +3623,9 @@ namespace Reportman.Drawing
                 return hexString.ToString();
             }
         }
+        /// <summary>
+        /// Starts document generation: opens the output stream, writes the PDF header and initializes page state.
+        /// </summary>
         public void BeginDoc()
         {
             if (FileName.Length == 0)
@@ -3549,6 +3985,11 @@ namespace Reportman.Drawing
             }
         }
 
+        /// <summary>
+        /// Finalizes the current page's content stream and begins a new page with the given size.
+        /// </summary>
+        /// <param name="NPageWidth">Width of the new page in resolution units.</param>
+        /// <param name="NPageHeight">Height of the new page in resolution units.</param>
         public void NewPage(int NPageWidth, int NPageHeight)
         {
             PageInfo aobj;
@@ -3678,6 +4119,10 @@ namespace Reportman.Drawing
                 comp.PositionStream.Seek(0, SeekOrigin.Begin);
             }
         }
+        /// <summary>
+        /// Completes the document: writes fonts, annotations, pages, images, catalog and cross-reference table,
+        /// then flushes and closes the output.
+        /// </summary>
         public void EndDoc()
         {
             int i;
@@ -3917,8 +4362,19 @@ namespace Reportman.Drawing
     /// </summary>
     public class StreamPosition
     {
+        /// <summary>
+        /// The stream that holds the value to be patched.
+        /// </summary>
         public Stream Stream;
+        /// <summary>
+        /// Byte offset within the stream where the value must be written.
+        /// </summary>
         public long Position;
+        /// <summary>
+        /// Initializes a stream/position pair.
+        /// </summary>
+        /// <param name="astream">The target stream.</param>
+        /// <param name="aposition">The byte offset within the stream.</param>
         public StreamPosition(System.IO.Stream astream, long aposition)
         {
             Stream = astream;
@@ -3931,6 +4387,13 @@ namespace Reportman.Drawing
     /// </summary>
     public class CompressionTask
     {
+        /// <summary>
+        /// Initializes a compression task with its worker task, cancellation source and output patch position.
+        /// </summary>
+        /// <param name="nTask">The running compression task producing the compressed byte count.</param>
+        /// <param name="nCancelSource">Cancellation source used to abort the task.</param>
+        /// <param name="nPositionStream">Output stream whose length placeholder will be patched.</param>
+        /// <param name="nStreamPosition">Byte offset in the output stream where the compressed length is written.</param>
         public CompressionTask(System.Threading.Tasks.Task<TaskCompressResult> nTask, CancellationTokenSource nCancelSource, Stream nPositionStream, long nStreamPosition)
         {
             Task = nTask;
@@ -3938,10 +4401,25 @@ namespace Reportman.Drawing
             PositionStream = nPositionStream;
             StreamPosition = nStreamPosition;
         }
+        /// <summary>
+        /// The running task that compresses the stream and reports the compressed byte count.
+        /// </summary>
         public System.Threading.Tasks.Task<TaskCompressResult> Task;
+        /// <summary>
+        /// Cancellation source used to abort the compression task.
+        /// </summary>
         public CancellationTokenSource CancelSource;
+        /// <summary>
+        /// Output stream whose length placeholder is patched with the compressed size.
+        /// </summary>
         public Stream PositionStream;
+        /// <summary>
+        /// Byte offset in the output stream where the compressed length value is written.
+        /// </summary>
         public long StreamPosition;
+        /// <summary>
+        /// Requests cancellation of the compression task if it is still running.
+        /// </summary>
         public void CancelTask()
         {
             if (CancelSource != null)

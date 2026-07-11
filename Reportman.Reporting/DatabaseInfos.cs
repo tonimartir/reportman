@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Data;
 
 namespace Reportman.Reporting
@@ -9,7 +9,13 @@ namespace Reportman.Reporting
     /// </summary>
     public class DatabaseInfos : System.Collections.Generic.List<DatabaseInfo>, ICloneable
     {
+        /// <summary>
+        /// In-memory DataSet holding local/offline data tables used by report datasets.
+        /// </summary>
         public DataSet MemoryDataSet;
+        /// <summary>
+        /// Initializes a new instance of the DatabaseInfos collection, pre-instantiating the in-memory DataSet.
+        /// </summary>
         public DatabaseInfos()
         {
             MemoryDataSet = new DataSet();

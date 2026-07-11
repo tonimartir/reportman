@@ -1,4 +1,4 @@
-﻿namespace Reportman.Designer
+namespace Reportman.Designer
 {
     partial class OpenFromLibrary
     {
@@ -365,6 +365,9 @@
         private System.Windows.Forms.Button bcancel;
         private System.Windows.Forms.Button baceptar;
         private System.Windows.Forms.ToolStripButton brename;
+        /// <summary>
+        /// Toolbar control containing library operation buttons and search/filter inputs.
+        /// </summary>
         public Drawing.Forms.ToolStripAdvanced toolbar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;

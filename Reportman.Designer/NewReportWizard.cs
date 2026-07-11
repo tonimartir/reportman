@@ -393,6 +393,11 @@ namespace Reportman.Designer
 
         // ---------------- Headless test harness (designer.exe /newwizard /shot) ----------------
 
+        /// <summary>
+        /// Headless test harness helper to capture screenshots of the wizard pages.
+        /// It creates a dummy report, launches the form offscreen, cycles through the stages, and saves the screenshots.
+        /// </summary>
+        /// <param name="pngBase">The base filename/path for the output PNG files.</param>
         public static void CapturePages(string pngBase)
         {
             Report rep = new Report();

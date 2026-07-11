@@ -34,6 +34,9 @@ namespace Reportman.Drawing.Forms
         private DateTime m_dteMaxDate = DateTime.MaxValue;
         private DateTime m_dteMinDate = DateTime.MinValue;
         private Font FCalendarFont;
+        /// <summary>
+        /// Gets or sets the font used to render the drop-down month calendar.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Font CalendarFont
         {
@@ -48,13 +51,25 @@ namespace Reportman.Drawing.Forms
                 m_ctlCalendar.Font = FCalendarFont;
             }
         }
+        /// <summary>
+        /// Gets or sets whether the Up and Down arrow keys increment or decrement the
+        /// date/time segment currently under the caret instead of moving the caret.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool HandleKeyUpDown { get; set; }
 
+        /// <summary>
+        /// Gets or sets whether pressing Left or Right at the edge of the text moves focus
+        /// to the previous or next control (Shift+Tab / Tab) instead of the caret.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool HandleLeftRightTabs { get; set; }
 
 
+        /// <summary>
+        /// Date/time format characters that this control does not support and strips from
+        /// the entry and display format strings.
+        /// </summary>
         protected const string NOSUPPORTDATECHARS = "fFgKz%\\";
 
         private MonthCalendarUnThemed m_ctlCalendar = null;
@@ -71,6 +86,10 @@ namespace Reportman.Drawing.Forms
         {
             get { return m_szDateTimeEntryPattern; }
         }
+        /// <summary>
+        /// Gets the culture's date/time formatting information used to parse and format
+        /// entered values, defaulting to the current culture when not otherwise set.
+        /// </summary>
         public System.Globalization.DateTimeFormatInfo DateFormatInfo
         {
             get
@@ -82,10 +101,23 @@ namespace Reportman.Drawing.Forms
                 return ninfo;
             }
         }
+        /// <summary>
+        /// Gets or sets whether pressing Enter behaves like Tab, moving focus to the next
+        /// control instead of inserting a line break.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool EnterAsTab { get; set; }
 
+        /// <summary>
+        /// Callback invoked before Enter is translated into a Tab, allowing the handler to
+        /// cancel the focus change when <see cref="EnterAsTab"/> is enabled.
+        /// </summary>
         public BeforeEnterTabEvent BeforeEnterTab;
+        /// <summary>
+        /// Processes command keys, translating Enter into a Tab keystroke when
+        /// <see cref="EnterAsTab"/> is enabled and the <see cref="BeforeEnterTab"/> handler
+        /// does not cancel it. Returns true when the key was handled by the base class.
+        /// </summary>
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (EnterAsTab)
@@ -100,6 +132,10 @@ namespace Reportman.Drawing.Forms
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
+        /// <summary>
+        /// Handles the KeyDown event, suppressing the Return key when
+        /// <see cref="EnterAsTab"/> is enabled so it is treated as a focus change.
+        /// </summary>
         protected override void OnKeyDown(KeyEventArgs e)
         {
             if (EnterAsTab)
@@ -109,6 +145,10 @@ namespace Reportman.Drawing.Forms
             }
             base.OnKeyDown(e);
         }
+        /// <summary>
+        /// Sets the control bounds, forcing the height to fit the text box and calendar
+        /// button and laying those two child controls out side by side.
+        /// </summary>
         protected override void SetBoundsCore(int x, int y, int width, int height, BoundsSpecified specified)
         {
             int maxheight = Math.Max(txtDate.Height, btnCalendar.Height);
@@ -119,6 +159,10 @@ namespace Reportman.Drawing.Forms
 
             base.SetBoundsCore(x, y, width, height, specified);
         }
+        /// <summary>
+        /// Gets or sets the combined date and time format string, composing or splitting the
+        /// separate <see cref="DateFormat"/> and <see cref="TimeFormat"/> values.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string CustomFormat
         {
@@ -449,6 +493,10 @@ namespace Reportman.Drawing.Forms
         #endregion
 
         #region Constructor/Setup
+        /// <summary>
+        /// Initializes a new instance of the control, creating the drop-down calendar popup,
+        /// wiring up event handlers, and validating the default date and time formats.
+        /// </summary>
         public DateTimePickerAdvanced()
         {
             InitializeComponent();
@@ -637,6 +685,10 @@ namespace Reportman.Drawing.Forms
             else
                 txtDate.Width = this.Width;
         }
+        /// <summary>
+        /// Handles the control gaining focus by showing the entry pattern for an empty value
+        /// or reformatting the current value into the editable entry format.
+        /// </summary>
         protected override void OnEnter(EventArgs e)
         {
             if (string.IsNullOrEmpty(txtDate.Text))
@@ -646,6 +698,10 @@ namespace Reportman.Drawing.Forms
 
             base.OnEnter(e);
         }
+        /// <summary>
+        /// Handles the control losing focus by clearing an untouched entry pattern or
+        /// reformatting the current value into the read-only display format.
+        /// </summary>
         protected override void OnLeave(EventArgs e)
         {
             if (txtDate.Text == m_szDateTimeEntryPattern)
@@ -703,6 +759,10 @@ namespace Reportman.Drawing.Forms
 
             btnCalendar.Invalidate();
         }
+        /// <summary>
+        /// Updates the drop-down button's visual state and enabled state to match the
+        /// control's Enabled property.
+        /// </summary>
         protected override void OnEnabledChanged(EventArgs e)
         {
             base.OnEnabledChanged(e);
@@ -945,6 +1005,10 @@ namespace Reportman.Drawing.Forms
         #endregion
 
         #region Validation
+        /// <summary>
+        /// Validates the entered value, cancelling the event, showing an error message and
+        /// clearing the text box when the value is not a valid, in-range date.
+        /// </summary>
         protected override void OnValidating(CancelEventArgs e)
         {
             base.OnValidating(e);
@@ -960,6 +1024,11 @@ namespace Reportman.Drawing.Forms
                 txtDate.Text = "";
             }
         }
+        /// <summary>
+        /// Displays a message box informing the user that the entered date/time is invalid
+        /// or out of the allowed range described by <paramref name="eResult"/>.
+        /// </summary>
+        /// <param name="eResult">The validation outcome that triggered the message.</param>
         public void ShowValFailMsg(IsDateValidResult eResult)
         {
             string szErrorText = "";
@@ -979,6 +1048,9 @@ namespace Reportman.Drawing.Forms
             }
             MessageBox.Show("Fecha/hora no válida, pulse suprimir para reiniciar o seleccione una fecha/hora", "Fecha no válida", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
+        /// <summary>
+        /// Returns true when the inner date text box currently has input focus.
+        /// </summary>
         public bool IsFocused()
         {
             if (this.txtDate.Focused)
@@ -987,6 +1059,12 @@ namespace Reportman.Drawing.Forms
                 return false;
         }
 
+        /// <summary>
+        /// Determines whether the supplied text is a valid date/time and within the
+        /// configured minimum and maximum date limits.
+        /// </summary>
+        /// <param name="szDateText">The text to validate.</param>
+        /// <returns>A result indicating validity or the specific range violation.</returns>
         protected internal IsDateValidResult IsDateValid(string szDateText)
         {
             if (string.IsNullOrEmpty(szDateText))
@@ -1218,9 +1296,13 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public enum IsDateValidResult
     {
+        /// <summary>The value is a well-formed date/time within the allowed range.</summary>
         Valid = 0,
+        /// <summary>The value could not be parsed as a date/time.</summary>
         Invalid = 1,
+        /// <summary>The value is earlier than the configured minimum date.</summary>
         LessThanMinDate = 2,
+        /// <summary>The value is later than the configured maximum date.</summary>
         GreaterThanMaxDate = 3,
     }
     internal enum MessageBeepTypes
@@ -1772,6 +1854,10 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public class DateDropButton : Button
     {
+        /// <summary>
+        /// Paints the button as a combo-box style drop-down arrow before the base
+        /// rendering runs.
+        /// </summary>
         protected override void OnPaint(PaintEventArgs pevent)
         {
             ControlPaint.DrawComboButton(pevent.Graphics, this.Bounds, ButtonState.Flat);
@@ -1787,6 +1873,11 @@ namespace Reportman.Drawing.Forms
         private System.Windows.Forms.Control _content;
         private System.Windows.Forms.ToolStripControlHost _host;
 
+        /// <summary>
+        /// Initializes a new borderless popup that hosts the specified content control and
+        /// sizes itself to match that control.
+        /// </summary>
+        /// <param name="content">The control to display inside the popup.</param>
         public PopupWindow(System.Windows.Forms.Control content)
         {
             //Basic setup...
@@ -1809,6 +1900,9 @@ namespace Reportman.Drawing.Forms
             //Add the host to the list
             this.Items.Add(this._host);
         }
+        /// <summary>
+        /// Resizes the popup so it matches the current size of its hosted content control.
+        /// </summary>
         public void ResizeToFit()
         {
             this.Size = _content.Size;
@@ -1823,7 +1917,11 @@ namespace Reportman.Drawing.Forms
 public class MonthCalendarUnThemed : MonthCalendar
 {
     [DllImport("uxtheme.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
-    static extern int SetWindowTheme(IntPtr hwnd, string pszSubAppName, string pszSubIdList);    
+    static extern int SetWindowTheme(IntPtr hwnd, string pszSubAppName, string pszSubIdList);
+    /// <summary>
+    /// Disables the visual style theme on the calendar window when its handle is created
+    /// so it renders with the classic (unthemed) appearance.
+    /// </summary>
     protected override void OnHandleCreated(EventArgs e)
     {
         SetWindowTheme(Handle, string.Empty, string.Empty);

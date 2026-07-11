@@ -1,4 +1,4 @@
-#region Copyright
+ï»¿#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -404,7 +404,7 @@ namespace Reportman.Commands
                             {
                                 if (messageproviders.Length != 0)
                                     messageproviders = messageproviders + (char)13 + (char)10;
-                                string nprovider = atable.Rows[indexp][2].ToString();
+                                string nprovider = atable.Rows[indexp][2].ToString() ?? string.Empty;
                                 if (nprovider == DatabaseInfo.FIREBIRD_PROVIDER2)
                                     firebirdfound = true;
                                 if (nprovider == DatabaseInfo.MYSQL_PROVIDER)
@@ -437,7 +437,7 @@ namespace Reportman.Commands
                                 Strings nstrings = new Strings();
                                 for (indexp = 0; indexp < atable.Rows.Count; indexp++)
                                 {
-                                    string nprovider = atable.Rows[indexp][2].ToString();
+                                    string nprovider = atable.Rows[indexp][2].ToString() ?? string.Empty;
                                     if (nprovider == DatabaseInfo.FIREBIRD_PROVIDER2)
                                         firebirdfound = true;
                                     if (nprovider == DatabaseInfo.MYSQL_PROVIDER)
@@ -764,7 +764,7 @@ namespace Reportman.Commands
         static void AddCustomFactories()
         {
 #if NETCOREAPP
-            // Implementación para .NET Core / .NET 5+
+            // ImplementaciÃ³n para .NET Core / .NET 5+
             DbProviderFactories.RegisterFactory(DatabaseInfo.FIREBIRD_PROVIDER2, FirebirdSql.Data.FirebirdClient.FirebirdClientFactory.Instance);
             DbProviderFactories.RegisterFactory(DatabaseInfo.MYSQL_PROVIDER, MySql.Data.MySqlClient.MySqlClientFactory.Instance);
             DbProviderFactories.RegisterFactory(DatabaseInfo.SQLITE_PROVIDER, System.Data.SQLite.SQLiteFactory.Instance); // si tienes el paquete
@@ -773,10 +773,10 @@ namespace Reportman.Commands
             DbProviderFactories.RegisterFactory("SQLServer", Microsoft.Data.SqlClient.SqlClientFactory.Instance);
             DbProviderFactories.RegisterFactory("MySQLConnector", MySqlConnector.MySqlConnectorFactory.Instance);
             DbProviderFactories.RegisterFactory("PostgreSQL", Npgsql.NpgsqlFactory.Instance);
-            // Oracle.ManagedDataAccess (classic) no está disponible en .NET Core; usar Oracle.ManagedDataAccess.Core o ODP.NET Core si procede.
-            // Si usas ODP.NET Core, la factory puede tener otro tipo/namespace, revisa la documentación y añade aquí la línea correspondiente.
+            // Oracle.ManagedDataAccess (classic) no estÃ¡ disponible en .NET Core; usar Oracle.ManagedDataAccess.Core o ODP.NET Core si procede.
+            // Si usas ODP.NET Core, la factory puede tener otro tipo/namespace, revisa la documentaciÃ³n y aÃ±ade aquÃ­ la lÃ­nea correspondiente.
 #else
-            // Implementación para .NET Framework 4.8 (referencias clásicas)
+            // ImplementaciÃ³n para .NET Framework 4.8 (referencias clÃ¡sicas)
             Reportman.Reporting.DatabaseInfo.CustomProviderFactories.Add(DatabaseInfo.FIREBIRD_PROVIDER2, FirebirdSql.Data.FirebirdClient.FirebirdClientFactory.Instance);
             Reportman.Reporting.DatabaseInfo.CustomProviderFactories.Add(DatabaseInfo.MYSQL_PROVIDER, MySqlConnector.MySqlConnectorFactory.Instance);
             Reportman.Reporting.DatabaseInfo.CustomProviderFactories.Add(DatabaseInfo.SQLITE_PROVIDER, Microsoft.Data.Sqlite.SqliteFactory.Instance);
@@ -784,8 +784,8 @@ namespace Reportman.Commands
             Reportman.Reporting.DatabaseInfo.CustomProviderFactories.Add("SQLServer", SqlClientFactory.Instance);
             Reportman.Reporting.DatabaseInfo.CustomProviderFactories.Add("PostgreSQL", Npgsql.NpgsqlFactory.Instance);
             Reportman.Reporting.DatabaseInfo.CustomProviderFactories.Add("Oracle", Oracle.ManagedDataAccess.Client.OracleClientFactory.Instance);
-            // MySqlConnector y Microsoft.Data.SqlClient pueden o no estar referenciados en net48 según tu proyecto.
-            // Si los tienes como paquetes, podrías registrarlos también:
+            // MySqlConnector y Microsoft.Data.SqlClient pueden o no estar referenciados en net48 segÃºn tu proyecto.
+            // Si los tienes como paquetes, podrÃ­as registrarlos tambiÃ©n:
             // DbProviderFactories.RegisterFactory("MySQLConnector", MySqlConnector.MySqlConnectorFactory.Instance);
             // DbProviderFactories.RegisterFactory("SQLiteCore", Microsoft.Data.Sqlite.SqliteFactory.Instance);
 #endif

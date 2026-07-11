@@ -1,4 +1,4 @@
-﻿using System.Data;
+using System.Data;
 
 namespace Reportman.Reporting.Forms
 {
@@ -49,6 +49,12 @@ namespace Reportman.Reporting.Forms
                 }
             }
         }
+        /// <summary>
+        /// Exports the content of a DataGridView to a Report file (.rep) and generates a matching PDF file.
+        /// It dynamically maps the grid's visible columns, header text, cells, alignments and values.
+        /// </summary>
+        /// <param name="grid">The DataGridView control to export.</param>
+        /// <param name="filename">The target filename for the generated files (PDF and report format).</param>
         public static void Export(System.Windows.Forms.DataGridView grid, string filename)
         {
             Reportman.Reporting.Report nreport = new Reportman.Reporting.Report();

@@ -26,6 +26,9 @@ namespace Reportman.Designer
         private Label lblStatus;
         private TextBox txtLog;
 
+        /// <summary>
+        /// Initializes a new instance of the AILoginForm class, registering log event listeners.
+        /// </summary>
         public AILoginForm()
         {
             InitializeComponent();
@@ -33,6 +36,10 @@ namespace Reportman.Designer
             RpAuthManager.Instance.LogMessage += OnAuthLog;
         }
 
+        /// <summary>
+        /// Performs cleanup when the form is closed, unregistering event handlers.
+        /// </summary>
+        /// <param name="e">Event arguments containing form closed details.</param>
         protected override void OnFormClosed(FormClosedEventArgs e)
         {
             RpAuthManager.Instance.LogMessage -= OnAuthLog;

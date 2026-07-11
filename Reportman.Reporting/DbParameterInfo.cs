@@ -24,10 +24,19 @@ namespace Reportman.Reporting
         /// </summary>
         public int? DbType { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the DbParameterInfo class with default values.
+        /// </summary>
         public DbParameterInfo()
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the DbParameterInfo class with the specified name, value, and DbType.
+        /// </summary>
+        /// <param name="name">The parameter name.</param>
+        /// <param name="value">The parameter value.</param>
+        /// <param name="dbType">An optional database type hint mapping to <see cref="System.Data.DbType"/>.</param>
         public DbParameterInfo(string name, object value, int? dbType = null)
         {
             Name = name;

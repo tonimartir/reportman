@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -19,8 +19,16 @@ namespace Reportman.Reporting
     public class ReportmanAgentClient
     {
     #if DEBUG
+        /// <summary>
+        /// Default base URL of the Reportman AI agent service, chosen at compile time (a debug
+        /// endpoint in debug builds, the production endpoint otherwise).
+        /// </summary>
         public const string DefaultBaseUrl = "https://api.reportman.es:7006";
     #else
+        /// <summary>
+        /// Default base URL of the Reportman AI agent service, chosen at compile time (a debug
+        /// endpoint in debug builds, the production endpoint otherwise).
+        /// </summary>
         public const string DefaultBaseUrl = "https://api.reportman.es:44568";
     #endif
 
@@ -38,6 +46,10 @@ namespace Reportman.Reporting
 #endif
         }
 
+        /// <summary>
+        /// Initializes a new instance configured with case-insensitive, camel-case JSON
+        /// serialization for agent requests and responses.
+        /// </summary>
         public ReportmanAgentClient()
         {
             _jsonOptions = new JsonSerializerOptions
@@ -47,17 +59,59 @@ namespace Reportman.Reporting
             };
         }
 
+        /// <summary>
+        /// Gets or sets the base URL of the agent service. Defaults to <see cref="DefaultBaseUrl"/>.
+        /// </summary>
         public string BaseUrl { get; set; } = DefaultBaseUrl;
+
+        /// <summary>
+        /// Gets or sets the API key sent in the <c>X-Reportman-ApiKey</c> header to authenticate the caller.
+        /// </summary>
         public string ApiKey { get; set; }
+
+        /// <summary>
+        /// Gets or sets the bearer token sent in the <c>Authorization</c> header.
+        /// </summary>
         public string Token { get; set; }
+
+        /// <summary>
+        /// Gets or sets the web install identifier sent in the <c>X-Reportman-WebInstallId</c> header.
+        /// </summary>
         public string InstallId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Hub database identifier included in the request configuration.
+        /// </summary>
         public long HubDatabaseId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Hub schema identifier included in the request configuration.
+        /// </summary>
         public long HubSchemaId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the runtime database name sent with each request when specified.
+        /// </summary>
         public string RuntimeDb { get; set; }
+
+        /// <summary>
+        /// Gets or sets the AI service tier requested from the agent. Defaults to <c>"Standard"</c>.
+        /// </summary>
         public string AITier { get; set; } = "Standard";
+
+        /// <summary>
+        /// Gets or sets the agent secret sent with each request when specified.
+        /// </summary>
         public string AgentSecret { get; set; }
+
+        /// <summary>
+        /// Gets or sets the agent AI identifier sent with each request when nonzero.
+        /// </summary>
         public long AgentAiId { get; set; }
 
+        /// <summary>
+        /// Raised with a diagnostic message for each logged operation performed by the client.
+        /// </summary>
         public event Action<string> LogMessage;
 
         /// <summary>

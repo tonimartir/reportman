@@ -29,6 +29,9 @@ namespace Reportman.Designer
         private ReportmanAgentClient _agentClient;
         private CancellationTokenSource _currentInferenceCts;
 
+        /// <summary>
+        /// Initializes a new instance of the SQLEditorControl class, building UI components and starting the SQL analysis debounce timer.
+        /// </summary>
         public SQLEditorControl()
         {
             InitializeComponent();

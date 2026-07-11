@@ -13,6 +13,10 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public partial class ScreenKeyboard : UserControl
     {
+        /// <summary>
+        /// The dialog form hosting this control; its <see cref="Form.DialogResult"/> is set and the
+        /// form is closed when the user confirms with the OK/Enter button.
+        /// </summary>
         public Form CustomParentForm;
         private ButtonCalc[] buttons;
         private int buttonCount;
@@ -44,30 +48,55 @@ namespace Reportman.Drawing.Forms
         /// </summary>
         public enum Command
         {
+            /// <summary>Stores the current value in the calculator memory (M+).</summary>
             MemorySet = 0,
+            /// <summary>Recalls the value held in the calculator memory (MR).</summary>
             MemoryRecall,
+            /// <summary>Clears the calculator memory (MC).</summary>
             MemoryClear,
+            /// <summary>Replaces the current value with its reciprocal (1/x).</summary>
             OneOver,
+            /// <summary>Division operator (/).</summary>
             Div,
+            /// <summary>Toggles the sign of the current value (+/-).</summary>
             Minus,
+            /// <summary>Digit 7.</summary>
             Seven,
+            /// <summary>Digit 8.</summary>
             Eight,
+            /// <summary>Digit 9.</summary>
             Nine,
+            /// <summary>Multiplication operator (x).</summary>
             Multiply,
+            /// <summary>Converts the current value to a percentage (%).</summary>
             Percent,
+            /// <summary>Digit 4.</summary>
             Four,
+            /// <summary>Digit 5.</summary>
             Five,
+            /// <summary>Digit 6.</summary>
             Six,
+            /// <summary>Subtraction operator (-).</summary>
             Sub,
+            /// <summary>Clears the current entry (CE).</summary>
             ClearEntry,
+            /// <summary>Digit 1.</summary>
             One,
+            /// <summary>Digit 2.</summary>
             Two,
+            /// <summary>Digit 3.</summary>
             Three,
+            /// <summary>Addition operator (+).</summary>
             Add,
+            /// <summary>Clears the whole calculation (C).</summary>
             ClearAll,
+            /// <summary>Digit 0.</summary>
             Zero,
+            /// <summary>Decimal separator (.).</summary>
             Dot,
+            /// <summary>Evaluates the current expression (=).</summary>
             Equal,
+            /// <summary>Confirms the result and closes the calculator dialog (OK).</summary>
             Enter
         };
 
@@ -77,12 +106,22 @@ namespace Reportman.Drawing.Forms
         private int buttonWidth;
         private int buttonHeight;
         private int buttonTopRow;
+        /// <summary>
+        /// The owner-drawn display line that shows the value currently held by the calculator.
+        /// </summary>
         public EditCalc editBox;
+        /// <summary>
+        /// The calculator engine that stores the tokens and performs the arithmetic behind this control.
+        /// </summary>
         public Calculator calc;
         private Font windowFont;
 
 
 
+        /// <summary>
+        /// Recomputes the button and edit-line geometry for the current control size, rebuilds the
+        /// 5x5 button matrix and the edit box, and refreshes them with the calculator's current value.
+        /// </summary>
         public void RedrawCalc()
         {
 
@@ -190,6 +229,10 @@ namespace Reportman.Drawing.Forms
             this.Text = "Calculator";
 
         }
+        /// <summary>
+        /// Initializes a new <see cref="ScreenKeyboard"/> with a fresh calculator engine and lays
+        /// out the buttons and edit line at the default size.
+        /// </summary>
         public ScreenKeyboard()
         {
             InitializeComponent();
@@ -207,6 +250,10 @@ namespace Reportman.Drawing.Forms
             //this.MaximizeBox = false;
         }
         private bool FIsPassword;
+        /// <summary>
+        /// Gets or sets whether the edit line masks its contents as a password; changing it rebuilds
+        /// the layout so the mask takes effect.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool IsPassword
         {
@@ -336,6 +383,10 @@ namespace Reportman.Drawing.Forms
                 editBox.EditString = calc.Render();
         }
 
+        /// <summary>
+        /// Paints the edit line and every calculator button onto the control surface.
+        /// </summary>
+        /// <param name="paintArgs">Paint data supplying the target <see cref="Graphics"/>.</param>
         protected override void OnPaint(PaintEventArgs paintArgs)
         {
             Graphics graphics;
@@ -355,11 +406,19 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Paints the control background using the default <see cref="UserControl"/> behavior.
+        /// </summary>
+        /// <param name="paintArgs">Paint data supplying the target <see cref="Graphics"/>.</param>
         protected override void OnPaintBackground(PaintEventArgs paintArgs)
         {
             base.OnPaintBackground(paintArgs);
         }
 
+        /// <summary>
+        /// Selects and captures the button under the pointer so it can be activated on mouse up.
+        /// </summary>
+        /// <param name="mouseArgs">Mouse data carrying the pointer position.</param>
         protected override void OnMouseDown(MouseEventArgs mouseArgs)
         {
             foreach (ButtonCalc button in buttons)
@@ -374,6 +433,10 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Updates the captured button's selected state depending on whether the pointer is still over it.
+        /// </summary>
+        /// <param name="mouseArgs">Mouse data carrying the pointer position.</param>
         protected override void OnMouseMove(MouseEventArgs mouseArgs)
         {
             if (capturedButton != null)
@@ -382,6 +445,10 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Runs the captured button's command when the pointer is released over it, then clears the capture.
+        /// </summary>
+        /// <param name="mouseArgs">Mouse data carrying the pointer position.</param>
         protected override void OnMouseUp(MouseEventArgs mouseArgs)
         {
             if (capturedButton != null)
@@ -394,6 +461,10 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Maps digit, operator, decimal, backspace and enter key presses to the matching calculator commands.
+        /// </summary>
+        /// <param name="keyArgs">Key data carrying the pressed character.</param>
         protected override void OnKeyPress(KeyPressEventArgs keyArgs)
         {
             switch (keyArgs.KeyChar)
@@ -492,26 +563,54 @@ namespace Reportman.Drawing.Forms
     {
         double numValue;
 
+        /// <summary>
+        /// Initializes a new <see cref="Number"/> wrapping the given double value.
+        /// </summary>
+        /// <param name="n">The value to store.</param>
         public Number(double n)
         {
             numValue = n;
         }
 
+        /// <summary>
+        /// Returns the sum of two numbers.
+        /// </summary>
+        /// <param name="a">First operand.</param>
+        /// <param name="b">Second operand.</param>
+        /// <returns>A new <see cref="Number"/> equal to <paramref name="a"/> + <paramref name="b"/>.</returns>
         public static Number Add(Number a, Number b)
         {
             return (new Number(a.numValue + b.numValue));
         }
 
+        /// <summary>
+        /// Returns the difference of two numbers.
+        /// </summary>
+        /// <param name="a">Number to subtract from.</param>
+        /// <param name="b">Number to subtract.</param>
+        /// <returns>A new <see cref="Number"/> equal to <paramref name="a"/> - <paramref name="b"/>.</returns>
         public static Number Subtract(Number a, Number b)
         {
             return (new Number(a.numValue - b.numValue));
         }
 
+        /// <summary>
+        /// Returns the product of two numbers.
+        /// </summary>
+        /// <param name="a">First operand.</param>
+        /// <param name="b">Second operand.</param>
+        /// <returns>A new <see cref="Number"/> equal to <paramref name="a"/> * <paramref name="b"/>.</returns>
         public static Number Multiply(Number a, Number b)
         {
             return (new Number(a.numValue * b.numValue));
         }
 
+        /// <summary>
+        /// Returns the quotient of two numbers, yielding zero when the divisor is zero.
+        /// </summary>
+        /// <param name="a">Dividend.</param>
+        /// <param name="b">Divisor.</param>
+        /// <returns>A new <see cref="Number"/> equal to <paramref name="a"/> / <paramref name="b"/>, or zero if <paramref name="b"/> is zero.</returns>
         public static Number Divide(Number a, Number b)
         {
             if (b.numValue == 0)
@@ -520,16 +619,33 @@ namespace Reportman.Drawing.Forms
                 return (new Number(a.numValue / b.numValue));
         }
 
+        /// <summary>
+        /// Determines whether two numbers hold the same value.
+        /// </summary>
+        /// <param name="a">First operand.</param>
+        /// <param name="b">Second operand.</param>
+        /// <returns><c>true</c> if the two values are equal; otherwise <c>false</c>.</returns>
         public static bool operator ==(Number a, Number b)
         {
             return (a.numValue == b.numValue);
         }
 
+        /// <summary>
+        /// Determines whether two numbers hold different values.
+        /// </summary>
+        /// <param name="a">First operand.</param>
+        /// <param name="b">Second operand.</param>
+        /// <returns><c>true</c> if the two values differ; otherwise <c>false</c>.</returns>
         public static bool operator !=(Number a, Number b)
         {
             return (a.numValue != b.numValue);
         }
 
+        /// <summary>
+        /// Determines whether the given object is a <see cref="Number"/> with the same value.
+        /// </summary>
+        /// <param name="b">The object to compare with.</param>
+        /// <returns><c>true</c> if <paramref name="b"/> is an equal <see cref="Number"/>; otherwise <c>false</c>.</returns>
         public override bool Equals(Object b)
         {
             if (b is Number)
@@ -538,11 +654,19 @@ namespace Reportman.Drawing.Forms
                 return (false);
         }
 
+        /// <summary>
+        /// Returns a hash code for this number.
+        /// </summary>
+        /// <returns>The integer part of the value, used as the hash code.</returns>
         public override int GetHashCode()
         {
             return ((int)numValue);
         }
 
+        /// <summary>
+        /// Returns the textual representation of the wrapped value.
+        /// </summary>
+        /// <returns>The value formatted as a string.</returns>
         public override String ToString()
         {
             return (numValue.ToString());
@@ -571,6 +695,19 @@ namespace Reportman.Drawing.Forms
         private bool IsSelectedValue;
         private ScreenKeyboard.Command ButtonCommand;
 
+        /// <summary>
+        /// Initializes a new calculator button with its host control, font, position, size, caption and command.
+        /// </summary>
+        /// <param name="MControl">Control the button is drawn on and repaints through.</param>
+        /// <param name="font">Font used to draw the caption.</param>
+        /// <param name="x">Left position of the button, in pixels.</param>
+        /// <param name="y">Top position of the button, in pixels.</param>
+        /// <param name="width">Button width, in pixels.</param>
+        /// <param name="height">Button height, in pixels.</param>
+        /// <param name="margin">Spacing margin used when the button is grown to double height.</param>
+        /// <param name="capString">Caption text shown on the button.</param>
+        /// <param name="capColor">Caption and selected-background color.</param>
+        /// <param name="cmd">Command triggered when the button is activated.</param>
         public ButtonCalc(Control MControl, Font font, int x, int y, int width, int height,
             int margin, String capString, Color capColor, ScreenKeyboard.Command cmd)
         {
@@ -586,6 +723,10 @@ namespace Reportman.Drawing.Forms
             ButtonCommand = cmd;
         }
 
+        /// <summary>
+        /// Draws the button as a labelled ellipse, inverting caption and fill colors when it is selected.
+        /// </summary>
+        /// <param name="graphics">Surface to draw the button on.</param>
         public void Render(Graphics graphics)
         {
             Pen pen;
@@ -615,6 +756,12 @@ namespace Reportman.Drawing.Forms
             brush.Dispose();
         }
 
+        /// <summary>
+        /// Determines whether the given point falls within the button's bounding rectangle.
+        /// </summary>
+        /// <param name="x">X coordinate to test, in pixels.</param>
+        /// <param name="y">Y coordinate to test, in pixels.</param>
+        /// <returns><c>true</c> if the point is inside the button; otherwise <c>false</c>.</returns>
         public bool IsHit(int x, int y)
         {
             return (x >= PositionLeftX &&
@@ -623,6 +770,9 @@ namespace Reportman.Drawing.Forms
                     y < PositionTopY + SizeHeight);
         }
 
+        /// <summary>
+        /// Gets or sets whether the button spans two rows; setting it to <c>true</c> doubles the button height.
+        /// </summary>
         public bool IsTall
         {
             get
@@ -636,6 +786,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets whether the button is pressed; changing the value repaints the button immediately.
+        /// </summary>
         public bool IsSelected
         {
             get
@@ -659,6 +812,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Gets the <see cref="ScreenKeyboard.Command"/> this button triggers when activated.
+        /// </summary>
         public ScreenKeyboard.Command Cmd
         {
             get
@@ -681,8 +837,17 @@ namespace Reportman.Drawing.Forms
         private Rectangle AreaBounds;
         private String EditStringValue;
         private Font EditFont;
+        /// <summary>
+        /// When <c>true</c>, the displayed text is masked with asterisks instead of shown in clear.
+        /// </summary>
         public bool IsPassword;
 
+        /// <summary>
+        /// Initializes a new display line bound to a host control, font and drawing area.
+        /// </summary>
+        /// <param name="MControl">Control the edit line is drawn on and repaints through.</param>
+        /// <param name="font">Font used to draw the text.</param>
+        /// <param name="rcBounds">Rectangle occupied by the edit line, in pixels.</param>
         public EditCalc(Control MControl, Font font, Rectangle rcBounds)
         {
             MainControl = MControl;
@@ -690,6 +855,11 @@ namespace Reportman.Drawing.Forms
             AreaBounds = rcBounds;
         }
 
+        /// <summary>
+        /// Draws the edit line, right-aligning the current text (masked when <see cref="IsPassword"/> is set)
+        /// inside its clipped rectangle.
+        /// </summary>
+        /// <param name="graphics">Surface to draw the edit line on.</param>
         public void Render(Graphics graphics)
         {
             String str;
@@ -726,6 +896,9 @@ namespace Reportman.Drawing.Forms
             brush.Dispose();
         }
 
+        /// <summary>
+        /// Gets or sets the text shown in the edit line; assigning a new value repaints it immediately.
+        /// </summary>
         public String EditString
         {
             get
@@ -767,20 +940,33 @@ namespace Reportman.Drawing.Forms
         /// </summary>
         public enum TokenType
         {
+            /// <summary>Absence of a token.</summary>
             Nil = -1,
+            /// <summary>Addition operator; also the lowest operator precedence.</summary>
             Add = 0,
+            /// <summary>Subtraction operator.</summary>
             Subtract,
+            /// <summary>Multiplication operator.</summary>
             Multiply,
+            /// <summary>Division operator; the highest operator precedence.</summary>
             Divide,
+            /// <summary>A numeric operand rather than an operator.</summary>
             TokenNumber
         };
 
+        /// <summary>
+        /// Initializes a new token of the given kind with its decimal-entry factor reset to zero.
+        /// </summary>
+        /// <param name="type">Kind of token to create.</param>
         public TokenCalc(TokenCalc.TokenType type)
         {
             DecimalFactor = 0;
             this.Type = type;
         }
 
+        /// <summary>
+        /// Gets or sets the kind of this token (an operator, a number, or Nil).
+        /// </summary>
         public TokenCalc.TokenType Type
         {
             get
@@ -793,6 +979,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets the numeric value carried by this token when it is a number token.
+        /// </summary>
         public Number TokenNumber
         {
             get
@@ -805,6 +994,10 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets the current decimal place weight used while typing digits after the decimal point;
+        /// zero means digits are still being entered before the decimal separator.
+        /// </summary>
         public int DecimalFactor
         {
             get
@@ -817,6 +1010,10 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets whether this token is sealed, meaning the next digit starts a new number
+        /// rather than appending to it.
+        /// </summary>
         public bool IsSealed
         {
             get
@@ -830,22 +1027,40 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Determines whether this token is one of the four arithmetic operators.
+        /// </summary>
+        /// <returns><c>true</c> if the token is an operator; otherwise <c>false</c>.</returns>
         public bool IsOperator()
         {
             return (this.Type >= TokenCalc.TokenType.Add &&
                     this.Type <= TokenCalc.TokenType.Divide);
         }
 
+        /// <summary>
+        /// Determines whether this token is a numeric operand.
+        /// </summary>
+        /// <returns><c>true</c> if the token is a number; otherwise <c>false</c>.</returns>
         public bool IsNumber()
         {
             return (this.Type == TokenCalc.TokenType.TokenNumber);
         }
 
+        /// <summary>
+        /// Determines whether this token has precedence less than or equal to another token,
+        /// using the ordering of <see cref="TokenType"/>.
+        /// </summary>
+        /// <param name="tokenCompare">Token to compare precedence against.</param>
+        /// <returns><c>true</c> if this token's precedence is not greater than <paramref name="tokenCompare"/>.</returns>
         public bool IsLessThanOrEqualTo(TokenCalc tokenCompare)
         {
             return (this.Type <= tokenCompare.Type);
         }
 
+        /// <summary>
+        /// Returns the operator symbol for an operator token, or the formatted value for a number token.
+        /// </summary>
+        /// <returns>The token rendered as a string.</returns>
         public override String ToString()
         {
             String resultString;
@@ -871,6 +1086,9 @@ namespace Reportman.Drawing.Forms
         private List<TokenCalc> TokenList = new List<TokenCalc>();
         private TokenCalc MemoryToken = new TokenCalc(TokenCalc.TokenType.TokenNumber);
 
+        /// <summary>
+        /// Initializes a new calculator engine seeded with a single zero token.
+        /// </summary>
         public Calculator()
         {
             Reset();
@@ -929,6 +1147,9 @@ namespace Reportman.Drawing.Forms
                 return (new TokenCalc(TokenCalc.TokenType.Nil));
         }
 
+        /// <summary>
+        /// Stores the current value into memory (M+) when the current token is a number.
+        /// </summary>
         public void DoMemorySet()
         {
             if (CurrentToken().IsNumber())
@@ -937,11 +1158,17 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Clears the memory (MC) by marking the memory token as empty.
+        /// </summary>
         public void DoMemoryClear()
         {
             MemoryToken.Type = TokenCalc.TokenType.Nil;
         }
 
+        /// <summary>
+        /// Recalls the memory value (MR), replacing the current number token with the stored value.
+        /// </summary>
         public void DoMemoryRecall()
         {
             if (MemoryToken.IsNumber())
@@ -954,6 +1181,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Begins decimal-fraction entry (.), starting a new zero token first if the current token is not a number.
+        /// </summary>
         public void DoDecimal()
         {
             if (!CurrentToken().IsNumber())
@@ -963,6 +1193,11 @@ namespace Reportman.Drawing.Forms
                 CurrentToken().DecimalFactor = 10;
         }
 
+        /// <summary>
+        /// Appends a digit to the current number, honoring decimal-fraction position and starting a new
+        /// number when the current one is sealed.
+        /// </summary>
+        /// <param name="n">Digit value from 0 to 9.</param>
         public void DoDigit(int n)
         {
             TokenCalc tok;
@@ -1006,6 +1241,10 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Appends an arithmetic operator, sealing the current number or replacing a pending operator.
+        /// </summary>
+        /// <param name="type">Operator token to append.</param>
         public void DoOperator(TokenCalc.TokenType type)
         {
             if (CurrentToken().IsOperator())
@@ -1020,6 +1259,9 @@ namespace Reportman.Drawing.Forms
             AddOperatorToken(type);
         }
 
+        /// <summary>
+        /// Toggles the sign of the current number (+/-).
+        /// </summary>
         public void DoNegative()
         {
             if (CurrentToken().IsNumber())
@@ -1029,6 +1271,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Replaces the current number with its reciprocal (1/x), leaving zero unchanged.
+        /// </summary>
         public void DoOneOver()
         {
             if (CurrentToken().IsNumber())
@@ -1041,11 +1286,18 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Clears the entire calculation (C), resetting the token list to a single zero.
+        /// </summary>
         public void DoClearAll()
         {
             Reset();
         }
 
+        /// <summary>
+        /// Clears the current entry (CE): removes the current number or operator, restoring a zero token
+        /// when appropriate.
+        /// </summary>
         public void DoClearCurrentToken()
         {
             if (CurrentToken().IsNumber())
@@ -1065,6 +1317,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Converts the current number to a percentage (%) by dividing it by 100.
+        /// </summary>
         public void DoPercent()
         {
             if (CurrentToken().IsNumber())
@@ -1120,6 +1375,10 @@ namespace Reportman.Drawing.Forms
                 TokenEvalBinOp(topOperatorToken, aToken, bToken));
         }
 
+        /// <summary>
+        /// Evaluates the current expression (=) using operator-precedence stacks and replaces the token
+        /// list with the sealed result.
+        /// </summary>
         public void DoEvaluate()
         {
             Stack<TokenCalc> operatorStack = new Stack<TokenCalc>();
@@ -1173,6 +1432,10 @@ namespace Reportman.Drawing.Forms
             // We're done
         }
 
+        /// <summary>
+        /// Builds a spaced textual representation of the current token list.
+        /// </summary>
+        /// <returns>The expression rendered as a string.</returns>
         public String Render()
         {
             String resultString = "";
@@ -1182,6 +1445,15 @@ namespace Reportman.Drawing.Forms
 
             return (resultString);
         }
+        /// <summary>
+        /// Shows a modal calculator dialog seeded with a value and returns the value entered by the user.
+        /// </summary>
+        /// <param name="currentvalue">Initial value shown in the calculator.</param>
+        /// <param name="aceptado">Set to <c>true</c> when the user confirms with OK, otherwise <c>false</c>.</param>
+        /// <param name="IsPassword">When <c>true</c>, the edit line masks its contents.</param>
+        /// <param name="titulo">Caption shown in the dialog title bar.</param>
+        /// <param name="nwindow">Owner window for the modal dialog, or <c>null</c>.</param>
+        /// <returns>The confirmed value, or the original value when the dialog is cancelled.</returns>
         public static decimal ShowCalc(decimal currentvalue, ref bool aceptado, bool IsPassword, string titulo, IWin32Window nwindow)
         {
             aceptado = false;
@@ -1217,6 +1489,13 @@ namespace Reportman.Drawing.Forms
             return resultat;
         }
 
+        /// <summary>
+        /// Shows a modal calculator dialog seeded with a value, using an empty title and no owner window.
+        /// </summary>
+        /// <param name="currentvalue">Initial value shown in the calculator.</param>
+        /// <param name="aceptado">Set to <c>true</c> when the user confirms with OK, otherwise <c>false</c>.</param>
+        /// <param name="IsPassword">When <c>true</c>, the edit line masks its contents.</param>
+        /// <returns>The confirmed value, or the original value when the dialog is cancelled.</returns>
         public static decimal ShowCalc(decimal currentvalue, ref bool aceptado, bool IsPassword)
         {
             return ShowCalc(currentvalue, ref aceptado, IsPassword, "", null);

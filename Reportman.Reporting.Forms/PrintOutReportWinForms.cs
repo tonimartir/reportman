@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -69,6 +69,9 @@ namespace Reportman.Reporting.Forms
         {
             get { return FReport; }
         }
+        /// <summary>
+        /// Releases the resources used by the driver and detaches the associated report.
+        /// </summary>
         public override void Dispose()
         {
             base.Dispose();
@@ -172,6 +175,12 @@ namespace Reportman.Reporting.Forms
     /// </summary>
     public class DataGridViewPrint
     {
+        /// <summary>
+        /// Translates a grid cell content alignment into the horizontal and vertical text
+        /// alignment of the given report item.
+        /// </summary>
+        /// <param name="nalign">Cell content alignment taken from the grid.</param>
+        /// <param name="nitem">Report text item whose alignment is set.</param>
         public static void SetAlignFromCellFormat(DataGridViewContentAlignment nalign, PrintItemText nitem)
         {
             switch (nalign)
@@ -216,6 +225,13 @@ namespace Reportman.Reporting.Forms
             }
         }
 
+        /// <summary>
+        /// Builds the report layout (sections, columns, shapes and a backing data table) from the
+        /// given grid and options so that the grid can be printed or previewed.
+        /// </summary>
+        /// <param name="nreport">Report to populate with the generated layout and data.</param>
+        /// <param name="ngrid">Source grid whose columns and rows are converted.</param>
+        /// <param name="opts">Options controlling paper size, columns, styling and grid lines.</param>
         public static void PrepareReport(Report nreport, DataGridView ngrid, DataGridViewPrintOptions opts)
         {
             const int DefaultScreenDPI = 142;
@@ -767,6 +783,12 @@ namespace Reportman.Reporting.Forms
             nreport.DataInfo[aliasname].DataViewOverride = new DataView(ntable);
             //return meta;
         }
+        /// <summary>
+        /// Converts an image-bearing cell value (an <see cref="Image"/> or <see cref="Icon"/>) into a
+        /// BMP stream, or returns null when the value holds no image.
+        /// </summary>
+        /// <param name="nobj">Cell value to convert.</param>
+        /// <returns>A stream with the BMP-encoded image, or null if none.</returns>
         public static MemoryStream GetImageStreamFromObject(object nobj)
         {
             MemoryStream mstream = null;
@@ -808,18 +830,58 @@ namespace Reportman.Reporting.Forms
     /// </summary>
     public class DataGridViewPrintOptions
     {
+        /// <summary>
+        /// When true, column widths are scaled so the grid fits the printable page width.
+        /// </summary>
         public bool AdjustWidth;
+        /// <summary>
+        /// Columns to print; when empty, every visible grid column is used.
+        /// </summary>
         public List<DataGridViewColumn> SelectedColumns;
+        /// <summary>
+        /// Paper size used for the generated report.
+        /// </summary>
         public PaperSize PaperSize;
+        /// <summary>
+        /// When true, the report is laid out in landscape orientation.
+        /// </summary>
         public bool LandsCape;
+        /// <summary>
+        /// When true, only the selected grid rows are printed.
+        /// </summary>
         public bool PrintSelected;
+        /// <summary>
+        /// When true, cell text wraps within its column instead of being cut.
+        /// </summary>
         public bool WordWrap;
+        /// <summary>
+        /// Report associated with these print options.
+        /// </summary>
         public Report Report;
+        /// <summary>
+        /// When true, the report is shown in a preview window rather than printed directly.
+        /// </summary>
         public bool Preview;
+        /// <summary>
+        /// When true, tree-hierarchy connector lines are drawn for tree grids.
+        /// </summary>
         public bool DrawTreeLines;
+        /// <summary>
+        /// When true, row background colors from the grid are reproduced in the report.
+        /// </summary>
         public bool DrawBackGroundColors;
+        /// <summary>
+        /// When true, horizontal grid lines are drawn between rows.
+        /// </summary>
         public bool HorizontalLines;
+        /// <summary>
+        /// When true, vertical grid lines are drawn between columns.
+        /// </summary>
         public bool VerticalLines;
+        /// <summary>
+        /// Initializes the options with default values: word wrap, tree lines, background colors
+        /// and grid lines enabled, and the default paper size.
+        /// </summary>
         public DataGridViewPrintOptions()
         {
             SelectedColumns = new List<DataGridViewColumn>();
@@ -830,6 +892,10 @@ namespace Reportman.Reporting.Forms
             HorizontalLines = true;
             VerticalLines = true;
         }
+        /// <summary>
+        /// Returns the printable paper width in twips (1/1440 inch), accounting for the landscape setting.
+        /// </summary>
+        /// <returns>The paper width in twips.</returns>
         public int PaperWidth()
         {
             if (LandsCape)

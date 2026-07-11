@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -53,11 +53,25 @@ namespace Reportman.Drawing.Forms
         /// passing the row that was being edited so handlers can validate or react to it.
         /// </summary>
         public delegate void SelectNextRowAfterEnterKeyEvent(object sender, DataGridViewRow gridRow);
+        /// <summary>
+        /// When true, new grid instances enable double buffering for smoother rendering;
+        /// it is disabled automatically inside terminal server sessions.
+        /// </summary>
         public static bool DoubleBufferedPerformance = true;
+        /// <summary>
+        /// Cell border style applied to newly created grid instances.
+        /// </summary>
         public static DataGridViewCellBorderStyle DefaultCellBorderStyle = DataGridViewCellBorderStyle.Single;
         private SortedList<int, Control> controlskeydown;
         private int taggedcontrols;
+        /// <summary>
+        /// Handler invoked just before focus moves to the next row after the user presses Enter,
+        /// receiving the row that was being edited.
+        /// </summary>
         public SelectNextRowAfterEnterKeyEvent OnSelectNextRowAfterEnterKey;
+        /// <summary>
+        /// Key that triggers the grid's double-click action when pressed (default F7).
+        /// </summary>
         public Keys DoubleClickKey = Keys.F7;
         // static float zerosize;
         //static Bitmap nbitmap;
@@ -111,7 +125,13 @@ namespace Reportman.Drawing.Forms
 
 
         }
+        /// <summary>
+        /// Handler that can override which column receives focus when advancing with Enter.
+        /// </summary>
         public NextColumnFocusEvent NextColumnFocusEnter;
+        /// <summary>
+        /// Handler invoked when the double-click action fires, receiving the double-clicked control.
+        /// </summary>
         public DoubleClickControlEvent DoubleClickControl;
         private bool FValidateRowOnColumnChange;
         private bool FEnterAsTab;
@@ -135,15 +155,24 @@ namespace Reportman.Drawing.Forms
                 FAllowUserToInsertRows = value;
             }
         }
+        /// <summary>
+        /// Raises the ParentChanged event.
+        /// </summary>
         protected override void OnParentChanged(EventArgs e)
         {
             base.OnParentChanged(e);
         }
+        /// <summary>
+        /// Raises the ColumnWidthChanged event.
+        /// </summary>
         protected override void OnColumnWidthChanged(DataGridViewColumnEventArgs e)
         {
 
             base.OnColumnWidthChanged(e);
         }
+        /// <summary>
+        /// Raises the VisibleChanged event.
+        /// </summary>
         protected override void OnVisibleChanged(EventArgs e)
         {
             base.OnVisibleChanged(e);
@@ -284,6 +313,10 @@ namespace Reportman.Drawing.Forms
                       base.OnKeyDown(e);
                 }
          */
+        /// <summary>
+        /// Column data property names for which the numeric keypad decimal key is not
+        /// converted to the current culture's decimal separator.
+        /// </summary>
         public List<string> DecimalKeyPadExceptions = new List<string>();
         /// <summary>
         /// New handler while inside editor
@@ -417,6 +450,9 @@ namespace Reportman.Drawing.Forms
             }
             return base.PreProcessMessage(ref msg);
         }
+        /// <summary>
+        /// Scales all column widths by the current DPI scale factor.
+        /// </summary>
         public void ScaleColumns()
         {
             if (Reportman.Drawing.Windows.GraphicUtils.DPIScale == 1.0f)
@@ -585,15 +621,24 @@ namespace Reportman.Drawing.Forms
             }
             base.Dispose(disposing);
         }
+        /// <summary>
+        /// Raises the LostFocus event.
+        /// </summary>
         protected override void OnLostFocus(EventArgs e)
         {
             base.OnLostFocus(e);
         }
+        /// <summary>
+        /// Handles data errors, forcing the exception to be thrown so callers can react to it.
+        /// </summary>
         protected override void OnDataError(bool displayErrorDialogIfNoHandler, DataGridViewDataErrorEventArgs e)
         {
             e.ThrowException = true;
             base.OnDataError(displayErrorDialogIfNoHandler, e);
         }
+        /// <summary>
+        /// Returns the underlying DataRow bound to the current row, or null if none is available.
+        /// </summary>
         public DataRow GetCurrentDataRow()
         {
             DataRow result = null;
@@ -613,6 +658,10 @@ namespace Reportman.Drawing.Forms
 
             return result;
         }
+        /// <summary>
+        /// Returns the DataColumn bound to the current image cell, or null if the current cell
+        /// is not a data-bound image column.
+        /// </summary>
         public DataColumn GetCurrentDataColumn()
         {
             DataColumn ncol = null;
@@ -640,6 +689,9 @@ namespace Reportman.Drawing.Forms
 
             return ncol;
         }
+        /// <summary>
+        /// Returns the grid column of the current cell, or null if there is no data-bound current row.
+        /// </summary>
         public DataGridViewColumn GetCurrentColumn()
         {
             DataGridViewColumn vcol = null;
@@ -653,6 +705,9 @@ namespace Reportman.Drawing.Forms
 
             return vcol;
         }
+        /// <summary>
+        /// Returns the grid column whose DataPropertyName matches the given name, or null if none.
+        /// </summary>
         public DataGridViewColumn GetDataColumn(string propname)
         {
             DataGridViewColumn vcol = null;
@@ -666,6 +721,9 @@ namespace Reportman.Drawing.Forms
             }
             return vcol;
         }
+        /// <summary>
+        /// Returns the DataTable backing the grid's data source, or null if none can be resolved.
+        /// </summary>
         public DataTable GetDataTable()
         {
             if (DataSource is DataView)
@@ -766,6 +824,10 @@ namespace Reportman.Drawing.Forms
                 return;
             OpenImageFromFile(ndialog.FileName);
         }
+        /// <summary>
+        /// Prepares the image context menu as it opens, enabling or disabling items and
+        /// updating the image size caption.
+        /// </summary>
         public void PopMenuOpening(object sender, CancelEventArgs ev)
         {
             DataRow nrow = GetCurrentDataRow();
@@ -819,7 +881,10 @@ namespace Reportman.Drawing.Forms
                 mimagesize.Text = (System.Convert.ToDecimal(imsize) / (1024)).ToString("N2") + " Kbytes";
 
         }
-        // But� dret sobre un 
+        // But� dret sobre un
+        /// <summary>
+        /// Builds the context menu (copy, paste, open, clear and image size) for an image column.
+        /// </summary>
         public ContextMenuStrip CreateImagePopUp(DataGridViewColumn ncolumn)
         {
             // Menu de imagen
@@ -856,6 +921,10 @@ namespace Reportman.Drawing.Forms
 
             return nmenu;
         }
+        /// <summary>
+        /// Extracts the image stored in the current cell to a temporary file and opens it
+        /// with the default image viewer.
+        /// </summary>
         public void OpenImage()
         {
             DataRow nrow = GetCurrentDataRow();
@@ -903,6 +972,10 @@ namespace Reportman.Drawing.Forms
             }
             base.OnDoubleClick(e);
         }
+        /// <summary>
+        /// Raises the MouseDown event, showing the image context menu on a right-click over an
+        /// image column.
+        /// </summary>
         protected override void OnMouseDown(MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -920,6 +993,10 @@ namespace Reportman.Drawing.Forms
             }
             base.OnMouseDown(e);
         }
+        /// <summary>
+        /// Raises the CurrentCellDirtyStateChanged event, committing check-box edits immediately
+        /// except on new rows.
+        /// </summary>
         protected override void OnCurrentCellDirtyStateChanged(EventArgs e)
         {
             // Si se trata de un CheckBoxCell aceptamos su valor
@@ -941,7 +1018,10 @@ namespace Reportman.Drawing.Forms
             }
             base.OnCurrentCellDirtyStateChanged(e);
         }
-        float oldzerosize = 0;
+        /// <summary>
+        /// Raises the FontChanged event, guarding against index errors that can occur when the
+        /// parent changes.
+        /// </summary>
         protected override void OnFontChanged(EventArgs e)
         {
             // Adjust size of column if property enable
@@ -991,6 +1071,10 @@ namespace Reportman.Drawing.Forms
         {
             //            OnKeyPress(args);
         }
+        /// <summary>
+        /// Adds a new row to the bound data table and moves the current cell to its first
+        /// visible column.
+        /// </summary>
         public void InsertRowDataBound()
         {
             DataTable tabla = null;
@@ -1032,6 +1116,10 @@ namespace Reportman.Drawing.Forms
                     CurrentCell = this[coln, nrowview.Index];
             }
         }
+        /// <summary>
+        /// Deletes the selected data-bound rows; when remove is true the rows are removed from the
+        /// table, otherwise they are marked as deleted.
+        /// </summary>
         public void DeleteDataBoundSelection(bool remove)
         {
             List<DataRow> lrows = new List<DataRow>();
@@ -1201,6 +1289,10 @@ namespace Reportman.Drawing.Forms
 
 			return rows;
 		}
+        /// <summary>
+        /// Pastes clipboard tabular data into the bound table starting at the current cell, adding
+        /// rows as needed; empty cells become null when assignnulls is true.
+        /// </summary>
         public void PasteFromClipBoardDataBound(bool assignnulls)
         {
             if (CurrentCell == null)
@@ -1361,8 +1453,14 @@ namespace Reportman.Drawing.Forms
         }
 
 
+        /// <summary>
+        /// Handler invoked when focus leaves the new-row placeholder.
+        /// </summary>
         public EventHandler NewRowLeave;
 
+        /// <summary>
+        /// Raises the RowLeave event, invoking NewRowLeave when leaving the new row.
+        /// </summary>
         protected override void OnRowLeave(DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -1378,6 +1476,9 @@ namespace Reportman.Drawing.Forms
             base.OnRowLeave(e);
         }
 
+        /// <summary>
+        /// Pastes clipboard tabular data as new rows appended to the bound table.
+        /// </summary>
         public void PasteFromClipBoardDataBoundAdd(bool assignnulls)
         {
             if (CurrentCell == null)
@@ -1520,6 +1621,10 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Pastes clipboard tabular data into the bound table, creating a new row for each
+        /// clipboard line.
+        /// </summary>
         public void PasteFromClipBoardDataBoundNewRows()
         {
             DataTable ntable = null;
@@ -1565,6 +1670,10 @@ namespace Reportman.Drawing.Forms
                 DataSource = olddsource;
             }
         }
+        /// <summary>
+        /// Copies the selected cells to the clipboard as tab-separated text, base64-encoding
+        /// binary values.
+        /// </summary>
         public void CopySelectionToClipBoard()
         {
             DataGridViewSelectedCellCollection collect = SelectedCells;
@@ -1616,6 +1725,9 @@ namespace Reportman.Drawing.Forms
             }
             Clipboard.SetDataObject(nresult.ToString(), false);
         }
+        /// <summary>
+        /// Returns the grid row index bound to the given DataRow, or -1 if it is not present.
+        /// </summary>
         public int IndexOfDataRow(DataRow nrow)
         {
             // Optimization
@@ -1645,6 +1757,9 @@ namespace Reportman.Drawing.Forms
 
             return index;
         }
+        /// <summary>
+        /// Raises the EditingControlShowing event, wiring key handlers to the editing control.
+        /// </summary>
         protected override void OnEditingControlShowing(DataGridViewEditingControlShowingEventArgs e)
         {
             int index = -1;
@@ -1661,6 +1776,10 @@ namespace Reportman.Drawing.Forms
 
             base.OnEditingControlShowing(e);
         }
+        /// <summary>
+        /// Returns the next visible cell after the given position, wrapping around; returns
+        /// (-1, -1) if there is no visible cell other than the starting one.
+        /// </summary>
         public static Point GetNextCell(DataGridView ngrid, int curcol, int currow)
         {
             int ncol = curcol;
@@ -1683,15 +1802,25 @@ namespace Reportman.Drawing.Forms
 
             return new Point(ncol, nrow);
         }
+        /// <summary>
+        /// Returns the next visible cell after the given position in this grid.
+        /// </summary>
         public Point GetNextCell(int curcol, int currow)
         {
             return GetNextCell(this, curcol, currow);
         }
+        /// <summary>
+        /// Invokes the DoubleClickControl handler for the given control.
+        /// </summary>
         public void DoDoubleClick(Control ncontrol)
         {
             if (DoubleClickControl != null)
                 DoubleClickControl(ncontrol, ncontrol);
         }
+        /// <summary>
+        /// Selects the cell for the given data row and the first matching column from a
+        /// semicolon-separated list of column names.
+        /// </summary>
         public void SelectCellDataBound(DataRow nrow, string columnnames)
         {
             if (DataSource == null)
@@ -1733,6 +1862,9 @@ namespace Reportman.Drawing.Forms
             if ((colindex >= 0) && (rowindex >= 0))
                 CurrentCell = this[colindex, rowindex];
         }
+        /// <summary>
+        /// Raises the SortCompare event, ordering DBNull values before other values.
+        /// </summary>
         protected override void OnSortCompare(DataGridViewSortCompareEventArgs e)
         {
             if (e.CellValue1 == DBNull.Value)
@@ -1755,6 +1887,9 @@ namespace Reportman.Drawing.Forms
             }
             base.OnSortCompare(e);
         }
+        /// <summary>
+        /// Invalidates the grid row bound to the given DataRow so that it repaints.
+        /// </summary>
         public void InvalidateRowDatabound(DataRow xrow)
         {
             if (CurrentRow != null)
@@ -1782,6 +1917,10 @@ namespace Reportman.Drawing.Forms
                 }
             }
         }
+        /// <summary>
+        /// Searches forward from the current cell and selects the first cell containing the given
+        /// text (case-insensitive).
+        /// </summary>
         public static void FindText(DataGridView grid, string ntext)
         {
             if (grid.CurrentCell == null)
@@ -1847,10 +1986,16 @@ namespace Reportman.Drawing.Forms
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         private static extern int SendMessage(IntPtr hWnd, int wMsg, IntPtr wParam, IntPtr lParam);
 
+        /// <summary>
+        /// Scrolls the grid down one page.
+        /// </summary>
         public void ScrollPageDown()
         {
             SendMessage(this.Handle, WM_KEYDOWN, (IntPtr)VK_NEXT, (IntPtr)0);
         }
+        /// <summary>
+        /// Scrolls the grid up one page.
+        /// </summary>
         public void ScrollPageUp()
         {
             SendMessage(this.Handle, WM_KEYDOWN, (IntPtr)VK_PRIOR, (IntPtr)0);
@@ -1885,6 +2030,10 @@ namespace Reportman.Drawing.Forms
             string nresult = ((char)(idx + (int)'A')).ToString();
             return nresult + ":" + nresult;
         }
+        /// <summary>
+        /// Writes the visible grid contents to a CSV file using the given list separator and
+        /// text encoding.
+        /// </summary>
         public void SaveToCSV(string filename, string listseparator, Encoding encoding)
         {
             List<int> ColumnIndexes = new List<int>();
@@ -1966,10 +2115,17 @@ namespace Reportman.Drawing.Forms
             }
 
         }
+        /// <summary>
+        /// Saves the visible grid contents to an Excel workbook at the given path.
+        /// </summary>
         public void SaveToExcel(string filename)
         {
             SaveToExcel(this, filename, "GiveAway", false);
         }
+        /// <summary>
+        /// Saves the given grid's visible contents to an Excel workbook, optionally prompting for
+        /// the file name; returns false if the user cancels the save dialog.
+        /// </summary>
         public static bool SaveToExcel(DataGridView gridav, string filename, string title, bool showSaveDialog)
         {
             if (showSaveDialog)
@@ -2068,6 +2224,10 @@ namespace Reportman.Drawing.Forms
             }
             return true;
         }
+        /// <summary>
+        /// Saves the visible grid contents to Excel through OLE automation of a running Excel
+        /// instance.
+        /// </summary>
         public void SaveToExcelOleAutomation(string filename)
         {
             //if (DataSource == null)
@@ -2211,6 +2371,9 @@ namespace Reportman.Drawing.Forms
         System.Windows.Forms.Timer ntimer = new System.Windows.Forms.Timer();
         float position = 0;
         StringFormat nstringformat;
+        /// <summary>
+        /// Initializes a new scrolling-text panel with its default formatting and animation timer.
+        /// </summary>
         public ScrollTextPanel()
         {
             nstringformat = new StringFormat(StringFormat.GenericDefault);
@@ -2228,8 +2391,15 @@ namespace Reportman.Drawing.Forms
             position = position + Speed;
             Invalidate();
         }
+        /// <summary>
+        /// Horizontal scroll speed in pixels per timer tick.
+        /// </summary>
         public float Speed = 2.0f;
         bool FScrollText;
+        /// <summary>
+        /// Gets or sets whether the text is currently scrolling; enabling it starts the
+        /// animation timer and disabling it stops it.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ScrollText
         {
@@ -2252,7 +2422,13 @@ namespace Reportman.Drawing.Forms
                 }
             }
         }
+        /// <summary>
+        /// The text displayed and scrolled by the panel.
+        /// </summary>
         public string ScrollString = "";
+        /// <summary>
+        /// Paints the scrolling text at its current horizontal position.
+        /// </summary>
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
@@ -2287,6 +2463,9 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public class TransparentPanel : Panel
     {
+        /// <summary>
+        /// Initializes a new transparent panel.
+        /// </summary>
         public TransparentPanel() : base()
         {
             // SetStyle(ControlStyles.SupportsTransparentBackColor, true);
@@ -2307,6 +2486,9 @@ namespace Reportman.Drawing.Forms
                 return cp;
             }
         }*/
+        /// <summary>
+        /// Paints the panel background as a semi-transparent dark overlay.
+        /// </summary>
         protected override void OnPaintBackground(PaintEventArgs e)
         {
             var sb = new SolidBrush(Color.FromArgb(50, 0, 0, 0));
@@ -2321,6 +2503,10 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public class PanelAdvanced : Panel
     {
+        /// <summary>
+        /// Raises the SizeChanged event, deferring the base handling to the UI thread on Windows
+        /// to avoid layout reentrancy.
+        /// </summary>
         protected override void OnSizeChanged(EventArgs e)
         {
 #if MONO

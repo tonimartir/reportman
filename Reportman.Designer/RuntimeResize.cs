@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -39,16 +39,49 @@ namespace Reportman.Designer
         private RuntimeCapture Q1, Q2, Q3, Q4;
         private ResizeDif DifEvent;
 
+        /// <summary>
+        /// Selects whether the helper resizes the item or only moves it.
+        /// </summary>
         public ResizeAction Action;
+        /// <summary>
+        /// Callback invoked to retrieve the current bounds of the handled item.
+        /// </summary>
         public ResizeEventGetBounds OnGetBounds;
+        /// <summary>
+        /// Callback invoked while dragging to apply intermediate bounds to the item.
+        /// </summary>
         public ResizeEventSetBounds OnSetBounds;
+        /// <summary>
+        /// Callback invoked once the drag gesture finishes to apply the final bounds.
+        /// </summary>
         public ResizeEventSetBounds OnNewBounds;
+        /// <summary>
+        /// When true, resize operations snap the bounds to the alignment grid.
+        /// </summary>
         public bool GridEnabled;
+        /// <summary>
+        /// Grid cell width used when snapping bounds to the alignment grid.
+        /// </summary>
         public int GridWidth;
+        /// <summary>
+        /// Grid cell height used when snapping bounds to the alignment grid.
+        /// </summary>
         public int GridHeight;
+        /// <summary>
+        /// Horizontal offset of the grid origin used during snapping.
+        /// </summary>
         public int GridOffsetX;
+        /// <summary>
+        /// Vertical offset of the grid origin used during snapping.
+        /// </summary>
         public int GridOffsetY;
+        /// <summary>
+        /// Scale factor applied when aligning bounds to the grid.
+        /// </summary>
         public double GridScale;
+        /// <summary>
+        /// Initializes a new resize helper with its edge bars, corner handles and default grid settings.
+        /// </summary>
         public RuntimeResize()
         {
             TopBar = new RuntimeSquare();
@@ -74,6 +107,9 @@ namespace Reportman.Designer
             GridEnabled = false;
             GridScale = 1;
         }
+        /// <summary>
+        /// Releases the edge bars and corner handle controls used by the resize helper.
+        /// </summary>
         public void Dispose()
         {
             TopBar.Dispose();
@@ -85,6 +121,15 @@ namespace Reportman.Designer
             Q3.Dispose();
             Q4.Dispose();
         }
+        /// <summary>
+        /// Positions the edge bars and corner handles around the given rectangle. When
+        /// <paramref name="finish"/> is true the bounds are stored and the OnSetBounds callback is raised.
+        /// </summary>
+        /// <param name="Left">Left coordinate of the item bounds.</param>
+        /// <param name="Top">Top coordinate of the item bounds.</param>
+        /// <param name="Width">Width of the item bounds.</param>
+        /// <param name="Height">Height of the item bounds.</param>
+        /// <param name="finish">When true, the new bounds are committed and OnSetBounds is invoked.</param>
         public void SetBounds(int Left, int Top, int Width, int Height, bool finish)
         {
             if (finish)
@@ -120,11 +165,17 @@ namespace Reportman.Designer
             Q3.SetBounds(Left + Width - squaremid, Top + Height - squaremid, squarewidth, squarewidth);
             Q4.SetBounds(Left - squaremid, Top + Height - squaremid, squarewidth, squarewidth);
         }
+        /// <summary>
+        /// Refreshes the handle positions from the current bounds. Does nothing when no bounds callback is assigned.
+        /// </summary>
         public void UpdatePos()
         {
             if (OnGetBounds == null)
                 return;
         }
+        /// <summary>
+        /// Brings all edge bars and corner handles to the front of the parent control.
+        /// </summary>
         public void BringToFront()
         {
             TopBar.BringToFront();
@@ -136,6 +187,9 @@ namespace Reportman.Designer
             Q3.BringToFront();
             Q4.BringToFront();
         }
+        /// <summary>
+        /// Gets or sets the parent control that hosts the resize bars and corner handles.
+        /// </summary>
         public Control Parent
         {
             get { return FParent; }
@@ -332,7 +386,13 @@ namespace Reportman.Designer
     /// <summary>
     /// Action to do
     /// </summary>
-    public enum ResizeAction { Resize, Move };
+    public enum ResizeAction
+    {
+        /// <summary>Resize the item using its edge bars and corner handles.</summary>
+        Resize,
+        /// <summary>Move the item without changing its size.</summary>
+        Move
+    };
     /// <summary>
     /// Event to retrieve original object bounds
     /// </summary>

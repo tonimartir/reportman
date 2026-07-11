@@ -30,6 +30,9 @@ namespace Reportman.Designer
         private ToolStripSeparator _menuSepLogout;
         private ToolStripMenuItem _menuLogout;
 
+        /// <summary>
+        /// Initializes a new instance of the AILoginFrameControl, subscribing to authentication state changes.
+        /// </summary>
         public AILoginFrameControl()
         {
             InitializeComponent();
@@ -41,6 +44,10 @@ namespace Reportman.Designer
             UpdateUI();
         }
 
+        /// <summary>
+        /// Releases resources used by the control, unsubscribing from authentication events.
+        /// </summary>
+        /// <param name="disposing">True to release both managed and unmanaged resources; false for unmanaged only.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)

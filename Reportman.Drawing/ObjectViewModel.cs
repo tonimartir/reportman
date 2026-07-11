@@ -23,10 +23,17 @@ namespace Reportman.Drawing
         bool _isExpanded;
         bool _isSelected;
 
+        /// <summary>
+        /// Initializes a new root node that wraps the given object for hierarchical display.
+        /// </summary>
+        /// <param name="obj">The object whose public fields and enumerable items are exposed.</param>
         public ObjectViewModel(object obj)
             : this(obj, null, null)
         {
         }
+        /// <summary>
+        /// Gets the underlying object instance represented by this node.
+        /// </summary>
         public object ObjectInstance
         {
             get
@@ -50,6 +57,10 @@ namespace Reportman.Drawing
             _parent = parent;
         }
 
+        /// <summary>
+        /// Populates the child nodes by enumerating the object's public instance fields and, when the
+        /// object is a collection, its contained items. Called lazily when the node is expanded.
+        /// </summary>
         public void LoadChildren()
         {
             _children = new ReadOnlyCollection<ObjectViewModel>(new List<ObjectViewModel>());
@@ -121,21 +132,33 @@ namespace Reportman.Drawing
             }
             return false;
         }
+        /// <summary>
+        /// Gets the parent node in the tree, or null for the root node.
+        /// </summary>
         public ObjectViewModel Parent
         {
             get { return _parent; }
         }
 
+        /// <summary>
+        /// Gets the reflection field this node was created from, or null for root and collection-item nodes.
+        /// </summary>
         public FieldInfo Info
         {
             get { return _info; }
         }
 
+        /// <summary>
+        /// Gets the child nodes of this node. The collection is populated lazily by <see cref="LoadChildren"/>.
+        /// </summary>
         public ReadOnlyCollection<ObjectViewModel> Children
         {
             get { return _children; }
         }
 
+        /// <summary>
+        /// Gets the object's type name formatted for display, in parentheses, or an empty string when unavailable.
+        /// </summary>
         public string Type
         {
             get
@@ -156,6 +179,9 @@ namespace Reportman.Drawing
             }
         }
 
+        /// <summary>
+        /// Gets the field name this node represents, or an empty string for root and collection-item nodes.
+        /// </summary>
         public string Name
         {
             get
@@ -169,6 +195,10 @@ namespace Reportman.Drawing
             }
         }
 
+        /// <summary>
+        /// Gets the object's value as a string for printable types, "&lt;null&gt;" when the object is null,
+        /// or an empty string otherwise.
+        /// </summary>
         public string Value
         {
             get
@@ -191,6 +221,10 @@ namespace Reportman.Drawing
 
         #region Presentation Members
 
+        /// <summary>
+        /// Gets or sets whether the node is expanded in the tree. Setting it to true loads the children
+        /// and expands all ancestor nodes up to the root.
+        /// </summary>
         public bool IsExpanded
         {
             get { return _isExpanded; }
@@ -214,6 +248,9 @@ namespace Reportman.Drawing
             }
         }
 
+        /// <summary>
+        /// Gets or sets whether the node is selected in the tree.
+        /// </summary>
         public bool IsSelected
         {
             get { return _isSelected; }
@@ -227,6 +264,11 @@ namespace Reportman.Drawing
             }
         }
 
+        /// <summary>
+        /// Determines whether the node's name contains the given text, using a case-insensitive comparison.
+        /// </summary>
+        /// <param name="text">The text to search for.</param>
+        /// <returns>true if the name contains the text; otherwise false.</returns>
         public bool NameContains(string text)
         {
             if (String.IsNullOrEmpty(text) || String.IsNullOrEmpty(Name))
@@ -237,6 +279,11 @@ namespace Reportman.Drawing
             return Name.IndexOf(text, StringComparison.InvariantCultureIgnoreCase) > -1;
         }
 
+        /// <summary>
+        /// Determines whether the node's value contains the given text, using a case-insensitive comparison.
+        /// </summary>
+        /// <param name="text">The text to search for.</param>
+        /// <returns>true if the value contains the text; otherwise false.</returns>
         public bool ValueContains(string text)
         {
             if (String.IsNullOrEmpty(text) || String.IsNullOrEmpty(Value))
@@ -251,8 +298,15 @@ namespace Reportman.Drawing
 
         #region INotifyPropertyChanged Members
 
+        /// <summary>
+        /// Occurs when a property value changes.
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// Raises the <see cref="PropertyChanged"/> event for the given property name.
+        /// </summary>
+        /// <param name="propertyName">The name of the property that changed.</param>
         protected virtual void OnPropertyChanged(string propertyName)
         {
             if (this.PropertyChanged != null)
@@ -272,12 +326,20 @@ namespace Reportman.Drawing
         readonly ReadOnlyCollection<ObjectViewModel> _firstGeneration;
         readonly ObjectViewModel _rootObject;
 
+        /// <summary>
+        /// Initializes a new hierarchy by wrapping the given root object as the top of an
+        /// <see cref="ObjectViewModel"/> tree.
+        /// </summary>
+        /// <param name="rootObject">The object to place at the root of the tree.</param>
         public ObjectViewModelHierarchy(object rootObject)
         {
             _rootObject = new ObjectViewModel(rootObject);
             _firstGeneration = new ReadOnlyCollection<ObjectViewModel>(new ObjectViewModel[] { _rootObject });
         }
 
+        /// <summary>
+        /// Gets the first generation of nodes, containing the single root node, for binding to a tree view.
+        /// </summary>
         public ReadOnlyCollection<ObjectViewModel> FirstGeneration
         {
             get { return _firstGeneration; }

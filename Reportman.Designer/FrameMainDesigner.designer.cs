@@ -1,4 +1,4 @@
-﻿namespace Reportman.Designer
+namespace Reportman.Designer
 {
     partial class FrameMainDesigner
     {
@@ -1273,6 +1273,9 @@
       private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
       private System.Windows.Forms.ToolStripButton bexit;
         private System.Windows.Forms.ToolStripMenuItem bexport;
+        /// <summary>
+        /// Top toolbar control containing report operation buttons such as preview, print, undo, and zoom.
+        /// </summary>
         public System.Windows.Forms.ToolStrip TopBar;
         private System.Windows.Forms.ToolStripButton bzoomminus;
         private System.Windows.Forms.ToolStripButton bzoomplus;

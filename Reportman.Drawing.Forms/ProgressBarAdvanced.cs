@@ -83,6 +83,9 @@ namespace Reportman.Drawing.Forms
         private System.Windows.Forms.Timer mGlowAnimation = new System.Windows.Forms.Timer();
 
         string FCaption;
+        /// <summary>
+        /// Gets or sets the text caption displayed on top of the progress bar.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Caption
         {

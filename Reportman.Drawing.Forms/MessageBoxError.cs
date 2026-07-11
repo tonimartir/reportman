@@ -4,7 +4,7 @@ using System.Windows.Forms;
 namespace Reportman.Drawing.Forms
 {
     /// <summary>
-    /// Descripción breve de MessageBoxError.
+    /// DescripciÃ³n breve de MessageBoxError.
     /// </summary>
     public class MessageBoxError : System.Windows.Forms.Form
     {
@@ -16,19 +16,22 @@ namespace Reportman.Drawing.Forms
         private System.Windows.Forms.TextBox textdetalle;
         private TextBox lerror;
         /// <summary>
-        /// Variable del diseñador requerida.
+        /// Variable del diseÃ±ador requerida.
         /// </summary>
         private System.ComponentModel.Container components = null;
 
+        /// <summary>
+        /// Initializes a new instance of the MessageBoxError dialog, translating button labels.
+        /// </summary>
         public MessageBoxError()
         {
             //
-            // Necesario para admitir el Diseñador de Windows Forms
+            // Necesario para admitir el DiseÃ±ador de Windows Forms
             //
             InitializeComponent();
 
             //
-            // TODO: agregar código de constructor después de llamar a InitializeComponent
+            // TODO: agregar cÃ³digo de constructor despuÃ©s de llamar a InitializeComponent
             //
             Text = Translator.TranslateStr(12);
             bok.Text = Translator.TranslateStr(93);
@@ -37,7 +40,7 @@ namespace Reportman.Drawing.Forms
         }
 
         /// <summary>
-        /// Limpiar los recursos que se estén utilizando.
+        /// Limpiar los recursos que se estÃ©n utilizando.
         /// </summary>
         protected override void Dispose(bool disposing)
         {
@@ -50,6 +53,15 @@ namespace Reportman.Drawing.Forms
             }
             base.Dispose(disposing);
         }
+        /// <summary>
+        /// Displays a modal error dialog showing the exception message, optional caption, and expandable stack trace details.
+        /// </summary>
+        /// <param name="ParentForm">The parent form for centering, or null for screen-centered display.</param>
+        /// <param name="Caption">The dialog title text; if empty, a default title is used.</param>
+        /// <param name="message">An additional message shown alongside the exception text.</param>
+        /// <param name="e">The exception whose message and stack trace are displayed.</param>
+        /// <param name="ShowInTaskBar">Whether the error dialog appears in the Windows taskbar.</param>
+        /// <returns>The dialog result (OK or Abort).</returns>
         public static DialogResult ShowThreadExceptionDialog(Form ParentForm, string Caption, string message, Exception e, bool ShowInTaskBar)
         {
             DialogResult aresult;
@@ -70,16 +82,23 @@ namespace Reportman.Drawing.Forms
             return aresult;
 
         }
+        /// <summary>
+        /// Convenience overload that shows the error dialog without an additional message.
+        /// </summary>
+        /// <param name="MainForm">The parent form for centering.</param>
+        /// <param name="Caption">The dialog title text.</param>
+        /// <param name="e">The exception whose message and stack trace are displayed.</param>
+        /// <returns>The dialog result (OK or Abort).</returns>
         public static DialogResult ShowThreadExceptionDialog(Form MainForm, string Caption, Exception e)
         {
             return ShowThreadExceptionDialog(MainForm, Caption, "", e, false);
         }
 
 
-        #region Código generado por el Diseñador de Windows Forms
+        #region CÃ³digo generado por el DiseÃ±ador de Windows Forms
         /// <summary>
-        /// Método necesario para admitir el Diseñador. No se puede modificar
-        /// el contenido del método con el editor de código.
+        /// MÃ©todo necesario para admitir el DiseÃ±ador. No se puede modificar
+        /// el contenido del mÃ©todo con el editor de cÃ³digo.
         /// </summary>
         private void InitializeComponent()
         {

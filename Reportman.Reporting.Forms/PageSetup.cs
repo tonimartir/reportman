@@ -1726,6 +1726,7 @@ namespace Reportman.Reporting.Forms
         /// <param name="rp">Report to modify</param>
         /// <param name="showadvanced">Set this parameter to true to show advanced tab, usually only useful 
         /// while designing the report</param>
+        /// <param name="parent">Optional parent window for owning the setup dialog.</param>
         /// <returns>Returns true if the user modified the report</returns>
         public static bool ShowPageSetup(Report rp, bool showadvanced, IWin32Window parent = null)
         {

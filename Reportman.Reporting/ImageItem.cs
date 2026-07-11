@@ -18,14 +18,38 @@ namespace Reportman.Reporting
 #if REPMAN_ZLIB
         private MemoryStream FDecompStream;
 #endif
+        /// <summary>
+        /// Gets or sets the draw style used to fit the image within the item bounds
+        /// (crop, tile, stretch and so on).
+        /// </summary>
         public ImageDrawStyleType DrawStyle { get; set; }
         private long OldStreamPos;
         private MemoryStream FOldStream;
+        /// <summary>
+        /// Gets or sets the image resolution, in dots per inch, used when rendering the image.
+        /// </summary>
         public int dpires { get; set; }
+        /// <summary>
+        /// Gets or sets the raster copy mode applied when the image is drawn.
+        /// </summary>
         public int CopyMode { get; set; }
+        /// <summary>
+        /// Gets or sets the rotation angle applied to the image.
+        /// </summary>
         public short Rotation { get; set; }
+        /// <summary>
+        /// Gets or sets the expression that, when not empty, is evaluated at print time
+        /// to obtain the image stream instead of using the embedded stream.
+        /// </summary>
         public string Expression { get; set; }
+        /// <summary>
+        /// Gets or sets how the image stream is shared between metafile objects to avoid
+        /// duplicating identical image data.
+        /// </summary>
         public SharedImageType SharedImage { get; set; }
+        /// <summary>
+        /// Releases the memory streams held by this item and disposes the base item.
+        /// </summary>
         override public void Dispose()
         {
             base.Dispose();
@@ -45,6 +69,9 @@ namespace Reportman.Reporting
 #endif
 #endif
         }
+        /// <summary>
+        /// Initializes a new image item with the default resolution and size and an empty embedded stream.
+        /// </summary>
         public ImageItem()
             : base()
         {
@@ -59,10 +86,16 @@ namespace Reportman.Reporting
 
             FStream = new MemoryStream();
         }
+        /// <summary>
+        /// Returns the report class identifier used when serializing this item.
+        /// </summary>
         protected override string GetClassName()
         {
             return "TRPIMAGE";
         }
+        /// <summary>
+        /// Gets the memory stream that holds the embedded image data.
+        /// </summary>
         [Browsable(false)]
         [System.Text.Json.Serialization.JsonIgnore]
         [Newtonsoft.Json.JsonIgnore]
@@ -71,11 +104,18 @@ namespace Reportman.Reporting
             get { return FStream; }
             private set { FStream = value; }
         }
+        /// <summary>
+        /// Gets or sets the embedded image stream encoded as a Base64 string.
+        /// </summary>
         public string StreamBase64
         {
             get { return Convert.ToBase64String(Stream.ToArray()); }
             set { FStream = new MemoryStream(Convert.FromBase64String(value)); }
         }
+        /// <summary>
+        /// Gets a value indicating whether an embedded image stream is present;
+        /// setting it to false clears the embedded stream.
+        /// </summary>
         public bool HasEmbeddedImageStream
         {
             get { return FStream != null && FStream.Length > 0; }
@@ -87,6 +127,9 @@ namespace Reportman.Reporting
                 }
             }
         }
+        /// <summary>
+        /// Gets the size, in bytes, of the embedded image stream, or zero when none is present.
+        /// </summary>
         public long EmbeddedImageByteCount
         {
             get { return FStream?.Length ?? 0; }
@@ -104,6 +147,9 @@ namespace Reportman.Reporting
             FOldStream = null;
         }
 
+        /// <summary>
+        /// Handles subreport state changes, resetting the cached shared-image stream when a new subreport starts.
+        /// </summary>
         public override void SubReportChanged(SubReportEvent newstate, string newgroup)
         {
             base.SubReportChanged(newstate, newgroup);
@@ -113,6 +159,10 @@ namespace Reportman.Reporting
                 FOldStream = null;
             }
         }
+        /// <summary>
+        /// Returns the memory stream with the embedded image data, decompressing it when required,
+        /// or null when no image is embedded.
+        /// </summary>
         public MemoryStream GetMemoryStream()
         {
             MemoryStream aresult = null;
@@ -141,6 +191,10 @@ namespace Reportman.Reporting
             }
             return aresult;
         }
+        /// <summary>
+        /// Returns the image stream to print, either evaluated from the expression or taken from the
+        /// embedded stream, tracking the previous stream so shared images can be reused.
+        /// </summary>
         public MemoryStream GetStream()
         {
             MemoryStream aresult = null;
@@ -201,6 +255,10 @@ namespace Reportman.Reporting
             FOldStream = aresult;
             return aresult;
         }
+        /// <summary>
+        /// Calculates the extent occupied by the image, measuring the graphic when the draw style
+        /// requires it, and returns the resulting size.
+        /// </summary>
         override public Point GetExtension(PrintOut adriver, Point MaxExtent, bool ForcePartial)
         {
             MemoryStream FMStream;
@@ -217,6 +275,10 @@ namespace Reportman.Reporting
             LastExtent = aresult;
             return aresult;
         }
+        /// <summary>
+        /// Renders the image into the metafile as an image object, reusing a previously added
+        /// stream when the image is shared.
+        /// </summary>
         override protected void DoPrint(PrintOut adriver, int aposx, int aposy,
             int newwidth, int newheight, MetaFile metafile, Point MaxExtent,
             ref bool PartialPrint)

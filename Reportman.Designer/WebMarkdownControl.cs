@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -25,8 +25,17 @@ namespace Reportman.Designer
         private bool _initializationStarted;
         private List<string> _pendingScripts;
         
+        /// <summary>
+        /// Gets a value indicating whether the embedded page has finished loading
+        /// and is ready to receive script calls. Scripts issued before this becomes
+        /// true are queued and flushed once navigation completes.
+        /// </summary>
         public bool IsReady => _isReady;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WebMarkdownControl"/> class
+        /// and builds the hosted WebView2 control.
+        /// </summary>
         public WebMarkdownControl()
         {
             _pendingScripts = new List<string>();

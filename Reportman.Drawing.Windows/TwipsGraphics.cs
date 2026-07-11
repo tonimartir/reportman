@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Threading;
 
@@ -73,6 +73,15 @@ namespace Reportman.Drawing
 
             return (int)Math.Round(((double)pixels * Twips.TWIPS_PER_INCH) / (ScreenDPI * scale));
         }
+        /// <summary>
+        /// Snaps a pixel-space point to the nearest design-grid intersection by
+        /// converting to twips, rounding to the grid, and converting back.
+        /// </summary>
+        /// <param name="npoint">The point in screen pixels.</param>
+        /// <param name="gridx">Horizontal grid spacing in twips.</param>
+        /// <param name="gridy">Vertical grid spacing in twips.</param>
+        /// <param name="scale">Current display scale factor.</param>
+        /// <returns>The grid-aligned point in screen pixels.</returns>
         public static Point AlignToGridPixels(Point npoint, int gridx, int gridy, double scale)
         {
             npoint = new Point(PixelsToTwips(npoint.X, scale),
@@ -80,6 +89,15 @@ namespace Reportman.Drawing
             npoint = new Point(((npoint.X + gridx / 2) / gridx) * gridx, ((npoint.Y + gridy / 2) / gridy) * gridy);
             return new Point(TwipsToPixels(npoint.X, scale), TwipsToPixels(npoint.Y, scale));
         }
+        /// <summary>
+        /// Snaps a single pixel-space coordinate to the nearest horizontal grid line by
+        /// converting to twips, rounding to the grid, and converting back.
+        /// </summary>
+        /// <param name="x">The coordinate in screen pixels.</param>
+        /// <param name="gridx">Horizontal grid spacing in twips.</param>
+        /// <param name="gridy">Vertical grid spacing in twips (unused but kept for API symmetry).</param>
+        /// <param name="scale">Current display scale factor.</param>
+        /// <returns>The grid-aligned coordinate in screen pixels.</returns>
         public static int AlignToGridPixels(int x, int gridx, int gridy, double scale)
         {
             x = PixelsToTwips(x, scale);

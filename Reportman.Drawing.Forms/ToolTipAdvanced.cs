@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -12,6 +12,9 @@ namespace Reportman.Drawing.Forms
     public class ToolTipAdvanced : ToolTip
     {
         Image FImage;
+        /// <summary>
+        /// Gets or sets the image to be displayed within the advanced tooltip.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Image Image
         {
@@ -27,6 +30,9 @@ namespace Reportman.Drawing.Forms
         const int BORDER_THICKNESS = 1;
         Brush myBorderBrush;
         Brush myBackColorBrush;
+        /// <summary>
+        /// Initializes a new instance of the ToolTipAdvanced class, registering owner-draw event handlers.
+        /// </summary>
         public ToolTipAdvanced()
         {
             this.OwnerDraw = true;

@@ -104,6 +104,10 @@ namespace Reportman.Reporting
 
         // ─────────────── construction ───────────────
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="DirectAgentExecutor"/> with default
+        /// settings, creating the inner HTTP executor and signaling HTTP client.
+        /// </summary>
         public DirectAgentExecutor()
         {
             _inner = new HttpAgentExecutor();
@@ -130,6 +134,13 @@ namespace Reportman.Reporting
 #endif
         }
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="DirectAgentExecutor"/> with the
+        /// specified Hub connection details, configuring both the direct and HTTP transports.
+        /// </summary>
+        /// <param name="baseUrl">Base URL of the Hub API.</param>
+        /// <param name="apiKey">API key for unauthenticated database access.</param>
+        /// <param name="hubDatabaseId">Identifier of the target database on the Hub.</param>
         public DirectAgentExecutor(string baseUrl, string apiKey, long hubDatabaseId) : this()
         {
             BaseUrl = baseUrl;
@@ -334,6 +345,10 @@ namespace Reportman.Reporting
 
         // ─────────────── disposal ───────────────
 
+        /// <summary>
+        /// Releases the HTTP client used for signaling. The shared static channel pool
+        /// is intentionally not disposed so that other executors can continue using warm sessions.
+        /// </summary>
         public void Dispose()
         {
             // s_pool is static + shared across executors; do not dispose it

@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -40,6 +40,9 @@ namespace Reportman.Designer
     public partial class EditSubReport : UserControl
     {
         List<BandInfo> Bands;
+        /// <summary>
+        /// Bands currently drawn on the surface, keyed by their section's selection index.
+        /// </summary>
         public SortedList<int, BandInfo> BandsList;
         SolidBrush backbrush;
         int countselection;
@@ -66,6 +69,9 @@ namespace Reportman.Designer
         RuntimeResize ResizeControl;
         PrintPosItem selectedpositem;
         BandInfo selectedposband;
+        /// <summary>
+        /// Section whose band title is currently highlighted as the active section.
+        /// </summary>
         public Section SelectedSection;
         private Bitmap bitselec;
         Graphics grcontrol;
@@ -81,18 +87,48 @@ namespace Reportman.Designer
         int TopBandMargin;
         int ResizeHeight;
         int ResizeWidth;
+        /// <summary>
+        /// Child control that hosts the drawing surface where bands and items are painted.
+        /// </summary>
         public CustomPaintControl parentcontrol;
         BandInfo CapturedBand;
         bool RightBandCapture;
         BandInfo PreviousBand;
+        /// <summary>
+        /// Timer that batches deferred band redraws so the surface repaints once per tick.
+        /// </summary>
         public System.Windows.Forms.Timer timerredraw;
+        /// <summary>
+        /// Currently selected print items, keyed by their selection index.
+        /// </summary>
         public SortedList<int, PrintItem> SelectedItems;
+        /// <summary>
+        /// Bands that contain the currently selected items, keyed by section selection index.
+        /// </summary>
         public SortedList<int, BandInfo> SelectedItemsBands;
+        /// <summary>
+        /// Currently selected section bands, keyed by section selection index.
+        /// </summary>
         public SortedList<int, BandInfo> SelectedBands;
+        /// <summary>
+        /// Active palette tool that decides whether a mouse action selects or inserts an item.
+        /// </summary>
         public SelectedItemPalette SelectedPalette;
+        /// <summary>
+        /// Raised after a new item has been inserted into a section.
+        /// </summary>
         public EventHandler AfterInsert;
+        /// <summary>
+        /// Raised after the current selection has changed.
+        /// </summary>
         public EventHandler AfterSelect;
+        /// <summary>
+        /// When true, sections are rendered into Windows metafiles instead of bitmaps.
+        /// </summary>
         public bool UseWindowsMetafiles;
+        /// <summary>
+        /// Gets or sets the zoom factor (1.0 = 100%) applied when drawing the sections.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), Browsable(false)]
         public double DrawScale
         {
@@ -109,10 +145,16 @@ namespace Reportman.Designer
         const int MAX_SELEC_WIDTH = 1;
         const int SQUARE_SELEC_WIDTH = 5;
         const int EmptyBarWidth = 10;
+        /// <summary>
+        /// Gets the subreport currently displayed and edited on the surface.
+        /// </summary>
         public SubReport SubReport
         {
             get { return FSubReport; }
         }
+        /// <summary>
+        /// Initializes the control, its child paint surface, timers, brushes and image attributes.
+        /// </summary>
         public EditSubReport()
         {
             InitializeComponent();
@@ -266,6 +308,12 @@ namespace Reportman.Designer
             qbottom.Dispose();
             SetSubReport(null, null);
         }
+        /// <summary>
+        /// Binds the control to a report and subreport, assigns selection indexes and redraws;
+        /// pass null values to release the current subreport and dispose its bands.
+        /// </summary>
+        /// <param name="nreport">Report that owns the subreport, or null to clear.</param>
+        /// <param name="nsubreport">Subreport to display, or null to clear.</param>
         public void SetSubReport(Report nreport, SubReport nsubreport)
         {
             ClearSelection();
@@ -318,6 +366,9 @@ namespace Reportman.Designer
             Redraw();
             parentcontrol.Invalidate();
         }
+        /// <summary>
+        /// Clears the selected items and bands and repaints the previously selected bands.
+        /// </summary>
         public void ClearSelection()
         {
             if (SelectedItemsBands.Count > 0)
@@ -330,6 +381,9 @@ namespace Reportman.Designer
             SelectedItemsBands.Clear();
             SelectPosItem();
         }
+        /// <summary>
+        /// Rebuilds the band layout for every section, resizes the surface and repaints it.
+        /// </summary>
         public void Redraw()
         {
             //      Point oldpos = new Point(npicture.Left, npicture.Top);
@@ -434,6 +488,10 @@ namespace Reportman.Designer
 
             parentcontrol.Invalidate();
         }
+        /// <summary>
+        /// Queues the given band to be redrawn on the next paint pass.
+        /// </summary>
+        /// <param name="nband">Band whose section bitmap should be regenerated.</param>
         public void ReDrawBand(BandInfo nband)
         {
             if (nband.Section != null)
@@ -2042,6 +2100,11 @@ namespace Reportman.Designer
 
         #endregion
 
+        /// <summary>
+        /// Makes the given item the sole selection; if it is a section its band is selected,
+        /// otherwise the item is selected together with its containing band.
+        /// </summary>
+        /// <param name="nitem">Section or print item to select.</param>
         public void SelectPrintItem(PrintItem nitem)
         {
 
@@ -2064,6 +2127,11 @@ namespace Reportman.Designer
             if (AfterSelect != null)
                 AfterSelect(this, null);
         }
+        /// <summary>
+        /// Selects every visible item in all sections, or just the text items when requested,
+        /// then updates the affected bands and raises the selection-changed event.
+        /// </summary>
+        /// <param name="onlyTexts">When true, only text items (labels and expressions) are selected.</param>
         public void SelectAll(bool onlyTexts)
         {
             SelectedItems.Clear();
@@ -2281,6 +2349,10 @@ namespace Reportman.Designer
             SelectPosItem();
             parentcontrol.Invalidate();
         }
+        /// <summary>
+        /// Positions the resize handles around the single selected positional item, or hides
+        /// them when the selection is not exactly one such item.
+        /// </summary>
         public void SelectPosItem()
         {
             if (SelectedItems.Count != 1)
@@ -2389,6 +2461,12 @@ namespace Reportman.Designer
             }
             return nrec;
         }
+        /// <summary>
+        /// Paint handler for the drawing surface that flushes queued band redraws and
+        /// repositions the bands; any exception is rendered as an error message on the surface.
+        /// </summary>
+        /// <param name="sender">The control being painted.</param>
+        /// <param name="e">Paint event data providing the target graphics.</param>
         public void DoPaint(object sender, PaintEventArgs e)
         {
             //        Monitor.Enter(flag);
@@ -2418,6 +2496,11 @@ namespace Reportman.Designer
             //Monitor.Exit(flag);
             //        }
         }
+        /// <summary>
+        /// Creates a new print item matching the given palette tool, or null for the Arrow tool.
+        /// </summary>
+        /// <param name="nselection">Palette tool that determines the kind of item to create.</param>
+        /// <returns>The newly created item, or null when the Arrow (selection) tool is active.</returns>
         public PrintPosItem CreateFromSelectedPalette(SelectedItemPalette nselection)
         {
             PrintPosItem nresult = null;
@@ -2732,7 +2815,23 @@ namespace Reportman.Designer
     /// Identifies the currently active design palette tool, determining whether the mouse
     /// selects existing items (Arrow) or inserts a new item of the given kind.
     /// </summary>
-    public enum SelectedItemPalette { Arrow, Label, Expression, Shape, Image, Chart, Barcode };
+    public enum SelectedItemPalette
+    {
+        /// <summary>Selection tool; mouse actions select and move existing items.</summary>
+        Arrow,
+        /// <summary>Inserts a static label item.</summary>
+        Label,
+        /// <summary>Inserts an expression (data-bound text) item.</summary>
+        Expression,
+        /// <summary>Inserts a shape item.</summary>
+        Shape,
+        /// <summary>Inserts an image item.</summary>
+        Image,
+        /// <summary>Inserts a chart item.</summary>
+        Chart,
+        /// <summary>Inserts a barcode item.</summary>
+        Barcode
+    };
 
     /// <summary>
     /// Holds the layout state and cached bitmaps for a single section band drawn on the
@@ -2741,33 +2840,60 @@ namespace Reportman.Designer
     /// </summary>
     public class BandInfo : IDisposable
     {
+        /// <summary>
+        /// Initializes a new band with an empty title and invalidated cached positions.
+        /// </summary>
         public BandInfo()
         {
             TitleCaption = "";
             oldposition = int.MaxValue;
             oldpositiony = int.MaxValue;
         }
+        /// <summary>Subreport that owns the section, or the subreport for the trailing band.</summary>
         public SubReport SubReport;
+        /// <summary>Section represented by this band, or null for the trailing empty band.</summary>
         public Section Section;
+        /// <summary>Cached bitmap (or metafile) of the rendered section contents.</summary>
         public Image SectionBitmap;
+        /// <summary>Cached bitmap of the left vertical ruler drawn beside the section.</summary>
         public Bitmap RulerBitmap;
+        /// <summary>Cached bitmap of the band title bar.</summary>
         public Bitmap BandBitmap;
+        /// <summary>Cached bitmap of the right-side resize handle.</summary>
         public Bitmap RightBitmap;
+        /// <summary>Width in pixels of the cached section bitmap.</summary>
         public int BitmapWidth;
+        /// <summary>Height in pixels of the cached section bitmap.</summary>
         public int BitmapHeight;
+        /// <summary>Width in pixels of the cached ruler bitmap.</summary>
         public int RulerBitmapWidth;
+        /// <summary>Height in pixels of the cached ruler bitmap.</summary>
         public int RulerBitmapHeight;
+        /// <summary>Y coordinate of the band title bar on the surface.</summary>
         public int BandPosY;
+        /// <summary>X coordinate of the band title bar on the surface.</summary>
         public int BandPosX;
+        /// <summary>Y coordinate of the section area on the surface.</summary>
         public int PosY;
+        /// <summary>X coordinate of the section area on the surface.</summary>
         public int PosX;
+        /// <summary>Height in pixels of the section area.</summary>
         public int Height;
+        /// <summary>Width in pixels of the section area.</summary>
         public int Width;
+        /// <summary>Height in pixels of the band title bar.</summary>
         public int TitleHeight;
+        /// <summary>Total width in pixels of the band title bar bitmap.</summary>
         public int TotalWidth;
+        /// <summary>Last horizontal scroll position the title was drawn at, used to skip redraws.</summary>
         public int oldposition;
+        /// <summary>Last vertical scroll position the title was drawn at, used to skip redraws.</summary>
         public int oldpositiony;
+        /// <summary>Caption text shown on the band title bar.</summary>
         public string TitleCaption;
+        /// <summary>
+        /// Disposes the cached section, ruler and right-side bitmaps held by this band.
+        /// </summary>
         public void Dispose()
         {
             if (SectionBitmap != null)

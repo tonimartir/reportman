@@ -566,21 +566,69 @@
         private System.Windows.Forms.ToolStripMenuItem MScale32;
         private System.Windows.Forms.ToolStripMenuItem MScale64;
         private System.Windows.Forms.ToolStripMenuItem MTopDown;
+        /// <summary>
+        /// Toolbar button that navigates the preview to the first page.
+        /// </summary>
         public System.Windows.Forms.ToolStripButton bsfirst;
+        /// <summary>
+        /// Toolbar button that navigates the preview to the previous page.
+        /// </summary>
         public System.Windows.Forms.ToolStripButton bsprior;
+        /// <summary>
+        /// Toolbar button that navigates the preview to the next page.
+        /// </summary>
         public System.Windows.Forms.ToolStripButton bsnext;
+        /// <summary>
+        /// Toolbar button that navigates the preview to the last page.
+        /// </summary>
         public System.Windows.Forms.ToolStripButton bslast;
+        /// <summary>
+        /// Toolbar button that searches the report for the text entered in the search box.
+        /// </summary>
         public System.Windows.Forms.ToolStripButton bssearch;
+        /// <summary>
+        /// Toolbar button that opens the page setup dialog.
+        /// </summary>
         public System.Windows.Forms.ToolStripButton BPageSetup;
+        /// <summary>
+        /// Toolbar button that opens the report parameters dialog.
+        /// </summary>
         public System.Windows.Forms.ToolStripButton BParameters;
+        /// <summary>
+        /// Toolbar button that prints the report.
+        /// </summary>
         public System.Windows.Forms.ToolStripButton BPrint;
+        /// <summary>
+        /// Toolbar button that exports and saves the report to a file.
+        /// </summary>
         public System.Windows.Forms.ToolStripButton BSave;
+        /// <summary>
+        /// Toolbar button that sends the report by e-mail.
+        /// </summary>
         public System.Windows.Forms.ToolStripButton BMail;
+        /// <summary>
+        /// Toolbar button that scales the preview to fit the page width.
+        /// </summary>
         public System.Windows.Forms.ToolStripButton BScaleWide;
+        /// <summary>
+        /// Toolbar button that scales the preview to fit the whole page.
+        /// </summary>
         public System.Windows.Forms.ToolStripButton BScaleFull;
+        /// <summary>
+        /// Toolbar button that decreases the preview zoom level.
+        /// </summary>
         public System.Windows.Forms.ToolStripButton BZoomMinus;
+        /// <summary>
+        /// Toolbar button that increases the preview zoom level.
+        /// </summary>
         public System.Windows.Forms.ToolStripButton BZoomPlus;
+        /// <summary>
+        /// Toolbar button that closes the preview.
+        /// </summary>
         public System.Windows.Forms.ToolStripButton BExit;
+        /// <summary>
+        /// Toolbar split button that selects how many pages are shown together in the preview.
+        /// </summary>
         public System.Windows.Forms.ToolStripSplitButton BScaleEntire;
     }
 }

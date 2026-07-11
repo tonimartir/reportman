@@ -1,4 +1,4 @@
-﻿using Reportman.Drawing;
+using Reportman.Drawing;
 using Reportman.Reporting;
 using System;
 using System.Threading.Tasks;
@@ -20,6 +20,9 @@ namespace Reportman.Designer
         private SqlEditorContext sqlEditorContext;
         private bool initialSqlSplitterDistanceApplied;
 
+        /// <summary>
+        /// Initializes a new instance of the SQLEditor class, building UI layout and translating label controls.
+        /// </summary>
         public SQLEditor()
         {
             InitializeComponent();
@@ -257,6 +260,13 @@ namespace Reportman.Designer
             return Report.DatabaseInfo[dinfo.DatabaseAlias];
         }
 
+        /// <summary>
+        /// Displays the SQL editor dialog as a modal window.
+        /// </summary>
+        /// <param name="sql">The SQL query string to edit (passed by reference).</param>
+        /// <param name="framemain">The main designer frame control acting as context.</param>
+        /// <param name="datainfotalias">The alias of the report dataset being configured.</param>
+        /// <returns>True if the user accepted the changes; otherwise, false.</returns>
         public static bool ShowDialog(ref string sql, FrameMainDesigner framemain, string datainfotalias)
         {
             using (Form newform = new Form())

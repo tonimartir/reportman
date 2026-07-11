@@ -14,6 +14,10 @@ namespace Reportman.Drawing
     /// </summary>
     public static class StringUtil
     {
+        /// <summary>
+        /// Sends the given string to a network host (typically a raw socket printer) on the
+        /// specified TCP port, encoding it with the provided encoding (code page 850 and port 9100 by default).
+        /// </summary>
         public static void SendStringToHost(string hostname, string stringToSend, Encoding encoding = null, int port = 9100)
         {
             if (encoding == null)
@@ -24,6 +28,10 @@ namespace Reportman.Drawing
             byte[] bytes = encoding.GetBytes(stringToSend);
             SendBytesToHost(hostname, bytes, port);
         }
+        /// <summary>
+        /// Escapes the XML special characters (&amp;, &lt;, &gt;, " and ') in the input string,
+        /// returning an empty string for null or empty input.
+        /// </summary>
         public static string EscapeXML(string input)
         {
             if (string.IsNullOrEmpty(input))
@@ -38,6 +46,9 @@ namespace Reportman.Drawing
                 .Replace("\"", "&quot;")
                 .Replace("'", "&apos;");
         }
+        /// <summary>
+        /// Opens a TCP connection to the host on the given port and writes the raw byte buffer to it.
+        /// </summary>
         public static void SendBytesToHost(string hostname, byte[] bytes, int port = 9100)
         {
             System.Net.Sockets.TcpClient client = new System.Net.Sockets.TcpClient();
@@ -53,6 +64,10 @@ namespace Reportman.Drawing
                 client.Close();
             }
         }
+        /// <summary>
+        /// Returns a mail-subject-safe copy of the text, truncated to 255 characters and with
+        /// carriage-return and line-feed characters replaced by spaces.
+        /// </summary>
         public static string SanitizeSubject(string subject)
         {
             // Elimina caracteres especiales y no permitidos del asunto
@@ -69,6 +84,10 @@ namespace Reportman.Drawing
             sanitizedSubject = sanitizedSubject.Replace((char)13, ' ');
             return sanitizedSubject;
         }
+        /// <summary>
+        /// Returns a substring of the given length starting at the index, tolerating null strings
+        /// and out-of-range positions without throwing.
+        /// </summary>
         public static string SafeSubstring(this string value, int startIndex, int length)
         {
             return new string((value ?? string.Empty).Skip(startIndex).Take(length).ToArray());
@@ -90,6 +109,10 @@ namespace Reportman.Drawing
 
             return resto.ToString("0")[0];
         }
+        /// <summary>
+        /// Validates a 20-digit Spanish bank account number and returns an empty string when it is
+        /// valid, or a Spanish error message describing the problem otherwise.
+        /// </summary>
         public static string CheckBankAccount20(string cadena)
         {
             string resultado = "";
@@ -114,6 +137,10 @@ namespace Reportman.Drawing
 
             return resultado;
         }
+        /// <summary>
+        /// Normalizes the line breaks in the string so that every carriage return or line feed
+        /// becomes a CR/LF pair.
+        /// </summary>
         public static string ConvertLineBreaks(string nstring)
         {
             StringBuilder nresult = new StringBuilder();
@@ -158,6 +185,9 @@ namespace Reportman.Drawing
             }
             return nresult.ToString();
         }
+        /// <summary>
+        /// Converts the plain-text line breaks in the string into HTML &lt;br/&gt; tags.
+        /// </summary>
         public static string ConvertToHtml(string plaintext)
         {
             string nresult = plaintext.Replace("" + (char)13 + (char)10, "<br/>");
@@ -167,6 +197,10 @@ namespace Reportman.Drawing
         private const string consignos = "ÁÀÄÂÉÈËÊÍÌÏÎÓÒÖÔÚÙÜÛ";
         private const string sinsignos = "AAAAEEEEIIIIOOOOUUUU                    ";
         private const string signosvalidos = "ÇÑ &',-./:;_0123456789";
+        /// <summary>
+        /// Converts the string to uppercase, replaces accented characters with their unaccented
+        /// equivalents, strips characters outside an allowed set and collapses repeated spaces.
+        /// </summary>
         public static string UpperCaseSpecial(string source)
         {
             string nresult = source.ToUpper();
@@ -190,6 +224,10 @@ namespace Reportman.Drawing
             xresult = xresult.Replace("  ", " ");
             return xresult;
         }
+        /// <summary>
+        /// Uppercases and trims the source, then pads it with spaces on the right (or truncates it)
+        /// to exactly the given length.
+        /// </summary>
         public static string PadStringRightN(string source, int total)
         {
             string nresult = UpperCaseSpecial(source.Trim());
@@ -203,6 +241,10 @@ namespace Reportman.Drawing
             }
             return nresult;
         }
+        /// <summary>
+        /// Uppercases and trims the source, then pads it with spaces on the left (or truncates it)
+        /// to exactly the given length.
+        /// </summary>
         public static string PadStringLeftN(string source, int total)
         {
             string nresult = UpperCaseSpecial(source.Trim());
@@ -216,6 +258,10 @@ namespace Reportman.Drawing
             }
             return nresult;
         }
+        /// <summary>
+        /// Recomputes the salted hash of the plain text using the named algorithm and returns true
+        /// when it matches the supplied base64 hash string.
+        /// </summary>
         public static bool VerifyHash(string plainText,
     string hashAlgorithm,
     string hashString)
@@ -277,6 +323,10 @@ namespace Reportman.Drawing
             // the plain text value must be correct.
             return (hashString == expectedHashString);
         }
+        /// <summary>
+        /// Computes a salted hash of the plain text with the named algorithm and returns it, together
+        /// with the salt, as a base64 string; a random salt is generated when none is supplied.
+        /// </summary>
         public static string ComputeHash(string plainText,
         string hashAlgorithm,
         byte[] saltBytes)
@@ -296,7 +346,7 @@ namespace Reportman.Drawing
                 saltBytes = new byte[saltSize];
 
                 // Initialize a random number generator.
-                RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
+                RandomNumberGenerator rng = RandomNumberGenerator.Create();
 
                 // Fill the salt with cryptographically strong byte values.
                 rng.GetNonZeroBytes(saltBytes);
@@ -330,25 +380,25 @@ namespace Reportman.Drawing
             switch (hashAlgorithm.ToUpper())
             {
                 case "SHA1":
-                    hash = new SHA1Managed();
+                    hash = SHA1.Create();
                     break;
 #if PocketPC
 #else
                 case "SHA256":
-                    hash = new SHA256Managed();
+                    hash = SHA256.Create();
                     break;
 
                 case "SHA384":
-                    hash = new SHA384Managed();
+                    hash = SHA384.Create();
                     break;
 
                 case "SHA512":
-                    hash = new SHA512Managed();
+                    hash = SHA512.Create();
                     break;
 
 #endif
                 case "MD5":
-                    hash = new MD5CryptoServiceProvider();
+                    hash = MD5.Create();
                     break;
                 default:
                     throw new Exception("Hash algorithm not supported: " + hashAlgorithm.ToUpper());
@@ -376,6 +426,10 @@ namespace Reportman.Drawing
             return hashString;
         }
 
+        /// <summary>
+        /// Formats a decimal into a fixed-width numeric string with the given number of decimal
+        /// places, left-padded with zeros; the sign is encoded as a leading space or 'N'.
+        /// </summary>
         public static string PadDecimalLeftN(decimal source, int totallength, int decimals)
         {
             string nresult = "";
@@ -396,6 +450,10 @@ namespace Reportman.Drawing
 
             return nresult;
         }
+        /// <summary>
+        /// Formats a decimal into a fixed-width numeric string with the given number of decimal
+        /// places, left-padded with zeros; negative values are prefixed with 'N'.
+        /// </summary>
         public static string PadDecimalLeftS(decimal source, int totallength, int decimals)
         {
             bool negative = false;
@@ -419,6 +477,10 @@ namespace Reportman.Drawing
                 nresult = "N" + nresult;
             return nresult;
         }
+        /// <summary>
+        /// Removes HTML markup, scripts, styles and entities from the source, converting block-level
+        /// tags into line breaks and returning readable plain text.
+        /// </summary>
         public static string StripHTML(string source)
         {
             try
@@ -682,6 +744,9 @@ namespace Reportman.Drawing
             sbuilder.Append('"');
             return sbuilder.ToString();
         }
+        /// <summary>
+        /// Returns the string wrapped in double quotes with the JSON special characters escaped.
+        /// </summary>
         public static string DoubleQuoteStrJson(string ident)
         {
             return "\"" + ident
@@ -698,6 +763,7 @@ namespace Reportman.Drawing
         /// quote separator is contained, doubles de double quote
         /// </summary>
         /// <param name="ident"></param>
+        /// <param name="quote">The quote character used to delimit the string and, when found inside it, to escape it.</param>
         /// <returns></returns>
         public static string CustomQuoteStr(string ident, char quote)
         {
@@ -798,6 +864,9 @@ namespace Reportman.Drawing
             }
             return aresult;
         }
+        /// <summary>
+        /// Returns true when the input contains every one of the given words, compared case-insensitively.
+        /// </summary>
         public static bool ContainsAllWords(string input, IEnumerable<string> words)
         {
             // Verifica si el input y las palabras no son nulos
@@ -891,6 +960,10 @@ namespace Reportman.Drawing
             }
             return (binindex);
         }
+        /// <summary>
+        /// Interprets each character of the string as a raw byte and decodes those bytes using the
+        /// given code page; returns the input unchanged when the code page is 0.
+        /// </summary>
         public static string Decode(string value, int codepage)
         {
             if (codepage == 0)
@@ -909,6 +982,10 @@ namespace Reportman.Drawing
 
             return newresult;
         }
+        /// <summary>
+        /// Encodes the string with the given code page and returns the resulting bytes packed one per
+        /// character; returns the input unchanged when the code page is 0.
+        /// </summary>
         public static string Encode(string value, int codepage)
         {
             if (codepage == 0)
@@ -924,6 +1001,10 @@ namespace Reportman.Drawing
 
             return nbuild.ToString();
         }
+        /// <summary>
+        /// Returns true when the given Spanish NIF, NIE, CIF or intra-community VAT number has a
+        /// valid format and check digit.
+        /// </summary>
         public static bool ComprovarNif(string nif)
         {
             bool correcte = false;
@@ -1132,6 +1213,10 @@ namespace Reportman.Drawing
             c = a - (23 * b);
             return strA.ToString() + cCADENA.Substring(c, 1);
         }
+        /// <summary>
+        /// Validates a 20-character Spanish bank account number by checking its two control digits;
+        /// throws when the length is not 20.
+        /// </summary>
         public static bool ValidaCuentaBancaria(string cuentaCompleta)
         {
             // Comprobaciones de la cadena
@@ -1172,6 +1257,9 @@ namespace Reportman.Drawing
         /*02/04/2013 añadido sergi
          comprueba que el correo electronico tenga un formato valido
          */
+        /// <summary>
+        /// Returns true when the given e-mail address matches a valid address format.
+        /// </summary>
         public static Boolean ComprobarMail(String email)
         {
             String expresion;
@@ -1192,6 +1280,9 @@ namespace Reportman.Drawing
                 return false;
             }
         }
+        /// <summary>
+        /// Returns the string with diacritical marks (accents) removed.
+        /// </summary>
         public static string RemoveDiacritics(string stIn)
         {
             string stFormD = stIn.Normalize(NormalizationForm.FormD);
@@ -1208,12 +1299,19 @@ namespace Reportman.Drawing
 
             return (sb.ToString().Normalize(NormalizationForm.FormC));
         }
+        /// <summary>
+        /// Returns the string normalized to Unicode Normalization Form C, or an empty string for
+        /// null or empty input.
+        /// </summary>
         public static string NormalizeToNFC(string s)
         {
             if (string.IsNullOrEmpty(s))
                 return string.Empty;
             return s.Normalize(System.Text.NormalizationForm.FormC);
         }
+        /// <summary>
+        /// Returns the string with all line breaks (CR, LF or CR/LF) normalized to CR/LF pairs.
+        /// </summary>
         public static string NormalizeLineBreaks(string input)
         {
             // Allow 10% as a rough guess of how much the string may grow.
@@ -1250,6 +1348,9 @@ namespace Reportman.Drawing
             return builder.ToString();
         }
 
+        /// <summary>
+        /// Returns true when the input matches the given regular expression exactly once.
+        /// </summary>
         public static bool ValidateStringRegularExpresion(string input, string regular)
         {
             bool validate = false;
@@ -1259,6 +1360,10 @@ namespace Reportman.Drawing
                 validate = true;
             return validate;
         }
+        /// <summary>
+        /// Calculates and returns the EAN-13 check digit for a 12-digit code; throws when the input
+        /// is not exactly 12 digits.
+        /// </summary>
         public static int EAN13CalculateCheckDigit(string codigo)
         {
 

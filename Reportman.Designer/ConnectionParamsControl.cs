@@ -123,6 +123,9 @@ namespace Reportman.Designer
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the ConnectionParamsControl class, building the UI and loading providers.
+        /// </summary>
         public ConnectionParamsControl()
         {
             BuildUi();

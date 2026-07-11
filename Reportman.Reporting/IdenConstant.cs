@@ -1,4 +1,4 @@
-﻿using Reportman.Drawing;
+using Reportman.Drawing;
 
 namespace Reportman.Reporting
 {
@@ -7,11 +7,14 @@ namespace Reportman.Reporting
     /// </summary>
 	public class IdenConstant : EvalIdentifier
     {
+        /// <summary>
+        /// The constant value wrapper.
+        /// </summary>
         protected Variant FValue;
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="eval"></param>
+        /// <param name="eval">The Evaluator context to bind to.</param>
 		public IdenConstant(Evaluator eval)
             : base(eval)
         {

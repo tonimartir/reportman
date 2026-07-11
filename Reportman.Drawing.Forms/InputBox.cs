@@ -12,6 +12,9 @@ namespace Reportman.Drawing.Forms
     {
         private bool dook;
         private bool isdate;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InputBox"/> dialog and its designer-generated components.
+        /// </summary>
         public InputBox()
         {
             InitializeComponent();
@@ -22,6 +25,13 @@ namespace Reportman.Drawing.Forms
             bok.Text = Translator.TranslateStr(93);
             bcancel.Text = Translator.TranslateStr(271);
         }
+        /// <summary>
+        /// Displays a modal input dialog prompting the user for a text value.
+        /// </summary>
+        /// <param name="caption">The title text displayed in the dialog title bar.</param>
+        /// <param name="prompt">The descriptive label text shown above the input field.</param>
+        /// <param name="defaultvalue">The initial text pre-filled in the input field.</param>
+        /// <returns>The text entered by the user, or <paramref name="defaultvalue"/> if the dialog was cancelled.</returns>
         public static string Execute(string caption, string prompt, string defaultvalue)
         {
             string aresult = defaultvalue;
@@ -36,6 +46,14 @@ namespace Reportman.Drawing.Forms
             }
             return aresult;
         }
+        /// <summary>
+        /// Displays a modal input dialog prompting the user to select a date.
+        /// </summary>
+        /// <param name="caption">The title text displayed in the dialog title bar.</param>
+        /// <param name="prompt">The descriptive label text shown above the date picker.</param>
+        /// <param name="value">On entry, the default date; on exit, the date selected by the user if confirmed.</param>
+        /// <param name="dateformat">A custom date format string for the date picker, or an empty string for the default format.</param>
+        /// <returns><see langword="true"/> if the user confirmed the selection; <see langword="false"/> if the dialog was cancelled.</returns>
         public static bool Execute(string caption, string prompt, ref DateTime value, string dateformat)
         {
             bool aresult = false;
@@ -56,6 +74,13 @@ namespace Reportman.Drawing.Forms
             }
             return aresult;
         }
+        /// <summary>
+        /// Displays a modal input dialog prompting the user to select a date, using the default date format.
+        /// </summary>
+        /// <param name="caption">The title text displayed in the dialog title bar.</param>
+        /// <param name="prompt">The descriptive label text shown above the date picker.</param>
+        /// <param name="value">On entry, the default date; on exit, the date selected by the user if confirmed.</param>
+        /// <returns><see langword="true"/> if the user confirmed the selection; <see langword="false"/> if the dialog was cancelled.</returns>
         public static bool Execute(string caption, string prompt, ref DateTime value)
         {
             return Execute(caption, prompt, ref value, "");

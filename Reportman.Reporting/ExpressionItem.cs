@@ -25,47 +25,152 @@ namespace Reportman.Reporting
         private int FDataCount;
         private Variant FSumValue;
         private string FExpression;
+        /// <summary>
+        /// Gets or sets the expression evaluated to produce the printed value; assigning it refreshes the
+        /// page-count flags.
+        /// </summary>
         public string Expression
         {
             get { return FExpression; }
             set { FExpression = value; UpdateIsPageCount(); }
         }
+        /// <summary>
+        /// Gets or sets the name of the report group whose change resets a group-scoped aggregate.
+        /// </summary>
         public string GroupName { get; set; }
+        /// <summary>
+        /// Gets or sets the aggregate scope (none, general, group or page) applied to the evaluated value.
+        /// </summary>
         public Aggregate Aggregate { get; set; }
+        /// <summary>
+        /// Gets or sets the aggregate operation (summary, minimum, maximum, average or standard deviation)
+        /// used when an aggregate is active.
+        /// </summary>
         public AggregateType AgType { get; set; }
+        /// <summary>
+        /// Gets or sets the identifier under which the evaluated value is exposed to the report evaluator so
+        /// that other expressions can reference it.
+        /// </summary>
         public string Identifier { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether the item grows to fit the printed text.
+        /// </summary>
         public bool AutoExpand { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether the item shrinks to fit the printed text.
+        /// </summary>
         public bool AutoContract { get; set; }
+        /// <summary>
+        /// Gets or sets the format string applied to the evaluated value when it is rendered.
+        /// </summary>
         public string DisplayFormat { get; set; }
+        /// <summary>
+        /// Gets or sets the format string applied to the export value when it is written to an export.
+        /// </summary>
         public string ExportDisplayFormat { get; set; }
+        /// <summary>
+        /// Gets or sets the data type used to interpret and format the evaluated value.
+        /// </summary>
         public ParamType DataType { get; set; }
+        /// <summary>
+        /// The most recently evaluated value of the expression.
+        /// </summary>
         public Variant Value;
+        /// <summary>
+        /// Gets or sets the value used for export output, independent of the printed value.
+        /// </summary>
         public Variant ExportValue { get; set; }
+        /// <summary>
+        /// The running accumulator used to compute the average and similar aggregates.
+        /// </summary>
         public Variant SumValue;
+        /// <summary>
+        /// The number of data records processed by the current aggregate.
+        /// </summary>
         public int DataCount;
+        /// <summary>
+        /// Indicates whether the current value is up to date for the active record.
+        /// </summary>
         public bool Updated;
+        /// <summary>
+        /// Gets or sets the expression that provides the initial value each time the aggregate is reset.
+        /// </summary>
         public string AgIniValue { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether the item is printed only once when its text repeats,
+        /// suppressing consecutive identical output.
+        /// </summary>
         public bool PrintOnlyOne { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether null values are printed instead of being rendered as empty.
+        /// </summary>
         public bool PrintNulls { get; set; }
+        /// <summary>
+        /// Gets a value indicating whether the text was split and part of it remains to be printed on the
+        /// following page.
+        /// </summary>
         [System.Text.Json.Serialization.JsonIgnore]
         [Newtonsoft.Json.JsonIgnore]
         public bool IsPartial
         {
             get { return FIsPartial; }
         }
+        /// <summary>
+        /// The character offset within the evaluated text at which the next partial print resumes.
+        /// </summary>
         public int PartialPos;
+        /// <summary>
+        /// Gets or sets the expression evaluated to produce the export value.
+        /// </summary>
         public string ExportExpression { get; set; }
+        /// <summary>
+        /// Gets or sets the line number at which the export value is written.
+        /// </summary>
         public int ExportLine { get; set; }
+        /// <summary>
+        /// Gets or sets the column position at which the export value is written.
+        /// </summary>
         public int ExportPosition { get; set; }
+        /// <summary>
+        /// Gets or sets the field width reserved for the export value.
+        /// </summary>
         public int ExportSize { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether a new line is emitted after the export value.
+        /// </summary>
         public bool ExportDoNewLine { get; set; }
+        /// <summary>
+        /// Indicates whether the expression is the PAGECOUNT total-pages variable.
+        /// </summary>
         public bool IsPageCount;
+        /// <summary>
+        /// Indicates whether the expression is the GROUPPAGECOUNT group total-pages variable.
+        /// </summary>
         public bool IsGroupPageCount;
+        /// <summary>
+        /// The index of the last metafile object generated by this item, used for total-pages substitution.
+        /// </summary>
         public int LastMetaIndex;
+        /// <summary>
+        /// Returns the internal class name used to identify this item during serialization.
+        /// </summary>
+        /// <returns>Object type name</returns>
         protected override string GetClassName()
         {
             return "TRPEXPRESSION";
         }
+        /// <summary>
+        /// Evaluates the expression and prints its formatted result into the metafile, handling multipage
+        /// splitting, page-count variables and export values.
+        /// </summary>
+        /// <param name="adriver">Report processing driver</param>
+        /// <param name="aposx">Horizontal position in twips</param>
+        /// <param name="aposy">Vertical position in twips</param>
+        /// <param name="newwidth">Width of the bounding box in twips</param>
+        /// <param name="newheight">Height of the bounding box in twips</param>
+        /// <param name="metafile">Destination MetaFile</param>
+        /// <param name="MaxExtent">Maximum extension</param>
+        /// <param name="PartialPrint">Returns true if some text will expand multiple pages</param>
         override protected void DoPrint(PrintOut adriver, int aposx, int aposy,
                     int newwidth, int newheight, MetaFile metafile, Point MaxExtent,
                     ref bool PartialPrint)
@@ -191,12 +296,19 @@ namespace Reportman.Reporting
                 }
             }
         }
+        /// <summary>
+        /// Gets the evaluator identifier binding that exposes this item's value to the report evaluator.
+        /// </summary>
         [System.Text.Json.Serialization.JsonIgnore]
         [Newtonsoft.Json.JsonIgnore]
         public EvalIdenExpression IdenExpression
         {
             get { return FIdenExpression; }
         }
+        /// <summary>
+        /// Refreshes the <see cref="IsPageCount"/> and <see cref="IsGroupPageCount"/> flags from the current
+        /// expression.
+        /// </summary>
         public void UpdateIsPageCount()
         {
             IsPageCount = false;
@@ -208,12 +320,19 @@ namespace Reportman.Reporting
                 if (astring == "GROUPPAGECOUNT")
                 IsGroupPageCount = true;
         }
+        /// <summary>
+        /// Associates the item with a report and creates the evaluator identifier binding for it.
+        /// </summary>
+        /// <param name="rp">Report that owns the item</param>
         public override void SetReport(BaseReport rp)
         {
             base.SetReport(rp);
             FIdenExpression = new EvalIdenExpression(rp.Evaluator);
             FIdenExpression.ExpreItem = this;
         }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExpressionItem"/> class with default property values.
+        /// </summary>
         public ExpressionItem()
             : base()
         {
@@ -235,6 +354,10 @@ namespace Reportman.Reporting
             Identifier = "";
             ExportExpression = "";
         }
+        /// <summary>
+        /// Evaluates the expression (and the export expression when present) and stores the result in
+        /// <see cref="Value"/>, caching it until the item is invalidated.
+        /// </summary>
         public void Evaluate()
         {
             if (FUpdated)
@@ -534,6 +657,11 @@ namespace Reportman.Reporting
         {
             return value.Replace("&", "&amp;").Replace("\"", "&quot;").Replace("<", "&lt;").Replace(">", "&gt;");
         }
+        /// <summary>
+        /// Responds to subreport processing events to reset state and update the running aggregate value.
+        /// </summary>
+        /// <param name="newstate">New state for the subreport</param>
+        /// <param name="newgroup">New group if apply</param>
         public override void SubReportChanged(SubReportEvent newstate, string newgroup)
         {
             base.SubReportChanged(newstate, newgroup);
@@ -742,6 +870,14 @@ namespace Reportman.Reporting
             aresult.IsHtml = IsHtml;
             return aresult;
         }
+        /// <summary>
+        /// Computes the printed extent of the item, splitting the text across pages when multipage printing
+        /// is active.
+        /// </summary>
+        /// <param name="adriver">Report processing driver</param>
+        /// <param name="MaxExtent">Maximum extension</param>
+        /// <param name="ForcePartial">True to force partial (multipage) measurement</param>
+        /// <returns>The size occupied by the printed item</returns>
         override public Point GetExtension(PrintOut adriver, Point MaxExtent, bool ForcePartial)
         {
             TextObjectStruct atext;

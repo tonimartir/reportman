@@ -1,12 +1,12 @@
-﻿#region Copyright
+#region Copyright
 /* Code based on Magic Library tab control
- * Crownwood.Magic.Controls.TabControl 
- * 
- * 
- * 
- * 
- * 
- * 
+ * Crownwood.Magic.Controls.TabControl
+ *
+ *
+ *
+ *
+ *
+ *
  */
 #endregion
 using System;
@@ -27,16 +27,27 @@ namespace Reportman.Drawing.Forms
         // Enumeration of property change events
         public enum Property
         {
+            /// <summary>The page's title text changed.</summary>
             Title,
+            /// <summary>The control hosted by the page changed.</summary>
             Control,
+            /// <summary>The image index used for the page's tab icon changed.</summary>
             ImageIndex,
+            /// <summary>The image list supplying the page's tab icon changed.</summary>
             ImageList,
+            /// <summary>The page's tab icon image changed.</summary>
             Icon,
+            /// <summary>The current animation frame of the page's icon changed.</summary>
             IconFrame,
+            /// <summary>The page's selected state changed.</summary>
             Selected,
+            /// <summary>The page's closable state changed.</summary>
             CanClose,
+            /// <summary>The flag controlling whether the page's icon is drawn highlighted changed.</summary>
             DrawIconHightlight,
+            /// <summary>The fixed tab width for the page changed.</summary>
             TabWidth,
+            /// <summary>The alignment of the page's title text changed.</summary>
             TitleAlignment
         }
 
@@ -47,29 +58,59 @@ namespace Reportman.Drawing.Forms
         public delegate void PropChangeHandler(TabPageAdvanced page, Property prop, object oldValue);
 
         // Public events
+        /// <summary>
+        /// Occurs when one of the page's properties changes, reporting the property that changed and its previous value.
+        /// </summary>
         public event PropChangeHandler PropertyChanged;
 
         // Instance fields
+        /// <summary>Backing field for the page's title text.</summary>
         protected string _title;
+        /// <summary>Backing field for the control hosted by the page.</summary>
         protected Control _control;
+        /// <summary>Backing field for the index of the page's tab icon within its image list.</summary>
         protected int _imageIndex;
+        /// <summary>Backing field for the image list supplying the page's tab icon.</summary>
         protected ImageList _imageList;
+        /// <summary>Backing field for the page's tab icon image.</summary>
         protected Image _icon;
+        /// <summary>Backing field indicating whether the page is currently selected.</summary>
         protected bool _selected;
+        /// <summary>Control that should receive focus when the page is first shown.</summary>
         protected Control _startFocus;
+        /// <summary>Backing field indicating whether the page has already been shown.</summary>
         protected bool _shown;
 
+        /// <summary>
+        /// Initializes a new tab page with default values and no hosted control.
+        /// </summary>
         public TabPageAdvanced()
         {
 
             InternalConstruct("Page", null, null, -1, null);
         }
+        /// <summary>
+        /// Changes an attribute of the specified window through the Win32 SetWindowLong API.
+        /// </summary>
+        /// <param name="hWnd">Handle of the window whose attribute is set.</param>
+        /// <param name="nIndex">Zero-based offset of the attribute to change.</param>
+        /// <param name="dwNewLong">New value for the attribute.</param>
+        /// <returns>The previous value of the attribute.</returns>
         [System.Runtime.InteropServices.DllImport("user32.dll", EntryPoint = "SetWindowLong")]
         public static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
+        /// <summary>
+        /// Retrieves an attribute of the specified window through the Win32 GetWindowLong API.
+        /// </summary>
+        /// <param name="hWnd">Handle of the window whose attribute is read.</param>
+        /// <param name="nIndex">Zero-based offset of the attribute to retrieve.</param>
+        /// <returns>The requested window attribute value.</returns>
         [System.Runtime.InteropServices.DllImport("user32.dll", EntryPoint = "GetWindowLong")]
         public static extern int GetWindowLong(IntPtr hWnd, int nIndex);
 
         bool _Composited = true;
+        /// <summary>
+        /// Gets or sets whether the page uses the WS_EX_COMPOSITED extended window style for double-buffered, flicker-free painting.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool Composited
         {
@@ -95,6 +136,9 @@ namespace Reportman.Drawing.Forms
             }
         }
         CreateParams initialparams;
+        /// <summary>
+        /// Gets the window creation parameters, adding the WS_EX_COMPOSITED extended style when compositing is enabled.
+        /// </summary>
         protected override CreateParams CreateParams
         {
             get
@@ -112,15 +156,27 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Handles resizing of the page; forwards the event to the base implementation.
+        /// </summary>
+        /// <param name="eventargs">Data for the resize event.</param>
         protected override void OnResize(EventArgs eventargs)
         {
             base.OnResize(eventargs);
 
         }
+        /// <summary>
+        /// Overrides background painting and intentionally skips it to avoid flicker.
+        /// </summary>
+        /// <param name="e">Data for the paint event.</param>
         protected override void OnPaintBackground(PaintEventArgs e)
         {
             //base.OnPaintBackground(e);
         }
+        /// <summary>
+        /// Initializes a new tab page with the given title and no hosted control.
+        /// </summary>
+        /// <param name="title">Title text shown on the page's tab.</param>
         public TabPageAdvanced(string title)
         {
             InternalConstruct(title, null, null, -1, null);
@@ -129,6 +185,9 @@ namespace Reportman.Drawing.Forms
         Image oldIcon;
         Image localprogessimage;
 
+        /// <summary>
+        /// Gets or sets whether the page displays an animated progress icon in its tab, temporarily replacing the current icon.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), Browsable(false)]
         public bool Processing
         {
@@ -177,6 +236,9 @@ namespace Reportman.Drawing.Forms
         bool _alerting;
         Image localalertingimage;
         Image _AlertingIcon = Properties.Resources.flag_finish;
+        /// <summary>
+        /// Gets or sets the image used as the animated alerting icon shown while <see cref="Alerting"/> is active.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Image AlertingIcon
         {
@@ -197,6 +259,9 @@ namespace Reportman.Drawing.Forms
                 }
             }
         }
+        /// <summary>
+        /// Gets the default image used for the alerting icon.
+        /// </summary>
         public static Image DefaultAlertingIcon
         {
             get
@@ -204,6 +269,9 @@ namespace Reportman.Drawing.Forms
                 return Properties.Resources.flag_finish;
             }
         }
+        /// <summary>
+        /// Gets the default image used for the animated progress icon.
+        /// </summary>
         public static Image DefaultProgressIcon
         {
             get
@@ -211,6 +279,9 @@ namespace Reportman.Drawing.Forms
                 return Properties.Resources.progress_wheel;
             }
         }
+        /// <summary>
+        /// Gets or sets whether the page displays an animated alerting icon in its tab, temporarily replacing the current icon.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool Alerting
         {
@@ -251,26 +322,58 @@ namespace Reportman.Drawing.Forms
             ImageAnimator.UpdateFrames();
             OnPropertyChanged(Property.IconFrame, Icon);
         }
+        /// <summary>
+        /// Initializes a new tab page with the given title and hosted control.
+        /// </summary>
+        /// <param name="title">Title text shown on the page's tab.</param>
+        /// <param name="control">Control hosted inside the page.</param>
         public TabPageAdvanced(string title, Control control)
         {
             InternalConstruct(title, control, null, -1, null);
         }
 
+        /// <summary>
+        /// Initializes a new tab page with the given title, hosted control and image index.
+        /// </summary>
+        /// <param name="title">Title text shown on the page's tab.</param>
+        /// <param name="control">Control hosted inside the page.</param>
+        /// <param name="imageIndex">Index of the tab icon within the associated image list.</param>
         public TabPageAdvanced(string title, Control control, int imageIndex)
         {
             InternalConstruct(title, control, null, imageIndex, null);
         }
 
+        /// <summary>
+        /// Initializes a new tab page with the given title, hosted control, image list and image index.
+        /// </summary>
+        /// <param name="title">Title text shown on the page's tab.</param>
+        /// <param name="control">Control hosted inside the page.</param>
+        /// <param name="imageList">Image list supplying the tab icon.</param>
+        /// <param name="imageIndex">Index of the tab icon within <paramref name="imageList"/>.</param>
         public TabPageAdvanced(string title, Control control, ImageList imageList, int imageIndex)
         {
             InternalConstruct(title, control, imageList, imageIndex, null);
         }
 
+        /// <summary>
+        /// Initializes a new tab page with the given title, hosted control and icon image.
+        /// </summary>
+        /// <param name="title">Title text shown on the page's tab.</param>
+        /// <param name="control">Control hosted inside the page.</param>
+        /// <param name="icon">Icon image shown on the page's tab.</param>
         public TabPageAdvanced(string title, Control control, Image icon)
         {
             InternalConstruct(title, control, null, -1, icon);
         }
 
+        /// <summary>
+        /// Shared initialization applying the supplied title, control, image list, image index and icon and setting the page's default state.
+        /// </summary>
+        /// <param name="title">Title text shown on the page's tab.</param>
+        /// <param name="control">Control hosted inside the page.</param>
+        /// <param name="imageList">Image list supplying the tab icon.</param>
+        /// <param name="imageIndex">Index of the tab icon within <paramref name="imageList"/>.</param>
+        /// <param name="icon">Icon image shown on the page's tab.</param>
         protected void InternalConstruct(string title,
                                          Control control,
                                          ImageList imageList,
@@ -295,6 +398,9 @@ namespace Reportman.Drawing.Forms
 #endif
         }
 
+        /// <summary>
+        /// Gets or sets the title text shown on the page's tab.
+        /// </summary>
         [DefaultValue("Page")]
         [Localizable(true)]
         public string Title
@@ -313,6 +419,9 @@ namespace Reportman.Drawing.Forms
             }
         }
         bool _canClose;
+        /// <summary>
+        /// Gets or sets whether the page can be closed by the user.
+        /// </summary>
         [DefaultValue(true)]
         public bool CanClose
         {
@@ -330,6 +439,9 @@ namespace Reportman.Drawing.Forms
             }
         }
         StringAlignment _TitleAlignment = StringAlignment.Center;
+        /// <summary>
+        /// Gets or sets the alignment of the page's title text within its tab.
+        /// </summary>
         [DefaultValue(StringAlignment.Center)]
         public StringAlignment TitleAlignment
         {
@@ -347,6 +459,9 @@ namespace Reportman.Drawing.Forms
             }
         }
         int _TabWidth;
+        /// <summary>
+        /// Gets or sets a fixed width for the page's tab, or zero to size the tab automatically.
+        /// </summary>
         [DefaultValue(0)]
         public int TabWidth
         {
@@ -367,6 +482,9 @@ namespace Reportman.Drawing.Forms
 
 
         bool _drawIconHightlight;
+        /// <summary>
+        /// Gets or sets whether the page's tab icon is drawn with a highlight.
+        /// </summary>
         [DefaultValue(false)]
         public bool DrawIconHightlight
         {
@@ -384,6 +502,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets the control hosted inside the page.
+        /// </summary>
         [DefaultValue(null)]
         public Control Control
         {
@@ -401,6 +522,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets the index of the page's tab icon within its image list.
+        /// </summary>
         [DefaultValue(-1)]
         public int ImageIndex
         {
@@ -418,6 +542,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets the image list supplying the page's tab icon.
+        /// </summary>
         [DefaultValue(null)]
         public ImageList ImageList
         {
@@ -435,6 +562,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets the page's tab icon image. While the page is processing or alerting the change is deferred until the animation ends.
+        /// </summary>
         [DefaultValue(null)]
         public Image Icon
         {
@@ -461,6 +591,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets whether the page is the selected page within its tab control.
+        /// </summary>
         [DefaultValue(true)]
         public bool Selected
         {
@@ -478,6 +611,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets the control that receives focus when the page is first shown.
+        /// </summary>
         [DefaultValue(null)]
         public Control StartFocus
         {
@@ -485,6 +621,11 @@ namespace Reportman.Drawing.Forms
             set { _startFocus = value; }
         }
 
+        /// <summary>
+        /// Raises the <see cref="PropertyChanged"/> event for the given property, passing its previous value.
+        /// </summary>
+        /// <param name="prop">The property that changed.</param>
+        /// <param name="oldValue">The property's value before the change.</param>
         public virtual void OnPropertyChanged(Property prop, object oldValue)
         {
             // Any attached event handlers?

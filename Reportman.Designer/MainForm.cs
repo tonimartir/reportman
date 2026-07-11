@@ -9,7 +9,13 @@ namespace Reportman.Designer
     /// </summary>
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// The main designer frame control hosted inside this form.
+        /// </summary>
         public FrameMainDesigner maindesigner;
+        /// <summary>
+        /// Initializes a new instance of the MainForm class, embedding and docking the main designer frame.
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();

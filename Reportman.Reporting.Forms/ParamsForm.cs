@@ -153,6 +153,7 @@ namespace Reportman.Reporting.Forms
         /// Use this procedure to show the parameters window to the user
         /// </summary>
         /// <param name="rp">The Report containing the parameters</param>
+        /// <param name="parent">Optional parent window for owning the dialog.</param>
         /// <returns>Returns true if the user accept parameter changes</returns>
         public static bool ShowParams(Report rp, IWin32Window parent)
         {

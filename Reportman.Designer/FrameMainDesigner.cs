@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -45,8 +45,16 @@ namespace Reportman.Designer
         /// </summary>
         public class SaveReportArgs
         {
+            /// <summary>
+            /// Set by the host to true when the report was actually saved, or false
+            /// when the save was cancelled or did not complete.
+            /// </summary>
             public bool Saved;
         }
+        /// <summary>
+        /// When true, the report is converted to the managed (.Net) engine before it
+        /// is executed or previewed.
+        /// </summary>
         public bool ConvertToDotNetOnExecute;
         /// <summary>
         /// Event arguments for an exit request, allowing the host to cancel the exit
@@ -54,7 +62,14 @@ namespace Reportman.Designer
         /// </summary>
         public class ExitReportArgs
         {
+            /// <summary>
+            /// When true (the default), the designer control is removed from its
+            /// parent once the exit request completes.
+            /// </summary>
             public bool RemoveControl = true;
+            /// <summary>
+            /// Set by the host to true to cancel the exit and keep the designer open.
+            /// </summary>
             public bool Cancelled = false;
         }
         /// <summary>
@@ -63,10 +78,17 @@ namespace Reportman.Designer
         /// </summary>
         public class PreviewReportArgs
         {
+            /// <summary>
+            /// Initializes a new instance carrying the laid-out report metafile to preview.
+            /// </summary>
+            /// <param name="meta">The rendered report metafile the host should display.</param>
             public PreviewReportArgs(MetaFile meta)
             {
                 MetaFile = meta;
             }
+            /// <summary>
+            /// The laid-out report metafile the host should display.
+            /// </summary>
             public MetaFile MetaFile;
         }
         /// <summary>
@@ -109,8 +131,27 @@ namespace Reportman.Designer
         /// open-and-save, save-only (no open/new), or self-managed saving where the
         /// standard save drop-down is suppressed.
         /// </summary>
-        public enum EditModeType { OpenSave, Save, SelfSave }
+        public enum EditModeType
+        {
+            /// <summary>
+            /// Full editing: both the open/new and save toolbar actions are available.
+            /// </summary>
+            OpenSave,
+            /// <summary>
+            /// Save-only mode: the open and new-report actions are hidden.
+            /// </summary>
+            Save,
+            /// <summary>
+            /// Self-managed saving: open/new are hidden and the standard save
+            /// drop-down is suppressed so the host performs the save itself.
+            /// </summary>
+            SelfSave
+        }
         EditModeType FEditMode;
+        /// <summary>
+        /// Gets or sets the editing mode, controlling whether the open/new and save
+        /// toolbar actions are exposed. See <see cref="EditModeType"/>.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), Browsable(false)]
         public EditModeType EditMode
         {
@@ -139,6 +180,10 @@ namespace Reportman.Designer
                 }
             }
         }
+        /// <summary>
+        /// Gets or sets whether the print toolbar button and its surrounding
+        /// separators are visible.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), Browsable(false)]
         public bool ShowPrintOption
         {
@@ -153,6 +198,9 @@ namespace Reportman.Designer
                 bsep2.Visible = value;
             }
         }
+        /// <summary>
+        /// Gets or sets whether the exit toolbar button is visible.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), Browsable(false)]
         public bool ShowExitOption
         {
@@ -165,6 +213,9 @@ namespace Reportman.Designer
                 bexit.Visible = value;
             }
         }
+        /// <summary>
+        /// Gets or sets whether the preview toolbar button is visible.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), Browsable(false)]
         public bool ShowPreviewOption
         {
@@ -177,6 +228,9 @@ namespace Reportman.Designer
                 bpreview.Visible = value;
             }
         }
+        /// <summary>
+        /// Gets or sets whether the export toolbar button is visible.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), Browsable(false)]
         public bool ShowExportOption
         {
@@ -189,6 +243,9 @@ namespace Reportman.Designer
                 bexport.Visible = value;
             }
         }
+        /// <summary>
+        /// Gets or sets whether the save toolbar button is visible.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), Browsable(false)]
         public bool ShowSaveOption
         {
@@ -201,13 +258,29 @@ namespace Reportman.Designer
                 bsave.Visible = value;
             }
         }
+        /// <summary>
+        /// Optional handler invoked when the user requests to exit the designer.
+        /// When null the control simply removes itself from its parent.
+        /// </summary>
         public ExitReportEventHandler OnExitClick;
+        /// <summary>
+        /// Optional handler invoked when the user requests a save, letting the host
+        /// perform its own save logic. When null the built-in save is used.
+        /// </summary>
         public SaveReportEvent OnSaveClick;
+        /// <summary>
+        /// Optional handler invoked when the user requests a preview. When null the
+        /// built-in preview window is shown.
+        /// </summary>
         public PreviewReportEvent OnPreviewClick;
         ReportLibraryConfigCollection libs = new ReportLibraryConfigCollection();
         string configFilenameLibs = ReportLibraryConfig.GetConfigFilename();
         private readonly DelphiRecentFiles recentFiles = new DelphiRecentFiles();
         private ToolStripItem[] openMenuBaseItems;
+        /// <summary>
+        /// Initializes the designer control, building the toolbar, tabs, AI chat
+        /// panel and undo/redo wiring and applying the translated captions.
+        /// </summary>
         public FrameMainDesigner()
         {
             InitializeComponent();
@@ -474,6 +547,10 @@ namespace Reportman.Designer
             Report = FReport;
             FReport.Modified = true;
         }
+        /// <summary>
+        /// Gets or sets the report currently open in the designer. Assigning a report
+        /// rebuilds the structure, data and fields views and enables the editing menus.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), Browsable(false)]
         public Report Report
         {
@@ -579,6 +656,9 @@ namespace Reportman.Designer
                 }
             }
         }
+        /// <summary>
+        /// Clears the modified flag on the current report, marking it as saved.
+        /// </summary>
         public void SetSaved()
         {
             if (FReport != null)
@@ -586,6 +666,9 @@ namespace Reportman.Designer
                 FReport.Modified = false;
             }
         }
+        /// <summary>
+        /// Enables the editing toolbar buttons and shows the design content panel.
+        /// </summary>
         public void EnableMenus()
         {
             foreach (ToolStripItem aitem in EditButtons)
@@ -595,6 +678,10 @@ namespace Reportman.Designer
 
             panelcontent.Visible = true;
         }
+        /// <summary>
+        /// Disables all editing, selection and alignment toolbar buttons and hides
+        /// the design content panel.
+        /// </summary>
         public void DisableMenus()
         {
             foreach (ToolStripItem aitem in EditButtons)
@@ -651,10 +738,18 @@ namespace Reportman.Designer
                 return;
             OpenNewReport(ReportTemplateFactory.CreateGroupedReportUsingDesignForDesigner());
         }
+        /// <summary>
+        /// Returns true when a report is open and has unsaved modifications.
+        /// </summary>
         public bool ReportChanged()
         {
             return FReport != null && FReport.Modified;
         }
+        /// <summary>
+        /// Prompts the user to save pending changes when the report is modified.
+        /// Returns true to continue (changes saved or discarded) or false if the
+        /// user cancelled.
+        /// </summary>
         public bool CheckSave()
         {
             if (!ReportChanged())
@@ -674,6 +769,12 @@ namespace Reportman.Designer
                 return SaveChanges();
             }
         }
+        /// <summary>
+        /// Opens the report stored in the given file, optionally prompting to save
+        /// pending changes first.
+        /// </summary>
+        /// <param name="filename">Path of the report (.rep) file to open.</param>
+        /// <param name="check">When true, prompts to save any pending changes before opening.</param>
         public void Open(string filename, bool check)
         {
             if (check)
@@ -693,6 +794,11 @@ namespace Reportman.Designer
             Open(openreportdialog.FileName, false);
         }
 
+        /// <summary>
+        /// Opens a modal designer window loaded with the given report file, for
+        /// standalone testing of the designer control.
+        /// </summary>
+        /// <param name="filename">Path of the report to load, or an empty string for a new report.</param>
         public static void Test(string filename)
         {
             FrameMainDesigner fm = new FrameMainDesigner();
@@ -707,12 +813,21 @@ namespace Reportman.Designer
             fm.Report = rp;
             nform.ShowDialog();
         }
+        /// <summary>
+        /// Prompts to save pending changes and then opens the given report file.
+        /// </summary>
+        /// <param name="nfilename">Path of the report (.rep) file to open.</param>
         public void OpenFile(string nfilename)
         {
             if (!CheckSave())
                 return;
             OpenReportFileInternal(nfilename, true);
         }
+        /// <summary>
+        /// Renders the current report and displays it in the print/preview window.
+        /// </summary>
+        /// <param name="preview">When true, shows a print preview; when false, prints directly.</param>
+        /// <returns>True once the report has been rendered.</returns>
         public bool PrintReport(bool preview)
         {
             Reportman.Reporting.Report ReportToPrint = Report;
@@ -1327,6 +1442,9 @@ namespace Reportman.Designer
         {
             PageSetup.ShowPageSetup(FReport, true);
         }
+        /// <summary>
+        /// Reserved hook for reporting unsaved changes; currently always returns false.
+        /// </summary>
         public bool HasChanges()
         {
             return false;
@@ -1440,6 +1558,13 @@ namespace Reportman.Designer
         {
             RefreshAfterUndoRedo();
         }
+        /// <summary>
+        /// Handles the Ctrl+Z and Ctrl+Y shortcuts to trigger undo and redo while a
+        /// report is open, delegating all other keys to the base implementation.
+        /// </summary>
+        /// <param name="msg">A reference to the Windows message to process.</param>
+        /// <param name="keyData">The key combination to evaluate.</param>
+        /// <returns>True if the key was handled here; otherwise the base result.</returns>
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (FReport != null)

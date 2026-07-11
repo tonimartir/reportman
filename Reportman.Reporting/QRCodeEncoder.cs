@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 #if NETSTANDARD2_0
@@ -19,12 +19,44 @@ namespace Reportman.Drawing
         /// <summary>
         /// Data encoding mode used to pack the QR Code payload: alphanumeric, numeric, or raw 8-bit byte.
         /// </summary>
-        public enum ENCODE_MODE { ALPHA_NUMERIC, NUMERIC, BYTE };
+        public enum ENCODE_MODE
+        {
+            /// <summary>
+            /// Alphanumeric mode: digits, uppercase letters and a limited set of symbols.
+            /// </summary>
+            ALPHA_NUMERIC,
+            /// <summary>
+            /// Numeric mode: digits 0-9 only.
+            /// </summary>
+            NUMERIC,
+            /// <summary>
+            /// Byte mode: raw 8-bit byte values.
+            /// </summary>
+            BYTE
+        };
 
         /// <summary>
         /// QR Code error-correction level (L, M, Q, H), in increasing order of redundancy and recoverability.
         /// </summary>
-        public enum ERROR_CORRECTION { L, M, Q, H };
+        public enum ERROR_CORRECTION
+        {
+            /// <summary>
+            /// Low error-correction level (recovers about 7% of the codewords).
+            /// </summary>
+            L,
+            /// <summary>
+            /// Medium error-correction level (recovers about 15% of the codewords).
+            /// </summary>
+            M,
+            /// <summary>
+            /// Quartile error-correction level (recovers about 25% of the codewords).
+            /// </summary>
+            Q,
+            /// <summary>
+            /// High error-correction level (recovers about 30% of the codewords).
+            /// </summary>
+            H
+        };
 
         //internal static String DATA_PATH = "qrcode_data";
         internal static String QRCODE_DATA_PATH = String.Empty;
@@ -73,6 +105,9 @@ namespace Reportman.Drawing
         }
 
 
+        /// <summary>
+        /// Gets or sets the error-correction level used when generating the QR Code.
+        /// </summary>
         virtual public ERROR_CORRECTION QRCodeErrorCorrect
         {
             get
@@ -87,6 +122,10 @@ namespace Reportman.Drawing
 
         }
 
+        /// <summary>
+        /// Gets or sets the QR Code version (symbol size). Use 0 to automatically select the
+        /// smallest version that fits the data; otherwise a value from 1 to 40.
+        /// </summary>
         virtual public int QRCodeVersion
         {
             get
@@ -104,6 +143,9 @@ namespace Reportman.Drawing
 
         }
 
+        /// <summary>
+        /// Gets or sets the data encoding mode used to pack the payload.
+        /// </summary>
         virtual public ENCODE_MODE QRCodeEncodeMode
         {
             get
@@ -118,6 +160,9 @@ namespace Reportman.Drawing
 
         }
 
+        /// <summary>
+        /// Gets or sets the scale factor, in metafile units, applied to each QR Code module.
+        /// </summary>
         virtual public int QRCodeScale
         {
             get
@@ -130,6 +175,9 @@ namespace Reportman.Drawing
             }
         }
 
+        /// <summary>
+        /// Gets or sets the background color used for the light (empty) modules.
+        /// </summary>
         virtual public Color QRCodeBackgroundColor
         {
             get
@@ -142,6 +190,9 @@ namespace Reportman.Drawing
             }
         }
 
+        /// <summary>
+        /// Gets or sets the foreground color used for the dark (filled) modules.
+        /// </summary>
         virtual public Color QRCodeForegroundColor
         {
             get
@@ -155,6 +206,13 @@ namespace Reportman.Drawing
         }
 
 
+        /// <summary>
+        /// Configures the structured-append parameters so this symbol can be part of a
+        /// multi-symbol sequence. Values are only applied when they fall within valid ranges.
+        /// </summary>
+        /// <param name="m">Position of this symbol within the sequence (1-16).</param>
+        /// <param name="n">Total number of symbols in the sequence (2-16).</param>
+        /// <param name="p">Parity byte computed over the whole original data (0-255).</param>
         public virtual void setStructureappend(int m, int n, int p)
         {
             if (n > 1 && n <= 16 && m > 0 && m <= 16 && p >= 0 && p <= 255)
@@ -165,6 +223,12 @@ namespace Reportman.Drawing
             }
         }
 
+        /// <summary>
+        /// Calculates the structured-append parity byte by XOR-ing every byte of the
+        /// original data. Returns -1 when the data contains a single byte or less.
+        /// </summary>
+        /// <param name="originaldata">Original data bytes shared by the whole sequence.</param>
+        /// <returns>The parity value, or -1 when there is not enough data.</returns>
         public virtual int calStructureappendParity(sbyte[] originaldata)
         {
             int originaldataLength;
@@ -188,12 +252,23 @@ namespace Reportman.Drawing
             }
             return structureappendParity;
         }
+        /// <summary>
+        /// Writes the stack trace of the given exception to the specified text writer.
+        /// </summary>
+        /// <param name="throwable">Exception whose stack trace is written.</param>
+        /// <param name="stream">Destination writer that receives the stack trace.</param>
         public static void WriteStackTrace(System.Exception throwable, System.IO.TextWriter stream)
         {
             stream.Write(throwable.StackTrace);
             stream.Flush();
         }
 
+        /// <summary>
+        /// Encodes the given data bytes into a QR Code matrix, computing the version, mask
+        /// and Reed-Solomon error correction.
+        /// </summary>
+        /// <param name="qrcodeData">Raw data bytes to encode.</param>
+        /// <returns>A [column][row] matrix of modules where true marks a dark module.</returns>
         public virtual bool[][] calQrcode(byte[] qrcodeData)
         {
             int dataLength;
@@ -1084,12 +1159,7 @@ namespace Reportman.Drawing
 
 #if NETSTANDARD2_0 || NETSTANDARD6_0
 #else
-        /// <summary>
-        /// Encode the content using the encoding scheme given
-        /// </summary>
-        /// <param name="content"></param>
-        /// <param name="encoding"></param>
-        /// <returns></returns>
+        // Encode the content using the encoding scheme given (disabled: depends on System.Drawing.Bitmap)
         /*public virtual Bitmap Encode(String content, Encoding encoding)
         {
             bool[][] matrix = calQrcode(encoding.GetBytes(content));
@@ -1112,11 +1182,15 @@ namespace Reportman.Drawing
         }*/
 #endif
         /// <summary>
-        /// Encode the content using the encoding scheme given
+        /// Encodes the content and renders the resulting QR Code into the metafile as a set of
+        /// filled rectangles, one per dark module, starting at the specified position.
         /// </summary>
-        /// <param name="content"></param>
-        /// <param name="encoding"></param>
-        /// <returns></returns>
+        /// <param name="metafile">Target metafile that receives the generated draw objects.</param>
+        /// <param name="posx">Horizontal position, in metafile units, of the top-left corner.</param>
+        /// <param name="posy">Vertical position, in metafile units, of the top-left corner.</param>
+        /// <param name="modul">Module size multiplier applied on top of the configured scale.</param>
+        /// <param name="content">Text to encode in the QR Code.</param>
+        /// <param name="encoding">Character encoding used to convert the content to bytes.</param>
         public virtual void EncodeInMetafile(MetaFile metafile, int posx, int posy, int modul, String content, Encoding encoding)
         {
             bool[][] matrix = calQrcode(encoding.GetBytes(content));
@@ -1177,17 +1251,32 @@ namespace Reportman.Drawing
             else
                 return (number >> bits) + (2 << ~bits);
         }
+        /// <summary>
+        /// Converts the given string to a byte array using ASCII encoding.
+        /// </summary>
+        /// <param name="str">String to convert.</param>
+        /// <returns>The ASCII-encoded bytes of the string.</returns>
         public static byte[] AsciiStringToByteArray(String str)
         {
             ASCIIEncoding encoding = new ASCIIEncoding();
             return encoding.GetBytes(str);
         }
 
+        /// <summary>
+        /// Converts the given string to a byte array using UTF-16 (Unicode) encoding.
+        /// </summary>
+        /// <param name="str">String to convert.</param>
+        /// <returns>The Unicode-encoded bytes of the string.</returns>
         public static byte[] UnicodeStringToByteArray(String str)
         {
             UnicodeEncoding encoding = new UnicodeEncoding();
             return encoding.GetBytes(str);
         }
+        /// <summary>
+        /// Builds a string from the given bytes interpreted as ASCII.
+        /// </summary>
+        /// <param name="characters">Bytes to decode.</param>
+        /// <returns>The decoded ASCII string.</returns>
         public static String FromASCIIByteArray(byte[] characters)
         {
             ASCIIEncoding encoding = new ASCIIEncoding();
@@ -1195,6 +1284,11 @@ namespace Reportman.Drawing
             return constructedString;
         }
 
+        /// <summary>
+        /// Builds a string from the given bytes interpreted as UTF-16 (Unicode).
+        /// </summary>
+        /// <param name="characters">Bytes to decode.</param>
+        /// <returns>The decoded Unicode string.</returns>
         public static String FromUnicodeByteArray(byte[] characters)
         {
             UnicodeEncoding encoding = new UnicodeEncoding();
@@ -1202,6 +1296,12 @@ namespace Reportman.Drawing
             return constructedString;
         }
 
+        /// <summary>
+        /// Determines whether the given string contains characters that cannot be
+        /// represented in ASCII and therefore require Unicode encoding.
+        /// </summary>
+        /// <param name="value">String to test.</param>
+        /// <returns>True when the string requires Unicode encoding; otherwise false.</returns>
         public static bool IsUniCode(String value)
         {
             byte[] ascii = AsciiStringToByteArray(value);
@@ -1215,12 +1315,7 @@ namespace Reportman.Drawing
 
 #if NETSTANDARD2_0 || NETSTANDARD6_0
 #else
-        /// <summary>
-        /// Encode the content using the encoding scheme given
-        /// </summary>
-        /// <param name="content"></param>
-        /// <param name="encoding"></param>
-        /// <returns></returns>
+        // Encode the content using the encoding scheme given (disabled: depends on System.Drawing.Bitmap)
         /*public virtual Bitmap Encode(String content)
         {
             if (IsUniCode(content))

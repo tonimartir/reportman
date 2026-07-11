@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
@@ -38,6 +38,9 @@ namespace Reportman.Reporting
         /// </summary>
         public long HubDatabaseId { get; set; }
 
+        /// <summary>
+        /// Initializes a new executor with an internal HttpClient and default JSON options.
+        /// </summary>
         public HttpAgentExecutor()
         {
 #if DEBUG
@@ -54,6 +57,12 @@ namespace Reportman.Reporting
             };
         }
 
+        /// <summary>
+        /// Initializes a new executor with the base URL, API key and hub database identifier.
+        /// </summary>
+        /// <param name="baseUrl">Base URL of the HTTP Agent API.</param>
+        /// <param name="apiKey">API key used for authentication.</param>
+        /// <param name="hubDatabaseId">Hub database identifier of the target database.</param>
         public HttpAgentExecutor(string baseUrl, string apiKey, long hubDatabaseId) : this()
         {
             BaseUrl = baseUrl;
@@ -240,43 +249,94 @@ namespace Reportman.Reporting
         private readonly HttpAgentExecutor _executor;
         private readonly HttpAgentParameterCollection _parameters;
 
+        /// <summary>
+        /// Initializes a new command bound to the executor that will run it.
+        /// </summary>
+        /// <param name="executor">The executor used to send this command to the HTTP Agent.</param>
         public HttpAgentCommand(HttpAgentExecutor executor)
         {
             _executor = executor;
             _parameters = new HttpAgentParameterCollection();
         }
 
+        /// <summary>
+        /// Gets or sets the SQL text to execute.
+        /// </summary>
         public string CommandText { get; set; } = "";
+
+        /// <summary>
+        /// Gets or sets the wait time, in seconds, before terminating the command.
+        /// </summary>
         public int CommandTimeout { get; set; } = 30;
+
+        /// <summary>
+        /// Gets or sets how the <see cref="CommandText"/> is interpreted.
+        /// </summary>
         public CommandType CommandType { get; set; } = CommandType.Text;
+
+        /// <summary>
+        /// Gets or sets the connection associated with the command. Not used by the HTTP Agent path.
+        /// </summary>
         public IDbConnection Connection { get; set; }
+
+        /// <summary>
+        /// Gets or sets the transaction associated with the command. Not used by the HTTP Agent path.
+        /// </summary>
         public IDbTransaction Transaction { get; set; }
+
+        /// <summary>
+        /// Gets or sets how command results are applied to the source row when used by a DataAdapter.
+        /// </summary>
         public UpdateRowSource UpdatedRowSource { get; set; }
 
+        /// <summary>
+        /// Gets the collection of parameters bound to this command.
+        /// </summary>
         public IDataParameterCollection Parameters => _parameters;
 
+        /// <summary>
+        /// Creates a new parameter for use with this command.
+        /// </summary>
+        /// <returns>A new <see cref="HttpAgentParameter"/> instance.</returns>
         public IDbDataParameter CreateParameter()
         {
             return new HttpAgentParameter();
         }
 
+        /// <summary>
+        /// Executes the command against the HTTP Agent.
+        /// </summary>
+        /// <returns>Always zero; the Agent does not report an affected-row count.</returns>
         public int ExecuteNonQuery()
         {
             _executor.Open(this);
             return 0;
         }
 
+        /// <summary>
+        /// Executes the command and returns a reader over the resulting rows.
+        /// </summary>
+        /// <returns>An <see cref="IDataReader"/> over the returned DataTable.</returns>
         public IDataReader ExecuteReader()
         {
             var dt = _executor.Open(this);
             return dt.CreateDataReader();
         }
 
+        /// <summary>
+        /// Executes the command and returns a reader over the resulting rows. The behavior is ignored.
+        /// </summary>
+        /// <param name="behavior">Command behavior flags (not honored by the HTTP Agent path).</param>
+        /// <returns>An <see cref="IDataReader"/> over the returned DataTable.</returns>
         public IDataReader ExecuteReader(CommandBehavior behavior)
         {
             return ExecuteReader();
         }
 
+        /// <summary>
+        /// Executes the command and returns the value of the first column of the first row.
+        /// </summary>
+        /// <returns>The first cell of the result, or null when no rows are returned.</returns>
         public object ExecuteScalar()
         {
             var dt = _executor.Open(this);
@@ -285,9 +345,19 @@ namespace Reportman.Reporting
             return null;
         }
 
+        /// <summary>
+        /// Prepares the command. No-op for the HTTP Agent path.
+        /// </summary>
         public void Prepare() { }
+
+        /// <summary>
+        /// Attempts to cancel execution. No-op for the HTTP Agent path.
+        /// </summary>
         public void Cancel() { }
 
+        /// <summary>
+        /// Releases resources used by the command. No-op for the HTTP Agent path.
+        /// </summary>
         public void Dispose() { }
 
         /// <summary>
@@ -309,15 +379,54 @@ namespace Reportman.Reporting
     /// </summary>
     public class HttpAgentParameter : IDbDataParameter
     {
+        /// <summary>
+        /// Gets or sets the <see cref="System.Data.DbType"/> of the parameter.
+        /// </summary>
         public DbType DbType { get; set; } = DbType.String;
+
+        /// <summary>
+        /// Gets or sets whether the parameter is input-only, output-only, bidirectional, or a return value.
+        /// </summary>
         public ParameterDirection Direction { get; set; } = ParameterDirection.Input;
+
+        /// <summary>
+        /// Gets or sets whether the parameter accepts null values.
+        /// </summary>
         public bool IsNullable { get; set; } = true;
+
+        /// <summary>
+        /// Gets or sets the name of the parameter.
+        /// </summary>
         public string ParameterName { get; set; } = "";
+
+        /// <summary>
+        /// Gets or sets the source column mapped to the parameter.
+        /// </summary>
         public string SourceColumn { get; set; } = "";
+
+        /// <summary>
+        /// Gets or sets the DataRow version to use when loading the parameter value.
+        /// </summary>
         public DataRowVersion SourceVersion { get; set; } = DataRowVersion.Current;
+
+        /// <summary>
+        /// Gets or sets the value of the parameter.
+        /// </summary>
         public object Value { get; set; }
+
+        /// <summary>
+        /// Gets or sets the maximum number of digits used to represent the value.
+        /// </summary>
         public byte Precision { get; set; }
+
+        /// <summary>
+        /// Gets or sets the number of decimal places to which the value is resolved.
+        /// </summary>
         public byte Scale { get; set; }
+
+        /// <summary>
+        /// Gets or sets the maximum size, in bytes, of the parameter value.
+        /// </summary>
         public int Size { get; set; }
     }
 
@@ -328,6 +437,11 @@ namespace Reportman.Reporting
     {
         private readonly List<IDataParameter> _parameters = new List<IDataParameter>();
 
+        /// <summary>
+        /// Gets or sets the parameter with the specified name.
+        /// </summary>
+        /// <param name="parameterName">The name of the parameter to access.</param>
+        /// <returns>The matching parameter, or null when no parameter has that name.</returns>
         public object this[string parameterName]
         {
             get
@@ -343,38 +457,94 @@ namespace Reportman.Reporting
             }
         }
 
+        /// <summary>
+        /// Gets or sets the parameter at the specified index.
+        /// </summary>
+        /// <param name="index">The zero-based index of the parameter.</param>
+        /// <returns>The parameter at the given index.</returns>
         public object this[int index]
         {
             get => _parameters[index];
             set => _parameters[index] = (IDataParameter)value;
         }
 
+        /// <summary>
+        /// Gets a value indicating whether the collection has a fixed size. Always false.
+        /// </summary>
         public bool IsFixedSize => false;
+
+        /// <summary>
+        /// Gets a value indicating whether the collection is read-only. Always false.
+        /// </summary>
         public bool IsReadOnly => false;
+
+        /// <summary>
+        /// Gets a value indicating whether access to the collection is synchronized. Always false.
+        /// </summary>
         public bool IsSynchronized => false;
+
+        /// <summary>
+        /// Gets the number of parameters in the collection.
+        /// </summary>
         public int Count => _parameters.Count;
+
+        /// <summary>
+        /// Gets an object that can be used to synchronize access to the collection.
+        /// </summary>
         public object SyncRoot => this;
 
+        /// <summary>
+        /// Adds a parameter to the collection.
+        /// </summary>
+        /// <param name="value">The parameter to add.</param>
+        /// <returns>The zero-based index at which the parameter was added.</returns>
         public int Add(object value)
         {
             _parameters.Add((IDataParameter)value);
             return _parameters.Count - 1;
         }
 
+        /// <summary>
+        /// Removes all parameters from the collection.
+        /// </summary>
         public void Clear() => _parameters.Clear();
 
+        /// <summary>
+        /// Determines whether the collection contains a parameter with the specified name.
+        /// </summary>
+        /// <param name="parameterName">The parameter name to locate.</param>
+        /// <returns>True if a parameter with that name exists; otherwise false.</returns>
         public bool Contains(string parameterName) => IndexOf(parameterName) >= 0;
 
+        /// <summary>
+        /// Determines whether the collection contains the specified parameter.
+        /// </summary>
+        /// <param name="value">The parameter to locate.</param>
+        /// <returns>True if the parameter is found; otherwise false.</returns>
         public bool Contains(object value) => _parameters.Contains((IDataParameter)value);
 
+        /// <summary>
+        /// Copies the parameters to the specified array, starting at the given index.
+        /// </summary>
+        /// <param name="array">The destination array.</param>
+        /// <param name="index">The zero-based index in the array at which copying begins.</param>
         public void CopyTo(Array array, int index)
         {
             for (int i = 0; i < _parameters.Count; i++)
                 array.SetValue(_parameters[i], index + i);
         }
 
+        /// <summary>
+        /// Returns an enumerator that iterates over the parameters.
+        /// </summary>
+        /// <returns>An enumerator for the collection.</returns>
         public IEnumerator GetEnumerator() => _parameters.GetEnumerator();
 
+        /// <summary>
+        /// Returns the index of the parameter with the specified name.
+        /// </summary>
+        /// <param name="parameterName">The parameter name to locate.</param>
+        /// <returns>The zero-based index of the parameter, or -1 if not found.</returns>
         public int IndexOf(string parameterName)
         {
             for (int i = 0; i < _parameters.Count; i++)
@@ -385,12 +555,30 @@ namespace Reportman.Reporting
             return -1;
         }
 
+        /// <summary>
+        /// Returns the index of the specified parameter.
+        /// </summary>
+        /// <param name="value">The parameter to locate.</param>
+        /// <returns>The zero-based index of the parameter, or -1 if not found.</returns>
         public int IndexOf(object value) => _parameters.IndexOf((IDataParameter)value);
 
+        /// <summary>
+        /// Inserts a parameter into the collection at the specified index.
+        /// </summary>
+        /// <param name="index">The zero-based index at which to insert the parameter.</param>
+        /// <param name="value">The parameter to insert.</param>
         public void Insert(int index, object value) => _parameters.Insert(index, (IDataParameter)value);
 
+        /// <summary>
+        /// Removes the specified parameter from the collection.
+        /// </summary>
+        /// <param name="value">The parameter to remove.</param>
         public void Remove(object value) => _parameters.Remove((IDataParameter)value);
 
+        /// <summary>
+        /// Removes the parameter with the specified name from the collection.
+        /// </summary>
+        /// <param name="parameterName">The name of the parameter to remove.</param>
         public void RemoveAt(string parameterName)
         {
             int idx = IndexOf(parameterName);
@@ -398,6 +586,10 @@ namespace Reportman.Reporting
                 _parameters.RemoveAt(idx);
         }
 
+        /// <summary>
+        /// Removes the parameter at the specified index from the collection.
+        /// </summary>
+        /// <param name="index">The zero-based index of the parameter to remove.</param>
         public void RemoveAt(int index) => _parameters.RemoveAt(index);
     }
 }

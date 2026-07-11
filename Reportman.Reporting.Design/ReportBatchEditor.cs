@@ -60,6 +60,19 @@ namespace Reportman.Reporting.Design
             "TRPCHART"
         };
 
+        /// <summary>
+        /// Initializes a new instance of the ReportBatchEditor class.
+        /// </summary>
+        public ReportBatchEditor()
+        {
+        }
+
+        /// <summary>
+        /// Validates a list of batch operations against the current report structure without applying them.
+        /// </summary>
+        /// <param name="report">The report to validate against.</param>
+        /// <param name="operations">The list of operations to validate.</param>
+        /// <returns>A validation result indicating success or detailing any validation errors.</returns>
         public ReportBatchValidationResult Validate(Report report, IReadOnlyList<ReportBatchOperation> operations)
         {
             var result = new ReportBatchValidationResult();
@@ -181,6 +194,12 @@ namespace Reportman.Reporting.Design
             return result;
         }
 
+        /// <summary>
+        /// Applies a list of batch operations to the report, executing changes and updating the report's undo history.
+        /// </summary>
+        /// <param name="report">The report to apply changes to.</param>
+        /// <param name="operations">The list of operations to execute.</param>
+        /// <returns>An apply result detailing success, applied modifications, or execution failures.</returns>
         public ReportBatchApplyResult Apply(Report report, IReadOnlyList<ReportBatchOperation> operations)
         {
             var validation = Validate(report, operations);
