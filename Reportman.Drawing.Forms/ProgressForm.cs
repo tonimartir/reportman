@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,6 +14,9 @@ namespace Reportman.Drawing.Forms
         private Task TaskToExecute;
         private CancellationTokenSource CancelSource;
         TaskCompletionSource<bool> TaskCompletionSource = new TaskCompletionSource<bool>();
+        /// <summary>
+        /// Initializes a new instance of the ProgressForm dialog.
+        /// </summary>
         public ProgressForm()
         {
             InitializeComponent();
@@ -22,6 +25,15 @@ namespace Reportman.Drawing.Forms
         private void ProgressForm_Load(object sender, EventArgs e)
         {
         }
+        /// <summary>
+        /// Runs a background task and displays the modal progress form to the user.
+        /// </summary>
+        /// <param name="ntask">The background task to execute.</param>
+        /// <param name="FinishCallBack">An optional action to execute when the task completes successfully.</param>
+        /// <param name="parent">The parent control owning the modal dialog.</param>
+        /// <param name="cancelSource">The cancellation source used to cancel the background task.</param>
+        /// <param name="callback">A callback invoked after dialog creation to establish the progress updates interface.</param>
+        /// <returns>A task representing the asynchronous operation.</returns>
         public static async Task Show(Task ntask, Action FinishCallBack, Control parent, CancellationTokenSource cancelSource, SetProgressCallback callback)
         {
             ProgressForm nform = new ProgressForm();
@@ -84,6 +96,11 @@ namespace Reportman.Drawing.Forms
                 CancelSource.Cancel();
             }
         }
+        /// <summary>
+        /// Updates the visual progress bar state on the dialog.
+        /// </summary>
+        /// <param name="current">The current progress value.</param>
+        /// <param name="total">The maximum target progress value (or 0 for marquee/indefinite mode).</param>
         public void ShowProgress(int current, int total)
         {
             if (total == 0)
@@ -106,6 +123,11 @@ namespace Reportman.Drawing.Forms
         /// </summary>
         public interface ITaskProgressShow
         {
+            /// <summary>
+            /// Displays the current progress of the background task.
+            /// </summary>
+            /// <param name="current">The current progress value.</param>
+            /// <param name="total">The maximum target progress value (or 0 for marquee/indefinite mode).</param>
             void ShowProgress(int current, int total);
         }
     }

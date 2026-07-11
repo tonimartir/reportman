@@ -1,4 +1,4 @@
-﻿
+
 namespace Reportman.Drawing
 {
     /// <summary>
@@ -7,7 +7,17 @@ namespace Reportman.Drawing
     /// </summary>
     public interface IBitmapInfoProvider
     {
+        /// <summary>
+        /// Reads and extracts the dimensions of the image contained in the stream without loading the full image data.
+        /// </summary>
+        /// <param name="stream">The image stream to inspect.</param>
+        /// <returns>A BitmapInfo containing the image dimensions.</returns>
         BitmapInfo GetBitmapInfo(System.IO.Stream stream);
+        /// <summary>
+        /// Re-encodes the supplied image stream into bitmap (BMP) format.
+        /// </summary>
+        /// <param name="stream">The source image stream.</param>
+        /// <returns>A memory stream containing the bitmap encoded data.</returns>
         System.IO.MemoryStream EncodeImageStreamAsBitmapStream(System.IO.MemoryStream stream);
     }
     /// <summary>
@@ -15,7 +25,13 @@ namespace Reportman.Drawing
     /// </summary>
     public class BitmapInfo
     {
+        /// <summary>
+        /// The width of the image in pixels.
+        /// </summary>
         public int Width;
+        /// <summary>
+        /// The height of the image in pixels.
+        /// </summary>
         public int Height;
     }
 }

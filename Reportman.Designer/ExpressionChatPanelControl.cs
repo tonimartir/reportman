@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -43,24 +43,42 @@ namespace Reportman.Designer
         private string _suggestedExpression = "";
         private string _currentExpression = "";
 
+        /// <summary>
+        /// Occurs when an expression suggestion is accepted and applied.
+        /// </summary>
         public event EventHandler<string> ApplySuggestion;
 
+        /// <summary>
+        /// Gets or sets the provider callback function that returns the current expression string.
+        /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Func<string> CurrentExpressionProvider { get; set; }
 
+        /// <summary>
+        /// Gets or sets the provider callback function that returns the current cursor position index.
+        /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Func<int> CursorPositionProvider { get; set; }
 
+        /// <summary>
+        /// Gets or sets the provider callback function that returns additional semantic context.
+        /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Func<string> SemanticContextProvider { get; set; }
 
+        /// <summary>
+        /// Gets or sets the custom validation delegate handler for verifying expression correctness.
+        /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public ValidateExpressionHandler ValidateExpression { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the ExpressionChatPanelControl class.
+        /// </summary>
         public ExpressionChatPanelControl()
         {
             InitializeComponent();
@@ -75,6 +93,10 @@ namespace Reportman.Designer
             };
         }
 
+        /// <summary>
+        /// Cleans up any resources being used.
+        /// </summary>
+        /// <param name="disposing">True if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -242,6 +264,11 @@ namespace Reportman.Designer
             _netLogView?.EnsureInitialized();
         }
 
+        /// <summary>
+        /// Configures the initial expression value and streams the initial assistant message prompt.
+        /// </summary>
+        /// <param name="currentExpression">The expression text.</param>
+        /// <param name="initialAssistantMessage">The initial conversation assistant message.</param>
         public void Initialize(string currentExpression, string initialAssistantMessage)
         {
             _currentExpression = currentExpression ?? "";
@@ -253,6 +280,10 @@ namespace Reportman.Designer
             UpdateButtons();
         }
 
+        /// <summary>
+        /// Sets the current active expression text context.
+        /// </summary>
+        /// <param name="expression">The expression text.</param>
         public void SetCurrentExpression(string expression)
         {
             _currentExpression = expression ?? "";

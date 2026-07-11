@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -13,12 +13,18 @@ namespace Reportman.Drawing.Forms
     {
         private Color FBorderColor;
         private Color FTextColor;
+        /// <summary>
+        /// Initializes a new instance of the GroupBoxAdvanced class, setting default border and text colors.
+        /// </summary>
         public GroupBoxAdvanced()
         {
             FBorderColor = SystemColors.ActiveBorder;
             FTextColor = SystemColors.ActiveCaption;
             InitializeComponent();
         }
+        /// <summary>
+        /// Gets or sets the custom border color of the group box.
+        /// </summary>
         [DefaultValue(typeof(Color), "ActiveBorder")]
         public Color BorderColor
         {
@@ -33,6 +39,9 @@ namespace Reportman.Drawing.Forms
             }
 
         }
+        /// <summary>
+        /// Gets or sets the custom text color of the group box title caption.
+        /// </summary>
         [DefaultValue(typeof(Color), "ActiveCaption")]
         public Color TextColor
         {
@@ -47,6 +56,10 @@ namespace Reportman.Drawing.Forms
             }
 
         }
+        /// <summary>
+        /// Paints the control, drawing the border and title caption using the customized colors.
+        /// </summary>
+        /// <param name="e">A PaintEventArgs that contains the event data.</param>
         protected override void OnPaint(PaintEventArgs e)
         {
             /*            Size tSize = TextRenderer.MeasureText(Text, Font);

@@ -1,4 +1,4 @@
-﻿#region Copyright
+#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -30,7 +30,6 @@ namespace Reportman.Drawing
     /// Event launched when there is no data available to print. Should return
     /// true if the action have been handled and no futher processing must happen
     /// </summary>
-    /// <param name="pageindex">Page requested</param>
     /// <returns></returns>
     public delegate bool NoDataToPrintEvent();
     /// <summary>
@@ -44,8 +43,17 @@ namespace Reportman.Drawing
     /// </summary>
 	public abstract class PrintOut
     {
+        /// <summary>
+        /// Gets or sets the default printer name used when no specific printer is selected.
+        /// </summary>
         public static string DefaultPrinterName = "";
+        /// <summary>
+        /// Gets or sets a printer name that overrides any other printer selection for this driver instance.
+        /// </summary>
         public string ForcePrinterName = "";
+        /// <summary>
+        /// Indicates whether this driver is currently rendering a preview rather than a physical print.
+        /// </summary>
         public bool Previewing;
         /// <summary>
         /// Array of predefined page sizes
@@ -669,6 +677,9 @@ namespace Reportman.Drawing
             }
             return aresult;
         }
+        /// <summary>
+        /// The meta-file currently being processed by this print driver.
+        /// </summary>
         public MetaFile CurrentMetafile;
         /// <summary>
         /// Maximum number of pages allowed (this is to avoid stack overflow recursions)
@@ -754,6 +765,12 @@ namespace Reportman.Drawing
         /// The driver must return the text extent in twips
         /// </summary>
         public abstract Point TextExtent(TextObjectStruct aobj, Point extent);
+        /// <summary>
+        /// Returns per-line layout information for a text object and computes the overall text extent.
+        /// </summary>
+        /// <param name="aobj">The text object structure to measure.</param>
+        /// <param name="extent">On return, the computed text extent in twips.</param>
+        /// <returns>A list of <see cref="LineInfo"/> entries, or <c>null</c> if not supported.</returns>
         public virtual List<LineInfo> TextExtentLineInfo(TextObjectStruct aobj, ref Point extent)
         {
             return null;
@@ -776,6 +793,14 @@ namespace Reportman.Drawing
         {
             FOrientation = PageOrientation;
         }
+        /// <summary>
+        /// Renders a chart from the given series data at the specified position.
+        /// </summary>
+        /// <param name="nseries">The chart data series.</param>
+        /// <param name="ametafile">The meta-file that owns the chart.</param>
+        /// <param name="posx">Horizontal position in twips.</param>
+        /// <param name="posy">Vertical position in twips.</param>
+        /// <param name="achart">Driver-specific chart rendering object.</param>
         virtual public void DrawChart(Series nseries, MetaFile ametafile, int posx, int posy, object achart)
         {
 
@@ -856,9 +881,64 @@ namespace Reportman.Drawing
     /// </summary>
     public enum PrinterRawOperation
     {
-        CutPaper, OpenDrawer, LineFeed, CR, FF, TearOff, InitPrinter, Pulse, EndPrint, RedFont, BlackFont,
-        Normal, Bold, Underline, Italic, StrikeOut, LineSpace6, LineSpace8, LineSpace7_72, LineSpacen_216, LineSpacen_180, Linespacen_60,
-        cpi20, cpi17, cpi15, cpi12, cpi10, cpi6, cpi5
+        /// <summary>Cut the paper (receipt printers).</summary>
+        CutPaper,
+        /// <summary>Open the cash drawer.</summary>
+        OpenDrawer,
+        /// <summary>Advance one line.</summary>
+        LineFeed,
+        /// <summary>Carriage return.</summary>
+        CR,
+        /// <summary>Form feed (eject page).</summary>
+        FF,
+        /// <summary>Advance paper to tear-off position.</summary>
+        TearOff,
+        /// <summary>Initialize / reset the printer.</summary>
+        InitPrinter,
+        /// <summary>Send a pulse signal (e.g. cash drawer kick).</summary>
+        Pulse,
+        /// <summary>Finalize the print job.</summary>
+        EndPrint,
+        /// <summary>Switch to red font color.</summary>
+        RedFont,
+        /// <summary>Switch to black font color.</summary>
+        BlackFont,
+        /// <summary>Normal (regular weight, no decoration).</summary>
+        Normal,
+        /// <summary>Bold font style.</summary>
+        Bold,
+        /// <summary>Underline font style.</summary>
+        Underline,
+        /// <summary>Italic font style.</summary>
+        Italic,
+        /// <summary>Strikeout font style.</summary>
+        StrikeOut,
+        /// <summary>Set line spacing to 6 lines per inch.</summary>
+        LineSpace6,
+        /// <summary>Set line spacing to 8 lines per inch.</summary>
+        LineSpace8,
+        /// <summary>Set line spacing to 7/72 inch.</summary>
+        LineSpace7_72,
+        /// <summary>Set line spacing to n/216 inch.</summary>
+        LineSpacen_216,
+        /// <summary>Set line spacing to n/180 inch.</summary>
+        LineSpacen_180,
+        /// <summary>Set line spacing to n/60 inch.</summary>
+        Linespacen_60,
+        /// <summary>Set pitch to 20 characters per inch.</summary>
+        cpi20,
+        /// <summary>Set pitch to 17 characters per inch.</summary>
+        cpi17,
+        /// <summary>Set pitch to 15 characters per inch.</summary>
+        cpi15,
+        /// <summary>Set pitch to 12 characters per inch.</summary>
+        cpi12,
+        /// <summary>Set pitch to 10 characters per inch.</summary>
+        cpi10,
+        /// <summary>Set pitch to 6 characters per inch.</summary>
+        cpi6,
+        /// <summary>Set pitch to 5 characters per inch.</summary>
+        cpi5
     };
 
 

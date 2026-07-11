@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,10 +13,19 @@ namespace Reportman.Drawing
     /// </summary>
     public class PrintOutPDF : PrintOutPDFBase, IBitmapInfoProvider
     {
+        /// <summary>
+        /// Gets the font information provider instance, which is configured for GDI+ on Windows.
+        /// </summary>
+        /// <returns>A <see cref="FontInfoProvider"/> instance used for retrieving font metrics.</returns>
         public override FontInfoProvider GetFontInfoProvider()
         {
             return new FontInfoGDI();
         }
+        /// <summary>
+        /// Retrieves metadata (such as width and height) for a bitmap image loaded from the specified stream.
+        /// </summary>
+        /// <param name="stream">The source <see cref="Stream"/> containing the image data.</param>
+        /// <returns>A <see cref="BitmapInfo"/> instance containing image details.</returns>
         public BitmapInfo GetBitmapInfo(Stream stream)
         {
             BitmapInfo info = new BitmapInfo();
@@ -27,6 +36,11 @@ namespace Reportman.Drawing
             }
             return info;
         }
+        /// <summary>
+        /// Re-encodes the provided image stream as a 32-bit ARGB BMP stream.
+        /// </summary>
+        /// <param name="stream">The original image stream as a <see cref="MemoryStream"/>.</param>
+        /// <returns>A new <see cref="MemoryStream"/> containing the BMP-formatted image data.</returns>
         public System.IO.MemoryStream EncodeImageStreamAsBitmapStream(System.IO.MemoryStream stream)
         {
             System.IO.MemoryStream newbitmapstream = new System.IO.MemoryStream();
@@ -51,10 +65,24 @@ namespace Reportman.Drawing
             return newbitmapstream;
         }
 
+        /// <summary>
+        /// Gets the current instance as the bitmap information provider.
+        /// </summary>
+        /// <returns>An <see cref="IBitmapInfoProvider"/> reference to this instance.</returns>
         public override IBitmapInfoProvider GetBitmapInfoProvider()
         {
             return this;
         }
+        /// <summary>
+        /// Converts a sequence of images into a PDF document and returns it as a memory stream.
+        /// </summary>
+        /// <param name="images">The collection of <see cref="System.Drawing.Image"/> objects to include in the PDF.</param>
+        /// <param name="dpi">The target DPI resolution for the PDF document pages.</param>
+        /// <param name="nformat">The image format used to process the images (e.g., JPEG or BMP).</param>
+        /// <param name="quality">The JPEG compression quality level (used if the format is not BMP/GIF).</param>
+        /// <param name="ndepth">The image color depth rendering mode to apply to the images.</param>
+        /// <param name="Conformance">The PDF conformance type (e.g. PDF/A-1b).</param>
+        /// <returns>A <see cref="MemoryStream"/> containing the generated PDF data.</returns>
         public static System.IO.MemoryStream ImagesToPDF(System.Collections.Generic.IEnumerable<System.Drawing.Image> images, int dpi, System.Drawing.Imaging.ImageFormat nformat, int quality, ImageDepth ndepth, PDFConformanceType Conformance)
         {
             System.IO.MemoryStream nresult = null;
@@ -174,7 +202,41 @@ namespace Reportman.Drawing
         /// Color depth and rendering mode used when embedding images into the PDF, ranging from
         /// full color through grayscale to bitonal black-and-white and text-optimized variants.
         /// </summary>
-        public enum ImageDepth { Color, GrayScale, BW, Text, TextQuality, BWImage, Color8bit, Color4bit };
+        public enum ImageDepth
+        {
+            /// <summary>
+            /// Full color mode.
+            /// </summary>
+            Color,
+            /// <summary>
+            /// Grayscale mode.
+            /// </summary>
+            GrayScale,
+            /// <summary>
+            /// Bitonal black and white mode.
+            /// </summary>
+            BW,
+            /// <summary>
+            /// Text-optimized rendering mode.
+            /// </summary>
+            Text,
+            /// <summary>
+            /// High quality text-optimized mode.
+            /// </summary>
+            TextQuality,
+            /// <summary>
+            /// Black and white image mode.
+            /// </summary>
+            BWImage,
+            /// <summary>
+            /// 8-bit color depth mode.
+            /// </summary>
+            Color8bit,
+            /// <summary>
+            /// 4-bit color depth mode.
+            /// </summary>
+            Color4bit
+        };
 
 
     }

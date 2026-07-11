@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Text;
 using System.Windows.Forms;
@@ -9,7 +9,21 @@ namespace Reportman.Drawing.Forms
     /// Selects how the report preview is hosted: a normal form, a modal form, or an
     /// embedded window.
     /// </summary>
-    public enum PreviewWindowMode { Form, ModalForm, Window };
+    public enum PreviewWindowMode
+    {
+        /// <summary>
+        /// Display the preview in a standard non-modal window.
+        /// </summary>
+        Form,
+        /// <summary>
+        /// Display the preview in a modal dialog window.
+        /// </summary>
+        ModalForm,
+        /// <summary>
+        /// Host the preview control as an embedded window child.
+        /// </summary>
+        Window
+    };
     /// <summary>
     /// Preview Window implementation for Windows.Forms
     /// </summary>
@@ -21,9 +35,18 @@ namespace Reportman.Drawing.Forms
         private PreviewMetaFile fmetapr;
         private Form WindowForm;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the preview window is displayed in the Windows taskbar.
+        /// </summary>
         public bool ShowInTaskbar;
+        /// <summary>
+        /// Gets or sets the mode of the preview window, selecting how the preview form is hosted.
+        /// </summary>
         public PreviewWindowMode WindowMode;
 
+        /// <summary>
+        /// Event raised when the preview window is closed.
+        /// </summary>
         public EventHandler OnClose;
 
         /// <summary>
@@ -78,6 +101,9 @@ namespace Reportman.Drawing.Forms
         int DefaultButtonSize;
 
         bool FLargeButtons = false;
+        /// <summary>
+        /// Gets or sets a value indicating whether the toolbar uses large buttons.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool LargeButtons
         {
@@ -250,6 +276,10 @@ namespace Reportman.Drawing.Forms
                     PParent.Controls.Remove(MetaFileControl);
             }
         }
+        /// <summary>
+        /// Previews a report from a given <see cref="MetaFile"/> object.
+        /// </summary>
+        /// <param name="nmetafile">The <see cref="MetaFile"/> representing the report to preview.</param>
         public void PreviewReport(MetaFile nmetafile)
         {
             if (MetaFileControl == null)
@@ -726,6 +756,11 @@ namespace Reportman.Drawing.Forms
             if (e.KeyChar == (char)13)
                 EPage_Validating(EPage, null);
         }
+        /// <summary>
+        /// Executes a key down action, handling shortcut keys for preview navigation.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">A <see cref="KeyEventArgs"/> containing key data.</param>
         public void ExecuteKeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -763,6 +798,9 @@ namespace Reportman.Drawing.Forms
         {
             EPage_Validating(EPage, new CancelEventArgs());
         }
+        /// <summary>
+        /// Disposes the underlying preview metafile control resources.
+        /// </summary>
         public void DoDispose()
         {
             if (fmetapr != null)
@@ -778,11 +816,18 @@ namespace Reportman.Drawing.Forms
                 }
             }
         }
+        /// <summary>
+        /// Disposes the control and its resources.
+        /// </summary>
         public new void Dispose()
         {
             DoDispose();
             base.Dispose();
         }
+        /// <summary>
+        /// Adjusts the font of the nested controls when the control font changes.
+        /// </summary>
+        /// <param name="e">An <see cref="EventArgs"/> that contains the event data.</param>
         protected override void OnFontChanged(EventArgs e)
         {
             maintoolstrip.Font = Font;

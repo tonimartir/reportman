@@ -1,4 +1,4 @@
-﻿#region Copyright
+#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -122,8 +122,11 @@ namespace Reportman.Reporting
     /// </summary>
 	public class DatabaseInfo : ReportItem, ICloneable
     {
+        /// <summary>The invariant name for the Firebird ADO.NET database provider client library.</summary>
         public static string FIREBIRD_PROVIDER2 = "FirebirdSql.Data.FirebirdClient";
+        /// <summary>The invariant name for the MySql ADO.NET database provider client library.</summary>
         public static string MYSQL_PROVIDER = "MySql.Data.MySqlClient";
+        /// <summary>The invariant name for the SQLite ADO.NET database provider client library.</summary>
         public static string SQLITE_PROVIDER = "System.Data.SQLite";
         private System.Data.IDbConnection FConnection;
         private System.Data.IDbConnection FExternalConnection;
@@ -145,6 +148,10 @@ namespace Reportman.Reporting
             }
         }
 
+        /// <summary>
+        /// Gets a list of localized description labels for the supported database drivers.
+        /// </summary>
+        /// <returns>A list of driver description strings.</returns>
         public static List<string> GetDriverDescriptions()
         {
             List<string> alist = new List<string>
@@ -199,7 +206,14 @@ namespace Reportman.Reporting
                 }
             }
         }
+        /// <summary>
+        /// Gets or sets an optional custom SQL command executor interface used to override standard database client execution.
+        /// </summary>
         public IDbCommandExecuter SqlExecuter;
+        /// <summary>
+        /// Gets the class name identifier for the ReportItem serialization.
+        /// </summary>
+        /// <returns>A string identifier.</returns>
         protected override string GetClassName()
         {
             return "TRPDATABASEINFOITEM";
@@ -409,6 +423,9 @@ namespace Reportman.Reporting
                 HttpAgentToken = token;
         }
 
+        /// <summary>
+        /// Reads agent connection parameters (API key, base URL, database ID) from the configuration ini file, resolving them for this connection alias.
+        /// </summary>
         public void ResolveHttpAgentConnectionParamsFromConfig()
         {
             ResolveHttpAgentDriverFromConfig();
@@ -438,6 +455,9 @@ namespace Reportman.Reporting
                 }
             }
         }
+        /// <summary>
+        /// The list of registered custom ADO.NET DbProviderFactory provider factories.
+        /// </summary>
         public static SortedList<string, DbProviderFactory> CustomProviderFactories = new SortedList<string, DbProviderFactory>();
         /// <summary>
         /// Connect to the database

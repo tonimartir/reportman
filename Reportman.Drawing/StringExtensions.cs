@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -9,6 +9,15 @@ namespace Reportman.Drawing
     /// </summary>
     public static class StringExtensions
     {
+        /// <summary>
+        /// Splits a string by a separator character, honoring an escape character to prevent splitting.
+        /// </summary>
+        /// <param name="text">The source string extension target.</param>
+        /// <param name="separator">The character separator to split by.</param>
+        /// <param name="escapeCharacter">The escape character.</param>
+        /// <param name="useextension">Unused parameter for signature matching.</param>
+        /// <param name="ex">Unused parameter for signature matching.</param>
+        /// <returns>An enumerable collection of split string chunks.</returns>
         public static IEnumerable<string> Split(
     this string text,
     char separator,
@@ -35,6 +44,14 @@ namespace Reportman.Drawing
             }
             yield return builder.ToString();
         }
+        /// <summary>
+        /// Splits a string by a separator character, honoring an escape character, returning an array.
+        /// </summary>
+        /// <param name="text">The source string extension target.</param>
+        /// <param name="separator">The character separator to split by.</param>
+        /// <param name="escapeCharacter">The escape character.</param>
+        /// <param name="escape">Unused parameter for signature matching.</param>
+        /// <returns>An array of split string chunks.</returns>
         public static string[] Split(
             this string text,
             char separator,
@@ -48,6 +65,13 @@ namespace Reportman.Drawing
             return nlist.ToArray();
         }
 
+        /// <summary>
+        /// Escapes occurrences of any character in the controlChars string using the designated escape character.
+        /// </summary>
+        /// <param name="text">The source string extension target.</param>
+        /// <param name="controlChars">The set of characters to escape.</param>
+        /// <param name="escapeCharacter">The escape character prefix to inject.</param>
+        /// <returns>The escaped string.</returns>
         public static string Escape(this string text, string controlChars, char escapeCharacter)
         {
             var builder = new StringBuilder(text.Length + 3);
@@ -62,6 +86,12 @@ namespace Reportman.Drawing
             return builder.ToString();
         }
 
+        /// <summary>
+        /// Removes escape character prefixes from the string.
+        /// </summary>
+        /// <param name="text">The source string extension target.</param>
+        /// <param name="escapeCharacter">The escape character to remove.</param>
+        /// <returns>The unescaped string.</returns>
         public static string Unescape(this string text, char escapeCharacter)
         {
             var builder = new StringBuilder(text.Length);
@@ -76,14 +106,29 @@ namespace Reportman.Drawing
             }
             return builder.ToString();
         }
+        /// <summary>
+        /// Removes diacritics (accents) from the string.
+        /// </summary>
+        /// <param name="input">The source string extension target.</param>
+        /// <returns>The string without accents.</returns>
         public static string RemoveDiacritics(this string input)
         {
             return StringUtil.RemoveDiacritics(input);
         }
+        /// <summary>
+        /// Encloses the string in single quotes, escaping inner single quotes.
+        /// </summary>
+        /// <param name="input">The source string extension target.</param>
+        /// <returns>The quoted string.</returns>
         public static string QuoteStr(this string input)
         {
             return StringUtil.QuoteStr(input);
         }
+        /// <summary>
+        /// Encloses the string in double quotes, escaping inner double quotes.
+        /// </summary>
+        /// <param name="input">The source string extension target.</param>
+        /// <returns>The double-quoted string.</returns>
         public static string DoubleQuoteStr(this string input)
         {
             return StringUtil.DoubleQuoteStr(input);

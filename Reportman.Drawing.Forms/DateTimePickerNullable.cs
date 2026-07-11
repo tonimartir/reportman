@@ -1,4 +1,4 @@
-﻿#region Copyright
+#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -31,21 +31,42 @@ namespace Reportman.Drawing.Forms
     /// </summary>	
     public class DateTimePickerNullable : System.Windows.Forms.DateTimePicker
     {
+        /// <summary>
+        /// Represents the maximum date value supported by the nullable date time picker.
+        /// </summary>
         public static readonly System.DateTime MaxDateValue = new System.DateTime(9997, 12, 31);
+        /// <summary>
+        /// Represents the minimum date value supported by the nullable date time picker.
+        /// </summary>
         public static readonly System.DateTime MinDateValue = new System.DateTime(1900, 12, 31);
         private DateTimePickerFormat oldFormat = DateTimePickerFormat.Long;
         private string oldCustomFormat = null;
         private bool bIsNull = false;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DateTimePickerNullable"/> class, setting the default maximum and minimum date ranges.
+        /// </summary>
         public DateTimePickerNullable() : base()
         {
             MaxDate = MaxDateValue;
             MinDate = System.DateTime.MinValue;
         }
+        /// <summary>
+        /// Gets or sets a value indicating whether pressing the Enter key acts as a Tab key to move focus.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool EnterAsTab { get; set; }
 
+        /// <summary>
+        /// Delegate field for events raised before the Enter key triggers tab focus movement.
+        /// </summary>
         public BeforeEnterTabEvent BeforeEnterTab;
+        /// <summary>
+        /// Processes a command key, optionally converting the Enter key to a Tab key.
+        /// </summary>
+        /// <param name="msg">A <see cref="Message"/>, passed by reference, that represents the window message to process.</param>
+        /// <param name="keyData">One of the <see cref="Keys"/> values that represents the key to process.</param>
+        /// <returns>true if the character was processed by the control; otherwise, false.</returns>
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (EnterAsTab)
@@ -60,6 +81,9 @@ namespace Reportman.Drawing.Forms
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
+        /// <summary>
+        /// Gets or sets the date/time value assigned to the control. Returns <see cref="DateTime.MinValue"/> if the value is null.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new DateTime Value
         {
@@ -96,16 +120,28 @@ namespace Reportman.Drawing.Forms
                 }
             }
         }
+        /// <summary>
+        /// Raises the ValueChanged event and updates the internal null state.
+        /// </summary>
+        /// <param name="eventargs">An <see cref="EventArgs"/> that contains the event data.</param>
         protected override void OnValueChanged(EventArgs eventargs)
         {
             bIsNull = (Value == DateTime.MinValue);
             base.OnValueChanged(eventargs);
         }
+        /// <summary>
+        /// Raises the Validated event and updates the internal null state.
+        /// </summary>
+        /// <param name="e">An <see cref="EventArgs"/> that contains the event data.</param>
         protected override void OnValidated(EventArgs e)
         {
             bIsNull = (Value == DateTime.MinValue);
             base.OnValidated(e);
         }
+        /// <summary>
+        /// Raises the CloseUp event and restores formats if a previously null value was selected.
+        /// </summary>
+        /// <param name="eventargs">An <see cref="EventArgs"/> that contains the event data.</param>
         protected override void OnCloseUp(EventArgs eventargs)
         {
             if (Control.MouseButtons == MouseButtons.None)
@@ -120,6 +156,10 @@ namespace Reportman.Drawing.Forms
             base.OnCloseUp(eventargs);
         }
 
+        /// <summary>
+        /// Handles key presses down, allowing null values to be cleared or typed into, and suppression of the Return key if EnterAsTab is true.
+        /// </summary>
+        /// <param name="e">A <see cref="KeyEventArgs"/> containing event data.</param>
         protected override void OnKeyDown(KeyEventArgs e)
         {
             if (EnterAsTab)
@@ -156,6 +196,10 @@ namespace Reportman.Drawing.Forms
             }
 
         }
+        /// <summary>
+        /// Custom paints the DateTimePicker control, supporting empty/null displays.
+        /// </summary>
+        /// <param name="e">A <see cref="PaintEventArgs"/> containing paint event data.</param>
         protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)
         {
 #if MONO

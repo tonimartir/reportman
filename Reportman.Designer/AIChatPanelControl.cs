@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Text.Json;
@@ -57,17 +57,28 @@ namespace Reportman.Designer
         // Agent client
         private ReportmanAgentClient _agentClient;
 
-        // Events
+        /// <summary>
+        /// Occurs when an expression suggestion is accepted and applied.
+        /// </summary>
         public event EventHandler<string> ApplySuggestion;
 
+        /// <summary>
+        /// Gets or sets the provider callback function that returns the current report document XML representation.
+        /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Func<string> ReportDocumentProvider { get; set; }
 
+        /// <summary>
+        /// Gets or sets the action callback invoked to apply a modified report document XML representation to the designer.
+        /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Action<string> ApplyModifiedReportDocument { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the AIChatPanelControl control.
+        /// </summary>
         public AIChatPanelControl()
         {
             InitializeComponent();
@@ -87,6 +98,10 @@ namespace Reportman.Designer
             };
         }
 
+        /// <summary>
+        /// Cleans up any resources being used.
+        /// </summary>
+        /// <param name="disposing">True if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -137,6 +152,12 @@ namespace Reportman.Designer
             }
         }
 
+        /// <summary>
+        /// Sets the database hub and agent credentials context.
+        /// </summary>
+        /// <param name="hubDatabaseId">The hub database identifier.</param>
+        /// <param name="hubSchemaId">The hub database schema identifier.</param>
+        /// <param name="apiKey">The HTTP Agent authentication API key.</param>
         public void SetHubContext(long hubDatabaseId, long hubSchemaId, string apiKey)
         {
             string schemaApiKey = (apiKey ?? "").Trim();
@@ -484,11 +505,19 @@ namespace Reportman.Designer
 
         // ===== Logging =====
 
+        /// <summary>
+        /// Appends a message to the AI execution logs window view.
+        /// </summary>
+        /// <param name="message">The message to log.</param>
         public void AppendLog(string message)
         {
             PostToUi(() => _logView.AppendLogLine($"[{DateTime.Now:HH:mm:ss}] {message}"));
         }
 
+        /// <summary>
+        /// Appends a message to the raw network/transport logs window view.
+        /// </summary>
+        /// <param name="message">The network message to log.</param>
         public void AppendNetLog(string message)
         {
             PostToUi(() => _netLogView.AppendLogLine($"[{DateTime.Now:HH:mm:ss}] {message}"));

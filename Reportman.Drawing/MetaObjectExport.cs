@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 
 
 namespace Reportman.Drawing
@@ -26,6 +26,7 @@ namespace Reportman.Drawing
         /// </summary>
         /// <param name="buf">Buffer containing information in binary format</param>
         /// <param name="index">Index to begin read in the buffer</param>
+        /// <param name="ver">Version of the record format</param>
         override public void FillFromBuf(byte[] buf, int index, int ver)
         {
             int RECORD_OFFSET = GetRECORD_OFFSET(ver);
@@ -41,6 +42,7 @@ namespace Reportman.Drawing
         /// Save the information of the object into a stream
         /// </summary>
         /// <param name="astream">Destination stream</param>
+        /// <param name="ver">Version of the record format</param>
         override public void SaveToStream(Stream astream, int ver)
         {
             int RECORD_OFFSET = GetRECORD_OFFSET(ver);

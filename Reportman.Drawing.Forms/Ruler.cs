@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -8,17 +8,40 @@ namespace Reportman.Drawing.Forms
     /// <summary>
     /// Orientation of a <see cref="Ruler"/> control: drawn horizontally or vertically.
     /// </summary>
-    public enum RulerStyle { Horizontal, Vertical };
+    public enum RulerStyle
+    {
+        /// <summary>
+        /// Horizontal orientation.
+        /// </summary>
+        Horizontal,
+        /// <summary>
+        /// Vertical orientation.
+        /// </summary>
+        Vertical
+    };
     /// <summary>
     /// Border drawing mode of a <see cref="Ruler"/> control: a single-line border or no border.
     /// </summary>
-    public enum RulerBorder { Single, None };
+    public enum RulerBorder
+    {
+        /// <summary>
+        /// Draw a single-line border.
+        /// </summary>
+        Single,
+        /// <summary>
+        /// Do not draw a border.
+        /// </summary>
+        None
+    };
     /// <summary>
     /// A ruler control that draws a scaled measurement scale (in centimeters or inches) for use
     /// alongside a report design surface, honoring orientation, scale, colors and DPI.
     /// </summary>
     public class Ruler : Control
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Ruler"/> class, setting default colors, scale, border style, measurement units, and calculating the system DPI.
+        /// </summary>
         public Ruler()
         {
             InitializeComponent();
@@ -54,6 +77,9 @@ namespace Reportman.Drawing.Forms
         private int dpix;
         private int dpiy;
 
+        /// <summary>
+        /// Gets or sets the orientation style of the ruler control, determining whether it is drawn horizontally or vertically.
+        /// </summary>
         [DefaultValue(RulerStyle.Horizontal)]
         public RulerStyle Style
         {
@@ -71,6 +97,9 @@ namespace Reportman.Drawing.Forms
                 }
             }
         }
+        /// <summary>
+        /// Gets or sets the border style of the ruler control.
+        /// </summary>
         [DefaultValue(RulerBorder.Single)]
         public RulerBorder Border
         {
@@ -88,6 +117,9 @@ namespace Reportman.Drawing.Forms
                 }
             }
         }
+        /// <summary>
+        /// Gets or sets the scale factor applied to the ruler markings.
+        /// </summary>
         [DefaultValue(typeof(double), "1.0")]
         public double RulerScale
         {
@@ -107,6 +139,9 @@ namespace Reportman.Drawing.Forms
                 }
             }
         }
+        /// <summary>
+        /// Gets or sets the measurement unit (centimeters or inches) used for the ruler scale.
+        /// </summary>
         [DefaultValue(Units.Cms)]
         public Units Metrics
         {
@@ -124,6 +159,9 @@ namespace Reportman.Drawing.Forms
                 }
             }
         }
+        /// <summary>
+        /// Gets or sets the background color of the ruler control.
+        /// </summary>
         [DefaultValue(typeof(Color), "White")]
         public Color BackgroundColor
         {
@@ -141,6 +179,9 @@ namespace Reportman.Drawing.Forms
                 }
             }
         }
+        /// <summary>
+        /// Gets or sets the foreground color used to draw the ruler markings and labels.
+        /// </summary>
         [DefaultValue(typeof(Color), "Black")]
         public Color ForeGroundColor
         {
@@ -158,6 +199,10 @@ namespace Reportman.Drawing.Forms
                 }
             }
         }
+        /// <summary>
+        /// Paints the ruler control by drawing the pre-rendered bitmap containing the ruler scale onto the control surface.
+        /// </summary>
+        /// <param name="pe">A <see cref="PaintEventArgs"/> that contains the event data.</param>
         protected override void OnPaint(PaintEventArgs pe)
         {
             if (!bitmapvalid)
@@ -213,6 +258,19 @@ namespace Reportman.Drawing.Forms
             return aresult;
         }
 
+        /// <summary>
+        /// Paints the ruler markings, ticks, and numeric labels onto the specified graphics surface.
+        /// </summary>
+        /// <param name="gr">The <see cref="Graphics"/> context to draw on.</param>
+        /// <param name="Metrics">The measurement units to use (inches or centimeters).</param>
+        /// <param name="Scale">The scaling factor to apply to the drawing.</param>
+        /// <param name="Style">The orientation of the ruler (horizontal or vertical).</param>
+        /// <param name="brush">The brush used for drawing the text labels.</param>
+        /// <param name="pen">The pen used for drawing the ticks and border.</param>
+        /// <param name="font">The font to use for drawing the numbers.</param>
+        /// <param name="rect">The bounding rectangle within which the ruler should be drawn.</param>
+        /// <param name="dpix">The horizontal DPI of the destination device.</param>
+        /// <param name="dpiy">The vertical DPI of the destination device.</param>
         public static void PaintRuler(Graphics gr, Units Metrics, double Scale, RulerStyle Style,
             Brush brush, Pen pen, Font font, Rectangle rect, int dpix, int dpiy)
         {

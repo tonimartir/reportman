@@ -1,4 +1,4 @@
-﻿#region Copyright
+#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -54,8 +54,17 @@ namespace Reportman.Reporting
         /// </summary>
         public delegate bool CreateTableEvent(object sender, DataTable xtable);
 
+        /// <summary>
+        /// Gets or sets the event delegate invoked after a record has been fetched.
+        /// </summary>
         public UpdateDataEvent OnUpdateData;
+        /// <summary>
+        /// Gets or sets the asynchronous event delegate invoked after a record has been fetched.
+        /// </summary>
         public UpdateDataEventAsync OnUpdateDataAsync;
+        /// <summary>
+        /// Gets or sets the event delegate invoked to decide whether to populate all rows in memory.
+        /// </summary>
         public CreateTableEvent OnCreateTable;
 
         private bool FEof;
@@ -67,11 +76,20 @@ namespace Reportman.Reporting
         private DataView FCurrentView;
         private DataRowView[] CurrentRowSet;
         private object[] FViewFilter;
+        /// <summary>
+        /// The list of column size values keyed by column name.
+        /// </summary>
         public SortedList<string, int> ColumnSizes;
+        /// <summary>
+        /// Initializes a new instance of the ReportDataset class.
+        /// </summary>
         public ReportDataset()
         {
             ColumnSizes = new SortedList<string, int>();
         }
+        /// <summary>
+        /// Gets the number of records currently loaded or cached in the reader/view.
+        /// </summary>
         public int CurrentRowCount
         {
             get
@@ -351,6 +369,9 @@ namespace Reportman.Reporting
                 }
             }
         }
+        /// <summary>
+        /// Gets or sets the current filter values applied to filter the current view source.
+        /// </summary>
         public object[] ViewFilter
         {
             get { return FViewFilter; }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Data;
 using System.Windows.Forms;
 
@@ -14,12 +14,22 @@ namespace Reportman.Drawing.Forms
         private bool working;
         private DataTable tfiles;
         private bool compareDates;
+        /// <summary>
+        /// Initializes a new instance of the UpdateForm dialog.
+        /// </summary>
         public UpdateForm()
         {
             InitializeComponent();
             larchivo.Text = "";
             lkbytes.Text = "";
         }
+        /// <summary>
+        /// Instantiates and shows the update form modally, initiating the file update process.
+        /// </summary>
+        /// <param name="FilePath">The path where update files are stored.</param>
+        /// <param name="files">A table containing the file list metadata to be updated.</param>
+        /// <param name="DoBackup">Whether to back up existing files before replacing them.</param>
+        /// <param name="compareDates">Whether to compare timestamps to only replace older files.</param>
         public static void DoUpdate(string FilePath, DataTable files, bool DoBackup, bool compareDates)
         {
             using (UpdateForm ndia = new UpdateForm())
@@ -31,6 +41,9 @@ namespace Reportman.Drawing.Forms
                 ndia.ShowDialog();
             }
         }
+        /// <summary>
+        /// Executes the update process asynchronously on the files collection, reporting progress callback events.
+        /// </summary>
         public void PerformUpdate()
         {
             CopyProgress nevent = new CopyProgress(CopyProgress);
@@ -59,6 +72,15 @@ namespace Reportman.Drawing.Forms
                 Close();
             }
         }
+        /// <summary>
+        /// Callback handler raised by the Updater to report file-level and byte-level copy progress.
+        /// </summary>
+        /// <param name="filename">The name of the file currently being copied.</param>
+        /// <param name="file">The 0-based index of the current file.</param>
+        /// <param name="filecount">The total number of files to copy.</param>
+        /// <param name="position">The current byte offset copied for the current file.</param>
+        /// <param name="size">The total byte size of the current file.</param>
+        /// <param name="docancel">Passed by reference; set to true to abort the copy operation.</param>
         public void CopyProgress(string filename, int file,
          int filecount, int position, int size, ref bool docancel)
         {

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,6 +34,9 @@ namespace Reportman.WPF
         Pen stock_backpen = null;
         Color stock_backbrushcolor;
         PrintOutPDF npdfdriver;
+        /// <summary>
+        /// Initializes a new instance of the PreviewWPF control.
+        /// </summary>
         public PreviewWPF()
         {
             InitializeComponent();
@@ -90,6 +93,10 @@ namespace Reportman.WPF
                 InvalidateVisual();
             }
         }
+        /// <summary>
+        /// Draws the current page of the metafile onto the control's visual surface.
+        /// </summary>
+        /// <param name="drawingContext">The drawing instructions context.</param>
         protected override void OnRender(DrawingContext drawingContext)
         {
             if (this.ActualWidth <= 0)
@@ -161,6 +168,11 @@ namespace Reportman.WPF
                 return stock_font;
             }
         }
+        /// <summary>
+        /// Reconstructs a Media Color object from a packed RGB integer.
+        /// </summary>
+        /// <param name="aint">The packed RGB color integer.</param>
+        /// <returns>A WPF Color structure.</returns>
         public static Color ColorFromInteger(int aint)
         {
             byte r = (byte)(aint);
@@ -276,8 +288,9 @@ namespace Reportman.WPF
                     }
                     // Text justify is implemented separaterly
                     TextObjectStruct nstruc = TextObjectStruct.FromMetaObjectText(page, objt);
+                    double pixelsPerDip = VisualTreeHelper.GetDpi(this).PixelsPerDip;
                     FormattedText nformat = new FormattedText(atext,System.Globalization.CultureInfo.CurrentCulture,FlowDirection.LeftToRight,
-                        stock_font,stock_fontsize,stock_brush);
+                        stock_font,stock_fontsize,stock_brush, pixelsPerDip);
                     TextDecorationCollection ncollection = null;
                     if ((objt.FontStyle & 4) > 0)
                         ncollection = TextDecorations.Underline;

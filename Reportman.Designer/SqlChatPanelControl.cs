@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -20,6 +20,12 @@ namespace Reportman.Designer
     /// </summary>
     public class SqlSchemaContextChangedEventArgs : EventArgs
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlSchemaContextChangedEventArgs"/> class.
+        /// </summary>
+        /// <param name="hubDatabaseId">The hub database identifier.</param>
+        /// <param name="hubSchemaId">The hub schema identifier.</param>
+        /// <param name="apiKey">The API key.</param>
         public SqlSchemaContextChangedEventArgs(long hubDatabaseId, long hubSchemaId, string apiKey)
         {
             HubDatabaseId = hubDatabaseId;
@@ -27,8 +33,17 @@ namespace Reportman.Designer
             ApiKey = apiKey ?? "";
         }
 
+        /// <summary>
+        /// Gets the hub database identifier.
+        /// </summary>
         public long HubDatabaseId { get; private set; }
+        /// <summary>
+        /// Gets the hub schema identifier.
+        /// </summary>
         public long HubSchemaId { get; private set; }
+        /// <summary>
+        /// Gets the API key.
+        /// </summary>
         public string ApiKey { get; private set; }
     }
 
@@ -69,13 +84,25 @@ namespace Reportman.Designer
         private string _baseApiKey = "";
         private string _runtimeDb = "";
 
+        /// <summary>
+        /// Event raised when a SQL suggestion should be applied to the editor.
+        /// </summary>
         public event EventHandler<string> ApplySuggestion;
+        /// <summary>
+        /// Event raised when the selected database, schema, or API key changes.
+        /// </summary>
         public event EventHandler<SqlSchemaContextChangedEventArgs> SchemaContextChanged;
 
+        /// <summary>
+        /// Gets or sets the provider func that retrieves the current SQL text from the editor.
+        /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Func<Task<string>> CurrentSqlProvider { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlChatPanelControl"/> class, configuring subcomponents, layout, and event handlers.
+        /// </summary>
         public SqlChatPanelControl()
         {
             InitializeComponent();
@@ -100,6 +127,10 @@ namespace Reportman.Designer
             };
         }
 
+        /// <summary>
+        /// Disposes the resources used by the control.
+        /// </summary>
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -283,6 +314,11 @@ namespace Reportman.Designer
             _netLogView?.EnsureInitialized();
         }
 
+        /// <summary>
+        /// Initializes or resets the panel with the current SQL context and an initial welcome/help message.
+        /// </summary>
+        /// <param name="currentSql">The current SQL text present in the editor.</param>
+        /// <param name="initialAssistantMessage">The initial text to show from the AI assistant.</param>
         public void Initialize(string currentSql, string initialAssistantMessage)
         {
             _currentSql = currentSql ?? "";
@@ -297,16 +333,34 @@ namespace Reportman.Designer
             UpdateButtons();
         }
 
+        /// <summary>
+        /// Updates the current SQL text context.
+        /// </summary>
+        /// <param name="sql">The current SQL text.</param>
         public void SetCurrentSql(string sql)
         {
             _currentSql = sql ?? "";
         }
 
+        /// <summary>
+        /// Sets the hub database and schema context for AI calls.
+        /// </summary>
+        /// <param name="hubDatabaseId">The hub database identifier.</param>
+        /// <param name="hubSchemaId">The hub schema identifier.</param>
+        /// <param name="apiKey">The API key used for requests.</param>
+        /// <param name="runtimeDb">The runtime database name.</param>
         public void SetHubContext(long hubDatabaseId, long hubSchemaId, string apiKey, string runtimeDb)
         {
             SetBaseConnectionContext(hubDatabaseId, hubSchemaId, apiKey, runtimeDb);
         }
 
+        /// <summary>
+        /// Sets the base connection context details.
+        /// </summary>
+        /// <param name="hubDatabaseId">The hub database identifier.</param>
+        /// <param name="hubSchemaId">The hub schema identifier.</param>
+        /// <param name="apiKey">The API key.</param>
+        /// <param name="runtimeDb">The runtime database name.</param>
         public void SetBaseConnectionContext(long hubDatabaseId, long hubSchemaId, string apiKey, string runtimeDb)
         {
             _baseHubDatabaseId = hubDatabaseId;
@@ -318,6 +372,12 @@ namespace Reportman.Designer
             _schemaSelector.RefreshSchemas();
         }
 
+        /// <summary>
+        /// Sets the context for the selected schema.
+        /// </summary>
+        /// <param name="hubDatabaseId">The hub database identifier.</param>
+        /// <param name="hubSchemaId">The hub schema identifier.</param>
+        /// <param name="apiKey">The API key.</param>
         public void SetSelectedSchemaContext(long hubDatabaseId, long hubSchemaId, string apiKey)
         {
             _schemaSelector.SetHubContext(hubDatabaseId, hubSchemaId, apiKey ?? "");

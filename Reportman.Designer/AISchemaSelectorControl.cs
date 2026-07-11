@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -23,12 +23,27 @@ namespace Reportman.Designer
         private long _preferredConnectionHubDatabaseId;
         private string _preferredConnectionApiKey = "";
 
+        /// <summary>
+        /// Occurs when the selected schema is changed.
+        /// </summary>
         public event EventHandler SchemaChanged;
 
+        /// <summary>
+        /// Gets the identifier of the database currently selected.
+        /// </summary>
         public long HubDatabaseId { get; private set; }
+        /// <summary>
+        /// Gets the identifier of the schema currently selected.
+        /// </summary>
         public long HubSchemaId { get; private set; }
+        /// <summary>
+        /// Gets the API key associated with the selected schema.
+        /// </summary>
         public string SchemaApiKey { get; private set; } = "";
 
+        /// <summary>
+        /// Initializes a new instance of the AISchemaSelectorControl class.
+        /// </summary>
         public AISchemaSelectorControl()
         {
             InitializeComponent();
@@ -148,15 +163,19 @@ namespace Reportman.Designer
             }
         }
 
+        /// <summary>
+        /// Triggers a refresh of the schema list from the registry config.
+        /// </summary>
         public void RefreshSchemas()
         {
             LoadSchemasAsync();
         }
 
         /// <summary>
-        /// Apply loaded schemas to the combo. Called by AIChatPanelControl after loading.
-        /// Format: "DisplayName=hubDatabaseId|hubSchemaId" or "DisplayName=hubDatabaseId|hubSchemaId|apiKey"
+        /// Populates the schema list combo box with a list of schema names.
+        /// Format of elements: "DisplayName=hubDatabaseId|hubSchemaId" or "DisplayName=hubDatabaseId|hubSchemaId|apiKey"
         /// </summary>
+        /// <param name="schemas">The list of schema name strings to apply.</param>
         public void ApplySchemas(List<string> schemas)
         {
             long previousHubDatabaseId = HubDatabaseId;
@@ -207,12 +226,23 @@ namespace Reportman.Designer
             ApplySelectedSchema();
         }
 
+        /// <summary>
+        /// Sets preferred connection parameters to auto-select schema context.
+        /// </summary>
+        /// <param name="hubDatabaseId">The preferred database identifier.</param>
+        /// <param name="apiKey">The API key of the connection.</param>
         public void SetPreferredConnection(long hubDatabaseId, string apiKey = "")
         {
             _preferredConnectionHubDatabaseId = hubDatabaseId;
             _preferredConnectionApiKey = (apiKey ?? "").Trim();
         }
 
+        /// <summary>
+        /// Configures the active database and schema identifiers.
+        /// </summary>
+        /// <param name="hubDatabaseId">The active database identifier.</param>
+        /// <param name="hubSchemaId">The active schema identifier.</param>
+        /// <param name="apiKey">The active connection API key.</param>
         public void SetHubContext(long hubDatabaseId, long hubSchemaId, string apiKey = "")
         {
             _preferredHubDatabaseId = hubDatabaseId;

@@ -27,7 +27,6 @@ namespace Reportman.Drawing.Forms
         Image OriginalImage;
         System.IO.MemoryStream NewImageStream;
         System.IO.MemoryStream OriginalImageStream;
-        bool Modified = false;
         /// <summary>
         /// Loads the original image from the supplied stream, populates the dialog controls
         /// with the image dimensions and format, and optionally scales the image down to

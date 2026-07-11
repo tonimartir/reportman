@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -38,6 +38,9 @@ namespace Reportman.Designer
         private bool _showGauge = true;
 
         // Events
+        /// <summary>
+        /// Occurs when the user requests to stop the running inference.
+        /// </summary>
         public event EventHandler StopRequested;
 
         private sealed class ProgressTokenEntry
@@ -48,6 +51,9 @@ namespace Reportman.Designer
             public int PrefillPercent;
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether to show the credit gauge.
+        /// </summary>
         [System.ComponentModel.Browsable(false)]
         [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public bool ShowGauge
@@ -63,6 +69,9 @@ namespace Reportman.Designer
             }
         }
 
+        /// <summary>
+        /// Gets the selected AI agent tier (Standard, Precision, or LocalAgent).
+        /// </summary>
         public string SelectedTier
         {
             get
@@ -73,11 +82,17 @@ namespace Reportman.Designer
             }
         }
 
+        /// <summary>
+        /// Gets the selected AI agent execution mode (Fast or Reasoning).
+        /// </summary>
         public string SelectedMode
         {
             get { return _comboMode.SelectedIndex == 1 ? "Reasoning" : "Fast"; }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AISelectionControl"/> class, creating both normal and inference controls and layout panels.
+        /// </summary>
         public AISelectionControl()
         {
             InitializeComponent();
@@ -247,6 +262,10 @@ namespace Reportman.Designer
             }
         }
 
+        /// <summary>
+        /// Touches a progress token, ensuring it is tracked in the dictionary and UI.
+        /// </summary>
+        /// <param name="progressId">The unique identifier of the progress token.</param>
         public void TouchProgressToken(string progressId)
         {
             if (InvokeRequired)
@@ -263,6 +282,10 @@ namespace Reportman.Designer
             }
         }
 
+        /// <summary>
+        /// Finishes and removes a progress token, refreshing the UI totals.
+        /// </summary>
+        /// <param name="progressId">The unique identifier of the progress token.</param>
         public void FinishProgressToken(string progressId)
         {
             if (InvokeRequired)
@@ -287,6 +310,13 @@ namespace Reportman.Designer
             UpdateTokens(tokensIn, tokensOut, "", 0);
         }
 
+        /// <summary>
+        /// Updates the token counts and prefill percentage for a specific progress token ID.
+        /// </summary>
+        /// <param name="tokensIn">The number of input tokens.</param>
+        /// <param name="tokensOut">The number of output tokens.</param>
+        /// <param name="progressId">The unique identifier of the progress token.</param>
+        /// <param name="prefillPercent">The prefill progress percentage.</param>
         public void UpdateTokens(int tokensIn, int tokensOut, string progressId, int prefillPercent = 0)
         {
             if (InvokeRequired)
@@ -466,6 +496,10 @@ namespace Reportman.Designer
                 g.DrawArc(arcPen, rect, _spinnerAngle, 90);
         }
 
+        /// <summary>
+        /// Releases the resources used by the control, disposing the spinner timer.
+        /// </summary>
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -521,8 +555,14 @@ namespace Reportman.Designer
                 _comboProvider.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Gets the number of registered agent endpoints.
+        /// </summary>
         public int AgentEndpointCount { get { return _agentEndpoints.Count; } }
 
+        /// <summary>
+        /// Gets the unique identifier of the selected agent AI.
+        /// </summary>
         public long AgentAiId
         {
             get
@@ -534,6 +574,9 @@ namespace Reportman.Designer
             }
         }
 
+        /// <summary>
+        /// Gets the API secret of the selected agent.
+        /// </summary>
         public string AgentSecret
         {
             get

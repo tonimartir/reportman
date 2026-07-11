@@ -1,4 +1,4 @@
-﻿#region Copyright
+#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -197,6 +197,11 @@ namespace Reportman.Drawing
             }
         }
 
+        /// <summary>
+        /// Serializes a DataSet structure and its row records to a binary Stream.
+        /// </summary>
+        /// <param name="ndata">The DataSet to serialize.</param>
+        /// <param name="nstream">The output Stream.</param>
         public static void SerializeDataSetToStream(DataSet ndata,Stream nstream)
         {
             BinaryWriter nwriter = new BinaryWriter(nstream);
@@ -254,6 +259,11 @@ namespace Reportman.Drawing
             }
 
         }
+        /// <summary>
+        /// Serializes a DataSet into a custom binary layout held in a MemoryStream.
+        /// </summary>
+        /// <param name="ndata">The DataSet to serialize.</param>
+        /// <returns>A MemoryStream containing the serialized binary representation.</returns>
         public static MemoryStream SerializeDataSet(DataSet ndata)
         {
             MemoryStream nstream = new MemoryStream();
@@ -566,6 +576,12 @@ namespace Reportman.Drawing
                 nstream.Write(abuf, 0, 2);
             }
         }
+        /// <summary>
+        /// Reads a UTF-8 encoded string from a byte array starting at the specified index, updating the index parameter.
+        /// </summary>
+        /// <param name="nbytes">The source byte array.</param>
+        /// <param name="index">The 0-based index pointer to read from, updated upon return.</param>
+        /// <returns>The decoded string.</returns>
         public static string ReadString(byte[] nbytes, ref int index)
         {
             int alen = StreamUtil.ByteArrayToInt(nbytes, index, 4);
@@ -592,6 +608,11 @@ namespace Reportman.Drawing
                       }
                       return nbuilder.ToString();*/
         }
+        /// <summary>
+        /// Validates if the given byte array represents a valid FastSerializer binary stream by checking its signature header.
+        /// </summary>
+        /// <param name="nbytes">The byte array to check.</param>
+        /// <returns>True if the signature header matches; otherwise, false.</returns>
         public static bool IsFastSerialized(byte[] nbytes)
         {
             if (nbytes.Length < 8)
@@ -602,6 +623,11 @@ namespace Reportman.Drawing
                 return true;
 
         }
+        /// <summary>
+        /// Deserializes a DataSet from a FastSerializer byte array payload.
+        /// </summary>
+        /// <param name="nbytes">The byte array payload to deserialize.</param>
+        /// <returns>The reconstructed DataSet.</returns>
         public static DataSet DeSerializeDataSet(byte[] nbytes)
         {
             BinaryReader nreader = new BinaryReader(new MemoryStream(nbytes));
@@ -667,6 +693,11 @@ namespace Reportman.Drawing
             }
             return ndataset;
         }
+        /// <summary>
+        /// Reads a UTF-8 encoded string from a BinaryReader.
+        /// </summary>
+        /// <param name="nreader">The source BinaryReader.</param>
+        /// <returns>The decoded string.</returns>
         public static string ReadString(BinaryReader nreader)
         {
             byte[] nbytes = nreader.ReadBytes(4);
@@ -807,6 +838,11 @@ namespace Reportman.Drawing
             //  nstream.Write(nres, 0, nres.Length);
         }
 
+        /// <summary>
+        /// Deserializes a DataSet from a binary Stream layout representation.
+        /// </summary>
+        /// <param name="nsource">The source Stream to read from.</param>
+        /// <returns>The reconstructed DataSet.</returns>
         public static DataSet DeSerializeDataSet(Stream nsource)
         {
             BinaryReader nreader = new BinaryReader(nsource);

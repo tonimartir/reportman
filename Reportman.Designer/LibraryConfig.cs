@@ -1,4 +1,4 @@
-﻿using Reportman.Drawing;
+using Reportman.Drawing;
 using Reportman.Reporting;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,13 @@ namespace Reportman.Designer
     /// </summary>
     public partial class LibraryConfig : UserControl
     {
+        /// <summary>
+        /// The collection of report library configurations.
+        /// </summary>
         public ReportLibraryConfigCollection config = new ReportLibraryConfigCollection();
+        /// <summary>
+        /// Initializes a new instance of the LibraryConfig control, populating the driver options and translating static labels.
+        /// </summary>
         public LibraryConfig()
         {
             InitializeComponent();
@@ -67,6 +73,9 @@ namespace Reportman.Designer
             p.Controls.Add(l);
             Controls.Add(p);
         }
+        /// <summary>
+        /// Populates the providers combo box with installed database provider factories and custom AI agent engines.
+        /// </summary>
         public void FillProviders()
         {
             comboProvider.Items.Clear();
@@ -85,6 +94,9 @@ namespace Reportman.Designer
             }
         }
 
+        /// <summary>
+        /// Binds the UI controls to the loaded report library configuration datasource.
+        /// </summary>
         public void Initialize()
         {
             this.bindingSource1.CurrentChanged += BindingSource1_CurrentChanged;
@@ -115,6 +127,9 @@ namespace Reportman.Designer
             bconnect.Enabled = bindingSource1.Current != null;
         }
 
+        /// <summary>
+        /// Saves the library configurations to the configuration file path.
+        /// </summary>
         public void Save()
         {
             string configFilePath = ReportLibraryConfig.GetConfigFilename();

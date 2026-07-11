@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -160,6 +160,15 @@ namespace Reportman.Drawing
             return tarea.Result;
         }
 
+        /// <summary>
+        /// Asynchronously compares candidate files against installed ones (optionally using hash lookups) to decide which require updating.
+        /// </summary>
+        /// <param name="files">Table containing the candidate file rows.</param>
+        /// <param name="filesdir">Root directory for resolving full paths.</param>
+        /// <param name="copycontent">When true, reads file streams into the STREAM column.</param>
+        /// <param name="olderHashes">Hashes of currently installed files.</param>
+        /// <param name="updatedHashes">Hashes of candidate files.</param>
+        /// <returns>A task representing the operation, returning the filtered DataTable.</returns>
         public static async System.Threading.Tasks.Task<DataTable> GetModifiedFilesAsync(DataTable files, string filesdir, 
             bool copycontent, SortedList<string, FileHash> olderHashes, SortedList<string, FileHash> updatedHashes)
         {
@@ -220,6 +229,10 @@ namespace Reportman.Drawing
             }
             return xtable;
         }
+        /// <summary>
+        /// Creates a new DataTable schema configured with columns for tracking file paths, streams, and modification dates.
+        /// </summary>
+        /// <returns>A configured DataTable instance.</returns>
         public static DataTable CreateFilesTable()
         {
             DataTable xtable = new DataTable();
@@ -233,6 +246,13 @@ namespace Reportman.Drawing
             xtable.Constraints.Add("PRIMPATH", xtable.Columns[0], true);
             return xtable;
         }
+        /// <summary>
+        /// Recursively scans a source directory and populates the provided files table with file metadata.
+        /// </summary>
+        /// <param name="xtable">The target files table to populate.</param>
+        /// <param name="sourcedir">The physical source folder to scan.</param>
+        /// <param name="subdir">The relative subfolder prefix for file paths.</param>
+        /// <param name="copycontent">If true, reads and stores the raw bytes of each scanned file.</param>
         public void FillFiles(DataTable xtable, string sourcedir, string subdir, bool copycontent)
         {
             string[] nfilescontent = Directory.GetFiles(sourcedir, "*.*", SearchOption.AllDirectories);
@@ -286,6 +306,12 @@ namespace Reportman.Drawing
                 }
             }
         }
+        /// <summary>
+        /// Scans a source directory and returns a files table containing metadata for all files found.
+        /// </summary>
+        /// <param name="sourcedir">The folder to scan.</param>
+        /// <param name="copycontent">If true, reads and stores the raw bytes of each file.</param>
+        /// <returns>A DataTable containing files metadata.</returns>
         public DataTable GetFiles(string sourcedir, bool copycontent)
         {
             DataTable xtable = CreateFilesTable();
@@ -300,6 +326,10 @@ namespace Reportman.Drawing
             }
             return xtable;
         }
+        /// <summary>
+        /// Replaces currently installed files with the update files specified in the table, optionally creating backups.
+        /// </summary>
+        /// <param name="files">A table containing the replacement files and their streams.</param>
         public void Update(DataTable files)
         {
             if (files == null)

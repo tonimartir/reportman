@@ -1,4 +1,4 @@
-﻿using Reportman.Drawing;
+using Reportman.Drawing;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -49,8 +49,17 @@ namespace Reportman.Reporting
                 SQLExplanationError = string.Empty;
             }
         }
+        /// <summary>
+        /// Gets or sets the natural language explanation for the SQL query.
+        /// </summary>
         public string SQLExplanation { get; set; }
+        /// <summary>
+        /// Gets or sets the error message if the query explanation fails.
+        /// </summary>
         public string SQLExplanationError { get; set; }
+        /// <summary>
+        /// Gets or sets the database hub schema identifier.
+        /// </summary>
         public long HubSchemaId { get; set; }
         /// <summary>A master dataset can be assigned so the query is executed each time the parameters of the
         /// query change, the parameters with the same name as master dataset fields will be checked</summary>
@@ -96,6 +105,9 @@ namespace Reportman.Reporting
 		public System.Data.IDbCommand Command;
         /// <summary>Set this property to override the sql sentence at runtime, set is before executing the report</summary>
         public string SQLOverride;
+        /// <summary>
+        /// Gets or sets an optional DataView override used to supply custom data at runtime.
+        /// </summary>
         public DataView DataViewOverride;
         /// <summary>
         /// Free resources
@@ -111,6 +123,10 @@ namespace Reportman.Reporting
             // TODO: Check for assigned connections and dispose them
             // That is check if they implements IDisposable and call Dispose()
         }
+        /// <summary>
+        /// Gets the class name identifier for the ReportItem serialization.
+        /// </summary>
+        /// <returns>A string identifier.</returns>
         protected override string GetClassName()
         {
             return "TRPDATAINFOITEM";
@@ -163,7 +179,6 @@ namespace Reportman.Reporting
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="rp">The owner</param>
         public DataInfo()
             : base()
         {
@@ -213,6 +228,9 @@ namespace Reportman.Reporting
                 StreamUtil.SWriteLine(astream, Data.Columns[i].MaxLength.ToString());
             }
         }
+        /// <summary>
+        /// Positions the dataset memory view cursor back to the first record.
+        /// </summary>
         public void GoFirstMem()
         {
             if (Data.CurrentView == null)
@@ -801,6 +819,9 @@ namespace Reportman.Reporting
                 Data.CurrentReader = null;
             }
         }
+        /// <summary>
+        /// Detaches and clears the memory view source from the dataset, freeing it for disconnection.
+        /// </summary>
         public void DisConnectMem()
         {
 

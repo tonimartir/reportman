@@ -45,8 +45,8 @@ namespace Reportman.Drawing
         /// <summary>
         /// Returns number of twips from a scaled pixels measure (uses screen pixels per inch)
         /// </summary>
-        /// <param name="twips"></param>
-        /// <param name="scale"></param>
+        /// <param name="pixels">Scaled pixels to convert</param>
+        /// <param name="scale">Scale factor</param>
         /// <returns></returns>
         public static int PixelsToTwips(int pixels, double scale)
         {
@@ -110,7 +110,6 @@ namespace Reportman.Drawing
         /// <param name="npoint"></param>
         /// <param name="gridx"></param>
         /// <param name="gridy"></param>
-        /// <param name="scale"></param>
         /// <returns></returns>
         public static Point AlignToGridTwips(Point npoint, int gridx, int gridy)
         {

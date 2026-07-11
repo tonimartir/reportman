@@ -1,4 +1,4 @@
-﻿#region Copyright
+#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -29,11 +29,32 @@ namespace Reportman.Drawing
     /// </summary>
 	public static class PrintOutCSV
     {
+        /// <summary>
+        /// Exports the specified pages of a <see cref="MetaFile"/> into a CSV string using default precision.
+        /// </summary>
+        /// <param name="nmeta">The <see cref="MetaFile"/> to export.</param>
+        /// <param name="allpages">A value indicating whether to export all pages, ignoring the page range limits.</param>
+        /// <param name="frompage">The starting 1-based page index to export (inclusive).</param>
+        /// <param name="topage">The ending 1-based page index to export (inclusive).</param>
+        /// <param name="separator">The field separator string (e.g. comma or semicolon).</param>
+        /// <param name="delimiter">The text qualifier character (e.g. double quotes).</param>
+        /// <returns>A CSV formatted string containing the text content of the pages.</returns>
         public static string ExportToCSV(MetaFile nmeta,
              bool allpages, int frompage, int topage, string separator, char delimiter)
         {
             return ExportToCSV(nmeta, allpages, frompage, topage, separator, delimiter, 10);
         }
+        /// <summary>
+        /// Exports the specified pages of a <see cref="MetaFile"/> into a CSV string using a custom precision.
+        /// </summary>
+        /// <param name="nmeta">The <see cref="MetaFile"/> to export.</param>
+        /// <param name="allpages">A value indicating whether to export all pages, ignoring the page range limits.</param>
+        /// <param name="frompage">The starting 1-based page index to export (inclusive).</param>
+        /// <param name="topage">The ending 1-based page index to export (inclusive).</param>
+        /// <param name="separator">The field separator string (e.g. comma or semicolon).</param>
+        /// <param name="delimiter">The text qualifier character (e.g. double quotes).</param>
+        /// <param name="precision">The horizontal alignment grid precision factor (greater values group elements into columns more broadly).</param>
+        /// <returns>A CSV formatted string containing the text content of the pages.</returns>
         public static string ExportToCSV(MetaFile nmeta,
              bool allpages, int frompage, int topage, string separator, char delimiter, int precision)
         {
@@ -131,18 +152,75 @@ namespace Reportman.Drawing
             /// <summary>
             /// Horizontal alignment of a text cell: left, right, or centered.
             /// </summary>
-            public enum AlignmentType { Left, Right, Center };
+            public enum AlignmentType
+            {
+                /// <summary>
+                /// Left aligned text.
+                /// </summary>
+                Left,
+                /// <summary>
+                /// Right aligned text.
+                /// </summary>
+                Right,
+                /// <summary>
+                /// Centered text.
+                /// </summary>
+                Center
+            };
+            /// <summary>
+            /// Gets or sets the horizontal alignment of the text cell.
+            /// </summary>
             public AlignmentType Alignment;
+            /// <summary>
+            /// Gets or sets the font size of the text cell in points.
+            /// </summary>
             public float FontSize;
+            /// <summary>
+            /// Gets or sets the font family name of the text cell.
+            /// </summary>
             public string FamilyName;
             /// <summary>
             /// Bit flags describing font styling: bold, underline, italic, and strikethrough.
             /// </summary>
             [Flags]
-            public enum FontStyle { Bold = 1, Underline = 2, Italic = 4, Strikethrough = 8 };
+            public enum FontStyle
+            {
+                /// <summary>
+                /// Bold font style.
+                /// </summary>
+                Bold = 1,
+                /// <summary>
+                /// Underlined font style.
+                /// </summary>
+                Underline = 2,
+                /// <summary>
+                /// Italicized font style.
+                /// </summary>
+                Italic = 4,
+                /// <summary>
+                /// Struck-through font style.
+                /// </summary>
+                Strikethrough = 8
+            };
+            /// <summary>
+            /// Gets or sets the font style flags (such as Bold, Italic, Underline) for the text cell.
+            /// </summary>
             public FontStyle Style;
+            /// <summary>
+            /// Gets or sets the integer ARGB/color representation of the text cell's font.
+            /// </summary>
             public int FontColor;
         }
+        /// <summary>
+        /// Exports the specified pages of a <see cref="MetaFile"/> to a tabular grid structure represented as list of lists, capturing optional text formatting metrics.
+        /// </summary>
+        /// <param name="nmeta">The <see cref="MetaFile"/> to export.</param>
+        /// <param name="allpages">A value indicating whether to export all pages, ignoring the page range limits.</param>
+        /// <param name="frompage">The starting 1-based page index to export (inclusive).</param>
+        /// <param name="topage">The ending 1-based page index to export (inclusive).</param>
+        /// <param name="precision">The horizontal alignment grid precision factor.</param>
+        /// <param name="formats">An optional list structure to receive style format information matching each exported cell.</param>
+        /// <returns>A list of list rows containing cell values.</returns>
         public static List<IList<object>> ExportToArray(MetaFile nmeta,
              bool allpages, int frompage, int topage, int precision, List<List<TextFormat>> formats)
         {

@@ -1,4 +1,4 @@
-﻿using Reportman.Drawing;
+using Reportman.Drawing;
 using Reportman.Drawing.Forms;
 using Reportman.Reporting;
 using System;
@@ -16,8 +16,34 @@ namespace Reportman.Designer
     /// </summary>
     public enum ObjectInspectorCellType
     {
-        Text, Expression, Integer, Decimal, Boolean, DropDown, DropDownList, Color, Image, FontName, FontStyle, SQL,
-        ConnectionString, MultilineText
+        /// <summary>Plain text input.</summary>
+        Text,
+        /// <summary>Report expression editor.</summary>
+        Expression,
+        /// <summary>Integer numeric input.</summary>
+        Integer,
+        /// <summary>Decimal numeric input.</summary>
+        Decimal,
+        /// <summary>Boolean checkbox input.</summary>
+        Boolean,
+        /// <summary>Editable drop-down combo box.</summary>
+        DropDown,
+        /// <summary>Non-editable drop-down list.</summary>
+        DropDownList,
+        /// <summary>Color picker.</summary>
+        Color,
+        /// <summary>Image picker.</summary>
+        Image,
+        /// <summary>Font name selector with dialog.</summary>
+        FontName,
+        /// <summary>Font style selector with dialog.</summary>
+        FontStyle,
+        /// <summary>SQL editor with dialog.</summary>
+        SQL,
+        /// <summary>Connection string editor with dialog.</summary>
+        ConnectionString,
+        /// <summary>Multiline text editor with dialog.</summary>
+        MultilineText
     };
 
     /// <summary>
@@ -26,11 +52,20 @@ namespace Reportman.Designer
     /// </summary>
     public class ObjectInspectorColumn : DataGridViewColumn
     {
+        /// <summary>
+        /// Reference to the main designer frame.
+        /// </summary>
         public FrameMainDesigner FrameMain;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ObjectInspectorColumn"/> class.
+        /// </summary>
         public ObjectInspectorColumn()
             : base(new ObjectInspectorCell())
         {
         }
+        /// <summary>
+        /// Gets or sets the template used to model cell appearance and behavior.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override DataGridViewCell CellTemplate
         {
@@ -68,6 +103,9 @@ namespace Reportman.Designer
         private EllipsisClick ClickConnectionStringEvent;
         private EllipsisClick ClickMultilineTextEvent;
         private EventHandler ClickFontStyleEvent;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ObjectInspectorCell"/> class.
+        /// </summary>
         public ObjectInspectorCell()
             : base()
         {
@@ -86,11 +124,18 @@ namespace Reportman.Designer
             //DataGridView.EndEdit();
             //((DataTable)DataGridView.DataSource).AcceptChanges();
         }
+        /// <summary>
+        /// Gets the main designer frame hosting this cell.
+        /// </summary>
+        /// <returns>The <see cref="FrameMainDesigner"/> reference.</returns>
         public FrameMainDesigner GetMainDesigner()
         {
             FrameMainDesigner ndia = ((ObjectInspectorColumn)OwningColumn).FrameMain;
             return ndia;
         }
+        /// <summary>
+        /// Detaches the editing control from the cell, removing event handlers.
+        /// </summary>
         public override void DetachEditingControl()
         {
             if (DataGridView.EditingControl is DataGridViewComboBoxEditingControl)
@@ -99,6 +144,12 @@ namespace Reportman.Designer
             }
             base.DetachEditingControl();
         }
+        /// <summary>
+        /// Initializes the editing control hosted by the cell based on its type and value.
+        /// </summary>
+        /// <param name="rowIndex">The row index of the cell being edited.</param>
+        /// <param name="initialFormattedValue">The initial formatted value.</param>
+        /// <param name="dataGridViewCellStyle">The style of the cell.</param>
         public override void InitializeEditingControl(int rowIndex, object
             initialFormattedValue, DataGridViewCellStyle dataGridViewCellStyle)
         {
@@ -478,6 +529,9 @@ namespace Reportman.Designer
             }
         }
 
+        /// <summary>
+        /// Gets the type of the editing control hosted by this cell.
+        /// </summary>
         public override Type EditType
         {
             get
@@ -531,6 +585,9 @@ namespace Reportman.Designer
             }
         }
 
+        /// <summary>
+        /// Gets the type of the value formatted by this cell.
+        /// </summary>
         public override Type ValueType
         {
             get
@@ -540,6 +597,9 @@ namespace Reportman.Designer
             }
         }
 
+        /// <summary>
+        /// Gets the default value for a new row.
+        /// </summary>
         public override object DefaultNewRowValue
         {
             get
@@ -549,6 +609,20 @@ namespace Reportman.Designer
             }
         }
 
+        /// <summary>
+        /// Renders the cell depending on the cell type (e.g. checkbox, color, style, image size).
+        /// </summary>
+        /// <param name="graphics">The graphics context.</param>
+        /// <param name="clipBounds">The clipping bounds.</param>
+        /// <param name="cellBounds">The cell bounding box.</param>
+        /// <param name="rowIndex">The row index.</param>
+        /// <param name="elementState">The state of the element.</param>
+        /// <param name="value">The raw value.</param>
+        /// <param name="formattedValue">The formatted value.</param>
+        /// <param name="errorText">Error text if any.</param>
+        /// <param name="cellStyle">Cell style options.</param>
+        /// <param name="advancedBorderStyle">Advanced border style options.</param>
+        /// <param name="paintParts">The parts to paint.</param>
         protected override void Paint(Graphics graphics,
                                         Rectangle clipBounds, Rectangle cellBounds, int rowIndex,
                                         DataGridViewElementStates elementState, object value,
@@ -681,6 +755,14 @@ namespace Reportman.Designer
 
         }
 
+        /// <summary>
+        /// Converts the formatted display value back to the underlying cell value type.
+        /// </summary>
+        /// <param name="formattedValue">The display value.</param>
+        /// <param name="cellStyle">The cell style.</param>
+        /// <param name="formattedValueTypeConverter">Formatter converter.</param>
+        /// <param name="valueTypeConverter">Value converter.</param>
+        /// <returns>The parsed cell value.</returns>
         public override object ParseFormattedValue(object formattedValue, DataGridViewCellStyle cellStyle, System.ComponentModel.TypeConverter formattedValueTypeConverter, System.ComponentModel.TypeConverter valueTypeConverter)
         {
             object aresult = null;
@@ -771,6 +853,12 @@ namespace Reportman.Designer
             return aresult;
         }
 
+        /// <summary>
+        /// Calculates the layout bounds for the color preview block and the text label.
+        /// </summary>
+        /// <param name="CellRect">The bounding rectangle of the cell.</param>
+        /// <param name="colorBoxRect">Outputs the rectangle for the color preview.</param>
+        /// <param name="textBoxRect">Outputs the rectangle for the text.</param>
         protected virtual void GetDisplayLayout(Rectangle CellRect, ref Rectangle colorBoxRect, ref RectangleF textBoxRect)
         {
             const int DistanceFromEdge = 2;

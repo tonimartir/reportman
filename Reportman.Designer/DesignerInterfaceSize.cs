@@ -1,4 +1,4 @@
-﻿using Reportman.Drawing;
+using Reportman.Drawing;
 using Reportman.Reporting;
 using System.Collections.Generic;
 
@@ -21,7 +21,6 @@ namespace Reportman.Designer
         public int Top { get { return FTop; } }
         public int Width { get { return FWidth; } }
         public int Height { get { return FHeight; } }
-        private double FScale;
         private bool FSelected;
         protected void SetSelected(bool newvalue)
         {

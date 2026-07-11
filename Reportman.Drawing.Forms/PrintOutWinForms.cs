@@ -1,4 +1,4 @@
-﻿#region Copyright
+#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -48,11 +48,17 @@ namespace Reportman.Drawing.Forms
 #else
         private SendMailEvent MailEvent;
 #endif
+        /// <summary>
+        /// Event triggered when mailing a report.
+        /// </summary>
         public SendMailEvent OnMail;
         /// <summary>
         /// By default GDI+ is ude, if this is set to false the Internal GDI functions will be used
         /// </summary>
         public bool UseGDIPlus = true;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PrintOutWinForms"/> class.
+        /// </summary>
         public PrintOutWinForms()
           : base()
         {
@@ -60,6 +66,9 @@ namespace Reportman.Drawing.Forms
             MailEvent = new SendMailEvent(SendMailPdf);
             WindowMode = PreviewWindowMode.ModalForm;
         }
+        /// <summary>
+        /// Gets or sets a value indicating whether large buttons should be used in the preview.
+        /// </summary>
         public bool LargeButtons;
         private bool FPreview;
         private bool FSystemPreview;
@@ -110,7 +119,13 @@ namespace Reportman.Drawing.Forms
                 DrawFound = ((FPreview) && (FSystemPreview));
             }
         }
+        /// <summary>
+        /// Specifies the window mode (modal, modeless, etc.) for the preview window.
+        /// </summary>
         public PreviewWindowMode WindowMode;
+        /// <summary>
+        /// Gets the preview window control associated with this driver.
+        /// </summary>
         public PreviewWinFormsControl PreviewWindow
         {
             get
@@ -148,6 +163,10 @@ namespace Reportman.Drawing.Forms
             if (ShowEmptyReportMessage)
                 MessageBox.Show(Translator.TranslateStr(799));
         }
+        /// <summary>
+        /// Executes the standard printer selection and settings dialog.
+        /// </summary>
+        /// <returns>True if the user pressed OK; otherwise, false.</returns>
         public bool ExecutePrintDialog()
         {
             using (PrintDialog pdia = new PrintDialog())
@@ -162,6 +181,11 @@ namespace Reportman.Drawing.Forms
                 return aresult == DialogResult.OK;
             }
         }
+        /// <summary>
+        /// Shows a print dialog to select the default printer.
+        /// </summary>
+        /// <param name="MainForm">The owner form for the dialog.</param>
+        /// <returns>True if the printer was successfully selected; otherwise, false.</returns>
         public static bool SelectDefaultPrinter(Form MainForm = null)
         {
             using (PrintDialog pdia = new PrintDialog())
@@ -335,6 +359,11 @@ namespace Reportman.Drawing.Forms
             }
             return nresult;
         }
+        /// <summary>
+        /// Converts StringFormat flags to equivalent TextFormatFlags for use with TextRenderer.
+        /// </summary>
+        /// <param name="oldflags">The original StringFormat flags.</param>
+        /// <returns>The equivalent TextFormatFlags.</returns>
         public static TextFormatFlags FormatFlatsToTextFormatFlags(StringFormat oldflags)
         {
             TextFormatFlags newflags = TextFormatFlags.Default;
@@ -357,6 +386,15 @@ namespace Reportman.Drawing.Forms
 
             return newflags;
         }
+        /// <summary>
+        /// Draws the specified text string at the specified location within a rectangle.
+        /// </summary>
+        /// <param name="gr">The graphics context to draw on.</param>
+        /// <param name="atext">The string to draw.</param>
+        /// <param name="font">The font to use.</param>
+        /// <param name="brush">The brush to use.</param>
+        /// <param name="arec">The bounding rectangle for the text.</param>
+        /// <param name="sformat">The formatting options for the text.</param>
         public override void DrawString(Graphics gr, string atext, Font font, Brush brush, Rectangle arec, StringFormat sformat)
         {
             //gr.PageUnit = GraphicsUnit.Point;
@@ -366,6 +404,16 @@ namespace Reportman.Drawing.Forms
             else
                 TextRenderer.DrawText(gr, atext, font, arec, Color.Black, Color.Transparent, FormatFlatsToTextFormatFlags(sformat));
         }
+        /// <summary>
+        /// Draws the specified text string at the specified coordinates.
+        /// </summary>
+        /// <param name="gr">The graphics context to draw on.</param>
+        /// <param name="atext">The string to draw.</param>
+        /// <param name="font">The font to use.</param>
+        /// <param name="brush">The brush to use.</param>
+        /// <param name="posx">The x-coordinate of the text.</param>
+        /// <param name="posy">The y-coordinate of the text.</param>
+        /// <param name="sformat">The formatting options for the text.</param>
         public override void DrawString(Graphics gr, string atext, Font font, Brush brush, float posx, float posy, StringFormat sformat)
         {
             if (UseGDIPlus)
@@ -373,6 +421,17 @@ namespace Reportman.Drawing.Forms
             else
                 TextRenderer.DrawText(gr, atext, font, new Point((int)Math.Round(posx), (int)Math.Round(posy)), Color.Black, Color.Transparent, FormatFlatsToTextFormatFlags(sformat));
         }
+        /// <summary>
+        /// Measures the specified string with formatting options.
+        /// </summary>
+        /// <param name="gr">The graphics context to use.</param>
+        /// <param name="atext">The string to measure.</param>
+        /// <param name="font">The font to use.</param>
+        /// <param name="layoutarea">The maximum bounding size.</param>
+        /// <param name="sformat">The formatting options.</param>
+        /// <param name="charsfit">Out parameter containing the number of characters that fit.</param>
+        /// <param name="linesfit">Out parameter containing the number of lines that fit.</param>
+        /// <returns>The measured size of the string.</returns>
         public override SizeF MeasureString(Graphics gr, string atext, Font font, SizeF layoutarea, StringFormat sformat, out int charsfit, out int linesfit)
         {
             charsfit = atext.Length;
@@ -408,6 +467,9 @@ namespace Reportman.Drawing.Forms
             MAPI.SendMail(mail_subject, mail_body, null, null, mail_destination, "", short_file_name, filename, true);
 #endif
         }
+        /// <summary>
+        /// Releases all resources used by the <see cref="PrintOutWinForms"/> class.
+        /// </summary>
         public override void Dispose()
         {
             if (FPreviewWindow != null)
@@ -422,12 +484,21 @@ namespace Reportman.Drawing.Forms
             }
             base.Dispose();
         }
+        /// <summary>
+        /// The maximum number of colors defined in the series color array.
+        /// </summary>
         public const int MAX_SERIECOLORS = 21;
         static int[] SeriesColors =
             {0xFF0000,0xFF22FF,0x00FF00,0x0000FF,0xFFFF00,0xFF033F,0x00FFFF,
             0xAAAAAA,0xBB0000,0x00BB00,0x0000BB,0xBBBB00,0xBB00BB,0x00BBBB,
             0x777777,0x773333,0x337733,0x333377,0x777700,0x770077,0x007777};
 
+        /// <summary>
+        /// Adds a statistical or financial function representation to a chart series.
+        /// </summary>
+        /// <param name="nchart">The chart control.</param>
+        /// <param name="serie">The series to populate.</param>
+        /// <param name="sitem">The series item containing the function definition.</param>
         public static void AddFunctionToChart(
             System.Windows.Forms.DataVisualization.Charting.Chart nchart,
             System.Windows.Forms.DataVisualization.Charting.Series serie, SeriesItem sitem)
@@ -520,6 +591,11 @@ namespace Reportman.Drawing.Forms
             }
 
         }
+        /// <summary>
+        /// Generates a bitmap rendering of the specified chart series.
+        /// </summary>
+        /// <param name="nseries">The chart series options.</param>
+        /// <returns>A bitmap containing the drawn chart.</returns>
         public Bitmap DrawChartBitmap(Series nseries)
         {
             System.Windows.Forms.DataVisualization.Charting.Chart nchart = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -1059,6 +1135,14 @@ namespace Reportman.Drawing.Forms
             nchart.DrawToBitmap(nbitmap, rec);
             return nbitmap;
         }
+        /// <summary>
+        /// Renders the specified chart series and adds it as an image object into the metafile.
+        /// </summary>
+        /// <param name="nseries">The series definition to draw.</param>
+        /// <param name="ametafile">The target metafile.</param>
+        /// <param name="posx">The x-coordinate position.</param>
+        /// <param name="posy">The y-coordinate position.</param>
+        /// <param name="achart">The chart object reference.</param>
         public override void DrawChart(Series nseries, MetaFile ametafile, int posx, int posy, object achart)
         {
             System.IO.MemoryStream mstream = new MemoryStream();

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Text;
 
@@ -10,6 +10,13 @@ namespace Reportman.Drawing
     /// </summary>
     public class StreamUtil
     {
+        /// <summary>
+        /// Retrieves file paths in a directory that match a search pattern, which can contain multiple patterns separated by '|'.
+        /// </summary>
+        /// <param name="path">The directory path to search.</param>
+        /// <param name="searchPattern">The search pattern (e.g. "*.txt|*.csv").</param>
+        /// <param name="searchOption">The search option specifying whether to search subdirectories.</param>
+        /// <returns>An array of file paths that match the pattern.</returns>
         public static string[] GetFiles(string path, string searchPattern, SearchOption searchOption)
         {
             string[] searchPatterns = searchPattern.Split('|');
@@ -24,7 +31,13 @@ namespace Reportman.Drawing
             }
             return files.ToArray();
         }
+        /// <summary>
+        /// Byte array representing a line feed character.
+        /// </summary>
         public static byte[] LFarray = { 10 };
+        /// <summary>
+        /// Byte array representing carriage return and line feed characters.
+        /// </summary>
         public static byte[] CRLFarray = { 13, 10 };
         /// <summary>
         /// Check for a file if in use
@@ -170,6 +183,12 @@ namespace Reportman.Drawing
             }
             return rstream;
         }
+        /// <summary>
+        /// Copies all data from the source stream to the target stream using the specified buffer size.
+        /// </summary>
+        /// <param name="from">The source stream to read from.</param>
+        /// <param name="to">The destination stream to write to.</param>
+        /// <param name="bufSize">The buffer size to use for copying.</param>
         static public void WriteTo(Stream from, Stream to, int bufSize = 32000)
         {
             byte[] buf = new byte[bufSize];
@@ -708,6 +727,12 @@ namespace Reportman.Drawing
             }
             dest.Seek(0, System.IO.SeekOrigin.Begin);
         }
+        /// <summary>
+        /// Asynchronously decompresses data from a GZip/Deflate source stream to a destination stream.
+        /// </summary>
+        /// <param name="origin">The compressed source stream.</param>
+        /// <param name="dest">The destination stream for uncompressed data.</param>
+        /// <returns>A task representing the asynchronous operation.</returns>
         static public async System.Threading.Tasks.Task DecompressStreamGZipAsync(Stream origin, Stream dest)
         {
             using (System.IO.Compression.DeflateStream inflater = new System.IO.Compression.DeflateStream(origin, System.IO.Compression.CompressionMode.Decompress))
@@ -980,6 +1005,11 @@ namespace Reportman.Drawing
             }
             zstream.Finish();
         }
+        /// <summary>
+        /// Compresses a file from a source path to a destination path.
+        /// </summary>
+        /// <param name="source">The source file path.</param>
+        /// <param name="destination">The destination compressed file path.</param>
         static public void CompressFile(string source, string destination)
         {
             using (FileStream fstream = new FileStream(source, FileMode.Open, FileAccess.Read, FileShare.None))
@@ -999,6 +1029,11 @@ namespace Reportman.Drawing
                 }
             }
         }
+        /// <summary>
+        /// Decompresses a file from a source path to a destination path.
+        /// </summary>
+        /// <param name="source">The compressed source file path.</param>
+        /// <param name="destination">The destination uncompressed file path.</param>
         static public void DeCompressFile(string source, string destination)
         {
             using (FileStream fstream = new FileStream(source, FileMode.Open, FileAccess.Read, FileShare.None))
@@ -1017,6 +1052,15 @@ namespace Reportman.Drawing
                 }
             }
         }
+        /// <summary>
+        /// Asynchronously compresses a memory stream into another memory stream with options to optimize size, dispose source stream, and cancel the operation.
+        /// </summary>
+        /// <param name="memstream">The source memory stream.</param>
+        /// <param name="dest">The destination memory stream.</param>
+        /// <param name="optimizesize">True to optimize for compression size; false for speed.</param>
+        /// <param name="disposeSource">True to dispose the source stream after compression.</param>
+        /// <param name="cancelSource">The cancellation token source.</param>
+        /// <returns>A task representing the result of the compression operation.</returns>
         static public async System.Threading.Tasks.Task<TaskCompressResult> CompressStreamAsync(MemoryStream memstream,
             MemoryStream dest, bool optimizesize, bool disposeSource, System.Threading.CancellationTokenSource cancelSource)
         {
@@ -1067,6 +1111,11 @@ namespace Reportman.Drawing
             }
             dest.Seek(0, SeekOrigin.Begin);
         }
+        /// <summary>
+        /// Decompresses data from a GZip/Deflate source stream to a destination stream.
+        /// </summary>
+        /// <param name="origin">The compressed source stream.</param>
+        /// <param name="dest">The destination stream for uncompressed data.</param>
         static public void DecompressStreamGZip(Stream origin, Stream dest)
         {
             using (System.IO.Compression.DeflateStream inflater = new System.IO.Compression.DeflateStream(origin, System.IO.Compression.CompressionMode.Decompress))
@@ -1087,6 +1136,15 @@ namespace Reportman.Drawing
 
         }
 
+        /// <summary>
+        /// Launches a long-running task to compress a memory stream into another memory stream.
+        /// </summary>
+        /// <param name="memstream">The source memory stream.</param>
+        /// <param name="dest">The destination memory stream.</param>
+        /// <param name="optimizesize">True to optimize for compression size; false for speed.</param>
+        /// <param name="disposeSource">True to dispose the source stream after compression.</param>
+        /// <param name="cancelSource">The cancellation token source.</param>
+        /// <returns>A long-running task containing the result of the compression operation.</returns>
         static public System.Threading.Tasks.Task<TaskCompressResult> CompressStreamTask(MemoryStream memstream,
     MemoryStream dest, bool optimizesize, bool disposeSource, System.Threading.CancellationTokenSource cancelSource)
         {
@@ -1137,10 +1195,25 @@ namespace Reportman.Drawing
     /// </summary>
     public class TaskCompressResult
     {
+        /// <summary>
+        /// The source stream used in the compression task.
+        /// </summary>
         public Stream Source;
+        /// <summary>
+        /// The destination stream containing the compressed data.
+        /// </summary>
         public Stream Destination;
+        /// <summary>
+        /// Gets a value indicating whether the source stream was disposed.
+        /// </summary>
         public bool DisposedSource;
+        /// <summary>
+        /// Gets a value indicating whether the compression operation was cancelled.
+        /// </summary>
         public bool Cancelled;
+        /// <summary>
+        /// The total number of compressed bytes written to the destination stream.
+        /// </summary>
         public long CompressedBytes;
     }
 }

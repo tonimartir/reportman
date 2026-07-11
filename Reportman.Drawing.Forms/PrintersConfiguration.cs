@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing.Printing;
 using System.IO;
@@ -24,8 +24,17 @@ namespace Reportman.Drawing.Forms
         string userconfigfilename;
         string configfilename;
         IniFile configfile;
+        /// <summary>
+        /// The list of printer names.
+        /// </summary>
         public Strings printernames;
+        /// <summary>
+        /// The memory stream containing the configuration results.
+        /// </summary>
         public MemoryStream StreamResult;
+        /// <summary>
+        /// The stream containing the configuration source.
+        /// </summary>
         public Stream configstream;
         private void ReadPrintersConfig()
         {
@@ -54,6 +63,9 @@ namespace Reportman.Drawing.Forms
                 configfile = new IniFile(configfilename);
             }
         }
+        /// <summary>
+        /// Initializes the form components and loads the printer configuration.
+        /// </summary>
         public void Initialize()
         {
             ReadPrintersConfig();
@@ -117,6 +129,9 @@ namespace Reportman.Drawing.Forms
             radiosystemconfig.Checked = !userconfig;
             radiouserconfig.Checked = userconfig;
         }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PrintersConfiguration"/> class, configuring component layouts and scaling.
+        /// </summary>
         public PrintersConfiguration()
         {
             InitializeComponent();
@@ -129,6 +144,14 @@ namespace Reportman.Drawing.Forms
             }
 
         }
+        /// <summary>
+        /// Displays the printer configuration dialog.
+        /// </summary>
+        /// <param name="ParentForm">The parent form for the configuration dialog.</param>
+        /// <param name="printernames">The printer names list.</param>
+        /// <param name="configstream">The stream configuration.</param>
+        /// <param name="OnGetNames">The printer name events handler.</param>
+        /// <returns>A <see cref="MemoryStream"/> containing the updated configuration.</returns>
         public static MemoryStream ShowPrintersConfiguration(Form ParentForm, Strings printernames, Stream configstream,
                     EventPrinterNamesHandler OnGetNames)
         {
@@ -144,6 +167,11 @@ namespace Reportman.Drawing.Forms
             }
             return nresult;
         }
+        /// <summary>
+        /// Displays the printer configuration dialog with a parent form.
+        /// </summary>
+        /// <param name="ParentForm">The parent form for the configuration dialog.</param>
+        /// <returns>A <see cref="MemoryStream"/> containing the configuration.</returns>
         public static MemoryStream ShowPrintersConfiguration(Form ParentForm)
         {
             return ShowPrintersConfiguration(ParentForm, null, null, null);
@@ -325,7 +353,14 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public class EventPrinterNamesArgs
     {
+        /// <summary>
+        /// The sorted list of printer display names indexed by their slot number.
+        /// </summary>
         public SortedList<int, string> PrinterNames;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EventPrinterNamesArgs"/> class.
+        /// </summary>
+        /// <param name="init_names">The initial printer names list.</param>
         public EventPrinterNamesArgs(SortedList<int, string> init_names)
         {
             PrinterNames = init_names;

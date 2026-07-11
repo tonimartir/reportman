@@ -1,4 +1,4 @@
-﻿#region Copyright
+#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -103,10 +103,18 @@ namespace Reportman.Reporting
     /// </summary>
     public static class SectionFillOrderHelper
     {
+        /// <summary>Standard vertical printing order constant.</summary>
         public const string Down = "Down";
+        /// <summary>Horizontal grid ordering constant.</summary>
         public const string AcrossThenDown = "AcrossThenDown";
+        /// <summary>Vertical layout columns order constant.</summary>
         public const string DownThenAcross = "DownThenAcross";
 
+        /// <summary>
+        /// Gets the fill order string for a given Section.
+        /// </summary>
+        /// <param name="section">The Section to inspect.</param>
+        /// <returns>A string matching Down, AcrossThenDown, or DownThenAcross.</returns>
         public static string GetFillOrder(Section section)
         {
             if (section == null)
@@ -127,6 +135,11 @@ namespace Reportman.Reporting
             return Down;
         }
 
+        /// <summary>
+        /// Configures a Section layout flags to match the specified fill order.
+        /// </summary>
+        /// <param name="section">The target Section to modify.</param>
+        /// <param name="fillOrder">The desired fill order string.</param>
         public static void ApplyFillOrder(Section section, string fillOrder)
         {
             if (section == null)
@@ -139,6 +152,11 @@ namespace Reportman.Reporting
             section.VertDesp = string.Equals(canonicalValue, DownThenAcross, StringComparison.Ordinal);
         }
 
+        /// <summary>
+        /// Checks and returns the canonical form of a fill order value.
+        /// </summary>
+        /// <param name="fillOrder">The raw input value.</param>
+        /// <returns>The normalized value.</returns>
         public static string NormalizeFillOrder(string fillOrder)
         {
             if (TryNormalizeFillOrder(fillOrder, out string canonicalValue))
@@ -149,6 +167,12 @@ namespace Reportman.Reporting
             throw new InvalidOperationException("Allowed values are Down, AcrossThenDown or DownThenAcross.");
         }
 
+        /// <summary>
+        /// Tries to resolve the canonical representation matching the given fill order value.
+        /// </summary>
+        /// <param name="fillOrder">The raw input value.</param>
+        /// <param name="canonicalValue">Output argument: the resolved canonical string.</param>
+        /// <returns>True if resolved successfully; otherwise, false.</returns>
         public static bool TryNormalizeFillOrder(string fillOrder, out string canonicalValue)
         {
             canonicalValue = string.Empty;
@@ -429,6 +453,9 @@ namespace Reportman.Reporting
         {
             get { return FStream; }
         }
+        /// <summary>
+        /// Gets or sets the binary stream content encoded as a Base64 string representation.
+        /// </summary>
         public string StreamBase64
         {
             get { return Convert.ToBase64String(Stream.ToArray()); }
@@ -456,6 +483,10 @@ namespace Reportman.Reporting
 #endif
 #endif
         }
+        /// <summary>
+        /// Combines connection, table name and search key parameters to form a descriptive external database lookup key.
+        /// </summary>
+        /// <returns>A formatted descriptive string.</returns>
         public string GetExternalDataDescription()
         {
             if (ExternalConnection.Length == 0)
@@ -518,7 +549,6 @@ namespace Reportman.Reporting
         /// <summary>
         /// Initialization of the section
         /// </summary>
-        /// <param name="rp"></param>
 		public Section()
             : base()
         {
@@ -691,6 +721,11 @@ namespace Reportman.Reporting
             LastExtent = aresult;
             return aresult;
         }
+        /// <summary>
+        /// Gets the display name string representing this section, optionally suffixing the owning subreport name.
+        /// </summary>
+        /// <param name="addchildsubreport">True to append the child subreport name; otherwise, false.</param>
+        /// <returns>The displayName text.</returns>
         public string GetDisplayName(bool addchildsubreport)
         {
             string aresult = "";
@@ -982,6 +1017,10 @@ namespace Reportman.Reporting
                 }
             }
         }
+        /// <summary>
+        /// Gets the internal uppercase class name identifier string.
+        /// </summary>
+        /// <returns>The class name string constant.</returns>
         protected override string GetClassName()
         {
             return "TRPSECTION";

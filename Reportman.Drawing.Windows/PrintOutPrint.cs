@@ -33,6 +33,9 @@ namespace Reportman.Drawing
     /// </summary>
 	public class PrintOutPrint : PrintOutNet
     {
+        /// <summary>
+        /// The printer driver that overrides the default printing behavior.
+        /// </summary>
         protected PrintOut overridedriver;
         private static SortedList<string, List<PaperSize>> cachedpagesizes;
         private static SortedList<string, PaperSize> cacheddefaultpagesizes;
@@ -43,7 +46,13 @@ namespace Reportman.Drawing
         private PrintPageEventArgs Fev;
         private bool doprint;
         private bool docancel;
+        /// <summary>
+        /// Gets or sets a value indicating whether to use the standard print controller instead of the default preview/dialog one.
+        /// </summary>
         public bool UseStandardPrintController;
+        /// <summary>
+        /// Gets or sets a value indicating whether to show progress when printing.
+        /// </summary>
         public bool ShowPrintProgress;
         /// <summary>
         /// Internal property, when this option is set, the printes pages will remain in memory
@@ -56,6 +65,9 @@ namespace Reportman.Drawing
             cachedpagesizes = new SortedList<string, List<PaperSize>>();
             cacheddefaultpagesizes = new SortedList<string, PaperSize>();
         }
+        /// <summary>
+        /// Gets the name of the output printer device.
+        /// </summary>
         public string OutputDevice
         {
             get
@@ -65,7 +77,13 @@ namespace Reportman.Drawing
                 return doc.PrinterSettings.PrinterName;
             }
         }
+        /// <summary>
+        /// The count of pages that have been printed.
+        /// </summary>
         protected int FPagesPrinted;
+        /// <summary>
+        /// Gets the number of pages that have been printed.
+        /// </summary>
         public int PagesPrinted
         {
             get
@@ -73,7 +91,13 @@ namespace Reportman.Drawing
                 return FPagesPrinted;
             }
         }
+        /// <summary>
+        /// The count of black lines printed.
+        /// </summary>
         protected int FBlackLines;
+        /// <summary>
+        /// Gets the count of black lines printed.
+        /// </summary>
         public int BlackLinesPrinted
         {
             get
@@ -81,7 +105,13 @@ namespace Reportman.Drawing
                 return FBlackLines;
             }
         }
+        /// <summary>
+        /// The count of white lines printed.
+        /// </summary>
         protected int FWhiteLines;
+        /// <summary>
+        /// Gets the count of white lines printed.
+        /// </summary>
         public int WhiteLinesPrinted
         {
             get
@@ -300,6 +330,9 @@ namespace Reportman.Drawing
             docancel = false;
             FCurrentPage++;
         }
+        /// <summary>
+        /// Gets or sets a value indicating whether to automatically scale the output page to the printer page size.
+        /// </summary>
         public bool AutoScalePrint = false;
         private void pd_PrintPage(object sender, PrintPageEventArgs ev)
         {
@@ -898,12 +931,21 @@ namespace Reportman.Drawing
             // Already done
             // doc.DefaultPageSettings.PaperSize = FindPaperSize(meta.CustomX, meta.CustomY);
         }
+        /// <summary>
+        /// Finalizes the printed document, releasing printer resources.
+        /// </summary>
+        /// <param name="meta">The <see cref="MetaFile"/> representing the document.</param>
         public override void EndDocument(MetaFile meta)
         {
             doc.Dispose();
             doc = null;
             base.EndDocument(meta);
         }
+        /// <summary>
+        /// Checks whether a printer with the specified name exists on the system.
+        /// </summary>
+        /// <param name="printername">The name of the printer to check.</param>
+        /// <returns>True if the printer exists; otherwise, false.</returns>
         public static bool PrinterExists(string printername)
         {
             bool exists = false;
@@ -917,6 +959,10 @@ namespace Reportman.Drawing
             }
             return exists;
         }
+        /// <summary>
+        /// Selects the printer to use based on the specified selection type.
+        /// </summary>
+        /// <param name="PrinterSelect">The printer selection type.</param>
         public override void SelectPrinter(PrinterSelectType PrinterSelect)
         {
             //if ((PrinterSelect != PrinterSelectType.DefaultPrinter) && (ForcePrinterName.Length==0))
@@ -943,6 +989,11 @@ namespace Reportman.Drawing
             }
             base.SelectPrinter(PrinterSelect);
         }
+        /// <summary>
+        /// Retrieves the paper size details associated with a specific page size index.
+        /// </summary>
+        /// <param name="index">The page size index.</param>
+        /// <returns>A <see cref="PaperSize"/> object corresponding to the index.</returns>
         public static PaperSize PaperSizeFromPageIndex(int index)
         {
             if ((System.Environment.OSVersion.Platform == PlatformID.Unix) ||

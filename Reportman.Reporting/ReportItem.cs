@@ -1,4 +1,4 @@
-﻿#region Copyright
+#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -129,7 +129,6 @@ namespace Reportman.Reporting
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="rp">Report, the owner of the item</param>
 		public ReportItem()
         {
             FName = "";
@@ -145,6 +144,10 @@ namespace Reportman.Reporting
             get { return FReport; }
             set { SetReport(value); }
         }
+        /// <summary>
+        /// Sets the parent report that owns this item.
+        /// </summary>
+        /// <param name="rp">The owner report.</param>
         public virtual void SetReport(BaseReport rp)
         {
             FReport = rp;
@@ -206,6 +209,9 @@ namespace Reportman.Reporting
         /// Selecction index
         /// </summary>
         public int SelectionIndex;
+        /// <summary>
+        /// Bounding box used to render selection handles for this item in the designer layout.
+        /// </summary>
         public Rectangle SelectionRectangle;
         /// <summary>
         /// Constructor
@@ -258,6 +264,7 @@ namespace Reportman.Reporting
         /// </summary>
         /// <param name="adriver">Report processing driver</param>
         /// <param name="MaxExtent">Maximum extension</param>
+        /// <param name="ForcePartial">When true, forces calculating partial page-break boundaries.</param>
         /// <returns></returns>
 		public virtual Point GetExtension(PrintOut adriver, Point MaxExtent, bool ForcePartial)
         {
@@ -508,6 +515,7 @@ namespace Reportman.Reporting
         /// </summary>
         /// <param name="adriver">Report processing driver</param>
         /// <param name="MaxExtent">Maximum extension</param>
+        /// <param name="ForcePartial">When true, forces calculating partial page-break boundaries.</param>
         /// <returns></returns>
         public override Point GetExtension(PrintOut adriver, Point MaxExtent, bool ForcePartial)
         {
@@ -519,6 +527,11 @@ namespace Reportman.Reporting
             LastExtent = aresult;
             return aresult;
         }
+        /// <summary>
+        /// Evaluates the annotation expression and attaches the resulting annotation text to the metafile object.
+        /// </summary>
+        /// <param name="meta">The metafile object representation.</param>
+        /// <param name="page">The current metafile page being generated.</param>
         public void FillAnnotation(MetaObject meta, MetaPage page)
         {
             if ((AnnotationExpression == null) || (AnnotationExpression.Length == 0))
@@ -578,6 +591,9 @@ namespace Reportman.Reporting
         public bool CutText { get; set; }
         /// <summary>Will break the sentences in more lines if the lines does not fit in current box width</summary>
         public bool WordWrap { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether the text contains HTML markup to render formatted text.
+        /// </summary>
         public bool IsHtml { get; set; }
         /// <summary>Still not implemented, for future use, to break words when they not fit on single line</summary>
         public bool WordBreak { get; set; }
@@ -866,11 +882,24 @@ namespace Reportman.Reporting
     /// </summary>
     public class PrintPosItemConverter : JsonConverter
     {
+        /// <summary>
+        /// Determines whether this converter can convert the specified object type.
+        /// </summary>
+        /// <param name="objectType">The Type of the object to check.</param>
+        /// <returns>True if the type is assignable to PrintPosItem; otherwise, false.</returns>
         public override bool CanConvert(Type objectType)
         {
             return typeof(PrintPosItem).IsAssignableFrom(objectType);
         }
 
+        /// <summary>
+        /// Reads and deserializes a JSON representation of a report item into the correct concrete PrintPosItem subclass instance.
+        /// </summary>
+        /// <param name="reader">The JSON reader.</param>
+        /// <param name="objectType">The target Type of the object.</param>
+        /// <param name="existingValue">The existing value being read.</param>
+        /// <param name="serializer">The active serializer instance.</param>
+        /// <returns>A concrete PrintPosItem instance.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             JObject jo = JObject.Load(reader);           
@@ -937,6 +966,12 @@ namespace Reportman.Reporting
 
         }
 
+        /// <summary>
+        /// Writes the JSON representation of the concrete PrintPosItem instance.
+        /// </summary>
+        /// <param name="writer">The JSON writer.</param>
+        /// <param name="value">The PrintPosItem instance to serialize.</param>
+        /// <param name="serializer">The active serializer instance.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             if (value == null)

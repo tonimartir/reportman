@@ -1,4 +1,4 @@
-﻿#region Copyright
+#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -66,8 +66,40 @@ namespace Reportman.Reporting
     /// </summary>
     public enum ParamType
     {
-        String, Integer, Double, Date, Time, DateTime,
-        Currency, Bool, ExpreB, ExpreA, Subst, List, Multiple, SubstExpre, SubsExpreList, InitialValue, Unknown
+        /// <summary>String parameter.</summary>
+        String,
+        /// <summary>Integer parameter.</summary>
+        Integer,
+        /// <summary>Double-precision floating-point parameter.</summary>
+        Double,
+        /// <summary>Date-only parameter.</summary>
+        Date,
+        /// <summary>Time-only parameter.</summary>
+        Time,
+        /// <summary>Combined date and time parameter.</summary>
+        DateTime,
+        /// <summary>Currency (money) parameter.</summary>
+        Currency,
+        /// <summary>Boolean parameter.</summary>
+        Bool,
+        /// <summary>Expression evaluated before the report runs.</summary>
+        ExpreB,
+        /// <summary>Expression evaluated after the report runs.</summary>
+        ExpreA,
+        /// <summary>Substitution parameter replaced in SQL text.</summary>
+        Subst,
+        /// <summary>List of selectable values.</summary>
+        List,
+        /// <summary>Multiple-selection list parameter.</summary>
+        Multiple,
+        /// <summary>Substitution using an evaluated expression.</summary>
+        SubstExpre,
+        /// <summary>Substitution expression returning a list.</summary>
+        SubsExpreList,
+        /// <summary>Initial value expression parameter.</summary>
+        InitialValue,
+        /// <summary>Unknown or unresolved parameter type.</summary>
+        Unknown
     };
 
     /// <summary>
@@ -2369,9 +2401,9 @@ namespace Reportman.Reporting
             DateTime avalue = (DateTime)this;
             return avalue;
         }
-        /// <summary>
-        /// Type transformation using a IFormatProvider
-        /// </summary>
+        // <summary>
+        // Type transformation using a IFormatProvider
+        // </summary>
         /* public object ToType(System.Type ntype, System.IFormatProvider provid)
          {
              if (this.IsNull)
@@ -2381,6 +2413,12 @@ namespace Reportman.Reporting
              DateTime avalue = this;
              return avalue;
          }*/
+        /// <summary>
+        /// Converts the variant value to an object of a specified type.
+        /// </summary>
+        /// <param name="conversionType">The type to convert the value to.</param>
+        /// <param name="provider">An object that supplies culture-specific formatting information.</param>
+        /// <returns>An object of the specified type containing the converted variant value.</returns>
         public object ToType(Type conversionType, IFormatProvider provider)
         {
             if (IsNull)
@@ -2452,6 +2490,12 @@ namespace Reportman.Reporting
     /// </summary>
     public class VariantJsonConverter : Newtonsoft.Json.JsonConverter<Variant>
     {
+        /// <summary>
+        /// Writes the JSON representation of the variant.
+        /// </summary>
+        /// <param name="writer">The <see cref="Newtonsoft.Json.JsonWriter"/> to write to.</param>
+        /// <param name="value">The variant value.</param>
+        /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(Newtonsoft.Json.JsonWriter writer, Variant value, Newtonsoft.Json.JsonSerializer serializer)
         {
             try
@@ -2471,6 +2515,15 @@ namespace Reportman.Reporting
             }
         }
 
+        /// <summary>
+        /// Reads the JSON representation of the variant.
+        /// </summary>
+        /// <param name="reader">The <see cref="Newtonsoft.Json.JsonReader"/> to read from.</param>
+        /// <param name="objectType">Type of the object.</param>
+        /// <param name="existingValue">The existing value of object being read.</param>
+        /// <param name="hasExistingValue">The existing value has a value.</param>
+        /// <param name="serializer">The calling serializer.</param>
+        /// <returns>The object value.</returns>
         public override Variant ReadJson(Newtonsoft.Json.JsonReader reader, Type objectType, Variant existingValue, bool hasExistingValue, Newtonsoft.Json.JsonSerializer serializer)
         {
             var obj = Newtonsoft.Json.Linq.JObject.Load(reader);
@@ -2504,6 +2557,13 @@ namespace Reportman.Reporting
     /// </summary>
     public class VariantSystemTextJsonConverter : System.Text.Json.Serialization.JsonConverter<Variant>
     {
+        /// <summary>
+        /// Reads and converts the JSON to a <see cref="Variant"/>.
+        /// </summary>
+        /// <param name="reader">The reader.</param>
+        /// <param name="typeToConvert">The type to convert.</param>
+        /// <param name="options">An object that specifies serialization options to use.</param>
+        /// <returns>The converted variant.</returns>
         public override Variant Read(ref System.Text.Json.Utf8JsonReader reader, Type typeToConvert, System.Text.Json.JsonSerializerOptions options)
         {
             using (System.Text.Json.JsonDocument doc = System.Text.Json.JsonDocument.ParseValue(ref reader))
@@ -2555,6 +2615,12 @@ namespace Reportman.Reporting
             }
         }
 
+        /// <summary>
+        /// Writes a specified <see cref="Variant"/> value as JSON.
+        /// </summary>
+        /// <param name="writer">The writer to write to.</param>
+        /// <param name="value">The value to convert to JSON.</param>
+        /// <param name="options">An object that specifies serialization options to use.</param>
         public override void Write(System.Text.Json.Utf8JsonWriter writer, Variant value, System.Text.Json.JsonSerializerOptions options)
         {
             writer.WriteStartObject();

@@ -9,9 +9,21 @@ namespace Reportman.Reporting.Design
     /// </summary>
     public class ReportStructureContextNode
     {
+        /// <summary>
+        /// Gets or sets the name of the report component/element.
+        /// </summary>
         public string Name { get; set; }
+        /// <summary>
+        /// Gets or sets the C# type class name of the report component/element.
+        /// </summary>
         public string ClassName { get; set; }
+        /// <summary>
+        /// Gets or sets the name of the parent element containing this node.
+        /// </summary>
         public string ParentName { get; set; }
+        /// <summary>
+        /// Gets the collection of child structure nodes.
+        /// </summary>
         public List<ReportStructureContextNode> Children { get; } = new List<ReportStructureContextNode>();
     }
 
@@ -21,6 +33,9 @@ namespace Reportman.Reporting.Design
     /// </summary>
     public class ReportStructureContext
     {
+        /// <summary>
+        /// Gets or sets the root node representing the top-level report.
+        /// </summary>
         public ReportStructureContextNode Root { get; set; }
     }
 
@@ -30,6 +45,11 @@ namespace Reportman.Reporting.Design
     /// </summary>
     public static class ReportStructureContextBuilder
     {
+        /// <summary>
+        /// Traverses the report definition and returns a tree of its elements and components.
+        /// </summary>
+        /// <param name="report">The report to analyze.</param>
+        /// <returns>A built ReportStructureContext containing the tree hierarchy.</returns>
         public static ReportStructureContext Build(Report report)
         {
             var root = new ReportStructureContextNode

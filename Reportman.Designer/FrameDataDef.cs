@@ -1,4 +1,4 @@
-﻿using Reportman.Drawing;
+using Reportman.Drawing;
 using Reportman.Drawing.Forms;
 using Reportman.Reporting;
 using System;
@@ -14,8 +14,17 @@ namespace Reportman.Designer
     /// </summary>
     public partial class FrameDataDef : UserControl
     {
+        /// <summary>
+        /// Occurs when the loaded report model is changed.
+        /// </summary>
         public event EventHandler OnReportChange;
+        /// <summary>
+        /// Occurs when the selected tree node or its associated ReportItem changes.
+        /// </summary>
         public event EventHandler OnSelectionChange;
+        /// <summary>
+        /// Initializes a new instance of the FrameDataDef class.
+        /// </summary>
         public FrameDataDef()
         {
             InitializeComponent();
@@ -27,6 +36,10 @@ namespace Reportman.Designer
             bdown.Text = Translator.TranslateStr(140);
 
         }
+        /// <summary>
+        /// Gets the currently selected TreeNode that wraps a ReportItem model.
+        /// </summary>
+        /// <returns>The active TreeNode, or null if none is selected.</returns>
         public TreeNode FindSelectedNode()
         {
             if (RView.SelectedNode != null)
@@ -35,6 +48,9 @@ namespace Reportman.Designer
             return null;
         }
         private Report FReport;
+        /// <summary>
+        /// Gets or sets the report model definition whose data items are being edited.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), Browsable(false)]
         public Report Report
         {
@@ -48,6 +64,9 @@ namespace Reportman.Designer
                 return FReport;
             }
         }
+        /// <summary>
+        /// Rebuilds the tree view node structure representing the connections, datasets and parameters.
+        /// </summary>
         public void RefreshInterface()
         {
             // Clear
@@ -91,6 +110,10 @@ namespace Reportman.Designer
             if (OnReportChange != null)
                 OnReportChange(FReport, new EventArgs());
         }
+        /// <summary>
+        /// Debugging entry point to preview this layout inside a standalone Windows Form.
+        /// </summary>
+        /// <param name="filename">Optional report filename context.</param>
         public static void Test(string filename)
         {
             using (FrameDataDef fm = new FrameDataDef())
@@ -138,12 +161,20 @@ namespace Reportman.Designer
                 FillNodes(node.Nodes, destination);
             }
         }
+        /// <summary>
+        /// Gets a flat list containing all TreeNodes currently in the tree hierarchy.
+        /// </summary>
+        /// <returns>A list of TreeNode objects.</returns>
         public List<TreeNode> GetAllNodes()
         {
             List<TreeNode> aresult = new List<TreeNode>();
             FillNodes(RView.Nodes, aresult);
             return aresult;
         }
+        /// <summary>
+        /// Programmatically selects the tree node representing the specified ReportItem.
+        /// </summary>
+        /// <param name="sec">The target ReportItem to select.</param>
         public void SelectItem(ReportItem sec)
         {
             List<TreeNode> col = GetAllNodes();

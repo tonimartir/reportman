@@ -1,4 +1,4 @@
-﻿using Reportman.Drawing;
+using Reportman.Drawing;
 using Reportman.Reporting;
 using System;
 using System.Collections.Generic;
@@ -27,8 +27,17 @@ namespace Reportman.Designer
         /// </summary>
         public class BeforeSelectEventArgs
         {
+            /// <summary>
+            /// The name of the report that is about to be selected.
+            /// </summary>
             public string ReportName = "";
+            /// <summary>
+            /// The group code associated with the report about to be selected.
+            /// </summary>
             public int GroupCode = 0;
+            /// <summary>
+            /// Gets or sets a value indicating whether the selection operation should be cancelled.
+            /// </summary>
             public bool Cancel;
         }
         /// <summary>
@@ -37,7 +46,13 @@ namespace Reportman.Designer
         /// </summary>
         public class AfterSelectEventArgs
         {
+            /// <summary>
+            /// The name of the selected report.
+            /// </summary>
             public string ReportName = "";
+            /// <summary>
+            /// The group code of the selected report.
+            /// </summary>
             public int GroupCode = 0;
         }
         /// <summary>
@@ -50,16 +65,39 @@ namespace Reportman.Designer
         /// selected report name and group code.
         /// </summary>
         public delegate void AfterSelectEvent(object sender, AfterSelectEventArgs args);
+        /// <summary>
+        /// Event raised before a tree node is selected.
+        /// </summary>
         public BeforeSelectEvent OnBeforeSelect;
+        /// <summary>
+        /// Event raised after a tree node has been selected.
+        /// </summary>
         public AfterSelectEvent OnAfterSelect;
         /// <summary>
         /// Determines which operations the library browser exposes: read-only
         /// selection, selection combined with editing, or pure editing of the library.
         /// </summary>
-        public enum SelectionModeType { Selection, SelectionEdit, Edit }
+        public enum SelectionModeType
+        {
+            /// <summary>
+            /// Read-only selection mode.
+            /// </summary>
+            Selection,
+            /// <summary>
+            /// Selection combined with library editing mode.
+            /// </summary>
+            SelectionEdit,
+            /// <summary>
+            /// Pure editing mode for the library.
+            /// </summary>
+            Edit
+        }
         SelectionModeType FSelectionMode;
         string SelectedReport = "";
         bool FShowOkCancel = true;
+        /// <summary>
+        /// Gets or sets a value indicating whether the OK and Cancel buttons are shown.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), Browsable(false)]
         public bool ShowOkCancel
         {
@@ -127,8 +165,17 @@ namespace Reportman.Designer
         ItemDragEventHandler arbdrag;
         DragEventHandler arbdover;
 
+        /// <summary>
+        /// Event raised when the user accepts the selection.
+        /// </summary>
         public EventHandler OnAccept;
+        /// <summary>
+        /// Event raised when the user cancels the selection.
+        /// </summary>
         public EventHandler OnCancel;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OpenFromLibrary"/> class, setting up control sizes, translations, and dragging event handlers.
+        /// </summary>
         public OpenFromLibrary()
         {
             InitializeComponent();
@@ -156,6 +203,12 @@ namespace Reportman.Designer
 
             Dock = DockStyle.Fill;
         }
+        /// <summary>
+        /// Initializes the control with database communication, configuration, and selection mode, then populates the tree with reports.
+        /// </summary>
+        /// <param name="iexecute">The SQL executor used to run queries.</param>
+        /// <param name="libconfig">The report library configuration.</param>
+        /// <param name="newselectionmode">The selection and editing mode to apply.</param>
         public void Init(ISqlExecuter iexecute, ReportLibraryConfig libconfig, SelectionModeType newselectionmode)
         {
             SelectionMode = newselectionmode;
@@ -891,6 +944,10 @@ namespace Reportman.Designer
             if (ReportTree.SelectedNode == null)
                 return;
         }
+        /// <summary>
+        /// Gets the name of the currently selected report in the tree.
+        /// </summary>
+        /// <returns>The report name, or an empty string if no report is selected.</returns>
         public string GetSelectedReport()
         {
             if (ReportTree.SelectedNode == null)
@@ -911,6 +968,15 @@ namespace Reportman.Designer
                 mainform.Close();
 
         }
+        /// <summary>
+        /// Displays the report library selection dialog and allows the user to choose a report.
+        /// </summary>
+        /// <param name="iexecute">The SQL executor for database operations.</param>
+        /// <param name="libconfig">The library configuration.</param>
+        /// <param name="wselectionmode">The selection/edit mode.</param>
+        /// <param name="report_name">A reference to a string that receives the selected report name.</param>
+        /// <param name="owner">The owner window of the dialog.</param>
+        /// <returns>True if a report was successfully selected; otherwise, false.</returns>
         public static bool SelectReport(ISqlExecuter iexecute, ReportLibraryConfig libconfig, SelectionModeType wselectionmode,
             ref string report_name, IWin32Window owner)
         {
