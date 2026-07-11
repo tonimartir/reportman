@@ -1,4 +1,4 @@
-﻿#region Copyright
+#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -66,7 +66,13 @@ namespace Reportman.Drawing
             FLookForResource = true;
             FContent = new ArrayList(DEFAULT_TRANS_SIZE);
         }
+        /// <summary>
+        /// Gets or sets the custom resource Assembly to search for translations.
+        /// </summary>
         public Assembly ResourceAssembly;
+        /// <summary>
+        /// Gets or sets a value indicating whether to search inside assembly resources for translations.
+        /// </summary>
         public bool LookForResource
         {
             get { return FLookForResource; }
@@ -159,6 +165,11 @@ namespace Reportman.Drawing
             return afilename;
 
         }
+        /// <summary>
+        /// Finds a manifest resource stream by filename within the current executing assembly.
+        /// </summary>
+        /// <param name="nfilename">The manifest resource filename to find.</param>
+        /// <returns>A Stream for the resource, or null if not found.</returns>
         public static Stream FindAssemblyResource(string nfilename)
         {
             Monitor.Enter(flag);
@@ -182,6 +193,14 @@ namespace Reportman.Drawing
             }
             return null;
         }
+        /// <summary>
+        /// Searches for and opens a translation resource stream from the given assembly or defaults.
+        /// </summary>
+        /// <param name="searchonly">If true, does not load, only verifies resource existence.</param>
+        /// <param name="found">Output indicator set to true if the resource was found.</param>
+        /// <param name="nfilename">The resource filename to locate.</param>
+        /// <param name="ResourceAssembly">The target Assembly to search in.</param>
+        /// <returns>A Stream for the translation file resource.</returns>
         public static Stream FindResource(bool searchonly, ref bool found, string nfilename, Assembly ResourceAssembly)
         {
             bool resourcefound = false;
@@ -282,6 +301,10 @@ namespace Reportman.Drawing
             found = resourcefound;
             return nstream;
         }
+        /// <summary>
+        /// Finds the translation resource using the component's configured Filename and ResourceAssembly.
+        /// </summary>
+        /// <returns>A Stream for the translation file resource.</returns>
         public Stream FindResource()
         {
             bool found = false;
@@ -558,10 +581,18 @@ namespace Reportman.Drawing
                 newvalue = newvalue.Replace("%s", "{0}");
             return newvalue;
         }
+        /// <summary>
+        /// Saves the default active translator strings content into a JSON-formatted file.
+        /// </summary>
+        /// <param name="fileName">The output file path.</param>
         public static void SaveFileJsonDefault(string fileName)
         {
             atrans.SaveFileJson(fileName);
         }
+        /// <summary>
+        /// Saves this translator instance's strings content into a JSON-formatted file.
+        /// </summary>
+        /// <param name="fileName">The output file path.</param>
         public void SaveFileJson(string fileName)
         {
             StringBuilder nbuilder = new StringBuilder();

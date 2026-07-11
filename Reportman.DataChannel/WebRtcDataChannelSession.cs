@@ -33,7 +33,7 @@ public sealed class WebRtcDataChannelSession : IAsyncDisposable
     /// the practical upper bound for any legitimate path including NAT
     /// hole-punching and TURN relay. 10 s was too generous and made
     /// UDP-blocked corporate networks feel sluggish before the per-database
-    /// cooldown cache in <see cref="HubApiClient"/> kicked in.
+    /// cooldown cache in <c>HubApiClient</c> kicked in.
     ///
     /// Belt-and-braces: we ALSO subscribe to peer connectionState to fail
     /// fast (typically 1-2 s) when ICE concludes no candidate pair worked,

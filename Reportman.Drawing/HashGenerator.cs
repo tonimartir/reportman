@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Security.Cryptography;
@@ -10,7 +10,13 @@ namespace Reportman.Drawing
     /// </summary>
     public class FileHash
     {
+        /// <summary>
+        /// The file path relative to the base folder.
+        /// </summary>
         public string FullPath; // relativo a la carpeta base
+        /// <summary>
+        /// The computed SHA-256 hash string for the file.
+        /// </summary>
         public string Hash;
     }
 
@@ -19,7 +25,13 @@ namespace Reportman.Drawing
     /// </summary>
     public class FileHashes
     {
+        /// <summary>
+        /// The list of computed file hashes.
+        /// </summary>
         public List<FileHash> Hashes = new List<FileHash>();
+        /// <summary>
+        /// The date and time (in UTC) when the snapshot was generated.
+        /// </summary>
         public DateTime DateTimeCreatedUtc;
     }
 

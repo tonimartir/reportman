@@ -1,4 +1,4 @@
-﻿#region Copyright
+#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -38,6 +38,9 @@ namespace Reportman.Reporting
         private decimal FDecimal;
         private TokenType FToken;
 
+        /// <summary>
+        /// Gets the token type of the current token.
+        /// </summary>
         public TokenType Token
         {
             get
@@ -45,6 +48,9 @@ namespace Reportman.Reporting
                 return FToken;
             }
         }
+        /// <summary>
+        /// Gets the line number in the source expression where the parser is positioned.
+        /// </summary>
         public int SourceLine
         {
             get
@@ -52,6 +58,9 @@ namespace Reportman.Reporting
                 return FSourceLine;
             }
         }
+        /// <summary>
+        /// Gets the character position in the source expression where the parser is positioned.
+        /// </summary>
         public int SourcePos
         {
             get
@@ -59,6 +68,10 @@ namespace Reportman.Reporting
                 return FSourcePtr;
             }
         }
+        /// <summary>
+        /// Resolves and returns the string literal representation of the current token.
+        /// </summary>
+        /// <returns>The string representation of the token.</returns>
         public string TokenString()
         {
             int L;
@@ -97,6 +110,9 @@ namespace Reportman.Reporting
             }
             return aresult;
         }
+        /// <summary>
+        /// Initializes a new instance of the EvalParser class.
+        /// </summary>
         public EvalParser()
         {
         }
@@ -132,6 +148,10 @@ namespace Reportman.Reporting
             return aresult;
         }
 
+        /// <summary>
+        /// Advances the parser to the next token in the source expression.
+        /// </summary>
+        /// <returns>The resolved TokenType of the next token.</returns>
         public TokenType NextToken()
         {
 
@@ -379,6 +399,9 @@ namespace Reportman.Reporting
             FSourcePtr = P;
             return resulttype;
         }
+        /// <summary>
+        /// Gets or sets the source expression string being parsed.
+        /// </summary>
         public string Expression
         {
             get
@@ -396,6 +419,9 @@ namespace Reportman.Reporting
                 NextToken();
             }
         }
+        /// <summary>
+        /// Gets the integer value of the current token when it represents an integer.
+        /// </summary>
         public int AsInteger
         {
             get
@@ -403,6 +429,9 @@ namespace Reportman.Reporting
                 return FInteger;
             }
         }
+        /// <summary>
+        /// Gets the double-precision floating-point value of the current token when it represents a double.
+        /// </summary>
         public double AsDouble
         {
             get
@@ -410,6 +439,9 @@ namespace Reportman.Reporting
                 return FDouble;
             }
         }
+        /// <summary>
+        /// Gets the decimal value of the current token when it represents a decimal.
+        /// </summary>
         public decimal AsDecimal
         {
             get
@@ -417,6 +449,10 @@ namespace Reportman.Reporting
                 return FDecimal;
             }
         }
+        /// <summary>
+        /// Checks if the remaining source expression sequence represents a variable assignment (e.g. :=).
+        /// </summary>
+        /// <returns>True if it is an assignment; otherwise, false.</returns>
         public bool IsAssignment()
         {
             int index = FSourcePtr;

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Threading;
@@ -15,7 +15,13 @@ namespace Reportman.Drawing.Forms
         /// <summary>
         /// Determines how captured signature points are drawn: as a smoothed curve or as connected straight lines.
         /// </summary>
-        public enum SignatureStyle { Curve, Line };
+        public enum SignatureStyle 
+        { 
+            /// <summary>Draw signature using smooth bezier curves.</summary>
+            Curve, 
+            /// <summary>Draw signature using connected straight lines.</summary>
+            Line 
+        };
         Bitmap nbitmap;
         System.Timers.Timer ntimer;
         System.Windows.Forms.Timer timerprin;
@@ -29,6 +35,9 @@ namespace Reportman.Drawing.Forms
         Brush brushsign;
         Pen pensign;
         object flag = 2;
+        /// <summary>
+        /// Gets the captured signature rendered as a Bitmap.
+        /// </summary>
         public Bitmap Signature
         {
             get
@@ -37,6 +46,9 @@ namespace Reportman.Drawing.Forms
             }
         }
         bool fempty;
+        /// <summary>
+        /// Gets a value indicating whether no signature strokes have been captured yet.
+        /// </summary>
         public bool Empty
         {
             get
@@ -44,7 +56,13 @@ namespace Reportman.Drawing.Forms
                 return fempty;
             }
         }
+        /// <summary>
+        /// The rendering drawing style to apply when tracing captured coordinates.
+        /// </summary>
         public SignatureStyle Style;
+        /// <summary>
+        /// Initializes a new instance of the SignatureControl class.
+        /// </summary>
         public SignatureControl()
         {
             InitializeComponent();
@@ -66,6 +84,9 @@ namespace Reportman.Drawing.Forms
             pensign.EndCap = System.Drawing.Drawing2D.LineCap.Round;
             fempty = true;
         }
+        /// <summary>
+        /// Resets the drawing canvas, clearing all captured stroke segments.
+        /// </summary>
         public void Clear()
         {
             Segments.Clear();
@@ -113,6 +134,10 @@ namespace Reportman.Drawing.Forms
             if (nlist.Count > 0)
                 DrawList(nlist);
         }
+        /// <summary>
+        /// Internal worker callback periodically polling the mouse cursor coordinates.
+        /// </summary>
+        /// <param name="state">The timer state parameter.</param>
         public void TimerCall(object state)
         {
             Point npos = Cursor.Position;

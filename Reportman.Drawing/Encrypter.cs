@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
@@ -21,19 +21,13 @@ namespace Reportman.Drawing
             #region Encriptar
 
             /// <summary>
-
             /// Método para encriptar un texto plano usando el algoritmo (Rijndael).
-
             /// Este es el mas simple posible, muchos de los datos necesarios los
-
             /// definimos como constantes.
-
             /// </summary>
-
             /// <param name="textToEncrypt">texto a encriptar</param>
-
+            /// <param name="key">key used for encryption</param>
             /// <returns>Texto encriptado</returns>
-
             public static string Encrypt(string textToEncrypt, string key)
             {
 
@@ -44,13 +38,16 @@ namespace Reportman.Drawing
             }
 
             /// <summary>
-
             /// Método para encriptar un texto plano usando el algoritmo (Rijndael)
-
             /// </summary>
-
+            /// <param name="textoQueEncriptaremos">Texto a encriptar</param>
+            /// <param name="passBase">Password base</param>
+            /// <param name="saltValue">Salt value</param>
+            /// <param name="hashAlgorithm">Hash algorithm</param>
+            /// <param name="passwordIterations">Password iterations</param>
+            /// <param name="initVector">Initialization vector</param>
+            /// <param name="keySize">Key size</param>
             /// <returns>Texto encriptado</returns>
-
             public static string Encrypt(string textoQueEncriptaremos,
 
               string passBase, string saltValue, string hashAlgorithm,
@@ -107,13 +104,11 @@ namespace Reportman.Drawing
             #region Desencriptar
 
             /// <summary>
-
             /// Método para desencriptar un texto encriptado.
-
             /// </summary>
-
+            /// <param name="encryptedText">Texto encriptado</param>
+            /// <param name="key">Key used for decryption</param>
             /// <returns>Texto desencriptado</returns>
-
             public static string DeCrypt(string encryptedText, string key)
             {
 
@@ -124,13 +119,16 @@ namespace Reportman.Drawing
             }
 
             /// <summary>
-
             /// Método para desencriptar un texto encriptado (Rijndael)
-
             /// </summary>
-
+            /// <param name="textoEncriptado">Texto encriptado</param>
+            /// <param name="passBase">Password base</param>
+            /// <param name="saltValue">Salt value</param>
+            /// <param name="hashAlgorithm">Hash algorithm</param>
+            /// <param name="passwordIterations">Password iterations</param>
+            /// <param name="initVector">Initialization vector</param>
+            /// <param name="keySize">Key size</param>
             /// <returns>Texto desencriptado</returns>
-
             public static string Decrypt(string textoEncriptado, string passBase,
 
               string saltValue, string hashAlgorithm, int passwordIterations,

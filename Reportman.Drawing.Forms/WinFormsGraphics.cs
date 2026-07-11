@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -14,6 +14,10 @@ namespace Reportman.Drawing.Forms
     {
         static object flag = 2;
         private static int intdpi;
+        /// <summary>
+        /// Gets the current screen DPI resolution value, caching it on first lookup.
+        /// </summary>
+        /// <returns>The screen DPI resolution.</returns>
         public static int ScreenDPI()
         {
             Monitor.Enter(flag);
@@ -43,6 +47,9 @@ namespace Reportman.Drawing.Forms
             }
         }
         static float fDPIScale = 0f;
+        /// <summary>
+        /// Gets the DPI scale factor ratio relative to standard 96 DPI.
+        /// </summary>
         public static float DPIScale
         {
             get
@@ -55,6 +62,12 @@ namespace Reportman.Drawing.Forms
                 return fDPIScale;
             }
         }
+        /// <summary>
+        /// Native Windows API lookup to query DPI awareness.
+        /// </summary>
+        /// <param name="hprocess">The target process handle pointer.</param>
+        /// <param name="dpiAwareness">Output argument: receives the DPI awareness enum flag.</param>
+        /// <returns>Zero if successful; otherwise, a non-zero HRESULT error code.</returns>
         [DllImport("shcore.dll", SetLastError = true)]
         public static extern int GetProcessDpiAwareness(IntPtr hprocess, out DpiAwareness dpiAwareness);
 
@@ -64,10 +77,17 @@ namespace Reportman.Drawing.Forms
         /// </summary>
         public enum DpiAwareness
         {
+            /// <summary>The process is not DPI-aware.</summary>
             Unaware = 0,
+            /// <summary>The process is system DPI-aware (scaled by OS once).</summary>
             SystemAware = 1,
+            /// <summary>The process is per-monitor DPI-aware (scaled dynamically per monitor).</summary>
             PerMonitorAware = 2
         }
+        /// <summary>
+        /// Checks whether the running Windows Forms process has enabled high-DPI scaling awareness.
+        /// </summary>
+        /// <returns>True if DPI-aware; otherwise, false.</returns>
         public static bool IsWindowsFormsDPIAware()
 
         {

@@ -192,6 +192,12 @@ namespace Reportman.Drawing
             return extent;
         }
 
+        /// <summary>
+        /// Computes the layout size and multi-line wrapping boundaries for a text object.
+        /// </summary>
+        /// <param name="aobj">The text object structure containing formatting, style and text.</param>
+        /// <param name="extent">The maximum layout boundaries; receives the computed final width/height extent.</param>
+        /// <returns>A list of LineInfo objects describing each wrapped line's position and metrics.</returns>
         public override List<LineInfo> TextExtentLineInfo(TextObjectStruct aobj, ref Point extent)
         {
             if (npdfdriver == null)
@@ -306,10 +312,13 @@ namespace Reportman.Drawing
             return newfont;
         }
         /// <summary>
-        /// Generate Stringformat from align properties
+        /// Generates a GDI+ StringFormat instance configured according to the alignment and wrapping properties.
         /// </summary>
-        /// <param name="align"></param>
-        /// <returns></returns>
+        /// <param name="Alignment">The horizontal and vertical text alignment flag.</param>
+        /// <param name="CutText">If true, clips text to layout bounds; if false, prevents clipping.</param>
+        /// <param name="WordWrap">If true, enables word wrapping.</param>
+        /// <param name="RightToLeft">If true, sets right-to-left layout direction.</param>
+        /// <returns>A configured StringFormat instance.</returns>
         public static StringFormat IntAlignToStringFormat(int Alignment, bool CutText, bool WordWrap, bool RightToLeft)
         {
             StringFormat fl = new StringFormat();
@@ -435,6 +444,15 @@ namespace Reportman.Drawing
 
             return new Rectangle(Left, Top, Width, Height);
         }
+        /// <summary>
+        /// Draws the specified text string within the given rectangle using GDI+.
+        /// </summary>
+        /// <param name="gr">The target graphics context.</param>
+        /// <param name="atext">The string text to draw.</param>
+        /// <param name="font">The font to apply.</param>
+        /// <param name="brush">The brush defining fill color.</param>
+        /// <param name="arec">The bounds of the layout rectangle.</param>
+        /// <param name="sformat">The formatting options.</param>
         public virtual void DrawString(Graphics gr, string atext, Font font, Brush brush, Rectangle arec, StringFormat sformat)
         {
             //graph.TextRenderingHint = TextRenderingHint.SingleBitPerPixel;
@@ -443,12 +461,33 @@ namespace Reportman.Drawing
             gr.DrawString(atext, font, brush, arec, sformat);
 
         }
+        /// <summary>
+        /// Draws the specified text string at the given coordinates using GDI+.
+        /// </summary>
+        /// <param name="gr">The target graphics context.</param>
+        /// <param name="atext">The string text to draw.</param>
+        /// <param name="font">The font to apply.</param>
+        /// <param name="brush">The brush defining fill color.</param>
+        /// <param name="posx">The horizontal coordinate where drawing starts.</param>
+        /// <param name="posy">The vertical coordinate where drawing starts.</param>
+        /// <param name="sformat">The formatting options.</param>
         public virtual void DrawString(Graphics gr, string atext, Font font, Brush brush, float posx, float posy, StringFormat sformat)
         {
             // gr.TextRenderingHint = TextRenderingHint.AntiAlias;
             //graph.TextRenderingHint = TextRenderingHint.SingleBitPerPixel;
             gr.DrawString(atext, font, brush, posx, posy, sformat);
         }
+        /// <summary>
+        /// Measures the width, height, and character alignment fit of the specified text.
+        /// </summary>
+        /// <param name="gr">The target graphics context.</param>
+        /// <param name="atext">The string text to measure.</param>
+        /// <param name="font">The font to apply.</param>
+        /// <param name="layoutarea">The maximum boundary size allowed.</param>
+        /// <param name="sformat">The formatting options.</param>
+        /// <param name="charsfit">Output parameter: receives the number of characters that fit in the layout area.</param>
+        /// <param name="linesfit">Output parameter: receives the number of lines of text that fit in the layout area.</param>
+        /// <returns>A SizeF containing the measured dimensions.</returns>
         public virtual SizeF MeasureString(Graphics gr, string atext, Font font, SizeF layoutarea, StringFormat sformat, out int charsfit, out int linesfit)
         {
             return gr.MeasureString(atext, font, layoutarea, sformat, out charsfit, out linesfit);
@@ -1012,6 +1051,14 @@ namespace Reportman.Drawing
                 ANTIALIASED_QUALITY, DEFAULT_PITCH, family);
         }
 
+        /// <summary>
+        /// Renders HTML-formatted text onto a Graphics surface, handling parsing, tags, and formatting.
+        /// </summary>
+        /// <param name="gr">The target graphics context.</param>
+        /// <param name="arect">The layout boundary rectangle.</param>
+        /// <param name="atext">The text object structure containing formatting, style and raw HTML text.</param>
+        /// <param name="nfont">The fallback font used when no HTML tags specify a font.</param>
+        /// <param name="sbrush">The fallback solid brush used when no HTML tags specify a color.</param>
         protected void TextRectHtml(Graphics gr, Rectangle arect, TextObjectStruct atext, Font nfont, SolidBrush sbrush)
         {
             float intdpix = gr.DpiX;

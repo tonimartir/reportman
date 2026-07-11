@@ -1,4 +1,4 @@
-﻿#region Copyright
+#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -993,6 +993,10 @@ namespace Reportman.Drawing.Forms
 
             ReDrawPage();
         }
+        /// <summary>
+        /// Releases the resources used by this control.
+        /// </summary>
+        /// <param name="disposing">True to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected override void Dispose(bool disposing)
         {
             if (FMetaFile != null)
@@ -1019,14 +1023,38 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public class SendMailEventArgs
     {
+        /// <summary>
+        /// The name of the sender or display name.
+        /// </summary>
         public string Name;
+        /// <summary>
+        /// The file name of the attachment.
+        /// </summary>
         public string Filename;
+        /// <summary>
+        /// The subject of the e-mail.
+        /// </summary>
         public string Subject;
+        /// <summary>
+        /// The sender's e-mail address.
+        /// </summary>
         public string From;
+        /// <summary>
+        /// The recipient's e-mail address.
+        /// </summary>
         public string To;
+        /// <summary>
+        /// The body text of the e-mail.
+        /// </summary>
         public string Body;
+        /// <summary>
+        /// The binary content of the attachment.
+        /// </summary>
         public byte[] Content;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SendMailEventArgs"/> class with default empty values.
+        /// </summary>
         public SendMailEventArgs()
         {
             Name = "";
@@ -1045,6 +1073,10 @@ namespace Reportman.Drawing.Forms
 	public class PreviewMetafileDesigner : ControlDesigner
 	{
 
+		/// <summary>
+		/// Filters the properties of the control during design time to remove unneeded properties.
+		/// </summary>
+		/// <param name="properties">The dictionary of properties to filter.</param>
 		protected override void PostFilterProperties(System.Collections.IDictionary
 		properties)
 		{

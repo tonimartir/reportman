@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -16,11 +16,20 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public partial class RadioGroup : Reportman.Drawing.Forms.GroupBoxAdvanced
     {
+        /// <summary>
+        /// Event that is raised when the selected index of the radio group changes.
+        /// </summary>
         public EventHandler SelectedIndexChanged;
+        /// <summary>
+        /// A public field indicating whether the layout orientation of the radio buttons is horizontal.
+        /// </summary>
         public bool FHorizontal;
         private bool FAutoSize;
         private int FSelectedIndex;
         List<RadioButton> buttons;
+        /// <summary>
+        /// Gets or sets the index of the selected radio button.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
 
         public int SelectedIndex
@@ -55,6 +64,9 @@ namespace Reportman.Drawing.Forms
                         SelectedIndexChanged(this, new EventArgs());
             }
         }
+        /// <summary>
+        /// Gets or sets a value indicating whether the size of the control should auto adjust.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AutoAdjustSize
         {
@@ -65,6 +77,9 @@ namespace Reportman.Drawing.Forms
                 DoResize();
             }
         }
+        /// <summary>
+        /// Gets or sets a value indicating whether the radio buttons are arranged horizontally.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool Horizontal
         {
@@ -75,6 +90,10 @@ namespace Reportman.Drawing.Forms
                 DoResize();
             }
         }
+        /// <summary>
+        /// Sets the captions of the radio buttons in the group, replacing any existing ones.
+        /// </summary>
+        /// <param name="captions">A collection of string captions to display for the radio buttons.</param>
         public void SetCaptions(Strings captions)
         {
             int FOldItemIndex = FSelectedIndex;
@@ -116,6 +135,9 @@ namespace Reportman.Drawing.Forms
                     SelectedIndexChanged(this, new EventArgs());
             }
         }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RadioGroup"/> class, setting the component layout, lists, and background color.
+        /// </summary>
         public RadioGroup()
         {
             InitializeComponent();
@@ -202,22 +224,38 @@ namespace Reportman.Drawing.Forms
                 }
             }
         }
+        /// <summary>
+        /// Triggers layout adjustment when the font of the control is changed.
+        /// </summary>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         protected override void OnFontChanged(EventArgs e)
         {
             DoResize();
             // Resize the control
             base.OnFontChanged(e);
         }
+        /// <summary>
+        /// Triggers layout adjustment when the parent of the control changes.
+        /// </summary>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         protected override void OnParentChanged(EventArgs e)
         {
             DoResize();
             base.OnParentChanged(e);
         }
+        /// <summary>
+        /// Triggers layout adjustment when the control is resized.
+        /// </summary>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         protected override void OnResize(EventArgs e)
         {
             if (!FAutoSize)
                 base.OnResize(e);
         }
+        /// <summary>
+        /// Paints the background of the control and raises the paint event.
+        /// </summary>
+        /// <param name="e">A <see cref="PaintEventArgs"/> that contains the event data.</param>
         protected override void OnPaint(PaintEventArgs e)
         {
             BackColor = Color.Transparent;

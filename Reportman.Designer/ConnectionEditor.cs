@@ -1,4 +1,4 @@
-﻿#region Copyright
+#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -38,14 +38,23 @@ namespace Reportman.Designer
         /// <summary>Result of editing a connection.</summary>
         public struct ConnResult
         {
+            /// <summary>Gets a value indicating whether the connection uses the HTTP Agent driver.</summary>
             public bool IsAgent;
+            /// <summary>Gets the database provider invariant name.</summary>
             public string ProviderInvariant;
+            /// <summary>Gets the ADO connection string.</summary>
             public string ConnectionString;
+            /// <summary>Gets the HTTP Agent API key.</summary>
             public string AgentApiKey;
+            /// <summary>Gets the HTTP Agent API base URL.</summary>
             public string AgentBaseUrl;
+            /// <summary>Gets the HTTP Agent Hub database identifier.</summary>
             public long AgentHubDatabaseId;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the ConnectionEditor dialog class.
+        /// </summary>
         public ConnectionEditor()
         {
             InitializeComponent();

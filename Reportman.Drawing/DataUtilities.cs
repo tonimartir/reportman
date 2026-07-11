@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
@@ -33,8 +33,13 @@ namespace Reportman.Drawing
             return newtable;
         }
         /// <summary>
-        /// Lee de forma asincrona desde un dbcommand
+        /// Asynchronously executes a database command and populates a DataTable with the requested record range.
         /// </summary>
+        /// <param name="ncommand">The command to execute.</param>
+        /// <param name="tableName">The name assigned to the generated DataTable.</param>
+        /// <param name="from">The starting record offset index (0-based).</param>
+        /// <param name="to">The ending record index (exclusive), or -1 for no upper limit.</param>
+        /// <returns>A task representing the asynchronous operation, returning the populated DataTable.</returns>
         public async static System.Threading.Tasks.Task<DataTable> FillAsync(DbCommand ncommand, string tableName, int from, int to)
         {
             System.Data.DataTable intdatatable = new DataTable(tableName);
@@ -159,10 +164,22 @@ namespace Reportman.Drawing
             typeMap[typeof(DateTimeOffset?)] = DbType.DateTimeOffset;
             //typeMap[typeof(System.Data.Linq.Binary)] = DbType.Binary;
         }
+        /// <summary>
+        /// Maps a .NET Type class representation to its corresponding DbType value.
+        /// </summary>
+        /// <param name="ntype">The .NET Type to map.</param>
+        /// <returns>The matching DbType.</returns>
         public static System.Data.DbType TypeToDbType(System.Type ntype)
         {
             return typeMap[ntype];
         }
+        /// <summary>
+        /// Merges multiple DataTables, grouping matching rows by key columns and aggregating specified sum columns.
+        /// </summary>
+        /// <param name="sources">The collection of source DataTables to merge.</param>
+        /// <param name="groupCols">Comma-separated or semicolon-separated grouping key column names.</param>
+        /// <param name="sumCols">Comma-separated or semicolon-separated numeric column names to aggregate.</param>
+        /// <returns>A grouped and aggregated DataTable.</returns>
         public static DataTable GroupBy(List<DataTable> sources, string groupCols, string sumCols)
         {
             char char_split = ';';
@@ -235,6 +252,13 @@ namespace Reportman.Drawing
             }
             return result;
         }
+        /// <summary>
+        /// Splits a single list into multiple sublists of a specified maximum size.
+        /// </summary>
+        /// <typeparam name="T">The type of items in the list.</typeparam>
+        /// <param name="lista">The source list to divide.</param>
+        /// <param name="tamañoMaximo">The maximum number of items in each sublist.</param>
+        /// <returns>A list containing the divided sublists.</returns>
         public static List<List<T>> DividirLista<T>(List<T> lista, int tamañoMaximo)
         {
             List<List<T>> listasDivididas = new List<List<T>>();
@@ -254,6 +278,12 @@ namespace Reportman.Drawing
 
             return listasDivididas;
         }
+        /// <summary>
+        /// Finds the index of a specific DataRow within a DataView.
+        /// </summary>
+        /// <param name="dv">The DataView extension target to search.</param>
+        /// <param name="xrow">The DataRow to find.</param>
+        /// <returns>The index of the row in the DataView, or -1 if not found.</returns>
         public static int IndexOfDataRow(this DataView dv, DataRow xrow)
         {
             int nresult = -1;
@@ -274,6 +304,12 @@ namespace Reportman.Drawing
         }
 
 
+        /// <summary>
+        /// Generates a SQL CREATE TABLE definition matching the DataTable columns and primary key.
+        /// </summary>
+        /// <param name="ntable">The source DataTable.</param>
+        /// <param name="primkey">The primary key column name.</param>
+        /// <returns>A SQL CREATE TABLE DDL string.</returns>
         public static string GetCreationSql(DataTable ntable, string primkey)
         {
             StringBuilder nbuilder = new StringBuilder();

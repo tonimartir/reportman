@@ -15,7 +15,9 @@ namespace Reportman.Drawing
         private int FPageWidth;
         private int FPageHeight;
         private int PageQt;
+#pragma warning disable CS0649
         private Graphics gr;
+#pragma warning restore CS0649
         /// <summary>
         /// Draws all objects of the specified page onto the current GDI+ graphics surface.
         /// </summary>

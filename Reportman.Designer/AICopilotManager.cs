@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 
 namespace Reportman.Designer
@@ -11,27 +11,45 @@ namespace Reportman.Designer
     public class AICopilotManager
     {
         private static AICopilotManager _instance;
+        /// <summary>
+        /// Gets the singleton instance of the AICopilotManager.
+        /// </summary>
         public static AICopilotManager Instance => _instance ?? (_instance = new AICopilotManager());
         
         private bool _isThinking;
         
+        /// <summary>
+        /// Gets a value indicating whether the AI copilot is currently executing a task.
+        /// </summary>
         public bool IsThinking => _isThinking;
         
+        /// <summary>
+        /// Occurs when the busy (thinking) state of the AI copilot changes.
+        /// </summary>
         public event EventHandler ThinkingStateChanged;
         
         // This simulates a cancellation token or mechanism that the active inference can hook into
+        /// <summary>
+        /// Action callback invoked to cancel the current background AI operation.
+        /// </summary>
         public Action OnCancelRequested;
 
         private AICopilotManager()
         {
         }
 
+        /// <summary>
+        /// Sets the manager state to busy and raises the state-changed event.
+        /// </summary>
         public void BeginInference()
         {
             _isThinking = true;
             ThinkingStateChanged?.Invoke(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Clears the manager busy state, clears the cancellation callback, and raises the state-changed event.
+        /// </summary>
         public void EndInference()
         {
             _isThinking = false;

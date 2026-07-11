@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Data;
 using System.Data.Common;
 using System.IO;
@@ -17,6 +17,11 @@ namespace Reportman.Reporting
     /// </summary>
     public class DBFExport
     {
+        /// <summary>
+        /// Instantiates and configures a dBASE IV OLE DB Connection pointing to the specified folder context.
+        /// </summary>
+        /// <param name="folder">The folder containing dBASE files.</param>
+        /// <returns>A DbConnection instance configured for dBASE IV.</returns>
         public static DbConnection CreateConnection(string folder)
         {
             DbProviderFactory nfac = DbProviderFactories.GetFactory("System.Data.OleDb");
@@ -31,6 +36,12 @@ namespace Reportman.Reporting
 
             return connection;
         }
+        /// <summary>
+        /// Maps a System Type representation to its matching database DbType for OLE DB parameters.
+        /// </summary>
+        /// <param name="valor">The system type to map.</param>
+        /// <param name="level">Level threshold defining date precision.</param>
+        /// <returns>The matching DbType.</returns>
         public static DbType TypeToDBFDbType(Type valor, int level)
         {
             DbType aresult = DbType.AnsiString;
@@ -74,14 +85,35 @@ namespace Reportman.Reporting
             }
             return aresult;
         }
+        /// <summary>
+        /// Exports a DataTable to a dBASE IV file using default date mapping levels.
+        /// </summary>
+        /// <param name="ntable">The source DataTable.</param>
+        /// <param name="filename">The target output file path.</param>
+        /// <param name="connection">The dBASE database connection.</param>
         public static void SaveToFile(DataTable ntable, string filename, DbConnection connection)
         {
             SaveToFile(ntable, filename, connection, 4);
         }
+        /// <summary>
+        /// Exports a DataTable to a dBASE IV file with a custom date mapping level.
+        /// </summary>
+        /// <param name="ntable">The source DataTable.</param>
+        /// <param name="filename">The target output file path.</param>
+        /// <param name="connection">The dBASE database connection.</param>
+        /// <param name="level">Level threshold defining date precision.</param>
         public static void SaveToFile(DataTable ntable, string filename, DbConnection connection, int level)
         {
             SaveToFile(ntable, filename, connection, level, null);
         }
+        /// <summary>
+        /// Exports a DataTable to a dBASE IV file with a progress callback.
+        /// </summary>
+        /// <param name="ntable">The source DataTable.</param>
+        /// <param name="filename">The target output file path.</param>
+        /// <param name="connection">The dBASE database connection.</param>
+        /// <param name="level">Level threshold defining date precision.</param>
+        /// <param name="eventprogress">The progress tracking callback delegate.</param>
         public static void SaveToFile(DataTable ntable, string filename, DbConnection connection, int level, DataProgressEvent eventprogress)
         {
             foreach (DataColumn ncol in ntable.Columns)
@@ -181,6 +213,12 @@ namespace Reportman.Reporting
                 }
             }
         }
+        /// <summary>
+        /// Resolves the raw SQL column type definitions (e.g. CHAR, NUMERIC) matching a Type.
+        /// </summary>
+        /// <param name="ntype">The system type.</param>
+        /// <param name="length">Length threshold for string representation columns.</param>
+        /// <returns>The SQL database type string representation.</returns>
         public static string TypeToDBFSqlType(Type ntype, int length)
         {
             string nresult = "";
@@ -217,6 +255,12 @@ namespace Reportman.Reporting
             }
             return nresult;
         }
+        /// <summary>
+        /// Exports a DataTable to a dBASE IV file, automatically managing connection lifecycle and reporting progress.
+        /// </summary>
+        /// <param name="ntable">The source DataTable.</param>
+        /// <param name="filename">The target output file path.</param>
+        /// <param name="eventprogress">The progress tracking callback delegate.</param>
         public static void SaveToFile(DataTable ntable, string filename, DataProgressEvent eventprogress)
         {
             string folder = Path.GetDirectoryName(filename);

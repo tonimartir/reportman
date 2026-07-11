@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Text;
 using System.Threading;
@@ -10,9 +10,18 @@ namespace Reportman.Drawing
     /// </summary>
     public class PrinterConfig
     {
+        /// <summary>
+        /// Gets or sets a value indicating whether the configuration settings should persist.
+        /// </summary>
         public static bool PersistentConfiguration = true;
         private static IniFile config = null;
+        /// <summary>
+        /// Lock object used to synchronize access to configuration loading operations.
+        /// </summary>
         public static object flag = 0;
+        /// <summary>
+        /// Gets or sets a value indicating whether to force using the system-wide configuration file instead of user-specific one.
+        /// </summary>
         public static bool ForceSystemConfig = false;
         private static string filename;
         private static void CheckLoaded()
@@ -42,11 +51,18 @@ namespace Reportman.Drawing
             }
 
         }
+        /// <summary>
+        /// Returns the path to the loaded configuration file.
+        /// </summary>
+        /// <returns>A string representing the file path of the configuration file.</returns>
         public static string ConfigFile()
         {
             CheckLoaded();
             return filename;
         }
+        /// <summary>
+        /// Reloads the printer parameters from the configuration file.
+        /// </summary>
         public static void ReloadParameters()
         {
             Monitor.Enter(flag);
@@ -60,6 +76,11 @@ namespace Reportman.Drawing
             }
             CheckLoaded();
         }
+        /// <summary>
+        /// Gets the driver name associated with the specified printer selection type.
+        /// </summary>
+        /// <param name="printselect">The printer selection type.</param>
+        /// <returns>A string representing the name of the printer driver.</returns>
         public static string GetDriverName(PrinterSelectType printselect)
         {
             string defvalue = "";
@@ -79,6 +100,11 @@ namespace Reportman.Drawing
             CheckLoaded();
             return config.ReadString("PrinterDriver", valuename, defvalue);
         }
+        /// <summary>
+        /// Gets the configured printer name for the specified printer selection type.
+        /// </summary>
+        /// <param name="printselect">The printer selection type.</param>
+        /// <returns>A string representing the name of the printer.</returns>
         public static string GetPrinterName(PrinterSelectType printselect)
         {
             string defvalue = "";
@@ -86,6 +112,11 @@ namespace Reportman.Drawing
             CheckLoaded();
             return config.ReadString("PrinterNames", valuename, defvalue);
         }
+        /// <summary>
+        /// Decodes a string containing escape characters (e.g. #27) into a standard string representation.
+        /// </summary>
+        /// <param name="source">The encoded escape string.</param>
+        /// <returns>The decoded string containing literal character values.</returns>
         public static string DecodeEscapeString(string source)
         {
             string nresult = source;
@@ -123,6 +154,11 @@ namespace Reportman.Drawing
             }
             return newstring;
         }
+        /// <summary>
+        /// Retrieves the escape command byte sequence for paper cutting.
+        /// </summary>
+        /// <param name="printselect">The printer selection type.</param>
+        /// <returns>A byte array containing the command sequence.</returns>
         public static byte[] GetCutPaperOperation(PrinterSelectType printselect)
         {
             string defvalue = "";
@@ -132,18 +168,33 @@ namespace Reportman.Drawing
             nresult = DecodeEscapeString(nresult);
             return Encoding.ASCII.GetBytes(nresult);
         }
+        /// <summary>
+        /// Gets whether the drawer opening option is enabled for the specified printer selection type.
+        /// </summary>
+        /// <param name="printselect">The printer selection type.</param>
+        /// <returns>True if the drawer open option is enabled; otherwise, false.</returns>
         public static bool GetOpenDrawerOption(PrinterSelectType printselect)
         {
             string valuename = "Printer" + ((int)printselect).ToString();
             CheckLoaded();
             return config.ReadBool("OpenDrawerOn", valuename, false);
         }
+        /// <summary>
+        /// Gets whether the paper cutting option is enabled for the specified printer selection type.
+        /// </summary>
+        /// <param name="printselect">The printer selection type.</param>
+        /// <returns>True if the paper cut option is enabled; otherwise, false.</returns>
         public static bool GetCutPaperOption(PrinterSelectType printselect)
         {
             string valuename = "Printer" + ((int)printselect).ToString();
             CheckLoaded();
             return config.ReadBool("CutPaperOn", valuename, false);
         }
+        /// <summary>
+        /// Retrieves the escape command byte sequence for opening the cash drawer.
+        /// </summary>
+        /// <param name="printselect">The printer selection type.</param>
+        /// <returns>A byte array containing the command sequence.</returns>
         public static byte[] GetOpenDrawerOperation(PrinterSelectType printselect)
         {
             string defvalue = "";
@@ -153,6 +204,11 @@ namespace Reportman.Drawing
             nresult = DecodeEscapeString(nresult);
             return Encoding.ASCII.GetBytes(nresult);
         }
+        /// <summary>
+        /// Gets whether OEM code page translation is enabled for the printer escape sequences.
+        /// </summary>
+        /// <param name="printselect">The printer selection type.</param>
+        /// <returns>True if OEM conversion is enabled; otherwise, false.</returns>
         public static bool GetOEMConvert(PrinterSelectType printselect)
         {
             string valuename = "Printer" + ((int)printselect).ToString();
@@ -160,6 +216,10 @@ namespace Reportman.Drawing
             return config.ReadBool("PrinterEscapeOem", valuename, true);
         }
 
+        /// <summary>
+        /// Returns a collection of supported text-only printer driver names.
+        /// </summary>
+        /// <returns>A <see cref="Strings"/> object containing the driver names.</returns>
         public static Strings GetTextOnlyPrintDrivers()
         {
             Strings drivernames = new Strings
@@ -181,6 +241,10 @@ namespace Reportman.Drawing
             };
             return drivernames;
         }
+        /// <summary>
+        /// Returns a collection of names of configurable printers.
+        /// </summary>
+        /// <returns>A <see cref="Strings"/> object containing the names of configurable printers.</returns>
         public static Strings GetConfigurablePrinters()
         {
             Strings configs = new Strings

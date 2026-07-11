@@ -6,7 +6,7 @@
          namespaces / nullable, so pin the language version across all targets. -->
     <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
     <RootNamespace>Reportman.Hub.Client.DataChannel</RootNamespace>
     <AssemblyName>Reportman.DataChannel</AssemblyName>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>

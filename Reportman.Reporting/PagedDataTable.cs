@@ -1,4 +1,4 @@
-﻿#region Copyright
+#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -35,13 +35,28 @@ namespace Reportman.Reporting
         private bool FEof;
         private bool FInternalEof;
         private IDataReader FCurrentReader;
+        /// <summary>
+        /// Occurs when a row is successfully appended to the table, raising the data change event.
+        /// </summary>
         public event PagedDataChange OnDataChange;
+        /// <summary>
+        /// Gets or sets a value indicating whether table columns should be cleared and rebuilt on update.
+        /// </summary>
         public bool UpdateColumns;
+        /// <summary>
+        /// Gets or sets the batch sizing limit for row chunks.
+        /// </summary>
         public int PageSize;
+        /// <summary>
+        /// Gets a value indicating whether the data reader is currently active.
+        /// </summary>
         public bool Active
         {
             get { return (FCurrentReader != null); }
         }
+        /// <summary>
+        /// Initializes a new instance of the PagedDataTable class.
+        /// </summary>
         public PagedDataTable() : base()
         {
             PageSize = 500;
@@ -98,6 +113,9 @@ namespace Reportman.Reporting
                     break;
             }
         }
+        /// <summary>
+        /// Gets or sets the active reader source from which rows are incrementally loaded.
+        /// </summary>
         public IDataReader CurrentReader
         {
             get
@@ -113,6 +131,9 @@ namespace Reportman.Reporting
                 }
             }
         }
+        /// <summary>
+        /// Gets a value indicating whether all records have been loaded from the reader.
+        /// </summary>
         public bool Eof
         {
             get
@@ -120,6 +141,10 @@ namespace Reportman.Reporting
                 return FInternalEof;
             }
         }
+        /// <summary>
+        /// Reads the next row from the data reader, inserts it into the table, and raises the change event.
+        /// </summary>
+        /// <returns>True if a record was successfully read; otherwise, false.</returns>
         public bool Next()
         {
             if (FCurrentReader == null)

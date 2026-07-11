@@ -22,6 +22,10 @@ namespace Reportman.Reporting.Templates
         private const string GroupHeaderSectionName = "TRPSECTION2";
         private const string GroupFooterSectionName = "TRPSECTION3";
 
+        /// <summary>
+        /// Creates a new, blank report template with default settings.
+        /// </summary>
+        /// <returns>The newly created Report instance.</returns>
         public static Report CreateBlankReport()
         {
             var report = new Report();
@@ -31,6 +35,10 @@ namespace Reportman.Reporting.Templates
             return report;
         }
 
+        /// <summary>
+        /// Creates a report template configured with City groups, connection details, and query fields.
+        /// </summary>
+        /// <returns>The grouped report template.</returns>
         public static Report CreateGroupedReport()
         {
             var report = CreateBlankReport();
@@ -58,11 +66,19 @@ namespace Reportman.Reporting.Templates
             return report;
         }
 
+        /// <summary>
+        /// Creates the grouped report template using design-driven batch operations, normalized for serialization.
+        /// </summary>
+        /// <returns>The grouped report template.</returns>
         public static Report CreateGroupedReportUsingDesign()
         {
             return CreateGroupedReportUsingDesign(normalizeForSerialization: true);
         }
 
+        /// <summary>
+        /// Creates the grouped report template using design-driven batch operations, ready for active designer use.
+        /// </summary>
+        /// <returns>The grouped report template.</returns>
         public static Report CreateGroupedReportUsingDesignForDesigner()
         {
             return CreateGroupedReportUsingDesign(normalizeForSerialization: false);
@@ -136,6 +152,10 @@ namespace Reportman.Reporting.Templates
             return report;
         }
 
+        /// <summary>
+        /// Checks whether the programmatically built and design-operation built grouped report templates are equivalent.
+        /// </summary>
+        /// <returns>True if they are structurally and property-wise equivalent; otherwise, false.</returns>
         public static bool GroupedTemplatesAreEquivalent()
         {
             return ReportsAreEquivalent(CreateGroupedReport(), CreateGroupedReportUsingDesign());

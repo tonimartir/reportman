@@ -1,4 +1,4 @@
-﻿#region Copyright
+#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -27,12 +27,52 @@ namespace Reportman.Reporting
     /// Defines the scope over which an aggregate value is accumulated: none, per group,
     /// per page, or across the whole report.
     /// </summary>
-    public enum Aggregate { None, Group, Page, General };
+    public enum Aggregate
+    {
+        /// <summary>
+        /// No aggregation is performed.
+        /// </summary>
+        None,
+        /// <summary>
+        /// Accumulate values per report group.
+        /// </summary>
+        Group,
+        /// <summary>
+        /// Accumulate values per page.
+        /// </summary>
+        Page,
+        /// <summary>
+        /// Accumulate values across the entire report.
+        /// </summary>
+        General
+    };
     /// <summary>
     /// The kind of aggregation applied to a value: sum, minimum, maximum, average, or
     /// standard deviation.
     /// </summary>
-    public enum AggregateType { Summary, Minimum, Maximum, Average, StandardDeviation };
+    public enum AggregateType
+    {
+        /// <summary>
+        /// Calculate the sum (summary) of values.
+        /// </summary>
+        Summary,
+        /// <summary>
+        /// Find the minimum value.
+        /// </summary>
+        Minimum,
+        /// <summary>
+        /// Find the maximum value.
+        /// </summary>
+        Maximum,
+        /// <summary>
+        /// Calculate the average value.
+        /// </summary>
+        Average,
+        /// <summary>
+        /// Calculate the standard deviation of values.
+        /// </summary>
+        StandardDeviation
+    };
     /// <summary>
     /// A report print item that renders a static, language-aware text label, selecting the
     /// string for the report's current language and supporting optional HTML content.
@@ -40,12 +80,21 @@ namespace Reportman.Reporting
     public class LabelItem : PrintItemText
     {
         Strings FAllStrings;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LabelItem"/> class with empty localized string collections.
+        /// </summary>
         public LabelItem()
             : base()
         {
             FAllStrings = new Strings();
         }
+        /// <summary>
+        /// Gets or sets the collection of localized text strings for the label, where each entry corresponds to a supported language.
+        /// </summary>
         public Strings AllStrings { get { return FAllStrings; } set { FAllStrings = value; } }
+        /// <summary>
+        /// Gets or sets the text value of the label for the current report language.
+        /// </summary>
         [System.Text.Json.Serialization.JsonIgnore]
         [Newtonsoft.Json.JsonIgnore]
 
@@ -83,10 +132,25 @@ namespace Reportman.Reporting
                 FAllStrings[lang] = value;
             }
         }
+        /// <summary>
+        /// Gets the class name identifier for the print item.
+        /// </summary>
+        /// <returns>A string representing the class name, "TRPLABEL".</returns>
         protected override string GetClassName()
         {
             return "TRPLABEL";
         }
+        /// <summary>
+        /// Performs the drawing of the label item onto the metafile, handling alignment, HTML encoding, fonts, and colors.
+        /// </summary>
+        /// <param name="adriver">The render driver used to output the item.</param>
+        /// <param name="aposx">The horizontal coordinate position.</param>
+        /// <param name="aposy">The vertical coordinate position.</param>
+        /// <param name="newwidth">The width of the printed item.</param>
+        /// <param name="newheight">The height of the printed item.</param>
+        /// <param name="metafile">The destination metafile for drawing operations.</param>
+        /// <param name="MaxExtent">The maximum drawing bounds allowed.</param>
+        /// <param name="PartialPrint">A flag indicating if printing was partial.</param>
         override protected void DoPrint(PrintOut adriver, int aposx, int aposy,
             int newwidth, int newheight, MetaFile metafile, Point MaxExtent,
             ref bool PartialPrint)
@@ -149,6 +213,13 @@ namespace Reportman.Reporting
             aresult.IsHtml = IsHtml;
             return aresult;
         }
+        /// <summary>
+        /// Calculates the layout extent size required by the label based on its text, font, alignment, and wrapping properties.
+        /// </summary>
+        /// <param name="adriver">The print out driver containing drawing metric tools.</param>
+        /// <param name="MaxExtent">The maximum size limits allowed.</param>
+        /// <param name="ForcePartial">Forces calculating text extent under partial page layout rules.</param>
+        /// <returns>A <see cref="Point"/> containing the calculated width and height dimensions.</returns>
         override public Point GetExtension(PrintOut adriver, Point MaxExtent, bool ForcePartial)
         {
             TextObjectStruct atext;
@@ -165,10 +236,21 @@ namespace Reportman.Reporting
     /// </summary>
     public class EvalIdenExpression : IdenFunction
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EvalIdenExpression"/> class with a specified evaluator.
+        /// </summary>
+        /// <param name="eval">The <see cref="Evaluator"/> context to associate with this identifier.</param>
         public EvalIdenExpression(Evaluator eval)
             : base(eval)
         { }
+        /// <summary>
+        /// The associated report expression item whose value is evaluated on demand.
+        /// </summary>
         public ExpressionItem ExpreItem;
+        /// <summary>
+        /// Evaluates the expression item and returns its current value.
+        /// </summary>
+        /// <returns>A <see cref="Variant"/> containing the evaluated value.</returns>
         protected override Variant GetValue()
         {
             ExpreItem.Evaluate();

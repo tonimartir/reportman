@@ -1,4 +1,4 @@
-﻿using Reportman.Drawing;
+using Reportman.Drawing;
 using SharpDX;
 using SharpDX.Direct2D1;
 using SharpDX.DirectWrite;
@@ -17,13 +17,36 @@ namespace Reportman.Drawing.Windows
     /// </summary>
     public class TGlyphLine
     {
+        /// <summary>
+        /// The baseline Y position of the line.
+        /// </summary>
         public float BaselineY;
+        /// <summary>
+        /// List of glyph positions on this line.
+        /// </summary>
         public List<TGlyphPos> Glyphs = new List<TGlyphPos>();
+        /// <summary>
+        /// Indicates if the line text layout is Right-to-Left.
+        /// </summary>
         public bool IsRTL;
+        /// <summary>
+        /// Tracks if the last processed run was Left-to-Right.
+        /// </summary>
         public bool LastRunIsLTR;
+        /// <summary>
+        /// Length of the last processed run.
+        /// </summary>
         public int LastRunLength;
+        /// <summary>
+        /// Count of runs on the line.
+        /// </summary>
         public int RunCount;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TGlyphLine"/> class with a baseline and RTL flag.
+        /// </summary>
+        /// <param name="baselineY">The baseline Y-coordinate.</param>
+        /// <param name="isRTL">True if Right-To-Left layout.</param>
         public TGlyphLine(float baselineY, bool isRTL)
         {
             BaselineY = baselineY;
@@ -48,15 +71,29 @@ namespace Reportman.Drawing.Windows
 
         private string _originalText;
         private int TextLength;
+        /// <summary>
+        /// The font face reference.
+        /// </summary>
         public FontFace _fontFace;
         private TFontFaceCache _fontFamilyCache = new TFontFaceCache();
         private List<HtmlFormatRun> _htmlRuns;
         private bool _paragraphIsRTL;
         private bool _paragraphDirectionDetected = false;
 
+        /// <summary>
+        /// Gets the captured list of glyph positions.
+        /// </summary>
         public List<TGlyphPos> GlyphPositions { get; } = new List<TGlyphPos>();
+        /// <summary>
+        /// Gets the list of lines containing positioned glyphs.
+        /// </summary>
         public List<TGlyphLine> Lines { get; } = new List<TGlyphLine>();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TTextExtentRenderer"/> class with original text and optional HTML runs.
+        /// </summary>
+        /// <param name="originalText">The raw string to render.</param>
+        /// <param name="htmlRuns">Optional HTML format run definitions.</param>
         public TTextExtentRenderer(string originalText, List<HtmlFormatRun> htmlRuns = null)
         {
             _originalText = originalText;
@@ -97,6 +134,17 @@ namespace Reportman.Drawing.Windows
             return familyName;
         }
 
+        /// <summary>
+        /// Callback method to draw a glyph run, capturing details about fonts, layout direction, and styling.
+        /// </summary>
+        /// <param name="clientDrawingContext">The drawing context.</param>
+        /// <param name="baselineOriginX">The baseline X origin.</param>
+        /// <param name="baselineOriginY">The baseline Y origin.</param>
+        /// <param name="measuringMode">The measuring mode.</param>
+        /// <param name="glyphRun">The glyph run details.</param>
+        /// <param name="glyphRunDescription">The glyph run description.</param>
+        /// <param name="clientDrawingEffect">The drawing effect.</param>
+        /// <returns>Result of the operation.</returns>
         public override Result DrawGlyphRun(
             object clientDrawingContext,
             float baselineOriginX,
@@ -226,34 +274,78 @@ namespace Reportman.Drawing.Windows
         }
 
 
+        /// <summary>
+        /// Callback method to draw an underline. Captured but no operation performed.
+        /// </summary>
+        /// <param name="clientDrawingContext">The drawing context.</param>
+        /// <param name="baselineOriginX">The baseline X origin.</param>
+        /// <param name="baselineOriginY">The baseline Y origin.</param>
+        /// <param name="underline">The underline structure details.</param>
+        /// <param name="clientDrawingEffect">The drawing effect.</param>
+        /// <returns>Result of the operation.</returns>
         public override Result DrawUnderline(object clientDrawingContext, float baselineOriginX, float baselineOriginY,
             ref Underline underline, ComObject clientDrawingEffect)
         {
             return Result.Ok;
         }
 
+        /// <summary>
+        /// Callback method to draw a strikethrough. Captured but no operation performed.
+        /// </summary>
+        /// <param name="clientDrawingContext">The drawing context.</param>
+        /// <param name="baselineOriginX">The baseline X origin.</param>
+        /// <param name="baselineOriginY">The baseline Y origin.</param>
+        /// <param name="strikethrough">The strikethrough structure details.</param>
+        /// <param name="clientDrawingEffect">The drawing effect.</param>
+        /// <returns>Result of the operation.</returns>
         public override Result DrawStrikethrough(object clientDrawingContext, float baselineOriginX, float baselineOriginY,
             ref Strikethrough strikethrough, ComObject clientDrawingEffect)
         {
             return Result.Ok;
         }
 
+        /// <summary>
+        /// Callback method to draw an inline object. Captured but no operation performed.
+        /// </summary>
+        /// <param name="clientDrawingContext">The drawing context.</param>
+        /// <param name="originX">The X origin.</param>
+        /// <param name="originY">The Y origin.</param>
+        /// <param name="inlineObject">The inline object reference.</param>
+        /// <param name="isSideways">Whether the object is sideways.</param>
+        /// <param name="isRightToLeft">Whether the object layout is RTL.</param>
+        /// <param name="clientDrawingEffect">The drawing effect.</param>
+        /// <returns>Result of the operation.</returns>
         public override Result DrawInlineObject(object clientDrawingContext, float originX, float originY,
             InlineObject inlineObject, bool isSideways, bool isRightToLeft, ComObject clientDrawingEffect)
         {
             return Result.Ok;
         }
 
+        /// <summary>
+        /// Checks if pixel snapping is disabled.
+        /// </summary>
+        /// <param name="clientDrawingContext">The drawing context.</param>
+        /// <returns>False by default.</returns>
         public override bool IsPixelSnappingDisabled(object clientDrawingContext)
         {
             return false;
         }
 
+        /// <summary>
+        /// Retrieves the current transform matrix.
+        /// </summary>
+        /// <param name="clientDrawingContext">The drawing context.</param>
+        /// <returns>An identity transform matrix.</returns>
         public override RawMatrix3x2 GetCurrentTransform(object clientDrawingContext)
         {
             return new RawMatrix3x2 { M11 = 1f, M22 = 1f };
         }
 
+        /// <summary>
+        /// Gets the pixels per DIP setting.
+        /// </summary>
+        /// <param name="clientDrawingContext">The drawing context.</param>
+        /// <returns>Always 1.0f.</returns>
         public override float GetPixelsPerDip(object clientDrawingContext)
         {
             return 1f;
@@ -300,6 +392,11 @@ namespace Reportman.Drawing.Windows
             public ushort offset;
         }
 
+        /// <summary>
+        /// Retrieves the font family name directly from the 'name' table of the specified DirectWrite font face.
+        /// </summary>
+        /// <param name="fontFace">The DirectWrite FontFace to extract the family name from.</param>
+        /// <returns>The resolved font family name, or an empty string if not found.</returns>
         public static string GetFontFamilyFromFontFace(FontFace fontFace)
         {
             if (fontFace == null)

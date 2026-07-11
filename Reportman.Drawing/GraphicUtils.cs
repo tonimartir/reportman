@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Drawing;
@@ -20,16 +20,33 @@ namespace Reportman.Drawing
     /// </summary>
     public class GraphicUtils
     {
+        /// <summary>
+        /// Synchronization lock object for color names initialization.
+        /// </summary>
         public static object flag = 2;
+        /// <summary>
+        /// The default dots per inch (DPI) resolution value.
+        /// </summary>
         public static int DefaultDPI = 96;
 #if CROSSPF
+        /// <summary>
+        /// The mapping of color names to Color structures.
+        /// </summary>
         public static SortedList<string, Color> ColorNames;
 
 #else
+        /// <summary>
+        /// The mapping of color names to KnownColor values.
+        /// </summary>
         public static SortedList<string, KnownColor> ColorNames;
 #endif
 
 
+        /// <summary>
+        /// Determines whether the font style includes the bold style flag.
+        /// </summary>
+        /// <param name="intfontstyle">The integer font style bitfield.</param>
+        /// <returns>True if bold style is set; otherwise, false.</returns>
         public static bool FontStyleIsBold(int intfontstyle)
         {
             if ((intfontstyle & 1) > 0)
@@ -37,6 +54,11 @@ namespace Reportman.Drawing
             else
                 return false;
         }
+        /// <summary>
+        /// Determines whether the font style includes the italic style flag.
+        /// </summary>
+        /// <param name="intfontstyle">The integer font style bitfield.</param>
+        /// <returns>True if italic style is set; otherwise, false.</returns>
         public static bool FontStyleIsItalic(int intfontstyle)
         {
             if ((intfontstyle & 2) > 0)
@@ -44,6 +66,11 @@ namespace Reportman.Drawing
             else
                 return false;
         }
+        /// <summary>
+        /// Determines whether the font style includes the underline style flag.
+        /// </summary>
+        /// <param name="intfontstyle">The integer font style bitfield.</param>
+        /// <returns>True if underline style is set; otherwise, false.</returns>
         public static bool FontStyleIsUnderline(int intfontstyle)
         {
             if ((intfontstyle & 4) > 0)
@@ -51,6 +78,11 @@ namespace Reportman.Drawing
             else
                 return false;
         }
+        /// <summary>
+        /// Determines whether the font style includes the strikeout style flag.
+        /// </summary>
+        /// <param name="intfontstyle">The integer font style bitfield.</param>
+        /// <returns>True if strikeout style is set; otherwise, false.</returns>
         public static bool FontStyleIsStrikeOut(int intfontstyle)
         {
             if ((intfontstyle & 8) > 0)
@@ -154,6 +186,11 @@ namespace Reportman.Drawing
 #endif
             return aresult;
         }
+        /// <summary>
+        /// Gets the 32-bit integer representation of a color in BBGGRR format without transparency mapping.
+        /// </summary>
+        /// <param name="acolor">The Color structure to convert.</param>
+        /// <returns>The 32-bit integer color value.</returns>
         public static int IntegerFromColorA(Color acolor)
         {
             int aresult;
@@ -163,7 +200,9 @@ namespace Reportman.Drawing
 #if NETCOREAPP
 
         private static Hashtable htmlSysColorTable;
-        /// <include file='doc\ColorTranslator.uex' path='docs/doc[@for="ColorTranslator.FromHtml"]/*' />
+        /// <summary>
+        /// Translates an HTML color representation to a <see cref="Color"/>.
+        /// </summary>
         /// <devdoc>
         ///    Translates an Html color representation to
         ///    a GDI+ <see cref='System.Drawing.Color'/>.
@@ -263,6 +302,11 @@ namespace Reportman.Drawing
         }
 #else
 #endif
+        /// <summary>
+        /// Parses a string representation of a color (HTML hex, parenthesis format, or known name) and returns a Color structure.
+        /// </summary>
+        /// <param name="ncolor">The string representation of the color.</param>
+        /// <returns>The corresponding <see cref="Color"/> structure.</returns>
         public static Color ColorFromString(string ncolor)
         {
             if (ncolor.Length == 0)

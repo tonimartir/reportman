@@ -1,4 +1,4 @@
-﻿using Reportman.Drawing;
+using Reportman.Drawing;
 using Reportman.Reporting;
 using System;
 using System.ComponentModel;
@@ -13,12 +13,21 @@ namespace Reportman.Designer
     /// </summary>
     public partial class FrameFields : UserControl
     {
+        /// <summary>
+        /// Occurs when the loaded report model changes.
+        /// </summary>
         public event EventHandler OnReportChange;
+        /// <summary>
+        /// Initializes a new instance of the FrameFields control.
+        /// </summary>
         public FrameFields()
         {
             InitializeComponent();
         }
         private Report FReport;
+        /// <summary>
+        /// Gets or sets the report definition whose datasets and variables are displayed.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), Browsable(false)]
         public Report Report
         {
@@ -32,6 +41,9 @@ namespace Reportman.Designer
                 return FReport;
             }
         }
+        /// <summary>
+        /// Clears and rebuilds the tree structure from the current report definition.
+        /// </summary>
         public void RefreshInterface()
         {
             TreeNode anew;
@@ -64,6 +76,10 @@ namespace Reportman.Designer
             if (OnReportChange != null)
                 OnReportChange(FReport, new EventArgs());
         }
+        /// <summary>
+        /// Helper utility to test the control inside a standalone form window.
+        /// </summary>
+        /// <param name="filename">Optional report file path to load.</param>
         public static void Test(string filename)
         {
             using (FrameFields fm = new FrameFields())
@@ -202,10 +218,19 @@ namespace Reportman.Designer
     /// </summary>
     public class FieldInfo
     {
+        /// <summary>The parent database dataset definition.</summary>
         public DataInfo ninfo;
+        /// <summary>The name of the database table field column.</summary>
         public string fieldname;
+        /// <summary>The system .NET Type data representation of the field.</summary>
         public Type DataType;
+        /// <summary>The column length display size threshold.</summary>
         public int fieldsize;
+        /// <summary>
+        /// Initializes a new instance of the FieldInfo metadata class.
+        /// </summary>
+        /// <param name="dinfo">The parent dataset definition.</param>
+        /// <param name="fname">The field name.</param>
         public FieldInfo(DataInfo dinfo, string fname)
         {
             ninfo = dinfo;

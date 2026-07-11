@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -152,6 +152,9 @@ namespace Reportman.Designer
             this.Controls.Add(_topPanel);
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the SQL autocomplete user interface is enabled.
+        /// </summary>
         [System.ComponentModel.Browsable(false)]
         [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public bool EnableSqlAutocompleteUi
@@ -186,6 +189,9 @@ namespace Reportman.Designer
             }
         }
 
+        /// <summary>
+        /// Gets or sets the SQL text content of the editor.
+        /// </summary>
         [System.ComponentModel.Browsable(false)]
         [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public string SQL
@@ -202,22 +208,41 @@ namespace Reportman.Designer
             }
         }
 
+        /// <summary>
+        /// Gets the identifier of the database in the Hub.
+        /// </summary>
         [System.ComponentModel.Browsable(false)]
         [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public long HubDatabaseId { get; private set; }
 
+        /// <summary>
+        /// Gets the identifier of the schema in the Hub.
+        /// </summary>
         [System.ComponentModel.Browsable(false)]
         [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public long HubSchemaId { get; private set; }
 
+        /// <summary>
+        /// Gets or sets the API key used for agent queries.
+        /// </summary>
         [System.ComponentModel.Browsable(false)]
         [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public string ApiKey { get; set; } = "";
 
+        /// <summary>
+        /// Gets or sets the runtime database name.
+        /// </summary>
         [System.ComponentModel.Browsable(false)]
         [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public string RuntimeDb { get; set; } = "";
 
+        /// <summary>
+        /// Sets the base connection context, including the database, schema, API key, and runtime database.
+        /// </summary>
+        /// <param name="hubDatabaseId">The base Hub database identifier.</param>
+        /// <param name="hubSchemaId">The base Hub schema identifier.</param>
+        /// <param name="apiKey">The API key to use, if any.</param>
+        /// <param name="runtimeDb">The runtime database name, if any.</param>
         public void SetBaseConnectionContext(long hubDatabaseId, long hubSchemaId, string apiKey = "", string runtimeDb = "")
         {
             _baseHubDatabaseId = hubDatabaseId;
@@ -234,11 +259,22 @@ namespace Reportman.Designer
                 _schemaSelector.RefreshSchemas();
         }
 
+        /// <summary>
+        /// Sets the Hub context with the specified database and schema identifiers.
+        /// </summary>
+        /// <param name="hubDatabaseId">The Hub database identifier.</param>
+        /// <param name="hubSchemaId">The Hub schema identifier.</param>
         public void SetHubContext(long hubDatabaseId, long hubSchemaId)
         {
             SetHubContext(hubDatabaseId, hubSchemaId, "");
         }
 
+        /// <summary>
+        /// Sets the Hub context with the specified database, schema, and API key.
+        /// </summary>
+        /// <param name="hubDatabaseId">The Hub database identifier.</param>
+        /// <param name="hubSchemaId">The Hub schema identifier.</param>
+        /// <param name="apiKey">The API key for authentication.</param>
         public void SetHubContext(long hubDatabaseId, long hubSchemaId, string apiKey)
         {
             _selectedHubDatabaseId = hubDatabaseId;
@@ -251,6 +287,10 @@ namespace Reportman.Designer
             UpdateEffectiveSchemaContext();
         }
 
+        /// <summary>
+        /// Raises the Load event and initializes the hosted WebView2 control with the Monaco editor.
+        /// </summary>
+        /// <param name="e">An <see cref="EventArgs"/> containing the event data.</param>
         protected override async void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -804,6 +844,12 @@ namespace Reportman.Designer
             await SendAICompletionsAsync(requestId, "{\"inlineItems\":[],\"completionItems\":[]}");
         }
 
+        /// <summary>
+        /// Sends the calculated AI completion suggestions to the WebView2 hosted Monaco editor.
+        /// </summary>
+        /// <param name="requestId">The request identifier corresponding to the completion request.</param>
+        /// <param name="responseJson">The JSON string containing the completion items.</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         public async Task SendAICompletionsAsync(string requestId, string responseJson)
         {
             if (!_isReady || _webView.CoreWebView2 == null)
@@ -825,6 +871,10 @@ namespace Reportman.Designer
         }
         
         // Expose a method to get content asynchronously directly from Monaco if needed
+        /// <summary>
+        /// Asynchronously retrieves the current SQL text content directly from the Monaco editor in WebView2.
+        /// </summary>
+        /// <returns>A <see cref="Task{TResult}"/> returning the current SQL text string.</returns>
         public async Task<string> GetSqlFromEditorAsync()
         {
             if (!_isReady || _webView.CoreWebView2 == null) return _cachedSql;

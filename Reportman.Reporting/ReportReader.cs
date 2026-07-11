@@ -2757,7 +2757,8 @@ namespace Reportman.Reporting
         /// <summary>
         /// Save the report template to a stream, in xml format
         /// </summary>
-        /// <param name="astream"></param>
+        /// <param name="astream">The destination stream.</param>
+        /// <param name="streamVersion">The version of the stream format to write.</param>
         public void SaveToStream(Stream astream, StreamVersion streamVersion = StreamVersion.V2)
         {
             // Check if the format should be compressed
@@ -2872,7 +2873,8 @@ namespace Reportman.Reporting
         /// <summary>
         /// Save the report template to a file, in xml report template format
         /// </summary>
-        /// <param name="afilename"></param>
+        /// <param name="afilename">The name of the file to save to.</param>
+        /// <param name="version">The version of the stream format to write.</param>
         public void SaveToFile(string afilename, StreamVersion version)
         {
             FileStream astream = new FileStream(afilename, System.IO.FileMode.Create,
@@ -2891,6 +2893,16 @@ namespace Reportman.Reporting
     /// Identifies the version of the report stream/serialization format, selecting between
     /// the legacy layout (V1) and the current format (V2) when saving a report.
     /// </summary>
-    public enum StreamVersion { V1, V2 };
+    public enum StreamVersion
+    {
+        /// <summary>
+        /// Legacy stream format (V1).
+        /// </summary>
+        V1,
+        /// <summary>
+        /// Current stream format (V2).
+        /// </summary>
+        V2
+    };
 
 }

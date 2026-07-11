@@ -1,4 +1,4 @@
-﻿#region Copyright
+#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -48,6 +48,9 @@ namespace Reportman.Reporting
         private Variant FResult;
         private bool FEvaluating;
         private EvalIdentifiers FIdentifierList;
+        /// <summary>
+        /// Gets the list of identifiers (variables, constants and functions) registered in the evaluator.
+        /// </summary>
         public EvalIdentifiers Identifiers
         {
             get
@@ -92,6 +95,9 @@ namespace Reportman.Reporting
                 FChecking = false;
             }
         }
+        /// <summary>
+        /// Occurs when the evaluator requires data from a dataset not currently loaded.
+        /// </summary>
         public event DataNeededEvent OnDatasetNeeded;
         /// <summary>
         /// Add a variable to the evaluator
@@ -871,6 +877,11 @@ namespace Reportman.Reporting
             }
             return FPartial;
         }
+        /// <summary>
+        /// Evaluates a string expression and returns the resulting Variant value.
+        /// </summary>
+        /// <param name="text">The raw text expression to parse and run.</param>
+        /// <returns>The resulting Variant value.</returns>
         public Variant EvaluateText(string text)
         {
             if (FEvaluating)
@@ -889,6 +900,10 @@ namespace Reportman.Reporting
                 return Result;
             }
         }
+        /// <summary>
+        /// Evaluates the currently configured expression string.
+        /// </summary>
+        /// <returns>The resulting Variant value.</returns>
         public Variant Evaluate()
         {
             FParser.Expression = FExpression;
@@ -902,6 +917,9 @@ namespace Reportman.Reporting
 
             return FResult;
         }
+        /// <summary>
+        /// Gets or sets the text representation of the expression to be evaluated.
+        /// </summary>
         public string Expression
         {
             set
@@ -918,6 +936,10 @@ namespace Reportman.Reporting
         }
 
 
+        /// <summary>
+        /// Initializes a new instance of the Evaluator component within a designer container.
+        /// </summary>
+        /// <param name="container">The designer container object.</param>
         public Evaluator(System.ComponentModel.IContainer container)
         {
             //
@@ -938,6 +960,9 @@ namespace Reportman.Reporting
             FIdentifierList = new EvalIdentifiers();
             AddIdentifiers();
         }
+        /// <summary>
+        /// Initializes a new instance of the Evaluator component.
+        /// </summary>
         public Evaluator()
         {
             //
@@ -1039,8 +1064,19 @@ namespace Reportman.Reporting
     /// </summary>
     public class DataNeededEventArgs
     {
+        /// <summary>
+        /// The name of the missing dataset requested by the evaluator.
+        /// </summary>
         public string Dataset;
+        /// <summary>
+        /// The originating Evaluator instance that triggered this request event.
+        /// </summary>
         public Evaluator Evaluator;
+        /// <summary>
+        /// Initializes a new instance of the DataNeededEventArgs class.
+        /// </summary>
+        /// <param name="neval">The originating Evaluator.</param>
+        /// <param name="ndataset">The dataset name.</param>
         public DataNeededEventArgs(Evaluator neval, string ndataset)
         {
             Evaluator = neval;

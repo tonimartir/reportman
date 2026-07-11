@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Linq;
 #if NETSTANDARD2_0
@@ -89,7 +89,7 @@ namespace Reportman.Drawing
         /// <summary>
         /// Obtain information about a bitmap stream
         /// </summary>
-        /// <param name="astream">Input stream</param>
+        /// <param name="sourcestream">Input stream</param>
         /// <param name="width">Output parameter, with of the bitmap in pixels</param>
         /// <param name="height">Output parameter, height of the bitmap in pixels</param>
         /// <param name="imagesize">Size in bytes of the image information part</param>
@@ -98,7 +98,10 @@ namespace Reportman.Drawing
         /// <param name="bitsperpixel">Output parameter, number of bits of information for each pixel</param>
         /// <param name="usedcolors">Output parameter, valid for indexed bitmaps, number of colors used from the palette</param>
         /// <param name="palette">Output parameter, palette in Adobe PDF compatible form, valid only in indexed bitmaps</param>
-        /// <returns>Returns false if the stream is not abitmap</returns>
+        /// <param name="isgif">Output parameter, set to true if the stream is a GIF</param>
+        /// <param name="mask">Output parameter for image mask</param>
+        /// <param name="smask">Soft mask stream</param>
+        /// <returns>Returns false if the stream is not a bitmap</returns>
 		public static bool GetBitmapInfo(Stream sourcestream, out int width,
             out int height, out int imagesize, MemoryStream MemBits,
             out bool indexed, out int bitsperpixel, out int usedcolors,
@@ -138,36 +141,6 @@ namespace Reportman.Drawing
                 {
                     astream.Seek(0, System.IO.SeekOrigin.Begin);
                     return false;
-#if NETSTANDARD2_0
-                    throw new Exception("GIF Images not supported in .Net Standard");
-#else
-                    /*using (Image nimage = Image.FromStream(astream))
-                    {
-                        using (Bitmap nbitmap = new Bitmap(nimage.Width,nimage.Height,System.Drawing.Imaging.PixelFormat.Format32bppArgb))
-                        {
-                            using (var gr = Graphics.FromImage(nbitmap))
-                            {
-                                gr.FillRectangle(Brushes.Transparent, new Rectangle(0, 0, nimage.Width, nimage.Height));
-                                gr.DrawImage(nimage, new Rectangle(0, 0, nimage.Width, nimage.Height), new Rectangle(0, 0, nimage.Width, nimage.Height),
-                                    GraphicsUnit.Pixel);
-                            }
-                            astream.Seek(0, System.IO.SeekOrigin.Begin);
-                            newstream = new MemoryStream();
-                            nbitmap.Save(newstream, System.Drawing.Imaging.ImageFormat.Bmp);
-                            nbitmap.Save("c:\\datos\\prueba.bmp");
-                        }
-                        newstream.Seek(0, System.IO.SeekOrigin.Begin);
-                        isgif = false;
-                        astream = newstream;
-                    }*/
-                    return true;
-                    //readed = astream.Read(buf, 0, 14);
-                    //if (readed != 14)
-                    //
-                    //    astream.Seek(0, System.IO.SeekOrigin.Begin);
-                    //    return aresult;
-                    // }
-#endif
                 }
 
                 if (((char)buf[0] != 'B') || ((char)buf[1] != 'M'))

@@ -1,4 +1,4 @@
-﻿#region Copyright
+#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -32,6 +32,9 @@ namespace Reportman.Drawing.Forms
     {
         private PrintOut intdriver;
         private MetaFile intmeta;
+        /// <summary>
+        /// Indicates whether the report calculation runs on a separate thread.
+        /// </summary>
         public bool multithread;
 
 
@@ -39,9 +42,15 @@ namespace Reportman.Drawing.Forms
         private IContainer components;
         private System.Windows.Forms.Label LProgress;
         private bool internalcancel;
+        /// <summary>
+        /// The metafile linked to this progress form.
+        /// </summary>
         public MetaFile metafile;
 
         private System.Windows.Forms.Timer timer1;
+        /// <summary>
+        /// Timer used to delay closing the progress form.
+        /// </summary>
         public System.Windows.Forms.Timer timerclose;
         MetaFileWorkProgress workevent;
         /// <summary>
@@ -80,6 +89,12 @@ namespace Reportman.Drawing.Forms
                 Visible = false;
 
         }
+        /// <summary>
+        /// Updates the progress information and handles UI thread dispatching.
+        /// </summary>
+        /// <param name="records">The number of records processed.</param>
+        /// <param name="pagecount">The total number of pages calculated so far.</param>
+        /// <param name="docancel">Passed by reference; set to true if execution should cancel.</param>
         public void WorkProgress(int records, int pagecount, ref bool docancel)
         {
 
@@ -194,6 +209,11 @@ namespace Reportman.Drawing.Forms
                 metafile.OnWorkProgress += new MetaFileWorkProgress(ReportProgressForm.WorkProgressDoCancel);
             }
         }
+        /// <summary>
+        /// Calculates the report and prints it using the specified driver, displaying progress on this form.
+        /// </summary>
+        /// <param name="meta">The metafile to populate.</param>
+        /// <param name="driver">The printer driver used to run the report.</param>
         public static void CalculateReport(MetaFile meta, PrintOut driver)
         {
             using (ReportProgressForm nform = new ReportProgressForm())
@@ -224,12 +244,28 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public class CalcReportProgress
     {
+        /// <summary>
+        /// The printer driver utilized to print the report.
+        /// </summary>
         public PrintOut driver;
         object flag = 0;
+        /// <summary>
+        /// The background thread processing the report.
+        /// </summary>
         public Thread threadcalc;
+        /// <summary>
+        /// The metafile where the report output is written.
+        /// </summary>
         public MetaFile meta;
         private string ErrorMessage;
         ReportProgressForm ndia = null;
+        /// <summary>
+        /// Starts report calculation on a background thread and shows the progress form if needed.
+        /// </summary>
+        /// <param name="meta">The target metafile.</param>
+        /// <param name="printdriver">The printing driver to execute.</param>
+        /// <param name="winowner">The owner window for the progress dialog.</param>
+        /// <returns>True if the report generation completed successfully.</returns>
         public static bool CalculateReport(MetaFile meta, PrintOut printdriver, IWin32Window winowner)
         {
             CalcReportProgress nprogres = new CalcReportProgress();

@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 
 namespace Reportman.Drawing
 {
@@ -15,8 +15,11 @@ namespace Reportman.Drawing
         /// Record size, all objects share the same size
         /// </summary>
 		public const int RECORD_SIZE_4 = 74;
+        /// <summary>dBASE v3 record size limit constants.</summary>
         public const int RECORD_SIZE_3 = 66;
+        /// <summary>dBASE v3 record offset start index constants.</summary>
         public const int RECORD_OFFSET_3 = 17;
+        /// <summary>dBASE v4 record offset start index constants.</summary>
         public const int RECORD_OFFSET_4 = 25;
         /// <summary>
         /// Internally used buffer
@@ -41,6 +44,7 @@ namespace Reportman.Drawing
         /// </summary>
         /// <param name="buf">Buffer containing information in binary format</param>
         /// <param name="index">Index to begin read in the buffer</param>
+        /// <param name="ver">Format version version layout.</param>
         /// <returns>Create a MetaObject using the information in the buffer</returns>
 		static public MetaObject CreateFromBuf(byte[] buf, int index, int ver)
         {
@@ -69,18 +73,33 @@ namespace Reportman.Drawing
             }
             return aresult;
         }
+        /// <summary>
+        /// Gets the record memory offset starting index for the specified version layout.
+        /// </summary>
+        /// <param name="ver">The format version level.</param>
+        /// <returns>The offset integer.</returns>
         public static int GetRECORD_OFFSET(int ver)
         {
 
             int RECORD_OFFSET = ver == 4 ? RECORD_OFFSET_4 : RECORD_OFFSET_3;
             return RECORD_OFFSET;
         }
+        /// <summary>
+        /// Gets the record memory byte size limit for the specified version layout.
+        /// </summary>
+        /// <param name="ver">The format version level.</param>
+        /// <returns>The record byte size.</returns>
         public static int GetRECORD_SIZE(int ver)
         {
 
             int RECORD_SIZE = ver == 4 ? RECORD_SIZE_4 : RECORD_SIZE_3;
             return RECORD_SIZE;
         }
+        /// <summary>
+        /// Resolves the integer alignment flags matching a horizontal TextAlignType.
+        /// </summary>
+        /// <param name="Alignment">The horizontal text alignment flag.</param>
+        /// <returns>The GDI alignment integer value.</returns>
         public static int GetIntHorizAlignment(TextAlignType Alignment)
         {
             // Inverse the alignment for BidiMode Full
@@ -95,6 +114,11 @@ namespace Reportman.Drawing
                 aresult = MetaFile.AlignmentFlags_AlignHJustify;
             return aresult;
         }
+        /// <summary>
+        /// Resolves the integer alignment flags matching a vertical TextAlignVerticalType.
+        /// </summary>
+        /// <param name="VAlignment">The vertical text alignment flag.</param>
+        /// <returns>The GDI alignment integer value.</returns>
         public static int GetIntVertAlignment(TextAlignVerticalType VAlignment)
         {
             // Inverse the alignment for BidiMode Full
@@ -111,6 +135,7 @@ namespace Reportman.Drawing
         /// </summary>
         /// <param name="buf">Buffer containing information in binary format</param>
         /// <param name="index">Index to begin read in the buffer</param>
+        /// <param name="ver">Format version version layout.</param>
         virtual public void FillFromBuf(byte[] buf, int index, int ver)
         {
             int RECORD_OFFSET = GetRECORD_OFFSET(ver);
@@ -129,6 +154,7 @@ namespace Reportman.Drawing
         /// Save the information of the object into a stream
         /// </summary>
         /// <param name="astream">Destination stream</param>
+        /// <param name="ver">Format version version layout.</param>
 		virtual public void SaveToStream(Stream astream, int ver)
         {
             astream.Write(StreamUtil.IntToByteArray(Top), 0, 4);

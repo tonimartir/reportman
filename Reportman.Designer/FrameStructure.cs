@@ -1,4 +1,4 @@
-﻿#region Copyright
+#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -35,12 +35,21 @@ namespace Reportman.Designer
     /// </summary>
     public partial class FrameStructure : UserControl
     {
+        /// <summary>
+        /// Occurs when the active report structure is changed.
+        /// </summary>
         public event EventHandler OnReportChange;
+        /// <summary>
+        /// Occurs when the selection in the structure tree changes.
+        /// </summary>
         public event EventHandler OnSelectionChange;
         private bool onlyselect;
         private FrameDataDef DataDef;
 
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FrameStructure"/> class, setting up localized button and menu text.
+        /// </summary>
         public FrameStructure()
         {
 
@@ -61,11 +70,18 @@ namespace Reportman.Designer
             mstrucaddsubreport.Text = Translator.TranslateStr(353);
 
         }
+        /// <summary>
+        /// Initializes the frame structure control with the specified data definition.
+        /// </summary>
+        /// <param name="ndatader">The data definition frame to associate with this structure.</param>
         public void Init(FrameDataDef ndatader)
         {
             DataDef = ndatader;
         }
         private Report FReport;
+        /// <summary>
+        /// Gets or sets the report associated with this frame structure, updating the tree view display.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), Browsable(false)]
         public Report Report
         {
@@ -83,6 +99,10 @@ namespace Reportman.Designer
                 return FReport;
             }
         }
+        /// <summary>
+        /// Refreshes the display text of the specified subreport in the tree structure.
+        /// </summary>
+        /// <param name="nsubreport">The subreport whose display name needs to be updated.</param>
         public void RefreshSubReport(SubReport nsubreport)
         {
             foreach (TreeNode nnode in RView.Nodes)
@@ -94,6 +114,9 @@ namespace Reportman.Designer
                 }
             }
         }
+        /// <summary>
+        /// Rebuilds the tree view interface nodes to match the structure of the current report.
+        /// </summary>
         public void RefreshInterface()
         {
             // Clear
@@ -143,12 +166,21 @@ namespace Reportman.Designer
                 FillNodes(node.Nodes, destination);
             }
         }
+        /// <summary>
+        /// Retrieves all nodes from the report structure tree view recursively.
+        /// </summary>
+        /// <returns>A list of <see cref="TreeNode"/> objects representing all nodes in the tree.</returns>
         public List<TreeNode> GetAllNodes()
         {
             List<TreeNode> aresult = new List<TreeNode>();
             FillNodes(RView.Nodes, aresult);
             return aresult;
         }
+        /// <summary>
+        /// Selects the tree node corresponding to the specified report item.
+        /// </summary>
+        /// <param name="sec">The report item to search for and select.</param>
+        /// <param name="onlyfocus">A boolean indicating whether to only change focus without triggering select actions.</param>
         public void SelectItem(ReportItem sec, bool onlyfocus)
         {
             List<TreeNode> col = GetAllNodes();
@@ -169,6 +201,10 @@ namespace Reportman.Designer
                 }
             }
         }
+        /// <summary>
+        /// Finds and returns the currently selected node in the tree view, default to the first node if none is selected.
+        /// </summary>
+        /// <returns>The currently selected <see cref="TreeNode"/>.</returns>
         public TreeNode FindSelectedNode()
         {
             if (RView.Nodes.Count == 0)
@@ -178,6 +214,10 @@ namespace Reportman.Designer
             return RView.SelectedNode;
 
         }
+        /// <summary>
+        /// Finds the subreport associated with the currently selected node or its parent section.
+        /// </summary>
+        /// <returns>The selected <see cref="SubReport"/>.</returns>
         public SubReport FindSelectedSubReport()
         {
             TreeNode node = FindSelectedNode();
@@ -380,6 +420,9 @@ namespace Reportman.Designer
                 SelectItem(sec, false);
             }
         }
+        /// <summary>
+        /// A test helper method that initializes a <see cref="FrameStructure"/> within a dialog form for debugging.
+        /// </summary>
         public static void Test()
         {
             FrameStructure fm = new FrameStructure();

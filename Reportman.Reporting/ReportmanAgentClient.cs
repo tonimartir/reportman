@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -389,6 +389,16 @@ namespace Reportman.Reporting
             return dict;
         }
 
+        /// <summary>
+        /// Sends a request to suggest SQL completions based on current text and cursor position.
+        /// </summary>
+        /// <param name="sql">The current SQL query text.</param>
+        /// <param name="cursorPosition">The cursor character position within the SQL text.</param>
+        /// <param name="mode">The database/language dialect mode.</param>
+        /// <param name="sender">The object raising the request.</param>
+        /// <param name="onProgress">Progress notification callback handler.</param>
+        /// <param name="cancellationToken">Cancellation token to abort the operation.</param>
+        /// <returns>A JSON document containing the suggestions.</returns>
         public async Task<JsonDocument> SuggestSqlAsync(string sql, int cursorPosition, string mode, object sender,
             ProgressEventHandler onProgress, CancellationToken cancellationToken)
         {
@@ -402,6 +412,17 @@ namespace Reportman.Reporting
             return await StreamJsonRequestAsync("NlToSql/SuggestSqlCodeStream", requestBody, sender, onProgress, cancellationToken).ConfigureAwait(false);
         }
 
+        /// <summary>
+        /// Translates a natural language user query into an executable SQL statement.
+        /// </summary>
+        /// <param name="userPrompt">The natural language instruction from the user.</param>
+        /// <param name="sqlToRefine">Optional existing SQL query to refine or build upon.</param>
+        /// <param name="mode">The database/language dialect mode.</param>
+        /// <param name="userLanguage">The language of the user prompt, or null for automatic detection.</param>
+        /// <param name="sender">The object raising the request.</param>
+        /// <param name="onProgress">Progress notification callback handler.</param>
+        /// <param name="cancellationToken">Cancellation token to abort the operation.</param>
+        /// <returns>A JSON document containing the translated SQL query.</returns>
         public async Task<JsonDocument> TranslateToSqlAsync(string userPrompt, string sqlToRefine, string mode, string userLanguage, 
             object sender, ProgressEventHandler onProgress, CancellationToken cancellationToken)
         {
@@ -417,6 +438,18 @@ namespace Reportman.Reporting
             return await StreamJsonRequestAsync("NlToSql/TranslateToSQLStream", requestBody, sender, onProgress, cancellationToken).ConfigureAwait(false);
         }
 
+        /// <summary>
+        /// Modifies a report layout or structure based on a natural language instruction.
+        /// </summary>
+        /// <param name="userPrompt">The modification instruction from the user.</param>
+        /// <param name="reportDocument">The XML representation of the report template.</param>
+        /// <param name="mode">The designer assistant mode.</param>
+        /// <param name="userLanguage">The language of the user prompt.</param>
+        /// <param name="existingContextJson">JSON context with active database schemas, fields, etc.</param>
+        /// <param name="sender">The object raising the request.</param>
+        /// <param name="onProgress">Progress notification callback handler.</param>
+        /// <param name="cancellationToken">Cancellation token to abort the operation.</param>
+        /// <returns>A JSON document containing the modified XML report template.</returns>
         public async Task<JsonDocument> ModifyReportAsync(string userPrompt, string reportDocument, string mode, string userLanguage,
             string existingContextJson, object sender, ProgressEventHandler onProgress, CancellationToken cancellationToken)
         {
@@ -436,6 +469,19 @@ namespace Reportman.Reporting
             return await StreamJsonRequestAsync("ReportDesigner/ModifyReportStream", requestBody, sender, onProgress, cancellationToken).ConfigureAwait(false);
         }
 
+        /// <summary>
+        /// Requests suggestions or fixes for an expression based on a user prompt.
+        /// </summary>
+        /// <param name="userPrompt">The user instruction describing the expression goal.</param>
+        /// <param name="currentExpression">The existing expression string.</param>
+        /// <param name="fix">If true, instructs the engine to repair errors in the expression.</param>
+        /// <param name="cursorPosition">The cursor position inside the expression text box.</param>
+        /// <param name="mode">The dialect mode.</param>
+        /// <param name="semanticContextJson">JSON metadata containing schema, fields, and variables.</param>
+        /// <param name="sender">The object raising the request.</param>
+        /// <param name="onProgress">Progress notification callback handler.</param>
+        /// <param name="cancellationToken">Cancellation token to abort the operation.</param>
+        /// <returns>A JSON document containing the suggested expression.</returns>
         public async Task<JsonDocument> SuggestExpressionAsync(string userPrompt, string currentExpression, bool fix,
             int cursorPosition, string mode, string semanticContextJson, object sender,
             ProgressEventHandler onProgress, CancellationToken cancellationToken)

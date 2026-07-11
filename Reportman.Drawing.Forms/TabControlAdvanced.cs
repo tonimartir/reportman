@@ -1,4 +1,4 @@
-﻿#region Copyright
+#region Copyright
 /* Code based on Magic Library tab control
  * Crownwood.Magic.Controls.TabControl 
  * 
@@ -1645,12 +1645,11 @@ namespace Reportman.Drawing.Forms
                 }
             }
         }
-        [Category("Appearance")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-
         /// <summary>
         /// Gets or sets whether the drop-down tabs button is shown in the tabs area.
         /// </summary>
+        [Category("Appearance")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public virtual bool ShowDropDown
         {
             get { return _showDropDown; }
@@ -1666,12 +1665,11 @@ namespace Reportman.Drawing.Forms
                 }
             }
         }
-        [Category("Appearance")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-
         /// <summary>
         /// Gets or sets whether each closable page shows its own individual close button.
         /// </summary>
+        [Category("Appearance")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public virtual bool ShowCloseIndividual
         {
             get { return _showCloseIndividual; }
