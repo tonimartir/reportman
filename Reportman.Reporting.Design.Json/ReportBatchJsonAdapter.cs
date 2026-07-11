@@ -22,16 +22,23 @@ namespace Reportman.Reporting.Design.Json
 
         private readonly IReportBatchEditor editor;
 
+        /// <summary>
+        /// Initializes a new instance that uses a default <see cref="ReportBatchEditor"/>.
+        /// </summary>
         public ReportBatchJsonAdapter()
             : this(new ReportBatchEditor())
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance backed by the given report batch editor.
+        /// </summary>
         public ReportBatchJsonAdapter(IReportBatchEditor editor)
         {
             this.editor = editor ?? throw new ArgumentNullException(nameof(editor));
         }
 
+        /// <inheritdoc />
         public ReportBatchJsonRequest DeserializeRequest(string json)
         {
             if (string.IsNullOrWhiteSpace(json))
@@ -48,6 +55,7 @@ namespace Reportman.Reporting.Design.Json
             return request;
         }
 
+        /// <inheritdoc />
         public string SerializeRequest(ReportBatchJsonRequest request)
         {
             if (request == null)
@@ -102,6 +110,7 @@ namespace Reportman.Reporting.Design.Json
             return SystemTextJsonSerializer.Serialize(normalizedRequest, SerializerOptions);
         }
 
+        /// <inheritdoc />
         public IReadOnlyList<ReportBatchOperation> ToOperations(ReportBatchJsonRequest request)
         {
             if (request == null)
@@ -169,11 +178,13 @@ namespace Reportman.Reporting.Design.Json
             return result;
         }
 
+        /// <inheritdoc />
         public Report DeserializeReport(string reportJson)
         {
             return DeserializeReport(reportJson, ReportDocumentFormat.Json);
         }
 
+        /// <inheritdoc />
         public Report DeserializeReport(string reportDocument, ReportDocumentFormat format)
         {
             if (string.IsNullOrWhiteSpace(reportDocument))
@@ -204,16 +215,19 @@ namespace Reportman.Reporting.Design.Json
             return report;
         }
 
+        /// <inheritdoc />
         public Report DeserializeReportDocument(string reportDocument)
         {
             return DeserializeReport(reportDocument, DetectFormat(reportDocument));
         }
 
+        /// <inheritdoc />
         public string SerializeReport(Report report)
         {
             return SerializeReport(report, ReportDocumentFormat.Json);
         }
 
+        /// <inheritdoc />
         public string SerializeReport(Report report, ReportDocumentFormat format)
         {
             if (report == null)
@@ -234,46 +248,55 @@ namespace Reportman.Reporting.Design.Json
             }
         }
 
+        /// <inheritdoc />
         public ReportBatchValidationResult Validate(Report report, string json)
         {
             return Validate(report, DeserializeRequest(json));
         }
 
+        /// <inheritdoc />
         public ReportBatchValidationResult Validate(Report report, ReportBatchJsonRequest request)
         {
             return editor.Validate(report, ToOperations(request));
         }
 
+        /// <inheritdoc />
         public ReportBatchValidationResult ValidateReportJson(string reportJson, string operationsJson)
         {
             return Validate(DeserializeReport(reportJson), operationsJson);
         }
 
+        /// <inheritdoc />
         public ReportBatchValidationResult ValidateReportDocument(string reportDocument, string operationsJson, ReportDocumentFormat format)
         {
             return Validate(DeserializeReport(reportDocument, format), operationsJson);
         }
 
+        /// <inheritdoc />
         public ReportBatchValidationResult ValidateReportDocument(string reportDocument, string operationsJson)
         {
             return Validate(DeserializeReportDocument(reportDocument), operationsJson);
         }
 
+        /// <inheritdoc />
         public ReportBatchApplyResult Apply(Report report, string json)
         {
             return Apply(report, DeserializeRequest(json));
         }
 
+        /// <inheritdoc />
         public ReportBatchApplyResult Apply(Report report, ReportBatchJsonRequest request)
         {
             return editor.Apply(report, ToOperations(request));
         }
 
+        /// <inheritdoc />
         public ReportBatchJsonDocumentApplyResponse ApplyReportJson(string reportJson, string operationsJson)
         {
             return ApplyReportDocument(reportJson, operationsJson, ReportDocumentFormat.Json);
         }
 
+        /// <inheritdoc />
         public ReportBatchJsonDocumentApplyResponse ApplyReportDocument(string reportDocument, string operationsJson, ReportDocumentFormat format)
         {
             var report = DeserializeReport(reportDocument, format);
@@ -291,27 +314,32 @@ namespace Reportman.Reporting.Design.Json
             return response;
         }
 
+        /// <inheritdoc />
         public ReportBatchJsonDocumentApplyResponse ApplyReportDocument(string reportDocument, string operationsJson)
         {
             var format = DetectFormat(reportDocument);
             return ApplyReportDocument(reportDocument, operationsJson, format);
         }
 
+        /// <inheritdoc />
         public string ApplyReportJsonToReportJson(string reportJson, string operationsJson)
         {
             return ApplyReportJson(reportJson, operationsJson).ReportJson;
         }
 
+        /// <inheritdoc />
         public string ApplyReportDocumentToReportDocument(string reportDocument, string operationsJson, ReportDocumentFormat format)
         {
             return ApplyReportDocument(reportDocument, operationsJson, format).ReportDocument;
         }
 
+        /// <inheritdoc />
         public string ApplyReportDocumentToReportDocument(string reportDocument, string operationsJson)
         {
             return ApplyReportDocument(reportDocument, operationsJson).ReportDocument;
         }
 
+        /// <inheritdoc />
         public string SerializeValidationResult(ReportBatchValidationResult result)
         {
             if (result == null)
@@ -324,6 +352,7 @@ namespace Reportman.Reporting.Design.Json
             return SystemTextJsonSerializer.Serialize(response, SerializerOptions);
         }
 
+        /// <inheritdoc />
         public string SerializeApplyResult(ReportBatchApplyResult result)
         {
             if (result == null)
@@ -340,6 +369,7 @@ namespace Reportman.Reporting.Design.Json
             return SystemTextJsonSerializer.Serialize(response, SerializerOptions);
         }
 
+        /// <inheritdoc />
         public string SerializeDocumentApplyResult(ReportBatchJsonDocumentApplyResponse result)
         {
             if (result == null)

@@ -61,6 +61,9 @@ namespace Reportman.Drawing
         }
         MetaFile MetaFile;
         PDFConformanceType FPDFConformance;
+        /// <summary>
+        /// Gets or sets the PDF conformance level (e.g., PDF/A) used when generating the output file.
+        /// </summary>
         public PDFConformanceType PDFConformance
         {
             set
@@ -99,8 +102,22 @@ namespace Reportman.Drawing
             FPageRealWidth = FPageWidth;
             FPageRealHeight = FPageHeight;
         }
+        /// <summary>
+        /// When implemented in a derived class, returns the platform-specific font information provider
+        /// used for measuring and rendering fonts in the PDF output.
+        /// </summary>
+        /// <returns>A <see cref="FontInfoProvider"/> instance for the current platform.</returns>
         public abstract FontInfoProvider GetFontInfoProvider();
+        /// <summary>
+        /// When implemented in a derived class, returns the platform-specific bitmap information provider
+        /// used for reading image dimensions and metadata during PDF generation.
+        /// </summary>
+        /// <returns>An <see cref="IBitmapInfoProvider"/> instance for the current platform.</returns>
         public abstract IBitmapInfoProvider GetBitmapInfoProvider();
+        /// <summary>
+        /// Gets the collection of line layout information produced by the most recent text measurement,
+        /// containing glyph positions and advance widths for each line.
+        /// </summary>
         public System.Collections.Generic.List<LineInfo> LineInfo
         {
             get

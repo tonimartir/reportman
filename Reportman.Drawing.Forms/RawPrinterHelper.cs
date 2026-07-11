@@ -176,7 +176,7 @@ namespace Reportman.Drawing.Forms
         /// Sends a bytes to printer, in raw mode, useful for dot matrix printers or pos devices
         /// </summary>
         /// <param name="printerName">Printer name</param>
-        /// <param name="text">Text to send</param>
+        /// <param name="abytes">The raw bytes to send</param>
         /// <returns>Returns true if successful</returns>
         public static bool SendBytesToPrinter(string printerName, byte[] abytes)
         {

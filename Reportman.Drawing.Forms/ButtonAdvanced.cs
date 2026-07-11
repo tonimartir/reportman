@@ -12,6 +12,10 @@ public class ButtonAdvanced : Button
 {
 
     private Image _AutoScaleImage;
+    /// <summary>
+    /// Gets or sets the image to be drawn auto-scaled within the button, preserving its aspect ratio.
+    /// Setting this property invalidates the button so it repaints with the new image.
+    /// </summary>
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
     public Image AutoScaleImage
     {
@@ -25,6 +29,9 @@ public class ButtonAdvanced : Button
     }
 
     private int _AutoScaleBorder;
+    /// <summary>
+    /// Gets or sets the border size in pixels applied around the auto-scaled image inside the button.
+    /// </summary>
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
     public int AutoScaleBorder
     {
@@ -36,6 +43,9 @@ public class ButtonAdvanced : Button
         }
     }
     private ContentAlignment _AutoScaleImageAlign = ContentAlignment.MiddleCenter;
+    /// <summary>
+    /// Gets or sets the alignment of the auto-scaled image within the button area.
+    /// </summary>
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
 
     public ContentAlignment AutoScaleImageAlign
@@ -48,6 +58,10 @@ public class ButtonAdvanced : Button
         }
     }
 
+    /// <summary>
+    /// Raises the <see cref="Control.Paint"/> event and draws the auto-scaled image on top of the base button rendering.
+    /// </summary>
+    /// <param name="e">A <see cref="PaintEventArgs"/> that contains the event data.</param>
     protected override void OnPaint(PaintEventArgs e)
     {
         base.OnPaint(e);

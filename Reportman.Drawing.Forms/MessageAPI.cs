@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -51,7 +51,7 @@ namespace Reportman.Drawing
         /// 
         /// Attachments replace the character found at a certain position in the message text. 
         /// That is, attachments replace the character in the MapiMessage structure field 
-        /// lpszNoteText[nPosition]. A value of � 1 (0xFFFFFFFF) means the attachment position is 
+        /// lpszNoteText[nPosition]. A value of – 1 (0xFFFFFFFF) means the attachment position is 
         /// not indicated; the client application will have to provide a way for the user to 
         /// access the attachment. 
         /// 

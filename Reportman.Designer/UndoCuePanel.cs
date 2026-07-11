@@ -1,4 +1,4 @@
-using Reportman.Reporting;
+﻿using Reportman.Reporting;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -16,10 +16,11 @@ namespace Reportman.Drawing
         private int FPageHeight;
         private int PageQt;
         private Graphics gr;
-        /// Draw a page to the print surface
+        /// <summary>
+        /// Draws all objects of the specified page onto the current GDI+ graphics surface.
         /// </summary>
-        /// <param name="meta">MetaFile containing the page</param>
-        /// <param name="page">MetaPage to be drawn</param>
+        /// <param name="meta">MetaFile containing the page.</param>
+        /// <param name="page">MetaPage to be drawn.</param>
         override public void DrawPage(MetaFile meta, MetaPage page)
         {
             for (int i = 0; i < page.Objects.Count; i++)
@@ -28,6 +29,11 @@ namespace Reportman.Drawing
             }
         }
 
+        /// <summary>
+        /// Gets the current page size in twips and outputs the page size array index.
+        /// </summary>
+        /// <param name="indexqt">Output parameter receiving the index into the page size array.</param>
+        /// <returns>A <see cref="Point"/> whose X and Y represent the page width and height in twips.</returns>
         public override Point GetPageSize(out int indexqt)
         {
             indexqt = PageQt;
@@ -41,6 +47,17 @@ namespace Reportman.Drawing
             public int YSize;
             public int XSize;
         }
+        /// <summary>
+        /// Exports one or more pages from a <see cref="MetaFile"/> into a single stacked <see cref="Bitmap"/>.
+        /// </summary>
+        /// <param name="nmeta">The metafile containing the report pages to render.</param>
+        /// <param name="allpages"><see langword="true"/> to export every page; otherwise <paramref name="frompage"/> and <paramref name="topage"/> are used.</param>
+        /// <param name="frompage">The one-based first page to export (ignored when <paramref name="allpages"/> is <see langword="true"/>).</param>
+        /// <param name="topage">The one-based last page to export (ignored when <paramref name="allpages"/> is <see langword="true"/>).</param>
+        /// <param name="monoCrome"><see langword="true"/> to convert the resulting bitmap to 1-bit monochrome.</param>
+        /// <param name="horzRes">Horizontal resolution in dots per inch for the output bitmap.</param>
+        /// <param name="vertRes">Vertical resolution in dots per inch for the output bitmap.</param>
+        /// <returns>A <see cref="Bitmap"/> containing the rendered pages stacked vertically.</returns>
         public static Bitmap ExportToBitmap(MetaFile nmeta,
              bool allpages, int frompage, int topage, bool monoCrome, float horzRes, float vertRes)
         {
@@ -133,6 +150,13 @@ namespace Reportman.Drawing
             return result;
         }
 
+        /// <summary>
+        /// Calculates the extent (size in twips) of a bitmap or JPEG image contained in the specified stream.
+        /// </summary>
+        /// <param name="astream">A <see cref="MemoryStream"/> containing the image data.</param>
+        /// <param name="extent">The initial bounding box; updated with the computed size.</param>
+        /// <param name="dpi">The resolution in dots per inch of the image.</param>
+        /// <returns>A <see cref="Point"/> whose X and Y represent the image size in twips.</returns>
         public override Point GraphicExtent(MemoryStream astream, Point extent, int dpi)
         {
             int imagesize;
@@ -159,6 +183,11 @@ namespace Reportman.Drawing
             return new Point(extent.X, extent.Y);
         }
 
+        /// <summary>
+        /// Sets the page dimensions based on the specified page size detail, accounting for orientation.
+        /// </summary>
+        /// <param name="psize">The page size specification containing index, custom dimensions, and flags.</param>
+        /// <returns>A <see cref="Point"/> whose X and Y represent the resulting page width and height in twips.</returns>
         public override Point SetPageSize(PageSizeDetail psize)
         {
             int newwidth, newheight;

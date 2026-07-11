@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 
 namespace Reportman.Reporting.Forms
@@ -16,10 +16,19 @@ namespace Reportman.Reporting.Forms
     {
         bool cancelled;
         DataProgressEventHandler OnExecute;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DataProgress"/> dialog and its
+        /// designer-generated controls.
+        /// </summary>
         public DataProgress()
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// Creates a <see cref="DataProgress"/> dialog, wires the specified callback, and
+        /// shows the dialog modally so the operation runs with visual progress feedback.
+        /// </summary>
+        /// <param name="OnExecute">The callback that performs the data operation.</param>
         public static void ExecuteProgress(DataProgressEventHandler OnExecute)
         {
             DataProgress ndia = new DataProgress();
@@ -27,6 +36,14 @@ namespace Reportman.Reporting.Forms
             ndia.timerexecute.Enabled = true;
             ndia.ShowDialog();
         }
+        /// <summary>
+        /// Updates the progress bar and label with the current record count, processes
+        /// pending Windows messages, and reports whether the user has requested cancellation.
+        /// </summary>
+        /// <param name="sender">The source of the progress event.</param>
+        /// <param name="records">The number of records processed so far.</param>
+        /// <param name="count">The total number of records to process.</param>
+        /// <param name="docancel">Set to <c>true</c> on return when the user clicked the cancel button.</param>
         public void ShowProgress(object sender, int records, int count, ref bool docancel)
         {
             lprogress.Text = "Records: " + records.ToString("##,##") + " of " + count.ToString("###,##");

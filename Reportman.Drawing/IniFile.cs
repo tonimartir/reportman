@@ -35,8 +35,15 @@ namespace Reportman.Drawing
         string fname;
         Strings lines;
         NumberFormatInfo numberfor;
+        /// <summary>
+        /// Sections of the INI file, keyed by upper-cased section name.
+        /// </summary>
         public SortedList<string, IniSection> sections;
         FileInfo finfo;
+        /// <summary>
+        /// Initializes a new instance loading its contents from the given file, if it exists.
+        /// </summary>
+        /// <param name="filename">Path of the INI file to load.</param>
         public IniFile(string filename)
         {
             fname = filename;
@@ -47,6 +54,10 @@ namespace Reportman.Drawing
             sections = new SortedList<string, IniSection>();
             ParseText();
         }
+        /// <summary>
+        /// Initializes a new instance loading its contents from the given stream.
+        /// </summary>
+        /// <param name="inistream">Stream containing the INI file text.</param>
         public IniFile(Stream inistream)
         {
             lines = new Strings();
@@ -54,6 +65,14 @@ namespace Reportman.Drawing
             sections = new SortedList<string, IniSection>();
             ParseText();
         }
+        /// <summary>
+        /// Reads a string value from the given section, returning <paramref name="defaultvalue"/>
+        /// when the section or value is not present.
+        /// </summary>
+        /// <param name="sectionname">Name of the section to read from.</param>
+        /// <param name="valuename">Name of the value to read.</param>
+        /// <param name="defaultvalue">Value returned when the entry is missing.</param>
+        /// <returns>The stored string, or the default value.</returns>
         public string ReadString(string sectionname, string valuename, string defaultvalue)
         {
             string aresult = defaultvalue;
@@ -69,6 +88,12 @@ namespace Reportman.Drawing
             }
             return aresult;
         }
+        /// <summary>
+        /// Writes a string value into the given section, creating the section or entry when needed.
+        /// </summary>
+        /// <param name="sectionname">Name of the section to write to.</param>
+        /// <param name="valuename">Name of the value to write.</param>
+        /// <param name="newvalue">Value to store.</param>
         public void WriteString(string sectionname, string valuename, string newvalue)
         {
             string asec = sectionname.ToUpper();
@@ -88,6 +113,14 @@ namespace Reportman.Drawing
             else
                 inisec.Values.Add(aval, newvalue);
         }
+        /// <summary>
+        /// Reads a date/time value stored in the "yyyyMMdd HHmmss" format, returning
+        /// <paramref name="defaultvalue"/> when the entry is missing or cannot be parsed.
+        /// </summary>
+        /// <param name="sectionname">Name of the section to read from.</param>
+        /// <param name="valuename">Name of the value to read.</param>
+        /// <param name="defaultvalue">Value returned when the entry is missing or invalid.</param>
+        /// <returns>The parsed date/time, or the default value.</returns>
         public DateTime ReadDateTime(string sectionname, string valuename, DateTime defaultvalue)
         {
             DateTime aresult = defaultvalue;
@@ -124,6 +157,12 @@ namespace Reportman.Drawing
             }
             return aresult;
         }
+        /// <summary>
+        /// Writes a date/time value into the given section using the "yyyyMMdd HHmmss" format.
+        /// </summary>
+        /// <param name="sectionname">Name of the section to write to.</param>
+        /// <param name="valuename">Name of the value to write.</param>
+        /// <param name="newvalue">Date/time to store.</param>
         public void WriteDateTime(string sectionname, string valuename, DateTime newvalue)
         {
             string asec = sectionname.ToUpper();
@@ -144,6 +183,12 @@ namespace Reportman.Drawing
             else
                 inisec.Values.Add(aval, datestring);
         }
+        /// <summary>
+        /// Writes an integer value into the given section, creating the section or entry when needed.
+        /// </summary>
+        /// <param name="sectionname">Name of the section to write to.</param>
+        /// <param name="valuename">Name of the value to write.</param>
+        /// <param name="intvalue">Integer to store.</param>
         public void WriteInteger(string sectionname, string valuename, int intvalue)
         {
             string newvalue = intvalue.ToString();
@@ -164,6 +209,13 @@ namespace Reportman.Drawing
             else
                 inisec.Values.Add(aval, newvalue);
         }
+        /// <summary>
+        /// Writes a decimal value into the given section using an invariant-style number format
+        /// (dot decimal separator, no group separator).
+        /// </summary>
+        /// <param name="sectionname">Name of the section to write to.</param>
+        /// <param name="valuename">Name of the value to write.</param>
+        /// <param name="decvalue">Decimal to store.</param>
         public void WriteDecimal(string sectionname, string valuename, decimal decvalue)
         {
             CheckNumberFormat();
@@ -186,6 +238,12 @@ namespace Reportman.Drawing
             else
                 inisec.Values.Add(valuename, newvalue);
         }
+        /// <summary>
+        /// Writes a boolean value into the given section, stored as 1 for true and 0 for false.
+        /// </summary>
+        /// <param name="sectionname">Name of the section to write to.</param>
+        /// <param name="valuename">Name of the value to write.</param>
+        /// <param name="boolvalue">Boolean to store.</param>
         public void WriteBool(string sectionname, string valuename, bool boolvalue)
         {
             int defint = 0;
@@ -194,6 +252,14 @@ namespace Reportman.Drawing
 
             WriteInteger(sectionname, valuename, defint);
         }
+        /// <summary>
+        /// Reads an integer value from the given section, returning <paramref name="defaultvalue"/>
+        /// when the entry is missing or empty.
+        /// </summary>
+        /// <param name="sectionname">Name of the section to read from.</param>
+        /// <param name="valuename">Name of the value to read.</param>
+        /// <param name="defaultvalue">Value returned when the entry is missing or empty.</param>
+        /// <returns>The stored integer, or the default value.</returns>
         public int ReadInteger(string sectionname, string valuename, int defaultvalue)
         {
             string sresult = ReadString(sectionname, valuename, defaultvalue.ToString());
@@ -202,6 +268,10 @@ namespace Reportman.Drawing
             else
                 return System.Convert.ToInt32(sresult);
         }
+        /// <summary>
+        /// Ensures the internal number format (dot decimal separator, no group separator)
+        /// used to read and write decimal values is initialized.
+        /// </summary>
         public void CheckNumberFormat()
         {
             if (numberfor == null)
@@ -211,6 +281,14 @@ namespace Reportman.Drawing
                 numberfor.NumberGroupSeparator = "";
             }
         }
+        /// <summary>
+        /// Reads a decimal value from the given section using an invariant-style number format,
+        /// returning <paramref name="defaultvalue"/> when the entry is missing or empty.
+        /// </summary>
+        /// <param name="sectionname">Name of the section to read from.</param>
+        /// <param name="valuename">Name of the value to read.</param>
+        /// <param name="defaultvalue">Value returned when the entry is missing or empty.</param>
+        /// <returns>The stored decimal, or the default value.</returns>
         public decimal ReadDecimal(string sectionname, string valuename, decimal defaultvalue)
         {
             CheckNumberFormat();
@@ -220,6 +298,14 @@ namespace Reportman.Drawing
             else
                 return System.Convert.ToDecimal(sresult, numberfor);
         }
+        /// <summary>
+        /// Reads a boolean value from the given section, interpreting 1 as true and any other
+        /// value as false, and returning <paramref name="defaultvalue"/> when the entry is missing.
+        /// </summary>
+        /// <param name="sectionname">Name of the section to read from.</param>
+        /// <param name="valuename">Name of the value to read.</param>
+        /// <param name="defaultvalue">Value returned when the entry is missing.</param>
+        /// <returns>The stored boolean, or the default value.</returns>
         public bool ReadBool(string sectionname, string valuename, bool defaultvalue)
         {
             int defint = 0;
@@ -270,6 +356,10 @@ namespace Reportman.Drawing
                 }
             }
         }
+        /// <summary>
+        /// Writes every section and value to the given stream in INI text format.
+        /// </summary>
+        /// <param name="nstream">Destination stream.</param>
         public void SaveToStream(Stream nstream)
         {
             Strings nstring = new Strings();
@@ -288,6 +378,10 @@ namespace Reportman.Drawing
             nstream.Write(content, 0, content.Length);
 
         }
+        /// <summary>
+        /// Saves every section and value to the given file, creating the target directory when needed.
+        /// </summary>
+        /// <param name="filename">Path of the file to write.</param>
         public void SaveToFile(string filename)
         {
             string apath = Path.GetDirectoryName(filename);
@@ -306,7 +400,13 @@ namespace Reportman.Drawing
     /// </summary>
     public class IniSection
     {
+        /// <summary>
+        /// Key/value pairs of the section, keyed by upper-cased value name.
+        /// </summary>
         public SortedList<string, string> Values;
+        /// <summary>
+        /// Initializes a new, empty section.
+        /// </summary>
         public IniSection()
         {
             Values = new SortedList<string, string>();

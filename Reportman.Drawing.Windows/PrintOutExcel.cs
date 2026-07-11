@@ -29,7 +29,23 @@ namespace Reportman.Drawing
     /// Identifies the workbook format used when saving an Excel file, mapping to Excel's native
     /// XlFileFormat values (or auto-detected from the file extension).
     /// </summary>
-    public enum ExcelFileFormat { Auto = 0, Normal = -4143, Excel97 = 56, Csv = 6, Txt = -4158, Prn = 36, Excel2007 = 51 }
+    public enum ExcelFileFormat
+    {
+        /// <summary>Detect the workbook format automatically from the file extension.</summary>
+        Auto = 0,
+        /// <summary>Excel's default workbook format for the running Excel version.</summary>
+        Normal = -4143,
+        /// <summary>Legacy Excel 97-2003 binary workbook (.xls).</summary>
+        Excel97 = 56,
+        /// <summary>Comma separated values text file (.csv).</summary>
+        Csv = 6,
+        /// <summary>Tab delimited text file (.txt).</summary>
+        Txt = -4158,
+        /// <summary>Formatted, space delimited text file (.prn).</summary>
+        Prn = 36,
+        /// <summary>Open XML workbook introduced in Excel 2007 (.xlsx).</summary>
+        Excel2007 = 51
+    }
     /// <summary>
     /// Report preocessing driver, capable of generate excel files
     /// </summary>
@@ -39,6 +55,10 @@ namespace Reportman.Drawing
         int npage;
         int nrecord;
         MetaFile nmeta;
+        /// <summary>
+        /// Gets or sets the workbook format used when saving the file; <see cref="ExcelFileFormat.Auto"/>
+        /// selects the format from the file name extension.
+        /// </summary>
         public ExcelFileFormat ExcelFormat;
         int PageQt;
         int FPageWidth, FPageHeight;
@@ -55,6 +75,10 @@ namespace Reportman.Drawing
         /// be conatained only in one sheet
         /// </summary>
         public bool OneSheet;
+        /// <summary>
+        /// Gets or sets the coordinate rounding factor (in twips) used to group report objects into
+        /// spreadsheet rows and columns; larger values merge nearby objects into the same cell.
+        /// </summary>
         public int Precision;
         /// <summary>
         /// Constructo and initialization
@@ -63,6 +87,7 @@ namespace Reportman.Drawing
             : base()
         {
             const int XLS_PRECISION = 100;
+            nmeta = new MetaFile();
             FileName = "";
             PageQt = 0;
             FPageWidth = 11904;
@@ -71,6 +96,11 @@ namespace Reportman.Drawing
             // Default autodetect from extension
             ExcelFormat = ExcelFileFormat.Auto;
         }
+        /// <summary>
+        /// Determines the Excel workbook format that matches the extension of the given file name.
+        /// </summary>
+        /// <param name="filename">File name or path whose extension selects the format.</param>
+        /// <returns>The matching <see cref="ExcelFileFormat"/>; <see cref="ExcelFileFormat.Normal"/> when the extension is not recognised.</returns>
         public static ExcelFileFormat FileFormatFromFilename(string filename)
         {
             string extension = Path.GetExtension(filename).ToUpper();
@@ -178,6 +208,11 @@ namespace Reportman.Drawing
         public override void NewDocument(MetaFile meta)
         {
         }
+        /// <summary>
+        /// Writes a single report object into the target Excel worksheet cell, mapping the object's
+        /// position to a row/column and applying its text value, font and alignment through Excel's
+        /// COM automation interface.
+        /// </summary>
         public static void PrintObject(object sh, MetaPage page, MetaObject obj, int dpix,
              int dpiy, SortedList rows, SortedList columns,
              string FontName, int FontSize, int rowinit, double Precision)
@@ -202,13 +237,15 @@ namespace Reportman.Drawing
             if (arow < 1)
                 arow = 1;
             object cells = sh.GetType().InvokeMember("Cells",
-                System.Reflection.BindingFlags.GetProperty, null, sh, null);
+                System.Reflection.BindingFlags.GetProperty, null, sh, null)
+                ?? throw new InvalidOperationException("Excel Cells collection is not available");
             object[] param2 = new object[2];
             param2[0] = arow;
             param2[1] = acolumn;
             object[] param1 = new object[1];
             object cell = cells.GetType().InvokeMember("Item",
-                System.Reflection.BindingFlags.GetProperty, null, cells, param2);
+                System.Reflection.BindingFlags.GetProperty, null, cells, param2)
+                ?? throw new InvalidOperationException("Excel cell is not available");
             switch (obj.MetaType)
             {
                 case MetaObjectType.Text:
@@ -254,7 +291,8 @@ namespace Reportman.Drawing
                     {
                         object shfont = cell.GetType().InvokeMember("Font",
                                 System.Reflection.BindingFlags.GetProperty,
-                                null, cell, null);
+                                null, cell, null)
+                                ?? throw new InvalidOperationException("Excel cell font is not available");
                         string nfontname = page.GetWFontNameText(objt);
                         if (FontName != nfontname)
                         {
@@ -370,7 +408,9 @@ namespace Reportman.Drawing
         private bool CheckVersion2010Up(object excel)
         {
             bool nresult = true;
-            string nversion = excel.GetType().InvokeMember("Version", System.Reflection.BindingFlags.GetProperty, null, excel, new object[] { }).ToString();
+            object nversionobj = excel.GetType().InvokeMember("Version", System.Reflection.BindingFlags.GetProperty, null, excel, new object[] { })
+                ?? throw new InvalidOperationException("Excel Version property is not available");
+            string nversion = nversionobj.ToString() ?? "";
             switch (nversion)
             {
                 case "12.0":
@@ -386,7 +426,11 @@ namespace Reportman.Drawing
             return nresult;
         }
 
-        // Check for the progress
+        /// <summary>
+        /// Raises the metafile work-progress notification at most a few times per second, resetting the
+        /// timer each time it fires; pass <c>true</c> to force the final notification. Throws when the
+        /// user cancels the operation.
+        /// </summary>
         protected void CheckProgress(bool finished)
         {
             const int MILIS_PROGRESS_DEFAULT = 500;
@@ -420,25 +464,33 @@ namespace Reportman.Drawing
             int PageLimit = ToPage - 1;
             int FirstPage = FromPage - 1;
             Type objClassType;
-            objClassType = Type.GetTypeFromProgID("Excel.Application");
-            object excel = Activator.CreateInstance(objClassType);
+            objClassType = Type.GetTypeFromProgID("Excel.Application")
+                ?? throw new InvalidOperationException("Excel.Application is not registered on this machine");
+            object excel = Activator.CreateInstance(objClassType)
+                ?? throw new InvalidOperationException("Unable to create an Excel.Application instance");
             object[] param1 = new object[1];
             object wbs = excel.GetType().InvokeMember("Workbooks",
-                System.Reflection.BindingFlags.GetProperty, null, excel, null);
+                System.Reflection.BindingFlags.GetProperty, null, excel, null)
+                ?? throw new InvalidOperationException("Excel Workbooks collection is not available");
             object wb = wbs.GetType().InvokeMember("Add",
-                        System.Reflection.BindingFlags.InvokeMethod, null, wbs, null);
+                        System.Reflection.BindingFlags.InvokeMethod, null, wbs, null)
+                ?? throw new InvalidOperationException("Unable to add an Excel workbook");
             int shcount = 1;
             object shs = wb.GetType().InvokeMember("Sheets",
-                System.Reflection.BindingFlags.GetProperty, null, wb, null);
+                System.Reflection.BindingFlags.GetProperty, null, wb, null)
+                ?? throw new InvalidOperationException("Excel Sheets collection is not available");
             param1[0] = 1;
             object sh = shs.GetType().InvokeMember("Item",
-                        System.Reflection.BindingFlags.GetProperty, null, shs, param1);
+                        System.Reflection.BindingFlags.GetProperty, null, shs, param1)
+                ?? throw new InvalidOperationException("Excel sheet is not available");
             object cells = sh.GetType().InvokeMember("Cells",
-                System.Reflection.BindingFlags.GetProperty, null, sh, null);
+                System.Reflection.BindingFlags.GetProperty, null, sh, null)
+                ?? throw new InvalidOperationException("Excel Cells collection is not available");
             object shfont = cells.GetType().InvokeMember("Font",
-                        System.Reflection.BindingFlags.GetProperty, null, cells, null);
+                        System.Reflection.BindingFlags.GetProperty, null, cells, null)
+                ?? throw new InvalidOperationException("Excel Font is not available");
             string FontName = System.Convert.ToString(shfont.GetType().InvokeMember("Name",
-                        System.Reflection.BindingFlags.GetProperty, null, shfont, null));
+                        System.Reflection.BindingFlags.GetProperty, null, shfont, null)) ?? "";
             int FontSize = System.Convert.ToInt32(shfont.GetType().InvokeMember("Size",
                         System.Reflection.BindingFlags.GetProperty, null, shfont, null));
 
@@ -488,7 +540,8 @@ namespace Reportman.Drawing
                     {
                         param1[0] = shcountactual;
                         object lastsh = shs.GetType().InvokeMember("Item",
-                            System.Reflection.BindingFlags.GetProperty, null, shs, param1);
+                            System.Reflection.BindingFlags.GetProperty, null, shs, param1)
+                            ?? throw new InvalidOperationException("Excel sheet is not available");
 
                         object[] param4 = new object[4];
                         param4[0] = DBNull.Value;
@@ -496,13 +549,15 @@ namespace Reportman.Drawing
                         param4[2] = 1;
                         param4[3] = DBNull.Value;
                         sh = shs.GetType().InvokeMember("Add",
-                         System.Reflection.BindingFlags.InvokeMethod, null, shs, param4);
+                         System.Reflection.BindingFlags.InvokeMethod, null, shs, param4)
+                         ?? throw new InvalidOperationException("Unable to add an Excel sheet");
                     }
                     else
                     {
                         param1[0] = shcount;
                         sh = shs.GetType().InvokeMember("Item",
-                            System.Reflection.BindingFlags.GetProperty, null, shs, param1);
+                            System.Reflection.BindingFlags.GetProperty, null, shs, param1)
+                            ?? throw new InvalidOperationException("Excel sheet is not available");
                     }
                 }
                 else
@@ -544,7 +599,7 @@ namespace Reportman.Drawing
 
             if (FileName.Length > 0)
             {
-                object[] paramssav = null;
+                object[] paramssav;
                 if (!CheckVersion2010Up(excel))
                 {
                     paramssav = new object[1];
@@ -569,10 +624,6 @@ namespace Reportman.Drawing
                 wb.GetType().InvokeMember("Close", System.Reflection.BindingFlags.InvokeMethod, null, wb, paramclose);
 
                 excel.GetType().InvokeMember("Quit", System.Reflection.BindingFlags.InvokeMethod, null, excel, null);
-                excel = null;
-                wb = null;
-                shs = null;
-                sh = null;
             }
             else
             {

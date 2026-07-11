@@ -31,10 +31,29 @@ namespace Reportman.Drawing
     /// </summary>
     public class TableData
     {
+        /// <summary>
+        /// Four-character table tag identifying this font table (for example "glyf" or "loca").
+        /// </summary>
         public string TableName;
+        /// <summary>
+        /// Byte offset of the table within the font file.
+        /// </summary>
         public int Location;
+        /// <summary>
+        /// Length of the table in bytes.
+        /// </summary>
         public int Length;
+        /// <summary>
+        /// Checksum of the table as stored in the font directory.
+        /// </summary>
         public int Checksum;
+        /// <summary>
+        /// Initializes a new table directory entry with the given tag, location, length and checksum.
+        /// </summary>
+        /// <param name="tname">Four-character table tag.</param>
+        /// <param name="tlocation">Byte offset of the table within the font file.</param>
+        /// <param name="tlength">Length of the table in bytes.</param>
+        /// <param name="tchecksum">Checksum of the table.</param>
         public TableData(string tname, int tlocation, int tlength, int tchecksum)
         {
             TableName = tname;
@@ -61,27 +80,70 @@ namespace Reportman.Drawing
         internal static int WE_HAVE_A_TWO_BY_TWO = 128;
         string PostcriptName;
 
-        // List of tables in the font
+        /// <summary>
+        /// Directory of the font tables keyed by their four-character tag.
+        /// </summary>
         protected SortedList<string, TableData> tables;
-        // Byte array containing font data
+        /// <summary>
+        /// Raw bytes of the source font file being subset.
+        /// </summary>
         protected byte[] rfarray;
+        /// <summary>
+        /// True when the font uses the short (16-bit) loca table format; false for the long (32-bit) format.
+        /// </summary>
         protected bool locaShortTable;
         // Cached glyph tables
         private static SortedList<string, int[]> CachedlocaTables;
 
         private static object tflag = 2;
 
+        /// <summary>
+        /// Glyph offsets read from the original loca table.
+        /// </summary>
         protected int[] locaTable;
+        /// <summary>
+        /// Glyphs requested for the subset, keyed by glyph index.
+        /// </summary>
         protected Dictionary<int, int[]> glyphsUsed;
+        /// <summary>
+        /// Working list of glyph indexes included in the subset, expanded to pull in composite glyph components.
+        /// </summary>
         protected List<int> glyphsInList;
+        /// <summary>
+        /// Offset of the glyf table within the source font.
+        /// </summary>
         protected int tableGlyphOffset;
+        /// <summary>
+        /// Glyph offsets for the rewritten loca table of the subset font.
+        /// </summary>
         protected int[] newLocaTable;
+        /// <summary>
+        /// Serialized bytes of the rewritten loca table.
+        /// </summary>
         protected byte[] newLocaTableOut;
+        /// <summary>
+        /// Serialized bytes of the rewritten glyf table containing only the used glyphs.
+        /// </summary>
         protected byte[] newGlyfTable;
+        /// <summary>
+        /// Actual (unpadded) size in bytes of the rewritten glyf table.
+        /// </summary>
         protected int glyfTableRealSize;
+        /// <summary>
+        /// Actual (unpadded) size in bytes of the rewritten loca table.
+        /// </summary>
         protected int locaTableRealSize;
+        /// <summary>
+        /// Buffer receiving the bytes of the font currently being written.
+        /// </summary>
         protected byte[] outFont;
+        /// <summary>
+        /// Current write position within <see cref="outFont"/>.
+        /// </summary>
         protected int fontPtr;
+        /// <summary>
+        /// Offset of the font directory within the source font file (or of the selected font within a collection).
+        /// </summary>
         protected uint directoryOffset;
 
         /// <summary>
@@ -100,7 +162,10 @@ namespace Reportman.Drawing
             glyphsInList = new List<int>(glyphsUsed.Keys);
         }
 
-        // Execute the subset of the font
+        /// <summary>
+        /// Builds the font subset and returns the assembled font as a byte array containing only the used glyphs.
+        /// </summary>
+        /// <returns>The bytes of the subset TrueType font.</returns>
         public byte[] Execute()
         {
             CreateTableDirectory();
@@ -112,6 +177,10 @@ namespace Reportman.Drawing
             return outFont;
         }
 
+        /// <summary>
+        /// Assembles the final subset font into <see cref="outFont"/>, writing the table directory and copying
+        /// the retained tables together with the rewritten loca and glyf tables.
+        /// </summary>
         protected void AssembleFont()
         {
             int fullFontSize = 0;
@@ -228,6 +297,13 @@ namespace Reportman.Drawing
 
         }
 
+        /// <summary>
+        /// Converts up to four big-endian bytes of the array to a signed int value.
+        /// </summary>
+        /// <param name="b1">Source byte array.</param>
+        /// <param name="index">Offset of the first byte to read.</param>
+        /// <param name="alen">Number of bytes to read (0 to 4).</param>
+        /// <returns>The decoded integer value.</returns>
         public static int ByteArrayToInt(byte[] b1, int index, int alen)
         {
             int aresult = 0;
@@ -253,6 +329,13 @@ namespace Reportman.Drawing
             return (aresult);
 
         }
+        /// <summary>
+        /// Converts up to two big-endian bytes of the array to an unsigned 16-bit value.
+        /// </summary>
+        /// <param name="b1">Source byte array.</param>
+        /// <param name="index">Offset of the first byte to read.</param>
+        /// <param name="alen">Number of bytes to read (0, 1 or 2).</param>
+        /// <returns>The decoded unsigned short value.</returns>
         public static ushort ByteArrayToUShort(byte[] b1, int index, int alen)
         {
             ushort aresult = 0;
@@ -271,6 +354,13 @@ namespace Reportman.Drawing
             return (aresult);
 
         }
+        /// <summary>
+        /// Converts up to two big-endian bytes of the array to a signed 16-bit value.
+        /// </summary>
+        /// <param name="b1">Source byte array.</param>
+        /// <param name="index">Offset of the first byte to read.</param>
+        /// <param name="alen">Number of bytes to read (0, 1 or 2).</param>
+        /// <returns>The decoded short value.</returns>
         public static short ByteArrayToShort(byte[] b1, int index, int alen)
         {
             short aresult = 0;
@@ -289,6 +379,11 @@ namespace Reportman.Drawing
             return (aresult);
 
         }
+        /// <summary>
+        /// Reads the PostScript name (name record id 6) of the font whose table directory starts at the given offset.
+        /// </summary>
+        /// <param name="offset">Byte offset of the font's table directory within the source data.</param>
+        /// <returns>The PostScript name, or an empty string if no name table is present.</returns>
         public string GetPostcriptName(int offset)
         {
             int id = ByteArrayToInt(rfarray, Convert.ToInt32(offset), 4);
@@ -375,6 +470,10 @@ namespace Reportman.Drawing
             }
             return postName;
         }
+        /// <summary>
+        /// Reads the font table directory into <see cref="tables"/>, resolving the requested font inside a
+        /// TrueType collection (ttcf) by matching its PostScript name when necessary.
+        /// </summary>
         protected void CreateTableDirectory()
         {
             tables = new SortedList<string, TableData>();
@@ -441,6 +540,10 @@ namespace Reportman.Drawing
             }
         }
 
+        /// <summary>
+        /// Reads the glyph offsets from the original loca table into <see cref="locaTable"/>, caching the result
+        /// per PostScript name and detecting the short/long loca format from the head table.
+        /// </summary>
         protected void ReadLoca()
         {
 
@@ -500,6 +603,10 @@ namespace Reportman.Drawing
             }
         }
 
+        /// <summary>
+        /// Builds the rewritten loca and glyf tables (<see cref="newLocaTable"/> and <see cref="newGlyfTable"/>)
+        /// for the subset, copying only the bytes of the glyphs that are actually used.
+        /// </summary>
         protected void CreateNewGlyphTables()
         {
             newLocaTable = new int[locaTable.Length];
@@ -548,6 +655,13 @@ namespace Reportman.Drawing
                 }
             }
         }
+        /// <summary>
+        /// Copies a run of bytes from the source font array into the given buffer.
+        /// </summary>
+        /// <param name="nindex">Offset within the source font array to copy from.</param>
+        /// <param name="b">Destination buffer.</param>
+        /// <param name="off">Offset within the destination buffer to copy to.</param>
+        /// <param name="len">Number of bytes to copy.</param>
         public void ReadBytes(int nindex, byte[] b, int off, int len)
         {
             if (len == 0)
@@ -556,6 +670,10 @@ namespace Reportman.Drawing
         }
 
 
+        /// <summary>
+        /// Serializes <see cref="newLocaTable"/> into <see cref="newLocaTableOut"/> using the short or long
+        /// loca format according to <see cref="locaShortTable"/>.
+        /// </summary>
         protected void LocaTobytes()
         {
             if (locaShortTable)
@@ -575,6 +693,10 @@ namespace Reportman.Drawing
 
         }
 
+        /// <summary>
+        /// Expands the set of used glyphs so that every component referenced by a composite glyph is included,
+        /// always adding glyph 0 (the missing-glyph placeholder).
+        /// </summary>
         protected void FlatGlyphs()
         {
             TableData tdata = tables["glyf"];
@@ -594,6 +716,10 @@ namespace Reportman.Drawing
             }
         }
 
+        /// <summary>
+        /// Inspects a glyph and, when it is a composite glyph, adds every referenced component glyph to the subset.
+        /// </summary>
+        /// <param name="glyph">Index of the glyph to inspect.</param>
         protected void CheckGlyphComposite(int glyph)
         {
             //if (glyph>=(locaTable.Length-1))
@@ -643,12 +769,20 @@ namespace Reportman.Drawing
                 nindex = nindex + skip;
             }
         }
+        /// <summary>
+        /// Writes a 16-bit value in big-endian order to <see cref="outFont"/> and advances the write pointer.
+        /// </summary>
+        /// <param name="n">Value whose low 16 bits are written.</param>
         protected void WriteFontShort(int n)
         {
             outFont[fontPtr++] = (byte)(n >> 8);
             outFont[fontPtr++] = (byte)(n);
         }
 
+        /// <summary>
+        /// Writes a 32-bit value in big-endian order to <see cref="outFont"/> and advances the write pointer.
+        /// </summary>
+        /// <param name="n">Value to write.</param>
         protected void WriteFontInt(int n)
         {
             outFont[fontPtr++] = (byte)(n >> 24);
@@ -657,6 +791,10 @@ namespace Reportman.Drawing
             outFont[fontPtr++] = (byte)(n);
         }
 
+        /// <summary>
+        /// Writes the bytes of the given string to <see cref="outFont"/> and advances the write pointer.
+        /// </summary>
+        /// <param name="s">String to write, typically a four-character table tag.</param>
         protected void WriteFontString(string s)
         {
             byte[] b = StreamUtil.StringToByteArray(s, s.Length);
@@ -664,6 +802,11 @@ namespace Reportman.Drawing
             fontPtr += b.Length;
         }
 
+        /// <summary>
+        /// Computes the TrueType table checksum (the sum of the table's 32-bit big-endian words) for the given bytes.
+        /// </summary>
+        /// <param name="b">Table bytes to checksum.</param>
+        /// <returns>The 32-bit checksum value.</returns>
         protected int CalculateChecksum(byte[] b)
         {
             int len = b.Length / 4;

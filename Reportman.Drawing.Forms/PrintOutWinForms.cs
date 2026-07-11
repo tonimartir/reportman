@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -999,7 +999,7 @@ namespace Reportman.Drawing.Forms
                             nlegend.Enabled = true;
                             nchart.Legends.Add(nlegend);
                         }
-                        // Ya se a�aden automaticamente las series
+                        // Ya se añaden automaticamente las series
                         /*else
                         {
                             nlegend = nchart.Legends[0];

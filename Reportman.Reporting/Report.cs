@@ -35,6 +35,9 @@ namespace Reportman.Reporting
     /// </summary>
     public class Report : BaseReport
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Report"/> class with default settings.
+        /// </summary>
         public Report()
             : base()
         {
@@ -107,6 +110,11 @@ namespace Reportman.Reporting
                 }
             }
         }
+        /// <summary>
+        /// Starts the report generation lifecycle: configures the metafile, opens datasets,
+        /// initializes parameters and evaluator, and advances to the first printable section.
+        /// </summary>
+        /// <param name="driver">The print driver used for page-size negotiation and rendering.</param>
         override public void BeginPrint(PrintOut driver)
         {
             if (ExecuteSubReportIndexes != null && ExecuteSubReportIndexes.Count > 0)
@@ -1016,6 +1024,12 @@ namespace Reportman.Reporting
             return aresult;
         }
 
+        /// <summary>
+        /// Generates the next page of the report by processing sections, group headers/footers,
+        /// page headers/footers, and advancing through data records until the page is full or
+        /// no more data remains.
+        /// </summary>
+        /// <returns><c>true</c> if this was the last page; <c>false</c> if more pages follow.</returns>
         override public bool PrintNextPage()
         {
             int i;

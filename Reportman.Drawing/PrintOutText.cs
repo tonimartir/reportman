@@ -37,25 +37,58 @@ namespace Reportman.Drawing
         private System.IO.MemoryStream currpageStream;
         private bool FDrawerBefore;
         private bool FDrawerAfter;
+        /// <summary>
+        /// Width of the printable page area, expressed in twips.
+        /// </summary>
         public int FPageWidth;
         private int PageQt;
+        /// <summary>
+        /// Height of the printable page area, expressed in twips.
+        /// </summary>
         public int FPageHeight;
+        /// <summary>
+        /// Default vertical print density in lines per inch used when no value is supplied by the metafile.
+        /// </summary>
         public const int DEFAULT_LINESPERINCH = 6;
         private List<PrintLine> Lines;
         private PrinterSelectType FPrinterSelect;
+        /// <summary>
+        /// When set to a non-empty value, forces the printer driver to use instead of the one selected
+        /// by the printer configuration.
+        /// </summary>
         public string ForceDriverName;
+        /// <summary>
+        /// Name of the printer driver whose escape codes are currently emitted (for example EPSON,
+        /// IBMPROPRINTER, HP-PCL or PLAIN).
+        /// </summary>
         public string FPrinterDriver;
         private bool LoadOEMConvert;
         private bool OEMConvert;
+        /// <summary>
+        /// When true, output is written as plain text, trimming style attributes and omitting printer
+        /// escape codes.
+        /// </summary>
         public bool FullPlain;
+        /// <summary>
+        /// Count of non-empty lines written during the current print run.
+        /// </summary>
         public int blacklines;
+        /// <summary>
+        /// Count of empty lines written during the current print run.
+        /// </summary>
         public int whitelines;
         private PrintLine PreviousLine;
         private List<LineInfo> linfos;
         bool masterselect;
         bool limitedmaster;
         bool condensedmaster;
+        /// <summary>
+        /// Byte stream that accumulates the rendered printer output, including any escape codes.
+        /// </summary>
         public System.IO.MemoryStream PrintResultStream;
+        /// <summary>
+        /// Gets the rendered printer output decoded as a string using code page 437.
+        /// </summary>
         public string PrintResult {
             get
             {
@@ -102,6 +135,12 @@ namespace Reportman.Drawing
         }
         private static byte[] emptyByteArray = { };
         private static byte[] spaceByteArray = { 32 };
+        /// <summary>
+        /// Returns the escape byte sequence configured for the given raw printer operation, or an empty
+        /// array when the operation is not defined for the active driver.
+        /// </summary>
+        /// <param name="op">Raw printer operation to look up.</param>
+        /// <returns>The escape bytes for the operation, or an empty array if none.</returns>
         public byte[] GetEscape(PrinterRawOperation op)
         {
             int index = escapecodes.IndexOfKey(op);
@@ -123,6 +162,13 @@ namespace Reportman.Drawing
             }
 
         }
+        /// <summary>
+        /// Draws a single metafile object onto the current page; only text objects produce output in the
+        /// text driver.
+        /// </summary>
+        /// <param name="meta">MetaFile that owns the object.</param>
+        /// <param name="page">MetaPage that contains the object.</param>
+        /// <param name="aobj">MetaObject to draw.</param>
         public void DrawObject(MetaFile meta, MetaPage page, MetaObject aobj)
         {
             int posx, posy;
@@ -148,6 +194,20 @@ namespace Reportman.Drawing
                     break;
             }
         }
+        /// <summary>
+        /// Lays out and emits a block of text inside a rectangle, honouring alignment, clipping,
+        /// word wrapping, justification and right-to-left ordering, and writes each resulting line
+        /// through <see cref="DoTextOut"/>.
+        /// </summary>
+        /// <param name="arect">Rectangle, in twips, into which the text is placed.</param>
+        /// <param name="text">Text to render.</param>
+        /// <param name="alignment">Combination of MetaFile alignment flags.</param>
+        /// <param name="clipping">When true, lines that fall outside the rectangle are clipped.</param>
+        /// <param name="wordbreak">When true, text is wrapped on word boundaries.</param>
+        /// <param name="righttoleft">When true, characters are ordered right-to-left.</param>
+        /// <param name="fontstep">Character-per-inch step used to measure the text.</param>
+        /// <param name="fontstyle">Bit mask of font style flags (bold, italic, underline, strikeout).</param>
+        /// <param name="red">When true, the text is emitted in the red colour.</param>
         public void TextRect(Rectangle arect, string text, int alignment, bool clipping,
             bool wordbreak, bool righttoleft, PrintStepType fontstep, int fontstyle, bool red)
         {
@@ -229,6 +289,12 @@ namespace Reportman.Drawing
 
             }
         }
+        /// <summary>
+        /// Converts a vertical position in twips into the zero-based index of the corresponding print
+        /// line, clamped to the available line range.
+        /// </summary>
+        /// <param name="posy">Vertical position in twips.</param>
+        /// <returns>The line index for the given position.</returns>
         public int GetLineIndex(int posy)
         {
             int amax;
@@ -244,6 +310,12 @@ namespace Reportman.Drawing
                 nresult = amax;
             return nresult;
         }
+        /// <summary>
+        /// Converts a horizontal position in twips into a column number for the given font step.
+        /// </summary>
+        /// <param name="posx">Horizontal position in twips.</param>
+        /// <param name="fontstep">Character-per-inch step used to size a column.</param>
+        /// <returns>The zero-based column number for the given position.</returns>
         public int GetColumnNumber(int posx, PrintStepType fontstep)
         {
             int nresult = (int)Math.Round(System.Convert.ToDouble(posx) / StepToTwips(fontstep));
@@ -251,6 +323,11 @@ namespace Reportman.Drawing
                 nresult = 0;
             return nresult;
         }
+        /// <summary>
+        /// Builds a blank line of spaces wide enough to span the page at the given font step.
+        /// </summary>
+        /// <param name="fontstep">Character-per-inch step that determines the character count.</param>
+        /// <returns>A string of spaces covering the full page width.</returns>
         public string GetBlankLine(PrintStepType fontstep)
         {
             StringBuilder nresult = new StringBuilder();
@@ -259,6 +336,18 @@ namespace Reportman.Drawing
                 nresult.Append(" ");
             return nresult.ToString();
         }
+        /// <summary>
+        /// Places a text fragment at the given position on the appropriate print line, merging it with
+        /// existing content and recording its style attributes.
+        /// </summary>
+        /// <param name="x">Horizontal position in twips.</param>
+        /// <param name="y">Vertical position in twips, used to select the target line.</param>
+        /// <param name="text">Text fragment to place.</param>
+        /// <param name="linewidth">Width of the source line in twips.</param>
+        /// <param name="fontstep">Character-per-inch step for the fragment.</param>
+        /// <param name="rightoleft">When true, the fragment is reversed for right-to-left output.</param>
+        /// <param name="fontstyle">Bit mask of font style flags (bold, italic, underline, strikeout).</param>
+        /// <param name="red">When true, the fragment is marked to print in red.</param>
         public void DoTextOut(int x, int y, string text, int linewidth, PrintStepType fontstep, bool rightoleft, int fontstyle, bool red)
         {
             string astring;
@@ -350,8 +439,19 @@ namespace Reportman.Drawing
         /// Controls whether OEM character-set conversion is applied to output text: use the printer
         /// configuration default (<c>None</c>), or force it off (<c>False</c>) or on (<c>True</c>).
         /// </summary>
-        public enum OemConvertOverride { None, False, True };
+        public enum OemConvertOverride {
+            /// <summary>Use the OEM conversion setting from the printer configuration.</summary>
+            None,
+            /// <summary>Force OEM character-set conversion off.</summary>
+            False,
+            /// <summary>Force OEM character-set conversion on.</summary>
+            True
+        };
 
+        /// <summary>
+        /// Selects whether OEM character-set conversion follows the printer configuration or is forced
+        /// on or off for this driver instance.
+        /// </summary>
         public OemConvertOverride OverrideOemConvert = OemConvertOverride.None;
 
         private void UpdatePrinterConfig()
@@ -389,6 +489,10 @@ namespace Reportman.Drawing
             FillEscapes();
 
         }
+        /// <summary>
+        /// Rebuilds the escape-code table and the allowed font-step map for the active printer driver,
+        /// defining the control sequences used to render text.
+        /// </summary>
         public void FillEscapes()
         {
             Type rtype = typeof(PrinterRawOperation);
@@ -756,6 +860,11 @@ namespace Reportman.Drawing
             }
         }
 
+        /// <summary>
+        /// Finalizes the document, emitting the open-drawer, cut-paper and related end-of-print
+        /// operations configured for the selected printer.
+        /// </summary>
+        /// <param name="meta">MetaFile being finished.</param>
         public override void EndDocument(MetaFile meta)
         {
             byte[] init;
@@ -789,6 +898,11 @@ namespace Reportman.Drawing
                 }
             }
         }
+        /// <summary>
+        /// Encodes every line of the current page into the page stream, optionally dropping trailing
+        /// blank lines and appending a form feed or line feeds to advance to the next page.
+        /// </summary>
+        /// <param name="cutclearlines">When true, trailing empty lines are trimmed instead of padded.</param>
         public void WriteCurrentPage(bool cutclearlines)
         {
             int lastline = Lines.Count - 1;
@@ -834,6 +948,12 @@ namespace Reportman.Drawing
                 }
             }
         }
+        /// <summary>
+        /// Returns the escape sequence that selects the given character-per-inch step, using master
+        /// select codes when the driver supports them or the per-step escape codes otherwise.
+        /// </summary>
+        /// <param name="nstep">Character-per-inch step to select.</param>
+        /// <returns>The escape bytes that switch the printer to the requested step.</returns>
         public byte[] GetFontStepEscape(PrintStepType nstep)
         {
             if (masterselect)
@@ -930,6 +1050,15 @@ namespace Reportman.Drawing
             }
             return s;
         }
+        /// <summary>
+        /// Encodes a single print line into a byte sequence, emitting font-step changes, per-fragment
+        /// style escapes, the text bytes (with optional OEM conversion) and the trailing carriage
+        /// return and line feed.
+        /// </summary>
+        /// <param name="Line">Print line to encode.</param>
+        /// <param name="index">Zero-based index of the line within the page.</param>
+        /// <param name="plain">When true, style escapes are omitted and fragments are trimmed.</param>
+        /// <returns>The encoded bytes for the line.</returns>
         public byte[] EncodeLine(PrintLine Line, int index, bool plain)
         {
             using (System.IO.MemoryStream nline = new System.IO.MemoryStream())
@@ -1032,11 +1161,21 @@ namespace Reportman.Drawing
                 return nline.ToArray();
             }
         }
+        /// <summary>
+        /// Appends the current page stream to the accumulated print result.
+        /// </summary>
+        /// <param name="meta">MetaFile whose page is being closed.</param>
         public override void EndPage(MetaFile meta)
         {
             byte[] pageArray = currpageStream.ToArray();
             PrintResultStream.Write(pageArray, 0, pageArray.Length);
         }
+        /// <summary>
+        /// Returns the current page size in twips, falling back to the first standard page size when no
+        /// size has been set.
+        /// </summary>
+        /// <param name="indexqt">Receives the page-size index; always zero for this driver.</param>
+        /// <returns>The page size as a point of width and height in twips.</returns>
         public override Point GetPageSize(out int indexqt)
         {
             indexqt = 0;
@@ -1048,10 +1187,23 @@ namespace Reportman.Drawing
             }
             return new Point(FPageWidth, FPageHeight);
         }
+        /// <summary>
+        /// Computes the extent of a graphic; not supported by the text driver.
+        /// </summary>
+        /// <param name="astream">Stream holding the graphic data.</param>
+        /// <param name="extent">Requested extent.</param>
+        /// <param name="dpi">Resolution in dots per inch.</param>
+        /// <returns>Never returns; always throws <see cref="NotImplementedException"/>.</returns>
         public override Point GraphicExtent(System.IO.MemoryStream astream, Point extent, int dpi)
         {
             throw new NotImplementedException();
         }
+        /// <summary>
+        /// Sets the page size from the given detail, applying the current orientation, and returns the
+        /// resulting page dimensions in twips.
+        /// </summary>
+        /// <param name="psize">Page size detail, either a standard index or custom dimensions.</param>
+        /// <returns>The resulting page size as a point of width and height in twips.</returns>
         public override Point SetPageSize(PageSizeDetail psize)
         {
             int newwidth, newheight;
@@ -1080,6 +1232,13 @@ namespace Reportman.Drawing
             }
             return new Point(FPageWidth, FPageHeight);
         }
+        /// <summary>
+        /// Maps a font point size to a character-per-inch step when the selection is by size, otherwise
+        /// returns the explicitly selected step.
+        /// </summary>
+        /// <param name="FontSize">Font point size to map.</param>
+        /// <param name="select">Requested step, or <c>BySize</c> to derive it from the font size.</param>
+        /// <returns>The character-per-inch step to use.</returns>
         public static PrintStepType FontSizeToStep(short FontSize, PrintStepType select)
         {
             PrintStepType aresult = PrintStepType.cpi10;
@@ -1118,6 +1277,13 @@ namespace Reportman.Drawing
                 aresult = select;
             return aresult;
         }
+        /// <summary>
+        /// Measures the extent of a text object at the text driver's font steps, honouring word wrap,
+        /// single-line and cut-text settings.
+        /// </summary>
+        /// <param name="aobj">Text object to measure.</param>
+        /// <param name="extent">Maximum available extent in twips.</param>
+        /// <returns>The measured extent as a point of width and height in twips.</returns>
         public override Point TextExtent(TextObjectStruct aobj, Point extent)
         {
             bool singleline;
@@ -1149,6 +1315,9 @@ namespace Reportman.Drawing
             }
             return extent;
         }
+        /// <summary>
+        /// Placeholder for printer initialization at the start of a document; currently emits nothing.
+        /// </summary>
         public void WriteInit()
         {
             //string init = GetEscape(PrinterRawOperation.InitPrinter);
@@ -1161,6 +1330,10 @@ namespace Reportman.Drawing
                     currpage.Append(init);
             }*/
         }
+        /// <summary>
+        /// Emits the line-spacing escape sequence that matches the current lines-per-inch setting,
+        /// computing the fractional spacing value when the driver requires it.
+        /// </summary>
         public void WriteInterLine()
         {
             byte[] s = emptyByteArray;
@@ -1220,6 +1393,12 @@ namespace Reportman.Drawing
             }
 
         }
+        /// <summary>
+        /// Renders the requested page range of the metafile, laying out each page, writing its lines and
+        /// finalizing the document.
+        /// </summary>
+        /// <param name="meta">MetaFile to print.</param>
+        /// <returns>True when at least the first requested page was rendered; false otherwise.</returns>
         public override bool Print(MetaFile meta)
         {
             currpageStream = new System.IO.MemoryStream();
@@ -1274,12 +1453,21 @@ namespace Reportman.Drawing
             EndDocument(meta);
             return true;
         }
+        /// <summary>
+        /// Starts a new page, resetting the page stream and recalculating the number of print lines.
+        /// </summary>
+        /// <param name="meta">MetaFile that owns the page.</param>
+        /// <param name="page">MetaPage being started.</param>
         public override void NewPage(MetaFile meta, MetaPage page)
         {
             currpageStream = new System.IO.MemoryStream();
             RecalcSize();
             base.NewPage(meta, page);
         }
+        /// <summary>
+        /// Recreates the list of print lines so that it matches the page height at the current
+        /// lines-per-inch setting.
+        /// </summary>
         public void RecalcSize()
         {
             int numberoflines = (int)Math.Round(Twips.TwipsToInch(FPageHeight) * ((decimal)FLinesPerInch / 100));
@@ -1290,6 +1478,10 @@ namespace Reportman.Drawing
             }
             linefeeds = 0;
         }
+        /// <summary>
+        /// Emits the escape sequence that sets the page length for the active driver and selects the
+        /// regular font, throwing if the page exceeds 255 lines.
+        /// </summary>
         public void WritePageSize()
         {
             // Write interline
@@ -1321,6 +1513,12 @@ namespace Reportman.Drawing
             if (s.Length > 0)
                 currpageStream.Write(s, 0, s.Length);
         }
+        /// <summary>
+        /// Returns the nearest character-per-inch step supported by the active printer driver for the
+        /// requested step.
+        /// </summary>
+        /// <param name="fontstep">Requested character-per-inch step.</param>
+        /// <returns>The closest allowed step for the current driver.</returns>
         public PrintStepType NearestFontStep(PrintStepType fontstep)
         {
             return allowedsteps[fontstep];
@@ -1354,6 +1552,11 @@ namespace Reportman.Drawing
 
 
                  */
+        /// <summary>
+        /// Returns the width of a single character, in twips, for the given character-per-inch step.
+        /// </summary>
+        /// <param name="step">Character-per-inch step.</param>
+        /// <returns>The character width in twips.</returns>
         public double StepToTwips(PrintStepType step)
         {
             double aresult = (double)Twips.TWIPS_PER_INCH / 10.0;
@@ -1385,6 +1588,13 @@ namespace Reportman.Drawing
 
             return aresult;
         }
+        /// <summary>
+        /// Returns the width in twips contributed by a character, treating null, carriage-return and
+        /// line-feed characters as zero width.
+        /// </summary>
+        /// <param name="charcode">Character to measure.</param>
+        /// <param name="step">Character-per-inch step.</param>
+        /// <returns>The character width in twips.</returns>
         public double CalcCharWidth(char charcode, PrintStepType step)
         {
             if ((charcode == (char)0) || (charcode == (char)13) || (charcode == (char)10))
@@ -1396,6 +1606,16 @@ namespace Reportman.Drawing
         {
             return ((c == ',') || (c == '.') || (c == '-') || (c == ' ') || (c == ':') || (c == ';'));
         }
+        /// <summary>
+        /// Computes the extent of a text block and fills the internal line-info list used for layout,
+        /// applying word wrapping, single-line collapsing and clipping to the rectangle height.
+        /// </summary>
+        /// <param name="text">Text to measure.</param>
+        /// <param name="rect">On input the bounding rectangle; on output the measured extent in twips.</param>
+        /// <param name="wordbreak">When true, text is wrapped on word boundaries.</param>
+        /// <param name="singleline">When true, line breaks are replaced with spaces.</param>
+        /// <param name="fontstep">Character-per-inch step used to measure the text.</param>
+        /// <param name="doclip">When true, lines that overflow the rectangle height are dropped.</param>
         public void CalculateTextExtent(string text, ref Rectangle rect, bool wordbreak, bool singleline, PrintStepType fontstep, bool doclip)
         {
             bool dolineinfo = true;
@@ -1626,6 +1846,15 @@ namespace Reportman.Drawing
             rect = arec;
 
         }
+        /// <summary>
+        /// Alternate text-extent calculation that fills the internal line-info list, applying word
+        /// wrapping and single-line handling; kept for compatibility with the original layout routine.
+        /// </summary>
+        /// <param name="text">Text to measure.</param>
+        /// <param name="rect">On input the bounding rectangle; on output the measured extent in twips.</param>
+        /// <param name="WordBreak">When true, text is wrapped on word boundaries.</param>
+        /// <param name="singleline">When true, line breaks do not start new lines.</param>
+        /// <param name="fontstep">Character-per-inch step used to measure the text.</param>
         public void CalculateTextExtent2(string text, ref Rectangle rect, bool WordBreak, bool singleline, PrintStepType fontstep)
         {
             string astring;
@@ -1771,9 +2000,21 @@ namespace Reportman.Drawing
     /// </summary>
     public class PrintLine
     {
+        /// <summary>
+        /// Positioned text fragments on this line, keyed by their starting column.
+        /// </summary>
         public SortedList<int, PosText> texts;
+        /// <summary>
+        /// Character-per-inch step applied to the whole line.
+        /// </summary>
         public PrintStepType FontStep;
+        /// <summary>
+        /// The full character content of the line, padded with spaces to the page width.
+        /// </summary>
         public string Value;
+        /// <summary>
+        /// Initializes an empty print line with the default 10 cpi step.
+        /// </summary>
         public PrintLine()
         {
             Value = "";
@@ -1787,13 +2028,37 @@ namespace Reportman.Drawing
     /// </summary>
     public struct PosText
     {
+        /// <summary>
+        /// Starting column of the fragment on its print line.
+        /// </summary>
         public int Position;
+        /// <summary>
+        /// Length of the fragment in characters.
+        /// </summary>
         public int nSize;
+        /// <summary>
+        /// True when the fragment is underlined.
+        /// </summary>
         public bool underline;
+        /// <summary>
+        /// True when the fragment is italic.
+        /// </summary>
         public bool italic;
+        /// <summary>
+        /// True when the fragment is printed in red.
+        /// </summary>
         public bool red;
+        /// <summary>
+        /// True when the fragment is bold.
+        /// </summary>
         public bool bold;
+        /// <summary>
+        /// True when the fragment is struck out.
+        /// </summary>
         public bool strokeout;
+        /// <summary>
+        /// True when the fragment has no style attributes and can be emitted without style escapes.
+        /// </summary>
         public bool regular;
     }
 }

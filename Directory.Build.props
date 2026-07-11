@@ -12,6 +12,7 @@
     
     <!-- Only pack projects that explicitly set IsPackable=true -->
     <IsPackable>false</IsPackable>
+    <NoWarn>$(NoWarn);CA1416</NoWarn>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(IsPackable)' == 'true'">

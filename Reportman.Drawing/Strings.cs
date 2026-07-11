@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Text;
 
@@ -210,6 +210,10 @@ namespace Reportman.Drawing
             }
             return sbuilder.ToString();
         }
+        /// <summary>
+        /// Loads the string collection from a text file, parsing it line by line.
+        /// </summary>
+        /// <param name="filename">The path to the text file to read.</param>
         public void LoadFromFile(string filename)
         {
             using (FileStream nstream = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read))
@@ -217,6 +221,10 @@ namespace Reportman.Drawing
                 LoadFromStream(nstream);
             }
         }
+        /// <summary>
+        /// Loads the string collection from a stream, parsing it line by line using UTF-8 encoding.
+        /// </summary>
+        /// <param name="nstream">The Stream to read text lines from.</param>
         public void LoadFromStream(Stream nstream)
         {
             using (MemoryStream mems = StreamUtil.StreamToMemoryStream(nstream))

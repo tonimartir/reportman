@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 
 namespace Reportman.Drawing
@@ -9,6 +9,10 @@ namespace Reportman.Drawing
     /// </summary>
     public static class AssemblyResolver
     {
+        /// <summary>
+        /// Registers the AssemblyResolve event handler on the current AppDomain to dynamically locate
+        /// and load architecture-specific assemblies (such as the Win32/Win64 System.Data.SQLite.dll).
+        /// </summary>
         public static void HandleUnresolvedAssemblies()
         {
             AppDomain currentDomain = AppDomain.CurrentDomain;

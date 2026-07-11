@@ -41,8 +41,18 @@ public sealed class WebRtcChannelPool : IAsyncDisposable
     private readonly ConcurrentDictionary<long, PooledEntry> _pool = new();
     private int _disposed; // 0 = alive
 
+    /// <summary>
+    /// Initializes a new <see cref="WebRtcChannelPool"/> with the default idle timeout (60 s),
+    /// max lifetime (10 min) and keepalive interval (25 s).
+    /// </summary>
     public WebRtcChannelPool() : this(DefaultIdleTimeout, DefaultMaxLifetime, DefaultKeepaliveInterval) { }
 
+    /// <summary>
+    /// Initializes a new <see cref="WebRtcChannelPool"/> with the specified timeout parameters.
+    /// </summary>
+    /// <param name="idleTimeout">How long a session may remain unused before eviction.</param>
+    /// <param name="maxLifetime">Absolute maximum lifetime of a pooled session.</param>
+    /// <param name="keepaliveInterval">Interval between keepalive ping messages sent on idle channels.</param>
     public WebRtcChannelPool(TimeSpan idleTimeout, TimeSpan maxLifetime, TimeSpan keepaliveInterval)
     {
         _idleTimeout = idleTimeout;
@@ -134,6 +144,10 @@ public sealed class WebRtcChannelPool : IAsyncDisposable
         }
     }
 
+    /// <summary>
+    /// Disposes the pool by closing all cached sessions and releasing per-key semaphores.
+    /// Subsequent calls are no-ops.
+    /// </summary>
     public async ValueTask DisposeAsync()
     {
         if (System.Threading.Interlocked.Exchange(ref _disposed, 1) != 0) return;
@@ -160,10 +174,22 @@ public sealed class WebRtcChannelPool : IAsyncDisposable
         private Timer? _keepaliveTimer;
         private int _disposed;
 
+        /// <summary>
+        /// Gets the underlying <see cref="WebRtcDataChannelSession"/> managed by this entry.
+        /// </summary>
         public WebRtcDataChannelSession Session { get; }
 
+        /// <summary>
+        /// Gets a value indicating whether this entry is still usable (not disposed and the underlying session is alive).
+        /// </summary>
         public bool IsAlive => _disposed == 0 && Session.IsAlive;
 
+        /// <summary>
+        /// Initializes a new <see cref="PooledEntry"/> wrapping the given session.
+        /// </summary>
+        /// <param name="pool">The owning pool, used for timeout configuration and eviction callbacks.</param>
+        /// <param name="hubDatabaseId">The Hub database identifier this entry is keyed by.</param>
+        /// <param name="session">The negotiated WebRTC data channel session to cache.</param>
         public PooledEntry(WebRtcChannelPool pool, long hubDatabaseId, WebRtcDataChannelSession session)
         {
             _pool = pool;
@@ -173,8 +199,15 @@ public sealed class WebRtcChannelPool : IAsyncDisposable
             _lastUse = _openedAt;
         }
 
+        /// <summary>
+        /// Records the current UTC time as the last-use timestamp, resetting the idle timer.
+        /// </summary>
         public void Touch() => _lastUse = DateTimeOffset.UtcNow;
 
+        /// <summary>
+        /// Starts the periodic idle/max-lifetime check timer and the keepalive ping timer.
+        /// Must be called once after the entry is added to the pool.
+        /// </summary>
         public void StartTimers()
         {
             // One periodic check covers BOTH idle and max-life, each gated by
@@ -230,6 +263,9 @@ public sealed class WebRtcChannelPool : IAsyncDisposable
             try { await Session.DisposeAsync(); } catch { }
         }
 
+        /// <summary>
+        /// Evicts this entry from the pool, stops its timers, and disposes the underlying session.
+        /// </summary>
         public ValueTask DisposeAsync() => new ValueTask(EvictAsync("disposed"));
     }
 }

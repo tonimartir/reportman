@@ -1,4 +1,4 @@
-﻿using Reportman.Drawing;
+using Reportman.Drawing;
 using Reportman.Reporting;
 using System;
 using System.Collections.Generic;
@@ -23,6 +23,9 @@ namespace Reportman.Designer
         SplitContainer FSplitContainer;
         bool FSplitterInitialized;
 
+        /// <summary>
+        /// Initializes a new instance of the ExpressionDlg class, translating labels and setting up the layout.
+        /// </summary>
         public ExpressionDlg()
         {
             InitializeComponent();
@@ -132,6 +135,12 @@ namespace Reportman.Designer
         {
 
         }
+        /// <summary>
+        /// Displays the expression editor dialog as a modal dialog and edits the expression string.
+        /// </summary>
+        /// <param name="expression">The expression text to edit (passed by reference).</param>
+        /// <param name="framemain">The main designer frame control acting as owner/context.</param>
+        /// <returns>True if the user accepted the changes; otherwise, false.</returns>
         public static bool ShowDialog(ref string expression, FrameMainDesigner framemain)
         {
             using (Form newform = new Form())

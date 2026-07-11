@@ -1,4 +1,4 @@
-#if NETFRAMEWORK
+﻿#if NETFRAMEWORK
 using System.ComponentModel;
 
 namespace System.Runtime.CompilerServices

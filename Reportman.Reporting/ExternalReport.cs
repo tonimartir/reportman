@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Reportman.Reporting
@@ -10,6 +10,14 @@ namespace Reportman.Reporting
     /// </summary>
     public class ExternalReport
     {
+        /// <summary>
+        /// Exports a single subreport — together with its related datasets and parameters — to the
+        /// specified stream. All other subreports and their exclusive dependencies are removed before
+        /// serialization.
+        /// </summary>
+        /// <param name="subreport">The subreport to export.</param>
+        /// <param name="destination">The destination stream that will receive the serialized report.</param>
+        /// <param name="version">The stream serialization version to use (defaults to <see cref="StreamVersion.V2"/>).</param>
         public static void ExportSubReport(SubReport subreport, System.IO.Stream destination, StreamVersion version = StreamVersion.V2)
         {
             using (MemoryStream mstream = new MemoryStream())
@@ -96,6 +104,12 @@ namespace Reportman.Reporting
                 newreport.SaveToStream(destination, version);
             }
         }
+        /// <summary>
+        /// Removes the specified subreport and its associated dataset, union datasets, and exclusive
+        /// parameters from the given report.
+        /// </summary>
+        /// <param name="newreport">The report from which the subreport will be deleted.</param>
+        /// <param name="subrep">The subreport to delete.</param>
         public static void DeleteSubReport(Report newreport, SubReport subrep)
         {
             // Remove related dataset
@@ -158,6 +172,13 @@ namespace Reportman.Reporting
             }
             newreport.DeleteSubReport(subrep);
         }
+        /// <summary>
+        /// Merges all subreports, datasets, database connections, and parameters from the
+        /// <paramref name="source"/> report into the <paramref name="destination"/> report.
+        /// Duplicate aliases are resolved automatically; conflicting component names are regenerated.
+        /// </summary>
+        /// <param name="destination">The report that will receive the imported objects.</param>
+        /// <param name="source">The report whose contents will be imported.</param>
         public static void ImportReport(Report destination, Report source)
         {
             foreach (DataInfo dinfo in source.DataInfo)

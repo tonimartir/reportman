@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +17,9 @@ namespace Reportman.WPF
     public class PrintOutWPF:PrintOut
     {
         FixedDocument FDoc;
+        /// <summary>
+        /// Gets the generated FixedDocument object for previewing or printing.
+        /// </summary>
         public FixedDocument Document
         {
             get
@@ -28,6 +31,14 @@ namespace Reportman.WPF
         double FPageHeight = 0;
         List<PreviewWPF> PagePreviews = new List<PreviewWPF>();
         MetaFile mainmeta;
+        private int PageQt;
+
+        /// <summary>
+        /// Initializes a new instance of the PrintOutWPF class.
+        /// </summary>
+        public PrintOutWPF()
+        {
+        }
 
         /// <summary>
         /// Initialization
@@ -148,7 +159,6 @@ namespace Reportman.WPF
         /// </summary>
         /// <param name="psize">Input value</param>
         /// <returns>Size in twips of the page</returns>
-        private int PageQt;
         override public System.Drawing.Point SetPageSize(PageSizeDetail psize)
         {
             int newwidth, newheight;

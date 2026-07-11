@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -22,8 +22,14 @@ namespace Reportman.Drawing.Forms
     public class TreeGridAdvanced : DataGridView
     {
         const int INDENT_FIRST_UNSCALED = 8;
+        /// <summary>
+        /// Horizontal margin, in pixels, added after the indentation and glyph area of a tree cell.
+        /// </summary>
         public const int INDENT_MARGIN = 5;
         static int findent_first = 0;
+        /// <summary>
+        /// Gets the DPI-scaled indentation, in pixels, applied to the first tree level.
+        /// </summary>
         public static int INDENT_FIRST
         {
             get
@@ -37,6 +43,9 @@ namespace Reportman.Drawing.Forms
 
         }
         private static int findent_width;
+        /// <summary>
+        /// Gets the DPI-scaled width, in pixels, of a single indentation level in the tree.
+        /// </summary>
         public static int INDENT_WIDTH
         {
             get
@@ -46,13 +55,22 @@ namespace Reportman.Drawing.Forms
                 return findent_width;
             }
         }
+        /// <summary>
+        /// When true, enables double buffering for smoother rendering except on terminal server sessions.
+        /// </summary>
         public static bool DoubleBufferedPerformance = true;
         internal bool themesenabled;
+        /// <summary>
+        /// Running counter used to assign a unique identifier to each node added to the grid.
+        /// </summary>
         public long rowid_generator;
         internal VisualStyleRenderer rOpen = null;
         internal ImageList _imageList;
         internal VisualStyleRenderer rClosed = null;
         int FMaxLevel;
+        /// <summary>
+        /// Gets the deepest node level currently present in the tree.
+        /// </summary>
         public int MaxLevel
         {
             get
@@ -60,6 +78,9 @@ namespace Reportman.Drawing.Forms
                 return FMaxLevel;
             }
         }
+        /// <summary>
+        /// Gets or sets the image list that supplies the images drawn next to tree nodes.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public ImageList ImageList
         {
@@ -70,6 +91,9 @@ namespace Reportman.Drawing.Forms
                 Invalidate();
             }
         }
+        /// <summary>
+        /// Handles sort comparison so that null database values always sort before other values.
+        /// </summary>
         protected override void OnSortCompare(DataGridViewSortCompareEventArgs e)
         {
             if (e.CellValue1 == DBNull.Value)
@@ -92,12 +116,27 @@ namespace Reportman.Drawing.Forms
             }
             base.OnSortCompare(e);
         }
+        /// <summary>
+        /// Cache of cell styles keyed by left padding, reused to avoid recreating styles while drawing.
+        /// </summary>
         public SortedList<int, DataGridViewCellStyle> paddings_list = new SortedList<int, DataGridViewCellStyle>();
         internal int treeboxwidth;
+        /// <summary>
+        /// All nodes in the tree, indexed by their unique node identifier.
+        /// </summary>
         public SortedList<long, TreeGridAdvancedNode> AllRows = new SortedList<long, TreeGridAdvancedNode>();
+        /// <summary>
+        /// The invisible root node; every top-level node is added as one of its children.
+        /// </summary>
         public TreeGridAdvancedNode MainNode = new TreeGridAdvancedNode();
         private Graphics grint;
+        /// <summary>
+        /// Gets or sets whether connecting tree lines are drawn between nodes.
+        /// </summary>
         public bool ShowLines = true;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TreeGridAdvanced"/> class with tree-friendly defaults.
+        /// </summary>
         public TreeGridAdvanced()
             : base()
         {
@@ -114,6 +153,9 @@ namespace Reportman.Drawing.Forms
 
             this.themesenabled = true;
         }
+        /// <summary>
+        /// Multiplies every column width by the current DPI scale factor.
+        /// </summary>
         public void ScaleColumns()
         {
             foreach (DataGridViewColumn ncol in Columns)
@@ -121,12 +163,18 @@ namespace Reportman.Drawing.Forms
                 ncol.Width = Convert.ToInt32(ncol.Width * Reportman.Drawing.Windows.GraphicUtils.DPIScale);
             }
         }
+        /// <summary>
+        /// Removes every node and grid row, leaving the tree empty.
+        /// </summary>
         public void ClearNodes()
         {
             AllRows.Clear();
             MainNode.Clear();
             Rows.Clear();
         }
+        /// <summary>
+        /// Releases tree resources and clears node collections, then disposes the base grid.
+        /// </summary>
         protected override void Dispose(bool disposing)
         {
             MainNode.Clear();
@@ -142,6 +190,9 @@ namespace Reportman.Drawing.Forms
             paddings_list = new SortedList<int, DataGridViewCellStyle>();
             base.Dispose(disposing);
         }
+        /// <summary>
+        /// Gets a cached <see cref="Graphics"/> instance for the grid, creating it on first use.
+        /// </summary>
         public Graphics GetGraphics()
         {
             if (grint == null)
@@ -178,6 +229,10 @@ namespace Reportman.Drawing.Forms
             }
             return aresult;
         }
+        /// <summary>
+        /// Exports the visible columns and rows to an Excel workbook saved at the given path,
+        /// choosing the file format from the file extension.
+        /// </summary>
         public void SaveToExcel(string filename)
         {
             //if (DataSource == null)
@@ -297,6 +352,9 @@ namespace Reportman.Drawing.Forms
             wb.GetType().InvokeMember("Quit", System.Reflection.BindingFlags.InvokeMethod, null, excel, null);
 
         }
+        /// <summary>
+        /// Rebuilds the grid rows from the expanded nodes, preserving the current selection.
+        /// </summary>
         public void DrawNodes()
         {
             SuspendLayout();
@@ -348,16 +406,25 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Returns the node associated with the given grid row.
+        /// </summary>
         public TreeGridAdvancedNode FindNode(TreeGridRow nrow)
         {
             long aindex = (long)nrow.NodeId;
             return AllRows[aindex];
         }
+        /// <summary>
+        /// Expands the tree down to the given level and redraws the grid rows.
+        /// </summary>
         public void DrawLevel(int level)
         {
             TreeGridAdvancedNode.ExpandToLevel(MainNode, level);
             DrawNodes();
         }
+        /// <summary>
+        /// Creates a new row from the given cell values and adds it as a child node, returning the new node.
+        /// </summary>
         public TreeGridAdvancedNode AddNode(TreeGridAdvancedNode parent, object[] nvalues, bool addexpanded)
         {
             TreeGridRow nrow = new TreeGridRow();
@@ -365,6 +432,10 @@ namespace Reportman.Drawing.Forms
 
             return AddNode(parent, nrow, addexpanded);
         }
+        /// <summary>
+        /// Adds the given row as a child of the parent node (or of the main node when parent is null),
+        /// returning the new node.
+        /// </summary>
         public TreeGridAdvancedNode AddNode(TreeGridAdvancedNode parent, TreeGridRow xrow, bool addexpanded)
         {
             if (parent == null)
@@ -393,6 +464,9 @@ namespace Reportman.Drawing.Forms
             parent.Childs.Add(newnode);
             return newnode;
         }
+        /// <summary>
+        /// Marks every node as expanded, optionally redrawing the grid afterwards.
+        /// </summary>
         public void ExpandAll(bool redraw)
         {
             foreach (TreeGridAdvancedNode nnode in AllRows.Values)
@@ -402,6 +476,9 @@ namespace Reportman.Drawing.Forms
             if (redraw)
                 DrawNodes();
         }
+        /// <summary>
+        /// Removes nodes whose value in the given column is blank, reparenting their children.
+        /// </summary>
         public void RemoveBlankGroups(int colindex)
         {
             List<TreeGridAdvancedNode> toremove = new List<TreeGridAdvancedNode>();
@@ -439,6 +516,9 @@ namespace Reportman.Drawing.Forms
                 AllRows.Remove(nnode.RowId);
             }
         }
+        /// <summary>
+        /// Expands nodes up to the given level and collapses deeper ones, optionally redrawing.
+        /// </summary>
         public void ExpandToLevel(int level, bool redraw)
         {
             foreach (TreeGridAdvancedNode nnode in AllRows.Values)
@@ -448,6 +528,10 @@ namespace Reportman.Drawing.Forms
             if (redraw)
                 DrawNodes();
         }
+        /// <summary>
+        /// Searches the given row, and optionally its descendants, for text between the specified columns;
+        /// selects and expands to the first match and returns true when found.
+        /// </summary>
         public bool FindTextNode(TreeGridRow nnode, string busca, int firstcolumn, int lastcolumn, bool searchchild)
         {
             bool found = false;
@@ -485,6 +569,10 @@ namespace Reportman.Drawing.Forms
 
             return found;
         }
+        /// <summary>
+        /// Searches the grid for the given text starting from the current cell and wrapping around,
+        /// selecting the first match.
+        /// </summary>
         public void FindText(string ntext)
         {
             if (CurrentCell == null)
@@ -518,6 +606,9 @@ namespace Reportman.Drawing.Forms
                 }
             }
         }
+        /// <summary>
+        /// Copies the currently selected cells to the clipboard as tab-separated, newline-delimited text.
+        /// </summary>
         public void CopySelectionToClipBoard()
         {
             DataGridViewSelectedCellCollection collect = SelectedCells;
@@ -570,15 +661,45 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public class TreeGridAdvancedNode
     {
+        /// <summary>
+        /// The grid that owns this node.
+        /// </summary>
         public TreeGridAdvanced Grid;
+        /// <summary>
+        /// The grid row associated with this node.
+        /// </summary>
         public TreeGridRow Row;
+        /// <summary>
+        /// The unique identifier assigned to this node.
+        /// </summary>
         public long RowId;
+        /// <summary>
+        /// The depth of this node within the tree.
+        /// </summary>
         public int Level;
+        /// <summary>
+        /// Transient flag used when marking a node and its ancestors as visited.
+        /// </summary>
         public bool UpdatedCheck;
+        /// <summary>
+        /// The parent node, or null for a root-level node.
+        /// </summary>
         public TreeGridAdvancedNode Parent;
+        /// <summary>
+        /// The child nodes contained by this node.
+        /// </summary>
         public List<TreeGridAdvancedNode> Childs = new List<TreeGridAdvancedNode>();
+        /// <summary>
+        /// Additional grid rows associated with this node.
+        /// </summary>
         public List<TreeGridRow> Rows = new List<TreeGridRow>();
+        /// <summary>
+        /// Indicates whether this node's children are currently shown.
+        /// </summary>
         public bool Expanded;
+        /// <summary>
+        /// Clears the updated-check flag on the given node and all of its ancestors.
+        /// </summary>
         public static void ClearUpdatedCheck(TreeGridAdvancedNode node)
         {
             node.UpdatedCheck = false;
@@ -594,10 +715,16 @@ namespace Reportman.Drawing.Forms
             nnode.Childs.Clear();
             nnode.Rows.Clear();
         }
+        /// <summary>
+        /// Recursively clears this node's child and row collections.
+        /// </summary>
         public void Clear()
         {
             ClearNode(this);
         }
+        /// <summary>
+        /// Appends the node's row and, when it is expanded, its visible descendants to the given list.
+        /// </summary>
         public static void FillExpanded(TreeGridAdvancedNode nnode, List<TreeGridRow> AddList)
         {
             AddList.Add(nnode.Row);
@@ -610,6 +737,9 @@ namespace Reportman.Drawing.Forms
                 }
             }
         }
+        /// <summary>
+        /// Recursively sets the expanded state of the node and its descendants based on the target level.
+        /// </summary>
         public static void ExpandToLevel(TreeGridAdvancedNode nnode, int newlevel)
         {
             nnode.Expanded = nnode.Level <= newlevel;
@@ -618,6 +748,9 @@ namespace Reportman.Drawing.Forms
                 ExpandToLevel(childnode, newlevel);
             }
         }
+        /// <summary>
+        /// Removes this node's row and those of its descendants from the grid without deleting the nodes.
+        /// </summary>
         public void RemoveFromGrid()
         {
             for (int i = Childs.Count - 1; i >= 0; i--)
@@ -630,6 +763,9 @@ namespace Reportman.Drawing.Forms
                 Grid.Rows.RemoveAt(index);
             Expanded = false;
         }
+        /// <summary>
+        /// Removes this node's row from the grid and detaches the node from its parent.
+        /// </summary>
         public void RemoveFromGridForEver()
         {
             for (int i = Childs.Count - 1; i >= 0; i--)
@@ -647,6 +783,9 @@ namespace Reportman.Drawing.Forms
             Expanded = false;
         }
 
+        /// <summary>
+        /// Collapses this node, removing its child rows from the grid.
+        /// </summary>
         public void Contract()
         {
             if (Expanded)
@@ -679,6 +818,9 @@ namespace Reportman.Drawing.Forms
                 }
             }
         }
+        /// <summary>
+        /// Expands this node, inserting its child rows into the grid.
+        /// </summary>
         public void Expand()
         {
             if (Expanded)
@@ -703,6 +845,9 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public class TreeGridAdvancedColumn : DataGridViewTextBoxColumn
     {
+        /// <summary>
+        /// Toggles the expanded state of the node for the given row.
+        /// </summary>
         public void ClickNode(TreeGridRow nrow)
         {
             TreeGridAdvancedNode nnode = ((TreeGridAdvanced)(nrow.DataGridView)).FindNode(nrow);
@@ -713,6 +858,9 @@ namespace Reportman.Drawing.Forms
                 nnode.Expand();
         }
         internal bool _ismousecap;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TreeGridAdvancedColumn"/> class as a read-only tree column.
+        /// </summary>
         public TreeGridAdvancedColumn()
         {
             this.CellTemplate = new TreeGridAdvancedCell();
@@ -725,15 +873,30 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public class TreeGridAdvancedCell : DataGridViewTextBoxCell
     {
+        /// <summary>
+        /// Unscaled width, in pixels, of one indentation level before DPI scaling.
+        /// </summary>
         public const int INDENT_WIDTH_UNSCALED = 20;
+        /// <summary>
+        /// Horizontal margin, in pixels, added after the glyph and image area of a cell.
+        /// </summary>
         public const int INDENT_MARGIN = 5;
+        /// <summary>
+        /// Indentation, in pixels, applied to the first tree level.
+        /// </summary>
         public const int INDENT_FIRST = 8;
+        /// <summary>
+        /// Default width, in pixels, reserved for a node's expand/collapse glyph.
+        /// </summary>
         public const int DEF_GLYPHWIDTH = 15;
         private bool paddingok;
         private int glyphWidth;
         internal bool IsSited;
 
         int findent_width = 0;
+        /// <summary>
+        /// Gets the DPI-scaled width, in pixels, of a single indentation level.
+        /// </summary>
         public int INDENT_WIDTH
         {
             get
@@ -745,6 +908,9 @@ namespace Reportman.Drawing.Forms
         }
         private int _imageWidth = 0, _imageHeight = 0, _imageHeightOffset = 0;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TreeGridAdvancedCell"/> class.
+        /// </summary>
         public TreeGridAdvancedCell()
         {
             glyphWidth = DEF_GLYPHWIDTH;
@@ -752,6 +918,9 @@ namespace Reportman.Drawing.Forms
 
         }
 
+        /// <summary>
+        /// Creates a copy of this cell, preserving the glyph width.
+        /// </summary>
         public override object Clone()
         {
             TreeGridAdvancedCell c = (TreeGridAdvancedCell)base.Clone();
@@ -760,11 +929,17 @@ namespace Reportman.Drawing.Forms
 
             return c;
         }
+        /// <summary>
+        /// Recomputes the cell style and indentation ahead of painting.
+        /// </summary>
         public void PrepareDraw()
         {
             UpdateStyle();
         }
         // Performance bottleneck
+        /// <summary>
+        /// Computes the cell padding for the node's indentation and image, caching the resulting style.
+        /// </summary>
         internal protected virtual void UpdateStyle()
         {
             if (this.RowIndex < 0)
@@ -850,6 +1025,9 @@ namespace Reportman.Drawing.Forms
             paddingok = true;
         }
 
+        /// <summary>
+        /// Gets the tree depth of the row this cell belongs to.
+        /// </summary>
         public int Level
         {
             get
@@ -866,6 +1044,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Gets the horizontal offset, in pixels, where the node's glyph is drawn.
+        /// </summary>
         protected virtual int GlyphMargin
         {
             get
@@ -874,6 +1055,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Gets the horizontal indentation, in pixels, for the node's level.
+        /// </summary>
         protected virtual int GlyphOffset
         {
             get
@@ -883,6 +1067,9 @@ namespace Reportman.Drawing.Forms
         }
 
 
+        /// <summary>
+        /// Paints the cell contents together with the node image, tree lines and expand/collapse glyph.
+        /// </summary>
         protected override void Paint(Graphics graphics, Rectangle clipBounds, Rectangle cellBounds, int rowIndex, DataGridViewElementStates cellState, object value, object formattedValue, string errorText, DataGridViewCellStyle cellStyle, DataGridViewAdvancedBorderStyle advancedBorderStyle, DataGridViewPaintParts paintParts)
         {
             if (!paddingok)
@@ -1117,6 +1304,9 @@ namespace Reportman.Drawing.Forms
             }
 
         }
+        /// <summary>
+        /// Toggles the node when the mouse is released over a captured glyph click.
+        /// </summary>
         protected override void OnMouseUp(DataGridViewCellMouseEventArgs e)
         {
             base.OnMouseUp(e);
@@ -1129,6 +1319,9 @@ namespace Reportman.Drawing.Forms
                 ncol.ClickNode(nrow);
             }
         }
+        /// <summary>
+        /// Begins glyph-click capture when the mouse is pressed within the indentation area.
+        /// </summary>
         protected override void OnMouseDown(DataGridViewCellMouseEventArgs e)
         {
             if (e.Location.X > this.InheritedStyle.Padding.Left)
@@ -1142,6 +1335,9 @@ namespace Reportman.Drawing.Forms
                 ncol._ismousecap = true;
             }
         }
+        /// <summary>
+        /// Releases the resources used by the cell.
+        /// </summary>
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
@@ -1154,12 +1350,24 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public class TreeGridRow : DataGridViewRow
     {
+        /// <summary>
+        /// The tree node this row represents.
+        /// </summary>
         public TreeGridAdvancedNode Node;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TreeGridRow"/> class with no image assigned.
+        /// </summary>
         public TreeGridRow()
         {
             _imageIndex = -1;
         }
+        /// <summary>
+        /// The zero-based position of this row among its siblings.
+        /// </summary>
         public int ChildIndex;
+        /// <summary>
+        /// Gets whether this row is the first child of its parent.
+        /// </summary>
         public bool IsFirstSibling
         {
             get
@@ -1167,6 +1375,9 @@ namespace Reportman.Drawing.Forms
                 return (this.ChildIndex == 0);
             }
         }
+        /// <summary>
+        /// Gets whether this row's node has child nodes.
+        /// </summary>
         public bool HasChildren
         {
             get
@@ -1176,6 +1387,9 @@ namespace Reportman.Drawing.Forms
                 return (Node.Childs.Count > 0);
             }
         }
+        /// <summary>
+        /// Gets whether this row is the last child of its parent.
+        /// </summary>
         [Browsable(false)]
         public bool IsLastSibling
         {
@@ -1198,6 +1412,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Gets the image list of the owning grid, or null when the row is not attached to a grid.
+        /// </summary>
         [Browsable(false),
         EditorBrowsable(EditorBrowsableState.Never),
         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -1212,6 +1429,9 @@ namespace Reportman.Drawing.Forms
             }
         }
         internal int _imageIndex;
+        /// <summary>
+        /// Gets or sets the index into the image list of the image shown for this row.
+        /// </summary>
         [Category("Appearance"),
         Description("..."), DefaultValue(-1),
         TypeConverter(typeof(ImageIndexConverter)),
@@ -1228,10 +1448,25 @@ namespace Reportman.Drawing.Forms
         }
 
 
+        /// <summary>
+        /// The identifier of the tree node this row represents.
+        /// </summary>
         public long NodeId;
+        /// <summary>
+        /// The depth of this row's node within the tree.
+        /// </summary>
         public int Level;
+        /// <summary>
+        /// Indicates whether this row's node is at the root level.
+        /// </summary>
         public bool IsRoot;
+        /// <summary>
+        /// The parent row, or null when this row is at the root level.
+        /// </summary>
         public TreeGridRow Parent;
+        /// <summary>
+        /// Gets the image displayed for this row based on <see cref="ImageIndex"/>, or null when none applies.
+        /// </summary>
         public Image Image
         {
             get

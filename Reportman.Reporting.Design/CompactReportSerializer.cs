@@ -72,6 +72,12 @@ namespace Reportman.Reporting.Design
         private const string PageSizeModeProperty = "PageSizeMode";
         private const string PaperSizeProperty = "PaperSize";
 
+        /// <summary>
+        /// Serializes a Report into a compact text DSL suitable for LLM instance context.
+        /// Only properties present in the schema context and non-default values are emitted to optimize token usage.
+        /// </summary>
+        /// <param name="report">The Report to serialize.</param>
+        /// <returns>A compact string representation of the report structure.</returns>
         public static string Serialize(Report report)
         {
             var sb = new StringBuilder(4096);

@@ -17,8 +17,16 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public class ComboBoxAdvanced : ComboBox
     {
+        /// <summary>
+        /// List of key/value pairs feeding the auto-complete suggestions, where the key is the
+        /// displayed text and the value is the searchable term.
+        /// </summary>
         public List<KeyValuePair<string, string>> AutoCompleteList;
         private ImageList imageList;
+        /// <summary>
+        /// Gets or sets the ImageList used to draw an image next to each item. Assigning a non-null
+        /// list switches the control to owner-draw mode; assigning null restores normal drawing.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public ImageList ImageList
         {
@@ -34,9 +42,16 @@ namespace Reportman.Drawing.Forms
                     DrawMode = DrawMode.Normal;
             }
         }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ComboBoxAdvanced"/> class.
+        /// </summary>
         public ComboBoxAdvanced() : base()
         {
         }
+        /// <summary>
+        /// Draws each item, painting the associated ImageList image (when set) followed by the item
+        /// text; falls back to the default rendering when no ImageList is assigned.
+        /// </summary>
         protected override void OnDrawItem(DrawItemEventArgs ea)
         {
             if (imageList == null)
@@ -84,10 +99,20 @@ namespace Reportman.Drawing.Forms
 
             base.OnDrawItem(ea);
         }
+        /// <summary>
+        /// Gets or sets whether pressing Enter moves focus to the next control as if Tab were pressed.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool EnterAsTab { get; set; }
 
+        /// <summary>
+        /// Raised before Enter is translated into a Tab; the handler may cancel the navigation.
+        /// </summary>
         public BeforeEnterTabEvent BeforeEnterTab;
+        /// <summary>
+        /// Intercepts the Enter key when <see cref="EnterAsTab"/> is enabled, raising
+        /// <see cref="BeforeEnterTab"/> and sending a Tab keystroke unless the handler cancels it.
+        /// </summary>
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (EnterAsTab)
@@ -102,6 +127,10 @@ namespace Reportman.Drawing.Forms
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
+        /// <summary>
+        /// Suppresses the Enter keypress when <see cref="EnterAsTab"/> is enabled so it is not
+        /// processed as a normal key by the base control.
+        /// </summary>
         protected override void OnKeyDown(KeyEventArgs e)
         {
             if (EnterAsTab)
@@ -118,11 +147,21 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public class CheckBoxAdvanced : CheckBox
     {
+        /// <summary>
+        /// Gets or sets whether pressing Enter moves focus to the next control as if Tab were pressed.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
 
         public bool EnterAsTab { get; set; }
 
+        /// <summary>
+        /// Raised before Enter is translated into a Tab; the handler may cancel the navigation.
+        /// </summary>
         public BeforeEnterTabEvent BeforeEnterTab;
+        /// <summary>
+        /// Intercepts the Enter key when <see cref="EnterAsTab"/> is enabled, raising
+        /// <see cref="BeforeEnterTab"/> and sending a Tab keystroke unless the handler cancels it.
+        /// </summary>
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (EnterAsTab)
@@ -137,6 +176,10 @@ namespace Reportman.Drawing.Forms
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
+        /// <summary>
+        /// Suppresses the Enter keypress when <see cref="EnterAsTab"/> is enabled so it is not
+        /// processed as a normal key by the base control.
+        /// </summary>
         protected override void OnKeyDown(KeyEventArgs e)
         {
             if (EnterAsTab)
@@ -154,6 +197,11 @@ namespace Reportman.Drawing.Forms
     public class ToolStripComboBoxAdvanced : ToolStripComboBox
     {
         Size FNewSize;
+        /// <summary>
+        /// Gets or sets the design-time size; the value is multiplied by the current DPI scale
+        /// factors before being applied to the underlying control so it renders consistently
+        /// across display resolutions.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new Size Size
         {
@@ -184,14 +232,39 @@ namespace Reportman.Drawing.Forms
         private ListBox listBoxChild;
         private int IgnoreTextChange;
         private bool MsgFilterActive = false;
+        /// <summary>
+        /// Width in pixels of the drop-down suggestion list; when 0 the control's own width is used.
+        /// </summary>
         public int AutoCompleteWidth = 0;
+        /// <summary>
+        /// List of key/value pairs feeding the suggestions, where the key is the displayed text and
+        /// the value is the searchable term.
+        /// </summary>
         public List<KeyValuePair<string, string>> AutoCompleteList;
+        /// <summary>
+        /// Pinned suggestions shown at the top of the list, each with its own text, address and icon.
+        /// </summary>
         public List<AutoCompleteInfo> AutoCompleteListTop;
+        /// <summary>
+        /// Maximum number of suggestion rows shown before the list scrolls.
+        /// </summary>
         public int AutoCompleteMaxVisibleLines = 20;
+        /// <summary>
+        /// When true, live Google query suggestions are fetched and merged into the list as the user types.
+        /// </summary>
         public bool IncludeGoogleTerms = false;
+        /// <summary>
+        /// Icon drawn next to suggestions that come from the Google query service.
+        /// </summary>
         public Image GoogleTermsImage = Properties.Resources.search16;
+        /// <summary>
+        /// Icon drawn next to suggestions that come from the local auto-complete list rather than Google.
+        /// </summary>
         public Image NotGoogleTermsImage = Properties.Resources.search16;
         string FCueBannerText = "";
+        /// <summary>
+        /// Gets or sets the cue-banner placeholder text shown in the text box while it is empty.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string CueBannerText
         {
@@ -214,6 +287,10 @@ namespace Reportman.Drawing.Forms
         {
             SendMessage(this.Control.Handle, EM_SETCUEBANNER, 1, FCueBannerText);
         }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ToolStripTextBoxAdvanced"/> class and wires up
+        /// the text-change, focus and mouse handlers that drive the suggestion drop-down.
+        /// </summary>
         public ToolStripTextBoxAdvanced()
         {
             GoogleTermsImage = Properties.Resources.search16;
@@ -227,6 +304,9 @@ namespace Reportman.Drawing.Forms
             //HandleDestroyed += ComboListMatcher_HandleDestroyed;
             Control.HandleCreated += Control_HandleCreated;
         }
+        /// <summary>
+        /// Returns the preferred size of the control for the given constraining size.
+        /// </summary>
         public override Size GetPreferredSize(Size constrainingSize)
         {
             Size newSize = base.GetPreferredSize(constrainingSize);
@@ -464,6 +544,9 @@ namespace Reportman.Drawing.Forms
         {
             listBoxChild.Invalidate();
         }
+        /// <summary>
+        /// Hides the suggestion drop-down list without discarding its contents.
+        /// </summary>
         public void HideDropDown()
         {
             if (listBoxChild != null)
@@ -668,7 +751,17 @@ namespace Reportman.Drawing.Forms
                 listBoxChild.Hide();
             }
         }
+        /// <summary>
+        /// Raised when the user picks an entry from the drop-down; the second argument is the selected
+        /// value (a string, or an <see cref="AutoCompleteInfo"/> for pinned entries). When null, the
+        /// selection is copied into the text box instead.
+        /// </summary>
         public StringEvent OnDropDownClicked;
+        /// <summary>
+        /// Application message filter that routes mouse clicks, wheel and key messages to the floating
+        /// suggestion list, hiding it on outside clicks and driving keyboard navigation and selection.
+        /// Returns true to swallow the message.
+        /// </summary>
         public bool PreFilterMessage(ref Message m)
         {
 
@@ -806,6 +899,10 @@ namespace Reportman.Drawing.Forms
 
             return false;
         }
+        /// <summary>
+        /// Gets the item currently selected in the hidden drop-down list, or null when the list is
+        /// absent, still visible, or has no selection.
+        /// </summary>
         public object SelectedDropDown
         {
             get
@@ -831,10 +928,24 @@ namespace Reportman.Drawing.Forms
         private ListBox listBoxChild;
         private int IgnoreTextChange;
         private bool MsgFilterActive = false;
+        /// <summary>
+        /// Width in pixels of the drop-down suggestion list; when 0 the control's own width is used.
+        /// </summary>
         public int AutoCompleteWidth = 0;
+        /// <summary>
+        /// List of key/value pairs feeding the suggestions, where the key is the displayed text and
+        /// the value is the searchable term.
+        /// </summary>
         public List<KeyValuePair<string, string>> AutoCompleteList;
+        /// <summary>
+        /// Maximum number of suggestion rows shown before the list scrolls.
+        /// </summary>
         public int AutoCompleteMaxVisibleLines = 20;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ComboListMatcher"/> class and wires up the
+        /// text-change, focus and mouse handlers that drive the suggestion list.
+        /// </summary>
         public ComboListMatcher()
         {
             // Set up all the events we need to handle
@@ -878,6 +989,9 @@ namespace Reportman.Drawing.Forms
                 Application.RemoveMessageFilter(this);
         }
 
+        /// <summary>
+        /// Finalizer for <see cref="ComboListMatcher"/>.
+        /// </summary>
         ~ComboListMatcher()
         {
         }
@@ -1073,6 +1187,11 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Application message filter that routes mouse clicks, wheel and key messages to the floating
+        /// suggestion list, hiding it on outside clicks and driving keyboard navigation and selection.
+        /// Returns true to swallow the message.
+        /// </summary>
         public bool PreFilterMessage(ref Message m)
         {
 
@@ -1175,6 +1294,9 @@ namespace Reportman.Drawing.Forms
     public class ComboBoxAdvancedItem
     {
         private string _text;
+        /// <summary>
+        /// Gets or sets the text displayed for this item.
+        /// </summary>
         public string Text
         {
             get { return _text; }
@@ -1182,28 +1304,46 @@ namespace Reportman.Drawing.Forms
         }
 
         private int _imageIndex;
+        /// <summary>
+        /// Gets or sets the index into the owning control's ImageList for the item's image, or -1 for none.
+        /// </summary>
         public int ImageIndex
         {
             get { return _imageIndex; }
             set { _imageIndex = value; }
         }
 
+        /// <summary>
+        /// Initializes a new item with empty text and no image.
+        /// </summary>
         public ComboBoxAdvancedItem()
             : this("")
         {
         }
 
+        /// <summary>
+        /// Initializes a new item with the given text and no image.
+        /// </summary>
+        /// <param name="text">The text displayed for the item.</param>
         public ComboBoxAdvancedItem(string text)
             : this(text, -1)
         {
         }
 
+        /// <summary>
+        /// Initializes a new item with the given text and image index.
+        /// </summary>
+        /// <param name="text">The text displayed for the item.</param>
+        /// <param name="imageIndex">Index into the owning control's ImageList, or -1 for none.</param>
         public ComboBoxAdvancedItem(string text, int imageIndex)
         {
             _text = text;
             _imageIndex = imageIndex;
         }
 
+        /// <summary>
+        /// Returns the item's display text.
+        /// </summary>
         public override string ToString()
         {
             return _text;
@@ -1217,6 +1357,9 @@ namespace Reportman.Drawing.Forms
     {
         [DllImport("user32.dll")]
         static extern IntPtr GetFocus();
+        /// <summary>
+        /// Returns the currently active form, falling back to the last opened form when none is active.
+        /// </summary>
         public static Form GetActiveForm()
         {
             Form result = Form.ActiveForm;
@@ -1227,6 +1370,13 @@ namespace Reportman.Drawing.Forms
             }
             return result;
         }
+        /// <summary>
+        /// Determines whether <paramref name="parent"/> is <paramref name="child"/>'s parent at any
+        /// level up the control hierarchy.
+        /// </summary>
+        /// <param name="parent">The candidate ancestor control.</param>
+        /// <param name="child">The control whose ancestry is tested.</param>
+        /// <returns>True if <paramref name="parent"/> is an ancestor of <paramref name="child"/>.</returns>
         public static bool IsParent(Control parent, Control child)
         {
             if (parent == child.Parent)
@@ -1239,6 +1389,11 @@ namespace Reportman.Drawing.Forms
                     return IsParent(parent, child.Parent);
             }
         }
+        /// <summary>
+        /// Returns the currently focused control if it is a descendant of <paramref name="parent"/>,
+        /// otherwise null.
+        /// </summary>
+        /// <param name="parent">The control whose descendants are considered.</param>
         public static Control FocusedControl(Control parent)
         {
             var focusedControl = FocusedControl();
@@ -1264,6 +1419,10 @@ namespace Reportman.Drawing.Forms
             }
             return control;
         }*/
+        /// <summary>
+        /// Returns the control that currently holds keyboard focus on Windows, or null on other
+        /// platforms or when nothing is focused.
+        /// </summary>
         public static Control FocusedControl()
         {
             if (System.Environment.OSVersion.Platform == PlatformID.Win32NT)
@@ -1280,12 +1439,21 @@ namespace Reportman.Drawing.Forms
             else
                 return null;
         }
+        /// <summary>
+        /// Returns a copy of <paramref name="source"/> with each edge scaled to the current DPI.
+        /// </summary>
+        /// <param name="source">The padding to scale.</param>
         public static Padding PaddingDPI(Padding source)
         {
             return new Padding(Reportman.Drawing.Windows.GraphicUtils.ScaleToDPI(source.Left), Reportman.Drawing.Windows.GraphicUtils.ScaleToDPI(source.Top),
                 Reportman.Drawing.Windows.GraphicUtils.ScaleToDPI(source.Right), Reportman.Drawing.Windows.GraphicUtils.ScaleToDPI(source.Bottom));
         }
 
+        /// <summary>
+        /// Rescales the images and image size of <paramref name="imlist"/> to the current DPI, doing
+        /// nothing when the scaled size already matches the current size.
+        /// </summary>
+        /// <param name="imlist">The image list to rescale in place.</param>
         public static void ScaleImageList(ImageList imlist)
         {
 
@@ -1303,6 +1471,11 @@ namespace Reportman.Drawing.Forms
             foreach (Image im in lista)
                 imlist.Images.Add(im);
         }
+        /// <summary>
+        /// Determines whether the currently focused control is <paramref name="parentcontrol"/> or one
+        /// of its descendants.
+        /// </summary>
+        /// <param name="parentcontrol">The control whose subtree is tested for focus.</param>
         public static bool IsChildFocused(Control parentcontrol)
         {
             Control focused = FocusedControl();
@@ -1326,12 +1499,21 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public class CustomPaintControl : Control
     {
+        /// <summary>
+        /// Handler invoked during painting to perform fully custom rendering of the control.
+        /// </summary>
         public PaintEventHandler OnCustomPaint;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CustomPaintControl"/> class with double buffering enabled.
+        /// </summary>
         public CustomPaintControl()
             : base()
         {
             DoubleBuffered = true;
         }
+        /// <summary>
+        /// Paints the control and then invokes <see cref="OnCustomPaint"/>, if set, for custom drawing.
+        /// </summary>
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
@@ -1349,11 +1531,18 @@ namespace Reportman.Drawing.Forms
     {
         private const int WM_MOUSEACTIVATE = 0x0021;
         const int MA_NOACTIVATE = 3;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UnSelectableButton"/> class, marking it as
+        /// non-selectable so it never takes focus.
+        /// </summary>
         public UnSelectableButton()
            : base()
         {
             SetStyle(ControlStyles.Selectable, false);
         }
+        /// <summary>
+        /// Handles the mouse-activate message so clicking the button does not activate or focus it.
+        /// </summary>
         protected override void WndProc(ref Message m)
         {
             if (m.Msg == WM_MOUSEACTIVATE)
@@ -1369,6 +1558,10 @@ namespace Reportman.Drawing.Forms
     public class ToolStripAdvanced : ToolStrip
     {
         Size FNewImageScalingSize;
+        /// <summary>
+        /// Gets or sets the image scaling size; the value is multiplied by the current DPI scale
+        /// factors before being applied to the underlying tool strip.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new Size ImageScalingSize
         {
@@ -1403,6 +1596,10 @@ namespace Reportman.Drawing.Forms
 
         static private bool down = false;
 
+        /// <summary>
+        /// Synthesizes a button-down before an unpaired button-up so tool strip buttons respond on the
+        /// first click even when the strip is not the active control.
+        /// </summary>
         protected override void WndProc(ref Message m)
         {
             if (m.Msg == WM_LBUTTONUP && !down)
@@ -1424,6 +1621,10 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public class ListBoxNonSelectable : ListBox
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ListBoxNonSelectable"/> class, marking it as
+        /// non-selectable and enabling double buffering.
+        /// </summary>
         public ListBoxNonSelectable() : base()
         {
             SetStyle(ControlStyles.Selectable, false);
@@ -1442,11 +1643,18 @@ namespace Reportman.Drawing.Forms
             //SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             DoubleBuffered = true;
         }
+        /// <summary>
+        /// Paints the list box background using the default rendering.
+        /// </summary>
         protected override void OnPaintBackground(PaintEventArgs pevent)
         {
             base.OnPaintBackground(pevent);
         }
         private const int WS_EX_NOACTIVATE = 0x08000000;
+        /// <summary>
+        /// Gets the creation parameters, adding the WS_EX_NOACTIVATE extended style so the list does
+        /// not steal activation when shown.
+        /// </summary>
         protected override CreateParams CreateParams
         {
 
@@ -1459,10 +1667,16 @@ namespace Reportman.Drawing.Forms
                 return cp;
             }
         }
+        /// <summary>
+        /// Handles the mouse-down event using the default behavior.
+        /// </summary>
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
         }
+        /// <summary>
+        /// Handles the mouse-move event using the default behavior.
+        /// </summary>
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
@@ -1486,15 +1700,33 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public class AutoCompleteInfo
     {
+        /// <summary>
+        /// The primary display text of the suggestion.
+        /// </summary>
         public string Text;
+        /// <summary>
+        /// A secondary address or detail shown alongside the text.
+        /// </summary>
         public string Address;
+        /// <summary>
+        /// The icon drawn next to the suggestion in the list.
+        /// </summary>
         public Image Icon;
+        /// <summary>
+        /// Initializes a new suggestion with the given text, address and icon.
+        /// </summary>
+        /// <param name="nText">The primary display text.</param>
+        /// <param name="nAddress">The secondary address or detail.</param>
+        /// <param name="nIcon">The icon shown next to the suggestion.</param>
         public AutoCompleteInfo(string nText, string nAddress, Image nIcon)
         {
             Text = nText;
             Address = nAddress;
             Icon = nIcon;
         }
+        /// <summary>
+        /// Returns the text and address concatenated for display.
+        /// </summary>
         public override string ToString()
         {
             return Text + "  " + Address;

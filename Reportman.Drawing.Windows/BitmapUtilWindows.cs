@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +12,12 @@ namespace Reportman.Drawing.Windows
     /// </summary>
     public static class BitmapUtilWindows
     {
+        /// <summary>
+        /// Gets the standard file extension (with a leading dot) for a given ImageFormat.
+        /// It queries the system's registered image encoders and defaults to the lowercase format name if not found.
+        /// </summary>
+        /// <param name="imageFormat">The ImageFormat to query.</param>
+        /// <returns>The lowercase file extension including the leading dot (e.g. ".png").</returns>
         public static string GetFileExtension(this System.Drawing.Imaging.ImageFormat imageFormat)
         {
             var extension = System.Drawing.Imaging.ImageCodecInfo.GetImageEncoders()

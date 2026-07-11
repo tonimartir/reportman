@@ -1,4 +1,4 @@
-﻿using Reportman.Drawing;
+using Reportman.Drawing;
 using Reportman.Reporting;
 using System;
 using System.Windows.Forms;
@@ -11,6 +11,10 @@ namespace Reportman.Designer
     /// </summary>
     public partial class GridOptions : Form
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GridOptions"/> dialog and
+        /// localizes all control labels and button text using the current translator.
+        /// </summary>
         public GridOptions()
         {
             InitializeComponent();
@@ -29,6 +33,12 @@ namespace Reportman.Designer
             combostyle.Items[0] = Translator.TranslateStr(896);
             combostyle.Items[1] = Translator.TranslateStr(184);
         }
+        /// <summary>
+        /// Displays the grid-options dialog pre-populated with the specified report's
+        /// current grid settings and writes back any changes the user confirms.
+        /// </summary>
+        /// <param name="nreport">The report whose grid settings are edited.</param>
+        /// <returns><c>true</c> if the user confirmed changes; <c>false</c> if cancelled.</returns>
         public static bool AlterGridOptions(Report nreport)
         {
             bool nresult = false;

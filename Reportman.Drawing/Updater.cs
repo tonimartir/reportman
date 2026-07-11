@@ -1,5 +1,4 @@
-using System;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -21,6 +20,11 @@ namespace Reportman.Drawing
     {
 #if PocketPC
 #else
+        /// <summary>
+        /// Reads the assembly version stored in the metadata of the specified assembly file.
+        /// </summary>
+        /// <param name="filename">Path to the assembly file to inspect.</param>
+        /// <returns>The <see cref="Version"/> declared by the assembly.</returns>
         public static Version GetAssemblyVersion(string filename)
         {
 
@@ -32,6 +36,12 @@ namespace Reportman.Drawing
 
             return xversion;
         }
+        /// <summary>
+        /// Reads the file version from a file's version-information resource, which works even when the
+        /// file targets a .NET version newer than the one that compiled this code.
+        /// </summary>
+        /// <param name="filename">Path to the file to inspect.</param>
+        /// <returns>A <see cref="Version"/> built from the file's major, minor, build and private parts.</returns>
         public static Version GetFileVersion(string filename)
         {
             // To allow the open of any file including .Net versions newer than
@@ -42,10 +52,21 @@ namespace Reportman.Drawing
             return aversion;
         }
 #endif
+        /// <summary>
+        /// Returns the version of the assembly that called this method.
+        /// </summary>
+        /// <returns>The <see cref="Version"/> of the calling assembly.</returns>
         public static Version GetAssemblyVersion()
         {
             return Assembly.GetCallingAssembly().GetName().Version;
         }
+        /// <summary>
+        /// Determines whether <paramref name="newversion"/> supersedes <paramref name="oldversion"/> by
+        /// comparing the major, minor, build and revision components in order.
+        /// </summary>
+        /// <param name="oldversion">The currently installed version.</param>
+        /// <param name="newversion">The candidate version to compare against.</param>
+        /// <returns><c>true</c> if <paramref name="newversion"/> is greater than <paramref name="oldversion"/>; otherwise <c>false</c>.</returns>
         public static bool RequireUpgrade(Version oldversion, Version newversion)
         {
             if (newversion.Major > oldversion.Major)
@@ -67,6 +88,13 @@ namespace Reportman.Drawing
                 return false;
             return false;
         }
+        /// <summary>
+        /// Determines whether the assembly in <paramref name="newfilename"/> supersedes the one in
+        /// <paramref name="oldfilename"/> by comparing their assembly versions.
+        /// </summary>
+        /// <param name="oldfilename">Path to the currently installed assembly file.</param>
+        /// <param name="newfilename">Path to the candidate assembly file.</param>
+        /// <returns><c>true</c> if the new file's version is greater than the old file's version; otherwise <c>false</c>.</returns>
         public static bool RequireUpgrade(string oldfilename, string newfilename)
         {
             Version oldversion = GetAssemblyVersion(oldfilename);
@@ -81,20 +109,46 @@ namespace Reportman.Drawing
     public class Updater
     {
         string FFilePath;
+        /// <summary>
+        /// When <c>true</c>, existing files are moved into a timestamped backup folder before being overwritten.
+        /// </summary>
         public bool PerformBackup;
+        /// <summary>
+        /// Optional callback invoked while files are being written so the caller can display progress and cancel.
+        /// </summary>
         public CopyProgress OnProgress;
+        /// <summary>
+        /// When <c>true</c>, the currently executing assembly's file is skipped so it is not overwritten while in use.
+        /// </summary>
         public bool ExcludeExecutingAssembly;
+        /// <summary>
+        /// Gets the target directory into which files are updated.
+        /// </summary>
         public string FilePath
         {
             get { return FFilePath; }
         }
+        /// <summary>
+        /// Initializes a new <see cref="Updater"/> that writes files into the given target directory.
+        /// </summary>
+        /// <param name="fpath">The destination directory for updated files.</param>
         public Updater(string fpath)
         {
             FFilePath = fpath;
             PerformBackup = false;
             ExcludeExecutingAssembly = false;
         }
-        public static DataTable GetModifiedFiles(DataTable files, string filesdir, bool copycontent, 
+        /// <summary>
+        /// Synchronously builds a table of the files that changed between two hash sets, optionally loading each
+        /// changed file's content. This is a blocking wrapper around <see cref="GetModifiedFilesAsync"/>.
+        /// </summary>
+        /// <param name="files">Table describing the candidate files (as produced by <see cref="CreateFilesTable"/>).</param>
+        /// <param name="filesdir">Root directory the file paths are relative to.</param>
+        /// <param name="copycontent">When <c>true</c>, the content of each changed file is read into the STREAM column.</param>
+        /// <param name="olderHashes">Hashes of the currently installed files, keyed by full path; may be <c>null</c>.</param>
+        /// <param name="updatedHashes">Hashes of the candidate files, keyed by full path; may be <c>null</c>.</param>
+        /// <returns>A new table containing only the rows whose files must be updated.</returns>
+        public static DataTable GetModifiedFiles(DataTable files, string filesdir, bool copycontent,
             SortedList<string, FileHash> olderHashes, SortedList<string, FileHash> updatedHashes)
         {
             var tarea = GetModifiedFilesAsync(files, filesdir, copycontent, olderHashes, updatedHashes);

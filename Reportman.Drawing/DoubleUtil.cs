@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -30,6 +30,11 @@ namespace Reportman.Drawing
             }
             return boolresult;
         }
+        /// <summary>
+        /// Determines whether the specified object represents a standard .NET numeric type.
+        /// </summary>
+        /// <param name="o">The object to check.</param>
+        /// <returns>True if the object is of a numeric type; otherwise, false.</returns>
         public static bool IsNumericType(object o)
         {
             switch (Type.GetTypeCode(o.GetType()))

@@ -42,6 +42,14 @@ namespace Reportman.Reporting
             { BaseType.Error, BaseType.Any, BaseType.Any, BaseType.Any, BaseType.Any, BaseType.Any, BaseType.Any, BaseType.Any, BaseType.Any, BaseType.Any, BaseType.Any, BaseType.Any }
         };
 
+        /// <summary>
+        /// Coerces two different Variant values to matching compatible types, modifying them in-place.
+        /// This enables arithmetic and logical operations between different types (e.g., Integer and Double).
+        /// If either variant is Null, coercion is skipped to follow Delphi-style comparison semantics.
+        /// </summary>
+        /// <param name="value1">The first Variant to coerce (by reference).</param>
+        /// <param name="value2">The second Variant to coerce (by reference).</param>
+        /// <returns>True if coercion occurred and types were modified; otherwise, false.</returns>
         public static bool Coercion(ref Variant value1, ref Variant value2)
         {
             if (value1.VarType == value2.VarType)

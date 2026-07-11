@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing.Imaging;
@@ -445,6 +445,31 @@ namespace Reportman.Drawing
             }
             buf = new byte[9];
         }
+        /// <summary>
+        /// Draws a text object on the page with the specified position, size, font and alignment settings
+        /// and adds it to the page's object collection.
+        /// </summary>
+        /// <param name="PosX">Horizontal position in twips.</param>
+        /// <param name="PosY">Vertical position in twips.</param>
+        /// <param name="PrintWidth">Width of the text area in twips.</param>
+        /// <param name="PrintHeight">Height of the text area in twips.</param>
+        /// <param name="Text">The text content to draw.</param>
+        /// <param name="WFontName">Windows font name.</param>
+        /// <param name="LFontName">Linux font name.</param>
+        /// <param name="FontSize">Font size in points.</param>
+        /// <param name="FontRotation">Rotation angle of the font in tenths of a degree.</param>
+        /// <param name="FontColor">Font color as an integer RGB value.</param>
+        /// <param name="BackColor">Background color as an integer RGB value.</param>
+        /// <param name="Transparent">Whether the text background is transparent.</param>
+        /// <param name="FontStyle">Font style flags (bold, italic, etc.).</param>
+        /// <param name="Type1Font">PDF font embedding type.</param>
+        /// <param name="horzalign">Horizontal text alignment.</param>
+        /// <param name="vertalign">Vertical text alignment.</param>
+        /// <param name="SingleLine">Whether the text should be rendered on a single line.</param>
+        /// <param name="WordWrap">Whether word wrapping is enabled.</param>
+        /// <param name="CutText">Whether text exceeding the bounding area should be clipped.</param>
+        /// <param name="PrintStep">The print step type for sequential object positioning.</param>
+        /// <returns>The <see cref="MetaObjectText"/> that was created and added to the page.</returns>
         public MetaObjectText DrawText(int PosX, int PosY, int PrintWidth, int PrintHeight, string Text, string WFontName, string LFontName, short FontSize, short FontRotation, int FontColor,
              int BackColor, bool Transparent, int FontStyle, PDFFontType Type1Font, TextAlignType horzalign, TextAlignVerticalType vertalign, bool SingleLine, bool WordWrap, bool CutText,
             PrintStepType PrintStep)
@@ -483,6 +508,21 @@ namespace Reportman.Drawing
             Objects.Add(metaobj);
             return metaobj;
         }
+        /// <summary>
+        /// Draws a geometric shape on the page with the specified position, size, pen and brush settings
+        /// and adds it to the page's object collection.
+        /// </summary>
+        /// <param name="PosX">Horizontal position in twips.</param>
+        /// <param name="PosY">Vertical position in twips.</param>
+        /// <param name="PrintWidth">Width of the shape in twips.</param>
+        /// <param name="PrintHeight">Height of the shape in twips.</param>
+        /// <param name="Shape">The type of shape to draw (rectangle, ellipse, etc.).</param>
+        /// <param name="BrushStyle">The brush style used to fill the shape.</param>
+        /// <param name="PenStyle">The pen style used to outline the shape.</param>
+        /// <param name="PenWidth">The width of the outline pen in twips.</param>
+        /// <param name="PenColor">The outline pen color as an integer RGB value.</param>
+        /// <param name="BrushColor">The fill brush color as an integer RGB value.</param>
+        /// <returns>The <see cref="MetaObjectDraw"/> that was created and added to the page.</returns>
         public MetaObjectDraw DrawShape(int PosX, int PosY, int PrintWidth, int PrintHeight, ShapeType Shape, BrushType BrushStyle, PenType PenStyle,
             int PenWidth, int PenColor, int BrushColor)
         {
@@ -499,6 +539,18 @@ namespace Reportman.Drawing
             Objects.Add(metaobj);
             return metaobj;
         }
+        /// <summary>
+        /// Draws an image on the page with the specified position, size and draw style,
+        /// stores the image data in the page's memory stream, and adds the object to the page's collection.
+        /// </summary>
+        /// <param name="PosX">Horizontal position in twips.</param>
+        /// <param name="PosY">Vertical position in twips.</param>
+        /// <param name="PrintWidth">Width of the image area in twips.</param>
+        /// <param name="PrintHeight">Height of the image area in twips.</param>
+        /// <param name="DrawStyle">How the image should be stretched or cropped within its bounds.</param>
+        /// <param name="dpires">The resolution in DPI used for image scaling.</param>
+        /// <param name="nvalue">A memory stream containing the image data.</param>
+        /// <returns>The <see cref="MetaObjectImage"/> that was created and added to the page.</returns>
         public MetaObjectImage DrawImage(int PosX, int PosY, int PrintWidth, int PrintHeight, ImageDrawStyleType DrawStyle, int dpires,
             MemoryStream nvalue)
         {

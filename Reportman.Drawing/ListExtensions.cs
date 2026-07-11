@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace Reportman.Drawing
 {
@@ -7,6 +7,13 @@ namespace Reportman.Drawing
     /// </summary>
     public static class ListExtensions
     {
+        /// <summary>
+        /// Swaps two elements in the list in-place using their indices.
+        /// </summary>
+        /// <typeparam name="T">The type of elements in the list.</typeparam>
+        /// <param name="list">The list to modify.</param>
+        /// <param name="index1">The index of the first element to swap.</param>
+        /// <param name="index2">The index of the second element to swap.</param>
         public static void Swap<T>(this List<T> list, int index1, int index2)
         {
             if (list == null)

@@ -19,8 +19,17 @@ namespace Reportman.Drawing.Forms
         private const int DEFAULT_CAPTION_HEIGHT = 32;   // Caption bar height;
         private const int DEFAULT_BORDER_SIZE = 8;
 
+        /// <summary>
+        /// When true the form uses the native window maximize/restore behavior; when false it
+        /// performs a manual borderless maximize using explicit bounds.
+        /// </summary>
         public bool AllowWindowEffects = true;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NoTitleForm"/> class, setting the default
+        /// border color and wiring up the timer used to adjust the window after it returns to the
+        /// normal state.
+        /// </summary>
         public NoTitleForm()
         {
             InitializeComponent();
@@ -33,6 +42,9 @@ namespace Reportman.Drawing.Forms
 
         }
 
+        /// <summary>
+        /// Restores the saved window bounds and then raises the base <see cref="Form.Load"/> event.
+        /// </summary>
         protected override void OnLoad(EventArgs e)
         {
             RestoreSavedBounds();
@@ -41,6 +53,10 @@ namespace Reportman.Drawing.Forms
         }
         const int WS_MINIMIZEBOX = 0x20000;
         const int CS_DBLCLKS = 0x8;
+        /// <summary>
+        /// Gets the creation parameters for the form, removing the standard window caption and
+        /// adding the minimize box and double-click window styles.
+        /// </summary>
         protected override System.Windows.Forms.CreateParams CreateParams
         {
             get
@@ -58,6 +74,10 @@ namespace Reportman.Drawing.Forms
         bool firsttimerestored = true;
 
         System.Windows.Forms.Timer timeradjust = new System.Windows.Forms.Timer();
+        /// <summary>
+        /// Called when the window state changes; when the window returns to the normal state it
+        /// schedules the deferred adjustment that restores the sizable border behavior.
+        /// </summary>
         protected virtual void OnFormWindowStateChanged(EventArgs e)
         {
             switch (WindowState)
@@ -86,6 +106,10 @@ namespace Reportman.Drawing.Forms
             AfterAdjustWindowToNormal();
         }
 
+        /// <summary>
+        /// Restores the sizable border style after the window returns to the normal state and, on
+        /// the first restore, applies the saved default bounds and realigns the tool strip.
+        /// </summary>
         public void AfterAdjustWindowToNormal()
         {
             FormBorderStyle = FormBorderStyle.Sizable;
@@ -105,6 +129,11 @@ namespace Reportman.Drawing.Forms
         FormWindowState oldstate;
         string oldtext = "";
         bool InFullScreen = false;
+        /// <summary>
+        /// Enters or leaves full-screen mode. When enabled the border is hidden and the form fills
+        /// the screen; when disabled the previously saved bounds and window state are restored.
+        /// </summary>
+        /// <param name="newvalue">True to enter full-screen mode, false to leave it.</param>
         public virtual void SetFullScreen(bool newvalue)
         {
 
@@ -155,6 +184,10 @@ namespace Reportman.Drawing.Forms
         }
 
 
+        /// <summary>
+        /// Toggles the form between its maximized and normal (restored) states, updating the
+        /// maximize/restore button image and border style accordingly.
+        /// </summary>
         public void SwitchMaximizeMinimize()
         {
             if (AllowWindowEffects)
@@ -227,6 +260,10 @@ namespace Reportman.Drawing.Forms
         }
 
         bool FShowTitle = true;
+        /// <summary>
+        /// Gets or sets whether the standard title bar is shown. When false the form hides the
+        /// caption and draws its own borderless chrome.
+        /// </summary>
         [DefaultValue(true)]
         public bool ShowTitle
         {
@@ -278,6 +315,9 @@ namespace Reportman.Drawing.Forms
         int FGripSize = DEFAULT_GRIP_SIZE;
         int FCaptionHeight = DEFAULT_CAPTION_HEIGHT;
 
+        /// <summary>
+        /// Gets or sets the size, in pixels, of the resize grip drawn in the bottom-right corner.
+        /// </summary>
         [DefaultValue(DEFAULT_GRIP_SIZE)]
         public int GripSize
         {
@@ -291,6 +331,9 @@ namespace Reportman.Drawing.Forms
                 Invalidate();
             }
         }
+        /// <summary>
+        /// Gets or sets the height, in pixels, of the custom caption bar.
+        /// </summary>
         [DefaultValue(DEFAULT_CAPTION_HEIGHT)]
         public int CaptionHeight
         {
@@ -306,6 +349,10 @@ namespace Reportman.Drawing.Forms
         }
         int FBorderSize = DEFAULT_BORDER_SIZE;
 
+        /// <summary>
+        /// Gets or sets the width, in pixels, of the custom border used for resize hit-testing and
+        /// painting.
+        /// </summary>
         [DefaultValue(DEFAULT_BORDER_SIZE)]
         public int BorderSize
         {
@@ -320,6 +367,9 @@ namespace Reportman.Drawing.Forms
             }
         }
         bool FDrawBorder = true;
+        /// <summary>
+        /// Gets or sets whether the custom border is painted.
+        /// </summary>
         [DefaultValue(true)]
         public bool DrawBorder
         {
@@ -334,6 +384,9 @@ namespace Reportman.Drawing.Forms
             }
         }
         bool FDrawGrip = false;
+        /// <summary>
+        /// Gets or sets whether the resize grip is painted.
+        /// </summary>
         [DefaultValue(false)]
         public bool DrawGrip
         {
@@ -348,6 +401,9 @@ namespace Reportman.Drawing.Forms
             }
         }
         bool FDrawTitle = true;
+        /// <summary>
+        /// Gets or sets whether the custom caption bar is painted.
+        /// </summary>
         [DefaultValue(true)]
         public bool DrawTitle
         {
@@ -362,6 +418,9 @@ namespace Reportman.Drawing.Forms
             }
         }
         Color FBorderColor;
+        /// <summary>
+        /// Gets or sets the color used to paint the custom border.
+        /// </summary>
         [DefaultValue(typeof(Color), "DarkBlue")]
         public Color BorderColor
         {
@@ -375,6 +434,9 @@ namespace Reportman.Drawing.Forms
                 Invalidate();
             }
         }
+        /// <summary>
+        /// Handles the resize notification and raises the base <see cref="Control.Resize"/> event.
+        /// </summary>
         protected override void OnResize(EventArgs e)
         {
             //Invalidate();
@@ -388,6 +450,10 @@ namespace Reportman.Drawing.Forms
 
             base.OnResize(e);
         }
+        /// <summary>
+        /// Paints the custom border, resize grip and caption bar when the standard title bar is
+        /// hidden, then raises the base <see cref="Control.Paint"/> event.
+        /// </summary>
         protected override void OnPaint(PaintEventArgs e)
         //this if you want to draw   (if)
         {
@@ -432,6 +498,10 @@ namespace Reportman.Drawing.Forms
         //
         //override  WndProc  
         //
+        /// <summary>
+        /// Processes window messages to provide custom resize hit-testing and non-client area
+        /// sizing, and notifies when the window state changes.
+        /// </summary>
         protected override void WndProc(ref Message m)
         {
             if ((!FShowTitle) && (!NoTitleMaximized))
@@ -532,6 +602,12 @@ namespace Reportman.Drawing.Forms
         ToolStripButton botonmin;
         ToolStripLabel buttongap;
         ToolStrip CurrentToolStrip;
+        /// <summary>
+        /// Adds the close, maximize/restore and minimize buttons to the given tool strip and wires
+        /// up the mouse handlers that let the tool strip act as a draggable caption.
+        /// </summary>
+        /// <param name="toolStrip1">The tool strip that hosts the window buttons and acts as the caption.</param>
+        /// <param name="center">When true a spacer item is inserted so the remaining items stay centered.</param>
         public void AddToolStripButtons(ToolStrip toolStrip1, bool center)
         {
             CurrentToolStrip = toolStrip1;
@@ -711,6 +787,9 @@ namespace Reportman.Drawing.Forms
             filename = System.IO.Path.ChangeExtension(filename, ".ini");
             return filename;
         }
+        /// <summary>
+        /// Persists the current window position and state to the per-application position .ini file.
+        /// </summary>
         public void SaveBounds()
         {
             if (InFullScreen)
@@ -743,6 +822,10 @@ namespace Reportman.Drawing.Forms
             }
         }
         Rectangle DefaultRestoreBounds;
+        /// <summary>
+        /// Reads the saved window position and state from the per-application position .ini file and
+        /// applies them, falling back to the current state when no valid saved bounds exist.
+        /// </summary>
         public void RestoreSavedBounds()
         {
             IniFile inif = new IniFile(GetIniFileName());
@@ -854,12 +937,27 @@ namespace Reportman.Drawing.Forms
         bool moving = false;
 
 
+        /// <summary>
+        /// Windows message code for a non-client area left mouse button down.
+        /// </summary>
         public const int WM_NCLBUTTONDOWN = 0xA1;
+        /// <summary>
+        /// Windows message code for a non-client area left mouse button up.
+        /// </summary>
         public const int WM_NCLBUTTONUP = 0xA2;
+        /// <summary>
+        /// Hit-test code identifying the title caption area.
+        /// </summary>
         public const int HT_CAPTION = 0x2;
 
+        /// <summary>
+        /// Sends the specified Windows message to a window (Win32 user32 SendMessage).
+        /// </summary>
         [DllImportAttribute("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        /// <summary>
+        /// Releases the mouse capture from the current window (Win32 user32 ReleaseCapture).
+        /// </summary>
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
@@ -923,6 +1021,9 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public interface IDisplayDisable
     {
+        /// <summary>
+        /// Returns true when the item should render a custom disabled (grayed-out) appearance.
+        /// </summary>
         bool DisplayDisable();
     }
     /// <summary>
@@ -931,6 +1032,9 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public class ToolStripButtonAllowDisable : ToolStripButton, IDisplayDisable
     {
+        /// <summary>
+        /// Returns true, opting this button in to custom disabled-state rendering.
+        /// </summary>
         public bool DisplayDisable()
         {
             return true;
@@ -942,6 +1046,9 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public class ToolStripDropDownButtonAllowDisable : ToolStripDropDownButton, IDisplayDisable
     {
+        /// <summary>
+        /// Returns true, opting this drop-down button in to custom disabled-state rendering.
+        /// </summary>
         public bool DisplayDisable()
         {
             return true;
@@ -1110,6 +1217,7 @@ namespace Reportman.Drawing.Forms
         /// Constructor
         /// </summary>
         /// <param name="thickness">set thickness of form border</param>
+        /// <param name="thicknessarea">set thickness of the corner (angle) resize area</param>
         public ReSize(int thickness, int thicknessarea)
         {
         }

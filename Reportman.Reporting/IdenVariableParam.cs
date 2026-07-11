@@ -1,4 +1,4 @@
-﻿namespace Reportman.Reporting
+namespace Reportman.Reporting
 {
     /// <summary>
     /// An evaluator variable identifier backed by a report Param, so reading or assigning the
@@ -10,7 +10,8 @@
         /// <summary>
         /// Constructor for the variable parameter
         /// </summary>
-        /// <param name="eval"></param>
+        /// <param name="eval">The Evaluator context to bind to.</param>
+        /// <param name="nparam">The report Param backing this variable.</param>
         public IdenVariableParam(Evaluator eval, Param nparam)
             : base(eval)
         {

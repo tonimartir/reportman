@@ -1,4 +1,4 @@
-﻿using ClosedXML.Excel;
+using ClosedXML.Excel;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,6 +15,12 @@ namespace Reportman.Drawing.Excel
     /// </summary>
     public static class Helper
     {
+        /// <summary>
+        /// Converts a list of DataTables to an Excel workbook stored in a MemoryStream.
+        /// Each DataTable is written to a separate worksheet named after the DataTable's TableName.
+        /// </summary>
+        /// <param name="dataTables">The list of DataTables to export.</param>
+        /// <returns>A MemoryStream containing the generated XLSX workbook.</returns>
         public static MemoryStream DataTablesToExcel(List<DataTable> dataTables)
         {
             var stream = new MemoryStream();

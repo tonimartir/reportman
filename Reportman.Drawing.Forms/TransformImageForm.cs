@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -9,6 +9,11 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public partial class TransformImageForm : Form
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransformImageForm"/> dialog,
+        /// creating its designer-generated controls and applying bold formatting to the
+        /// original-dimension labels.
+        /// </summary>
         public TransformImageForm()
         {
             InitializeComponent();
@@ -23,6 +28,14 @@ namespace Reportman.Drawing.Forms
         System.IO.MemoryStream NewImageStream;
         System.IO.MemoryStream OriginalImageStream;
         bool Modified = false;
+        /// <summary>
+        /// Loads the original image from the supplied stream, populates the dialog controls
+        /// with the image dimensions and format, and optionally scales the image down to
+        /// <paramref name="defaultSize"/> pixels on the longest side.
+        /// </summary>
+        /// <param name="nOriginalStream">A <see cref="System.IO.MemoryStream"/> containing the original image data.</param>
+        /// <param name="defaultSize">Optional maximum pixel size for the longest dimension; when set, the image is
+        /// automatically scaled down if it exceeds this value.</param>
         public void Inicializar(System.IO.MemoryStream nOriginalStream, int? defaultSize)
         {
             OriginalImageStream = nOriginalStream;
@@ -166,6 +179,14 @@ namespace Reportman.Drawing.Forms
             RecalcularImagen();
         }
 
+        /// <summary>
+        /// Displays the image-transform dialog modally, allowing the user to resize and
+        /// re-encode the image, and returns the resulting stream when accepted.
+        /// </summary>
+        /// <param name="imageStream">A <see cref="System.IO.MemoryStream"/> containing the source image.</param>
+        /// <param name="owner">The parent window that owns this dialog.</param>
+        /// <param name="defaultSize">Optional maximum pixel size applied to the longest dimension on load.</param>
+        /// <returns>A <see cref="System.IO.MemoryStream"/> with the transformed image, or <c>null</c> if the user cancelled.</returns>
         public static System.IO.MemoryStream ShowTransformImage(System.IO.MemoryStream imageStream, IWin32Window owner, int? defaultSize)
         {
             System.IO.MemoryStream result = null;

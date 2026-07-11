@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Drawing;
 using System.IO;
@@ -27,6 +27,9 @@ namespace Reportman.Drawing
         /// be conatained only in one sheet
         /// </summary>
         public bool OneSheet;
+        /// <summary>
+        /// Gets or sets the precision factor (in twips) used to calculate column/row grid alignment.
+        /// </summary>
         public int Precision;
         /// <summary>
         /// Constructo and initialization
@@ -123,6 +126,20 @@ namespace Reportman.Drawing
         public override void NewDocument(MetaFile meta)
         {
         }
+        /// <summary>
+        /// Renders a single report meta-object (text or image) into the corresponding worksheet cell.
+        /// </summary>
+        /// <param name="sh">The target ClosedXML worksheet.</param>
+        /// <param name="page">The meta-page that owns the object.</param>
+        /// <param name="obj">The meta-object to render.</param>
+        /// <param name="dpix">Horizontal DPI resolution.</param>
+        /// <param name="dpiy">Vertical DPI resolution.</param>
+        /// <param name="rows">Sorted row-position lookup table.</param>
+        /// <param name="columns">Sorted column-position lookup table.</param>
+        /// <param name="FontName">Default font name for cell formatting.</param>
+        /// <param name="FontSize">Default font size for cell formatting.</param>
+        /// <param name="rowinit">Row offset for multi-page single-sheet output.</param>
+        /// <param name="Precision">Precision factor used for coordinate-to-cell mapping.</param>
         public static void PrintObject(ClosedXML.Excel.IXLWorksheet sh, MetaPage page, MetaObject obj, int dpix,
              int dpiy, SortedList rows, SortedList columns,
              string FontName, int FontSize, int rowinit, double Precision)
@@ -309,7 +326,11 @@ namespace Reportman.Drawing
             return nresult;
         }
 
-        // Check for the progress
+        /// <summary>
+        /// Checks whether enough time has elapsed since the last progress notification and,
+        /// if so, raises the metafile work-progress callback. Throws if the callback signals cancellation.
+        /// </summary>
+        /// <param name="finished">If <c>true</c>, forces the progress check regardless of the elapsed time.</param>
         protected void CheckProgress(bool finished)
         {
             const int MILIS_PROGRESS_DEFAULT = 500;

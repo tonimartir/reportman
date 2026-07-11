@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -33,10 +33,42 @@ namespace Reportman.Reporting
     /// </summary>
     public enum BarcodeType
     {
+        /// <summary>Interleaved 2 of 5 (ITF) numeric symbology.</summary>
         Code_2_5_interleaved,
-        Code_2_5_industrial, Code_2_5_matrix, Code39, Code39Extended, Code128A,
-        Code128B, Code128C, Code128, Code93, Code93Extended, CodeMSI, CodePostNet,
-        CodeCodabar, CodeEAN8, CodeEAN13, CodePDF417, CodeQR
+        /// <summary>Industrial 2 of 5 numeric symbology.</summary>
+        Code_2_5_industrial,
+        /// <summary>Matrix 2 of 5 numeric symbology.</summary>
+        Code_2_5_matrix,
+        /// <summary>Code 39 alphanumeric symbology.</summary>
+        Code39,
+        /// <summary>Extended (full ASCII) Code 39 symbology.</summary>
+        Code39Extended,
+        /// <summary>Code 128 using character set A.</summary>
+        Code128A,
+        /// <summary>Code 128 using character set B.</summary>
+        Code128B,
+        /// <summary>Code 128 using character set C.</summary>
+        Code128C,
+        /// <summary>Code 128 with automatic selection of the character set.</summary>
+        Code128,
+        /// <summary>Code 93 alphanumeric symbology.</summary>
+        Code93,
+        /// <summary>Extended (full ASCII) Code 93 symbology.</summary>
+        Code93Extended,
+        /// <summary>MSI (Modified Plessey) numeric symbology.</summary>
+        CodeMSI,
+        /// <summary>PostNet postal symbology.</summary>
+        CodePostNet,
+        /// <summary>Codabar symbology.</summary>
+        CodeCodabar,
+        /// <summary>EAN-8 retail product symbology.</summary>
+        CodeEAN8,
+        /// <summary>EAN-13 retail product symbology.</summary>
+        CodeEAN13,
+        /// <summary>PDF417 stacked two-dimensional symbology.</summary>
+        CodePDF417,
+        /// <summary>QR Code two-dimensional matrix symbology.</summary>
+        CodeQR
     };
     /// <summary>
     /// A report print item that evaluates an expression and draws it as a barcode of the configured <see cref="BarType"/>, emitting bar/space (or QR module) rectangles into the metafile with optional checksum, rotation and colors.
@@ -47,22 +79,38 @@ namespace Reportman.Reporting
         private const int DEF_DRAWWIDTH = 500;
         private bool FUpdated;
         Variant FValue;
+        /// <summary>Gets or sets the report expression that is evaluated to obtain the text encoded in the barcode.</summary>
         public string Expression { get; set; }
+        /// <summary>Gets or sets the module width (the width of the narrowest bar) in report units.</summary>
         public int Modul { get; set; }
+        /// <summary>Gets or sets the ratio between the wide and narrow bars; it is clamped to the range each symbology allows.</summary>
         public double Ratio { get; set; }
+        /// <summary>Gets or sets the barcode symbology used to encode the text.</summary>
         public BarcodeType BarType { get; set; }
+        /// <summary>Gets or sets a value indicating whether a checksum character is calculated and appended.</summary>
         public bool Checksum { get; set; }
+        /// <summary>Gets or sets the format string applied to the evaluated value before it is encoded.</summary>
         public string DisplayFormat { get; set; }
+        /// <summary>Gets or sets the rotation of the barcode expressed in tenths of a degree.</summary>
         public short Rotation { get; set; }
+        /// <summary>Gets or sets the bar (foreground) color as a packed integer color value.</summary>
         public int BColor { get; set; }
+        /// <summary>Gets or sets the background color as a packed integer color value.</summary>
         public int BackColor { get; set; }
+        /// <summary>Gets or sets a value indicating whether the background is left transparent instead of being filled with <see cref="BackColor"/>.</summary>
         public bool Transparent { get; set; }
         // PDF417
+        /// <summary>Gets or sets the number of data columns used for PDF417 barcodes.</summary>
         public int NumColumns { get; set; }
+        /// <summary>Gets or sets the number of data rows used for PDF417 barcodes.</summary>
         public int NumRows { get; set; }
+        /// <summary>Gets or sets the error-correction level; a value of -1 selects an automatic level.</summary>
         public int ECCLevel { get; set; }
+        /// <summary>Indicates whether the truncated PDF417 variant is used.</summary>
         public bool Truncated;
+        /// <summary>Holds the text that was last evaluated and encoded into the barcode.</summary>
         public string CurrentText;
+        /// <summary>Initializes a new <see cref="BarcodeItem"/> with default settings that render an EAN-13 barcode.</summary>
         public BarcodeItem() : base()
         {
             Height = DEF_DRAWWIDTH;
@@ -75,6 +123,7 @@ namespace Reportman.Reporting
             DisplayFormat = "";
             BackColor = Reportman.Drawing.GraphicUtils.IntegerFromColor(Color.White);
         }
+        /// <summary>Returns the serialization class name ("TRPBARCODE") that identifies this item in stored reports.</summary>
         protected override string GetClassName()
         {
             return "TRPBARCODE";
@@ -95,6 +144,9 @@ namespace Reportman.Reporting
                 throw new ReportException(E.Message + ":Barcode", this, "Expression");
             }
         }
+        /// <summary>Propagates a subreport state change to the base item and invalidates the cached evaluation so the expression is recomputed.</summary>
+        /// <param name="newstate">The subreport lifecycle event being reported.</param>
+        /// <param name="newgroup">The name of the group associated with the event.</param>
         public override void SubReportChanged(SubReportEvent newstate, string newgroup)
         {
             base.SubReportChanged(newstate, newgroup);
@@ -120,6 +172,7 @@ namespace Reportman.Reporting
             }
             return aresult;
         }
+        /// <summary>Evaluates the expression, encodes it with the configured symbology and paints the resulting bars or QR modules into the metafile.</summary>
         override protected void DoPrint(PrintOut adriver, int aposx, int aposy,
             int newwidth, int newheight, MetaFile metafile, Point MaxExtent,
             ref bool PartialPrint)
@@ -321,6 +374,7 @@ namespace Reportman.Reporting
             }
         }*/
 #endif
+        /// <summary>Encodes <see cref="CurrentText"/> with the current <see cref="BarType"/> and returns the string of bar/space module codes to be drawn.</summary>
         public string CalculateBarcode()
         {
             string data;
@@ -1317,6 +1371,7 @@ namespace Reportman.Reporting
             Point result = new Point(x, y);
             return result;
         }
+        /// <summary>Draws the encoded bar/space pattern as rectangle objects into the metafile at the specified position.</summary>
         public void DoLines(string data, int Left, int Top, MetaFile metafile)
         {
             int i;

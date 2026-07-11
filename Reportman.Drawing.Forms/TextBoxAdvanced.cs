@@ -11,7 +11,17 @@ namespace Reportman.Drawing.Forms
     /// The kind of data a <see cref="TextBoxAdvanced"/> accepts, used to restrict input to
     /// free text, integers, numeric (decimal) or floating-point values.
     /// </summary>
-    public enum TextBoxDataType { Text, Integer, Numeric, Double };
+    public enum TextBoxDataType
+    {
+        /// <summary>Free-form text with no input restriction.</summary>
+        Text,
+        /// <summary>Whole numbers only, optionally prefixed with a minus sign.</summary>
+        Integer,
+        /// <summary>Fixed-point input allowing a single decimal separator.</summary>
+        Numeric,
+        /// <summary>Floating-point input allowing a decimal separator and an exponent.</summary>
+        Double
+    };
     /// <summary>
     /// An enhanced Windows Forms text box that adds input validation by data type, an
     /// auto-complete drop-down list (optionally including Google suggestions), a watermark,
@@ -19,6 +29,10 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public class TextBoxAdvanced : TextBox, IMessageFilter
     {
+        /// <summary>
+        /// Priority auto-complete entries shown at the top of the drop-down, ahead of the
+        /// regular matches and any Google suggestions.
+        /// </summary>
         public List<AutoCompleteInfo> AutoCompleteListTop;
         static SortedList<char, char> validnumeric;
         static SortedList<char, char> validinteger;
@@ -30,10 +44,25 @@ namespace Reportman.Drawing.Forms
         private bool MsgFilterActive = false;
         private bool FUppercaseOnly;
         private bool applyingUppercase;
+        /// <summary>
+        /// Fixed width, in pixels, for the auto-complete drop-down; when 0 the drop-down
+        /// sizes itself to the control width or the available space.
+        /// </summary>
         public int AutoCompleteWidth = 0;
+        /// <summary>
+        /// Source list of auto-complete candidates, each pairing the display key with the
+        /// normalized value that is matched against the typed text.
+        /// </summary>
         public List<KeyValuePair<string, string>> AutoCompleteList;
+        /// <summary>
+        /// Maximum number of items shown in the auto-complete drop-down before it scrolls.
+        /// </summary>
         public int AutoCompleteMaxVisibleLines = 20;
         private bool FIncludeGoogleTerms;
+        /// <summary>
+        /// Gets or sets whether Google search suggestions are queried and merged into the
+        /// auto-complete drop-down. Enabling it initializes the suggestion icons when unset.
+        /// </summary>
         [DefaultValue(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool IncludeGoogleTerms
@@ -54,17 +83,40 @@ namespace Reportman.Drawing.Forms
                 return FIncludeGoogleTerms;
             }
         }
+        /// <summary>
+        /// Icon drawn next to drop-down entries that come from Google search suggestions.
+        /// </summary>
         public Image GoogleTermsImage;
+        /// <summary>
+        /// Icon drawn next to drop-down entries that come from the local auto-complete list.
+        /// </summary>
         public Image NotGoogleTermsImage;
+        /// <summary>
+        /// Optional search window used instead of the built-in drop-down to present matches
+        /// for the typed text.
+        /// </summary>
         public ISearchWindow SearchWindow;
         static char decimalsep;
+        /// <summary>
+        /// Backing text shown as the watermark while the control is empty.
+        /// </summary>
         protected string _waterMarkText = ""; //The watermark text
+        /// <summary>
+        /// Watermark color used while the control does not have focus.
+        /// </summary>
         protected Color _waterMarkColor; //Color of the watermark when the control does not have focus
+        /// <summary>
+        /// Watermark color used while the control has focus.
+        /// </summary>
         protected Color _waterMarkActiveColor; //Color of the watermark when the control has focus
 
         private Panel waterMarkContainer; //Container to hold the watermark
         private Font waterMarkFont; //Font of the watermark
         private SolidBrush waterMarkBrush; //Brush for the watermark
+        /// <summary>
+        /// Raised when the user clicks an item in the auto-complete drop-down; when assigned
+        /// it replaces the default behavior of copying the selection into the text box.
+        /// </summary>
         public StringEvent OnDropDownClicked;
         static TextBoxAdvanced()
         {
@@ -118,6 +170,10 @@ namespace Reportman.Drawing.Forms
 
         }
 
+        /// <summary>
+        /// Initializes a new instance that defaults to free-text input with the default
+        /// barcode delimiters and watermark colors, and wires up the watermark handlers.
+        /// </summary>
         public TextBoxAdvanced()
             : base()
         {
@@ -144,6 +200,10 @@ namespace Reportman.Drawing.Forms
             this.TextChanged += new EventHandler(ThisTextChanged);
 
         }
+        /// <summary>
+        /// Gets or sets the text of the control. Overridden to force design-time
+        /// serialization of the value.
+        /// </summary>
         [DefaultValue("")] // Asegúrate de que coincida con el valor por defecto de TextBox
         [Localizable(true)] // Si necesitas localización
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)] // Fuerza la serialización
@@ -152,6 +212,10 @@ namespace Reportman.Drawing.Forms
             get => base.Text;
             set => base.Text = value;
         }
+        /// <summary>
+        /// Gets the currently selected auto-complete item, or <c>null</c> when the drop-down
+        /// is not showing a valid selection.
+        /// </summary>
         public object SelectedDropDown
         {
             get
@@ -267,6 +331,10 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Paints the control and redraws the watermark so it remains visible, including at
+        /// design time.
+        /// </summary>
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
@@ -274,6 +342,10 @@ namespace Reportman.Drawing.Forms
             DrawWaterMark();
         }
 
+        /// <summary>
+        /// Invalidates the watermark container together with the control so the watermark is
+        /// repainted.
+        /// </summary>
         protected override void OnInvalidated(InvalidateEventArgs e)
         {
             base.OnInvalidated(e);
@@ -287,6 +359,9 @@ namespace Reportman.Drawing.Forms
         {
             this.Focus(); //Makes sure you can click wherever you want on the control to gain focus
         }
+        /// <summary>
+        /// Gets or sets the watermark text displayed while the control is empty.
+        /// </summary>
         [Category("Watermark attribtues")]
         [DefaultValue("")]
         [Description("Sets the text of the watermark")]
@@ -301,6 +376,9 @@ namespace Reportman.Drawing.Forms
                 this.Invalidate();
             }
         }
+        /// <summary>
+        /// Gets or sets the watermark color used while the control has focus.
+        /// </summary>
         [DefaultValue(typeof(Color), "Gray")]
         [Category("Watermark attribtues")]
         [Description("When the control gaines focus, this color will be used as the watermark's forecolor")]
@@ -315,6 +393,9 @@ namespace Reportman.Drawing.Forms
                 this.Invalidate();
             }
         }
+        /// <summary>
+        /// Gets or sets the watermark color used while the control does not have focus.
+        /// </summary>
         [DefaultValue(typeof(Color), "LightGray")]
 
         [Category("Watermark attribtues")]
@@ -331,6 +412,10 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets the font used to draw the watermark; when <c>null</c> the control's
+        /// own font is used.
+        /// </summary>
         [Category("Watermark attribtues")]
         [DefaultValue(null)]
         [Description("The font used on the watermark. Default is the same as the control")]
@@ -350,6 +435,10 @@ namespace Reportman.Drawing.Forms
 
 
         private TextBoxDataType FDataType = TextBoxDataType.Text;
+        /// <summary>
+        /// Gets or sets the kind of data the control accepts, which restricts keyboard input
+        /// accordingly.
+        /// </summary>
         [DefaultValue(TextBoxDataType.Text)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public TextBoxDataType DataType
@@ -361,6 +450,9 @@ namespace Reportman.Drawing.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets whether typed text is forced to uppercase.
+        /// </summary>
         [DefaultValue(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool UppercaseOnly
@@ -401,6 +493,10 @@ namespace Reportman.Drawing.Forms
         }
 
         private bool FReadBarCode;
+        /// <summary>
+        /// Gets or sets whether the control interprets input framed by the barcode begin and
+        /// end characters as a scanned barcode and strips the delimiters.
+        /// </summary>
         [DefaultValue(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
 
@@ -412,6 +508,10 @@ namespace Reportman.Drawing.Forms
                 FReadBarCode = value;
             }
         }
+        /// <summary>
+        /// Hides the auto-complete drop-down and deactivates the search window when the
+        /// control loses focus.
+        /// </summary>
         protected override void OnLostFocus(EventArgs e)
         {
             if (listBoxChild != null && !listBoxChild.Focused)
@@ -420,6 +520,9 @@ namespace Reportman.Drawing.Forms
                 SearchWindow.Deactivate();
             base.OnLostFocus(e);
         }
+        /// <summary>
+        /// Hides the auto-complete drop-down when the user clicks in the control.
+        /// </summary>
         protected override void OnMouseDown(MouseEventArgs e)
         {
             HideTheList();
@@ -427,6 +530,9 @@ namespace Reportman.Drawing.Forms
             base.OnMouseDown(e);
         }
         private char FBarCodeBeginChar;
+        /// <summary>
+        /// Gets or sets the character that marks the start of a scanned barcode.
+        /// </summary>
         [DefaultValue('$')]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public char BarCodeBeginChar
@@ -437,6 +543,11 @@ namespace Reportman.Drawing.Forms
                 FBarCodeBeginChar = value;
             }
         }
+        /// <summary>
+        /// Filters application messages so the control can react to mouse clicks, the mouse
+        /// wheel and keyboard navigation while the drop-down or search window is open.
+        /// Returns <c>true</c> when the message was handled and should not be dispatched further.
+        /// </summary>
         public bool PreFilterMessage(ref Message m)
         {
             if (!Focused)
@@ -600,6 +711,10 @@ namespace Reportman.Drawing.Forms
             return false;
         }
 
+        /// <summary>
+        /// Handles text changes to apply barcode extraction, uppercase conversion and
+        /// auto-complete lookup before raising the base event.
+        /// </summary>
         protected override void OnTextChanged(EventArgs e)
         {
             if (!DesignMode)
@@ -982,6 +1097,9 @@ namespace Reportman.Drawing.Forms
         }
 
         private char FBarCodeEndChar;
+        /// <summary>
+        /// Gets or sets the character that marks the end of a scanned barcode.
+        /// </summary>
         [DefaultValue('%')]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public char BarCodeEndChar
@@ -1013,6 +1131,9 @@ namespace Reportman.Drawing.Forms
                 MsgFilterActive = false;
             }
         }
+        /// <summary>
+        /// Removes the application message filter when the control is left.
+        /// </summary>
         protected override void OnLeave(EventArgs e)
         {
             FreeMessageFilter();
@@ -1073,6 +1194,9 @@ namespace Reportman.Drawing.Forms
         {
             listBoxChild.Invalidate();
         }
+        /// <summary>
+        /// Hides the auto-complete drop-down list without clearing its contents.
+        /// </summary>
         public void HideDropDown()
         {
             if (listBoxChild != null)
@@ -1149,6 +1273,9 @@ namespace Reportman.Drawing.Forms
                 this.SelectAll();
             }
         }
+        /// <summary>
+        /// Removes any stale application message filter when the control's handle is created.
+        /// </summary>
         protected override void OnHandleCreated(EventArgs e)
         {
             if (MsgFilterActive)
@@ -1177,12 +1304,23 @@ namespace Reportman.Drawing.Forms
                 }
             }
         }
+        /// <summary>
+        /// Gets or sets whether pressing Enter moves focus to the next control like Tab.
+        /// </summary>
         [DefaultValue(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool EnterAsTab { get; set; }
 
+        /// <summary>
+        /// Callback invoked before Enter-as-Tab navigation, allowing the handler to cancel
+        /// the move to the next control.
+        /// </summary>
         public BeforeEnterTabEvent BeforeEnterTab;
 
+        /// <summary>
+        /// Processes command keys to implement Enter-as-Tab navigation before delegating to
+        /// the base implementation.
+        /// </summary>
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (EnterAsTab)
@@ -1197,6 +1335,10 @@ namespace Reportman.Drawing.Forms
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
+        /// <summary>
+        /// Suppresses the Enter key when Enter-as-Tab is enabled and remaps the numpad
+        /// decimal key to the current culture's decimal separator for numeric input.
+        /// </summary>
         protected override void OnKeyDown(KeyEventArgs e)
         {
             if (EnterAsTab)
@@ -1226,10 +1368,17 @@ namespace Reportman.Drawing.Forms
 
             base.OnKeyDown(e);
         }
+        /// <summary>
+        /// Handles the KeyUp event; delegates to the base implementation.
+        /// </summary>
         protected override void OnKeyUp(KeyEventArgs e)
         {
             base.OnKeyUp(e);
         }
+        /// <summary>
+        /// Validates each typed character against the current data type, rejecting invalid
+        /// characters and enforcing a single sign, exponent and decimal separator.
+        /// </summary>
         protected override void OnKeyPress(KeyPressEventArgs e)
         {
             int index;

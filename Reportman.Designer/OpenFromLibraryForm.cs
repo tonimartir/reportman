@@ -1,4 +1,4 @@
-﻿using Reportman.Drawing;
+using Reportman.Drawing;
 using Reportman.Reporting;
 using System;
 using System.Windows.Forms;
@@ -14,6 +14,11 @@ namespace Reportman.Designer
     {
         ReportLibraryConfigCollection libs;
         OpenFromLibrary.SelectionModeType SelectionType = OpenFromLibrary.SelectionModeType.Selection;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OpenFromLibraryForm"/> dialog,
+        /// creating its designer-generated controls, applying translated captions, and
+        /// wiring the accept/cancel events of the embedded library browser.
+        /// </summary>
         public OpenFromLibraryForm()
         {
             InitializeComponent();
@@ -26,11 +31,25 @@ namespace Reportman.Designer
 
         }
         ReportLibrarySelection ReportSelection;
+        /// <summary>
+        /// Handles the cancel event from the embedded library browser by clearing the
+        /// current selection and closing the dialog with <see cref="DialogResult.Cancel"/>.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="args">The event data.</param>
         public void OnCancel(object sender, EventArgs args)
         {
             ReportSelection = null;
             DialogResult = DialogResult.Cancel;
         }
+        /// <summary>
+        /// Handles the accept event from the embedded library browser by reading the
+        /// selected report name and its stream from the chosen library, building a
+        /// <see cref="ReportLibrarySelection"/>, and closing the dialog with
+        /// <see cref="DialogResult.OK"/>.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="args">The event data.</param>
         public void OnAccept(object sender, EventArgs args)
         {
             string ReportName = openFromLibrary1.GetSelectedReport();
@@ -45,6 +64,14 @@ namespace Reportman.Designer
             ReportSelection = selection;
             DialogResult = DialogResult.OK;
         }
+        /// <summary>
+        /// Displays the library-selection dialog modally, letting the user pick a library
+        /// and a report from it, and returns the resulting selection.
+        /// </summary>
+        /// <param name="libs">The collection of configured report libraries to show.</param>
+        /// <param name="SelectionType">The selection mode that determines available library-browser actions.</param>
+        /// <param name="parent">The parent window that owns this dialog.</param>
+        /// <returns>A <see cref="ReportLibrarySelection"/> with the chosen library and report stream, or <c>null</c> if the user cancelled.</returns>
         public static ReportLibrarySelection SelectReportFromLibraries(ReportLibraryConfigCollection libs,
               OpenFromLibrary.SelectionModeType SelectionType, IWin32Window parent)
         {

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -12,6 +12,9 @@ namespace Reportman.Drawing.Forms
     /// </summary>
     public partial class TableLayoutPanelAdvanced : TableLayoutPanel
     {
+        /// <summary>
+        /// Gets or sets the size of the splitter region between rows and columns (in pixels).
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int SplitterSize { get; set; }
 
@@ -30,6 +33,9 @@ namespace Reportman.Drawing.Forms
         List<RectangleF> tlpCols = new List<RectangleF>();
         int[] colWidths = new int[0];
 
+        /// <summary>
+        /// Initializes a new instance of the TableLayoutPanelAdvanced class, registering mouse handlers for interactive cell resizing.
+        /// </summary>
         public TableLayoutPanelAdvanced()
         {
             this.MouseDown += SplitTablePanel_MouseDown;

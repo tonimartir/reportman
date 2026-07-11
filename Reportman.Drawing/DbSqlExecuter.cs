@@ -24,10 +24,20 @@ namespace Reportman.Drawing
         object[] pvalues = new object[4];
         DbCommand commandgen;
         DbCommand command_execute;
+        /// <summary>
+        /// The transaction currently active for buffered execute and open operations, or
+        /// <c>null</c> when no transaction is in progress.
+        /// </summary>
         public DbTransaction transaction;
         DbConnection connection;
         DbDataAdapter dataadapter;
         DbProviderFactory factory;
+        /// <summary>
+        /// Initializes a new instance bound to the given connection and provider factory, creating
+        /// the internal command, parameter and data-adapter objects used to buffer and run SQL.
+        /// </summary>
+        /// <param name="nconnection">The database connection all commands run against.</param>
+        /// <param name="nfactory">The provider factory used to create commands, parameters and the data adapter.</param>
         public DbSqlExecuter(DbConnection nconnection, DbProviderFactory nfactory)
         {
             factory = nfactory;
@@ -62,15 +72,26 @@ namespace Reportman.Drawing
         int CurrentInsertBlock = 0;
         int InsertBlockSequence = 0;
         int ExecutingInsertBlock = 0;
+        /// <summary>
+        /// Starts a block of buffered insert operations to be flushed together.
+        /// </summary>
         public void BeginInsertBlock()
         {
             InsertBlockSequence++;
             CurrentInsertBlock = InsertBlockSequence;
         }
+        /// <summary>
+        /// Ends the current block of buffered insert operations.
+        /// </summary>
         public void EndInsertBlock()
         {
             CurrentInsertBlock = 0;
         }
+        /// <summary>
+        /// Executes a query and returns the value of the first column of the first row.
+        /// </summary>
+        /// <param name="sql">The SQL query to execute.</param>
+        /// <returns>The scalar value produced by the query, or <see cref="DBNull.Value"/> if no rows are returned.</returns>
         public object GetValueFromSql(string sql)
         {
             object result = DBNull.Value;
@@ -81,6 +102,12 @@ namespace Reportman.Drawing
             }
             return result;
         }
+        /// <summary>
+        /// Obtains the next value of a named database generator or sequence.
+        /// </summary>
+        /// <param name="generatorName">The name of the generator or sequence.</param>
+        /// <param name="increment">The amount by which to advance the generator.</param>
+        /// <returns>The generated value.</returns>
         public long GetGenerator(string generatorName, int increment)
         {
             object valor = GetValueFromSql("SELECT GEN_ID(" + generatorName + ", " + increment.ToString() + " FROM RDB$DATABASE");
@@ -90,6 +117,13 @@ namespace Reportman.Drawing
         }
 
 
+        /// <summary>
+        /// Executes a query immediately and returns the result set as a table.
+        /// </summary>
+        /// <param name="ndataset">The dataset that will own the resulting table, or <c>null</c> to return a standalone table.</param>
+        /// <param name="sql">The SQL query to execute.</param>
+        /// <param name="tablename">The name to assign to the resulting table.</param>
+        /// <returns>A table populated with the rows returned by the query.</returns>
         public DataTable OpenInmediate(DataSet ndataset, string sql, string tablename)
         {
             commandgen.CommandText = sql;
@@ -105,14 +139,36 @@ namespace Reportman.Drawing
                 return newTable;
             }
         }
+        /// <summary>
+        /// Queues a query that fills the dataset incrementally, capping the row count and
+        /// reporting progress through a partial-fill callback.
+        /// </summary>
+        /// <param name="ndataset">The dataset that will receive the resulting table.</param>
+        /// <param name="sql">The SQL query to execute.</param>
+        /// <param name="tablename">The name to assign to the resulting table.</param>
+        /// <param name="maxrecords">The maximum number of records to fetch before raising a partial-fill callback.</param>
+        /// <param name="nevent">Callback raised as the table is populated.</param>
         public void Open(DataSet ndataset, string sql, string tablename, int maxrecords, ISqlExecuterPartialFillEvent nevent)
         {
             AddOperation(SQType.Open, sql, ndataset, tablename, maxrecords, nevent);
         }
+        /// <summary>
+        /// Queues a query and fills a table with the given name into the supplied dataset.
+        /// </summary>
+        /// <param name="ndataset">The dataset that will receive the resulting table.</param>
+        /// <param name="sql">The SQL query to execute.</param>
+        /// <param name="tablename">The name to assign to the resulting table.</param>
         public void Open(DataSet ndataset, string sql, string tablename)
         {
             AddOperation(SQType.Open, sql, ndataset, tablename);
         }
+        /// <summary>
+        /// Queues a command and fills a table with the given name into the supplied dataset.
+        /// This overload is not implemented and always throws.
+        /// </summary>
+        /// <param name="ndataset">The dataset that will receive the resulting table.</param>
+        /// <param name="nCommand">The command to execute.</param>
+        /// <param name="tablename">The name to assign to the resulting table.</param>
         public void Open(DataSet ndataset, System.Data.Common.DbCommand nCommand, string tablename)
         {
             throw new Exception("Not Implemented");
@@ -190,14 +246,27 @@ namespace Reportman.Drawing
                 Event = nvent;
             }
         }
+        /// <summary>
+        /// Queues a non-query SQL statement to run within the current transaction on the next flush.
+        /// </summary>
+        /// <param name="sql">The SQL statement to execute.</param>
         public void Execute(string sql)
         {
             AddOperation(SQType.Execute, sql);
         }
+        /// <summary>
+        /// Queues a non-query command, including its parameters, to run within the current transaction on the next flush.
+        /// </summary>
+        /// <param name="ncommand">The command to execute.</param>
         public void Execute(System.Data.Common.DbCommand ncommand)
         {
             AddOperation(SQType.Execute, ncommand.CommandText, null, "", 0, null, ncommand);
         }
+        /// <summary>
+        /// Creates a new command bound to the underlying connection for the given SQL text.
+        /// </summary>
+        /// <param name="cadsql">The SQL text used to initialize the command.</param>
+        /// <returns>A new command ready to be executed or configured further.</returns>
         public System.Data.Common.DbCommand CreateCommand(string cadsql)
         {
             DbCommand result = factory.CreateCommand();
@@ -206,6 +275,10 @@ namespace Reportman.Drawing
             return result;
         }
 
+        /// <summary>
+        /// Rolls back the current transaction immediately, discarding any pending buffered work.
+        /// Throws if no transaction is active.
+        /// </summary>
         public void RollbackInmediate()
         {
             if (transaction != null)
@@ -217,33 +290,58 @@ namespace Reportman.Drawing
             else
                 throw new Exception("No transaction active");
         }
+        /// <summary>
+        /// Queues a commit of the current transaction to be applied on the next flush.
+        /// </summary>
         public void Commit()
         {
             AddOperation(SQType.Commit);
         }
+        /// <summary>
+        /// Queues the start of a new transaction using the default isolation level.
+        /// </summary>
         public void StartTransaction()
         {
             AddOperation(SQType.StartTransaction);
         }
+        /// <summary>
+        /// Queues a rollback of the current transaction to be applied on the next flush.
+        /// </summary>
         public void Rollback()
         {
             AddOperation(SQType.Rollback);
         }
+        /// <summary>
+        /// Queues the start of a new transaction using the specified isolation level.
+        /// </summary>
+        /// <param name="nlevel">The isolation level for the transaction.</param>
         public void StartTransaction(IsolationLevel nlevel)
         {
             int idxlevel = (int)nlevel;
             AddOperation(SQType.StartTransaction, idxlevel.ToString());
         }
+        /// <summary>
+        /// Flushes any pending buffered operations and then runs a non-query SQL statement immediately.
+        /// </summary>
+        /// <param name="sql">The SQL statement to execute.</param>
+        /// <returns>The number of rows affected by the statement.</returns>
         public int ExecuteInmediate(string sql)
         {
             Flush();
             commandgen.CommandText = sql;
             return commandgen.ExecuteNonQuery();
         }
+        /// <summary>
+        /// Sends any pending buffered operations to the database.
+        /// </summary>
         public void Flush()
         {
             Flush(null);
         }
+        /// <summary>
+        /// Sends any pending buffered operations to the database, reporting progress through a callback.
+        /// </summary>
+        /// <param name="nevent">Callback raised with the progress of the flush, or <c>null</c> for no reporting.</param>
         public void Flush(ISqlExecuterProgressEvent nevent)
         {
             try
@@ -545,18 +643,37 @@ namespace Reportman.Drawing
             }
             return aresult;
         }*/
+        /// <summary>
+        /// Registers additional external columns and pending deletes to be applied to the last command.
+        /// This operation is not implemented and always throws.
+        /// </summary>
+        /// <param name="external_columns">The external column definitions to add.</param>
+        /// <param name="deletions">The delete instructions to apply.</param>
         public void AddExternalColumnsToLastCommand(string external_columns, string deletions)
         {
             throw new Exception("Operation not implemented, add externalcolumns to last commmand");
         }
+        /// <summary>
+        /// Queues a custom operation carrying text and binary payloads.
+        /// This operation is not supported and always throws.
+        /// </summary>
+        /// <param name="operation">The operation code identifying the action.</param>
+        /// <param name="data">The textual payload for the operation.</param>
+        /// <param name="binarydata">The binary payload for the operation.</param>
         public void AddCustomOperation(int operation, string data, byte[] binarydata)
         {
             throw new Exception("AddCustom Operation not supported in FbSqlExecuter");
         }
+        /// <summary>
+        /// Opens the underlying database connection.
+        /// </summary>
         public void Connect()
         {
             connection.Open();
         }
+        /// <summary>
+        /// Closes the underlying database connection.
+        /// </summary>
         public void Disconnect()
         {
             connection.Close();

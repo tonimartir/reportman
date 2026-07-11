@@ -1,4 +1,4 @@
-﻿using Reportman.Drawing;
+using Reportman.Drawing;
 using System;
 using System.Windows.Forms;
 
@@ -10,6 +10,9 @@ namespace Reportman.Designer
     /// </summary>
     public partial class LibraryConfigForm : Form
     {
+        /// <summary>
+        /// Initializes a new instance of the LibraryConfigForm class, setting up controls and localizing UI strings.
+        /// </summary>
         public LibraryConfigForm()
         {
             InitializeComponent();
@@ -31,6 +34,11 @@ namespace Reportman.Designer
         {
             DialogResult = DialogResult.Cancel;
         }
+        /// <summary>
+        /// Shows the library configuration form as a modal dialog.
+        /// </summary>
+        /// <param name="parent">The parent window that owns the modal dialog.</param>
+        /// <returns>True if the user confirmed changes (clicked OK); otherwise, false.</returns>
         public static bool ShowConfig(IWin32Window parent)
         {
             using (LibraryConfigForm dia = new LibraryConfigForm())

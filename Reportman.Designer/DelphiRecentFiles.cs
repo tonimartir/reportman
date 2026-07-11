@@ -1,4 +1,4 @@
-using Reportman.Drawing;
+﻿using Reportman.Drawing;
 using System;
 using System.Collections.Generic;
 using System.IO;

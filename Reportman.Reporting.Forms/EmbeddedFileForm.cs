@@ -1,4 +1,4 @@
-﻿using Reportman.Drawing;
+using Reportman.Drawing;
 using System;
 using System.Windows.Forms;
 
@@ -10,6 +10,9 @@ namespace Reportman.Reporting.Forms
     /// </summary>
     public partial class EmbeddedFileForm : Form
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EmbeddedFileForm"/> class and its designer-generated components.
+        /// </summary>
         public EmbeddedFileForm()
         {
             InitializeComponent();
@@ -18,6 +21,10 @@ namespace Reportman.Reporting.Forms
         private void EmbeddedFileForm_Load(object sender, EventArgs e)
         {
         }
+        /// <summary>
+        /// Initializes the form controls with translated label texts and populates the
+        /// relationship combo box with all available <see cref="PDFAFRelationShip"/> values.
+        /// </summary>
         public void Init()
         {
             Text = Translator.TranslateStr(1475);
@@ -36,6 +43,13 @@ namespace Reportman.Reporting.Forms
             }
             comboRelationShip.SelectedIndex = 0;
         }
+        /// <summary>
+        /// Displays a modal dialog that lets the user edit the metadata of the specified
+        /// embedded file (description, file name, MIME type, dates and AF relationship).
+        /// If the user confirms, the <paramref name="embedded"/> object is updated in place.
+        /// </summary>
+        /// <param name="embedded">The embedded file whose metadata will be edited.</param>
+        /// <returns><c>true</c> if the user accepted the changes; <c>false</c> if cancelled.</returns>
         public static bool AskEmbeddedFileData(EmbeddedFile embedded)
         {
             bool resultado = false;

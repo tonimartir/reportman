@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -19,6 +19,10 @@ namespace Reportman.Designer
     public class RpAuthManager
     {
         // Hub API endpoints
+        /// <summary>
+        /// Base URL of the Reportman Hub API. The debug and release endpoints are
+        /// selected at compile time.
+        /// </summary>
 #if DEBUG
         public const string HUB_API_URL = "https://api.reportman.es:7006";
 #else
@@ -33,15 +37,39 @@ namespace Reportman.Designer
         private static readonly object _lock = new object();
 
         // State
+        /// <summary>
+        /// Gets the current bearer authentication token, or an empty string when not logged in.
+        /// </summary>
         public string Token { get; private set; } = "";
+        /// <summary>
+        /// Gets the per-installation identifier sent to the Hub to associate this client with a login.
+        /// </summary>
         public string InstallId { get; private set; } = "";
+        /// <summary>
+        /// Gets the profile of the currently authenticated user.
+        /// </summary>
         public RpProfile Profile { get; private set; } = new RpProfile();
+        /// <summary>
+        /// Gets a value indicating whether a valid session token is present.
+        /// </summary>
         public bool IsLoggedIn { get; private set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether the designer's AI-assisted features are enabled.
+        /// </summary>
         public bool AIEnabled { get; set; } = true;
+        /// <summary>
+        /// Gets or sets the language used for AI-generated content (for example, "English").
+        /// </summary>
         public string AILanguage { get; set; } = "English";
 
         // Events
+        /// <summary>
+        /// Raised when the authentication state changes; the argument is true when logged in, false when logged out.
+        /// </summary>
         public event Action<bool> AuthChanged;
+        /// <summary>
+        /// Raised for diagnostic log messages produced by the manager.
+        /// </summary>
         public event Action<string> LogMessage;
 
         private RpAuthManager()
@@ -50,6 +78,9 @@ namespace Reportman.Designer
             LoadConfig();
         }
 
+        /// <summary>
+        /// Gets the lazily-created singleton instance of the authentication manager.
+        /// </summary>
         public static RpAuthManager Instance
         {
             get
@@ -77,6 +108,10 @@ namespace Reportman.Designer
 
         // ===== Logging =====
 
+        /// <summary>
+        /// Writes a diagnostic message to the debugger output and raises the <see cref="LogMessage"/> event.
+        /// </summary>
+        /// <param name="msg">The message to log.</param>
         public void Log(string msg)
         {
             System.Diagnostics.Debug.WriteLine("RpAuth: " + msg);
@@ -192,6 +227,11 @@ namespace Reportman.Designer
 
         // ===== Microsoft OAuth =====
 
+        /// <summary>
+        /// Opens a browser for Microsoft OAuth, listens on localhost for the callback,
+        /// then exchanges the code (and the resulting access token) via POST /api/Login/microsoft.
+        /// Returns true when authentication succeeds.
+        /// </summary>
         public async Task<bool> LoginMicrosoftAsync()
         {
             int port = 49152 + new Random().Next(16384);
@@ -332,6 +372,10 @@ namespace Reportman.Designer
 
         // ===== Check Status =====
 
+        /// <summary>
+        /// Queries the Hub via POST /api/userprofile/status to refresh the user profile and
+        /// persist it, raising <see cref="AuthChanged"/>. Logs out automatically if the token has expired.
+        /// </summary>
         public async Task CheckStatusAsync()
         {
             try
@@ -373,6 +417,9 @@ namespace Reportman.Designer
 
         // ===== Logout =====
 
+        /// <summary>
+        /// Clears the current session and persisted credentials, then raises <see cref="AuthChanged"/> with false.
+        /// </summary>
         public void Logout()
         {
             Token = "";
@@ -384,11 +431,19 @@ namespace Reportman.Designer
 
         // ===== Credits =====
 
+        /// <summary>
+        /// Gets a value indicating whether the user draws from the free credit pool
+        /// rather than a daily tier allowance.
+        /// </summary>
         public bool UsesFreeCredits
         {
             get { return string.IsNullOrEmpty(Profile.Email) || Profile.TierId <= 2; }
         }
 
+        /// <summary>
+        /// Returns the fraction of the applicable credit allowance that has been consumed,
+        /// in the range 0 to 1 (0 when no allowance is defined).
+        /// </summary>
         public double GetCreditsRatio()
         {
             long max, consumed;
@@ -777,17 +832,53 @@ namespace Reportman.Designer
     /// </summary>
     public class RpProfile
     {
+        /// <summary>
+        /// Gets or sets the Hub user identifier.
+        /// </summary>
         public long UserId { get; set; }
+        /// <summary>
+        /// Gets or sets the user's email address.
+        /// </summary>
         public string Email { get; set; } = "";
+        /// <summary>
+        /// Gets or sets the display name of the user.
+        /// </summary>
         public string UserName { get; set; } = "";
+        /// <summary>
+        /// Gets or sets the URL of the user's profile image.
+        /// </summary>
         public string AvatarUrl { get; set; } = "";
+        /// <summary>
+        /// Gets or sets the account type code returned by the Hub.
+        /// </summary>
         public int AccountType { get; set; }
+        /// <summary>
+        /// Gets or sets the identifier of the user's subscription tier.
+        /// </summary>
         public long TierId { get; set; } = 1;
+        /// <summary>
+        /// Gets or sets the display name of the user's subscription tier.
+        /// </summary>
         public string TierName { get; set; } = "Guest";
+        /// <summary>
+        /// Gets or sets the maximum number of credits allowed per day for the tier.
+        /// </summary>
         public long DailyMax { get; set; }
+        /// <summary>
+        /// Gets or sets the number of daily credits consumed so far.
+        /// </summary>
         public long DailyConsumed { get; set; }
+        /// <summary>
+        /// Gets or sets the initial number of free credits granted to the user.
+        /// </summary>
         public long FreeInitial { get; set; }
+        /// <summary>
+        /// Gets or sets the number of free credits still available.
+        /// </summary>
         public long FreeRemaining { get; set; }
+        /// <summary>
+        /// Gets or sets the user's remaining purchased credit balance.
+        /// </summary>
         public long Credits { get; set; }
     }
 }
