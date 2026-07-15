@@ -1,8 +1,8 @@
-﻿using Reportman.Drawing;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Reportman.Drawing;
 
 namespace Reportman.Reporting
 {

@@ -72,7 +72,7 @@ namespace Reportman.Drawing
                                 RepeatedColumns[colName] = RepeatedColumns[colName] + 1;
                             }
                             int index = RepeatedColumns[colName];
-                            colName += index.ToString();
+                            colName = colName + index.ToString();
                         }
                         intdatatable.Columns.Add(colName, ntype);
                     }

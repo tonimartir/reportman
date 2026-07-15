@@ -187,8 +187,8 @@ namespace Reportman.Drawing
                 CheckRange(index);
                 FItems[index] = value;
                 RemoveTempFile(index);
-                TotalSize -= FFileSizes[index];
-                TotalSize -= value.Length;
+                TotalSize = TotalSize - FFileSizes[index];
+                TotalSize = TotalSize - value.Length;
             }
         }
         /// <summary>
@@ -200,7 +200,7 @@ namespace Reportman.Drawing
         /// </summary>
         public void Add(MemoryStream obj)
         {
-            TotalSize += obj.Length;
+            TotalSize = TotalSize + obj.Length;
             if (FCount > (FItems.Length - 2))
             {
                 MemoryStream[] nobjects = new MemoryStream[FCount];
@@ -210,7 +210,7 @@ namespace Reportman.Drawing
             }
             FItems[FCount] = obj;
             FFileSizes.Add(FCount, obj.Length);
-            TotalSize += obj.Length;
+            TotalSize = TotalSize + obj.Length;
             if (TotalSize > MAX_MEM_SIZE)
             {
                 string tmpfilename = System.IO.Path.GetTempFileName();
@@ -240,7 +240,7 @@ namespace Reportman.Drawing
         /// </summary>
         /// <param name="fontInfoProvider">Provider of font metrics and glyph data.</param>
         /// <param name="bitmapInfoProvider">Provider that encodes images into PDF-compatible bitmap streams.</param>
-        public PDFCanvas(FontInfoProvider fontInfoProvider, IBitmapInfoProvider bitmapInfoProvider)
+        public PDFCanvas(FontInfoProvider fontInfoProvider,IBitmapInfoProvider bitmapInfoProvider)
         {
             FInfoProvider = fontInfoProvider;
             FBitmapInfoProvider = bitmapInfoProvider;
@@ -265,7 +265,7 @@ namespace Reportman.Drawing
         /// </summary>
         public FontInfoProvider InfoProvider
         {
-            get { return FInfoProvider; }
+            get { return FInfoProvider;}
         }
         /// <summary>
         /// Backing field for the bitmap encoding provider.
@@ -821,9 +821,9 @@ namespace Reportman.Drawing
                     (Type1Font == PDFFontType.TimesRoman))
                 {
                     if (bold)
-                        avalue++;
+                        avalue = avalue + 1;
                     if (oblique)
-                        avalue += 2;
+                        avalue = avalue + 2;
                 }
                 aresult = (avalue + 1).ToString();
             }
@@ -868,7 +868,7 @@ namespace Reportman.Drawing
             }
             leading = (int)Math.Round((((double)leading) / 100000.0) * FResolution * FFont.Size * 1.25);
             linespacing = (int)Math.Round((((double)linespacing) / 100000.0) * FResolution * FFont.Size * 1.25);
-            Y += leading;
+            Y = Y + leading;
 
             // Per-glyph (shaped) output: mandatory for RTL/HTML/FreeType, opt-in for plain
             // text through ForceComplexShaping so the PDF and the glyph-indexed GDI redraw
@@ -915,7 +915,7 @@ namespace Reportman.Drawing
                 astring = Text;
                 if (shapedOutput)
                 {
-                    astring = PDFCompatibleTextShaping(lInfo.Text, adata, Font, RightToLeft, X, Y, Font.Size, lInfo);
+                    astring = PDFCompatibleTextShaping(lInfo.Text,adata, Font, RightToLeft, X, Y, Font.Size, lInfo);
                     SWriteLine(File.STempStream, astring);
                 }
                 else
@@ -1035,12 +1035,12 @@ namespace Reportman.Drawing
                     // constants were calibrated for Td (UnitsToTextY(Y) - FSize): compensate the
                     // font size offset, same correction the HTML decorators apply.
                     if (shapedOutput)
-                        nliney -= (int)Math.Round((double)FFont.Size / PDFFile.CONS_PDFRES * FResolution);
+                        nliney = nliney - (int)Math.Round((double)FFont.Size / PDFFile.CONS_PDFRES * FResolution);
                     Line(X, nliney, X + LineWidth, nliney);
                 }
                 else
                 {
-                    Y += (int)Math.Round(PDFFile.CONS_UNDERLINEPOS * ((double)FFont.Size / PDFFile.CONS_PDFRES * FResolution));
+                    Y = Y + (int)Math.Round(PDFFile.CONS_UNDERLINEPOS * ((double)FFont.Size / PDFFile.CONS_PDFRES * FResolution));
                     rotrad = (double)Rotation / 10 * (2 * Math.PI / 360);
                     fsize = (double)PDFFile.CONS_UNDERLINEPOS * FFont.Size / PDFFile.CONS_PDFRES * FResolution - (double)FFont.Size / PDFFile.CONS_PDFRES * FResolution;
                     PosLineX1 = (int)-Math.Round(fsize * Math.Cos(rotrad));
@@ -1048,7 +1048,7 @@ namespace Reportman.Drawing
                     PosLineX2 = (int)Math.Round(LineWidth * Math.Cos(rotrad));
                     PosLineY2 = (int)-Math.Round(LineWidth * Math.Sin(rotrad));
                     Line(X + PosLineX1, Y + PosLineY1, X + PosLineX2, Y + PosLineY2);
-                    Y -= (int)Math.Round(PDFFile.CONS_UNDERLINEPOS * ((double)FFont.Size / PDFFile.CONS_PDFRES * FResolution));
+                    Y = Y - (int)Math.Round(PDFFile.CONS_UNDERLINEPOS * ((double)FFont.Size / PDFFile.CONS_PDFRES * FResolution));
                 }
             }
             // Element-level strikeout (non-HTML or full-element strikeout)
@@ -1063,12 +1063,12 @@ namespace Reportman.Drawing
                     int nliney = Y + PosLine;
                     // Same Tm/Td baseline compensation as the underline above.
                     if (shapedOutput)
-                        nliney -= (int)Math.Round((double)FFont.Size / PDFFile.CONS_PDFRES * FResolution);
+                        nliney = nliney - (int)Math.Round((double)FFont.Size / PDFFile.CONS_PDFRES * FResolution);
                     Line(X, nliney, X + LineWidth, nliney);
                 }
                 else
                 {
-                    Y += (int)Math.Round(PDFFile.CONS_UNDERLINEPOS * ((double)FFont.Size / PDFFile.CONS_PDFRES * FResolution));
+                    Y = Y + (int)Math.Round(PDFFile.CONS_UNDERLINEPOS * ((double)FFont.Size / PDFFile.CONS_PDFRES * FResolution));
                     rotrad = (double)Rotation / 10 * (2 * Math.PI / 360);
                     fsize = PDFFile.CONS_UNDERLINEPOS * (double)FFont.Size / PDFFile.CONS_PDFRES * FResolution - (double)FFont.Size / PDFFile.CONS_PDFRES * FResolution;
                     PosLineX1 = -(int)Math.Round(fsize * Math.Cos(rotrad));
@@ -1080,10 +1080,10 @@ namespace Reportman.Drawing
                     PosLineY1 = Y + PosLineY1;
                     PosLineX2 = X + PosLineX2;
                     PosLineY2 = Y + PosLineY2;
-                    PosLineX1 -= (int)Math.Round(fsize * Math.Sin(rotrad));
-                    PosLineY1 -= (int)Math.Round(fsize * Math.Cos(rotrad));
-                    PosLineX2 -= (int)Math.Round(fsize * Math.Sin(rotrad));
-                    PosLineY2 -= (int)Math.Round(fsize * Math.Cos(rotrad));
+                    PosLineX1 = PosLineX1 - (int)Math.Round(fsize * Math.Sin(rotrad));
+                    PosLineY1 = PosLineY1 - (int)Math.Round(fsize * Math.Cos(rotrad));
+                    PosLineX2 = PosLineX2 - (int)Math.Round(fsize * Math.Sin(rotrad));
+                    PosLineY2 = PosLineY2 - (int)Math.Round(fsize * Math.Cos(rotrad));
                     Line(PosLineX1, PosLineY1, PosLineX2, PosLineY2);
                 }
             }
@@ -1130,7 +1130,7 @@ namespace Reportman.Drawing
                 aresult = "[<";
                 for (i = 0; i < astring.Length; i++)
                 {
-                    aresult += IntToHex(adata.CacheWidths[astring[i]].Glyph);
+                    aresult = aresult + IntToHex(adata.CacheWidths[astring[i]].Glyph);
                     if (i < (astring.Length - 1))
                     {
                         kerningvalue = InfoProvider.GetKerning(FFont, adata, astring[i], astring[i + 1]);
@@ -1140,7 +1140,7 @@ namespace Reportman.Drawing
                         }
                     }
                 }
-                aresult += ">]";
+                aresult = aresult + ">]";
             }
             else
             {
@@ -1157,9 +1157,9 @@ namespace Reportman.Drawing
                         default:
                             // Euro symbol exception
                             if (astring[i] == (char)8364)
-                                aresult += (char)128;
+                                aresult = aresult + (char)128;
                             else
-                                aresult += astring[i];
+                                aresult = aresult + astring[i];
                             break;
                     }
                     if (i < (astring.Length - 1))
@@ -1171,7 +1171,7 @@ namespace Reportman.Drawing
                         }
                     }
                 }
-                aresult += ")";
+                aresult = aresult + ")";
             }
             return aresult;
         }
@@ -1233,12 +1233,12 @@ namespace Reportman.Drawing
                     Font.Italic = newItalic;
                     Font.Style = (newBold ? 1 : 0) + (newItalic ? 2 : 0) + (Font.Underline ? 4 : 0) + (Font.StrikeOut ? 8 : 0);
                     Font.Size = (int)newFontSize;
-
+                    
                     UpdateFonts();
                     adata = GetTTFontData();
 
                     result += "/F" +
-                        Type1FontTopdfFontName(Font.Name, Font.Italic, Font.Bold, Font.GetFontFamilyKey(), Font.Style, File.PDFConformance) + " " +
+                        Type1FontTopdfFontName(Font.Name, Font.Italic, Font.Bold, Font.GetFontFamilyKey(), Font.Style,File.PDFConformance) + " " +
                         Font.Size.ToString(System.Globalization.CultureInfo.InvariantCulture) + " Tf" + eol;
 
                     actualFontFamily = newFontFamily;
@@ -1319,9 +1319,9 @@ namespace Reportman.Drawing
                 {
                     char key = astring[i];
                     if (adata.CacheWidths.IndexOfKey(key) >= 0)
-                        aresult += IntToHex(adata.CacheWidths[astring[i]].Glyph);
+                        aresult = aresult + IntToHex(adata.CacheWidths[astring[i]].Glyph);
                 }
-                aresult += ">";
+                aresult = aresult + ">";
             }
             else
             {
@@ -1338,13 +1338,13 @@ namespace Reportman.Drawing
                         default:
                             // Euro symbol exception
                             if (astring[i] == (char)8364)
-                                aresult += (char)128;
+                                aresult = aresult + (char)128;
                             else
-                                aresult += astring[i];
+                                aresult = aresult + astring[i];
                             break;
                     }
                 }
-                aresult += ")";
+                aresult = aresult + ")";
             }
             return aresult;
         }
@@ -1708,7 +1708,7 @@ namespace Reportman.Drawing
                     wordbreak = false;
                 // Calculates text extent and apply alignment
                 recsize = arect;
-                var linfo = TextExtent(Text, ref recsize, wordbreak, singleline, true, RightToLeft, isHtml);
+                var linfo = TextExtent(Text, ref recsize, wordbreak, singleline, true,RightToLeft, isHtml);
                 // Align bottom or center
                 posy = arect.Top;
                 if ((Alignment & AlignmentFlags_AlignBottom) > 0)
@@ -1747,7 +1747,7 @@ namespace Reportman.Drawing
                         {
                             if (astring[index] != ' ')
                             {
-                                aword += astring[index];
+                                aword = aword + astring[index];
                             }
                             else
                             {
@@ -1773,7 +1773,7 @@ namespace Reportman.Drawing
                         for (index = 0; index < lwords.Count; index++)
                         {
                             arec = arect;
-                            var winfos = TextExtent(lwords[index], ref arec, false, true, false, RightToLeft, isHtml);
+                            var winfos = TextExtent(lwords[index], ref arec, false, true, false,RightToLeft, isHtml);
                             if (winfos.Count > 0)
                                 lwordinfos.Add(winfos[0]);
                             else
@@ -1784,13 +1784,13 @@ namespace Reportman.Drawing
                             else
                                 nwidth = arec.Width;
                             lwidths.Add(nwidth);
-                            alinesize += nwidth;
+                            alinesize = alinesize + nwidth;
                         }
                         alinedif = arect.Width - alinesize;
                         if (alinedif > 0)
                         {
                             if (lwords.Count > 1)
-                                alinedif /= (lwords.Count - 1);
+                                alinedif = alinedif / (lwords.Count - 1);
                             if (RightToLeft)
                             {
                                 currpos = arect.Width;
@@ -1980,7 +1980,7 @@ namespace Reportman.Drawing
                     }
                     else
                     {
-                        File.ImageCount++;
+                        File.ImageCount = File.ImageCount + 1;
                         imageindex = File.ImageCount;
                         File.ImageIndexes.Add(internal_imageindex.ToString(), imageindex);
                     }
@@ -2120,7 +2120,7 @@ namespace Reportman.Drawing
                 */
                 else
                 {
-                    File.ImageCount++;
+                    File.ImageCount = File.ImageCount + 1;
                     imageindex = File.ImageCount;
                 }
                 SWriteLine(File.STempStream, "q");
@@ -2175,7 +2175,7 @@ namespace Reportman.Drawing
                         string imageMaskName = "";
                         if (imageMaskStream != null)
                         {
-                            File.ImageCount++;
+                            File.ImageCount = File.ImageCount + 1;
                             imageMaskName = "Im" + File.ImageCount.ToString();
 
                             // Saves the bitmap to temp bitmaps
@@ -2264,26 +2264,26 @@ namespace Reportman.Drawing
                         }
                         else
                             if (isgif)
+                        {
+                            SWriteLine(astream, "/Length " + fimagestream.Length.ToString());
+                            SWriteLine(astream, "/Filter [/LZWDecode]");
+                        }
+                        else
+                        {
+#if REPMAN_ZLIB
+                            if (File.Compressed)
                             {
-                                SWriteLine(astream, "/Length " + fimagestream.Length.ToString());
-                                SWriteLine(astream, "/Filter [/LZWDecode]");
+                                byte[] bytesLength = ASCIIEncoding.ASCII.GetBytes("/Length ");
+                                astream.Write(bytesLength, 0, bytesLength.Length);
+                                lengthPosition = astream.Position;
+                                SWriteLine(astream, "             ");
+                                SWriteLine(astream, "/Length1 " + fimagestream.Length.ToString());
+                                SWriteLine(astream, "/Filter [/FlateDecode]");
                             }
                             else
-                            {
-#if REPMAN_ZLIB
-                                if (File.Compressed)
-                                {
-                                    byte[] bytesLength = ASCIIEncoding.ASCII.GetBytes("/Length ");
-                                    astream.Write(bytesLength, 0, bytesLength.Length);
-                                    lengthPosition = astream.Position;
-                                    SWriteLine(astream, "             ");
-                                    SWriteLine(astream, "/Length1 " + fimagestream.Length.ToString());
-                                    SWriteLine(astream, "/Filter [/FlateDecode]");
-                                }
-                                else
 #endif
-                                    SWriteLine(astream, "/Length " + fimagestream.Length.ToString());
-                            }
+                                SWriteLine(astream, "/Length " + fimagestream.Length.ToString());
+                        }
                         SWriteLine(astream, ">>");
                         SWriteLine(astream, "stream");
                         fimagestream.Seek(0, System.IO.SeekOrigin.Begin);
@@ -2321,7 +2321,7 @@ namespace Reportman.Drawing
         /// <param name="RightToLeft">Whether the text is right-to-left.</param>
         /// <param name="isHtml">Whether the text carries HTML styling.</param>
         /// <returns>The list of measured lines.</returns>
-        public List<LineInfo> TextExtent(string Text, ref Rectangle rect, bool wordbreak, bool singleline, bool dolineinfo, bool RightToLeft, bool isHtml = false)
+        public List<LineInfo> TextExtent(string Text, ref Rectangle rect, bool wordbreak, bool singleline, bool dolineinfo,bool RightToLeft, bool isHtml = false)
         {
             List<LineInfo> result;
             bool useShaper = RightToLeft || isHtml || this.InfoProvider.GetType().Name == "FontInfoFt";
@@ -2334,7 +2334,7 @@ namespace Reportman.Drawing
                 // else (ForceComplexShaping path): preserve Font.Name as the caller set it
                 // (typically PDFFontType.Linked). GetTTFontData accepts Linked or Embedded.
                 var data = GetTTFontData();
-                result = this.InfoProvider.TextExtent(Text, ref rect, Font, data, wordbreak, singleline, Font.Size, isHtml);
+                result = this.InfoProvider.TextExtent(Text,ref rect,Font,data,wordbreak,singleline,Font.Size, isHtml);
             }
             else
             {
@@ -2432,7 +2432,7 @@ namespace Reportman.Drawing
                     linfo.Size = cutindex - startposition;
                     if (i > 0)
                         if (astring[i - 1] == (char)13)
-                            linfo.Size--;
+                            linfo.Size = linfo.Size - 1;
                     if (linfo.Size < 0)
                         linfo.Size = 0;
                     linfo.Width = (int)Math.Round((currentwidth * FResolution / PDFFile.CONS_PDFRES));
@@ -2440,7 +2440,7 @@ namespace Reportman.Drawing
                         maxwidth = currentwidth;
                     linfo.TopPos = currenttoppos - leading;
                     linfo.Height = linespacing;
-                    currenttoppos += linespacing;
+                    currenttoppos = currenttoppos + linespacing;
                     if (dolineinfo)
                         Lines.Add(linfo);
                     infocount++;
@@ -2490,7 +2490,7 @@ namespace Reportman.Drawing
                                 lastsize = currentwidth + newsize;
                             }
                         }
-                        currentwidth += newsize;
+                        currentwidth = currentwidth + newsize;
                     }
                     // When the character does not fit
                     else
@@ -2525,7 +2525,7 @@ namespace Reportman.Drawing
                                 maxwidth = currentwidth;
                             linfo.TopPos = currenttoppos - leading;
                             linfo.Height = linespacing;
-                            currenttoppos += linespacing;
+                            currenttoppos = currenttoppos + linespacing;
                             if (dolineinfo)
                                 Lines.Add(linfo);
                             infocount++;
@@ -2569,7 +2569,7 @@ namespace Reportman.Drawing
                     maxwidth = currentwidth;
                 linfo.TopPos = currenttoppos - leading;
                 linfo.Height = linespacing;
-                currenttoppos += linespacing;
+                currenttoppos = currenttoppos + linespacing;
                 if (dolineinfo)
                     Lines.Add(linfo);
                 infocount++;
@@ -3113,7 +3113,7 @@ namespace Reportman.Drawing
         }
         void AddToOffset(long offset)
         {
-            FObjectOffset += offset;
+            FObjectOffset = FObjectOffset + offset;
             FObjectOffsets.Add(FObjectOffset);
         }
         private void SWriteLine(Stream nstream, string value)
@@ -3122,8 +3122,8 @@ namespace Reportman.Drawing
         }
         void CreateFont(string subtype, string basefont, string encoding)
         {
-            FFontCount++;
-            FObjectCount++;
+            FFontCount = FFontCount + 1;
+            FObjectCount = FObjectCount + 1;
             FFontList.Add(FObjectCount.ToString());
             FTempStream.SetLength(0);
             SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
@@ -3140,7 +3140,7 @@ namespace Reportman.Drawing
         }
         void SetOutLine()
         {
-            FObjectCount++;
+            FObjectCount = FObjectCount + 1;
             FOutlinesNum = FObjectCount;
             FTempStream.SetLength(0);
             SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
@@ -3155,7 +3155,7 @@ namespace Reportman.Drawing
         void SetPages()
         {
             int i;
-            FObjectCount++;
+            FObjectCount = FObjectCount + 1;
             FParentNum = FObjectCount;
             FTempStream.SetLength(0);
             SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
@@ -3166,7 +3166,7 @@ namespace Reportman.Drawing
             {
                 SWriteLine(FTempStream, (FObjectCount + i + 1 + ImageCount).ToString() + " 0 R");
                 FPages.Add(PageObjNum.ToString());
-                PageObjNum += 2;
+                PageObjNum = PageObjNum + 2;
             }
             SWriteLine(FTempStream, "]");
             SWriteLine(FTempStream, "/Count " + FPage.ToString());
@@ -3207,7 +3207,7 @@ namespace Reportman.Drawing
                 if (adata.Embedded)
                 {
                     // Writes font resource data
-                    FObjectCount++;
+                    FObjectCount = FObjectCount + 1;
                     FTempStream.SetLength(0);
                     SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
                     MemoryStream fontcontent = Canvas.InfoProvider.GetFontStream(adata);
@@ -3237,7 +3237,7 @@ namespace Reportman.Drawing
                     adata.ObjectIndex = 0;
                 }
                 // Writes font descriptor
-                FObjectCount++;
+                FObjectCount = FObjectCount + 1;
                 FTempStream.SetLength(0);
                 SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
                 adata.DescriptorIndex = FObjectCount;
@@ -3319,7 +3319,7 @@ namespace Reportman.Drawing
                             cmaphead.Append(fromTo + " <" + PDFCanvas.IntToHex((int)nkey) + ">" + LINE_FEED);
                         }
                         cmaphead.Append("endbfchar" + LINE_FEED);
-                        currentindex += nsize;
+                        currentindex = currentindex + nsize;
                     }
                     /*
 										int currentindex = adata.FirstLoaded;
@@ -3358,7 +3358,7 @@ namespace Reportman.Drawing
                     cmaphead.Append("endcmap" + LINE_FEED +
                         "CMapName currentdict /CMap defineresource pop" + LINE_FEED +
                         "end end" + LINE_FEED);
-                    FObjectCount++;
+                    FObjectCount = FObjectCount + 1;
                     adata.ToUnicodeIndex = FObjectCount;
                     FTempStream.SetLength(0);
                     SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
@@ -3381,7 +3381,7 @@ namespace Reportman.Drawing
                 adata = (TTFontData)Canvas.FontData.GetByIndex(i);
                 if (adata.IsUnicode)
                 {
-                    FObjectCount++;
+                    FObjectCount = FObjectCount + 1;
                     FTempStream.SetLength(0);
                     adata.ObjectIndexParent = FObjectCount;
                     SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
@@ -3400,7 +3400,7 @@ namespace Reportman.Drawing
                     FTempStream.Seek(0, SeekOrigin.Begin);
                     FTempStream.WriteTo(FMainPDF);
 
-                    FObjectCount++;
+                    FObjectCount = FObjectCount + 1;
                     FTempStream.SetLength(0);
                     SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
                     SWriteLine(FTempStream, "<< /Type /Font");
@@ -3441,7 +3441,7 @@ namespace Reportman.Drawing
                         awidths = awidths + nvalue.ToString() + "[" + nwidth.ToString("#0.0", NumberFormatInfo.InvariantInfo) + "] ";
                         acount++;
                         if ((acount % 8) == 7)
-                            awidths += LINE_FEED;
+                            awidths = awidths + LINE_FEED;
 
                         index++;
                     }
@@ -3457,7 +3457,7 @@ namespace Reportman.Drawing
                 }
                 else
                 {
-                    FObjectCount++;
+                    FObjectCount = FObjectCount + 1;
                     FTempStream.SetLength(0);
                     adata.ObjectIndexParent = FObjectCount;
                     SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
@@ -3479,13 +3479,13 @@ namespace Reportman.Drawing
                             if (adata.Widths.IndexOfKey((char)index) >= 0)
                                 awidths = awidths + adata.Widths[(char)index].ToString("#.0", NumberFormatInfo.InvariantInfo) + " ";
                             else
-                                awidths += "0 ";
+                                awidths = awidths + "0 ";
                             index++;
                             if ((index % 8) == 7)
-                                awidths += LINE_FEED;
+                                awidths = awidths + LINE_FEED;
                         }
                         while (index <= adata.LastLoaded);
-                        awidths += "]";
+                        awidths = awidths + "]";
                         SWriteLine(FTempStream, "/Widths " + awidths);
                     }
                     SWriteLine(FTempStream, "/FontDescriptor " +
@@ -3509,7 +3509,7 @@ namespace Reportman.Drawing
         void StartStream()
         {
             // Starting of the stream
-            FObjectCount++;
+            FObjectCount = FObjectCount + 1;
             FTempStream.SetLength(0);
 
             if (PDFConformance == PDFConformanceType.PDF_A_3)
@@ -3570,7 +3570,8 @@ namespace Reportman.Drawing
         {
             // Verificar si todos los caracteres son ASCII
             bool isASCII = true;
-            text ??= "";
+            if (text == null)
+                text = "";
             foreach (char c in text)
             {
                 if (c > 127)
@@ -3675,7 +3676,7 @@ namespace Reportman.Drawing
                 AddToOffset(7 + PDF_HEADER_A3.Length);
             }
             // Writes Doc info
-            FObjectCount++;
+            FObjectCount = FObjectCount + 1;
             FTempStream.SetLength(0);
             SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
             SWriteLine(FTempStream, "<<");
@@ -4002,7 +4003,7 @@ namespace Reportman.Drawing
             aobj.PageHeight = NPageHeight;
             FPageInfos.Add(aobj);
 
-            FPage++;
+            FPage = FPage + 1;
 
             FSTempStream.Seek(0, System.IO.SeekOrigin.Begin);
             long StreamSize = FSTempStream.Length;
@@ -4023,7 +4024,7 @@ namespace Reportman.Drawing
             AddToOffset(FTempStream.Length);
             FTempStream.Seek(0, SeekOrigin.Begin);
             FTempStream.WriteTo(FMainPDF);
-            FObjectCount++;
+            FObjectCount = FObjectCount + 1;
             FTempStream.SetLength(0);
             SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
             SWriteLine(FTempStream, StreamSize.ToString());
@@ -4032,7 +4033,7 @@ namespace Reportman.Drawing
             FTempStream.Seek(0, SeekOrigin.Begin);
             FTempStream.WriteTo(FMainPDF);
 
-            FObjectCount++;
+            FObjectCount = FObjectCount + 1;
             FTempStream.SetLength(0);
             SWriteLine(FTempStream, (FObjectCount).ToString() + " 0 obj");
             SWriteLine(FTempStream, "<< /Length " + (FObjectCount + 1).ToString() + " 0 R");
@@ -4047,7 +4048,7 @@ namespace Reportman.Drawing
         {
             int i;
             TTFontData adata;
-            FObjectCount++;
+            FObjectCount = FObjectCount + 1;
             FResourceNum = FObjectCount;
             FTempStream.SetLength(0);
             SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
@@ -4161,7 +4162,7 @@ namespace Reportman.Drawing
         }
         void SetCatalog()
         {
-            FObjectCount++;
+            FObjectCount = FObjectCount + 1;
             FCatalogNum = FObjectCount;
             FTempStream.SetLength(0);
             SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
@@ -4183,8 +4184,8 @@ namespace Reportman.Drawing
                             + " 0 R";
                         resources = resources + " " + efile.ResourceNumber.ToString() + " 0 R";
                     }
-                    files += "]";
-                    resources += "]";
+                    files = files + "]";
+                    resources = resources + "]";
                     SWriteLine(FTempStream, "/Names <<");
                     SWriteLine(FTempStream, "  /EmbeddedFiles << /Names " + files + " >>");
                     SWriteLine(FTempStream, ">>");
@@ -4207,14 +4208,14 @@ namespace Reportman.Drawing
             x = offset.Length;
             string aresult = "";
             for (y = 1; y <= 10 - x; y++)
-                aresult += "0";
-            aresult += offset;
+                aresult = aresult + "0";
+            aresult = aresult + offset;
             return aresult;
         }
         void SetXref()
         {
             int i;
-            FObjectCount++;
+            FObjectCount = FObjectCount + 1;
             FTempStream.SetLength(0);
             SWriteLine(FTempStream, "xref");
             SWriteLine(FTempStream, "0 " + FObjectCount.ToString());
@@ -4246,7 +4247,7 @@ namespace Reportman.Drawing
                 foreach (var annotation in PageAnnotations[annPage])
                 {
                     FTempStream.SetLength(0);
-                    FObjectCount++;
+                    FObjectCount = FObjectCount + 1;
 
                     annotation.StreamNumber = FObjectCount;
                     SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
@@ -4307,7 +4308,7 @@ namespace Reportman.Drawing
                     annotationsString.Append(annotation.StreamNumber.ToString() + " 0 R");
                 }
             }
-            FObjectCount++;
+            FObjectCount = FObjectCount + 1;
             FTempStream.SetLength(0);
             SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
             SWriteLine(FTempStream, "<< /Type /Page");
@@ -4326,14 +4327,14 @@ namespace Reportman.Drawing
             AddToOffset(FTempStream.Length);
             FTempStream.Seek(0, SeekOrigin.Begin);
             FTempStream.WriteTo(FMainPDF);
-            FCurrentSetPageObject++;
+            FCurrentSetPageObject = FCurrentSetPageObject + 1;
         }
 
         void WriteBitmap(int index)
         {
             if (!CalculateOnly)
             {
-                FObjectCount++;
+                FObjectCount = FObjectCount + 1;
                 FTempStream.SetLength(0);
                 string resIndex = FObjectCount.ToString();
                 SWriteLine(FTempStream, resIndex + " 0 obj");

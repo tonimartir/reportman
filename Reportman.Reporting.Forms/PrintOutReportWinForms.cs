@@ -290,10 +290,10 @@ namespace Reportman.Reporting.Forms
             {
                 DataGridViewColumn ncol = Columnas[idxcol];
                 int newwidth = System.Convert.ToInt32(Math.Round(ncol.Width * scalepixels));
-                maxwidth += newwidth;
+                maxwidth = maxwidth + newwidth;
 
                 if (idxcol < (Columnas.Count - 1))
-                    maxwidth += separator;
+                    maxwidth = maxwidth + separator;
             }
 
             List<ShapeItem> HorzShapes = new List<ShapeItem>();
@@ -311,7 +311,7 @@ namespace Reportman.Reporting.Forms
                 if (maxwidth > pagewidth)
                 {
                     fontscale = newscale;
-                    fsize *= fontscale;
+                    fsize = fsize * fontscale;
                     if (fsize <= 0)
                         fsize = 1;
                 }
@@ -587,63 +587,63 @@ namespace Reportman.Reporting.Forms
                     }
                     else
                         if (ncol is DataGridViewCheckBoxColumn)
-                        {
-                            ColumnasBool.Add(idxcol, ncol);
-                            ntable.Columns.Add(Campos[idxcol], System.Type.GetType("System.Boolean"));
+                    {
+                        ColumnasBool.Add(idxcol, ncol);
+                        ntable.Columns.Add(Campos[idxcol], System.Type.GetType("System.Boolean"));
 
-                            ShapeItem cuaditem = new ShapeItem();
-                            cuaditem.Report = nreport;
-                            cuaditem.Shape = ShapeType.Rectangle;
-                            cuaditem.PrintCondition = aliasname + "." + Campos[idxcol] + "<>NULL";
-                            //cuaditem.Align = PrintItemAlign.TopBottom;
-                            cuaditem.BrushStyle = BrushType.Clear;
-                            cuaditem.Height = rowheight;
-                            int shapepos = posx + (litem.Width / 2) - BOOL_WIDTH / 2;
-                            cuaditem.PosX = shapepos;
-                            cuaditem.PosY = BOOL_SEP;
-                            cuaditem.Width = BOOL_WIDTH;
-                            cuaditem.Height = BOOL_WIDTH;
-                            nreport.GenerateNewName(cuaditem);
-                            Detail.Components.Add(cuaditem);
+                        ShapeItem cuaditem = new ShapeItem();
+                        cuaditem.Report = nreport;
+                        cuaditem.Shape = ShapeType.Rectangle;
+                        cuaditem.PrintCondition = aliasname + "." + Campos[idxcol] + "<>NULL";
+                        //cuaditem.Align = PrintItemAlign.TopBottom;
+                        cuaditem.BrushStyle = BrushType.Clear;
+                        cuaditem.Height = rowheight;
+                        int shapepos = posx + (litem.Width / 2) - BOOL_WIDTH / 2;
+                        cuaditem.PosX = shapepos;
+                        cuaditem.PosY = BOOL_SEP;
+                        cuaditem.Width = BOOL_WIDTH;
+                        cuaditem.Height = BOOL_WIDTH;
+                        nreport.GenerateNewName(cuaditem);
+                        Detail.Components.Add(cuaditem);
 
-                            cuaditem = new ShapeItem();
-                            cuaditem.Report = nreport; ;
-                            cuaditem.Shape = ShapeType.Oblique1;
-                            cuaditem.PrintCondition = aliasname + "." + Campos[idxcol];
-                            //cuaditem.Align = PrintItemAlign.TopBottom;
-                            cuaditem.BrushStyle = BrushType.Clear;
-                            cuaditem.Height = rowheight;
-                            cuaditem.PosX = shapepos;
-                            cuaditem.PosY = BOOL_SEP;
-                            cuaditem.Width = BOOL_WIDTH;
-                            cuaditem.Height = BOOL_WIDTH;
-                            nreport.GenerateNewName(cuaditem);
-                            Detail.Components.Add(cuaditem);
+                        cuaditem = new ShapeItem();
+                        cuaditem.Report = nreport; ;
+                        cuaditem.Shape = ShapeType.Oblique1;
+                        cuaditem.PrintCondition = aliasname + "." + Campos[idxcol];
+                        //cuaditem.Align = PrintItemAlign.TopBottom;
+                        cuaditem.BrushStyle = BrushType.Clear;
+                        cuaditem.Height = rowheight;
+                        cuaditem.PosX = shapepos;
+                        cuaditem.PosY = BOOL_SEP;
+                        cuaditem.Width = BOOL_WIDTH;
+                        cuaditem.Height = BOOL_WIDTH;
+                        nreport.GenerateNewName(cuaditem);
+                        Detail.Components.Add(cuaditem);
 
 
-                            cuaditem = new ShapeItem();
-                            cuaditem.Report = nreport;
-                            cuaditem.Shape = ShapeType.Oblique2;
-                            cuaditem.PrintCondition = aliasname + "." + Campos[idxcol];
-                            //cuaditem.Align = PrintItemAlign.TopBottom;
-                            cuaditem.BrushStyle = BrushType.Clear;
-                            cuaditem.Height = rowheight;
-                            cuaditem.PosX = shapepos;
-                            cuaditem.PosY = BOOL_SEP;
-                            cuaditem.Width = BOOL_WIDTH;
-                            cuaditem.Height = BOOL_WIDTH;
-                            nreport.GenerateNewName(cuaditem);
-                            Detail.Components.Add(cuaditem);
+                        cuaditem = new ShapeItem();
+                        cuaditem.Report = nreport;
+                        cuaditem.Shape = ShapeType.Oblique2;
+                        cuaditem.PrintCondition = aliasname + "." + Campos[idxcol];
+                        //cuaditem.Align = PrintItemAlign.TopBottom;
+                        cuaditem.BrushStyle = BrushType.Clear;
+                        cuaditem.Height = rowheight;
+                        cuaditem.PosX = shapepos;
+                        cuaditem.PosY = BOOL_SEP;
+                        cuaditem.Width = BOOL_WIDTH;
+                        cuaditem.Height = BOOL_WIDTH;
+                        nreport.GenerateNewName(cuaditem);
+                        Detail.Components.Add(cuaditem);
 
-                        }
-                        else
-                            throw new Exception("Tipo de columna no soportada:" + ncol.GetType().ToString());
+                    }
+                    else
+                        throw new Exception("Tipo de columna no soportada:" + ncol.GetType().ToString());
                 }
 
 
 
-                posx += litem.Width;
-                posx += System.Convert.ToInt32(separator * scalesep);
+                posx = posx + litem.Width;
+                posx = posx + System.Convert.ToInt32(separator * scalesep);
 
 
                 if (opts.VerticalLines)
@@ -741,7 +741,7 @@ namespace Reportman.Reporting.Forms
                                 }
                                 else
                                     if (!ngrid.DefaultCellStyle.BackColor.IsEmpty)
-                                        nstyle = ngrid.DefaultCellStyle;
+                                    nstyle = ngrid.DefaultCellStyle;
                             }
                             else
                             {
@@ -802,9 +802,9 @@ namespace Reportman.Reporting.Forms
                 }
                 else
                     if (nobj is Icon)
-                    {
-                        img = ((Icon)nobj).ToBitmap();
-                    }
+                {
+                    img = ((Icon)nobj).ToBitmap();
+                }
                 if (img != null)
                 {
                     using (Bitmap nbitmap = new Bitmap(img.Width, img.Height))

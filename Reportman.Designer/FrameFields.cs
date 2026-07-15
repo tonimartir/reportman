@@ -66,7 +66,8 @@ namespace Reportman.Designer
                     anew.Tag = FReport.Evaluator;
                     anew.Nodes.Add("");
                 }
-                RView.SelectedNode ??= RView.TopNode;
+                if (RView.SelectedNode == null)
+                    RView.SelectedNode = RView.TopNode;
             }
             finally
             {

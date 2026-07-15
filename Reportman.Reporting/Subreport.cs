@@ -151,9 +151,9 @@ namespace Reportman.Reporting
                 }
                 else
                     if (newstate == SubReportEvent.SubReportEnd)
-                    {
-                        index = GroupCount;
-                    }
+                {
+                    index = GroupCount;
+                }
                 if (index > 0)
                 {
                     ffirstdetail = FirstDetail;

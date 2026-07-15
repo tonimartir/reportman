@@ -277,7 +277,8 @@ namespace Reportman.Designer
             ed.Text = (FEdAlias != null) ? FEdAlias.Text : (FRoute == Route.Agent ? "AGENT" : "CONNECTION");
             FEdAlias = ed;
 
-            FParams ??= new ConnectionParamsControl();
+            if (FParams == null)
+                FParams = new ConnectionParamsControl();
             FParams.Dock = DockStyle.Fill;
             FParams.Margin = new Padding(0, 6, 0, 0);
 

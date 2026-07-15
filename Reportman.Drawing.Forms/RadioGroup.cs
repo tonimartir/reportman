@@ -52,13 +52,13 @@ namespace Reportman.Drawing.Forms
                     FSelectedIndex = -1;
                 }
                 else
-                    if (value < buttons.Count)
-                    {
-                        buttons[value].Checked = true;
-                        if (FSelectedIndex != value)
-                            diferent = true;
-                        FSelectedIndex = value;
-                    }
+                if (value < buttons.Count)
+                {
+                    buttons[value].Checked = true;
+                    if (FSelectedIndex != value)
+                        diferent = true;
+                    FSelectedIndex = value;
+                }
                 if (diferent)
                     if (SelectedIndexChanged != null)
                         SelectedIndexChanged(this, new EventArgs());
@@ -161,7 +161,7 @@ namespace Reportman.Drawing.Forms
                     if (newsize.Height < 17)
                         newsize.Height = 17;
                     if (Horizontal)
-                        newsize.Width += 20;
+                        newsize.Width = newsize.Width + 20;
                     if (newsize.Width > maxsize.Width)
                         maxsize = new SizeF(newsize.Width, maxsize.Height);
                     if (newsize.Height > maxsize.Height)
@@ -207,19 +207,19 @@ namespace Reportman.Drawing.Forms
                 INTER_GAP_VERTICAL = (Height - TOP_GAP - imaxsize.Height - BOTTOM_GAP) / buttons.Count;
                 TopPos = TOP_GAP;
                 if (Text.Length > 0)
-                    TopPos += imaxsize.Height;
+                    TopPos = TopPos + imaxsize.Height;
                 //TopPos = TopPos + (Height - TopPos) / 2- imaxsize.Height/2;
                 foreach (RadioButton radio in buttons)
                 {
                     if (Horizontal)
                     {
                         radio.SetBounds(LeftPos, TopPos, imaxsize.Width, imaxsize.Height);
-                        LeftPos += INTER_GAP;
+                        LeftPos = LeftPos + INTER_GAP;
                     }
                     else
                     {
                         radio.SetBounds(LeftPos, TopPos, imaxsize.Width, imaxsize.Height);
-                        TopPos += INTER_GAP_VERTICAL;
+                        TopPos = TopPos + INTER_GAP_VERTICAL;
                     }
                 }
             }

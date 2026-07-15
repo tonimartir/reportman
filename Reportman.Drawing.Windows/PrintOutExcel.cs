@@ -277,15 +277,15 @@ namespace Reportman.Drawing
                         }
                         else
                             if (atext.Length > 0)
-                            {
-                                if (atext[0] == '=')
-                                    atext = "'" + atext;
-                                param1[0] = atext;
-                                cell.GetType().InvokeMember("Value",
-                                    System.Reflection.BindingFlags.SetProperty,
-                                    null, cell, param1);
-                                assigned = true;
-                            }
+                        {
+                            if (atext[0] == '=')
+                                atext = "'" + atext;
+                            param1[0] = atext;
+                            cell.GetType().InvokeMember("Value",
+                                System.Reflection.BindingFlags.SetProperty,
+                                null, cell, param1);
+                            assigned = true;
+                        }
                     }
                     if (assigned)
                     {
@@ -562,7 +562,7 @@ namespace Reportman.Drawing
                 }
                 else
                 {
-                    rowinit += rows.Count;
+                    rowinit = rowinit + rows.Count;
                 }
 
                 shcount++;

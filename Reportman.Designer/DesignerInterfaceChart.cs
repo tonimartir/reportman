@@ -426,218 +426,218 @@ namespace Reportman.Designer
                 FPrintItemChart.ValueExpression = newvalue;
             }
             else
-                // Expression X
-                if (pname == Translator.TranslateStr(571) + " X")
-                {
-                    FPrintItemChart.ValueXExpression = newvalue;
-                }
-                else
-                    // Identifier
-                    if (pname == Translator.TranslateStr(304))
-                    {
-                        FPrintItemChart.Identifier = newvalue;
-                    }
-                    else
-                        // ChartType
-                        if (pname == Translator.TranslateStr(712))
-                        {
-                            FPrintItemChart.ChartStyle = (ChartType)(int)newvalue;
-                        }
-                        else
-                            // GetValue Condition
-                            if (pname == Translator.TranslateStr(717))
-                            {
-                                FPrintItemChart.GetValueCondition = newvalue;
-                            }
-                            else
-                                // Change Serie Expression
-                                if (pname == Translator.TranslateStr(714))
-                                {
-                                    FPrintItemChart.ChangeSerieExpression = newvalue;
-                                }
-                                else
-                                    // Change Serie Expression
-                                    if (pname == Translator.TranslateStr(715))
-                                    {
-                                        FPrintItemChart.ChangeSerieBool = newvalue;
-                                    }
-                                    else
-                                        // Clear Chart Expression
-                                        if (pname == Translator.TranslateStr(966))
-                                        {
-                                            FPrintItemChart.ClearExpression = newvalue.ToString();
-                                        }
-                                        else
-                                            // Change Serie Bool Expression
-                                            if (pname == Translator.TranslateStr(967))
-                                            {
-                                                FPrintItemChart.ClearExpressionBool = newvalue;
-                                            }
-                                            else
-                                                // Caption Expression
-                                                if (pname == Translator.TranslateStr(716))
-                                                {
-                                                    FPrintItemChart.CaptionExpression = newvalue;
-                                                }
-                                                else
-                                                    // Serie Caption Expression
-                                                    if (pname == Translator.TranslateStr(1331))
-                                                    {
-                                                        FPrintItemChart.SerieCaption = newvalue;
-                                                    }
-                                                    else
-                                                        // Value Color Expression
-                                                        if (pname == Translator.TranslateStr(1365))
-                                                        {
-                                                            FPrintItemChart.ColorExpression = newvalue;
-                                                        }
-                                                        else
-                                                            // Serie Color Expression
-                                                            if (pname == Translator.TranslateStr(1364))
-                                                            {
-                                                                FPrintItemChart.SerieColorExpression = newvalue;
-                                                            }
-                                                            else
-                                                                // Chart Driver
-                                                                if (pname == Translator.TranslateStr(67))
-                                                                {
-                                                                    FPrintItemChart.Driver = (ChartDriver)(int)newvalue;
-                                                                }
-                                                                else
-                                                                    // View3d
-                                                                    if (pname == Translator.TranslateStr(904))
-                                                                    {
-                                                                        FPrintItemChart.View3d = newvalue;
-                                                                    }
-                                                                    else
-                                                                        // View3dWalls
-                                                                        if (pname == Translator.TranslateStr(905))
-                                                                        {
-                                                                            FPrintItemChart.View3dWalls = newvalue;
-                                                                        }
-                                                                        else
-                                                                            // Perspective
-                                                                            if (pname == Translator.TranslateStr(906))
-                                                                            {
-                                                                                FPrintItemChart.Perspective = newvalue;
-                                                                            }
-                                                                            else
-                                                                                // Elevation
-                                                                                if (pname == Translator.TranslateStr(907))
-                                                                                {
-                                                                                    FPrintItemChart.Elevation = newvalue;
-                                                                                }
-                                                                                else
-                                                                                    // Rotation
-                                                                                    if (pname == Translator.TranslateStr(908))
-                                                                                    {
-                                                                                        FPrintItemChart.Rotation = newvalue;
-                                                                                    }
-                                                                                    else
-                                                                                        // Orthogonal
-                                                                                        if (pname == Translator.TranslateStr(909))
-                                                                                        {
-                                                                                            FPrintItemChart.Orthogonal = newvalue;
-                                                                                        }
-                                                                                        else
-                                                                                            // Zoom
-                                                                                            if (pname == Translator.TranslateStr(910))
-                                                                                            {
-                                                                                                FPrintItemChart.Zoom = newvalue;
-                                                                                            }
-                                                                                            else
-                                                                                                // Horizontal Offset
-                                                                                                if (pname == Translator.TranslateStr(911))
-                                                                                                {
-                                                                                                    FPrintItemChart.HorzOffset = newvalue;
-                                                                                                }
-                                                                                                else
-                                                                                                    // Vertical Offset
-                                                                                                    if (pname == Translator.TranslateStr(912))
-                                                                                                    {
-                                                                                                        FPrintItemChart.VertOffset = newvalue;
-                                                                                                    }
-                                                                                                    else
-                                                                                                        // Tilt
-                                                                                                        if (pname == Translator.TranslateStr(913))
-                                                                                                        {
-                                                                                                            FPrintItemChart.Tilt = newvalue;
-                                                                                                        }
-                                                                                                        else
-                                                                                                            // DPIRes
-                                                                                                            if (pname == Translator.TranslateStr(666))
-                                                                                                            {
-                                                                                                                FPrintItemChart.Resolution = newvalue;
-                                                                                                            }
-                                                                                                            else
-                                                                                                                // MultiBar
-                                                                                                                if (pname == Translator.TranslateStr(914))
-                                                                                                                {
-                                                                                                                    FPrintItemChart.MultiBar = (BarType)(int)newvalue;
-                                                                                                                }
-                                                                                                                else
-                                                                                                                    // Show Hint
-                                                                                                                    if (pname == Translator.TranslateStr(1228))
-                                                                                                                    {
-                                                                                                                        FPrintItemChart.ShowHint = newvalue;
-                                                                                                                    }
-                                                                                                                    else
-                                                                                                                        // Show Legend
-                                                                                                                        if (pname == Translator.TranslateStr(1229))
-                                                                                                                        {
-                                                                                                                            FPrintItemChart.ShowLegend = newvalue;
-                                                                                                                        }
-                                                                                                                        else
-                                                                                                                            // Mark Type
-                                                                                                                            if (pname == Translator.TranslateStr(1351))
-                                                                                                                            {
-                                                                                                                                FPrintItemChart.MarkStyle = newvalue;
-                                                                                                                            }
-                                                                                                                            else
-                                                                                                                                // Vertical axis font size
-                                                                                                                                if (pname == Translator.TranslateStr(1361))
-                                                                                                                                {
-                                                                                                                                    FPrintItemChart.VertFontSize = newvalue;
-                                                                                                                                }
-                                                                                                                                else
-                                                                                                                                    // Horizontal axis font size
-                                                                                                                                    if (pname == Translator.TranslateStr(1363))
-                                                                                                                                    {
-                                                                                                                                        FPrintItemChart.HorzFontSize = newvalue;
-                                                                                                                                    }
-                                                                                                                                    else
-                                                                                                                                        // Vertical axis font rotation
-                                                                                                                                        if (pname == Translator.TranslateStr(1362))
-                                                                                                                                        {
-                                                                                                                                            FPrintItemChart.VertFontRotation = newvalue;
-                                                                                                                                        }
-                                                                                                                                        else
-                                                                                                                                            // Horizontal axis font rotation
-                                                                                                                                            if (pname == Translator.TranslateStr(1376))
-                                                                                                                                            {
-                                                                                                                                                FPrintItemChart.HorzFontRotation = newvalue;
-                                                                                                                                            }
-                                                                                                                                            else
-                                                                                                                                                // Axis AutoRange
-                                                                                                                                                if (pname == VerticalAxisAutoRangeName)
-                                                                                                                                                {
-                                                                                                                                                    FPrintItemChart.AutoRange = (Series.AutoRangeAxis)(int)newvalue;
-                                                                                                                                                }
-                                                                                                                                                else
-                                                                                                                                                    // ChartType
-                                                                                                                                                    if (pname == VerticalAxisMinimum)
-                                                                                                                                                    {
-                                                                                                                                                        FPrintItemChart.AxisYInitial = newvalue;
-                                                                                                                                                    }
-                                                                                                                                                    else
-                                                                                                                                                        // ChartType
-                                                                                                                                                        if (pname == VerticalAxisMaximum)
-                                                                                                                                                        {
-                                                                                                                                                            FPrintItemChart.AxisYFinal = newvalue;
-                                                                                                                                                        }
-                                                                                                                                                        else
-                                                                                                                                                            // inherited
-                                                                                                                                                            base.SetProperty(pname, newvalue);
+            // Expression X
+            if (pname == Translator.TranslateStr(571) + " X")
+            {
+                FPrintItemChart.ValueXExpression = newvalue;
+            }
+            else
+            // Identifier
+            if (pname == Translator.TranslateStr(304))
+            {
+                FPrintItemChart.Identifier = newvalue;
+            }
+            else
+            // ChartType
+            if (pname == Translator.TranslateStr(712))
+            {
+                FPrintItemChart.ChartStyle = (ChartType)(int)newvalue;
+            }
+            else
+            // GetValue Condition
+            if (pname == Translator.TranslateStr(717))
+            {
+                FPrintItemChart.GetValueCondition = newvalue;
+            }
+            else
+            // Change Serie Expression
+            if (pname == Translator.TranslateStr(714))
+            {
+                FPrintItemChart.ChangeSerieExpression = newvalue;
+            }
+            else
+            // Change Serie Expression
+            if (pname == Translator.TranslateStr(715))
+            {
+                FPrintItemChart.ChangeSerieBool = newvalue;
+            }
+            else
+            // Clear Chart Expression
+            if (pname == Translator.TranslateStr(966))
+            {
+                FPrintItemChart.ClearExpression = newvalue.ToString();
+            }
+            else
+            // Change Serie Bool Expression
+            if (pname == Translator.TranslateStr(967))
+            {
+                FPrintItemChart.ClearExpressionBool = newvalue;
+            }
+            else
+            // Caption Expression
+            if (pname == Translator.TranslateStr(716))
+            {
+                FPrintItemChart.CaptionExpression = newvalue;
+            }
+            else
+            // Serie Caption Expression
+            if (pname == Translator.TranslateStr(1331))
+            {
+                FPrintItemChart.SerieCaption = newvalue;
+            }
+            else
+            // Value Color Expression
+            if (pname == Translator.TranslateStr(1365))
+            {
+                FPrintItemChart.ColorExpression = newvalue;
+            }
+            else
+            // Serie Color Expression
+            if (pname == Translator.TranslateStr(1364))
+            {
+                FPrintItemChart.SerieColorExpression = newvalue;
+            }
+            else
+            // Chart Driver
+            if (pname == Translator.TranslateStr(67))
+            {
+                FPrintItemChart.Driver = (ChartDriver)(int)newvalue;
+            }
+            else
+            // View3d
+            if (pname == Translator.TranslateStr(904))
+            {
+                FPrintItemChart.View3d = newvalue;
+            }
+            else
+            // View3dWalls
+            if (pname == Translator.TranslateStr(905))
+            {
+                FPrintItemChart.View3dWalls = newvalue;
+            }
+            else
+            // Perspective
+            if (pname == Translator.TranslateStr(906))
+            {
+                FPrintItemChart.Perspective = newvalue;
+            }
+            else
+            // Elevation
+            if (pname == Translator.TranslateStr(907))
+            {
+                FPrintItemChart.Elevation = newvalue;
+            }
+            else
+            // Rotation
+            if (pname == Translator.TranslateStr(908))
+            {
+                FPrintItemChart.Rotation = newvalue;
+            }
+            else
+            // Orthogonal
+            if (pname == Translator.TranslateStr(909))
+            {
+                FPrintItemChart.Orthogonal = newvalue;
+            }
+            else
+            // Zoom
+            if (pname == Translator.TranslateStr(910))
+            {
+                FPrintItemChart.Zoom = newvalue;
+            }
+            else
+            // Horizontal Offset
+            if (pname == Translator.TranslateStr(911))
+            {
+                FPrintItemChart.HorzOffset = newvalue;
+            }
+            else
+            // Vertical Offset
+            if (pname == Translator.TranslateStr(912))
+            {
+                FPrintItemChart.VertOffset = newvalue;
+            }
+            else
+            // Tilt
+            if (pname == Translator.TranslateStr(913))
+            {
+                FPrintItemChart.Tilt = newvalue;
+            }
+            else
+            // DPIRes
+            if (pname == Translator.TranslateStr(666))
+            {
+                FPrintItemChart.Resolution = newvalue;
+            }
+            else
+            // MultiBar
+            if (pname == Translator.TranslateStr(914))
+            {
+                FPrintItemChart.MultiBar = (BarType)(int)newvalue;
+            }
+            else
+            // Show Hint
+            if (pname == Translator.TranslateStr(1228))
+            {
+                FPrintItemChart.ShowHint = newvalue;
+            }
+            else
+            // Show Legend
+            if (pname == Translator.TranslateStr(1229))
+            {
+                FPrintItemChart.ShowLegend = newvalue;
+            }
+            else
+            // Mark Type
+            if (pname == Translator.TranslateStr(1351))
+            {
+                FPrintItemChart.MarkStyle = newvalue;
+            }
+            else
+            // Vertical axis font size
+            if (pname == Translator.TranslateStr(1361))
+            {
+                FPrintItemChart.VertFontSize = newvalue;
+            }
+            else
+            // Horizontal axis font size
+            if (pname == Translator.TranslateStr(1363))
+            {
+                FPrintItemChart.HorzFontSize = newvalue;
+            }
+            else
+            // Vertical axis font rotation
+            if (pname == Translator.TranslateStr(1362))
+            {
+                FPrintItemChart.VertFontRotation = newvalue;
+            }
+            else
+            // Horizontal axis font rotation
+            if (pname == Translator.TranslateStr(1376))
+            {
+                FPrintItemChart.HorzFontRotation = newvalue;
+            }
+            else
+            // Axis AutoRange
+            if (pname == VerticalAxisAutoRangeName)
+            {
+                FPrintItemChart.AutoRange = (Series.AutoRangeAxis)(int)newvalue;
+            }
+            else
+            // ChartType
+            if (pname == VerticalAxisMinimum)
+            {
+                FPrintItemChart.AxisYInitial = newvalue;
+            }
+            else
+            // ChartType
+            if (pname == VerticalAxisMaximum)
+            {
+                FPrintItemChart.AxisYFinal = newvalue;
+            }
+            else
+                // inherited
+                base.SetProperty(pname, newvalue);
             if (FPrintItemChart.DrawHelper != null)
             {
                 ((ChartDrawHelper)FPrintItemChart.DrawHelper).Bitmap = null;

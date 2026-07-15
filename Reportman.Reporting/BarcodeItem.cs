@@ -217,13 +217,13 @@ namespace Reportman.Reporting
                     if (squareWidth > squareHeight)
                     {
                         int dif = squareWidth - squareHeight;
-                        aposx += (dif * barcodeWidth) / 2;
+                        aposx = aposx + (dif * barcodeWidth) / 2;
                         squareWidth = squareHeight;
                     }
                     else
                     {
                         int dif = squareHeight - squareWidth;
-                        aposy += (dif * barcodeHeight) / 2;
+                        aposy = aposy + (dif * barcodeHeight) / 2;
                         squareHeight = squareWidth;
                     }
                     Point origin = new Point(aposx + squareWidth * barcodeWidth / 2, aposy + squareHeight * barcodeHeight / 2);
@@ -298,7 +298,7 @@ namespace Reportman.Reporting
                                 metafile.Pages[metafile.CurrentPage].Objects.Add(metaobj);
                             }
                         }
-                        aposy += squareHeight;
+                        aposy = aposy + squareHeight;
                     }
 
 
@@ -464,7 +464,7 @@ namespace Reportman.Reporting
         {
 
         }
-        private static string GetEAN(string nr)
+        private string GetEAN(string nr)
         {
             int i, fak, sum;
             string tmp;
@@ -475,9 +475,9 @@ namespace Reportman.Reporting
             for (i = 0; i < tmp.Length; i++)
             {
                 if ((fak % 2) == 0)
-                    sum += System.Convert.ToInt32("" + tmp[i]) * 1;
+                    sum = sum + System.Convert.ToInt32("" + tmp[i]) * 1;
                 else
-                    sum += System.Convert.ToInt32("" + tmp[i]) * 3;
+                    sum = sum + System.Convert.ToInt32("" + tmp[i]) * 3;
                 fak--;
             }
             if ((sum % 10) == 0)
@@ -518,14 +518,14 @@ namespace Reportman.Reporting
                 }
                 // Start code
                 if (i == 0)
-                    aresult += DoConvert(startcode);
+                    aresult = aresult + DoConvert(startcode);
                 // Look for EAN control
                 int idxC = 1;
 
                 if (text[i] == (char)0xBF)
                 {
-                    aresult += DoConvert("411131");
-                    achecksum += 102 * (i + 1);
+                    aresult = aresult + DoConvert("411131");
+                    achecksum = achecksum + 102 * (i + 1);
                     i++;
                     idxC++;
                     if (i >= text.Length)
@@ -540,15 +540,15 @@ namespace Reportman.Reporting
                             idx = Code128.FindCodeAB(btyp, text[i]);
                             if (idx < 0)
                                 idx = Code128.FindCodeAB(btyp, ' ');
-                            aresult += DoConvert(Code128.table[idx].data);
-                            achecksum += idx * (i + 1);
+                            aresult = aresult + DoConvert(Code128.table[idx].data);
+                            achecksum = achecksum + idx * (i + 1);
                             i++;
                             // Look for EAN control
                             if (i < text.Length)
                                 if (text[i] == (char)0xBF)
                                 {
-                                    aresult += DoConvert("411131");
-                                    achecksum += 102 * (i + 1);
+                                    aresult = aresult + DoConvert("411131");
+                                    achecksum = achecksum + 102 * (i + 1);
                                     i++;
                                     continue;
                                 }
@@ -558,7 +558,7 @@ namespace Reportman.Reporting
                         cadc = "";
                         while (i < text.Length)
                         {
-                            cadc += text[i];
+                            cadc = cadc + text[i];
                             if (cadc.Length > 1)
                             {
                                 idx = Code128.FindCodeC(cadc);
@@ -566,9 +566,9 @@ namespace Reportman.Reporting
                                 {
                                     idx = Code128.FindCodeC("00");
                                 }
-                                achecksum += idx * idxC;
+                                achecksum = achecksum + idx * idxC;
                                 idxC++;
-                                aresult += DoConvert(Code128.table[idx].data);
+                                aresult = aresult + DoConvert(Code128.table[idx].data);
                                 cadc = "";
                             }
                             i++;
@@ -576,8 +576,8 @@ namespace Reportman.Reporting
                             if (i < text.Length)
                                 if (text[i] == (char)0xBF)
                                 {
-                                    aresult += DoConvert("411131");
-                                    achecksum += 102 * idxC;
+                                    aresult = aresult + DoConvert("411131");
+                                    achecksum = achecksum + 102 * idxC;
                                     idxC++;
                                     i++;
                                     continue;
@@ -587,9 +587,9 @@ namespace Reportman.Reporting
                 }
 
             }
-            achecksum %= 103;
-            aresult += DoConvert(Code128.table[achecksum].data);
-            aresult += DoConvert(Code128.Stop);
+            achecksum = achecksum % 103;
+            aresult = aresult + DoConvert(Code128.table[achecksum].data);
+            aresult = aresult + DoConvert(Code128.Stop);
             return aresult;
         }
         private string Code_MSI()
@@ -686,24 +686,24 @@ namespace Reportman.Reporting
                     {
                         case 'A':
                             for (j = 0; j < 4; j++)
-                                result += tabelle_EAN_A[index, j];
+                                result = result + tabelle_EAN_A[index, j];
                             break;
                         case 'B':
                             for (j = 0; j < 4; j++)
-                                result += tabelle_EAN_B[index, j];
+                                result = result + tabelle_EAN_B[index, j];
                             break;
                         case 'C':
                             for (j = 0; j < 4; j++)
-                                result += tabelle_EAN_C[index, j];
+                                result = result + tabelle_EAN_C[index, j];
                             break;
                     }
                 }
-                result += "05050";
+                result = result + "05050";
                 for (i = 6; i < 12; i++)
                     for (j = 0; j < 4; j++)
                     {
                         index = ((int)tmp[i]) - ((int)'0');
-                        result += tabelle_EAN_C[index, j];
+                        result = result + tabelle_EAN_C[index, j];
                     }
                 // Stopcode
                 result += "505";
@@ -734,15 +734,15 @@ namespace Reportman.Reporting
                     for (j = 0; j < 4; j++)
                     {
                         index = ((int)tmp[i]) - ((int)'0');
-                        result += tabelle_EAN_A[index, j];
+                        result = result + tabelle_EAN_A[index, j];
                     }
-                result += "05050";
+                result = result + "05050";
 
                 for (i = 4; i < 8; i++)
                     for (j = 0; j < 4; j++)
                     {
                         index = ((int)tmp[i]) - ((int)'0');
-                        result += tabelle_EAN_C[index, j];
+                        result = result + tabelle_EAN_C[index, j];
                     }
                 // Stopcode
                 result += "505";
@@ -779,15 +779,15 @@ namespace Reportman.Reporting
                         c = '6';
                     else
                         c = '5';
-                    result += c;
+                    result = result + c;
                     index = ((int)FText[i * 2 + 1]) - ((int)'0');
                     if (tabelle_2_5[index, j] == '1')
                         c = '1';
                     else
                         c = '0';
-                    result += c;
+                    result = result + c;
                 }
-            result += "605";    // Stopcode
+            result = result + "605";    // Stopcode
             return result;
         }
         private string Code_2_5_industrial()
@@ -801,11 +801,11 @@ namespace Reportman.Reporting
                 {
                     index = ((int)FText[i]) - ((int)'0');
                     if (tabelle_2_5[index, j] == '1')
-                        result += "60";
+                        result = result + "60";
                     else
-                        result += "50";
+                        result = result + "50";
                 }
-            result += "605060";   // Stopcode
+            result = result + "605060";   // Stopcode
             return result;
         }
         private string Code_2_5_matrix()
@@ -827,11 +827,11 @@ namespace Reportman.Reporting
                     //			  if odd(j) then
                     if ((j % 2) != 0)
                         c = (char)((int)c + 5);
-                    result += c;
+                    result = result + c;
                 }
-                result += "0";
+                result = result + "0";
             }
-            result += "70505";   // Stopcode
+            result = result + "70505";   // Stopcode
             return result;
         }
         private struct Code39
@@ -892,7 +892,7 @@ namespace Reportman.Reporting
             new Code39('+',"515051515",41),
             new Code39('%',"505151515",42)
             };
-        private static int FindCode39IDX(char z)
+        private int FindCode39IDX(char z)
         {
             int i;
             int result = -1;
@@ -911,7 +911,7 @@ namespace Reportman.Reporting
             String result;
             int i, idx;
             int checksum;
-            String FText;
+            String FText = CurrentText;
 
             checksum = 0;
             // Startcode
@@ -924,13 +924,13 @@ namespace Reportman.Reporting
                 if (idx >= 0)
                 {
                     result = result + tabelle_39[idx].data + "0";
-                    checksum += tabelle_39[idx].chk;
+                    checksum = checksum + tabelle_39[idx].chk;
                 }
             }
             // Calculate Checksum Data
             if (Checksum)
             {
-                checksum %= 43;
+                checksum = checksum % 43;
                 for (i = 0; i < 44; i++)
                     if (checksum == tabelle_39[i].chk)
                     {
@@ -938,7 +938,7 @@ namespace Reportman.Reporting
                         return result;
                     }
             }
-            result += tabelle_39[FindCode39IDX('*')].data;
+            result = result + tabelle_39[FindCode39IDX('*')].data;
             return result;
         }
 
@@ -972,7 +972,7 @@ namespace Reportman.Reporting
             {
                 if ((int)save[i] <= 127)
                 {
-                    FText += code39x[(int)save[i]];
+                    FText = FText + code39x[(int)save[i]];
                 }
             }
             CurrentText = FText;
@@ -1046,7 +1046,7 @@ namespace Reportman.Reporting
 	             new Code93('}',"122211")    // only used for Extended Code 93
            };
         }
-        private static int Find_Code93(char c)
+        private int Find_Code93(char c)
         {
             int i;
             int result = -1;
@@ -1068,7 +1068,7 @@ namespace Reportman.Reporting
         //	'00111'
         //	converts to '05161'
 
-        private static String DoConvert(String s)
+        private String DoConvert(String s)
         {
             int i, v;
             String t;
@@ -1077,8 +1077,8 @@ namespace Reportman.Reporting
             {
                 v = (int)s[i] - 1;
                 if ((i % 2) == 0)
-                    v += 5;
-                t += (char)v;
+                    v = v + 5;
+                t = t + (char)v;
             }
             return t;
         }
@@ -1098,7 +1098,7 @@ namespace Reportman.Reporting
                 idx = Find_Code93(FText[i]);
                 if (idx < 0)
                     throw new NamedException("Code93 bad Data: " + FText, FText);
-                result += DoConvert(Code93.table[idx].data);
+                result = result + DoConvert(Code93.table[idx].data);
             }
             checkC = 0;
             checkK = 0;
@@ -1109,8 +1109,8 @@ namespace Reportman.Reporting
             for (i = FText.Length - 1; i >= 0; i--)
             {
                 idx = Find_Code93(FText[i]);
-                checkC += idx * weightC;
-                checkK += idx * weightK;
+                checkC = checkC + idx * weightC;
+                checkK = checkK + idx * weightK;
 
                 weightC++;
                 if (weightC > 20)
@@ -1119,15 +1119,15 @@ namespace Reportman.Reporting
                 if (weightK > 15)
                     weightC = 1;
             }
-            checkK += checkC;
+            checkK = checkK + checkC;
 
-            checkC %= 47;
-            checkK %= 47;
+            checkC = checkC % 47;
+            checkK = checkK % 47;
 
             result = result + DoConvert(Code93.table[checkC].data) +
              DoConvert(Code93.table[checkK].data);
 
-            result += DoConvert("1111411");   // Stopcode
+            result = result + DoConvert("1111411");   // Stopcode
             return result;
         }
         private static String[] code93x = new String[128]  {
@@ -1343,7 +1343,7 @@ namespace Reportman.Reporting
             for (i = 0; i < save.Length; i++)
             {
                 if ((int)save[i] <= 127)
-                    FText += code93x[(int)save[i]];
+                    FText = FText + code93x[(int)save[i]];
             }
             CurrentText = FText;
             try
@@ -1356,13 +1356,13 @@ namespace Reportman.Reporting
             }
             return result;
         }
-        private static Point Translate2D(Point a, Point b)
+        Point Translate2D(Point a, Point b)
         {
             return new Point(a.X + b.X, a.Y + b.Y);
         }
         // half means a black line with 2/5 height (used for PostNet)
         private enum LineType { White, Black, Half };
-        private static Point Rotate2D(Point p, double alpha)
+        private Point Rotate2D(Point p, double alpha)
         {
             double sinus = Math.Sin(alpha);
             double cosinus = Math.Cos(alpha);
@@ -1482,9 +1482,9 @@ namespace Reportman.Reporting
                     else
                     {
                         a = Translate2D(a, origin);
-                        // b = Translate2D(b, origin);
+                        b = Translate2D(b, origin);
                         c = Translate2D(c, origin);
-                        // d = Translate2D(d, origin);
+                        d = Translate2D(d, origin);
                     }
 
                     MetaObjectDraw metaobj = new MetaObjectDraw();
@@ -1506,7 +1506,7 @@ namespace Reportman.Reporting
                     metafile.Pages[metafile.CurrentPage].Objects.Add(metaobj);
                 }
 
-                xadd += awidth;
+                xadd = xadd + awidth;
             }
 
         }

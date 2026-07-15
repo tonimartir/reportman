@@ -100,9 +100,9 @@ namespace Reportman.Reporting.Forms
                 }
                 else
                     if (cinfo.control is NumericUpDown)
-                    {
-                        ((NumericUpDown)cinfo.control).Value = cinfo.param.Value;
-                    }
+                {
+                    ((NumericUpDown)cinfo.control).Value = cinfo.param.Value;
+                }
             }
         }
         /// <summary>

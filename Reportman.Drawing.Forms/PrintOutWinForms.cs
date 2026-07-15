@@ -130,7 +130,8 @@ namespace Reportman.Drawing.Forms
         {
             get
             {
-                FPreviewWindow ??= new PreviewWinFormsControl();
+                if (FPreviewWindow == null)
+                    FPreviewWindow = new PreviewWinFormsControl();
                 return FPreviewWindow;
             }
         }
@@ -254,8 +255,8 @@ namespace Reportman.Drawing.Forms
                                 //MessageBox.Show("Blank lines:"+ntextdriver.blanklines.ToString());
                                 if (atext.Length > 0)
                                 {
-                                    FBlackLines += ntextdriver.blacklines;
-                                    FWhiteLines += ntextdriver.whitelines;
+                                    FBlackLines = FBlackLines + ntextdriver.blacklines;
+                                    FWhiteLines = FWhiteLines + ntextdriver.whitelines;
 
                                     RawPrinterHelper.SendBytesToPrinter(doc.PrinterSettings.PrinterName, atext);
                                     return true;
@@ -369,19 +370,19 @@ namespace Reportman.Drawing.Forms
             if (oldflags.LineAlignment == StringAlignment.Center)
                 newflags = TextFormatFlags.HorizontalCenter;
             else
-                if (oldflags.LineAlignment == StringAlignment.Far)
-                    newflags = TextFormatFlags.Right;
+              if (oldflags.LineAlignment == StringAlignment.Far)
+                newflags = TextFormatFlags.Right;
             if (oldflags.Alignment == StringAlignment.Center)
-                newflags |= TextFormatFlags.VerticalCenter;
+                newflags = newflags | TextFormatFlags.VerticalCenter;
             else
-                if (oldflags.Alignment == StringAlignment.Far)
-                    newflags |= TextFormatFlags.Bottom;
-                else
-                    newflags |= TextFormatFlags.Top;
+              if (oldflags.Alignment == StringAlignment.Far)
+                newflags = newflags | TextFormatFlags.Bottom;
+            else
+                newflags = newflags | TextFormatFlags.Top;
             if (oldflags.Trimming != StringTrimming.None)
-                newflags |= TextFormatFlags.NoClipping;
+                newflags = newflags | TextFormatFlags.NoClipping;
             if ((oldflags.FormatFlags | StringFormatFlags.NoWrap) == 0)
-                newflags |= TextFormatFlags.WordBreak;
+                newflags = newflags | TextFormatFlags.WordBreak;
 
             return newflags;
         }
@@ -727,7 +728,7 @@ namespace Reportman.Drawing.Forms
             {
                 while (nchart.Series.IndexOf(sitem.Caption) >= 0)
                 {
-                    sitem.Caption += "_";
+                    sitem.Caption = sitem.Caption + "_";
                 }
                 System.Windows.Forms.DataVisualization.Charting.Series chartserie = nchart.Series.Add(sitem.Caption);
                 if (sitem.FunctionName != null)
@@ -903,7 +904,7 @@ namespace Reportman.Drawing.Forms
                     {
                         object nobj = sitem.Values[j];
                         if (DoubleUtil.IsNumericType(nobj))
-                            total += Convert.ToDouble(nobj);
+                            total = total + Convert.ToDouble(nobj);
                     }
                 }
                 if (sitem.ValuesX.Count == 0)
@@ -914,7 +915,8 @@ namespace Reportman.Drawing.Forms
                 for (int j = 0; j < sitem.Values.Count; j++)
                 {
                     string ncaption = sitem.ValueCaptions[j];
-                    ncaption ??= "";
+                    if (ncaption == null)
+                        ncaption = "";
                     System.Windows.Forms.DataVisualization.Charting.DataPoint npoint = null;
                     if (sitem.ValuesX.Count > j)
                     {
@@ -966,7 +968,8 @@ namespace Reportman.Drawing.Forms
                     }
                     if (afontsizeY != 0)
                     {
-                        FontPunt ??= new Font(npoint.Font.FontFamily, afontsizeY);
+                        if (FontPunt == null)
+                            FontPunt = new Font(npoint.Font.FontFamily, afontsizeY);
                         npoint.Font = FontPunt;
                     }
                     if (sitem.ChartStyle != ChartType.Pie)

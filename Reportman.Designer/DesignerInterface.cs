@@ -63,10 +63,10 @@ namespace Reportman.Designer
                         firstpass = false;
                     }
                     else
-                        if (!nvar.Equals(GetProperty(pname)))
-                        {
-                            return new Variant();
-                        }
+                      if (!nvar.Equals(GetProperty(pname)))
+                    {
+                        return new Variant();
+                    }
                 }
                 return nvar;
             }

@@ -140,7 +140,8 @@ namespace Reportman.Designer
                     }
                 }
                 RView.ExpandAll();
-                RView.SelectedNode ??= RView.TopNode;
+                if (RView.SelectedNode == null)
+                    RView.SelectedNode = RView.TopNode;
             }
             finally
             {
@@ -208,7 +209,8 @@ namespace Reportman.Designer
         {
             if (RView.Nodes.Count == 0)
                 throw new Exception("No nodes in the report tree");
-            RView.SelectedNode ??= RView.Nodes[0];
+            if (RView.SelectedNode == null)
+                RView.SelectedNode = RView.Nodes[0];
             return RView.SelectedNode;
 
         }

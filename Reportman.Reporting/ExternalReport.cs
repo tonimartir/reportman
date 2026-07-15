@@ -36,8 +36,8 @@ namespace Reportman.Reporting
                         lsubreports.Add(subrep);
                     else
                     {
-                        if (subrep.Alias.Length > 0)
-                        {
+                        if (subrep.Alias.Length>0)
+                        {                            
                             dataInfos.Add(subrep.Alias, newreport.DataInfo[subrep.Alias]);
                         }
                         foreach (Section nsection in subrep.Sections)
@@ -45,7 +45,7 @@ namespace Reportman.Reporting
                             if (nsection.ChildSubReport != null)
                             {
                                 lchildsubreports.Add(nsection.ChildSubReport);
-                                if (nsection.ChildSubReport.Alias.Length > 0)
+                                if (nsection.ChildSubReport.Alias.Length>0)
                                 {
                                     if (!dataInfos.ContainsKey(nsection.ChildSubReport.Alias))
                                     {
@@ -63,7 +63,7 @@ namespace Reportman.Reporting
                         DeleteSubReport(newreport, subrep);
                 }
                 int i = 0;
-                while (i < newreport.DataInfo.Count)
+                while (i<newreport.DataInfo.Count)
                 {
                     var dataInfo = newreport.DataInfo[i];
                     if (dataInfos.ContainsKey(dataInfo.Alias))
@@ -77,21 +77,20 @@ namespace Reportman.Reporting
                 }
                 // Remove parameters assignable only to other datasets
                 i = 0;
-                while (i < newreport.Params.Count)
+                while (i<newreport.Params.Count)
                 {
                     var nparam = newreport.Params[i];
                     bool dropParam = true;
-                    if (nparam.Datasets.Count > 0)
+                    if (nparam.Datasets.Count>0)
                     {
-                        foreach (string dataset in nparam.Datasets)
-                        {
+                      foreach (string dataset in nparam.Datasets)
+                      {
                             if (!dataInfos.ContainsKey(dataset))
                             {
                                 dropParam = true;
                             }
-                        }
-                    }
-                    else
+                      }
+                    } else
                     {
                         dropParam = false;
                     }
@@ -194,7 +193,7 @@ namespace Reportman.Reporting
                 nparam.Report = destination;
                 if (destination.Params.IndexOf(nparam.Alias) < 0)
                 {
-                    if ((destination.Components.IndexOfKey(nparam.Name) >= 0)
+                    if ((destination.Components.IndexOfKey(nparam.Name)  >= 0)
                          || (nparam.Name.Length == 0))
                     {
                         destination.GenerateNewName(nparam);
@@ -241,13 +240,12 @@ namespace Reportman.Reporting
                 {
                     destination.GenerateNewName(dinfo);
                 }
-                else
-                {
+                else {
                     destination.Components.Add(dinfo.Name, dinfo);
                 }
                 int idx = 1;
                 string original = dinfo.Alias;
-                while (destination.DataInfo[dinfo.Alias] != null)
+                while (destination.DataInfo[dinfo.Alias]!= null)
                 {
                     dinfo.Alias = original + "_" + idx;
                     idx++;
@@ -270,7 +268,7 @@ namespace Reportman.Reporting
                         {
                             identifier = ((ChartItem)posItem).Identifier;
                         }
-                        if (identifier.Length > 0)
+                        if (identifier.Length>0)
                         {
                             if (!currentIdentifiers.ContainsKey(identifier))
                                 currentIdentifiers.Add(identifier, posItem);
@@ -284,8 +282,7 @@ namespace Reportman.Reporting
                 if (destination.Components.IndexOfKey(nsubreport.Name) >= 0)
                 {
                     destination.GenerateNewName(nsubreport);
-                }
-                else
+                } else
                 {
                     destination.Components.Add(nsubreport.Name, nsubreport);
                 }
@@ -296,7 +293,7 @@ namespace Reportman.Reporting
                     if (destination.Components.ContainsKey(nsec.Name))
                     {
                         destination.GenerateNewName(nsec);
-                    }
+                    } 
                     else
                     {
                         destination.Components.Add(nsec.Name, nsec);

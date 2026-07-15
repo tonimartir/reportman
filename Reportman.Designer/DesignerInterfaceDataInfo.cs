@@ -129,7 +129,7 @@ namespace Reportman.Designer
                     newvalue = nstrings.IndexOf(newvalue);
                 }
                 else
-                    newvalue -= 1;
+                    newvalue = newvalue - 1;
                 if (newvalue < nstrings.Count)
                 {
                     if (newvalue < 0)

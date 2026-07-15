@@ -94,7 +94,10 @@ namespace Reportman.Drawing.Forms
         {
             get
             {
-                ninfo ??= System.Globalization.DateTimeFormatInfo.CurrentInfo;
+                if (ninfo == null)
+                {
+                    ninfo = System.Globalization.DateTimeFormatInfo.CurrentInfo;
+                }
                 return ninfo;
             }
         }
@@ -830,7 +833,7 @@ namespace Reportman.Drawing.Forms
             }
             if (e.KeyCode == Keys.Right && HandleLeftRightTabs)
             {
-                if (txtDate.SelectionStart == (txtDate.Text.Length) && txtDate.SelectionLength == 0)
+                    if (txtDate.SelectionStart == (txtDate.Text.Length) && txtDate.SelectionLength == 0)
                 {
                     SendKeys.Send("{TAB}");
                     e.Handled = true;
@@ -842,7 +845,7 @@ namespace Reportman.Drawing.Forms
                 if (txtDate.SelectionStart > 0)
                 {
                     if (txtDate.Text.Length <= txtDate.SelectionStart)
-                        txtDate.SelectionStart--;
+                        txtDate.SelectionStart = txtDate.SelectionStart - 1;
 
                     char cChar = txtDate.Text[txtDate.SelectionStart];
                     DateSegment nsegment = GetActiveSegment(cChar, txtDate.SelectionStart);
@@ -853,7 +856,7 @@ namespace Reportman.Drawing.Forms
                             int day = 0;
                             if (int.TryParse(nsegment.GetCurrentValue(), out day))
                             {
-                                day--;
+                                day = day - 1;
                                 if (day <= 0)
                                     day = 1;
                                 nsegment.SetCurrentValue(day);
@@ -861,34 +864,34 @@ namespace Reportman.Drawing.Forms
                             }
                         }
                         else
-                            if (nsegment is Reportman.Drawing.Forms.DateSegmentMonth)
+                        if (nsegment is Reportman.Drawing.Forms.DateSegmentMonth)
+                        {
+                            int month = 0;
+                            if (int.TryParse(nsegment.GetCurrentValue(), out month))
                             {
-                                int month = 0;
-                                if (int.TryParse(nsegment.GetCurrentValue(), out month))
-                                {
-                                    month--;
-                                    if (month <= 1)
-                                        month = 1;
-                                    nsegment.SetCurrentValue(month);
-                                    OnValueChanged(new EventArgs());
-                                }
+                                month = month - 1;
+                                if (month <= 1)
+                                    month = 1;
+                                nsegment.SetCurrentValue(month);
+                                OnValueChanged(new EventArgs());
                             }
-                            else
-                                if (nsegment is Reportman.Drawing.Forms.DateSegmentYear)
-                                {
-                                    int year = 0;
-                                    if (int.TryParse(nsegment.GetCurrentValue(), out year))
-                                    {
-                                        if (year == 0)
-                                            year = System.DateTime.Today.Year;
-                                        else
-                                            year--;
-                                        if (year < 0000)
-                                            year = 0000;
-                                        nsegment.SetCurrentValue(year);
-                                        OnValueChanged(new EventArgs());
-                                    }
-                                }
+                        }
+                        else
+                        if (nsegment is Reportman.Drawing.Forms.DateSegmentYear)
+                        {
+                            int year = 0;
+                            if (int.TryParse(nsegment.GetCurrentValue(), out year))
+                            {
+                                if (year == 0)
+                                    year = System.DateTime.Today.Year;
+                                else
+                                    year = year - 1;
+                                if (year < 0000)
+                                    year = 0000;
+                                nsegment.SetCurrentValue(year);
+                                OnValueChanged(new EventArgs());
+                            }
+                        }
                         e.Handled = true;
                         e.SuppressKeyPress = true;
                     }
@@ -900,7 +903,7 @@ namespace Reportman.Drawing.Forms
                 if (txtDate.SelectionStart > 0)
                 {
                     if (txtDate.Text.Length <= txtDate.SelectionStart)
-                        txtDate.SelectionStart--;
+                        txtDate.SelectionStart = txtDate.SelectionStart - 1;
 
                     char cChar = txtDate.Text[txtDate.SelectionStart];
                     DateSegment nsegment = GetActiveSegment(cChar, txtDate.SelectionStart);
@@ -911,7 +914,7 @@ namespace Reportman.Drawing.Forms
                             int day = 0;
                             if (int.TryParse(nsegment.GetCurrentValue(), out day))
                             {
-                                day++;
+                                day = day + 1;
                                 if (day >= 31)
                                     day = 31;
                                 nsegment.SetCurrentValue(day);
@@ -919,74 +922,12 @@ namespace Reportman.Drawing.Forms
                             }
                         }
                         else
-
-<<<<<<< TODO: cambio sin combinar del proyecto "Reportman.Drawing.Forms (net9.0-windows)", Antes:
-                            if (nsegment is Reportman.Drawing.Forms.DateSegmentMonth)
-                            {
-                                int month = 0;
-                                if (int.TryParse(nsegment.GetCurrentValue(), out month))
-                                {
-                                    month++;
-                                    if (month >= 12)
-                                        month = 12;
-                                    nsegment.SetCurrentValue(month);
-                                    OnValueChanged(new EventArgs());
-                                }
-                            }
-                            else
-                                if (nsegment is Reportman.Drawing.Forms.DateSegmentYear)
-                                {
-                                    int year = 0;
-                                    if (int.TryParse(nsegment.GetCurrentValue(), out year))
-                                    {
-                                        if (year == 0)
-                                            year = System.DateTime.Today.Year;
-                                        else
-                                            year++;
-                                        if (year >= 9999)
-                                            year = 9999;
-                                        nsegment.SetCurrentValue(year);
-                                        OnValueChanged(new EventArgs());
-                                    }
-                                }
-                        e.Handled = true;
-=======
-                            if (nsegment is Reportman.Drawing.Forms.DateSegmentMonth)
-                            {
-                                int month = 0;
-                                if (int.TryParse(nsegment.GetCurrentValue(), out month))
-                                {
-                                    month++;
-                                    if (month >= 12)
-                                        month = 12;
-                                    nsegment.SetCurrentValue(month);
-                                    OnValueChanged(new EventArgs());
-                                }
-                            }
-                            else
-                                if (nsegment is Reportman.Drawing.Forms.DateSegmentYear)
-                                {
-                                    int year = 0;
-                                    if (int.TryParse(nsegment.GetCurrentValue(), out year))
-                                    {
-                                        if (year == 0)
-                                            year = System.DateTime.Today.Year;
-                                        else
-                                            year++;
-                                        if (year >= 9999)
-                                            year = 9999;
-                                        nsegment.SetCurrentValue(year);
-                                        OnValueChanged(new EventArgs());
-                                    }
-                                }
-                        e.Handled = true;
->>>>>>> Después
                         if (nsegment is Reportman.Drawing.Forms.DateSegmentMonth)
                         {
                             int month = 0;
                             if (int.TryParse(nsegment.GetCurrentValue(), out month))
                             {
-                                month++;
+                                month = month + 1;
                                 if (month >= 12)
                                     month = 12;
                                 nsegment.SetCurrentValue(month);
@@ -994,21 +935,21 @@ namespace Reportman.Drawing.Forms
                             }
                         }
                         else
-                            if (nsegment is Reportman.Drawing.Forms.DateSegmentYear)
+                        if (nsegment is Reportman.Drawing.Forms.DateSegmentYear)
+                        {
+                            int year = 0;
+                            if (int.TryParse(nsegment.GetCurrentValue(), out year))
                             {
-                                int year = 0;
-                                if (int.TryParse(nsegment.GetCurrentValue(), out year))
-                                {
-                                    if (year == 0)
-                                        year = System.DateTime.Today.Year;
-                                    else
-                                        year++;
-                                    if (year >= 9999)
-                                        year = 9999;
-                                    nsegment.SetCurrentValue(year);
-                                    OnValueChanged(new EventArgs());
-                                }
+                                if (year == 0)
+                                    year = System.DateTime.Today.Year;
+                                else
+                                    year = year + 1;
+                                if (year >= 9999)
+                                    year = 9999;
+                                nsegment.SetCurrentValue(year);
+                                OnValueChanged(new EventArgs());
                             }
+                        }
                         e.Handled = true;
                         e.SuppressKeyPress = true;
                     }
@@ -1194,7 +1135,7 @@ namespace Reportman.Drawing.Forms
             {
                 txtDate.ForeColor = Color.Black;
             }
-
+            
         }
         private bool ProcessChar(char cChar)
         {
@@ -1703,8 +1644,8 @@ namespace Reportman.Drawing.Forms
                 if (m_nSegmentStart >= 0 && m_nSegmentEnd >= 0)
                 {
                     string newtext = m_txtDate.Text.Substring(0, m_nSegmentStart);
-                    newtext += newvalue.ToString("00");
-                    newtext += m_txtDate.Text.Substring(m_nSegmentEnd + 1, m_txtDate.Text.Length - (m_nSegmentEnd + 1));
+                    newtext = newtext + newvalue.ToString("00");
+                    newtext = newtext + m_txtDate.Text.Substring(m_nSegmentEnd + 1, m_txtDate.Text.Length - (m_nSegmentEnd + 1));
                     m_txtDate.Text = newtext;
 
                     m_txtDate.SelectionStart = m_nSegmentStart;
@@ -1749,8 +1690,8 @@ namespace Reportman.Drawing.Forms
                 if (m_nSegmentStart >= 0 && m_nSegmentEnd >= 0)
                 {
                     string newtext = m_txtDate.Text.Substring(0, m_nSegmentStart);
-                    newtext += newvalue.ToString("00");
-                    newtext += m_txtDate.Text.Substring(m_nSegmentEnd + 1, m_txtDate.Text.Length - (m_nSegmentEnd + 1));
+                    newtext = newtext + newvalue.ToString("00");
+                    newtext = newtext + m_txtDate.Text.Substring(m_nSegmentEnd + 1, m_txtDate.Text.Length - (m_nSegmentEnd + 1));
                     m_txtDate.Text = newtext;
 
                     m_txtDate.SelectionStart = m_nSegmentStart;
@@ -1804,8 +1745,8 @@ namespace Reportman.Drawing.Forms
                 if (m_nSegmentStart >= 0 && m_nSegmentEnd >= 0)
                 {
                     string newtext = m_txtDate.Text.Substring(0, m_nSegmentStart);
-                    newtext += newvalue.ToString("0000");
-                    newtext += m_txtDate.Text.Substring(m_nSegmentEnd + 1, m_txtDate.Text.Length - (m_nSegmentEnd + 1));
+                    newtext = newtext + newvalue.ToString("0000");
+                    newtext = newtext + m_txtDate.Text.Substring(m_nSegmentEnd + 1, m_txtDate.Text.Length - (m_nSegmentEnd + 1));
                     m_txtDate.Text = newtext;
 
                     m_txtDate.SelectionStart = m_nSegmentStart;
@@ -1847,7 +1788,7 @@ namespace Reportman.Drawing.Forms
                 }
                 else
                     if (nNewHour > 12)
-                        return false;
+                    return false;
             }
             else
             {
@@ -1858,7 +1799,7 @@ namespace Reportman.Drawing.Forms
                 }
                 else
                     if (nNewHour > 23)
-                        return false;
+                    return false;
             }
             return base.SegmentProcessChar();
         }
@@ -1903,7 +1844,7 @@ namespace Reportman.Drawing.Forms
             }
             else
                 if (m_cChar != 'M')
-                    return false;
+                return false;
 
             return base.SegmentProcessChar();
         }

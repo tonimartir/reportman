@@ -521,7 +521,7 @@ namespace Reportman.Drawing.Forms
             }
             if (sender == BZoomMinus)
             {
-                fmetapr.PreviewScale -= 0.1F;
+                fmetapr.PreviewScale = fmetapr.PreviewScale - 0.1F;
                 //                BScaleFull.Checked = false;
                 //                BScaleEntire.Pushed = false;
                 //                BScaleWide.Checked = false;
@@ -529,7 +529,7 @@ namespace Reportman.Drawing.Forms
             }
             if (sender == BZoomPlus)
             {
-                fmetapr.PreviewScale += 0.1F;
+                fmetapr.PreviewScale = fmetapr.PreviewScale + 0.1F;
                 //                BScaleFull.Checked = false;
                 //                BScaleEntire.Checked = false;
                 //                BScaleWide.Checked = false;
@@ -593,7 +593,7 @@ namespace Reportman.Drawing.Forms
                                 string nfilename = saveFileDialog1.FileName;
                                 string nextension = System.IO.Path.GetExtension(nfilename).ToUpper();
                                 if (nextension != ".PDF")
-                                    nfilename += ".pdf";
+                                    nfilename = nfilename + ".pdf";
                                 prpdf.FileName = nfilename;
                                 prpdf.Print(fmetapr.MetaFile);
                             }

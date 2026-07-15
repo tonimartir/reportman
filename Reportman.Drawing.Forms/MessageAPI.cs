@@ -467,9 +467,12 @@ namespace Reportman.Drawing
             //            uint ulFlags = MAPI.MAPI_LOGON_UI | MAPI.MAPI_NEW_SESSION;
 
             ulResult = MAPI.Logon(IntPtr.Zero, null, null, 0, 0, ref hSession);
-            Originator ??= "";
-            Recipient ??= "";
-            file ??= "";
+            if (Originator == null)
+                Originator = "";
+            if (Recipient == null)
+                Recipient = "";
+            if (file == null)
+                file = "";
             if (originalfile == null)
                 file = "";
             if (originalfile == "")

@@ -142,12 +142,12 @@ namespace Reportman.Designer
                 }
                 else
                     if (CurrentInterface is DesignerInterfaceSizePos)
-                    {
-                        nitem = (PrintPosItem)CurrentInterface.SelectionList.Values[0];
-                        nsection = nitem.Section;
-                        if (CurrentInterface.SelectionList.Count != 1)
-                            nitem = null;
-                    }
+                {
+                    nitem = (PrintPosItem)CurrentInterface.SelectionList.Values[0];
+                    nsection = nitem.Section;
+                    if (CurrentInterface.SelectionList.Count != 1)
+                        nitem = null;
+                }
                 ComboSelection.Items.Clear();
                 ComboSelection.SelectedIndex = -1;
                 int selindex = 1;
@@ -168,7 +168,7 @@ namespace Reportman.Designer
                         ComboSelection.SelectedIndex = 0;
                     else
                         if (CurrentInterface.SelectionList.Count == 1)
-                            ComboSelection.SelectedIndex = newindex;
+                        ComboSelection.SelectedIndex = newindex;
                     if (Structure != null)
                         Structure.SelectItem(nsection, true);
                 }
@@ -215,7 +215,7 @@ namespace Reportman.Designer
             if (obj.ReportItemObject is Section)
             {
                 Section nsec = (Section)obj.ReportItemObject;
-                tablename += nsec.SectionType.ToString();
+                tablename = tablename + nsec.SectionType.ToString();
             }
             Reportman.Drawing.Strings pnames = new Strings();
             DataTable properties = data.Tables[tablename];
@@ -260,74 +260,74 @@ namespace Reportman.Designer
                         nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.Expression);
                     }
                     else
-                        if (ptypes[i] == Translator.TranslateStr(1099))
-                        {
-                            nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.ConnectionString);
-                        }
-                        else
-                            if (ptypes[i] == "SQL")
-                            {
-                                nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.SQL);
-                            }
-                            else
-                                if (ptypes[i] == Translator.TranslateStr(556))
-                                {
-                                    nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.Decimal);
-                                    nrow["TWIPS"] = true;
-                                }
-                                else
-                                    if (ptypes[i] == Translator.TranslateStr(1171))
-                                    {
-                                        nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.Decimal);
-                                        nrow["TWIPS"] = false;
-                                    }
-                                    else
-                                        if (ptypes[i] == Translator.TranslateStr(569))
-                                        {
-                                            nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.DropDownList);
-                                            Strings alist = new Strings();
-                                            obj.GetPropertyValues(pnames[i], alist);
-                                            nrow["VALUELIST"] = alist;
-                                        }
-                                        else if (ptypes[i] == Translator.TranslateStr(961))
-                                        {
-                                            nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.DropDown);
-                                            Strings alist = new Strings();
-                                            obj.GetPropertyValues(pnames[i], alist);
-                                            nrow["VALUELIST"] = alist;
-                                        }
-                                        else
-                                            if (ptypes[i] == Translator.TranslateStr(568))
-                                            {
-                                                nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.Boolean);
-                                            }
-                                            else
-                                                if (ptypes[i] == Translator.TranslateStr(558))
-                                                {
-                                                    nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.Color);
-                                                }
-                                                else
-                                                    if (ptypes[i] == Translator.TranslateStr(639))
-                                                    {
-                                                        isbinary = true;
-                                                        nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.Image);
-                                                    }
-                                                    else
-                                                        if (ptypes[i] == Translator.TranslateStr(560))
-                                                        {
-                                                            nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.FontName);
-                                                        }
-                                                        else
-                                                            if (ptypes[i] == Translator.TranslateStr(566))
-                                                            {
-                                                                nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.FontStyle);
-                                                            }
-                                                            else
-                                                                // Font size
-                                                                if (ptypes[i] == Translator.TranslateStr(559))
-                                                                {
-                                                                    nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.Integer);
-                                                                }
+                    if (ptypes[i] == Translator.TranslateStr(1099))
+                    {
+                        nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.ConnectionString);
+                    }
+                    else
+                    if (ptypes[i] == "SQL")
+                    {
+                        nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.SQL);
+                    }
+                    else
+                        if (ptypes[i] == Translator.TranslateStr(556))
+                    {
+                        nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.Decimal);
+                        nrow["TWIPS"] = true;
+                    }
+                    else
+                        if (ptypes[i] == Translator.TranslateStr(1171))
+                    {
+                        nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.Decimal);
+                        nrow["TWIPS"] = false;
+                    }
+                    else
+                            if (ptypes[i] == Translator.TranslateStr(569))
+                    {
+                        nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.DropDownList);
+                        Strings alist = new Strings();
+                        obj.GetPropertyValues(pnames[i], alist);
+                        nrow["VALUELIST"] = alist;
+                    }
+                    else if (ptypes[i] == Translator.TranslateStr(961))
+                    {
+                        nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.DropDown);
+                        Strings alist = new Strings();
+                        obj.GetPropertyValues(pnames[i], alist);
+                        nrow["VALUELIST"] = alist;
+                    }
+                    else
+                        if (ptypes[i] == Translator.TranslateStr(568))
+                    {
+                        nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.Boolean);
+                    }
+                    else
+                            if (ptypes[i] == Translator.TranslateStr(558))
+                    {
+                        nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.Color);
+                    }
+                    else
+                                if (ptypes[i] == Translator.TranslateStr(639))
+                    {
+                        isbinary = true;
+                        nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.Image);
+                    }
+                    else
+                                if (ptypes[i] == Translator.TranslateStr(560))
+                    {
+                        nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.FontName);
+                    }
+                    else
+                            if (ptypes[i] == Translator.TranslateStr(566))
+                    {
+                        nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.FontStyle);
+                    }
+                    else
+                                // Font size
+                                if (ptypes[i] == Translator.TranslateStr(559))
+                    {
+                        nrow["TYPEENUM"] = System.Convert.ToInt32(ObjectInspectorCellType.Integer);
+                    }
                     if (pvalues != null)
                     {
                         if (isbinary)

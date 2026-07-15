@@ -174,99 +174,99 @@ namespace Reportman.Designer
                 FPrintItemBarcode.Expression = newvalue;
             }
             else
-                // Barcode Type
-                if (pname == Translator.TranslateStr(577))
+            // Barcode Type
+            if (pname == Translator.TranslateStr(577))
+            {
+                FPrintItemBarcode.BarType = (BarcodeType)(int)newvalue;
+            }
+            else
+            // Checksum
+            if (pname == Translator.TranslateStr(579))
+            {
+                FPrintItemBarcode.Checksum = newvalue;
+            }
+            else
+            if (pname == Translator.TranslateStr(567))
+            {
+                FPrintItemBarcode.Transparent = newvalue;
+            }
+            else
+            // Modul
+            if (pname == Translator.TranslateStr(580))
+            {
+                FPrintItemBarcode.Modul = newvalue;
+            }
+            else
+            // Ratio
+            if (pname == Translator.TranslateStr(581))
+            {
+                FPrintItemBarcode.Ratio = newvalue;
+            }
+            else
+            // Display Format
+            if (pname == Translator.TranslateStr(574))
+            {
+                FPrintItemBarcode.DisplayFormat = newvalue;
+            }
+            else
+            // Rotation
+            if (pname == Translator.TranslateStr(908))
+            {
+                switch (newvalue.AsInteger)
                 {
-                    FPrintItemBarcode.BarType = (BarcodeType)(int)newvalue;
+                    case 1:
+                        FPrintItemBarcode.Rotation = 900;
+                        break;
+                    case 2:
+                        FPrintItemBarcode.Rotation = 1800;
+                        break;
+                    case 3:
+                        FPrintItemBarcode.Rotation = 2700;
+                        break;
+                    default:
+                        FPrintItemBarcode.Rotation = 0;
+                        break;
                 }
-                else
-                    // Checksum
-                    if (pname == Translator.TranslateStr(579))
-                    {
-                        FPrintItemBarcode.Checksum = newvalue;
-                    }
-                    else
-                        if (pname == Translator.TranslateStr(567))
-                        {
-                            FPrintItemBarcode.Transparent = newvalue;
-                        }
-                        else
-                            // Modul
-                            if (pname == Translator.TranslateStr(580))
-                            {
-                                FPrintItemBarcode.Modul = newvalue;
-                            }
-                            else
-                                // Ratio
-                                if (pname == Translator.TranslateStr(581))
-                                {
-                                    FPrintItemBarcode.Ratio = newvalue;
-                                }
-                                else
-                                    // Display Format
-                                    if (pname == Translator.TranslateStr(574))
-                                    {
-                                        FPrintItemBarcode.DisplayFormat = newvalue;
-                                    }
-                                    else
-                                        // Rotation
-                                        if (pname == Translator.TranslateStr(908))
-                                        {
-                                            switch (newvalue.AsInteger)
-                                            {
-                                                case 1:
-                                                    FPrintItemBarcode.Rotation = 900;
-                                                    break;
-                                                case 2:
-                                                    FPrintItemBarcode.Rotation = 1800;
-                                                    break;
-                                                case 3:
-                                                    FPrintItemBarcode.Rotation = 2700;
-                                                    break;
-                                                default:
-                                                    FPrintItemBarcode.Rotation = 0;
-                                                    break;
-                                            }
-                                        }
-                                        else
-                                            // Brush Color
-                                            if (pname == Translator.TranslateStr(564))
-                                            {
-                                                FPrintItemBarcode.BColor = newvalue;
-                                            }
-                                            else
-                                                // Back Color
-                                                if (pname == Translator.TranslateStr(565))
-                                                {
-                                                    FPrintItemBarcode.BackColor = newvalue;
-                                                }
-                                                else
-                                                    // ECC Level Check 
-                                                    if (pname == Translator.TranslateStr(1335))
-                                                    {
-                                                        FPrintItemBarcode.ECCLevel = newvalue - 1;
-                                                    }
-                                                    else
-                                                        // Num Rows
-                                                        if (pname == Translator.TranslateStr(1336))
-                                                        {
-                                                            FPrintItemBarcode.NumRows = newvalue;
-                                                        }
-                                                        else
-                                                            // Num Cols
-                                                            if (pname == Translator.TranslateStr(1337))
-                                                            {
-                                                                FPrintItemBarcode.NumColumns = newvalue;
-                                                            }
-                                                            else
-                                                                // Truncate
-                                                                if (pname == Translator.TranslateStr(1338))
-                                                                {
-                                                                    FPrintItemBarcode.Truncated = newvalue;
-                                                                }
-                                                                else
-                                                                    // inherited
-                                                                    base.SetProperty(pname, newvalue);
+            }
+            else
+            // Brush Color
+            if (pname == Translator.TranslateStr(564))
+            {
+                FPrintItemBarcode.BColor = newvalue;
+            }
+            else
+            // Back Color
+            if (pname == Translator.TranslateStr(565))
+            {
+                FPrintItemBarcode.BackColor = newvalue;
+            }
+            else
+            // ECC Level Check 
+            if (pname == Translator.TranslateStr(1335))
+            {
+                FPrintItemBarcode.ECCLevel = newvalue - 1;
+            }
+            else
+            // Num Rows
+            if (pname == Translator.TranslateStr(1336))
+            {
+                FPrintItemBarcode.NumRows = newvalue;
+            }
+            else
+            // Num Cols
+            if (pname == Translator.TranslateStr(1337))
+            {
+                FPrintItemBarcode.NumColumns = newvalue;
+            }
+            else
+            // Truncate
+            if (pname == Translator.TranslateStr(1338))
+            {
+                FPrintItemBarcode.Truncated = newvalue;
+            }
+            else
+                // inherited
+                base.SetProperty(pname, newvalue);
         }
 
         public override void GetPropertyValues(string pname, Strings lpossiblevalues)
@@ -294,31 +294,31 @@ namespace Reportman.Designer
                 lpossiblevalues.Add("Code QR");
             }
             else
-                // Rotation
-                if (pname == Translator.TranslateStr(908))
-                {
-                    lpossiblevalues.Add("0");
-                    lpossiblevalues.Add("90");
-                    lpossiblevalues.Add("180");
-                    lpossiblevalues.Add("270");
-                }
-                else
-                    // ECC Level
-                    if (pname == Translator.TranslateStr(1335))
-                    {
-                        lpossiblevalues.Add("Auto");
-                        lpossiblevalues.Add("Level 0");
-                        lpossiblevalues.Add("Level 1");
-                        lpossiblevalues.Add("Level 2");
-                        lpossiblevalues.Add("Level 3");
-                        lpossiblevalues.Add("Level 4");
-                        lpossiblevalues.Add("Level 5");
-                        lpossiblevalues.Add("Level 6");
-                        lpossiblevalues.Add("Level 7");
-                        lpossiblevalues.Add("Level 8");
-                    }
-                    else
-                        base.GetPropertyValues(pname, lpossiblevalues);
+            // Rotation
+            if (pname == Translator.TranslateStr(908))
+            {
+                lpossiblevalues.Add("0");
+                lpossiblevalues.Add("90");
+                lpossiblevalues.Add("180");
+                lpossiblevalues.Add("270");
+            }
+            else
+            // ECC Level
+            if (pname == Translator.TranslateStr(1335))
+            {
+                lpossiblevalues.Add("Auto");
+                lpossiblevalues.Add("Level 0");
+                lpossiblevalues.Add("Level 1");
+                lpossiblevalues.Add("Level 2");
+                lpossiblevalues.Add("Level 3");
+                lpossiblevalues.Add("Level 4");
+                lpossiblevalues.Add("Level 5");
+                lpossiblevalues.Add("Level 6");
+                lpossiblevalues.Add("Level 7");
+                lpossiblevalues.Add("Level 8");
+            }
+            else
+                base.GetPropertyValues(pname, lpossiblevalues);
         }
 
 

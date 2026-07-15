@@ -20,6 +20,8 @@
 
 using System;
 using System.IO;
+using System.Collections;
+using Reportman;
 using Reportman.Drawing;
 using Reportman.Reporting;
 #if FORMS
@@ -30,7 +32,12 @@ using System.Windows.Forms;
 #endif
 using System.Data;
 using System.Data.Common;
+using System.Reflection;
 using System.Collections.Generic;
+using System.Diagnostics;
+using FirebirdSql.Data.FirebirdClient;
+using System.Data.SqlClient;
+using System.Data.Odbc;
 
 namespace Reportman.Commands
 {
@@ -404,7 +411,7 @@ namespace Reportman.Commands
                                     mysqlfound = true;
                                 if (nprovider == DatabaseInfo.SQLITE_PROVIDER)
                                     sqlitefound = true;
-                                messageproviders += atable.Rows[indexp][2].ToString();
+                                messageproviders = messageproviders + atable.Rows[indexp][2].ToString();
                             }
                             if (!firebirdfound)
                                 messageproviders = DatabaseInfo.FIREBIRD_PROVIDER2 + (char)13 + (char)10 + messageproviders;
@@ -627,7 +634,7 @@ namespace Reportman.Commands
                         if (showparams)
                         {
 #if FORMS
-                            doprint = ParamsForm.ShowParams(rp, "");
+                            doprint = ParamsForm.ShowParams(rp,"");
 #else
                             throw new Exception("Show params not supported in console mode");
 #endif
@@ -662,82 +669,23 @@ namespace Reportman.Commands
                         }
                         else
                             if (metafile)
-                            {
-                                rp.AsyncExecution = false;
-                                rp.TwoPass = true;
-#if FORMS
-                                PrintOutPDF printpdf = new PrintOutPDF
-
-#else
-                                Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType printpdf = new Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType
-
-#endif
-
-<<<<<<< TODO: cambio sin combinar del proyecto "printreportpdf (net9.0)", Antes:
-<<<<<<< TODO: cambio sin combinar del proyecto "printreportpdf (net9.0)", Antes:
-                                {
-                                    PDFConformance = rp.PDFConformance,
-                                    FileName = "",
-                                    Compressed = compressed
-                                };
-                                printpdf.Print(rp.MetaFile);
-                                rp.MetaFile.SaveToFile(pdffilename, compressed);
-                            }
-                            else
-                            {
-                                rp.AsyncExecution = asyncexecution;
-#if FORMS
-=======
-                                {
-                                    PDFConformance = rp.PDFConformance,
-                                    FileName = "",
-                                    Compressed = compressed
-                                };
-                                printpdf.Print(rp.MetaFile);
-                                rp.MetaFile.SaveToFile(pdffilename, compressed);
-                            }
-                            else
-                            {
-                                rp.AsyncExecution = asyncexecution;
-#if FORMS
->>>>>>> Después
-                                {
-                                    PDFConformance = rp.PDFConformance,
-                                    FileName = "",
-                                    Compressed = compressed
-                                }
-                                ;
-                                printpdf.Print(rp.MetaFile);
-                                rp.MetaFile.SaveToFile(pdffilename, compressed);
-                            }
-                            else
                         {
-                            rp.AsyncExecution = asyncexecution;
+                            rp.AsyncExecution = false;
+                            rp.TwoPass = true;
 #if FORMS
-=======
-                                {
-                                    PDFConformance = rp.PDFConformance,
-                                    FileName = "",
-                                    Compressed = compressed
-                                };
-                                printpdf.Print(rp.MetaFile);
-                                rp.MetaFile.SaveToFile(pdffilename, compressed);
-                            }
-                            else
-                            {
-                                rp.AsyncExecution = asyncexecution;
-#if FORMS
->>>>>>> Después
+                            PrintOutPDF printpdf = new PrintOutPDF
+#else
+                            Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType printpdf = new Reportman.Drawing.CrossPlatform.PrintOutPDFFreeType
+#endif
                             {
                                 PDFConformance = rp.PDFConformance,
-                                    FileName = "",
-                                    Compressed = compressed
-                                }
-                                ;
+                                FileName = "",
+                                Compressed = compressed
+                            };
                             printpdf.Print(rp.MetaFile);
                             rp.MetaFile.SaveToFile(pdffilename, compressed);
                         }
-                            else
+                        else
                         {
                             rp.AsyncExecution = asyncexecution;
 #if FORMS
@@ -766,7 +714,7 @@ namespace Reportman.Commands
                                 prw.Print(rp.MetaFile);
                             }
 #else
-                                throw new Exception("Output to printer not supported in .Net core");
+                            throw new Exception("Output to printer not supported in .Net core");
 #endif
 
                             //                                PrintOutWinForms prw = new PrintOutWinForms();

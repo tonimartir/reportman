@@ -76,8 +76,8 @@ namespace Reportman.Drawing
             }
             else
             {
-                frompage--;
-                topage--;
+                frompage = frompage - 1;
+                topage = topage - 1;
                 nmeta.RequestPage(topage);
                 if (topage > nmeta.Pages.CurrentCount - 1)
                     topage = nmeta.Pages.Count - 1;
@@ -132,7 +132,8 @@ namespace Reportman.Drawing
                         if (k != 0)
                             nbuilder.Append(separator);
                         string nvalue = pmatrix[j, k];
-                        nvalue ??= "";
+                        if (nvalue == null)
+                            nvalue = "";
                         nbuilder.Append(StringUtil.CustomQuoteStr(nvalue, delimiter));
                     }
                     nbuilder.Append(System.Environment.NewLine);
@@ -242,8 +243,8 @@ namespace Reportman.Drawing
             }
             else
             {
-                frompage--;
-                topage--;
+                frompage = frompage - 1;
+                topage = topage - 1;
                 nmeta.RequestPage(topage);
                 if (topage > nmeta.Pages.CurrentCount - 1)
                     topage = nmeta.Pages.Count - 1;
@@ -344,21 +345,21 @@ namespace Reportman.Drawing
                             ntextformat.Alignment = ntextformat.Alignment = TextFormat.AlignmentType.Center;
                         }
                         else
-                            if ((otext.Alignment & MetaFile.AlignmentFlags_AlignRight) > 0)
-                            {
-                                ntextformat.Alignment = TextFormat.AlignmentType.Right;
-                            }
-                            else
-                                ntextformat.Alignment = TextFormat.AlignmentType.Left;
+                        if ((otext.Alignment & MetaFile.AlignmentFlags_AlignRight) > 0)
+                        {
+                            ntextformat.Alignment = TextFormat.AlignmentType.Right;
+                        }
+                        else
+                            ntextformat.Alignment = TextFormat.AlignmentType.Left;
                         int intfontstyle = otext.FontStyle;
                         if ((intfontstyle & 1) > 0)
-                            ntextformat.Style |= TextFormat.FontStyle.Bold;
+                            ntextformat.Style = ntextformat.Style | TextFormat.FontStyle.Bold;
                         if ((intfontstyle & 2) > 0)
-                            ntextformat.Style |= TextFormat.FontStyle.Italic;
+                            ntextformat.Style = ntextformat.Style | TextFormat.FontStyle.Italic;
                         if ((intfontstyle & 4) > 0)
-                            ntextformat.Style |= TextFormat.FontStyle.Underline;
+                            ntextformat.Style = ntextformat.Style | TextFormat.FontStyle.Underline;
                         if ((intfontstyle & 8) > 0)
-                            ntextformat.Style |= TextFormat.FontStyle.Strikethrough;
+                            ntextformat.Style = ntextformat.Style | TextFormat.FontStyle.Strikethrough;
                         fmatrix[arow, acolumn] = ntextformat;
                     }
                     break;

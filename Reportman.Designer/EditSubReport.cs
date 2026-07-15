@@ -28,6 +28,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Reportman.Designer
 {
@@ -431,11 +432,11 @@ namespace Reportman.Designer
                 ninfo.Width = TwipsGraphics.TwipsToPixels(xsection.Width, FDrawScale);
                 if (ninfo.Width > MaxWidth)
                     MaxWidth = ninfo.Width;
-                MaxHeight += BandHeight;
+                MaxHeight = MaxHeight + BandHeight;
                 ninfo.PosY = MaxHeight;
                 ninfo.PosX = 0;
 
-                MaxHeight += ninfo.Height;
+                MaxHeight = MaxHeight + ninfo.Height;
                 Bands.Add(ninfo);
                 BandsList.Add(xsection.SelectionIndex, ninfo);
                 LastSection = xsection;
@@ -451,15 +452,15 @@ namespace Reportman.Designer
             ninfo.Width = TwipsGraphics.TwipsToPixels(LastSection.Width, FDrawScale);
             if (ninfo.Width > MaxWidth)
                 MaxWidth = ninfo.Width;
-            MaxHeight += BandHeightLast;
+            MaxHeight = MaxHeight + BandHeightLast;
             ninfo.PosY = MaxHeight;
             ninfo.PosX = 0;
 
-            MaxHeight += ninfo.Height;
+            MaxHeight = MaxHeight + ninfo.Height;
             Bands.Add(ninfo);
 
-            MaxHeight += ResizeHeight;
-            MaxWidth += ResizeWidth;
+            MaxHeight = MaxHeight + ResizeHeight;
+            MaxWidth = MaxWidth + ResizeWidth;
 
             int TotalWidth = MaxWidth + MarginResize;
             int TotalHeight = MaxHeight + MarginResize;
@@ -521,13 +522,13 @@ namespace Reportman.Designer
             }
             else
                 if (nband.Height == 0)
-                {
-                    leftruler = false;
-                    mainbitmap = false;
-                }
-                else
+            {
+                leftruler = false;
+                mainbitmap = false;
+            }
+            else
                     if (nband.Width == 0)
-                        mainbitmap = false;
+                mainbitmap = false;
             if (nband.Section == null)
                 mainbitmap = false;
             if (!mainbitmap)
@@ -715,7 +716,8 @@ namespace Reportman.Designer
                     nband.BandBitmap = null;
                 }
             }
-            nband.BandBitmap ??= new Bitmap(nband.TotalWidth, nbandheight);
+            if (nband.BandBitmap == null)
+                nband.BandBitmap = new Bitmap(nband.TotalWidth, nbandheight);
             bool selected = false;
             if (nband.Section != null)
                 if (nband.Section == SelectedSection)
@@ -774,12 +776,12 @@ namespace Reportman.Designer
             int Height = arec.Height;
             if (Width > Height)
             {
-                Left += (Width - Height) / 2;
+                Left = Left + (Width - Height) / 2;
                 Width = Height;
             }
             else
             {
-                Top += (Height - Width) / 2;
+                Top = Top + (Height - Width) / 2;
                 Height = Width;
             }
 
@@ -1069,11 +1071,11 @@ namespace Reportman.Designer
                     }
                     int aalign = textitem.PrintAlignment | textitem.VPrintAlignment;
                     if (textitem.SingleLine)
-                        aalign |= MetaFile.AlignmentFlags_SingleLine;
+                        aalign = aalign | MetaFile.AlignmentFlags_SingleLine;
 
                     // Text justify is implemented separaterly
                     StringFormat nformat = PrintOutNet.IntAlignToStringFormat(aalign, textitem.CutText, textitem.WordWrap, textitem.RightToLeft);
-                    nformat.FormatFlags &= (~StringFormatFlags.NoClip);
+                    nformat.FormatFlags = nformat.FormatFlags & (~StringFormatFlags.NoClip);
                     gr.DrawString(ntext, font, stock_brush, new RectangleF(nrec.Left, nrec.Top, nrec.Width, nrec.Height), nformat);
 #endif
                 }
@@ -1108,7 +1110,7 @@ namespace Reportman.Designer
 
                     // Text justify is implemented separaterly
                     StringFormat nformat = PrintOutNet.IntAlignToStringFormat(aalign, true, true, false);
-                    nformat.FormatFlags &= (~StringFormatFlags.NoClip);
+                    nformat.FormatFlags = nformat.FormatFlags & (~StringFormatFlags.NoClip);
                     gr.DrawString(ntext, font, stock_brush, new RectangleF(nrec.Left, nrec.Top, nrec.Width, nrec.Height), nformat);
 #endif
                 }
@@ -1151,7 +1153,7 @@ namespace Reportman.Designer
 
                     // Text justify is implemented separaterly
                     StringFormat nformat = PrintOutNet.IntAlignToStringFormat(aalign, true, true, false);
-                    nformat.FormatFlags &= (~StringFormatFlags.NoClip);
+                    nformat.FormatFlags = nformat.FormatFlags & (~StringFormatFlags.NoClip);
                     gr.DrawString(ntext, font, stock_brush, new RectangleF(nrec.Left, nrec.Top, nrec.Width, nrec.Height), nformat);
 #endif
                 }
@@ -1453,112 +1455,112 @@ namespace Reportman.Designer
                 ncuadre.Invalidate();
             }
             else
-                if (CapturedSelection)
+              if (CapturedSelection)
+            {
+                int x1, x2, y1, y2;
+                if (e.X > mouseorigin.X)
                 {
-                    int x1, x2, y1, y2;
-                    if (e.X > mouseorigin.X)
-                    {
-                        x1 = mouseorigin.X;
-                        x2 = e.X;
-                    }
-                    else
-                    {
-                        x1 = e.X;
-                        x2 = mouseorigin.X;
-                    }
-                    if (e.Y > mouseorigin.Y)
-                    {
-                        y1 = mouseorigin.Y;
-                        y2 = e.Y;
-                    }
-                    else
-                    {
-                        y1 = e.Y;
-                        y2 = mouseorigin.Y;
-                    }
-                    bool aligntogrid = FReport.GridEnabled;
-                    if (SelectedPalette == SelectedItemPalette.Arrow)
-                        aligntogrid = false;
-                    if (aligntogrid)
-                    {
-                        BandInfo firstband = GetDestinationBand(mouseorigin.X, mouseorigin.Y);
-                        Point pospoint = AlignToGridPixelds(new Point(x1, y1), firstband);
-                        Point widthpoint = AlignToGridPixelds(new Point(x2, y2), firstband);
-                        x1 = pospoint.X;
-                        x2 = widthpoint.X;
-                        y1 = pospoint.Y;
-                        y2 = widthpoint.Y;
-                    }
-                    qtop.SetBounds(x1 + ncontrol.Left, y1 + ncontrol.Top, x2 - x1, MAX_SELEC_WIDTH);
-                    qbottom.SetBounds(x1 + ncontrol.Left, y2 + ncontrol.Top, x2 - x1, MAX_SELEC_WIDTH);
-                    qleft.SetBounds(x1 + ncontrol.Left, y1 + ncontrol.Top, MAX_SELEC_WIDTH, y2 - y1);
-                    qright.SetBounds(x2 + ncontrol.Left, y1 + ncontrol.Top, MAX_SELEC_WIDTH, y2 - y1);
-                    // Select items inside the rectangle
+                    x1 = mouseorigin.X;
+                    x2 = e.X;
                 }
                 else
-                    if (CapturedMove)
+                {
+                    x1 = e.X;
+                    x2 = mouseorigin.X;
+                }
+                if (e.Y > mouseorigin.Y)
+                {
+                    y1 = mouseorigin.Y;
+                    y2 = e.Y;
+                }
+                else
+                {
+                    y1 = e.Y;
+                    y2 = mouseorigin.Y;
+                }
+                bool aligntogrid = FReport.GridEnabled;
+                if (SelectedPalette == SelectedItemPalette.Arrow)
+                    aligntogrid = false;
+                if (aligntogrid)
+                {
+                    BandInfo firstband = GetDestinationBand(mouseorigin.X, mouseorigin.Y);
+                    Point pospoint = AlignToGridPixelds(new Point(x1, y1), firstband);
+                    Point widthpoint = AlignToGridPixelds(new Point(x2, y2), firstband);
+                    x1 = pospoint.X;
+                    x2 = widthpoint.X;
+                    y1 = pospoint.Y;
+                    y2 = widthpoint.Y;
+                }
+                qtop.SetBounds(x1 + ncontrol.Left, y1 + ncontrol.Top, x2 - x1, MAX_SELEC_WIDTH);
+                qbottom.SetBounds(x1 + ncontrol.Left, y2 + ncontrol.Top, x2 - x1, MAX_SELEC_WIDTH);
+                qleft.SetBounds(x1 + ncontrol.Left, y1 + ncontrol.Top, MAX_SELEC_WIDTH, y2 - y1);
+                qright.SetBounds(x2 + ncontrol.Left, y1 + ncontrol.Top, MAX_SELEC_WIDTH, y2 - y1);
+                // Select items inside the rectangle
+            }
+            else
+                if (CapturedMove)
+            {
+
+                // Change position and possible the parent section
+                // Check the parent destination band
+                BandInfo destband = GetDestinationBandMove(e.X, e.Y);
+                if (destband != null)
+                    ncontrol.Cursor = Cursors.SizeAll;
+                else
+                    ncontrol.Cursor = Cursors.No;
+                if (destband != null)
+                {
+                    // Get diferences and apply to all components
+                    int offsetx = e.X - mouseorigin.X;
+                    int offsety = e.Y - mouseorigin.Y;
+                    if (destband != selectedposband)
                     {
-
-                        // Change position and possible the parent section
-                        // Check the parent destination band
-                        BandInfo destband = GetDestinationBandMove(e.X, e.Y);
-                        if (destband != null)
-                            ncontrol.Cursor = Cursors.SizeAll;
-                        else
-                            ncontrol.Cursor = Cursors.No;
-                        if (destband != null)
-                        {
-                            // Get diferences and apply to all components
-                            int offsetx = e.X - mouseorigin.X;
-                            int offsety = e.Y - mouseorigin.Y;
-                            if (destband != selectedposband)
-                            {
-                                offsety = mouseorigin.Y - (selectedposband.BandPosY + selectedposband.TitleHeight);
-                                offsety = -offsety + (e.Y - destband.BandPosY - destband.TitleHeight);
-                            }
-                            PrintItem nitem = selectedpositem;
-                            PrintPosItem npositem = (PrintPosItem)nitem;
-                            int nposx = npositem.PosX + TwipsGraphics.PixelsToTwips(offsetx, DrawScale);
-                            int nposy;
-                            if (destband != selectedposband)
-                            {
-                                nposy = offsety + nitem.SelectionRectangle.Top;
-                                nposy = TwipsGraphics.PixelsToTwips(nposy, DrawScale);
-                            }
-                            else
-                            {
-                                nposy = npositem.PosY + TwipsGraphics.PixelsToTwips(offsety, DrawScale);
-                            }
-                            if (FReport.GridEnabled)
-                            {
-                                Point npoint = TwipsGraphics.AlignToGridTwips(new Point(nposx, nposy),
-                                    FReport.GridWidth, FReport.GridHeight);
-                                nposx = npoint.X;
-                                nposy = npoint.Y;
-                                offsetx = TwipsGraphics.TwipsToPixels(nposx - npositem.PosX, FDrawScale);
-                                offsety = TwipsGraphics.TwipsToPixels(nposy - npositem.PosY, FDrawScale);
-                            }
-                            nposx = TwipsGraphics.TwipsToPixels(nposx, FDrawScale) + destband.BandPosX + parentcontrol.Left;
-                            nposy = TwipsGraphics.TwipsToPixels(nposy, FDrawScale) + destband.BandPosY + destband.TitleHeight
-                                + parentcontrol.Top;
-
-                            qtop.SetBounds(nposx, nposy, selectedpositem.SelectionRectangle.Width, MAX_SELEC_WIDTH);
-                            qbottom.SetBounds(nposx, nposy + selectedpositem.SelectionRectangle.Height, selectedpositem.SelectionRectangle.Width, MAX_SELEC_WIDTH);
-                            qleft.SetBounds(nposx, nposy, MAX_SELEC_WIDTH, selectedpositem.SelectionRectangle.Height);
-                            qright.SetBounds(nposx + selectedpositem.SelectionRectangle.Width, nposy, MAX_SELEC_WIDTH, selectedpositem.SelectionRectangle.Height);
-                            qtop.Visible = true;
-                            qbottom.Visible = true;
-                            qleft.Visible = true;
-                            qright.Visible = true;
-                        }
-                        else
-                        {
-                            qtop.Visible = false;
-                            qbottom.Visible = false;
-                            qleft.Visible = false;
-                            qright.Visible = false;
-                        }
+                        offsety = mouseorigin.Y - (selectedposband.BandPosY + selectedposband.TitleHeight);
+                        offsety = -offsety + (e.Y - destband.BandPosY - destband.TitleHeight);
                     }
+                    PrintItem nitem = selectedpositem;
+                    PrintPosItem npositem = (PrintPosItem)nitem;
+                    int nposx = npositem.PosX + TwipsGraphics.PixelsToTwips(offsetx, DrawScale);
+                    int nposy;
+                    if (destband != selectedposband)
+                    {
+                        nposy = offsety + nitem.SelectionRectangle.Top;
+                        nposy = TwipsGraphics.PixelsToTwips(nposy, DrawScale);
+                    }
+                    else
+                    {
+                        nposy = npositem.PosY + TwipsGraphics.PixelsToTwips(offsety, DrawScale);
+                    }
+                    if (FReport.GridEnabled)
+                    {
+                        Point npoint = TwipsGraphics.AlignToGridTwips(new Point(nposx, nposy),
+                            FReport.GridWidth, FReport.GridHeight);
+                        nposx = npoint.X;
+                        nposy = npoint.Y;
+                        offsetx = TwipsGraphics.TwipsToPixels(nposx - npositem.PosX, FDrawScale);
+                        offsety = TwipsGraphics.TwipsToPixels(nposy - npositem.PosY, FDrawScale);
+                    }
+                    nposx = TwipsGraphics.TwipsToPixels(nposx, FDrawScale) + destband.BandPosX + parentcontrol.Left;
+                    nposy = TwipsGraphics.TwipsToPixels(nposy, FDrawScale) + destband.BandPosY + destband.TitleHeight
+                        + parentcontrol.Top;
+
+                    qtop.SetBounds(nposx, nposy, selectedpositem.SelectionRectangle.Width, MAX_SELEC_WIDTH);
+                    qbottom.SetBounds(nposx, nposy + selectedpositem.SelectionRectangle.Height, selectedpositem.SelectionRectangle.Width, MAX_SELEC_WIDTH);
+                    qleft.SetBounds(nposx, nposy, MAX_SELEC_WIDTH, selectedpositem.SelectionRectangle.Height);
+                    qright.SetBounds(nposx + selectedpositem.SelectionRectangle.Width, nposy, MAX_SELEC_WIDTH, selectedpositem.SelectionRectangle.Height);
+                    qtop.Visible = true;
+                    qbottom.Visible = true;
+                    qleft.Visible = true;
+                    qright.Visible = true;
+                }
+                else
+                {
+                    qtop.Visible = false;
+                    qbottom.Visible = false;
+                    qleft.Visible = false;
+                    qright.Visible = false;
+                }
+            }
         }
         private BandInfo GetDestinationBand(int X, int Y)
         {
@@ -1672,199 +1674,199 @@ namespace Reportman.Designer
                 //timerredraw.Enabled = true;
             }
             else
-                if (CapturedSelection)
+              if (CapturedSelection)
+            {
+                CapturedSelection = false;
+                int x1, x2, y1, y2;
+                if (e.X > mouseorigin.X)
                 {
-                    CapturedSelection = false;
-                    int x1, x2, y1, y2;
-                    if (e.X > mouseorigin.X)
-                    {
-                        x1 = mouseorigin.X;
-                        x2 = e.X;
-                    }
-                    else
-                    {
-                        x1 = e.X;
-                        x2 = mouseorigin.X;
-                    }
-                    if (e.Y > mouseorigin.Y)
-                    {
-                        y1 = mouseorigin.Y;
-                        y2 = e.Y;
-                    }
-                    else
-                    {
-                        y1 = e.Y;
-                        y2 = mouseorigin.Y;
-                    }
-                    bool aligntogrid = FReport.GridEnabled;
-                    if (SelectedPalette == SelectedItemPalette.Arrow)
-                        aligntogrid = false;
-                    if (aligntogrid)
-                    {
-                        BandInfo firstband = GetDestinationBand(mouseorigin.X, mouseorigin.Y);
-                        Point pospoint = AlignToGridPixelds(new Point(x1, y1), firstband);
-                        Point widthpoint = AlignToGridPixelds(new Point(x2, y2), firstband);
-                        x1 = pospoint.X;
-                        x2 = widthpoint.X;
-                        y1 = pospoint.Y;
-                        y2 = widthpoint.Y;
-                    }
+                    x1 = mouseorigin.X;
+                    x2 = e.X;
+                }
+                else
+                {
+                    x1 = e.X;
+                    x2 = mouseorigin.X;
+                }
+                if (e.Y > mouseorigin.Y)
+                {
+                    y1 = mouseorigin.Y;
+                    y2 = e.Y;
+                }
+                else
+                {
+                    y1 = e.Y;
+                    y2 = mouseorigin.Y;
+                }
+                bool aligntogrid = FReport.GridEnabled;
+                if (SelectedPalette == SelectedItemPalette.Arrow)
+                    aligntogrid = false;
+                if (aligntogrid)
+                {
+                    BandInfo firstband = GetDestinationBand(mouseorigin.X, mouseorigin.Y);
+                    Point pospoint = AlignToGridPixelds(new Point(x1, y1), firstband);
+                    Point widthpoint = AlignToGridPixelds(new Point(x2, y2), firstband);
+                    x1 = pospoint.X;
+                    x2 = widthpoint.X;
+                    y1 = pospoint.Y;
+                    y2 = widthpoint.Y;
+                }
 
-                    int leftpos = x1 + ncontrol.Left;
-                    int toppos = y1 + ncontrol.Top;
-                    int widthpos = x2 - x1;
-                    int heightpos = y2 - y1;
-                    int rightpos = x2 + ncontrol.Left;
-                    int bottompos = y2 + ncontrol.Top;
-                    qtop.SetBounds(leftpos, toppos, widthpos, MAX_SELEC_WIDTH);
-                    qbottom.SetBounds(leftpos, bottompos, widthpos, MAX_SELEC_WIDTH);
-                    qleft.SetBounds(leftpos, toppos, MAX_SELEC_WIDTH, heightpos);
-                    qright.SetBounds(rightpos, toppos, MAX_SELEC_WIDTH, heightpos);
+                int leftpos = x1 + ncontrol.Left;
+                int toppos = y1 + ncontrol.Top;
+                int widthpos = x2 - x1;
+                int heightpos = y2 - y1;
+                int rightpos = x2 + ncontrol.Left;
+                int bottompos = y2 + ncontrol.Top;
+                qtop.SetBounds(leftpos, toppos, widthpos, MAX_SELEC_WIDTH);
+                qbottom.SetBounds(leftpos, bottompos, widthpos, MAX_SELEC_WIDTH);
+                qleft.SetBounds(leftpos, toppos, MAX_SELEC_WIDTH, heightpos);
+                qright.SetBounds(rightpos, toppos, MAX_SELEC_WIDTH, heightpos);
 
-                    // Check Shift or CTRL state
-                    PrintPosItem newitem = CreateFromSelectedPalette(SelectedPalette);
-                    if (newitem == null)
+                // Check Shift or CTRL state
+                PrintPosItem newitem = CreateFromSelectedPalette(SelectedPalette);
+                if (newitem == null)
+                {
+                    SelectItems(new Rectangle(qtop.Left - ncontrol.Left, qtop.Top - ncontrol.Top,
+                       qright.Left - qleft.Left, qbottom.Top - qtop.Top), addselection, switchselection);
+                }
+                else
+                {
+                    BandInfo createband = GetDestinationBand(mouseorigin.X, mouseorigin.Y);
+                    if (createband == null)
+                        throw new Exception("No band in position " + mouseorigin.X.ToString() + " - " + mouseorigin.Y.ToString());
+                    newitem.PosX = Twips.AlignToGridTwips(TwipsGraphics.PixelsToTwips(leftpos - createband.BandPosX - ncontrol.Left, FDrawScale), FReport.GridWidth, FReport.GridHeight);
+                    newitem.PosY = Twips.AlignToGridTwips(TwipsGraphics.PixelsToTwips(toppos - createband.BandPosY - createband.TitleHeight - ncontrol.Top, FDrawScale), FReport.GridWidth, FReport.GridHeight);
+                    newitem.Width = Twips.AlignToGridTwips(TwipsGraphics.PixelsToTwips(widthpos, FDrawScale), FReport.GridWidth, FReport.GridHeight);
+                    newitem.Height = Twips.AlignToGridTwips(TwipsGraphics.PixelsToTwips(heightpos, FDrawScale), FReport.GridWidth, FReport.GridHeight);
+                    InitializeNewItem(createband, newitem);
+                }
+                parentcontrol.Invalidate();
+            }
+            else
+                if (CapturedMove)
+            {
+                // Change position and possible the parent section
+                // Check the parent destination band
+                CapturedMove = false;
+                BandInfo destband = GetDestinationBand(e.X, e.Y);
+                if (destband != null)
+                    ncontrol.Cursor = Cursors.SizeAll;
+                else
+                    ncontrol.Cursor = Cursors.No;
+                if (destband != null)
+                {
+                    // Capture old positions for undo before moving
+                    Dictionary<string, Point> oldPositions = new Dictionary<string, Point>();
+                    string oldParentSectionName = selectedposband?.Section?.Name;
+                    foreach (PrintItem nitem in SelectedItems.Values)
                     {
-                        SelectItems(new Rectangle(qtop.Left - ncontrol.Left, qtop.Top - ncontrol.Top,
-                           qright.Left - qleft.Left, qbottom.Top - qtop.Top), addselection, switchselection);
+                        if (nitem is PrintPosItem positem)
+                            oldPositions[positem.Name] = new Point(positem.PosX, positem.PosY);
                     }
-                    else
+                    // Get diferences and apply to all components
+                    int offsetx = e.X - mouseorigin.X;
+                    int offsety = e.Y - mouseorigin.Y;
+                    if (destband != selectedposband)
                     {
-                        BandInfo createband = GetDestinationBand(mouseorigin.X, mouseorigin.Y);
-                        if (createband == null)
-                            throw new Exception("No band in position " + mouseorigin.X.ToString() + " - " + mouseorigin.Y.ToString());
-                        newitem.PosX = Twips.AlignToGridTwips(TwipsGraphics.PixelsToTwips(leftpos - createband.BandPosX - ncontrol.Left, FDrawScale), FReport.GridWidth, FReport.GridHeight);
-                        newitem.PosY = Twips.AlignToGridTwips(TwipsGraphics.PixelsToTwips(toppos - createband.BandPosY - createband.TitleHeight - ncontrol.Top, FDrawScale), FReport.GridWidth, FReport.GridHeight);
-                        newitem.Width = Twips.AlignToGridTwips(TwipsGraphics.PixelsToTwips(widthpos, FDrawScale), FReport.GridWidth, FReport.GridHeight);
-                        newitem.Height = Twips.AlignToGridTwips(TwipsGraphics.PixelsToTwips(heightpos, FDrawScale), FReport.GridWidth, FReport.GridHeight);
-                        InitializeNewItem(createband, newitem);
+                        offsety = mouseorigin.Y - (selectedposband.BandPosY + selectedposband.TitleHeight);
+                        offsety = -offsety + (e.Y - destband.BandPosY - destband.TitleHeight);
+                        // Mantain Z order
+                        List<PrintPosItem> ListRemove = new List<PrintPosItem>();
+                        foreach (PrintPosItem posi in selectedposband.Section.Components)
+                        {
+                            if (SelectedItems.IndexOfKey(posi.SelectionIndex) >= 0)
+                            {
+                                destband.Section.Components.Add(posi);
+                                posi.Section = destband.Section;
+                                ListRemove.Add(posi);
+                            }
+                        }
+                        foreach (PrintPosItem ritem in ListRemove)
+                        {
+                            selectedposband.Section.Components.Remove(ritem);
+                        }
+                    }
+                    int i = 0;
+                    foreach (PrintItem nitem in SelectedItems.Values)
+                    {
+                        PrintPosItem npositem = (PrintPosItem)nitem;
+                        int nposx = npositem.PosX + TwipsGraphics.PixelsToTwips(offsetx, DrawScale);
+                        int nposy;
+                        if (destband != selectedposband)
+                        {
+                            nposy = offsety + nitem.SelectionRectangle.Top;
+                            nposy = TwipsGraphics.PixelsToTwips(nposy, DrawScale);
+                        }
+                        else
+                        {
+                            nposy = npositem.PosY + TwipsGraphics.PixelsToTwips(offsety, DrawScale);
+                        }
+                        if (i == 0)
+                        {
+                            if (FReport.GridEnabled)
+                            {
+                                Point npoint = TwipsGraphics.AlignToGridTwips(new Point(nposx, nposy),
+                                    FReport.GridWidth, FReport.GridHeight);
+                                nposx = npoint.X;
+                                nposy = npoint.Y;
+                                offsetx = TwipsGraphics.TwipsToPixels(nposx - npositem.PosX, FDrawScale);
+                                offsety = TwipsGraphics.TwipsToPixels(nposy - npositem.PosY, FDrawScale);
+                            }
+                        }
+                        npositem.PosX = nposx;
+                        npositem.PosY = nposy;
+                        i++;
+                    }
+                    foreach (BandInfo binfo in SelectedItemsBands.Values)
+                    {
+                        ReDrawBand(binfo);
+                        binfo.oldposition = Int32.MinValue;
+                        binfo.oldpositiony = Int32.MinValue;
+                    }
+                    if (destband != selectedposband)
+                    {
+                        ReDrawBand(destband);
+                        destband.oldposition = Int32.MinValue;
+                        destband.oldpositiony = Int32.MinValue;
+
+                        SelectedItemsBands.Clear();
+                        SelectedItemsBands.Add(destband.Section.SelectionIndex, destband);
+                    }
+                    SelectPosItem();
+                    if (destband != null)
+                        SelectedSection = destband.Section;
+                    // Generate undo Modify operations for moved items
+                    if (FReport?.UndoCue != null && oldPositions.Count > 0)
+                    {
+                        int groupId = FReport.UndoCue.GetGroupId();
+                        foreach (PrintItem nitem in SelectedItems.Values)
+                        {
+                            if (nitem is PrintPosItem positem && oldPositions.ContainsKey(positem.Name))
+                            {
+                                Point oldPos = oldPositions[positem.Name];
+                                if (positem.PosX != oldPos.X || positem.PosY != oldPos.Y)
+                                {
+                                    var op = new ChangeObjectOperation(OperationType.Modify, groupId);
+                                    op.ComponentName = positem.Name;
+                                    op.ComponentClass = positem.ClassName;
+                                    if (positem.PosX != oldPos.X)
+                                        op.AddProperty("PosX", PropertyType.Integer, oldPos.X, positem.PosX);
+                                    if (positem.PosY != oldPos.Y)
+                                        op.AddProperty("PosY", PropertyType.Integer, oldPos.Y, positem.PosY);
+                                    if (destband != selectedposband)
+                                    {
+                                        op.OldParentName = oldParentSectionName;
+                                        op.ParentName = destband.Section.Name;
+                                    }
+                                    FReport.UndoCue.AddOperation(op, FReport);
+                                }
+                            }
+                        }
                     }
                     parentcontrol.Invalidate();
                 }
-                else
-                    if (CapturedMove)
-                    {
-                        // Change position and possible the parent section
-                        // Check the parent destination band
-                        CapturedMove = false;
-                        BandInfo destband = GetDestinationBand(e.X, e.Y);
-                        if (destband != null)
-                            ncontrol.Cursor = Cursors.SizeAll;
-                        else
-                            ncontrol.Cursor = Cursors.No;
-                        if (destband != null)
-                        {
-                            // Capture old positions for undo before moving
-                            Dictionary<string, Point> oldPositions = new Dictionary<string, Point>();
-                            string oldParentSectionName = selectedposband?.Section?.Name;
-                            foreach (PrintItem nitem in SelectedItems.Values)
-                            {
-                                if (nitem is PrintPosItem positem)
-                                    oldPositions[positem.Name] = new Point(positem.PosX, positem.PosY);
-                            }
-                            // Get diferences and apply to all components
-                            int offsetx = e.X - mouseorigin.X;
-                            int offsety = e.Y - mouseorigin.Y;
-                            if (destband != selectedposband)
-                            {
-                                offsety = mouseorigin.Y - (selectedposband.BandPosY + selectedposband.TitleHeight);
-                                offsety = -offsety + (e.Y - destband.BandPosY - destband.TitleHeight);
-                                // Mantain Z order
-                                List<PrintPosItem> ListRemove = new List<PrintPosItem>();
-                                foreach (PrintPosItem posi in selectedposband.Section.Components)
-                                {
-                                    if (SelectedItems.IndexOfKey(posi.SelectionIndex) >= 0)
-                                    {
-                                        destband.Section.Components.Add(posi);
-                                        posi.Section = destband.Section;
-                                        ListRemove.Add(posi);
-                                    }
-                                }
-                                foreach (PrintPosItem ritem in ListRemove)
-                                {
-                                    selectedposband.Section.Components.Remove(ritem);
-                                }
-                            }
-                            int i = 0;
-                            foreach (PrintItem nitem in SelectedItems.Values)
-                            {
-                                PrintPosItem npositem = (PrintPosItem)nitem;
-                                int nposx = npositem.PosX + TwipsGraphics.PixelsToTwips(offsetx, DrawScale);
-                                int nposy;
-                                if (destband != selectedposband)
-                                {
-                                    nposy = offsety + nitem.SelectionRectangle.Top;
-                                    nposy = TwipsGraphics.PixelsToTwips(nposy, DrawScale);
-                                }
-                                else
-                                {
-                                    nposy = npositem.PosY + TwipsGraphics.PixelsToTwips(offsety, DrawScale);
-                                }
-                                if (i == 0)
-                                {
-                                    if (FReport.GridEnabled)
-                                    {
-                                        Point npoint = TwipsGraphics.AlignToGridTwips(new Point(nposx, nposy),
-                                            FReport.GridWidth, FReport.GridHeight);
-                                        nposx = npoint.X;
-                                        nposy = npoint.Y;
-                                        offsetx = TwipsGraphics.TwipsToPixels(nposx - npositem.PosX, FDrawScale);
-                                        offsety = TwipsGraphics.TwipsToPixels(nposy - npositem.PosY, FDrawScale);
-                                    }
-                                }
-                                npositem.PosX = nposx;
-                                npositem.PosY = nposy;
-                                i++;
-                            }
-                            foreach (BandInfo binfo in SelectedItemsBands.Values)
-                            {
-                                ReDrawBand(binfo);
-                                binfo.oldposition = Int32.MinValue;
-                                binfo.oldpositiony = Int32.MinValue;
-                            }
-                            if (destband != selectedposband)
-                            {
-                                ReDrawBand(destband);
-                                destband.oldposition = Int32.MinValue;
-                                destband.oldpositiony = Int32.MinValue;
-
-                                SelectedItemsBands.Clear();
-                                SelectedItemsBands.Add(destband.Section.SelectionIndex, destband);
-                            }
-                            SelectPosItem();
-                            if (destband != null)
-                                SelectedSection = destband.Section;
-                            // Generate undo Modify operations for moved items
-                            if (FReport?.UndoCue != null && oldPositions.Count > 0)
-                            {
-                                int groupId = FReport.UndoCue.GetGroupId();
-                                foreach (PrintItem nitem in SelectedItems.Values)
-                                {
-                                    if (nitem is PrintPosItem positem && oldPositions.ContainsKey(positem.Name))
-                                    {
-                                        Point oldPos = oldPositions[positem.Name];
-                                        if (positem.PosX != oldPos.X || positem.PosY != oldPos.Y)
-                                        {
-                                            var op = new ChangeObjectOperation(OperationType.Modify, groupId);
-                                            op.ComponentName = positem.Name;
-                                            op.ComponentClass = positem.ClassName;
-                                            if (positem.PosX != oldPos.X)
-                                                op.AddProperty("PosX", PropertyType.Integer, oldPos.X, positem.PosX);
-                                            if (positem.PosY != oldPos.Y)
-                                                op.AddProperty("PosY", PropertyType.Integer, oldPos.Y, positem.PosY);
-                                            if (destband != selectedposband)
-                                            {
-                                                op.OldParentName = oldParentSectionName;
-                                                op.ParentName = destband.Section.Name;
-                                            }
-                                            FReport.UndoCue.AddOperation(op, FReport);
-                                        }
-                                    }
-                                }
-                            }
-                            parentcontrol.Invalidate();
-                        }
-                    }
+            }
         }
 
         // MoveControls - Move selected controls by keyboard
@@ -1873,7 +1875,7 @@ namespace Reportman.Designer
         //    MessageBox.Show("Key Press Handler " + e.KeyChar.ToString());            
         //}
         private void KeyDownHandler(object sender, KeyEventArgs e)
-        {
+        {           
             // This event handler will only be fired if this focus is on this control
             // This control is brought to focus from FrameMainDesigner AfterSelect event in AfterSelectDesign procedure
             if (ModifierKeys.HasFlag(Keys.Control))     // if (e.Control)
@@ -2186,7 +2188,8 @@ namespace Reportman.Designer
                         int nindex = nitem.Section.SelectionIndex;
                         if (SelectedItemsBands.IndexOfKey(nindex) < 0)
                         {
-                            SectionToSelec ??= BandsList[nindex].Section;
+                            if (SectionToSelec == null)
+                                SectionToSelec = BandsList[nindex].Section;
                             SelectedItemsBands.Add(nindex, BandsList[nindex]);
                         }
                     }
@@ -2314,7 +2317,8 @@ namespace Reportman.Designer
                         int nindex = nitem.Section.SelectionIndex;
                         if (SelectedItemsBands.IndexOfKey(nindex) < 0)
                         {
-                            SectionToSelec ??= BandsList[nindex].Section;
+                            if (SectionToSelec == null)
+                                SectionToSelec = BandsList[nindex].Section;
                             SelectedItemsBands.Add(nindex, BandsList[nindex]);
                         }
                     }

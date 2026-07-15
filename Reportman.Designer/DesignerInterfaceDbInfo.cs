@@ -178,7 +178,7 @@ namespace Reportman.Designer
                 foreach (DataRow nrow in ntable.Rows)
                 {
                     string newvalue = nrow["InvariantName"].ToString();
-                    lpossiblevalues.Add(newvalue);
+                    lpossiblevalues.Add(newvalue);                    
                     if (newvalue == DatabaseInfo.FIREBIRD_PROVIDER2)            // if (newvalue == "FirebirdSql.Data.Firebird")
                         firebird2found = true;
                 }

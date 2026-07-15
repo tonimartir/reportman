@@ -1,6 +1,8 @@
-﻿using Reportman.Drawing;
-using System;
+﻿using System;
+using System.IO;
 using System.Text;
+using Reportman.Drawing;
+using Reportman.Reporting;
 
 namespace Reportman.Reporting.Design
 {

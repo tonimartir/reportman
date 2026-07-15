@@ -73,8 +73,10 @@ namespace Reportman.Drawing.Forms
                 FIncludeGoogleTerms = value;
                 if (value)
                 {
-                    GoogleTermsImage ??= Properties.Resources.search16;
-                    NotGoogleTermsImage ??= Properties.Resources.search16;
+                    if (GoogleTermsImage == null)
+                        GoogleTermsImage = Properties.Resources.search16;
+                    if (NotGoogleTermsImage == null)
+                        NotGoogleTermsImage = Properties.Resources.search16;
                 }
             }
             get
@@ -593,119 +595,119 @@ namespace Reportman.Drawing.Forms
                 }
             }
             else
-                if (m.Msg == 0x020A)
+            if (m.Msg == 0x020A)
+            {
+                // Mouse wheel
+                if (listBoxChild != null && listBoxChild.Visible)
                 {
-                    // Mouse wheel
-                    if (listBoxChild != null && listBoxChild.Visible)
+                    long wheelcode = m.WParam.ToInt64();
+                    wheelcode = wheelcode >> 16;
+                    long wheels = wheelcode / 120;
+                    long incrementtodo = -wheelcode / 120;
+                    long NewIx = listBoxChild.SelectedIndex + incrementtodo;
+                    if (NewIx < 0)
+                        NewIx = 0;
+                    if (NewIx > listBoxChild.Items.Count - 1)
+                        NewIx = listBoxChild.Items.Count - 1;
+                    // Keep the index valid!
+                    if (NewIx >= 0)
+                        listBoxChild.SelectedIndex = Convert.ToInt32(NewIx);
+                    return true;
+                }
+                if (searchChild != null && searchChild.Visible)
+                {
+                    long wheelcode = m.WParam.ToInt64();
+                    wheelcode = wheelcode >> 16;
+                    long wheels = wheelcode / 120;
+                    long incrementtodo = -wheelcode / 120;
+                    if (incrementtodo > 0)
+                        SearchWindow.KeyOperation(SearchWindowKeyOperation.Down);
+                    else
+                        SearchWindow.KeyOperation(SearchWindowKeyOperation.Up);
+                    return true;
+                }
+            }
+            else
+            if ((m.Msg == 0x100) || (m.Msg == 0x101)) // WM_KEYDOWN WM_KEYUP
+            {
+                if (listBoxChild != null && listBoxChild.Visible)
+                {
+                    int keycode = m.WParam.ToInt32();
+                    switch (keycode)
                     {
-                        long wheelcode = m.WParam.ToInt64();
-                        wheelcode >>= 16;
-                        long wheels = wheelcode / 120;
-                        long incrementtodo = -wheelcode / 120;
-                        long NewIx = listBoxChild.SelectedIndex + incrementtodo;
-                        if (NewIx < 0)
-                            NewIx = 0;
-                        if (NewIx > listBoxChild.Items.Count - 1)
-                            NewIx = listBoxChild.Items.Count - 1;
-                        // Keep the index valid!
-                        if (NewIx >= 0)
-                            listBoxChild.SelectedIndex = Convert.ToInt32(NewIx);
-                        return true;
-                    }
-                    if (searchChild != null && searchChild.Visible)
-                    {
-                        long wheelcode = m.WParam.ToInt64();
-                        wheelcode >>= 16;
-                        long wheels = wheelcode / 120;
-                        long incrementtodo = -wheelcode / 120;
-                        if (incrementtodo > 0)
-                            SearchWindow.KeyOperation(SearchWindowKeyOperation.Down);
-                        else
-                            SearchWindow.KeyOperation(SearchWindowKeyOperation.Up);
-                        return true;
+                        case 0x1B: // Escape key
+                            if (m.Msg == 0x100)
+                                this.HideTheList();
+                            return true;
+                        case 34: // Page down
+                        case 33: // Page up
+                        case 0x26: // up key
+                        case 0x28: // right key
+                                   // Change selection
+                            if (m.Msg == 0x100)
+                            {
+                                int increment = 1;
+                                if (keycode == 0x26)
+                                    increment = -1;
+                                else
+                                    if (keycode == 34)
+                                    increment = Convert.ToInt32(listBoxChild.Height / listBoxChild.ItemHeight);
+                                else
+                                    if (keycode == 33)
+                                    increment = -Convert.ToInt32(listBoxChild.Height / listBoxChild.ItemHeight);
+
+                                int NewIx = listBoxChild.SelectedIndex + increment;
+                                if (NewIx < 0)
+                                    NewIx = 0;
+                                if (NewIx > listBoxChild.Items.Count - 1)
+                                    NewIx = listBoxChild.Items.Count - 1;
+                                // Keep the index valid!
+                                if (NewIx >= 0)
+                                    listBoxChild.SelectedIndex = NewIx;
+                            }
+                            return true;
+
+                        case 0x0D: // return (use the currently selected item)
+                            if (m.Msg == 0x100)
+                            {
+                                CopySelection();
+                            }
+                            return false;
                     }
                 }
-                else
-                    if ((m.Msg == 0x100) || (m.Msg == 0x101)) // WM_KEYDOWN WM_KEYUP
+                if (searchChild != null && searchChild.Visible)
+                {
+                    int keycode = m.WParam.ToInt32();
+                    switch (keycode)
                     {
-                        if (listBoxChild != null && listBoxChild.Visible)
-                        {
-                            int keycode = m.WParam.ToInt32();
-                            switch (keycode)
+                        case 0x1B: // Escape key
+                            SearchWindow.Deactivate();
+                            return true;
+                        case 34: // Page down
+                        case 33: // Page up
+                        case 0x26: // up key
+                        case 0x28: // right key
+                                   // Change selection
+                            if (m.Msg == 0x100)
                             {
-                                case 0x1B: // Escape key
-                                    if (m.Msg == 0x100)
-                                        this.HideTheList();
-                                    return true;
-                                case 34: // Page down
-                                case 33: // Page up
-                                case 0x26: // up key
-                                case 0x28: // right key
-                                           // Change selection
-                                    if (m.Msg == 0x100)
-                                    {
-                                        int increment = 1;
-                                        if (keycode == 0x26)
-                                            increment = -1;
-                                        else
-                                            if (keycode == 34)
-                                                increment = Convert.ToInt32(listBoxChild.Height / listBoxChild.ItemHeight);
-                                            else
-                                                if (keycode == 33)
-                                                    increment = -Convert.ToInt32(listBoxChild.Height / listBoxChild.ItemHeight);
-
-                                        int NewIx = listBoxChild.SelectedIndex + increment;
-                                        if (NewIx < 0)
-                                            NewIx = 0;
-                                        if (NewIx > listBoxChild.Items.Count - 1)
-                                            NewIx = listBoxChild.Items.Count - 1;
-                                        // Keep the index valid!
-                                        if (NewIx >= 0)
-                                            listBoxChild.SelectedIndex = NewIx;
-                                    }
-                                    return true;
-
-                                case 0x0D: // return (use the currently selected item)
-                                    if (m.Msg == 0x100)
-                                    {
-                                        CopySelection();
-                                    }
-                                    return false;
+                                if (keycode == 0x26)
+                                    SearchWindow.KeyOperation(SearchWindowKeyOperation.Up);
+                                else
+                                if (keycode == 34)
+                                    SearchWindow.KeyOperation(SearchWindowKeyOperation.PageDown);
+                                else
+                                if (keycode == 33)
+                                    SearchWindow.KeyOperation(SearchWindowKeyOperation.PageUp);
+                                else
+                                    SearchWindow.KeyOperation(SearchWindowKeyOperation.Down);
                             }
-                        }
-                        if (searchChild != null && searchChild.Visible)
-                        {
-                            int keycode = m.WParam.ToInt32();
-                            switch (keycode)
-                            {
-                                case 0x1B: // Escape key
-                                    SearchWindow.Deactivate();
-                                    return true;
-                                case 34: // Page down
-                                case 33: // Page up
-                                case 0x26: // up key
-                                case 0x28: // right key
-                                           // Change selection
-                                    if (m.Msg == 0x100)
-                                    {
-                                        if (keycode == 0x26)
-                                            SearchWindow.KeyOperation(SearchWindowKeyOperation.Up);
-                                        else
-                                            if (keycode == 34)
-                                                SearchWindow.KeyOperation(SearchWindowKeyOperation.PageDown);
-                                            else
-                                                if (keycode == 33)
-                                                    SearchWindow.KeyOperation(SearchWindowKeyOperation.PageUp);
-                                                else
-                                                    SearchWindow.KeyOperation(SearchWindowKeyOperation.Down);
-                                    }
-                                    return true;
-                                case 0x0D: // return (use the currently selected item)
-                                    SearchWindow.KeyOperation(SearchWindowKeyOperation.Return);
-                                    return false;
-                            }
-                        }
+                            return true;
+                        case 0x0D: // return (use the currently selected item)
+                            SearchWindow.KeyOperation(SearchWindowKeyOperation.Return);
+                            return false;
                     }
+                }
+            }
 
             return false;
         }
@@ -759,7 +761,7 @@ namespace Reportman.Drawing.Forms
                 try
                 {
                     string result = await httpClient.GetStringAsync(searchuri);
-
+                    
                     if (Text.Trim().Length == 0)
                     {
                         HideDropDown();
@@ -937,7 +939,7 @@ namespace Reportman.Drawing.Forms
                 int new_y = TheControlToMove.Top - this.Height - previousheight;
                 if (new_y < 0)
                 {
-                    suggested_height += new_y;
+                    suggested_height = suggested_height + new_y;
                     new_y = 0;
                 }
                 if (suggested_height > newheight)
@@ -1238,12 +1240,12 @@ namespace Reportman.Drawing.Forms
                 imageToDraw = GoogleTermsImage;
             else
                 if (listBoxChild.Items[e.Index] is AutoCompleteInfo)
-                {
-                    AutoCompleteInfo compinfo = (AutoCompleteInfo)listBoxChild.Items[e.Index];
-                    imageToDraw = compinfo.Icon;
-                }
-                else
-                    imageToDraw = NotGoogleTermsImage;
+            {
+                AutoCompleteInfo compinfo = (AutoCompleteInfo)listBoxChild.Items[e.Index];
+                imageToDraw = compinfo.Icon;
+            }
+            else
+                imageToDraw = NotGoogleTermsImage;
 
             e.Graphics.DrawString(listBoxChild.Items[e.Index].ToString(), Font, drawbrush, StringBounds, format);
             int imoffset = (e.Bounds.Height - imwidth) / 2;
@@ -1387,9 +1389,9 @@ namespace Reportman.Drawing.Forms
                             lvalidate = validnumeric;
                         else
                             if (FDataType == TextBoxDataType.Double)
-                                lvalidate = validdouble;
-                            else
-                                lvalidate = validinteger;
+                            lvalidate = validdouble;
+                        else
+                            lvalidate = validinteger;
                         index = lvalidate.IndexOfKey(e.KeyChar);
                         if (index < 0)
                             e.KeyChar = (char)0;

@@ -1766,7 +1766,7 @@ namespace Reportman.Reporting.Forms
                 rp.PageSize = PageSizeType.Custom;
             else
                 if (rpagecustom.Checked)
-                    rp.PageSize = PageSizeType.User;
+                rp.PageSize = PageSizeType.User;
             rp.PageSizeIndex = ComboPageSize.SelectedIndex;
             if (rp.PageSizeIndex < 0)
                 rp.PageSizeIndex = 0;
