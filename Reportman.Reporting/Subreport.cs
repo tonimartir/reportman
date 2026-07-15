@@ -151,9 +151,9 @@ namespace Reportman.Reporting
                 }
                 else
                     if (newstate == SubReportEvent.SubReportEnd)
-                {
-                    index = GroupCount;
-                }
+                    {
+                        index = GroupCount;
+                    }
                 if (index > 0)
                 {
                     ffirstdetail = FirstDetail;
@@ -535,7 +535,7 @@ namespace Reportman.Reporting
         /// <returns></returns>
         private Section CreateSection()
         {
-            Section sec = new Section();
+            Section sec = new();
             sec.Report = Report;
             Report.GenerateNewName(sec);
             sec.SubReport = this;

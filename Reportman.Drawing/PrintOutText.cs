@@ -89,7 +89,8 @@ namespace Reportman.Drawing
         /// <summary>
         /// Gets the rendered printer output decoded as a string using code page 437.
         /// </summary>
-        public string PrintResult {
+        public string PrintResult
+        {
             get
             {
                 byte[] nbytes = PrintResultStream.ToArray();
@@ -330,7 +331,7 @@ namespace Reportman.Drawing
         /// <returns>A string of spaces covering the full page width.</returns>
         public string GetBlankLine(PrintStepType fontstep)
         {
-            StringBuilder nresult = new StringBuilder();
+            StringBuilder nresult = new();
             int charcount = (int)Math.Round(System.Convert.ToDouble(FPageWidth) / StepToTwips(fontstep));
             for (int i = 0; i < charcount; i++)
                 nresult.Append(" ");
@@ -366,7 +367,7 @@ namespace Reportman.Drawing
                 nline.FontStep = fontstep;
                 nline.Value = GetBlankLine(fontstep);
             }
-            PosText npostext = new PosText();
+            PosText npostext = new();
             columnnumber = GetColumnNumber(x, nline.FontStep);
             atpos = columnnumber;
             index = nline.texts.IndexOfKey(atpos);
@@ -439,7 +440,8 @@ namespace Reportman.Drawing
         /// Controls whether OEM character-set conversion is applied to output text: use the printer
         /// configuration default (<c>None</c>), or force it off (<c>False</c>) or on (<c>True</c>).
         /// </summary>
-        public enum OemConvertOverride {
+        public enum OemConvertOverride
+        {
             /// <summary>Use the OEM conversion setting from the printer configuration.</summary>
             None,
             /// <summary>Force OEM character-set conversion off.</summary>
@@ -470,10 +472,10 @@ namespace Reportman.Drawing
                     OEMConvert = true;
             }
             else
-            if (LoadOEMConvert)
-            {
-                OEMConvert = PrinterConfig.GetOEMConvert(FPrinterSelect);
-            }
+                if (LoadOEMConvert)
+                {
+                    OEMConvert = PrinterConfig.GetOEMConvert(FPrinterSelect);
+                }
 
             allowedsteps = new SortedList<PrintStepType, PrintStepType>
             {
@@ -837,9 +839,9 @@ namespace Reportman.Drawing
                             allowedsteps[PrintStepType.cpi17] = PrintStepType.cpi15;
                         else
                             if (escapecodes[PrinterRawOperation.cpi12].Length > 0)
-                            allowedsteps[PrintStepType.cpi17] = PrintStepType.cpi12;
-                        else
-                            allowedsteps[PrintStepType.cpi17] = PrintStepType.cpi10;
+                                allowedsteps[PrintStepType.cpi17] = PrintStepType.cpi12;
+                            else
+                                allowedsteps[PrintStepType.cpi17] = PrintStepType.cpi10;
                     }
                 }
                 if (escapecodes[PrinterRawOperation.cpi20].Length == 0)
@@ -852,9 +854,9 @@ namespace Reportman.Drawing
                             allowedsteps[PrintStepType.cpi20] = PrintStepType.cpi15;
                         else
                             if (escapecodes[PrinterRawOperation.cpi12].Length > 0)
-                            allowedsteps[PrintStepType.cpi20] = PrintStepType.cpi12;
-                        else
-                            allowedsteps[PrintStepType.cpi20] = PrintStepType.cpi10;
+                                allowedsteps[PrintStepType.cpi20] = PrintStepType.cpi12;
+                            else
+                                allowedsteps[PrintStepType.cpi20] = PrintStepType.cpi10;
                     }
                 }
             }
@@ -1061,7 +1063,7 @@ namespace Reportman.Drawing
         /// <returns>The encoded bytes for the line.</returns>
         public byte[] EncodeLine(PrintLine Line, int index, bool plain)
         {
-            using (System.IO.MemoryStream nline = new System.IO.MemoryStream())
+            using (System.IO.MemoryStream nline = new())
             {
 
                 bool changestep = false;
@@ -1069,7 +1071,7 @@ namespace Reportman.Drawing
                     changestep = true;
                 else
                     if (PreviousLine.FontStep != Line.FontStep)
-                    changestep = true;
+                        changestep = true;
                 if (changestep)
                 {
                     byte[] fstep = GetFontStepEscape(Line.FontStep);
@@ -1268,8 +1270,8 @@ namespace Reportman.Drawing
                         if (FontSize < 8)
                             aresult = PrintStepType.cpi20;
                         else
-                        if (FontSize > 15)
-                            aresult = PrintStepType.cpi5;
+                            if (FontSize > 15)
+                                aresult = PrintStepType.cpi5;
                         break;
                 }
             }
@@ -1289,7 +1291,7 @@ namespace Reportman.Drawing
             bool singleline;
             Rectangle rect;
             PrintStepType fontstep;
-            Point maxextent = new Point(extent.X, extent.Y); ;
+            Point maxextent = new(extent.X, extent.Y); ;
             if (aobj.FontRotation != 0)
                 return extent;
             if (aobj.CutText)
@@ -1626,7 +1628,7 @@ namespace Reportman.Drawing
 
             fontstep = NearestFontStep(fontstep);
 
-            StringBuilder currentline = new StringBuilder();
+            StringBuilder currentline = new();
             double currentwidth = 0;
             double maxwidth = 0;
             double newsize = 0;
@@ -1651,7 +1653,7 @@ namespace Reportman.Drawing
 
             int i = 0;
             int startposition = 0;
-            LineInfo linfo = new LineInfo();
+            LineInfo linfo = new();
             while (i < astring.Length)
             {
                 // Check for LF
@@ -1840,7 +1842,7 @@ namespace Reportman.Drawing
             int totalheight = 0;
             if (infocount > 0)
                 totalheight = infocount * linespacing + leading;
-            Rectangle arec = new Rectangle(rect.Left, rect.Top,
+            Rectangle arec = new(rect.Left, rect.Top,
                                            (int)Math.Round((maxwidth)),
                                            totalheight);
             rect = arec;

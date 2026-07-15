@@ -427,7 +427,7 @@ namespace Reportman.Reporting
         [System.Text.Json.Serialization.JsonIgnore]
         [Newtonsoft.Json.JsonIgnore]
 
-        public ReportItems Components = new ReportItems();
+        public ReportItems Components = new();
         private int FLanguage;
         /// <summary>
         /// Current language index
@@ -720,7 +720,7 @@ namespace Reportman.Reporting
         /// <summary>
         /// Files embedded into the generated document, such as PDF attachments.
         /// </summary>
-        public List<EmbeddedFile> EmbeddedFiles = new List<EmbeddedFile>();
+        public List<EmbeddedFile> EmbeddedFiles = new();
         /// <summary>
         /// PDF conformance level used when exporting to PDF.
         /// </summary>
@@ -1007,7 +1007,7 @@ namespace Reportman.Reporting
             int blength = System.Convert.ToInt32(areader.GetBytes(0, 0, null, 0, 0));
             byte[] bytes = new byte[blength];
             areader.GetBytes(0, 0, bytes, 0, blength);
-            MemoryStream mems = new MemoryStream(bytes);
+            MemoryStream mems = new(bytes);
             try
             {
                 LoadFromStream(mems);
@@ -1028,7 +1028,7 @@ namespace Reportman.Reporting
         /// <param name="convertToDotNet">When true, converts data drivers and SQL parameters to the .Net format after loading.</param>
         public void LoadFromStream(Stream astream, bool convertToDotNet = true)
         {
-            ReportReader areader = new ReportReader(this);
+            ReportReader areader = new(this);
             areader.LoadFromStream(astream);
             if (convertToDotNet)
                 ConvertToDotNet();
@@ -1059,7 +1059,7 @@ namespace Reportman.Reporting
         /// <param name="bufsize">Buffer size in bytes used while reading the stream.</param>
         public void LoadFromStream(Stream astream, int bufsize)
         {
-            ReportReader areader = new ReportReader(this);
+            ReportReader areader = new(this);
             areader.LoadFromStream(astream, bufsize);
         }
         /// <summary>
@@ -1068,7 +1068,7 @@ namespace Reportman.Reporting
         /// <param name="filename">Path of the report file to load.</param>
         public void LoadFromFile(string filename)
         {
-            ReportReader areader = new ReportReader(this);
+            ReportReader areader = new(this);
             areader.LoadFromFile(filename);
 
         }
@@ -1079,7 +1079,7 @@ namespace Reportman.Reporting
         /// <param name="version">Stream format version to write.</param>
         public void SaveToStream(Stream astream, StreamVersion version = StreamVersion.V2)
         {
-            ReportWriter areader = new ReportWriter(this);
+            ReportWriter areader = new(this);
             areader.SaveToStream(astream, version);
         }
         /// <summary>
@@ -1089,7 +1089,7 @@ namespace Reportman.Reporting
         /// <param name="version">Stream format version to write.</param>
         public void SaveToFile(string filename, StreamVersion version = StreamVersion.V2)
         {
-            ReportWriter areader = new ReportWriter(this);
+            ReportWriter areader = new(this);
             areader.SaveToFile(filename, version);
 
         }
@@ -1103,7 +1103,7 @@ namespace Reportman.Reporting
         public void AddTotalPagesItem(int apageindex, int aobjectindex,
                         string adisplayformat)
         {
-            TotalPage aobject = new TotalPage();
+            TotalPage aobject = new();
             aobject.PageIndex = apageindex;
             aobject.ObjectIndex = aobjectindex;
             aobject.DisplayFormat = adisplayformat;
@@ -1263,7 +1263,7 @@ namespace Reportman.Reporting
             Evaluator.OnDatasetNeeded += Evaluator_OnDatasetNeeded;
             Evaluator.Language = Language;
         }
-        SortedList<string, string> openingDatasets = new SortedList<string, string>();
+        SortedList<string, string> openingDatasets = new();
         private void Evaluator_OnDatasetNeeded(DataNeededEventArgs args)
         {
             if (openingDatasets.ContainsKey(args.Dataset))
@@ -1335,7 +1335,7 @@ namespace Reportman.Reporting
                 throw new NamedException("Connection name not found:" + connectionname, connectionname);
             IDataReader adatareader =
                 DatabaseInfo[index].GetDataReaderFromSQL(SQL, "", Params, false);
-            Variant aresult = new Variant();
+            Variant aresult = new();
             if (adatareader != null)
             {
                 if (adatareader.Read())
@@ -1413,7 +1413,7 @@ namespace Reportman.Reporting
             int Height, int DrawStyle, int BrushStyle, int BrushColor,
             int PenStyle, int PenWidth, int PenColor)
         {
-            MetaObjectDraw obj = new MetaObjectDraw();
+            MetaObjectDraw obj = new();
             obj.MetaType = MetaObjectType.Draw;
             obj.Top = Top; obj.Left = Left; obj.Height = Height; obj.Width = Width;
             obj.DrawStyle = (ShapeType)DrawStyle; obj.BrushStyle = BrushStyle;
@@ -1467,7 +1467,7 @@ namespace Reportman.Reporting
             astream = Evaluator.GetStreamFromExpression(Image);
             if (astream != null)
             {
-                MetaObjectImage obj = new MetaObjectImage();
+                MetaObjectImage obj = new();
                 obj.MetaType = MetaObjectType.Image;
                 obj.Top = Top; obj.Left = Left; obj.Height = Height; obj.Width = Width;
                 obj.DrawImageStyle = (ImageDrawStyleType)DrawStyle; obj.DPIRes = dpires;
@@ -1486,7 +1486,7 @@ namespace Reportman.Reporting
         {
             Variant FValue;
             string data;
-            BarcodeItem barcode = new BarcodeItem();
+            BarcodeItem barcode = new();
             barcode.Report = this;
             barcode.Width = Width;
             barcode.Height = Height;
@@ -1511,7 +1511,7 @@ namespace Reportman.Reporting
             bool RightToLeft, PrintStepType PrintStep, int BackColor,
             bool Transparent)
         {
-            MetaObjectText obj = new MetaObjectText();
+            MetaObjectText obj = new();
             obj.Left = Left; obj.Top = Top; obj.Height = Height; obj.Width = Width;
             obj.FontSize = (short)FontSize;
             obj.FontRotation = (short)FontRotation;
@@ -1535,8 +1535,8 @@ namespace Reportman.Reporting
             string WFontNamem, int RecWidth, int FontSize, int FontStyle,
             int Type1Font, int PrintStep)
         {
-            TextObjectStruct textr = new TextObjectStruct();
-            System.Drawing.Point extent = new System.Drawing.Point();
+            TextObjectStruct textr = new();
+            System.Drawing.Point extent = new();
             textr.Text = Text;
             textr.LFontName = LFontName;
             textr.WFontName = WFontName;
@@ -1971,7 +1971,7 @@ namespace Reportman.Reporting
         /// <summary>
         /// Names of the data readers that have been used during the current report execution.
         /// </summary>
-        public SortedList<string, string> UsedDataReaders = new SortedList<string, string>();
+        public SortedList<string, string> UsedDataReaders = new();
         /// <summary>
         /// Opens the datasets that must be active on report start, honoring the subreport
         /// execution filter, and validates that every subreport alias resolves to a dataset.
@@ -2051,7 +2051,7 @@ namespace Reportman.Reporting
         /// <returns>The newly created subreport.</returns>
         public SubReport AddSubReport()
         {
-            SubReport subrep = new SubReport();
+            SubReport subrep = new();
             subrep.Report = this;
             GenerateNewName(subrep);
             subrep.AddDetail();
@@ -2151,7 +2151,7 @@ namespace Reportman.Reporting
             }
             protected override Variant GetValue()
             {
-                Variant aresult = new Variant();
+                Variant aresult = new();
                 if (!Params[0].IsInteger())
                 {
                     throw new NamedException(Translator.TranslateStr(438), "SETLANGUAGE");
@@ -2210,7 +2210,7 @@ namespace Reportman.Reporting
             }
             override protected Variant GetValue()
             {
-                Variant aresult = new Variant();
+                Variant aresult = new();
                 switch (varname)
                 {
                     case "PAGE":
@@ -2276,7 +2276,7 @@ namespace Reportman.Reporting
             }
             protected override Variant GetValue()
             {
-                Variant aresult = new Variant();
+                Variant aresult = new();
                 if (!Params[0].IsInteger())
                 {
                     throw new NamedException(Translator.TranslateStr(438), "SETPAGEORIENTATION");
@@ -2734,7 +2734,7 @@ end;
             }
             protected override Variant GetValue()
             {
-                Variant aresult = new Variant();
+                Variant aresult = new();
                 if (!Params[1].IsInteger())
                 {
                     throw new NamedException(Translator.TranslateStr(438), "PARAMLIST");
@@ -2835,7 +2835,7 @@ end;
             ReportItem acompo;
             for (i = 0; i < Params.Count; i++)
             {
-                IdenVariableParam idenp = new IdenVariableParam(eval, Params[i]);
+                IdenVariableParam idenp = new(eval, Params[i]);
                 eval.AddIden("M." + Params[i].Alias, idenp);
             }
             for (i = 0; i < Components.Count; i++)
@@ -2990,7 +2990,7 @@ end;
         /// <returns></returns>
         public Strings GetReportVariables()
         {
-            Strings aresult = new Strings();
+            Strings aresult = new();
 
             int i;
             ReportItem acompo;
@@ -3704,7 +3704,7 @@ end;
         {
             {
                 // Remove duplicate datasets
-                SortedList<string, DataInfo> Duplicates = new SortedList<string, DataInfo>();
+                SortedList<string, DataInfo> Duplicates = new();
                 int i = 0;
                 while (i < DataInfo.Count)
                 {
@@ -3722,7 +3722,7 @@ end;
             }
             {
                 // Remove duplicate connections
-                SortedList<string, DatabaseInfo> DuplicatesDb = new SortedList<string, DatabaseInfo>();
+                SortedList<string, DatabaseInfo> DuplicatesDb = new();
                 int i = 0;
                 while (i < DatabaseInfo.Count)
                 {

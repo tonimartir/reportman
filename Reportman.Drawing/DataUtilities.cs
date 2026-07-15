@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
@@ -12,7 +12,7 @@ namespace Reportman.Drawing
     /// </summary>
     public static class DataUtilities
     {
-        static Dictionary<Type, DbType> typeMap = new Dictionary<Type, DbType>();
+        static Dictionary<Type, DbType> typeMap = new();
         /// <summary>
         /// Copy a DataTable, the standard Copy() command does not work for byte[] columns
         /// </summary>
@@ -42,7 +42,7 @@ namespace Reportman.Drawing
         /// <returns>A task representing the asynchronous operation, returning the populated DataTable.</returns>
         public async static System.Threading.Tasks.Task<DataTable> FillAsync(DbCommand ncommand, string tableName, int from, int to)
         {
-            System.Data.DataTable intdatatable = new DataTable(tableName);
+            System.Data.DataTable intdatatable = new(tableName);
             IDataReader nreader;
             int currentRecord = 0;
             if (to == -1)
@@ -54,7 +54,7 @@ namespace Reportman.Drawing
             {
                 try
                 {
-                    SortedList<string, int> RepeatedColumns = new SortedList<string, int>();
+                    SortedList<string, int> RepeatedColumns = new();
                     int nfieldcount = nreader.FieldCount;
                     object[] nobjarray = new object[nfieldcount];
                     for (int i = 0; i < nfieldcount; i++)
@@ -191,7 +191,7 @@ namespace Reportman.Drawing
                 char_split = ',';
             List<string> sumColumns = sumCols.Split(char_split).ToList();
             DataTable result = (DataTable)sources[0].Clone();
-            DataView nview = new DataView(result, "", String.Join(",", groupColumns), DataViewRowState.CurrentRows);
+            DataView nview = new(result, "", String.Join(",", groupColumns), DataViewRowState.CurrentRows);
             var keys = new object[groupColumns.Count];
             foreach (DataTable table in sources)
             {
@@ -261,12 +261,12 @@ namespace Reportman.Drawing
         /// <returns>A list containing the divided sublists.</returns>
         public static List<List<T>> DividirLista<T>(List<T> lista, int tamañoMaximo)
         {
-            List<List<T>> listasDivididas = new List<List<T>>();
+            List<List<T>> listasDivididas = new();
 
             for (int i = 0; i < lista.Count; i += tamañoMaximo)
             {
                 int elementosRestantes = Math.Min(tamañoMaximo, lista.Count - i);
-                List<T> subLista = new List<T>(elementosRestantes);
+                List<T> subLista = new(elementosRestantes);
 
                 for (int j = 0; j < elementosRestantes; j++)
                 {
@@ -312,7 +312,7 @@ namespace Reportman.Drawing
         /// <returns>A SQL CREATE TABLE DDL string.</returns>
         public static string GetCreationSql(DataTable ntable, string primkey)
         {
-            StringBuilder nbuilder = new StringBuilder();
+            StringBuilder nbuilder = new();
 
             foreach (DataColumn ncol in ntable.Columns)
             {

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Data;
 
 namespace Reportman.Reporting
@@ -60,7 +60,7 @@ namespace Reportman.Reporting
         /// <returns>A new DatabaseInfos collection</returns>
         public object Clone()
         {
-            DatabaseInfos ninfo = new DatabaseInfos();
+            DatabaseInfos ninfo = new();
             foreach (DatabaseInfo ainfo in this)
             {
                 ninfo.Add((DatabaseInfo)ainfo.Clone());
@@ -74,7 +74,7 @@ namespace Reportman.Reporting
         /// <returns>A new DatabaseInfos collection</returns>
         public DatabaseInfos Clone(Report areport)
         {
-            DatabaseInfos ninfo = new DatabaseInfos();
+            DatabaseInfos ninfo = new();
             foreach (DatabaseInfo ainfo in this)
             {
                 ninfo.Add(ainfo.Clone(areport));

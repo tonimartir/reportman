@@ -188,7 +188,7 @@ namespace Reportman.Reporting
 #else
                 if (BarType == BarcodeType.CodeQR)
                 {
-                    ZXing.QrCode.QRCodeWriter qrCode = new ZXing.QrCode.QRCodeWriter();
+                    ZXing.QrCode.QRCodeWriter qrCode = new();
                     int widthPixels = 0;
                     int heightPixels = 0;
                     var hints = new System.Collections.Generic.Dictionary<ZXing.EncodeHintType, object>();
@@ -226,7 +226,7 @@ namespace Reportman.Reporting
                         aposy = aposy + (dif * barcodeHeight) / 2;
                         squareHeight = squareWidth;
                     }
-                    Point origin = new Point(aposx + squareWidth * barcodeWidth / 2, aposy + squareHeight * barcodeHeight / 2);
+                    Point origin = new(aposx + squareWidth * barcodeWidth / 2, aposy + squareHeight * barcodeHeight / 2);
                     for (int rowIndex = 0; rowIndex < barcodeHeight; rowIndex++)
                     {
                         ZXing.Common.BitArray bits = qrResult.getRow(rowIndex, null);
@@ -234,10 +234,10 @@ namespace Reportman.Reporting
                         {
                             int xadd = squareWidth * column - squareWidth * barcodeWidth / 2;
                             int yadd = squareHeight * rowIndex - squareHeight * barcodeHeight / 2;
-                            Point a = new Point(xadd, yadd);
-                            Point b = new Point(xadd, yadd + squareHeight);
-                            Point c = new Point(xadd + squareWidth, yadd + squareHeight);
-                            Point d = new Point(xadd + squareWidth, yadd);
+                            Point a = new(xadd, yadd);
+                            Point b = new(xadd, yadd + squareHeight);
+                            Point c = new(xadd + squareWidth, yadd + squareHeight);
+                            Point d = new(xadd + squareWidth, yadd);
                             // a,b,c,d builds the rectangle we want to draw
 
                             if (Rotation != 0)
@@ -281,7 +281,7 @@ namespace Reportman.Reporting
                             }
                             if (drawElement)
                             {
-                                MetaObjectDraw metaobj = new MetaObjectDraw();
+                                MetaObjectDraw metaobj = new();
                                 metaobj.MetaType = MetaObjectType.Draw;
 
                                 metaobj.Top = a.Y;
@@ -847,50 +847,50 @@ namespace Reportman.Reporting
             }
         }
         private static Code39[] tabelle_39 = new Code39[44]
-            { new Code39('0',"505160605",0),
-               new Code39('1',"605150506",1 ),
-             new Code39('2',"506150506",2 ),
-               new Code39('3',"606150505",3 ),
-               new Code39('4',"505160506",4 ),
-               new Code39('5',"605160505",5 ),
-               new Code39('6',"506160505",6 ),
-               new Code39('7',"505150606",7 ),
-               new Code39('8',"605150605",8 ),
-               new Code39('9',"506150605",9 ),
-               new Code39('A',"605051506",10),
-               new Code39('B',"506051506",11),
-               new Code39('C',"606051505",12),
-               new Code39('D',"505061506",13),
-            new Code39('E',"605061505",14),
-            new Code39('F',"506061505",15),
-            new Code39('G',"505051606",16),
-            new Code39('H',"605051605",17),
-          new Code39('I',"506051605",18),
-            new Code39('J',"505061605",19),
-            new Code39('K',"605050516",20),
-            new Code39('L',"506050516",21),
-            new Code39('M',"606050515",22),
-            new Code39('N',"505060516",23),
-            new Code39('O',"605060515",24),
-            new Code39('P',"506060515",25),
-            new Code39('Q',"505050616",26),
-            new Code39('R',"605050615",27),
-            new Code39('S',"506050615",28),
-            new Code39('T',"505060615",29),
-            new Code39('U',"615050506",30),
-            new Code39('V',"516050506",31),
-            new Code39('W',"616050505",32),
-            new Code39('X',"515060506",33),
-            new Code39('Y',"615060505",34),
-            new Code39('Z',"516060505",35),
-            new Code39('-',"515050606",36),
-            new Code39('.',"615050605",37),
-            new Code39(' ',"516050605",38),
-            new Code39('*',"515060605",0 ),
-            new Code39('$',"515151505",39),
-            new Code39('/',"515150515",40),
-            new Code39('+',"515051515",41),
-            new Code39('%',"505151515",42)
+            { new('0',"505160605",0),
+               new('1',"605150506",1 ),
+             new('2',"506150506",2 ),
+               new('3',"606150505",3 ),
+               new('4',"505160506",4 ),
+               new('5',"605160505",5 ),
+               new('6',"506160505",6 ),
+               new('7',"505150606",7 ),
+               new('8',"605150605",8 ),
+               new('9',"506150605",9 ),
+               new('A',"605051506",10),
+               new('B',"506051506",11),
+               new('C',"606051505",12),
+               new('D',"505061506",13),
+            new('E',"605061505",14),
+            new('F',"506061505",15),
+            new('G',"505051606",16),
+            new('H',"605051605",17),
+          new('I',"506051605",18),
+            new('J',"505061605",19),
+            new('K',"605050516",20),
+            new('L',"506050516",21),
+            new('M',"606050515",22),
+            new('N',"505060516",23),
+            new('O',"605060515",24),
+            new('P',"506060515",25),
+            new('Q',"505050616",26),
+            new('R',"605050615",27),
+            new('S',"506050615",28),
+            new('T',"505060615",29),
+            new('U',"615050506",30),
+            new('V',"516050506",31),
+            new('W',"616050505",32),
+            new('X',"515060506",33),
+            new('Y',"615060505",34),
+            new('Z',"516060505",35),
+            new('-',"515050606",36),
+            new('.',"615050605",37),
+            new(' ',"516050605",38),
+            new('*',"515060605",0 ),
+            new('$',"515151505",39),
+            new('/',"515150515",40),
+            new('+',"515051515",41),
+            new('%',"505151515",42)
             };
         private int FindCode39IDX(char z)
         {
@@ -997,53 +997,53 @@ namespace Reportman.Reporting
                 data = data1;
             }
             public static Code93[] table = new Code93[47] {
-                 new Code93('0',"131112"),
-                 new Code93('1',"111213"),
-                 new Code93('2',"111312"),
-                 new Code93('3',"111411"),
-                 new Code93('4',"121113"),
-                 new Code93('5',"121212"),
-                 new Code93('6',"121311"),
-                 new Code93('7',"111114"),
-                 new Code93('8',"131211"),
-                 new Code93('9',"141111"),
-                 new Code93('A',"211113"),
-                 new Code93('B',"211212"),
-                 new Code93('C',"211311"),
-                 new Code93('D',"221112"),
-                 new Code93('E',"221211"),
-                 new Code93('F',"231111"),
-                 new Code93('G',"112113"),
-                 new Code93('H',"112212"),
-                 new Code93('I',"112311"),
-                 new Code93('J',"122112"),
-                 new Code93('K',"132111"),
-                 new Code93('L',"111123"),
-                 new Code93('M',"111222"),
-                 new Code93('N',"111321"),
-                 new Code93('O',"121122"),
-                 new Code93('P',"131121"),
-                 new Code93('Q',"212112"),
-                 new Code93('R',"212211"),
-                 new Code93('S',"211122"),
-                 new Code93('T',"211221"),
-                 new Code93('U',"221121"),
-                 new Code93('V',"222111"),
-                 new Code93('W',"112122"),
-                 new Code93('X',"112221"),
-                 new Code93('Y',"122121"),
-                 new Code93('Z',"123111"),
-                 new Code93('-',"121131"),
-                 new Code93('.',"311112"),
-                 new Code93(' ',"311211"),
-                 new Code93('$',"321111"),
-                 new Code93('/',"112131"),
-                 new Code93('+',"113121"),
-                 new Code93('%',"211131"),
-                 new Code93('[',"121221"),   // only used for Extended Code 93
-	             new Code93(']',"312111"),   // only used for Extended Code 93
-	             new Code93('{',"311121"),   // only used for Extended Code 93
-	             new Code93('}',"122211")    // only used for Extended Code 93
+                 new('0',"131112"),
+                 new('1',"111213"),
+                 new('2',"111312"),
+                 new('3',"111411"),
+                 new('4',"121113"),
+                 new('5',"121212"),
+                 new('6',"121311"),
+                 new('7',"111114"),
+                 new('8',"131211"),
+                 new('9',"141111"),
+                 new('A',"211113"),
+                 new('B',"211212"),
+                 new('C',"211311"),
+                 new('D',"221112"),
+                 new('E',"221211"),
+                 new('F',"231111"),
+                 new('G',"112113"),
+                 new('H',"112212"),
+                 new('I',"112311"),
+                 new('J',"122112"),
+                 new('K',"132111"),
+                 new('L',"111123"),
+                 new('M',"111222"),
+                 new('N',"111321"),
+                 new('O',"121122"),
+                 new('P',"131121"),
+                 new('Q',"212112"),
+                 new('R',"212211"),
+                 new('S',"211122"),
+                 new('T',"211221"),
+                 new('U',"221121"),
+                 new('V',"222111"),
+                 new('W',"112122"),
+                 new('X',"112221"),
+                 new('Y',"122121"),
+                 new('Z',"123111"),
+                 new('-',"121131"),
+                 new('.',"311112"),
+                 new(' ',"311211"),
+                 new('$',"321111"),
+                 new('/',"112131"),
+                 new('+',"113121"),
+                 new('%',"211131"),
+                 new('[',"121221"),   // only used for Extended Code 93
+	             new(']',"312111"),   // only used for Extended Code 93
+	             new('{',"311121"),   // only used for Extended Code 93
+	             new('}',"122211")    // only used for Extended Code 93
            };
         }
         private int Find_Code93(char c)
@@ -1223,109 +1223,109 @@ namespace Reportman.Reporting
                 return btype;
             }
             public static Code128[] table = new Code128[103]  {
-                new Code128(' ',' ',"00","212222"),
-                new Code128('!','!',"01","222122" ),
-                new Code128('"','"',"02","222221" ),
-                new Code128('#','#',"03","121223" ),
-                new Code128('$','$',"04","121322" ),
-                new Code128('%','%',"05","131222" ),
-                new Code128('&','&',"06","122213" ),
-                new Code128('\'','\'',"07","122312" ),
-                new Code128('(','(',"08","132212" ),
-                new Code128(')',')',"09","221213" ),
-                new Code128('*','*',"10","221312" ),
-                new Code128('+','+',"11","231212" ),
-                new Code128((char)44,(char)44,"12","112232" ),
-                new Code128('-','-',"13","122132" ),
-                new Code128('.','.',"14","122231" ),
-                new Code128('/','/',"15","113222" ),
-                new Code128('0','0',"16","123122" ),
-                new Code128('1','1',"17","123221" ),
-                new Code128('2','2',"18","223211" ),
-                new Code128('3','3',"19","221132" ),
-                new Code128('4','4',"20","221231" ),
-                new Code128('5','5',"21","213212" ),
-                new Code128('6','6',"22","223112" ),
-                new Code128('7','7',"23","312131" ),
-                new Code128('8','8',"24","311222" ),
-                new Code128('9','9',"25","321122" ),
-                new Code128(':',':',"26","321221" ),
-                new Code128(';',';',"27","312212" ),
-                new Code128('<','<',"28","322112" ),
-                new Code128('=','=',"29","322211" ),
-                new Code128('>','>',"30","212123" ),
-                new Code128('?','?',"31","212321" ),
-                new Code128('@','@',"32","232121" ),
-                new Code128('A','A',"33","111323" ),
-                new Code128('B','B',"34","131123" ),
-                new Code128('C','C',"35","131321" ),
-                new Code128('D','D',"36","112313" ),
-                new Code128('E','E',"37","132113" ),
-                new Code128('F','F',"38","132311" ),
-                new Code128('G','G',"39","211313" ),
-                new Code128('H','H',"40","231113" ),
-                new Code128('I','I',"41","231311" ),
-                new Code128('J','J',"42","112133" ),
-                new Code128('K','K',"43","112331" ),
-                new Code128('L','L',"44","132131" ),
-                new Code128('M','M',"45","113123" ),
-                new Code128('N','N',"46","113321" ),
-                new Code128('O','O',"47","133121" ),
-                new Code128('P','P',"48","313121" ),
-                new Code128('Q','Q',"49","211331" ),
-                new Code128('R','R',"50","231131" ),
-                new Code128('S','S',"51","213113" ),
-                new Code128('T','T',"52","213311" ),
-                new Code128('U','U',"53","213131" ),
-                new Code128('V','V',"54","311123" ),
-                new Code128('W','W',"55","311321" ),
-                new Code128('X','X',"56","331121" ),
-                new Code128('Y','Y',"57","312113" ),
-                new Code128('Z','Z',"58","312311" ),
-                new Code128('[','[',"59","332111" ),
-                new Code128('\\','\\',"60","314111" ),
-                new Code128(']',']',"61","221411" ),
-                new Code128('^','^',"62","431111" ),
-                new Code128('_','_',"63","111224" ),
-                new Code128(' ','`',"64","111422" ),
-                new Code128(' ','a',"65","121124" ),
-                new Code128(' ','b',"66","121421" ),
-                new Code128(' ','c',"67","141122" ),
-                new Code128(' ','d',"68","141221" ),
-                new Code128(' ','e',"69","112214" ),
-                new Code128(' ','f',"70","112412" ),
-                new Code128(' ','g',"71","122114" ),
-                new Code128(' ','h',"72","122411" ),
-                new Code128(' ','i',"73","142112" ),
-                new Code128(' ','j',"74","142211" ),
-                new Code128(' ','k',"75","241211" ),
-                new Code128(' ','l',"76","221114" ),
-                new Code128(' ','m',"77","413111" ),
-                new Code128(' ','n',"78","241112" ),
-                new Code128(' ','o',"79","134111" ),
-                new Code128(' ','p',"80","111242" ),
-                new Code128(' ','q',"81","121142" ),
-                new Code128(' ','r',"82","121241" ),
-                new Code128(' ','s',"83","114212" ),
-                new Code128(' ','t',"84","124112" ),
-                new Code128(' ','u',"85","124211" ),
-                new Code128(' ','v',"86","411212" ),
-                new Code128(' ','w',"87","421112" ),
-                new Code128(' ','x',"88","421211" ),
-                new Code128(' ','y',"89","212141" ),
-                new Code128(' ','z',"90","214121" ),
-                new Code128(' ','{',"91","412121" ),
-                new Code128(' ','|',"92","111143" ),
-                new Code128(' ','}',"93","111341" ),
-                new Code128(' ','~',"94","131141" ),
-                new Code128(' ',' ',"95","114113" ),
-                new Code128('É', 'É',"96","114311" ), //FNC3
-	            new Code128('Ê','Ê',"97","411113" ), // FNC2
-	            new Code128('Ë','Ë',"98","411311" ), // Shift B
-	            new Code128(' ',' ',"99","113141" ),
-                new Code128(' ',' ',"  ","114131" ),
-                new Code128('Î','Î',"  ","311141" ),
-                new Code128((char)0xBF,(char)0xBF,"  ","411131" ) // FNC1
+                new(' ',' ',"00","212222"),
+                new('!','!',"01","222122" ),
+                new('"','"',"02","222221" ),
+                new('#','#',"03","121223" ),
+                new('$','$',"04","121322" ),
+                new('%','%',"05","131222" ),
+                new('&','&',"06","122213" ),
+                new('\'','\'',"07","122312" ),
+                new('(','(',"08","132212" ),
+                new(')',')',"09","221213" ),
+                new('*','*',"10","221312" ),
+                new('+','+',"11","231212" ),
+                new((char)44,(char)44,"12","112232" ),
+                new('-','-',"13","122132" ),
+                new('.','.',"14","122231" ),
+                new('/','/',"15","113222" ),
+                new('0','0',"16","123122" ),
+                new('1','1',"17","123221" ),
+                new('2','2',"18","223211" ),
+                new('3','3',"19","221132" ),
+                new('4','4',"20","221231" ),
+                new('5','5',"21","213212" ),
+                new('6','6',"22","223112" ),
+                new('7','7',"23","312131" ),
+                new('8','8',"24","311222" ),
+                new('9','9',"25","321122" ),
+                new(':',':',"26","321221" ),
+                new(';',';',"27","312212" ),
+                new('<','<',"28","322112" ),
+                new('=','=',"29","322211" ),
+                new('>','>',"30","212123" ),
+                new('?','?',"31","212321" ),
+                new('@','@',"32","232121" ),
+                new('A','A',"33","111323" ),
+                new('B','B',"34","131123" ),
+                new('C','C',"35","131321" ),
+                new('D','D',"36","112313" ),
+                new('E','E',"37","132113" ),
+                new('F','F',"38","132311" ),
+                new('G','G',"39","211313" ),
+                new('H','H',"40","231113" ),
+                new('I','I',"41","231311" ),
+                new('J','J',"42","112133" ),
+                new('K','K',"43","112331" ),
+                new('L','L',"44","132131" ),
+                new('M','M',"45","113123" ),
+                new('N','N',"46","113321" ),
+                new('O','O',"47","133121" ),
+                new('P','P',"48","313121" ),
+                new('Q','Q',"49","211331" ),
+                new('R','R',"50","231131" ),
+                new('S','S',"51","213113" ),
+                new('T','T',"52","213311" ),
+                new('U','U',"53","213131" ),
+                new('V','V',"54","311123" ),
+                new('W','W',"55","311321" ),
+                new('X','X',"56","331121" ),
+                new('Y','Y',"57","312113" ),
+                new('Z','Z',"58","312311" ),
+                new('[','[',"59","332111" ),
+                new('\\','\\',"60","314111" ),
+                new(']',']',"61","221411" ),
+                new('^','^',"62","431111" ),
+                new('_','_',"63","111224" ),
+                new(' ','`',"64","111422" ),
+                new(' ','a',"65","121124" ),
+                new(' ','b',"66","121421" ),
+                new(' ','c',"67","141122" ),
+                new(' ','d',"68","141221" ),
+                new(' ','e',"69","112214" ),
+                new(' ','f',"70","112412" ),
+                new(' ','g',"71","122114" ),
+                new(' ','h',"72","122411" ),
+                new(' ','i',"73","142112" ),
+                new(' ','j',"74","142211" ),
+                new(' ','k',"75","241211" ),
+                new(' ','l',"76","221114" ),
+                new(' ','m',"77","413111" ),
+                new(' ','n',"78","241112" ),
+                new(' ','o',"79","134111" ),
+                new(' ','p',"80","111242" ),
+                new(' ','q',"81","121142" ),
+                new(' ','r',"82","121241" ),
+                new(' ','s',"83","114212" ),
+                new(' ','t',"84","124112" ),
+                new(' ','u',"85","124211" ),
+                new(' ','v',"86","411212" ),
+                new(' ','w',"87","421112" ),
+                new(' ','x',"88","421211" ),
+                new(' ','y',"89","212141" ),
+                new(' ','z',"90","214121" ),
+                new(' ','{',"91","412121" ),
+                new(' ','|',"92","111143" ),
+                new(' ','}',"93","111341" ),
+                new(' ','~',"94","131141" ),
+                new(' ',' ',"95","114113" ),
+                new('É', 'É',"96","114311" ), //FNC3
+	            new('Ê','Ê',"97","411113" ), // FNC2
+	            new('Ë','Ë',"98","411311" ), // Shift B
+	            new(' ',' ',"99","113141" ),
+                new(' ',' ',"  ","114131" ),
+                new('Î','Î',"  ","311141" ),
+                new((char)0xBF,(char)0xBF,"  ","411131" ) // FNC1
 	        };
 
         }
@@ -1368,7 +1368,7 @@ namespace Reportman.Reporting
             double cosinus = Math.Cos(alpha);
             int x = Convert.ToInt32(Math.Round(p.X * cosinus + p.Y * sinus));
             int y = Convert.ToInt32(Math.Round(-p.X * sinus + p.Y * cosinus));
-            Point result = new Point(x, y);
+            Point result = new(x, y);
             return result;
         }
         /// <summary>Draws the encoded bar/space pattern as rectangle objects into the metafile at the specified position.</summary>
@@ -1487,7 +1487,7 @@ namespace Reportman.Reporting
                         d = Translate2D(d, origin);
                     }
 
-                    MetaObjectDraw metaobj = new MetaObjectDraw();
+                    MetaObjectDraw metaobj = new();
                     metaobj.MetaType = MetaObjectType.Draw;
 
                     metaobj.Top = a.Y;

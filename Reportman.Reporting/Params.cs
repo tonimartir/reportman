@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
-using System.Linq;
-using Reportman.Drawing;
+using System;
+using System.Collections;
 
 namespace Reportman.Reporting
 {
@@ -277,7 +275,7 @@ namespace Reportman.Reporting
         /// <returns>A new <see cref="Params"/> collection containing clones of every parameter.</returns>
         public object Clone()
         {
-            Params aparams = new Params();
+            Params aparams = new();
             foreach (Param p in this)
             {
                 aparams.Add((Param)p.Clone());

@@ -41,7 +41,7 @@
         /// <param name="aobj">MetaObject with data</param>
         public static TextObjectStruct FromMetaObjectText(MetaPage apage, MetaObjectText aobj)
         {
-            TextObjectStruct aresult = new TextObjectStruct();
+            TextObjectStruct aresult = new();
             aresult.Text = apage.GetText(aobj);
             aresult.LFontName = apage.GetLFontNameText(aobj);
             aresult.WFontName = apage.GetWFontNameText(aobj);

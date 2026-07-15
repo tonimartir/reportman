@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Reportman.Drawing
 {
@@ -67,7 +67,7 @@ namespace Reportman.Drawing
         /// <summary>How multiple bar series are combined (side by side, stacked, or stacked to 100 percent).</summary>
         public BarType MultiBar;
         /// <summary>Collection of data series that make up the chart.</summary>
-        public List<SeriesItem> SeriesItems = new List<SeriesItem>();
+        public List<SeriesItem> SeriesItems = new();
         /// <summary>
         /// Initializes a new instance of the <see cref="Series"/> class with default range
         /// and appearance settings.

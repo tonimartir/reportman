@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 /* Code based on Magic Library tab control
  * Crownwood.Magic.Controls.TabControl 
  * 

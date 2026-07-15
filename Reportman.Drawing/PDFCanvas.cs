@@ -128,8 +128,8 @@ namespace Reportman.Drawing
         const long MAX_MEM_SIZE = 100000000;
         MemoryStream[] FItems;
         long TotalSize = 0;
-        SortedList<int, string> FTempFiles = new SortedList<int, string>();
-        SortedList<int, long> FFileSizes = new SortedList<int, long>();
+        SortedList<int, string> FTempFiles = new();
+        SortedList<int, long> FFileSizes = new();
         const int FIRST_ALLOCATION_OBJECTS = 50;
         int FCount;
         /// <summary>
@@ -240,7 +240,7 @@ namespace Reportman.Drawing
         /// </summary>
         /// <param name="fontInfoProvider">Provider of font metrics and glyph data.</param>
         /// <param name="bitmapInfoProvider">Provider that encodes images into PDF-compatible bitmap streams.</param>
-        public PDFCanvas(FontInfoProvider fontInfoProvider,IBitmapInfoProvider bitmapInfoProvider)
+        public PDFCanvas(FontInfoProvider fontInfoProvider, IBitmapInfoProvider bitmapInfoProvider)
         {
             FInfoProvider = fontInfoProvider;
             FBitmapInfoProvider = bitmapInfoProvider;
@@ -265,7 +265,7 @@ namespace Reportman.Drawing
         /// </summary>
         public FontInfoProvider InfoProvider
         {
-            get { return FInfoProvider;}
+            get { return FInfoProvider; }
         }
         /// <summary>
         /// Backing field for the bitmap encoding provider.
@@ -915,7 +915,7 @@ namespace Reportman.Drawing
                 astring = Text;
                 if (shapedOutput)
                 {
-                    astring = PDFCompatibleTextShaping(lInfo.Text,adata, Font, RightToLeft, X, Y, Font.Size, lInfo);
+                    astring = PDFCompatibleTextShaping(lInfo.Text, adata, Font, RightToLeft, X, Y, Font.Size, lInfo);
                     SWriteLine(File.STempStream, astring);
                 }
                 else
@@ -1104,7 +1104,7 @@ namespace Reportman.Drawing
         /// <returns>The value as a four-digit uppercase hexadecimal string.</returns>
         public static string IntToHex(int nvalue)
         {
-            StringBuilder nresult = new StringBuilder(nvalue.ToString("X"));
+            StringBuilder nresult = new(nvalue.ToString("X"));
             while (nresult.Length < 4)
                 nresult.Insert(0, "0");
             return nresult.ToString();
@@ -1233,12 +1233,12 @@ namespace Reportman.Drawing
                     Font.Italic = newItalic;
                     Font.Style = (newBold ? 1 : 0) + (newItalic ? 2 : 0) + (Font.Underline ? 4 : 0) + (Font.StrikeOut ? 8 : 0);
                     Font.Size = (int)newFontSize;
-                    
+
                     UpdateFonts();
                     adata = GetTTFontData();
 
                     result += "/F" +
-                        Type1FontTopdfFontName(Font.Name, Font.Italic, Font.Bold, Font.GetFontFamilyKey(), Font.Style,File.PDFConformance) + " " +
+                        Type1FontTopdfFontName(Font.Name, Font.Italic, Font.Bold, Font.GetFontFamilyKey(), Font.Style, File.PDFConformance) + " " +
                         Font.Size.ToString(System.Globalization.CultureInfo.InvariantCulture) + " Tf" + eol;
 
                     actualFontFamily = newFontFamily;
@@ -1708,7 +1708,7 @@ namespace Reportman.Drawing
                     wordbreak = false;
                 // Calculates text extent and apply alignment
                 recsize = arect;
-                var linfo = TextExtent(Text, ref recsize, wordbreak, singleline, true,RightToLeft, isHtml);
+                var linfo = TextExtent(Text, ref recsize, wordbreak, singleline, true, RightToLeft, isHtml);
                 // Align bottom or center
                 posy = arect.Top;
                 if ((Alignment & AlignmentFlags_AlignBottom) > 0)
@@ -1769,11 +1769,11 @@ namespace Reportman.Drawing
                         // Keep each word's own shaped LineInfo: when TextOut emits per-glyph
                         // output it must receive the glyphs of the word being drawn, not the
                         // glyphs of the whole line.
-                        List<LineInfo> lwordinfos = new List<LineInfo>();
+                        List<LineInfo> lwordinfos = new();
                         for (index = 0; index < lwords.Count; index++)
                         {
                             arec = arect;
-                            var winfos = TextExtent(lwords[index], ref arec, false, true, false,RightToLeft, isHtml);
+                            var winfos = TextExtent(lwords[index], ref arec, false, true, false, RightToLeft, isHtml);
                             if (winfos.Count > 0)
                                 lwordinfos.Add(winfos[0]);
                             else
@@ -2211,7 +2211,7 @@ namespace Reportman.Drawing
                             if (File.Compressed)
                             {
                                 // StreamUtil.CompressStream(fimagestream, astream, false);		
-                                CancellationTokenSource cancelSource = new CancellationTokenSource();
+                                CancellationTokenSource cancelSource = new();
                                 var ntask = StreamUtil.CompressStreamTask(imageMaskStream, maskStream, false, true, cancelSource);
                                 ntask.ConfigureAwait(false);
                                 File.CompressionTasks.Add(new CompressionTask(ntask, cancelSource, maskStream, lengthPositionMask));
@@ -2264,26 +2264,26 @@ namespace Reportman.Drawing
                         }
                         else
                             if (isgif)
-                        {
-                            SWriteLine(astream, "/Length " + fimagestream.Length.ToString());
-                            SWriteLine(astream, "/Filter [/LZWDecode]");
-                        }
-                        else
-                        {
-#if REPMAN_ZLIB
-                            if (File.Compressed)
                             {
-                                byte[] bytesLength = ASCIIEncoding.ASCII.GetBytes("/Length ");
-                                astream.Write(bytesLength, 0, bytesLength.Length);
-                                lengthPosition = astream.Position;
-                                SWriteLine(astream, "             ");
-                                SWriteLine(astream, "/Length1 " + fimagestream.Length.ToString());
-                                SWriteLine(astream, "/Filter [/FlateDecode]");
+                                SWriteLine(astream, "/Length " + fimagestream.Length.ToString());
+                                SWriteLine(astream, "/Filter [/LZWDecode]");
                             }
                             else
+                            {
+#if REPMAN_ZLIB
+                                if (File.Compressed)
+                                {
+                                    byte[] bytesLength = ASCIIEncoding.ASCII.GetBytes("/Length ");
+                                    astream.Write(bytesLength, 0, bytesLength.Length);
+                                    lengthPosition = astream.Position;
+                                    SWriteLine(astream, "             ");
+                                    SWriteLine(astream, "/Length1 " + fimagestream.Length.ToString());
+                                    SWriteLine(astream, "/Filter [/FlateDecode]");
+                                }
+                                else
 #endif
-                                SWriteLine(astream, "/Length " + fimagestream.Length.ToString());
-                        }
+                                    SWriteLine(astream, "/Length " + fimagestream.Length.ToString());
+                            }
                         SWriteLine(astream, ">>");
                         SWriteLine(astream, "stream");
                         fimagestream.Seek(0, System.IO.SeekOrigin.Begin);
@@ -2291,7 +2291,7 @@ namespace Reportman.Drawing
                         if ((File.Compressed) && (!isjpeg) && (!isgif))
                         {
                             // StreamUtil.CompressStream(fimagestream, astream, false);		
-                            CancellationTokenSource cancelSource = new CancellationTokenSource();
+                            CancellationTokenSource cancelSource = new();
                             var ntask = StreamUtil.CompressStreamTask(fimagestream, astream, false, true, cancelSource);
                             ntask.ConfigureAwait(false);
                             File.CompressionTasks.Add(new CompressionTask(ntask, cancelSource, astream, lengthPosition));
@@ -2321,7 +2321,7 @@ namespace Reportman.Drawing
         /// <param name="RightToLeft">Whether the text is right-to-left.</param>
         /// <param name="isHtml">Whether the text carries HTML styling.</param>
         /// <returns>The list of measured lines.</returns>
-        public List<LineInfo> TextExtent(string Text, ref Rectangle rect, bool wordbreak, bool singleline, bool dolineinfo,bool RightToLeft, bool isHtml = false)
+        public List<LineInfo> TextExtent(string Text, ref Rectangle rect, bool wordbreak, bool singleline, bool dolineinfo, bool RightToLeft, bool isHtml = false)
         {
             List<LineInfo> result;
             bool useShaper = RightToLeft || isHtml || this.InfoProvider.GetType().Name == "FontInfoFt";
@@ -2334,7 +2334,7 @@ namespace Reportman.Drawing
                 // else (ForceComplexShaping path): preserve Font.Name as the caller set it
                 // (typically PDFFontType.Linked). GetTTFontData accepts Linked or Embedded.
                 var data = GetTTFontData();
-                result = this.InfoProvider.TextExtent(Text,ref rect,Font,data,wordbreak,singleline,Font.Size, isHtml);
+                result = this.InfoProvider.TextExtent(Text, ref rect, Font, data, wordbreak, singleline, Font.Size, isHtml);
             }
             else
             {
@@ -2385,7 +2385,7 @@ namespace Reportman.Drawing
             linespacing = (int)Math.Round((((double)linespacing) / 100000.0) * FResolution * FFont.Size * 1.25);
 
 
-            StringBuilder currentline = new StringBuilder();
+            StringBuilder currentline = new();
             double currentwidth = 0;
             double maxwidth = 0;
             double newsize = 0;
@@ -2406,7 +2406,7 @@ namespace Reportman.Drawing
             astring = astring.Replace("\t", " ");
             int i = 0;
             int startposition = 0;
-            LineInfo linfo = new LineInfo();
+            LineInfo linfo = new();
             while (i < astring.Length)
             {
                 // Skip cr chars
@@ -2577,7 +2577,7 @@ namespace Reportman.Drawing
             int totalheight = 0;
             if (infocount > 0)
                 totalheight = infocount * linespacing + leading;
-            Rectangle arec = new Rectangle(rect.Left, rect.Top,
+            Rectangle arec = new(rect.Left, rect.Top,
                                            (int)Math.Round((maxwidth * FResolution / PDFFile.CONS_PDFRES)),
                                            totalheight);
             rect = arec;
@@ -2786,7 +2786,7 @@ namespace Reportman.Drawing
 
             bytesused = enc.GetBytes(source.ToCharArray(), 0, source.Length, pbytes, 0, true);
 
-            StringBuilder st = new StringBuilder();
+            StringBuilder st = new();
             char c;
             for (int i = 0; i < bytesused; i++)
             {
@@ -2955,7 +2955,7 @@ namespace Reportman.Drawing
         /// <summary>
         /// Maps an image index to the output-stream position where its soft-mask object reference is patched in.
         /// </summary>
-        public SortedList<int, StreamPosition> Masks = new SortedList<int, StreamPosition>();
+        public SortedList<int, StreamPosition> Masks = new();
         PDFConformanceType FPDFConformance;
 
         /// <summary>
@@ -2977,8 +2977,8 @@ namespace Reportman.Drawing
         /// <summary>
         /// Files to embed in the document (used for PDF/A-3 attachments).
         /// </summary>
-        public List<EmbeddedFile> EmbeddedFiles = new List<EmbeddedFile>();
-        private SortedList<int, List<PDFAnnotation>> PageAnnotations = new SortedList<int, List<PDFAnnotation>>();
+        public List<EmbeddedFile> EmbeddedFiles = new();
+        private SortedList<int, List<PDFAnnotation>> PageAnnotations = new();
         /// <summary>
         /// Releases the output, temporary and bitmap streams and cancels any pending compression tasks.
         /// </summary>
@@ -3212,7 +3212,7 @@ namespace Reportman.Drawing
                     SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
                     MemoryStream fontcontent = Canvas.InfoProvider.GetFontStream(adata);
 
-                    System.IO.MemoryStream fontcontentstream = new MemoryStream();
+                    System.IO.MemoryStream fontcontentstream = new();
 
 
                     if (PDFConformance == PDFConformanceType.PDF_A_3)
@@ -3286,7 +3286,7 @@ namespace Reportman.Drawing
                 if (adata.IsUnicode)
                 {
                     // First Build the string
-                    StringBuilder cmaphead = new StringBuilder("/CIDInit /ProcSet findresource begin" + LINE_FEED +
+                    StringBuilder cmaphead = new("/CIDInit /ProcSet findresource begin" + LINE_FEED +
                         "12 dict begin " + LINE_FEED +
                         "begincmap" + LINE_FEED +
                         "/CIDSystemInfo" + LINE_FEED +
@@ -3362,7 +3362,7 @@ namespace Reportman.Drawing
                     adata.ToUnicodeIndex = FObjectCount;
                     FTempStream.SetLength(0);
                     SWriteLine(FTempStream, FObjectCount.ToString() + " 0 obj");
-                    using (MemoryStream FCMapStream = new MemoryStream())
+                    using (MemoryStream FCMapStream = new())
                     {
                         StreamUtil.WriteStringToStream(cmaphead.ToString(), FCMapStream, Encoding.ASCII);
                         FCMapStream.Seek(0, SeekOrigin.Begin);
@@ -3584,7 +3584,7 @@ namespace Reportman.Drawing
             // Si todos los caracteres son ASCII, usar formato de cadena normal con paréntesis
             if (isASCII)
             {
-                StringBuilder result = new StringBuilder("(");
+                StringBuilder result = new("(");
                 foreach (char c in text)
                 {
                     // Escapar caracteres especiales
@@ -3609,7 +3609,7 @@ namespace Reportman.Drawing
                 byte[] utf16BEBytes = Encoding.BigEndianUnicode.GetBytes(text);
 
                 // Crear el resultado en formato hexadecimal PDF: Comienza con el BOM UTF-16BE 0xFEFF
-                StringBuilder hexString = new StringBuilder("<FEFF");
+                StringBuilder hexString = new("<FEFF");
 
                 // Convertir cada byte a su representación hexadecimal
                 foreach (byte b in utf16BEBytes)
@@ -3838,7 +3838,7 @@ namespace Reportman.Drawing
 #if REPMAN_ZLIB
             if (Compressed)
             {
-                MemoryStream fmem = new MemoryStream();
+                MemoryStream fmem = new();
                 try
                 {
                     StreamUtil.CompressStream(stream, fmem);
@@ -4099,7 +4099,7 @@ namespace Reportman.Drawing
         {
             if (CompressionTasks.Count == 0)
                 return;
-            List<System.Threading.Tasks.Task> tasks = new List<System.Threading.Tasks.Task>();
+            List<System.Threading.Tasks.Task> tasks = new();
             foreach (var comp in CompressionTasks)
             {
                 tasks.Add(comp.Task);
@@ -4291,7 +4291,7 @@ namespace Reportman.Drawing
             aobj = FPageInfos[index - 1];
 
 
-            StringBuilder annotationsString = new StringBuilder();
+            StringBuilder annotationsString = new();
             if (PageAnnotations.ContainsKey(index))
             {
                 foreach (var annotation in PageAnnotations[index])

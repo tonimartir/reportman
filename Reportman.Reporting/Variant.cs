@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -25,9 +25,7 @@ using MyData;
 using System.Data;
 #endif
 using System.IO;
-using System.Drawing;
 using Reportman.Drawing;
-using System.Threading;
 
 namespace Reportman.Reporting
 {
@@ -334,7 +332,7 @@ namespace Reportman.Reporting
         /// </summary>
         public static implicit operator Variant(bool avalue)
         {
-            Variant aresult = new Variant();
+            Variant aresult = new();
             aresult.FBoolean = avalue;
             aresult.FVarType = VariantType.Boolean;
             return aresult;
@@ -344,7 +342,7 @@ namespace Reportman.Reporting
 		/// </summary>
 		public static implicit operator Variant(int avalue)
         {
-            Variant aresult = new Variant();
+            Variant aresult = new();
             aresult.FInteger = avalue;
             aresult.FVarType = VariantType.Integer;
             return aresult;
@@ -354,7 +352,7 @@ namespace Reportman.Reporting
 		/// </summary>
 		public static implicit operator Variant(long avalue)
         {
-            Variant aresult = new Variant();
+            Variant aresult = new();
             aresult.FLong = avalue;
             aresult.FVarType = VariantType.Long;
             return aresult;
@@ -364,7 +362,7 @@ namespace Reportman.Reporting
 		/// </summary>
 		public static implicit operator Variant(decimal avalue)
         {
-            Variant aresult = new Variant();
+            Variant aresult = new();
             aresult.FDecimal = avalue;
             aresult.FVarType = VariantType.Decimal;
             return aresult;
@@ -374,7 +372,7 @@ namespace Reportman.Reporting
         /// </summary>
         public static implicit operator Variant(double avalue)
         {
-            Variant aresult = new Variant();
+            Variant aresult = new();
             aresult.FDouble = avalue;
             aresult.FVarType = VariantType.Double;
             return aresult;
@@ -384,7 +382,7 @@ namespace Reportman.Reporting
 		/// </summary>
 		public static implicit operator Variant(string avalue)
         {
-            Variant aresult = new Variant();
+            Variant aresult = new();
             if (avalue == null)
                 avalue = "";
             aresult.FString = avalue;
@@ -396,7 +394,7 @@ namespace Reportman.Reporting
         /// </summary>
         public static implicit operator Variant(DateTime avalue)
         {
-            Variant aresult = new Variant();
+            Variant aresult = new();
             aresult.FDateTime = avalue;
             aresult.FVarType = VariantType.DateTime;
             return aresult;
@@ -418,7 +416,7 @@ namespace Reportman.Reporting
         {
             if (FVarType != VariantType.Binary)
                 throw new UnNamedException("No Binary Variant type");
-            MemoryStream memstream = new MemoryStream();
+            MemoryStream memstream = new();
             FMemStream.Seek(0, System.IO.SeekOrigin.Begin);
             FMemStream.WriteTo(memstream);
             memstream.Seek(0, System.IO.SeekOrigin.Begin);
@@ -429,7 +427,7 @@ namespace Reportman.Reporting
         /// </summary>
         public static implicit operator Variant(char avalue)
         {
-            Variant aresult = new Variant();
+            Variant aresult = new();
             aresult.FChar = avalue;
             aresult.FVarType = VariantType.Char;
             return aresult;
@@ -439,7 +437,7 @@ namespace Reportman.Reporting
         /// </summary>
         public static implicit operator Variant(byte avalue)
         {
-            Variant aresult = new Variant();
+            Variant aresult = new();
             aresult.FByte = avalue;
             aresult.FVarType = VariantType.Byte;
             return aresult;
@@ -968,7 +966,8 @@ namespace Reportman.Reporting
                     if (StreamUtil.CompareArrayContent(FMemStream.ToArray(), obj.FMemStream.ToArray()))
                     {
                         aresult = 0;
-                    } else
+                    }
+                    else
                     {
                         aresult = -1;
                     }
@@ -982,7 +981,7 @@ namespace Reportman.Reporting
         public static bool operator |(Variant avalue1, Variant avalue2)
         {
             CoerceIfNeeded(ref avalue1, ref avalue2);
-            Variant aresult = new Variant();
+            Variant aresult = new();
             bool a1 = avalue1, a2 = avalue2;
             aresult.FVarType = VariantType.Boolean;
             aresult.FBoolean = (a1 || a2);
@@ -994,7 +993,7 @@ namespace Reportman.Reporting
         public static Variant operator &(Variant avalue1, Variant avalue2)
         {
             CoerceIfNeeded(ref avalue1, ref avalue2);
-            Variant aresult = new Variant();
+            Variant aresult = new();
             bool a1 = avalue1, a2 = avalue2;
             aresult.FVarType = VariantType.Boolean;
             aresult.FBoolean = (a1 && a2);
@@ -1005,7 +1004,7 @@ namespace Reportman.Reporting
         /// </summary>
         public static Variant operator +(Variant avalue1, Variant avalue2)
         {
-            Variant aresult = new Variant();
+            Variant aresult = new();
             switch (avalue1.FVarType)
             {
                 case VariantType.Null:
@@ -1275,7 +1274,7 @@ namespace Reportman.Reporting
         /// </summary>
         public static Variant operator -(Variant avalue1, Variant avalue2)
         {
-            Variant aresult = new Variant();
+            Variant aresult = new();
             switch (avalue1.FVarType)
             {
                 case VariantType.Null:
@@ -1504,7 +1503,7 @@ namespace Reportman.Reporting
         /// </summary>
         public static Variant operator *(Variant avalue1, Variant avalue2)
         {
-            Variant aresult = new Variant();
+            Variant aresult = new();
             switch (avalue1.FVarType)
             {
                 case VariantType.Null:
@@ -1640,7 +1639,7 @@ namespace Reportman.Reporting
         /// </summary>
         public static Variant operator /(Variant avalue1, Variant avalue2)
         {
-            Variant aresult = new Variant();
+            Variant aresult = new();
             switch (avalue1.FVarType)
             {
                 case VariantType.Null:
@@ -1903,22 +1902,22 @@ namespace Reportman.Reporting
 
                 case "System.Drawing.Bitmap":
                     throw new Exception("Drawing.ToBitmap() not supported in assign object");
-/*                    FMemStream = new MemoryStream();
-                    Bitmap nbitmap = ((System.Drawing.Bitmap)obj);
-                    nbitmap.Save(FMemStream, System.Drawing.Imaging.ImageFormat.Jpeg);
-                    FVarType = VariantType.Binary;
-                    break;*/
+                /*                    FMemStream = new MemoryStream();
+                                    Bitmap nbitmap = ((System.Drawing.Bitmap)obj);
+                                    nbitmap.Save(FMemStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                                    FVarType = VariantType.Binary;
+                                    break;*/
 
 
                 case "System.Drawing.Icon":
                     throw new Exception("Icon.ToBitmap() not supported in COmpact framework");
-/*                    FMemStream = new MemoryStream();
-                    using (System.Drawing.Bitmap rbitmap = ((System.Drawing.Icon)obj).ToBitmap())
-                    {
-                        rbitmap.Save(FMemStream, System.Drawing.Imaging.ImageFormat.Jpeg);
-                        FVarType = VariantType.Binary;
-                    }
-                    break;*/
+                /*                    FMemStream = new MemoryStream();
+                                    using (System.Drawing.Bitmap rbitmap = ((System.Drawing.Icon)obj).ToBitmap())
+                                    {
+                                        rbitmap.Save(FMemStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                                        FVarType = VariantType.Binary;
+                                    }
+                                    break;*/
 
 
                 case "System.String":
@@ -2049,7 +2048,7 @@ namespace Reportman.Reporting
         /// </summary>
         public static Variant VariantFromObject(object obj)
         {
-            Variant avar = new Variant();
+            Variant avar = new();
             avar.AssignFromObject(obj);
             return avar;
         }
@@ -2126,11 +2125,11 @@ namespace Reportman.Reporting
                     DateTimeFormat.ShortDatePattern;
             else
                 if (paramtype == ParamType.Time)
-                return System.Globalization.CultureInfo.CurrentCulture.
-                    DateTimeFormat.ShortTimePattern;
-            else
-                return System.Globalization.CultureInfo.CurrentCulture.
-                    DateTimeFormat.FullDateTimePattern;
+                    return System.Globalization.CultureInfo.CurrentCulture.
+                        DateTimeFormat.ShortTimePattern;
+                else
+                    return System.Globalization.CultureInfo.CurrentCulture.
+                        DateTimeFormat.FullDateTimePattern;
         }
         /// <summary>
         /// Formats a Variant, with a display format
@@ -2450,7 +2449,7 @@ namespace Reportman.Reporting
         /// </summary>
         public Variant Abs()
         {
-            Variant aresult = new Variant();
+            Variant aresult = new();
             if (!IsNumber())
             {
                 throw new UnNamedException(Translator.TranslateStr(438));
@@ -2609,7 +2608,7 @@ namespace Reportman.Reporting
                 else
                     throw new System.Text.Json.JsonException("Unsupported VariantType: " + typeStr);
 
-                Variant result = new Variant();
+                Variant result = new();
                 result.AssignFromObject(value);
                 return result;
             }

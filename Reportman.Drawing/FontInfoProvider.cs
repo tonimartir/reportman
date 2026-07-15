@@ -358,7 +358,7 @@ namespace Reportman.Drawing
         /// <summary>
         /// Caches glyph metrics keyed by glyph index.
         /// </summary>
-        public SortedList<int, GlyphInfo> glyphsInfo = new SortedList<int, GlyphInfo>();
+        public SortedList<int, GlyphInfo> glyphsInfo = new();
 
 
         /// <summary>
@@ -427,9 +427,9 @@ namespace Reportman.Drawing
         /// <param name="FontSize">The font size, in points, used to measure the text.</param>
         /// <param name="isHtml">Whether the text contains HTML markup that affects layout.</param>
         /// <returns>The per-line layout information for the measured text.</returns>
-        public abstract List<LineInfo>  TextExtent(string Text,
+        public abstract List<LineInfo> TextExtent(string Text,
            ref Rectangle Rect, PDFFont pdfFont, TTFontData fontData,
-            bool wordwrap,bool singleline,double FontSize, bool isHtml = false);
+            bool wordwrap, bool singleline, double FontSize, bool isHtml = false);
 
         /// <summary>
         /// Returns the kerning adjustment applied between two adjacent characters in the font.

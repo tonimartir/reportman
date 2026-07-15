@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -94,7 +94,7 @@ namespace Reportman.Drawing
 		public PrintOutPDFBase()
             : base()
         {
-            FPDFFile = new PDFFile(GetFontInfoProvider(),GetBitmapInfoProvider());
+            FPDFFile = new PDFFile(GetFontInfoProvider(), GetBitmapInfoProvider());
             FileName = "";
             PageQt = 0;
             FPageWidth = 11904;
@@ -169,7 +169,7 @@ namespace Reportman.Drawing
             FPageWidth = meta.CustomX;
             FPageHeight = meta.CustomY;
             FOrientation = meta.Orientation;
-            if (FOrientation ==OrientationType.Landscape)
+            if (FOrientation == OrientationType.Landscape)
             {
                 FPageRealWidth = meta.CustomY;
                 FPageRealHeight = meta.CustomX;
@@ -182,9 +182,9 @@ namespace Reportman.Drawing
 
 
             foreach (var efile in meta.EmbeddedFiles)
-                {
-                    FPDFFile.EmbeddedFiles.Add((EmbeddedFile)efile.Clone());
-                }
+            {
+                FPDFFile.EmbeddedFiles.Add((EmbeddedFile)efile.Clone());
+            }
 
             // PrinterFonts = Recalculate requests exact PDF/print parity: write plain text
             // glyph by glyph with shaped advances so the GDI redraw (TextRectHtml) can
@@ -559,8 +559,8 @@ namespace Reportman.Drawing
         /// </summary>
         public Point WordExtent(string text, Point extent)
         {
-            Rectangle rect = new Rectangle(0, 0, extent.X, extent.Y);
-            FPDFFile.Canvas.TextExtent(text, ref rect, false, true, false,false);
+            Rectangle rect = new(0, 0, extent.X, extent.Y);
+            FPDFFile.Canvas.TextExtent(text, ref rect, false, true, false, false);
             extent.X = rect.Width;
             extent.Y = rect.Height;
             return extent;
@@ -572,7 +572,7 @@ namespace Reportman.Drawing
         /// </summary>
         public List<LineInfo> WordExtentLineInfo(string text, ref Point extent, bool rightToLeft = false)
         {
-            Rectangle rect = new Rectangle(0, 0, extent.X, extent.Y);
+            Rectangle rect = new(0, 0, extent.X, extent.Y);
             var result = FPDFFile.Canvas.TextExtent(text, ref rect, false, true, true, rightToLeft);
             extent.X = rect.Width;
             extent.Y = rect.Height;

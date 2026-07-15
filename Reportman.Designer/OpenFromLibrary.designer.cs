@@ -1,4 +1,4 @@
-namespace Reportman.Designer
+﻿namespace Reportman.Designer
 {
     partial class OpenFromLibrary
     {

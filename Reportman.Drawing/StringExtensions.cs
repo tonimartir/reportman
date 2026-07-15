@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -57,7 +57,7 @@ namespace Reportman.Drawing
             char separator,
             char escapeCharacter, bool escape)
         {
-            List<string> nlist = new List<string>();
+            List<string> nlist = new();
             foreach (string nstring in text.Split(separator, escapeCharacter, true, true))
             {
                 nlist.Add(nstring);

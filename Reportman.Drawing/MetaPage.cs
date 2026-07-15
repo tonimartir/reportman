@@ -1,12 +1,10 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Threading;
 #if NETSTANDARD2_0
 #else
-using System.Drawing;
 #endif
 
 namespace Reportman.Drawing
@@ -26,7 +24,7 @@ namespace Reportman.Drawing
         /// <summary>Page orientation</summary>
         public OrientationType Orientation;
         /// <summary>Page size information, filled when UpdatedPageSize is true</summary>
-        public PageSizeDetail PageDetail = new PageSizeDetail();
+        public PageSizeDetail PageDetail = new();
         private char[] FPool;
         private int FPoolPos = 0;
         /// <summary>The strings in the page are save to into this list, for memory and file size optimization</summary>
@@ -170,7 +168,7 @@ namespace Reportman.Drawing
         /// <returns>The text referenced in the TexP position</returns>
 		public string GetText(MetaObjectText obj)
         {
-            string ares = new string(Pool, obj.TextP - 1, obj.TextS);
+            string ares = new(Pool, obj.TextP - 1, obj.TextS);
             return ares;
         }
         /// <summary>
@@ -209,7 +207,7 @@ namespace Reportman.Drawing
         {
             int asize = (int)obj.StreamSize;
             byte[] buf;
-            MemoryStream astream = new MemoryStream();
+            MemoryStream astream = new();
             if (obj.SharedImage)
             {
                 buf = new byte[asize];
@@ -474,7 +472,7 @@ namespace Reportman.Drawing
              int BackColor, bool Transparent, int FontStyle, PDFFontType Type1Font, TextAlignType horzalign, TextAlignVerticalType vertalign, bool SingleLine, bool WordWrap, bool CutText,
             PrintStepType PrintStep)
         {
-            MetaObjectText metaobj = new MetaObjectText();
+            MetaObjectText metaobj = new();
             metaobj.TextP = AddString(Text);
             metaobj.TextS = Text.Length;
             metaobj.LFontNameP = AddString(LFontName);
@@ -526,7 +524,7 @@ namespace Reportman.Drawing
         public MetaObjectDraw DrawShape(int PosX, int PosY, int PrintWidth, int PrintHeight, ShapeType Shape, BrushType BrushStyle, PenType PenStyle,
             int PenWidth, int PenColor, int BrushColor)
         {
-            MetaObjectDraw metaobj = new MetaObjectDraw();
+            MetaObjectDraw metaobj = new();
             metaobj.MetaType = MetaObjectType.Draw;
             metaobj.Top = PosY; metaobj.Left = PosX;
             metaobj.Width = PrintWidth; metaobj.Height = PrintHeight;
@@ -554,7 +552,7 @@ namespace Reportman.Drawing
         public MetaObjectImage DrawImage(int PosX, int PosY, int PrintWidth, int PrintHeight, ImageDrawStyleType DrawStyle, int dpires,
             MemoryStream nvalue)
         {
-            MetaObjectImage metaobj = new MetaObjectImage();
+            MetaObjectImage metaobj = new();
             metaobj.MetaType = MetaObjectType.Image;
             metaobj.Top = PosY; metaobj.Left = PosX;
             metaobj.Width = PrintWidth;

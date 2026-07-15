@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Reportman.Drawing;
 using Reportman.Reporting;
 using Reportman.Reporting.Design;

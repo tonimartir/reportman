@@ -1,4 +1,4 @@
-using Reportman.Drawing;
+﻿using Reportman.Drawing;
 using SharpDX;
 using SharpDX.Direct2D1;
 using SharpDX.DirectWrite;

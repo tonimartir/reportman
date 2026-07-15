@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Text;
 
 namespace Reportman.Drawing
@@ -353,7 +353,7 @@ namespace Reportman.Drawing
         /// <returns>The characters read up to the separator.</returns>
         public string Advance(string nbarcode, ref int idx)
         {
-            StringBuilder nresult = new StringBuilder();
+            StringBuilder nresult = new();
             for (; idx < nbarcode.Length; idx++)
             {
                 if (nbarcode[idx] == (char)29)

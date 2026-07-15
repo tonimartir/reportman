@@ -445,7 +445,7 @@ namespace Reportman.Reporting
             }
             catch (Exception E)
             {
-                throw new ReportException(E.Message +(char)10 + Name + " Prop:SerieCaption " + (char)10 + PrintCondition, this, "SerieCaption");
+                throw new ReportException(E.Message + (char)10 + Name + " Prop:SerieCaption " + (char)10 + PrintCondition, this, "SerieCaption");
             }
             return aresult;
         }
@@ -557,7 +557,7 @@ namespace Reportman.Reporting
         {
             if (FSeries.SeriesItems.Count > 0)
             {
-                SeriesItem itemFunc = new SeriesItem();
+                SeriesItem itemFunc = new();
                 itemFunc.Caption = serieCaption;
                 itemFunc.FunctionName = functionName;
                 itemFunc.FunctionParams = functionParams;

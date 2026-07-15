@@ -223,7 +223,7 @@ namespace Reportman.Reporting
             string sqltext = "UPDATE " + ReportTable + " SET " + ReportField + "=@REPORT" +
                  " WHERE " + ReportSearchField + "=" + StringUtil.QuoteStr(reportName);
             bool closeConnection = false;
-            System.IO.MemoryStream newStream = new System.IO.MemoryStream();
+            System.IO.MemoryStream newStream = new();
             nreport.SaveToStream(newStream, version);
             if (CurrentConnection == null)
             {
@@ -307,14 +307,14 @@ namespace Reportman.Reporting
         /// <param name="filename">The path of the INI file to read.</param>
         public void LoadFromFile(string filename)
         {
-            IniFile inif = new IniFile(filename);
+            IniFile inif = new(filename);
             Clear();
             int concount = inif.ReadInteger("REPMAN_CONNECTIONS", "COUNT", 0);
             for (int i = 0; i < concount; i++)
             {
                 string conname = "REPMAN_CONNECTION" + i.ToString();
                 string aname = inif.ReadString(conname, "NAME", "CONNECTION" + i.ToString());
-                ReportLibraryConfig aitem = new ReportLibraryConfig();
+                ReportLibraryConfig aitem = new();
                 aitem.Alias = aname;
                 Add(aitem);
                 aitem.ADOConnectionString = inif.ReadString(conname, "ADOSTRING", aitem.ADOConnectionString);
@@ -340,7 +340,7 @@ namespace Reportman.Reporting
         /// <param name="filename">The path of the INI file to write.</param>
         public void SaveToFile(string filename)
         {
-            IniFile inif = new IniFile(filename);
+            IniFile inif = new(filename);
             inif.WriteInteger("REPMAN_CONNECTIONS", "COUNT", Count);
             for (int i = 0; i < Count; i++)
             {

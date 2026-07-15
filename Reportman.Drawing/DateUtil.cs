@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 
 namespace Reportman.Drawing
@@ -11,7 +11,7 @@ namespace Reportman.Drawing
         /// <summary>
         /// The starting DateTime base date (December 30, 1899) used by Delphi's date representation.
         /// </summary>
-        public static DateTime FIRST_DELPHI_DAY = new DateTime(1899, 12, 30);
+        public static DateTime FIRST_DELPHI_DAY = new(1899, 12, 30);
         /// <summary>
         /// Converts a double representing the number of days from 30 Dec 1899 to DateTime
         /// </summary>
@@ -35,7 +35,7 @@ namespace Reportman.Drawing
         /// <returns>A quoted string containing the formatted date and time.</returns>
         public static string DateTimeToFbLiteralHour(DateTime nvalue)
         {
-            System.Globalization.DateTimeFormatInfo dateinfo = new System.Globalization.DateTimeFormatInfo();
+            System.Globalization.DateTimeFormatInfo dateinfo = new();
             dateinfo.TimeSeparator = ":";
             dateinfo.DateSeparator = "/";
             string nresult = StringUtil.QuoteStr(nvalue.ToString("yyyy-MM-dd HH:mm:ss", dateinfo));
