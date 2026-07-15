@@ -19,7 +19,7 @@ namespace Reportman.Drawing
         DataTable commands;
         DataTable commandparams;
         DataView vcommandparams;
-        SortedList<int, List<object[]>> objparamvalues = new();
+        SortedList<int, List<object[]>> objparamvalues = new SortedList<int, List<object[]>>();
         object[] nvalues = new object[9];
         object[] pvalues = new object[4];
         DbCommand commandgen;
@@ -134,7 +134,7 @@ namespace Reportman.Drawing
             }
             else
             {
-                DataTable newTable = new();
+                DataTable newTable = new DataTable();
                 dataadapter.Fill(newTable);
                 return newTable;
             }
@@ -223,7 +223,7 @@ namespace Reportman.Drawing
             {
                 nvalues[7] = ncommand.Parameters.Count;
                 commands.Rows.Add(nvalues);
-                List<object[]> paramlist = new();
+                List<object[]> paramlist = new List<object[]>();
                 foreach (System.Data.Common.DbParameter nparam in ncommand.Parameters)
                 {
                     pvalues = new object[4];
@@ -440,7 +440,7 @@ namespace Reportman.Drawing
                                     {
                                         // Partial fill 
                                         string tablename = xrow["TABLENAME"].ToString();
-                                        DataTable intdatatable = new(tablename);
+                                        DataTable intdatatable = new DataTable(tablename);
                                         int nfieldcount = intreader.FieldCount;
                                         for (int i2 = 0; i2 < nfieldcount; i2++)
                                         {

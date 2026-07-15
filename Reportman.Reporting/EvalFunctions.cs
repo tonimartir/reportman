@@ -38,7 +38,7 @@ namespace Reportman.Reporting
         }
         protected override Variant GetValue()
         {
-            Variant aresult = new();
+            Variant aresult = new Variant();
             if (Params[0].VarType != VariantType.Null)
             {
                 if (!Params[0].IsNumber())
@@ -61,7 +61,7 @@ namespace Reportman.Reporting
         }
         protected override Variant GetValue()
         {
-            Variant aresult = new();
+            Variant aresult = new Variant();
             if (Params[0].VarType == VariantType.Null)
                 throw new NamedException(Translator.TranslateStr(438), "MAX");
             if (Params[1].VarType == VariantType.Null)
@@ -84,7 +84,7 @@ namespace Reportman.Reporting
         }
         protected override Variant GetValue()
         {
-            Variant aresult = new();
+            Variant aresult = new Variant();
             if (Params[0].VarType != VariantType.Null)
             {
                 if (Params[0].VarType != VariantType.String)
@@ -107,7 +107,7 @@ namespace Reportman.Reporting
         }
         protected override Variant GetValue()
         {
-            Variant aresult = new();
+            Variant aresult = new Variant();
             if (Params[0].VarType != VariantType.Null)
             {
                 if (Params[0].VarType != VariantType.String)
@@ -131,7 +131,7 @@ namespace Reportman.Reporting
         }
         protected override Variant GetValue()
         {
-            Variant aresult = new();
+            Variant aresult = new Variant();
             if (Params[0].VarType != VariantType.Null)
             {
                 if (Params[0].VarType != VariantType.DateTime)
@@ -154,7 +154,7 @@ namespace Reportman.Reporting
         }
         protected override Variant GetValue()
         {
-            Variant aresult = new();
+            Variant aresult = new Variant();
             if (Params[0].VarType != VariantType.Null)
             {
                 if (Params[0].VarType != VariantType.DateTime)
@@ -177,7 +177,7 @@ namespace Reportman.Reporting
         }
         protected override Variant GetValue()
         {
-            Variant aresult = new();
+            Variant aresult = new Variant();
             if (Params[0].VarType != VariantType.Null)
             {
                 if (Params[0].VarType == VariantType.Integer)
@@ -186,11 +186,11 @@ namespace Reportman.Reporting
                 }
                 else
                     if (Params[0].VarType == VariantType.DateTime)
-                    {
-                        aresult = GetMonthName(((DateTime)Params[0]).Month, EvalObject.Language);
-                    }
-                    else
-                        throw new NamedException(Translator.TranslateStr(438), "MONTHNAME");
+                {
+                    aresult = GetMonthName(((DateTime)Params[0]).Month, EvalObject.Language);
+                }
+                else
+                    throw new NamedException(Translator.TranslateStr(438), "MONTHNAME");
             }
             return aresult;
         }
@@ -337,7 +337,7 @@ namespace Reportman.Reporting
         }
         protected override Variant GetValue()
         {
-            Variant aresult = new();
+            Variant aresult = new Variant();
             if (Params[0].VarType != VariantType.Null)
             {
                 if (Params[0].VarType == VariantType.DateTime)
@@ -366,7 +366,7 @@ namespace Reportman.Reporting
             {
                 throw new NamedException(Translator.TranslateStr(438), "FORMATSTR");
             }
-            Variant aresult = new();
+            Variant aresult = new Variant();
             string format = (string)Params[0];
             aresult = "";
             if (Params[0].VarType == VariantType.Null)
@@ -386,7 +386,7 @@ namespace Reportman.Reporting
         }
         protected override Variant GetValue()
         {
-            Variant aresult = new();
+            Variant aresult = new Variant();
             if (Params[0].VarType != VariantType.Null)
             {
                 if (Params[0].VarType != VariantType.String)
@@ -409,7 +409,7 @@ namespace Reportman.Reporting
         }
         protected override Variant GetValue()
         {
-            Variant aresult = new();
+            Variant aresult = new Variant();
             if (Params[0].VarType != VariantType.Null)
             {
                 String astring = Params[0];
@@ -444,7 +444,7 @@ namespace Reportman.Reporting
             {
                 throw new NamedException(Translator.TranslateStr(438), "NewPattern");
             }
-            Variant aresult = new();
+            Variant aresult = new Variant();
             String source = Params[0].ToString();
             String oldpattern = Params[1].ToString();
             String newpattern = Params[2].ToString();
@@ -463,7 +463,7 @@ namespace Reportman.Reporting
         }
         protected override Variant GetValue()
         {
-            Variant aresult = new();
+            Variant aresult = new Variant();
             if (Params[0].VarType != VariantType.Null)
             {
                 String astring = Params[0];
@@ -616,7 +616,7 @@ namespace Reportman.Reporting
         }
         protected override Variant GetValue()
         {
-            Variant aresult = new();
+            Variant aresult = new Variant();
             if (Params[0].VarType != VariantType.Null)
             {
                 String substring = Params[0];
@@ -637,7 +637,7 @@ namespace Reportman.Reporting
         }
         protected override Variant GetValue()
         {
-            Variant aresult = new();
+            Variant aresult = new Variant();
             if (Params[0].VarType != VariantType.Null)
             {
                 String astring = Params[0];
@@ -671,7 +671,7 @@ namespace Reportman.Reporting
         }
         protected override Variant GetValue()
         {
-            Variant aresult = new();
+            Variant aresult = new Variant();
             if (Params[0].VarType != VariantType.Null)
             {
                 if (Params[0].VarType != VariantType.String)
@@ -693,7 +693,7 @@ namespace Reportman.Reporting
         }
         protected override Variant GetValue()
         {
-            Variant aresult = new();
+            Variant aresult = new Variant();
             aresult = false;
             if (Params[0].VarType != VariantType.Null)
             {
@@ -701,7 +701,7 @@ namespace Reportman.Reporting
                 {
                     throw new NamedException(Translator.TranslateStr(438), Name);
                 }
-                FileInfo afileinfo = new(Params[0].AsString);
+                FileInfo afileinfo = new FileInfo(Params[0].AsString);
                 aresult = afileinfo.Exists;
             }
             return aresult;
@@ -717,7 +717,7 @@ namespace Reportman.Reporting
         }
         protected override Variant GetValue()
         {
-            Variant aresult = new();
+            Variant aresult = new Variant();
             aresult = System.DateTime.Today;
             return aresult;
         }
@@ -732,7 +732,7 @@ namespace Reportman.Reporting
         }
         protected override Variant GetValue()
         {
-            Variant aresult = new();
+            Variant aresult = new Variant();
             aresult = System.DateTime.Now;
             return aresult;
         }
@@ -748,7 +748,7 @@ namespace Reportman.Reporting
         }
         protected override Variant GetValue()
         {
-            Variant aresult = new();
+            Variant aresult = new Variant();
             if (Params[0].VarType != VariantType.Null)
             {
                 aresult = Params[0].ToString();
@@ -769,7 +769,7 @@ namespace Reportman.Reporting
         }
         protected override Variant GetValue()
         {
-            Variant aresult = new();
+            Variant aresult = new Variant();
             if (!Params[0].IsNumber())
             {
                 throw new NamedException(Translator.TranslateStr(438), "FloatToDateTime");
@@ -791,7 +791,7 @@ namespace Reportman.Reporting
         {
             if (Params[0].IsNull)
                 return Variant.VariantFromObject(DBNull.Value);
-            Variant aresult = new();
+            Variant aresult = new Variant();
             decimal num = 0;
             decimal r = (decimal)0.01;
             if (!Params[0].IsNumber())
@@ -819,7 +819,7 @@ namespace Reportman.Reporting
         }
         protected override Variant GetValue()
         {
-            Variant aresult = new();
+            Variant aresult = new Variant();
             if (!Params[0].IsNumber())
             {
                 throw new NamedException(Translator.TranslateStr(438), "RoundToInteger");
@@ -870,7 +870,7 @@ namespace Reportman.Reporting
             {
                 throw new NamedException(Translator.TranslateStr(438), "CompareValue");
             }
-            Variant aresult = new();
+            Variant aresult = new Variant();
             aresult = DoubleUtil.CompareValue(Params[0], Params[1], Params[2]);
             return aresult;
         }
@@ -886,7 +886,7 @@ namespace Reportman.Reporting
         }
         protected override Variant GetValue()
         {
-            Variant aresult = new();
+            Variant aresult = new Variant();
             if (!Params[0].IsNumber())
             {
                 throw new NamedException(Translator.TranslateStr(438), "Int");
@@ -916,7 +916,7 @@ namespace Reportman.Reporting
         }
         protected override Variant GetValue()
         {
-            Variant aresult = new();
+            Variant aresult = new Variant();
             if (!Params[0].IsNumber())
             {
                 aresult = Params[0];
@@ -947,7 +947,7 @@ namespace Reportman.Reporting
         }
         protected override Variant GetValue()
         {
-            Variant aresult = new();
+            Variant aresult = new Variant();
             if (!Params[0].IsInteger())
             {
                 throw new NamedException(Translator.TranslateStr(438), "Mod");
@@ -992,7 +992,7 @@ namespace Reportman.Reporting
         }
         protected override Variant GetValue()
         {
-            Variant aresult = new();
+            Variant aresult = new Variant();
             if (!Params[0].IsNumber())
             {
                 throw new NamedException(Translator.TranslateStr(438), "NumToText");

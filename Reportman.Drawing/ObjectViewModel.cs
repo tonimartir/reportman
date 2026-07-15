@@ -51,7 +51,7 @@ namespace Reportman.Drawing
                 if (!IsPrintableType(_type))
                 {
                     // load the _children object with an empty collection to allow the + expander to be shown
-                    _children = new ReadOnlyCollection<ObjectViewModel>(new ObjectViewModel[] { new(null) });
+                    _children = new ReadOnlyCollection<ObjectViewModel>(new ObjectViewModel[] { new ObjectViewModel(null) });
                 }
             }
             _parent = parent;
@@ -74,7 +74,7 @@ namespace Reportman.Drawing
                         .Where(p => !p.GetIndexParameters().Any()) // exclude indexed parameters for now
                         .Select(p => new ObjectViewModel(p.GetValue(_object, null), p, this))
                         .ToList()*/
-                    List<ObjectViewModel> children = new();
+                    List<ObjectViewModel> children = new List<ObjectViewModel>();
                     foreach (FieldInfo ninfo in _type.GetFields())
                     {
                         if ((ninfo.IsPublic) && (!ninfo.IsStatic))

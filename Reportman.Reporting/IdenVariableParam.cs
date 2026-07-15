@@ -1,4 +1,4 @@
-﻿namespace Reportman.Reporting
+namespace Reportman.Reporting
 {
     /// <summary>
     /// An evaluator variable identifier backed by a report Param, so reading or assigning the

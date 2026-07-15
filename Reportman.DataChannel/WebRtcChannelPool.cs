@@ -1,4 +1,4 @@
-﻿using System.Collections.Concurrent;
+using System.Collections.Concurrent;
 
 namespace Reportman.Hub.Client.DataChannel;
 
@@ -266,6 +266,6 @@ public sealed class WebRtcChannelPool : IAsyncDisposable
         /// <summary>
         /// Evicts this entry from the pool, stops its timers, and disposes the underlying session.
         /// </summary>
-        public ValueTask DisposeAsync() => new(EvictAsync("disposed"));
+        public ValueTask DisposeAsync() => new ValueTask(EvictAsync("disposed"));
     }
 }

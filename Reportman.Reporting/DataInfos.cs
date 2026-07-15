@@ -47,7 +47,7 @@ namespace Reportman.Reporting
         /// <returns>A new DataInfo collection</returns>
         public object Clone()
         {
-            DataInfos ninfo = new();
+            DataInfos ninfo = new DataInfos();
             foreach (DataInfo ainfo in this)
             {
                 ninfo.Add((DataInfo)ainfo.Clone());
@@ -61,7 +61,7 @@ namespace Reportman.Reporting
         /// <returns>A new DataInfo collection</returns>
         public DataInfos Clone(Report areport)
         {
-            DataInfos ninfo = new();
+            DataInfos ninfo = new DataInfos();
             foreach (DataInfo ainfo in this)
             {
                 ninfo.Add(ainfo.Clone(areport));

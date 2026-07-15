@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 
 namespace Reportman.Drawing
 {
@@ -108,10 +108,10 @@ namespace Reportman.Drawing
                 aresult = MetaFile.AlignmentFlags_AlignRight;
             else
                 if (Alignment == TextAlignType.Center)
-                    aresult = MetaFile.AlignmentFlags_AlignHCenter;
-                else
+                aresult = MetaFile.AlignmentFlags_AlignHCenter;
+            else
                     if (Alignment == TextAlignType.Justify)
-                        aresult = MetaFile.AlignmentFlags_AlignHJustify;
+                aresult = MetaFile.AlignmentFlags_AlignHJustify;
             return aresult;
         }
         /// <summary>
@@ -127,7 +127,7 @@ namespace Reportman.Drawing
                 aresult = MetaFile.AlignmentFlags_AlignVCenter;
             else
                 if (VAlignment == TextAlignVerticalType.Bottom)
-                    aresult = MetaFile.AlignmentFlags_AlignBottom;
+                aresult = MetaFile.AlignmentFlags_AlignBottom;
             return aresult;
         }
         /// <summary>

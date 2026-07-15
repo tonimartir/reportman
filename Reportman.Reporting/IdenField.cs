@@ -63,7 +63,7 @@ namespace Reportman.Reporting
         {
             try
             {
-                Variant FValue = new();
+                Variant FValue = new Variant();
                 if (FData != null)
                     if (FField != null)
                     {

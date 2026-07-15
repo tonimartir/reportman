@@ -1,4 +1,4 @@
-﻿#region Copyright
+#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -154,7 +154,7 @@ namespace Reportman.Reporting
         /// <returns>A list of driver description strings.</returns>
         public static List<string> GetDriverDescriptions()
         {
-            List<string> alist = new()
+            List<string> alist = new List<string>
             {
                 "Borland DBExpress",
                 "B.MyBase and text files",
@@ -223,31 +223,31 @@ namespace Reportman.Reporting
         /// </summary>
         /// <returns>A new DatabaseInfo item with same data as the original</returns>
 		public object Clone()
-        {
-            DatabaseInfo ninfo = new();
-            ninfo.Report = Report;
-            ninfo.Alias = Alias;
-            ninfo.Driver = Driver;
-            ninfo.ProviderFactory = ProviderFactory;
-            ninfo.ReportTable = ReportTable;
-            ninfo.ReportSearchField = ReportSearchField;
-            ninfo.Name = Name;
-            ninfo.ReportField = ReportField;
-            ninfo.ReportGroupsTable = ReportGroupsTable;
-            ninfo.ConnectionString = ConnectionString;
-            ninfo.FExternalConnection = FExternalConnection;
-            ninfo.Transaction = Transaction;
-            ninfo.DotNetDriver = DotNetDriver;
-            ninfo.TransIsolation = TransIsolation;
-            // HttpAgent properties
+		{
+			DatabaseInfo ninfo = new DatabaseInfo();
+			ninfo.Report = Report;
+			ninfo.Alias = Alias;
+			ninfo.Driver = Driver;
+			ninfo.ProviderFactory = ProviderFactory;
+			ninfo.ReportTable = ReportTable;
+			ninfo.ReportSearchField = ReportSearchField;
+			ninfo.Name = Name;
+			ninfo.ReportField = ReportField;
+			ninfo.ReportGroupsTable = ReportGroupsTable;
+			ninfo.ConnectionString = ConnectionString;
+			ninfo.FExternalConnection = FExternalConnection;
+			ninfo.Transaction = Transaction;
+			ninfo.DotNetDriver = DotNetDriver;
+			ninfo.TransIsolation = TransIsolation;
+			// HttpAgent properties
             ninfo.ConfigFile = ConfigFile;
             ninfo.LoadParams = LoadParams;
-            ninfo.HttpAgentBaseUrl = HttpAgentBaseUrl;
-            ninfo.HttpAgentApiKey = HttpAgentApiKey;
-            ninfo.HttpAgentToken = HttpAgentToken;
-            ninfo.HttpAgentHubDatabaseId = HttpAgentHubDatabaseId;
-            return ninfo;
-        }
+			ninfo.HttpAgentBaseUrl = HttpAgentBaseUrl;
+			ninfo.HttpAgentApiKey = HttpAgentApiKey;
+			ninfo.HttpAgentToken = HttpAgentToken;
+			ninfo.HttpAgentHubDatabaseId = HttpAgentHubDatabaseId;
+			return ninfo;
+		}
         /// <summary>
         /// Clone the DatabaseInfo item
         /// </summary>
@@ -388,7 +388,7 @@ namespace Reportman.Reporting
             if (string.IsNullOrWhiteSpace(configFilename) || !File.Exists(configFilename))
                 return;
 
-            IniFile iniFile = new(configFilename);
+            IniFile iniFile = new IniFile(configFilename);
             string driverName = iniFile.ReadString(Alias, "DriverName", "").Trim();
             if (IsHttpAgentDriverName(driverName))
                 Driver = DriverType.HttpAgent;
@@ -403,7 +403,7 @@ namespace Reportman.Reporting
             if (string.IsNullOrWhiteSpace(configFilename) || !File.Exists(configFilename))
                 return;
 
-            IniFile iniFile = new(configFilename);
+            IniFile iniFile = new IniFile(configFilename);
             string apiKey = iniFile.ReadString(Alias, "ApiKey", "").Trim();
             string token = iniFile.ReadString(Alias, "Token", "").Trim();
             string baseUrl = iniFile.ReadString(Alias, "Url", "").Trim();
@@ -458,7 +458,7 @@ namespace Reportman.Reporting
         /// <summary>
         /// The list of registered custom ADO.NET DbProviderFactory provider factories.
         /// </summary>
-        public static SortedList<string, DbProviderFactory> CustomProviderFactories = new();
+        public static SortedList<string, DbProviderFactory> CustomProviderFactories = new SortedList<string, DbProviderFactory>();
         /// <summary>
         /// Connect to the database
         /// </summary>
@@ -662,7 +662,7 @@ namespace Reportman.Reporting
                         int index2 = aparam.Datasets.IndexOf(Alias);
                         if (index2 >= 0)
                         {
-                            using (Evaluator eval = new())
+                            using (Evaluator eval = new Evaluator())
                             {
                                 string nvalue = aparam.Value.ToString();
                                 eval.Expression = nvalue;

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Text;
 
@@ -20,7 +20,7 @@ namespace Reportman.Drawing
         public static string[] GetFiles(string path, string searchPattern, SearchOption searchOption)
         {
             string[] searchPatterns = searchPattern.Split('|');
-            Strings files = new();
+            Strings files = new Strings();
             foreach (string sp in searchPatterns)
             {
                 string[] nresult = System.IO.Directory.GetFiles(path, sp, searchOption);
@@ -50,7 +50,7 @@ namespace Reportman.Drawing
             try
             {
                 //Just opening the file as open/create
-                using (FileStream fs = new(path, FileMode.Open, FileAccess.Write, FileShare.None))
+                using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Write, FileShare.None))
                 {
                     //If required we can check for read/write by using fs.CanRead or fs.CanWrite
                 }
@@ -108,7 +108,7 @@ namespace Reportman.Drawing
                 bufsize = 65535;
             byte[] buf = new byte[bufsize];
 
-            MemoryStream aresult = new();
+            MemoryStream aresult = new MemoryStream();
             int readed;
             readed = astream.Read(buf, 0, bufsize);
             while (readed > 0)
@@ -139,7 +139,7 @@ namespace Reportman.Drawing
                 bufsize = 65535;
             byte[] buf = new byte[bufsize];
 
-            MemoryStream aresult = new();
+            MemoryStream aresult = new MemoryStream();
             int readed;
             readed = astream.Read(buf, 0, bufsize);
             while (readed > 0)
@@ -164,7 +164,7 @@ namespace Reportman.Drawing
         {
             MemoryStream rstream = null;
             // Don't increase BUF_SIZE, standerd input
-            using (FileStream fstream = new(filename, FileMode.OpenOrCreate, FileAccess.Read))
+            using (FileStream fstream = new FileStream(filename, FileMode.OpenOrCreate, FileAccess.Read))
             {
                 rstream = StreamToMemoryStream(fstream, 0);
             }
@@ -177,7 +177,7 @@ namespace Reportman.Drawing
         {
             MemoryStream rstream = null;
             // Don't increase BUF_SIZE, standerd input
-            using (FileStream fstream = new(filename, FileMode.OpenOrCreate, FileAccess.Read))
+            using (FileStream fstream = new FileStream(filename, FileMode.OpenOrCreate, FileAccess.Read))
             {
                 rstream = await StreamToMemoryStreamAsync(fstream, 0);
             }
@@ -206,7 +206,7 @@ namespace Reportman.Drawing
         {
             memstream.Seek(0, SeekOrigin.Begin);
             // Don't increase BUF_SIZE, standerd input
-            using (FileStream fstream = new(filename, FileMode.Create, FileAccess.Write))
+            using (FileStream fstream = new FileStream(filename, FileMode.Create, FileAccess.Write))
             {
                 memstream.WriteTo(fstream);
             }
@@ -218,7 +218,7 @@ namespace Reportman.Drawing
         {
             memstream.Seek(0, SeekOrigin.Begin);
             // Don't increase BUF_SIZE, standerd input
-            using (FileStream fstream = new(filename, overwrite ? FileMode.Create : FileMode.CreateNew, FileAccess.Write))
+            using (FileStream fstream = new FileStream(filename, overwrite ? FileMode.Create : FileMode.CreateNew, FileAccess.Write))
             {
                 const int BUFFER_SIZE = 4096 * 8;
                 byte[] buffer = new byte[BUFFER_SIZE];
@@ -237,7 +237,7 @@ namespace Reportman.Drawing
         {
             memstream.Seek(0, SeekOrigin.Begin);
             // Don't increase BUF_SIZE, standerd input
-            using (FileStream fstream = new(filename, overwrite ? FileMode.Create : FileMode.CreateNew, FileAccess.Write))
+            using (FileStream fstream = new FileStream(filename, overwrite ? FileMode.Create : FileMode.CreateNew, FileAccess.Write))
             {
                 const int BUFFER_SIZE = 4096 * 8;
                 byte[] buffer = new byte[BUFFER_SIZE];
@@ -258,7 +258,7 @@ namespace Reportman.Drawing
             int len = astring.Length;
             if (len == 0)
                 return 0;
-            UTF8Encoding utf8 = new();
+            UTF8Encoding utf8 = new UTF8Encoding();
             byte[] abuf = utf8.GetBytes(astring);
             astream.Write(abuf, 0, abuf.Length);
             return abuf.Length;
@@ -297,7 +297,7 @@ namespace Reportman.Drawing
         /// </summary>
         public static string StreamToHex(Stream astream)
         {
-            StringBuilder astring = new();
+            StringBuilder astring = new StringBuilder();
 
             const int BUFSIZE = 120000;
 
@@ -420,7 +420,7 @@ namespace Reportman.Drawing
         {
             if (!unicode)
                 return StringToByteArray(avalue, length);
-            UTF8Encoding encoder = new();
+            UTF8Encoding encoder = new UTF8Encoding();
             return encoder.GetBytes(avalue.ToCharArray(), 0, length);
         }
         /// <summary>
@@ -640,7 +640,7 @@ namespace Reportman.Drawing
         /// </summary>
         public static string ByteArrayToString(byte[] b1, int alen)
         {
-            StringBuilder aresult = new(alen);
+            StringBuilder aresult = new StringBuilder(alen);
             for (int i = 0; i < b1.Length; i++)
                 aresult.Append((char)b1[i]);
             return aresult.ToString();
@@ -650,7 +650,7 @@ namespace Reportman.Drawing
         /// </summary>
         public static string ByteArrayToString(byte[] b1, int nindex, int alen)
         {
-            StringBuilder aresult = new();
+            StringBuilder aresult = new StringBuilder();
             for (int i = 0; i < alen; i++)
                 aresult.Append((char)b1[i + nindex]);
             return aresult.ToString();
@@ -662,7 +662,7 @@ namespace Reportman.Drawing
         {
             if (!unicode)
                 return ByteArrayToString(b1, alen);
-            UTF8Encoding nencode = new();
+            UTF8Encoding nencode = new UTF8Encoding();
 
             return nencode.GetString(b1, 0, alen);
 
@@ -672,7 +672,7 @@ namespace Reportman.Drawing
         /// </summary>
         public static MemoryStream ByteArrayToStream(byte[] b1)
         {
-            MemoryStream nstream = new();
+            MemoryStream nstream = new MemoryStream();
             int len = b1.Length;
             nstream.Write(b1, 0, len);
             nstream.Seek(0, SeekOrigin.Begin);
@@ -717,8 +717,8 @@ namespace Reportman.Drawing
 
             //dest.Capacity = 0;
             byte[] bufuncomp = new byte[bufsize];
-            ICSharpCode.SharpZipLib.Zip.Compression.Inflater inf = new();
-            ICSharpCode.SharpZipLib.Zip.Compression.Streams.InflaterInputStream zstream = new(memstream, inf);
+            ICSharpCode.SharpZipLib.Zip.Compression.Inflater inf = new ICSharpCode.SharpZipLib.Zip.Compression.Inflater();
+            ICSharpCode.SharpZipLib.Zip.Compression.Streams.InflaterInputStream zstream = new ICSharpCode.SharpZipLib.Zip.Compression.Streams.InflaterInputStream(memstream, inf);
             int readed = zstream.Read(bufuncomp, 0, bufsize);
             while (readed > 0)
             {
@@ -735,7 +735,7 @@ namespace Reportman.Drawing
         /// <returns>A task representing the asynchronous operation.</returns>
         static public async System.Threading.Tasks.Task DecompressStreamGZipAsync(Stream origin, Stream dest)
         {
-            using (System.IO.Compression.DeflateStream inflater = new(origin, System.IO.Compression.CompressionMode.Decompress))
+            using (System.IO.Compression.DeflateStream inflater = new System.IO.Compression.DeflateStream(origin, System.IO.Compression.CompressionMode.Decompress))
             {
                 int bufsize = 100000;
                 //#endif
@@ -758,7 +758,7 @@ namespace Reportman.Drawing
         static public async System.Threading.Tasks.Task DeCompressBufferGZipAsync(byte[] buffer, int offset, int count,
             Stream dest)
         {
-            using (MemoryStream mstream = new())
+            using (MemoryStream mstream = new MemoryStream())
             {
                 await mstream.WriteAsync(buffer, offset, count);
                 mstream.Seek(0, SeekOrigin.Begin);
@@ -780,7 +780,7 @@ namespace Reportman.Drawing
 
             //dest.Capacity = 0;
             byte[] bufuncomp = new byte[bufsize];
-            ICSharpCode.SharpZipLib.Zip.Compression.Inflater inf = new();
+            ICSharpCode.SharpZipLib.Zip.Compression.Inflater inf = new ICSharpCode.SharpZipLib.Zip.Compression.Inflater();
             inf.SetInput(buffer, 0, count);
             int readed = inf.Inflate(bufuncomp, 0, bufsize);
             while (readed > 0)
@@ -814,9 +814,9 @@ namespace Reportman.Drawing
             byte[] bufuncomp = new byte[bufsize];
             if ((buffer[0] == 31) && (buffer[1] == 139))
             {
-                using (MemoryStream mstream = new(buffer, 0, count))
+                using (MemoryStream mstream = new MemoryStream(buffer, 0, count))
                 {
-                    ICSharpCode.SharpZipLib.GZip.GZipInputStream nstream = new(mstream);
+                    ICSharpCode.SharpZipLib.GZip.GZipInputStream nstream = new ICSharpCode.SharpZipLib.GZip.GZipInputStream(mstream);
                     readed = nstream.Read(bufuncomp, 0, bufsize);
                     while (readed > 0)
                     {
@@ -831,7 +831,7 @@ namespace Reportman.Drawing
             {
 
 
-                ICSharpCode.SharpZipLib.Zip.Compression.Inflater inf = new();
+                ICSharpCode.SharpZipLib.Zip.Compression.Inflater inf = new ICSharpCode.SharpZipLib.Zip.Compression.Inflater();
                 inf.SetInput(buffer, 0, count);
                 readed = inf.Inflate(bufuncomp, 0, bufsize);
                 while (readed > 0)
@@ -862,9 +862,9 @@ namespace Reportman.Drawing
             byte[] bufuncomp = new byte[bufsize];
             if ((buffer[0] == 31) && (buffer[1] == 139))
             {
-                using (MemoryStream mstream = new(buffer, 0, count))
+                using (MemoryStream mstream = new MemoryStream(buffer, 0, count))
                 {
-                    ICSharpCode.SharpZipLib.GZip.GZipInputStream nstream = new(mstream);
+                    ICSharpCode.SharpZipLib.GZip.GZipInputStream nstream = new ICSharpCode.SharpZipLib.GZip.GZipInputStream(mstream);
                     readed = await nstream.ReadAsync(bufuncomp, 0, bufsize);
                     while (readed > 0)
                     {
@@ -876,7 +876,7 @@ namespace Reportman.Drawing
             }
             else
             {
-                ICSharpCode.SharpZipLib.Zip.Compression.Inflater inf = new();
+                ICSharpCode.SharpZipLib.Zip.Compression.Inflater inf = new ICSharpCode.SharpZipLib.Zip.Compression.Inflater();
                 inf.SetInput(buffer, 0, count);
                 readed = inf.Inflate(bufuncomp, 0, bufsize);
                 while (readed > 0)
@@ -901,7 +901,7 @@ namespace Reportman.Drawing
 
             //dest.Capacity = 0;
             byte[] bufuncomp = new byte[bufsize];
-            ICSharpCode.SharpZipLib.Zip.Compression.Inflater inf = new();
+            ICSharpCode.SharpZipLib.Zip.Compression.Inflater inf = new ICSharpCode.SharpZipLib.Zip.Compression.Inflater();
             inf.SetInput(buffer, 0, count);
             int readed = inf.Inflate(bufuncomp, 0, bufsize);
             while (readed > 0)
@@ -925,8 +925,8 @@ namespace Reportman.Drawing
             MemoryStream dest)
         {
             byte[] bufuncomp = new byte[100000];
-            ICSharpCode.SharpZipLib.Zip.Compression.Deflater inf = new(ICSharpCode.SharpZipLib.Zip.Compression.Deflater.BEST_SPEED);
-            ICSharpCode.SharpZipLib.Zip.Compression.Streams.DeflaterOutputStream zstream = new(dest, inf, 131072);
+            ICSharpCode.SharpZipLib.Zip.Compression.Deflater inf = new ICSharpCode.SharpZipLib.Zip.Compression.Deflater(ICSharpCode.SharpZipLib.Zip.Compression.Deflater.BEST_SPEED);
+            ICSharpCode.SharpZipLib.Zip.Compression.Streams.DeflaterOutputStream zstream = new ICSharpCode.SharpZipLib.Zip.Compression.Streams.DeflaterOutputStream(dest, inf, 131072);
             int readed = memstream.Read(bufuncomp, 0, 100000);
             while (readed > 0)
             {
@@ -942,8 +942,8 @@ namespace Reportman.Drawing
             MemoryStream dest)
         {
             byte[] bufuncomp = new byte[100000];
-            ICSharpCode.SharpZipLib.Zip.Compression.Deflater inf = new(ICSharpCode.SharpZipLib.Zip.Compression.Deflater.BEST_SPEED);
-            ICSharpCode.SharpZipLib.Zip.Compression.Streams.DeflaterOutputStream zstream = new(dest, inf, 131072);
+            ICSharpCode.SharpZipLib.Zip.Compression.Deflater inf = new ICSharpCode.SharpZipLib.Zip.Compression.Deflater(ICSharpCode.SharpZipLib.Zip.Compression.Deflater.BEST_SPEED);
+            ICSharpCode.SharpZipLib.Zip.Compression.Streams.DeflaterOutputStream zstream = new ICSharpCode.SharpZipLib.Zip.Compression.Streams.DeflaterOutputStream(dest, inf, 131072);
             int readed = await memstream.ReadAsync(bufuncomp, 0, 100000);
             while (readed > 0)
             {
@@ -959,7 +959,7 @@ namespace Reportman.Drawing
             MemoryStream dest)
         {
             byte[] bufuncomp = new byte[100000];
-            ICSharpCode.SharpZipLib.GZip.GZipOutputStream zstream = new(dest);
+            ICSharpCode.SharpZipLib.GZip.GZipOutputStream zstream = new ICSharpCode.SharpZipLib.GZip.GZipOutputStream(dest);
             int readed = memstream.Read(bufuncomp, 0, 100000);
             while (readed > 0)
             {
@@ -975,7 +975,7 @@ namespace Reportman.Drawing
             MemoryStream dest)
         {
             byte[] bufuncomp = new byte[100000];
-            ICSharpCode.SharpZipLib.GZip.GZipOutputStream zstream = new(dest);
+            ICSharpCode.SharpZipLib.GZip.GZipOutputStream zstream = new ICSharpCode.SharpZipLib.GZip.GZipOutputStream(dest);
             int readed = await memstream.ReadAsync(bufuncomp, 0, 100000);
             while (readed > 0)
             {
@@ -995,8 +995,8 @@ namespace Reportman.Drawing
                 level = ICSharpCode.SharpZipLib.Zip.Compression.Deflater.BEST_COMPRESSION;
 
             byte[] bufuncomp = new byte[100000];
-            ICSharpCode.SharpZipLib.Zip.Compression.Deflater inf = new(level);
-            ICSharpCode.SharpZipLib.Zip.Compression.Streams.DeflaterOutputStream zstream = new(dest, inf, 131072);
+            ICSharpCode.SharpZipLib.Zip.Compression.Deflater inf = new ICSharpCode.SharpZipLib.Zip.Compression.Deflater(level);
+            ICSharpCode.SharpZipLib.Zip.Compression.Streams.DeflaterOutputStream zstream = new ICSharpCode.SharpZipLib.Zip.Compression.Streams.DeflaterOutputStream(dest, inf, 131072);
             int readed = memstream.Read(bufuncomp, 0, 100000);
             while (readed > 0)
             {
@@ -1012,13 +1012,13 @@ namespace Reportman.Drawing
         /// <param name="destination">The destination compressed file path.</param>
         static public void CompressFile(string source, string destination)
         {
-            using (FileStream fstream = new(source, FileMode.Open, FileAccess.Read, FileShare.None))
+            using (FileStream fstream = new FileStream(source, FileMode.Open, FileAccess.Read, FileShare.None))
             {
-                using (FileStream dest = new(destination, FileMode.Create, FileAccess.Write, FileShare.None))
+                using (FileStream dest = new FileStream(destination, FileMode.Create, FileAccess.Write, FileShare.None))
                 {
                     byte[] bufuncomp = new byte[100000];
-                    ICSharpCode.SharpZipLib.Zip.Compression.Deflater inf = new();
-                    ICSharpCode.SharpZipLib.Zip.Compression.Streams.DeflaterOutputStream zstream = new(dest, inf, 131072);
+                    ICSharpCode.SharpZipLib.Zip.Compression.Deflater inf = new ICSharpCode.SharpZipLib.Zip.Compression.Deflater();
+                    ICSharpCode.SharpZipLib.Zip.Compression.Streams.DeflaterOutputStream zstream = new ICSharpCode.SharpZipLib.Zip.Compression.Streams.DeflaterOutputStream(dest, inf, 131072);
                     int readed = fstream.Read(bufuncomp, 0, 100000);
                     while (readed > 0)
                     {
@@ -1036,13 +1036,13 @@ namespace Reportman.Drawing
         /// <param name="destination">The destination uncompressed file path.</param>
         static public void DeCompressFile(string source, string destination)
         {
-            using (FileStream fstream = new(source, FileMode.Open, FileAccess.Read, FileShare.None))
+            using (FileStream fstream = new FileStream(source, FileMode.Open, FileAccess.Read, FileShare.None))
             {
-                using (FileStream dest = new(destination, FileMode.Create, FileAccess.Write, FileShare.None))
+                using (FileStream dest = new FileStream(destination, FileMode.Create, FileAccess.Write, FileShare.None))
                 {
                     byte[] bufuncomp = new byte[100000];
-                    ICSharpCode.SharpZipLib.Zip.Compression.Inflater inf = new();
-                    ICSharpCode.SharpZipLib.Zip.Compression.Streams.InflaterInputStream zstream = new(fstream, inf);
+                    ICSharpCode.SharpZipLib.Zip.Compression.Inflater inf = new ICSharpCode.SharpZipLib.Zip.Compression.Inflater();
+                    ICSharpCode.SharpZipLib.Zip.Compression.Streams.InflaterInputStream zstream = new ICSharpCode.SharpZipLib.Zip.Compression.Streams.InflaterInputStream(fstream, inf);
                     int readed = zstream.Read(bufuncomp, 0, 100000);
                     while (readed > 0)
                     {
@@ -1070,8 +1070,8 @@ namespace Reportman.Drawing
 
             byte[] bufuncomp = new byte[100000];
             long previousLength = dest.Length;
-            ICSharpCode.SharpZipLib.Zip.Compression.Deflater inf = new(level);
-            ICSharpCode.SharpZipLib.Zip.Compression.Streams.DeflaterOutputStream zstream = new(dest, inf, 131072);
+            ICSharpCode.SharpZipLib.Zip.Compression.Deflater inf = new ICSharpCode.SharpZipLib.Zip.Compression.Deflater(level);
+            ICSharpCode.SharpZipLib.Zip.Compression.Streams.DeflaterOutputStream zstream = new ICSharpCode.SharpZipLib.Zip.Compression.Streams.DeflaterOutputStream(dest, inf, 131072);
             int readed = memstream.Read(bufuncomp, 0, 100000);
             bool cancelled = false;
             while (readed > 0)
@@ -1089,7 +1089,7 @@ namespace Reportman.Drawing
             {
                 memstream.Dispose();
             }
-            TaskCompressResult nresult = new();
+            TaskCompressResult nresult = new TaskCompressResult();
             nresult.Source = memstream;
             nresult.Destination = dest;
             nresult.DisposedSource = disposeSource;
@@ -1103,7 +1103,7 @@ namespace Reportman.Drawing
         static public void DeCompressBufferGZip(byte[] buffer, int offset, int count,
             Stream dest)
         {
-            using (MemoryStream mstream = new())
+            using (MemoryStream mstream = new MemoryStream())
             {
                 mstream.Write(buffer, offset, count);
                 mstream.Seek(0, SeekOrigin.Begin);
@@ -1118,7 +1118,7 @@ namespace Reportman.Drawing
         /// <param name="dest">The destination stream for uncompressed data.</param>
         static public void DecompressStreamGZip(Stream origin, Stream dest)
         {
-            using (System.IO.Compression.DeflateStream inflater = new(origin, System.IO.Compression.CompressionMode.Decompress))
+            using (System.IO.Compression.DeflateStream inflater = new System.IO.Compression.DeflateStream(origin, System.IO.Compression.CompressionMode.Decompress))
             {
                 int bufsize = 100000;
                 //#endif
@@ -1156,8 +1156,8 @@ namespace Reportman.Drawing
 
                 byte[] bufuncomp = new byte[100000];
                 long previousLength = dest.Length;
-                ICSharpCode.SharpZipLib.Zip.Compression.Deflater inf = new(level);
-                ICSharpCode.SharpZipLib.Zip.Compression.Streams.DeflaterOutputStream zstream = new(dest, inf, 131072);
+                ICSharpCode.SharpZipLib.Zip.Compression.Deflater inf = new ICSharpCode.SharpZipLib.Zip.Compression.Deflater(level);
+                ICSharpCode.SharpZipLib.Zip.Compression.Streams.DeflaterOutputStream zstream = new ICSharpCode.SharpZipLib.Zip.Compression.Streams.DeflaterOutputStream(dest, inf, 131072);
                 int readed = memstream.Read(bufuncomp, 0, 100000);
                 bool cancelled = false;
                 while (readed > 0)
@@ -1175,7 +1175,7 @@ namespace Reportman.Drawing
                 {
                     memstream.Dispose();
                 }
-                TaskCompressResult nresult = new();
+                TaskCompressResult nresult = new TaskCompressResult();
                 nresult.Source = memstream;
                 nresult.Destination = dest;
                 nresult.DisposedSource = disposeSource;

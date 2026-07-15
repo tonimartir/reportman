@@ -1,4 +1,4 @@
-﻿#region Copyright
+#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -109,9 +109,9 @@ namespace Reportman.Reporting
                     return FAllStrings[lang];
                 else
                     if (FAllStrings.Count > 0)
-                        return FAllStrings[0];
-                    else
-                        return "";
+                    return FAllStrings[0];
+                else
+                    return "";
 
             }
             set
@@ -159,7 +159,7 @@ namespace Reportman.Reporting
             base.DoPrint(adriver, aposx, aposy, newwidth, newheight,
                 metafile, MaxExtent, ref PartialPrint);
             MetaPage apage = metafile.Pages[metafile.CurrentPage];
-            MetaObjectText metaobj = new();
+            MetaObjectText metaobj = new MetaObjectText();
             FillAnnotation(metaobj, apage);
             string finalText = IsHtml ? EvaluateHtmlExpressions(Text) : Text;
             metaobj.TextP = apage.AddString(finalText);
@@ -193,7 +193,7 @@ namespace Reportman.Reporting
         private TextObjectStruct GetTextObject()
         {
             int aalign;
-            TextObjectStruct aresult = new();
+            TextObjectStruct aresult = new TextObjectStruct();
             aresult.Text = IsHtml ? EvaluateHtmlExpressions(Text) : Text;
             aresult.LFontName = LFontName;
             aresult.WFontName = WFontName;

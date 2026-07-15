@@ -1,11 +1,11 @@
-﻿#if NET8_0_OR_GREATER
-using Reportman.Drawing;
-using Reportman.Hub.Client.DataChannel;
+#if NET8_0_OR_GREATER
 using System;
 using System.Data;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using Reportman.Drawing;
+using Reportman.Hub.Client.DataChannel;
 
 namespace Reportman.Reporting
 {

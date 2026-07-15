@@ -290,7 +290,7 @@ namespace Reportman.Reporting
                 return;
             if (FMStream.Length == 0)
                 return;
-            MetaObjectImage metaobj = new();
+            MetaObjectImage metaobj = new MetaObjectImage();
             var apage = metafile.Pages[metafile.CurrentPage];
             FillAnnotation(metaobj, apage);
             metaobj.MetaType = MetaObjectType.Image;

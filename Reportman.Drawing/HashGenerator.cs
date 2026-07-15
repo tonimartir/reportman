@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.IO;
+using System.Collections.Generic;
 using System.Security.Cryptography;
 
 namespace Reportman.Drawing
@@ -28,7 +28,7 @@ namespace Reportman.Drawing
         /// <summary>
         /// The list of computed file hashes.
         /// </summary>
-        public List<FileHash> Hashes = new();
+        public List<FileHash> Hashes = new List<FileHash>();
         /// <summary>
         /// The date and time (in UTC) when the snapshot was generated.
         /// </summary>

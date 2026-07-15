@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Data;
 using System.Data.Common;
 using System.IO;
@@ -124,7 +124,7 @@ namespace Reportman.Reporting
                 }
             }
             DbProviderFactory nfac = DbProviderFactories.GetFactory("System.Data.OleDb");
-            StringBuilder nbuilder = new();
+            StringBuilder nbuilder = new StringBuilder();
             if (!File.Exists(filename + ".DBF"))
             {
                 File.Delete(filename);
@@ -155,8 +155,8 @@ namespace Reportman.Reporting
                     ncommand.ExecuteNonQuery();
                 }
                 nbuilder = new StringBuilder();
-                StringBuilder nfields = new(" (");
-                StringBuilder nvalues = new(" (");
+                StringBuilder nfields = new StringBuilder(" (");
+                StringBuilder nvalues = new StringBuilder(" (");
                 nbuilder.Append("INSERT INTO ");
                 string[] nfilename = filename.Split('\\');
 
@@ -184,7 +184,7 @@ namespace Reportman.Reporting
                 DateTime mmfirst = DateTime.Now;
                 int ncount = 0;
                 bool docancel = false;
-                using (DataView nview = new(ntable, "", "", DataViewRowState.CurrentRows))
+                using (DataView nview = new DataView(ntable, "", "", DataViewRowState.CurrentRows))
                 {
                     foreach (DataRowView xrv in nview)
                     {

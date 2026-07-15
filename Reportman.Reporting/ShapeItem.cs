@@ -1,4 +1,4 @@
-﻿#region Copyright
+#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -99,7 +99,7 @@ namespace Reportman.Reporting
             base.DoPrint(adriver, aposx, aposy, newwidth, newheight,
                 metafile, MaxExtent, ref PartialPrint);
             var apage = metafile.Pages[metafile.CurrentPage];
-            MetaObjectDraw metaobj = new();
+            MetaObjectDraw metaobj = new MetaObjectDraw();
             FillAnnotation(metaobj, apage);
 
             metaobj.MetaType = MetaObjectType.Draw;

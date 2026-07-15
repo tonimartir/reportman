@@ -1,4 +1,4 @@
-﻿#region Copyright
+#region Copyright
 /*
  *  Report Manager:  Database Reporting tool for .Net and Mono
  *
@@ -24,6 +24,7 @@ using System.Text;
 using System.Globalization;
 using Reportman.Drawing;
 using System.Threading;
+using System.Diagnostics;
 
 
 
@@ -145,7 +146,7 @@ namespace Reportman.Reporting
                 while (index >= 0)
                 {
                     // Obtain parameter name
-                    StringBuilder paramname = new();
+                    StringBuilder paramname = new StringBuilder();
                     int index2 = index + 1;
                     while (index2 < sql.Length)
                     {
@@ -243,7 +244,7 @@ namespace Reportman.Reporting
         /// <param name="afilename"></param>
         public void LoadFromFile(string afilename)
         {
-            FileStream stream = new(afilename, System.IO.FileMode.Open,
+            FileStream stream = new FileStream(afilename, System.IO.FileMode.Open,
                 System.IO.FileAccess.Read);
             try
             {
@@ -262,7 +263,7 @@ namespace Reportman.Reporting
         /// <returns>A list of <see cref="PrintPosItem"/> instances reconstructed from the XML.</returns>
         public List<PrintPosItem> ReadFromString(string contents)
         {
-            List<PrintPosItem> nresult = new();
+            List<PrintPosItem> nresult = new List<PrintPosItem>();
             astring = contents;
             position = 0;
             FindNextName();
@@ -292,26 +293,26 @@ namespace Reportman.Reporting
                     }
                 }
                 else
-                    if (propname == "SECTION")
-                    {
-                        FindNextName();
-                    }
-                    else
-                        if (propname == "/COMPONENT")
-                        {
-                            FindNextName();
-                        }
-                        else
-                        {
-                            throw new Exception("Invalid XML name " + propname);
-                        }
+                  if (propname == "SECTION")
+                {
+                    FindNextName();
+                }
+                else
+                    if (propname == "/COMPONENT")
+                {
+                    FindNextName();
+                }
+                else
+                {
+                    throw new Exception("Invalid XML name " + propname);
+                }
             }
             return nresult;
         }
 
         private void ReadXML(MemoryStream astream)
         {
-            MemoryStream memstream = new();
+            MemoryStream memstream = new MemoryStream();
 
             byte[] buf = new byte[astream.Length];
             int asize = (int)astream.Length;
@@ -324,9 +325,9 @@ namespace Reportman.Reporting
             {
 #if REPMAN_ZLIB
                 byte[] bufuncomp = new byte[100000];
-                ICSharpCode.SharpZipLib.Zip.Compression.Inflater inf = new();
-                ICSharpCode.SharpZipLib.Zip.Compression.Streams.InflaterInputStream zstream = new(memstream, inf);
-                MemoryStream mems = new();
+                ICSharpCode.SharpZipLib.Zip.Compression.Inflater inf = new ICSharpCode.SharpZipLib.Zip.Compression.Inflater();
+                ICSharpCode.SharpZipLib.Zip.Compression.Streams.InflaterInputStream zstream = new ICSharpCode.SharpZipLib.Zip.Compression.Streams.InflaterInputStream(memstream, inf);
+                MemoryStream mems = new MemoryStream();
                 int readed = zstream.Read(bufuncomp, 0, 100000);
                 while (readed > 0)
                 {
@@ -370,13 +371,13 @@ namespace Reportman.Reporting
                 }
                 else
                     if (astring[position] == '>')
-                    {
-                        if (abegin == 0)
-                            InvalidFormatException();
-                        aend = position;
-                        position++;
-                        break;
-                    }
+                {
+                    if (abegin == 0)
+                        InvalidFormatException();
+                    aend = position;
+                    position++;
+                    break;
+                }
                 position++;
             }
             if (aend == 0)
@@ -409,7 +410,7 @@ namespace Reportman.Reporting
                 proptype = proptype.Substring(0, endpos);
             }
             propvalue = "";
-            StringBuilder avalue = new("");
+            StringBuilder avalue = new StringBuilder("");
             while (position < astring.Length)
             {
                 if (astring[position] == '<')
@@ -464,7 +465,7 @@ namespace Reportman.Reporting
         }
         private string GetAsString()
         {
-            StringBuilder aresult = new(propvalue.Length);
+            StringBuilder aresult = new StringBuilder(propvalue.Length);
             int i = 0;
             while (i < propvalue.Length)
             {
@@ -544,7 +545,7 @@ namespace Reportman.Reporting
                     FindNextName();
                     if (propname != "ALIAS")
                         InvalidFormatException();
-                    DatabaseInfo dbitem = new();
+                    DatabaseInfo dbitem = new DatabaseInfo();
                     dbitem.Report = areport;
                     dbitem.Alias = GetAsString();
                     areport.DatabaseInfo.Add(dbitem);
@@ -557,148 +558,148 @@ namespace Reportman.Reporting
                 }
                 else
                     if (propname == "DATAINFO")
+                {
+                    FindNextName();
+                    if (propname != "ALIAS")
+                        InvalidFormatException();
+                    DataInfo ditem = new DataInfo();
+                    ditem.Report = areport;
+                    ditem.Alias = GetAsString();
+                    areport.DataInfo.Add(ditem);
+                    FindNextName();
+                    while (propname != "/DATAINFO")
                     {
+                        ReadPropDataInfo(ditem);
                         FindNextName();
-                        if (propname != "ALIAS")
-                            InvalidFormatException();
-                        DataInfo ditem = new();
-                        ditem.Report = areport;
-                        ditem.Alias = GetAsString();
-                        areport.DataInfo.Add(ditem);
-                        FindNextName();
-                        while (propname != "/DATAINFO")
-                        {
-                            ReadPropDataInfo(ditem);
-                            FindNextName();
-                        }
                     }
-                    else
+                }
+                else
                         if (propname == "PARAMETER")
+                {
+                    FindNextName();
+                    if (propname != "NAME")
+                        InvalidFormatException();
+                    Param aparam = new Param();
+                    aparam.Report = areport;
+                    aparam.Alias = GetAsString();
+                    //                            aparam.Name = GetAsString();
+                    areport.Params.Add(aparam);
+                    FindNextName();
+                    while (propname != "/PARAMETER")
+                    {
+                        ReadPropParam(aparam);
+                        FindNextName();
+                    }
+                }
+                else
+                    if (propname == "EMBEDDEDFILE")
+                {
+                    var efile = new EmbeddedFile();
+                    FindNextName();
+                    while (propname != "/EMBEDDEDFILE")
+                    {
+                        if (propname == "FILENAME")
+                            efile.FileName = GetAsString();
+                        else
+                            if (propname == "MIMETYPE")
+                            efile.MimeType = GetAsString();
+                        else
+                            if (propname == "DESCRIPTION")
+                            efile.Description = GetAsString();
+                        else
+                            if (propname == "CREATIONDATE")
+                            efile.CreationDate = GetAsString();
+                        else
+                            if (propname == "MODIFICATIONDATE")
+                            efile.ModificationDate = GetAsString();
+                        else
+                            if (propname == "RELATIONSHIP")
+                            efile.AFRelationShip = (PDFAFRelationShip)GetAsInteger();
+                        else
+                            if (propname == "STREAM")
+                        {
+                            var memstream = new System.IO.MemoryStream();
+                            BinToStream(memstream);
+                            memstream.Seek(0, SeekOrigin.Begin);
+                            efile.Stream = memstream;
+                        }
+                        else
+                            throw new NamedException("Embededed file wrong property:" + propname, "Embedded file");
+                        string oldprop = propname;
+                        FindNextName();
+                        if (propname != ("/" + oldprop))
+                        {
+                            throw new NamedException("Embededed file property not closed:" + propname, "Embedded file");
+                        }
+                        FindNextName();
+                    }
+                    if (propname != "/EMBEDDEDFILE")
+                        throw new NamedException("Embededed file not closed:" + propname, "Embedded file");
+                    areport.EmbeddedFiles.Add(efile);
+                }
+                else
+                if (propname == "SUBREPORT")
+                {
+                    FindNextName();
+                    if (propname != "NAME")
+                        InvalidFormatException();
+                    SubReport subrep = new SubReport();
+                    subrep.Report = areport;
+                    subrep.Name = GetAsString();
+                    areport.SubReports.Add(subrep);
+                    FindNextName();
+                    while (propname != "/SUBREPORT")
+                    {
+                        // Read subreport props
+                        if (propname == "SECTION")
                         {
                             FindNextName();
                             if (propname != "NAME")
                                 InvalidFormatException();
-                            Param aparam = new();
-                            aparam.Report = areport;
-                            aparam.Alias = GetAsString();
-                            //                            aparam.Name = GetAsString();
-                            areport.Params.Add(aparam);
+                            Section sec = new Section();
+                            sec.Report = areport;
+                            subrep.Sections.Add(sec);
+                            sec.Name = GetAsString();
                             FindNextName();
-                            while (propname != "/PARAMETER")
+                            while (propname != "/SECTION")
                             {
-                                ReadPropParam(aparam);
-                                FindNextName();
-                            }
-                        }
-                        else
-                            if (propname == "EMBEDDEDFILE")
-                            {
-                                var efile = new EmbeddedFile();
-                                FindNextName();
-                                while (propname != "/EMBEDDEDFILE")
-                                {
-                                    if (propname == "FILENAME")
-                                        efile.FileName = GetAsString();
-                                    else
-                                        if (propname == "MIMETYPE")
-                                            efile.MimeType = GetAsString();
-                                        else
-                                            if (propname == "DESCRIPTION")
-                                                efile.Description = GetAsString();
-                                            else
-                                                if (propname == "CREATIONDATE")
-                                                    efile.CreationDate = GetAsString();
-                                                else
-                                                    if (propname == "MODIFICATIONDATE")
-                                                        efile.ModificationDate = GetAsString();
-                                                    else
-                                                        if (propname == "RELATIONSHIP")
-                                                            efile.AFRelationShip = (PDFAFRelationShip)GetAsInteger();
-                                                        else
-                                                            if (propname == "STREAM")
-                                                            {
-                                                                var memstream = new System.IO.MemoryStream();
-                                                                BinToStream(memstream);
-                                                                memstream.Seek(0, SeekOrigin.Begin);
-                                                                efile.Stream = memstream;
-                                                            }
-                                                            else
-                                                                throw new NamedException("Embededed file wrong property:" + propname, "Embedded file");
-                                    string oldprop = propname;
-                                    FindNextName();
-                                    if (propname != ("/" + oldprop))
-                                    {
-                                        throw new NamedException("Embededed file property not closed:" + propname, "Embedded file");
-                                    }
-                                    FindNextName();
-                                }
-                                if (propname != "/EMBEDDEDFILE")
-                                    throw new NamedException("Embededed file not closed:" + propname, "Embedded file");
-                                areport.EmbeddedFiles.Add(efile);
-                            }
-                            else
-                                if (propname == "SUBREPORT")
+                                // Read Section props
+                                if (propname == "COMPONENT")
                                 {
                                     FindNextName();
                                     if (propname != "NAME")
                                         InvalidFormatException();
-                                    SubReport subrep = new();
-                                    subrep.Report = areport;
-                                    subrep.Name = GetAsString();
-                                    areport.SubReports.Add(subrep);
+                                    string compname = GetAsString();
                                     FindNextName();
-                                    while (propname != "/SUBREPORT")
-                                    {
-                                        // Read subreport props
-                                        if (propname == "SECTION")
-                                        {
-                                            FindNextName();
-                                            if (propname != "NAME")
-                                                InvalidFormatException();
-                                            Section sec = new();
-                                            sec.Report = areport;
-                                            subrep.Sections.Add(sec);
-                                            sec.Name = GetAsString();
-                                            FindNextName();
-                                            while (propname != "/SECTION")
-                                            {
-                                                // Read Section props
-                                                if (propname == "COMPONENT")
-                                                {
-                                                    FindNextName();
-                                                    if (propname != "NAME")
-                                                        InvalidFormatException();
-                                                    string compname = GetAsString();
-                                                    FindNextName();
-                                                    FindNextName();
-                                                    if (propname != "CLASSNAME")
-                                                        InvalidFormatException();
-                                                    compclass = GetAsString();
-                                                    PrintPosItem comp = CreateComponent();
-                                                    comp.Name = compname;
+                                    FindNextName();
+                                    if (propname != "CLASSNAME")
+                                        InvalidFormatException();
+                                    compclass = GetAsString();
+                                    PrintPosItem comp = CreateComponent();
+                                    comp.Name = compname;
 
-                                                    sec.Components.Add(comp);
-                                                    comp.Section = sec;
-                                                    FindNextName();
-                                                    while (propname != "/COMPONENT")
-                                                    {
-                                                        // Read component props
-                                                        ReadCompProp(comp);
-                                                        FindNextName();
-                                                    }
-                                                }
-                                                else
-                                                    ReadPropSection(sec);
-                                                FindNextName();
-                                            }
-                                        }
-                                        else
-                                            ReadPropSubReport(subrep);
+                                    sec.Components.Add(comp);
+                                    comp.Section = sec;
+                                    FindNextName();
+                                    while (propname != "/COMPONENT")
+                                    {
+                                        // Read component props
+                                        ReadCompProp(comp);
                                         FindNextName();
                                     }
                                 }
                                 else
-                                    ReadPropReport();
+                                    ReadPropSection(sec);
+                                FindNextName();
+                            }
+                        }
+                        else
+                            ReadPropSubReport(subrep);
+                        FindNextName();
+                    }
+                }
+                else
+                    ReadPropReport();
                 FindNextName();
             }
             // Reload links
@@ -734,20 +735,20 @@ namespace Reportman.Reporting
                             sec.ChildSubReport.ParentSubReport = sec.ChildSubReport;
                         }
                     }
-                    if (sec.SubReportName.Length > 0)
-                    {
-                        sec.SubReportName = subrep.Name;
-                        sec.SubReport = subrep;
-                        /*
+					if (sec.SubReportName.Length > 0)
+					{
+						sec.SubReportName = subrep.Name;
+						sec.SubReport = subrep;
+						/*
 						sec.SubReport = (SubReport)areport.Components[sec.SubReportName];
 						if (sec.SubReport == null)
 							throw new NamedException("SubReport not found:" + sec.SubReportName, sec.SubReportName);*/
-                    }
-                }
-            }
-            // Ensure all components have names (needed for undo/redo, older versions didn't require names for DataInfo, etc.)
-            areport.EnsureComponentNames();
-        }
+					}
+				}
+			}
+			// Ensure all components have names (needed for undo/redo, older versions didn't require names for DataInfo, etc.)
+			areport.EnsureComponentNames();
+		}
 
         private void ResetReportState()
         {
@@ -759,7 +760,7 @@ namespace Reportman.Reporting
             areport.EmbeddedFiles.Clear();
             areport.Components = new ReportItems();
         }
-        private void ReadPropReport()
+		private void ReadPropReport()
         {
             switch (propname)
             {
@@ -899,10 +900,10 @@ namespace Reportman.Reporting
                         newalign = TextAlignType.Right;
                     else
                         if ((aalign & MetaFile.AlignmentFlags_AlignHCenter) > 0)
-                            newalign = TextAlignType.Center;
-                        else
+                        newalign = TextAlignType.Center;
+                    else
                             if ((aalign & MetaFile.AlignmentFlags_AlignHJustify) > 0)
-                                newalign = TextAlignType.Justify;
+                        newalign = TextAlignType.Justify;
                     areport.Alignment = newalign;
                     break;
                 case "VALIGNMENT":
@@ -912,7 +913,7 @@ namespace Reportman.Reporting
                         vnewalign = TextAlignVerticalType.Bottom;
                     else
                         if ((valign & MetaFile.AlignmentFlags_AlignVCenter) > 0)
-                            vnewalign = TextAlignVerticalType.Center;
+                        vnewalign = TextAlignVerticalType.Center;
                     areport.VAlignment = vnewalign;
                     break;
                 case "WORDWRAP":
@@ -1588,10 +1589,10 @@ namespace Reportman.Reporting
                             newalign = TextAlignType.Right;
                         else
                             if ((aalign & MetaFile.AlignmentFlags_AlignHCenter) > 0)
-                                newalign = TextAlignType.Center;
-                            else
+                            newalign = TextAlignType.Center;
+                        else
                                 if ((aalign & MetaFile.AlignmentFlags_AlignHJustify) > 0)
-                                    newalign = TextAlignType.Justify;
+                            newalign = TextAlignType.Justify;
                         compt.Alignment = newalign;
                         assigned = true;
                         break;
@@ -1602,7 +1603,7 @@ namespace Reportman.Reporting
                             vnewalign = TextAlignVerticalType.Bottom;
                         else
                             if ((valign & MetaFile.AlignmentFlags_AlignVCenter) > 0)
-                                vnewalign = TextAlignVerticalType.Center;
+                            vnewalign = TextAlignVerticalType.Center;
                         compt.VAlignment = vnewalign;
                         assigned = true;
                         break;
@@ -2060,7 +2061,7 @@ namespace Reportman.Reporting
                     numberformat = new NumberFormatInfo();
                     numberformat.NumberDecimalSeparator = ".";
                     numberformat.NumberGroupSeparator = "";
-                    StringBuilder sbuilder = new();
+                    StringBuilder sbuilder = new StringBuilder();
                     AddRangeToSBuilder(sbuilder, '0', '9');
                     AddRangeToSBuilder(sbuilder, 'A', 'Z');
                     AddRangeToSBuilder(sbuilder, 'a', 'z');
@@ -2110,7 +2111,7 @@ namespace Reportman.Reporting
                 astring = "";
             int alen = 0;
             string asubs;
-            StringBuilder aresult = new();
+            StringBuilder aresult = new StringBuilder();
             foreach (char c in astring)
             {
                 if (RpIsAlpha(c))
@@ -2378,128 +2379,128 @@ namespace Reportman.Reporting
                 // WIDETEXT no puede representar saltos de línea dentro de un idioma
                 // (cada línea es un idioma): los CR residuales se eliminan y los LF
                 // embebidos se sustituyen por espacio antes de unir con CRLF.
-                Strings cleanStrings = new();
+                Strings cleanStrings = new Strings();
                 foreach (string lang in compl.AllStrings)
                     cleanStrings.Add(lang == null ? "" : lang.Replace("\r", "").Replace('\n', ' '));
                 WritePropertyS("WIDETEXT", cleanStrings.Text, astream);
             }
             else
-                // TRpExpression
-                if (comp is ExpressionItem)
-                {
-                    ExpressionItem compe = (ExpressionItem)comp;
-                    WritePropertyS("EXPRESSION", compe.Expression, astream);
-                    WritePropertyS("AGINIVALUE", compe.AgIniValue, astream);
-                    WritePropertyS("EXPORTEXPRESSION", compe.ExportExpression, astream);
-                    WritePropertyI("DATATYPE", (int)compe.DataType, astream);
-                    WritePropertyS("DISPLAYFORMAT", compe.DisplayFormat, astream);
-                    WritePropertyS("IDENTIFIER", compe.Identifier, astream);
-                    WritePropertyI("AGGREGATE", (int)compe.Aggregate, astream);
-                    WritePropertyS("GROUPNAME", compe.GroupName, astream);
-                    WritePropertyI("AGTYPE", (int)compe.AgType, astream);
-                    WritePropertyBool("AUTOEXPAND", compe.AutoExpand, astream);
-                    WritePropertyBool("AUTOCONTRACT", compe.AutoContract, astream);
-                    WritePropertyBool("PRINTONLYONE", compe.PrintOnlyOne, astream);
-                    WritePropertyBool("PRINTNULLS", compe.PrintNulls, astream);
-                    WritePropertyS("EXPORTDISPLAYFORMAT", compe.ExportDisplayFormat, astream);
-                    WritePropertyI("EXPORTLINE", compe.ExportLine, astream);
-                    WritePropertyI("EXPORTPOSITION", compe.ExportPosition, astream);
-                    WritePropertyI("EXPORTSIZE", compe.ExportSize, astream);
-                    WritePropertyBool("EXPORTDONEWLINE", compe.ExportDoNewLine, astream);
-                }
-                else
-                    // TRpShape            
-                    if (comp is ShapeItem)
+            // TRpExpression
+            if (comp is ExpressionItem)
+            {
+                ExpressionItem compe = (ExpressionItem)comp;
+                WritePropertyS("EXPRESSION", compe.Expression, astream);
+                WritePropertyS("AGINIVALUE", compe.AgIniValue, astream);
+                WritePropertyS("EXPORTEXPRESSION", compe.ExportExpression, astream);
+                WritePropertyI("DATATYPE", (int)compe.DataType, astream);
+                WritePropertyS("DISPLAYFORMAT", compe.DisplayFormat, astream);
+                WritePropertyS("IDENTIFIER", compe.Identifier, astream);
+                WritePropertyI("AGGREGATE", (int)compe.Aggregate, astream);
+                WritePropertyS("GROUPNAME", compe.GroupName, astream);
+                WritePropertyI("AGTYPE", (int)compe.AgType, astream);
+                WritePropertyBool("AUTOEXPAND", compe.AutoExpand, astream);
+                WritePropertyBool("AUTOCONTRACT", compe.AutoContract, astream);
+                WritePropertyBool("PRINTONLYONE", compe.PrintOnlyOne, astream);
+                WritePropertyBool("PRINTNULLS", compe.PrintNulls, astream);
+                WritePropertyS("EXPORTDISPLAYFORMAT", compe.ExportDisplayFormat, astream);
+                WritePropertyI("EXPORTLINE", compe.ExportLine, astream);
+                WritePropertyI("EXPORTPOSITION", compe.ExportPosition, astream);
+                WritePropertyI("EXPORTSIZE", compe.ExportSize, astream);
+                WritePropertyBool("EXPORTDONEWLINE", compe.ExportDoNewLine, astream);
+            }
+            else
+            // TRpShape            
+            if (comp is ShapeItem)
+            {
+                ShapeItem comps = (ShapeItem)comp;
+                WritePropertyI("SHAPE", (int)comps.Shape, astream);
+                WritePropertyI("BRUSHSTYLE", (int)comps.BrushStyle, astream);
+                WritePropertyI("BRUSHCOLOR", comps.BrushColor, astream);
+                WritePropertyI("PENSTYLE", (int)comps.PenStyle, astream);
+                WritePropertyI("PENCOLOR", comps.PenColor, astream);
+                WritePropertyI("PENWIDTH", comps.PenWidth, astream);
+            }
+            else
+            // TRpImage
+            if (comp is ImageItem)
+            {
+                ImageItem compi = (ImageItem)comp;
+                WritePropertyS("EXPRESSION", compi.Expression, astream);
+                if (compi.Stream != null)
+                    if (compi.Stream.Length > 0)
                     {
-                        ShapeItem comps = (ShapeItem)comp;
-                        WritePropertyI("SHAPE", (int)comps.Shape, astream);
-                        WritePropertyI("BRUSHSTYLE", (int)comps.BrushStyle, astream);
-                        WritePropertyI("BRUSHCOLOR", comps.BrushColor, astream);
-                        WritePropertyI("PENSTYLE", (int)comps.PenStyle, astream);
-                        WritePropertyI("PENCOLOR", comps.PenColor, astream);
-                        WritePropertyI("PENWIDTH", comps.PenWidth, astream);
+                        compi.Stream.Seek(0, SeekOrigin.Begin);
+                        WritePropertyB("STREAM", compi.Stream, astream);
                     }
-                    else
-                        // TRpImage
-                        if (comp is ImageItem)
-                        {
-                            ImageItem compi = (ImageItem)comp;
-                            WritePropertyS("EXPRESSION", compi.Expression, astream);
-                            if (compi.Stream != null)
-                                if (compi.Stream.Length > 0)
-                                {
-                                    compi.Stream.Seek(0, SeekOrigin.Begin);
-                                    WritePropertyB("STREAM", compi.Stream, astream);
-                                }
-                            WritePropertyI("ROTATION", compi.Rotation, astream);
-                            WritePropertyI("DRAWSTYLE", (int)compi.DrawStyle, astream);
-                            WritePropertyI("DPIRES", compi.dpires, astream);
-                            WritePropertyI("COPYMODE", compi.CopyMode, astream);
-                            WritePropertyI("CACHEDIMAGE", (int)compi.SharedImage, astream);
-                        }
-                        else
-                            // TRpChart
-                            if (comp is ChartItem)
-                            {
-                                ChartItem compc = (ChartItem)comp;
-                                WritePropertyS("VALUEEXPRESSION", compc.ValueExpression, astream);
-                                WritePropertyS("VALUEXEXPRESSION", compc.ValueXExpression, astream);
-                                WritePropertyS("GETVALUECONDITION", compc.GetValueCondition, astream);
-                                WritePropertyS("CHANGESERIEEXPRESSION", compc.ChangeSerieExpression, astream);
-                                WritePropertyS("CAPTIONEXPRESSION", compc.CaptionExpression, astream);
-                                WritePropertyS("COLOREXPRESSION", compc.ColorExpression, astream);
-                                WritePropertyS("SERIECOLOREXPRESSION", compc.SerieColorExpression, astream);
-                                WritePropertyS("SERIECAPTION", compc.SerieCaption, astream);
-                                WritePropertyS("CLEAREXPRESSION", compc.ClearExpression, astream);
-                                //  WritePropertyI('SERIES',Integer(compc.Series),Stream);
-                                WritePropertyBool("CHANGESERIEBOOL", compc.ChangeSerieBool, astream);
-                                WritePropertyI("CHARTTYPE", (int)compc.ChartStyle, astream);
-                                WritePropertyS("IDENTIFIER", compc.Identifier, astream);
-                                WritePropertyBool("CLEAREXPRESSIONBOOL", compc.ClearExpressionBool, astream);
-                                WritePropertyI("DRIVER", (int)compc.Driver, astream);
-                                WritePropertyBool("VIEW3D", compc.View3d, astream);
-                                WritePropertyBool("VIEW3DWALLS", compc.View3dWalls, astream);
-                                WritePropertyI("PERSPECTIVE", compc.Perspective, astream);
-                                WritePropertyI("ELEVATION", compc.Elevation, astream);
-                                WritePropertyI("ROTATION", compc.Rotation, astream);
-                                WritePropertyI("ZOOM", compc.Zoom, astream);
-                                WritePropertyI("HORZOFFSET", compc.HorzOffset, astream);
-                                WritePropertyI("VERTOFFSET", compc.VertOffset, astream);
-                                WritePropertyI("TILT", compc.Tilt, astream);
-                                WritePropertyBool("ORTHOGONAL", compc.Orthogonal, astream);
-                                WritePropertyI("MULTIBAR", (int)compc.MultiBar, astream);
-                                WritePropertyI("RESOLUTION", compc.Resolution, astream);
-                                WritePropertyBool("SHOWLEGEND", compc.ShowLegend, astream);
-                                WritePropertyBool("SHOWHINT", compc.ShowHint, astream);
-                                WritePropertyI("MARKSTYLE", compc.MarkStyle, astream);
-                                WritePropertyI("HORZFONTSIZE", compc.HorzFontSize, astream);
-                                WritePropertyI("VERTFONTSIZE", compc.VertFontSize, astream);
-                                WritePropertyI("HORZFONTROTATION", compc.HorzFontRotation, astream);
-                                WritePropertyI("VERTFONTROTATION", compc.VertFontRotation, astream);
-                                WritePropertyI("AUTORANGE", (int)compc.AutoRange, astream);
-                                WritePropertyD("YMIN", compc.AxisYInitial, astream);
-                                WritePropertyD("YMAX", compc.AxisYFinal, astream);
-                            }
-                            else
-                                // TRpBarcode
-                                if (comp is BarcodeItem)
-                                {
-                                    BarcodeItem compb = (BarcodeItem)comp;
-                                    WritePropertyS("EXPRESSION", compb.Expression, astream);
-                                    WritePropertyI("MODUL", compb.Modul, astream);
-                                    WritePropertyD("RATIO", compb.Ratio, astream);
-                                    WritePropertyI("TYP", (int)compb.BarType, astream);
-                                    WritePropertyBool("CHECKSUM", compb.Checksum, astream);
-                                    WritePropertyBool("TRANSPARENT", compb.Transparent, astream);
-                                    WritePropertyS("DISPLAYFORMAT", compb.DisplayFormat, astream);
-                                    WritePropertyI("ROTATION", compb.Rotation, astream);
-                                    WritePropertyI("BCOLOR", compb.BColor, astream);
-                                    WritePropertyI("BACKCOLOR", compb.BackColor, astream);
-                                    WritePropertyI("NUMCOLUMNS", compb.NumColumns, astream);
-                                    WritePropertyI("NUMROWS", compb.NumRows, astream);
-                                    WritePropertyI("ECCLEVEL", compb.ECCLevel, astream);
-                                    WritePropertyBool("TRUNCATED", compb.Truncated, astream);
-                                }
+                WritePropertyI("ROTATION", compi.Rotation, astream);
+                WritePropertyI("DRAWSTYLE", (int)compi.DrawStyle, astream);
+                WritePropertyI("DPIRES", compi.dpires, astream);
+                WritePropertyI("COPYMODE", compi.CopyMode, astream);
+                WritePropertyI("CACHEDIMAGE", (int)compi.SharedImage, astream);
+            }
+            else
+            // TRpChart
+            if (comp is ChartItem)
+            {
+                ChartItem compc = (ChartItem)comp;
+                WritePropertyS("VALUEEXPRESSION", compc.ValueExpression, astream);
+                WritePropertyS("VALUEXEXPRESSION", compc.ValueXExpression, astream);
+                WritePropertyS("GETVALUECONDITION", compc.GetValueCondition, astream);
+                WritePropertyS("CHANGESERIEEXPRESSION", compc.ChangeSerieExpression, astream);
+                WritePropertyS("CAPTIONEXPRESSION", compc.CaptionExpression, astream);
+                WritePropertyS("COLOREXPRESSION", compc.ColorExpression, astream);
+                WritePropertyS("SERIECOLOREXPRESSION", compc.SerieColorExpression, astream);
+                WritePropertyS("SERIECAPTION", compc.SerieCaption, astream);
+                WritePropertyS("CLEAREXPRESSION", compc.ClearExpression, astream);
+                //  WritePropertyI('SERIES',Integer(compc.Series),Stream);
+                WritePropertyBool("CHANGESERIEBOOL", compc.ChangeSerieBool, astream);
+                WritePropertyI("CHARTTYPE", (int)compc.ChartStyle, astream);
+                WritePropertyS("IDENTIFIER", compc.Identifier, astream);
+                WritePropertyBool("CLEAREXPRESSIONBOOL", compc.ClearExpressionBool, astream);
+                WritePropertyI("DRIVER", (int)compc.Driver, astream);
+                WritePropertyBool("VIEW3D", compc.View3d, astream);
+                WritePropertyBool("VIEW3DWALLS", compc.View3dWalls, astream);
+                WritePropertyI("PERSPECTIVE", compc.Perspective, astream);
+                WritePropertyI("ELEVATION", compc.Elevation, astream);
+                WritePropertyI("ROTATION", compc.Rotation, astream);
+                WritePropertyI("ZOOM", compc.Zoom, astream);
+                WritePropertyI("HORZOFFSET", compc.HorzOffset, astream);
+                WritePropertyI("VERTOFFSET", compc.VertOffset, astream);
+                WritePropertyI("TILT", compc.Tilt, astream);
+                WritePropertyBool("ORTHOGONAL", compc.Orthogonal, astream);
+                WritePropertyI("MULTIBAR", (int)compc.MultiBar, astream);
+                WritePropertyI("RESOLUTION", compc.Resolution, astream);
+                WritePropertyBool("SHOWLEGEND", compc.ShowLegend, astream);
+                WritePropertyBool("SHOWHINT", compc.ShowHint, astream);
+                WritePropertyI("MARKSTYLE", compc.MarkStyle, astream);
+                WritePropertyI("HORZFONTSIZE", compc.HorzFontSize, astream);
+                WritePropertyI("VERTFONTSIZE", compc.VertFontSize, astream);
+                WritePropertyI("HORZFONTROTATION", compc.HorzFontRotation, astream);
+                WritePropertyI("VERTFONTROTATION", compc.VertFontRotation, astream);
+                WritePropertyI("AUTORANGE", (int)compc.AutoRange, astream);
+                WritePropertyD("YMIN", compc.AxisYInitial, astream);
+                WritePropertyD("YMAX", compc.AxisYFinal, astream);
+            }
+            else
+            // TRpBarcode
+            if (comp is BarcodeItem)
+            {
+                BarcodeItem compb = (BarcodeItem)comp;
+                WritePropertyS("EXPRESSION", compb.Expression, astream);
+                WritePropertyI("MODUL", compb.Modul, astream);
+                WritePropertyD("RATIO", compb.Ratio, astream);
+                WritePropertyI("TYP", (int)compb.BarType, astream);
+                WritePropertyBool("CHECKSUM", compb.Checksum, astream);
+                WritePropertyBool("TRANSPARENT", compb.Transparent, astream);
+                WritePropertyS("DISPLAYFORMAT", compb.DisplayFormat, astream);
+                WritePropertyI("ROTATION", compb.Rotation, astream);
+                WritePropertyI("BCOLOR", compb.BColor, astream);
+                WritePropertyI("BACKCOLOR", compb.BackColor, astream);
+                WritePropertyI("NUMCOLUMNS", compb.NumColumns, astream);
+                WritePropertyI("NUMROWS", compb.NumRows, astream);
+                WritePropertyI("ECCLEVEL", compb.ECCLevel, astream);
+                WritePropertyBool("TRUNCATED", compb.Truncated, astream);
+            }
             StreamUtil.SWriteLine(astream, "</COMPONENT>");
 
         }
@@ -2528,7 +2529,7 @@ namespace Reportman.Reporting
         private void WriteDataInfoXML(DataInfo dinfo, Stream astream, StreamVersion version)
         {
             WritePropertyS("ALIAS", dinfo.Alias, astream);
-            if (version > StreamVersion.V1)
+            if (version>StreamVersion.V1)
             {
                 WritePropertyS("NAME", dinfo.Name, astream);
             }
@@ -2663,7 +2664,7 @@ namespace Reportman.Reporting
             WritePropertyBool("PRINTONLYIFDATAAVAILABLE", subrep.PrintOnlyIfDataAvailable, astream);
             WritePropertyBool("REOPENONPRINT", subrep.ReOpenOnPrint, astream);
         }
-        private void WriteSectionXML(Section asection, Stream astream, StreamVersion version)
+        private void WriteSectionXML(Section asection, Stream astream, StreamVersion  version)
         {
             StreamUtil.SWriteLine(astream, "<SECTION>");
 
@@ -2720,7 +2721,7 @@ namespace Reportman.Reporting
                     WritePropertyB("STREAM", asection.Stream, astream);
                 }
             }
-            if (version > StreamVersion.V1)
+            if (version>StreamVersion.V1)
             {
                 WritePropertyBool("SYNCWIDTH", asection.SyncWidth, astream);
             }
@@ -2740,7 +2741,7 @@ namespace Reportman.Reporting
         public static string WriteComponents(List<PrintPosItem> nitems)
         {
             string nresult = "";
-            using (MemoryStream astream = new())
+            using (MemoryStream astream = new MemoryStream())
             {
                 StreamUtil.SWriteLine(astream, "<SECTION>");
                 foreach (PrintPosItem aitem in nitems)
@@ -2764,8 +2765,8 @@ namespace Reportman.Reporting
             if (areport.StreamFormat == StreamFormatType.XMLZlib)
             {
 #if REPMAN_ZLIB
-                ICSharpCode.SharpZipLib.Zip.Compression.Deflater inf = new();
-                ICSharpCode.SharpZipLib.Zip.Compression.Streams.DeflaterOutputStream zstream = new(astream, inf, 131072);
+                ICSharpCode.SharpZipLib.Zip.Compression.Deflater inf = new ICSharpCode.SharpZipLib.Zip.Compression.Deflater();
+                ICSharpCode.SharpZipLib.Zip.Compression.Streams.DeflaterOutputStream zstream = new ICSharpCode.SharpZipLib.Zip.Compression.Streams.DeflaterOutputStream(astream, inf, 131072);
                 try
                 {
                     IntSaveToStream(zstream, streamVersion);
@@ -2876,7 +2877,7 @@ namespace Reportman.Reporting
         /// <param name="version">The version of the stream format to write.</param>
         public void SaveToFile(string afilename, StreamVersion version)
         {
-            FileStream astream = new(afilename, System.IO.FileMode.Create,
+            FileStream astream = new FileStream(afilename, System.IO.FileMode.Create,
                 System.IO.FileAccess.Write);
             try
             {
